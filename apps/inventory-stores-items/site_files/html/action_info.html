@@ -1,0 +1,24 @@
+<div class="row">
+    <table class="table border">
+        <tr>
+            <th>##word.useradd_user_info##</th>
+            <th>##word.useredit_user_info## </th>
+        </tr>
+
+        <tr>
+
+            <td class="center">
+                <p class="blue"> {{category_item._created.name}} </p>
+                <small class="green"> {{category_item._created.date |date:"hh:mm"}} </small>
+                <small> {{category_item._created.date |date:"dd - MM - yyyy"}} </small>
+            </td>
+
+            <td class="center">
+                <p class="blue"> {{category_item._updated.name}} </p>
+                <small class="green"> {{category_item._updated.date |date:"hh:mm"}} </small>
+                <small> {{category_item._updated.date |date:"dd - MM - yyyy"}} </small>
+            </td>
+        </tr>
+        
+    </table>
+</div>

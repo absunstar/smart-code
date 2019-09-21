@@ -1,0 +1,58 @@
+<div id="Category_ItemSearchModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.search_all## <i class="fa fa-search"></i>
+                 
+            </h2>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <form class="form">
+
+                    <div class="row">
+                        <i-control class="col3" ng-model="search.name" label="##word.stores_items_name##" type="text"></i-control>
+                        <i-list class="col3" ng-model="search.store" items="stores" label="##word.stores_items_store_name##"
+                            ng-search="_search.$search_store"></i-list>
+                        <i-list class="col3" ng-model="search.category" items="categories" ng-search="_search.$search_categories" label="##word.stores_in_categry##"></i-list>
+                        <i-list class="col3" ng-model="search.vendor" items="vendors" label="##word.stores_items_Company_name##"
+                        ng-search="_search.$search_vendor"></i-list>
+                        
+                    </div>
+
+                    <div class="row">
+                           
+                        <i-control class="col4" ng-model="search.size" label="##word.stores_items_sizes##" type="text"></i-control>
+                        <i-control class="col4" ng-model="search.cost" label="##word.stores_items_cost##" type="text"></i-control>
+                        <i-control class="col4" ng-model="search.price" label="##word.stores_items_price##" type="text"></i-control>
+                        
+                       
+
+                    </div>
+                    <div class="row">
+                        <i-control class="col3" ng-model="search.current_count" label="##word.stores_items_balance##"
+                        type="number"></i-control>
+                        <i-control class="col3" ng-model="search.current_countGt" label="##word.stores_items_balance_Gt##"
+                            type="number"></i-control>
+                        <i-control class="col3" ng-model="search.current_countLt" label="##word.stores_items_balance_Lt##"
+                            type="number"></i-control>
+
+                            <i-control class="col3" label="##word.limit##" type="number" ng-model="search.limit"></i-control>
+
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+        <h2 class="error">{{error}}</h2>
+        <div class="modal-footer center">
+            <i-button type="search" ng-click="searchAll()" label="##word.stores_search##"></i-button>
+            <i-button type="clear" ng-click="search = {}" label="##word.stores_empty_search##"></i-button>
+            <i-button type="close" onclick="site.hideModal('#Category_ItemSearchModal')" label="##word.close##"></i-button>
+
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,11 @@
+[
+    { "module_name" : "accounting" , "screen_name" : "accounting-employee-offer" , "name":"employee_offer_manage" , "en":"Manage" , "ar":"إدارة"},
+    { "module_name" : "accounting" , "screen_name" : "accounting-employee-offer" , "name":"employee_offer_add" , "en":"Add" , "ar":"إضافة"},
+    { "module_name" : "accounting" , "screen_name" : "accounting-employee-offer" , "name":"employee_offer_update" , "en":"Edit" , "ar":"تعديل"},
+    { "module_name" : "accounting" , "screen_name" : "accounting-employee-offer" , "name":"employee_offer_delete" , "en":"Delete" , "ar":"حذف"},
+    { "module_name" : "accounting" , "screen_name" : "accounting-employee-offer" , "name":"employee_offer_view" , "en":"View" , "ar":"عرض"},
+    { "module_name" : "accounting" , "screen_name" : "accounting-employee-offer" , "name":"employee_offer_search" , "en":"Search" , "ar":"بحث"},
+    { "module_name" : "accounting" , "screen_name" : "accounting-employee-offer" , "name":"employee_offer_export" , "en":"Export" , "ar":"تصدير"},
+    { "module_name" : "accounting" , "screen_name" : "accounting-employee-offer" , "name":"employee_offer_print" , "en":"Print" , "ar":"طباعة"},
+    { "module_name" : "accounting" , "screen_name" : "accounting-employee-offer" , "name":"employee_offer_ui" , "en":"Ui" , "ar":"الواجهة الرسومية"}
+]

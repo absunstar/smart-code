@@ -1,0 +1,43 @@
+<div ng-hide="busy" class="row">
+    <div id="basicInformation" class="tab-content">
+        <fieldset>
+            <legend> ##word.basic_information##</legend>
+            <div class="col9">
+                <table id="basicInformationTable" class="table bold hover">
+                    <tr>
+                        <td class="title">##word.tables_group##</td>
+                        <td class="center">{{tables.tables_group.name}}</td>
+                    </tr>
+                    <tr>
+                        <td class="title">##word.tables_number##</td>
+                        <td class="center">{{tables.code}}</td>
+                    </tr>
+                    <tr>
+                        <td class="title">##word.table_name##</td>
+                        <td class="center">{{tables.name}}</td>
+                    </tr>
+                    <tr>
+                        <td class="title">##word.tables_min##</td>
+                        <td class="center green">{{tables.minimum}}</td>
+                    </tr>
+                    <tr>
+                        <td class="title">##word.tables_max##</td>
+                        <td class="center red">{{tables.maxmum}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="title">##word.status##</td>
+                        <td ng-show="tables.active == true" class="green center"> ##word.active## </td>
+                        <td ng-show="tables.active == false" class="red center"> ##word.not_active## </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="col3">
+                <i-image view ng-model="tables.image_url"></i-image>
+            </div>
+
+        </fieldset>
+    </div>
+</div>
+<div x-import="tables/action_info.html"></div>

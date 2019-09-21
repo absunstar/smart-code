@@ -1,0 +1,170 @@
+:root {
+    --theme-color: #ffffff;
+    --theme-color2: #2f8033;
+    --font-size: 13px;
+    --color: #000;
+    --background-color: #e8e4e4;
+    --body-background: #e8e4e4;
+    --modal-header-background-color: #707070;
+    --modal-box-shadow-color: #9E9E9E;
+    --modal-animation-name: animateopacity;
+    --modal-background: #e8e4e4;
+    --btn-box-shadow-color: #000;
+    --btn-border-radius: 0px;
+    --btn-color: #fff;
+    --btn-background-color: #000;
+    --fieldset-border: 1px solid #9E9E9E;
+    --legend-color: #707070;
+    --tabs-header-link-color2: #000000;
+    --help-background-color : #795548;
+    --help-border: 1px solid #795548;
+}
+
+body {
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+a {
+    cursor: pointer;
+}
+
+.help-container {
+    bottom: 50px;
+}
+
+.tabs .tabs-header .tab-link{
+    font-size: 16px;
+}
+
+.tabs .tabs-header .tab-link.active {
+    background-color: #707070;
+    padding-right: 30px;
+}
+
+.tabs .tabs-header .tab-link:hover {
+    background-color: #9E9E9E;
+    padding-right: 30px;
+}
+
+.btn {
+    font-size: 15px;
+    box-shadow: 0px 8px 14px -1px var(--btn-box-shadow-color);
+    -webkit-box-shadow: 0px 8px 14px -1px var(--btn-box-shadow-color);
+    box-shadow: 0px 8px 14px -1px var(--btn-box-shadow-color);
+}
+
+.table th {
+    background-color: #707070;
+    color: #ffffff;
+}
+
+popup item:hover {
+    background: #707070;
+    color: #ffffff;
+}
+
+
+.main-menu {
+    margin: 0 auto;
+    width: 100%;
+    padding: 40px;
+    text-align: center;
+    max-height: 90vh;
+    overflow-y: scroll;
+}
+
+nav.sitebar {
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    left: 0px;
+    box-shadow: 1px 1px 1px 1px #9E9E9E;
+    background: #fff;
+}
+
+nav h2.brand {
+    margin: 0px;
+    padding: 5px;
+}
+
+nav h2.brand a {
+    font-weight: bold;
+    color: #FF5722;
+    text-decoration: none;
+}
+
+
+
+nav h2.brand a span {
+    font-size: 12px;
+    color: #795548;
+}
+
+nav h2.brand a i {
+    color: #009688;
+}
+
+
+nav .links {
+    display: none;
+}
+
+
+nav .links ul {
+    list-style: none;
+}
+
+nav .links ul li {
+    display: inline-block;
+    margin: 3px;
+    padding: 3px;
+}
+
+nav .links ul li a {
+    color: #030303;
+}
+
+nav .info {
+    font-weight: bold;
+    display: inline-block;
+    font-size: 14px;
+    color: #3F51B5;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+nav .info .user-name {
+    color: #000;
+}
+
+nav .info .ubtn-logout {
+    color: red;
+}
+
+
+nav.sitebottom {
+    position: fixed;
+    bottom: 0px;
+    right: 0px;
+    left: 0px;
+    background: #000000;
+    color: #ffffff;
+    border: 2px solid #000;
+}
+
+nav.sitebottom a.link {
+    color: #fff;
+    font-size: 16px;
+    text-decoration: none;
+    padding: 5px;
+    padding-right: 10px;
+    margin: 5px;
+    border-right: 1px solid #000;
+    display: inline-block;
+}
+
+nav.sitebottom a.link:hover {
+    background: #fff;
+    color: #000;
+}

@@ -1,0 +1,24 @@
+<div id="viewEmployeesAdvancesModal" class="modal">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.employees_advances_details## <i class="fa fa-file"></i>
+            </h2>
+        </div>
+        <div class="modal-body">
+
+
+            <div x-import="accounting-employee-advances/view.html"></div>
+
+        </div>
+        <h2>{{error}}</h2>
+        <div class="modal-footer center">
+
+            <i-button type="close" label="##word.close##" onclick="site.hideModal('#viewEmployeesAdvancesModal')"></i-button>
+        </div>
+    </div>
+
+
+</div>

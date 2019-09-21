@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="in_out_names_ui || in_out_names_manage" data-ng-app="myApp">
+
+<head x-import="head.html">
+
+</head>
+
+<body class="##session.lang##">
+
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+
+    </nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+
+    </nav>
+    <div x-permission="amounts_name" id="main-layout" class="container">
+        <div class="row">
+            <div class="row" ng-controller="in_out_names">
+                <div x-permissions="in_out_names_add || in_out_names_manage"
+                    x-import="accounting-in-out-names/add_modal.html"></div>
+                <div x-permissions="in_out_names_update || in_out_names_manage"
+                    x-import="accounting-in-out-names/update_modal.html"></div>
+                <div x-permissions="in_out_names_delete || in_out_names_manage"
+                    x-import="accounting-in-out-names/delete_modal.html"></div>
+                <div x-permissions="in_out_names_view || in_out_names_manage"
+                    x-import="accounting-in-out-names/view_modal.html"></div>
+                <div x-permissions="in_out_names_search || in_out_names_manage"
+                    x-import="accounting-in-out-names/search_all_modal.html"></div>
+
+                <div class="row">
+                    <h1 class="bold text-center">##word.in_out_name##</h1>
+                </div>
+
+                <div class="top-actions">
+
+                    <i-button x-permissions="in_out_names_add || in_out_names_manage" type="add"
+                        label="##word.in_out_name_new##" ng-click="newIn_Out_Name()"></i-button>
+                    <i-button x-permissions="in_out_names_search || in_out_names_manage" type="search"
+                        label="##word.search_all##" onclick="site.showModal('#In_OutSearchModal')"></i-button>
+
+                </div>
+
+                <table class="table hover bold center loaded" id="t1">
+                    <tr>
+                        <th class="not-print">##word.in_out_name_logo##</th>
+                        <th>##word.in_out_name_name##</th>
+                        <th>##word.in_out_name_in##</th>
+                        <th>##word.in_out_name_out##</th>
+                        <th class="not-print">##word.actions##</th>
+                    </tr>
+                    <tr ng-repeat="c in list">
+                        <td class="not-print">
+                            <i-image view class="logo" ng-model="c.image_url"></i-image>
+
+                        </td>
+                        <td>{{c.name}}</td>
+                        <td>
+                            <p class="green" ng-show="c.in == true"> ##word.yes## </p>
+                        </td>
+                        <td>
+                            <p class="green" ng-show="c.out == true"> ##word.yes## </p>
+                        </td>
+                        <td class="not-print" class="center">
+
+                            <i-button x-permissions="in_out_names_view || in_out_names_manage" type="details"
+                                label="##word.details##" ng-click="details(c)"></i-button>
+                            <i-button x-permissions="in_out_names_update || in_out_names_manage" type="update"
+                                label="##word.update##" ng-click="edit(c)"></i-button>
+                            <i-button x-permissions="in_out_names_delete || in_out_names_manage" type="delete"
+                                label="##word.delete##" ng-click="remove(c)"></i-button>
+
+
+                        </td>
+                    </tr>
+
+                </table>
+                <i-button x-permissions="in_out_names_export || in_out_names_manage" type="export"
+                    label="##word.export_to_excel##" onclick="export_to_xlsx('t1' , 'in_out_names.xlsx')"></i-button>
+                <i-button x-permissions="in_out_names_print || in_out_names_manage" type="print" label="##word.print##"
+                    onclick="site.print('#t1')"></i-button>
+
+
+            </div>
+        </div>
+    </div>
+
+
+    <div x-import="scripts.html"></div>
+
+    <script x-permission="amounts_name" x-import="accounting-in-out-names/index.js"></script>
+
+
+</body>
+
+</html>

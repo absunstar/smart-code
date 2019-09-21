@@ -1,0 +1,57 @@
+[
+    {
+        "name": "kitchen",
+        "en": "Kitchen",
+        "ar": "تعريف المطابخ"
+    },
+    {
+        "name": "kitchen",
+        "en": "Kitchen",
+        "ar": "المطبخ"
+    },
+    {
+        "name": "kitchen_name",
+        "en": "Kitchen Name",
+        "ar": "إسم المطبخ"
+    },
+    {
+        "name": "kitchen_new",
+        "en": "New Kitchen",
+        "ar": "مطبخ جديدة"
+    },
+    {
+        "name": "kitchen_add",
+        "en": "Add Kitchen",
+        "ar": "إضافة مطبخ"
+    },
+    {
+        "name": "kitchen_edit",
+        "en": "Edit Kitchen",
+        "ar": "تعديل مطبخ"
+    },
+    {
+        "name": "kitchen_details",
+        "en": "Kitchen Details",
+        "ar": "تفاصيل المطبخ"
+    },
+    {
+        "name": "kitchen_delete",
+        "en": "Delete kitchen",
+        "ar": "حذف مطبخ"
+    },
+    {
+        "name": "kitchen_number",
+        "en": "Kitchen Number",
+        "ar": "رقم المطبخ"
+    },
+    {
+        "name": "kitchen_min",
+        "en": "Minimum persons",
+        "ar": "الحد الأدنى للأشخاص"
+    },
+    {
+        "name": "kitchen_max",
+        "en": "Maxmum persons",
+        "ar": "الحد الأقصى للأشخاص"
+    }
+]

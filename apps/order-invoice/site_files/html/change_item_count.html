@@ -1,0 +1,42 @@
+<div id="changeItemCountModal" class="modal">
+    <div class="col4"></div>
+
+    <div class="modal-content col4">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.change_item_count##
+                <i class="fa fa-cart-plus"></i>
+            </h2>
+        </div>
+
+        <div class="modal-body">
+            <form class="form">
+                <div class="row">
+                    <div class="col4"></div>
+                    <i-control help-id="item_count" type="number" class="col4"
+                        label="##word.item_count##" ng-model="current_items.count">
+                    </i-control>
+                    <div class="col4"></div>
+                </div>
+
+                <div class="row">
+                    <div class="col4"></div>
+                    <i-button type="add" label="##word.add##" ng-click="changeItemCount(current_items) ; calc()"
+                        class="col4">
+                    </i-button>
+                    <div class="col4"></div>
+                </div>
+            </form>
+        </div>
+
+          <h2 class="error"> {{error}} </h2>
+
+        <div class="modal-footer center">
+            <i-button type="close" label="##word.close##" onclick="site.hideModal('#changeItemCountModal')">
+            </i-button>
+
+        </div> 
+    </div>
+    <div class="col4"></div>
+</div>

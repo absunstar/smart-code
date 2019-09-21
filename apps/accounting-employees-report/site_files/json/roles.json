@@ -1,0 +1,7 @@
+[{
+    "module_name" : "accounting" ,
+    "name": "employees_report_admin",
+    "en": "Employees Salary Admin",
+    "ar": "إدارة مرتبات الموظفين",
+    "permissions": ["employees_report_manage"]
+}]

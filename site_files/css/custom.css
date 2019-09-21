@@ -1,0 +1,195 @@
+:root {
+    --theme-color: #556ae2;
+    --theme-color2: #2f8033;
+    --x-background : #ffffff;
+    --font-size: 14px;
+    --form-color: #444;
+    --input-background-color: var(--x-background);
+    --input-focus-border-color: var(--theme-color);
+    --input-color : #000000;
+    --color: #444;
+    --background-color: var(--x-background);
+    --body-background: var(--x-background);
+    --modal-header-background-color: var(--theme-color);
+    --modal-box-shadow-color: #555;
+    --modal-animation-name: animateopacity;
+    --modal-background: var(--x-background);
+    --modal-content-background: var(--x-background);
+    --btn-box-shadow-color: #555;
+    --btn-border-radius: 0px;
+    --btn-color: #fff;
+    --btn-background-color: #000;
+    --fieldset-border: 1px solid var(--theme-color);
+    --fieldset-background: none;
+    --legend-color: #444;
+    --tabs-header-link-color : #444;
+    --tabs-header-link-color2: #ffffff;
+    --tabs-header-link-border-bottom: 1px solid var(--theme-color);
+    --help-content-color : blue;
+    --help-background-color: var(--x-background);
+    --help-border: 1px solid #000;
+}
+
+body {
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+a {
+    cursor: pointer;
+}
+
+fieldset legend {
+    background: none;
+}
+
+.help-container {
+    bottom: 50px;
+}
+
+.tabs .tabs-header .tab-link {
+    font-size: 16px;
+}
+
+.tabs .tabs-header .tab-link.active {
+    background-color: #5369e0;
+    padding-right: 30px;
+}
+
+.tabs .tabs-header .tab-link:hover {
+    background-color: #5369e0;
+    padding-right: 30px;
+}
+
+.btn {
+    font-size: 15px;
+    box-shadow: 0px 8px 14px -1px var(--btn-box-shadow-color);
+    -webkit-box-shadow: 0px 8px 14px -1px var(--btn-box-shadow-color);
+    box-shadow: 0px 8px 14px -1px var(--btn-box-shadow-color);
+}
+
+.table th {
+    background-color: #677cf1;
+    color: #ffffff;
+}
+
+popup item:hover {
+    background: #3F51ff;
+    color: #ffffff;
+}
+
+
+.main-menu {
+    margin: 0 auto;
+    width: 100%;
+    padding: 40px;
+    text-align: center;
+    box-shadow: 1px 1px 3px 1px var(--theme-color);
+    background: var(--x-background);
+    border-radius: 0px 0px 30px 30px;
+}
+
+.modal {
+    background-color: var(--x-background);
+}
+
+.modal-body {
+    overflow-y: auto;
+}
+
+nav.sitebar {
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    left: 0px;
+    box-shadow: 1px 1px 1px 1px #555;
+    background: var(--theme-color);
+    border-radius: 0px 0px 20px 20px;
+}
+
+nav h2.brand {
+    margin: 0px;
+    padding: 5px;
+}
+
+nav h2.brand a {
+    font-weight: bold;
+    color: #FFEB3B;
+    text-decoration: none;
+}
+
+
+
+nav h2.brand a span {
+    font-size: 12px;
+    color: #ffffff;
+}
+
+nav h2.brand a i {
+    color: #ffffff;
+}
+
+
+nav .links {
+    display: none;
+}
+
+
+nav .links ul {
+    list-style: none;
+}
+
+nav .links ul li {
+    display: inline-block;
+    margin: 3px;
+    padding: 3px;
+}
+
+nav .links ul li a {
+    color: #030303;
+}
+
+nav .info {
+    font-weight: bold;
+    display: inline-block;
+    font-size: 14px;
+    color: #ffffff;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+nav .info .user-name {
+    color: #bbbbbb;
+}
+
+nav .info .btn-logout {
+    color: #ffffff;
+    text-shadow: 1px 1px 1px #000000;
+}
+
+
+nav.sitebottom {
+    position: fixed;
+    bottom: 0px;
+    right: 0px;
+    left: 0px;
+    background: #000000;
+    color: #ffffff;
+    border: 2px solid #000;
+}
+
+nav.sitebottom a.link {
+    color: #fff;
+    font-size: 16px;
+    text-decoration: none;
+    padding: 5px;
+    padding-right: 10px;
+    margin: 5px;
+    border-right: 1px solid #ffffff;
+    display: inline-block;
+}
+
+nav.sitebottom a.link:hover {
+    background: #fff;
+    color: #444;
+}

@@ -1,0 +1,43 @@
+<div ng-hide="busy" class="row">
+    <div id="basicInformation" class="tab-content">
+        <fieldset>
+            <legend> ##word.basic_information##</legend>
+            <div class="col9">
+                <table id="basicInformationTable" class="table bold hover">
+                    <tr>
+                        <td class="title">##word.kitchen_group##</td>
+                        <td class="center">{{kitchen.kitchen_group.name}}</td>
+                    </tr>
+                    <tr>
+                        <td class="title">##word.kitchen_number##</td>
+                        <td class="center">{{kitchen.code}}</td>
+                    </tr>
+                    <tr>
+                        <td class="title">##word.kitchen_name##</td>
+                        <td class="center">{{kitchen.name}}</td>
+                    </tr>
+                    <tr>
+                        <td class="title">##word.kitchen_min##</td>
+                        <td class="center green">{{kitchen.minimum}}</td>
+                    </tr>
+                    <tr>
+                        <td class="title">##word.kitchen_max##</td>
+                        <td class="center red">{{kitchen.maxmum}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="title">##word.status##</td>
+                        <td ng-show="kitchen.active == true" class="green center"> ##word.active## </td>
+                        <td ng-show="kitchen.active == false" class="red center"> ##word.not_active## </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="col3">
+                <i-image view ng-model="kitchen.image_url"></i-image>
+            </div>
+
+        </fieldset>
+    </div>
+</div>
+<div x-import="kitchen/action_info.html"></div>

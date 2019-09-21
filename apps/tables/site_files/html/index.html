@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="tables_ui || tables_manage" data-ng-app="myApp">
+
+<head x-import="head.html">
+
+</head>
+
+<body class="##session.lang##">
+
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+
+    </nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+
+    </nav>
+
+    <div id="main-layout" class="container">
+        <div class="row">
+            <div class="row" ng-controller="tables">
+                <div x-permissions="tables_add || tables_manage" x-import="tables/add_modal.html"></div>
+                <div x-permissions="tables_update || tables_manage" x-import="tables/update_modal.html"></div>
+                <div x-permissions="tables_delete || tables_manage" x-import="tables/delete_modal.html"></div>
+                <div x-permissions="tables_view || tables_manage" x-import="tables/view_modal.html"></div>
+                <div x-permissions="tables_search || tables_manage" x-import="tables/search_all_modal.html"></div>
+
+                <div class="row">
+                    <h1 class="bold text-center">##word.tables##</h1>
+                </div>
+
+                <div class="top-actions">
+                    <i-button x-permissions="tables_add || tables_manage" type="add" label="##word.tables_new##"
+                        ng-click="displayAddTables()"></i-button>
+
+                    <i-button x-permissions="tables_search || tables_manage" type="search" label="##word.search_all##"
+                        ng-click="displaySearchModal()"></i-button>
+
+                    <h3 class="bold text-center"> ##word.count## : {{count}}</h3>
+                </div>
+
+                <table x-permissions="login" class="table hover bold loaded" id="t1">
+                    <tr>
+                        <th class="not-print">##word.logo##</th>
+                        <th>##word.tables_group##</th>
+                        <th>##word.tables_number##</th>
+                        <th>##word.table_name##</th>
+                        <th>##word.tables_min##</th>
+                        <th>##word.tables_max##</th>
+                        <th>##word.status##</th>
+                        <th class="not-print">##word.actions##</th>
+                    </tr>
+                    <tr ng-repeat="c in list">
+                        <td class="center not-print">
+                            <img class="logo" ng-src="{{c.image_url}}">
+                        </td>
+                        <td class="center title">{{c.tables_group.name}}</td>
+                        <td class="center title">{{c.code}}</td>
+                        <td class="center title">{{c.name}}</td>
+                        <td class="center green">{{c.minimum}}</td>
+                        <td class="center red">{{c.maxmum}}</td>
+
+                        <td class="center">
+                            <p ng-show="c.active ==true" class="green"> ##word.active## </p>
+                            <p ng-show="c.active ==false" class="red"> ##word.not_active## </p>
+                        </td>
+
+                        <td class="center not-print">
+                            <i-button x-permissions="tables_view || tables_manage" type="view" label="##word.details##"
+                                ng-click="displayDetailsTables(c)"></i-button>
+
+                            <i-button x-permissions="tables_update || tables_manage" type="edit" label="##word.edit##"
+                                ng-click="displayUpdateTables(c)"></i-button>
+
+                            <i-button x-permissions="tables_delete || tables_manage" type="delete"
+                                label="##word.delete##" ng-click="displayDeleteTables(c)"></i-button>
+                        </td>
+                    </tr>
+                </table>
+                <i-button x-permissions="tables_print || tables_manage" type="print" label="##word.print##"
+                    onclick="site.print('#t1')"></i-button>
+
+                <i-button x-permissions="tables_export || tables_manage" type="export" label="##word.export_to_excel##"
+                    onclick="export_to_xlsx('t1' , 'tables.xlsx')"></i-button>
+            </div>
+        </div>
+    </div>
+
+    <div x-import="scripts.html"></div>
+    <script x-import="tables/index.js"></script>
+</body>
+
+</html>

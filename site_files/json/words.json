@@ -1,0 +1,328 @@
+[{
+    "name": "brand_title",
+    "en": "Smart Code",
+    "ar": "سمـارت كـود"
+},
+{
+    "name": "brand_tag",
+    "en": "Enterprise Resources Planing",
+    "ar": "نظام إدارة الموارد"
+},
+{
+    "name": "name",
+    "en": "Name",
+    "ar": "الاسم"
+},
+{
+    "name": "description",
+    "en": "Description",
+    "ar": "الوصف"
+},
+{
+    "name": "email",
+    "en": "Email",
+    "ar": "البريد الإلكترونى"
+},
+{
+    "name": "phone",
+    "en": "Phone",
+    "ar": "رقم التليفون"
+},
+{
+    "name": "mobile",
+    "en": "Mobile",
+    "ar": "رقم الموبيل"
+},
+{
+    "name": "website",
+    "en": "WebSite",
+    "ar": "الموقع الإلكترونى"
+},
+{
+    "name": "password",
+    "en": "password",
+    "ar": "كلمة المرور"
+},
+{
+    "name": "close",
+    "en": "Close",
+    "ar": "إغلاق"
+},
+{
+    "name": "add",
+    "en": "Add",
+    "ar": "أضف"
+},
+{
+    "name": "new",
+    "en": "New",
+    "ar": "جديد"
+},
+{
+    "name": "save",
+    "en": "Save",
+    "ar": "حفظ"
+},
+{
+    "name": "edit",
+    "en": "Edit",
+    "ar": "تعديل"
+},
+{
+    "name": "update",
+    "en": "Update",
+    "ar": "تعديل"
+},
+{
+    "name": "delete",
+    "en": "Delete",
+    "ar": "حذف"
+},
+{
+    "name": "remove",
+    "en": "Remove",
+    "ar": "حذف"
+},
+{
+    "name": "details",
+    "en": "Details",
+    "ar": "تفاصيل"
+},
+{
+    "name": "logo",
+    "en": "Logo",
+    "ar": "الشعار"
+},
+{
+    "name": "actions",
+    "en": "Actions",
+    "ar": "الإجراءات"
+},
+{
+    "name": "files",
+    "en": "Files",
+    "ar": "الملفات"
+},
+{
+    "name": "export_to_excel",
+    "en": "Export To Excel",
+    "ar": "تصدير الى أكسل"
+},
+{
+    "name": "notes",
+    "en": "Notes",
+    "ar": "ملاحظات"
+},
+{
+    "name": "add_to_notes",
+    "en": "Add To Notes",
+    "ar": "أضف الى الملاحظات"
+},
+{
+    "name": "date",
+    "en": "Date",
+    "ar": "التاريخ"
+},
+{
+    "name": "time",
+    "en": "Time",
+    "ar": "الوقت"
+},
+{
+    "name": "print",
+    "en": "Print",
+    "ar": "طباعة"
+},
+{
+    "name": "menus",
+    "en": "System Menus",
+    "ar": "قوائم النظام"
+},
+{
+    "name": "user_logo",
+    "en": "User Logo",
+    "ar": "صورة المستخدم "
+},
+{
+    "name": "new_user",
+    "en": "New User",
+    "ar": "مستخدم جديد"
+},
+{
+    "name": "add_new_user",
+    "en": "Add New User",
+    "ar": "أضافة مستخدم جديد"
+},
+{
+    "name": "user_details",
+    "en": "User Details",
+    "ar": "بيانات المستخدم"
+},
+{
+    "name": "permissions",
+    "en": "Permissions",
+    "ar": "الصلاحيات"
+},
+{
+    "name": "permission",
+    "en": "Permission",
+    "ar": "تصريح"
+},
+{
+    "name": "add_permission",
+    "en": "Add Permission",
+    "ar": "أضف الى الصلاحيات"
+},
+{
+    "name": "tickets",
+    "en": "Tickets",
+    "ar": "البلاغات"
+},
+{
+    "name": "customers",
+    "en": "Customers",
+    "ar": "العملاء"
+},
+{
+    "name": "stores",
+    "en": "Stores",
+    "ar": "المخازن"
+},
+{
+    "name": "accounts",
+    "en": "Accounts",
+    "ar": "الحسابات"
+},
+{
+    "name": "insurances",
+    "en": "Insurances",
+    "ar": "التامينات"
+},
+{
+    "name": "tickets",
+    "en": "Tickets",
+    "ar": "البلاغات"
+},
+{
+    "name": "address",
+    "en": "Address",
+    "ar": "العناوين"
+},
+{
+    "name": "img",
+    "en": "Image",
+    "ar": "صورة"
+},
+{
+    "name": "error",
+    "en": "Error While Working",
+    "ar": "حدثت مشكلة اثناء التنفيذ"
+},
+{
+    "name": "search",
+    "en": "Search",
+    "ar": "بحـث"
+}, {
+    "name": "search_all",
+    "en": "Search All",
+    "ar": "بحث شامل"
+}, {
+    "name": "clear",
+    "en": "Clear",
+    "ar": "تفريغ الحقول"
+},
+
+{
+    "name": "in_out_name",
+    "en": "In and Out Names",
+    "ar": "مسميات الوارد والمنصرف"
+},
+{
+    "name": "loading",
+    "en": "Loading",
+    "ar": "جارى التحميل"
+},
+{
+    "name": "menu_class",
+    "en": "left-fixed-menu",
+    "ar": "right-fixed-menu"
+},
+{
+    "name": "load_more",
+    "en": "Load More",
+    "ar": "عرض المزيـد"
+},
+{
+    "name": "from_date",
+    "en": "From Date",
+    "ar": "من تاريخ"
+}, {
+    "name": "to_date",
+    "en": "To Date",
+    "ar": "الى تاريخ"
+}, {
+    "name": "le",
+    "en": "LE",
+    "ar": "جنيه"
+}, {
+    "name": "select_all",
+    "en": "Select All",
+    "ar": "إختيار الكل"
+}, {
+    "name": "status",
+    "en": "Status",
+    "ar": "الحالة"
+}, {
+    "name": "count",
+    "en": "Count",
+    "ar": "عدد النتائج"
+}
+
+, {
+    "name": "active",
+    "en": "Active",
+    "ar": "نشط"
+}, {
+    "name": "not_active",
+    "en": "Not Active",
+    "ar": "غير نشط"
+}, {
+    "name": "code",
+    "en": "code",
+    "ar": "الكود"
+}, {
+    "name": "yes",
+    "en": "Yes",
+    "ar": "نعم"
+}, {
+    "name": "no",
+    "en": "No",
+    "ar": "ﻻ"
+}, {
+    "name": "enter_code_inventory",
+    "en": "Please Enter Code",
+    "ar": "رجاء إدخال الكود"
+}, {
+    "name": "code_exisit",
+    "en": "Code Exisit",
+    "ar": "الكود مسجل من قبل"
+}, {
+    "name": "user_created",
+    "en": "Created Details",
+    "ar": "تفاصيل الإضافة"
+}, {
+    "name": "user_updated",
+    "en": "Update Details",
+    "ar": "تفاصيل التعديل"
+}, {
+    "name": "add_done",
+    "en": "Successfully Added",
+    "ar": "تم الإضافة بنجاح"
+},
+{
+    "name": "select",
+    "en": " Select",
+    "ar": "إضافة"
+}
+
+]

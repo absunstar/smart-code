@@ -1,0 +1,7 @@
+[{
+    "module_name" : "public" ,
+    "name": "neighborhood_admin",
+    "en": "Neighborhood Admin",
+    "ar": "ادارة الأحياء",
+    "permissions": ["neighborhood_manage"]
+}]

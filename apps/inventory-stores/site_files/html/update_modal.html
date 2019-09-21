@@ -1,0 +1,24 @@
+<div id="updateStoreModal" class="modal">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.stores_edit## <i class="fa fa-pencil"></i>
+                 
+            </h2>
+        </div>
+        <div class="modal-body">
+            <div x-import="inventory-stores/content.html"></div>
+            <div x-import="inventory-stores/action_info.html"></div>
+        </div>
+        <h2 class="error">{{error}}</h2>
+        <div class="modal-footer center">
+            <i-button id="update_store_btn" type="save" label="##word.save##" ng-click="update(store)"></i-button>
+            <i-button type="close" label="##word.close##" onclick="site.hideModal('#updateStoreModal')"></i-button>
+        </div>
+
+    </div>
+
+
+</div>

@@ -1,0 +1,47 @@
+[
+    {
+        "name": "items_group",
+        "en": "Items Group",
+        "ar": "مجموعات الأصناف"
+    },
+    {
+        "name": "items_group_new",
+        "en": "New Items Group",
+        "ar": "مجموعة أصناف جديد"
+    },
+    {
+        "name": "items_group_code",
+        "en": "Items Group Code",
+        "ar": "كود المجموعة"
+    },
+    {
+        "name": "items_group_add",
+        "en": "Add Items Group",
+        "ar": "إضافة مجموعة أصناف"
+    },
+    {
+        "name": "items_group_edit",
+        "en": "Edit Items Group",
+        "ar": "تعديل مجموعة أصناف"
+    },
+    {
+        "name": "items_group_details",
+        "en": "Items Group Details",
+        "ar": "تفاصيل مجموعة أصناف"
+    },
+    {
+        "name": "items_group_delete",
+        "en": "Delete Items Group",
+        "ar": "حذف مجموعة أصناف"
+    },
+    {
+        "name": "items_group_name",
+        "en": "Items Group Name",
+        "ar": "إسم المجموعة"
+    },
+    {
+        "name": "items_group_price",
+        "en": "Items Group Price",
+        "ar": "سعر المجموعة أصناف"
+    }
+]

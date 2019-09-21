@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="jobs_ui || jobs_manage" data-ng-app="myApp">
+
+<head x-import="head.html">
+
+</head>
+
+<body class="##session.lang##">
+
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+
+    </nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+
+    </nav>
+    <div id="main-layout" class="container">
+        <div class="row">
+            <div class="row" ng-controller="jobs">
+                <div x-permissions="jobs_add || jobs_manage" x-import="jobs/add_modal.html"></div>
+                <div x-permissions="jobs_update || jobs_manage" x-import="jobs/update_modal.html"></div>
+                <div x-permissions="jobs_delete || jobs_manage" x-import="jobs/delete_modal.html"></div>
+                <div x-permissions="jobs_view || jobs_manage" x-import="jobs/view_modal.html"></div>
+                <div x-permissions="jobs_search || jobs_manage" x-import="jobs/search_all_modal.html"></div>
+
+                <div class="row">
+                    <h1 class="bold text-center">##word.jobs##</h1>
+                </div>
+
+                <div class="top-actions">
+                    <i-button x-permissions="jobs_add || jobs_manage" type="add" label="##word.jobs_new##" ng-click="displayAddJobs()"></i-button>
+
+                    <i-button x-permissions="jobs_search || jobs_manage" type="search" label="##word.search_all##" ng-click="displaySearchModal()"></i-button>
+
+                    <h3 class="bold text-center"> ##word.count## : {{count}}</h3>
+                </div>
+
+                <table x-permissions="login" class="table hover bold loaded" id="t1">
+                    <tr>
+                        <th class="not-print">##word.logo##</th>
+                        <th>##word.jobs_name##</th>
+                        <th>##word.status##</th>
+                        <th class="not-print">##word.actions##</th>
+                    </tr>
+                    <tr ng-repeat="c in list">
+                        <td class="center not-print">
+                            <img class="logo" ng-src="{{c.image_url}}">
+                        </td>
+                        <td class="center title">{{c.name}}</td>
+
+                        <td class="center">
+                            <p ng-show="c.active ==true" class="green"> ##word.active## </p>
+                            <p ng-show="c.active ==false" class="red"> ##word.not_active## </p>
+                        </td>
+
+                        <td class="center not-print">
+                            <i-button x-permissions="jobs_view || jobs_manage" type="view" label="##word.details##" ng-click="displayDetailsJobs(c)"></i-button>
+
+                            <i-button x-permissions="jobs_update || jobs_manage" type="edit" label="##word.edit##" ng-click="displayUpdateJobs(c)"></i-button>
+
+                            <i-button x-permissions="jobs_delete || jobs_manage" type="delete" label="##word.delete##" ng-click="displayDeleteJobs(c)"></i-button>
+                        </td>
+                    </tr>
+                </table>
+                <i-button x-permissions="jobs_print || jobs_manage" type="print" label="##word.print##" onclick="site.print('#t1')"></i-button>
+
+                <i-button x-permissions="jobs_export || jobs_manage" type="export" label="##word.export_to_excel##" onclick="export_to_xlsx('t1' , 'jobs.xlsx')"></i-button>
+            </div>
+        </div>
+    </div>
+
+    <div x-import="scripts.html"></div>
+    <script x-import="jobs/index.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" data-ng-app="myApp">
+
+<head x-import="head.html">
+    <style>
+
+     
+        i-image.photo img{
+            min-width: 240px;
+        }
+        .user {
+            padding: 10px;
+            background: var(--theme-color);
+            margin: 5px;
+            border-radius: 10px;
+            }
+
+        .title {
+                font-weight: bold;
+                color: #000 !important;
+            }
+
+    </style>
+</head>
+
+<body class="##session.lang##">
+
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+    </nav>
+    <nav x-import="sitebottom/index.html" class="sitebottom" data-ng-controller="sitebottom">
+    </nav>
+
+
+    <div id="main-layout" class="container " data-ng-controller="security">
+        <div class="row ">
+
+         
+            <i-button label="##word.security_users##" ng-click="gotoUsers()"></i-button>
+            <i-button label="##word.security_roles##" ng-click="gotoRoles()"></i-button>
+
+        </div>
+
+    </div>
+
+
+    <div x-import="scripts.html"></div>
+    <script x-import="security/index.js"></script>
+
+
+</body>
+
+</html>

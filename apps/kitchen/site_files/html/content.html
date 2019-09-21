@@ -1,0 +1,22 @@
+<div class="form">
+    <div id="basicInformation" class="tab-content">
+        <fieldset>
+            <legend> ##word.basic_information## </legend>
+            <div class="row">
+                <div class="col9">
+                    <div class="row">
+                        <i-control type="text" help-id="kitchen_number" class="col3" label="##word.kitchen_number##"
+                            ng-model="kitchen.code"></i-control>
+                        <i-control type="text" help-id="kitchen_name" v="r" class="col4" label="##word.kitchen_name##"
+                            ng-model="kitchen.name"></i-control>
+                        <i-checkbox help-id="kitchen_active" class="col2" label="##word.active##"
+                            ng-model="kitchen.active"></i-checkbox>
+                    </div>
+                </div>
+                <div class="col3">
+                    <i-image help-id="kitchen_logo" ng-model="kitchen.image_url"></i-image>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+</div>

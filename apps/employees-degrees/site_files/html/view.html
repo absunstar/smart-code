@@ -1,0 +1,30 @@
+
+<div ng-hide="busy" class="row">
+    <div class="col7">
+        <br>
+        <table class="table bold">
+            <tr>
+                <td class="title">##word.employees_degrees_name##</td>
+                <td class="center indigo">{{employee_degree.name}}</td>
+            </tr>
+
+            <tr>
+                <td class="title">##word.employees_degrees_salary##</td>
+                <td class="center green">{{employee_degree.salary}}</td>
+            </tr>
+
+            <tr>
+                <td class="title">##word.notes##</td>
+                <td class="center blue">{{employee_degree.notes}}</td>
+            </tr>
+        </table>
+    </div>
+<div class="col2"></div>
+    <div class="col3 center">
+
+        <i-image view category="employees_degrees" ng-model="employee_degree.image_url"></i-image>
+        <i-files view ng-model="employee_degree.files"></i-files>
+
+    </div>
+</div>
+<div x-import="employees-degrees/action_info.html"></div>

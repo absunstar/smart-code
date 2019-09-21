@@ -1,0 +1,27 @@
+<div id="addEmployeeInsuranceModal" class="modal">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.employees_insurances_add## <i class="fa fa-plus"></i>
+                 
+            </h2>
+        </div>
+        <div class="modal-body">
+
+            <div x-import="accounting-employees-insurances/content.html"></div>
+
+        </div>
+
+        <h2 class="error">{{error}}</h2>
+
+        <div class="modal-footer center">
+            <i-button type="add" ng-click="add()" label="##word.add##"></i-button>
+            <i-button type="close" onclick="site.hideModal('#addEmployeeInsuranceModal')" label="##word.close##"></i-button>
+        </div>
+
+
+    </div>
+
+</div>

@@ -1,0 +1,72 @@
+[
+    {
+        "name": "delivery_employees",
+        "en": "Delivery Employees",
+        "ar": "موظفين التوصيل"
+    },
+    {
+        "name": "delivery_employee",
+        "en": "Delivery Employee",
+        "ar": "موظف التوصيل"
+    },
+    {
+        "name": "delivery_employee_new",
+        "en": "New Delivery Employee",
+        "ar": "موظف توصيل جديد"
+    },
+    {
+        "name": "area",
+        "en": "Area",
+        "ar": "المنطقة"
+    },
+    {
+        "name": "delivery_employee_add",
+        "en": "Add Delivery Employee",
+        "ar": "إضافة موظف توصيل"
+    },
+    {
+        "name": "delivery_employees_degrees",
+        "en": "New Degree",
+        "ar": "الدرجة الوظيفية"
+    },
+    {
+        "name": "delivery_employee_edit",
+        "en": "Edit Delivery Employee",
+        "ar": "تعديل موظف توصيل"
+    },
+    {
+        "name": "delivery_employee_details",
+        "en": "Delivery Employee Details",
+        "ar": "تفاصيل الموظف"
+    },
+    {
+        "name": "delivery_employee_delete",
+        "en": "Delete Delivery Employee",
+        "ar": "حذف موظف توصيل"
+    },
+    {
+        "name": "delivery_employee_name",
+        "en": "Delivery Employee Name",
+        "ar": "إسم الموظف"
+    },
+    {
+        "name": "delivery_employee_indentfy",
+        "en": "Delivery Employee Indentfy",
+        "ar": "نوع الموظف"
+    },
+    {
+        "name": "birth_date",
+        "en": "Birth Date",
+        "ar": "تاريخ الميلاد"
+    },
+    {
+        "name": "qualification",
+        "en": "Qualification",
+        "ar": "المؤهل"
+    },
+    {
+        "name": "delivery_employee_info",
+        "en": "Delivery Employee Informations",
+        "ar": "معلومات الموظف"
+    }
+]

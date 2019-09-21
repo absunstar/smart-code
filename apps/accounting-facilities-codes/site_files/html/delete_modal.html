@@ -1,0 +1,37 @@
+<style>
+    .img {
+        width: 200px;
+        height: 200px;
+        margin: 5px;
+        padding: 5px;
+        border: 1px solid var(--background-color);
+    }
+</style>
+
+
+<div id="deleteFacilityCodeModal" class="modal">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.facilities_codes_delete## <i class="fa fa-trash"></i>
+            </h2>
+        </div>
+        <div class="modal-body">
+
+            <div x-import="accounting-facilities-codes/view.html"></div>
+
+        </div>
+        <h2>{{error}}</h2>
+        <div class="modal-footer center">
+
+            <i-button type="delete" label="##word.delete##" ng-click="delete(facility_code)"></i-button>
+            <i-button type="close" label="##word.close##" onclick="site.hideModal('#deleteFacilityCodeModal')"></i-button>
+
+
+        </div>
+    </div>
+
+
+</div>

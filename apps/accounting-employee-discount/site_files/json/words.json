@@ -1,0 +1,40 @@
+[
+    { "name": "employee_discount","en": "Employees Discounts", "ar": "خصومات الموظفين"},
+    { "name": "accounting_employee_discount","en": "Employees Discounts", "ar": "خصومات الموظفين"},
+    { "name": "employee_discount_add","en": "Add Discount", "ar": "إضافة خصم"},
+    { "name": "employee_discount_new","en": "New Amount", "ar": "تسجيل خصم جديد"},
+    { "name": "employee_discount_details","en": "Amount  Details", "ar": "تفاصيل الخصم"},
+    { "name": "employee_discount_edit","en": "Edit Amount", "ar": "تعديل وارد"},
+    { "name": "employee_discount_delete","en": "Delete Amount", "ar": "حذف وارد"},
+    { "name": "employee_discount_logo","en": "Logo", "ar": "الشعار"},
+    { "name": "employee_discount_value","en": "Value", "ar": "قيمة الخصم"},
+    { "name": "employee_discount_date","en": "Date", "ar": "التاريخ"},
+    { "name": "employee_discount_from","en": "From", "ar": "من"},
+    { "name": "employee_discount_to","en": "To", "ar": "الي"},
+    { "name": "employee_discount_source","en": "Source", "ar": "نوع الوارد"},
+    { "name": "employee_discount_description","en": "Description", "ar": "التفاصيل "},
+    { "name": "employee_discount_safe","en": "Safe", "ar": "الخزينة"},
+
+    
+    
+    { "name": "employee_discount_Company_name","en": "Company Name", "ar": "إسم الشركة "},
+    
+    { "name": "employee_discount_empty_search","en": "Empty Fields", "ar": "تفريغ الحقول "},
+
+    { "name": "employee_discount_search","en": "Search", "ar": "البحث "},
+
+    { "name": "employee_discount_companies","en": "From Company", "ar": "وارد من شركة"},
+
+    { "name": "employee_discount_date_from","en": "Date From", "ar": "من تاريخ"},
+
+    { "name": "employee_discount_date_to","en": "Date To ", "ar": "الى تاريخ"},
+
+    { "name": "employee_discount_employees","en": "From Employee", "ar": " إسم الموظف "},
+
+
+    
+    { "name": "employee_discount_img","en": "Image", "ar": "الشعار"},
+
+    { "name": "employee_discount_customers","en": "Customer Name", "ar": "إسم العميل"}
+   
+]

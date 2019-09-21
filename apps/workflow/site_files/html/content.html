@@ -1,0 +1,88 @@
+<div class="row">
+    <form>
+        <div class="row">
+            <div class="row">
+                <div class="col4">
+                    <div class="control">
+                        <label> ##word.workflow_title## </label>
+                        <input  type="text" ng-modal="workflow.name" list="names">
+                        <datalist id="names">
+                            <option ng-repeat="n in names" value="{{n.name}}" ng-click="log(n)" > ID {{n.id}} </option>
+                        </datalist>
+                    </div>
+                </div>
+                <div class="col4">
+                    <fieldset>
+                        <legend> تقييم </legend>
+                        <label class="radio">
+                            <span> 1 </span>
+                            <input type="radio" ng-model="workflow.rate" value=1>
+                            <span class="checkmark">
+                        </label>
+
+                        <label class="radio">
+                            <span> 2 </span>
+                            <input type="radio" ng-model="workflow.rate" value=2>
+                            <span class="checkmark"></span>
+                        </label>
+
+                        <label class="radio">
+                            <span> 3 </span>
+                            <input type="radio" ng-model="workflow.rate" value=3>
+                            <span class="checkmark"></span>
+                        </label>
+
+                        <label class="radio">
+                            <span> 4 </span>
+                            <input type="radio" ng-model="workflow.rate" value=4>
+                            <span class="checkmark"></span>
+                        </label>
+
+                    </fieldset>
+                </div>
+                <div class="col4">
+
+                    <label class="checkbox">
+                        <span> A </span>
+                        <input type="checkbox">
+                        <span class="checkmark"></span>
+                    </label>
+
+                    <label class="checkbox">
+                        <span> B </span>
+                        <input type="checkbox">
+                        <span class="checkmark"></span>
+                    </label>
+
+
+                    <label class="checkbox">
+                        <span> C </span>
+                        <input type="checkbox">
+                        <span class="checkmark"></span>
+                    </label>
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col4">
+                    <div class="control">
+                        <label> ##word.workflow_status## </label>
+                        <select ng-model="workflow.status">
+                            <option> متوقف </option>
+                            <option> قيد التنفيذ </option>
+                            <option> ملغى </option>
+                            <option> خطأ اثناء التنفيذ </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col4"></div>
+                <div class="col4"></div>
+            </div>
+            <div class="control">
+                <label> ##word.workflow_details## </label>
+                <textarea type="text" ng-modal="workflow.details"></textarea>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,75 @@
+<div ng-hide="busy" class="row10" id="v1">
+    <div class="col7">
+        <br>
+        <table class="table">
+
+            <tr>
+                <td class="title">##word.safes_payments_name##</td>
+                <td>{{safe_payment.safe.name}}</td>
+            </tr>
+
+            <tr>
+                <td class="title">##word.safes_payments_type##</td>
+                <td>{{safe_payment.type.ar}}</td>
+            </tr>
+
+            <tr>
+                <td class="title">##word.safes_payments_value##</td>
+                <td>{{safe_payment.value}}</td>
+            </tr>
+
+            <tr>
+                <td class="title">##word.safes_payments_method##</td>
+                <td>{{safe_payment.method.ar}}</td>
+            </tr>
+
+            <tr>
+                <td class="title">##word.safes_payments_source##</td>
+                <td>{{safe_payment.source.ar}}</td>
+            </tr>
+
+            <tr>
+                <td class="title">##word.safes_payments_season##</td>
+                <td>{{safe_payment.seasonName.season.ar + ' ' + safe_payment.seasonName.year }}</td>
+            </tr>
+
+            <tr>
+                <td class="title">##word.safes_payments_payment_date##</td>
+                <td>{{safe_payment.date | dateX}}</td>
+            </tr>
+
+            <tr ng-show="getSourceId() == 2">
+                <td class="title">##word.customers_payments_code##</td>
+                <td>{{safe_payment.customer.code}}</td>
+            </tr>
+
+            <tr ng-show="getSourceId() == 2">
+                <td class="title">##word.customers_payments_name##</td>
+                <td>{{safe_payment.customer.name}}</td>
+            </tr>
+
+            <tr ng-show="getSourceId() == 3">
+                <td class="title">##word.vendors_payments_code##</td>
+                <td>{{safe_payment.vendor.code}}</td>
+            </tr>
+
+            <tr ng-show="getSourceId() == 3">
+                <td class="title">##word.vendors_payments_name##</td>
+                <td>{{safe_payment.vendor.name}}</td>
+            </tr>
+            <tr>
+                <td class="title">##word.safes_payments_notes##</td>
+                <td>{{safe_payment.notes}}</td>
+            </tr>
+
+        </table>
+    </div>
+
+    <div class="col3 center not-print">
+        <label>##word.safes_payments_logo##</label>
+        <br>
+        <img class="img " ng-src="{{safe_payment.image_url}}" />
+
+    </div>
+
+</div>

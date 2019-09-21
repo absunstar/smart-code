@@ -1,0 +1,153 @@
+[
+    {"name" : "customers" , "en" : "Customers" , "ar" : "العملاء"},
+    {"name" : "customers_new" , "en" : "New Customer" , "ar" : "عميل جديد"},   
+    {"name" : "customers_add" , "en" : "Add Customer" , "ar" : "إضافة عميل"}, 
+    {"name" : "customers_edit" , "en" : "Customer Edit" , "ar" : "تعديل بيانات عميل"},
+    {"name" : "customers_details" , "en" : "Customer Details" , "ar" : "تفاصيل عميل"}, 
+    {"name" : "customers_delete" , "en" : "Delete Customer" , "ar" : "حذف عميل"},
+
+    {"name" : "customers_personal_information" , "en" : "Personal Information" , "ar" : "البيانات الشخصية"},
+    {"name" : "customers_basic_information" , "en" : "Basic Information" , "ar" : "البيانات الاساسية"},
+    {"name" : "customers_code" , "en" : "Customer Code" , "ar" : "كود العميل"},
+    {"name" : "customers_name_ar" , "en" : "Customer Name Arabic" , "ar" : "إسم العميل بالعربي"},
+    {"name" : "customers_name_en" , "en" : "Customer Name English" , "ar" : "إسم العميل بالانجليزية"},
+    {"name" : "customer_name" , "en" : "Customer Name" , "ar" : "إسم العميل"},
+    {"name" : "customer" , "en" : "Customer " , "ar" : " العميل"},
+
+    {"name" : "customers_groups" , "en" : "Customer Group" , "ar" : "مجموعة العملاء"},
+
+    {"name" : "customers_id_inforamation" , "en" : "Personal Information" , "ar" : "بيانات الهوية"},
+    {"name" : "customers_nationality" , "en" : "Nationality" , "ar" : "الجنسية"},
+    {"name" : "customers_id_number" , "en" : "Id Number" , "ar" : "رقم الهوية"},
+    {"name" : "customers_id_source" , "en" : "Id Source" , "ar" : "مصدر الهوية"},
+
+    {"name" : "customers_id_release_date" , "en" : "Id Release Date" , "ar" : "تاريخ اصدار الهوية"},
+    {"name" : "customers_id_release_date_gregorian" , "en" : "Id Release Gregorian Date" , "ar" : "تاريخ اصدار الهوية ميلادي"},
+    {"name" : "customers_id_release_date_hijri" , "en" : "Id Release Hijri Date" , "ar" : "تاريخ اصدار الهوية هجري"},
+
+    {"name" : "customers_official_documents" , "en" : "Official Documents" , "ar" : "الوثائق الرسمية"},
+    {"name" : "customers_tax_informations" , "en" : "Tax Information" , "ar" : "البيانات الضريبية"},
+    {"name" : "customers_tax_regstration_number" , "en" : "Tax Registration Number" , "ar" : "رقم التسجيل الضريبي"},
+    {"name" : "customers_tax_card_number" , "en" : "Tax Card Number" , "ar" : "رقم البطاقة الضريبية"},
+    {"name" : "customers_tax_office_code" , "en" : "Tax Office Code" , "ar" : "كود المأمورية"},
+    {"name" : "customers_tax_office_name" , "en" : "Tax Office Name" , "ar" : " إسم المأمورية"},
+    {"name" : "customers_activity_address" , "en" : "Activity Address" , "ar" : "عنوان النشاط"},
+    {"name" : "customers_file_number" , "en" : "File Number" , "ar" : "رقم الملف"},
+    {"name" : "customers_activity_name" , "en" : "Activity Name" , "ar" : "إسم النشاط"},
+    {"name" : "customers_financier_name" , "en" : "Financier Name" , "ar" : "إسم الممول"},
+
+    {"name" : "customers_commercial_register_information" , "en" : "Commercial Register Information" , "ar" : "بيانات السجل التجاري"},
+    {"name" : "customers_commercial_name" , "en" : "Commercial Name" , "ar" : "الإسم التجاري"},
+    {"name" : "customers_business_attribute" , "en" : "Busines Attribute" , "ar" : "السمة التجارية"},
+    {"name" : "customers_used_name_in_trade" , "en" : "Used Name In trade" , "ar" : "الإسم المستخدم في التجارة"},
+    {"name" : "customers_trader_name" , "en" : "Trader Name" , "ar" : "إسم التاجر"},
+    {"name" : "customers_commerical_nationality" , "en" : "Nathionality Name" , "ar" : "إسم الجنسية"},
+    {"name" : "customers_financial_system" , "en" : "Financial System" , "ar" : "النظام المالي"},
+    {"name" : "customers_commercial_validity" , "en" : "Commercial Validity" , "ar" : "الاهلية التجارية"},
+    {"name" : "customers_trade_type" , "en" : "Trade Type" , "ar" : "نوع التجارة"},
+    {"name" : "customers_commercial_start_date_gregorian" , "en" : "Commercial Start Gregorian Date" , "ar" : "تاريج بداية النشاط ميلادي"},
+    {"name" : "customers_commercial_start_date_hijri" , "en" : "Commercial Start Hijri Date" , "ar" : "تاريج بداية النشاط هجري"},
+
+    {"name" : "customers_commercial_start_date" , "en" : "Commercial Start Date" , "ar" : "تاريج بداية النشاط"},
+    
+    {"name" : "customers_opening_balance" , "en" : "Opening Balance" , "ar" : "الرصيد الافتتاحي"},
+    {"name" : "customers_opening_balance_informations" , "en" : "Opening Balance Informations" , "ar" : "بيانات الرصيد الافتتاحي"},
+    {"name" : "customers_initial_balance" , "en" : "Initial Balance " , "ar" : "الرصيد الافتتاحي"},
+    {"name" : "customers_currency_name" , "en" : "Currency Name" , "ar" : "إسم العملة"},    
+    {"name" : "customers_balance_type" , "en" : "Balance Type" , "ar" : "نوع الرصيد"},
+    {"name" : "customers_debit" , "en" : "Debit" , "ar" : "مدين"},
+    {"name" : "customers_credit" , "en" : "Credit" , "ar" : "دائن"},
+
+    {"name" : "customers_due_date" , "en" : "Date" , "ar" : "التاريخ"},
+    {"name" : "customers_due_date_gregorian" , "en" : "Due Gregorian Date" , "ar" : "تاريج الاستحقاق ميلادي"},
+    {"name" : "customers_due_date_hijri" , "en" : "Due Hijri Date" , "ar" : "تاريج الاستحقاق هجري"},
+
+    {"name" : "customers_reference_number" , "en" : "Reference Number" , "ar" : "الرقم المرجعي"},
+    {"name" : "customers_notes_arabic" , "en" : "Notes Arabic" , "ar" : "ملاحظات بالعربي"},
+    {"name" : "customers_notes_english" , "en" : "Notes English" , "ar" : "ملاحظات بالانجليزية"},
+
+    {"name" : "customers_banking_and_acounting" , "en" : "Banking And Accounting" , "ar" : "البنوك والحسابات"},   
+    {"name" : "customers_accounting_informations" , "en" : "Accounting Informations" , "ar" : "البيانات المحاسبية"},
+    {"name" : "customers_period_maturity_purchases" , "en" : "Period Of Maturity Of Purchases" , "ar" : "فترة استحقاق المشتريات"},
+    {"name" : "customers_prof_account" , "en" : "Prof Account" , "ar" : "حساب الاستاذ"},
+    {"name" : "customers_discount" , "en" : "Discount" , "ar" : "نسبة الخصم"},
+    {"name" : "customers_balance" , "en" : "Balance" , "ar" : "الرصيد"},    
+    {"name" : "customers_credit_limit" , "en" : "Credit Limit" , "ar" : "حد الائتمان"},
+    {"name" : "customers_delegate_commission" , "en" : "Delegate Commission" , "ar" : "عمولة المندوب"},
+
+    {"name" : "customers_bank_information" , "en" : "Bank Information" , "ar" : "بيانات البنك"},
+    {"name" : "customers_bank_name" , "en" : "Bank Name" , "ar" : "إسم البنك"},
+    {"name" : "customers_bank_account_number" , "en" : "Bank Account Number" , "ar" : "رقم حساب البنك"},
+
+    {"name" : "customers_contact_and_addresses" , "en" : "Contact and Addresses" , "ar" : "الاتصال والعناوين"},
+    {"name" : "customers_address_informations" , "en" : "Address Informaion" , "ar" : "بيانات العناوين"},
+    {"name" : "customers_gov" , "en" : "Gov" , "ar" : "المحافظة"},
+    {"name" : "customers_city" , "en" : "City" , "ar" : "المدينة"},
+    {"name" : "customers_address" , "en" : "Address" , "ar" : "العنوان"},
+
+    {"name" : "customers_contact_informations" , "en" : "Contact Informaion" , "ar" : "بيانات الاتصال"},
+    {"name" : "customers_phone" , "en" : "Phone" , "ar" : "التليفون"},
+    {"name" : "customers_internal_number" , "en" : "Internal Number" , "ar" : "الرقم الداخلي"},
+    {"name" : "customers_mobile" , "en" : "Mobile" , "ar" : "المحمول "},
+    {"name" : "customers_fax" , "en" : "Fax" , "ar" : "الفاكس"},
+
+    {"name" : "customers_post_informations" , "en" : "Post Informaion" , "ar" : "بيانات البريد"},
+    {"name" : "customers_mailbox" , "en" : "Mail Box" , "ar" : "صندوق البريد"},
+    {"name" : "customers_post_number" , "en" : "Post Number" , "ar" : "الرقم البريدي"},
+
+    {"name" : "customers_Web_and_social_accounts" , "en" : "Web And Social Accounts" , "ar" : "المواقع والحسابات الاجتماعية"},   
+    {"name" : "customers_website" , "en" : "Website" , "ar" : "الموقع الالكتروني"},
+    {"name" : "customers_social_facebook_account" , "en" : "FaceBook Account" , "ar" : "حساب الفيس بوك"},
+    {"name" : "customers_social_twitter_account" , "en" : "Twitter Account" , "ar" : "حساب تويتر"},
+    {"name" : "customers_social_google_account" , "en" : "Google Account" , "ar" : "حساب جوجل"},
+
+    {"name" : "customers_branches" , "en" : "Branches" , "ar" : "فروع العميل"},
+    {"name" : "customers_branches_informations" , "en" : "Branches Informations" , "ar" : "بيانات الفروع"},   
+    {"name" : "customers_branch_informations" , "en" : "Branch Informations" , "ar" : "بيانات الفرع"},
+    {"name" : "customers_branch_code" , "en" : "Branch Code" , "ar" : "كود الفرع"},
+    {"name" : "customers_branch_name" , "en" : "Branch Name" , "ar" : "إسم الفرع"},
+    {"name" : "customers_branch_notes" , "en" : "Branch Notes" , "ar" : "ملاحظات الفرع"},
+    {"name" : "customers_branch_gov" , "en" : "Branch Gov" , "ar" : "المحافظة"},
+    {"name" : "customers_branch_city" , "en" : "Branch  City" , "ar" : "المدينة"},
+    {"name" : "customers_branch_address" , "en" : "Branch  Address" , "ar" : "العنوان"},
+    {"name" : "customers_branch_phone" , "en" : "Branch Phone" , "ar" : "التليفون"},
+    {"name" : "customers_branch_mobile" , "en" : "Branch  Mobile" , "ar" : "المحمول "},
+    {"name" : "customers_branch_fax" , "en" : "Branch Fax" , "ar" : "الفاكس"},
+    {"name" : "customers_branch_email" , "en" : "Branch Email" , "ar" : "البريد الالكتروني"},
+
+    {"name" : "customers_charge_contact_informations" , "en" : "Charge Informaion" , "ar" : "بيانات مسئول"},
+    {"name" : "customers_charge_name" , "en" : "Charge Name" , "ar" : "الإسم"},
+    {"name" : "customers_charge_job" , "en" : "Charge Job" , "ar" : "الوظيفة"},   
+    {"name" : "customers_charge_phone" , "en" : "Charge Phone" , "ar" : "التليفون"},
+    {"name" : "customers_charge_internal_number" , "en" : "Charge Internal Number" , "ar" : "الرقم الداخلي"},
+    {"name" : "customers_charge_mobile" , "en" : "Charge Mobile" , "ar" : "المحمول "},
+    {"name" : "customers_charge_email" , "en" : "Charge Email" , "ar" : "البريد الالكتروني"},
+    {"name" : "customers_files" , "en" : "Files" , "ar" : "الملفات"},
+
+
+    {"name" : "customers_dealing" , "en" : "Customers Dealing" , "ar" : "تعاملات العميل"},
+
+    {"name" : "customers_dealing_companies_branches" , "en" : "Dealing Companies And Branches" , "ar" : "الشركات والفروع"},
+    {"name" : "customers_dealing_companies_branches_informatons" , "en" : "Companies And Branches Informations" , "ar" : "بيانات الشركات والفروع"},
+    {"name" : "customers_company_name" , "en" : "Company Name" , "ar" : "إسم الشركة"},
+    {"name" : "customers_branch_name" , "en" : "Branch Name" , "ar" : "إسم الفرع"},
+
+
+          
+ 
+    {"name" : "customers_send_email" , "en" : "Send Email" , "ar" : "ارسال بريد الكتروني"},
+    {"name" : "customers_send_email_to_customer" , "en" : "Send Email To Customer" , "ar" : "ارسال بريد الكتروني لعميل"},
+    {"name" : "customers_create_email" , "en" : "Create Email" , "ar" : "انشاء ايميل"},
+    {"name" : "customers_mail_from" , "en" : "From" , "ar" : "من"},
+    {"name" : "customers_mail_to" , "en" : "To" , "ar" : "الي"},
+    {"name" : "customers_mail_cc" , "en" : "Cc" , "ar" : "نسخة كربونية"},
+    {"name" : "customers_mail_bcc" , "en" : "Bcc" , "ar" : "نسخة كربونية مخفية"},
+    {"name" : "customers_mail_subject" , "en" : "Subject" , "ar" : "الموضوع"},
+    {"name" : "customers_mail_send" , "en" : "Send" , "ar" : "ارسال"},
+    {"name" : "customers_mail_text" , "en" : "Email Text" , "ar" : "نص الرسالة"},
+   
+    {"name" : "customers_send" , "en" : "Send" , "ar" : "ارسال"}
+
+    
+    
+]

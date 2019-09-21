@@ -1,0 +1,103 @@
+[
+    {
+        "id": "customers_code",
+        "en": "Write customer Code",
+        "ar": "يكتب هنا كود العميل"
+    },
+    {
+        "id": "customers_code",
+        "en": "Could be leave blank",
+        "ar": "يمكن ان يترك فارغا"
+    },
+    {
+        "id": "customers_code",
+        "en": "Code could numbers or letters or both",
+        "ar": "يمكن ان يكون الكود حروف او ارقام او كلاهما"
+    },
+    {
+        "id": "customers_code",
+        "en": "Max length is 8 digit",
+        "ar": "الحد الاقصي لطول الكود 8 حروف او ارقام"
+    },
+    {
+        "id": "customers_name_ar",
+        "en": "Write customer Name In Arabic ",
+        "ar": "يكتب هنا إسم العميل بالعربية"
+    },
+    {
+        "id": "customers_name_ar",
+        "en": "Couldn't be leave blank ",
+        "ar": "لايمكن ان يترك فارغا"
+    },
+    {
+        "id": "customers_name_ar",
+        "en": "Name must be in arabic only ",
+        "ar": "يكتب إسم العميل بالعربية فقط"
+    },
+    {
+        "id": "customers_name_ar",
+        "en": "Max length is 60 digit ",
+        "ar": "الحد الاقصي لطول الإسم 60 حرف"
+    },
+    {
+        "id": "customers_name_en",
+        "en": "Write customer Name In English ",
+        "ar": "يكتب هنا إسم العميل بالانجليزية"
+    },
+    {
+        "id": "customers_name_en",
+        "en": "Could be leave blank ",
+        "ar": "يمكن ان يترك فارغا"
+    },
+    {
+        "id": "customers_name_en",
+        "en": "Name must be in English only ",
+        "ar": "يكتب إسم العميل بالانجليزية فقط"
+    },
+    {
+        "id": "customers_name_en",
+        "en": "Max length is 60 digit ",
+        "ar": "الحد الاقصي لطول الإسم 60 حرف"
+    },
+    {
+        "id": "customers_active",
+        "en": "On Select customer state is Active",
+        "ar": "عند تفعيل تكون حالة العميل نشط"
+    },
+    {
+        "id": "customers_active",
+        "en": "if not selected customer state Inactive ",
+        "ar": "عند عدم التفعيل تكون حالة العميل غير نشط"
+    },
+    {
+        "id": "customers_some_branches",
+        "en": "On Select customer Work with some brahnces",
+        "ar": "عند تفعيل تكون حالة العميل يعمل مع بعض الفروع"
+    },
+    {
+        "id": "customers_some_branches",
+        "en": "if not selected customer with all branches ",
+        "ar": "عند عدم التفعيل تكون حالة المورع يعمل مع جميع الفروع"
+    },
+    {
+        "id": "customers_branches",
+        "en": "if option all branch not selected must select one branch at least",
+        "ar": "عند عدم تفعيل اختيار لكل الفروع لابد من تحديد فرع واحد علي الاقل"
+    },
+    {
+        "id": "customers_branches",
+        "en": "couldn't be leave blank except activate all brances",
+        "ar": "لايمكن ان تكون فارغة الا عند تفعيل اختيار لكل الفروع"
+    },
+    {
+        "id": "customers_groups",
+        "en": "specify group for customer",
+        "ar": "تستخدم لتحديد مجموعة للمورد"
+    },
+    {
+        "id": "customers_groups",
+        "en": "must select one group",
+        "ar": "لابد من تحديد مجموعة للمورد"
+    },
+    {}
+]

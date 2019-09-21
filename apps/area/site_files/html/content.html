@@ -1,0 +1,28 @@
+<div class="form">
+    <div id="basicInformation" class="tab-content">
+        <fieldset>
+            <legend> ##word.basic_information## </legend>
+            <div class="row">
+                <div class="col9">
+                    <div class="row">
+                        <i-list class="col3" label="##word.gov##" ng-model="area.gov" items="govList" ng-change="getNeighborhoodList(area.gov)"
+                            display="name" ng-search="_search.$area.$gov_search"></i-list>
+
+                        <i-list class="col4" label="##word.neighborhood##" ng-model="area.neighborhood" items="neighborhoodList"
+                            display="name" ng-search="_search.$area.$neighborhood_search"></i-list>
+
+                        <i-control help-id="area_name" v="r ll2" class="col3" label="##word.area_name##" ng-model="area.name"></i-control>
+
+                        <i-checkbox help-id="area_active" class="col2" label="##word.active##" ng-model="area.active"></i-checkbox>
+
+                    </div>
+                </div>
+
+                <div class="col3">
+                    <i-image help-id="area_logo" ng-model="area.image_url"></i-image>
+                </div>
+            </div>
+
+        </fieldset>
+    </div>
+</div>

@@ -1,0 +1,23 @@
+[
+    {"name" : "discount_types" , "en" : "Discounts" , "ar" : "الخصومات"},
+    {"name" : "inventory_discount_types" , "en" : "Discounts" , "ar" : "الخصومات"},
+    {"name" : "discount_types_add" , "en" : "Add Discount Type" , "ar" : "إضافة خصم"},
+    {"name" : "discount_types_new" , "en" : "New Discount Type" , "ar" : "خصم جديدة"},
+    {"name" : "discount_types_details" , "en" : "Discount Type Details" , "ar" : "تفاصيل خصم"},
+    {"name" : "discount_types_edit" , "en" : "Edit Discount Type" , "ar" : "تعديل بيانات خصم"},
+    {"name" : "discount_types_delete" , "en" : "Delete Discount Type" , "ar" : "حذف خصم"},
+    {"name" : "discount_types_name" , "en" : "Discount Type Name" , "ar" : "إسم الخصم"},
+    {"name" : "discount_types_value" , "en" : "Discount Type Value" , "ar" : "قيمة الخصم"},
+    {"name" : "discount_types_number" , "en" : "Discount Type Number" , "ar" : "مبلغ"},
+    {"name" : "discount_types_percent" , "en" : "Discount Type Percent" , "ar" : "نسبة"},
+
+    {"name" : "discount_types_type" , "en" : "Discount Type " , "ar" : "نوع الخصم"},
+
+    {"name" : "discount_types_error" , "en" : "Should Select Discount Type " , "ar" : "يجب إختيار نوع الخصم"},
+
+    {"name" : "discount_types_logo" , "en" : "Discount Type Logo" , "ar" : " الشعار"},
+    {"name" : "discount_types_img" , "en" : "Discount Type Image" , "ar" : "الملفات"}
+    
+    
+
+]

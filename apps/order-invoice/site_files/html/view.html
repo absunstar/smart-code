@@ -1,0 +1,34 @@
+<div ng-hide="busy" class="row">
+    <div id="basicInformation" class="tab-content">
+        <fieldset>
+            <legend> ##word.basic_information##</legend>
+            <div class="col9">
+                <table id="basicInformationTable" class="table bold">
+
+                    <tr>
+                        <td class="title">##word.order_invoice_code##</td>
+                        <td class="center">{{order_invoice.code}}</td>
+                    </tr>
+
+
+                    <tr>
+                        <td class="title">##word.order_invoice_name##</td>
+                        <td class="center">{{order_invoice.name}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="title">##word.status##</td>
+                        <td ng-show="order_invoice.active == true" class="green center"> ##word.active## </td>
+                        <td ng-show="order_invoice.active == false" class="red center"> ##word.not_active## </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="col3">
+                <i-image view ng-model="order_invoice.image_url"></i-image>
+            </div>
+
+        </fieldset>
+    </div>
+</div>
+<div x-import="order-invoice/action_info.html"></div>

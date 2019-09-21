@@ -1,0 +1,23 @@
+<div id="viewDiscountTypeModal" class="modal">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.discount_types_details## <i class="fa fa-file"></i>
+                 </h2>
+        </div>
+        <div class="modal-body">
+
+            <div x-import="inventory-discount-types/view.html"></div>
+
+        </div>
+        <h2>{{error}}</h2>
+        <div class="modal-footer center">
+            <i-button type="close" label="##word.close##" onclick="site.hideModal('#viewDiscountTypeModal')"></i-button>
+
+        </div>
+    </div>
+
+
+</div>

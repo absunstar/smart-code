@@ -1,0 +1,8 @@
+[
+    {
+        "name": "user",
+        "en": "User",
+        "ar": "مستخدم",
+        "permissions": ["view", "download"]
+    }
+]

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="customers_ui || customers_manage" data-ng-app="myApp">
+
+<head x-import="head.html">
+
+</head>
+
+<body class="##session.lang##">
+
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+
+    </nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+
+    </nav>
+
+    <div id="main-layout" class="container">
+        <div class="row">
+            <div class="row" ng-controller="customers" x-permissions="login">
+                <div x-permissions="customers_add || customers_manage" x-import="customers/add_modal.html"></div>
+                <div x-permissions="customers_add || customers_manage" x-import="customers/send_email.html"></div>
+                <div x-permissions="customers_update || customers_manage" x-import="customers/update_modal.html"></div>
+                <div x-permissions="customers_delete || customers_manage" x-import="customers/delete_modal.html"></div>
+                <div x-permissions="customers_view || customers_manage" x-import="customers/view_modal.html"></div>
+                <div x-permissions="customers_search || customers_manage" x-import="customers/search_all_modal.html"></div>
+
+                <div class="row">
+                        <h1 class="bold text-center"> ##word.customers## </h1>
+                    </div>
+
+                <div class="top-actions">
+                    <i-button type="add" x-permissions="customers_add || customers_manage" label="##word.customers_new##" ng-click="displayAddCustomer()"></i-button>
+
+                    <i-button type="search" x-permissions="customers_search || customers_manage" label="##word.search_all##" onclick="site.showModal('#customerSearchModal')"></i-button>
+
+                    <h3 class="bold text-center"> ##word.count## : {{count}} </h3>
+                    <br>
+                </div>
+
+                <table class="table loaded hover center bold" id="t1">
+                    <tr>
+                            <th class="not-print"> ##word.logo## </th>
+                        <th> ##word.customers_code## </th>
+                        <th> ##word.customers_name_ar## </th>
+                        <th> ##word.customers_balance## </th>
+                        <th> ##word.status## </th>
+                        <th class="not-print"> ##word.actions## </th>
+                    </tr>
+                    <tr ng-repeat="c in list | orderBy: '-id'">
+                        <td class="not-print">
+                            <img class="logo" ng-src="{{c.image_url}}">
+                        </td>
+
+                        <td class="blue"> {{c.code}} </td>
+                        <td> {{c.name_ar}} </td>
+
+                        <td class="green bold">
+
+                            <div class="row margin padding" ng-repeat="openBranch in c.opening_balance">
+
+                                <div class="col6">
+                                    <p> {{openBranch.initial_balance}} </p>
+                                </div>
+
+                                <div class="col6">
+                                    <p ng-show="openBranch.balance_type == 'debit'">
+                                        ##word.customers_debit##
+                                    </p>
+
+                                    <p ng-show="openBranch.balance_type == 'credit'">
+                                        ##word.customers_credit##
+                                    </p>
+                                </div>
+
+                            </div>
+
+                        </td>
+
+
+                        <td>
+                            <p ng-show="c.active == true" class="green"> ##word.active## </p>
+                            <p ng-show="c.active == false" class="red"> ##word.not_active## </p>
+                        </td>
+
+                        <td class="center not-print">
+
+                            <i-button type="details" x-permissions="customers_view || customers_manage" label="##word.details##" ng-click="displayDetailsCustomer(c)"></i-button>
+
+                            <i-button type="update" x-permissions="customers_edit || customers_manage" label="##word.update##" ng-click="displayUpdateCustomer(c)"></i-button>
+
+                            <i-button type="delete" x-permissions="customers_delete || customers_manage" label="##word.delete##" ng-click="displayDeleteCustomer(c)"></i-button>
+                        </td>
+                    </tr>
+
+                </table>
+                <div class="row">
+                    <i-button x-permissions="customers_print || customers_manage" type="print" label="##word.print##" onclick="site.print('#t1')"></i-button>
+
+                    <i-button x-permissions="customers_export || customers_manage" type="export" label="##word.export_to_excel##" onclick="export_to_xlsx('t1' , 'customers.xlsx')"></i-button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div x-import="scripts.html"></div>
+
+    <script x-permissions="login" x-import="customers/index.js"></script>
+</body>
+
+</html>

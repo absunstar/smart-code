@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="vendors_ui || vendors_manage" data-ng-app="myApp">
+
+<head x-import="head.html">
+
+</head>
+
+<body class="##session.lang##">
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+
+    </nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+
+    </nav>
+
+    <div id="main-layout" class="container">
+        <div class="row">
+            <div class="row" ng-controller="vendors" x-permissions="login">
+                <div x-permissions="vendors_add || vendors_manage" x-import="vendors/add_modal.html"></div>
+                <div x-permissions="vendors_add || vendors_manage" x-import="vendors/send_email.html"></div>
+                <div x-permissions="vendors_update || vendors_manage" x-import="vendors/update_modal.html"></div>
+                <div x-permissions="vendors_delete || vendors_manage" x-import="vendors/delete_modal.html"></div>
+                <div x-permissions="vendors_view || vendors_manage" x-import="vendors/view_modal.html"></div>
+                <div x-permissions="vendors_search || vendors_manage" x-import="vendors/search_all_modal.html"></div>
+
+                <div class="row">
+                        <h1 class="bold text-center"> ##word.vendors## </h1>
+                    </div>
+
+                <div class="top-actions">
+                    <i-button type="add" x-permissions="vendors_add || vendors_manage" label="##word.vendors_new##" ng-click="displayAddVendor()"></i-button>
+
+                    <i-button type="search" x-permissions="vendors_search || vendors_manage" label="##word.search_all##" onclick="site.showModal('#vendorSearchModal')"></i-button>
+
+
+                    <span ng-show="busy">
+                        <i class="fa fa-spinner white fa-pulse fa-3x fa-fw"></i>
+                        <span class="sr-only"> Loading...</span>
+                    </span>
+                    <h3 class="bold text-center"> ##word.count## : {{count}} </h3>
+                    <br>
+                </div>
+
+                <table class="table loaded hover center bold" id="t1">
+                    <tr>
+                            <th class="not-print"> ##word.logo## </th>
+                        <th> ##word.vendors_code## </th>
+                        <th> ##word.vendors_name_ar## </th>
+                        <th> ##word.vendors_balance## </th>
+                        <th> ##word.status## </th>
+                        <th class="not-print"> ##word.actions## </th>
+                    </tr>
+                    <tr ng-repeat="c in list | orderBy: '-id'">
+                        <td class="not-print">
+                            <img class="logo" ng-src="{{c.image_url}}">
+                        </td>
+
+                        <td class="blue"> {{c.code}} </td>
+                        <td> {{c.name_ar}} </td>
+
+                        <td class="green bold">
+
+                            <div class="row margin padding" ng-repeat="openBranch in c.opening_balance">
+
+                                <div class="col6">
+                                    <p> {{openBranch.initial_balance}} </p>
+                                </div>
+
+                                <div class="col6">
+                                    <p ng-show="openBranch.balance_type == 'debit'">
+                                        ##word.vendors_debit##
+                                    </p>
+
+                                    <p ng-show="openBranch.balance_type == 'credit'">
+                                        ##word.vendors_credit##
+                                    </p>
+                                </div>
+
+                            </div>
+
+                        </td>
+
+
+                        <td>
+                            <p ng-show="c.active == true" class="green"> ##word.active## </p>
+                            <p ng-show="c.active == false" class="red"> ##word.not_active## </p>
+                        </td>
+
+                        <td class="center not-print">
+
+                            <i-button type="details" x-permissions="vendors_view || vendors_manage" label="##word.details##" ng-click="displayDetailsVendor(c)"></i-button>
+
+                            <i-button type="update" x-permissions="vendors_edit || vendors_manage" label="##word.update##" ng-click="displayUpdateVendor(c)"></i-button>
+
+                            <i-button type="delete" x-permissions="vendors_delete || vendors_manage" label="##word.delete##" ng-click="displayDeleteVendor(c)"></i-button>
+                        </td>
+                    </tr>
+
+                </table>
+                <div class="row">
+                    <i-button x-permissions="vendors_print || vendors_manage" type="print" label="##word.print##" onclick="site.print('#t1')"></i-button>
+
+                    <i-button x-permissions="vendors_export || vendors_manage" type="export" label="##word.export_to_excel##" onclick="export_to_xlsx('t1' , 'vendors.xlsx')"></i-button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div x-import="scripts.html"></div>
+
+    <script x-permissions="login" x-import="vendors/index.js"></script>
+</body>
+
+</html>
