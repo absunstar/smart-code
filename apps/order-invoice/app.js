@@ -62,14 +62,6 @@ module.exports = function init(site) {
 
     order_invoice_doc.remain_amount = order_invoice_doc.net_value - order_invoice_doc.paid_up;
 
-    order_invoice_doc.payment_list = [];
-
-    order_invoice_doc.payment_list.push({
-      paid_up: order_invoice_doc.paid_up,
-      safe: order_invoice_doc.safe,
-      date: order_invoice_doc.date,
-    });
-
     order_invoice_doc.add_user_info = site.security.getUserFinger({
       $req: req,
       $res: res
@@ -102,7 +94,7 @@ module.exports = function init(site) {
              image_url: doc.image_url,
              safe: doc.safe
            }
-           site.call('[order_invoice][safes][+]', paid_value)
+           site.call('[creat_invoices][safes][+]', paid_value)
          } */
       } else {
         response.error = err.message
@@ -165,6 +157,46 @@ module.exports = function init(site) {
       res.json(response)
     }
   })
+
+  site.post("/api/order_invoice/invoices_update", (req, res) => {
+    let response = {
+      done: false
+    }
+
+    if (!req.session.user) {
+      response.error = 'Please Login First'
+      res.json(response)
+      return
+    }
+
+    let order_invoice_doc = req.body
+    order_invoice_doc.edit_user_info = site.security.getUserFinger({
+      $req: req,
+      $res: res
+    })
+
+    if (order_invoice_doc.id) {
+      $order_invoice.edit({
+        where: {
+          id: order_invoice_doc.id
+        },
+        set: order_invoice_doc,
+        $req: req,
+        $res: res
+      }, (err, result) => {
+        if (!err, result) {
+          response.done = true
+        } else {
+          response.error = 'Code Already Exist'
+        }
+        res.json(response)
+      })
+    } else {
+      response.error = 'no id'
+      res.json(response)
+    }
+  })
+
 
   site.post("/api/order_invoice/view", (req, res) => {
     let response = {
@@ -306,6 +338,8 @@ module.exports = function init(site) {
       if (!err) {
         response.done = true
         response.list = docs
+        console.log(docs);
+        
 
         response.count = count
       } else {
@@ -319,6 +353,7 @@ module.exports = function init(site) {
     let response = {
       done: false
     }
+
     let where = req.body.where || {}
 
     if (where['name']) {
@@ -328,6 +363,7 @@ module.exports = function init(site) {
     where['company.id'] = site.get_company(req).id
     where['branch.code'] = site.get_branch(req).code
     where['active'] = false
+    where['under_paid.net_value'] = { $gt: 0 }
     where['transaction_type.id'] = where['transaction_type']
     delete where['transaction_type']
     $order_invoice.findMany({

@@ -26,7 +26,7 @@ module.exports = function init(site) {
   site.on('[register][customers_group][add]', doc => {
 
     $customers_group.add({
-      name: "مجموعة عملاء إفتراضية" + " " + doc.name_ar,
+      name: "مجموعة عملاء إفتراضية",
       code : "1",
       image_url: '/images/customer_groups.png',
       company: {

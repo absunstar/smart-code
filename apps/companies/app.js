@@ -27,6 +27,7 @@ module.exports = function init(site) {
         site.call('[register][stores][add]', doc)
         site.call('[register][safes][add]', doc)
         site.call('[register][tables_group][add]', doc)
+        site.call('[register][kitchen][add]', doc)
 
         site.call('please add user', {
           id: doc.id,
@@ -106,6 +107,7 @@ module.exports = function init(site) {
         site.call('[register][stores][add]', doc)
         site.call('[register][safes][add]', doc)
         site.call('[register][tables_group][add]', doc)
+        site.call('[register][kitchen][add]', doc)
 
         site.call('please add user', {
           id: doc.id,

@@ -17,7 +17,7 @@ module.exports = function init(site) {
 
     $tables_group.add({
       code: "1" ,
-      name: "مجموعة طاولات إفتراضية" + " " + doc.name_ar,
+      name: "مجموعة طاولات إفتراضية",
 
       image_url: '/images/tables_group.png',
       company: {

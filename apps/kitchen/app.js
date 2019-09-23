@@ -16,13 +16,8 @@ module.exports = function init(site) {
   site.on('[register][kitchen][add]', doc => {
 
     $kitchen.add({
-      kitchen_group : {
-        id : doc.id,
-        name : doc.name
-      },
       code: "1" ,
-      name: "طاولة إفتراضية" + " " + doc.company.name_ar,
-
+      name: "مطبخ إفتراضى",
       image_url: '/images/kitchen.png',
       company: {
         id: doc.company.id,

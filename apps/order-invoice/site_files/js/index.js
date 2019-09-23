@@ -398,19 +398,9 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
   };
 
 
-  $scope.viewInvoicesActivelistList = function () {
-
-    if ($scope.invoicesActivelist && $scope.invoicesActivelist.length < 1) {
-      $scope.error = "##word.err_waiting_list_empty##";
-      return;
-    }
-    $scope.getOrderInvoicesActiveList();
-    site.showModal('#orderInvoicesActiveAddModal');
-  };
-
+ 
   $scope.getOrderInvoicesActiveList = function () {
     $scope.busy = true;
-    $scope.invoicesActivelist = [];
     $http({
       method: "POST",
       url: "/api/order_invoice/active_all",
@@ -429,6 +419,15 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.viewInvoicesActivelistList = function () {
+    $scope.getOrderInvoicesActiveList();
+
+    if ($scope.invoicesActivelist && $scope.invoicesActivelist.length < 1) {
+      $scope.error = "##word.err_waiting_list_empty##";
+      return;
+    }
+    site.showModal('#orderInvoicesActiveAddModal');
+  };
 
   $scope.returnWaitingOrder = function (item) {
     $scope.order_invoice.book_list = [];
@@ -478,6 +477,18 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
       }
     )
   };
+  $scope.closeOrder = function () {
+    $scope.order_invoice.active = false;
+    $scope.order_invoice.under_paid = {
+      book_list : $scope.order_invoice.book_list,
+      total_tax : $scope.order_invoice.total_tax,
+      total_discount : $scope.order_invoice.total_discount,
+      price_delivery_service : $scope.order_invoice.price_delivery_service,
+      service : $scope.order_invoice.service,
+      net_value : $scope.order_invoice.net_value
+    };
+    $scope.addOrderInvoice();
+  };
 
   $scope.loadItems = function (i) {
     $scope.busy = true;
@@ -513,10 +524,8 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     $scope.current_items = l;
     $scope.cr_it = [];
     $scope.current_items.sizes.forEach(s => {
-
       if ($scope.current_items.sizes.length == 1) {
         let exist = false;
-
         $scope.order_invoice.book_list.forEach(el => {
           if (s.size == el.size) {
             exist = true;
@@ -524,7 +533,6 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
             el.count += 1;
           };
         });
-
         if (!exist) {
           $scope.order_invoice.book_list.push({
             name: $scope.current_items.name,
@@ -538,7 +546,6 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
             count: 1
           });
         };
-
       } else {
         $scope.cr_it.push({
           name: $scope.current_items.name,
@@ -552,17 +559,13 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
       };
     });
   };
-
   /*   $scope.displayChangeItemCountModal = function (item) {
       $scope.current_items = item;
       $scope.error = '';
     }; */
-
   $scope.deliveryServiceHide = function () {
     site.hideModal('#deliveryServiceModal');
-
   };
-
 
   $scope.changeItemCount = function (item) {
     $scope.error = '';
@@ -598,7 +601,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     });
 
     if (!exist) {
-
+      
       $scope.order_invoice.book_list.push({
         name: item.name,
         store: item.store,
@@ -612,7 +615,6 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
       });
     };
   };
-
 
   $scope.deleteItemsList = function (item) {
     $scope.error = '';
@@ -629,8 +631,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
 
   $scope.addTax = function () {
     if (!$scope.tax.value) {
-
-      $scope.error = '##word.stores_out_error_discount##';
+      $scope.error = '##word.error_tax##';
       return;
     } else {
 
@@ -661,7 +662,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
 
     if (!$scope.discount.value) {
 
-      $scope.error = '##word.stores_out_error_discount##';
+      $scope.error = '##word.error_discount##';
       return;
     } else {
       $scope.order_invoice.discountes = $scope.order_invoice.discountes || [];
@@ -717,7 +718,8 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
           $scope.order_invoice.total_discount += parseFloat(ds.value);
         }
       });
-    }
+    };
+
     $scope.order_invoice.price_delivery_service = $scope.order_invoice.price_delivery_service || 0;
     $scope.order_invoice.service = $scope.order_invoice.service || 0;
 
@@ -726,7 +728,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     }
 
     if ($scope.order_invoice.transaction_type && $scope.order_invoice.transaction_type.id == 2) {
-      $scope.order_invoice.service = 0
+      $scope.order_invoice.service = $scope.order_invoice.total_value * Number($scope.order_invoice.service) / 100;
     }
 
     $scope.order_invoice.net_value = ($scope.order_invoice.total_value + ($scope.order_invoice.service || 0) + ($scope.order_invoice.total_tax || 0) + ($scope.order_invoice.price_delivery_service || 0)) - ($scope.order_invoice.total_discount || 0);

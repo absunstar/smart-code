@@ -17,7 +17,7 @@ module.exports = function init(site) {
 
     $items_group.add({
       code : "1",
-      name: "مجموعة أصناف إفتراضية" + " " + doc.name_ar,
+      name: "مجموعة أصناف إفتراضية",
       image_url: '/images/items_group.png',
       company: {
         id: doc.id,

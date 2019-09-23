@@ -22,17 +22,17 @@
     {
         "name": "barcode",
         "en": "Barcode",
-        "ar": "الباركود"
+        "ar": "كود / باركود"
     },
     {
         "name": "err_barcode",
         "en": "Must Enter Barcode",
-        "ar": "يجب إدخال الباركود"
+        "ar": "يجب إدخال كود / باركود"
     },
     {
         "name": "err_barcode_exist",
         "en": "Barcode Exists",
-        "ar": "الباركود مسجل من قبل"
+        "ar": "كود / باركود مسجل من قبل"
     },
     {
         "name": "item_name",

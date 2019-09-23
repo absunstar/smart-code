@@ -30,6 +30,11 @@
         "ar": "إضافة قائمة أصناف"
     },
     {
+        "name": "order_invoice_open",
+        "en": "Order Invoice Open",
+        "ar": "قائمة أوامر البيع المفتوحة"
+    },
+    {
         "name": "order_invoice_edit",
         "en": "Edit Items Group",
         "ar": "تعديل قائمة أصناف"
@@ -58,6 +63,16 @@
         "name": "items_price_total",
         "en": "Items Price Total",
         "ar": "إجمالي السعر"
+    },
+    {
+        "name": "error_discount",
+        "en": "Should Write Discount Value",
+        "ar": "يجب تحديد قيمة للخصم"
+    },
+    {
+        "name": "error_tax",
+        "en": "Should Write Tax Value",
+        "ar": "يجب تحديد قيمة للضريبة"
     },
     {
         "name": "items_count",
@@ -160,9 +175,9 @@
         "ar": "تحت التوصيل"
     },
     {
-        "name": "waiting_under_delivery",
-        "en": "Waiting List",
-        "ar": "قائمة الإنتظار "
+        "name": "open_orders",
+        "en": "Open Orders",
+        "ar": "الطلبات المفتوحة"
     },
     {
         "name": "order_invoice_price",

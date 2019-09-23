@@ -323,6 +323,11 @@
     "name": "select",
     "en": " Select",
     "ar": "إضافة"
+},
+{
+    "name": "login_information",
+    "en": " Login Information",
+    "ar": "بيانات الدخول"
 }
 
 ]

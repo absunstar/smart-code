@@ -30,7 +30,7 @@ module.exports = function init(site) {
   site.on('[register][discount_types][add]', doc => {
 
     $discount_types.add({
-      name: "خصم إفتراضي" + " " + doc.name_ar,
+      name: "خصم إفتراضي",
       value : 0,
       image_url: '/images/discount_type.png',
       company: {

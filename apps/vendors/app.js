@@ -21,7 +21,7 @@ module.exports = function init(site) {
         name : doc.name
       } ,
       code: "1",
-      name_ar: "مورد إفتراضي" + " " + doc.company.name_ar,
+      name_ar: "مورد إفتراضي",
       branch_list: [
         {
           charge: [{}]

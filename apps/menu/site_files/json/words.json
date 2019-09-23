@@ -202,12 +202,12 @@
     {
         "name": "menu_neighborhood",
         "en": "Neighborhood Menu",
-        "ar": "قائمة الأحياء"
+        "ar": "قائمة المدن"
     },
     {
         "name": "menu_neighborhood_tag",
         "en": "Neighborhood Manegment",
-        "ar": "إدارة الأحياء"
+        "ar": "إدارة المدن"
     },
     {
         "name": "menu_area",
@@ -765,12 +765,12 @@
         "ar": "تقرير تفصيلي للفنيين"
     },
     {
-        "name": "system_security_menus",
+        "name": "menu_users",
         "en": " Users",
         "ar": "المستخدمين"
     },
     {
-        "name": "system_security",
+        "name": "menu_security_and_permissions",
         "en": "Users privileges",
         "ar": "الحماية والصلاحيات"
     },
@@ -922,12 +922,12 @@
     {
         "name": "order_invoice_menus",
         "en": "Orders Invoice Menu",
-        "ar": "قائمة أمر فاتورة"
+        "ar": "شاشة الطلبات"
     },
     {
         "name": "order_invoice_management",
         "en": "Orders Invoice Management",
-        "ar": "إدارة طلبات التوصيل"
+        "ar": "طاولات / ديلفيرى / تيك اواى"
     },
    
     {
@@ -1034,5 +1034,15 @@
         "name": "general_menus",
         "en": "General Menus",
         "ar": "قائمة الاعدادات العامة"
+    },
+    {
+        "name": "kitchen_menus",
+        "en": "Kitchen Menu",
+        "ar": "قائمة المطابخ"
+    },
+    {
+        "name": "kitchen_management",
+        "en": "Kitchen Management",
+        "ar": "إدارة المطابخ"
     }
 ]

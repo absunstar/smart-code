@@ -29,7 +29,7 @@ module.exports = function init(site) {
   site.on('[register][tax_types][add]', doc => {
 
     $tax_types.add({
-      name: "ضريبة إفتراضية" + " " + doc.name_ar,
+      name: "ضريبة إفتراضية",
       value : 0,
       image_url: '/images/tax_type.png',
       company: {

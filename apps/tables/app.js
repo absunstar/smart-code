@@ -21,7 +21,7 @@ module.exports = function init(site) {
         name : doc.name
       },
       code: "1" ,
-      name: "طاولة إفتراضية" + " " + doc.company.name_ar,
+      name: "طاولة إفتراضية",
 
       image_url: '/images/tables.png',
       company: {

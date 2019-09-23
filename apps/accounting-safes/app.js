@@ -5,7 +5,7 @@ module.exports = function init(site) {
   site.on('[register][safes][add]', doc => {
 
     $safes.add({
-      name: "خزينة إفتراضي" + " " + doc.name_ar,
+      name: "خزينة إفتراضي",
       balance: 0,
       image_url: '/images/safe.png',
       company: {

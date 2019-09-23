@@ -21,7 +21,7 @@ module.exports = function init(site) {
         id: doc.id,
         name: doc.name
       },
-      name: "حي إفتراضي" + " " + doc.company.name_ar,
+      name: "مدينة إفتراضي",
       image_url: '/images/neighborhood.png',
       company: {
         id: doc.company.id,

@@ -6,6 +6,12 @@ const site = require('../isite')({
     mongodb: {
         db: 'smart_code_restaurants',
         limit: 50
+    },
+    security : {
+        admin :{
+            email : 'restaurant',
+            password : 'P@$$w0rd'
+        }
     }
 })
 

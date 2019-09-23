@@ -2,6 +2,6 @@
     "module_name" : "public" ,
     "name": "neighborhood_admin",
     "en": "Neighborhood Admin",
-    "ar": "ادارة الأحياء",
+    "ar": "ادارة المدن",
     "permissions": ["neighborhood_manage"]
 }]

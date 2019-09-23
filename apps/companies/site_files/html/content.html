@@ -5,8 +5,7 @@
                 ##word.companies_basic_information## </a>
             <a class="tab-link" onclick="site.showTabContent(event, '#companiesBranches')">
                 ##word.companies_branches_informations## </a>
-            <a class="tab-link" onclick="site.showTabContent(event, '#bankingAndAccounting')">
-                ##word.companies_banking_informations## </a>
+
             <a class="tab-link" onclick="site.showTabContent(event,'#loginInformation')">
                 ##word.login_information##
             </a>
@@ -28,7 +27,7 @@
                                 <i-checkbox class="col2" label="##word.active##" ng-model="company.active"></i-checkbox>
                             </div>
 
-                            <div class="row">
+                            <div class="row hide">
                                 <i-list class="col6" label="##word.companies_activity##" ng-model="company.activity"
                                     items="companisActivitiesList" display="name" ng-search="_search.$company_activity_search">
                                 </i-list>
@@ -43,7 +42,7 @@
                     </div>
                 </fieldset>
 
-                <fieldset>
+                <fieldset class="hide">
                     <legend> ##word.companies_calender_type## </legend>
                     <div class="row">
 
@@ -55,7 +54,7 @@
                     </div>
                 </fieldset>
 
-                <fieldset>
+                <fieldset class="hide">
                     <legend> ##word.companies_filter_with_date## </legend>
                     <div class="row">
                         <i-date class="col6" label="##word.companies_date##" ng-model="company.filter_date"></i-date>

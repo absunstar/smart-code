@@ -10,15 +10,15 @@ module.exports = function init(site) {
   let image_url = '/images/neighborhood.png'
   let add_message = {
     name: 'New neighborhood Added',
-    ar: 'تم أضافة حي جديد'
+    ar: 'تم أضافة مدينة جيدية'
   }
   let update_message = {
     name: ' neighborhood Updated',
-    ar: 'تم تعديل حي'
+    ar: 'تم تعديل المدينة'
   }
   let delete_message = {
     name: ' neighborhood Deleted',
-    ar: 'تم حذف حي '
+    ar: 'تم حذف المدينة '
   }
 
 

@@ -34,7 +34,7 @@ module.exports = function init(site) {
   site.on('[register][employee][add]', doc => {
 
     $employee_list.add({
-      name: "موظف إفتراضي" + " " + doc.name_ar,
+      name: "موظف إفتراضي",
       image_url: '/images/employee_list.png',
       company: {
         id: doc.id,
