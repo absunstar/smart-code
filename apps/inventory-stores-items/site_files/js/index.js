@@ -1,7 +1,14 @@
 app.controller("stores_items", function ($scope, $http, $timeout) {
   $scope._search = {};
 
-  $scope.category_item = {};
+  $scope.category_item = {
+    image_url: '/images/category_item.png',
+    allow_sell : true,
+    allow_buy : true,
+    is_pos : true,
+    sizes : [] ,
+    with_discount: false
+  };
   $scope.search = {};
 
 
@@ -96,7 +103,10 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
     $scope.items_size = {};
     $scope.category_item = {
       image_url: '/images/category_item.png',
-
+      allow_sell : true,
+      allow_buy : true,
+      is_pos : true,
+      sizes : [] ,
       with_discount: false
     };
     $scope.item = {

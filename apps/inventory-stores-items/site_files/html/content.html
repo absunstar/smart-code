@@ -26,10 +26,20 @@
 
             <div class="row">
 
+                <div class="col2">
+                    <i-image category="stores_images" ng-model="item.image_url"></i-image>
+                    <br>
+                    <i-checkbox label="##word.stores_items_complex##" ng-model="item.item_complex">
+                    </i-checkbox>
+                    <br>
+                    <i-button ng-hide="!item.item_complex" type="view" 
+                    label="##word.complex_items##" ng-click="showComplexItems()"> </i-button>
+                </div>
+
                 <div class="col10">
 
                     <div class="row">
-                        <i-list class="col3" ng-model="item.kitchen" ng-search="_search.$kitchen_search"
+                        <i-list class="col2" ng-model="item.kitchen" ng-search="_search.$kitchen_search"
                             label="##word.kitchen_name##" items="itemsKitchenList"></i-list>
                         <i-control class="col2" ng-model="item.size" label="##word.stores_items_size##" type="text">
                         </i-control>
@@ -39,22 +49,18 @@
                         </i-control>
                         <i-control class="col2" ng-model="item.price" label="##word.stores_items_price##" type="number">
                         </i-control>
+                     
                     </div>
 
-                    <div class="row">
-                        <div class="col3"></div>
+                    <div class="row center">
+                        
                         <i-button type="add" class="col3" label="##word.stores_items_add_size##" ng-click="addSize()">
                         </i-button>
-                        <div class="col1"></div>
-                        <i-checkbox class="col2" label="##word.stores_items_complex##" ng-model="item.item_complex">
-                        </i-checkbox>
-                        <i-button ng-hide="!item.item_complex" type="view" class="col3"
-                            label="##word.add_complex_items##" ng-click="showComplexItems()"> </i-button>
+                       
+                      
                     </div>
                 </div>
-                <div class="col2">
-                    <i-image category="stores_images" ng-model="item.image_url"></i-image>
-                </div>
+               
             </div>
 
 
