@@ -20,12 +20,12 @@ module.exports = function init(site) {
       name: "مطبخ إفتراضى",
       image_url: '/images/kitchen.png',
       company: {
-        id: doc.company.id,
-        name_ar: doc.company.name_ar
+        id: doc.id,
+        name_ar: doc.name_ar
       },
       branch: {
-        code: doc.branch.code,
-        name_ar: doc.branch.name_ar
+        code: doc.branch_list[0].code,
+        name_ar: doc.branch_list[0].name_ar
       },
       active: true
     }, (err, doc) => {})

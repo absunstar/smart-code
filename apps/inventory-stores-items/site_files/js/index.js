@@ -9,6 +9,7 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
     sizes : [] ,
     with_discount: false
   };
+
   $scope.search = {};
 
 
@@ -450,7 +451,9 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.showComplexItems = function () {
+  $scope.showComplexItems = function (item) {
+    item.complex_items = item.complex_items || [];
+    $scope.item = item;
     $scope.error = "";
     site.showModal('#complexItemModal');
   };
@@ -465,13 +468,10 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
 
   $scope.incertComplexItem = function () {
     $scope.error = "";
-
-    if ($scope.complex_items && $scope.complex_items.length > 0)
-      $scope.complex_items = $scope.complex_items;
-    else $scope.complex_items = [];
+    $scope.item.complex_items = $scope.item.complex_items || [];
 
     if ($scope.items_size && $scope.items_size.size) {
-      $scope.complex_items.unshift($scope.items_size);
+      $scope.item.complex_items.unshift($scope.items_size);
 
     } else $scope.error = "##word.Err_should_select_item##";
 
@@ -561,6 +561,42 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
     $scope.search = {};
   };
 
+  $scope.getItemsName = function (ev) {
+    $scope.error = '';
+
+    if (ev.which === 13) {
+
+      $http({
+        method: "POST",
+        url: "/api/stores_items/name_all",
+        data: {
+          search: $scope.search_item_name
+        }
+      }).then(
+        function (response) {
+          $scope.busy = false;
+          if (response.data.done) {
+            if (response.data.list.length > 0) {
+
+              response.data.list.forEach(item => {
+
+                item.sizes.forEach(size => {
+                    size.item_name = item.name;
+                    size.item_id = item.id;
+                });
+
+              });
+
+               $scope.itemsNameList = response.data.list;
+            }
+          } 
+        },
+        function (err) {
+          console.log(err);
+        }
+      );
+    }
+  };
 
   $scope.loadItemsGroups();
   $scope.loadAll();

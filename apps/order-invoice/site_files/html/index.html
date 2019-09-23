@@ -3,8 +3,9 @@
 
 <head x-import="head.html">
     <style>
-        body {
-            margin: 0px;
+        .order-invoice {
+            border-right: 1px solid #000;
+            padding: 5px;
         }
 
         .item-groups {
@@ -98,6 +99,13 @@
 
 <body class="##session.lang##">
 
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+
+    </nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+
+    </nav>
 
     <div id="main-layout" class="container">
         <div class="row">
@@ -121,6 +129,7 @@
                 <div x-permissions="order_invoice_search || order_invoice_manage"
                     x-import="order-invoice/search_all_modal.html"></div>
 
+
                 <div class="row">
 
                     <div class="col6">
@@ -143,7 +152,7 @@
                         <br>
 
                         <div class="item-types" ng-show="cr_it.length > 0">
-                            <a class="item pointer" ng-repeat="l in cr_it" ng-click="bookList(l); calc()"
+                            <a class="item pointer" ng-repeat="l in cr_it" ng-click="bookList(l);"
                                 help-id="menu_monitor">
                                 <img ng-src="{{l.image_url}}">
                                 <h2>{{l.size}}</h2>
@@ -155,26 +164,20 @@
 
 
 
-
-                    <div class="col1"></div>
-
-
-
-
-
-
-                    <div class="col5">
+                    <div class="col6 order-invoice">
                         <h2 class="bold text-center red">{{error}}</h2>
-
+                        <div class="row">
+                            <i-date2 class="col6" ng-model="order_invoice.date" label="##word.date##"></i-date2>
+                            <i-button type="view" label="##word.open_orders##" ng-click="viewInvoicesActivelistList()"
+                                class="col6">
+                            </i-button>
+                        </div>
                         <div class="row">
                             <i-list ng-search="_search.$transaction_type" class="col4" display="ar"
                                 ng-model="order_invoice.transaction_type" label="##word.transaction_type##"
                                 items="transactionTypeList">
                             </i-list>
-                            <div class="col2"></div>
-                            <i-button type="view" label="##word.open_orders##" ng-click="viewInvoicesActivelistList()"
-                                class="col4">
-                            </i-button>
+
                         </div>
 
                         <div class="row">
@@ -205,7 +208,7 @@
                                 ng-model="order_invoice.table" label="##word.table##" items="tablesList">
                             </i-list>
                             <i-control class="col3" ng-model="order_invoice.service" label="##word.service##"
-                                type="number"></i-control>
+                                type="number" ng-change="calc()"></i-control>
 
                         </div>
                         <div class="row grid">
@@ -214,7 +217,7 @@
 
                                 <tr>
                                     <th>##word.stores_items_name##</th>
-                                    <th >##word.items_count##</th>
+                                    <th>##word.items_count##</th>
                                     <th>##word.items_price##</th>
                                     <th>##word.items_price_total##</th>
                                     <th class="not-print">##word.actions##</th>
@@ -223,8 +226,7 @@
                                 <tr ng-repeat="c in order_invoice.book_list">
                                     <td class="center title">{{c.size}}</td>
                                     <td class="center w200 ">
-                                        <i-control  ng-change="totalValue(c);calc()" ng-model="c.count"
-                                            type="number">
+                                        <i-control ng-change="calc()" ng-model="c.count" type="number">
                                         </i-control>
                                     </td>
                                     <td class="center blue">{{c.price}}</td>
@@ -358,32 +360,30 @@
 
 
                         <div class="row">
-                            <i-control class="col3" ng-model="order_invoice.net_value" label="##word.net_value##"
+                            <i-control class="col6" ng-model="order_invoice.net_value" label="##word.net_value##"
                                 type="number" disabled></i-control>
+                            <div class="col6 center">
+                                <i-button type="save" label="##word.save##" ng-click="addOrderInvoice()">
+                                </i-button>
+                                <br>
+                                <br>
+                                <br>
+                                <i-button type="exit" ng-hide="order_invoice.active == false"
+                                    label="##word.close_order##" ng-click="closeOrder()">
+                                </i-button>
+                            </div>
 
-                            <!--     <i-control class="col3" ng-model="order_invoice.paid_up" label="##word.paid_up##"
-                                type="number"></i-control> -->
 
                         </div>
 
-                        <div class="row">
 
-                            <!--    <i-button type="add" label="##word.delivery_service##"
-                                onclick="site.showModal('#deliveryServiceModal')" class="col3">
-                            </i-button> -->
-                        </div>
 
                         <div class="row">
-                            <i-date2 class="col5" ng-model="order_invoice.date" label="##word.date##"></i-date2>
-                            <!--  <i-list ng-search="_search.$order_invoice.$safes_search" class="col4"
-                                ng-model="order_invoice.safe" label="##word.safe##" items="safesList"></i-list>
-                            -->
 
-                            <i-button type="save" label="##word.save##" ng-click="addOrderInvoice()" class="col3">
-                            </i-button>
-                            <i-button type="exit" ng-hide="order_invoice.active == false" label="##word.close_order##"
-                                ng-click="closeOrder()" class="col3">
-                            </i-button>
+
+
+
+
 
                         </div>
 

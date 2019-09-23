@@ -302,32 +302,33 @@ module.exports = function init(site) {
     })
   })
 
-  site.on('[order_invoice][stores_items][+]', obj => {
+  site.on('[order_invoice][stores_items][-]', obj => {
     if ($stores_items.busy23) {
       setTimeout(() => {
-        site.call('[order_invoice][stores_items][+]', Object.assign({}, obj))
+        site.call('[order_invoice][stores_items][-]', Object.assign({}, obj))
       }, 200);
       return
     }
 
     $stores_items.busy23 = true
     $stores_items.find({
-      name: obj.name,
+      'sizes.barcode': obj.barcode,
     }, (err, doc) => {
       if (!err && doc) {
         doc.sizes.forEach(s => {
-          console.log("aaassssssssssssssssssssssssssssssssssssssssss");
-          console.log(obj);
-
-          if (s.barcode == obj.item.barcode) {
-            console.log("aaaaaaaaaaaaaaaaaaaaaa");
-
-            s.current_count = site.toNumber(s.current_count) - site.toNumber(obj.item.count)
+          if (s.barcode == obj.barcode) {
+            s.current_count = site.toNumber(s.current_count) - site.toNumber(obj.count)
+            if(s.item_complex){
+              s.complex_items.forEach(s2=>{
+                s2.count = s2.count * obj.count
+                site.call('[order_invoice][stores_items][-]', Object.assign({}, s2))
+              })
+            }
           }
-        })
+        });
+
         $stores_items.update(doc)
         $stores_items.busy23 = false
-
       }
 
     })

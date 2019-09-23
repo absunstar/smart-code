@@ -33,22 +33,23 @@
                     </i-checkbox>
                     <br>
                     <i-button ng-hide="!item.item_complex" type="view" 
-                    label="##word.complex_items##" ng-click="showComplexItems()"> </i-button>
+                    label="##word.complex_items##" ng-click="showComplexItems(item)"> </i-button>
                 </div>
 
                 <div class="col10">
 
                     <div class="row">
-                        <i-list class="col2" ng-model="item.kitchen" ng-search="_search.$kitchen_search"
-                            label="##word.kitchen_name##" items="itemsKitchenList"></i-list>
-                        <i-control class="col2" ng-model="item.size" label="##word.stores_items_size##" type="text">
-                        </i-control>
+                     
                         <i-control class="col2" ng-model="item.barcode" label="##word.barcode##" type="text">
+                        </i-control>
+                        <i-control class="col2" ng-model="item.size" label="##word.stores_items_size##" type="text">
                         </i-control>
                         <i-control class="col2" ng-model="item.cost" label="##word.stores_items_cost##" type="number">
                         </i-control>
                         <i-control class="col2" ng-model="item.price" label="##word.stores_items_price##" type="number">
                         </i-control>
+                        <i-list class="col2" ng-model="item.kitchen" ng-search="_search.$kitchen_search"
+                        label="##word.kitchen_name##" items="itemsKitchenList"></i-list>
                      
                     </div>
 
@@ -113,10 +114,11 @@
 
                     <td>
                         <div class="row center">
-                            <i-checkbox class="col6" label="##word.stores_items_complex##" ng-model="itm.item_complex">
+                            <i-checkbox class="row" label="##word.stores_items_complex##" ng-model="itm.item_complex">
                             </i-checkbox>
-                            <i-button class="col6" ng-hide="itm.item_complex == false" type="view"
-                                label="##word.complex_items##" ng-click="showComplexView(itm) ; loadComplexItems(itm)">
+                            <br>
+                            <i-button class="row" ng-show="itm.item_complex == true" type="view"
+                                label="##word.complex_items##" ng-click="showComplexItems(itm)">
                             </i-button>
                         </div>
 

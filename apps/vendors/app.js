@@ -39,12 +39,12 @@ module.exports = function init(site) {
       accounts_debt: [{}],
       image_url: '/images/vendor.png',
       company: {
-        id : doc.company.id,
-        name_ar : doc.company.name_ar
+        id: doc.company.id,
+        name_ar: doc.company.name_ar
       },
       branch: {
-        code : doc.branch.code,
-        name_ar : doc.branch.name_ar
+        code: doc.branch.code,
+        name_ar: doc.branch.name_ar
       },
       active : true
     }, (err, doc) => {})

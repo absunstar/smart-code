@@ -4,37 +4,40 @@
         <div class="modal-header">
             <span class="close">&times;</span>
             <h2>
-                ##word.order_invoice_add##
-                <i class="fa fa-plus "></i>
+                    ##word.order_invoice_open##
+              
             </h2>
 
         </div>
-        <div class="main-menu">
+     
 
             <div class="modal-body">
-                <div class="row">
+               <br>
+               <br>
+               <br>
 
-                    <div class="row center" ng-show="invoicesActivelist.length > 0">
-                        <h1 class="black">##word.order_invoice_open##</h1>
-                        <a class="item pointer done_attendance" ng-repeat="item in invoicesActivelist"
-                            ng-click=" returnWaitingOrder(item)" help-id="menu_monitor">
-                            <img ng-src="{{item.image_url}}">
-                            <h2 ng-show="item.customer" class="black"> ##word.customer## : {{item.customer.name_ar}}</h2>
-                            <hr>
-                            <h2 ng-show="item.delivery_employee" class="black"> ##word.delivery_employee## : {{item.customer.name_ar}}</h2>
-                            <hr>
-                            <h2 ng-show="item.tables_group" class="black"> ##word.tables_group## : {{item.tables_group.name}}</h2>
-                            <hr>
-                            <h2 ng-show="item.table" class="black"> ##word.table## : {{item.table.name}}</h2>
-                        </a>
-                    </div>
-                </div>
+                    <table class="table hover">
+                        <tr>
+                            <th > ##word.customer## </th>
+                            <th > ##word.delivery_employee## </th>
+                            <th > ##word.tables_group## </th>
+                            <th > ##word.table## </th>
+                        </tr> 
+                        <tr class="pointer" ng-repeat="item in invoicesActivelist" ng-click="returnWaitingOrder(item)">
+                            <td > {{item.customer.name_ar}} </td>
+                            <td > {{item.delivery_employee.name_ar}}</td>
+                            <td > {{item.tables_group.name}} </td>
+                            <td >{{item.table.name}}</td>
+                        </tr>
+                    </table>
+
+                  
+             
             </div>
-        </div>
+    
 
         <div class="modal-footer center">
             <h2 class="error"> {{error}} </h2>
-            <i-button type="add" label="##word.add##" ng-click="addOrderInvoice()"></i-button>
 
             <i-button type="close" label="##word.close##" onclick="site.hideModal( '#orderInvoicesActiveAddModal')">
             </i-button>

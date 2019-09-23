@@ -82,20 +82,11 @@ module.exports = function init(site) {
       if (!err) {
         response.done = true
         response.doc = doc
-        /* 
-         if (doc.safe) {
-           let paid_value = {
-             code: doc.code,
-             net_value: doc.net_value,
-             value: doc.paid_up,
-             company: doc.company,
-             branch: doc.branch,
-             date: doc.date,
-             image_url: doc.image_url,
-             safe: doc.safe
-           }
-           site.call('[creat_invoices][safes][+]', paid_value)
-         } */
+        if (!doc.active) {
+          doc.book_list.forEach(itm => {
+            site.call('[order_invoice][stores_items][-]', Object.assign({} , itm))
+          });
+        }
       } else {
         response.error = err.message
       }
@@ -136,15 +127,7 @@ module.exports = function init(site) {
           if (!result.doc.active) {
 
             result.doc.book_list.forEach(itm => {
-              let obj = {
-                name: itm.name,
-                store: itm.store,
-                company: result.doc.company,
-                branch: result.doc.branch,
-                image_url: result.doc.image_url,
-                item: itm
-              }
-              site.call('[order_invoice][stores_items][+]', obj)
+              site.call('[order_invoice][stores_items][-]', Object.assign({} , itm))
             });
           }
         } else {

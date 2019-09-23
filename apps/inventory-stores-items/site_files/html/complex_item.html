@@ -10,15 +10,31 @@
         <div class="modal-body">
             <form class="form">
 
-                <div class="row">
-                    <i-list ng-search="_search.$order_customers" class="col6" display="size" ng-model="items_size"
-                        label="##word.stores_items_name##" items="itemSizeList">
-                    </i-list>
 
-                    <i-button type="add" class="col2" label="##word.add##" ng-click="incertComplexItem()"> </i-button>
+                    <div class="row">
+                            <i-control ng-keydown="getItemsName($event)" id="item_name" class="col3"
+                                ng-model="search_item_name" label="##word.search##" type="text"></i-control>
+
+                            <i-list class="col4" label="##word.stores_in_item_name##" ng-model="selectedItem"
+                                display="name" items="itemsNameList" ng-change="itemsStoresIn()"
+                                ng-search="_search.$item_searching"></i-list>
+
+                                <i-list ng-search="_search.$items_size" class="col4" display="size" ng-model="items_size"
+                                label="##word.stores_items_name##" items="selectedItem.sizes">
+                            </i-list>
+        
+                            <i-button type="add" class="col2" label="##word.add##" ng-click="incertComplexItem()"> </i-button>
+
+                        </div>
+
+                <div class="row">
+                  
                 </div>
 
-                <div class="row" ng-show="complex_items.length > 0">
+                <br>
+                <br>
+                <br>
+                <div class="row" >
                     <div class="row">
 
                         <table class="table">
@@ -31,7 +47,7 @@
                                 <th>##word.actions##</th>
                             </tr>
 
-                            <tr class="bold" ng-repeat="i in complex_items">
+                            <tr class="bold" ng-repeat="i in item.complex_items">
                                 <td>
                                     <br>
                                     <p class="center bold blue">{{i.stores_item_name}}</p>
