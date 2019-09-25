@@ -5,6 +5,10 @@ if (btn) {
     btn.click();
 }
 
+$('#main-layout').click(()=>{
+    $('.sitebar .links').hide(200);
+});
+
 app.controller('sitebar', ($scope, $http) => {
 
     $scope.register = function () {

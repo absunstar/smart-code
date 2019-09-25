@@ -1,12 +1,12 @@
 :root {
     --theme-color: #556ae2;
     --theme-color2: #2f8033;
-    --x-background : #ffffff;
+    --x-background: #ffffff;
     --font-size: 14px;
     --form-color: #444;
     --input-background-color: var(--x-background);
     --input-focus-border-color: var(--theme-color);
-    --input-color : #000000;
+    --input-color: #000000;
     --color: #444;
     --background-color: var(--x-background);
     --body-background: var(--x-background);
@@ -22,10 +22,10 @@
     --fieldset-border: 1px solid var(--theme-color);
     --fieldset-background: none;
     --legend-color: #444;
-    --tabs-header-link-color : #444;
+    --tabs-header-link-color: #444;
     --tabs-header-link-color2: #ffffff;
     --tabs-header-link-border-bottom: 1px solid var(--theme-color);
-    --help-content-color : blue;
+    --help-content-color: blue;
     --help-background-color: var(--x-background);
     --help-border: 1px solid #000;
 }
@@ -33,6 +33,10 @@
 body {
     margin-top: 100px;
     margin-bottom: 100px;
+}
+
+#main-layout {
+    height: 100vh;
 }
 
 a {
@@ -192,4 +196,21 @@ nav.sitebottom a.link {
 nav.sitebottom a.link:hover {
     background: #fff;
     color: #444;
+}
+
+@media screen and (max-width: 768px) {
+    .tabs .tabs-header .tab-link {
+        font-size: 12px;
+        padding: 5px;
+        margin: 1px;
+    }
+    .tabs .tabs-header .tab-link.active , .tabs .tabs-header .tab-link:hover {
+        background-color: #5369e0;
+        padding: 5px;
+        margin: 1px;
+    }
+   
+    .tab-link span {
+        padding: 1px;
+    }
 }
