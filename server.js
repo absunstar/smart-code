@@ -27,5 +27,6 @@ site.get({
 })
 
 site.loadLocalApp('client-side');
+site.features.push('restaurant')
 
 site.run()
