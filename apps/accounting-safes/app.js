@@ -52,7 +52,7 @@ module.exports = function init(site) {
     })
   })
 
-  site.on('[invoices][safes][+]', function (obj) {
+  site.on('[creat_invoices][safes][+]', function (obj) {
 
     $safes.find({
       id: obj.safe.id

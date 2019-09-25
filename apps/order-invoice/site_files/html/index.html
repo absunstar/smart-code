@@ -112,7 +112,7 @@
             <div class="row" ng-controller="order_invoice">
                 <div x-permissions="order_invoice_add || order_invoice_manage"
                     x-import="order-invoice/order_invoices_active.html">
-                </div> -
+                </div>
                 <div x-permissions="order_invoice_add || order_invoice_manage"
                     x-import="order-invoice/delivery_service.html">
                 </div>
@@ -134,35 +134,32 @@
 
                     <div class="col6">
                         <div class="item-groups">
-                            <a class="item pointer " ng-repeat="i in itemsGroupList" ng-click="loadItems(i)"
+                            <a class="item pointer " ng-repeat="g in itemsGroupList" ng-click="loadItems(g)"
+                                help-id="menu_monitor">
+                                <img ng-src="{{g.image_url}}">
+                                <h2>{{g.name}}</h2>
+                            </a>
+                        </div>
+
+                        <div class="item-list" ng-show="itemsList.length > 0">
+                            <a class="item pointer" ng-repeat="i in itemsList" ng-click="showItemsIn(i)"
                                 help-id="menu_monitor">
                                 <img ng-src="{{i.image_url}}">
                                 <h2>{{i.name}}</h2>
                             </a>
                         </div>
 
-                        <div class="item-list" ng-show="itemsList.length > 0">
-                            <a class="item pointer" ng-repeat="l in itemsList" ng-click="showItemsIn(l)"
-                                help-id="menu_monitor">
-                                <img ng-src="{{l.image_url}}">
-                                <h2>{{l.name}}</h2>
-                            </a>
-                        </div>
-
                         <br>
 
-                        <div class="item-types" ng-show="cr_it.length > 0">
-                            <a class="item pointer" ng-repeat="l in cr_it" ng-click="bookList(l);"
+                        <div class="item-types">
+                            <a class="item pointer" ng-repeat="s in current_items.sizes" ng-click="bookList(s)"
                                 help-id="menu_monitor">
-                                <img ng-src="{{l.image_url}}">
-                                <h2>{{l.size}}</h2>
+                                <img ng-src="{{s.image_url}}">
+                                <h2>{{s.size}}</h2>
                             </a>
 
                         </div>
                     </div>
-
-
-
 
                     <div class="col6 order-invoice">
                         <h2 class="bold text-center red">{{error}}</h2>

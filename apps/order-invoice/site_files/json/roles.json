@@ -2,6 +2,6 @@
     "module_name" : "inventory" ,
     "name": "order_invoice_admin",
     "en": "Order Invoice Admin",
-    "ar": "إدارةأمر فاتورة",
+    "ar": "إدارةشاشة الطلبات",
     "permissions": ["order_invoice_manage"]
 }]

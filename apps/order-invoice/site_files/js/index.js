@@ -476,6 +476,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
   $scope.closeOrder = function () {
     $scope.order_invoice.active = false;
     $scope.order_invoice.under_paid = {
+      order_invoice_id : $scope.order_invoice.id?$scope.order_invoice.id : null,
       book_list : $scope.order_invoice.book_list,
       total_tax : $scope.order_invoice.total_tax,
       total_discount : $scope.order_invoice.total_discount,
@@ -486,17 +487,15 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     $scope.addOrderInvoice();
   };
 
-  $scope.loadItems = function (i) {
+  $scope.loadItems = function (g) {
     $scope.busy = true;
     $scope.itemsList = [];
-    $scope.cr_it = [];
-
     $http({
       method: "POST",
       url: "/api/stores_items/all",
       data: {
         where: {
-          "item_group.id": i.id,
+          "item_group.id": g.id,
           "is_pos": true
         }
       }
@@ -515,15 +514,15 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.showItemsIn = function (l) {
-
-    $scope.current_items = l;
-    $scope.cr_it = [];
-    $scope.current_items.sizes.forEach(s => {
+  $scope.showItemsIn = function (i) {
+    $scope.current_items = i;
       if ($scope.current_items.sizes.length == 1) {
        $scope.bookList($scope.current_items.sizes[0]);
+      } else {
+
+        
+
       }
-    });
   };
 
   $scope.deliveryServiceHide = function () {
@@ -532,9 +531,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
 
   $scope.changeItemCount = function (item) {
     $scope.error = '';
-
     $scope.order_invoice.book_list = $scope.order_invoice.book_list || [];
-
     $scope.order_invoice.book_list.forEach(el => {
       if (item.size == el.size) {
         exist = true;
@@ -542,11 +539,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         el.count = item.count;
       };
     });
-
-
-
     site.hideModal("#changeItemCountModal")
-
   };
 
 

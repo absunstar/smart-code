@@ -1,0 +1,24 @@
+<div id="creatInvoicesUpdateModal" class="modal" fixed>
+    <div class="modal-content">
+
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.creat_invoices_update##
+                <i class="fa fa-pencil"></i>
+            </h2>
+        </div>
+
+        <div class="modal-body">
+            <div x-import="creat-invoices/content.html"></div>
+            <div x-import="creat-invoices/action_info.html"></div>
+        </div>
+
+        <div class="modal-footer center">
+            <h2 class="error"> {{error}} </h2>
+            <i-button type="save" label="##word.save##" ng-click="updateCreatInvoices(creat_invoices)" ></i-button>
+            
+            <i-button type="close" label="##word.close##"onclick="site.hideModal( '#creatInvoicesUpdateModal')" ></i-button>
+        </div>
+    </div>
+</div>

@@ -2,13 +2,34 @@ module.exports = function init(site) {
   const $order_invoice = site.connectCollection("order_invoice")
   const $stores_items = site.connectCollection("stores_items")
 
+  site.on('[creat_invoices][under_invoices][+]', function (obj) {
+    $order_invoice.findOne({id:obj.order_invoices_id}, (err, doc) => {
+      if(doc.under_paid){
+        doc.under_paid.net_value = doc.under_paid.net_value - obj.net_value;
+        doc.under_paid.total_tax = doc.under_paid.total_tax - obj.total_tax;
+        doc.under_paid.total_discount = doc.under_paid.total_discount - obj.total_discount;
+        doc.under_paid.price_delivery_service = doc.under_paid.price_delivery_service - obj.price_delivery_service;
+        doc.under_paid.service = doc.under_paid.service - obj.service;
+        doc.under_paid.book_list.forEach(book_list_basic => {
+          obj.book_list.forEach(book_list_cb => {
+            if(book_list_basic.barcode == book_list_cb.barcode){
+              book_list_basic.count = book_list_basic.count - book_list_cb.count;
+              book_list_basic.total_price = book_list_basic.count * book_list_basic.price;
+            };
+          });
+        });
+        $order_invoice.update(doc);
+      };
+    });
+  });
+
   function addZero(code, number) {
     let c = number - code.toString().length
     for (let i = 0; i < c; i++) {
       code = '0' + code.toString()
     }
     return code
-  }
+  };
 
   $order_invoice.newCode = function () {
 
@@ -25,17 +46,17 @@ module.exports = function init(site) {
     site.storage('ticket_last_code', lastCode)
     site.storage('ticket_last_month', lastMonth)
     return y + lastMonth + addZero(d, 2) + addZero(lastCode, 4)
-  }
+  };
 
   site.get({
     name: 'images',
     path: __dirname + '/site_files/images/'
-  })
+  });
 
   site.post({
     name: '/api/order_invoice/transaction_type/all',
     path: __dirname + '/site_files/json/transaction_type.json'
-  })
+  });
 
 
   site.get({
@@ -43,33 +64,31 @@ module.exports = function init(site) {
     path: __dirname + "/site_files/html/index.html",
     parser: "html",
     compress: true
-  })
+  });
 
   site.post("/api/order_invoice/add", (req, res) => {
     let response = {
       done: false
-    }
+    };
 
     if (!req.session.user) {
       response.error = 'Please Login First'
       res.json(response)
       return
-    }
+    };
 
     let order_invoice_doc = req.body
     order_invoice_doc.$req = req
     order_invoice_doc.$res = res
 
-    order_invoice_doc.remain_amount = order_invoice_doc.net_value - order_invoice_doc.paid_up;
-
     order_invoice_doc.add_user_info = site.security.getUserFinger({
       $req: req,
       $res: res
-    })
+    });
 
     if (typeof order_invoice_doc.active === 'undefined') {
       order_invoice_doc.active = true
-    }
+    };
 
     order_invoice_doc.company = site.get_company(req)
     order_invoice_doc.branch = site.get_branch(req)
@@ -87,12 +106,18 @@ module.exports = function init(site) {
             site.call('[order_invoice][stores_items][-]', Object.assign({} , itm))
           });
         }
+        if(doc.under_paid && doc.under_paid.order_invoice_id == null){
+
+          doc.under_paid.order_invoice_id = doc.id
+          $order_invoice.update(doc)
+
+        }
       } else {
         response.error = err.message
       }
       res.json(response)
     })
-  })
+  });
 
   site.post("/api/order_invoice/update", (req, res) => {
     let response = {
@@ -338,17 +363,27 @@ module.exports = function init(site) {
     }
 
     let where = req.body.where || {}
+    let search = req.body.search
 
-    if (where['name']) {
-      where['name'] = new RegExp(where['name'], "i");
+    if (search) {
+      where.$or = []
+      where.$or.push({
+        'table.name': new RegExp(search, "i")
+      })
+      where.$or.push({
+        'customer.name': new RegExp(search, "i")
+      })
+      where.$or.push({
+        'tables_group.name': new RegExp(search, "i")
+      })
     }
 
     where['company.id'] = site.get_company(req).id
     where['branch.code'] = site.get_branch(req).code
     where['active'] = false
     where['under_paid.net_value'] = { $gt: 0 }
-    where['transaction_type.id'] = where['transaction_type']
-    delete where['transaction_type']
+  /*   where['transaction_type.id'] = where['transaction_type']
+    delete where['transaction_type'] */
     $order_invoice.findMany({
       select: req.body.select || {},
       where: where,

@@ -8,7 +8,51 @@
         "en": "New Employee",
         "ar": "موظف جديد"
     },
-
+    {
+        "name": "basic_information",
+        "en": "Basic Information",
+        "ar": "البيانات الأساسية"
+    },
+    {
+        "name": "national_id",
+        "en": "National Id",
+        "ar": "الرقم القومي"
+    },
+    {
+        "name": "whatsapp",
+        "en": "Whatsapp",
+        "ar": "الواتس اّب"
+    },
+    {
+        "name": "facebook",
+        "en": "Facebook",
+        "ar": "الفيسبوك"
+    },
+    {
+        "name": "twitter",
+        "en": "Twitter",
+        "ar": "تويتر"
+    },
+    {
+        "name": "addresses",
+        "en": "Addresses",
+        "ar": "العناوين"
+    },
+    {
+        "name": "gov",
+        "en": "Governoment",
+        "ar": "المحافطة"
+    },
+    {
+        "name": "salary",
+        "en": "Salary",
+        "ar": "الراتب"
+    },
+    {
+        "name": "job",
+        "en": "Job",
+        "ar": "الوظيفة"
+    },
     {
         "name": "employee_add",
         "en": "Add Employee",

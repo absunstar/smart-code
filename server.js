@@ -5,7 +5,7 @@ const site = require('../isite')({
     theme: 'theme_paper',
     mongodb: {
         db: 'smart_code_restaurants',
-        limit: 50
+        limit: 100000
     },
     security : {
         admin :{

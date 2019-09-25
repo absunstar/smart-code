@@ -239,31 +239,22 @@ module.exports = function init(site) {
     $stores_items.find({
       name: obj.name
     }, (err, doc) => {
-
       if (!err && doc) {
         let exist = false
         doc.sizes.forEach(s => {
-
           if (s.size == obj.item.size && s.barcode == obj.barcode) {
             s.current_count = site.toNumber(s.current_count) + site.toNumber(obj.item.count)
-
             exist = true
           }
         })
-
         if (!exist) {
           delete obj.item.current_count
           obj.item.current_count = obj.item.count
           doc.sizes.push(obj.item)
         }
-
-
         $stores_items.update(doc, () => {
           $stores_items.busy5 = false
         })
-
-
-
       } else {
         obj.sizes = []
         delete obj.item.current_count
@@ -274,31 +265,22 @@ module.exports = function init(site) {
           $stores_items.busy5 = false
         })
       }
-
     })
   })
 
   site.on('[stores_in][stores_items][-]', obj => {
 
-
     $stores_items.find({
       name: obj.item.name
     }, (err, doc) => {
       if (!err && doc) {
-        let exist = false
         doc.sizes.forEach(s => {
           if (s.size == obj.item.size && s.barcode == obj.barcode) {
             s.current_count = site.toNumber(s.current_count) - site.toNumber(obj.item.count)
-            exist = true
-
           }
-
         })
-
         $stores_items.update(doc)
-
       }
-
     })
   })
 
@@ -309,7 +291,6 @@ module.exports = function init(site) {
       }, 200);
       return
     }
-
     $stores_items.busy23 = true
     $stores_items.find({
       'sizes.barcode': obj.barcode,
@@ -318,19 +299,17 @@ module.exports = function init(site) {
         doc.sizes.forEach(s => {
           if (s.barcode == obj.barcode) {
             s.current_count = site.toNumber(s.current_count) - site.toNumber(obj.count)
-            if(s.item_complex){
-              s.complex_items.forEach(s2=>{
+            if (s.item_complex) {
+              s.complex_items.forEach(s2 => {
                 s2.count = s2.count * obj.count
                 site.call('[order_invoice][stores_items][-]', Object.assign({}, s2))
               })
             }
           }
         });
-
         $stores_items.update(doc)
         $stores_items.busy23 = false
       }
-
     })
   })
 
