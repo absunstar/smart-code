@@ -1,11 +1,11 @@
 module.exports = function init(site) {
-  const $creat_invoices = site.connectCollection("creat_invoices")
+  const $create_invoices = site.connectCollection("create_invoices")
 
-  $creat_invoices.deleteDuplicate({
+  $create_invoices.deleteDuplicate({
     code: 1,
     'company.id': 1
   }, (err, result) => {
-    $creat_invoices.createUnique({
+    $create_invoices.createUnique({
       code: 1,
       'company.id': 1
     }, (err, result) => { })
@@ -19,7 +19,7 @@ module.exports = function init(site) {
     return code
   }
 
-  $creat_invoices.newCode = function () {
+  $create_invoices.newCode = function () {
 
     let y = new Date().getFullYear().toString().substr(2, 2)
     let m = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L'][new Date().getMonth()].toString()
@@ -37,7 +37,7 @@ module.exports = function init(site) {
   }
 
   site.get({
-    name: "creat_invoices",
+    name: "create_invoices",
     path: __dirname + "/site_files/html/index.html",
     parser: "html",
     compress: true
@@ -59,7 +59,7 @@ module.exports = function init(site) {
     path: __dirname + "/site_files/json/payment_method.json"
   })
 
-  site.post("/api/creat_invoices/add", (req, res) => {
+  site.post("/api/create_invoices/add", (req, res) => {
     let response = {}
     response.done = false
 
@@ -69,40 +69,40 @@ module.exports = function init(site) {
       return
     }
 
-    let creat_invoices_doc = req.body;
-    creat_invoices_doc.$req = req;
-    creat_invoices_doc.$res = res;
-    creat_invoices_doc.company = site.get_company(req);
-    creat_invoices_doc.branch = site.get_branch(req);
-    creat_invoices_doc.code = $creat_invoices.newCode();
-    creat_invoices_doc.remain_amount = creat_invoices_doc.net_value - creat_invoices_doc.paid_up;
-    creat_invoices_doc.add_user_info = site.security.getUserFinger({
+    let create_invoices_doc = req.body;
+    create_invoices_doc.$req = req;
+    create_invoices_doc.$res = res;
+    create_invoices_doc.company = site.get_company(req);
+    create_invoices_doc.branch = site.get_branch(req);
+    create_invoices_doc.code = $create_invoices.newCode();
+    create_invoices_doc.remain_amount = create_invoices_doc.net_value - create_invoices_doc.paid_up;
+    create_invoices_doc.add_user_info = site.security.getUserFinger({
       $req: req,
       $res: res
     })
 
-    if (creat_invoices_doc.paid_up && creat_invoices_doc.safe) {
-      creat_invoices_doc.payment_list = [];
-      creat_invoices_doc.payment_list.push({
-        date: creat_invoices_doc.date,
-        safe: creat_invoices_doc.safe,
-        paid_up: creat_invoices_doc.paid_up
+    if (create_invoices_doc.paid_up && create_invoices_doc.safe) {
+      create_invoices_doc.payment_list = [];
+      create_invoices_doc.payment_list.push({
+        date: create_invoices_doc.date,
+        safe: create_invoices_doc.safe,
+        paid_up: create_invoices_doc.paid_up
       })
     };
 
-    creat_invoices_doc.total_paid_up = 0
+    create_invoices_doc.total_paid_up = 0
 
-    if (creat_invoices_doc.paid_up)
-      creat_invoices_doc.total_paid_up = creat_invoices_doc.paid_up
+    if (create_invoices_doc.paid_up)
+      create_invoices_doc.total_paid_up = create_invoices_doc.paid_up
 
 
-    creat_invoices_doc.items_price = 0
+    create_invoices_doc.items_price = 0
 
-    creat_invoices_doc.current_book_list.forEach(current_book_list => {
-      creat_invoices_doc.items_price += current_book_list.total_price
+    create_invoices_doc.current_book_list.forEach(current_book_list => {
+      create_invoices_doc.items_price += current_book_list.total_price
     });
 
-    $creat_invoices.add(creat_invoices_doc, (err, doc) => {
+    $create_invoices.add(create_invoices_doc, (err, doc) => {
 
       if (!err) {
         response.done = true;
@@ -117,7 +117,7 @@ module.exports = function init(site) {
             image_url: doc.image_url,
             safe: doc.safe
           }
-          site.call('[creat_invoices][safes][+]', paid_value)
+          site.call('[create_invoices][safes][+]', paid_value)
         };
         let under_paid = {
           book_list: doc.current_book_list,
@@ -129,7 +129,7 @@ module.exports = function init(site) {
           service: doc.service,
           order_invoices_id: doc.order_invoices_id
         }
-        site.call('[creat_invoices][order_invoice][+]', under_paid)
+        site.call('[create_invoices][order_invoice][+]', under_paid)
 
       } else {
         response.error = err.message
@@ -138,7 +138,7 @@ module.exports = function init(site) {
     })
   })
 
-  site.post("/api/creat_invoices/update", (req, res) => {
+  site.post("/api/create_invoices/update", (req, res) => {
     let response = {
       done: false
     }
@@ -149,25 +149,25 @@ module.exports = function init(site) {
       return
     }
 
-    let creat_invoices_doc = req.body
-    creat_invoices_doc.edit_user_info = site.security.getUserFinger({
+    let create_invoices_doc = req.body
+    create_invoices_doc.edit_user_info = site.security.getUserFinger({
       $req: req,
       $res: res
     })
 
-    if(!creat_invoices_doc.total_paid_up)
-    creat_invoices_doc.total_paid_up = 0
+    if(!create_invoices_doc.total_paid_up)
+    create_invoices_doc.total_paid_up = 0
 
-    creat_invoices_doc.payment_list.forEach(payment_list => {
-      creat_invoices_doc.total_paid_up += payment_list.paid_up
+    create_invoices_doc.payment_list.forEach(payment_list => {
+      create_invoices_doc.total_paid_up += payment_list.paid_up
     });
 
-    if (creat_invoices_doc.id) {
-      $creat_invoices.edit({
+    if (create_invoices_doc.id) {
+      $create_invoices.edit({
         where: {
-          id: creat_invoices_doc.id
+          id: create_invoices_doc.id
         },
-        set: creat_invoices_doc,
+        set: create_invoices_doc,
         $req: req,
         $req: req,
         $res: res
@@ -176,7 +176,7 @@ module.exports = function init(site) {
           response.done = true
           response.doc = result.doc
           if (response.doc.remain_amount == 0)
-            site.call('[creat_invoices][order_invoice][paid]', response.doc.order_invoices_id)
+            site.call('[create_invoices][order_invoice][paid]', response.doc.order_invoices_id)
 
           if (response.doc.payment_safe) {
             let paid_value = {
@@ -187,7 +187,7 @@ module.exports = function init(site) {
               image_url: response.doc.image_url,
               safe: response.doc.payment_safe
             }
-            site.call('[creat_invoices][safes][+]', paid_value)
+            site.call('[create_invoices][safes][+]', paid_value)
           }
         } else {
           response.error = err.message
@@ -200,7 +200,7 @@ module.exports = function init(site) {
     }
   })
 
-  site.post("/api/creat_invoices/view", (req, res) => {
+  site.post("/api/create_invoices/view", (req, res) => {
     let response = {
       done: false
     }
@@ -211,7 +211,7 @@ module.exports = function init(site) {
       return
     }
 
-    $creat_invoices.findOne({
+    $create_invoices.findOne({
       where: {
         id: req.body.id
       }
@@ -226,7 +226,7 @@ module.exports = function init(site) {
     })
   })
 
-  site.post("/api/creat_invoices/delete", (req, res) => {
+  site.post("/api/create_invoices/delete", (req, res) => {
     let response = {
       done: false
     }
@@ -240,7 +240,7 @@ module.exports = function init(site) {
     let id = req.body.id
 
     if (id) {
-      $creat_invoices.delete({
+      $create_invoices.delete({
         id: id,
         $req: req,
         $res: res
@@ -259,7 +259,7 @@ module.exports = function init(site) {
     }
   })
 
-  site.post("/api/creat_invoices/all", (req, res) => {
+  site.post("/api/create_invoices/all", (req, res) => {
     let response = {
       done: false
     }
@@ -289,7 +289,7 @@ module.exports = function init(site) {
     where['company.id'] = site.get_company(req).id
     where['branch.code'] = site.get_branch(req).code
 
-    $creat_invoices.findMany({
+    $create_invoices.findMany({
       select: req.body.select || {},
       where: where,
       sort: req.body.sort || { id: -1 },

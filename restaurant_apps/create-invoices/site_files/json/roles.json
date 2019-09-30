@@ -1,6 +1,6 @@
 [{
     "module_name" : "accounting" ,
-    "name": "creat_invoices_admin",
+    "name": "create_invoices_admin",
     "en": "Creat Invoices  Admin",
     "ar": "إدارة إنشاء الفواتير",
     "permissions": ["reat_invoices_manage"]

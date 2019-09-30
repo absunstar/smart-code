@@ -432,12 +432,12 @@
     {
         "name": "tickets_menus",
         "en": "Tickets Menu",
-        "ar": " البلاغات"
+        "ar": " الطلبات"
     },
     {
         "name": "tickets_mgmt",
         "en": "Tickets Management",
-        "ar": "إدارة البلاغات"
+        "ar": "إدارة الطلبات"
     },
     {
         "name": "customers_menus",
@@ -487,12 +487,12 @@
     {
         "name": "system_tickets_slides_menus",
         "en": "tickets slides",
-        "ar": "شرائح البلاغات"
+        "ar": "شرائح الطلبات"
     },
     {
         "name": "system_tickets_slides_count",
         "en": "Counting tickets slides",
-        "ar": "حساب شرائح البلاغات"
+        "ar": "حساب شرائح الطلبات"
     },
     {
         "name": "system_add_customer_menus",
@@ -532,7 +532,7 @@
     {
         "name": "distributed_tickets_reports",
         "en": "Distributed Tickets Reports",
-        "ar": "تقارير البلاغات الموزعة"
+        "ar": "تقارير الطلبات الموزعة"
     },
     {
         "name": "system_stores_menus",
@@ -552,7 +552,7 @@
     {
         "name": "system_add_catagories_items",
         "en": "Counting tickets slides",
-        "ar": "حساب شرائح البلاغات"
+        "ar": "حساب شرائح الطلبات"
     },
     {
         "name": "system_stores_in_menus",

@@ -13,6 +13,6 @@
     {"name" : "error11" , "en" : "Error Dublicate" , "ar" : "مكرر"},
     {"name" : "stores_type" , "en" : "store Type" , "ar" : "نوع المخزن "},
     {"name" : "stores_note" , "en" : " Notes" , "ar" : "ملاحظات "},
-    {"name" : "stores_in_ticket_code" , "en" : " Ticket Number" , "ar" : "رقم البلاغ "}
+    {"name" : "stores_in_ticket_code" , "en" : " Ticket Number" , "ar" : "رقم الطلب "}
 
 ]

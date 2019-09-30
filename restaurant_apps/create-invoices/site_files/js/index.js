@@ -1,15 +1,15 @@
-app.controller("creat_invoices", function ($scope, $http, $timeout) {
+app.controller("create_invoices", function ($scope, $http, $timeout) {
   $scope._search = {};
 
-  $scope.creat_invoices = {};
+  $scope.create_invoices = {};
 
   $scope.displayAddCreatInvoices = function () {
     $scope._search = {};
     $scope.search_order = "";
     $scope.error = '';
     $scope.orderInvoicesTypeList = [];
-    $scope.creat_invoices = {
-      image_url: '/images/creat_invoices.png',
+    $scope.create_invoices = {
+      image_url: '/images/create_invoices.png',
       source_type: {
         id: 2,
         en: "Order Invoices",
@@ -37,27 +37,27 @@ app.controller("creat_invoices", function ($scope, $http, $timeout) {
       $scope.error = v.messages[0].ar;
       return;
     }
-    else if ($scope.creat_invoices.paid_up > 0 && !$scope.creat_invoices.safe) {
+    else if ($scope.create_invoices.paid_up > 0 && !$scope.create_invoices.safe) {
       $scope.error = "##word.should_select_safe##";
       return;
     }
-    else if ($scope.creat_invoices.total_tax > $scope.total_tax) {
+    else if ($scope.create_invoices.total_tax > $scope.total_tax) {
       $scope.error = "##word.err_total_tax##";
       return;
     }
-    else if ($scope.creat_invoices.total_discount > $scope.total_discount) {
+    else if ($scope.create_invoices.total_discount > $scope.total_discount) {
       $scope.error = "##word.err_total_discount##";
       return;
     }
-    else if ($scope.creat_invoices.price_delivery_service > $scope.price_delivery_service) {
+    else if ($scope.create_invoices.price_delivery_service > $scope.price_delivery_service) {
       $scope.error = "##word.err_price_delivery_service##";
       return;
     }
-    else if ($scope.creat_invoices.service > $scope.service) {
+    else if ($scope.create_invoices.service > $scope.service) {
       $scope.error = "##word.err_service##";
       return;
     }
-    else if ($scope.creat_invoices.paid_up > $scope.creat_invoices.net_value) {
+    else if ($scope.create_invoices.paid_up > $scope.create_invoices.net_value) {
       $scope.error = "##word.err_net_value##";
       return;
     }
@@ -65,8 +65,8 @@ app.controller("creat_invoices", function ($scope, $http, $timeout) {
 
     $http({
       method: "POST",
-      url: "/api/creat_invoices/add",
-      data: $scope.creat_invoices
+      url: "/api/create_invoices/add",
+      data: $scope.create_invoices
     }).then(
       function (response) {
         $scope.busy = false;
@@ -88,12 +88,12 @@ app.controller("creat_invoices", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.displayUpdateCreatInvoices = function (creat_invoices) {
+  $scope.displayUpdateCreatInvoices = function (create_invoices) {
     $scope._search = {};
 
     $scope.error = '';
-    $scope.detailsCreatInvoices(creat_invoices);
-    $scope.creat_invoices = {
+    $scope.detailsCreatInvoices(create_invoices);
+    $scope.create_invoices = {
       image_url: '/images/vendor_logo.png',
 
     };
@@ -114,8 +114,8 @@ app.controller("creat_invoices", function ($scope, $http, $timeout) {
     }
     $http({
       method: "POST",
-      url: "/api/creat_invoices/update",
-      data: $scope.creat_invoices
+      url: "/api/create_invoices/update",
+      data: $scope.create_invoices
     }).then(
       function (response) {
         $scope.busy = false;
@@ -136,27 +136,27 @@ app.controller("creat_invoices", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.displayDetailsCreatInvoices = function (creat_invoices) {
+  $scope.displayDetailsCreatInvoices = function (create_invoices) {
     $scope.error = '';
-    $scope.detailsCreatInvoices(creat_invoices);
-    $scope.creat_invoices = {};
+    $scope.detailsCreatInvoices(create_invoices);
+    $scope.create_invoices = {};
     site.showModal('#creatInvoicesDetailsModal');
   };
 
-  $scope.detailsCreatInvoices = function (creat_invoices) {
+  $scope.detailsCreatInvoices = function (create_invoices) {
     $scope.busy = true;
     $http({
       method: "POST",
-      url: "/api/creat_invoices/view",
+      url: "/api/create_invoices/view",
       data: {
-        id: creat_invoices.id
+        id: create_invoices.id
       }
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
           response.data.doc.date = new Date(response.data.doc.date);
-          $scope.creat_invoices = response.data.doc;
+          $scope.create_invoices = response.data.doc;
         } else {
           $scope.error = response.data.error;
         }
@@ -167,10 +167,10 @@ app.controller("creat_invoices", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.displayDeleteCreatInvoices = function (creat_invoices) {
+  $scope.displayDeleteCreatInvoices = function (create_invoices) {
     $scope.error = '';
-    $scope.detailsCreatInvoices(creat_invoices);
-    $scope.creat_invoices = {};
+    $scope.detailsCreatInvoices(create_invoices);
+    $scope.create_invoices = {};
     site.showModal('#creatInvoicesDeleteModal');
   };
 
@@ -179,9 +179,9 @@ app.controller("creat_invoices", function ($scope, $http, $timeout) {
     $scope.busy = true;
     $http({
       method: "POST",
-      url: "/api/creat_invoices/delete",
+      url: "/api/create_invoices/delete",
       data: {
-        id: $scope.creat_invoices.id
+        id: $scope.create_invoices.id
 
       }
     }).then(
@@ -211,7 +211,7 @@ app.controller("creat_invoices", function ($scope, $http, $timeout) {
     $scope.count = 0;
     $http({
       method: "POST",
-      url: "/api/creat_invoices/all",
+      url: "/api/create_invoices/all",
       data: {
         where: where
       }
@@ -258,7 +258,7 @@ app.controller("creat_invoices", function ($scope, $http, $timeout) {
     $scope.busy = true;
     $http({
       method: "POST",
-      url: "/api/creat_invoices/update",
+      url: "/api/create_invoices/update",
       data: $scope.current
     }).then(
       function (response) {
@@ -281,7 +281,7 @@ app.controller("creat_invoices", function ($scope, $http, $timeout) {
   $scope.loadOrderInvoicesType = function (ev) {
     $scope.busy = true;
     $scope.orderInvoicesTypeList = [];
-    if (!$scope.creat_invoices.order_invoices_type) {
+    if (!$scope.create_invoices.order_invoices_type) {
       $scope.error = "##word.err_order_type##";
       return;
     } else if (ev.which === 13) {
@@ -313,26 +313,26 @@ app.controller("creat_invoices", function ($scope, $http, $timeout) {
   };
 
   $scope.selectOrderInvoices = function (item) {
-    $scope.creat_invoices.current_book_list = [];
-    $scope.creat_invoices.total_tax = item.under_paid.total_tax;
-    $scope.creat_invoices.total_discount = item.under_paid.total_discount;
-    $scope.creat_invoices.price_delivery_service = item.under_paid.price_delivery_service;
-    $scope.creat_invoices.service = item.under_paid.service;
-    $scope.creat_invoices.net_value = item.under_paid.net_value;
-    $scope.creat_invoices.paid_up = 0 ;
-     $scope.creat_invoices.order_invoices_id = item.under_paid.order_invoice_id;
+    $scope.create_invoices.current_book_list = [];
+    $scope.create_invoices.total_tax = item.under_paid.total_tax;
+    $scope.create_invoices.total_discount = item.under_paid.total_discount;
+    $scope.create_invoices.price_delivery_service = item.under_paid.price_delivery_service;
+    $scope.create_invoices.service = item.under_paid.service;
+    $scope.create_invoices.net_value = item.under_paid.net_value;
+    $scope.create_invoices.paid_up = 0 ;
+     $scope.create_invoices.order_invoices_id = item.under_paid.order_invoice_id;
 
     item.under_paid.book_list.forEach(item => {
       if (item.count > 0) {
 
-        $scope.creat_invoices.current_book_list.push(item);
+        $scope.create_invoices.current_book_list.push(item);
       }
     });
 
-    $scope.total_tax = $scope.creat_invoices.total_tax;
-    $scope.total_discount = $scope.creat_invoices.total_discount;
-    $scope.price_delivery_service = $scope.creat_invoices.price_delivery_service;
-    $scope.service = $scope.creat_invoices.service;
+    $scope.total_tax = $scope.create_invoices.total_tax;
+    $scope.total_discount = $scope.create_invoices.total_discount;
+    $scope.price_delivery_service = $scope.create_invoices.price_delivery_service;
+    $scope.service = $scope.create_invoices.service;
 
     $scope.orderInvoicesTypeList = [];
   };
@@ -348,14 +348,14 @@ app.controller("creat_invoices", function ($scope, $http, $timeout) {
   };
 
   /*  $scope.remaining = function () {
-     let order_sale = $scope.creat_invoices.order_sale;
-     order_sale.under_paid.total_tax = order_sale.under_paid.total_tax - $scope.creat_invoices.total_tax;
-     order_sale.under_paid.total_discount = order_sale.under_paid.total_discount - $scope.creat_invoices.total_discount;
-     order_sale.under_paid.price_delivery_service = order_sale.under_paid.price_delivery_service - $scope.creat_invoices.price_delivery_service;
-     order_sale.under_paid.service = order_sale.under_paid.service - $scope.creat_invoices.service;
-     order_sale.under_paid.net_value = order_sale.under_paid.net_value - $scope.creat_invoices.net_value;
+     let order_sale = $scope.create_invoices.order_sale;
+     order_sale.under_paid.total_tax = order_sale.under_paid.total_tax - $scope.create_invoices.total_tax;
+     order_sale.under_paid.total_discount = order_sale.under_paid.total_discount - $scope.create_invoices.total_discount;
+     order_sale.under_paid.price_delivery_service = order_sale.under_paid.price_delivery_service - $scope.create_invoices.price_delivery_service;
+     order_sale.under_paid.service = order_sale.under_paid.service - $scope.create_invoices.service;
+     order_sale.under_paid.net_value = order_sale.under_paid.net_value - $scope.create_invoices.net_value;
      order_sale.under_paid.book_list.forEach(order_item => {
-       $scope.creat_invoices.current_book_list.forEach(current_item => {
+       $scope.create_invoices.current_book_list.forEach(current_item => {
          if (order_item.barcode == current_item.barcode) {
            order_item.count = order_item.count - current_item.count;
          };
@@ -371,18 +371,18 @@ app.controller("creat_invoices", function ($scope, $http, $timeout) {
   $scope.calc = function () {
     $timeout(() => {
       let total_price_item = 0;
-      $scope.creat_invoices.current_book_list.forEach(item => {
+      $scope.create_invoices.current_book_list.forEach(item => {
 
         total_price_item += item.total_price;
       });
-      $scope.creat_invoices.net_value = total_price_item + ($scope.creat_invoices.service || 0) + ($scope.creat_invoices.price_delivery_service || 0) + ($scope.creat_invoices.total_tax || 0) - ($scope.creat_invoices.total_discount || 0)
+      $scope.create_invoices.net_value = total_price_item + ($scope.create_invoices.service || 0) + ($scope.create_invoices.price_delivery_service || 0) + ($scope.create_invoices.total_tax || 0) - ($scope.create_invoices.total_discount || 0)
     }, 250);
   };
   $scope.deleteItemsList = function (item) {
     $scope.error = '';
 
     if (item.count == 1) {
-      $scope.creat_invoices.current_book_list.splice($scope.creat_invoices.current_book_list.indexOf(item), 1)
+      $scope.create_invoices.current_book_list.splice($scope.create_invoices.current_book_list.indexOf(item), 1)
 
     } else if (item.count > 1) {
       item.count -= 1;
@@ -487,7 +487,7 @@ app.controller("creat_invoices", function ($scope, $http, $timeout) {
         method: "POST",
         url: "/api/numbering_transactions_status/get",
         data: {
-          screen_name: "creat_invoices"
+          screen_name: "create_invoices"
         }
       }).then(
         function (response) {

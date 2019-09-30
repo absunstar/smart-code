@@ -1,31 +1,31 @@
 [
     {
-        "name": "creat_invoices_add",
+        "name": "create_invoices_add",
         "en": "Add Customer",
         "ar": "إضافة عميل"
     },
     {
-        "name": "creat_invoices_informations",
+        "name": "create_invoices_informations",
         "en": "Creat Invoices Informations",
         "ar": "بيانات إنشاء فاتورة"
     },
     {
-        "name": "creat_invoices_name",
+        "name": "create_invoices_name",
         "en": "Creat Invoices",
         "ar": "إنشاء فواتير"
     },
     {
-        "name": "creat_invoices_menus",
+        "name": "create_invoices_menus",
         "en": "Creat Invoices Menu",
         "ar": "قائمة إنشاء فاتورة"
     },
     {
-        "name": "creat_invoices_code",
+        "name": "create_invoices_code",
         "en": "Creat Invoices Code",
         "ar": "كود الفاتورة"
     },
     {
-        "name": "creat_invoices_name",
+        "name": "create_invoices_name",
         "en": "Creat Invoices Name",
         "ar": "اسم إنشاء فاتورة"
     },
@@ -125,27 +125,27 @@
         "ar": "مبلغ خدمة التوصيل أكبر من المطلوب"
     },
     {
-        "name": "creat_invoices_new",
+        "name": "create_invoices_new",
         "en": "New Creat Invoices",
         "ar": "إنشاء فاتورة جديدة"
     },
     {
-        "name": "creat_invoices_details",
+        "name": "create_invoices_details",
         "en": "Creat Invoices Details",
         "ar": "تفاصيل إنشاء فاتورة"
     },
     {
-        "name": "creat_invoices_update",
+        "name": "create_invoices_update",
         "en": "Edit Creat Invoices",
         "ar": "تعديل إنشاء فاتورة"
     },
     {
-        "name": "creat_invoices_delete",
+        "name": "create_invoices_delete",
         "en": "Delte Creat Invoices",
         "ar": "حذف إنشاء فاتورة"
     },
     {
-        "name": "creat_invoices_add_name",
+        "name": "create_invoices_add_name",
         "en": "Add Creat Invoices",
         "ar": "إضافة إنشاء فاتورة"
     }

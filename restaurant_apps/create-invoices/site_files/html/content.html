@@ -1,38 +1,38 @@
 <div class="form">
     <div id="creatInvoicesAddModal">
         <fieldset>
-            <legend> ##word.creat_invoices_informations## </legend>
+            <legend> ##word.create_invoices_informations## </legend>
             <div class="row">
                 <div class="col9">
 
                     <div class="row">
-                        <i-date2 class="col3" ng-model="creat_invoices.date" label="##word.date##"></i-date2>
+                        <i-date2 class="col3" ng-model="create_invoices.date" label="##word.date##"></i-date2>
                         <i-list help-id="" ng-search="_search.$payment_method_search" class="col2"
-                            label="##word.payment_method##" ng-model="creat_invoices.payment_method"
+                            label="##word.payment_method##" ng-model="create_invoices.payment_method"
                             items="paymentMethodList" display="ar">
                         </i-list>
                         <div class="col5"></div>
-                        <i-checkbox class="col2" label="##word.active##" ng-model="creat_invoices.active"></i-checkbox>
+                        <i-checkbox class="col2" label="##word.active##" ng-model="create_invoices.active"></i-checkbox>
                     </div>
 
                     <div class="row">
                         <div class="row">
                             <i-list help-id="" ng-search="_search.$source_type_search" class="col2"
-                                label="##word.source_type##" ng-model="creat_invoices.source_type"
+                                label="##word.source_type##" ng-model="create_invoices.source_type"
                                 items="sourceTypeList" display="ar"></i-list>
 
-                            <i-list help-id="" ng-show="creat_invoices.source_type.id == 2"
+                            <i-list help-id="" ng-show="create_invoices.source_type.id == 2"
                                 ng-search="_search.$order_invoices_type_search" class="col2"
-                                label="##word.order_type##" ng-model="creat_invoices.order_invoices_type"
+                                label="##word.order_type##" ng-model="create_invoices.order_invoices_type"
                                 items="transactionTypeList" display="ar"></i-list>
-                            <!-- ng-change="loadOrderInvoicesType(creat_invoices.order_invoices_type)" -->
+                            <!-- ng-change="loadOrderInvoicesType(create_invoices.order_invoices_type)" -->
 
                             <i-control ng-keydown="loadOrderInvoicesType($event)" id="item_name" class="col3"
                                 ng-model="search_order" label="##word.search##" type="text"></i-control>
 
-                            <!--   <i-list help-id="" ng-show="creat_invoices.order_invoices_type"
+                            <!--   <i-list help-id="" ng-show="create_invoices.order_invoices_type"
                                 ng-search="_search.$order_sale_search" class="col3" label="##word.order_sale##"
-                                ng-model="creat_invoices.order_sale" items="orderInvoicesTypeList"
+                                ng-model="create_invoices.order_sale" items="orderInvoicesTypeList"
                                 ng-change="selectOrderInvoices()" display="code"></i-list>
  -->
 
@@ -59,7 +59,7 @@
                             </table>
                         </div>
 
-                        <div class="row" ng-show="creat_invoices.current_book_list.length > 0">
+                        <div class="row" ng-show="create_invoices.current_book_list.length > 0">
 
                             <table x-permissions="login" class="table bold hover loaded" id="t1">
 
@@ -71,7 +71,7 @@
                                     <th class="not-print">##word.actions##</th>
                                 </tr>
 
-                                <tr ng-repeat="c in creat_invoices.current_book_list">
+                                <tr ng-repeat="c in create_invoices.current_book_list">
                                     <td class="center title">{{c.size}}</td>
                                     <td class="center blue">{{c.count}}</td>
                                     <td class="center blue">{{c.price}}</td>
@@ -88,30 +88,30 @@
 
                         <div class="row">
 
-                            <i-control ng-show="creat_invoices.total_tax" ng-model="creat_invoices.total_tax"
+                            <i-control ng-show="create_invoices.total_tax" ng-model="create_invoices.total_tax"
                                 ng-change="calc()" label="##word.stores_out_total_tax##" class="col3" type="number">
                             </i-control>
-                            <i-control ng-show="creat_invoices.total_discount" ng-change="calc()"
-                                ng-model="creat_invoices.total_discount" label="##word.stores_out_total_discount##"
+                            <i-control ng-show="create_invoices.total_discount" ng-change="calc()"
+                                ng-model="create_invoices.total_discount" label="##word.stores_out_total_discount##"
                                 class="col3" type="number"></i-control>
-                            <i-control ng-show="creat_invoices.price_delivery_service" ng-change="calc()"
-                                ng-model="creat_invoices.price_delivery_service" label="##word.price_delivery_service##"
+                            <i-control ng-show="create_invoices.price_delivery_service" ng-change="calc()"
+                                ng-model="create_invoices.price_delivery_service" label="##word.price_delivery_service##"
                                 class="col3" type="number"></i-control>
-                            <i-control class="col3" ng-show="creat_invoices.service" ng-change="calc()"
-                                ng-model="creat_invoices.service" label="##word.service##" type="number"></i-control>
+                            <i-control class="col3" ng-show="create_invoices.service" ng-change="calc()"
+                                ng-model="create_invoices.service" label="##word.service##" type="number"></i-control>
                             <div class="col2"></div>
 
                         </div>
 
                         <div class="row">
-                            <i-control class="col3" ng-show="creat_invoices.net_value" ng-change="calc()"
-                                ng-model="creat_invoices.net_value" label="##word.net_value##" type="number">
+                            <i-control class="col3" ng-show="create_invoices.net_value" ng-change="calc()"
+                                ng-model="create_invoices.net_value" label="##word.net_value##" type="number">
                             </i-control>
-                            <i-control class="col3" ng-show="creat_invoices.net_value" ng-model="creat_invoices.paid_up"
+                            <i-control class="col3" ng-show="create_invoices.net_value" ng-model="create_invoices.paid_up"
                                 label="##word.paid_up##" type="number">
                             </i-control>
                             <i-list ng-search="_search.$order_invoice.$safes_search"
-                                ng-show="creat_invoices.paid_up > 0" class="col4" ng-model="creat_invoices.safe"
+                                ng-show="create_invoices.paid_up > 0" class="col4" ng-model="create_invoices.safe"
                                 label="##word.safe##" items="safesList"></i-list>
                             <!--  <i-button type="update" label="##word.payable##" ng-click="calc()"></i-button> -->
 
@@ -120,7 +120,7 @@
                 </div>
 
                 <div class="col3">
-                    <i-image category="creat_invoices" ng-model="creat_invoices.image_url"> </i-image>
+                    <i-image category="create_invoices" ng-model="create_invoices.image_url"> </i-image>
                 </div>
             </div>
         </fieldset>

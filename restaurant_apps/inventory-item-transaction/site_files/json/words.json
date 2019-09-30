@@ -54,7 +54,7 @@
     {"name" : "item_transaction_status" , "ar" : "الحالة  " , "en" : "status "},   
 
     {"name" : "item_transaction_store_out_number" , "ar" : "رقم الأذن  " , "en" : "store number "},   
-    {"name" : "item_transaction_ticket_code" , "ar" : "رقم البلاغ  " , "en" : "ticket number "},   
+    {"name" : "item_transaction_ticket_code" , "ar" : "رقم الطلب  " , "en" : "ticket number "},   
 
     
   

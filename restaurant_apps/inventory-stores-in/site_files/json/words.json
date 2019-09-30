@@ -24,7 +24,7 @@
     {"name" : "nosafe_warning" , "en" : "You should choose a Safe" , "ar" : "  يرجى التأكد من اختيار الخزينة"},
     {"name" : "err_transaction_type" , "en" : "You should select transaction type" , "ar" : "  يرجى التأكد من اختيار نوع المعاملة"},
     {"name" : "stores_in_categry" , "en" : "Classfication" , "ar" : "  التصنيف "},
-    {"name" : "edit_ticket" , "en" : "Edit ticket" , "ar" : "  تعديل البلاغ "},
+    {"name" : "edit_ticket" , "en" : "Edit ticket" , "ar" : "  تعديل الطلب "},
 
     
     

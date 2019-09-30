@@ -1,5 +1,5 @@
 module.exports = function init(site) {
-  const $creat_invoices = site.connectCollection("creat_invoices")
+  const $create_invoices = site.connectCollection("create_invoices")
 
 
 
@@ -73,7 +73,7 @@ module.exports = function init(site) {
     where['company.id'] = site.get_company(req).id
     where['branch.code'] = site.get_branch(req).code
 
-    $creat_invoices.findMany({
+    $create_invoices.findMany({
       select: req.body.select || {},
       where: where,
       sort: req.body.sort || { id: -1 },

@@ -10,50 +10,50 @@
                             <table class="table bold hover">
                                 <tr>
                                     <td class="title"> ##word.source_type## </td>
-                                    <td class="center"> {{creat_invoices.source_type.ar}} </td>
+                                    <td class="center"> {{create_invoices.source_type.ar}} </td>
                                 </tr>
                                 <tr>
                                     <td class="title"> ##word.invoice_type## </td>
-                                    <td class="center"> {{creat_invoices.order_invoices_type.ar}} </td>
+                                    <td class="center"> {{create_invoices.order_invoices_type.ar}} </td>
                                 </tr>
                                 <tr>
                                     <td class="title"> ##word.code## </td>
-                                    <td class="center blue"> {{creat_invoices.code}} </td>
+                                    <td class="center blue"> {{create_invoices.code}} </td>
                                 </tr>
                                 <tr>
                                     <td class="title"> ##word.date## </td>
-                                    <td class="center brown"> {{creat_invoices.date | date : 'dd - MM - yyyy'}} </td>
+                                    <td class="center brown"> {{create_invoices.date | date : 'dd - MM - yyyy'}} </td>
                                 </tr>
-                                <tr ng-show="creat_invoices.service > 0">
+                                <tr ng-show="create_invoices.service > 0">
                                     <td class="title"> ##word.service## </td>
-                                    <td class="center"> {{creat_invoices.service}} </td>
+                                    <td class="center"> {{create_invoices.service}} </td>
                                 </tr>
-                                <tr ng-show="creat_invoices.price_delivery_service > 0">
+                                <tr ng-show="create_invoices.price_delivery_service > 0">
                                     <td class="title"> ##word.price_delivery_service## </td>
-                                    <td class="center"> {{creat_invoices.price_delivery_service}} </td>
+                                    <td class="center"> {{create_invoices.price_delivery_service}} </td>
                                 </tr>
-                                <tr ng-show="creat_invoices.total_discount > 0">
+                                <tr ng-show="create_invoices.total_discount > 0">
                                     <td class="title"> ##word.stores_out_total_discount## </td>
-                                    <td class="center"> {{creat_invoices.total_discount}} </td>
+                                    <td class="center"> {{create_invoices.total_discount}} </td>
                                 </tr>
-                                <tr ng-show="creat_invoices.total_tax > 0">
+                                <tr ng-show="create_invoices.total_tax > 0">
                                     <td class="title"> ##word.stores_out_total_tax## </td>
-                                    <td class="center"> {{creat_invoices.total_tax}} </td>
+                                    <td class="center"> {{create_invoices.total_tax}} </td>
                                 </tr>
                                 <tr>
                                     <td class="title"> ##word.net_value## </td>
-                                    <td class="center blue"> {{creat_invoices.net_value}} </td>
+                                    <td class="center blue"> {{create_invoices.net_value}} </td>
                                 </tr>
 
-                                <tr ng-show="creat_invoices.safe">
+                                <tr ng-show="create_invoices.safe">
                                     <td class="title"> ##word.safe## </td>
-                                    <td class="center"> {{creat_invoices.safe.name}} </td>
+                                    <td class="center"> {{create_invoices.safe.name}} </td>
                                 </tr>
                                 <tr>
                                     <td class="title"> ##word.active## </td>
-                                    <td ng-show="creat_invoices.active == true" class="center green"> ##word.active##
+                                    <td ng-show="create_invoices.active == true" class="center green"> ##word.active##
                                     </td>
-                                    <td ng-show="creat_invoices.active == false" class="center red"> ##word.not_active##
+                                    <td ng-show="create_invoices.active == false" class="center red"> ##word.not_active##
                                     </td>
                                 </tr>
                             </table>
@@ -67,7 +67,7 @@
                                     <th>##word.items_price##</th>
                                     <th>##word.items_price_total##</th>
                                 </tr>
-                                <tr ng-repeat="c in creat_invoices.current_book_list">
+                                <tr ng-repeat="c in create_invoices.current_book_list">
                                     <td class="center title">{{c.size}}</td>
                                     <td class="center blue">{{c.count}}</td>
                                     <td class="center blue">{{c.price}}</td>
@@ -82,7 +82,7 @@
 
                                 <legend>##word.detailes_amounts_paid##</legend>
 
-                                <i-control disabled class="col2" ng-model="creat_invoices.payment_paid_up"
+                                <i-control disabled class="col2" ng-model="create_invoices.payment_paid_up"
                                     label="##word.paid_up##" type="number"></i-control>
                                 <br>
                                 <table class="table bold hover loaded">
@@ -93,7 +93,7 @@
                                         <th>##word.paid_up##</th>
                                     </tr>
 
-                                    <tr ng-repeat="c in creat_invoices.payment_list">
+                                    <tr ng-repeat="c in create_invoices.payment_list">
                                         <td class="center brown">{{c.date | date : 'dd / MM / yyyy'}}</td>
                                         <td class="center blue">{{c.safe.name}}
                                         </td>
@@ -105,7 +105,7 @@
                     </div>
 
                     <div class="col3">
-                        <i-image class="not-print" view ng-model="creat_invoices.image_url"> </i-image>
+                        <i-image class="not-print" view ng-model="create_invoices.image_url"> </i-image>
                     </div>
 
                 </div>
@@ -113,4 +113,4 @@
         </div>
     </div>
 </div>
-<div x-import="creat-invoices/action_info.html"></div>
+<div x-import="create-invoices/action_info.html"></div>
