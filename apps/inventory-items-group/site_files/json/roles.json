@@ -1,7 +1,0 @@
-[{
-    "module_name" : "inventory" ,
-    "name": "items_group_admin",
-    "en": "Items Group Admin",
-    "ar": "ادارة مجموعات الأصناف",
-    "permissions": ["items_group_manage"]
-}]

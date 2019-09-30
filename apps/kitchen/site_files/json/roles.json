@@ -1,7 +1,0 @@
-[{
-    "module_name" : "public" ,
-    "name": "kitchen_admin",
-    "en": "Kitchen Admin",
-    "ar": "إدارة تعريف المطابخ",
-    "permissions": ["kitchen_manage"]
-}]

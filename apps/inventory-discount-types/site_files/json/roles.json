@@ -1,7 +1,0 @@
-[{
-    "module_name" : "inventory" ,
-    "name": "discount_types_admin",
-    "en": "Discount Types Admin",
-    "ar": "إدارة الخصومات",
-    "permissions": ["discount_types_manage"]
-}]

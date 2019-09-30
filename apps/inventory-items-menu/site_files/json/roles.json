@@ -1,7 +1,0 @@
-[{
-    "module_name" : "inventory" ,
-    "name": "items_menu_admin",
-    "en": "Items Menu Admin",
-    "ar": "ادارة قائمة الأصناف",
-    "permissions": ["items_menu_manage"]
-}]

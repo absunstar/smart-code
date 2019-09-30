@@ -1,7 +1,0 @@
-[{
-    "module_name" : "accounting" ,
-    "name": "employee_insurance_admin",
-    "en": "Employee Insurance Admin",
-    "ar": "إدارة التأمينات",
-    "permissions": ["employee_insurance_manage"]
-}]

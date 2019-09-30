@@ -1,7 +1,0 @@
-[{
-    "module_name" : "public" ,
-    "name": "vendors_admin",
-    "en": "Vendors Admin",
-    "ar": "ادارة الموردين",
-    "permissions": ["vendors_manage"]
-}]

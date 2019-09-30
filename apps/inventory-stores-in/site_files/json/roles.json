@@ -1,7 +1,0 @@
-[{
-    "module_name" : "inventory" ,
-    "name": "stores_in_admin",
-    "en": "Stores In Admin",
-    "ar": "إدارة إذن وارد",
-    "permissions": ["stores_in_manage"]
-}]

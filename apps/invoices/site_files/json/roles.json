@@ -1,7 +1,0 @@
-[{
-    "module_name" : "public" ,
-    "name": "invoices_admin",
-    "en": "Invoices Admin",
-    "ar": "إدارة الفواتير",
-    "permissions": ["invoices_manage"]
-}]
