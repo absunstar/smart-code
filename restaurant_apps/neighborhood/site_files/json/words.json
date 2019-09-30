@@ -1,0 +1,41 @@
+[{
+        "name": "neighborhood",
+        "en": "Neighborhoods",
+        "ar": "المدن"
+    },
+    {
+        "name": "neighborhood_new",
+        "en": "New Neighborhood",
+        "ar": "مدينة  جديدة"
+    },
+
+    {
+        "name": "neighborhood_add",
+        "en": "Add Neighborhood",
+        "ar": "إضافة مدينة "
+    },
+    {
+        "name": "neighborhood_edit",
+        "en": "Edit Neighborhood",
+        "ar": "تعديل مدينة "
+    },
+    {
+        "name": "neighborhood_details",
+        "en": "Neighborhood Details",
+        "ar": "تفاصيل المدينة "
+    },
+    {
+        "name": "neighborhood_delete",
+        "en": "Delete Neighborhood",
+        "ar": "حذف مدينة "
+    },
+    {
+        "name": "neighborhood_name",
+        "en": "Neighborhood Name",
+        "ar": "إسم المدينة "
+    }
+
+
+
+
+]

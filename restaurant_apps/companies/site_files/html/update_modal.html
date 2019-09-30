@@ -1,0 +1,23 @@
+<div id="companyUpdateModal" class="modal" fixed>
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.companies_edit##
+                <i class="fa fa-pencil"></i>
+            </h2>
+        </div>
+
+        <div class="modal-body">
+
+            <div x-import="companies/content.html"></div>
+        </div>
+
+        <div class="modal-footer center">
+            <h2 class="error"> {{error}} </h2>
+            <i-button type="save" label="##word.save##" ng-click="updatecompany(company)"></i-button>
+
+            <i-button type="close" label="##word.close##" onclick="site.hideModal( '#companyUpdateModal')"></i-button>
+        </div>
+    </div>
+</div>

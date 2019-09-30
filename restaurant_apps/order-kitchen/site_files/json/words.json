@@ -1,0 +1,119 @@
+[{
+        "name": "order_kitchens",
+        "en": "Order Kitchens",
+        "ar": "طلبات المطابخ"
+    },
+    {
+        "name": "order_kitchen_tenant_date_from",
+        "en": "Date From",
+        "ar": "من تاريخ"
+    },
+    {
+        "name": "order_kitchen_tenant_date_to",
+        "en": "Date To",
+        "ar": "الى تاريخ"
+    },
+    {
+        "name": "order_type",
+        "en": "Order Type",
+        "ar": "نوع الطلب"
+    },
+    {
+        "name": "order_kitchen_tenant_date",
+        "en": "Date",
+        "ar": "التاريخ"
+    },
+    {
+        "name": "general_Settings",
+        "en": "General Settings",
+        "ar": "إعدادات عامة"
+    },
+    {
+        "name": "inventory_settings",
+        "en": "Inventory",
+        "ar": "المخازن"
+    },
+    {
+        "name": "accounting_settings",
+        "en": "Accountinng",
+        "ar": "الحسابات"
+    },
+    {
+        "name": "order_kitchen_sales_invoices",
+        "en": "order_kitchen Sales Invoices",
+        "ar": "تقرير فواتير البيع"
+    },
+    {
+        "name": "order_kitchen_tenant_date",
+        "en": "Date",
+        "ar": "التاريخ"
+    },
+    {
+        "name": "piece_name",
+        "en": "Piece Of Name",
+        "ar": "إسم القطعة"
+    },
+    {
+        "name": "store_name",
+        "en": "Piece Of Name",
+        "ar": "إسم القطعة"
+    },
+    {
+        "name": "attend_absence_list",
+        "en": "Attend & Absence List",
+        "ar": "بيان الحضور و الغياب"
+    },
+    {
+        "name": "attend_hour",
+        "en": "Attend Hour",
+        "ar": "حضور الساعة"
+    },
+    {
+        "name": "out_hour",
+        "en": "Out Hour",
+        "ar": "إنصراف الساعة"
+    },
+    {
+        "name": "order_kitchen_serial",
+        "en": "Serial",
+        "ar": "رقم مسلسل"
+    },
+    {
+        "name": "order_kitchen_tenant_required",
+        "en": "Required",
+        "ar": "المطلوب"
+    },
+    {
+        "name": "order_kitchen_tenant_total_required",
+        "en": "Total Required",
+        "ar": "إجمالي المطلوب"
+    },
+  
+    {
+        "name": "order_kitchen_tenant_total",
+        "en": "Total Rest",
+        "ar": "إجمالي المدفوع"
+    },
+  
+    {
+        "name": "order_kitchen_tenant_total_rest",
+        "en": "Total Rest",
+        "ar": "إجمالي الباقي"
+    },
+    {
+        "name": "order_kitchen_tenant_rest",
+        "en": "Rest",
+        "ar": "الباقي"
+    },
+    {
+        "name": "order_kitchen_tenant_paid",
+        "en": "paid",
+        "ar": "المدفوع"
+    },
+    {
+        "name": "order_kitchen_tenant_date",
+        "en": "Offer Date",
+        "ar": "التاريخ"
+    }
+
+]

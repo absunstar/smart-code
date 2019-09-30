@@ -1,0 +1,35 @@
+<div class="form">
+    <div id="basicInformation" class="">
+        <fieldset>
+            <legend> ##word.basic_information## </legend>
+            <div class="row">
+                <div class="col9">
+                    <form class="form">
+                        <i-control type="text" ng-model="order_slides.name" label="##word.order_slides_name##">
+                        </i-control>
+                        <i-control type="number" ng-model="order_slides.value" label="##word.order_slides_value##">
+                        </i-control>
+                        <i-control type="number" ng-model="order_slides.from" label="##word.order_slides_from##">
+                        </i-control>
+                        <i-control type="number" ng-model="order_slides.to" label="##word.order_slides_to##">
+                        </i-control>
+                        <i-textarea ng-model="order_slides.notes" label="##word.notes##"></i-textarea>
+
+                        <div class="row">
+                            <i-checkbox ng-model="order_slides.salary_calculate"
+                                label="##word.order_slides_salary_calculate##"></i-checkbox>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="col3">
+
+                    <i-image category="order_slides_logo" ng-model="order_slides.image_url"></i-image>
+
+                </div>
+
+            </div>
+        </fieldset>
+
+    </div>
+</div>

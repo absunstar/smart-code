@@ -1,0 +1,112 @@
+<div id="deleteCategory_ItemModal" class="modal">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                <i class="fa fa-plus"></i> ##word.categories_items_delete## </h2>
+        </div>
+        <div class="modal-body">
+            
+            <div ng-hide="busy" class="row10">
+                <div class="col7">
+                    <br>
+                    <table class="table">
+                        <tr>
+                            <td class="title">##word.categories_items_code##</td>
+                            <td>{{category_item.code}}</td>
+                        </tr>
+
+                        <tr>
+                            <td class="title">##word.categories_items_name##</td>
+                            <td>{{category_item.name}}</td>
+                        </tr>
+
+                        <tr>
+                            <td class="title">##word.categories_items_category##</td>
+                            <td>{{category_item.category.code + ' - ' + category_item.category.name}}</td>
+                        </tr>
+
+                      
+
+                        <tr>
+                            <td class="title">##word.categories_items_with_discount##</td>
+                            <td ng-show="category_item.with_discount == true"> ##word.categories_items_with_discount_yes## </td>
+                            <td ng-hide="category_item.with_discount == true"> ##word.categories_items_with_discount_no## </td>
+                        </tr>
+
+                        <tr>
+                            <td class="title">##word.categories_items_factory_code##</td>
+                            <td>{{category_item.factory_code}}</td>
+                        </tr>
+
+                        <tr>
+                            <td class="title">##word.categories_items_vendor_name##</td>
+                            <td>{{category_item.factory.name}}</td>
+                        </tr>
+                        <tr>
+                            <td class="title">##word.categories_items_vendor_code##</td>
+                            <td>{{category_item.vendor_code}}</td>
+                        </tr>
+
+                        <tr>
+                            <td class="title">##word.categories_items_factory_name##</td>
+                            <td>{{category_item.vendor.name}}</td>
+                        </tr>
+
+                        <tr>
+                            <td class="title">##word.categories_items_season##</td>
+                            <td>{{category_item.seasonName.season.ar + ' ' + category_item.seasonName.year}}</td>
+                        </tr>
+
+                        <tr>
+                            <td class="title">##word.categories_items_section##</td>
+                            <td>{{category_item.section.name}}</td>
+
+                        </tr>
+
+                        <tr>
+                            <td class="title">##word.categories_items_sizes##</td>
+                            <td>
+                                <table class="table">
+                                    <tr>
+                                        <th>##word.categories_items_sizes##</th>
+                                        <th>##word.categories_items_cost##</th>
+                                        <th>##word.categories_items_price##</th>
+                                        <th>##word.categories_items_balance##</th>
+                                    </tr>
+                                    <tr ng-repeat="it in category_item.sizes">
+                                        <td>{{it.size}}</td>
+                                        <td>{{it.cost}}</td>
+                                        <td>{{it.price}}</td>
+                                        <td>{{it.current_count}}</td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+
+                    </table>
+                </div>
+
+                <div class="col3 center">
+                    <label>##word.categories_items_logo##</label>
+                    <br>
+                    <img class="img " ng-src="{{category_item.image_url}}" />
+
+                </div>
+            </div>
+
+        </div>
+        <h2>{{error}}</h2>
+        <div class="modal-footer center">
+            <a ng-hide="busy" id="delete_category_btn" ng-click="delete(category)" class="btn btn-danger">
+                <i class="fa fa-trash" aria-hidden="true"></i> ##word.delete##</a>
+            <a class="btn bg-blue" onclick="site.hideModal('#deleteCategory_ItemModal')">
+                <i class="fa fa-times" aria-hidden="true"></i> ##word.close##</a>
+
+
+        </div>
+    </div>
+
+
+</div>

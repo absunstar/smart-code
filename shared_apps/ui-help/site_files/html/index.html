@@ -1,0 +1,43 @@
+<div class="help-container">
+    <div class="help-content">
+        هذا النص يستخدم فى وصف الاداة وطريقة عملها
+    </div>
+</div>
+<script>
+
+    var help_busy = false;
+
+    $('*').hover(function () {
+
+        if(help_busy){
+            return;
+        }
+      
+        let id = $(this).attr('help-id');
+        if (id) {
+            help_busy = true;
+            
+            $.post('/api/help', {
+                id: $(this).attr('help-id')
+            }, (data) => {
+                if(data.length > 0){
+                    $('.help-content').html('');
+                    $('.help-container').css('display', 'block');
+                    data.forEach(d => {
+                        if('##session.lang##' === 'ar'){
+                            $('.help-content').append(d.ar);
+                        }else if('##session.lang##' === 'en'){
+                            $('.help-content').append(d.en);
+                        }
+                        $('.help-content').append('<br>');
+                    });
+                }
+                help_busy = false;
+            });
+        }
+    }, function () {
+        $('.help-container').css('display', 'none');
+        $('.help-content').html('');
+    });
+
+</script>

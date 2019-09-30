@@ -1,0 +1,356 @@
+<style>
+    .tab-link img {
+        width: 32px;
+        height: 32px;
+        padding: 1px;
+        background: #fff;
+        border-radius: 5px;
+        margin: 0px;
+    }
+
+    .tab-link span {
+        padding-right: 50px;
+        padding-left: 50px;
+        vertical-align: super;
+    }
+</style>
+<div class="main-menu">
+
+    <div class="tabs">
+        <div class="tabs-header">
+
+
+            <a x-feature="restaurant" class="tab-link" onclick="site.showTabContent(event, '#companyTab')">
+                <img src="/images/company.png">
+                <span> إعدادات المطعم </span>
+            </a>
+
+            <a class="tab-link" onclick="site.showTabContent(event, '#securityTab')">
+                <img src="/images/users.png">
+                <span> نظام الحماية </span>
+            </a>
+            <a class="tab-link" onclick="site.showTabContent(event, '#inventoryTab')">
+                <img src="/images/pic_store2.png">
+                <span> المخازن </span>
+            </a>
+            <a class="tab-link" onclick="site.showTabContent(event, '#accountingTab')">
+                <img src="/images/safe.png">
+                <span> الحسابات </span>
+            </a>
+
+            <a class="tab-link" onclick="site.showTabContent(event, '#generalTab')">
+                <img src="/images/gov.png">
+                <span> إعدادات عامة </span>
+            </a>
+            <a class="tab-link" onclick="site.showTabContent(event, '#employeesTab')">
+                <img src="/images/employee_list.png">
+                <span> الموظفين </span>
+            </a>
+
+            <a class="tab-link" onclick="site.showTabContent(event, '#reportingTab')">
+                <img src="/images/item_transaction.png">
+                <span> التقارير </span>
+            </a>
+
+        </div>
+
+        <div class="tabs-content">
+
+            <div id="securityTab" class="tab-content">
+
+                <a class="item" href="/notifications" x-permissions="nationalities_ui || nationalities_manage">
+                    <img src="/images/monitor.png">
+                    <h2> ##word.menu_monitor## </h2>
+                    <p> ##word.menu_monitor_tag## </p>
+                </a>
+
+                <a class="item" href="/security/users">
+                    <img src="/images/users.png">
+                    <h2> ##word.menu_users## </h2>
+                    <p> ##word.menu_security_and_permissions## </p>
+                </a>
+
+
+                <a class="item" href="/companies">
+                    <img src="/images/company.png">
+                    <h2> ##word.menu_company## </h2>
+                    <p> ##word.menu_company_tag##</p>
+                </a>
+
+
+            </div>
+
+            <div id="generalTab" class="tab-content">
+
+                <a class="item" href="/goves">
+                    <img src="/images/gov.png">
+                    <h2> ##word.menu_goves## </h2>
+                    <p> ##word.menu_goves_tag##</p>
+                </a>
+
+                <a class="item" href="/neighborhood">
+                    <img src="/images/neighborhood.png">
+                    <h2> ##word.menu_neighborhood## </h2>
+                    <p> ##word.menu_neighborhood_tag##</p>
+                </a>
+
+                <a class="item" href="/area">
+                    <img src="/images/area.png">
+                    <h2> ##word.menu_area## </h2>
+                    <p> ##word.menu_area_tag##</p>
+                </a>
+            </div>
+
+            <div id="accountingTab" class="tab-content">
+
+                <a class="item" href="/vendors_group">
+                    <img src="/images/vendor_group.png">
+                    <h2> ##word.menu_vendors_groups## </h2>
+                    <p> ##word.menu_vendors_groups_tag##</p>
+                </a>
+
+                <a class="item" href="/vendors">
+                    <img src="/images/vendor.png">
+                    <h2> ##word.menu_vendors## </h2>
+                    <p> ##word.menu_vendors_tag##</p>
+                </a>
+
+                <a class="item" href="/customers_group">
+                    <img src="/images/vendor_group.png">
+                    <h2> ##word.menu_customers_groups## </h2>
+                    <p> ##word.menu_customers_groups_tag##</p>
+                </a>
+
+                <a class="item" href="/customers">
+                    <img src="/images/vendor.png">
+                    <h2> ##word.menu_customers## </h2>
+                    <p> ##word.menu_customers_tag##</p>
+                </a>
+
+
+                <a class="item" href="/safes">
+                    <img src="/images/safe.png">
+                    <h2> ##word.system_safe_menus## </h2>
+                    <p> ##word.system_add_safes## </p>
+                </a>
+
+                <a class="item" href="/amounts_in">
+                    <img src="/images/amount_in.png">
+                    <h2>##word.system_amounts_in_menus##</h2>
+                    <p>##word.system_add_amounts_in##</p>
+                </a>
+
+                <a class="item" href="/amounts_out">
+                    <img src="/images/pic_out.png">
+                    <h2>##word.system_amounts_out_menus##</h2>
+                    <p>##word.system_add_amounts_out##</p>
+                </a>
+
+
+
+            </div>
+
+
+            <div id="inventoryTab" class="tab-content">
+
+                <a class="item" href="/stores">
+                    <img src="/images/pic_store2.png">
+                    <h2>##word.system_stores_menus##</h2>
+                    <p>##word.system_stores##</p>
+                </a>
+
+                <a class="item" href="/stores_items">
+                    <img src="/images/pic_catagories.png">
+                    <h2>##word.stores_items##</h2>
+                    <p>##word.stores_items##</p>
+                </a>
+
+                <a class="item" href="/items_group">
+                    <img src="/images/items_group.png">
+                    <h2>##word.items_group##</h2>
+                    <p>##word.items_group_add##</p>
+                </a>
+
+                <a class="item" href="/stores_in">
+                    <img src="/images/pic_money_in.png">
+                    <h2>##word.system_stores_in_menus##</h2>
+                    <p>##word.system_register_stores_in##</p>
+                </a>
+
+                <a class="item" href="/stores_out">
+                    <img src="/images/store_out.png">
+                    <h2>##word.system_stores_out_menus##</h2>
+                    <p>##word.system_register_stores_out##</p>
+                </a>
+
+                <a class="item" href="/tax_types">
+                    <img src="/images/tax_type.png">
+                    <h2>##word.system_add_tax_menus##</h2>
+                    <p>##word.system_tax_types_out##</p>
+                </a>
+
+                <a class="item" href="/discount_types">
+                    <img src="/images/discount_type.png">
+                    <h2>##word.system_add_discount_menus##</h2>
+                    <p>##word.system_discount_types##</p>
+                </a>
+
+                <a class="item" href="/stores_transfer">
+                    <img src="/images/stores_transfer.png">
+                    <h2>##word.system_stores_transfer_menu##</h2>
+                    <p>##word.system_stores_transfer_menu##</p>
+                </a>
+            </div>
+
+            <div id="employeesTab" class="tab-content">
+
+                <a class="item" href="/employees">
+                    <img src="/images/employee_list.png">
+                    <h2> ##word.menu_employee## </h2>
+                    <p> ##word.menu_employee_tag##</p>
+                </a>
+
+                <a class="item" href="/delivery_employees">
+                    <img src="/images/delivery_employee_list.png">
+                    <h2> ##word.delivery_employee_menus## </h2>
+                    <p> ##word.delivery_employee_manage##</p>
+                </a>
+
+                <a class="item" href="/jobs">
+                    <img src="/images/jobs.png">
+                    <h2> ##word.jobs## </h2>
+                    <p> ##word.jobs_add##</p>
+                </a>
+
+                <a class="item" href="/employees_degrees">
+                    <img src="/images/degree.png">
+                    <h2>##word.system_employee_degrees_menus## </h2>
+                    <p>##word.system_employee_degrees## </p>
+                </a>
+
+                <a class="item" href="/attend_leave">
+                    <img src="/images/attend_leave.png">
+                    <h2> ##word.menu_attend_leave## </h2>
+                    <p> ##word.add_attend_leave_tag##</p>
+                </a>
+
+                <a class="item" href="/in_out_names">
+                    <img src="/images/pic_in_out.png">
+                    <h2>##word.system_in_out_names_menus##</h2>
+                    <p>##word.system_in_out_names##</p>
+                </a>
+
+                <a class="item" href="/employee_offer">
+                    <img src="/images/offer.png">
+                    <h2> ##word.system_employees_offers_menus## </h2>
+                    <p> ##word.system_employees_offers_menus## </p>
+                </a>
+
+                <a class="item" href="/employee_discount">
+                    <img src="/images/discount.png">
+                    <h2> ##word.system_employees_discount_menus## </h2>
+                    <p> ##word.system_employees_discount_menus## </p>
+                </a>
+
+                <a class="item" href="/employees_advances">
+
+                    <img src="/images/emp_advances1.png">
+                    <h2>##word.system_employee_advance##</h2>
+                    <p> ##word.system_employee_advance## </p>
+                </a>
+
+                <a class="item" href="/employees_advances_fin">
+
+                    <img src="/images/emp_advances2.png">
+                    <h2>##word.system_employee_advance_fin##</h2>
+                    <p> ##word.system_employee_advance_fin## </p>
+                </a>
+
+                <a class="item" href="/employees_insurances">
+                    <img src="/images/Insurance-employee.png">
+                    <h2>##word.system_employees_insurance## </h2>
+                    <p>##word.system_employees_insurance##</p>
+                </a>
+
+                <a class="item" href="/insurances_slides">
+                    <img src="/images/insurance_slides.png">
+                    <h2>##word.system_insurance_slides## </h2>
+                    <p>##word.system_insurance_slides##</p>
+                </a>
+
+                <a class="item" href="/facilities_codes">
+                    <img src="/images/facility_code.png">
+                    <h2>##word.menu_facilities##</h2>
+                    <p>##word.add_facilities_tag##</p>
+                </a>
+            </div>
+
+            <div id="reportingTab" class="tab-content">
+
+                <a class="item" href="/item_transaction">
+                    <img src="/images/item_transaction.png">
+                    <h2>##word.system_item_transaction_menus##</h2>
+                    <p>##word.system_item_details##</p>
+                </a>
+
+                <a class="item" href="/report_invoices">
+                    <img src="/images/report_invoices.png">
+                    <h2>##word.report_invoices_menus##</h2>
+                    <p>##word.report_invoices_name##</p>
+                </a>
+
+                <a class="item" href="/report_employee_delivery">
+                    <img src="/images/report_employee_delivery.png">
+                    <h2>##word.report_employee_delivery_menus##</h2>
+                    <p>##word.report_employee_delivery_name##</p>
+                </a>
+
+            </div>
+
+            <div id="companyTab" class="tab-content">
+
+                <a class="item" href="/default_setting">
+                    <img src="/images/default_setting.png">
+                    <h2>##word.default_setting_menus## </h2>
+                    <p>##word.default_setting_management##</p>
+                </a>
+
+                <a class="item" href="/order_invoice">
+                    <img src="/images/order_invoice.png">
+                    <h2> ##word.order_invoice_menus## </h2>
+                    <p> ##word.order_invoice_management##</p>
+                </a>
+                <a class="item" href="/order_management">
+                    <img src="/images/order_management.png">
+                    <h2> ##word.order_management_menus## </h2>
+                    <p> ##word.order_management_management##</p>
+                </a>
+                <a class="item" href="/creat_invoices">
+                    <img src="/images/creat_invoices.png">
+                    <h2>##word.invoices_menus## </h2>
+                    <p>##word.invoices_management##</p>
+                </a>
+                <a class="item" href="/order_slides">
+                    <img src="/images/order_slides.png">
+                    <h2> ##word.order_slides_menus## </h2>
+                    <p> ##word.order_slides_management##</p>
+                </a>
+                <a class="item" href="/tables_group">
+                    <img src="/images/tables_group.png">
+                    <h2>##word.tables_group_menus## </h2>
+                    <p>##word.tables_group_management##</p>
+                </a>
+                <a class="item" href="/tables">
+                    <img src="/images/tables.png">
+                    <h2>##word.tables_menus## </h2>
+                    <p>##word.tables_management##</p>
+                </a>
+                <a class="item" href="/kitchen">
+                    <img src="/images/kitchen.png">
+                    <h2>##word.kitchen_menus## </h2>
+                    <p>##word.kitchen_management##</p>
+                </a>
+            </div>
+
+        </div>
+    </div>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="item_transaction_ui || item_transaction_manage" data-ng-app="myApp">
+<head x-import="head.html">
+</head>
+<body style="background : white" class=" ##session.lang##">
+
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+
+    </nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+
+    </nav>
+    <div  id="main-layout" class="container">
+        <div class="row">
+            <div class="row" ng-controller="item_transaction">
+                <div x-import="inventory-item-transaction/delete_modal.html"></div>
+                <div x-import="inventory-item-transaction/view_modal.html"></div>
+                <div x-import="inventory-item-transaction/search_all_modal.html"></div>
+                <div class="row">
+                    <h1 class="bold text-center">##word.item_transaction##</h1>
+                </div>
+                <div class="top-actions">
+                    <i-button type="search" x-permissions="item_transaction_search || item_transaction_manage" label="##word.search_all##"  onclick="site.showModal('#itemTransactionSearchModal')"></i-button>
+
+                    <h3 class="bold center"> ##word.item_transaction_count## : {{count}}</h3>
+
+                </div>
+                <form>
+                    <table class="table loaded bold hover text-center" id="t1">
+
+                        <tr>
+                            <th>##word.item_transaction_date##</th>
+                            <th>##word.vendor_name##</th>
+                            <th>##word.item_transaction_store##</th>
+                            <th>##word.item_transaction_name##</th>
+                            <th>##word.item_transaction_size##</th>
+                            <th>##word.barcode##</th>
+                            <th>##word.item_transaction_in##</th>
+                            <th>##word.item_transaction_out##</th>
+                            <th>##word.item_transaction_current_count##</th>
+                            <th>##word.item_transaction_previous_count##</th>
+                            <th>##word.item_transaction_price##</th>
+                            <th>##word.item_transaction_last_price##</th>
+                            <th>##word.item_transaction_status##</th>
+
+
+                          
+                        </tr>
+                        <tr ng-repeat="c in list">
+
+                            <td> <p class=" text-center"> {{c.date | date:'yyyy - MM - dd'}} </p> </td>
+                            <td> <p class=" text-center"> {{c.vendor.name_ar}} </p> </td>
+
+                            <td> <p class=" blue text-center"> {{c.store.name}} </p> </td>
+                            <td>
+                                <p class="text-center"> {{c.name}} </p>
+                            </td>
+
+                            <td> <p class="bold blue text-center"> {{c.size}} </p> </td>
+                            <td> <p class="bold text-center"> {{c.barcode}} </p> </td>
+                            <td class="bold">
+                                <p class="green text-center" ng-show="c.transaction_type == 'in'"> {{c.count}} </p>
+                            </td>
+                            <td class="bold">
+
+                                <p class="red text-center" ng-show="c.transaction_type == 'out'"> {{c.count}} </p>
+
+                            </td>
+                            <td class="green text-center">{{c.current_count}}</td>
+                            <td class="red text-center">{{c.last_count}}</td>
+                            <td class="blue bold text-center">{{c.price}}</td>
+                            <td class="red text-center">{{c.last_price}}</td>
+
+                            <td class="red text-center">
+                                <p class="text-center red bold" ng-show="c.current_status == 'debt'">
+                                    ##word.item_transaction_current_status_1##
+                                    <br>
+                                    <span class="">{{c.ticket_code}}</span>
+                                    <br>
+                                    <span class="blue">{{c.number}}</span>
+                                </p>
+                                <p class="text-center red bold" ng-show="c.current_status == 'sold'">
+                                        ##word.item_transaction_current_status_4##
+                                        <br>
+                                        <span>{{c.ticket_code}}</span>
+                                        <br>
+                                        <span class="blue">{{c.number}}</span>
+                                </p>
+                                <p class="text-center red bold" ng-show="c.current_status == 'damaged'">
+                                        ##word.item_transaction_current_status_3##
+                                        <br>
+                                        <span>{{c.ticket_code}}</span>
+                                        <br>
+                                        <span class="blue">{{c.number}}</span>
+                                </p>
+                                <p class="text-center red bold" ng-show="c.current_status == 'replaced'">
+                                        ##word.item_transaction_current_status_2##
+                                        <br>
+                                        <span class="">{{c.ticket_code}}</span>
+                                        <br>
+                                        <span class="blue">{{c.number}}</span>
+                                </p>
+                                <p class="text-center red bold" ng-show="c.current_status == 'transferred'">
+                                        ##word.item_transaction_current_status_5##
+                                        <br>
+                                        <span class="">{{c.ticket_code}}</span>
+                                        <br>
+                                        <span class="blue">{{c.supply_number}}</span>
+                                </p>
+                                <p class="text-center red bold" ng-show="c.current_status == 'storein'">
+                                    ##word.item_transaction_current_status_6##
+                                    <br>
+                                    <span class="">{{c.number}}</span>
+                                    <br>
+                                    <span class="blue">{{c.supply_number}}</span>
+                            </p>
+                            </td>
+
+                           
+                        </tr>
+
+                    </table>
+                </form>
+
+                <i-button type="print" x-permissions="item_transaction_print || item_transaction_manage" label="##word.print##" onclick="site.print('#t1')"></i-button>
+                
+            </div>
+
+
+        </div>
+    </div>
+
+    <div x-import="scripts.html"></div>
+    <script  x-import="inventory-item-transaction/index.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,136 @@
+<div ng-hide="busy" class="row">
+    <div id="basicInformation" class="">
+        <fieldset>
+            <legend> ##word.basic_information##</legend>
+            <div class="col9">
+
+                <div class="row">
+                    <table id="basicInformationTable" class="table hover bold">
+
+                        <tr ng-show="invoices.customer.name_ar">
+                            <td class="title">##word.customer_name##</td>
+                            <td class="center">{{invoices.customer.name_ar}}</td>
+                        </tr>
+
+                        <tr ng-show="invoices.delivery_employee.name">
+                            <td class="title">##word.delivery_employee##</td>
+                            <td class="center">{{invoices.delivery_employee.name}}</td>
+                        </tr>
+
+                        <tr ng-show="invoices.tables_group.name">
+                            <td class="title">##word.tables_group##</td>
+                            <td class="center">{{invoices.tables_group.name}}</td>
+                        </tr>
+
+                        <tr ng-show="invoices.table.name">
+                            <td class="title">##word.table##</td>
+                            <td class="center">{{invoices.table.name}}</td>
+                        </tr>
+
+                        <tr ng-show="invoices.service">
+                            <td class="title">##word.service##</td>
+                            <td class="center green">{{invoices.service}}</td>
+                        </tr>
+
+                        <tr ng-show="invoices.price_delivery_service">
+                            <td class="title">##word.price_delivery_service##</td>
+                            <td class="center green">{{invoices.price_delivery_service}}</td>
+                        </tr>
+
+                    </table>
+                </div>
+                <div class="row">
+
+                    <fieldset>
+                        <legend>##word.statement_items##</legend>
+                        <table x-permissions="login" class="table bold hover loaded" id="t1">
+
+                            <tr>
+                                <th>##word.stores_items_name##</th>
+                                <th>##word.items_count##</th>
+                                <th>##word.items_price##</th>
+                                <th>##word.items_price_total##</th>
+                            </tr>
+
+                            <tr ng-repeat="c in invoices.book_list">
+                                <td class="center title">{{c.size}}</td>
+                                <td class="center blue">{{c.count}}
+                                </td>
+                                <td class="center green">{{c.price}}</td>
+                                <td class="center green">{{c.total_price}}</td>
+                            </tr>
+
+                        </table>
+                    </fieldset>
+                </div>
+
+                <br>
+                <br>
+                <hr>
+                <br>
+
+                <div class="row">
+                    <div class="col5" ng-show="invoices.discountes.length > 0">
+
+                        <fieldset>
+                            <legend>##word.statement_discount##</legend>
+
+                            <table x-permissions="login" class="table bold hover loaded" id="t1">
+
+                                <tr>
+                                    <th>##word.discount_name##</th>
+                                    <th>##word.discount_type##</th>
+                                    <th>##word.discount_value##</th>
+                                </tr>
+
+                                <tr ng-repeat="c in invoices.discountes">
+                                    <td class="center title">{{c.name}}</td>
+                                    <td>
+                                        <p class="center blue" ng-show="c.type == 'number'">
+                                            ##word.discount_types_number##</p>
+                                        <p class="center blue" ng-show="c.type == 'percent'">##word.percent##</p>
+                                    </td>
+                                    <td class="center green">{{c.value}}</td>
+                                </tr>
+                            </table>
+
+                        </fieldset>
+                    </div>
+                    <div class="col2"></div>
+                    <div class="col5" ng-show="invoices.taxes.length > 0">
+
+                        <fieldset>
+                            <legend>##word.statement_taxes##</legend>
+
+                            <table x-permissions="login" class="table bold hover loaded" id="t1">
+
+                                <tr>
+                                    <th>##word.discount_name##</th>
+                                    <th>##word.discount_value##</th>
+                                </tr>
+
+                                <tr ng-repeat="c in invoices.taxes">
+                                    <td class="center title">{{c.name}}</td>
+                                    <td class="center green">{{c.value}}</td>
+
+                                </tr>
+                            </table>
+
+                        </fieldset>
+
+                    </div>
+                </div>
+
+
+            </div>
+
+
+
+            <div class="col3">
+                <i-image view ng-model="invoices.image_url"></i-image>
+            </div>
+
+        </fieldset>
+    </div>
+</div>
+<div x-import="invoices/action_info.html"></div>

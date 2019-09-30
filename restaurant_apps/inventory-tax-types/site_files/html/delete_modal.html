@@ -1,0 +1,22 @@
+<div id="deleteTaxTypeModal" class="modal">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.tax_types_delete## <i class="fa fa-trash"></i>
+                  </h2>
+        </div>
+        <div class="modal-body">
+            <div x-import="inventory-tax-types/view.html"></div>
+        </div>
+        <h2>{{error}}</h2>
+        <div class="modal-footer center">
+            <i-button type="delete" label="##word.delete##" ng-hide="busy" id="delete_city_btn" ng-click="delete(city)"></i-button>
+            <i-button type="close" label="##word.close##" onclick="site.hideModal('#deleteTaxTypeModal')"></i-button>
+
+        </div>
+    </div>
+
+
+</div>

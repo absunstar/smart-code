@@ -1,0 +1,22 @@
+[
+    {"name" : "workflow_id" , "en":"ID" , "ar" : "كود"},
+    {"name" : "workflow_title" , "en":"Title" , "ar" : "عنوان اﻻجراء"},
+    {"name" : "workflow_details" , "en":"Details" , "ar" : "التفاصيل"},
+    {"name" : "workflow_status" , "en":"Status" , "ar" : "الحالة"},
+    {"name" : "workflow_type" , "en":"Type" , "ar" : "النوع"},
+    {"name" : "workflowadd_user_info_by" , "en":"Created By" , "ar" : "انشىء بواسطة"},
+    {"name" : "workflowadd_user_info_date" , "en":"Created Date" , "ar" : "انشىء بتاريخ"},
+    {"name" : "workflowedit_user_info_date" , "en":"Updated Date" , "ar" : "عُدل بتاريخ"},
+    {"name" : "workflow_users" , "en":"Users" , "ar" : "يتطلب تصريح"},
+    {"name" : "workflow_user" , "en":"User" , "ar" : "منتظر تصريح"},
+    {"name" : "workflow_actions" , "en":"Actions" , "ar" : "لوحة التحكم"},
+    {"name" : "workflow_add" , "en":"Add New Workflow" , "ar" : "إضافة أجراء جديد"},
+    {"name" : "workflow_edit" , "en":"Edit Workflow" , "ar" : "تعديل اﻻجراء"},
+    {"name" : "workflow_delete" , "en":"Delete Workflow" , "ar" : "حذف اﻻجراء"},
+    {"name" : "workflow_new" , "en":"New Workflow" , "ar" : " أجراء جديد"},
+    {"name" : "workflow_working" , "en":"Working" , "ar" : "قيد التنفيذ"},
+    {"name" : "workflow_stop" , "en":"Stop" , "ar" : "متوقف"},
+    {"name" : "workflow_done" , "en":"Done" , "ar" : "تم"},
+    {"name" : "workflow_multi_approved" , "en":"Multi Approved" , "ar" : "موافقات متعددة"}
+  
+]

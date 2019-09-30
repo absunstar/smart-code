@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title> Print </title>
+</head>
+
+<body contenteditable="true">
+    ##data.content##
+    <style>
+        :root {
+            --color: #000000;
+            --background-color: #ffffff;
+            --body-color: #000000;
+            --body-background-color: #ffffff;
+            --font-size : 12px;
+        }
+
+        body {
+            background: #fff;
+            font-size: 12px;
+            color: #000000;
+            margin-top: .1cm;
+            margin-right: .1cm;
+            margin-bottom: .2cm;
+            margin-left: .1cm
+        }
+
+        .hide {
+            visibility: visible;
+        }
+
+        .not-print {
+            display: none;
+        }
+
+        .print-content {
+            border: 3px dashed #272727;
+            margin: 5px;
+            padding: 5px;
+        }
+
+        
+    </style>
+    <script>
+        window.print();
+    </script>
+</body>
+
+</html>

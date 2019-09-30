@@ -1,0 +1,28 @@
+<div ng-hide="busy" class="row" id="v1" fixed>
+    <div class="col8">
+        <br>
+        <table class="table bold">
+            <tr>
+                <td class="title center">##word.stores_name##</td>
+                <td class="center">{{store.name}}</td>
+            </tr>
+
+            <tr>
+                <td class="title center">##word.stores_type##</td>
+                <td class="center">{{store.type.ar}}</td>
+            </tr>
+
+            <tr>
+                <td class="title center">##word.stores_note##</td>
+                <td class="center blue">{{store.note}}</td>
+            </tr>
+        </table>
+
+    </div>
+    <div class="col1"></div>
+    <div class="col3 center not-print">
+        <i-image ng-model="store.image_url" view></i-image>
+        <i-files ng-model="store.files" view></i-files>
+    </div>
+</div>
+<div x-import="inventory-stores/action_info.html"></div>

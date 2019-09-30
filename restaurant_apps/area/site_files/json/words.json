@@ -1,0 +1,46 @@
+[{
+        "name": "areas",
+        "en": "Areas",
+        "ar": "المناطق"
+    },
+    {
+        "name": "area_new",
+        "en": "New Area",
+        "ar": "منطقة  جديد"
+    },
+    {
+        "name": "price_delivery_service",
+        "en": "Price Delivery Service",
+        "ar": "سعر خدمة التوصيل"
+    },
+
+    {
+        "name": "area_add",
+        "en": "Add Area",
+        "ar": "إضافة منطقة "
+    },
+    {
+        "name": "area_edit",
+        "en": "Edit Area",
+        "ar": "تعديل منطقة "
+    },
+    {
+        "name": "area_details",
+        "en": "Area Details",
+        "ar": "تفاصيل المنطقة "
+    },
+    {
+        "name": "area_delete",
+        "en": "Delete Area",
+        "ar": "حذف منطقة "
+    },
+    {
+        "name": "area_name",
+        "en": "Area Name",
+        "ar": "إسم المنطقة "
+    }
+
+
+
+
+]

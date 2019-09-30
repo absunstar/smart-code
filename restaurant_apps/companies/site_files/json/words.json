@@ -1,0 +1,57 @@
+[
+    {"name" : "companies" , "en" : "Academies" , "ar" : "المطاعم"},
+    {"name" : "companies_add" , "en" : "Add company" , "ar" : "إضافة مطعم"},
+    {"name" : "companies_edit" , "en" : "Edit company" , "ar" : "تعديل مطعم"},
+    {"name" : "companies_informations" , "en" : "company Informations" , "ar" : "بيانات المطعم"},
+    {"name" : "companies_basic_information" , "en" : "Basic Informations" , "ar" : "البيانات الاساسية"},
+    {"name" : "companies_contact_information" , "en" : "Contact Informations" , "ar" : "بيانات الاتصال"},
+    {"name" : "companies_details" , "en" : "company Details" , "ar" : "تفاصيل المطعم"},
+    {"name" : "companies_delete" , "en" : "Delete company" , "ar" : "حذف مطعم"},
+    {"name" : "companies_code" , "en" : "company Code" , "ar" : "كود المطعم"},
+    {"name" : "companies_phone" , "en" : "Phone" , "ar" : "التليفون"},
+    {"name" : "companies_mobile" , "en" : "Mobile" , "ar" : "المحمول"},
+    {"name" : "companies_activity" , "en" : "Activity" , "ar" : "النشاط"},
+    {"name" : "companies_branches_informations" , "en" : "Branches Informations" , "ar" : "بيانات الفروع"},
+    {"name" : "companies_branch" , "en" : "Branch" , "ar" : "الفرع"},
+    {"name" : "companies_branch_information" , "en" : "Branch Information" , "ar" : "بيانات الفرع"},
+    {"name" : "companies_contact_charge" , "en" : "Charge Information" , "ar" : "بيانات المسئول"},
+
+    {"name" : "companies_branch_code" , "en" : "Branch Code" , "ar" : "كود الفرع"},
+    {"name" : "companies_branch_name" , "en" : "Branch Name" , "ar" : "إسم الفرع"},
+    {"name" : "companies_branch_name_ar" , "en" : "Branch Name Arabic" , "ar" : "إسم الفرع بالعربى"},
+    {"name" : "companies_branch_name_en" , "en" : "Branch Name English" , "ar" : "إسم الفرع بالانجليزى"},
+    {"name" : "companies_branch_notes" , "en" : "Branch Notes" , "ar" : "ملاحظات الفرع"},
+
+    {"name" : "companies_charge_name" , "en" : "Charge Name" , "ar" : "إسم المسئول"},
+    {"name" : "companies_charge_job" , "en" : "Charge Job" , "ar" : "الوظيفة"},
+    {"name" : "companies_internal_number" , "en" : "Internal Number" , "ar" : "الرقم الداخلي"},
+
+
+    {"name" : "companies_banking_informations" , "en" : "Banking Informations" , "ar" : "البنوك"},
+    {"name" : "companies_bank_information" , "en" : "Bank Information" , "ar" : "بيانات البنك"},
+    {"name" : "companies_bank_name" , "en" : "Bank Name" , "ar" : "إسم البنك"},
+    {"name" : "companies_bank_account_number" , "en" : "Bank Account Number" , "ar" : "رقم الحساب"},
+    {"name" : "companies_filter_with_date" , "en" : "Filter With Date" , "ar" : "تصفية البيانات بالتاريخ"},
+    {"name" : "companies_calender_type" , "en" : "Calender Type" , "ar" : "نوع التقويم"},
+    {"name" : "companies_gegorian" , "en" : "Gregorian" , "ar" : "ميلادي"},
+    {"name" : "companies_hijri" , "en" : "Hijri" , "ar" : "هجري"},
+    {"name" : "companies_date" , "en" : "Date" , "ar" : "التاريخ"},
+
+
+    {"name" : "companies_gov" , "en" : "Gov" , "ar" : "المحافظة"},
+    {"name" : "companies_city" , "en" : "City" , "ar" : "المدينة"},
+    {"name" : "companies_email" , "en" : "Email" , "ar" : "البريد الالكتروني"},
+    {"name" : "companies_fax" , "en" : "Fax" , "ar" : "الفاكس"},
+    {"name" : "companies_name_ar" , "en" : "company Name Arabic" , "ar" : "إسم المطعم"},
+    {"name" : "companies_name_en" , "en" : "company Name English" , "ar" : "إسم المطعم بالانجليزية"},
+    {"name" : "companies_excahange_price" , "en" : "Exchange Price" , "ar" : "سعر الصرف"},
+    {"name" : "companies_company_swift_code" , "en" : "Swift Code" , "ar" : "رقم السويفت"},
+    {"name" : "companies_new" , "en" : "New company" , "ar" : "مطعم جديد"},
+
+    {"name" : "companies_country" , "en" : "Coutntry" , "ar" : "الدولة"},
+    {"name" : "companies_address" , "en" : "Address" , "ar" : "العنوان"},
+    {"name" : "companies_customer_service" , "en" : "Customer Services" , "ar" : "خدمة العملاء"}  
+ 
+    
+    
+]

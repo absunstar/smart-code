@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="order_invoice_ui || order_invoice_manage" data-ng-app="myApp">
+
+<head x-import="head.html">
+    <style>
+        .order-invoice {
+            border-right: 1px solid #000;
+            padding: 5px;
+        }
+
+        .item-groups {
+            display: block;
+            padding: 10px;
+            margin-bottom: 50px;
+        }
+
+        .item-groups .item {
+            width: 150px;
+            height: 150px;
+            display: inline-block;
+            border: 1px solid #bbb;
+            text-align: center;
+            margin: 5px;
+            padding: 5px;
+        }
+
+        .item-groups .item:hover {
+            transform: scale(1.1);
+        }
+
+        .item-groups img {
+            width: 80px;
+            height: 80px;
+        }
+
+        .item-groups h2 {
+            text-align: center;
+        }
+
+        .item-list {
+            display: block;
+            padding: 10px;
+        }
+
+        .item-list .item {
+            width: 150px;
+            height: 150px;
+            display: inline-block;
+            border: 1px solid #bbb;
+            text-align: center;
+            margin: 5px;
+            padding: 5px;
+        }
+
+        .item-list .item:hover {
+            transform: scale(1.1);
+        }
+
+        .item-list img {
+            width: 80px;
+            height: 80px;
+        }
+
+        .item-list h2 {
+            text-align: center;
+        }
+
+
+        .item-types {
+            display: block;
+            padding: 10px;
+            margin-bottom: 50px;
+        }
+
+        .item-types .item {
+            width: 200px;
+            height: 150px;
+            display: inline-block;
+            border: 1px solid #bbb;
+            text-align: center;
+            margin: 5px;
+            padding: 5px;
+        }
+
+        .item-types .item:hover {
+            transform: scale(1.1);
+        }
+
+        .item-types img {
+            width: 80px;
+            height: 80px;
+        }
+
+        .item-types h2 {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body class="##session.lang##">
+
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+
+    </nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+
+    </nav>
+
+    <div id="main-layout" class="container">
+        <div class="row">
+            <div class="row" ng-controller="order_invoice">
+                <div x-permissions="order_invoice_add || order_invoice_manage"
+                    x-import="order-invoice/order_invoices_active.html">
+                </div>
+                <div x-permissions="order_invoice_add || order_invoice_manage"
+                    x-import="order-invoice/delivery_service.html">
+                </div>
+                <div x-permissions="order_invoice_add || order_invoice_manage"
+                    x-import="order-invoice/change_item_count.html">
+                </div>
+                <div x-permissions="order_invoice_update || order_invoice_manage"
+                    x-import="order-invoice/update_modal.html"></div>
+                <div x-permissions="order_invoice_delete || order_invoice_manage"
+                    x-import="order-invoice/delete_modal.html"></div>
+                <div x-permissions="order_invoice_view || order_invoice_manage"
+                    x-import="order-invoice/view_modal.html"></div>
+                <div x-import="order-invoice/items_modal.html"></div>
+                <div x-permissions="order_invoice_search || order_invoice_manage"
+                    x-import="order-invoice/search_all_modal.html"></div>
+
+
+                <div class="row">
+
+                    <div class="col6">
+                        <div class="item-groups">
+                            <a class="item pointer " ng-repeat="g in itemsGroupList" ng-click="loadItems(g)"
+                                help-id="menu_monitor">
+                                <img ng-src="{{g.image_url}}">
+                                <h2>{{g.name}}</h2>
+                            </a>
+                        </div>
+
+                        <div class="item-list" ng-show="itemsList.length > 0">
+                            <a class="item pointer" ng-repeat="i in itemsList" ng-click="showItemsIn(i)"
+                                help-id="menu_monitor">
+                                <img ng-src="{{i.image_url}}">
+                                <h2>{{i.name}}</h2>
+                            </a>
+                        </div>
+
+                        <br>
+
+                        <div class="item-types">
+                            <a class="item pointer" ng-repeat="s in current_items.sizes" ng-click="bookList(s)"
+                                help-id="menu_monitor">
+                                <img ng-src="{{s.image_url}}">
+                                <h2>{{s.size}}</h2>
+                            </a>
+
+                        </div>
+                    </div>
+
+                    <div class="col6 order-invoice">
+                        <h2 class="bold text-center red">{{error}}</h2>
+                        <div class="row">
+                            <i-date2 class="col6" ng-model="order_invoice.date" label="##word.date##"></i-date2>
+                            <i-button type="view" label="##word.open_orders##" ng-click="viewInvoicesActivelistList()"
+                                class="col6">
+                            </i-button>
+                        </div>
+                        <div class="row">
+                            <i-list ng-search="_search.$transaction_type" class="col4" display="ar"
+                                ng-model="order_invoice.transaction_type" label="##word.transaction_type##"
+                                items="transactionTypeList">
+                            </i-list>
+                            <i-list ng-show="order_invoice.transaction_type.id == 2"
+                                ng-search="_search.$order_invoice_employee" class="col4" display="name"
+                                ng-model="order_invoice.delivery_employee" label="##word.delivery_employee##"
+                                items="deliveryEmployeesList"></i-list>
+
+                        </div>
+                        <div class="row" ng-show="order_invoice.transaction_type.id == 1">
+
+                            <i-list ng-search="_search.$tables_group" class="col4" display="name"
+                                ng-change="getTablesList(order_invoice.tables_group)"
+                                ng-model="order_invoice.tables_group" label="##word.tables_group##"
+                                items="tablesGroupList">
+                            </i-list>
+                            <i-list ng-search="_search.$table" class="col4" display="name"
+                                ng-model="order_invoice.table" label="##word.table##" items="tablesList">
+                            </i-list>
+                            <i-control class="col3" ng-model="order_invoice.service" label="##word.service##"
+                                type="number" ng-change="calc()"></i-control>
+
+                        </div>
+                        <div class="row">
+
+                            <div class="row">
+
+                                <i-list ng-search="_search.$order_customers" class="col4" display="name_ar"
+                                    ng-model="order_invoice.customer" label="##word.customer_name##"
+                                    ng-change="changeCustomerAddresses(order_invoice.customer)" items="customersList">
+                                </i-list>
+
+                                <i-list class="col3" label="##word.customers_gov##" ng-model="order_invoice.gov"
+                                    items="govList" display="name" ng-change="getNeighborhoodList(order_invoice.gov)"
+                                    ng-search="_search.$govNameContact"></i-list>
+
+                                <i-list class="col4" label="##word.neighborhood##" ng-model="order_invoice.neighborhood"
+                                    items="neighborhoodList" ng-change="getAreaList(order_invoice.neighborhood)"
+                                    display="name" ng-search="_search.$order_invoice_neighborhood_search"></i-list>
+
+
+
+                            </div>
+                            <div class="row">
+                                <i-list class="col4" label="##word.area##" ng-model="order_invoice.area"
+                                    items="areaList" display="name"
+                                    ng-change=" order_invoice.price_delivery_service = order_invoice.area.price_delivery_service"
+                                    ng-search="_search.$order_invoice.$area_search"></i-list>
+
+                                <i-control ng-show="order_invoice.transaction_type.id == 2"
+                                    ng-model="order_invoice.price_delivery_service"
+                                    label="##word.price_delivery_service##" ng-change="calc()" class="col3"
+                                    type="number"></i-control>
+
+                                <i-textarea class="col6" label="##word.customers_address##"
+                                    ng-model="order_invoice.address"></i-textarea>
+
+                            </div>
+                            <div class="row">
+                                <i-control class="col3" label="##word.customers_phone##"
+                                    ng-model="order_invoice.customer_phone">
+                                </i-control>
+
+                                <i-control class="col3" label="##word.customers_mobile##"
+                                    ng-model="order_invoice.customer_mobile">
+                                </i-control>
+
+                            </div>
+                        </div>
+
+                        <div class="row grid">
+
+                            <table x-permissions="login" class="table bold loaded" id="t1">
+
+                                <tr>
+                                    <th>##word.stores_items_name##</th>
+                                    <th>##word.items_count##</th>
+                                    <th>##word.items_price##</th>
+                                    <th>##word.items_price_total##</th>
+                                    <th class="not-print">##word.actions##</th>
+                                </tr>
+
+                                <tr ng-repeat="c in order_invoice.book_list">
+                                    <td class="center title">{{c.size}}</td>
+                                    <td class="center w200 ">
+                                        <i-control ng-change="calc()" ng-model="c.count" type="number">
+                                        </i-control>
+                                    </td>
+                                    <td class="center blue">{{c.price}}</td>
+                                    <td class="center green">{{c.total_price}}</td>
+                                    <td class="center not-print">
+                                        <i-button type="delete" label="##word.delete##"
+                                            ng-click="deleteItemsList(c) ; calc()"></i-button>
+                                    </td>
+                                </tr>
+
+                            </table>
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col6 padding margin">
+                                <table class="table box-shadow " ng-init="discountEditorAdd = true">
+                                    <tr>
+                                        <th colspan="2" class="pointer"
+                                            ng-click="discountEditorAdd = !discountEditorAdd">
+                                            ##word.stores_out_discountes##
+                                            <i class="fa fa-edit"></i>
+                                        </th>
+                                    </tr>
+                                    <tr ng-hide="discountEditorAdd">
+                                        <td colspan="2">
+                                            <form>
+
+                                                <div class="row ">
+                                                    <i-list class="col4" ng-model="discount"
+                                                        ng-search="_search.$discount_name" items="discount_types"
+                                                        label="##word.stores_out_discount_name##">
+                                                    </i-list>
+                                                </div>
+
+                                                <div class="row">
+                                                    <i-control class="col4" ng-model="discount.value"
+                                                        label="##word.stores_out_discount_value##"></i-control>
+                                                    <div class="col5 padding">
+                                                        <br>
+                                                        <i-button ng-click="addDiscount() ;calc()"
+                                                            label="##word.stores_out_add_discount##" type="add default">
+                                                        </i-button>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="row">
+                                                    <i-radio class="col5" ng-model="discount.type" ng-value="number"
+                                                        group="type" label="##word.discount_types_number##"></i-radio>
+
+                                                    <i-radio class="col5" ng-model="discount.type" group="type"
+                                                        ng-value="percent" label="##word.discount_types_percent##">
+                                                    </i-radio>
+                                                </div>
+
+                                            </form>
+                                        </td>
+
+                                    </tr>
+
+                                    <tr ng-repeat="d1 in order_invoice.discountes">
+
+                                        <td>
+                                            <span class="bold red">{{d1.name}} -</span>
+                                            <span class="bold red" ng-show="d1.type === 'percent'">{{d1.value}} %</span>
+                                            <span class="bold red"
+                                                ng-show="d1.type === 'number'">{{d1.value}}##word.le##</span>
+                                            <i-button type="delete" ng-click="deleteDiscount(d1) ; calc()"> </i-button>
+                                        </td>
+
+                                    </tr>
+                                </table>
+
+                            </div>
+
+                            <div class="col5 padding margin">
+                                <table class="table box-shadow " ng-init="taxEditorAdd = true">
+
+                                    <tr>
+                                        <th colspan="2" class="pointer" ng-click="taxEditorAdd = !taxEditorAdd">
+                                            ##word.stores_out_taxes##
+                                            <i class="fa fa-edit"></i>
+                                        </th>
+                                    </tr>
+
+                                    <tr ng-hide="taxEditorAdd">
+                                        <td colspan="2">
+                                            <div class="row">
+                                                <i-list class="col6" ng-model="tax"
+                                                    label="##word.stores_out_discount_name##"
+                                                    ng-search="_search.$taxtypes" items="tax_types"></i-list>
+                                            </div>
+                                            <div class="row">
+                                                <i-control class="col4" ng-model="tax.value"
+                                                    label="##word.stores_out_discount_value##">
+                                                </i-control>
+                                                <div class="col5 padding">
+                                                    <br>
+                                                    <i-button type="add default" label="##word.stores_out_add_tax##"
+                                                        ng-click="addTax() ;calc()">
+                                                    </i-button>
+
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr ng-repeat="tx in order_invoice.taxes">
+                                        <td>
+                                            <span class="bold red">{{tx.name}} -</span>
+                                            <span class="bold red">{{tx.value}} %</span>
+                                            <i-button type="delete" ng-click="deleteTax(tx) ;calc()"> </i-button>
+                                        </td>
+                                    </tr>
+                                </table>
+
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+                            <i-control class="col3" ng-model="order_invoice.total_discount"
+                                label="##word.stores_out_total_discount##" type="number" disabled></i-control>
+                            <i-control class="col3" ng-model="order_invoice.total_tax"
+                                label="##word.stores_out_total_tax##" type="number" disabled></i-control>
+                            <i-control class="col3" ng-model="order_invoice.total_value" label="##word.total_value##"
+                                type="number" disabled></i-control>
+
+                        </div>
+
+
+                        <div class="row">
+                            <i-control class="col6" ng-model="order_invoice.net_value" label="##word.net_value##"
+                                type="number" disabled></i-control>
+                            <div class="col6 center">
+                                <i-button type="save" label="##word.save##" ng-click="addOrderInvoice()">
+                                </i-button>
+                                <br>
+                                <br>
+                                <br>
+                                <i-button type="exit" ng-hide="order_invoice.active == false"
+                                    label="##word.close_order##" ng-click="closeOrder()">
+                                </i-button>
+                            </div>
+
+                        </div>
+
+                        <div class="row center">
+                            <i-button x-permissions="order_invoice_print || order_invoice_manage" type="print"
+                                label="##word.print##" onclick="site.print('#t1')"></i-button>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="top-actions">
+                <h2 class="bold text-center red">{{error}}</h2>
+
+            </div>
+
+        </div>
+    </div>
+
+    <div x-import="scripts.html"></div>
+    <script x-import="order-invoice/index.js"></script>
+</body>
+
+</html>

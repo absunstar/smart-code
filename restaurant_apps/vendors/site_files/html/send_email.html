@@ -1,0 +1,59 @@
+<div id="vendorSendEmailModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                <i class="fa fa-send"></i>
+                 
+                ##word.vendors_send_email_to_vendor## </h2>
+        </div>
+
+        <div class="modal-body">
+            <fieldset>
+                <legend> ##word.vendors_create_email## </legend>
+                <div class="row">
+                    <i-control class="col" label="##word.vendors_mail_from##" ng-model="vendor.mail_from"></i-control>
+                </div>
+
+                <div class="col">
+                    <div class="row">
+                        <i-checkbox class="col4" label="##word.vendors_mail_cc##" ng-model="vendors.send_mail_cc"></i-checkbox>
+
+                        <i-checkbox class="col4" label="##word.vendors_mail_bcc##" ng-model="vendors.send_mail_bcc"></i-checkbox>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <i-control class="col" label="##word.vendors_mail_to##" ng-model="vendor.mail_to"></i-control>
+                </div>
+
+                <div class="row" ng-show="vendors.send_mail_cc === true">
+                    <i-control class="col" label=" ##word.vendors_mail_cc##" ng-model="vendor.mail_cc"></i-control>
+                </div>
+
+
+                <div class="row" ng-show="vendors.send_mail_bcc === true">
+                    <i-control class="col" label=" ##word.vendors_mail_bcc##" ng-model="vendor.mail_bcc"></i-control>
+                </div>
+
+                <div class="row">
+                    <i-control class="col" label="##word.vendors_mail_subject##"  ng-model="vendor.mail_subject"></i-control>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <div class="control">
+                            <label> ##word.vendors_mail_text## </label>
+                            <textarea ng-model="vendor.mail_text" rows="50"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+            </fieldset>
+        </div>
+
+        <div class="modal-footer">
+            <i-button label="##word.vendors_send##"></i-button>
+        </div>
+    </div>
+</div>

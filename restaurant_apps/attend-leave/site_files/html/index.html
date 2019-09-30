@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="attend_leave_ui || attend_leave_manage" data-ng-app="myApp">
+
+<head x-import="head.html">
+
+</head>
+
+<body class="##session.lang##">
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+
+    </nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+
+    </nav>
+    <div id="main-layout" class="container">
+        <div class="row">
+            <div class="row" ng-controller="attend_leave">
+                <div x-permissions="attend_leave_add || attend_leave_manage" x-import="attend-leave/add_modal.html"></div>
+                <div x-permissions="attend_leave_update || attend_leave_manage" x-import="attend-leave/update_modal.html"></div>
+                <div x-permissions="attend_leave_delete || attend_leave_manage" x-import="attend-leave/delete_modal.html"></div>
+                <div x-permissions="attend_leave_view || attend_leave_manage" x-import="attend-leave/view_modal.html"></div>
+                <div x-permissions="attend_leave_search || attend_leave_manage" x-import="attend-leave/search_all_modal.html"></div>
+
+                <div class="row">
+                    <h1 class="bold text-center">##word.attend_leave##</h1>
+                </div>
+
+                <div class="top-actions">
+                    <i-button x-permissions="attend_leave_add || attend_leave_manage" type="add" label="##word.attend_leave_new##" ng-click="displayAddAttendLeave()"></i-button>
+
+                    <i-button x-permissions="attend_leave_search || attend_leave_manage" type="search" label="##word.search_all##" ng-click="displaySearchModal()"></i-button>
+
+                    <h3 class="bold text-center"> ##word.count## : {{count}}</h3>
+                </div>
+
+                <table x-permissions="login" class="table bold hover loaded" id="t1">
+                    <tr>
+                        <th class="not-print">##word.logo##</th>
+                        <th>##word.date##</th>
+                        <th>##word.status##</th>
+                        <th class="not-print">##word.actions##</th>
+                    </tr>
+                    <tr ng-repeat="c in list">
+                        <td class="center not-print">
+                            <img class="logo" ng-src="{{c.image_url}}">
+                        </td>
+                        <td class="center brown">{{c.date |date:"dd - MM - yyyy"}}</td>
+                        <td class="center">
+                            <p ng-show="c.active ==true" class="green"> ##word.active## </p>
+                            <p ng-show="c.active ==false" class="red"> ##word.not_active## </p>
+                        </td>
+
+                        <td class="center not-print">
+                            <i-button x-permissions="attend_leave_view || attend_leave_manage" type="view" label="##word.details##" ng-click="displayDetailsAttendLeave(c)"></i-button>
+
+                            <i-button x-permissions="attend_leave_update || attend_leave_manage" type="edit" label="##word.edit##" ng-click="displayUpdateAttendLeave(c)"></i-button>
+
+                            <i-button x-permissions="attend_leave_delete || attend_leave_manage" type="delete" label="##word.delete##" ng-click="displayDeleteAttendLeave(c)"></i-button>
+                        </td>
+                    </tr>
+                </table>
+                <i-button x-permissions="attend_leave_print || attend_leave_manage" type="print" label="##word.print##" onclick="site.print('#t1')"></i-button>
+
+
+            </div>
+        </div>
+    </div>
+
+    <div x-import="scripts.html"></div>
+    <script x-import="attend-leave/index.js"></script>
+</body>
+
+</html>

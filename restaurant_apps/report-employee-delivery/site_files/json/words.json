@@ -1,0 +1,193 @@
+[
+    {
+        "name": "report_invoices_add",
+        "en": "Add Customer",
+        "ar": "إضافة عميل"
+    },
+    {
+        "name": "report_employees_delivery_informations",
+        "en": "Report Employees Delivery Informations",
+        "ar": "بيانات تقرير موظفين التوصيل"
+    },
+    {
+        "name": "report_employees_delivery_name",
+        "en": "Report Employees Delivery",
+        "ar": "تقرير سائقين التوصيل"
+    },
+    {
+        "name": "report_employees_delivery_menus",
+        "en": "Report Invoices Menu",
+        "ar": "قائمة تقرير فاتورة"
+    },
+    {
+        "name": "report_invoices_code",
+        "en": "Report Invoices Code",
+        "ar": "كود الفاتورة"
+    },
+    {
+        "name": "total_net_values",
+        "en": "Total Net Values",
+        "ar": "إجمالي القيم المطلوبة"
+    },
+    {
+        "name": "total_items_price",
+        "en": "Total Items Price",
+        "ar": "مجموع سعر الأصناف"
+    },
+    {
+        "name": "total_delivery_service_price",
+        "en": "Total Delivery Service Price",
+        "ar": "إجمالي سعر خدمة التوصيل"
+    },
+    {
+        "name": "report_invoices_name",
+        "en": "Report Invoices Name",
+        "ar": "اسم تقرير فاتورة"
+    },
+    {
+        "name": "source_type",
+        "en": "Source Type",
+        "ar": "نوع المصدر"
+    },
+    {
+        "name": "order_invoices_type",
+        "en": "Order Invoices Type",
+        "ar": "نوع أمر الفاتورة"
+    },
+    {
+        "name": "order_sale",
+        "en": "Order Sale",
+        "ar": "أمر بيع"
+    },
+    {
+        "name": "payable",
+        "en": "Payable",
+        "ar": "مستحق الدفع"
+    },
+    {
+        "name": "invoice_type",
+        "en": "Invoice Type",
+        "ar": "نوع الفاتورة"
+    },
+    {
+        "name": "payment_method",
+        "en": "Payment Method",
+        "ar": "طريقة الدفع"
+    },
+    {
+        "name": "payment",
+        "en": "Payment",
+        "ar": "تسديد"
+    },
+    {
+        "name": "remain_amount",
+        "en": "Remain Amount",
+        "ar": "المبلغ المتبقي"
+    },
+    {
+        "name": "detailes_amounts_paid",
+        "en": "Detailes Amounts Paid",
+        "ar": "تفاصيل المدفوعات"
+    },
+    {
+        "name": "accept",
+        "en": "Accept",
+        "ar": "تأكيد"
+    },
+    {
+        "name": "services",
+        "en": "Services",
+        "ar": "الخدمات"
+    },
+    {
+        "name": "date_from",
+        "en": "Date From",
+        "ar": "تاريخ من"
+    },
+    {
+        "name": "date_to",
+        "en": "Date To",
+        "ar": "تاريخ إلى"
+    },
+    {
+        "name": "err_paid_up",
+        "en": "Must Enter Paid",
+        "ar": "يجب إدخال مبلغ "
+    },
+    {
+        "name": "err_paid_up_payment",
+        "en": "Paid Up Greater Than Required Vaiue",
+        "ar": "المبلغ المسدد أكبر من الباقي"
+    },
+    {
+        "name": "paid_up",
+        "en": "Paid Up",
+        "ar": "المدفوع"
+    },
+    {
+        "name": "err_total_tax",
+        "en": "Total Taxes Greater Than Required",
+        "ar": "مجموع الضرائب أكبر من المطلوب"
+    },
+    {
+        "name": "err_total_discount",
+        "en": "Total Discount Greater Than Required",
+        "ar": "مجموع الخصومات أكبر من المطلوب"
+    },
+    {
+        "name": "err_service",
+        "en": "Service Greater Than Required",
+        "ar": "مبلغ الخدمة أكبر من المطلوب"
+    },
+    {
+        "name": "err_net_value",
+        "en": "Net Value Greater Than Required",
+        "ar": "صافي المبلغ أكبر من المطلوب"
+    },
+    {
+        "name": "err_price_delivery_service",
+        "en": "Price Delivery Service Greater Than Required",
+        "ar": "مبلغ خدمة التوصيل أكبر من المطلوب"
+    },
+    {
+        "name": "report_invoices_new",
+        "en": "New Report Invoices",
+        "ar": "تقرير فاتورة جديدة"
+    },
+    {
+        "name": "report_invoices_details",
+        "en": "Report Invoices Details",
+        "ar": "تفاصيل تقرير فاتورة"
+    },
+    {
+        "name": "report_invoices_update",
+        "en": "Edit Report Invoices",
+        "ar": "تعديل تقرير فاتورة"
+    },
+    {
+        "name": "report_invoices_delete",
+        "en": "Delte Report Invoices",
+        "ar": "حذف تقرير فاتورة"
+    },
+    {
+        "name": "report_invoices_total_required",
+        "en": "Total Required",
+        "ar": "إجمالي المطلوب"
+    },
+    {
+        "name": "total_paid_up",
+        "en": "Total Rest",
+        "ar": "إجمالي المدفوع"
+    },
+  
+    {
+        "name": "report_invoices_total_remain",
+        "en": "Total Remain",
+        "ar": "إجمالي الباقي"
+    },
+    {
+        "name": "report_invoices_add_name",
+        "en": "Add Report Invoices",
+        "ar": "إضافة تقرير فاتورة"
+    }
+]

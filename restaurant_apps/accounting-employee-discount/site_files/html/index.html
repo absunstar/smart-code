@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="employee_discount_ui || employee_discount_manage" data-ng-app="myApp">
+
+<head x-import="head.html">
+
+</head>
+
+<body class="##session.lang##">
+
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+
+    </nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+
+    </nav>
+
+    <div id="main-layout" class="container">
+        <div class="row">
+            <div class="row" ng-controller="employee_discount">
+                <div x-permissions="employee_discount_add || employee_discount_manage"
+                    x-import="accounting-employee-discount/add_modal.html"></div>
+                <div x-permissions="employee_discount_update || employee_discount_manage"
+                    x-import="accounting-employee-discount/update_modal.html"></div>
+                <div x-permissions="employee_discount_delete || employee_discount_manage"
+                    x-import="accounting-employee-discount/delete_modal.html"></div>
+                <div x-permissions="employee_discount_view || employee_discount_manage"
+                    x-import="accounting-employee-discount/view_modal.html"></div>
+                <div x-permissions="employee_discount_search || employee_discount_manage"
+                    x-import="accounting-employee-discount/search_all_modal.html"></div>
+
+                <div class="row">
+                    <h1 class="bold text-center">##word.employee_discount##</h1>
+                </div>
+
+                <div class="top-actions">
+                    <i-button x-permissions="employee_discount_add || employee_discount_manage" type="add"
+                        label="##word.employee_discount_new##" ng-click="newemployee_discount()"></i-button>
+                    <i-button x-permissions="employee_discount_search || employee_discount_manage" type="search"
+                        label="##word.search_all##" onclick="site.showModal('#Employee_Discount_SearchModal')">
+                    </i-button>
+                </div>
+
+                <table class="table hover bold loaded" id="t1">
+                    <tr>
+                        <th class="not-print">##word.employee_discount_logo##</th>
+                        <th>##word.employee_discount_date##</th>
+                        <th>##word.employee_discount_employees##</th>
+                        <th>##word.employee_discount_value##</th>
+                        <th class="not-print">##word.actions##</th>
+                    </tr>
+                    <tr ng-repeat="c in list">
+                        <td class="not-print">
+                            <i-image view class="logo" ng-model="c.image_url"></i-image>
+                        </td>
+                        <td>
+                            <p class="center"> {{c.date | date : 'dd - MM - yyyy'}} </p>
+                        </td>
+                        <td>
+                            <p class="center"> {{c.employee.name}} </p>
+
+                        </td>
+
+                        <td>
+                            <p class="center  green"> {{c.value + ' ##word.le## '}} </p>
+                        </td>
+
+
+                        <td class="not-print center">
+                            <i-button x-permissions="employee_discount_view || employee_discount_manage" type="details"
+                                label="##word.details##" ng-click="details(c)"></i-button>
+                            <i-button x-permissions="employee_discount_delete || employee_discount_manage" type="delete"
+                                label="##word.delete##" ng-click="remove(c)"></i-button>
+
+                        </td>
+                    </tr>
+
+                </table>
+               
+                
+                <i-button x-permissions="employee_discount_print || employee_discount_manage" type="print"
+                    label="##word.print##" onclick="site.print('#t1')"></i-button>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div x-import="scripts.html"></div>
+
+    <script x-permission="employee_discounts" x-import="accounting-employee-discount/index.js"></script>
+
+
+</body>
+
+</html>

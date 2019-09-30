@@ -1,0 +1,25 @@
+<div id="companyAddModal" class="modal" fixed> 
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.companies_add##
+                <i class="fa fa-plus "></i>
+            </h2>
+
+        </div>
+
+        <div class="modal-body">
+            <div x-import="companies/content.html"></div>
+        </div>
+
+
+
+        <div class="modal-footer center">
+            <h2 class="error"> {{error}} </h2>
+            <i-button type="add" label="##word.add##" ng-click="addcompany()"></i-button>
+            
+            <i-button type="close" label="##word.close##" onclick="site.hideModal( '#companyAddModal')"></i-button>
+        </div>
+    </div>
+</div>

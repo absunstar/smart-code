@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="tables_group_ui || tables_group_manage" data-ng-app="myApp">
+
+<head x-import="head.html">
+
+</head>
+
+<body class="##session.lang##">
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+
+    </nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+
+    </nav>
+    <div id="main-layout" class="container">
+        <div class="row">
+            <div class="row" ng-controller="tables_group">
+                <div x-permissions="tables_group_add || tables_group_manage" x-import="tables-group/add_modal.html">
+                </div>
+                <div x-permissions="tables_group_update || tables_group_manage"
+                    x-import="tables-group/update_modal.html"></div>
+                <div x-permissions="tables_group_delete || tables_group_manage"
+                    x-import="tables-group/delete_modal.html"></div>
+                <div x-permissions="tables_group_view || tables_group_manage" x-import="tables-group/view_modal.html">
+                </div>
+                <div x-permissions="tables_group_search || tables_group_manage"
+                    x-import="tables-group/search_all_modal.html"></div>
+
+                <div class="row">
+                    <h1 class="bold text-center">##word.tables_group##</h1>
+                </div>
+
+                <div class="top-actions">
+                    <i-button x-permissions="tables_group_add || tables_group_manage" type="add"
+                        label="##word.tables_group_new##" ng-click="displayAddTablesGroup()"></i-button>
+
+                    <i-button x-permissions="tables_group_search || tables_group_manage" type="search"
+                        label="##word.search_all##" ng-click="displaySearchModal()"></i-button>
+
+                    <h3 class="bold text-center"> ##word.count## : {{count}}</h3>
+                </div>
+
+                <table x-permissions="login" class="table hover bold loaded" id="t1">
+                    <tr>
+                        <th class="not-print">##word.logo##</th>
+                        <th>##word.tables_group_number##</th>
+                        <th>##word.tables_group_name##</th>
+                        <th>##word.status##</th>
+                        <th class="not-print">##word.actions##</th>
+                    </tr>
+                    <tr ng-repeat="c in list">
+                        <td class="center not-print">
+                            <img class="logo" ng-src="{{c.image_url}}">
+                        </td>
+                        <td class="center blue">{{c.code}}</td>
+                        <td class="center ">{{c.name}}</td>
+
+                        <td class="center">
+                            <p ng-show="c.active ==true" class="green"> ##word.active## </p>
+                            <p ng-show="c.active ==false" class="red"> ##word.not_active## </p>
+                        </td>
+
+                        <td class="center not-print">
+                            <i-button x-permissions="tables_group_view || tables_group_manage" type="view"
+                                label="##word.details##" ng-click="displayDetailsTablesGroup(c)"></i-button>
+
+                            <i-button x-permissions="tables_group_update || tables_group_manage" type="edit"
+                                label="##word.edit##" ng-click="displayUpdateTablesGroup(c)"></i-button>
+
+                            <i-button x-permissions="tables_group_delete || tables_group_manage" type="delete"
+                                label="##word.delete##" ng-click="displayDeleteTablesGroup(c)"></i-button>
+                        </td>
+                    </tr>
+                </table>
+                <i-button x-permissions="tables_group_print || tables_group_manage" type="print" label="##word.print##"
+                    onclick="site.print('#t1')"></i-button>
+
+            </div>
+        </div>
+    </div>
+
+    <div x-import="scripts.html"></div>
+    <script x-import="tables-group/index.js"></script>
+</body>
+
+</html>

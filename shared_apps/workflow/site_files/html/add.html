@@ -1,0 +1,20 @@
+<div id="workflowAddModal" class="modal">
+    <div class="modal-content">
+       
+       <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2> ##word.workflow_new## </h2>
+        </div>
+        
+        <div class="modal-body">
+                <div id="workflowAddContent" x-import="workflow/content.html"></div>
+        </div>
+ 
+
+        <div class="modal-footer center">
+            <a class="btn bg-blue white" onclick="site.hideModal('#workflowAddModal')"> <i class="fa fa-close"></i> ##word.close## </a>
+            <a onclick="site.print('#workflowAddContent')" class="btn"> <i class="fa fa-print"></i> ##word.print## </a>
+        </div>
+ 
+    </div>
+</div>

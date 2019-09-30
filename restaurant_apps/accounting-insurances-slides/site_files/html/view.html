@@ -1,0 +1,30 @@
+<div ng-hide="busy" class="row">
+    <div class="col8">
+        <br>
+        <table class="table bold">
+            <tr>
+                <td class="title">##word.insurances_slides_name##</td>
+                <td class="center">{{insurance_slide.name}}</td>
+            </tr>
+
+            <tr>
+                <td class="title">##word.insurances_slides_value##</td>
+                <td class="center green">{{insurance_slide.value}}</td>
+            </tr>
+
+            <tr>
+                    <td class="title">##word.insurances_slides_details##</td>
+                    <td class="center">{{insurance_slide.details}}</td>
+                </tr>
+
+        </table>
+    </div>
+    <div class="col1"></div>
+    <div class="col3 center">
+
+        <i-image view ng-model="insurance_slide.image_url"></i-image>
+        <i-files view ng-model="insurance_slide.files"></i-files>
+
+    </div>
+</div>
+<div x-import="accounting-insurances-slides/action_info.html"></div>

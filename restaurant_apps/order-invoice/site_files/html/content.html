@@ -1,0 +1,28 @@
+<div class="form">
+    <div id="basicInformation" class="">
+        <fieldset>
+            <legend> ##word.basic_information## </legend>
+
+            <div class="row">
+
+                <div class="col9">
+
+                    <div class="row">
+                        <i-control help-id="order_invoice_code"  class="col2" label="##word.order_invoice_code##" ng-model="order_invoice.code"></i-control>
+                        <i-control help-id="order_invoice_name" class="col4" label="##word.order_invoice_name##" ng-model="order_invoice.name"></i-control>
+                        <i-checkbox help-id="order_invoice_active" class="col3" label="##word.active##" ng-model="order_invoice.active"></i-checkbox>
+                    </div>
+
+                </div>
+
+                <div class="col3">
+                    <i-image help-id="order_invoice_logo" ng-model="order_invoice.image_url"></i-image>
+                </div>
+
+            </div>
+
+        </fieldset>
+
+    </div>
+
+</div>

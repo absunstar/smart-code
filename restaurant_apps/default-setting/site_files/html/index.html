@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+
+<html lang="en" data-ng-app="myApp" class="bg-white">
+
+<head x-import="head.html">
+</head>
+
+<body style="background : white" class=" ##session.lang##">
+
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+
+    </nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+
+    </nav>
+
+    <div id="main-layout" class="container" ng-controller="default_setting">
+  
+        <div class="row center">
+
+            <br>
+            <h1 class="center bold black"> الاعدادت الافتراضية </h1>
+            <br>
+
+            <div x-import="default-setting/content.html"></div>
+            <br>
+            <br>
+            <br>
+
+            <i-button type="save" label="##word.save##" ng-click="saveSetting()"></i-button>
+
+
+        </div>
+    </div>
+
+
+    <div x-import="scripts.html"></div>
+    <script x-import="default-setting/index.js"></script>
+
+
+</body>
+
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--  <div ng-show="tenant" class="row margin padding dashed">
+        <div class="col6 padding">
+    
+            <table class="table bold" id="t1">
+    
+                <tr>
+                    <td class="title">##word.tenant##</td>
+                    <td>
+                        <p class="center">{{tenant.name}}</p>
+                    </td>
+    
+                </tr>
+    
+            </table>
+    
+        </div>
+    
+    </div> -->
+
+<!--   <br>
+    <div class="row" >
+    
+    <div class="row" id="print_id1" ng-repeat="c in list1">
+        <br>
+        <br>
+        <hr>
+        <br>
+        <h1 class="center blue bold">
+            {{c.code}}
+        </h1>
+        <h1 class="center brown bold">
+            {{c.date | date : 'dd / MM / yyyy'}}
+        </h1>
+    
+        <br>
+        <hr>
+        <table class="table bold hover dashed">
+            <th>##word.report_serial##</th>
+            <th>##word.stores_items_name##</th>
+            <th>##word.piece_name##</th>
+            <th>##word.vendor_name##</th>
+            <th>##word.store_name##</th>
+            <th>##word.items_count##</th>
+            <th>##word.items_price##</th>
+            <th>##word.items_price_total##</th>
+    
+            <tr ng-repeat="t in c.list">
+    
+                <td id="th">
+                    <p class="center blue"> {{$index + 1}} </p>
+                </td>
+    
+                <td>
+                    <p class="center"> {{t.name}} </p>
+                </td>
+    
+                <td>
+                    <p class="center"> {{t.size}} </p>
+                </td>
+    
+                <td>
+                    <p class="center"> {{t.vendor.name_ar}} </p>
+                </td>
+    
+                <td>
+                    <p class="center "> {{t.store.name}} </p>
+                </td>
+    
+                <td>
+                    <p class="center blue"> {{t.count}} </p>
+                </td>
+    
+                <td>
+                    <p class="center green"> {{t.price}} </p>
+                </td>
+    
+                <td>
+                    <p class="center green"> {{t.total_price}} </p>
+                </td>
+    
+            </tr>
+    
+        </table>
+    -->

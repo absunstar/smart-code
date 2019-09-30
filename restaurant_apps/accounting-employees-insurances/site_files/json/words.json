@@ -1,0 +1,29 @@
+[
+    {"name" : "employees_insurances" , "en" : "Employees Insurance" , "ar" : "تأمينات الموظفين"},
+    {"name" : "accounting_employees_insurances" , "en" : "Employees Insurance" , "ar" : "تأمينات الموظفين"},
+    {"name" : "employees_insurances_add" , "en" : "Add Employee Insurance" , "ar" : "إضافة تامينات لموظف"},
+    {"name" : "employees_insurances_new" , "en" : "New Employee Insurance" , "ar" : "تامينات موظف جديد"},
+    {"name" : "employees_insurances_details" , "en" : "Employee Insurance Details" , "ar" : "تفاصيل تامينات موظف"},
+    {"name" : "employees_insurances_edit" , "en" : "Edit Employee Insurance" , "ar" : "نعديل بيانات تامينات موظف"},
+    {"name" : "employees_insurances_delete" , "en" : "Delete Employee Insurance" , "ar" : "حذف تامينات موظف"},
+    {"name" : "employees_insurances_employee_name" , "en" : "Employee Name" , "ar" : "إسم الموظف"},
+    {"name" : "employees_insurances_insurance_number" , "en" : "Insurance Number" , "ar" : "الرقم التاميني"},
+    {"name" : "employees_insurances_facility_name" , "en" : "Facility Name" , "ar" : "إسم المنشاة"},
+    {"name" : "employees_insurances_insurance_slide" , "en" : "Insurance Slide" , "ar" : "الشريحة المشترك عليها"},
+    {"name" : "employees_insurances_fixed_salary" , "en" : "Fixed Salary" , "ar" : "الراتب الثابت"},
+    {"name" : "employees_insurances_variable_salary" , "en" : "Variable Salary" , "ar" : "الراتب المتغير"},
+    {"name" : "employees_insurances_insurance_discount" , "en" : "Insurance Discount" , "ar" : "قيمة تحمل الشركة"},
+    {"name" : "employees_insurances_salary_discount" , "en" : "Salary Discount" , "ar" : "المخصوم من الراتب"},
+    {"name" : "employees_insurances_logo" , "en" : "Employee Insurance Logo" , "ar" : "شعار تامينات الموظفين"},
+    {"name" : "employees_insurances_name" , "en" : "Employee Name" , "ar" : "إسم الموظف"},
+    {"name" : "employees_insurances_salary_increase" , "en" : "Increase" , "ar" : "الزيادة السنوية"},
+    {"name" : "employee_insurance_description" , "en" : "Description" , "ar" : "التفاصيل"},
+    {"name" : "employees_insurances_date" , "en" : "Date" , "ar" : "التاريخ"},
+    {"name" : "employees_insurances_salary_fixed_salary_and_variable_salary" , "en" : "Fixed Salary and Variable Salary" , "ar" :"مجموع الراتب المدفوع"},
+
+    
+    
+    {"name" : "employees_insurances_salary_total" , "en" : "Total" , "ar" : "المبلغ المدفوع للتامينات"},
+    
+    {"name" : "employees_insurances_img" , "en" : "Employee Insurance Image" , "ar" : "ملفات تامينات الموظف"}
+]

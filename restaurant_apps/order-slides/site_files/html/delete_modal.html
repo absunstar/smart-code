@@ -1,0 +1,24 @@
+<div id="deleteOrderSlidesModal" class="modal">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.order_slides_delete## <i class="fa fa-trash"></i>
+            </h2>
+        </div>
+        <div class="modal-body">
+           
+            <div x-import="order-slides/view.html"></div>
+
+        </div>
+        <h2>{{error}}</h2>
+        <div class="modal-footer center">
+            <i-button type="delete" ng-click="delete(order_slides)" label="##word.delete##"></i-button>
+            <i-button type="close" onclick="site.hideModal('#deleteOrderSlidesModal')" label="##word.close##"></i-button>
+            
+        </div>
+    </div>
+
+
+</div>

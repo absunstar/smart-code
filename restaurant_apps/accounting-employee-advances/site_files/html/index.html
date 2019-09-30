@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="employee_advances_ui ||employee_advances_manage" data-ng-app="myApp">
+
+<head x-import="head.html">
+
+</head>
+
+<body class="##session.lang##">
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+
+    </nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+
+    </nav>
+
+    <div id="main-layout" class="container">
+        <div class="row">
+            <div class="row" ng-controller="employees_advances">
+                <div x-permissions="employee_advances_add ||employee_advances_manage"
+                    x-import="accounting-employee-advances/add_modal.html"></div>
+                <div x-permissions="employee_advances_update ||employee_advances_manage"
+                    x-import="accounting-employee-advances/update_modal.html"></div>
+                <div x-permissions="employee_advances_delete ||employee_advances_manage"
+                    x-import="accounting-employee-advances/delete_modal.html"></div>
+                <div x-permissions="employee_advances_view ||employee_advances_manage"
+                    x-import="accounting-employee-advances/view_modal.html"></div>
+                <div x-permissions="employee_advances_search ||employee_advances_manage"
+                    x-import="accounting-employee-advances/search_all_modal.html"></div>
+
+                <div class="row">
+                    <h1 class="bold text-center">##word.employees_advances##</h1>
+                </div>
+
+                <div class="top-actions">
+
+                    <i-button x-permissions="employee_advances_add ||employee_advances_manage" type="add"
+                        label="##word.employees_advances_new##" ng-click="newemployees_advances()"></i-button>
+                    <i-button x-permissions="employee_advances_search ||employee_advances_manage" type="search"
+                        label="##word.search_all##" onclick="site.showModal('#Employee_Discount_SearchModal')">
+                    </i-button>
+
+
+                </div>
+
+                <table class="table hover bold loaded" id="t1">
+                    <tr>
+                        <th class="not-print">##word.employees_advances_logo##</th>
+                        <th>##word.employees_advances_date##</th>
+                        <th>##word.employees_advances_employees##</th>
+                        <th>##word.employees_advances_value##</th>
+                        <th>##word.employees_advances_safe##</th>
+                        <th class="not-print">##word.actions##</th>
+                    </tr>
+                    <tr ng-repeat="c in list">
+                        <td class="not-print">
+                            <i-image view class="logo" ng-model="c.image_url"></i-image>
+
+                        </td>
+                        <td>
+                            <p class="center brown bold"> {{c.date | date : 'dd - MM - yyyy'}} </p>
+                        </td>
+                        <td>
+                            <p class="center bold"> {{c.employee.name}} </p>
+                        </td>
+                        <td>
+                            <p class="center bold green"> {{c.value + ' ##word.le## '}} </p>
+                        </td>
+
+
+                        <td class="center bold red">
+                            {{c.safe.name}}
+                        </td>
+
+                        <td class="not-print center">
+                            <i-button x-permissions="employee_advances_view ||employee_advances_manage" type="details"
+                                label="##word.details##" ng-click="details(c)"></i-button>
+                            <i-button x-permissions="employee_advances_delete ||employee_advances_manage" type="delete"
+                                label="##word.delete##" ng-click="remove(c)"></i-button>
+
+                        </td>
+                    </tr>
+
+                </table>
+               
+                
+                <i-button x-permissions="employee_advances_print ||employee_advances_manage" type="print"
+                    label="##word.print##" onclick="site.print('#t1')"></i-button>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div x-import="scripts.html"></div>
+
+    <script x-permission="employees_advances" x-import="accounting-employee-advances/index.js"></script>
+
+
+</body>
+
+</html>

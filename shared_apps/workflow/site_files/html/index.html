@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+
+<head x-import="head.html"></head>
+
+<body ng-controller="workflowController" class=" ##session.lang## ">
+
+    <nav class="navbar ##session.lang## " x-import="navbar/index.html" ng-controller="navbar"></nav>
+    <div x-import="menu/index.html"></div>
+    <div x-import="workflow/add.html"></div>
+
+    <div class="row">
+        <a ng-click="displayAddWorkflow()" class="btn "> <i class="fa fa-plus-circle fa-2x"></i> ##word.workflow_add## </a>
+    </div>
+
+    <div x-import="workflow/list.html"></div>
+    <a onclick="site.print('#workflowListTable')" class="btn"> <i class="fa fa-print"></i> ##word.print## </a>
+
+    <div x-import="scripts.html"></div>
+    <script x-import="workflow/index.js"></script>
+   
+
+</body>
+
+</html>

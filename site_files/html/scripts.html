@@ -22,7 +22,7 @@ var app = app || angular.module('myApp', []);
 <div x-permission="!login" x-import="security/login_modal.html"></div>
 <div x-permission="login" x-import="security/logout_modal.html"></div>
 
-<div x-import="ui-help/index.html"></div>
+<div x-permission="help" x-import="ui-help/index.html"></div>
 <script x-import="ui-print/index.js"></script>
 <script>
     $(document).on('keydown', 'input,select,textarea', function (e) {

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="amounts_out_ui ||amounts_out_manage" data-ng-app="myApp">
+
+<head x-import="head.html">
+
+</head>
+
+<body class="##session.lang##">
+
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+
+    </nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+
+    </nav>
+
+    <div id="main-layout" class="container">
+        <div class="row center">
+            <div class="row" ng-controller="amounts_out">
+                <div x-permissions="amounts_out_add ||amounts_out_manage"
+                    x-import="accounting-amounts-out/add_modal.html"></div>
+                <div x-permissions="amounts_out_update ||amounts_out_manage"
+                    x-import="accounting-amounts-out/update_modal.html"></div>
+                <div x-permissions="amounts_out_delete ||amounts_out_manage"
+                    x-import="accounting-amounts-out/delete_modal.html"></div>
+                <div x-permissions="amounts_out_view ||amounts_out_manage"
+                    x-import="accounting-amounts-out/view_modal.html"></div>
+                <div x-permissions="amounts_out_search ||amounts_out_manage"
+                    x-import="accounting-amounts-out/search_all_modal.html"></div>
+                <div class="row">
+                    <h1 class="bold text-center">##word.amounts_out##</h1>
+                </div>
+
+                <div class="top-actions">
+
+                    <i-button x-permissions="amounts_out_add ||amounts_out_manage" type="add"
+                        label="##word.amounts_out_new##" ng-click="newAmount_Out()"></i-button>
+                    <i-button x-permissions="amounts_out_search ||amounts_out_manage" type="search"
+                        label="##word.search_all##" ng-click="showSearch()"></i-button>
+
+                </div>
+
+                <table class="table hover loaded" id="t1">
+                    <tr>
+                        <th class="not-print">##word.amounts_out_logo##</th>
+                        <th>##word.amounts_out_date##</th>
+                        <th>##word.amounts_out_source##</th>
+                        <th>##word.amounts_out_value##</th>
+                        <th>##word.amounts_out_safe##</th>
+                        <th class="not-print">##word.actions##</th>
+                    </tr>
+                    <tr class="bold" ng-repeat="c in list">
+                        <td class="not-print">
+                            <i-image view class="logo" ng-model="c.image_url"></i-image>
+
+                        </td>
+                        <td>
+                            <p class="center brown"> {{c.date | date : 'dd - MM - yyyy'}} </p>
+                        </td>
+
+                        <td>
+                            <p class="center"> {{c.source.name}} </p>
+
+                        </td>
+
+                        <td>
+                            <p class="center red"> {{c.value + ' ##word.pound## '}} </p>
+                        </td>
+
+                        <td class="center">
+                            {{c.safe.name}}
+                        </td>
+
+                        <td class="not-print center">
+                            <i-button x-permissions="amounts_out_view ||amounts_out_manage" type="details"
+                                label="##word.details##" ng-click="details(c)"></i-button>
+                            <i-button x-permissions="amounts_out_delete ||amounts_out_manage" type="delete"
+                                label="##word.delete##" ng-click="remove(c)"></i-button>
+                        </td>
+
+                    </tr>
+
+                </table>
+               
+                
+                <i-button type="print" x-permissions="amounts_out_print ||amounts_out_manage" label="##word.print##"
+                    onclick="site.print('#t1')"></i-button>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div x-import="scripts.html"></div>
+
+    <script x-permission="amounts_out" x-import="accounting-amounts-out/index.js"></script>
+
+
+</body>
+
+</html>

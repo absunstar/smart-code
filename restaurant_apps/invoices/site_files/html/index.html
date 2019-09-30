@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="invoices_ui || invoices_manage" data-ng-app="myApp">
+
+<head x-import="head.html">
+
+</head>
+
+<body class="##session.lang##">
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+
+    </nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+
+    </nav>
+    <div id="main-layout" class="container">
+        <div class="row">
+            <div class="row" ng-controller="invoices">
+                <div x-permissions="invoices_add || invoices_manage" x-import="invoices/payment.html"></div>
+                <div x-permissions="invoices_update || invoices_manage" x-import="invoices/update_modal.html"></div>
+                <div x-permissions="invoices_delete || invoices_manage" x-import="invoices/delete_modal.html"></div>
+                <div x-permissions="invoices_view || invoices_manage" x-import="invoices/view_modal.html"></div>
+                <div x-permissions="invoices_search || invoices_manage" x-import="invoices/search_all_modal.html"></div>
+
+                <div class="row">
+                    <h1 class="bold text-center">##word.invoices##</h1>
+                </div>
+
+                <div class="top-actions">
+
+                    <i-button x-permissions="invoices_search || invoices_manage" type="search"
+                        label="##word.search_all##" ng-click="displaySearchModal()"></i-button>
+
+                    <h3 class="bold text-center"> ##word.invoices_count## : {{count}}</h3>
+                </div>
+
+                <table x-permissions="login" class="table center hover bold loaded" id="t1">
+                    <tr>
+                        <th class="not-print">##word.logo##</th>
+                        <th>##word.transaction_date##</th>
+                        <th>##word.invoices_number##</th>
+                        <th>##word.transaction_type##</th>
+                        <th>##word.net_value##</th>
+                        <th>##word.paid_up##</th>
+                        <th>##word.remain_amount##</th>
+                        <th class="not-print">##word.actions##</th>
+                    </tr>
+                    <tr ng-repeat="c in list">
+                        <td class="center not-print">
+                            <img class="logo" ng-src="{{c.image_url}}">
+                        </td>
+                        <td ng-click="displayDetailsInvoices(c)" class="brown pointer center">
+                            <br>{{c.date | date : 'dd / MM / yyyy'}}</td>
+                        <td ng-click="displayDetailsInvoices(c)" class="center pointer title"><br> {{c.code}}</td>
+                        <td ng-click="displayDetailsInvoices(c)" class="center pointer title"><br>
+                            {{c.transaction_type.ar}}</td>
+                        <td ng-click="displayDetailsInvoices(c)" class="center pointer green"><br> {{c.net_value}}</td>
+                        <td ng-click="displayDetailsInvoices(c)" class="center pointer blue"><br> {{c.paid_up}}</td>
+                        <td ng-click="displayDetailsInvoices(c)" class="center pointer red"><br> {{c.remain_amount}}
+                        </td>
+                        <td class="center not-print">
+                            <i-button ng-hide="c.remain_amount == 0" x-permissions="invoices_update || invoices_manage"
+                                type="edit" label="##word.payment##" ng-click="displayPaymentInvoices(c)"></i-button>
+                        </td>
+                    </tr>
+                </table>
+                <i-button x-permissions="invoices_print || invoices_manage" type="print" label="##word.print##"
+                    onclick="site.print('#t1')"></i-button>
+
+               
+            </div>
+        </div>
+    </div>
+
+    <div x-import="scripts.html"></div>
+    <script x-import="invoices/index.js"></script>
+</body>
+
+</html>

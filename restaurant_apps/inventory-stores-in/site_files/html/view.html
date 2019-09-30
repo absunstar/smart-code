@@ -1,0 +1,137 @@
+<div ng-hide="busy" class="row" fixed>
+    <div class="col9">
+        <br>
+        <table class="table hover bold">
+
+            <tr>
+                <td class="title">##word.stores_in_date##</td>
+                <td class="center brown">{{store_in.date |date:"dd - MM - yyyy" }}</td>
+            </tr>
+
+            <tr>
+                <td class="title">##word.stores_in_supply_date##</td>
+                <td class="center brown">{{store_in.supply_date |date:"dd - MM - yyyy" }}</td>
+            </tr>
+
+            <tr>
+                <td class="title">##word.stores_in_id##</td>
+                <td class="center">{{store_in.number}}</td>
+            </tr>
+            <tr>
+                    <td class="title">##word.stores_in_supply_number##</td>
+                    <td class="center">{{store_in.supply_number}}</td>
+            </tr>
+
+            <tr>
+                <td class="title">##word.stores_in_Company_name##</td>
+                <td class="center">{{store_in.vendor.name_ar}}</td>
+            </tr>
+
+            <tr>
+                <td class="title">##word.stores_in_store_name##</td>
+                <td class="center">{{store_in.store.name}}</td>
+            </tr>
+            
+
+            <tr>
+                <td class="title">##word.stores_outtypes##</td>
+                <td class="center">{{store_in.type.ar}}</td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="title">##word.stores_in_items##</td>
+                <td>
+                    <table class="table bold hover">
+                        <tr>
+                            <th>##word.serial##</th>
+                            <th>##word.stores_in_item_name##</th>
+                            <th>##word.stores_in_item_size##</th>
+                            <th>##word.barcode##</th>
+                            <th>##word.stores_in_item_count##</th>
+                            <th class="not-print">##word.stores_in_item_cost##</th>
+                            <th class="not-print">##word.stores_in_item_price##</th>
+                            <th>##word.stores_in_item_total##</th>
+
+                        </tr>
+                        <tr ng-repeat="itm in store_in.items">
+                            <td class="center blue">{{$index + 1}}</td>
+                            <td class="center">{{itm.name}}</td>
+                            <td class="center">{{itm.size}}</td>
+                            <td class="center">{{itm.barcode}}</td>
+                            <td class="center">{{itm.count}}</td>
+                            <td class="not-print center">{{itm.cost}}</td>
+                            <td class="not-print center">{{itm.price}}</td>
+                            <td class="center">{{itm.total}}</td>
+
+                            
+
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+            <tr ng-show="store_in.taxes.length > 0">
+                <td class="title">##word.stores_in_taxes##</td>
+                <td>
+                    <table class="table hover margin">
+                        <tr>
+                            <th>##word.stores_in_tax_name##</th>
+                            <th>##word.stores_in_tax_value##</th>
+                        </tr>
+                        <tr ng-repeat="tax in store_in.taxes">
+                            <td> <p class="text-center"> {{tax.name}} </p> </td>
+                            <td> <p class="text-center"> {{tax.value}} % </p>   </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+            <tr ng-show="store_in.discountes.length > 0">
+                <td class="title">##word.stores_in_discountes##</td>
+                <td>
+                    <table class="table hover margin">
+                        <tr>
+                            <th>##word.stores_in_discount_name##</th>
+                            <th>##word.stores_in_discount_value##</th>
+                        </tr>
+                        <tr ng-repeat="discount in store_in.discountes">
+                            <td>{{discount.name}}</td>
+                            <td>
+                                <p class="text-center" ng-show="discount.type == '1'"> {{discount.value}} % </p>
+                                <p class="text-center" ng-show="discount.type == '0'"> {{discount.value}} ##word.le## </p>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="title">##word.stores_in_total_value##</td>
+                <td class="center ">{{store_in.total_value}} ##word.le##</td>
+            </tr>
+
+            <tr>
+                <td class="title">##word.stores_in_net_value##</td>
+                <td class="center green">{{store_in.net_value}} ##word.le##</td>
+            </tr>
+
+            <tr>
+                <td class="title">##word.stores_in_notes##</td>
+                <td class="center">{{store_in.notes}}</td>
+            </tr>
+
+        </table>
+    </div>
+       <div class="col3">
+            <br>
+        <i-image view category="stores_images" class="not-print" ng-model="store_in.image_url"></i-image>
+        <br>
+        <i-files view ng-model="store_in.files"></i-files>   
+       </div>
+
+</div>
+<div class="not-print" x-import="inventory-stores-in/action_info.html"></div>
+

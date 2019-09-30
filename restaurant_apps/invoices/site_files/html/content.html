@@ -1,0 +1,42 @@
+<div class="form">
+    <div id="basicInformation" class="">
+        <fieldset>
+            <legend> ##word.basic_information## </legend>
+            <div class="row">
+                <div class="col9">
+                    <div class="row">
+
+                        <i-list ng-search="_search.$invoices_group" class="col4" display="name" display2="code" space="-"
+                            ng-model="invoices.invoices_group" label="##word.invoices_group##" items="invoicesGroupList">
+                        </i-list>
+
+                        <i-control type="text" help-id="invoices_number" v="r" class="col3" label="##word.invoices_number##"
+                            ng-model="invoices.code"></i-control>
+
+                        <i-control type="text" help-id="table_name" v="r" class="col3" label="##word.table_name##"
+                            ng-model="invoices.name"></i-control>
+
+                        <i-checkbox help-id="invoices_active" class="col2" label="##word.active##"
+                            ng-model="invoices.active"></i-checkbox>
+                    </div>
+                    <div class="row">
+                        <i-control type="number" help-id="invoices_min" class="col2" label="##word.invoices_min##"
+                            ng-model="invoices.minimum"></i-control>
+                        <i-control type="number" help-id="invoices_max" class="col2" label="##word.invoices_max##"
+                            ng-model="invoices.maxmum"></i-control>
+
+                    </div>
+
+                </div>
+
+                <div class="col3">
+
+                    <i-image help-id="invoices_logo" ng-model="invoices.image_url"></i-image>
+
+                </div>
+
+            </div>
+        </fieldset>
+
+    </div>
+</div>

@@ -1,0 +1,7 @@
+[{
+    "module_name" : "public" ,
+    "name": "order_slides_admin",
+    "en": "order_slides",
+    "ar": "إدارة شرائح البلاغات",
+    "permissions": ["order_slides_manage"]
+}]
