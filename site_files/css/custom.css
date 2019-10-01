@@ -13,7 +13,7 @@
     --modal-header-background-color: var(--theme-color);
     --modal-box-shadow-color: #555;
     --modal-animation-name: animateopacity;
-    --modal-background: var(--x-background);
+    --modal-background: #0000006e;
     --modal-content-background: var(--x-background);
     --btn-box-shadow-color: #555;
     --btn-border-radius: 0px;
@@ -94,7 +94,8 @@ popup item:hover {
 }
 
 .modal {
-    background-color: var(--x-background);
+    background-color: #0000006e;
+    z-index: 999999;
 }
 
 .modal-body {
