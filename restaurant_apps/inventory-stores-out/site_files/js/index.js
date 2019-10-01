@@ -429,20 +429,43 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
       }
     )
   };
-
   $scope.newStore_Out = function () {
-    $scope.error = '';
-    $scope.code = '';
-    $scope.store_out = {
-      image_url: '/images/store_out.png',
-      items: [],
-      discountes: [],
-      taxes: [],
-      details: [],
-      date: new Date()
-    };
-    site.showModal('#addStoreOutModal');
+
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/default_setting/get",
+      data: {}
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.doc) {
+          $scope.defaultSettings = response.data.doc;          
+          $scope.error = '';
+          $scope.item = {}
+          $scope.store_out = {
+            image_url: '/images/store_out.png',
+            vendor: $scope.defaultSettings.general_Settings.vendor,
+            store: $scope.defaultSettings.inventory.store,
+            safe: $scope.defaultSettings.accounting.safe,
+            items: [],
+            discountes: [],
+            taxes: [],
+            details: [],
+            date: new Date(),
+            supply_date: new Date()
+          };
+          site.showModal('#addStoreOutModal');
+        };
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+
   };
+
 
   $scope.add = function () {
     $scope.error = '';

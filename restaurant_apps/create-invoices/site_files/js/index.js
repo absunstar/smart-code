@@ -4,26 +4,40 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
   $scope.create_invoices = {};
 
   $scope.displayAddCreatInvoices = function () {
-    $scope._search = {};
-    $scope.search_order = "";
-    $scope.error = '';
-    $scope.orderInvoicesTypeList = [];
-    $scope.create_invoices = {
-      image_url: '/images/create_invoices.png',
-      source_type: {
-        id: 2,
-        en: "Order Invoices",
-        ar: "شاشة الطلبات"
+
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/default_setting/get",
+      data: {}
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.doc) {
+          $scope.defaultSettings = response.data.doc;
+          $scope._search = {};
+          $scope.search_order = "";
+          $scope.error = '';
+          $scope.orderInvoicesTypeList = [];
+
+          $scope.create_invoices = {
+            source_type: $scope.defaultSettings.general_Settings.source_type,
+            payment_method: $scope.defaultSettings.general_Settings.payment_method,
+            image_url: '/images/create_invoices.png',
+            date: new Date(),
+            active: true,
+
+          };
+          site.showModal('#creatInvoicesAddModal');
+
+        };
       },
-      payment_method: {
-        id: 1,
-        en: "Cash",
-        ar: "كاش"
-      },
-      date: new Date(),
-      active: true
-    };
-    site.showModal('#creatInvoicesAddModal');
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+
   };
 
   $scope.addCreatInvoices = function () {
@@ -319,8 +333,8 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
     $scope.create_invoices.price_delivery_service = item.under_paid.price_delivery_service;
     $scope.create_invoices.service = item.under_paid.service;
     $scope.create_invoices.net_value = item.under_paid.net_value;
-    $scope.create_invoices.paid_up = 0 ;
-     $scope.create_invoices.order_invoices_id = item.under_paid.order_invoice_id;
+    $scope.create_invoices.paid_up = 0;
+    $scope.create_invoices.order_invoices_id = item.under_paid.order_invoice_id;
 
     item.under_paid.book_list.forEach(item => {
       if (item.count > 0) {
@@ -367,6 +381,7 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
        data: order_sale
      })
    }; */
+
 
   $scope.calc = function () {
     $timeout(() => {

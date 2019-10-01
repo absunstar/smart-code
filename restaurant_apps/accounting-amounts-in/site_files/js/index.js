@@ -5,17 +5,35 @@ app.controller("amounts_in", function ($scope, $http) {
   $scope.search = {};
 
  
-
   $scope.newAmount_In = function () {
-    $scope.error = '';
-    $scope.amount_in = {
-      image_url: '/images/amount_in.png',
-      date: new Date(),
-      from_eng: false,
-      from_company: false
-    };
-    site.showModal('#addAmountInModal');
+
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/default_setting/get",
+      data: {}
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.doc) {
+          $scope.defaultSettings = response.data.doc;          
+          $scope.error = '';
+          $scope.amount_in = {
+            image_url: '/images/amount_in.png',
+            safe: $scope.defaultSettings.accounting.safe,
+            date: new Date(),
+          };
+          site.showModal('#addAmountInModal');
+        };
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+
   };
+
 
 
   $scope.searchAll = function () {

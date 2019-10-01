@@ -91,22 +91,41 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
     $scope.item.sizes.splice($scope.item.sizes.indexOf(itm), 1);
 
   };
-
+  
   $scope.newStore_In = function () {
-    $scope.error = '';
-    $scope.code = '';
-    $scope.item = {}
-    $scope.item = {}
-    $scope.store_in = {
-      image_url: '/images/store_in.png',
-      items: [],
-      discountes: [],
-      taxes: [],
-      details: [],
-      date: new Date(),
-      supply_date: new Date()
-    };
-    site.showModal('#addStoreInModal');
+
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/default_setting/get",
+      data: {}
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.doc) {
+          $scope.defaultSettings = response.data.doc;          
+          $scope.error = '';
+          $scope.item = {}
+          $scope.store_in = {
+            image_url: '/images/store_in.png',
+            vendor: $scope.defaultSettings.general_Settings.vendor,
+            store: $scope.defaultSettings.inventory.store,
+            items: [],
+            discountes: [],
+            taxes: [],
+            details: [],
+            date: new Date(),
+            supply_date: new Date()
+          };
+          site.showModal('#addStoreInModal');
+        };
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+
   };
 
   $scope.add = function () {
@@ -489,7 +508,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
     )
   };
 
- 
+
 
   $scope.loadCategories = function () {
     $scope.error = '';
@@ -593,32 +612,32 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
       }
     )
   };
- /*  $scope.loadStores_In = function () {
-    $scope.error = '';
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/stores_in/all",
-      data: {
-        select: {
-          id: 1,
-          name: 1,
-          items: 1
-        }
-      }
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          $scope.stores_in = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
-  }; */
+  /*  $scope.loadStores_In = function () {
+     $scope.error = '';
+     $scope.busy = true;
+     $http({
+       method: "POST",
+       url: "/api/stores_in/all",
+       data: {
+         select: {
+           id: 1,
+           name: 1,
+           items: 1
+         }
+       }
+     }).then(
+       function (response) {
+         $scope.busy = false;
+         if (response.data.done) {
+           $scope.stores_in = response.data.list;
+         }
+       },
+       function (err) {
+         $scope.busy = false;
+         $scope.error = err;
+       }
+     )
+   }; */
 
 
   $scope.searchAll = function () {

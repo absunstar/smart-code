@@ -15,13 +15,12 @@
         }
 
         .item-groups .item {
-            width: 150px;
+            width: 200px;
             height: 150px;
             display: inline-block;
-            border: 1px solid #bbb;
+            border: 1px solid #000;
             text-align: center;
             margin: 5px;
-            padding: 5px;
         }
 
         .item-groups .item:hover {
@@ -29,11 +28,15 @@
         }
 
         .item-groups img {
-            width: 80px;
-            height: 80px;
+            width: 100%;
+            height: 100%;
         }
 
         .item-groups h2 {
+            position: relative;
+            background: #0000008f;
+            margin-top: -100px;
+            color: #ffeb3b;
             text-align: center;
         }
 
@@ -43,13 +46,13 @@
         }
 
         .item-list .item {
-            width: 150px;
+            width: 200px;
             height: 150px;
             display: inline-block;
-            border: 1px solid #bbb;
+            border: 1px solid #0000ff;
             text-align: center;
             margin: 5px;
-            padding: 5px;
+            border-radius: 20px;
         }
 
         .item-list .item:hover {
@@ -57,11 +60,15 @@
         }
 
         .item-list img {
-            width: 80px;
-            height: 80px;
+            width: 100%;
+            height: 100%;
         }
 
         .item-list h2 {
+            position: relative;
+            background: #5369e0e6;
+            margin-top: -100px;
+            color: #ffffff;
             text-align: center;
         }
 
@@ -76,10 +83,9 @@
             width: 200px;
             height: 150px;
             display: inline-block;
-            border: 1px solid #bbb;
+            border: 1px solid #000;
             text-align: center;
             margin: 5px;
-            padding: 5px;
         }
 
         .item-types .item:hover {
@@ -87,11 +93,15 @@
         }
 
         .item-types img {
-            width: 80px;
-            height: 80px;
+            width: 100%;
+            height: 100%;
         }
 
         .item-types h2 {
+            position: relative;
+            background: #0000008f;
+            margin-top: -100px;
+            color: #fff;
             text-align: center;
         }
     </style>
@@ -108,7 +118,8 @@
     </nav>
 
     <div id="main-layout" class="container">
-        <div class="row">
+        <div class="row" style="
+        margin-bottom: 200px !important;">
             <div class="row" ng-controller="order_invoice">
                 <div x-permissions="order_invoice_add || order_invoice_manage"
                     x-import="order-invoice/order_invoices_active.html">
@@ -154,7 +165,7 @@
                         <div class="item-types">
                             <a class="item pointer" ng-repeat="s in current_items.sizes" ng-click="bookList(s)"
                                 help-id="menu_monitor">
-                                <img ng-src="{{s.image_url}}">
+                                <img ng-src="{{s.image_url}}" onerror="this.src='/images/no.png'">
                                 <h2>{{s.size}}</h2>
                             </a>
 
@@ -166,7 +177,7 @@
                         <div class="row">
                             <i-date2 class="col6" ng-model="order_invoice.date" label="##word.date##"></i-date2>
                             <i-button type="view" label="##word.open_orders##" ng-click="viewInvoicesActivelistList()"
-                                class="col6">
+                                class="col6 center">
                             </i-button>
                         </div>
                         <div class="row">
@@ -178,8 +189,8 @@
                                 ng-search="_search.$order_invoice_employee" class="col4" display="name"
                                 ng-model="order_invoice.delivery_employee" label="##word.delivery_employee##"
                                 items="deliveryEmployeesList"></i-list>
-
                         </div>
+
                         <div class="row" ng-show="order_invoice.transaction_type.id == 1">
 
                             <i-list ng-search="_search.$tables_group" class="col4" display="name"
@@ -194,52 +205,59 @@
                                 type="number" ng-change="calc()"></i-control>
 
                         </div>
-                        <div class="row">
-
+                        <fieldset>
+                            <legend> بيانات العميل </legend>
                             <div class="row">
 
-                                <i-list ng-search="_search.$order_customers" class="col4" display="name_ar"
-                                    ng-model="order_invoice.customer" label="##word.customer_name##"
-                                    ng-change="changeCustomerAddresses(order_invoice.customer)" items="customersList">
-                                </i-list>
+                                <div class="row">
 
-                                <i-list class="col3" label="##word.customers_gov##" ng-model="order_invoice.gov"
-                                    items="govList" display="name" ng-change="getNeighborhoodList(order_invoice.gov)"
-                                    ng-search="_search.$govNameContact"></i-list>
+                                    <i-list ng-search="_search.$order_customers" class="col3" display="name_ar"
+                                        ng-model="order_invoice.customer" label="##word.customer_name##"
+                                        ng-change="changeCustomerAddresses(order_invoice.customer)"
+                                        items="customersList">
+                                    </i-list>
 
-                                <i-list class="col4" label="##word.neighborhood##" ng-model="order_invoice.neighborhood"
-                                    items="neighborhoodList" ng-change="getAreaList(order_invoice.neighborhood)"
-                                    display="name" ng-search="_search.$order_invoice_neighborhood_search"></i-list>
+                                    <i-list class="col3" label="##word.customers_gov##" ng-model="order_invoice.gov"
+                                        items="govList" display="name"
+                                        ng-change="getNeighborhoodList(order_invoice.gov)"
+                                        ng-search="_search.$govNameContact"></i-list>
+
+                                    <i-list class="col3" label="##word.neighborhood##"
+                                        ng-model="order_invoice.neighborhood" items="neighborhoodList"
+                                        ng-change="getAreaList(order_invoice.neighborhood)" display="name"
+                                        ng-search="_search.$order_invoice_neighborhood_search"></i-list>
+
+                                    <i-list class="col3" label="##word.area##" ng-model="order_invoice.area"
+                                        items="areaList" display="name"
+                                        ng-change=" order_invoice.price_delivery_service = order_invoice.area.price_delivery_service"
+                                        ng-search="_search.$order_invoice.$area_search"></i-list>
+
+                                </div>
+                                <div class="row">
 
 
+                                    <i-control ng-show="order_invoice.transaction_type.id == 2"
+                                        ng-model="order_invoice.price_delivery_service"
+                                        label="##word.price_delivery_service##" ng-change="calc()" class="col3"
+                                        type="number"></i-control>
 
+                                    <i-control class="col6" label="##word.customers_address##"
+                                        ng-model="order_invoice.address"></i-control>
+
+                                </div>
+                                <div class="row">
+                                    <i-control class="col3" label="##word.customers_phone##"
+                                        ng-model="order_invoice.customer_phone">
+                                    </i-control>
+
+                                    <i-control class="col3" label="##word.customers_mobile##"
+                                        ng-model="order_invoice.customer_mobile">
+                                    </i-control>
+
+                                </div>
                             </div>
-                            <div class="row">
-                                <i-list class="col4" label="##word.area##" ng-model="order_invoice.area"
-                                    items="areaList" display="name"
-                                    ng-change=" order_invoice.price_delivery_service = order_invoice.area.price_delivery_service"
-                                    ng-search="_search.$order_invoice.$area_search"></i-list>
+                        </fieldset>
 
-                                <i-control ng-show="order_invoice.transaction_type.id == 2"
-                                    ng-model="order_invoice.price_delivery_service"
-                                    label="##word.price_delivery_service##" ng-change="calc()" class="col3"
-                                    type="number"></i-control>
-
-                                <i-textarea class="col6" label="##word.customers_address##"
-                                    ng-model="order_invoice.address"></i-textarea>
-
-                            </div>
-                            <div class="row">
-                                <i-control class="col3" label="##word.customers_phone##"
-                                    ng-model="order_invoice.customer_phone">
-                                </i-control>
-
-                                <i-control class="col3" label="##word.customers_mobile##"
-                                    ng-model="order_invoice.customer_mobile">
-                                </i-control>
-
-                            </div>
-                        </div>
 
                         <div class="row grid">
 

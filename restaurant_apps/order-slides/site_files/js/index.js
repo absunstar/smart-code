@@ -24,7 +24,7 @@ app.controller("order_slides", function ($scope, $http) {
 
   $scope.newOrderSlides = function () {
     $scope.error = '';
-    $scope.order_slides = { image_url: '/images/order_slides.png', salary_calculate: false };
+    $scope.order_slides = { image_url: '/images/slides.png', salary_calculate: false };
     site.showModal('#addOrderSlidesModal');
   };
   $scope.add = function () {

@@ -1,14 +1,14 @@
 
 let btn1 = document.querySelector('#setting_default .tab-link');
 if (btn1) {
-    btn1.click();
+  btn1.click();
 }
 
 app.controller("default_setting", function ($scope, $http) {
   $scope._search = {};
 
   $scope.default_setting = {
-    
+
   };
 
 
@@ -36,12 +36,7 @@ app.controller("default_setting", function ($scope, $http) {
     $http({
       method: "POST",
       url: "/api/vendors/all",
-      data: {
-        select: {
-          id: 1,
-          name_ar: 1
-        }
-      }
+      data: {}
     }).then(
       function (response) {
         $scope.busy = false;
@@ -61,12 +56,7 @@ app.controller("default_setting", function ($scope, $http) {
     $http({
       method: "POST",
       url: "/api/customers/all",
-      data: {
-        select: {
-          id: 1,
-          name_ar: 1
-        }
-      }
+      data: {}
     }).then(
       function (response) {
         $scope.busy = false;
@@ -87,12 +77,7 @@ app.controller("default_setting", function ($scope, $http) {
     $http({
       method: "POST",
       url: "/api/stores/all",
-      data: {
-        select: {
-          id: 1,
-          name: 1
-        }
-      }
+      data: {}
     }).then(
       function (response) {
         $scope.busy = false;
@@ -112,18 +97,72 @@ app.controller("default_setting", function ($scope, $http) {
     $http({
       method: "POST",
       url: "/api/safes/all",
-      data: {
-        select: {
-          id: 1,
-          name: 1,
-          number: 1
-        }
-      }
+      data: {}
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.safes = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+  $scope.getSourceType = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $scope.sourceTypeList = [];
+    $http({
+      method: "POST",
+      url: "/api/source_type/all"
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.sourceTypeList = response.data;
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.getTablesGroupList = function () {
+    $scope.busy = true;
+    $scope.tablesGroupList = [];
+    $http({
+      method: "POST",
+      url: "/api/tables_group/all",
+      data: {
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.tablesGroupList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.getDeliveryEmployeesList = function () {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/delivery_employees/all",
+      data: {}
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.deliveryEmployeesList = response.data.list;
         }
       },
       function (err) {
@@ -208,10 +247,9 @@ app.controller("default_setting", function ($scope, $http) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.default_setting = response.data.doc
-        }else{
+        } else {
           $scope.default_setting = {};
         }
-        
       },
       function (err) {
         $scope.busy = false;
@@ -221,20 +259,18 @@ app.controller("default_setting", function ($scope, $http) {
   };
 
   $scope.saveSetting = function (where) {
-  
     $scope.busy = true;
-
     $http({
       method: "POST",
       url: "/api/default_setting/save",
-      data:$scope.default_setting
+      data: $scope.default_setting
     }).then(
       function (response) {
         $scope.busy = false;
         if (!response.data.done) {
           $scope.error = response.data.error
         }
-        
+
       },
       function (err) {
         $scope.busy = false;
@@ -248,7 +284,10 @@ app.controller("default_setting", function ($scope, $http) {
   $scope.loadVendors();
   $scope.getTransactionTypeList();
   $scope.loadCustomers();
+  $scope.getTablesGroupList();
+  $scope.getDeliveryEmployeesList();
   $scope.getPaymentMethodList();
   $scope.getDiscountMethodList();
+  $scope.getSourceType();
   $scope.loadSetting();
 });

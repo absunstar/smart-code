@@ -2,14 +2,15 @@ app.controller("amounts_out", function ($scope, $http) {
   $scope._search = {};
 
   $scope.amount_out = {};
- 
-  $scope.loadAll = function (where ,limit) {
+
+  $scope.loadAll = function (where, limit) {
     $scope.busy = true;
     $http({
       method: "POST",
       url: "/api/amounts_out/all",
-      data: {where : where,
-        limit : limit ||10000000
+      data: {
+        where: where,
+        limit: limit || 10000000
       }
     }).then(
       function (response) {
@@ -23,14 +24,13 @@ app.controller("amounts_out", function ($scope, $http) {
         $scope.busy = false;
         $scope.error = err;
       }
-      )
+    )
   };
 
   $scope.searchAll = function () {
     $scope.error = '';
     let where = {};
 
-    
     if ($scope.search.date) {
       where['date'] = $scope.search.date;
     }
@@ -71,27 +71,49 @@ app.controller("amounts_out", function ($scope, $http) {
       where['description'] = ($scope.search.description);
     }
 
-    
-    $scope.loadAll(where ,$scope.search.limit);
+
+    $scope.loadAll(where, $scope.search.limit);
   };
 
 
- 
   $scope.newAmount_Out = function () {
-    $scope.error = '';
-    $scope.fromeng = false;
-    $scope.amount_out = { image_url: '/images/amount_out.png', date: new Date() };
-    site.showModal('#addAmountOutModal');
+
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/default_setting/get",
+      data: {}
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.doc) {
+          $scope.defaultSettings = response.data.doc;          
+          $scope.error = '';
+          $scope.amount_out = {
+            image_url: '/images/amount_out.png',
+            safe: $scope.defaultSettings.accounting.safe,
+            date: new Date(),
+          };
+          site.showModal('#addAmountOutModal');
+        };
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+
   };
+
 
   $scope.showSearch = function () {
     $scope.error = '';
-    
+
     site.showModal('#amountsOutSearchModal');
   };
 
   $scope.add = function () {
-    
+
     $scope.error = '';
     let v = site.validated();
 
@@ -100,17 +122,17 @@ app.controller("amounts_out", function ($scope, $http) {
       return;
     }
 
-    if($scope.amount_out.value === 0){
-      $scope.error ='##word.notzero##';
+    if ($scope.amount_out.value === 0) {
+      $scope.error = '##word.notzero##';
       return;
     }
-  
+
     $scope.busy = true;
     $http({
       method: "POST",
       url: "/api/amounts_out/add",
       data: $scope.amount_out
-     
+
     }).then(
       function (response) {
         $scope.busy = false;
@@ -124,7 +146,7 @@ app.controller("amounts_out", function ($scope, $http) {
       function (err) {
         console.log(err);
       }
-      )
+    )
   };
 
   $scope.edit = function (amount_out) {
@@ -152,7 +174,7 @@ app.controller("amounts_out", function ($scope, $http) {
       function (err) {
         console.log(err);
       }
-      )
+    )
   };
 
   $scope.remove = function (amount_out) {
@@ -181,7 +203,7 @@ app.controller("amounts_out", function ($scope, $http) {
       function (err) {
         console.log(err);
       }
-      )
+    )
   };
 
   $scope.details = function (amount_out) {
@@ -210,7 +232,7 @@ app.controller("amounts_out", function ($scope, $http) {
       function (err) {
         console.log(err);
       }
-      )
+    )
   };
 
   $scope.loadSafes = function () {
@@ -239,8 +261,9 @@ app.controller("amounts_out", function ($scope, $http) {
     $http({
       method: "POST",
       url: "/api/in_out_names/all",
-      data: {where : {out : true}
-    }
+      data: {
+        where: { out: true }
+      }
     }).then(
       function (response) {
         $scope.busy = false;
@@ -252,7 +275,7 @@ app.controller("amounts_out", function ($scope, $http) {
         $scope.busy = false;
         $scope.error = err;
       }
-      )
+    )
   };
 
   $scope.loadEmployees = function () {

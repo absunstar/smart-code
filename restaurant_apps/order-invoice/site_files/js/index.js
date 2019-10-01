@@ -1,16 +1,10 @@
 app.controller("order_invoice", function ($scope, $http, $timeout) {
 
-
   $scope._search = {};
   $scope.discount = { type: 'number' };
   $scope.tax = {};
-  $scope.order_invoice = {
-    book_list: [],
-    discountes: [],
-    taxes: [],
-    date: new Date(),
-    details: []
-  };
+
+
 
   $scope.displayAddOrderInvoice = function () {
     $scope.error = '';
@@ -46,11 +40,21 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
       return;
     };
 
-    if ($scope.order_invoice.transaction_type.id == 2 && !$scope.order_invoice.delivery_employee) {
-      $scope.error = "##word.should_select_delivery_employee##";
-      return;
-    };
+    if ($scope.order_invoice.transaction_type.id != 2 && $scope.order_invoice.delivery_employee)
+      $scope.order_invoice.delivery_employee = {};
 
+    if ($scope.order_invoice.transaction_type.id != 1 && $scope.order_invoice.tables_group)
+      $scope.order_invoice.tables_group = {};
+
+    if ($scope.order_invoice.transaction_type.id != 1 && $scope.order_invoice.service)
+      $scope.order_invoice.service = 0;
+
+
+    /*   if ($scope.order_invoice.transaction_type.id == 2 && !$scope.order_invoice.delivery_employee) {
+        $scope.error = "##word.should_select_delivery_employee##";
+        return;
+      };
+   */
     let url = "/api/order_invoice/update";
     if ($scope.order_invoice.first) url = '/api/order_invoice/update';
     else url = '/api/order_invoice/add';
@@ -249,6 +253,73 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     )
   };
 
+ /*  $scope.transactionTypeChange = function () {
+
+    if ($scope.order_invoice.transaction_type.id) {
+      $scope.order_invoice = {
+        date: new Date(),
+        transaction_type: $scope.defaultSettings.general_Settings.order_type,
+        delivery_employee: $scope.defaultSettings.general_Settings.order_type.id == 2 ? $scope.defaultSettings.general_Settings.delivery_employee : {},
+        customer: $scope.defaultSettings.general_Settings.customer,
+        gov: $scope.defaultSettings.general_Settings.customer.gov,
+        neighborhood: $scope.defaultSettings.general_Settings.customer.neighborhood,
+        area: $scope.defaultSettings.general_Settings.customer.area,
+        price_delivery_service: $scope.defaultSettings.general_Settings.order_type.id == 2 ? $scope.defaultSettings.general_Settings.customer.area.price_delivery_service : 0,
+        address: $scope.defaultSettings.general_Settings.customer.address,
+        customer_phone: $scope.defaultSettings.general_Settings.customer.phone,
+        customer_mobile: $scope.defaultSettings.general_Settings.customer.mobile,
+        tables_group: $scope.defaultSettings.general_Settings.order_type.id == 1 ? $scope.defaultSettings.general_Settings.tables_group : {},
+        service: $scope.defaultSettings.general_Settings.order_type.id == 1 ? $scope.defaultSettings.general_Settings.service : 0
+      }
+    }
+
+  }; */
+
+
+  $scope.getDefaultSettingsList = function () {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/default_setting/get",
+      data: {}
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.doc) {
+          $scope.defaultSettings = response.data.doc;
+          $scope.order_invoice = {
+            transaction_type: $scope.defaultSettings.general_Settings.order_type,
+            delivery_employee: $scope.defaultSettings.general_Settings.order_type.id == 2 ? $scope.defaultSettings.general_Settings.delivery_employee : {},
+            customer: $scope.defaultSettings.general_Settings.customer,
+            gov: $scope.defaultSettings.general_Settings.customer.gov,
+            neighborhood: $scope.defaultSettings.general_Settings.customer.neighborhood,
+            area: $scope.defaultSettings.general_Settings.customer.area,
+            price_delivery_service: $scope.defaultSettings.general_Settings.order_type.id == 2 ? $scope.defaultSettings.general_Settings.customer.area.price_delivery_service : 0,
+            address: $scope.defaultSettings.general_Settings.customer.address,
+            customer_phone: $scope.defaultSettings.general_Settings.customer.phone,
+            customer_mobile: $scope.defaultSettings.general_Settings.customer.mobile,
+            tables_group: $scope.defaultSettings.general_Settings.order_type.id == 1 ? $scope.defaultSettings.general_Settings.tables_group : {},
+            service: $scope.defaultSettings.general_Settings.order_type.id == 1 ? $scope.defaultSettings.general_Settings.service : 0,
+            book_list: [],
+            discountes: [],
+            taxes: [],
+            date: new Date(),
+            details: []
+          };
+
+          if($scope.order_invoice.tables_group && $scope.order_invoice.tables_group.id){
+            $scope.getTablesList($scope.order_invoice.tables_group);
+          }
+         
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
   $scope.loadTaxTypes = function () {
     $scope.busy = true;
     $http({
@@ -396,7 +467,6 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
       }
     )
   };
-
 
   $scope.getDeliveryEmployeesList = function () {
     $scope.busy = true;
@@ -601,7 +671,6 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.itemsList = response.data.list;
-          $scope.showItemsIn();
         }
       },
       function (err) {
@@ -613,12 +682,8 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
 
   $scope.showItemsIn = function (i) {
     $scope.current_items = i;
-    if ($scope.current_items.sizes.length == 1) {
+    if ($scope.current_items.sizes && $scope.current_items.sizes.length == 1) {
       $scope.bookList($scope.current_items.sizes[0]);
-    } else {
-
-
-
     }
   };
 
@@ -833,4 +898,5 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
   $scope.getDeliveryEmployeesList();
   $scope.getTablesGroupList();
   $scope.getGovList();
+  $scope.getDefaultSettingsList();
 });

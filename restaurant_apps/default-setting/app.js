@@ -18,8 +18,6 @@ module.exports = function init(site) {
     path: __dirname + "/site_files/json/discount_method.json"
   })
 
-
-
   site.post("/api/default_setting/get", (req, res) => {
     let response = {
       done: false
@@ -65,6 +63,15 @@ module.exports = function init(site) {
 
     })
   })
+
+ /*  site.getDefaultSetting = function (callback) {
+    $default_setting.get({
+    }, (err, doc) => {
+      if (!err && doc) {
+        return callback(err, doc)
+      }
+    })
+  } */
 
   site.post("/api/default_setting/save", (req, res) => {
     let response = {

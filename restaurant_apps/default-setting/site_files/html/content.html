@@ -15,14 +15,19 @@
                 <fieldset>
                     <legend> ##word.general_Settings## </legend>
                     <div class="row">
+
                         <i-list class="col4" ng-model="default_setting.general_Settings.vendor" items="vendorsList"
                             display="name_ar" ng-search="_search.$search_vendor"
                             label="##word.stores_in_Company_name##"></i-list>
                         <i-list class="col4" ng-model="default_setting.general_Settings.customer" items="customersList"
                             display="name_ar" ng-search="_search.$search_customer" label="##word.customer_name##">
                         </i-list>
+                        <i-list ng-search="_search.$order_invoice_employee" class="col4" display="name"
+                            ng-model="default_setting.general_Settings.delivery_employee"
+                            label="##word.delivery_employee##" items="deliveryEmployeesList"></i-list>
 
                     </div>
+
                     <div class="row">
 
                         <i-list help-id="" ng-search="_search.$discount_method_search" class="col3"
@@ -33,13 +38,28 @@
                             label="##word.payment_method##" ng-model="default_setting.general_Settings.payment_method"
                             items="paymentMethodList" display="ar">
                         </i-list>
-                        <i-list ng-search="_search.$order_type" class="col4" display="ar"
+                        <i-list help-id="" ng-search="_search.$source_type_search" class="col2"
+                            label="##word.source_type##" ng-model="default_setting.general_Settings.source_type" items="sourceTypeList"
+                            display="ar"></i-list>
+                        <i-list ng-search="_search.$order_type" class="col3" display="ar"
                             ng-model="default_setting.general_Settings.order_type" label="##word.order_type##"
                             items="transactionTypeList">
                         </i-list>
+
+                    </div>
+
+                    <div class="row">
+                        <i-list ng-search="_search.$tables_group" class="col4" display="name"
+                            ng-model="default_setting.general_Settings.tables_group" label="##word.tables_group##"
+                            items="tablesGroupList">
+                        </i-list>
+
+                        <i-control class="col3" ng-model="default_setting.general_Settings.service"
+                            label="##word.service##" type="number"></i-control>
                     </div>
 
                 </fieldset>
+
                 <i-button type="default left" fa="2x fa-angle-double-left"
                     onclick="document.querySelector('.tab-link.active + .tab-link').click();"></i-button>
             </div>
@@ -48,7 +68,7 @@
                 <fieldset>
                     <legend> ##word.accounting_settings## </legend>
                     <div class="row">
-                        <i-list class="col4" ng-model="default_setting.general_Settings.accounting.safe" items="safes"
+                        <i-list class="col4" ng-model="default_setting.accounting.safe" items="safes"
                             ng-search="_search.$serach_safes" label="##word.stores_in_safe##"></i-list>
                     </div>
                 </fieldset>
@@ -60,7 +80,7 @@
                 <fieldset>
                     <legend> ##word.inventory_settings## </legend>
                     <div class="row">
-                        <i-list class="col4" ng-model="default_setting.general_Settings.inventory.store" items="stores"
+                        <i-list class="col4" ng-model="default_setting.inventory.store" items="stores"
                             ng-search="_search.$search_stores" label="##word.stores_in_store##"></i-list>
 
                     </div>
@@ -68,7 +88,7 @@
 
             </div>
 
-         
+
 
         </div>
     </div>
