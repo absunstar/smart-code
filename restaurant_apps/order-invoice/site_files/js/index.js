@@ -306,7 +306,6 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
             date: new Date(),
             details: []
           };
-
           if($scope.order_invoice.tables_group && $scope.order_invoice.tables_group.id){
             $scope.getTablesList($scope.order_invoice.tables_group);
           }

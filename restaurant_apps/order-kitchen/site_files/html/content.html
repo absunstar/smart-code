@@ -1,18 +1,17 @@
 <div class="form" id="setting_default">
 
     <div class="row">
-        <i-list class="col4" ng-model="kitchen" items="kitchensList" display="name"
-            ng-search="_search.$search_kitchen" ng-change="orderKitchensList(kitchen)"
-            label="##word.kitchen_name##">
+        <i-list class="col4" ng-model="order_kitchen.kitchen" items="kitchensList" display="name"
+            ng-search="_search.$search_kitchen" ng-change="orderKitchensList(kitchen)" label="##word.kitchen_name##">
         </i-list>
     </div>
 
-    <div ng-repeat="c in ordersList">
-            <br>
-  
+    <div ng-repeat="c in ordersList track by $index">
+        <br>
+
         <h2 class="center">{{c.code}}</h2>
         <br>
-    
+
         <table x-permissions="login" class="table bold hover loaded" id="t1">
             <tr>
                 <th>##word.stores_items_name##</th>
@@ -21,12 +20,11 @@
                 <th>##word.items_price_total##</th>
             </tr>
 
-            <tr ng-repeat="i in c.book_list">
+            <tr ng-repeat="i in c.book_list_report ">
                 <td class="center title">{{i.size}}</td>
                 <td class="center blue">{{i.count}}</td>
                 <td class="center">{{i.price}}</td>
                 <td class="center green">{{i.total_price}}</td>
-
             </tr>
 
         </table>

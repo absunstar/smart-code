@@ -4,7 +4,7 @@ module.exports = function init(site) {
 
   let source = {
     name: 'Report Invoices System',
-    ar: ' نظام تقرير الموظفين'
+    ar: ' نظام تقرير الفواتير'
   }
 
   let image_url = '/images/create_invoices.png'

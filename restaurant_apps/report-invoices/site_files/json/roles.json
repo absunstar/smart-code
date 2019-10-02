@@ -2,6 +2,6 @@
     "module_name" : "accounting" ,
     "name": "report_invoices_admin",
     "en": "Report Invoices  Admin",
-    "ar": "إدارة إنشاء الفواتير",
+    "ar": "إدارة تقرير الفواتير",
     "permissions": ["reat_invoices_manage"]
 }]

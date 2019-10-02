@@ -18,12 +18,14 @@
 
             <table class="table bold center hover">
                 <tr>
+                    <th> ##word.code## </th>
                     <th> ##word.customer## </th>
                     <th> ##word.delivery_employee## </th>
                     <th> ##word.tables_group## </th>
                     <th> ##word.table## </th>
                 </tr>
                 <tr class="pointer" ng-repeat="item in invoicesActivelist" ng-click="returnWaitingOrder(item)">
+                    <td> {{item.code}} </td>
                     <td> {{item.customer.name_ar}} </td>
                     <td> {{item.delivery_employee.name}}</td>
                     <td> {{item.tables_group.name}} </td>

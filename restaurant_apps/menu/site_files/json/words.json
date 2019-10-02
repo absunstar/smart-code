@@ -105,6 +105,16 @@
         "ar": "إدارة الفواتير"
     },
     {
+        "name": "order_kitchen_menus",
+        "en": "Order Kitchen Menu",
+        "ar": "قائمة طلبات المطبخ"
+    },
+    {
+        "name": "order_kitchen_management",
+        "en": "Order Kitchen Management",
+        "ar": "طلبات المطبخ"
+    },
+    {
         "name": "order_slides_menus",
         "en": "Order Slides Menu",
         "ar": "قائمة شرائح الطلبات"
@@ -623,6 +633,16 @@
         "name": "report_employee_delivery_name",
         "en": "Report Employees Delivery",
         "ar": "تقارير موظفين التوصيل "
+    },
+    {
+        "name": "report_employee_user_menus",
+        "en": "Report Employees Order Menu",
+        "ar": "قائمة تقارير طلبات موظفين "
+    },
+    {
+        "name": "report_employee_user_name",
+        "en": "Report Employees Order",
+        "ar": "تقارير طلبات موظفين "
     },
     {
         "name": "system_item_details",

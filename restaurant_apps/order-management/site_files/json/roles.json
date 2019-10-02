@@ -1,7 +1,7 @@
 [{
     "module_name" : "accounting" ,
-    "name": "report_invoices_admin",
-    "en": "Report Invoices  Admin",
-    "ar": "إدارة إنشاء الفواتير",
-    "permissions": ["reat_invoices_manage"]
+    "name": "order_management_admin",
+    "en": "Order Management  Admin",
+    "ar": "إدارة الطلبات",
+    "permissions": ["order_management_manage"]
 }]

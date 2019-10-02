@@ -3,10 +3,10 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
 
   $scope.category_item = {
     image_url: '/images/category_item.png',
-    allow_sell : true,
-    allow_buy : true,
-    is_pos : true,
-    sizes : [] ,
+    allow_sell: true,
+    allow_buy: true,
+    is_pos: true,
+    sizes: [],
     with_discount: false
   };
 
@@ -32,16 +32,15 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
 
     let err_barcode = false;
     $scope.itemSizeList.forEach(itemSize => {
-      if(itemSize.barcode === $scope.item.barcode){
+      if (itemSize.barcode === $scope.item.barcode) {
         err_barcode = true;
       };
     });
 
-    if(err_barcode){
+    if (err_barcode) {
       $scope.error = "##word.err_barcode_exist##";
       return;
     };
-
 
     if ($scope.complex && $scope.complex.length > 0)
       $scope.complex = $scope.complex;
@@ -61,7 +60,8 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
     $scope.category_item.sizes.unshift(Object.assign({}, $scope.item));
     $scope.complex_items = [];
     $scope.item = {
-      image_url: '/images/sizes_img.png'
+      image_url: '/images/sizes_img.png',
+      kitchen : $scope.item.kitchen
     };
   };
 
@@ -104,16 +104,55 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
     $scope.items_size = {};
     $scope.category_item = {
       image_url: '/images/category_item.png',
-      allow_sell : true,
-      allow_buy : true,
-      is_pos : true,
-      sizes : [] ,
+      allow_sell: true,
+      allow_buy: true,
+      is_pos: true,
+      sizes: [],
       with_discount: false
     };
     $scope.item = {
       image_url: '/images/sizes_img.png'
     };
     site.showModal('#addCategoryItemModal');
+  };
+
+  $scope.newCategoryItem = function () {
+
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/default_setting/get",
+      data: {}
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.doc) {
+          $scope.defaultSettings = response.data.doc;
+
+          $scope.error = '';
+          $scope.category_code = '';
+          $scope.item = {};
+          $scope.items_size = {};
+          $scope.category_item = {
+            image_url: '/images/category_item.png',
+            allow_sell: true,
+            allow_buy: true,
+            is_pos: true,
+            sizes: [],
+            with_discount: false
+          };
+          $scope.item = {
+            image_url: '/images/sizes_img.png',
+            kitchen: $scope.defaultSettings.general_Settings.kitchen
+          };
+          site.showModal('#addCategoryItemModal');
+        };
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
   };
 
   $scope.add = function () {
@@ -266,9 +305,10 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
     $scope.item = {};
     $scope.items_size = {};
     $scope.view(category_item);
-   
+
     $scope.item = {
-      image_url: '/images/sizes_img.png'
+      image_url: '/images/sizes_img.png',
+      kitchen: $scope.defaultSettings.general_Settings.kitchen
     };
     site.showModal('#updateCategoryItemModal');
   };
@@ -586,15 +626,15 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
               response.data.list.forEach(item => {
 
                 item.sizes.forEach(size => {
-                    size.item_name = item.name;
-                    size.item_id = item.id;
+                  size.item_name = item.name;
+                  size.item_id = item.id;
                 });
 
               });
 
-               $scope.itemsNameList = response.data.list;
+              $scope.itemsNameList = response.data.list;
             }
-          } 
+          }
         },
         function (err) {
           console.log(err);
@@ -602,6 +642,29 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
       );
     }
   };
+
+  $scope.getDefaultSetting = function () {
+
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/default_setting/get",
+      data: {}
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.doc) {
+          $scope.defaultSettings = response.data.doc;
+        };
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+
+  };
+  $scope.getDefaultSetting();
 
   $scope.loadItemsGroups();
   $scope.loadAll();

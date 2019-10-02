@@ -1,7 +1,7 @@
 [{
-    "module_name" : "inventory" ,
+    "module_name" : "public" ,
     "name": "order_invoice_admin",
     "en": "Order Invoice Admin",
-    "ar": "إدارةشاشة الطلبات",
+    "ar": "إدارة شاشة الطلبات",
     "permissions": ["order_invoice_manage"]
 }]

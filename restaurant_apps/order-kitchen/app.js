@@ -1,5 +1,5 @@
 module.exports = function init(site) {
-  const $order_kitchen = site.connectCollection("order_kitchen")
+  const $order_invoice = site.connectCollection("order_invoice")
 
   site.get({
     name: "order_kitchen",
@@ -9,7 +9,41 @@ module.exports = function init(site) {
   })
 
 
-  site.post("/api/order_kitchen/display_items", (req, res) => {
+  site.post("/api/order_kitchen/active_all", (req, res) => {
+    let response = {
+      done: false
+    }
+    let where = req.body.where || {}
+
+    where['company.id'] = site.get_company(req).id
+    where['branch.code'] = site.get_branch(req).code
+    where['status.id'] = 1
+    
+      where['book_list.kitchen.id'] = where['kitchen'].id;
+      delete where['kitchen']
+    
+    $order_invoice.findMany({
+      select: req.body.select || {},
+      where: where,
+      sort: req.body.sort || {
+        id: -1
+      },
+      limit: req.body.limit
+    }, (err, docs, count) => {
+      if (!err) {
+        response.done = true
+        response.list = docs
+        response.count = count
+      } else {
+        response.error = err.message
+      }
+      res.json(response)
+    })
+  })
+
+
+  
+/*   site.post("/api/order_kitchen/display_items", (req, res) => {
     let response = {
       done: false
     };
@@ -81,7 +115,7 @@ module.exports = function init(site) {
       }
       res.json(response)
     })
-  })
+  }) */
 
 
 

@@ -71,6 +71,27 @@ app.controller("default_setting", function ($scope, $http) {
     )
   };
 
+  $scope.loadKitchens = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/kitchen/all",
+      data: {}
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.kitchensList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
   $scope.loadStores = function () {
     $scope.error = '';
     $scope.busy = true;
@@ -288,6 +309,7 @@ app.controller("default_setting", function ($scope, $http) {
   $scope.getDeliveryEmployeesList();
   $scope.getPaymentMethodList();
   $scope.getDiscountMethodList();
+  $scope.loadKitchens();
   $scope.getSourceType();
   $scope.loadSetting();
 });

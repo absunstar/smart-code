@@ -365,18 +365,10 @@ module.exports = function init(site) {
     }
     let where = req.body.where || {}
 
-    if (where['name']) {
-      where['name'] = new RegExp(where['name'], "i");
-    }
-
     where['company.id'] = site.get_company(req).id
     where['branch.code'] = site.get_branch(req).code
-    
-    if(where['id']){
-      where['book_list.kitchen.id'] = where['id'];
-    }
-
     where['status.id'] = 1
+   
     $order_invoice.findMany({
       select: req.body.select || {},
       where: where,
@@ -388,7 +380,6 @@ module.exports = function init(site) {
       if (!err) {
         response.done = true
         response.list = docs
-        console.log(count);
 
         response.count = count
       } else {

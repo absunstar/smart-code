@@ -38,11 +38,9 @@
                 </div>
                 <div class="top-actions">
                     <i-button x-permissions="stores_items_add || stores_items_manage" type="add"
-                        x-permissions="stores_items_add || stores_items_manage" label="##word.stores_items_new##"
-                        ng-click="newCategoryItem()"></i-button>
+                        label="##word.stores_items_new##" ng-click="newCategoryItem()"></i-button>
                     <i-button x-permissions="stores_items_search || stores_items_manage" type="search"
-                        x-permissions="stores_items_search || stores_items_manage" label="##word.search_all##"
-                        onclick="site.showModal('#Category_ItemSearchModal')"></i-button>
+                        label="##word.search_all##" onclick="site.showModal('#Category_ItemSearchModal')"></i-button>
 
                     <h3 class="bold text-center"> ##word.count## : {{count}}</h3>
 

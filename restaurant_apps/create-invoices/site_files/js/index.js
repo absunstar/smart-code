@@ -50,28 +50,22 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
-    }
-    else if ($scope.create_invoices.paid_up > 0 && !$scope.create_invoices.safe) {
+    } else if ($scope.create_invoices.paid_up > 0 && !$scope.create_invoices.safe) {
       $scope.error = "##word.should_select_safe##";
       return;
-    }
-    else if ($scope.create_invoices.total_tax > $scope.total_tax) {
+    } else if ($scope.create_invoices.total_tax > $scope.total_tax) {
       $scope.error = "##word.err_total_tax##";
       return;
-    }
-    else if ($scope.create_invoices.total_discount > $scope.total_discount) {
+    } else if ($scope.create_invoices.total_discount > $scope.total_discount) {
       $scope.error = "##word.err_total_discount##";
       return;
-    }
-    else if ($scope.create_invoices.price_delivery_service > $scope.price_delivery_service) {
+    } else if ($scope.create_invoices.price_delivery_service > $scope.price_delivery_service) {
       $scope.error = "##word.err_price_delivery_service##";
       return;
-    }
-    else if ($scope.create_invoices.service > $scope.service) {
+    } else if ($scope.create_invoices.service > $scope.service) {
       $scope.error = "##word.err_service##";
       return;
-    }
-    else if ($scope.create_invoices.paid_up > $scope.create_invoices.net_value) {
+    } else if ($scope.create_invoices.paid_up > $scope.create_invoices.net_value) {
       $scope.error = "##word.err_net_value##";
       return;
     }
@@ -518,6 +512,32 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
       )
     };
     $scope.getScreenType(); */
+
+
+  $scope.getDefaultSetting = function () {
+
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/default_setting/get",
+      data: {}
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.doc) {
+          $scope.defaultSettings = response.data.doc;
+        };
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+
+  };
+
+  $scope.getDefaultSetting();
+
   $scope.getCreatInvoicesList();
   $scope.getSourceType();
   $scope.getTransactionTypeList();

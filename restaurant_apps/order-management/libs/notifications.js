@@ -3,21 +3,21 @@ module.exports = function init(site) {
   let collection_name = 'create_invoices'
 
   let source = {
-    name: 'Report Invoices System',
-    ar: ' نظام إنشاء الفواتير'
+    name: 'Order MAnagement System',
+    ar: ' نظام إدارة الطلبات'
   }
 
   let image_url = '/images/create_invoices.png'
   let add_message = {
-    name: 'New Report Invoices Added',
+    name: 'New Order MAnagement Added',
     ar: 'تم إضافة فاتورة جديدة'
   }
   let update_message = {
-    name: ' Report Invoices Updated',
+    name: ' Order MAnagement Updated',
     ar: 'تم تعديل فاتورة'
   }
   let delete_message = {
-    name: ' Report Invoices Deleted',
+    name: ' Order MAnagement Deleted',
     ar: 'تم حذف فاتورة '
   }
 
