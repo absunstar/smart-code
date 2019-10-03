@@ -1,0 +1,25 @@
+[{
+        "id": 1,
+        "name": "new",
+        "ar": "جديد",
+        "en": "New"
+    } ,
+    {
+        "id": 2,
+        "name": "completed",
+        "ar": "مكتمل",
+        "en": "Completed"
+    },
+    {
+        "id": 3,
+        "name": "canceled",
+        "ar": "ملغي",
+        "en": "Canceled"
+    },
+    {
+        "id": 4,
+        "name": "reopened",
+        "ar": "معاد فتحه",
+        "en": "Reopened"
+    }
+]

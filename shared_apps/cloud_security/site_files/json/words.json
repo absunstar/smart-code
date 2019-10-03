@@ -46,8 +46,6 @@
     {"name" : "file_name" , "en" : "File Name" , "ar":"أسم الملف"},
     {"name" : "ar_lang" , "en" : "اللغة العربية" , "ar":"اللغة العربية"},
     {"name" : "en_lang" , "en" : "English" , "ar":"English"},
-    {"name" : "brand_title" , "en" : "Private Site" , "ar":"موقع شخصى"},
-    {"name" : "brand_tag" , "en" : "Just Template" , "ar":"تصميم مؤقت"},
     {"name" : "close" , "en" : "Close" , "ar":"أغلاق"},
     {"name" : "role_details" , "en" : "Role Details" , "ar":"تفاصيل الصفات"},
 

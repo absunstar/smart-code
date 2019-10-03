@@ -1,0 +1,26 @@
+<div ng-hide="busy" class="row">
+    <div id="basicInformation" class="tab-content">
+        <fieldset>
+            <legend> ##word.basic_information##</legend>
+            <div class="col9">
+                <table id="basicInformationTable" class="table">
+                    <tr>
+                        <td class="title">##word.jobs_name##</td>
+                        <td>{{job.name}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="title">##word.status##</td>
+                        <td ng-show="job.active == true"> ##word.active## </td>
+                        <td ng-show="job.active == false"> ##word.not_active## </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="col3">
+                <i-image view class="col3" ng-model="job.logo"></i-image>
+            </div>
+
+        </fieldset>
+    </div>
+</div>

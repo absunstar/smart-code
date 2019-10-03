@@ -1,0 +1,7 @@
+[{
+    "module_name" : "public" ,
+    "name": "developers_admin",
+    "en": "developers",
+    "ar": "إدارة المبرمجين",
+    "permissions": ["developers_manage"]
+}]

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="developers_ui || developers_manage" data-ng-app="myApp">
+
+<head x-import="head.html">
+
+</head>
+
+<body class="##session.lang##">
+
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+
+    </nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+
+    </nav>
+
+    <div id="main-layout" class="container">
+        <div class="row">
+            <div class="row" ng-controller="developers">
+                <div  x-import="developers/add_modal.html"></div>
+                <div  x-import="developers/update_modal.html"></div>
+                <div  x-import="developers/delete_modal.html"></div>
+                <div  x-import="developers/view_modal.html"></div>
+                <div  x-import="developers/search_all_modal.html"></div>
+
+                <div class="row">
+                    <h1 class="bold text-center">##word.developers##</h1>
+                </div>
+
+                <div class="top-actions">
+                    <i-button x-permissions="developers_add || developers_manage" type="add" label="##word.developers_new##" ng-click="displayAddDeveloper()"></i-button>
+
+                    <i-button x-permissions="developers_search || developers_manage" type="search" label="##word.search_all##" ng-click="()"></i-button>
+
+
+                    <h3  class="bold text-center"> ##word.count## : {{count}}</h3>
+                </div>
+
+                <table  class="table loaded" id="t1">
+                    <tr>
+                        <th class="not-print">##word.logo##</th>
+                        <th>##word.name##</th>
+                        <th>##word.points##</th>
+                        <th>##word.job##</th>
+                        <th>##word.mobile##</th>
+                        <th>##word.status##</th>
+                        <th class="not-print">##word.actions##</th>
+                    </tr>
+
+                    <tr ng-repeat="c in list">
+                        <td class="center not-print">
+                            <img class="logo" ng-src="{{c.logo}}">
+                        </td>
+                        <td class="center">{{c.name}}</td>
+                        <td class="center">{{c.points||0}}</td>
+                        <td class="center">{{c.job.name}}</td>
+                        <td class="center">{{c.mobile}}</td>
+                        <td class="center">
+                            <p ng-show="c.active ==true" class="green bold"> ##word.active## </p>
+                            <p ng-show="c.active ==false" class="red bold"> ##word.not_active## </p>
+                        </td>
+
+                        <td class="center not-print">
+                            <i-button x-permissions="developers_view || developers_manage" type="view" label="##word.details##" ng-click="displayDetailsDeveloper(c)"></i-button>
+
+                            <i-button x-permissions="developers_edit || developers_manage" type="edit" label="##word.edit##" ng-click="displayUpdateDeveloper(c)"></i-button>
+
+                            <i-button x-permissions="developers_delete || developers_manage" type="delete" label="##word.delete##" ng-click="displayDeleteDeveloper(c)"></i-button>
+                        </td>
+                    </tr>
+                </table>
+
+                <i-button x-permissions="developers_print || developers_manage"  type="print" label="##word.print##" onclick="site.print('#t1')"></i-button>
+
+                <i-button x-permissions="developers_export || developers_manage" type="export" label="##word.export_to_excel##" onclick="export_to_xlsx('t1' , 'developers.xlsx')"></i-button>
+            </div>
+        </div>
+    </div>
+
+    <div x-import="scripts.html"></div>
+    <script x-import="developers/index.js"></script>
+</body>
+
+</html>

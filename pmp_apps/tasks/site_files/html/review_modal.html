@@ -1,0 +1,31 @@
+<div id="reviewModal" class="modal">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.review_done##
+                <i class="fa fa-trash"></i>
+            </h2>
+        </div>
+
+        <div class="modal-body">
+
+            <div class="row">
+                <i-textarea class="col" label="##word.report##" ng-model="tasks.body"></i-textarea>
+            </div>
+
+        </div>
+
+        
+        <div class="modal-footer center">
+           
+                <h2 class="error"> {{error}} </h2>
+                <i-button type="save" label="##word.save##" ng-click="reviewTask(tasks)"></i-button>
+                
+            <i-button type="close" label="##word.close##" onclick="site.hideModal('#reviewModal')"> </i-button>
+
+        </div>
+    </div>
+
+</div>

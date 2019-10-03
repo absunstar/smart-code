@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="tasks_ui || tasks_manage || tasks_developer" data-ng-app="myApp">
+
+<head x-import="head.html">
+
+</head>
+
+<body class="##session.lang##">
+
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+
+    </nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+
+    </nav>
+
+    <div id="main-layout" class="container">
+        <div class="row">
+            <div class="row" ng-controller="tasks">
+                <div x-import="tasks/add_modal.html"></div>
+                <div x-import="tasks/update_modal.html"></div>
+                <div x-import="tasks/delete_modal.html"></div>
+                <div x-import="tasks/view_modal.html"></div>
+                <div x-import="tasks/search_all_modal.html"></div>
+                <div x-import="tasks/assign_modal.html"></div>
+                <div x-import="tasks/review_modal.html"></div>
+
+
+                <div class="row">
+                    <h1 class="bold text-center">##word.tasks##</h1>
+                </div>
+
+                <div class="top-actions">
+                    <i-button x-permissions="tasks_add || tasks_manage" type="add" label="##word.tasks_new##"
+                        ng-click="displayAddTask()"></i-button>
+
+                    <i-button x-permissions="tasks_search || tasks_manage || tasks_developer" type="search"
+                        label="##word.search_all##" ng-click="displaySearchModal()"></i-button>
+
+                    <i-button x-permissions="tasks_view || tasks_manage || tasks_developer" type="search"
+                        label="##word.new_tasks##" ng-click="getTaskList({'status.id':1})"></i-button>
+
+                    <i-button x-permissions="tasks_view || tasks_manage || tasks_developer" type="search"
+                        label="##word.my_assign_tasks##" ng-click="getTaskList({'status.id':2})"></i-button>
+
+                    <i-button x-permissions="tasks_view || tasks_manage || tasks_developer" type="search"
+                        label="##word.my_tasks##" ng-click="getTaskList({'status.id':5})"></i-button>
+
+                    <i-button x-permissions="tasks_view || tasks_manage || tasks_developer" type="search"
+                        label="##word.refused_tasks##" ng-click="getTaskList({'status.id':3})"></i-button>
+
+                    <i-button x-permissions="tasks_view || tasks_manage || tasks_developer" type="search"
+                        label="##word.pending_review_tasks##" ng-click="getTaskList({'status.id':6})"></i-button>
+
+                    <i-button x-permissions="tasks_view || tasks_manage || tasks_developer" type="search"
+                        label="##word.pending_test_tasks##" ng-click="getTaskList({'status.id':7})"></i-button>
+
+                    <i-button x-permissions="tasks_view || tasks_manage || tasks_developer" type="search"
+                        label="##word.tested_tasks##" ng-click="getTaskList({'status.id':8})"></i-button>
+
+                    <i-button x-permissions="tasks_view || tasks_manage || tasks_developer" type="search"
+                        label="##word.done_tasks##" ng-click="getTaskList({'status.id':9})"></i-button>
+
+                    <i-button x-permissions="tasks_view || tasks_manage || tasks_developer" type="search"
+                        label="##word.canceld_tasks##" ng-click="getTaskList({'status.id':10})"></i-button>
+
+                    <i-button x-permissions="tasks_view || tasks_manage || tasks_developer" type="search"
+                        label="##word.reopend_tasks##" ng-click="getTaskList({'status.id':11})"></i-button>
+
+
+                    <h3 class="bold text-center"> ##word.count## : {{count}}</h3>
+                </div>
+
+                <table x-permissions="tasks_view || tasks_manage || tasks_developer" class="table loaded" id="t1">
+                    <tr>
+                        <th class="not-print">##word.logo##</th>
+                        <th>##word.project##</th>
+                        <th>##word.name##</th>
+                        <th>##word.task_type##</th>
+                        <th>##word.apps##</th>
+                        <th>##word.developers##</th>
+                        <th>##word.percent##</th>
+                        <th>##word.time_period##</th>
+                        <th>##word.startup_date##</th>
+                        <th>##word.deadline_date##</th>
+                        <th>##word.task_status##</th>
+                        <th>##word.appointment_status##</th>
+
+                        <th class="not-print">##word.actions##</th>
+                    </tr>
+
+                    <tr ng-repeat="c in list">
+                        <td class="center not-print">
+                            <img class="logo" ng-src="{{c.logo}}">
+                        </td>
+                        <td class="center">{{c.project.name}}</td>
+                        <td class="center">{{c.name}}</td>
+                        <td class="center">
+                            <P ng-show="c.type.id === 1" class="green bold">{{c.type.ar}} </P>
+                            <P ng-show="c.type.id === 2" class="blue bold"> {{c.type.ar}} </P>
+
+                        </td>
+                        <td class="center">{{c.app.name}}</td>
+                        <td class="center">{{c.developer.name}}</td>
+                        <td class="center">{{c.percent}} %</td>
+                        <td class="center">{{c.time_period}} - {{c.times.ar}}</td>
+                        <td class="center">{{c.startup_date | date:"dd/MM/yyyy"}}</td>
+                        <td class="center">{{c.deadline_date | date:"dd/MM/yyyy"}}</td>
+
+                        <td class="center">
+                            <p class="status-new bold" ng-show="c.status.id === 1"> {{c.status['##session.lang##']}}
+                            </p>
+                            <p class="status-assign bold" ng-show="c.status.id === 2"> {{c.status['##session.lang##']}}
+                            </p>
+                            <p class="status-refused bold" ng-show="c.status.id === 3">
+                                {{c.status['##session.lang##']}} </p>
+                            <p class="status-pending bold" ng-show="c.status.id === 5">
+                                {{c.status['##session.lang##']}} </p>
+                            <p class="status-review bold" ng-show="c.status.id === 6"> {{c.status['##session.lang##']}}
+                            </p>
+                            <p class="status-test bold" ng-show="c.status.id === 7"> {{c.status['##session.lang##']}}
+                            </p>
+                            <p class="status-tested bold" ng-show="c.status.id === 8"> {{c.status['##session.lang##']}}
+                            </p>
+                            <p class="status-completed bold" ng-show="c.status.id === 9">
+                                {{c.status['##session.lang##']}} </p>
+                            <p class="status-cancel bold" ng-show="c.status.id === 10">
+                                {{c.status['##session.lang##']}} </p>
+                            <p class="status-reopen bold" ng-show="c.status.id === 11">
+                                {{c.status['##session.lang##']}} </p>
+
+
+
+
+
+
+
+
+                            <i-button x-permissions="tasks_manage" type="edit"
+                                ng-show="c.status.id == 3 || c.status.id ==11"
+                                ng-click="displayAssignTask(c)" label="##word.assign##"></i-button>
+
+                           
+                                
+                            <i-button x-permission="tasks_developer" type="delete"
+                                ng-show="c.status.id == 2 || c.status.id == 3 || c.status.id == 4 || c.status.id == 5"
+                                onclick="site.showModal('#refuseModal')" label="##word.refuse##"></i-button>
+
+                            <i-button x-permissions="tasks_developer" type="delete"
+                                ng-show=" c.status.id == 2 || c.status.id == 5"
+                                ng-click="cancelTask(c)" label="##word.cancel##"></i-button>
+
+                            <i-button x-permissions="tasks_developer" type="add" ng-show="c.status.id == 5"
+                                ng-click="doneTask(c)" label="##word.done##"></i-button>
+
+                            <i-button x-permissions="tasks_manage" type="add" ng-show="c.status.id == 6"
+                                ng-click="displayRefus(c)" label="##word.review_done##"></i-button>
+
+                            <i-button x-permissions="tasks_manage" type="add" ng-show="c.status.id == 7"
+                                ng-click="testTask(c)" label="##word.test_done##"></i-button>
+
+                            <i-button x-permissions="tasks_manage" type="add" ng-show="c.status.id == 8"
+                                ng-click="completeTask(c)" label="##word.complete_done##"></i-button>
+
+
+                                
+
+
+
+
+
+
+
+
+
+                        </td>
+
+                        <td class="center">
+                            <p class="status-new bold" ng-show="c.appointment_status.id === 1">
+                                <span x-permissions="tasks_developer">
+                                    ##word.un_appointment##
+                                    <i-button type="add" label="##word.application_request##"
+                                        ng-click="application_request(c)"></i-button>
+
+                                </span>
+                                <span x-permissions="tasks_manage">
+                                    ##word.under_way_appointment##
+                                    <p ng-repeat="user in c.developerList" ng-show="c.appointment_status.id === 1"  x-permissions="tasks_manage">
+                                        {{user.name}}
+                                        <i-button type="view" label="##word.accept##" ng-click="acceptToTask(c,user)">
+                                        </i-button>
+
+                                    </p>
+
+                                </span>
+
+                            </p>
+
+                            <p class="status-completed bold" ng-show="c.appointment_status.id === 2">
+                                ##word.done_appointment##
+                                <br>
+                                {{c.developers_tracking_list[c.developers_tracking_list.length-1].name.name || ''}}
+                            </p>
+
+                        </td>
+
+
+
+
+
+                        <td class="center not-print">
+                            <i-button x-permissions="tasks_view || tasks_manage || tasks_developer" type="view"
+                                label="##word.details##" ng-click="displayDetailsTask(c)"></i-button>
+
+                            <i-button x-permissions="tasks_edit || tasks_manage" type="edit" label="##word.edit##"
+                                ng-click="displayUpdateTask(c)"></i-button>
+
+                            <i-button x-permissions="tasks_delete || tasks_manage" type="delete" label="##word.delete##"
+                                ng-click="displayDeleteTask(c)"></i-button>
+
+                        </td>
+                    </tr>
+                </table>
+
+                <i-button x-permissions="print || tasks_manage || tasks_developer" type="print" label="##word.print##"
+                    onclick="site.print('#t1')"></i-button>
+
+                <i-button x-permissions="export || tasks_manage || tasks_developer" type="export"
+                    label="##word.export_to_excel##" onclick="export_to_xlsx('t1' , 'tasks.xlsx')"></i-button>
+            </div>
+        </div>
+    </div>
+
+    <div x-import="scripts.html"></div>
+    <script x-import="tasks/index.js"></script>
+</body>
+
+</html>

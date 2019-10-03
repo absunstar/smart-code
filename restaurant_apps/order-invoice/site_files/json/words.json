@@ -178,6 +178,10 @@
         "name": "open_orders",
         "en": "Open Orders",
         "ar": "الطلبات المفتوحة"
+    }, {
+        "name": "new_order",
+        "en": "New Order",
+        "ar": "طلب جديد"
     },
     {
         "name": "order_invoice_price",

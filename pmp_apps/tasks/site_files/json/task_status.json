@@ -1,0 +1,66 @@
+[{
+        "id": 1,
+        "name": "new",
+        "ar": "جديد",
+        "en": "New"
+    },
+    {
+        "id": 2,
+        "name": "assigned",
+        "ar": "موزعة",
+        "en": "Assigned"
+    },
+    {
+        "id": 3,
+        "name": "refused",
+        "ar": "مرفوضة",
+        "en": "Fefused"
+    },
+    {
+        "id": 4,
+        "name": "reassigned",
+        "ar": "معاد توزيعها",
+        "en": "Reassigned"
+    }, {
+        "id": 5,
+        "name": "pending",
+        "ar": "جاري التنفيذ",
+        "en": "Pending"
+    },
+    {
+        "id": 6,
+        "name": "pending_review",
+        "ar": "جاري المراجعة",
+        "en": "Pending Review"
+    },
+    {
+        "id": 7,
+        "name": "pending_test",
+        "ar": "جاري التجربة",
+        "en": "Pending Test"
+    },
+    {
+        "id": 8,
+        "name": "tested",
+        "ar": "تم تجربتها",
+        "en": "Tested"
+    },
+    {
+        "id": 9,
+        "name": "completed",
+        "ar": "مكتملة",
+        "en": "Completed"
+    },
+    {
+        "id": 10,
+        "name": "canceled",
+        "ar": "ملغية",
+        "en": "Canceled"
+    },
+    {
+        "id": 11,
+        "name": "reopened",
+        "ar": "معاد فتحها",
+        "en": "Reopened"
+    }
+]

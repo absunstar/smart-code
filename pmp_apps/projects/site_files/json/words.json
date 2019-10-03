@@ -1,0 +1,53 @@
+[{
+        "name": "projects",
+        "en": "Projects",
+        "ar": "المشاريع"
+    },
+    {
+        "name": "projects_new",
+        "en": "New Project",
+        "ar": "مشروع  جديد"
+    },
+
+    {
+        "name": "projects_add",
+        "en": "Add Project",
+        "ar": "اضافة مشروع "
+    },
+    {
+        "name": "projects_edit",
+        "en": "Edit Project",
+        "ar": "تعديل مشروع "
+    },
+    {
+        "name": "projects_details",
+        "en": "Project Details",
+        "ar": "تفاصيل المشروع "
+    },
+    {
+        "name": "projects_delete",
+        "en": "Delete Project",
+        "ar": "حذف مشروع "
+    },
+    {
+        "name": "projects_name",
+        "en": "Project Name",
+        "ar": "اسم المشروع "
+    }
+
+    ,
+    {
+        "name": "times_period",
+        "en": "Times Period",
+        "ar": "نوع المدة "
+    }
+    ,
+    {
+        "name": "project_already_exisit",
+        "en": "Project Alredy Exisit",
+        "ar": "المشروع مسجل بالفعل "
+    }
+
+
+
+]

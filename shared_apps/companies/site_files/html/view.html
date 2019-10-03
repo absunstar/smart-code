@@ -1,0 +1,152 @@
+<div ng-hide="busy" class="row">
+
+    <div class="tabs">
+        <div class="tabs-header full">
+            <a class="tab-link" onclick="site.showTabContent(event, '#basicInformation')">
+                ##word.companies_basic_information## </a>
+            <a class="tab-link" onclick="site.showTabContent(event, '#companiesBranches')">
+                ##word.companies_branches_informations## </a>
+            <a class="tab-link" onclick="site.showTabContent(event, '#bankingAndAccounting')">
+                ##word.companies_banking_informations## </a>
+        </div>
+
+        <div class="tabs-content full">
+            <div id="basicInformation" class="tab-content">
+                <fieldset>
+                    <legend> ##word.companies_informations## </legend>
+                    <div class="row">
+                        <div class="col9">
+                            <table id="companyBasicInformationTable" class="table bold center">
+                                <tr>
+                                    <td class="title"> ##word.companies_code## </td>
+                                    <td> {{company.code}} </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title"> ##word.companies_name_ar## </td>
+                                    <td> {{company.name_ar}} </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title"> ##word.companies_name_en## </td>
+                                    <td> {{company.name_en}} </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title"> ##word.status## </td>
+                                    <td class="green" ng-show="company.active == true"> ##word.active## </td>
+                                    <td class="red" ng-show="company.active == false"> ##word.not_active## </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title"> ##word.companies_activity## </td>
+                                    <td> {{company.activity.name}} </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title"> ##word.companies_calender_type## </td>
+                                    <td ng-show="company.calender_type == 'gegorian'"> ##word.companies_gegorian## </td>
+                                    <td ng-show="company.calender_type == 'hijri'"> ##word.companies_hijri## </td>
+                                </tr>
+
+
+                            </table>
+
+                        </div>
+
+                        <div class="col3">
+                            <i-image view ng-model="company.image_url"></i-image>
+                        </div>
+                        <i-button x-permission="print" type="print left not-print" onclick="site.print('#companyViewModal #companyBasicInformationTable')"></i-button>
+                    </div>
+                </fieldset>
+            </div>
+
+            <div id="companiesBranches" class="tab-content">
+                <fieldset ng-repeat="branch in company.branch_list">
+                    <legend> ##word.companies_branch_information## </legend>
+                    <table id="companiesBranchesTable" class="table bold ">
+                        <tr>
+                            <td class="title"> ##word.companies_branch_code## </td>
+                            <td class="center"> {{branch.code}} </td>
+                        </tr>
+
+                        <tr>
+                            <td class="title"> ##word.companies_branch_name_ar## </td>
+                            <td class="center"> {{branch.name_ar}} </td>
+                        </tr>
+
+                        <tr>
+                            <td class="title"> ##word.companies_branch_name_en## </td>
+                            <td class="center"> {{branch.name_en}} </td>
+                        </tr>
+
+                        <tr>
+                            <td class="title"> ##word.companies_branch_notes## </td>
+                            <td class="center"> {{branch.notes}} </td>
+                        </tr>
+
+                        <tr>
+                            <td class="title"> ##word.companies_gov## </td>
+                            <td class="center"> {{branch.gov.name}} </td>
+                        </tr>
+
+                        <tr>
+                            <td class="title"> ##word.companies_city## </td>
+                            <td class="center"> {{branch.city.name}} </td>
+                        </tr>
+
+                        <tr>
+                            <td class="title"> ##word.companies_address## </td>
+                            <td class="center"> {{branch.address}} </td>
+                        </tr>
+
+                        <tr>
+                            <td class="title"> ##word.companies_phone## </td>
+                            <td class="center"> {{branch.phone}} </td>
+                        </tr>
+
+                        <tr>
+                            <td class="title"> ##word.companies_mobile## </td>
+                            <td class="center"> {{branch.mobile}} </td>
+                        </tr>
+
+                        <tr>
+                            <td class="title"> ##word.companies_fax## </td>
+                            <td class="center"> {{branch.fax}} </td>
+                        </tr>
+
+                        <tr>
+                            <td class="title"> ##word.companies_email## </td>
+                            <td class="center"> {{branch.email}} </td>
+                        </tr>
+
+
+                    </table>
+                    <i-button x-permission="print" type="print left not-print" onclick="site.print('#companyViewModal #companiesBranchesTable')"></i-button>
+                </fieldset>
+            </div>
+
+            <div id="bankingAndAccounting" class="tab-content">
+                <fieldset ng-repeat="bank in company.bank_list">
+                    <legend> ##word.companies_bank_information## </legend>
+                    <table id="bankingAndAccountingTable" class="table">
+                        <tr>
+                            <td class="title"> ##word.companies_bank_information## </td>
+                            <td> {{bank.bank_name.name_ar}} </td>
+                        </tr>
+
+                        <tr>
+                            <td class="title"> ##word.companies_bank_account_number## </td>
+                            <td> {{bank.account_number}} </td>
+                        </tr>
+                    </table>
+                    <i-button x-permission="print" type="print left not-print" onclick="site.print('#companyViewModal #bankingAndAccountingTable')"></i-button>
+                </fieldset>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>

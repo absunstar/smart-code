@@ -1,0 +1,15 @@
+[{
+        "id": 1,
+        "name": "task",
+        "ar": "مهمة",
+        "en": "Task",
+        "logo" :"/images/task.png"
+    },
+    {
+        "id": 2,
+        "name": "user_story",
+        "ar": "حالة استخدام",
+        "en": "User Story",
+        "logo" :"/images/user_story.png"
+    }
+]

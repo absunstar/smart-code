@@ -49,16 +49,16 @@ module.exports = function init(site) {
     let y = new Date().getFullYear().toString().substr(2, 2)
     let m = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L'][new Date().getMonth()].toString()
     let d = new Date().getDate()
-    let lastCode = site.storage('ticket_last_code') || 0
-    let lastMonth = site.storage('ticket_last_month') || m
+    let lastCode = site.storage('order_last_code') || 0
+    let lastMonth = site.storage('order_last_month') || m
     if (lastMonth != m) {
       lastMonth = m
       lastCode = 0
     }
     lastCode++
-    site.storage('ticket_last_code', lastCode)
-    site.storage('ticket_last_month', lastMonth)
-    return y + lastMonth + addZero(d, 2) + addZero(lastCode, 4)
+    site.storage('order_last_code', lastCode)
+    site.storage('order_last_month', lastMonth)
+    return 'order-' + y + lastMonth + addZero(d, 2) + addZero(lastCode, 4)
   };
 
   site.get({
@@ -186,9 +186,12 @@ module.exports = function init(site) {
         if (!err, result) {
 
           response.done = true
-          if (!result.doc.active) {
-
+          response.doc = result.doc
+          if (!result.doc.reset_items && result.doc.status.id == 2) {
+            result.doc.reset_items = true
+            $order_invoice.update(result.doc)
             result.doc.book_list.forEach(itm => {
+              console.log('-')
               site.call('[order_invoice][stores_items][-]', Object.assign({}, itm))
             });
           }

@@ -262,17 +262,17 @@ module.exports = function init(site) {
     }
 
     site.security.register({
-      email: req.body.email,
-      password: req.body.password,
-      ip: req.ip,
-      permissions: ["user"],
-      profile: {
-        files: [],
-        name: req.body.email
+        email: req.body.email,
+        password: req.body.password,
+        ip: req.ip,
+        permissions: ["user"],
+        profile: {
+          files: [],
+          name: req.body.email
+        },
+        $req: req,
+        $res: res
       },
-      $req: req,
-      $res: res
-    },
       function (err, doc) {
         if (!err) {
           response.user = doc
@@ -314,13 +314,13 @@ module.exports = function init(site) {
     }
 
     site.security.login({
-      email: req.body.email,
-      password: req.body.password,
-      company: req.body.company,
-      branch: req.body.branch,
-      $req: req,
-      $res: res
-    },
+        email: req.body.email,
+        password: req.body.password,
+        company: req.body.company,
+        branch: req.body.branch,
+        $req: req,
+        $res: res
+      },
       function (err, user) {
         if (!err) {
 
@@ -434,18 +434,18 @@ module.exports = function init(site) {
     let role = req.data
     role.$req = req
     role.$res = res
-    
-      site.security.deleteRole(role, (err, doc) => {
-        if (!err) {
-          response.done = true
-        } else {
-          response.error = err.message
-        }
-        res.json(response)
-      })
-   
+
+    site.security.deleteRole(role, (err, doc) => {
+      if (!err) {
+        response.done = true
+      } else {
+        response.error = err.message
+      }
+      res.json(response)
+    })
+
   })
-  
+
 
 
 
@@ -462,43 +462,19 @@ module.exports = function init(site) {
     }
 
     let z = req.body
-    z.$req = req
-    z.$res = res
+    let w = []
 
-    let testFolder = site.dir + '/../apps/';
+    site.words.list.forEach(x => {
+      z.forEach(xx => {
+        if (xx.name.replace(/-/g, '_') == x.name) {
+          w.push(x);
+        }
+      })
+    })
 
-    fs.readdir(testFolder, (err, doc) => {
-      if (!err) {
-        response.done = true
-        let w = [];
-        doc.forEach(file => {
-          if (site.isFileExistsSync(site.dir + '/../apps/' + file + '/site_files/json/words.json') ) {
-            words = site.readFileSync(site.dir + '/../apps/' + file + '/site_files/json/words.json');
-            if (words) {
-              JSON.parse(words).forEach(x => {
-                z.forEach(xx => {
-                  if (xx.name.replace(/-/g, '_') == x.name) {
-                    w.push(x);
-                  }
+    response.doc = w
 
-                });
-              });
-
-            }
-
-          }
-
-        });
-
-
-        response.doc = w
-      } else {
-        response.error = err
-      }
-
-      res.json(response)
-
-    });
+    res.json(response)
 
   })
 

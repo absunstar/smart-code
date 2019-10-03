@@ -25,7 +25,7 @@
                     <th> ##word.table## </th>
                 </tr>
                 <tr class="pointer" ng-repeat="item in invoicesActivelist" ng-click="returnWaitingOrder(item)">
-                    <td> {{item.code}} </td>
+                    <td class="code"> {{item.code}} </td>
                     <td> {{item.customer.name_ar}} </td>
                     <td> {{item.delivery_employee.name}}</td>
                     <td> {{item.tables_group.name}} </td>

@@ -4,7 +4,6 @@
 <head x-import="head.html">
     <style>
         .order-invoice {
-            border-right: 1px solid #000;
             padding: 5px;
         }
 
@@ -104,6 +103,37 @@
             color: #fff;
             text-align: center;
         }
+
+        .code,
+        .code input {
+            color: blue;
+            font-weight: bold;
+            font-size: 22px;
+        }
+
+        .btn.save {
+            width: 200px;
+            height: 100px;
+            font-size: 22px;
+            padding-top: 30px;
+            background: #118011;
+            font-weight: bold;
+        }
+
+        .btn.exit {
+            width: 200px;
+            height: 100px;
+            font-size: 22px;
+            padding-top: 30px;
+            background: #e21212;
+            font-weight: bold;
+        }
+
+        .btn.new , .btn.view {
+            width: 150px;
+            height: 50px;
+            padding-top: 13px;
+        }
     </style>
 </head>
 
@@ -173,12 +203,22 @@
                     </div>
 
                     <div class="col6 order-invoice">
-                        <h2 class="bold text-center red">{{error}}</h2>
+                        <h2 class="bold  red">{{error}}</h2>
                         <div class="row">
+                            <div class="row">
+                                <i-button class="right" type="new" label="##word.new_order##"
+                                    ng-click="newOrderInvoice()">
+                                </i-button>
+                                <i-button type="view" label="##word.open_orders##"
+                                    ng-click="viewInvoicesActivelistList()" class="left">
+                                </i-button>
+                            </div>
+                            <i-control class="col3 code" disabled label="##word.code##" ng-model="order_invoice.code">
+                            </i-control>
+
                             <i-date2 class="col6" ng-model="order_invoice.date" label="##word.date##"></i-date2>
-                            <i-button type="view" label="##word.open_orders##" ng-click="viewInvoicesActivelistList()"
-                                class="col6 center">
-                            </i-button>
+
+
                         </div>
                         <div class="row">
                             <i-list ng-search="_search.$transaction_type" class="col4" display="ar"
@@ -189,23 +229,26 @@
                                 ng-search="_search.$order_invoice_employee" class="col4" display="name"
                                 ng-model="order_invoice.delivery_employee" label="##word.delivery_employee##"
                                 items="deliveryEmployeesList"></i-list>
+                            <div class="col8" ng-show="order_invoice.transaction_type.id == 1">
+                                <div class="row">
+                                    <i-list ng-search="_search.$tables_group" class="col4" display="name"
+                                        ng-change="getTablesList(order_invoice.tables_group)"
+                                        ng-model="order_invoice.tables_group" label="##word.tables_group##"
+                                        items="tablesGroupList">
+                                    </i-list>
+                                    <i-list ng-search="_search.$table" class="col4" display="name"
+                                        ng-model="order_invoice.table" label="##word.table##" items="tablesList">
+                                    </i-list>
+                                    <i-control class="col3" ng-model="order_invoice.service" label="##word.service##"
+                                        type="number" ng-change="calc()"></i-control>
+
+                                </div>
+
+                            </div>
                         </div>
 
-                        <div class="row" ng-show="order_invoice.transaction_type.id == 1">
 
-                            <i-list ng-search="_search.$tables_group" class="col4" display="name"
-                                ng-change="getTablesList(order_invoice.tables_group)"
-                                ng-model="order_invoice.tables_group" label="##word.tables_group##"
-                                items="tablesGroupList">
-                            </i-list>
-                            <i-list ng-search="_search.$table" class="col4" display="name"
-                                ng-model="order_invoice.table" label="##word.table##" items="tablesList">
-                            </i-list>
-                            <i-control class="col3" ng-model="order_invoice.service" label="##word.service##"
-                                type="number" ng-change="calc()"></i-control>
-
-                        </div>
-                        <fieldset>
+                        <fieldset ng-show="order_invoice.transaction_type.id == 2">
                             <legend> بيانات العميل </legend>
                             <div class="row">
 
@@ -244,17 +287,12 @@
                                     <i-control class="col6" label="##word.customers_address##"
                                         ng-model="order_invoice.address"></i-control>
 
-                                </div>
-                                <div class="row">
-                                    <i-control class="col3" label="##word.customers_phone##"
-                                        ng-model="order_invoice.customer_phone">
-                                    </i-control>
-
                                     <i-control class="col3" label="##word.customers_mobile##"
                                         ng-model="order_invoice.customer_mobile">
                                     </i-control>
 
                                 </div>
+
                             </div>
                         </fieldset>
 
@@ -410,7 +448,7 @@
                         <div class="row">
                             <i-control class="col6" ng-model="order_invoice.net_value" label="##word.net_value##"
                                 type="number" disabled></i-control>
-                            <div class="col6 center">
+                            <div class="col6 center" ng-hide="order_invoice.status.id == 2">
                                 <i-button type="save" label="##word.save##" ng-click="addOrderInvoice()">
                                 </i-button>
                                 <br>
@@ -423,7 +461,7 @@
 
                         </div>
 
-                        <div class="row center">
+                        <div class="row right">
                             <i-button x-permissions="order_invoice_print || order_invoice_manage" type="print"
                                 label="##word.print##" onclick="site.print('#t1')"></i-button>
 

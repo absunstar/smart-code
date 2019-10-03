@@ -1,0 +1,885 @@
+[{
+        "name": "brand_title",
+        "en": "Alsanta",
+        "ar": "ادارة المشاريع"
+    },
+    {
+        "name": "brand_tag",
+        "en": "Business Directory",
+        "ar": "البرمجية"
+    },
+    {
+        "name": "print",
+        "en": "Print",
+        "ar": "طباعة"
+    },
+    {
+        "name": "files",
+        "en": "Files",
+        "ar": "الملفات"
+    },
+    {
+        "name": "images",
+        "en": "Image",
+        "ar": "الصور"
+    },
+    {
+        "name": "date",
+        "en": "Date",
+        "ar": "التاريخ"
+    },
+
+    {
+        "name": "add",
+        "en": "Add",
+        "ar": "اضافة"
+    },
+    {
+        "name": "save",
+        "en": "Save",
+        "ar": "حفظ"
+    },
+    {
+        "name": "delete",
+        "en": "Delete",
+        "ar": "حذف"
+    },
+    {
+        "name": "update",
+        "en": "update",
+        "ar": "تعديل"
+    },
+    {
+        "name": "details",
+        "en": "Details",
+        "ar": "تفاصيل"
+    },
+    {
+        "name": "notes",
+        "en": "Notes",
+        "ar": "ملاحظات"
+    },
+
+    {
+        "name": "company_numbers",
+        "en": "Company Numbers",
+        "ar": "للتواصل"
+    },
+
+    {
+        "name": "mega_byte",
+        "en": "Mega",
+        "ar": "ميجا"
+    },
+    {
+        "name": "giga_byte",
+        "en": "Giga",
+        "ar": "جيجا"
+    },
+    {
+        "name": "le",
+        "en": "LE",
+        "ar": "جنيه"
+    },
+    {
+        "name": "search_all",
+        "en": "Search",
+        "ar": "بحث شامل"
+    },
+    {
+        "name": "months",
+        "en": "Months",
+        "ar": "شهور"
+    },
+    {
+        "name": "free",
+        "en": "Free",
+        "ar": " مجانا"
+    },
+    {
+        "name": "le",
+        "en": "LE",
+        "ar": " جنيه"
+    },
+    {
+        "name": "count",
+        "en": "Count",
+        "ar": "عدد النتائج"
+    },
+
+    {
+        "name": "name",
+        "en": "Name",
+        "ar": " الاسم"
+    },
+    {
+        "name": "address",
+        "en": "Address",
+        "ar": " العنوان"
+    },
+    {
+        "name": "phone",
+        "en": "Phone",
+        "ar": " التليفون"
+    },
+    {
+        "name": "mobile",
+        "en": "Mobile",
+        "ar": " المحمول"
+    },
+    {
+        "name": "fax",
+        "en": "Fax",
+        "ar": " الفاكس"
+    },
+    {
+        "name": "email",
+        "en": "Email",
+        "ar": " الايميل"
+    },
+    {
+        "name": "whatsapp",
+        "en": "Whats App",
+        "ar": " حساب الواتس اب"
+    },
+
+    {
+        "name": "facebook",
+        "en": "FaceBook",
+        "ar": " حساب الفيس بوك"
+    },
+    {
+        "name": "country",
+        "en": "Country",
+        "ar": " الدولة"
+    },
+    {
+        "name": "gov",
+        "en": "Gov",
+        "ar": " المحافظة"
+    },
+    {
+        "name": "city",
+        "en": "City",
+        "ar": " المدينة"
+    },
+    {
+        "name": "town",
+        "en": "Town",
+        "ar": " القرية"
+    },
+    {
+        "name": "village",
+        "en": "Village",
+        "ar": "المنطقة"
+    },
+    {
+        "name": "national_id",
+        "en": "National Id",
+        "ar": "الرقم القومي"
+    },
+    {
+        "name": "qualifications_and_scientific_expertise",
+        "en": "Qualifications and Scientific Expertise",
+        "ar": "المؤهلات والخبرات العلمية"
+    },
+
+    {
+        "name": "qualification",
+        "en": "Qualification",
+        "ar": "المؤهل"
+    },
+    {
+        "name": "qualification_source",
+        "en": "Qualification Source",
+        "ar": "مصدر المؤهل"
+    },
+    {
+        "name": "qualification_year",
+        "en": "Qualification Year",
+        "ar": "سنة الحصول علي المؤهل"
+    },
+
+    {
+        "name": "country",
+        "en": "Country",
+        "ar": "الدولة"
+    },
+    {
+        "name": "university",
+        "en": "University",
+        "ar": "الجامعة"
+    },
+
+
+    {
+        "name": "code_exist",
+        "en": "Code Exist",
+        "ar": "الكود مسجل بالفعل"
+    },
+
+    {
+        "name": "personal_information",
+        "en": "Personal Informations",
+        "ar": "البيانات الشخصية "
+    },
+
+    {
+        "name": "basic_information",
+        "en": "Basic Informations",
+        "ar": "البيانات الاساسية"
+    },
+
+    {
+        "name": "export_to_excel",
+        "en": "Export To Excel",
+        "ar": "تصدير الي اكسل"
+    },
+    {
+        "name": "close",
+        "en": "Close",
+        "ar": "اغلاق"
+    },
+
+    {
+        "name": "search",
+        "en": "Search",
+        "ar": "بحث"
+    },
+    {
+        "name": "empty_search",
+        "en": "Empty Search",
+        "ar": "تفريغ الحقول"
+    },
+
+    {
+        "name": "pending",
+        "en": "Pending",
+        "ar": "منتظر"
+    },
+    {
+        "name": "accepted",
+        "en": "Accepted",
+        "ar": "مقبول"
+    },
+    {
+        "name": "refused",
+        "en": "Refused",
+        "ar": "مرفوض"
+    },
+    {
+        "name": "refuse",
+        "en": "Refuse",
+        "ar": "رفض"
+    },
+
+
+    {
+        "name": "accept",
+        "en": "Accept",
+        "ar": "قبول"
+    },
+    {
+        "name": "refuse",
+        "en": "Refuse",
+        "ar": "رفض"
+    },
+    {
+        "name": "refuse_reason",
+        "en": "Refuse Reason",
+        "ar": "سبب الرفض"
+    },
+
+
+    {
+        "name": "due",
+        "en": "Due",
+        "ar": "المبلغ"
+    },
+    {
+        "name": "fees",
+        "en": "Fees",
+        "ar": "المصروفات"
+    },
+    {
+        "name": "total_due",
+        "en": "Total Due",
+        "ar": "الاجمالي"
+    },
+
+    {
+        "name": "logo",
+        "en": "Logo",
+        "ar": "الشعار"
+    },
+
+    {
+        "name": "status",
+        "en": "Status",
+        "ar": "الحالة"
+    },
+
+    {
+        "name": "active",
+        "en": "Active",
+        "ar": "نشط"
+    },
+    {
+        "name": "not_active",
+        "en": "Not Active",
+        "ar": "غير نشط"
+    },
+
+    {
+        "name": "menu_here",
+        "en": "Side Menu Here",
+        "ar": "القائمة الجانبيةهنا"
+    },
+    {
+        "name": "content_here",
+        "en": "Site Content Here",
+        "ar": "محتوى الصفحة هنا"
+    },
+
+    {
+        "name": "times_of_work",
+        "en": "TImes Of Work",
+        "ar": "مواعيد العمل"
+    },
+    {
+        "name": "day",
+        "en": "Day",
+        "ar": "اليوم"
+    },
+    {
+        "name": "from",
+        "en": "From",
+        "ar": "من"
+    },
+    {
+        "name": "to",
+        "en": "To",
+        "ar": "الي"
+    },
+    {
+        "name": "first_period",
+        "en": "First Period",
+        "ar": "الفترة الاولي"
+    }
+
+    ,
+    {
+        "name": "first_period",
+        "en": "First Period",
+        "ar": "الفترة الاولي"
+    },
+    {
+        "name": "break",
+        "en": "Break",
+        "ar": "الراحة"
+    }
+
+    ,
+    {
+        "name": "second_period",
+        "en": "Second Period",
+        "ar": "الفترة الثانية"
+    },
+    {
+        "name": "work_time",
+        "en": "Work Time",
+        "ar": "مواعيد العمل"
+    },
+    {
+        "name": "client_departments",
+        "en": "Client Departments",
+        "ar": "الاقسام"
+    }
+
+    ,
+    {
+        "name": "departments_information",
+        "en": "Department Informations",
+        "ar": "بيانات الاقسام"
+    },
+    {
+        "name": "department_information",
+        "en": "Department Information",
+        "ar": "بيانات قسم"
+    },
+    {
+        "name": "department_name",
+        "en": "Department Name",
+        "ar": "اسم القسم "
+    },
+    {
+        "name": "vacation",
+        "en": "Vacation",
+        "ar": "اجازة "
+    },
+    {
+        "name": "position",
+        "en": "Position",
+        "ar": "الدرجة الوظيفية "
+    },
+    {
+        "name": "description",
+        "en": "Description",
+        "ar": "الوصف "
+    },
+    {
+        "name": "apps",
+        "en": "Apps",
+        "ar": "الانظمة "
+    },
+    {
+        "name": "project",
+        "en": "Project",
+        "ar": "المشروع "
+    },
+    {
+        "name": "done",
+        "en": "Done",
+        "ar": "تم "
+    },
+    {
+        "name": "review_by",
+        "en": "Review By",
+        "ar": "مراجعة الكود "
+    },
+    {
+        "name": "task_assignment",
+        "en": "Task Assignment",
+        "ar": "انجاز المهام "
+    },
+    {
+        "name": "percent",
+        "en": "Task Percent",
+        "ar": "نسبة الاكتمال "
+    },
+    {
+        "name": "time_period",
+        "en": "Task Period",
+        "ar": "المدة "
+    },
+    {
+        "name": "auto_startup",
+        "en": "Auto startUP",
+        "ar": "بدء تلقائي "
+    },
+    {
+        "name": "startup_date",
+        "en": "StartuP Date",
+        "ar": "تاريخ البداية "
+    },
+    {
+        "name": "deadline_date",
+        "en": "Deadline Date",
+        "ar": "تاريخ النهاية "
+    },
+    {
+        "name": "task_review",
+        "en": "Task Review",
+        "ar": "التقييم"
+    },
+    {
+        "name": "reassign",
+        "en": "Task reassign",
+        "ar": "اعادة توزيع"
+    }
+    ,
+    {
+        "name": "cancel",
+        "en": "Cancel",
+        "ar": "الغاء"
+    }
+    ,
+    {
+        "name": "task_status",
+        "en": "Task Status",
+        "ar": "حالة المهمة"
+    }
+    ,
+    {
+        "name": "minute",
+        "en": "Minute",
+        "ar": "دقيقة"
+    }
+    ,
+    {
+        "name": "code",
+        "en": "Code",
+        "ar": "الكود"
+    }
+    ,
+    {
+        "name": "job",
+        "en": "Job",
+        "ar": "الوظيفة"
+    },
+    {
+        "name": "github",
+        "en": "Github",
+        "ar": "حساب الجت هب"
+    }
+    ,
+    {
+        "name": "login_information",
+        "en": "Login Information",
+        "ar": "بيانات الدخول"
+    }
+    ,
+    {
+        "name": "username",
+        "en": "username",
+        "ar": "اسم المستخدم"
+    },
+    {
+        "name": "password",
+        "en": "Password",
+        "ar": "كلمة المرور"
+    }
+    ,
+    {
+        "name": "skype",
+        "en": "Skype",
+        "ar": "حساب سكاي بي"
+    }
+    
+    ,
+    {
+        "name": "linkedin",
+        "en": "linkedin",
+        "ar": "حساب لينكد ان"
+    }
+       ,
+    {
+        "name": "assign",
+        "en": "assign",
+        "ar": "تعيين"
+    }
+    ,
+    {
+        "name": "accept",
+        "en": "Accept",
+        "ar": "قبول"
+    }
+    ,
+    {
+        "name": "report",
+        "en": "Report",
+        "ar": "التقرير"
+    }
+    ,
+    {
+        "name": "points",
+        "en": "Points",
+        "ar": "النقاط"
+    }
+    ,
+    {
+        "name": "review_done",
+        "en": "Review Done",
+        "ar": "تم المراجعة"
+    }
+   
+    ,
+    {
+        "name": "test_done",
+        "en": "Test Done",
+        "ar": "تم التجربة"
+    }
+    ,
+    {
+        "name": "complete_done",
+        "en": "Compelte Done",
+        "ar": "مكتملة"
+    }
+    ,
+    {
+        "name": "reopen",
+        "en": "Reopen",
+        "ar": "اعادة فتح"
+    }
+    ,
+    {
+        "name": "my_tasks",
+        "en": "My Tasks",
+        "ar": "مهامي"
+    }
+    ,
+    {
+        "name": "new_tasks",
+        "en": "New Tasks",
+        "ar": "المهام الجديدة"
+    }
+    ,
+    {
+        "name": "my_assign_tasks",
+        "en": "My Assign Tasks",
+        "ar": "المهام الموزعة لي "
+    }
+    
+    ,
+    {
+        "name": "yes",
+        "en": "Yes",
+        "ar": "نعم "
+    }
+
+    ,
+    {
+        "name": "no",
+        "en": "No",
+        "ar": "لا "
+    }
+    ,
+    {
+        "name": "time",
+        "en": "Time",
+        "ar": "الوقت "
+    },
+    {
+        "name": "companies",
+        "en": "Companies",
+        "ar": "الشركات"
+    }
+    ,
+    {
+        "name": "companies_name_ar",
+        "en": "Name AR",
+        "ar": "الاسم بالعربى"
+    }
+    ,
+    {
+        "name": "companies_name_en",
+        "en": "Name EN",
+        "ar": "الاسم بالانجليزى"
+    },
+    {
+        "name": "companies_add",
+        "en": "Add Company",
+        "ar": "اضافة شركة"
+    },
+    {
+        "name": "companies_edit",
+        "en": "Edit Company",
+        "ar": "تعديل شركة"
+    },
+    {
+        "name": "companies_informations",
+        "en": "Company Informations",
+        "ar": "بيانات الشركة"
+    },
+    {
+        "name": "companies_basic_information",
+        "en": "Basic Informations",
+        "ar": "البيانات الاساسية"
+    },
+    {
+        "name": "companies_contact_information",
+        "en": "Contact Informations",
+        "ar": "بيانات الاتصال"
+    },
+    {
+        "name": "companies_details",
+        "en": "Company Details",
+        "ar": "تفاصيل الشركة"
+    },
+    {
+        "name": "companies_delete",
+        "en": "Delete Company",
+        "ar": "حذف شركة"
+    },
+    {
+        "name": "companies_code",
+        "en": "Company Code",
+        "ar": "كود الشركة"
+    },
+    {
+        "name": "companies_phone",
+        "en": "Phone",
+        "ar": "التليفون"
+    },
+    {
+        "name": "companies_mobile",
+        "en": "Mobile",
+        "ar": "المحمول"
+    },
+    {
+        "name": "companies_activity",
+        "en": "Activity",
+        "ar": "النشاط"
+    },
+    {
+        "name": "companies_branches_informations",
+        "en": "Branches Informations",
+        "ar": "بيانات الفروع"
+    },
+    {
+        "name": "companies_branch",
+        "en": "Branch",
+        "ar": "الفرع"
+    },
+    {
+        "name": "companies_branch_information",
+        "en": "Branch Information",
+        "ar": "بيانات الفرع"
+    },
+    {
+        "name": "companies_contact_charge",
+        "en": "Charge Information",
+        "ar": "بيانات المسئول"
+    },
+    {
+        "name": "companies_branch_code",
+        "en": "Branch Code",
+        "ar": "كود الفرع"
+    },
+    {
+        "name": "companies_branch_name",
+        "en": "Branch Name",
+        "ar": "اسم الفرع"
+    },
+    {
+        "name": "companies_branch_name_ar",
+        "en": "Branch Name Arabic",
+        "ar": "اسم الفرع بالعربى"
+    },
+    {
+        "name": "companies_branch_name_en",
+        "en": "Branch Name English",
+        "ar": "اسم الفرع بالانجليزى"
+    },
+    {
+        "name": "companies_branch_notes",
+        "en": "Branch Notes",
+        "ar": "ملاحظات الفرع"
+    },
+    {
+        "name": "companies_charge_name",
+        "en": "Charge Name",
+        "ar": "اسم المسئول"
+    },
+    {
+        "name": "companies_charge_job",
+        "en": "Charge Job",
+        "ar": "الوظيفة"
+    },
+    {
+        "name": "companies_internal_number",
+        "en": "Internal Number",
+        "ar": "الرقم الداخلي"
+    },
+    {
+        "name": "companies_banking_informations",
+        "en": "Banking Informations",
+        "ar": "البنوك"
+    },
+    {
+        "name": "companies_bank_information",
+        "en": "Bank Information",
+        "ar": "بيانات البنك"
+    },
+    {
+        "name": "companies_bank_name",
+        "en": "Bank Name",
+        "ar": "اسم البنك"
+    },
+    {
+        "name": "companies_bank_account_number",
+        "en": "Bank Account Number",
+        "ar": "رقم الحساب"
+    },
+    {
+        "name": "companies_filter_with_date",
+        "en": "Filter With Date",
+        "ar": "تصفية البيانات بالتاريخ"
+    },
+    {
+        "name": "companies_calender_type",
+        "en": "Calender Type",
+        "ar": "نوع التقويم"
+    },
+    {
+        "name": "companies_gegorian",
+        "en": "Gregorian",
+        "ar": "ميلادي"
+    },
+    {
+        "name": "companies_hijri",
+        "en": "Hijri",
+        "ar": "هجري"
+    },
+    {
+        "name": "companies_date",
+        "en": "Date",
+        "ar": "التاريخ"
+    },
+    {
+        "name": "companies_gov",
+        "en": "Gov",
+        "ar": "المحافظة"
+    },
+    {
+        "name": "companies_city",
+        "en": "City",
+        "ar": "المدينة"
+    },
+    {
+        "name": "companies_email",
+        "en": "Email",
+        "ar": "البريد الالكتروني"
+    },
+    {
+        "name": "companies_fax",
+        "en": "Fax",
+        "ar": "الفاكس"
+    },
+    {
+        "name": "companies_name",
+        "en": "Company Name",
+        "ar": "اسم الشركة"
+    },
+    {
+        "name": "companies_name_en",
+        "en": "Company Name English",
+        "ar": "اسم الشركة بالانجليزية"
+    },
+    {
+        "name": "companies_excahange_price",
+        "en": "Exchange Price",
+        "ar": "سعر الصرف"
+    },
+    {
+        "name": "companies_company_swift_code",
+        "en": "Swift Code",
+        "ar": "رقم السويفت"
+    },
+    {
+        "name": "companies_new",
+        "en": "New Company",
+        "ar": "شركة جديد"
+    },
+    {
+        "name": "companies_country",
+        "en": "Coutntry",
+        "ar": "الدولة"
+    },
+    {
+        "name": "companies_address",
+        "en": "Address",
+        "ar": "العنوان"
+    },
+    {
+        "name": "companies_customer_service",
+        "en": "Customer Services",
+        "ar": "خدمة العملاء"
+    },
+    {
+        "name": "companies_currency",
+        "en": "Company Currency",
+        "ar": "العمله الاساسيه للشركه"
+    }
+    
+]

@@ -90,15 +90,18 @@ app.controller("security", function ($scope, $http, $interval) {
           }).then(
             function (response) {
               let data = response.data.doc
-              $scope.trans = data;
-              $scope.screens.forEach(s => {
-                let newname = data.find(el => el.name == s.name.replace(/-/g, '_'));
-                if (newname) {
-
-                  s.name = newname.ar;
-                }
-
-              })
+              if(data){
+                $scope.trans = data;
+                $scope.screens.forEach(s => {
+                  let newname = data.find(el => el.name == s.name.replace(/-/g, '_'));
+                  if (newname) {
+                    s.name = newname.ar;
+                  }
+  
+                })
+              }
+             
+              
 
 
 
