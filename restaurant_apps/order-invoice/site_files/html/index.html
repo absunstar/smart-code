@@ -129,7 +129,8 @@
             font-weight: bold;
         }
 
-        .btn.new , .btn.view {
+        .btn.new,
+        .btn.view {
             width: 150px;
             height: 50px;
             padding-top: 13px;
@@ -158,8 +159,14 @@
                     x-import="order-invoice/delivery_service.html">
                 </div>
                 <div x-permissions="order_invoice_add || order_invoice_manage"
-                    x-import="order-invoice/change_item_count.html">
+                    x-import="order-invoice/select_table.html">
                 </div>
+                <div x-permissions="order_invoice_add || order_invoice_manage"
+                    x-import="order-invoice/merge_tables.html">
+                </div>
+                <!--  <div x-permissions="order_invoice_add || order_invoice_manage"
+                    x-import="order-invoice/change_item_count.html">
+                </div> -->
                 <div x-permissions="order_invoice_update || order_invoice_manage"
                     x-import="order-invoice/update_modal.html"></div>
                 <div x-permissions="order_invoice_delete || order_invoice_manage"
@@ -203,50 +210,45 @@
                     </div>
 
                     <div class="col6 order-invoice">
-                        <h2 class="bold  red">{{error}}</h2>
+                        <h2 class="bold center red">{{error}}</h2>
                         <div class="row">
                             <div class="row">
                                 <i-button class="right" type="new" label="##word.new_order##"
                                     ng-click="newOrderInvoice()">
                                 </i-button>
-                                <i-button type="view" label="##word.open_orders##"
-                                    ng-click="viewInvoicesActivelistList()" class="left">
+                                <i-button type="view" label="##word.open_orders##" ng-click="viewInvoicesActiveList()"
+                                    class="left">
                                 </i-button>
                             </div>
                             <i-control class="col3 code" disabled label="##word.code##" ng-model="order_invoice.code">
                             </i-control>
-
                             <i-date2 class="col6" ng-model="order_invoice.date" label="##word.date##"></i-date2>
-
-
                         </div>
+
                         <div class="row">
                             <i-list ng-search="_search.$transaction_type" class="col4" display="ar"
                                 ng-model="order_invoice.transaction_type" label="##word.transaction_type##"
                                 items="transactionTypeList">
                             </i-list>
+                            <i-button ng-show="order_invoice.transaction_type.id == 1" type="edit"
+                                label="##word.merge_table##" ng-click="viewInvoicesTablesList()">
+                            </i-button>
                             <i-list ng-show="order_invoice.transaction_type.id == 2"
                                 ng-search="_search.$order_invoice_employee" class="col4" display="name"
                                 ng-model="order_invoice.delivery_employee" label="##word.delivery_employee##"
                                 items="deliveryEmployeesList"></i-list>
-                            <div class="col8" ng-show="order_invoice.transaction_type.id == 1">
-                                <div class="row">
-                                    <i-list ng-search="_search.$tables_group" class="col4" display="name"
-                                        ng-change="getTablesList(order_invoice.tables_group)"
-                                        ng-model="order_invoice.tables_group" label="##word.tables_group##"
-                                        items="tablesGroupList">
-                                    </i-list>
-                                    <i-list ng-search="_search.$table" class="col4" display="name"
-                                        ng-model="order_invoice.table" label="##word.table##" items="tablesList">
-                                    </i-list>
-                                    <i-control class="col3" ng-model="order_invoice.service" label="##word.service##"
-                                        type="number" ng-change="calc()"></i-control>
 
-                                </div>
-
+                            <div class="row" ng-show="order_invoice.transaction_type.id == 1">
+                                <i-button type="view" label="##word.select_table##" ng-click="showTable()">
+                                </i-button>
+                                <i-control class="col4" ng-model="order_invoice.table.name" label="##word.table##"
+                                    type="text" disabled></i-control>
+                                <i-control class="col2" ng-model="order_invoice.count_person"
+                                    label="##word.count_person##" type="number"></i-control>
+                                <i-control class="col2" ng-model="order_invoice.service" label="##word.service##"
+                                    type="number" ng-change="calc()"></i-control>
                             </div>
                         </div>
-
 
                         <fieldset ng-show="order_invoice.transaction_type.id == 2">
                             <legend> بيانات العميل </legend>
@@ -276,8 +278,8 @@
                                         ng-search="_search.$order_invoice.$area_search"></i-list>
 
                                 </div>
-                                <div class="row">
 
+                                <div class="row">
 
                                     <i-control ng-show="order_invoice.transaction_type.id == 2"
                                         ng-model="order_invoice.price_delivery_service"
@@ -443,7 +445,7 @@
                                 type="number" disabled></i-control>
 
                         </div>
-
+                        <h2 class="bold center red">{{error}}</h2>
 
                         <div class="row">
                             <i-control class="col6" ng-model="order_invoice.net_value" label="##word.net_value##"
@@ -472,7 +474,6 @@
 
             </div>
             <div class="top-actions">
-                <h2 class="bold text-center red">{{error}}</h2>
 
             </div>
 

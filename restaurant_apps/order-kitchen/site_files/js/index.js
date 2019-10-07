@@ -1,4 +1,4 @@
-app.controller("order_kitchen", function ($scope, $http) {
+app.controller("order_kitchen", function ($scope, $http, $interval) {
   $scope._search = {};
 
 
@@ -58,7 +58,7 @@ app.controller("order_kitchen", function ($scope, $http) {
           $scope.defaultSettings = response.data.doc;
           $scope.error = '';
           $scope.order_kitchen = {};
-          $scope.order_kitchen.kitchen = $scope.defaultSettings.general_Settings.kitchen
+          $scope.order_kitchen.kitchen = $scope.defaultSettings.general_Settings? $scope.defaultSettings.general_Settings.kitchen:null
           if($scope.order_kitchen.kitchen && $scope.order_kitchen.kitchen.id){
             $scope.orderKitchensList();
           }          
@@ -73,7 +73,6 @@ app.controller("order_kitchen", function ($scope, $http) {
 
   $scope.orderKitchensList = function () {
     $scope.busy = true;
-
     $http({
       method: "POST",
       url: "/api/order_kitchen/active_all",
@@ -85,6 +84,7 @@ app.controller("order_kitchen", function ($scope, $http) {
         $scope.busy = false;
         if (response.data.done) {
 
+          $scope.ordersList = [];
           response.data.list.forEach(ordersList => {
             ordersList.book_list_report = [];
             ordersList.book_list.forEach(book_list => {
@@ -92,9 +92,7 @@ app.controller("order_kitchen", function ($scope, $http) {
                 ordersList.book_list_report.push(book_list)
             });
           });
-
-          $scope.ordersList = response.data.list
-
+          $scope.ordersList = response.data.list          
         }
       },
       function (err) {

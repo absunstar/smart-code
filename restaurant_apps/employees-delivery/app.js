@@ -12,14 +12,19 @@ module.exports = function init(site) {
     }, (err, doc) => {
       if (!err && doc) {
         site.call('please add user', {
-          id : doc.id,
+          id: doc.id,
           email: doc.username,
           password: doc.password,
           roles: [{
-            name: "delivery_employee_list"
+            module_name: "public",
+            name: "delivery_employee_admin",
+            en: "Delivery Employee Admin",
+            ar: "ادارة موظفين التوصيل",
+            permissions: ["delivery_employee_manage"]
           }],
+          type: 'delivery',
           delivery_employee_id: doc.id,
-          branch_list : [{}],
+          branch_list: [{}],
           is_delivery_employee: true,
           profile: {
             name: doc.name,
@@ -45,7 +50,7 @@ module.exports = function init(site) {
         name_ar: doc.branch_list[0].name_ar
       },
       active: true
-    }, (err, doc) => {})
+    }, (err, doc) => { })
   })
 
   site.post({
@@ -94,10 +99,10 @@ module.exports = function init(site) {
     delivery_employee_doc.branch = site.get_branch(req)
 
     $delivery_employee_list.find({
-      
+
       where: {
-       'company.id' : site.get_company(req).id,
-       'branch.code' : site.get_branch(req).code,
+        'company.id': site.get_company(req).id,
+        'branch.code': site.get_branch(req).code,
 
         $or: [{
           'name': delivery_employee_doc.name
@@ -112,28 +117,61 @@ module.exports = function init(site) {
         response.error = 'Name , Phone Or mobile Exists'
         res.json(response)
       } else {
+
+        let user = {};
+        user = {
+          name: delivery_employee_doc.name,
+          mobile: delivery_employee_doc.mobile,
+          username: delivery_employee_doc.username,
+          email: delivery_employee_doc.username,
+          password: delivery_employee_doc.password,
+          image_url: delivery_employee_doc.image_url,
+          branch_list: [{}],
+          type: 'delivery',
+          is_employee: true
+        }
+
+        user.roles = [{
+          module_name: "public",
+          name: "delivery_employee_admin",
+          en: "Delivery Employee Admin",
+          ar: "ادارة موظفين التوصيل",
+          permissions: ["delivery_employee_manage"]
+        }]
+
+        user.profile = {
+          name: user.name,
+          mobile: user.mobile,
+          image_url: user.image_url
+        }
+
+        user.ref_info = {
+          id: delivery_employee_doc.id
+        }
+
         $delivery_employee_list.add(delivery_employee_doc, (err, doc) => {
           if (!err) {
             response.done = true
             response.doc = doc
 
-            site.call('please add user', {
-              id : doc.id,
-              email: doc.username,
-              password: doc.password,
-              roles: [{
-                name: "delivery_employee_list"
-              }],
-              delivery_employee_id: doc.id,
-              branch_list : [{}],
-              is_delivery_employee: true,
-              profile: {
-                name: doc.name,
-                mobile: doc.mobile,
-                image_url: delivery_employee_doc.image_url
-              }
-            })
-
+            if (user.password && user.username) {
+              user.delivery_employee_id = doc.id
+              site.security.addUser(user, (err, doc1) => {
+                if (!err) {
+                  delete user._id
+                  delete user.id
+                  doc.user_info = {
+                    id: doc1.id
+                  }
+                  $delivery_employee_list.edit(doc, (err2, doc2) => {
+                    res.json(response)
+                  })
+                } else {
+                  response.error = err.message
+                }
+                res.json(response)
+              })
+            }
           } else {
             response.error = err.message
           }
@@ -156,6 +194,37 @@ module.exports = function init(site) {
 
     let delivery_employee_doc = req.body
 
+    let user = {};
+    user = {
+      name: delivery_employee_doc.name,
+      mobile: delivery_employee_doc.mobile,
+      username: delivery_employee_doc.username,
+      email: delivery_employee_doc.username,
+      type: 'delivery',
+      password: delivery_employee_doc.password,
+      image_url: delivery_employee_doc.image_url,
+      branch_list: [{}],
+      is_employee: true
+    }
+
+    user.roles = [{
+      module_name: "public",
+      name: "delivery_employee_admin",
+      en: "Delivery Employee Admin",
+      ar: "ادارة موظفين التوصيل",
+      permissions: ["delivery_employee_manage"]
+    }]
+
+    user.profile = {
+      name: user.name,
+      mobile: user.mobile,
+      image_url: user.image_url
+    }
+
+    user.ref_info = {
+      id: delivery_employee_doc.id
+    }
+
     delivery_employee_doc.edit_user_info = site.security.getUserFinger({
       $req: req,
       $res: res
@@ -169,24 +238,30 @@ module.exports = function init(site) {
         set: delivery_employee_doc,
         $req: req,
         $res: res
-      }, err => {
+      }, (err, delivery_employee_doc) => {
         if (!err) {
           response.done = true
-          site.call('please add user', {
-            email: delivery_employee_doc.username,
-            password: delivery_employee_doc.password,
-            roles: [{
-              name: "delivery_employee_list"
-            }],
-            delivery_employee_id: delivery_employee_doc.id,
-            branch_list : [{}],
-            is_delivery_employee: true,
-            profile: {
-              name: delivery_employee_doc.name,
-              mobile: delivery_employee_doc.mobile,
-              image_url: delivery_employee_doc.image_url
-            }
-          })
+          user.delivery_employee_id = delivery_employee_doc.doc.id
+          if (!delivery_employee_doc.doc.user_info && user.password && user.username) {
+
+            site.security.addUser(user, (err, doc1) => {
+              if (!err) {
+                delete user._id
+                delete user.id
+                delivery_employee_doc.doc.user_info = {
+                  id: doc1.id
+                }
+                $delivery_employee_list.edit(delivery_employee_doc.doc, (err2, doc2) => { res.json(response) })
+              } else {
+                response.error = err.message
+              }
+              res.json(response)
+            })
+          } else if (delivery_employee_doc.doc.user_info && delivery_employee_doc.doc.user_info.id) {
+            
+            user.site.security.updateUser(user, (err, user_doc) => { })
+          }
+
         } else {
           response.error = 'Code Already Exist'
         }
@@ -341,7 +416,7 @@ module.exports = function init(site) {
       where['twitter'] = new RegExp(where['twitter'], "i");
     }
 
-    if (req.session.user.roles[0].name === 'delivery_employee_list') {
+    if (req.session.user.roles[0].name === 'delivery_employee_admin') {
       where['id'] = req.session.user.delivery_employee_id;
     }
 

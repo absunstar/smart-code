@@ -91,8 +91,12 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
     $scope.item.sizes.splice($scope.item.sizes.indexOf(itm), 1);
 
   };
-  
-  $scope.newStore_In = function () {
+  $scope.newStoreIn = function () {
+    $scope.getDefaultSettings();
+      site.showModal('#addStoreInModal');
+  };
+
+  $scope.getDefaultSettings = function () {
 
     $scope.busy = true;
     $http({
@@ -103,13 +107,13 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done && response.data.doc) {
-          $scope.defaultSettings = response.data.doc;          
+          $scope.defaultSettings = response.data.doc;
           $scope.error = '';
           $scope.item = {}
           $scope.store_in = {
             image_url: '/images/store_in.png',
-            vendor: $scope.defaultSettings.general_Settings.vendor,
-            store: $scope.defaultSettings.inventory.store,
+            vendor: $scope.defaultSettings.general_Settings ? $scope.defaultSettings.general_Settings.vendor : null,
+            store: $scope.defaultSettings.inventory ? $scope.defaultSettings.inventory.store : null,
             items: [],
             discountes: [],
             taxes: [],
@@ -117,7 +121,6 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
             date: new Date(),
             supply_date: new Date()
           };
-          site.showModal('#addStoreInModal');
         };
       },
       function (err) {
@@ -738,8 +741,10 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
     )
   };
 
-/*   $scope.loadStores_In();
- */  $scope.loadStoresInTypes();
+  /*   $scope.loadStores_In();
+   */
+
+  $scope.loadStoresInTypes();
   $scope.loadVendors();
   $scope.loadStores();
   $scope.loadCategories();

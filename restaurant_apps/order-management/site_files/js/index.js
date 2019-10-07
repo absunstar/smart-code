@@ -3,6 +3,11 @@ app.controller("order_management", function ($scope, $http, $timeout) {
 
   $scope.order_management = {};
 
+  $scope.showDetailes = function (order) {
+    $scope.order_management = order;
+    site.showModal('#reportInvoicesDetailsModal');
+
+  };
 
   $scope.updateOrderManagement = function (order) {
     $scope.error = '';
@@ -59,6 +64,25 @@ app.controller("order_management", function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         $scope.transactionTypeList = response.data;
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.getOrderStatusList = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $scope.orderStatusList = [];
+    $http({
+      method: "POST",
+      url: "/api/order_invoice/order_status/all"
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.orderStatusList = response.data;
       },
       function (err) {
         $scope.busy = false;
@@ -157,6 +181,26 @@ app.controller("order_management", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.getDefaultSettingsList = function () {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/default_setting/get",
+      data: {}
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.doc) {
+          $scope.defaultSettings = response.data.doc;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
   $scope.getOrderManagementList = function (where) {
     $scope.busy = true;
     $scope.list = [];
@@ -180,8 +224,8 @@ app.controller("order_management", function ($scope, $http, $timeout) {
             $scope.remain_amount += invoice.remain_amount;
             $scope.net_value += invoice.net_value;
             $scope.paid_up += invoice.paid_up;
-          });
-        }
+          })
+        };
       },
       function (err) {
         $scope.busy = false;
@@ -195,10 +239,12 @@ app.controller("order_management", function ($scope, $http, $timeout) {
     site.showModal('#employeeDeliveryModal');
   };
 
-  $scope.changDeliveryEmployee = function (document) {
-    $scope.updateOrderManagement(document);
-
+  $scope.postOrder = function (order) {
+    order.post = true;
+    order.reset_items = true;
+    $scope.updateOrderManagement(order);
   };
+
 
   $scope.returnToOrders = function (order) {
     order.status = {
@@ -221,5 +267,7 @@ app.controller("order_management", function ($scope, $http, $timeout) {
   $scope.getTransactionTypeList();
   $scope.getCustomerList();
   $scope.getTablesGroupList ();
+  $scope.getOrderStatusList();
   $scope.getDeliveryEmployeesList();
+  $scope.getDefaultSettingsList();
 });

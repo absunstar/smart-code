@@ -115,6 +115,16 @@
         "ar": "طلبات المطبخ"
     },
     {
+        "name": "order_distributor_menus",
+        "en": "Order Distributor Menu",
+        "ar": "قائمة الطلبات الموزعة"
+    },
+    {
+        "name": "order_distributor_management",
+        "en": "Order Distributor Management",
+        "ar": "إدارة الطلبات الموزعة"
+    },
+    {
         "name": "order_slides_menus",
         "en": "Order Slides Menu",
         "ar": "قائمة شرائح الطلبات"

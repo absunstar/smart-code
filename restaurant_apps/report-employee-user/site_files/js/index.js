@@ -36,18 +36,9 @@ app.controller("report_employee_user", function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.list = response.data.list;
+        if (response.data.done && response.data.list) {
+          $scope.report_invoices = response.data.list;
           $scope.count = response.data.count;
-          $scope.total_user_service_price = 0;
-          $scope.net_value = 0;
-          $scope.paid_up = 0;
-          $scope.list.forEach(invoice => {
-            $scope.total_user_service_price += invoice.price_user_service;
-            $scope.remain_amount += invoice.remain_amount;
-            $scope.net_value += invoice.net_value;
-            $scope.paid_up += invoice.paid_up;
-          });
         }
       },
       function (err) {
@@ -64,6 +55,5 @@ app.controller("report_employee_user", function ($scope, $http, $timeout) {
     $scope.search = {}
   };
 
-  $scope.getReportEmployeeUserList();
   $scope.getUserEmployeesList();
 });

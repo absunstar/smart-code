@@ -91,7 +91,7 @@ module.exports = function init(site) {
         doc.items.forEach(itm => {
           itm.company = doc.company
           itm.branch = doc.branch
-          site.call('[stores_out][stores_items][+]', itm) 
+          site.call('[order_invoice][stores_items][-]', Object.assign({}, itm))
 
         });
 
@@ -111,7 +111,6 @@ module.exports = function init(site) {
 
           site.call('[stores_out][safes][+]', obj)
         }
-
 
         stores_out_doc.items.forEach(itm => {
           itm.company = stores_out_doc.company

@@ -25,6 +25,32 @@
         "ar": "كود الفاتورة"
     },
     {
+        "name": "order_status",
+        "en": "Order Status",
+        "ar": "حالة الطلب"
+    },
+
+    {
+        "name": "order_add_count",
+        "en": "Order Add Count",
+        "ar": "عدد الطلبات المضافة"
+    },
+    {
+        "name": "invoice_close_count",
+        "en": "Order Close Count",
+        "ar": "عدد الطلبات المغلقة"
+    },
+    {
+        "name": "order_add",
+        "en": "Order Add",
+        "ar": "الطلبات المضافة"
+    },
+    {
+        "name": "invoice_close",
+        "en": "Order Close",
+        "ar": "الطلبات المغلقة"
+    },
+    {
         "name": "total_net_values",
         "en": "Total Net Values",
         "ar": "إجمالي القيم المطلوبة"

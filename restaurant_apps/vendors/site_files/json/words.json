@@ -10,13 +10,11 @@
     {"name" : "vendors_personal_information" , "en" : "Personal Information" , "ar" : "البيانات الشخصية"},
     {"name" : "vendors_basic_information" , "en" : "Basic Information" , "ar" : "البيانات الاساسية"},
     {"name" : "vendors_code" , "en" : "Vendor Code" , "ar" : "كود المورد"},
+    {"name" : "vendor_name" , "en" : "Vendor Name" , "ar" : "إسم المورد"},
     {"name" : "vendors_name_ar" , "en" : "Vendor Name Arabic" , "ar" : "إسم المورد بالعربي"},
     {"name" : "vendors_name_en" , "en" : "Vendor Name English" , "ar" : "إسم المورد بالانجليزية"},
 
-    
     {"name" : "vendors_groups" , "en" : "Vendor Group" , "ar" : "مجموعة الموردين"},
-
-
     {"name" : "vendors_id_inforamation" , "en" : "Personal Information" , "ar" : "بيانات الهوية"},
     {"name" : "vendors_nationality" , "en" : "Nationality" , "ar" : "الجنسية"},
     {"name" : "vendors_id_number" , "en" : "Id Number" , "ar" : "رقم الهوية"},

@@ -52,6 +52,7 @@
     {"name" : "item_transaction_previous_count" , "ar" : "  الرصيد السابق " , "en" : "Previous Count"},
 
     {"name" : "item_transaction_status" , "ar" : "الحالة  " , "en" : "status "},   
+    {"name" : "order_screen" , "ar" : "شاشة الطلبات" , "en" : "Order Screen"},   
 
     {"name" : "item_transaction_store_out_number" , "ar" : "رقم الأذن  " , "en" : "store number "},   
     {"name" : "item_transaction_ticket_code" , "ar" : "رقم الطلب  " , "en" : "ticket number "},   

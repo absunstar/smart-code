@@ -294,11 +294,12 @@ module.exports = function init(site) {
     $stores_items.busy23 = true
     $stores_items.find({
       'sizes.barcode': obj.barcode,
+      'sizes.size': obj.size,
     }, (err, doc) => {
       if (!err && doc) {
         doc.sizes.forEach(s => {
           if (s.barcode == obj.barcode) {
-            s.current_count = site.toNumber(s.current_count) - site.toNumber(obj.count)
+            s.current_count = site.toNumber(s.current_count) - site.toNumber(obj.count)            
             if (s.item_complex) {
               s.complex_items.forEach(s2 => {
                 s2.count = s2.count * obj.count
@@ -313,6 +314,34 @@ module.exports = function init(site) {
     })
   })
 
+/*   site.on('[order_invoice][stores_items][+]', obj => {
+    if ($stores_items.busy23) {
+      setTimeout(() => {
+        site.call('[order_invoice][stores_items][+]', Object.assign({}, obj))
+      }, 200);
+      return
+    }
+    $stores_items.busy23 = true
+    $stores_items.find({
+      'sizes.barcode': obj.barcode,
+    }, (err, doc) => {
+      if (!err && doc) {
+        doc.sizes.forEach(s => {
+          if (s.barcode == obj.barcode) {
+            s.current_count = site.toNumber(s.current_count) + site.toNumber(obj.count)
+            if (s.item_complex) {
+              s.complex_items.forEach(s2 => {
+                s2.count = s2.count * obj.count
+                site.call('[order_invoice][stores_items][+]', Object.assign({}, s2))
+              })
+            }
+          }
+        });
+        $stores_items.update(doc)
+        $stores_items.busy23 = false
+      }
+    })
+  }) */
 
   site.on('[stores_transfer][stores_items][+]', obj => {
     if ($stores_items.busy5) {

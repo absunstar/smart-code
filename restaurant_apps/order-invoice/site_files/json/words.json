@@ -10,9 +10,29 @@
         "ar": "قائمة أصناف جديد"
     },
     {
+        "name": "select_table",
+        "en": "Select Table",
+        "ar": "إختيار الطاولة"
+    },
+    {
+        "name": "count_person",
+        "en": "Count Person",
+        "ar": "عدد الأفراد"
+    },
+    {
+        "name": "merge_table",
+        "en": "Merge Tables",
+        "ar": "دمج الطاولات"
+    },
+    {
         "name": "transaction_type",
         "en": "Transaction Type",
         "ar": "نوع المعاملة"
+    },
+    {
+        "name": "err_book_list",
+        "en": "Must Add Items",
+        "ar": "يجب إضافة أصناف"
     },
     {
         "name": "err_transaction_type",
@@ -187,5 +207,10 @@
         "name": "order_invoice_price",
         "en": "Items Group Price",
         "ar": "سعر القائمة أصناف"
+    },
+    {
+        "name": "table_busy",
+        "en": "Table Busy",
+        "ar": "الطاولة مشغولة"
     }
 ]

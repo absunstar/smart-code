@@ -81,11 +81,16 @@ app.controller("report_invoices", function ($scope, $http, $timeout) {
           $scope.remain_amount = 0;
           $scope.net_value = 0;
           $scope.paid_up = 0;
+          $scope.total_tax = 0;
+          $scope.total_discount = 0;
           $scope.list.forEach(invoice => {
             $scope.remain_amount += invoice.remain_amount;
             $scope.net_value += invoice.net_value;
+            $scope.total_tax += invoice.total_tax;
+            $scope.total_discount += invoice.total_discount;
             
           });
+          $scope.paid_up = $scope.net_value - $scope.remain_amount
         }
       },
       function (err) {

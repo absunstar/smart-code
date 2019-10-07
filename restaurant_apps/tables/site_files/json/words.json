@@ -10,6 +10,21 @@
         "ar": "الطاولة"
     },
     {
+        "name": "booking",
+        "en": "Booking",
+        "ar": "الحجز"
+    },
+    {
+        "name": "reserved",
+        "en": "Reserved",
+        "ar": "محجوز"
+    },
+    {
+        "name": "available",
+        "en": "Available",
+        "ar": "متاح"
+    },
+    {
         "name": "table_name",
         "en": "Table Name",
         "ar": "إسم الطاولة"

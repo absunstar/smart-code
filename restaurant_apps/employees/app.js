@@ -12,14 +12,18 @@ module.exports = function init(site) {
     }, (err, doc) => {
       if (!err && doc) {
         site.call('please add user', {
-          id : doc.id,
+          id: doc.id,
           email: doc.username,
           password: doc.password,
           roles: [{
-            name: "employee_list"
+            module_name : "public" ,
+            name: "employee_admin",
+            en: "Employee Admin",
+            ar: "ادارة الموظفين",
+            permissions: ["employee_manage"]
           }],
           employee_id: doc.id,
-          branch_list : [{}],
+          branch_list: [{}],
           is_employee: true,
           profile: {
             name: doc.name,
@@ -45,7 +49,7 @@ module.exports = function init(site) {
         name_ar: doc.branch_list[0].name_ar
       },
       active: true
-    }, (err, doc) => {})
+    }, (err, doc) => { })
   })
 
   site.post({
@@ -94,10 +98,10 @@ module.exports = function init(site) {
     employee_doc.branch = site.get_branch(req)
 
     $employee_list.find({
-      
+
       where: {
-       'company.id' : site.get_company(req).id,
-       'branch.code' : site.get_branch(req).code,
+        'company.id': site.get_company(req).id,
+        'branch.code': site.get_branch(req).code,
 
         $or: [{
           'name': employee_doc.name
@@ -112,28 +116,62 @@ module.exports = function init(site) {
         response.error = 'Name , Phone Or mobile Exists'
         res.json(response)
       } else {
+
+        let user = {};
+        user = {
+          name: employee_doc.name,
+          mobile: employee_doc.mobile,
+          username: employee_doc.username,
+          email: employee_doc.username,
+          password: employee_doc.password,
+          image_url: employee_doc.image_url,
+          branch_list: [{}],
+          is_employee: true
+        }
+
+        user.roles = [{
+          module_name : "public" ,
+            name: "employee_admin",
+            en: "Employee Admin",
+            ar: "ادارة الموظفين",
+            permissions: ["employee_manage"]
+        }]
+
+        user.profile = {
+          name: user.name,
+          mobile: user.mobile,
+          image_url: user.image_url
+        }
+
+        user.ref_info = {
+          id: employee_doc.id
+        }
+
         $employee_list.add(employee_doc, (err, doc) => {
           if (!err) {
             response.done = true
             response.doc = doc
 
-            site.call('please add user', {
-              id : doc.id,
-              email: doc.username,
-              password: doc.password,
-              roles: [{
-                name: "employee_list"
-              }],
-              employee_id: doc.id,
-              branch_list : [{}],
-              is_employee: true,
-              profile: {
-                name: doc.name,
-                mobile: doc.mobile,
-                image_url: employee_doc.image_url
-              }
-            })
 
+            if (user.password && user.username) {
+              user.employee_id = doc.id
+
+              site.security.addUser(user, (err, doc1) => {
+                if (!err) {
+                  delete user._id
+                  delete user.id
+                  doc.user_info = {
+                    id: doc1.id
+                  }
+                  $employee_list.edit(doc, (err2, doc2) => {
+                    res.json(response)
+                  })
+                } else {
+                  response.error = err.message
+                }
+                res.json(response)
+              })
+            }
           } else {
             response.error = err.message
           }
@@ -155,6 +193,35 @@ module.exports = function init(site) {
     }
 
     let employee_doc = req.body
+    let user = {};
+    user = {
+      name: employee_doc.name,
+      mobile: employee_doc.mobile,
+      username: employee_doc.username,
+      email: employee_doc.username,
+      password: employee_doc.password,
+      image_url: employee_doc.image_url,
+      branch_list: [{}],
+      is_employee: true
+    }
+
+    user.roles = [{
+      module_name : "public" ,
+      name: "employee_admin",
+      en: "Employee Admin",
+      ar: "ادارة الموظفين",
+      permissions: ["employee_manage"]
+    }]
+
+    user.profile = {
+      name: user.name,
+      mobile: user.mobile,
+      image_url: user.image_url
+    }
+
+    user.ref_info = {
+      id: employee_doc.id
+    }
 
     employee_doc.edit_user_info = site.security.getUserFinger({
       $req: req,
@@ -169,24 +236,28 @@ module.exports = function init(site) {
         set: employee_doc,
         $req: req,
         $res: res
-      }, err => {
+      }, (err, employee_doc) => {
         if (!err) {
           response.done = true
-          site.call('please add user', {
-            email: employee_doc.username,
-            password: employee_doc.password,
-            roles: [{
-              name: "employee_list"
-            }],
-            employee_id: employee_doc.id,
-            branch_list : [{}],
-            is_employee: true,
-            profile: {
-              name: employee_doc.name,
-              mobile: employee_doc.mobile,
-              image_url: employee_doc.image_url
-            }
-          })
+          user.employee_id = employee_doc.doc.id
+
+          if (!employee_doc.doc.user_info && user.password && user.username) {
+            site.security.addUser(user, (err, doc1) => {
+              if (!err) {
+                delete user._id
+                delete user.id
+                employee_doc.doc.user_info = {
+                  id: doc1.id
+                }
+                $employee_list.edit(employee_doc.doc, (err2, doc2) => { res.json(response) })
+              } else {
+                response.error = err.message
+              }
+              res.json(response)
+            })
+          } else if (employee_doc.doc.user_info && employee_doc.doc.user_info.id)
+            site.security.updateUser(user, (err, user_doc) => {})
+
         } else {
           response.error = 'Code Already Exist'
         }
@@ -341,7 +412,7 @@ module.exports = function init(site) {
       where['twitter'] = new RegExp(where['twitter'], "i");
     }
 
-    if (req.session.user.roles[0].name === 'employee_list') {
+    if (req.session.user.roles[0].name === 'employee_admin') {
       where['id'] = req.session.user.employee_id;
     }
 

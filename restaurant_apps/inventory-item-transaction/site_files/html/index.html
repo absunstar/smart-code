@@ -80,6 +80,13 @@
                                     <br>
                                     <span class="blue">{{c.number}}</span>
                                 </p>
+                                <p class="text-center red bold" ng-show="c.current_status == 'order'">
+                                    ##word.order_screen##
+                                    <br>
+                                    <span class="">{{c.ticket_code}}</span>
+                                    <br>
+                                    <span class="blue">{{c.number}}</span>
+                                </p>
                                 <p class="text-center red bold" ng-show="c.current_status == 'sold'">
                                         ##word.item_transaction_current_status_4##
                                         <br>

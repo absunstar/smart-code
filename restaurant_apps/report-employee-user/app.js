@@ -26,6 +26,8 @@ module.exports = function init(site) {
 
     let where = req.data.where || {};
 
+    let employee = where.employee
+
     if (where['code']) {
       where['code'] = new RegExp(where['code'], 'i')
     };
@@ -56,16 +58,17 @@ module.exports = function init(site) {
       delete where.date_to
     };
 
-    if (where['user_employee']) {
-      where['user_employee.id'] = where['user_employee'].id;
-      delete where['user_employee']
-    };
+    $and = [
+      { 'add_user_info.id': where['employee'].user_info.id },
+      { 'edit_user_info.id': where['employee'].user_info.id },
+      delete where['employee']
+    ]
+
 
     where['status.id'] = {
       '$gte': 4,
       '$lte': 5
     };
-
 
     where['company.id'] = site.get_company(req).id
     where['branch.code'] = site.get_branch(req).code
@@ -78,7 +81,26 @@ module.exports = function init(site) {
     }, (err, docs, count) => {
       if (!err) {
         response.done = true
-        response.list = docs
+        let add_order = [];
+        let close_order = [];
+        docs.forEach(order => {
+          if (order.add_user_info && employee.user_info) {
+            if (order.add_user_info.id == employee.user_info.id) {
+              add_order.push(order)
+            }
+          }
+          if (order.edit_user_info && employee.user_info) {
+            if (order.edit_user_info.id == employee.user_info.id) {
+              close_order.push(order)
+            }
+          }
+        })
+        let doc = {
+          employee: employee,
+          add_order: add_order,
+          close_order: close_order
+        }
+        response.list = doc
         response.count = count
       } else {
         response.error = err.message

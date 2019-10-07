@@ -293,15 +293,22 @@ app.controller("notifications", function ($scope, $http, $interval) {
       $scope.vendor_group = n.add;
       site.showModal('#vendorGroupDetailsModal');
 
-    }else if (n.link.collection == 'customers') {
-      $scope.customer = n.delete;
+    } else if (n.link.collection == 'customers') {
+      $scope.customer = n.add;
       site.showModal('#customerDetailsModal');
       document.querySelector('#customerDetailsModal .tab-link').click();
 
     } else if (n.link.collection == 'customers_group') {
-      $scope.customer_group = n.delete;
+      $scope.customer_group = n.add;
       site.showModal('#customerGroupDetailsModal');
-      
+
+    } else if (n.link.collection == 'kitchen') {
+      $scope.kitchen = n.add;
+      site.showModal('#kitchenViewModal');
+    } else if (n.link.collection == 'order_slides') {
+      $scope.order_slides = n.add;
+      site.showModal('#viewOrderlidesModal');
+
     } else {
       site.showModal('#displayModal');
       $('#displayContent').html(site.toHtmlTable(n.add));
@@ -474,15 +481,21 @@ app.controller("notifications", function ($scope, $http, $interval) {
       $scope.vendor_group = n.update;
       site.showModal('#vendorGroupDetailsModal');
 
-    }else if (n.link.collection == 'customers') {
-      $scope.customer = n.delete;
+    } else if (n.link.collection == 'customers') {
+      $scope.customer = n.update;
       site.showModal('#customerDetailsModal');
       document.querySelector('#customerDetailsModal .tab-link').click();
 
     } else if (n.link.collection == 'customers_group') {
-      $scope.customer_group = n.delete;
+      $scope.customer_group = n.update;
       site.showModal('#customerGroupDetailsModal');
-      
+    } else if (n.link.collection == 'kitchen') {
+      $scope.kitchen = n.update;
+      site.showModal('#kitchenViewModal');
+    } else if (n.link.collection == 'order_slides') {
+      $scope.order_slides = n.update;
+      site.showModal('#viewOrderlidesModal');
+
     } else {
       site.showModal('#displayModal')
       $('#displayContent').html(site.toHtmlTable(n.update));
@@ -662,6 +675,12 @@ app.controller("notifications", function ($scope, $http, $interval) {
     } else if (n.link.collection == 'customers_group') {
       $scope.customer_group = n.delete;
       site.showModal('#customerGroupDetailsModal');
+    } else if (n.link.collection == 'kitchen') {
+      $scope.kitchen = n.delete;
+      site.showModal('#kitchenViewModal');
+    } else if (n.link.collection == 'order_slides') {
+      $scope.order_slides = n.delete;
+      site.showModal('#viewOrderlidesModal');
 
     } else {
       site.showModal('#displayModal')

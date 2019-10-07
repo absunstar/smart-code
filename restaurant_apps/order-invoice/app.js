@@ -76,14 +76,12 @@ module.exports = function init(site) {
     path: __dirname + '/site_files/json/order_status.json'
   });
 
-
   site.get({
     name: "order_invoice",
     path: __dirname + "/site_files/html/index.html",
     parser: "html",
     compress: true
   });
-
 
   site.post("/api/order_invoice/add", (req, res) => {
     let response = {
@@ -122,20 +120,41 @@ module.exports = function init(site) {
         en: "Opened",
         ar: "مفتوحة"
       }
-    }
+      if (order_invoice_doc.transaction_type && order_invoice_doc.transaction_type.id == 2) {
+        order_invoice_doc.status_delivery = {
+          id: 1,
+          en: "Under Delivery",
+          ar: "تحت التوصيل"
+        };
+      };
+
+    };
+
+    if (order_invoice_doc.transaction_type && order_invoice_doc.transaction_type.id == 1 && order_invoice_doc.table) {
+      let table = order_invoice_doc.table
+      table.busy = true
+      site.call('[order_invoice][tables][busy]', table)
+    };
+
     order_invoice_doc.total_book_list = 0
     order_invoice_doc.book_list.forEach(book_list => {
       order_invoice_doc.total_book_list += book_list.total_price
     });
 
     $order_invoice.add(order_invoice_doc, (err, doc) => {
-
       if (!err) {
         response.done = true
         response.doc = doc
-        if (!doc.active) {
+        if (doc.status && doc.status.id == 2 && doc.reset_items) {
           doc.book_list.forEach(itm => {
             site.call('[order_invoice][stores_items][-]', Object.assign({}, itm))
+            itm.company = result.doc.company
+            itm.branch = result.doc.branch
+            itm.number = result.doc.code
+            itm.current_status = 'order'
+            itm.date = result.doc.date
+            itm.transaction_type = 'out'
+            site.call('please out item', Object.assign({}, itm))
           });
         }
         if (doc.under_paid && doc.under_paid.order_invoice_id == null) {
@@ -174,6 +193,18 @@ module.exports = function init(site) {
       order_invoice_doc.total_book_list += book_list.total_price
     });
 
+    if (order_invoice_doc.transaction_type && order_invoice_doc.transaction_type.id == 1 && order_invoice_doc.table.id) {
+      if (order_invoice_doc.status.id == 2) {
+        let table = order_invoice_doc.table
+        table.busy = false
+        site.call('[order_invoice][tables][busy]', table)
+      }else if (order_invoice_doc.status.id == 1) {
+        let table = order_invoice_doc.table
+        table.busy = true
+        site.call('[order_invoice][tables][busy]', table)
+      }
+    };
+
     if (order_invoice_doc.id) {
       $order_invoice.edit({
         where: {
@@ -184,26 +215,30 @@ module.exports = function init(site) {
         $res: res
       }, (err, result) => {
         if (!err, result) {
-
           response.done = true
           response.doc = result.doc
-          if (!result.doc.reset_items && result.doc.status.id == 2) {
-            result.doc.reset_items = true
+          if (result.doc.reset_items && result.doc.status && result.doc.status.id == 2) {
             $order_invoice.update(result.doc)
             result.doc.book_list.forEach(itm => {
-              console.log('-')
               site.call('[order_invoice][stores_items][-]', Object.assign({}, itm))
-            });
-          }
+              itm.company = result.doc.company
+              itm.branch = result.doc.branch
+              itm.number = result.doc.code
+              itm.current_status = 'order'
+              itm.date = result.doc.date
+              itm.transaction_type = 'out'
+              site.call('please out item', Object.assign({}, itm))
+            })
+          };
         } else {
           response.error = 'Code Already Exist'
-        }
+        };
         res.json(response)
       })
     } else {
       response.error = 'no id'
       res.json(response)
-    }
+    };
   })
 
   site.post("/api/order_invoice/invoices_update", (req, res) => {
@@ -283,7 +318,16 @@ module.exports = function init(site) {
       return
     }
 
+    let order_invoice_doc = req.body
     let id = req.body.id
+    if (order_invoice_doc.transaction_type && order_invoice_doc.transaction_type.id == 1 && order_invoice_doc.table.id) {
+      if (order_invoice_doc.status.id == 2) {
+
+        let table = order_invoice_doc.table
+        table.busy = false
+        site.call('[order_invoice][tables][busy]', table)
+      }
+    };
 
     if (id) {
       $order_invoice.delete({
@@ -293,6 +337,7 @@ module.exports = function init(site) {
       }, (err, result) => {
         if (!err) {
           response.done = true
+
         } else {
           response.error = err.message
         }
@@ -371,7 +416,7 @@ module.exports = function init(site) {
     where['company.id'] = site.get_company(req).id
     where['branch.code'] = site.get_branch(req).code
     where['status.id'] = 1
-   
+
     $order_invoice.findMany({
       select: req.body.select || {},
       where: where,
@@ -452,7 +497,7 @@ module.exports = function init(site) {
 
     where['status.id'] = {
       '$gte': 2,
-      '$lt': 4
+      '$lt': 5
     }
 
 
@@ -477,169 +522,4 @@ module.exports = function init(site) {
       res.json(response)
     })
   })
-
-
-
-  /*   const $under_delivery = site.connectCollection("under_delivery")
-   */
-
-
-  /*  site.post("/api/under_delivery/delete", (req, res) => {
-     let response = {
-       done: false
-     }
- 
-     if (!req.session.user) {
-       response.error = 'Please Login First'
-       res.json(response)
-       return
-     }
- 
-     let id = req.body.id
- 
-     if (id) {
-       $under_delivery.delete({
-         id: id,
-         $req: req,
-         $res: res
-       }, (err, result) => {
-         if (!err) {
-           response.done = true
-         } else {
-           response.error = err.message
-         }
-         res.json(response)
-       })
-     } else {
-       response.error = 'no id'
-       res.json(response)
-     }
-   }) */
-
-  /* site.post("/api/under_delivery/all", (req, res) => {
-   let response = {
-     done: false
-   }
-
-   let where = req.body.where || {}
-
-   if (where['name']) {
-     where['name'] = new RegExp(where['name'], "i");
-   }
-
-   where['company.id'] = site.get_company(req).id
-   where['branch.code'] = site.get_branch(req).code
-
-   $under_delivery.findMany({
-     select: req.body.select || {},
-     where: where,
-     sort: req.body.sort || {
-       id: -1
-     },
-     limit: req.body.limit
-   }, (err, docs, count) => {
-     if (!err) {
-       response.done = true
-       response.list = docs
-       response.count = count
-     } else {
-       response.error = err.message
-     }
-     res.json(response)
-   })
- }) */
-
-  /*  site.post("/api/items_group_by_item/all", (req, res) => {
-     let response = {
-       done: false
-     }
- 
-     let where = {
-       'company.id': site.get_company(req).id,
-       'branch.id': site.get_branch(req).id,
-     }
- 
-     $items_group.findMany({
-       select: req.body.select || {},
-       where: where,
-       sort: req.body.sort || {
-         id: -1
-       },
-       limit: req.body.limit
-     }, (err, docs, count) => {
- 
-       response.done = true
-       response.list = docs
- 
-       $stores_items.findMany({
-         where: where
-       }, (err2, docs2, count2) => {
-         if (!err) {
-           response.done = true
- 
-           docs.forEach(el => {
-             docs2.forEach(itm => {
-               if (el.id == itm.item_group.id) {
-                 if (el.itemListn) {
-                   el.itemListn.push(itm)
-                 } else {
- 
-                   el.itemListn = [itm]
-                 }
-               }
-             })
-             response.list = docs
- 
-           });
-           response.count = count
-         } else {
-           response.error = err.message
-         }
-         res.json(response)
-       })
-     })
-   })
-  */
-
-  /*  site.post("/api/under_delivery/add", (req, res) => {
-    let response = {
-      done: false
-    }
-    if (!req.session.user) {
-      response.error = 'Please Login First'
-      res.json(response)
-      return
-    }
-  
-    let under_delivery_doc = req.body
-    under_delivery_doc.$req = req
-    under_delivery_doc.$res = res
-    delete under_delivery_doc.cr_it
-  
-    under_delivery_doc.add_user_info = site.security.getUserFinger({
-      $req: req,
-      $res: res
-    })
-  
-    if (typeof under_delivery_doc.active === 'undefined') {
-      under_delivery_doc.active = true
-    }
-  
-    under_delivery_doc.company = site.get_company(req)
-    under_delivery_doc.branch = site.get_branch(req)
-    under_delivery_doc.image_url = '/images/under_delivery.png'
-    $under_delivery.add(under_delivery_doc, (err, doc) => {
-      if (!err) {
-  
-        response.done = true
-        response.doc = doc
-  
-      } else {
-        response.error = err.message
-      }
-      res.json(response)
-    })
-  }) */
-
-
 }

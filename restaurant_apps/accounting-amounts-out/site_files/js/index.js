@@ -75,8 +75,12 @@ app.controller("amounts_out", function ($scope, $http) {
     $scope.loadAll(where, $scope.search.limit);
   };
 
+  $scope.newAmountOut = function () {
+    $scope.getDefaultSettings();
+    site.showModal('#addAmountOutModal');
+  };
 
-  $scope.newAmount_Out = function () {
+  $scope.getDefaultSettings = function () {
 
     $scope.busy = true;
     $http({
@@ -87,14 +91,13 @@ app.controller("amounts_out", function ($scope, $http) {
       function (response) {
         $scope.busy = false;
         if (response.data.done && response.data.doc) {
-          $scope.defaultSettings = response.data.doc;          
+          $scope.defaultSettings = response.data.doc;
           $scope.error = '';
           $scope.amount_out = {
             image_url: '/images/amount_out.png',
-            safe: $scope.defaultSettings.accounting.safe,
+            safe: $scope.defaultSettings.accounting ? $scope.defaultSettings.accounting.safe : null,
             date: new Date(),
           };
-          site.showModal('#addAmountOutModal');
         };
       },
       function (err) {

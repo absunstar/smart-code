@@ -13,8 +13,6 @@ module.exports = function init(site) {
     path: __dirname + '/site_files/images/'
   })
 
-
-
   site.post("/api/order_management/update", (req, res) => {
     let response = {
       done: false
@@ -43,27 +41,47 @@ module.exports = function init(site) {
         $res: res
       }, (err, result) => {
         if (!err, result) {
-
           response.done = true
 
-          
+          /*  if (result.doc.reset_items && result.doc.status.id == 1) {
+             $order_invoice.update(result.doc)
+             result.doc.book_list.forEach(itm => {
+               site.call('[order_invoice][stores_items][+]', Object.assign({}, itm))
+             })
+           } else */
 
-
-      /*     if (!result.doc.active) {
-
-            result.doc.book_list.forEach(itm => {
+          if (result.doc.reset_items && result.doc.status.id == 2 && result.doc.post) {
+            $order_invoice.update(result.doc)
+            result.doc.book_list.forEach(itm => {              
               site.call('[order_invoice][stores_items][-]', Object.assign({}, itm))
-            });
-          } */
+              itm.company = result.doc.company
+              itm.branch = result.doc.branch
+              itm.number = result.doc.code
+              itm.current_status = 'order'
+              itm.date = result.doc.date
+              itm.transaction_type = 'out'
+              site.call('please out item', Object.assign({}, itm))
+            })
+          };
+
+          if (result.doc.transaction_type && result.doc.transaction_type.id == 1 && result.doc.table.id) {
+
+            if (result.doc.status.id == 1) {
+              let table = result.doc.table
+              table.busy = true
+              site.call('[order_invoice][tables][busy]', table)
+            }
+          };
+
         } else {
           response.error = 'Code Already Exist'
-        }
+        };
         res.json(response)
       })
     } else {
       response.error = 'no id'
       res.json(response)
-    }
+    };
   })
 
 
@@ -134,10 +152,16 @@ module.exports = function init(site) {
       delete where['transaction_type']
     }
 
-    where['status.id'] = {
-      '$gte': 2,
-      '$lt': 4
+    if (where['order_status']) {
+      where['status.id'] = where['order_status'].id;
+      delete where['order_status']
     }
+
+    /*   where['status.id'] = {
+        '$gte': 2,
+        '$lte': 5
+      }
+   */
 
     where['company.id'] = site.get_company(req).id
     where['branch.code'] = site.get_branch(req).code

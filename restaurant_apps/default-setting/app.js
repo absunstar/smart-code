@@ -64,6 +64,24 @@ module.exports = function init(site) {
     })
   })
 
+  site.getDefaultSetting = function (option, callback) {
+    callback = callback || {}
+    $default_setting.get({
+    }, (err, doc) => {
+      if (!err && doc) {
+        callback(err, doc)
+      } else {
+        $default_setting.add({
+          company: site.get_company(option.req),
+          branch: site.get_branch(option.req)
+        }, (err2, doc2) => {
+          callback(err2, doc2)
+        })
+      }
+    })
+    return true;
+  }
+
  /*  site.getDefaultSetting = function (callback) {
     $default_setting.get({
     }, (err, doc) => {

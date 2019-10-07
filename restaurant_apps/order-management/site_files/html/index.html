@@ -39,7 +39,7 @@
                     <br>
                 </div>
 
-            <!--     <div class="row">
+                <!--     <div class="row">
                     <i-control id="item_name" class="col3" ng-model="net_value"
                         label="##word.order_management_total_required##" type="text" disabled></i-control>
                     <i-control id="item_name" class="col3" ng-model="paid_up" label="##word.total_paid_up##" type="text"
@@ -66,33 +66,37 @@
                     </tr>
 
                     <tr ng-repeat="c in list | orderBy : '-id'">
-                        <td class="not-print">
+                        <td ng-click="showDetailes(c)" class="pointer not-print">
                             <img class="logo" ng-src="{{c.image_url}}">
                         </td>
-                        <td class="brown"> {{c.date | date : 'dd - MM - yyyy'}} </td>
-                        <td class="blue"> {{c.code}} </td>
-                        <td> {{c.transaction_type.ar}} </td>
+                        <td ng-click="showDetailes(c)" class="pointer brown"> {{c.date | date : 'dd - MM - yyyy'}} </td>
+                        <td ng-click="showDetailes(c)" class="pointer blue"> {{c.code}} </td>
+                        <td ng-click="showDetailes(c)" class="pointer"> {{c.transaction_type.ar}} </td>
 
-                        <td class="blue"> {{c.total_book_list ||0}} </td>
-                        <td> {{c.total_tax ||0}} </td>
-                        <td> {{c.total_discount ||0}} </td>
-                        <td>
+                        <td ng-click="showDetailes(c)" class="pointer blue"> {{c.total_book_list ||0}} </td>
+                        <td ng-click="showDetailes(c)" class="pointer"> {{c.total_tax ||0}} </td>
+                        <td ng-click="showDetailes(c)" class="pointer"> {{c.total_discount ||0}} </td>
+                        <td ng-click="showDetailes(c)" class="pointer">
                             <p ng-show="c.service"> ##word.service## </p>
                             <p ng-show="c.service">{{c.service}}</p>
                             <p ng-show="c.price_delivery_service"> ##word.price_delivery_service## </p>
                             <p ng-show="c.price_delivery_service">{{c.price_delivery_service}}</p>
                         </td>
-                        <td> {{c.net_value}} </td>
+                        <td ng-click="showDetailes(c)" class="pointer"> {{c.net_value}} </td>
+                        <td ng-click="showDetailes(c)" class="pointer">{{c.status.ar}}</td>
                         <td>
-                            <p ng-show="c.active == true" class="green"> ##word.active## </p>
-                            <p ng-show="c.active == false" class="red"> ##word.not_active## </p>
-                        </td>
-                        <td>
-                            <i-button type="add" ng-show="c.transaction_type.id == 2"
+                            <i-button type="add"
+                                ng-show="c.transaction_type.id == 2 &&(c.status.id == 1 || c.status.id == 2) "
                                 x-permissions="order_management_add || order_management_manage"
                                 label="##word.set_employee_delivery##" ng-click="showDeliveryEmployee(c)"></i-button>
 
-                            <i-button type="exit" x-permissions="order_management_add || order_management_manage"
+                            <i-button type="save"
+                                ng-show="!c.reset_items && defaultSettings.general_Settings.discount_method.id == 2 && c.status.id == 2"
+                                x-permissions="order_management_add || order_management_manage" label="##word.post##"
+                                ng-click="postOrder(c)"></i-button>
+
+                            <i-button type="exit" ng-show="!c.reset_items && (c.status.id == 2)"
+                                x-permissions="order_management_add || order_management_manage"
                                 label="##word.return_to_order##" ng-click="returnToOrders(c)"></i-button>
                         </td>
                     </tr>

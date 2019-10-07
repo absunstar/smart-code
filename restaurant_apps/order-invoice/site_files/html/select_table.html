@@ -1,0 +1,50 @@
+<style>
+.table-busy{
+    border: 2px solid red !important;
+    cursor: not-allowed;
+}
+</style>
+<div id="showTablesModal" class="modal">
+    <div class="col2"></div>
+
+    <div class="modal-content col8">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.select_table##
+                <i class="fa fa-cart-plus"></i>
+            </h2>
+        </div>
+
+        <div class="modal-body">
+            <form class="form">
+                <div class="row" ng-repeat="g in tablesGroupList">
+
+                    <fieldset>
+                        <legend>{{g.name}}</legend>
+
+                        <div class="item-groups">
+                            <a ng-class="{'table-busy' : t.busy }" class="item pointer " ng-repeat="t in g.tables_list" ng-click="selectTable(t , g)"
+                                help-id="menu_monitor">
+                                <img ng-src="{{t.image_url}}">
+                                <h2>{{t.name}}</h2>
+                            </a>
+                        </div>
+
+                    </fieldset>
+
+                </div>
+
+            </form>
+        </div>
+
+        <h2 class="error"> {{error}} </h2>
+
+        <div class="modal-footer center">
+            <i-button type="close" label="##word.close##" onclick="site.hideModal('#showTablesModal')">
+            </i-button>
+
+        </div>
+    </div>
+    <div class="col2"></div>
+</div>

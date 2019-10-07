@@ -21,8 +21,8 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
           $scope.orderInvoicesTypeList = [];
 
           $scope.create_invoices = {
-            source_type: $scope.defaultSettings.general_Settings.source_type,
-            payment_method: $scope.defaultSettings.general_Settings.payment_method,
+            source_type: $scope.defaultSettings.general_Settings? $scope.defaultSettings.general_Settings.source_type: null,
+            payment_method: $scope.defaultSettings.general_Settings? $scope.defaultSettings.general_Settings.payment_method : null,
             image_url: '/images/create_invoices.png',
             date: new Date(),
             active: true,

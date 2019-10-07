@@ -5,6 +5,16 @@
         "ar": "إضافة عميل"
     },
     {
+        "name": "post",
+        "en": "Post",
+        "ar": "ترحيل"
+    },
+    {
+        "name": "order_status",
+        "en": "Order Status",
+        "ar": "حالة الطلب"
+    },
+    {
         "name": "report_invoices_informations",
         "en": "Report Invoices Informations",
         "ar": "بيانات تقرير فاتورة"

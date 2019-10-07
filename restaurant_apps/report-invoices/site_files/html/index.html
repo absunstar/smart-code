@@ -40,12 +40,18 @@
                 </div>
 
                 <div class="row">
-                    <i-control id="item_name" class="col3"
-                    ng-model="net_value" label="##word.report_invoices_total_required##" type="number" disabled ></i-control>
-                    <i-control id="item_name" class="col3"
-                    ng-model="paid_up" label="##word.total_paid_up##" type="number" disabled ></i-control>
-                    <i-control id="item_name" class="col3"
-                    ng-model="remain_amount" label="##word.report_invoices_total_remain##" type="number" disabled ></i-control>
+                    <i-control id="item_name" class="col3" ng-model="net_value"
+                        label="##word.report_invoices_total_required##" type="number" disabled></i-control>
+                    <i-control id="item_name" class="col3" ng-model="paid_up" label="##word.total_paid_up##"
+                        type="number" disabled></i-control>
+                    <i-control id="item_name" class="col3" ng-model="remain_amount"
+                        label="##word.report_invoices_total_remain##" type="number" disabled></i-control>
+                </div>
+                <div class="row">
+                    <i-control id="item_name" class="col3" ng-model="total_tax" label="##word.stores_out_total_tax##"
+                        type="number" disabled></i-control>
+                    <i-control id="item_name" class="col3" ng-model="total_discount" label="##word.stores_out_total_discount##"
+                        type="number" disabled></i-control>
                 </div>
 
                 <table class="table loaded center hover bold" id="t1">
@@ -76,11 +82,11 @@
                         <td> {{c.payment_method.ar}} </td>
                         <td> {{c.order_invoices_type.ar}} </td>
                         <td class="blue"> {{c.items_price ||0}} </td>
-                        <td> {{c.stores_out_total_tax ||0}} </td>
+                        <td> {{c.total_tax ||0}} </td>
                         <td> {{c.total_discount ||0}} </td>
                         <td>
-                            <p ng-show="c.service">{{c.service}} ##word.service## </p>
-                            <p ng-show="c.price_delivery_service"> ##word.price_delivery_service## </p>
+                            <p ng-show="c.service"> ##word.service## </p> <p ng-show="c.service">{{c.service}}</p>
+                            <p ng-show="c.price_delivery_service"> ##word.price_delivery_service## </p> <p ng-show="c.price_delivery_service">{{c.price_delivery_service}}</p>
                         </td>
                         <td> {{c.net_value}} </td>
                         <td> {{c.paid_up ||0}} </td>

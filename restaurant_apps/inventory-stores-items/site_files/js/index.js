@@ -61,7 +61,7 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
     $scope.complex_items = [];
     $scope.item = {
       image_url: '/images/sizes_img.png',
-      kitchen : $scope.item.kitchen
+      kitchen: $scope.item.kitchen
     };
   };
 
@@ -97,26 +97,32 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.newCategoryItem = function () {
-    $scope.error = '';
-    $scope.category_code = '';
-    $scope.item = {};
-    $scope.items_size = {};
-    $scope.category_item = {
-      image_url: '/images/category_item.png',
-      allow_sell: true,
-      allow_buy: true,
-      is_pos: true,
-      sizes: [],
-      with_discount: false
-    };
-    $scope.item = {
-      image_url: '/images/sizes_img.png'
-    };
+  /*  $scope.newCategoryItem = function () {
+     $scope.error = '';
+     $scope.category_code = '';
+     $scope.item = {};
+     $scope.items_size = {};
+     $scope.category_item = {
+       image_url: '/images/category_item.png',
+       allow_sell: true,
+       allow_buy: true,
+       is_pos: true,
+       sizes: [],
+       with_discount: false
+     };
+     $scope.item = {
+       image_url: '/images/sizes_img.png'
+     };
+     site.showModal('#addCategoryItemModal');
+   }; */
+
+   $scope.newCategoryItem = function () {
+    $scope.getDefaultSettings();
     site.showModal('#addCategoryItemModal');
+
   };
 
-  $scope.newCategoryItem = function () {
+  $scope.getDefaultSettings = function () {
 
     $scope.busy = true;
     $http({
@@ -128,7 +134,6 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done && response.data.doc) {
           $scope.defaultSettings = response.data.doc;
-
           $scope.error = '';
           $scope.category_code = '';
           $scope.item = {};
@@ -143,16 +148,15 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
           };
           $scope.item = {
             image_url: '/images/sizes_img.png',
-            kitchen: $scope.defaultSettings.general_Settings.kitchen
+            kitchen: $scope.defaultSettings.general_Settings ? $scope.defaultSettings.general_Settings.kitchen : null
           };
-          site.showModal('#addCategoryItemModal');
         };
       },
       function (err) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.add = function () {

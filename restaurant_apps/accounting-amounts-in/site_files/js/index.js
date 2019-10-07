@@ -4,8 +4,14 @@ app.controller("amounts_in", function ($scope, $http) {
   $scope.amount_in = {};
   $scope.search = {};
 
+  $scope.newAmountIn = function () {
+    $scope.getDefaultSettings();
+    site.showModal('#addAmountInModal');
+
+  };
+
  
-  $scope.newAmount_In = function () {
+  $scope.getDefaultSettings = function () {
 
     $scope.busy = true;
     $http({
@@ -20,10 +26,9 @@ app.controller("amounts_in", function ($scope, $http) {
           $scope.error = '';
           $scope.amount_in = {
             image_url: '/images/amount_in.png',
-            safe: $scope.defaultSettings.accounting.safe,
+            safe:$scope.defaultSettings.accounting? $scope.defaultSettings.accounting.safe : null,
             date: new Date(),
           };
-          site.showModal('#addAmountInModal');
         };
       },
       function (err) {

@@ -46,6 +46,7 @@
                         <th>##word.table_name##</th>
                         <th>##word.tables_min##</th>
                         <th>##word.tables_max##</th>
+                        <th>##word.booking##</th>
                         <th>##word.status##</th>
                         <th class="not-print">##word.actions##</th>
                     </tr>
@@ -58,7 +59,10 @@
                         <td class="center title">{{c.name}}</td>
                         <td class="center green">{{c.minimum}}</td>
                         <td class="center red">{{c.maxmum}}</td>
-
+                        <td class="center">
+                            <p ng-show="c.busy ==true" class="red"> ##word.reserved## </p>
+                            <p ng-show="c.busy ==false" class="green"> ##word.available## </p>
+                        </td>
                         <td class="center">
                             <p ng-show="c.active ==true" class="green"> ##word.active## </p>
                             <p ng-show="c.active ==false" class="red"> ##word.not_active## </p>

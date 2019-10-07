@@ -2,11 +2,11 @@
 
     <div class="row">
         <i-list class="col4" ng-model="order_kitchen.kitchen" items="kitchensList" display="name"
-            ng-search="_search.$search_kitchen" ng-change="orderKitchensList(kitchen)" label="##word.kitchen_name##">
+            ng-search="_search.$search_kitchen" ng-change="orderKitchensList()" label="##word.kitchen_name##">
         </i-list>
     </div>
 
-    <div ng-repeat="c in ordersList track by $index">
+    <div ng-repeat="c in ordersList ">
         <br>
 
         <h2 class="center">{{c.code}}</h2>

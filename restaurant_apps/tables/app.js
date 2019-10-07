@@ -13,16 +13,20 @@ module.exports = function init(site) {
     compress: true
   })
 
+  site.on('[order_invoice][tables][busy]', doc => { 
+    $tables.edit(doc) 
+  })
+
   site.on('[register][tables][add]', doc => {
 
     $tables.add({
-      tables_group : {
-        id : doc.id,
-        name : doc.name
+      tables_group: {
+        id: doc.id,
+        name: doc.name
       },
-      code: "1" ,
+      code: "1",
       name: "طاولة إفتراضية",
-
+      busy: false,
       image_url: '/images/tables.png',
       company: {
         id: doc.company.id,
@@ -33,7 +37,7 @@ module.exports = function init(site) {
         name_ar: doc.branch.name_ar
       },
       active: true
-    }, (err, doc) => {})
+    }, (err, doc) => { })
   })
 
 
@@ -63,7 +67,7 @@ module.exports = function init(site) {
 
     tables_doc.company = site.get_company(req)
     tables_doc.branch = site.get_branch(req)
-
+    tables_doc.busy = false
     $tables.find({
       where: {
         'company.id': site.get_company(req).id,
