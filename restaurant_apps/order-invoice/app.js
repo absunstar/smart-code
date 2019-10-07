@@ -319,14 +319,12 @@ module.exports = function init(site) {
     }
 
     let order_invoice_doc = req.body
+    console.log(order_invoice_doc)
     let id = req.body.id
-    if (order_invoice_doc.transaction_type && order_invoice_doc.transaction_type.id == 1 && order_invoice_doc.table.id) {
-      if (order_invoice_doc.status.id == 2) {
-
+    if (order_invoice_doc.table) {
         let table = order_invoice_doc.table
         table.busy = false
         site.call('[order_invoice][tables][busy]', table)
-      }
     };
 
     if (id) {

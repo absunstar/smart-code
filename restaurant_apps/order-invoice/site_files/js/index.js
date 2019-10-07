@@ -178,9 +178,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     $http({
       method: "POST",
       url: "/api/order_invoice/delete",
-      data: {
-        id: order.id
-      }
+      data: order
     }).then(
       function (response) {
         $scope.busy = false;
@@ -493,7 +491,9 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.getTablesList = function () {
+  $scope.getTablesList = function (callback) {
+    callback =callback || function(){};
+
     $scope.busy = true;
     $scope.tablesList = [];
     $http({
@@ -510,7 +510,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done && response.data.list.length > 0)
           $scope.tablesList = response.data.list;
-
+          callback()
       },
       function (err) {
         $scope.busy = false;
@@ -546,9 +546,9 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     $scope.getOrderInvoicesActiveList(() => {
 
       $scope.invoicesTablelist = [];
-      $scope.invoicesActivelist.forEach(invoicesActivelist => {
-        if (invoicesActivelist.transaction_type && invoicesActivelist.transaction_type.id == 1) {
-          $scope.invoicesTablelist.push(invoicesActivelist);
+      $scope.invoicesActivelist.forEach(t => {
+        if (t.transaction_type && t.transaction_type.id == 1 && t.id != $scope.order_invoice.id) {
+          $scope.invoicesTablelist.push(t);
         };
       });
 
@@ -556,6 +556,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         $scope.error = "##word.err_waiting_list_empty##";
         return;
       };
+
       site.showModal('#mergeTablesModal');
     });
   };
@@ -829,23 +830,29 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
       };
 
       if ($scope.order_invoice.transaction_type.id == 2) {
-
+        $scope.order_invoice.service = 0;
         $scope.order_invoice.price_delivery_service = $scope.order_invoice.price_delivery_service || 0;
       }
 
       if ($scope.order_invoice.transaction_type.id == 1) {
         $scope.order_invoice.service = $scope.order_invoice.service || 0;
+        $scope.order_invoice.price_delivery_service = 0;
+      }
+
+      if ($scope.order_invoice.transaction_type.id == 3) {
+        $scope.order_invoice.service = 0;
+        $scope.order_invoice.price_delivery_service = 0;
       }
 
 
 
-      if ($scope.order_invoice.transaction_type && $scope.order_invoice.transaction_type.id == 1) {
-        $scope.order_invoice.price_delivery_service = 0
-      }
+      /*if ($scope.order_invoice.transaction_type.id == 1 && $scope.order_invoice.service) {
+        $scope.order_invoice.service = $scope.order_invoice.total_value * $scope.order_invoice.service / 100;
+      }*/
 
-      if ($scope.order_invoice.transaction_type && $scope.order_invoice.transaction_type.id == 2) {
-        $scope.order_invoice.service = $scope.order_invoice.total_value * Number($scope.order_invoice.service) / 100;
-      }
+      /*if ($scope.order_invoice.transaction_type.id == 2 && $scope.order_invoice.price_delivery_service) {
+        $scope.order_invoice.price_delivery_service = $scope.order_invoice.total_value * $scope.order_invoice.price_delivery_service / 100;
+      }*/
 
       $scope.order_invoice.net_value = ($scope.order_invoice.total_value + ($scope.order_invoice.service || 0) + ($scope.order_invoice.total_tax || 0) + ($scope.order_invoice.price_delivery_service || 0)) - ($scope.order_invoice.total_discount || 0);
 
@@ -872,8 +879,10 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
 
   $scope.showTable = function () {
     $scope.error = '';
-    $scope.getTablesGroupList();
-    site.showModal('#showTablesModal');
+    $scope.getTablesList(()=>{
+      $scope.getTablesGroupList();
+      site.showModal('#showTablesModal');
+    });
   };
 
   $scope.selectTable = function (t , g) {
@@ -882,9 +891,25 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
       return;
     }
     $scope.error = '';
+    if($scope.order_invoice.table && $scope.order_invoice.table.id){
+      $scope.order_invoice.table.busy = false;
+      $http({
+        method: "POST",
+        url: "/api/tables/update",
+        data: $scope.order_invoice.table
+      });
+    }
     $scope.order_invoice.table = t;
+    $scope.order_invoice.table.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/tables/update",
+      data: $scope.order_invoice.table
+    });
     $scope.order_invoice.table_group = g;
     site.hideModal('#showTablesModal');
+    $scope.addOrderInvoice();
+   
   };
 
 

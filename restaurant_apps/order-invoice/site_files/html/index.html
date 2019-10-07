@@ -228,9 +228,9 @@
                         <div class="row">
                             <i-list ng-search="_search.$transaction_type" class="col4" display="ar"
                                 ng-model="order_invoice.transaction_type" label="##word.transaction_type##"
-                                items="transactionTypeList">
+                                items="transactionTypeList" ng-change="calc()">
                             </i-list>
-                            <i-button ng-show="order_invoice.transaction_type.id == 1" type="edit"
+                            <i-button ng-show="order_invoice.transaction_type.id == 1 && order_invoice.id" type="edit"
                                 label="##word.merge_table##" ng-click="viewInvoicesTablesList()">
                             </i-button>
                             <i-list ng-show="order_invoice.transaction_type.id == 2"
