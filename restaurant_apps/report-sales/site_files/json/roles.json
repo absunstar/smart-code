@@ -1,0 +1,7 @@
+[{
+    "module_name" : "accounting" ,
+    "name": "report_sales_admin",
+    "en": "Report Sales Admin",
+    "ar": "تقرير المبيعات",
+    "permissions": ["report_sales_manage"]
+}]

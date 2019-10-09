@@ -28,9 +28,13 @@ site.get({
 })
 
 site.loadLocalApp('client-side')
-site.importApp(__dirname + '/shared_apps/cloud_security' , 'security')
-site.importApp(__dirname + '/shared_apps/ui-print')
-site.importApp(__dirname + '/shared_apps/ui-help')
+site.importApp(__dirname + '/private_apps/cloud_security' , 'security')
+site.importApp(__dirname + '/private_apps/ui-print')
+site.importApp(__dirname + '/private_apps/ui-help')
+site.importApps(__dirname + '/core_apps')
+site.importApps(__dirname + '/accounting_apps')
+site.importApps(__dirname + '/inventories_apps')
+site.importApps(__dirname + '/hr_apps')
 site.importApps(__dirname + '/restaurant_apps')
 site.features.push('restaurant')
 

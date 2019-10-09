@@ -177,7 +177,6 @@
                 <div x-permissions="order_invoice_search || order_invoice_manage"
                     x-import="order-invoice/search_all_modal.html"></div>
 
-
                 <div class="row">
 
                     <div class="col6">
@@ -264,13 +263,13 @@
 
                                     <i-list class="col3" label="##word.customers_gov##" ng-model="order_invoice.gov"
                                         items="govList" display="name"
-                                        ng-change="getNeighborhoodList(order_invoice.gov)"
+                                        ng-change="getCityList(order_invoice.gov)"
                                         ng-search="_search.$govNameContact"></i-list>
 
-                                    <i-list class="col3" label="##word.neighborhood##"
-                                        ng-model="order_invoice.neighborhood" items="neighborhoodList"
-                                        ng-change="getAreaList(order_invoice.neighborhood)" display="name"
-                                        ng-search="_search.$order_invoice_neighborhood_search"></i-list>
+                                    <i-list class="col3" label="##word.city##"
+                                        ng-model="order_invoice.city" items="cityList"
+                                        ng-change="getAreaList(order_invoice.city)" display="name"
+                                        ng-search="_search.$order_invoice_city_search"></i-list>
 
                                     <i-list class="col3" label="##word.area##" ng-model="order_invoice.area"
                                         items="areaList" display="name"

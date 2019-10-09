@@ -5,6 +5,11 @@
         "ar": "المراقبة"
     },
     {
+        "name": "safes_payments_menus",
+        "en": "Safes Payments Menu",
+        "ar": "قائمة معاملات الخزينة"
+    },
+    {
         "name": "vendors_menu",
         "en": "Vendors",
         "ar": "الموردين"
@@ -230,13 +235,13 @@
         "ar": "ادارة حجز القاعات"
     },
     {
-        "name": "menu_neighborhood",
-        "en": "Neighborhood Menu",
+        "name": "menu_city",
+        "en": "City Menu",
         "ar": "قائمة المدن"
     },
     {
-        "name": "menu_neighborhood_tag",
-        "en": "Neighborhood Manegment",
+        "name": "menu_city_tag",
+        "en": "City Manegment",
         "ar": "إدارة المدن"
     },
     {
@@ -633,6 +638,11 @@
         "name": "report_invoices_menus",
         "en": "Report Invoices Menu",
         "ar": "قائمة تقارير الفواتير "
+    },
+    {
+        "name": "report_sales_menus",
+        "en": "Report Sales Menu",
+        "ar": "قائمة تقارير مبيعات الأصناف "
     },
     {
         "name": "report_employee_delivery_menus",

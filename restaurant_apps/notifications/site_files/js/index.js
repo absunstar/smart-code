@@ -248,9 +248,9 @@ app.controller("notifications", function ($scope, $http, $interval) {
       $scope.lecture = n.add;
       site.showModal('#lectureViewModal');
 
-    } else if (n.link.collection == 'neighborhood') {
-      $scope.neighborhood = n.add;
-      site.showModal('#neighborhoodViewModal');
+    } else if (n.link.collection == 'city') {
+      $scope.city = n.add;
+      site.showModal('#cityViewModal');
 
     } else if (n.link.collection == 'area') {
       $scope.area = n.add;
@@ -440,9 +440,9 @@ app.controller("notifications", function ($scope, $http, $interval) {
       $scope.lecture = n.update;
       site.showModal('#lectureViewModal');
 
-    } else if (n.link.collection == 'neighborhood') {
-      $scope.neighborhood = n.update;
-      site.showModal('#neighborhoodViewModal');
+    } else if (n.link.collection == 'city') {
+      $scope.city = n.update;
+      site.showModal('#cityViewModal');
 
     } else if (n.link.collection == 'area') {
       $scope.area = n.update;
@@ -626,9 +626,9 @@ app.controller("notifications", function ($scope, $http, $interval) {
       $scope.lecture = n.delete;
       site.showModal('#lectureViewModal');
 
-    } else if (n.link.collection == 'neighborhood') {
-      $scope.neighborhood = n.delete;
-      site.showModal('#neighborhoodViewModal');
+    } else if (n.link.collection == 'city') {
+      $scope.city = n.delete;
+      site.showModal('#cityViewModal');
 
     } else if (n.link.collection == 'area') {
       $scope.area = n.delete;

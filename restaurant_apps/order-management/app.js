@@ -42,14 +42,6 @@ module.exports = function init(site) {
       }, (err, result) => {
         if (!err, result) {
           response.done = true
-
-          /*  if (result.doc.reset_items && result.doc.status.id == 1) {
-             $order_invoice.update(result.doc)
-             result.doc.book_list.forEach(itm => {
-               site.call('[order_invoice][stores_items][+]', Object.assign({}, itm))
-             })
-           } else */
-
           if (result.doc.reset_items && result.doc.status.id == 2 && result.doc.post) {
             $order_invoice.update(result.doc)
             result.doc.book_list.forEach(itm => {              
@@ -116,6 +108,7 @@ module.exports = function init(site) {
         '$lt': d2
       }
     }
+
     if (where && where.date_from) {
       let d1 = site.toDate(where.date_from)
       let d2 = site.toDate(where.date_to)
@@ -127,6 +120,17 @@ module.exports = function init(site) {
       delete where.date_from
       delete where.date_to
     }
+
+    if(!where.date && !where.date_from){
+      let d1 = site.toDate(new Date())
+      let d2 = site.toDate(new Date())
+      d2.setDate(d2.getDate() + 1);
+      where.date = {
+        '$gte': d1,
+        '$lt': d2
+      }
+    }
+
     if (where['payment_method']) {
       where['payment_method.id'] = where['payment_method'].id;
       delete where['payment_method']

@@ -1,0 +1,11 @@
+[
+    { "module_name" : "public" , "screen_name" : "city" , "name":"city_manage" , "en":"Manage" , "ar":"إدارة"},
+    { "module_name" : "public" , "screen_name" : "city" , "name":"city_add" , "en":"Add" , "ar":"إضافة"},
+    { "module_name" : "public" , "screen_name" : "city" , "name":"city_update" , "en":"Edit" , "ar":"تعديل"},
+    { "module_name" : "public" , "screen_name" : "city" , "name":"city_delete" , "en":"Delete" , "ar":"حذف"},
+    { "module_name" : "public" , "screen_name" : "city" , "name":"city_view" , "en":"View" , "ar":"عرض"},
+    { "module_name" : "public" , "screen_name" : "city" , "name":"city_search" , "en":"Search" , "ar":"بحث"},
+    { "module_name" : "public" , "screen_name" : "city" , "name":"city_export" , "en":"Export" , "ar":"تصدير"},
+    { "module_name" : "public" , "screen_name" : "city" , "name":"city_print" , "en":"Print" , "ar":"طباعة"},
+    { "module_name" : "public" , "screen_name" : "city" , "name":"city_ui" , "en":"UI" , "ar":"الواجهة الرسومية"}
+]

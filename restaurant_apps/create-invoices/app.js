@@ -155,8 +155,8 @@ module.exports = function init(site) {
       $res: res
     })
 
-    if(!create_invoices_doc.total_paid_up)
-    create_invoices_doc.total_paid_up = 0
+    if (!create_invoices_doc.total_paid_up)
+      create_invoices_doc.total_paid_up = 0
 
     create_invoices_doc.payment_list.forEach(payment_list => {
       create_invoices_doc.total_paid_up += payment_list.paid_up
@@ -279,6 +279,48 @@ module.exports = function init(site) {
     if (where['name']) {
       where['name'] = new RegExp(where['name'], 'i')
     }
+
+    if (where['source_type']) {
+      where['source_type.id'] = where['source_type'].id;
+      delete where['source_type']
+    }
+
+    if (where['payment_method']) {
+      where['payment_method.id'] = where['payment_method'].id;
+      delete where['payment_method']
+    }
+
+    if (where.date) {
+      let d1 = site.toDate(where.date)
+      let d2 = site.toDate(where.date)
+      d2.setDate(d2.getDate() + 1)
+      where.date = {
+        '$gte': d1,
+        '$lt': d2
+      }
+    }
+    if (where && where.date_from) {
+      let d1 = site.toDate(where.date_from)
+      let d2 = site.toDate(where.date_to)
+      d2.setDate(d2.getDate() + 1);
+      where.date = {
+        '$gte': d1,
+        '$lt': d2
+      }
+      delete where.date_from
+      delete where.date_to
+    }
+
+    if(!where.date && !where.date_from){
+      let d1 = site.toDate(new Date())
+      let d2 = site.toDate(new Date())
+      d2.setDate(d2.getDate() + 1);
+      where.date = {
+        '$gte': d1,
+        '$lt': d2
+      }
+    }
+
 
     // if (where['active'] !== 'all') {
     //   where['active'] = true

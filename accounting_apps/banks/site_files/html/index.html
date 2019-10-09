@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="banks_ui || banks_manage" data-ng-app="myApp">
+
+<head x-import="head.html">
+
+</head>
+
+<body class="##session.lang##">
+
+        <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+
+        </nav>
+    
+        <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+    
+        </nav>
+
+    <div id="main-layout " class="container loaded">
+        <div class="row">
+            <div class="row" ng-controller="banks" x-permissions="login">
+                <div x-import="banks/add_modal.html"></div>
+                <div x-import="banks/update_modal.html"></div>
+                <div x-import="banks/delete_modal.html"></div>
+                <div x-import="banks/view_modal.html"></div>
+                <div x-import="banks/search_all_modal.html"></div>
+
+                <div class="row">
+                    <h1 class="bold text-center"> ##word.banks## </h1>
+                </div>
+
+                <div class="top-actions">
+                    <i-button x-permissions="banks_add || banks_manage" type="add" label="##word.banks_new##" ng-click="displayAddBank()"></i-button>
+
+                    <i-button x-permissions="banks_search || banks_manage" type="search" label="##word.search_all##" onclick="site.showModal('#bankSearchModal')"></i-button>
+
+                    <span ng-show="busy">
+                        <span class="sr-only"> Loading...</span>
+                    </span>
+                    <h3 class="bold text-center"> ##word.count## : {{count}} </h3>
+                    <br>
+                </div>
+
+                <table class="table center bold" id="t1">
+                    <tr>
+                        <th class="not-print"> ##word.logo## </th>
+                        <th> ##word.banks_code## </th>
+                        <th> ##word.banks_name## </th>
+                        <th> ##word.banks_address## </th>
+                        <th> ##word.status## </th>
+                        <th class="not-print"> ##word.actions## </th>
+                    </tr>
+                    <tr ng-repeat="c in list | orderBy:'-id'">
+                        <td class="not-print">
+                            <img class="logo" ng-src="{{c.image_url}}">
+                        </td>
+                        <td class="blue"> {{c.code}} </td>
+                        <td> {{c.name}} </td>
+                        <td> {{c.bank_address}} </td>
+                        <td>
+                            <p ng-show="c.active ==true" class="green"> ##word.active## </p>
+                            <p ng-show="c.active ==false" class="red"> ##word.not_active## </p>
+                        </td>
+
+                        <td class="center not-print">
+                            <i-button x-permissions="banks_view || banks_manage" type="details" label="##word.details##" ng-click="displayDetailsBank(c)"></i-button>
+
+                            <i-button x-permissions="banks_edit || banks_manage" type="update" label="##word.update##" ng-click="displayUpdateBank(c)"></i-button>
+
+                            <i-button x-permissions="banks_delete || banks_manage" type="delete" label="##word.delete##" ng-click="displayDeleteBank(c)"></i-button>
+                        </td>
+                    </tr>
+                </table>
+
+                <div class="row">
+                    <i-button x-permissions="banks_print || banks_manage"  type="print" label="##word.print##" onclick="site.print('#t1')"></i-button>
+
+                    <i-button x-permissions="banks_export || banks_manage"  type="export" label="##word.export_to_excel##" onclick="export_to_xlsx('t1' , 'banks.xlsx')"></i-button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div x-import="scripts.html"></div>
+
+    <script x-permissions="login" x-import="banks/index.js"></script>
+</body>
+
+</html>

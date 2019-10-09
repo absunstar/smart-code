@@ -293,11 +293,11 @@ app.controller("vendors", function ($scope, $http, $timeout) {
 
   };
 
-  $scope.getNeighborhoodList = function (gov) {
+  $scope.getCityList = function (gov) {
     $scope.busy = true;
     $http({
       method: "POST",
-      url: "/api/neighborhood/all",
+      url: "/api/city/all",
       data: {
         where: {
           'gov.id': gov.id,
@@ -309,7 +309,7 @@ app.controller("vendors", function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done && response.data.list.length > 0) {
-          $scope.neighborhoodList = response.data.list;
+          $scope.cityList = response.data.list;
         }
       },
       function (err) {
@@ -319,14 +319,14 @@ app.controller("vendors", function ($scope, $http, $timeout) {
     )
   };
   
-  $scope.getAreaList = function (neighborhood) {
+  $scope.getAreaList = function (city) {
     $scope.busy = true;
     $http({
       method: "POST",
       url: "/api/area/all",
       data: {
         where: {
-          'neighborhood.id': neighborhood.id,
+          'city.id': city.id,
           active: true
         },
       }

@@ -46,6 +46,17 @@ module.exports = function init(site) {
         '$lt': d2
       }
     }
+
+    if(!where.date && !where.date_from){
+      let d1 = site.toDate(new Date())
+      let d2 = site.toDate(new Date())
+      d2.setDate(d2.getDate() + 1);
+      where.date = {
+        '$gte': d1,
+        '$lt': d2
+      }
+    }
+
     if (where && where.date_from) {
       let d1 = site.toDate(where.date_from)
       let d2 = site.toDate(where.date_to)
@@ -57,14 +68,17 @@ module.exports = function init(site) {
       delete where.date_from
       delete where.date_to
     }
+
     if (where['payment_method']) {
       where['payment_method.id'] = where['payment_method'].id;
       delete where['payment_method']
     }
+
     if (where['source_type']) {
       where['source_type.id'] = where['source_type'].id;
       delete where['source_type']
     }
+    
     if (where['order_invoices_type']) {
       where['order_invoices_type.id'] = where['order_invoices_type'].id;
       delete where['order_invoices_type']

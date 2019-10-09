@@ -256,12 +256,12 @@
                     <legend> ##word.customers_address_informations## </legend>
                     <div class="row">
                         <i-list class="col3" label="##word.customers_gov##" ng-model="customer.gov" items="govList"
-                            display="name" ng-change="getNeighborhoodList(customer.gov)" ng-search="_search.$$govNameContact">
+                            display="name" ng-change="getCityList(customer.gov)" ng-search="_search.$$govNameContact">
                         </i-list>
 
-                        <i-list class="col4" label="##word.neighborhood##" ng-model="customer.neighborhood"
-                            items="neighborhoodList" ng-change="getAreaList(customer.neighborhood)" display="name"
-                            ng-search="_search.$customer.$neighborhood_search"></i-list>
+                        <i-list class="col4" label="##word.city##" ng-model="customer.city"
+                            items="cityList" ng-change="getAreaList(customer.city)" display="name"
+                            ng-search="_search.$customer.$city_search"></i-list>
                         <i-list class="col4" label="##word.area##" ng-model="customer.area" items="areaList"
                             display="name" ng-search="_search.$customer.$area_search"></i-list>
                         <i-control class="col6" label="##word.customers_address##" ng-model="customer.address"></i-control>

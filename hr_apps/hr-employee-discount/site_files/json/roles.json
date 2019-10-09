@@ -1,0 +1,7 @@
+[{
+    "module_name" : "hr" ,
+    "name": "employee_discount_admin",
+    "en": "Employee Discount Admin",
+    "ar": "إدارة الخصومات",
+    "permissions": ["employee_discount_manage"]
+}]

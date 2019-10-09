@@ -1,0 +1,133 @@
+<style>
+    .img {
+        width: 200px;
+        height: 200px;
+        margin: 5px;
+        padding: 5px;
+        border: 1px solid var(--background-color);
+    }
+</style>
+
+
+<div id="VendorSearchModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                <i class="fa fa-search"></i> ##word.vendors_search_all##
+                <i ng-show="busy" class="fa fa-spinner white fa-pulse fa-3x fa-fw"></i>
+            </h2>
+        </div>
+        <div class="modal-body">
+            <div class="col10">
+                <form class="form">
+                    <div class="row">
+                        <div class="col2">
+                            <div class="control">
+                                <label> ##word.status## </label>
+                                <select ng-model="search.active">
+                                    <option ng-value="1"> ##word.active## </option>
+                                    <option ng-value="2"> ##word.not_active## </option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col2">
+                            <div class="control">
+                                <label> ##word.vendors_gov## </label>
+                                <select ng-model="search.gov">
+                                    <option ng-repeat="g in goves" ng-value="g"> {{g.name}} </option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col2">
+                            <div class="control">
+                                <label> ##word.vendors_phones## </label>
+                                <input ng-model="search.phones" type="text">
+                            </div>
+                        </div>
+
+                        <div class="col2">
+                            <div class="control">
+                                <label> ##word.vendors_mobiles## </label>
+                                <input ng-model="search.mobiles" type="text">
+                            </div>
+                        </div>
+
+                        <div class="col2">
+                            <div class="control">
+                                <label> ##word.vendors_hotlines## </label>
+                                <input ng-model="search.hotlines" type="text">
+                            </div>
+                        </div>
+
+                        <div class="col2">
+                            <div class="control">
+                                <label> ##word.vendors_faxs## </label>
+                                <input ng-model="search.faxs" type="text">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row10">
+                        <div class="col2">
+                            <div class="control">
+                                <label> ##word.vendors_code## </label>
+                                <input ng-model="search.code" type="text" ng-keydown="getVendor($event , search.code)">
+                            </div>
+                        </div>
+
+                        <div class="col2">
+                            <div class="control">
+                                <label> ##word.vendors_name## </label>
+                                <select ng-model="search.vendor" ng-change="setCode()">
+                                    <option ng-selected="search.vendor.id == ve.id" ng-repeat="ve in vendors" ng-value="ve"> {{ve.name}} </option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col2">
+                            <div class="control">
+                                <label> ##word.vendors_sections## </label>
+                                <select ng-model="search.sections">
+                                    <option ng-repeat="se in sections" ng-value="se"> {{se.name}} </option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col2">
+                            <div class="control">
+                                <label> ##word.vendors_balance_value_gt## </label>
+                                <input type="text" ng-model="search.balanceGt">
+                            </div>
+                        </div>
+
+                        <div class="col2">
+                            <div class="control">
+                                <label> ##word.vendors_balance_value_lt## </label>
+                                <input type="text" ng-model="search.balanceLt">
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+        <h2 class="error"> {{error}} </h2>
+        <div class="modal-footer center">
+
+            <a class="btn bg-green" ng-hide="busy" ng-click="searchAll()">
+                <i class="fa fa-search" aria-hidden="true"></i> ##word.vendors_search## </a>
+
+            <a class="btn bg-brown" ng-click="search = {}"> ##word.vendors_empty_search## </a>
+
+            <a class="btn bg-blue" onclick="hideModal('VendorSearchModal')">
+                <i class="fa fa-times" aria-hidden="true"></i> ##word.close## </a>
+
+        </div>
+    </div>
+</div>

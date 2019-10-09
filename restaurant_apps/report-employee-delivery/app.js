@@ -44,6 +44,16 @@ module.exports = function init(site) {
       }
     };
 
+    if(!where.date && !where.date_from){
+      let d1 = site.toDate(new Date())
+      let d2 = site.toDate(new Date())
+      d2.setDate(d2.getDate() + 1);
+      where.date = {
+        '$gte': d1,
+        '$lt': d2
+      }
+    }
+
     if (where && where.date_from) {
       let d1 = site.toDate(where.date_from)
       let d2 = site.toDate(where.date_to)
