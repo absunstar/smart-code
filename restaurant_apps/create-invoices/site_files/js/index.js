@@ -299,10 +299,6 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
         url: "/api/order_invoice/invoices",
         data: {
           search: $scope.search_order
-          /* ,
-          where: {
-            transaction_type: order_invoices_type.id
-          } */
         }
       }).then(
         function (response) {
@@ -354,28 +350,6 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
 
     site.showModal('#invoicesPaymentModal');
   };
-
-  /*  $scope.remaining = function () {
-     let order_sale = $scope.create_invoices.order_sale;
-     order_sale.under_paid.total_tax = order_sale.under_paid.total_tax - $scope.create_invoices.total_tax;
-     order_sale.under_paid.total_discount = order_sale.under_paid.total_discount - $scope.create_invoices.total_discount;
-     order_sale.under_paid.price_delivery_service = order_sale.under_paid.price_delivery_service - $scope.create_invoices.price_delivery_service;
-     order_sale.under_paid.service = order_sale.under_paid.service - $scope.create_invoices.service;
-     order_sale.under_paid.net_value = order_sale.under_paid.net_value - $scope.create_invoices.net_value;
-     order_sale.under_paid.book_list.forEach(order_item => {
-       $scope.create_invoices.current_book_list.forEach(current_item => {
-         if (order_item.barcode == current_item.barcode) {
-           order_item.count = order_item.count - current_item.count;
-         };
-       });
-     });
-     $http({
-       method: "POST",
-       url: "/api/order_invoice/invoices_update",
-       data: order_sale
-     })
-   }; */
-
 
   $scope.calc = function () {
     $timeout(() => {
@@ -489,31 +463,6 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
 
   };
 
-  /*   $scope.getScreenType = function () {
-      $scope.busy = true;
-  
-      $http({
-        method: "POST",
-        url: "/api/numbering_transactions_status/get",
-        data: {
-          screen_name: "create_invoices"
-        }
-      }).then(
-        function (response) {
-          $scope.busy = false;
-          if (response.data) {
-            $scope.disabledCode = response.data.doc == 'auto' ? true : false;
-          }
-        },
-        function (err) {
-          $scope.busy = false;
-          $scope.error = err;
-        }
-      )
-    };
-    $scope.getScreenType(); */
-
-
   $scope.getDefaultSetting = function () {
 
     $scope.busy = true;
@@ -537,7 +486,6 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
   };
 
   $scope.getDefaultSetting();
-
   $scope.getCreatInvoicesList();
   $scope.getSourceType();
   $scope.getTransactionTypeList();

@@ -191,6 +191,9 @@ module.exports = function init(site) {
     if (where['name']) {
       where['name'] = new RegExp(where['name'], "i");
     }
+    if (where['code']) {
+      where['code'] = new RegExp(where['code'], "i");
+    }
     delete where.search
     where['company.id'] = site.get_company(req).id
     where['branch.code'] = site.get_branch(req).code

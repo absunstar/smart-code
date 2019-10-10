@@ -160,11 +160,11 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
             $scope.loadAll();
 
           } else {
-            $scope.error = '##word.error##';
+            $scope.error = response.data.error;
           }
         },
         function (err) {
-          console.log(err);
+          $scope.error = err.message;
         }
       )
     } else {
@@ -238,38 +238,35 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
 
   $scope.addToItems = function () {
     $scope.error = "";
-    let count = $scope.item.sizes.every(size => size.count > 0)
-    let barcode = $scope.item.sizes.every(size => size.barcode)
-
-    if (!count) {
-      $scope.error = '##word.stores_in_err_count##';
-      return;
-    } else if (!barcode) {
-      $scope.error = '##word.stores_in_err_barcode##';
-      return;
-    } else {
+   
       if ($scope.store_in.type) {
         $scope.item.sizes.forEach(s => {
-          $scope.store_in.items.push({
-            image_url: $scope.item.image_url,
-            name: s.item_name,
-            size: s.size,
-            barcode: s.barcode,
-            count: s.count,
-            cost: s.cost,
-            price: s.price,
-            total: s.total,
-            current_count: s.current_count,
-            ticket_code: s.ticket_code,
-            status_store_in: $scope.store_in.type.id
-          });
+          if(s.count > 0){
+            $scope.store_in.items.push({
+              image_url: $scope.item.image_url,
+              name: s.item_name,
+              size: s.size,
+              barcode: s.barcode,
+              count: s.count,
+              cost: s.cost,
+              price: s.price,
+              total: s.total,
+              current_count: s.current_count,
+              ticket_code: s.ticket_code,
+              status_store_in: $scope.store_in.type.id
+            });
+          }
+        
         });
+
+        $scope.calc();
+        $scope.item.sizes = [];
+
       } else {
         $scope.error = "##word.err_transaction_type##";
       }
-    }
-    $scope.calc();
-    $scope.item.sizes = [];
+
+    
   };
 
   $scope.calcSize = function (s) {
@@ -341,6 +338,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
 
   $scope.itemsStoresIn = function () {
     $scope.error = '';
+    $scope.item.sizes = [];
     if ($scope.item.sizes && $scope.item.sizes.length > 0) {
       $scope.item.item_name.sizes.forEach(item => {
         if ($scope.item.item_name) {
@@ -354,7 +352,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
       $scope.item.sizes = [];
       $scope.item.item_name.sizes.forEach(item => {
         item.item_name = $scope.item.item_name.name
-        item.count = 1;
+        item.count = 0;
         item.total = item.count * item.cost
         $scope.item.sizes.push(item);
       });

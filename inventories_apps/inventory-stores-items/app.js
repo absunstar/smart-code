@@ -566,23 +566,29 @@ module.exports = function init(site) {
     if (where && where['name']) {
       where['name'] = new RegExp(where['name'], 'i')
     }
-    if (where && where['sizes.size']) {
-      where['sizes.size'] = new RegExp(where['sizes.size'], 'i')
+
+    if (where && where['size']) {
+      where['sizes.size'] = new RegExp(where['size'], 'i')
+      delete where['size']
     }
 
+    if (where && where['barcode']) {
+      where['sizes.barcode'] = new RegExp(where['barcode'], 'i')
+      delete where['barcode']
+    }
 
+    if (where['item_group']) {
+      where['item_group.id'] = where['item_group'].id;
+      delete where['item_group']
+    }
 
     if (where && where.price) {
-      data.price = where.price
       where['sizes.price'] = parseFloat(where.price)
-
       delete where.price
     }
 
     if (where && where.cost) {
-      data.cost = where.cost
       where['sizes.cost'] = parseFloat(where.cost)
-
       delete where.cost
     }
 
@@ -593,7 +599,6 @@ module.exports = function init(site) {
         $lte: where.current_countLt,
         $gte: where.current_countGt
       }
-
       delete where.current_countLt
       delete where.current_countGt
     }

@@ -4,7 +4,7 @@
         <div class="modal-header">
             <span class="close">&times;</span>
             <h2>
-                ##word.search_all## <i class="fa fa-search"></i> 
+                ##word.search_all## <i class="fa fa-search"></i>
 
             </h2>
         </div>
@@ -13,9 +13,15 @@
             <form class="form">
                 <div class="row">
 
-                    <i-control class="col3" label="##word.tables_name##" ng-model="search.name"></i-control>
-                    <i-control help-id="tables_salary" type="number" class="col2" label="##word.tables_salary##"
-                    ng-model="search.salary"></i-control>
+                    <i-list ng-search="_search.$tables_group" class="col4" display="name" display2="code" space="-"
+                        ng-model="search.tables_group" label="##word.tables_group##" items="tablesGroupList">
+                    </i-list>
+
+                    <i-control type="text" help-id="tables_number" v="r" class="col3" label="##word.tables_number##"
+                        ng-model="search.code"></i-control>
+
+                    <i-control type="text" help-id="table_name" v="r" class="col3" label="##word.table_name##"
+                        ng-model="search.name"></i-control>
 
                     <div class="control col3">
                         <label> ##word.status## </label>

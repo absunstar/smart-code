@@ -206,7 +206,7 @@
         "ar": "إجمالي المدفوع"
     },
     {
-        "name": "report_invoices_total_remain",
+        "name": "total_remain",
         "en": "Total Remain",
         "ar": "إجمالي الباقي"
     },

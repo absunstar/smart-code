@@ -13,8 +13,8 @@ module.exports = function init(site) {
     compress: true
   })
 
-  site.on('[order_invoice][tables][busy]', doc => { 
-    $tables.edit(doc) 
+  site.on('[order_invoice][tables][busy]', doc => {
+    $tables.edit(doc)
   })
 
   site.on('[register][tables][add]', doc => {
@@ -200,13 +200,23 @@ module.exports = function init(site) {
     if (where['name']) {
       where['name'] = new RegExp(where['name'], "i");
     }
-    if (where.search && where.search.salary) {
 
-      where['salary'] = where.search.salary
+    if (where['code']) {
+      where['code'] = new RegExp(where['code'], "i");
     }
 
-    delete where.search
+    if (where['tables_group']) {
+      where['tables_group.id'] = where['tables_group'].id;
+      delete where['tables_group']
+    }
 
+    /*    if (where.search && where.search.salary) {
+   
+         where['salary'] = where.search.salary
+       }
+   
+       delete where.search
+    */
     where['company.id'] = site.get_company(req).id
     where['branch.code'] = site.get_branch(req).code
 

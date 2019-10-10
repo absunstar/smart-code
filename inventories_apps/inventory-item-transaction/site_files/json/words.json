@@ -46,7 +46,7 @@
     {"name" : "item_transaction_current_status_1" , "ar" : "عهدة مع الفنى" , "en" : "Debt "},   
     {"name" : "item_transaction_current_status_2" , "ar" : "مستبدلة" , "en" : "Replaced "},   
     {"name" : "item_transaction_current_status_3" , "ar" : "تالف" , "en" : "Damaged "},   
-    {"name" : "item_transaction_current_status_4" , "ar" : "مباعة " , "en" : "sold "},   
+    {"name" : "item_transaction_current_status_4" , "ar" : "اذن صرف / بيع " , "en" : "storeout "},   
     {"name" : "item_transaction_current_status_5" , "ar" : "محولة " , "en" : "transferred "},
     {"name" : "item_transaction_current_status_6" , "ar" : "اذن وارد  " , "en" : "storein"},
     {"name" : "item_transaction_previous_count" , "ar" : "  الرصيد السابق " , "en" : "Previous Count"},
@@ -56,10 +56,6 @@
 
     {"name" : "item_transaction_store_out_number" , "ar" : "رقم الأذن  " , "en" : "store number "},   
     {"name" : "item_transaction_ticket_code" , "ar" : "رقم الطلب  " , "en" : "ticket number "},   
-
-    
-  
-    
    
     {"name" : "item_transaction_type" , "en" : "transactions Type" , "ar" : "نوع العمليةٍ"},
     {"name" : "item_transaction_type_in" , "en" : "Items transactions In" , "ar" : "اذن إضافة"},

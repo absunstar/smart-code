@@ -91,10 +91,12 @@ module.exports = function init(site) {
     };
 
     create_invoices_doc.total_paid_up = 0
+    create_invoices_doc.total_remain = 0
 
-    if (create_invoices_doc.paid_up)
+    if (create_invoices_doc.paid_up) {
       create_invoices_doc.total_paid_up = create_invoices_doc.paid_up
-
+      create_invoices_doc.total_remain = create_invoices_doc.net_value - create_invoices_doc.total_paid_up
+    };
 
     create_invoices_doc.items_price = 0
 
@@ -155,13 +157,14 @@ module.exports = function init(site) {
       $res: res
     })
 
-    if (!create_invoices_doc.total_paid_up)
-      create_invoices_doc.total_paid_up = 0
+    if (!create_invoices_doc.total_paid_up) create_invoices_doc.total_paid_up = 0
 
+    create_invoices_doc.total_remain = 0
     create_invoices_doc.payment_list.forEach(payment_list => {
       create_invoices_doc.total_paid_up += payment_list.paid_up
     });
-
+    create_invoices_doc.total_remain = create_invoices_doc.net_value - create_invoices_doc.total_paid_up
+    
     if (create_invoices_doc.id) {
       $create_invoices.edit({
         where: {
@@ -311,7 +314,7 @@ module.exports = function init(site) {
       delete where.date_to
     }
 
-    if(!where.date && !where.date_from){
+    if (!where.date && !where.date_from) {
       let d1 = site.toDate(new Date())
       let d2 = site.toDate(new Date())
       d2.setDate(d2.getDate() + 1);

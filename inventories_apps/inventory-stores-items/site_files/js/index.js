@@ -51,7 +51,6 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
       $scope.complex_items.forEach(item => {
         item.barcode = $scope.item.barcode
       });
-
       $scope.com_item = { complex_items: $scope.complex_items };
       $scope.complex.push($scope.com_item);
     };
@@ -69,17 +68,15 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
     $scope.category_item.sizes.splice($scope.category_item.sizes.indexOf(itm), 1)
   };
 
-  $scope.loadAll = function (where, limit) {
+  $scope.loadAll = function (where) {
     $scope.busy = true;
     $scope.list = [];
     $http({
       method: "POST",
       url: "/api/stores_items/all",
       data: {
-        where: where,
-        limit: limit || 10000000
+        where: where
       }
-
     }).then(
       function (response) {
         $scope.busy = false;
@@ -89,34 +86,13 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
         }
       },
       function (err) {
-
         $scope.busy = false;
         $scope.error = err;
-
       }
     )
   };
 
-  /*  $scope.newCategoryItem = function () {
-     $scope.error = '';
-     $scope.category_code = '';
-     $scope.item = {};
-     $scope.items_size = {};
-     $scope.category_item = {
-       image_url: '/images/category_item.png',
-       allow_sell: true,
-       allow_buy: true,
-       is_pos: true,
-       sizes: [],
-       with_discount: false
-     };
-     $scope.item = {
-       image_url: '/images/sizes_img.png'
-     };
-     site.showModal('#addCategoryItemModal');
-   }; */
-
-   $scope.newCategoryItem = function () {
+  $scope.newCategoryItem = function () {
     $scope.getDefaultSettings();
     site.showModal('#addCategoryItemModal');
 
@@ -566,55 +542,15 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
   };
 
   $scope.searchAll = function () {
-    $scope.error = "";
-    let where = {};
-    if ($scope.search.name) {
-      where['name'] = $scope.search.name;
-    }
-    if ($scope.search.category) {
-      where['category.id'] = $scope.search.category.id;
-    }
-
-    if ($scope.search.size) {
-      where['sizes.size'] = $scope.search.size;
-    }
-
-
-    if ($scope.search.store) {
-      where['store'] = $scope.search.store;
-    }
-    if ($scope.search.vendor) {
-      where['vendor'] = $scope.search.vendor;
-    }
-
-    if ($scope.search.cost) {
-      where['cost'] = parseFloat($scope.search.cost);
-    }
-
-    if ($scope.search.price) {
-      where['price'] = parseFloat($scope.search.price);
-    }
-
-    if ($scope.search.current_count) {
-      where['current_count'] = $scope.search.current_count;
-    }
-    if ($scope.search.current_countGt) {
-      where['current_countGt'] = $scope.search.current_countGt;
-    }
-    if ($scope.search.current_countLt) {
-      where['current_countLt'] = $scope.search.current_countLt;
-    }
-
-    $scope.loadAll(where, $scope.search.limit);
-    site.hideModal('#Category_ItemSearchModal');
+    $scope.error = ''; 
+    $scope.loadAll($scope.search);
+    site.hideModal('#CategoryItemSearchModal');
     $scope.search = {};
   };
 
   $scope.getItemsName = function (ev) {
     $scope.error = '';
-
     if (ev.which === 13) {
-
       $http({
         method: "POST",
         url: "/api/stores_items/name_all",

@@ -59,11 +59,12 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
 
   $scope.itemsStoresOut = function () {
     $scope.error = '';
+    $scope.item.sizes = [];
     if ($scope.item.sizes && $scope.item.sizes.length > 0) {
       $scope.item.item_name.sizes.forEach(item => {
         if ($scope.item.item_name) {
           item.item_name = $scope.item.item_name.name
-          item.count = 1;
+          item.count = 0;
           item.total = item.count * item.cost
           $scope.item.sizes.push(item);
         }
@@ -72,7 +73,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
       $scope.item.sizes = [];
       $scope.item.item_name.sizes.forEach(item => {
         item.item_name = $scope.item.item_name.name
-        item.count = 1;
+        item.count = 0;
         item.total = item.count * item.cost
         $scope.item.sizes.push(item);
       });
@@ -607,11 +608,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
     $scope.error = "";
 
     $scope.item.sizes.forEach(s => {
-      if (s.count == 0) {
-        $scope.error = "##word.stores_out_error_item##";
-        return;
-      } else {
-
+     
         if (s.count > 0) {
           $scope.store_out.items.push({
             image_url: $scope.item.image_url,
@@ -626,7 +623,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
 
           });
         }
-      }
+      
     });
 
     $scope.calc();

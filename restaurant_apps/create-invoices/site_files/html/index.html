@@ -45,6 +45,8 @@
                         <th> ##word.order_invoices_type## </th>
                         <th> ##word.payment_method## </th>
                         <th> القيمة </th>
+                        <th> ##word.total_paid_up## </th>
+                        <th> ##word.total_remain## </th>
                         <th class="not-print"> ##word.actions## </th>
                     </tr>
                     <tr ng-repeat="c in list | orderBy : '-id'">
@@ -56,8 +58,14 @@
                         <td> {{c.source_type.ar}} </td>
                         <td> {{c.order_invoices_type.ar}} </td>
                         <td> {{c.payment_method.ar}} </td>
-                        <td class="bold green">
+                        <td class="bold">
                             {{c.net_value}}
+                        </td>
+                        <td class="bold green">
+                            {{c.total_paid_up}}
+                        </td>
+                        <td class="bold red">
+                            {{c.total_remain}}
                         </td>
                         <td class="center not-print">
                             <i-button type="details" x-permissions="create_invoices_view || create_invoices_manage" label="##word.details##" ng-click="displayDetailsCreatInvoices(c)"></i-button>

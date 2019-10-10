@@ -53,7 +53,8 @@
                                     <td class="title"> ##word.active## </td>
                                     <td ng-show="create_invoices.active == true" class="center green"> ##word.active##
                                     </td>
-                                    <td ng-show="create_invoices.active == false" class="center red"> ##word.not_active##
+                                    <td ng-show="create_invoices.active == false" class="center red">
+                                        ##word.not_active##
                                     </td>
                                 </tr>
                             </table>
@@ -81,9 +82,12 @@
                             <fieldset>
 
                                 <legend>##word.detailes_amounts_paid##</legend>
-
-                                <i-control disabled class="col2" ng-model="create_invoices.payment_paid_up"
-                                    label="##word.paid_up##" type="number"></i-control>
+                                <i-control disabled class="col2" ng-model="create_invoices.net_value"
+                                    label="##word.net_value##" type="number"></i-control>
+                                <i-control disabled class="col2" ng-model="create_invoices.total_paid_up"
+                                    label="##word.total_paid_up##" type="number"></i-control>
+                                <i-control disabled class="col2" ng-model="create_invoices.total_remain"
+                                    label="##word.total_remain##" type="number"></i-control>
                                 <br>
                                 <table class="table bold hover loaded">
 
