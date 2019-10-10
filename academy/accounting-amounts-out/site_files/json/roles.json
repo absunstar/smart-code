@@ -1,0 +1,7 @@
+[{
+    "module_name" : "accounting" ,
+    "name": "amounts_out_admin",
+    "en": "Amounts Out Admin",
+    "ar": "إدارة المنصرف",
+    "permissions": ["amounts_out_manage"]
+}]

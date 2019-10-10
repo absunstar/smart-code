@@ -1,0 +1,19 @@
+[
+    {"name" : "vendors_add" , "en" : "Add Vendor" , "ar" : "اضافة مورد"},
+    {"name" : "vendors_group_informations" , "en" : "Vendors Group Informations" , "ar" : "بيانات مجموعة موردين"},
+
+    {"name" : "vendors_groups_name" , "en" : "Vendors Groups" , "ar" : "مجموعات الموردين"},
+    {"name" : "vendors_group_menus" , "en" : "Vendors Group Menu" , "ar" : "قائمة مجموعة الموردين"},
+    {"name" : "vendors_group_code" , "en" : "Vendors Group Code" , "ar" : "كود مجموعة الموردين"},
+    {"name" : "vendors_group_name" , "en" : "Vendors Group Name" , "ar" : "اسم مجموعة الموردين"},
+
+    {"name" : "vendors_group_new" , "en" : "New Vendors Group" , "ar" : "مجموعة موردين جديدة"},
+    {"name" : "vendors_group_details" , "en" : "Vendors Group Details" , "ar" : "تفاصيل مجموعة موردين"},
+    {"name" : "vendors_group_update" , "en" : "Edit Vendors Group" , "ar" : "تعديل مجموعة موردين"},
+    {"name" : "vendors_group_delete" , "en" : "Delte Vendors Group" , "ar" : "حذف مجموعة موردين"},
+    {"name" : "vendors_group_add_name" , "en" : "Add Vendors Group" , "ar" : "اضافة مجموعة موردين"}
+
+
+    
+    
+]

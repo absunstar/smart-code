@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="vendors_group_ui || vendors_group_manage" data-ng-app="myApp">
+
+<head x-import="head.html">
+
+</head>
+
+<body class="##session.lang##">
+
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+
+    </nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+
+    </nav>
+
+    <div id="main-layout" class="container">
+        <div class="row">
+            <div class="row" ng-controller="vendors_group" x-permission="login">
+                <div x-permissions="vendors_group_add || vendors_group_manage" x-import="vendors-group/add_modal.html"></div>
+                <div x-permissions="vendors_group_update || vendors_group_manage" x-import="vendors-group/update_modal.html"></div>
+                <div x-permissions="vendors_group_delete || vendors_group_manage" x-import="vendors-group/delete_modal.html"></div>
+                <div x-permissions="vendors_group_view || vendors_group_manage" x-import="vendors-group/view_modal.html"></div>
+                <div x-permissions="vendors_group_search || vendors_group_manage" x-import="vendors-group/search_all_modal.html"></div>
+
+                <div class="row">
+                    <h1 class="bold text-center"> ##word.vendors_groups_name## </h1>
+                </div>
+
+                <div class="top-actions">
+                    <i-button type="add" x-permissions="vendors_group_add || vendors_group_manage" label="##word.vendors_group_new##" ng-click="displayAddVendorGroup()"></i-button>
+
+                    <i-button type="search" x-permissions="vendors_group_search || vendors_group_manage" label="##word.search_all##" onclick="site.showModal('#vendorGroupSearchModal')"></i-button>
+
+                    <span ng-show="busy">
+                        <span class="sr-only">Loading...</span>
+                    </span>
+                    <h3 class="bold text-center"> ##word.count## : {{count}} </h3>
+                    <br>
+                </div>
+
+                <table class="table loaded center bold" id="t1">
+                    <tr>
+                            <th class="not-print"> ##word.logo## </th>
+                        <th> ##word.vendors_group_code## </th>
+                        <th> ##word.vendors_group_name## </th>
+                        <th> ##word.status## </th>
+
+                        <th class="not-print"> ##word.actions## </th>
+                    </tr>
+                    <tr ng-repeat="c in list | orderBy : '-id'">
+                        <td class="not-print">
+                            <img class="logo" ng-src="{{c.image_url}}">
+                        </td>
+
+                        <td class="blue"> {{c.code}} </td>
+                        <td> {{c.name}} </td>
+
+                        <td>
+                            <p ng-show="c.active == true" class="green"> ##word.active## </p>
+                            <p ng-show="c.active == false" class="red"> ##word.not_active## </p>
+                        </td>
+
+                        <td class="center not-print">
+                            <i-button x-permissions="vendors_group_view || vendors_group_manage" type="details" label="##word.details##" ng-click="displayDetailsVendorGroup(c)"></i-button>
+
+                            <i-button x-permissions="vendors_group_update || vendors_group_manage" type="update" label="##word.update##" ng-click="displayUpdateVendorGroup(c)"></i-button>
+
+                            <i-button x-permissions="vendors_group_delete || vendors_group_manage" type="delete" label="##word.delete##" ng-click="displayDeleteVendorGroup(c)"></i-button>
+                        </td>
+                    </tr>
+                </table>
+
+                <div class="row">
+                    <i-button x-permissions="vendors_group_print || vendors_group_manage" x-permission="print" type="print" label="##word.print##" onclick="site.print('#t1')"></i-button>
+
+                    <i-button x-permissions="vendors_group_export || vendors_group_manage" x-permission="export" type="export" label="##word.export_to_excel##" onclick="export_to_xlsx('t1' , 'vendors_group.xlsx')"></i-button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div x-import="scripts.html"></div>
+
+    <script x-permission="login" x-import="vendors-group/index.js"></script>
+</body>
+
+</html>

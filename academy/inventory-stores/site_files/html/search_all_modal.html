@@ -1,0 +1,48 @@
+<div id="StoreSearchModal" class="modal" fixed>
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.eng_item_debt_search_all## <i class="fa fa-search"></i>
+                <i ng-show="busy" class="fa fa-spinner white fa-pulse fa-3x fa-fw"></i>
+            </h2>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <form class="form">
+                    <div class="row">
+                        <div class="col3">
+                            <i-control ng-model="search.name" label="##word.stores_name##"></i-control>
+                        </div>
+                        <i-list display="ar" class="col3" ng-model="search.type" items="store_types" ng-search="serach_store_types"
+                            label="##word.stores_type##"></i-list>
+                        <div class="col3">
+                            <i-control ng-model="search.note" label="##word.stores_note##"></i-control>
+                        </div>
+
+                        <div class="col3">
+                                <i-control label="##word.limit##" type="number" ng-model="search.limit"></i-control>
+                            </div>
+
+
+
+                    </div>
+
+
+
+                </form>
+            </div>
+
+        </div>
+        <h2 class="error">{{error}}</h2>
+        <div class="modal-footer center">
+            <i-button type="search" label="##word.search##" ng-hide="busy" ng-click="searchAll()"></i-button>
+            <i-button type="clear" label="##word.clear##" ng-click="search = {}"></i-button>
+            <i-button type="close" label="##word.close##" onclick="site.hideModal('#StoreSearchModal')"></i-button>
+
+
+
+        </div>
+    </div>
+</div>

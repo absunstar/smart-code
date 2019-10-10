@@ -1,0 +1,27 @@
+<div id="SearchModal" class="modal">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.employees_degrees_search## <i class="fa fa-search"></i>
+            </h2>
+        </div>
+        <div class="modal-body">
+            <form class="form">
+                <div class="row">
+                    <div class="col5">
+                        <i-control ng-model="search.name" type="text" label="##word.employees_degrees_name##"></i-control>
+                        <i-textarea ng-model="search.notes" label="##word.notes##"></i-textarea>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <h2 class="error">{{error}}</h2>
+        <div class="modal-footer center">
+            <i-button type="search" ng-click="searchAll()" label="##word.search##"></i-button>
+            <i-button type="clear" ng-click="search = {}" label="##word.clear##"></i-button>
+            <i-button type="close" onclick="site.hideModal('#SearchModal')" label="##word.close##"></i-button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,11 @@
+[
+    { "module_name" : "inventory" , "screen_name" : "inventory-discount-types" , "name":"discount_types_manage" , "en":"Manage" , "ar":"إدارة"},
+    { "module_name" : "inventory" , "screen_name" : "inventory-discount-types" , "name":"discount_types_add" , "en":"Add" , "ar":"إضافة"},
+    { "module_name" : "inventory" , "screen_name" : "inventory-discount-types" , "name":"discount_types_update" , "en":"Edit" , "ar":"تعديل"},
+    { "module_name" : "inventory" , "screen_name" : "inventory-discount-types" , "name":"discount_types_delete" , "en":"Delete" , "ar":"حذف"},
+    { "module_name" : "inventory" , "screen_name" : "inventory-discount-types" , "name":"discount_types_view" , "en":"View" , "ar":"عرض"},
+    { "module_name" : "inventory" , "screen_name" : "inventory-discount-types" , "name":"discount_types_search" , "en":"Search" , "ar":"بحث"},
+    { "module_name" : "inventory" , "screen_name" : "inventory-discount-types" , "name":"discount_types_export" , "en":"Export" , "ar":"تصدير"},
+    { "module_name" : "inventory" , "screen_name" : "inventory-discount-types" , "name":"discount_types_print" , "en":"Print" , "ar":"طباعة"},
+    { "module_name" : "inventory" , "screen_name" : "inventory-discount-types" , "name":"discount_types_ui" , "en":"UI" , "ar":"الواجهة الرسومية"}
+]

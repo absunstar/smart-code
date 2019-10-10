@@ -1,0 +1,26 @@
+<div class="form">
+    <div id="basicInformation" class="tab-content">
+        <fieldset>
+            <legend> ##word.basic_information## </legend>
+            <div class="row">
+                <div class="col9">
+
+                    <div class="row">
+                        <i-control help-id="disease_name" v="r ll2" class="col4" label="##word.disease_name##"
+                            ng-model="disease.name"></i-control>
+                        <div class="col5"></div>
+                        <i-checkbox help-id="disease_active" class="col3" label="##word.active##"
+                            ng-model="disease.active"></i-checkbox>
+
+                    </div>
+
+                </div>
+
+                <div class="col3">
+                    <i-image help-id="disease_logo" ng-model="disease.image_url"></i-image>
+                </div>
+            </div>
+        </fieldset>
+
+    </div>
+</div>

@@ -1,0 +1,62 @@
+<div class="form">
+    <div id="basicInformation" class="tab-content">
+        <fieldset>
+            <legend> ##word.basic_information## </legend>
+            <div class="row">
+                <div class="col9">
+
+                    <div class="row">
+                        <i-date2 class="col4" label="##word.date##" ng-model="hosting.date"></i-date2>
+                        <i-list class="col3" label="##word.hosting_type##" display="ar" items="hostList"
+                            ng-model="hosting.type"></i-list>
+                        <i-checkbox help-id="hosting_active" class="col2" label="##word.active##"
+                            ng-model="hosting.active"></i-checkbox>
+                    </div>
+
+                    <div class="row">
+                        <i-list help-id="hosting_name" v="r ll2" ng-search="hosting.$employee_search"
+                            items="employeesList" class="col4" label="##word.employee_name##"
+                            ng-model="hosting.employee"></i-list>
+
+                        <i-list help-id="hosting_name" v="r ll2" ng-search="hosting.$classroom_search"
+                            items="classRoomsList" class="col4" label="##word.class_room##"
+                            ng-model="hosting.classroom"></i-list>
+                        <div class="col6"></div>
+                    </div>
+
+                    <br>
+                    <br>
+
+                    <div class="row">
+                        <fieldset>
+                            <legend>
+                                <i-button type="add default" ng-click="hosting.student_list.push({})"></i-button>
+                                ##word.students##
+                            </legend>
+
+                            <div ng-repeat="s in hosting.student_list" class="row">
+                                <i-list class="col4" items="studentList" label="##word.student##"
+                                    ng-search="student.$student_search" ng-model="s.student"></i-list>
+                                <i-list class="col2" label="##word.from##" ng-model="s.from" items="timeList"></i-list>
+                                <i-list class="col2" label="##word.to##" ng-model="s.to" items="timeList"></i-list>
+                                <i-control label="##word.hosting_price##" class="col2" type="number" ng-model="s.price">
+                                </i-control>
+                                <div class="col1"></div>
+                                <i-button class="col1" type="delete default"
+                                    ng-click="hosting.student_list.length ==1 || hosting.student_list.splice($index,1)">
+                                </i-button>
+
+                            </div>
+                        </fieldset>
+                    </div>
+
+                </div>
+
+                <div class="col3">
+                    <i-image help-id="hosting_logo" ng-model="hosting.image_url"></i-image>
+                </div>
+            </div>
+        </fieldset>
+
+    </div>
+</div>

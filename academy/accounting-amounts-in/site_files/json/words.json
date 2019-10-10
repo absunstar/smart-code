@@ -1,0 +1,42 @@
+[
+    { "name": "amounts_in","en": "Amount In", "ar": "الوارد"},
+    { "name": "amounts_in_add","en": "Add Amount", "ar": "اضافة وارد"},
+    { "name": "amounts_in_new","en": "New Amount", "ar": "تسجيل وارد جديد"},
+    { "name": "amounts_in_details","en": "Amount  Details", "ar": "تفاصيل وارد"},
+    { "name": "amounts_in_edit","en": "Edit Amount", "ar": "تعديل وارد"},
+    { "name": "amounts_in_delete","en": "Delete Amount", "ar": "حذف وارد"},
+    { "name": "amounts_in_logo","en": "Logo", "ar": "الشعار"},
+    { "name": "amounts_in_value","en": "Value", "ar": "القيمة"},
+    { "name": "amounts_in_date","en": "Date", "ar": "التاريخ"},
+    { "name": "amounts_in_from","en": "From", "ar": "من"},
+    { "name": "amounts_in_to","en": "To", "ar": "الي"},
+    { "name": "amounts_in_source","en": "Source", "ar": "نوع الوارد"},
+    
+    { "name": "amounts_in_description","en": "Description", "ar": "تفاصيل الوارد"},
+    { "name": "amounts_in_safe","en": "Safe", "ar": "الخزينة"},
+    { "name": "limit","en": "Limited Show Data", "ar": "الحد الاقصى لعرض البيانات"},
+    {"name" : "useradd_user_info" , "en" : "User Created" , "ar" : "معلومات الاضافة"},
+    {"name" : "useredit_user_info" , "en" : "User Updated" , "ar" : "معلومات التعديل"},
+    {"name" : "amounts_in_unemployee" , "en" : "UnEmployees" , "ar" : " غير الموظفين"},
+
+
+    
+    { "name": "amounts_in_Company_name","en": "Company Name", "ar": "اسم الشركة "},
+    
+    { "name": "amounts_in_empty_search","en": "Empty Fields", "ar": "تفريغ الحقول "},
+
+    { "name": "amounts_in_search","en": "Search", "ar": "البحث "},
+
+    { "name": "amounts_in_companies","en": "From Company", "ar": "وارد من شركة"},
+
+    { "name": "amounts_in_date_from","en": "Date From", "ar": "من تاريخ"},
+
+    { "name": "amounts_in_date_to","en": "Date To ", "ar": "الى تاريخ"},
+
+    { "name": "amounts_in_employees","en": "From Employee", "ar": " اسم الموظف "},
+  
+    { "name": "amounts_in_img","en": "Image", "ar": "الشعار"},
+
+    { "name": "amounts_in_customers","en": "Customer Name", "ar": "اسم العميل"}
+   
+]

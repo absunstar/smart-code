@@ -1,0 +1,26 @@
+<div id="updateEmployeesAdvancesModal" class="modal">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                <i class="fa fa-plus"></i> ##word.employees_advances_edit##
+                <i ng-show="busy" class="fa fa-spinner white fa-pulse fa-3x fa-fw"></i>
+        </div>
+        <div class="modal-body">
+        
+                <div x-import="accounting-employee-advances/content.html"></div>
+
+        </div>
+        <h2 class="error">{{error}}</h2>
+        <div class="modal-footer center">
+            
+                <i-button  type="save" label="##word.save##" ng-click="update(employees_advances)"></i-button>
+                <i-button  type="close" label="##word.close##" onclick="site.hideModal('#updateEmployeesAdvancesModal')"></i-button>
+
+
+        </div>
+    </div>
+
+
+</div>

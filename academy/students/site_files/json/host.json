@@ -1,0 +1,26 @@
+[
+    {
+        "id" : 1,
+        "name": "parents",
+        "en": "Parents",
+        "ar": "الوالدان"
+    },
+    {
+        "id" : 2,
+        "name": "father",
+        "en": "Father",
+        "ar": "الأب"
+    },
+    {
+        "id" : 3,
+        "name": "mother",
+        "en": "Mother",
+        "ar": "الأم"
+    },
+    {
+        "id" : 4,
+        "name": "other",
+        "name_en": "Other",
+        "ar": "أخرى"
+    }
+]

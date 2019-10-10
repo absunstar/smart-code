@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" data-ng-app="myApp">
+
+<head x-import="head.html">
+
+</head>
+
+<body class="##session.lang##">
+
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+
+    </nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+
+    </nav>
+
+    <div id="main-layout" class="container">
+        <div class="row">
+            <div class="row" ng-controller="register">
+           
+                <div x-import="register/add_academy.html"></div>
+                <div x-permission="deleteregister" x-import="register/delete_modal.html"></div>
+                <div x-permission="searchregister" x-import="register/update_modal.html"></div>
+
+                <div class="row">
+                    <h1 class="bold text-center">##word.register##</h1>
+                </div>
+
+                <div class="top-actions">
+
+                    <div class="form">
+                        <div class="tabs">
+                            <div class="tabs-header">
+
+                                <a class="tab-link" ng-click="displayAddAcademy()">
+                                    ##word.register_academy##
+                                </a>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div x-import="scripts.html"></div>
+        <script x-import="register/index.js"></script>
+</body>
+
+</html>

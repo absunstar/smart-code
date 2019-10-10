@@ -1,0 +1,7 @@
+[{
+    "module_name" : "public" ,
+    "name": "attend_leave_admin",
+    "en": "Attend & Leave Admin",
+    "ar": "إدارة الحضور و الإنصراف",
+    "permissions": ["attend_leave_manage"]
+}]

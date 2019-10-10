@@ -1,0 +1,13 @@
+[{
+    "id": 1,
+    "name": "available_place",
+    "en": "Available In Place",
+    "ar": "موجود بالمكان"
+},
+{
+    "id": 2,
+    "name": "not_available",
+    "name_en": "Not Available",
+    "ar": "غير موجود بالمكان"
+}
+]

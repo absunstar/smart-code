@@ -1,0 +1,113 @@
+<div id="showAttendModal" class="modal" fixed>
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.attend_absence_list##
+                <i class="fa fa-pencil "></i>
+            </h2>
+
+        </div>
+
+        <div class="modal-body">
+            <div class="row">
+                <div>
+
+                    <table class="table center bold">
+                        <tr>
+
+                            <th>##word.trainer##</th>
+                            <th>##word.attend_absence_list##</th>
+                            <th ng-hide="current_attend.attend.id == 2">##word.attend_hour##</th>
+                            <th ng-hide="current_attend.attend.id == 2">##word.out_hour##</th>
+                            <th>##word.notes##</th>
+
+                        </tr>
+                        <tr>
+                            <td>
+                                <br>
+                                {{current_attend.trainer.name}}
+                            </td>
+                            <td>
+                                <i-list disabled ng-model="current_attend.attend" display="ar" items="attendList">
+                                </i-list>
+                                <i-button type="update" ng-hide="current_attend.attend.id" label="##word.attend##"
+                                    ng-click="attendTrainer(current_attend)"></i-button>
+                                <i-button type="exit" ng-hide="current_attend.attend.id" label="##word.absence##"
+                                    ng-click="absenceTrainer(current_attend)"></i-button>
+                            </td>
+                            <td ng-hide="current_attend.attend.id == 2">
+                                <i-time ng-model="current_attend.attend_hour" display="ar" items="timeList"></i-time>
+                            </td>
+
+                            <td ng-hide="current_attend.attend.id == 2">
+                                <i-time ng-model="current_attend.out_hour" display="ar" items="timeList"></i-time>
+                            </td>
+
+                            <td>
+                                <i-control ng-model="current_attend.notes_attend"></i-control>
+                            </td>
+                        </tr>
+
+                    </table>
+                </div>
+            </div>
+
+            <br>
+            <br>
+            <hr>
+            <br>
+
+            <div class="row">
+
+                <div>
+                    <table class="table center bold">
+                        <tr>
+                            <th>##word.student##</th>
+                            <th>##word.attend_absence_list##</th>
+                            <th>##word.attend_hour##</th>
+                            <th>##word.out_hour##</th>
+                            <th>##word.notes##</th>
+                        </tr>
+                        <tr ng-repeat="student in current_attend.student_list">
+                            <td>
+                                <br>
+                                {{student.name}}
+                            </td>
+                            <td>
+                                <i-list disabled ng-model="student.attend" display="ar" items="attendList"></i-list>
+                                <i-button type="update" ng-hide="student.attend.id" label="##word.attend##"
+                                    ng-click="attend(student)"></i-button>
+                                <i-button type="close" ng-hide="student.attend.id" label="##word.absence##"
+                                    ng-click="absence(student)"></i-button>
+                            </td>
+                            <td>
+                                <i-time ng-disabled="student.attend.id == 2" ng-model="student.attend_hour" display="ar"
+                                    items="timeList"></i-time>
+                            </td>
+                            <td>
+                                <i-time ng-disabled="student.attend.id == 2" ng-model="student.out_hour" display="ar"
+                                    items="timeList"></i-time>
+                            </td>
+                            <td class="w200">
+                                <i-control ng-model="student.notes_attend"></i-control>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+
+
+
+        <div class="modal-footer center">
+            <h2 class="error"> {{error}} </h2>
+            <i-button type="save" label="##word.save##" ng-click="safeAttend()"></i-button>
+
+            <i-button type="close" label="##word.close##" onclick="site.hideModal( '#showAttendModal')"></i-button>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="hosting_ui || hosting_manage" data-ng-app="myApp">
+
+<head x-import="head.html">
+
+</head>
+
+<body class="##session.lang##">
+
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+
+    </nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+
+    </nav>
+
+    <div id="main-layout" class="container">
+        <div class="row">
+            <div class="row" ng-controller="hosting">
+                <div x-permissions="hosting_add || hosting_manage" x-import="hosting/add_modal.html"></div>
+                <div x-permissions="hosting_update || hosting_manage" x-import="hosting/update_modal.html"></div>
+                <div x-permissions="hosting_delete || hosting_manage" x-import="hosting/delete_modal.html"></div>
+                <div x-permissions="hosting_view || hosting_manage" x-import="hosting/view_modal.html"></div>
+                <div x-permissions="hosting_search || hosting_manage" x-import="hosting/search_all_modal.html"></div>
+                <div x-import="hosting/accept.html"></div>
+                <div x-import="hosting/paid_payback.html"></div>
+                <div x-import="hosting/paid.html"></div>
+
+                <div class="row">
+                    <h1 class="bold text-center">##word.hosting##</h1>
+                </div>
+
+                <div class="top-actions">
+                    <i-button x-permissions="hosting_add || hosting_manage" type="add" label="##word.hosting_new##"
+                        ng-click="displayAddHosting()"></i-button>
+
+                    <i-button x-permissions="hosting_search || hosting_manage" type="search" label="##word.search_all##"
+                        ng-click="displaySearchModal()"></i-button>
+
+                    <h3 class="bold text-center"> ##word.count## : {{count}}</h3>
+                </div>
+
+                <table x-permissions="login" class="table bold hover loaded" id="t1">
+                    <tr>
+                        <th class="not-print">##word.logo##</th>
+                        <th>##word.date##</th>
+                        <th>##word.hosting_type##</th>
+                        <th>##word.employee_name##</th>
+                        <th>##word.class_room##</th>
+                        <th>##word.status##</th>
+                        <th class="not-print">##word.actions##</th>
+                    </tr>
+
+                    <tr ng-repeat="c in list">
+                        <td class="center not-print">
+                            <img class="logo" ng-src="{{c.image_url}}">
+                        </td>
+                        <td class="center brown">{{c.date |date:"dd - MM - yyyy"}}</td>
+                        <td class="center ">{{c.type.ar}}</td>
+                        <td class="center">{{c.employee.name}}</td>
+                        <td class="center title">{{c.classroom.name}}</td>
+                        <td class="center">
+                            <p ng-show="c.active ==true" class="green"> ##word.active## </p>
+                            <p ng-show="c.active ==false" class="red"> ##word.not_active## </p>
+                        </td>
+
+                        <td class="center not-print">
+                            <i-button x-permissions="hosting_view || hosting_manage" type="view"
+                                label="##word.details##" ng-click="displayDetailsHosting(c)"></i-button>
+
+                            <i-button x-permissions="hosting_update || hosting_manage" type="save"
+                                label="##word.paid_payback##" ng-click="paidPaybackShow(c)"></i-button>
+
+                            <i-button x-permissions="hosting_update || hosting_manage" type="edit" label="##word.edit##"
+                                ng-click="displayUpdateHosting(c)"></i-button>
+
+                            <i-button x-permissions="hosting_delete || hosting_manage" type="delete"
+                                label="##word.delete##" ng-click="displayDeleteHosting(c)"></i-button>
+                        </td>
+
+                    </tr>
+                </table>
+                <i-button x-permissions="hosting_print || hosting_manage" type="print" label="##word.print##"
+                    onclick="site.print('#t1')"></i-button>
+
+                <i-button x-permissions="hosting_export || hosting_manage" label="##word.export_to_excel##"
+                    onclick="export_to_xlsx('t1' , 'hosting.xlsx')"></i-button>
+            </div>
+        </div>
+    </div>
+
+    <div x-import="scripts.html"></div>
+    <script x-import="hosting/index.js"></script>
+</body>
+
+</html>

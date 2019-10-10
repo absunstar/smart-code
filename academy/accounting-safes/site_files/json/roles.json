@@ -1,0 +1,7 @@
+[{
+    "module_name" : "accounting" ,
+    "name": "safe_admin",
+    "en": "Safes Admin",
+    "ar": "إدارة الخزائن",
+    "permissions": ["safe_manage"]
+}]

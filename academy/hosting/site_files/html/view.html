@@ -1,0 +1,120 @@
+<div ng-hide="busy" class="row">
+    <div id="basicInformation" class="tab-content">
+        <fieldset>
+            <legend> ##word.basic_information##</legend>
+            <div class="col9">
+                <div class="row">
+                    <div class="col10">
+                        <table id="basicInformationTable" class="table hover bold">
+
+                            <tr>
+                                <td class="title">##word.date##</td>
+                                <td class="center brown">{{hosting.date |date:"dd - MM - yyyy"}}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="title">##word.hosting_type##</td>
+                                <td class="center">{{hosting.type.ar}}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="title">##word.employee_name##</td>
+                                <td class="center">{{hosting.employee.name}}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="title">##word.class_room##</td>
+                                <td class="center">{{hosting.classroom.name}}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="title">##word.status##</td>
+                                <td ng-show="hosting.active == true" class="green center"> ##word.active## </td>
+                                <td ng-show="hosting.active == false" class="red center"> ##word.not_active## </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <br>
+                <br>
+
+                <div class="row">
+                    <div class="col8">
+
+                        <fieldset>
+
+                            <legend>
+                                ##word.students##
+                            </legend>
+
+                            <table class="bold table hover center">
+
+                                <tr>
+                                    <th>##word.student##</th>
+                                    <th>##word.from##</th>
+                                    <th>##word.to##</th>
+                                    <th>##word.hosting_price##</th>
+                                </tr>
+
+                                <tr ng-repeat="s in hosting.student_list">
+                                    <td class="title">{{s.student.name}}</td>
+                                    <td class="green">{{s.from.ar}}</td>
+                                    <td class="red">{{s.to.ar}}</td>
+                                    <td class="green">{{s.price}} ##word.pound##</td>
+                                </tr>
+
+                            </table>
+
+                        </fieldset>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <div class="row" ng-show="hosting.paid_list.length > 0">
+                    <div class="border col8 margin grid">
+                        <table class="table bold center ">
+                            <tr>
+                                <th>##word.date##</th>
+
+                                <th>##word.student##</th>
+
+                                <th>##word.previous_payments##</th>
+
+                                <th>##word.safe##</th>
+                            </tr>
+
+                            <tr ng-repeat="b in hosting.paid_list">
+
+                                <td>
+                                    <p class="brown">{{b.date_paid | date : 'dd - MM -yyyy'}}</p>
+                                </td>
+
+                                <td>
+                                    <p>{{b.student_paid.name}}</p>
+                                </td>
+
+                                <td>
+                                    <p class="green">{{b.payment}} ##word.pound##</p>
+                                </td>
+
+                                <td>
+                                    <p>{{b.safe.name}}</p>
+                                </td>
+                            </tr>
+
+                        </table>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col3">
+                <i-image view ng-model="hosting.image_url"></i-image>
+            </div>
+
+        </fieldset>
+    </div>
+</div>
+<div x-import="hosting/action_info.html"></div>

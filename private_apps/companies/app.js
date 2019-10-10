@@ -168,10 +168,6 @@ module.exports = function init(site) {
             roles: [{
               name: "companies"
             }],
-            branch_list: [{
-              company: companies_doc,
-              branch: companies_doc.branch_list[0]
-            }],
             companies_id: companies_doc.id,
             is_companies: true,
             profile: {

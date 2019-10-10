@@ -1,0 +1,65 @@
+[{
+        "name": "employees_degrees_add",
+        "en": "Add Degree",
+        "ar": "اضافة درجة وظيفية"
+    },
+    {
+        "name": "employees_degrees_search",
+        "en": "Search Degree",
+        "ar": "بحث درجة وظيفية"
+    },
+
+    {
+        "name": "employees_degrees_new",
+        "en": "New Degree",
+        "ar": "درجة وظيفية جديدة"
+    },
+    {
+        "name": "employees_degrees_name",
+        "en": "Degree Name",
+        "ar": "اسم الدرجة"
+    },
+    {
+        "name": "employees_degrees_salary",
+        "en": "Degree Salary",
+        "ar": "راتب الدرجة"
+    },
+
+    {
+        "name": "employees_degrees_details",
+        "en": "Degree Details",
+        "ar": "تفاصيل درجة وظيفية"
+    },
+    {
+        "name": "employees_degrees",
+        "en": "Degree",
+        "ar": "درجة وظيفية"
+    },
+    {
+        "name": "employees_degrees_edit",
+        "en": "Degree Edit",
+        "ar": "تعديل بيانات درجة وظيفية"
+    },
+    {
+        "name": "employees_degrees_delete",
+        "en": "Delete Degree ",
+        "ar": "حذف درجة وظيفية"
+    },
+    {
+        "name": "employees_degrees_logo",
+        "en": "Degree Logo",
+        "ar": "شعار الدرجة الوظيفية"
+    },
+
+    {
+        "name": "le",
+        "en": "Pound",
+        "ar": "جنيه"
+    },
+
+    {
+        "name": "employees_degrees_img",
+        "en": "Employees Degrees Image",
+        "ar": "ملفات الدرجة الوظيفية"
+    }
+]

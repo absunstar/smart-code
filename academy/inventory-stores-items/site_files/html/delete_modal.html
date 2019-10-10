@@ -1,0 +1,25 @@
+
+
+<div id="deleteCategoryItemModal" class="modal">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                <i class="fa fa-plus"></i> ##word.stores_items_delete## </h2>
+        </div>
+        <div class="modal-body">
+           
+            <div x-import="inventory-stores-items/view.html"></div>
+
+        </div>
+        <h2 class="error">{{error}}</h2>
+        <div class="modal-footer center">
+                <i-button id="delete_category_btn" type="delete" ng-click="delete(category)" label="##word.delete##"></i-button></i-button>
+                <i-button type="close"   onclick="site.hideModal('#deleteCategoryItemModal')" label="##word.close##"></i-button>
+
+        </div>
+    </div>
+
+
+</div>

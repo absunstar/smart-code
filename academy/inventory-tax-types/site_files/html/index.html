@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="tax_types_ui || tax_types_manage" data-ng-app="myApp">
+
+<head x-import="head.html">
+
+</head>
+
+<body class="##session.lang##">
+
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+
+    </nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+
+    </nav>
+
+
+    <div x-permission="stores" id="main-layout" class="container">
+        <div class="row center">
+            <div class="col12" ng-controller="tax_types">
+                <div x-permissions="tax_types_add || tax_types_manage" x-import="inventory-tax-types/add_modal.html"></div>
+                <div x-permissions="tax_types_update || tax_types_manage" x-import="inventory-tax-types/update_modal.html"></div>
+                <div x-permissions="tax_types_delete || tax_types_manage" x-import="inventory-tax-types/delete_modal.html"></div>
+                <div x-permissions="tax_types_view || tax_types_manage" x-import="inventory-tax-types/view_modal.html"></div>
+                <div class="top-actions">
+                    <i-button x-permissions="tax_types_add || tax_types_manage" type="add" label="##word.tax_types_new##" ng-click="newTax_Type()"></i-button>
+                    <h3 class="bold text-center"> ##word.count## : {{count}}</h3>
+                </div>
+
+                <div id="d1">
+                    <table class="table center bold loaded" id="t1">
+                        <tr>
+                            <th class="not-print">##word.tax_types_logo##</th>
+                            <th>##word.tax_types_name##</th>
+                            <th>##word.tax_types_value##</th>
+
+                            <th class="not-print">##word.actions##</th>
+                        </tr>
+                        <tr ng-repeat="c in list">
+                            <td class="not-print">
+                                <img class="logo" ng-src="{{c.image_url}}">
+                            </td>
+                            <td>{{c.name}}</td>
+                            <td class="center red">{{c.value}} % </td>
+
+                            <td class="center not-print">
+                                <i-button x-permissions="tax_types_view || tax_types_manage" type="details" label="##word.details##" ng-click="details(c)"></i-button>
+                                <i-button x-permissions="tax_types_update || tax_types_manage" type="update" label="##word.update##" ng-click="edit(c)"></i-button>
+                                <i-button x-permissions="tax_types_delete || tax_types_manage" type="delete" label="##word.delete##" ng-click="remove(c)"></i-button>
+
+                            </td>
+                        </tr>
+
+                    </table>
+                </div>
+                <div class="row">
+                    <i-button x-permissions="tax_types_export || tax_types_manage" type="export" label="##word.export_to_excel##" onclick="export_to_xlsx('t1' , 'tax_types.xlsx')"></i-button>
+                    <i-button x-permissions="tax_types_print || tax_types_manage" type="print" label="##word.print##" onclick="site.print('#d1')"> </i-button>
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div x-import="scripts.html"></div>
+    <script x-permission="stores" x-import="inventory-tax-types/index.js"></script>
+
+</body>
+
+</html>

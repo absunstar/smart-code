@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="class_rooms_ui || class_rooms_manage" data-ng-app="myApp">
+
+<head x-import="head.html">
+
+</head>
+
+<body class="##session.lang##">
+
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+
+    </nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+
+    </nav>
+
+    <div id="main-layout" class="container">
+        <div class="row">
+            <div class="row" ng-controller="class_rooms">
+                <div x-permissions="class_rooms_add || class_rooms_manage" x-import="class-rooms/add_modal.html"></div>
+                <div x-permissions="class_rooms_update || class_rooms_manage" x-import="class-rooms/update_modal.html"></div>
+                <div x-permissions="class_rooms_delete || class_rooms_manage" x-import="class-rooms/delete_modal.html"></div>
+                <div x-permissions="class_rooms_view || class_rooms_manage" x-import="class-rooms/view_modal.html"></div>
+                <div x-permissions="class_rooms_search || class_rooms_manage" x-import="class-rooms/search_all_modal.html"></div>
+
+                <div class="row">
+                    <h1 class="bold text-center">##word.class_rooms##</h1>
+                </div>
+
+                <div class="top-actions">
+                    <i-button x-permissions="class_rooms_add || class_rooms_manage" type="add" label="##word.class_rooms_new##" ng-click="displayAddClassRooms()"></i-button>
+
+                    <i-button x-permissions="class_rooms_search || class_rooms_manage" type="search" label="##word.search_all##" ng-click="displaySearchModal()"></i-button>
+
+                    <h3 class="bold text-center"> ##word.count## : {{count}}</h3>
+                </div>
+
+                <table x-permissions="login" class="table bold loaded" id="t1">
+                    <tr>
+                        <th class="not-print">##word.logo##</th>
+                        <th>##word.class_rooms_name##</th>
+                        <th>##word.class_rooms_capaneighborhood##</th>
+                        <th>##word.status##</th>
+                        <th class="not-print">##word.actions##</th>
+                    </tr>
+                    <tr ng-repeat="c in list">
+                        <td class="center not-print">
+                            <img class="logo" ng-src="{{c.image_url}}">
+                        </td>
+                        <td class="center title">{{c.name}}</td>
+                        <td class="center blue">{{c.capaneighborhood}}</td>
+
+                        <td class="center">
+                            <p ng-show="c.active ==true" class="green"> ##word.active## </p>
+                            <p ng-show="c.active ==false" class="red"> ##word.not_active## </p>
+                        </td>
+
+                        <td class="center not-print">
+                            <i-button x-permissions="class_rooms_view || class_rooms_manage" type="view" label="##word.details##" ng-click="displayDetailsClassRooms(c)"></i-button>
+
+                            <i-button x-permissions="class_rooms_update || class_rooms_manage" type="edit" label="##word.edit##" ng-click="displayUpdateClassRooms(c)"></i-button>
+
+                            <i-button x-permissions="class_rooms_delete || class_rooms_manage" type="delete" label="##word.delete##" ng-click="displayDeleteClassRooms(c)"></i-button>
+                        </td>
+                    </tr>
+                </table>
+                <i-button x-permissions="class_rooms_print || class_rooms_manage" type="print" label="##word.print##" onclick="site.print('#t1')"></i-button>
+
+                <i-button x-permissions="class_rooms_export || class_rooms_manage" type="export" label="##word.export_to_excel##" onclick="export_to_xlsx('t1' , 'class_rooms.xlsx')"></i-button>
+            </div>
+        </div>
+    </div>
+
+    <div x-import="scripts.html"></div>
+    <script x-import="class-rooms/index.js"></script>
+</body>
+
+</html>

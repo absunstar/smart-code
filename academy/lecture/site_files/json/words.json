@@ -1,0 +1,50 @@
+[{
+        "name": "lecture",
+        "en": "Lecture",
+        "ar": "المحاضرات"
+    },
+    {
+        "name": "lecture_new",
+        "en": "New Lecture",
+        "ar": "محاضرة جديد"
+    },
+    {
+        "name": "lecture_time",
+        "en": "Lecture Time",
+        "ar": "ميعاد المحاضرة "
+    },
+    {
+        "name": "lecture_add",
+        "en": "Add Lecture",
+        "ar": "اضافة محاضرة "
+    },
+    {
+        "name": "lecture_edit",
+        "en": "Edit Lecture",
+        "ar": "تعديل محاضرة "
+    },
+    {
+        "name": "lecture_details",
+        "en": "Lecture Details",
+        "ar": "تفاصيل المحاضرة "
+    },
+    {
+        "name": "lecture_delete",
+        "en": "Delete Lecture",
+        "ar": "حذف محاضرة "
+    },
+    {
+        "name": "lecture_name",
+        "en": "Lecture Name",
+        "ar": "اسم المحاضرة "
+    },
+    {
+        "name": "lecture_price",
+        "en": "Lecture Price",
+        "ar": "سعر المحاضرة "
+    }
+
+
+
+
+]

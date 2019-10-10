@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+
+<html lang="en" data-ng-app="myApp" class="bg-white">
+
+<head x-import="head.html">
+</head>
+
+<body style="background : white" class=" ##session.lang##">
+
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+
+    </nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+
+    </nav>
+
+    <div class="container" ng-controller="report_tenants_book">
+        <div class="row center">
+            <br>
+            <h1 class="center bold black">##word.report_tenants_book##</h1>
+            <br>
+            <div x-import="report-tenants-book/search_modal.html"></div>
+            <div class="row top-actions">
+
+                <i-button type="search" id="searchAllBtn" label="##word.search_all##" ng-click="showSearch()">
+                </i-button>
+            </div>
+            <br>
+            <br>
+            <div class="row" id="print_id">
+
+                <div ng-show="tenants" class="row margin padding dashed">
+                    <div class="col6 padding">
+
+                        <table class="table bold" id="t1">
+
+                            <tr>
+                                <td class="title">##word.tenant##</td>
+                                <td>
+                                    <p class="center">{{tenants.name}}</p>
+                                </td>
+                            </tr>
+                        </table>
+
+
+                    </div>
+                    <div class="col6 padding">
+
+
+                        <table class="table bold" id="t1">
+
+                            <tr>
+                                <td class="title">##word.report_tenants_total_required##</td>
+
+                                <td>
+                                    <p class="center">{{report.total_rest}} ##word.le## </p>
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td class="title">##word.report_tenants_total##</td>
+
+                                <td>
+                                    <p class="center green">{{report.total_paid}} ##word.le## </p>
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td class="title">##word.report_tenants_total_rest##</td>
+
+                                <td>
+                                    <p class="center red">{{report.rest}} ##word.le## </p>
+                                </td>
+
+                            </tr>
+
+                        </table>
+
+
+                    </div>
+                </div>
+
+                <br>
+                <br>
+                <div class="row" ng-show="tenants">
+                    <h2 class="center"> </h2>
+                    <table class="table bold hover dashed">
+                        <th>##word.report_tenants_serial##</th>
+                        <th>##word.report_tenants_hall##</th>
+                        <th>##word.report_tenants_book_date##</th>
+                        <th>##word.report_tenants_start_date##</th>
+                        <th>##word.report_tenants_end_dete##</th>
+                        <th>##word.report_tenants_required##</th>
+                        <th>##word.report_tenants_paid##</th>
+                        <th>##word.report_tenants_rest##</th>
+                        <tr ng-repeat="t in report.tenants_list">
+
+                            <td id="th">
+                                <p class="center blue"> {{$index + 1}} </p>
+                            </td>
+
+                            <td>
+                                <p class="center"> {{t.class_room}} </p>
+                            </td>
+                            <td>
+                                <p class="center brown"> {{t.book_date | date : 'dd - MM -yyyy'}} </p>
+                            </td>
+                            <td>
+                                <p class="center green"> {{t.start_date | date : 'dd - MM -yyyy'}} </p>
+                            </td>
+                            <td>
+                                <p class="center red"> {{t.end_date | date : 'dd - MM -yyyy'}} </p>
+                            </td>
+                            <td>
+                                <p class="center"> {{t.price}} </p>
+
+                            </td>
+                            <td>
+                                <p class="center green"> {{t.paid}} </p>
+                            </td>
+
+                            <td>
+                                <p class="center red"> {{t.rest}} </p>
+                            </td>
+
+                   
+                        </tr>
+                    </table>
+
+                </div>
+                <i-button class="not-print" x-permission="export" type="export" label="##word.export_to_excel##"
+                    onclick="export_to_xlsx('t1' , 'Period_Engineer_Report.xlsx')"></i-button>
+                <i-button class="not-print" x-permission="print" type="print" label="##word.print##"
+                    onclick="site.print('#print_id')"></i-button>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div x-import="scripts.html"></div>
+    <script x-import="report-tenants-book/index.js"></script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,87 @@
+[{
+        "name": "register",
+        "en": "register",
+        "ar": "التسجيل"
+    },
+    {
+        "name": "register_new",
+        "en": "New register",
+        "ar": "تسجيل جديد"
+    },
+
+    {
+        "name": "register_add",
+        "en": "Add register",
+        "ar": "اضافة تسجيل"
+    },
+    {
+        "name": "register_edit",
+        "en": "Edit register",
+        "ar": "تعديل تسجيل"
+    },
+    {
+        "name": "register_analyses_centers",
+        "en": "Analyses Centers register",
+        "ar": "تسجيل مركز تحاليل"
+    },
+    {
+        "name": "register_patient",
+        "en": "Patient register",
+        "ar": "تسجيل مريض"
+    },
+    {
+        "name": "register_scan_centers",
+        "en": "Scan Center register",
+        "ar": "تسجيل مركز أشعة"
+    },
+    {
+        "name": "register_pharmacy",
+        "en": "Farmacy register",
+        "ar": "تسجيل صيدلية"
+    },
+    {
+        "name": "register_insurance_company",
+        "en": "Insurance Company register",
+        "ar": "تسجيل شركة تأمين"
+    },
+    {
+        "name": "register_clinic",
+        "en": "Clinic register",
+        "ar": "تسجيل عيادة"
+    },
+    {
+        "name": "register_doctors",
+        "en": "Doctor register",
+        "ar": " تسجيل طبيب"
+    },
+    {
+        "name": "register_nursing",
+        "en": "Nursing register",
+        "ar": "تسجيل تمريض"
+    },
+    {
+        "name": "register_hospital",
+        "en": "Hospital Register",
+        "ar": "تسجيل مستشفى"
+    },
+
+    {
+        "name": "register_name",
+        "en": "register Name",
+        "ar": "اسم التسجيل"
+    },
+    {
+        "name": "password_return",
+        "en": "Rewrite Your Password",
+        "ar": "أعد كتابة كلمة المرور"
+    },
+    {
+        "name": "password_err",
+        "en": "password does not match",
+        "ar": "كلمة السر غير متطابقة"
+    }
+
+
+
+
+]

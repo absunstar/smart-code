@@ -1,0 +1,45 @@
+<div ng-hide="busy" class="row" fixed>
+    <div class="col9">
+        <br>
+        <table class="table bold">
+            <tr>
+                <td class="title">##word.amounts_in_date##</td>
+                <td class="brown center">{{amount_in.date | date : 'dd - MM - yyyy'}}</td>
+            </tr>
+
+            <tr>
+                <td class="title">##word.amounts_in_value##</td>
+                <td class="green center">{{amount_in.value}}</td>
+            </tr>
+
+            <tr ng-show="amount_in.employee">
+                <td class="title">##word.amounts_in_employees##</td>
+                <td class="center">{{amount_in.employee.name}}</td>
+            </tr>
+
+       
+            <tr>
+                <td class="title">##word.amounts_in_source##</td>
+                <td class="center">{{amount_in.source.name}}</td><br>
+
+            </tr>
+
+            <tr>
+                <td class="title">##word.amounts_in_description##</td>
+                <td class="center">{{amount_in.description}}</td>
+            </tr class="center">
+
+
+        </table>
+    </div>
+
+    <div class="col3">
+        <i-image view ng-model="amount_in.image_url"></i-image>
+        <i-files view ng-model="amount_in.files"></i-files>
+
+    </div>
+
+
+</div>
+</div>
+<div x-import="accounting-amounts-in/action_info.html"></div>

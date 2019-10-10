@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" data-ng-app="myApp">
+
+<head x-import="head.html">
+
+</head>
+
+<body style="background : white" class=" ##session.lang##">
+
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+
+    </nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+
+    </nav>
+
+    <div x-permission="amounts_report" id="main-layout" class="container">
+        <div class="row center">
+            <div class="row" ng-controller="amounts_report">
+                <div x-import="accounting-amounts-report/search_modal.html"></div>
+                <div class="row">
+                    <h1 class="bold text-center">##word.amounts_report_total##</h1>
+                </div>
+                <div class="top-actions">
+
+                    <i-button type="search" label="##word.search_all##" ng-click="showSearch();search = {}"></i-button>
+
+
+                </div>
+
+                <div class="row">
+                    <table class="table" id="t1">
+                        <tr>
+                            <td class="bold">##word.amounts_in_total## </td>
+                            <td>
+                                <p class="bold green">{{total_in}} ##word.le## </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="bold"> ##word.amounts_out_total## </td>
+                            <td>
+                                <p class="bold red">{{total_out}} ##word.le##</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="bold"> ##word.amounts_report_total## </td>
+                            <td>
+                                <p class="bold bg-green" ng-show="total_in > total_out"> {{total_in - total_out}}
+                                    ##word.le##
+                                </p>
+                                <p class="bold bg-red" ng-hide="total_in > total_out"> {{total_in - total_out}}
+                                    ##word.le##
+                                </p>
+
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="row">
+                    <div class="col6 padding">
+                        <h2 class="center bold" id="t1"> ##word.amounts_in## </h2>
+                        <table class="table loaded" id="t1">
+                            <tr>
+                                <th class="pointer" ng-click="sortBy1('date')">##word.amounts_in_date##</th>
+                                <th class="pointer" ng-click="sortBy1('value')">##word.amounts_in_value##</th>
+
+                                <th class="pointer" ng-click="sortBy1('source.name')">##word.amounts_in_source##</th>
+                            </tr>
+                            <tr ng-repeat="c in amountsInList | orderBy:propertyName1:reverse1">
+                                <td>
+                                    <p class="center"> {{c.date | date : 'dd - MM - yyyy'}} </p>
+                                </td>
+                                <td>
+                                    <p class="center bold blue"> {{c.value + ' ##word.le## '}} </p>
+                                </td>
+
+                                <td>
+                                    <p class="center"> {{c.source.name}} </p>
+                                </td>
+                            </tr>
+
+                        </table>
+                        <i-button type="export" label="##word.export_to_excel##"
+                            onclick="export_to_xlsx('t1' , 'amounts_report.xlsx')"></i-button>
+                        <i-button type="print" label="##word.print##" onclick="site.print('#t1')"></i-button>
+
+                    </div>
+                    <div class="col6 padding">
+                        <h2 class="center bold" id="t1"> ##word.amounts_out## </h2>
+                        <table class="table loaded" id="t1">
+                            <tr>
+                                <th class="pointer" ng-click="sortBy2('date')">##word.amounts_out_date##</th>
+                                <th class="pointer" ng-click="sortBy2('value')">##word.amounts_out_value##</th>
+
+                                <th class="pointer" ng-click="sortBy2('source.name')">##word.amounts_out_source##</th>
+                            </tr>
+                            <tr ng-repeat="c2 in amountsOutList | orderBy:propertyName2:reverse2 | orderBy : '-date'">
+
+                                <td>
+                                    <p class="center"> {{c2.date | date : 'dd - MM - yyyy'}} </p>
+                                </td>
+                                <td>
+                                    <p class="center bold blue"> {{c2.value}} ##word.le## </p>
+                                </td>
+
+                                <td>
+                                    <p class="center"> {{c2.source.name}} </p>
+                                </td>
+
+                            </tr>
+
+                        </table>
+
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div x-import="scripts.html"></div>
+
+    <script x-permission="amounts_report" x-import="accounting-amounts-report/index.js"></script>
+
+
+</body>
+
+</html>

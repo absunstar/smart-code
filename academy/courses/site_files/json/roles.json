@@ -1,0 +1,7 @@
+[{
+    "module_name" : "courses" ,
+    "name": "courses_admin",
+    "en": "Courses Admin",
+    "ar": "إدارة الكورسات",
+    "permissions": ["courses_manage"]
+}]

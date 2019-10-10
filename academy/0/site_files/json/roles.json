@@ -1,0 +1,10 @@
+[{
+        "name": "admin",
+        "ar": "المدير العام",
+        "en": "admin",
+        "permissions": [
+            "*"
+        ]
+    }
+    
+]

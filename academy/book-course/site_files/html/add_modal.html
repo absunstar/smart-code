@@ -1,0 +1,27 @@
+<div id="bookCourseAddModal" class="modal" fixed>
+    
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.book_course_add##
+                <i class="fa fa-plus "></i>
+            </h2>
+
+        </div>
+
+        <div class="modal-body">
+            <div x-import="book-course/content.html"></div>
+        </div>
+
+
+
+        <div class="modal-footer center">
+            <h2 class="error"> {{error}} </h2>
+            <i-button type="add" label="##word.add##" ng-click="addBookCourse()"></i-button>
+
+            <i-button type="close" label="##word.close##" onclick="site.hideModal( '#bookCourseAddModal')"></i-button>
+        </div>
+    </div>
+    
+</div>

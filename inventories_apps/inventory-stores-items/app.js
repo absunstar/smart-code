@@ -2,14 +2,7 @@ module.exports = function init(site) {
   const $stores_items = site.connectCollection("stores_items")
   const $complex_items = site.connectCollection("complex_items")
 
-  site.get_company = function (req) {
-    let company = req.session('company')
-    return site.fromJson(company)
-  }
-  site.get_branch = function (req) {
-    let branch = req.session('branch')
-    return site.fromJson(branch)
-  }
+ 
 
   $stores_items.busy5 = false
   site.on('[stores_in][stores_items][opening_balance]', obj => {

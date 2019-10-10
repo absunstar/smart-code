@@ -1,0 +1,123 @@
+<div id="viewItemTranactionModal" class="modal">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                <i class="fa fa-file"></i> ##word.item_transaction_details## </h2>
+        </div>
+        <div class="modal-body">
+          
+            <div ng-hide="busy" class="row10" id="v1">
+                <div class="col7">
+                    <br>
+                    <table class="table">
+
+
+                        <tr>
+                            <td class="title">##word.item_transaction_date##</td>
+                            <td>{{item_transaction.date}}</td>
+                        </tr>
+
+                        <tr>
+                            <td class="title">##word.item_transaction_code##</td>
+                            <td>{{item_transaction.code}}</td>
+                        </tr>
+
+                        <tr>
+                            <td class="title">##word.item_transaction_name##</td>
+                            <td>{{item_transaction.name}}</td>
+                        </tr>
+
+                        <tr>
+                            <td class="title">##word.item_transaction_size##</td>
+                            <td>{{item_transaction.size}}</td>
+                        </tr>
+
+                        <tr>
+                            <td class="title">##word.item_transaction_count##</td>
+                            <td>{{item_transaction.count}}</td>
+                        </tr>
+
+
+                        <tr>
+                            <td class="title">##word.item_transaction_current_count##</td>
+                            <td>{{item_transaction.current_count}}</td>
+                        </tr>
+
+                        <tr>
+                            <td class="title">##word.item_transaction_last_count##</td>
+                            <td>{{item_transaction.last_count}}</td>
+                        </tr>
+
+                        <tr>
+                            <td class="title">##word.item_transaction_cost##</td>
+                            <td>{{item_transaction.cost}}</td>
+                        </tr>
+
+                        <tr>
+                            <td class="title">##word.item_transaction_price##</td>
+                            <td>{{item_transaction.price}}</td>
+                        </tr>
+
+                        <tr>
+                            <td class="title">##word.item_transaction_last_price##</td>
+                            <td>{{item_transaction.last_price}}</td>
+                        </tr>
+
+                        <tr>
+                            <td class="title">##word.item_transaction_total##</td>
+                            <td>{{item_transaction.total}}</td>
+                        </tr>
+
+                        <tr>
+                            <td class="title">##word.item_transaction_section##</td>
+                            <td>{{item_transaction.section.name}}</td>
+                        </tr>
+
+                        <tr>
+                            <td class="title">##word.item_transaction_category##</td>
+                            <td>{{item_transaction.category.code + ' - ' + item_transaction.category.name}}</td>
+                        </tr>
+
+                        <tr>
+                            <td class="title">##word.item_transaction_vendor_code##</td>
+                            <td>{{item_transaction.vendor.code}}</td>
+                        </tr>
+
+                        <tr>
+                            <td class="title">##word.item_transaction_vendor_name##</td>
+                            <td>{{item_transaction.vendor.name}}</td>
+                        </tr>
+
+
+
+                        <tr>
+                            <td class="title">##word.item_transaction_season##</td>
+                            <td>{{item_transaction.seasonName.season.ar + ' ' + item_transaction.seasonName.year}}</td>
+                        </tr>
+
+                    </table>
+                </div>
+
+                <div class="col3 center not-print">
+                    <br>
+                    <i-image label="##word.categories_logo##" ng-model="item_transaction.image_url"></i-image>
+
+                </div>
+            </div>
+
+        </div>
+        <h2>{{error}}</h2>
+        <div class="modal-footer center">
+
+            <a class="btn bg-blue" onclick="site.hideModal('#viewItemTranactionModal')">
+                <i class="fa fa-times" aria-hidden="true"></i> ##word.close##</a>
+
+            <a class="btn black bg-yellow" onclick="site.print('#v1')">
+                <i class="fa fa-print" aria-hidden="true"></i> ##word.print## </a>
+        </div>
+    </div>
+
+
+</div>

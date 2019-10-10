@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="book_course_ui || book_course_manage" data-ng-app="myApp">
+
+<head x-import="head.html">
+
+</head>
+
+<body class="##session.lang##">
+
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+
+    </nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+
+    </nav>
+    <div id="main-layout" class="container">
+        <div class="row">
+            <div class="row" ng-controller="book_course">
+                <div x-permissions="book_course_add || book_course_manage" x-import="book-course/add_modal.html"></div>
+                <div x-permissions="book_course_update || book_course_manage" x-import="book-course/update_modal.html"></div>
+                <div x-permissions="book_course_delete || book_course_manage" x-import="book-course/delete_modal.html"></div>
+                <div x-permissions="book_course_view || book_course_manage" x-import="book-course/view_modal.html"></div>
+                <div x-import="students/view_modal.html"></div>
+                <div x-import="book-course/course_dates.html"></div>
+                <div x-import="book-course/accept.html"></div>
+                <div x-import="book-course/paid_payback.html"></div>
+                <div x-import="book-course/paid.html"></div>
+                <div x-permissions="book_course_search || book_course_manage" x-import="book-course/search_all_modal.html"></div>
+
+                <div class="row">
+                    <h1 class="bold text-center">##word.book_course##</h1>
+                </div>
+
+                <div class="top-actions">
+                    <i-button x-permissions="book_course_add || book_course_manage" type="add" label="##word.book_course_new##"
+                        ng-click="displayAddBookCourse()"></i-button>
+
+                    <i-button x-permissions="book_course_search || book_course_manage" type="search" label="##word.search_all##"
+                        ng-click="displaySearchModal()"></i-button>
+
+                    <h3 class="bold text-center"> ##word.count## : {{count}}</h3>
+                </div>
+
+                <table x-permissions="login" class="table bold hover loaded" id="t1">
+                    <tr>
+                        <th class="not-print">##word.logo##</th>
+                        <th>##word.booking_code##</th>
+                        <th>##word.book_date##</th>
+                        <th>##word.student##</th>
+                        <th>##word.book_course_name##</th>
+                        <th>##word.trainer##</th>
+                        <th>##word.total_rest##</th>
+                        <th>##word.rest##</th>
+                        <th>##word.status##</th>
+                        <th class="not-print">##word.actions##</th>
+                    </tr>
+                    <tr ng-repeat="c in list" class="bold pointer">
+                        <td ng-click="displayDetailsBook(c)" class="center not-print">
+                            <img class="logo" ng-src="{{c.image_url}}">
+                        </td>
+                        <td ng-click="displayDetailsBook(c)" class="center title"> <br> {{c.code}}</td>
+                        <td ng-click="displayDetailsBook(c)" class="center brown"> <br> {{c.book_date | date : 'dd - MM
+                            -yyyy'}}</td>
+                        <td ng-click="displayDetailsBook(c)" class="center "> <br> {{c.student.name}}</td>
+                        <td ng-click="displayDetailsBook(c)" class="center">
+                            <p>{{c.select_book.course.name}}</p>
+                            <br>
+                            <p class="green center">{{c.select_book.course.price}}</p>
+                            <p class="green">##word.pound##</p>
+
+                        </td>
+                        <td ng-click="displayDetailsBook(c)" class="center"> <br> {{c.select_book.trainer.name}}</td>
+                        <td ng-click="displayDetailsBook(c)" class="center green"> <br> {{c.total_rest}} ##word.pound## </td>
+                        <td ng-click="displayDetailsBook(c)" class="center red"> <br> {{c.rest}} ##word.pound## </td>
+
+                        <td ng-click="displayDetailsBook(c)" class="center">
+                            <br>
+                            <p ng-show="c.active ==true" class="green"> ##word.active## </p>
+                            <p ng-show="c.active ==false" class="red"> ##word.not_active## </p>
+                        </td>
+
+                        <td class="center not-print">
+
+                            <i-button x-permissions="book_course_update || book_course_manage" type="edit" label="##word.paid_payback##"
+                                ng-click="paidPaybackShow(c)"></i-button>
+
+                            <i-button x-permissions="book_course_delete || book_course_manage" type="delete" label="##word.delete##"
+                                ng-click="displayDeleteBookCourse(c)"></i-button>
+                        </td>
+                    </tr>
+                </table>
+                <i-button x-permissions="book_course_print || book_course_manage" type="print" label="##word.print##"
+                    onclick="site.print('#t1')"></i-button>
+
+                <i-button x-permissions="book_course_export || book_course_manage" type="export" label="##word.export_to_excel##"
+                    onclick="export_to_xlsx('t1' , 'bookCourse.xlsx')"></i-button>
+            </div>
+        </div>
+    </div>
+
+    <div x-import="scripts.html"></div>
+    <script x-import="book-course/index.js"></script>
+</body>
+
+</html>

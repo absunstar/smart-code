@@ -1,0 +1,26 @@
+<div id="addAmountOutModal" class="modal">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.amounts_out_add## <i class="fa fa-plus"></i>
+                <i ng-show="busy" class="fa fa-spinner white fa-pulse fa-3x fa-fw"></i>
+        </div>
+        <div class="modal-body">
+
+            <div x-import="accounting-amounts-out/content.html"></div>
+
+        </div>
+        <h2 class="error">{{error}}</h2>
+        <div class="modal-footer center">
+
+
+            <i-button type="add" label="##word.add##" ng-click="add()"></i-button>
+            <i-button type="close" label="##word.close##" onclick="site.hideModal('#addAmountOutModal')"></i-button>
+
+        </div>
+    </div>
+
+
+</div>

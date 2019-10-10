@@ -1,0 +1,25 @@
+<div id="updateInOutNameModal" class="modal">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.in_out_name_edit## <i class="fa fa-pencil"></i>
+                <i ng-show="busy" class="fa fa-spinner white fa-pulse fa-3x fa-fw"></i>
+            </h2>
+        </div>
+        <div class="modal-body">
+            <div x-import="accounting-in-out-names/content.html"></div>
+            <div x-import="accounting-in-out-names/action_info.html"></div>
+        </div>
+        <h2 class="error">{{error}}</h2>
+        <div class="modal-footer center">
+
+            <i-button type="save" label="##word.save##" ng-click="update(in_out_name)"></i-button>
+            <i-button type="close" label="##word.close##" onclick="site.hideModal('#updateInOutNameModal')"></i-button>
+
+        </div>
+    </div>
+
+
+</div>

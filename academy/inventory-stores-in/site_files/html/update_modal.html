@@ -1,0 +1,28 @@
+
+
+
+
+<div id="updateStoreInModal" class="modal">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+                <h2>
+                    ##word.safes_edit## <i class="fa fa-pencil"></i>
+                    <i ng-show="busy" class="fa fa-spinner white fa-pulse fa-3x fa-fw"></i>
+                </h2>
+            </div>
+            <div class="modal-body">
+    
+                <div x-import="inventory-stores-in/content.html"></div>
+    
+            </div>
+            <h2 class="error">{{error}}</h2>
+            <div class="modal-footer center">
+                <i-button type="save" label="##word.save##" ng-click="update(store_in)"></i-button>
+                <i-button type="close" label="##word.close##" onclick="site.hideModal('#updateStoreInModal')"></i-button>
+            </div>
+        </div>
+    </div>
+
+

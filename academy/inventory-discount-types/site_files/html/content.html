@@ -1,0 +1,31 @@
+<div class="row" fixed>
+    <div class="col9">
+
+        <form class="form">
+            <div class="row">
+                    <i-control v="r" class="col4" ng-model="discount_type.name" type="text" label="##word.discount_types_name##"></i-control>
+                    <i-control v="r" class="col2" ng-model="discount_type.value" label="##word.discount_types_value##" type="number"></i-control>
+        
+            </div>
+
+            <br>
+
+            <div class="row">
+                <h2 class="col3 brown">نوع الخصم :</h2>
+                <i-radio class="col3" ng-model="discount_type.type" label="##word.discount_types_number##" ng-value="0"
+                    group="type" type="radio"></i-radio>
+                <i-radio class="col3" ng-model="discount_type.type" label="##word.discount_types_percent##" ng-value="%"
+                    group="type" type="radio"></i-radio>
+
+            </div>
+
+        </form>
+
+    </div>
+    <div class="col3 center">
+
+            <i-image label="##word.discount_types_img##" ng-model="discount_type.image_url"></i-image>
+            <i-files ng-model="discount_type.files"></i-files>
+
+    </div>
+</div>

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="employees_report_ui || employees_report_manage" data-ng-app="myApp">
+
+<head x-import="head.html">
+
+</head>
+
+<body class="##session.lang##">
+
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+
+    </nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+
+    </nav>
+
+    <div id="main-layout" class="container">
+        <div class="row center">
+
+            <div class="row" ng-controller="employees_report">
+                <div x-permissions="employees_report_search || employees_report_manage"
+                    x-import="accounting-employees-report/search_modal.html"></div>
+                <div x-permissions="employees_report_update || employees_report_manage"
+                    x-import="accounting-employees-report/done.html"></div>
+
+                <div class="row">
+                    <h1 class="bold text-center">##word.employees_report##</h1>
+                </div>
+
+                <div class="top-actions">
+
+                    <i-button type="search" label="##word.search_all##" ng-click="showSearch()"></i-button>
+                    <i-button ng-hide="employee_report.done" type="add" label="##word.salary_approved##"
+                        onclick="site.showModal('#approvedEmployees_reportModal')">></i-button>
+
+                </div>
+
+                <div id="employeeReport" class="row">
+                    <div class="col6 padding">
+                        <div class="row">
+                            <h2 class="center bold"> ##word.employees_report_Employee_Details## </h2>
+                            <table class="table" id="t1">
+                                <tr>
+                                    <td class="bold">
+
+                                        ##word.employees_report_Employee_Name##
+                                    </td>
+                                    <td>
+                                        <p class="bold"> {{employee_report.employee.name}} </p>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="bold"> ##word.employees_report_accounting_period##</td>
+                                    <td>
+                                        <p> ##word.employees_report_date_from## <span class="bold blue">
+                                                {{employee_report.dateFrom
+                                                | date : 'dd - MM - yyyy'}} </span>
+                                            ##word.employees_report_date_to##<span class="bold blue">
+                                                {{employee_report.dateTo | date : 'dd - MM - yyyy'}}
+                                            </span>
+                                        </p>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="bold">
+
+                                        ##word.employees_report_Division##
+                                    </td>
+                                    <td>
+                                        <p class="bold"> {{employee_report.employee.department.name}} </p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="bold">
+
+                                        ##word.employees_report_job##
+                                    </td>
+                                    <td>
+                                        <p> {{employee_report.employee.job.name}} </p>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="bold">
+
+                                        ##word.employees_report_degree##
+                                    </td>
+                                    <td>
+                                        <p> {{employee_report.employee.degree.name}} </p>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="bold">
+
+                                        ##word.employees_report_salary##
+                                    </td>
+                                    <td>
+                                        <p class="center bold green"> {{employee_report.employee.degree.salary}} </p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="bold">
+
+                                        ##word.employees_report_salary_differance##
+                                    </td>
+                                    <td>
+                                        <p class="center bold blue"> {{employee_report.employee.extra_salary}} </p>
+                                    </td>
+                                </tr>
+
+
+                                <tr>
+                                    <td class="bold">
+
+                                        ##word.employees_report_total_offer##
+                                    </td>
+                                    <td>
+                                        <p class="center bold green"> {{employee_report.total_offers}} </p>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="bold">
+
+                                        ##word.employees_report_total_discount##
+                                    </td>
+                                    <td>
+                                        <p class="center bold red"> {{employee_report.total_discounts}} </p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="bold">
+
+                                        ##word.employees_report_total_insurance##
+                                    </td>
+                                    <td>
+                                        <p class="center bold red"> {{employee_report.total_insurance}} </p>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="bold">
+
+                                        ##word.employees_report_total_advances##
+                                    </td>
+                                    <td>
+                                        <p class="center bold blue"> {{employee_report.total_advances}} </p>
+                                    </td>
+                                </tr>
+
+
+
+                                <tr>
+                                    <td class="bold"> ##word.employees_report_total_salary##</td>
+                                    <td>
+                                        <p class="bold bg-green white"> {{employee_report.total_salary}} ##word.le##
+                                        </p>
+                                    </td>
+                                </tr>
+
+                            </table>
+                            <i-button x-permissions="employees_report_export || employees_report_manage" type="export"
+                                label="##word.export_to_excel##"
+                                onclick="export_to_xlsx('t1' , 'employees_report.xlsx')"></i-button>
+                            <i-button x-permissions="employees_report_print || employees_report_manage" type="print"
+                                label="##word.print##" onclick="site.print('#t1')"></i-button>
+
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+                <div class="row">
+                    <div class="col6 padding">
+                        <h2 id="t1" class="center bold green"> ##word.employees_report_offers##<p> (
+                                {{employee_report.employeeOfferList.length}} ) </p>
+                        </h2>
+                        <table class="table loaded" id="t1">
+                            <tr>
+                                <th class="pointer" ng-click="sortBy('date')"> ##word.employees_report_date##</th>
+                                <th class="pointer" ng-click="sortBy('value')"> ##word.employees_report_value##</th>
+                            </tr>
+                            <tr ng-repeat="e in employee_report.employeeOfferList | orderBy:propertyName:reverse">
+
+                                <td>
+                                    <p class="center bold"> {{e.date | date : 'dd - MM - yyyy'}} </p>
+                                </td>
+
+                                <td>
+                                    <p class="center bold green"> {{e.value}} </p>
+                                </td>
+                            </tr>
+
+                        </table>
+                    </div>
+
+                    <div class="col6 padding ">
+                        <h2 id="t1" class="center bold red"> ##word.employees_report_discount##<p> (
+                                {{employee_report.employeeDiscountList.length}} ) </p>
+                        </h2>
+                        <table class="table loaded" id="t1">
+                            <tr>
+                                <th class="pointer" ng-click="sortBy('date')"> ##word.employees_report_date##</th>
+                                <th class="pointer" ng-click="sortBy('value')"> ##word.employees_report_value##</th>
+                            </tr>
+                            <tr ng-repeat="e in employee_report.employeeDiscountList | orderBy:propertyName:reverse">
+
+                                <td>
+                                    <p class="center bold"> {{e.date | date : 'dd - MM - yyyy'}} </p>
+                                </td>
+
+                                <td>
+                                    <p class="center bold red"> {{e.value}} </p>
+                                </td>
+                            </tr>
+
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    </div>
+
+
+
+
+    <div x-import="scripts.html"></div>
+
+    <script x-import="accounting-employees-report/index.js"></script>
+
+
+</body>
+
+</html>
