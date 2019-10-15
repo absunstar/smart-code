@@ -5,6 +5,41 @@
         "ar": "المراقبة"
     },
     {
+        "name": "restaurant_setting",
+        "en": "Restaurant Setting",
+        "ar": "إعدادات المطعم"
+    },
+    {
+        "name": "security_system",
+        "en": "Security System",
+        "ar": "نظام الحماية"
+    },
+    {
+        "name": "general_setting",
+        "en": "General Setting",
+        "ar": "إعدادات عامة"
+    },
+    {
+        "name": "inventories",
+        "en": "Inventories",
+        "ar": "المخازن"
+    },
+    {
+        "name": "accounting",
+        "en": "Accounting",
+        "ar": "الحسابات"
+    },
+    {
+        "name": "employees",
+        "en": "Employees",
+        "ar": "الموظفين"
+    },
+    {
+        "name": "reports",
+        "en": "Reports",
+        "ar": "التقارير"
+    },
+    {
         "name": "safes_payments_menus",
         "en": "Safes Payments Menu",
         "ar": "قائمة معاملات الخزينة"
