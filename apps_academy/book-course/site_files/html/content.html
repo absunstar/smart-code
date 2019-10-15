@@ -1,0 +1,235 @@
+<div class="form">
+    <div id="basicInformation" class="tab-content">
+        <fieldset>
+            <legend> ##word.basic_information## </legend>
+            <div class="row">
+                <div class="col9">
+                    <div class="row">
+                        <i-control class="col3" label="##word.search_student##" ng-model="student_search"
+                            ng-keydown="getStudentsList($event)"></i-control>
+
+                        <i-list class="col4" label="##word.student##" ng-model="book_course.student" display="name"
+                            items="studentList" ng-search="students_searching"></i-list>
+
+                        <i-button class="col2" ng-show="book_course.student.id" type="details"
+                            label="##word.students_details##" ng-click="showStudent(book_course.student.id)"></i-button>
+
+                        <i-checkbox help-id="book_course_active" class="col2" label="##word.active##"
+                            ng-model="book_course.active"></i-checkbox>
+                    </div>
+
+                    <div ng-show="book_course.student.id" class="col10 dashed">
+                        <table class="table hover center bold">
+                            <tr>
+                                <td class="title">##word.student##</td>
+                                <td colspan="5"> {{book_course.student.name}}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="title">##word.mobile##</td>
+                                <td colspan="2" class="blue "> {{book_course.student.mobile}}</td>
+                                <td class="title">##word.phone##</td>
+                                <td colspan="2" class="blue "> {{book_course.student.phone}}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="title">##word.whatsapp##</td>
+                                <td colspan="2" class="blue "> {{book_course.student.whatsapp}}</td>
+                                <td class="title">##word.email##</td>
+                                <td colspan="2" class="blue "> {{book_course.student.email}}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="title">##word.indentfy##</td>
+                                <td class="blue "> {{book_course.student.indentfy.ar}}</td>
+                                <td class="title">##word.birth_date##</td>
+                                <td colspan="3" class="brown "> {{book_course.student.birth_date | date : 'dd - MM -
+                                    yyyy'}}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="title">##word.addresses##</td>
+                                <td colspan="5"> {{book_course.student.gov.name}} -
+                                    {{book_course.student.neighborhood.name}} - {{book_course.student.area.name}} -
+                                    {{book_course.student.address}}
+                                </td>
+
+                            </tr>
+
+                        </table>
+                    </div>
+
+
+                    <div class="row">
+                        <i-date2 label="##word.book_date##" class="col5" ng-model="book_course.book_date"></i-date2>
+                    </div>
+
+                    <div class="row">
+                        <i-button class="col2" type="search" label="##word.search_course##"
+                            ng-click="courses = 'true' ; trainer = 'false'"></i-button>
+                        <i-button class="col2" type="search" label="##word.search_trainer##"
+                            ng-click="trainer = 'true' ; courses = 'false'"></i-button>
+
+                    </div>
+
+                    <div class="row" ng-show="courses == 'true'">
+
+                        <i-list help-id="book_course_name" display="course.name" class="col5" items="courseLoadList"
+                            ng-search="book_course.$course_search" label="##word.book_course_name##"
+                            ng-model="book_course.course"></i-list>
+
+                        <i-button type="search" class="col2" label="##word.search##"
+                            ng-click="getCreateCourseList({'id' : book_course.course.id } )"></i-button>
+
+                    </div>
+
+                    <div class="row" ng-show="trainer == 'true'">
+
+                        <i-list help-id="trainer_name" ll2" display="name" class="col5" items="trainerList"
+                            ng-search="book_course.$course_search" label="##word.trainer##"
+                            ng-model="book_course.trainer"></i-list>
+
+                        <i-button type="search" class="col2" label="##word.search##"
+                            ng-click="getCreateCourseList({'trainer.id' : book_course.trainer.id })"></i-button>
+
+                    </div>
+
+                    <br>
+                    <br>
+
+                    <div class="row">
+
+
+                        <div class="border margin" ng-show="createCourseList.length > 0">
+                            <table class="table bold hover center ">
+                                <tr>
+                                    <th>##word.book_course_name##</th>
+                                    <th>##word.trainer##</th>
+                                    <th>##word.book_course_price##</th>
+                                    <th>##word.book_course_total##</th>
+                                    <th>##word.start_date##</th>
+                                    <th>##word.end_date##</th>
+                                    <th>##word.actions##</th>
+                                </tr>
+
+                                <tr ng-repeat="c in createCourseList track by $index">
+
+
+                                    <td>
+                                        <p>{{c.course.name}}</p>
+
+                                    </td>
+                                    <td>
+                                        <p class="title">{{c.trainer.name}}</p>
+
+                                    </td>
+                                    <td>
+                                        <p class="green">{{c.course.price}} ##word.pound##</p>
+
+                                    </td>
+
+                                    <td class="blue">
+                                        <br>
+                                        <p class="blue">{{c.course.courses_total}}</p>
+                                        <p class="blue">{{c.course.period.ar}}</p>
+
+                                    </td>
+
+                                    <td>
+                                        <br>
+                                        <h3 class="brown">{{c.start_date | date : 'dd - MM -yyyy'}}</h3>
+                                    </td>
+
+                                    <td>
+                                        <br>
+                                        <h3 class="brown">{{c.end_date | date : 'dd - MM - yyyy'}}</h3>
+
+                                    </td>
+
+                                    <td>
+                                        <i-button ng-click="booking(c)" type="add" label="##word.booking##"></i-button>
+                                    </td>
+
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <hr ng-show="book_course.select_book">
+                    <br>
+                    <div class="row">
+
+                        <div class="border margin grid" ng-show="book_course.select_book">
+                            <table class="table bold hover center ">
+                                <tr>
+                                    <th>##word.book_course_name##</th>
+                                    <th>##word.trainer##</th>
+                                    <th>##word.book_course_price##</th>
+                                    <th>##word.book_course_total##</th>
+                                    <th>##word.start_date##</th>
+                                    <th>##word.end_date##</th>
+                                    <th>##word.actions##</th>
+
+                                </tr>
+
+                                <tr>
+
+                                    <td>
+                                        <br>
+                                        <p>{{book_course.select_book.course.name}}</p>
+                                    </td>
+                                    <td>
+                                        <br>
+                                        <p>{{book_course.select_book.trainer.name}}</p>
+                                    </td>
+
+                                    <td>
+                                        <br>
+                                        <p class="green">{{book_course.select_book.course.price}} ##word.pound##</p>
+                                    </td>
+
+                                    <td class="blue">
+                                        <p class="blue">{{book_course.select_book.course.courses_total}}</p>
+                                        <p class="blue">{{book_course.select_book.course.period.ar}}</p>
+
+                                    </td>
+
+                                    <td>
+                                        <br>
+                                        <p class="brown">{{book_course.select_book.start_date | date : 'dd - MM
+                                            -yyyy'}}</p>
+                                    </td>
+
+                                    <td>
+                                        <br>
+                                        <p class="brown">{{book_course.select_book.end_date | date : 'dd - MM -
+                                            yyyy'}}</p>
+
+                                    </td>
+
+                                    <td>
+                                        <i-button type="view" label="##word.course_dates##"
+                                            onclick="site.showModal( '#courseDatesModal')"></i-button>
+                                    </td>
+
+                                </tr>
+
+                            </table>
+                        </div>
+
+                    </div>
+
+                    <br>
+
+                </div>
+
+                <div class="col3">
+                    <i-image help-id="book_course_logo" ng-model="book_course.image_url"></i-image>
+                </div>
+
+            </div>
+        </fieldset>
+
+    </div>
+</div>

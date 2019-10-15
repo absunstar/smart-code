@@ -1,0 +1,7 @@
+[{
+    "module_name" : "public" ,
+    "name": "class_rooms_admin",
+    "en": "Class Rooms Admin",
+    "ar": "إدارة القاعات",
+    "permissions": ["class_rooms_manage"]
+}]

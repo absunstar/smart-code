@@ -1,0 +1,20 @@
+<div class="row" fixed>
+    <div class="col9">
+        <form class="form">
+
+            <i-control class="col4" ng-model="store.name" label="##word.stores_name##" type="text" id="store_name" v="r"></i-control>
+
+            <i-list display="ar" class="col4" ng-model="store.type" items="store_types" ng-search="_search.$serach_store_types"
+                label="##word.stores_type##" v="r"></i-list>
+            <i-textarea label="##word.stores_note##" class="col8" ng-model="store.note"></i-textarea>
+        </form>
+
+    </div>
+
+    <div class="col3 center">
+        <i-image ng-model="store.image_url"></i-image>
+        <i-files ng-model="store.files"></i-files>
+
+        <br>
+    </div>
+</div>

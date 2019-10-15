@@ -1,0 +1,29 @@
+<div class="row">
+    <div class="col9">
+
+        <form class="form">
+
+            <div class="row ">
+                <i-control class="col2" v="r" ng-model="employees_advances.value" type="number"
+                    label="##word.employees_advances_value##"></i-control>
+                <i-date2 class="col4" ng-model="employees_advances.date" label="##word.employees_advances_date##"></i-date2>
+                <i-list class="col3" label="##word.employees_advances_employees##" ng-search="eng_search"
+                    ng-model="employees_advances.employee" items="employeesList"></i-list>
+                <i-list class="col3" ng-search="safe_search" v='r' ng-model="employees_advances.safe" items="safes"
+                    label="##word.employees_advances_safe##"></i-list>
+                <i-control class="col2" ng-model="employees_advances.time" type="text"
+                    label="##word.employees_advances_time##"></i-control>
+            </div>
+
+            <div class="row">
+                <i-textarea ng-model="employees_advances.description" label="##word.employees_advances_description##">
+                </i-textarea>
+            </div>
+            
+        </form>
+    </div>
+    <div class="col3">
+        <i-image ng-model="employees_advances.image_url"></i-image>
+        <i-files ng-model="employees_advances.files"></i-files>
+    </div>
+</div>

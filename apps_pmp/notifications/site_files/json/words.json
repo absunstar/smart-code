@@ -1,0 +1,23 @@
+[
+    {"name" : "notification_name" , "en" : "Notification Name" , "ar" : "النظام"},
+    {"name" : "notification_message" , "en" : "Message" , "ar" : "الرسالة"},
+    {"name" : "notification_value" , "en" : "Value" , "ar" : "القيمة"},
+    {"name" : "notification_limit" , "en" : "Notifications Display Limit" , "ar" : "الحد الاقصى لعدد التنبيهات"},
+    {"name" : "notification_time" , "en" : "Time" , "ar" : "التاريخ"},
+    {"name" : "notification_user" , "en" : "User" , "ar" : "المستخدم"},
+    {"name" : "notification_user_monitor" , "en" : "User Monitor" , "ar" : "تنبيهات المستخدم"},
+    {"name" : "notification_system_monitor" , "en" : "System Monitor" , "ar" : "تنبيهات النظام"},
+    {"name" : "notification_date_monitor" , "en" : "Date Monitor" , "ar" : "تنبيهات التاريخ"},
+    {"name" : "notification_time_monitor" , "en" : "Time Monitor" , "ar" : "تنبيهات فى نفس الوقت"},
+    {"name" : "notification_hour_monitor" , "en" : "Hour Monitor" , "ar" : "تنبيهات فى نفس الساعة"},
+    {"name" : "notification_day_monitor" , "en" : "Day Monitor" , "ar" : "تنبيهات فى نفس اليوم"},
+    {"name" : "notification_search" , "en" : "Advanced Search" , "ar" : "بحث مخصص وشامل"},
+    {"name" : "notification_from_date" , "en" : "From Date" , "ar" : "من تاريخ"},
+    {"name" : "notification_to_date" , "en" : "To Date" , "ar" : "الى تاريخ"},
+    {"name" : "notification_sort" , "en" : "Sort By" , "ar" : "عرض بالترتيب"},
+    {"name" : "notification_show_update" , "en" : "Show Update" , "ar" : "عرض التعديل"},
+    {"name" : "notification_show_add" , "en" : "Show Add" , "ar" : "عرض الاضافة"},
+    {"name" : "notification_show_delete" , "en" : "Show Delete" , "ar" : "عرض الحذف"},
+    {"name" : "notification_display" , "en" : "Display Screen" , "ar" : "شاشة العرض"},
+    {"name" : "load_all_notifications" , "en" : "Load Notifications" , "ar" : "عرض أحدث التنبيهات"}
+]

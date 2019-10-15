@@ -1,0 +1,7 @@
+[{
+    "module_name" : "hr" ,
+    "name": "employees_advances_fin_admin",
+    "en": "Employees Advances Fin Admin",
+    "ar": "إدارة سداد سلف الموظفين",
+    "permissions": ["employees_advances_fin_manage"]
+}]

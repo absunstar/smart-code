@@ -1,0 +1,20 @@
+<div class="form">
+    <div id="customerGroupAddModal">
+        <fieldset>
+            <legend> ##word.customers_group_informations## </legend>
+            <div class="row">
+                <div class="col9">
+                    <i-control class="col3" ng-disabled="disabledCode" label="##word.customers_group_code##" ng-model="customer_group.code"></i-control>
+
+                    <i-control v="r" class="col5" label="##word.customers_group_name##" ng-model="customer_group.name"></i-control>
+                    <div class="col2"></div>
+                    <i-checkbox class="col2" label="##word.active##" ng-model="customer_group.active"></i-checkbox>
+                </div>
+
+                <div class="col3">
+                    <i-image category="customer_group" ng-model="customer_group.image_url"> </i-image>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+</div>

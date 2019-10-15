@@ -1,0 +1,297 @@
+<div class="form">
+
+    <div class="tabs">
+        <div class="tabs-header">
+            <a class="tab-link" onclick="site.showTabContent(event,'#basicInformation')">
+                ##word.basic_information##
+            </a>
+
+            <a class="tab-link" onclick="site.showTabContent(event,'#familyInformation')">
+                ##word.family_info##
+            </a>
+
+            <a class="tab-link" onclick="site.showTabContent(event,'#accountingInformation')">
+                ##word.accounting##
+            </a>
+
+            <a class="tab-link" onclick="site.showTabContent(event,'#medicalConditionInformation')">
+                ##word.medical_condition##
+            </a>
+
+            <a class="tab-link" onclick="site.showTabContent(event,'#filesInformation')">
+                ##word.files##
+            </a>
+
+            <a class="tab-link" onclick="site.showTabContent(event,'#loginInformation')">
+                ##word.login_information##
+            </a>
+
+        </div>
+
+        <div class="tabs-content">
+            <div id="basicInformation" class="tab-content">
+                <div class="col9">
+                    <fieldset>
+                        <legend> ##word.basic_information## </legend>
+                        <div class="row">
+
+                            <div class="row">
+                                <i-control help-id="" v="r ll2" class="col6" label="##word.name##" ng-model="students.name"></i-control>
+
+                                <i-checkbox help-id="students_active" class="col2" label="##word.active##" ng-model="students.active"></i-checkbox>
+                            </div>
+
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>##word.student_info##</legend>
+
+                        <div class="row">
+
+                            <i-list help-id="" class="col4" label="##word.students_indentfy##" ng-model="students.indentfy"
+                                items="indentfyList" display="ar"></i-list>
+
+                            <i-date2 help-id="" class="col4" label="##word.birth_date##" ng-model="students.birth_date"></i-date2>
+
+                        </div>
+
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>##word.addresses##</legend>
+                        <div class="row">
+                            <i-list class="col4" label="##word.gov##" ng-model="students.gov" items="govList" ng-change="getNeighborhoodList(students.gov)"
+                                display="name" ng-search="students.$gov_search"></i-list>
+
+                            <i-list class="col4" label="##word.neighborhood##" ng-model="students.neighborhood" items="neighborhoodList"
+                                display="name" ng-change="getAreaList(students.neighborhood)" ng-search="students.$neighborhood_search"></i-list>
+
+                            <i-list class="col4" label="##word.area##" ng-model="students.area" items="areaList"
+                                display="name" ng-search="students.$area_search"></i-list>
+                        </div>
+
+                        <div class="row">
+                            <i-control help-id="" class="col6" label="##word.address##" ng-model="students.address"></i-control>
+
+                        </div>
+
+                        <div class="row">
+                            <i-control help-id="" class="col6" label="##word.phone##" ng-model="students.phone"></i-control>
+
+                            <i-control help-id="" class="col6" label="##word.mobile##" ng-model="students.mobile"></i-control>
+
+                        </div>
+
+
+                        <div class="row">
+                            <i-control help-id="" class="col6" label="##word.whatsapp##" ng-model="students.whatsapp"></i-control>
+
+                            <i-control help-id="" class="col6" label="##word.email##" ng-model="students.email"></i-control>
+
+                        </div>
+
+                        <div class="row">
+                            <i-control help-id="" class="col6" label="##word.facebook##" ng-model="students.facebook"></i-control>
+
+                            <i-control help-id="" class="col6" label="##word.twitter##" ng-model="students.twitter"></i-control>
+
+                        </div>
+
+                        <div class="row">
+
+                            <i-textarea label="##word.notes##" ng-model="students.notes"></i-textarea>
+
+                        </div>
+
+                    </fieldset>
+
+                </div>
+
+                <div class="col3">
+                    <i-image help-id="students_logo" ng-model="students.image_url"></i-image>
+                </div>
+            </div>
+
+            <div id="familyInformation" class="tab-content">
+                <fieldset class="row">
+                    <i-list class="col3" items="hostList" label="##word.host##" display="ar" ng-model="students.host"></i-list>
+                </fieldset>
+
+                <fieldset ng-show="students.host.id == 2 || students.host.id == 1">
+
+                    <legend>
+
+                        ##word.dad_data##
+                    </legend>
+                    <div class="row">
+                        <i-control class="col4" type="text" ng-model="students.dad_name" label="##word.dad_name##"></i-control>
+                        <i-control class="col4" type="text" ng-model="students.dad_mobile" label="##word.dad_mobile##"></i-control>
+                    </div>
+
+                    <div class="row">
+
+                        <i-control class="col4" type="text" ng-model="students.dad_job" label="##word.dad_job##"></i-control>
+                        <i-control class="col4" type="text" ng-model="students.dad_job_address" label="##word.dad_job_address##"></i-control>
+                        <i-control class="col4" type="text" ng-model="students.dad_job_phone" label="##word.dad_job_phone##"></i-control>
+                    </div>
+
+                </fieldset>
+
+                <fieldset ng-show="students.host.id == 3 || students.host.id == 1">
+
+                    <legend>
+                        ##word.mom_data##
+                    </legend>
+
+                    <div class="row">
+                        <i-control class="col4" type="text" ng-model="students.mom_name" label="##word.mom_name##"></i-control>
+                        <i-control class="col4" type="text" ng-model="students.mom_mobile" label="##word.mom_mobile##"></i-control>
+                    </div>
+
+                    <div class="row">
+                        <i-control class="col4" type="text" ng-model="students.mom_job" label="##word.mom_job##"></i-control>
+                        <i-control class="col4" type="text" ng-model="students.mom_job_address" label="##word.mom_job_address##"></i-control>
+                        <i-control class="col4" type="text" ng-model="students.mom_job_phone" label="##word.mom_job_phone##"></i-control>
+                    </div>
+
+                </fieldset>
+
+                <fieldset ng-show="students.host.id == 4">
+                    <legend>##word.host_data##</legend>
+
+                    <div class="row">
+                        <i-control class="col4" type="text" ng-model="students.relation_parents" label="##word.relation_parents##"></i-control>
+                        <i-control class="col4" type="text" ng-model="students.host_name" label="##word.host_name##"></i-control>
+                        <i-control class="col4" type="text" ng-model="students.host_mobile" label="##word.host_mobile##"></i-control>
+                    </div>
+
+                    <div class="row">
+                        <i-control class="col4" type="text" ng-model="students.host_job" label="##word.host_job##"></i-control>
+                        <i-control class="col4" type="text" ng-model="students.host_job_address" label="##word.host_job_address##"></i-control>
+                        <i-control class="col4" type="text" ng-model="students.host_job_phone" label="##word.host_job_phone##"></i-control>
+                    </div>
+
+                </fieldset>
+            </div>
+
+            <div id="accountingInformation" class="tab-content">
+                <fieldset>
+                    <legend>
+                        ##word.accounting##
+                    </legend>
+                    <div class="row">
+                        <i-control class="col2" label="##word.file_open_fee##" type="number" ng-model="students.file_open_fee"></i-control>
+                        <i-control class="col2" label="##word.other_fee##" type="number" ng-model="students.other_fee"></i-control>
+                        <i-list class="col4" label="##word.safe##" ng-search="students.$safe_search" items="safesList" ng-model="students.safe"></i-list>
+                    </div>
+                </fieldset>
+            </div>
+
+            <div id="medicalConditionInformation" class="tab-content">
+                <fieldset>
+
+                    <legend>
+                        ##word.medical_info##
+                    </legend>
+                    <div class="row">
+                        <i-control help-id="" class="col3" type="number" label="##word.weight##" ng-model="students.weight"></i-control>
+                        <i-control help-id="" class="col3" type="number" label="##word.tall##" ng-model="students.tall"></i-control>
+                        <i-list help-id="" class="col3" label="##word.blood_type##" ng-model="students.blood_type"
+                            items="bloodTypeList" display="name"></i-list>
+                    </div>
+
+                    <div class="row">
+                        <i-textarea label="##word.medicine_notes##" ng-model="students.medicine_notes"></i-textarea>
+                    </div>
+
+                </fieldset>
+
+                <fieldset>
+
+                    <legend>
+                        ##word.allergic##
+                    </legend>
+                    <div class="row">
+                        <div class="col6">
+                            <div class="row">
+
+                                <h2 class="black">##word.allergic_food##</h2>
+                                <i-button type="add default" ng-click="students.allergic_food_list.push({})"></i-button>
+
+                                <div ng-repeat="food in students.allergic_food_list" class="row">
+                                    <i-control class="col8" ng-model="food.name"></i-control>
+                                    <i-button class="col2" type="delete default" ng-click="students.allergic_food_list.length ==1 || students.allergic_food_list.splice($index,1)"></i-button>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="col6">
+                            <div class="row">
+                                <h2 class="black">##word.allergic_drink##</h2>
+                                <i-button type="add default" ng-click="students.allergic_drink_list.push({})"></i-button>
+
+                                <div ng-repeat="drink in students.allergic_drink_list" class="row">
+                                    <i-control class="col8" ng-model="drink.name"></i-control>
+                                    <i-button class="col2" type="delete default" ng-click="students.allergic_drink_list.length ==1 || students.allergic_drink_list.splice($index,1)"></i-button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </fieldset>
+
+                <fieldset>
+                    <legend>
+                        <i-button type="add default" ng-click="students.medicine_list.push({})"></i-button>
+                        ##word.medicines##
+                    </legend>
+
+                    <div ng-repeat="medicine in students.medicine_list" class="row">
+                        <i-list class="col4" items="medicineList" label="##word.medicine##" ng-search="medicine.$medicines"
+                            ng-model="medicine.name"></i-list>
+                        <i-control class="col2" type="number" label="##word.count_dosage##" ng-model="medicine.count_dosage"></i-control>
+                        <i-list class="col2" items="timeList" display="ar" label="##word.beginning_dosage##" ng-model="medicine.time"></i-list>
+                        <i-button class="col1" type="delete default" ng-click="students.medicine_list.length ==1 || students.medicine_list.splice($index,1)"></i-button>
+
+                    </div>
+                </fieldset>
+
+                <fieldset> 
+                    <legend>
+                        <i-button type="add default" ng-click="students.disease_list.push({})"></i-button>
+                        ##word.diseases##
+                    </legend>
+
+                    <div ng-repeat="disease in students.disease_list" class="row">
+                        <i-list class="col5" items="diseaseList" display2="number" space="/-/" ng-search="disease.$diseases" ng-model="disease.name"></i-list>
+                        <i-button class="col2" type="delete default" ng-click="students.disease_list.length ==1 || students.disease_list.splice($index,1)"></i-button>
+
+                    </div>
+                </fieldset>
+            </div>
+
+            <div id="filesInformation" class="tab-content">
+                <fieldset>
+                    <legend> ##word.files## </legend>
+                    <i-files label="##word.files##" categoty="students_files" ng-model="students.files"></i-files>
+                </fieldset>
+            </div>
+
+            <div id="loginInformation" class="tab-content">
+                <fieldset>
+                    <legend> ##word.login_information## </legend>
+
+                    <i-control help-id="" class="col4" label="##word.email##" ng-model="students.username"></i-control>
+
+                    <i-control help-id="" class="col4" label="##word.password##" ng-model="students.password"></i-control>
+
+                </fieldset>
+            </div>
+
+        </div>
+    </div>
+
+</div>

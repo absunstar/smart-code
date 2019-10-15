@@ -1,0 +1,221 @@
+<div ng-hide="busy" class="row">
+
+    <div class="tabs">
+        <div class="tabs-header full">
+            <a class="tab-link" onclick="site.showTabContent(event,'#basicInformation')">
+                ##word.basic_information##
+            </a>
+
+            <a class="tab-link" onclick="site.showTabContent(event,'#filesInformation')">
+                ##word.files##
+            </a>
+
+            <a class="tab-link" onclick="site.showTabContent(event,'#loginInformation')">
+                ##word.login_information##
+            </a>
+
+
+        </div>
+        <div id="insuranceAllInfo" class="tabs-content bold full">
+            <div id="basicInformation" class="tab-content">
+
+                <fieldset>
+                    <legend> ##word.basic_information##</legend>
+                    <div class="col9">
+                        <div>
+                            <table id="basicInformationTable" class="table hover bold">
+
+                                <tr>
+                                    <td class="title">##word.name##</td> 
+                                    <td class="center">{{employee_list.name}}</td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title">##word.national_id##</td>
+                                    <td class="center blue">{{employee_list.national_id}}</td>
+                                </tr>
+
+                                <tr>
+                                        <td class="title">##word.employees_degrees##</td>
+                                        <td class="center">{{employee_list.degree.name}}</td>
+                                    </tr>
+    
+
+                                <tr>
+                                    <td class="title">##word.salary##</td>
+                                    <td class="center green">{{employee_list.degree.salary}}</td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title">##word.status##</td>
+                                    <td ng-show="employee_list.active == true" class="green center"> ##word.active## </td>
+                                    <td ng-show="employee_list.active == false" class="red center"> ##word.not_active## </td>
+                                </tr>
+
+                            </table>
+                        </div>
+
+                        <br>
+                        <br>
+                        <div>
+                            <fieldset>
+                                <legend>##word.employee_info##</legend>
+                                <table class="table hover bold">
+                                    <tr>
+                                        <td class="title">##word.employee_indentfy##</td>
+                                        <td class="center">{{employee_list.indentfy.ar}}</td>
+                                    </tr>
+                                 
+                                    <tr>
+                                        <td class="title">##word.birth_date##</td>
+                                        <td class="center brown">{{employee_list.birth_date | date : 'dd
+                                            - MM -
+                                            yyyy'}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="title">##word.job##</td>
+                                        <td class="center">{{employee_list.job.name}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="title">##word.qualification##</td>
+                                        <td class="center">{{employee_list.qualification}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="title">##word.employees_insurances_insurance_number##</td>
+                                        <td class="center">{{employee_list.insurance_number}}</td>
+                                    </tr>
+                                </table>
+
+                            </fieldset>
+                        </div>
+                        <br>
+                        <br>
+
+                        <div>
+                            <fieldset>
+                                <legend>##word.addresses##</legend>
+                                <table id="informationTable" class="table hover bold">
+
+                                    <tr>
+                                        <td class="title">##word.gov##</td>
+                                        <td class="center">{{employee_list.gov.name}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="title">##word.city##</td>
+                                        <td class="center">{{employee_list.city.name}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="title">##word.address##</td>
+                                        <td class="center">{{employee_list.address}}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="title">##word.phone##</td>
+                                        <td class="center">
+                                            <a ng-show="employee_list.phone" href="tel:{{employee_list.phone}}">
+                                                {{employee_list.phone}}
+                                                <i class="fa fa-phone" aria-hidden="true"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="title">##word.mobile##</td>
+                                        <td class="center">
+                                            <a ng-show="employee_list.mobile" href="tel:{{employee_list.mobile}}">
+                                                {{employee_list.mobile}}
+                                                <i class="fa fa-mobile" aria-hidden="true"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="title">##word.whatsapp##</td>
+                                        <td class="center">
+                                            <a ng-show="employee_list.whatsapp" href="tel:{{employee_list.whatsapp}}">
+                                                {{employee_list.whatsapp}}
+                                                <i class="fa fa-whatsapp" aria-hidden="true"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="title">##word.email##</td>
+                                        <td class="center">
+                                            <a ng-show="employee_list.email" target="_blank" href="tel:{{employee_list.email}}">
+                                                {{employee_list.email}}
+                                                <i class="fa fa-envelope" aria-hidden="true"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="title">##word.facebook##</td>
+                                        <td class="center">
+                                            <a ng-show="employee_list.facebook" href="tel:{{employee_list.facebook}}">
+                                                {{employee_list.facebook}}
+                                                <i class="fa fa-facebook" aria-hidden="true"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="title">##word.twitter##</td>
+                                        <td class="center">
+                                            <a ng-show="employee_list.twitter" href="tel:{{employee_list.twitter}}">
+                                                {{employee_list.twitter}}
+                                                <i class="fa fa-twitter" aria-hidden="true"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="title">##word.notes##</td>
+                                        <td class="center blue">{{employee_list.notes}}</td>
+                                    </tr>
+
+                                </table>
+
+                            </fieldset>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col3">
+                        <i-image view ng-model="employee_list.image_url"></i-image>
+                    </div>
+
+                </fieldset>
+            </div>
+
+            <div id="filesInformation" class="tab-content">
+
+                <fieldset>
+                    <legend> ##word.files## </legend>
+                    <div class="row">
+                        <i-files view ng-model="employee_list.files"></i-files>
+
+                    </div>
+                </fieldset>
+            </div>
+
+
+            <div id="loginInformation" class="tab-content">
+
+                <fieldset>
+                    <legend> ##word.login_information## </legend>
+
+                    <table class="table hover bold">
+                        <tr>
+                            <td class="title">##word.email##</td>
+                            <td class="center">{{employee_list.username}}</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="title">##word.password##</td>
+                            <td class="center">{{employee_list.password}}</td>
+                        </tr>
+                    </table>
+                </fieldset>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div x-import="hr-employees/action_info.html"></div>

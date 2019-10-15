@@ -1,0 +1,19 @@
+[
+    {"name" : "customers_add" , "en" : "Add Customer" , "ar" : "إضافة عميل"},
+    {"name" : "customers_group_informations" , "en" : "Customers Group Informations" , "ar" : "بيانات مجموعة عملاء"},
+
+    {"name" : "customers_groups_name" , "en" : "Customers Groups" , "ar" : "مجموعات العملاء"},
+    {"name" : "customers_group_menus" , "en" : "Customers Group Menu" , "ar" : "قائمة مجموعة العملاء"},
+    {"name" : "customers_group_code" , "en" : "Customers Group Code" , "ar" : "كود مجموعة العملاء"},
+    {"name" : "customers_group_name" , "en" : "Customers Group Name" , "ar" : "اسم مجموعة العملاء"},
+
+    {"name" : "customers_group_new" , "en" : "New Customers Group" , "ar" : "مجموعة عملاء جديدة"},
+    {"name" : "customers_group_details" , "en" : "Customers Group Details" , "ar" : "تفاصيل مجموعة عملاء"},
+    {"name" : "customers_group_update" , "en" : "Edit Customers Group" , "ar" : "تعديل مجموعة عملاء"},
+    {"name" : "customers_group_delete" , "en" : "Delte Customers Group" , "ar" : "حذف مجموعة عملاء"},
+    {"name" : "customers_group_add_name" , "en" : "Add Customers Group" , "ar" : "إضافة مجموعة عملاء"}
+
+
+    
+    
+]

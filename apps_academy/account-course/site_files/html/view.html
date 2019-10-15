@@ -1,0 +1,143 @@
+<div ng-hide="busy" class="row">
+    <div id="basicInformation" class="tab-content">
+        <fieldset>
+            <legend> ##word.basic_information##</legend>
+            <div class="row">
+                <div class="col9">
+                    <div class="row">
+
+                        <table id="basicInformationTable" class="table hover bold">
+                            <tr>
+                                <td class="title">##word.account_course_name##</td>
+                                <td class="center">{{account_course.course.name}}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="title">##word.account_course_price##</td>
+                                <td class="center green">{{account_course.price}}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="title">##word.account_course_total##</td>
+                                <td class="center blue">{{account_course.courses_total}}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="title">##word.period##</td>
+                                <td class="center blue">{{account_course.period.ar}}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="title">##word.trainer##</td>
+                                <td class="center">{{account_course.trainer.name}}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="title">##word.start_date##</td>
+                                <td class="center brown">{{account_course.start_date | date : 'dd - MM - yyyy'}}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="title">##word.end_date##</td>
+                                <td class="center brown">{{account_course.end_date | date : 'dd - MM - yyyy'}}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="title">##word.number_lecture##</td>
+                                <td class="center blue">{{account_course.number_lecture }}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="title">##word.status##</td>
+                                <td ng-show="account_course.active == true" class="green center"> ##word.active## </td>
+                                <td ng-show="account_course.active == false" class="red center"> ##word.not_active##
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <br>
+                    <hr>
+                    <br>
+                    <div class="row">
+
+                        <fieldset class="col10">
+                            <legend>
+                                ##word.dates##
+                            </legend>
+
+                            <table class="table hover center bold">
+                                <tr>
+                                    <th>##word.date##</th>
+                                    <th>##word.trainer##</th>
+                                    <th>##word.number_lecture_hours##</th>
+                                    <th>##word.attend_hour##</th>
+                                    <th>##word.out_hour##</th>
+                                    <th>##word.attend_absence##</th>
+                                    <th>##word.account_lectures##</th>
+                                </tr>
+
+                                <tr ng-repeat="info in account_course.dates_list">
+                                    <td class="brown"> {{info.date_count | date : 'dd- MM -yyyy'}}</td>
+                                    <td> {{info.trainer.name}}</td>
+                                    <td class="blue"> {{info.number_lecture}}</td>
+
+                                    <td class="green"> {{info.attend_hour.minute}} : {{info.attend_hour.hour}} </td>
+
+                                    <td class="red"> {{info.out_hour.minute}} : {{info.out_hour.hour}} </td>
+
+                                    <td> {{info.attend.ar}}</td>
+                                    <td class="green"> {{info.account_lectures}} ##word.pound## </td>
+                                </tr>
+                            </table>
+
+                        </fieldset>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="row">
+                        <div class="col8 margin grid" ng-show="account_course.paid_list.length > 0">
+                            <table class="table hover bold center ">
+                                <tr>
+                                    <th>##word.date##</th>
+
+                                    <th>##word.trainer##</th>
+
+                                    <th>##word.payback_paid##</th>
+
+                                    <th>##word.safe##</th>
+                                </tr>
+
+                                <tr ng-repeat="b in account_course.paid_list">
+
+                                    <td>
+                                        <p class="brown">{{b.date_paid | date : 'dd - MM -yyyy'}}</p>
+                                    </td>
+
+                                    <td>
+                                        <p>{{b.trainer_paid.name}}</p>
+                                    </td>
+
+                                    <td>
+                                        <p class="green">{{b.payment}}</p>
+                                    </td>
+
+                                    <td>
+                                        <p>{{b.safe.name}}</p>
+                                    </td>
+                                </tr>
+
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col3">
+                    <i-image view ng-model="account_course.image_url"></i-image>
+                </div>
+            </div>
+
+        </fieldset>
+    </div>
+</div>
+<div x-import="account-course/action_info.html"></div>

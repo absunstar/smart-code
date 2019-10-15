@@ -1,0 +1,7 @@
+[{
+    "module_name" : "public" ,
+    "name": "service_admin",
+    "en": "Service Admin",
+    "ar": "إدارة الخدمات",
+    "permissions": ["service_manage"]
+}]

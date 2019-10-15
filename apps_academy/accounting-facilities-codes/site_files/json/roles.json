@@ -1,0 +1,7 @@
+[{
+    "module_name" : "accounting" ,
+    "name": "facilities_codes_admin",
+    "en": "Facilities Codes Admin",
+    "ar": "إدارة المنشاّت",
+    "permissions": ["facilities_codes_manage"]
+}]

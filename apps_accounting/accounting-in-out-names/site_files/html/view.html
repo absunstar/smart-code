@@ -1,0 +1,42 @@
+<div class="row" fixed>
+    <div class="col8">
+        <br>
+        <table class="table bold">
+            <tr>
+                <td class="title">##word.in_out_name_name##</td>
+                <td class="center">{{in_out_name.name}}</td>
+            </tr>
+
+
+            <tr>
+                <td class="title">##word.in_out_name_in##</td>
+                <td class="center">
+                    <p ng-show="in_out_name.in == true"> نعم </p>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="title">##word.in_out_name_out##</td>
+                <td class="center">
+                    <p ng-show="in_out_name.out == true"> نعم </p>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="title">##word.in_out_name_details##</td>
+                <td class="center"> {{in_out_name.details}} </td>
+            </tr>
+
+        </table>
+    </div>
+    <div class="col1"></div>
+    <div class="col3">
+        <i-image view label="##word.in_out_name_img##" ng-model="in_out_name.image_url"> </i-image>
+        <i-files view ng-model="in_out_name.files"></i-files>
+
+    </div>
+
+</div>
+<div x-import="accounting-in-out-names/action_info.html"></div>

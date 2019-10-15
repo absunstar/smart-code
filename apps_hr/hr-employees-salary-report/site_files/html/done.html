@@ -1,0 +1,35 @@
+<div id="approvedEmployees_reportModal" class="modal">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.employees_advances_fin_done## <i class="fa fa-plus"></i>
+                <i ng-show="busy" class="fa fa-spinner white fa-pulse fa-3x fa-fw"></i>
+        </div>
+
+        <div class="modal-body">
+            <form>
+                <div class="row">
+                    <i-list class="col4 center" ng-search="_search.$safe_search" class="col12" ng-model="employee_salary_report.safe" items="safes"
+                        label="##word.safe##"></i-list>
+
+                </div>
+                <div class="row">
+                    <i-textarea ng-model="employee_salary_report.description" class="col4" type="text" label="##word.employee_salary_report_description##"></i-textarea>
+
+
+                </div>
+
+
+            </form>
+        </div>
+        <h2 class="error">{{error}}</h2>
+        <div class="modal-footer center">
+            <i-button type="save" label="##word.save##" ng-click="approved()"></i-button>
+            <i-button type="close" label="##word.close##" onclick="site.hideModal('#approvedEmployees_reportModal')"></i-button>
+        </div>
+    </div>
+
+
+</div>

@@ -1,0 +1,13 @@
+[{
+    "id": 1,
+    "name": "attended",
+    "en": "attended",
+    "ar": "تم الحضور"
+},
+{
+    "id": 2,
+    "name": "absence",
+    "name_en": "Absence",
+    "ar": "غياب"
+}
+]

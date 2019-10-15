@@ -1,0 +1,29 @@
+<div id="companyDetailsModal" class="modal">
+    
+    <div class="modal-content ">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.companies_details##
+                <i class="fa fa-file"></i>
+            </h2>
+        </div>
+
+        <div class="modal-body">
+            <span ng-show="busy">
+                <span class="sr-only">Loading...</span>
+            </span>
+            <div x-import="companies/view.html"></div>
+
+        </div>
+
+        <h2 class="error"> {{error}} </h2>
+
+        <div class="modal-footer center">
+            <i-button x-permission="print" type="print" label="##word.print##" onclick="site.print('#companyDetailsModal .tab-content')"></i-button>
+
+            <i-button type="close" label="##word.close##" onclick="site.hideModal('#companyDetailsModal')"></i-button>
+        </div>
+    </div>
+    
+</div>

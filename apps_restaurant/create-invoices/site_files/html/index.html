@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="create_invoices_ui || create_invoices_manage" data-ng-app="myApp">
+
+<head x-import="head.html">
+
+</head>
+
+<body class="##session.lang##">
+
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+    </nav>
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+    </nav>
+
+    <div id="main-layout" class="container">
+        <div class="row">
+            <div class="row" ng-controller="create_invoices" x-permissions="login">
+                <div x-import="create-invoices/add_modal.html"></div>
+                <div x-import="create-invoices/payment.html"></div>
+                <div x-import="create-invoices/update_modal.html"></div>
+                <div x-import="create-invoices/delete_modal.html"></div>
+                <div x-import="create-invoices/view_modal.html"></div>
+                <div x-import="create-invoices/search_all_modal.html"></div>
+                <div class="row">
+                    <h1 class="bold text-center"> ##word.create_invoices_name## </h1>
+                </div>
+
+                <div class="top-actions">
+                    <i-button type="add" x-permissions="create_invoices_add || create_invoices_manage" label="##word.create_invoices_new##" ng-click="displayAddCreatInvoices()"></i-button>
+                    <i-button type="search" x-permissions="create_invoices_search || create_invoices_manage" label="##word.search_all##" onclick="site.showModal('#creatInvoicesSearchModal')"></i-button>
+
+                    <span ng-show="busy">
+                        <span class="sr-only">Loading...</span>
+                    </span>
+                    <h3 class="bold text-center"> ##word.count## : {{count}} </h3>
+                    <br>
+                </div>
+
+                <table class="table loaded center hover bold" id="t1">
+                    <tr>
+                        <th class="not-print"> ##word.logo## </th>
+                        <th> ##word.date## </th>
+                        <th> ##word.create_invoices_code## </th>
+                        <th> ##word.source_type## </th>
+                        <th> ##word.order_invoices_type## </th>
+                        <th> ##word.payment_method## </th>
+                        <th> القيمة </th>
+                        <th> ##word.total_paid_up## </th>
+                        <th> ##word.total_remain## </th>
+                        <th class="not-print"> ##word.actions## </th>
+                    </tr>
+                    <tr ng-repeat="c in list | orderBy : '-id'">
+                        <td class="not-print">
+                            <img class="logo" ng-src="{{c.image_url}}">
+                        </td>
+                        <td class="brown"> {{c.date | date : 'dd - MM - yyyy'}} </td>
+                        <td class="blue"> {{c.code}} </td>
+                        <td> {{c.source_type.ar}} </td>
+                        <td> {{c.order_invoices_type.ar}} </td>
+                        <td> {{c.payment_method.ar}} </td>
+                        <td class="bold">
+                            {{c.net_value}}
+                        </td>
+                        <td class="bold green">
+                            {{c.total_paid_up}}
+                        </td>
+                        <td class="bold red">
+                            {{c.total_remain}}
+                        </td>
+                        <td class="center not-print">
+                            <i-button type="details" x-permissions="create_invoices_view || create_invoices_manage" label="##word.details##" ng-click="displayDetailsCreatInvoices(c)"></i-button>
+<!--                             <i-button type="update" x-permissions="create_invoices_edit || create_invoices_manage" label="##word.update##" ng-click="displayUpdateCreatInvoices(c)"></i-button>
+ -->                            <i-button ng-hide="c.remain_amount == 0" x-permissions="create_invoices_edit || create_invoices_manage"
+                            type="edit" label="##word.payment##" ng-click="displayPaymentInvoices(c)"></i-button>
+                            <i-button type="delete" x-permissions="create_invoices_delete || create_invoices_manage" label="##word.delete##" ng-click="displayDeleteCreatInvoices(c)"></i-button>
+                        </td>
+                    </tr>
+                </table>
+
+                <div class="row">
+                    <i-button x-permissions="create_invoices_print || create_invoices_manage" type="print" label="##word.print##" onclick="site.print('#t1')"></i-button>
+                    <i-button x-permissions="create_invoices_export || create_invoices_manage" type="export" label="##word.export_to_excel##" onclick="export_to_xlsx('t1' , 'create_invoices.xlsx')"></i-button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div x-import="scripts.html"></div>
+
+    <script x-permissions="login" x-import="create-invoices/index.js"></script>
+</body>
+
+</html>

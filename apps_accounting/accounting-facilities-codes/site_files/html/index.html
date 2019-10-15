@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="facilities_codes_ui || facilities_codes_manage" data-ng-app="myApp">
+
+<head x-import="head.html">
+
+</head>
+
+<body class="##session.lang##">
+
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+
+    </nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+
+    </nav>
+
+
+    <div id="main-layout" class="container">
+        <div class="row10 center">
+            <div class="col10" ng-controller="facilities_codes">
+                <div x-permissions="facilities_codes_add || facilities_codes_manage"
+                    x-import="accounting-facilities-codes/add_modal.html"></div>
+                <div x-permissions="facilities_codes_update || facilities_codes_manage"
+                    x-import="accounting-facilities-codes/update_modal.html"></div>
+                <div x-permissions="facilities_codes_view || facilities_codes_manage"
+                    x-import="accounting-facilities-codes/view_modal.html"></div>
+                <div x-permissions="facilities_codes_delete || facilities_codes_manage"
+                    x-import="accounting-facilities-codes/delete_modal.html"></div>
+
+                <div class="row">
+                    <h1 class="bold text-center">##word.facilities_codes##</h1>
+                </div>
+
+                <div class="top-actions">
+
+                    <i-button x-permissions="facilities_codes_add || facilities_codes_manage" type="add"
+                        label="##word.facilities_codes_new##" ng-click="newFacility_Code()"></i-button>
+
+                </div>
+
+                <table class="table hover bold center loaded" id="t1">
+                    <tr>
+                        <th class="not-print">##word.facilities_codes_logo##</th>
+                        <th>##word.facilities_codes_code##</th>
+                        <th>##word.facilities_codes_name##</th>
+                        <th>##word.facilities_codes_owner##</th>
+                        <th class="not-print" x-permission="owner">##word.actions##</th>
+                    </tr>
+                    <tr ng-repeat="c in list">
+                        <td class="not-print">
+                            <img class="logo" ng-src="{{c.image_url}}"> </td>
+                        <td class="blue">{{c.code}}</td>
+                        <td>{{c.name}}</td>
+                        <td>{{c.owner}}</td>
+                        <td class="not-print" x-permission="owner" class="center">
+
+                            <i-button x-permissions="facilities_codes_view || facilities_codes_manage" type="details"
+                                label="##word.details##" ng-click="details(c)"></i-button>
+                            <i-button x-permissions="facilities_codes_update || facilities_codes_manage" type="update"
+                                label="##word.update##" ng-click="edit(c)"></i-button>
+                            <i-button x-permissions="facilities_codes_delete || facilities_codes_manage" type="delete"
+                                label="##word.delete##" ng-click="remove(c)"></i-button>
+
+
+                        </td>
+                    </tr>
+
+                </table>
+              
+                
+                <i-button x-permissions="facilities_codes_print || facilities_codes_manage" type="print"
+                    label="##word.print##" onclick="site.print('#t1')"></i-button>
+            </div>
+        </div>
+    </div>
+
+    <div x-import="scripts.html"></div>
+
+    <script x-import="accounting-facilities-codes/index.js"></script>
+</body>
+
+</html>

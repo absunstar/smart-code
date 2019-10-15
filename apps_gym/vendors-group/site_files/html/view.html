@@ -1,0 +1,36 @@
+<div ng-hide="busy" id="v1">
+    <div class="form">
+        <div id="vendorsGroupViewModal">
+            <fieldset>
+                <legend> ##word.vendors_group_informations## </legend>
+                <div class="row">
+                    <div class="col9">
+                        <table class="table hover bold">
+                            <tr>
+                                <td class="title"> ##word.vendors_group_code## </td>
+                                <td class="center blue"> {{vendor_group.code}} </td>
+                            </tr>
+
+                            <tr>
+                                <td class="title"> ##word.vendors_group_name## </td>
+                                <td class="center"> {{vendor_group.name}} </td>
+                            </tr>
+
+                            <tr>
+                                <td class="title"> ##word.active## </td>
+                                <td ng-show="vendor_group.active == true" class="center green"> ##word.active## </td>
+                                <td ng-show="vendor_group.active == false" class="center red"> ##word.not_active## </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="col3">
+                        <i-image view ng-model="vendor_group.image_url"> </i-image>
+                    </div>
+
+                    <i-button x-permission="print" type="print left " onclick="site.print('#vendorsGroupViewModal')"></i-button>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+</div>

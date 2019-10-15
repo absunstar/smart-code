@@ -1,0 +1,27 @@
+<div id="deleteDiscountTypeModal" class="modal">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.discount_types_delete## <i class="fa fa-trash"></i>
+                 </h2>
+        </div>
+        <div class="modal-body">
+
+            <div ng-hide="busy" class="row">
+                <div x-import="inventory-discount-types/view.html"></div>
+            </div>
+
+        </div>
+        <h2>{{error}}</h2>
+        <div class="modal-footer center">
+            <i-button type="delete" label="##word.delete##" id="delete_city_btn" ng-click="delete(city)"></i-button>
+            <i-button type="close" label="##word.close##" onclick="site.hideModal('#deleteDiscountTypeModal')"></i-button>
+
+
+        </div>
+    </div>
+
+
+</div>

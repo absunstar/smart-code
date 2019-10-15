@@ -1,0 +1,10 @@
+[{
+    "module_name":"public",
+    "name": "Notifications",
+    "en": "Show Notifications",
+    "ar": "اظهار المراقبة",
+    "permissions": [
+        "notifications_manage"
+    ]
+}]
+

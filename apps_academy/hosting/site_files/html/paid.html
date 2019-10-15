@@ -1,0 +1,72 @@
+<div id="paidModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.paid_payback##
+                <i class="fa fa-file"></i>
+            </h2>
+        </div>
+
+        <div class="modal-body">
+
+            <div class="row">
+                <i-date2 class="col3" type="number" ng-model="hosting.date_paid" label="##word.date##"></i-date2>
+                <i-control class="col2" type="number" ng-model="hosting.paid" label="##word.paid##"></i-control>
+                <i-list class="col3" items="studentList" display="name" ng-model="hosting.student_paid"
+                    ng-search="hosting.$student_search" label="##word.student##"></i-list>
+                <i-list ng-search="hosting.$safes_search" class="col2" ng-model="hosting.safe" display="name"
+                    label="##word.safe##" items="safesList"></i-list>
+
+                <i-button type="update" class="col2" label="##word.paid_payback##" ng-click="showAccept()"></i-button>
+
+            </div>
+
+            <div class="row" ng-show="hosting.paid_list.length > 0">
+                <div class="border col8 margin grid">
+                    <table class="table bold center ">
+                        <tr>
+                            <th>##word.date##</th>
+
+                            <th>##word.student##</th>
+
+                            <th>##word.previous_payments##</th>
+
+                            <th>##word.safe##</th>
+                        </tr>
+
+                        <tr ng-repeat="b in hosting.paid_list">
+
+                            <td>
+                                <p class="brown">{{b.date_paid | date : 'dd - MM -yyyy'}}</p>
+                            </td>
+
+                            <td>
+                                <p>{{b.student_paid.name}}</p>
+                            </td>
+
+                            <td>
+                                <p class="green">{{b.payment}} ##word.pound##</p>
+                            </td>
+
+                            <td>
+                                <p>{{b.safe.name}}</p>
+                            </td>
+                        </tr>
+
+                    </table>
+                </div>
+
+            </div>
+
+        </div>
+
+        <h2 class="error"> {{error}} </h2>
+
+        <div class="modal-footer center">
+            <i-button type="print" label="##word.print##" onclick="site.print('#v1')"></i-button>
+
+            <i-button type="close" label="##word.close##" onclick="site.hideModal('#paidModal')"></i-button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="items_menu_ui || items_menu_manage" data-ng-app="myApp">
+
+<head x-import="head.html">
+
+</head>
+
+<body class="##session.lang##">
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+
+    </nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+
+    </nav>
+    <div id="main-layout" class="container">
+        <div class="row">
+            <div class="row" ng-controller="items_menu">
+                <div x-permissions="items_menu_add || items_menu_manage" x-import="inventory-items-menu/add_modal.html">
+                </div>
+                <div x-permissions="items_menu_update || items_menu_manage"
+                    x-import="inventory-items-menu/update_modal.html"></div>
+                <div x-permissions="items_menu_delete || items_menu_manage"
+                    x-import="inventory-items-menu/delete_modal.html"></div>
+                <div x-permissions="items_menu_view || items_menu_manage"
+                    x-import="inventory-items-menu/view_modal.html"></div>
+                <div x-import="inventory-items-menu/items_modal.html"></div>
+                <div x-permissions="items_menu_search || items_menu_manage"
+                    x-import="inventory-items-menu/search_all_modal.html"></div>
+
+                <div class="row">
+
+                    <div class="col6">
+
+
+                        <div class="row">
+                            <h1 class="bold text-center">##word.items_menu##</h1>
+                        </div>
+
+
+                        <div class="main-menu">
+                            <div class="modal-body">
+                                <div class="row">
+                                    <h1 class="black">##word.items_group## :</h1>
+
+                                    <a class="item pointer projss " ng-repeat="i in itemsGroupList" ng-click="loadItems(i)"
+                                        help-id="menu_monitor">
+                                        <img ng-src="{{i.image_url}}">
+                                        <h2>{{i.name}}</h2>
+                                    </a>
+                                </div>
+
+                                <br>
+                                <br>
+                                <br>
+                                <hr ng-show="itemsList.length > 0">
+                                <hr ng-show="itemsList.length > 0">
+                                <br>
+
+                                <div class="row center" ng-show="itemsList.length > 0">
+                                    <h1 class="black">##word.items## :</h1>
+
+
+                                    <a class="item pointer done_attendance" ng-repeat="l in itemsList" ng-click="showItemsIn(l); calc()"
+                                        help-id="menu_monitor">
+                                        <img ng-src="{{l.image_url}}">
+                                        <h2>{{l.name}}</h2>
+                                    </a>
+
+                                </div>
+                                <br>
+                                <br>
+                                <br>
+                               
+                                <hr ng-show="items_menu.cr_it.length > 0">
+                                <hr ng-show="items_menu.cr_it.length > 0">
+                                <br>
+
+                                <div class="row center " ng-show="items_menu.cr_it.length > 0">
+                                    <h1 class="black">##word.items_types## :</h1>
+
+                                    <i-button  ng-click="bookList(z); calc()" ng-repeat="z in items_menu.cr_it"
+                                        label="{{z.size}}">
+                                    </i-button>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                    <div class="col1"></div>
+                    <div class="col5">
+
+                        <div class="top-actions">
+                            <h3 class="bold text-center"> ##word.count## : {{items_menu.book_list.length}}</h3>
+                            <h2 class="bold text-center red">{{error}}</h2>
+                        </div>
+                        <table x-permissions="login" class="table bold loaded" id="t1">
+
+                            <tr>
+                                <th>##word.stores_items_name##</th>
+                                <th>##word.items_count##</th>
+                                <th>##word.items_price##</th>
+                                <th>##word.items_price_total##</th>
+                                <th class="not-print">##word.actions##</th>
+                            </tr>
+
+                            <tr ng-repeat="c in items_menu.book_list">
+                                <td class="center title">{{c.size}}</td>
+                                <td class="center blue">{{c.count}}</td>
+                                <td class="center green">{{c.price}}</td>
+                                <td class="center green">{{c.total_price}}</td>
+                                <td class="center not-print">
+                                    <i-button type="delete" label="##word.delete##" ng-click="deleteItemsList(c) ; calc()"></i-button>
+                                </td>
+
+                            </tr>
+
+                        </table>
+
+                        <!--   <div class="row ">
+
+                    <div class="col6 padding margin">
+                        <table class="table box-shadow " ng-init="discountEditorAdd = true">
+                            <tr>
+                                <th colspan="2" class="pointer" ng-click="discountEditorAdd = !discountEditorAdd">
+                                    ##word.stores_out_discountes##
+                                    <i class="fa fa-edit"></i>
+                                </th>
+
+                            </tr>
+                            <tr ng-hide="discountEditorAdd">
+                                <td colspan="2">
+                                    <form>
+
+                                        <div class="row ">
+                                            <i-list class="col4" ng-model="discount" ng-search="_search.$discount_name"
+                                                items="discount_types" label="##word.stores_out_discount_name##">
+                                            </i-list>
+                                            <div class="col1"></div>
+                                            <i-control class="col2" ng-model="discount.value"
+                                                label="##word.stores_out_discount_value##"></i-control>
+                                            <div class="col3 padding">
+                                                <br>
+                                                <i-button ng-click="addDiscount()"
+                                                    label="##word.stores_out_add_discount##" type="add default">
+                                                </i-button>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="row">
+                                            <i-radio class="col5" ng-model="discount.type" ng-value="0" group="type"
+                                                label="##word.discount_types_number##"></i-radio>
+
+                                            <i-radio class="col5" ng-model="discount.type" group="type"
+                                                label="##word.discount_types_percent##"></i-radio>
+
+                                        </div>
+
+                                    </form>
+                                </td>
+
+                            </tr>
+
+                            <tr ng-repeat="d1 in items_menu.discountes">
+
+                                <td>
+                                    <span class="bold red">{{d1.name}} -</span>
+                                    <span class="bold red" ng-show="d1.type === '%'">{{d1.value}} %</span>
+                                    <span class="bold red" ng-show="d1.type !== '%'">{{d1.value}} ##word.le##</span>
+                                    <i-button type="delete" ng-click="deleteDiscount(d1)"> </i-button>
+                                </td>
+
+                            </tr>
+                        </table>
+
+                    </div>
+
+                    <div class="col5 padding margin">
+                        <table class="table box-shadow " ng-init="taxEditorAdd = true">
+
+                            <tr>
+                                <th colspan="2" class="pointer" ng-click="taxEditorAdd = !taxEditorAdd">
+                                    ##word.stores_out_taxes##
+                                    <i class="fa fa-edit"></i>
+                                </th>
+
+                            </tr>
+
+                            <tr ng-hide="taxEditorAdd">
+                                <td colspan="2">
+                                    <div class="row">
+
+                                        <i-list class="col6" ng-model="tax" label="##word.stores_out_discount_name##"
+                                            ng-search="_search.$taxtypes" items="tax_types"></i-list>
+
+                                        <div class="col1"></div>
+                                        <i-control class="col2" ng-model="tax.value"
+                                            label="##word.stores_out_discount_value##">
+                                        </i-control>
+                                        <div class="col3 padding">
+                                            <br>
+                                            <i-button type="add default" label="##word.stores_out_add_tax##"
+                                                ng-click="addTax()">
+                                            </i-button>
+
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr ng-repeat="tx in items_menu.taxes">
+                                <td>
+                                    <span class="bold red">{{tx.name}} -</span>
+                                    <span class="bold red">{{tx.value}} %</span>
+                                    <i-button type="delete" ng-click="deleteTax(tx)"> </i-button>
+
+                                </td>
+
+                            </tr>
+                        </table>
+
+                    </div>
+
+                </div>
+-->
+
+                        <div class="row">
+                            <i-control class="col3" ng-model="items_menu.total_discount"
+                                label="##word.stores_out_total_discount##" type="number" disabled></i-control>
+                            <i-control class="col3" ng-model="items_menu.total_tax"
+                                label="##word.stores_out_total_tax##" type="number" disabled></i-control>
+                            <i-control class="col3" ng-model="items_menu.total_value"
+                                label="##word.total_value##" type="number" disabled></i-control>
+
+                            <i-control class="col3" ng-model="items_menu.net_value"
+                                label="##word.net_value##" type="number" disabled></i-control>
+                        </div>
+
+                        <div class="row">
+                            <i-date2 class="col5" ng-model="items_menu.date" label="##word.date##"></i-date2>
+                            <i-list ng-search="_search.$items_menu.$safes_search" class="col4" ng-model="items_menu.safe"
+                                label="##word.safe##" items="safesList"></i-list>
+
+                            <i-button type="save" v="r" label="##word.create_check##" ng-click="addItemsMenu()"
+                                class="col3">
+                            </i-button>
+
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <i-button x-permissions="items_menu_print || items_menu_manage" type="print" label="##word.print##"
+                    onclick="site.print('#t1')"></i-button>
+
+              
+
+            </div>
+            <div class="top-actions">
+                <h2 class="bold text-center red">{{error}}</h2>
+
+            </div>
+
+        </div>
+    </div>
+
+    <div x-import="scripts.html"></div>
+    <script x-import="inventory-items-menu/index.js"></script>
+</body>
+
+</html>

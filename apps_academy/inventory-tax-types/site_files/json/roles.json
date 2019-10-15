@@ -1,0 +1,7 @@
+[{
+    "module_name" : "inventory" ,
+    "name": "tax_types_admin",
+    "en": "Tax Types Admin",
+    "ar": "إدارة الضريبة",
+    "permissions": ["tax_types_manage"]
+}]

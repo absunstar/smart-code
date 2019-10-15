@@ -1,0 +1,69 @@
+<div id="paidModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.paid_payback##
+                <i class="fa fa-file"></i>
+            </h2>
+        </div>
+
+        <div class="modal-body">
+
+            <div class="row">
+                <i-date2 class="col3" type="number" ng-model="account_course.date_paid" label="##word.date##"></i-date2>
+                <i-control class="col2" type="number" ng-model="account_course.paid" label="##word.paid##"></i-control>
+                <i-list class="col3" items="trainerList" ng-model="account_course.trainer_paid" ng-search="account_course.$trainer_search"
+                    label="##word.trainer##"></i-list>
+                <i-list ng-search="account_course.$safes_search" class="col2" ng-model="account_course.safe" display="name"
+                    label="##word.safe##" items="safesList"></i-list>
+
+                <i-button type="update" class="col2" label="##word.paid_payback##" ng-click="showAccept()"></i-button>
+
+            </div>
+
+            <div class="row" ng-show="account_course.paid_list.length > 0">
+                <div class="border col8 margin grid">
+                    <table class="table bold hover center ">
+                        <tr>
+                            <th>##word.date##</th>
+
+                            <th>##word.previous_payments##</th>
+
+                            <th>##word.trainer##</th>
+
+                            <th>##word.safe##</th>
+                        </tr>
+
+                        <tr ng-repeat="b in account_course.paid_list">
+
+                            <td>
+                                <p class="brown">{{b.date_paid | date : 'dd - MM -yyyy'}}</p>
+                            </td>
+                            <td>
+                                <p class="green">{{b.payment}}</p>
+                            </td>
+                            <td>
+                                <p>{{b.trainer_paid.name}}</p>
+                            </td>
+                            <td>
+                                <p>{{b.safe.name}}</p>
+                            </td>
+                        </tr>
+
+                    </table>
+                </div>
+
+            </div>
+
+        </div>
+
+        <h2 class="error"> {{error}} </h2>
+
+        <div class="modal-footer center">
+            <i-button type="print" label="##word.print##" onclick="site.print('#v1')"></i-button>
+
+            <i-button type="close" label="##word.close##" onclick="site.hideModal('#paidModal')"></i-button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,50 @@
+[{
+        "id": 1,
+        "name": "saturday",
+        "en": "Saturday",
+        "ar": "السبت"
+    },
+    {
+        "id": 2,
+        "name": "sunday",
+        "en": "Sunday",
+        "ar": "الاحد"
+    },
+    {
+        "id": 3,
+        "name": "monday",
+        "en": "Monday",
+        "ar": "الاثنين"
+    },
+    {
+        "id": 4,
+        "name": "tuesday",
+        "en": "Tuesday",
+        "ar": "الثلاثاء"
+    },
+    {
+        "id": 5,
+        "name": "wednesday",
+        "en": "Wednesday",
+        "ar": "الاربعاء"
+    },
+    {
+        "id": 6,
+        "name": "thursday",
+        "en": "Thursday",
+        "ar": "الخميس"
+    },
+    {
+        "id": 7,
+        "name": "friday",
+        "en": "Friday",
+        "ar": "الجمعة"
+    }
+]
+
+
+
+
+
+
+

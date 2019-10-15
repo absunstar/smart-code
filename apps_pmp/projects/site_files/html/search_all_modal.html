@@ -1,0 +1,49 @@
+<div id="projectSearchModal" class="modal">
+    <div class="col2"></div>
+    <div class="modal-content col8">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                <i class="fa fa-search"></i> ##word.search_all##
+
+            </h2>
+        </div>
+
+        <div class="modal-body">
+            <form class="form">
+                <div class="row">
+                    <i-control class="col3" label="##word.name##" ng-model="search.name"></i-control>
+
+                    <i-control class="col3" type="number" label="##word.percent##" ng-model="search.percent"></i-control>
+                </div>
+
+                <div class="row">
+                    <i-date2 class="col4" label="##word.startup_date##" ng-model="search.startup_date"></i-date2>
+
+                    <i-date2 class="col4" label="##word.deadline_date##" ng-model="search.deadline_date"></i-date2>
+
+                    <div class="control col3">
+                        <label> ##word.status## </label>
+                        <select ng-model="search.status">
+                            <option ng-value="true"> ##word.active## </option>
+                            <option ng-value="false"> ##word.not_active## </option>
+                        </select>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <h2 class="error">{{error}}</h2>
+
+        <div class="modal-footer center">
+
+            <i-button type="search" label="##word.search##" ng-click="searchAll()"> </i-button>
+
+            <i-button type="clear" label="##word.empty_search##" ng-click="search = {}"> </i-button>
+
+            <i-button type="close" label="##word.close##" onclick="site.hideModal('#projectSearchModal')"> </i-button>
+
+        </div>
+    </div>
+    <div class="col2"></div>
+</div>

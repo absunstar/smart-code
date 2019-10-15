@@ -1,0 +1,7 @@
+[{
+    "module_name" : "public" ,
+    "name": "area_admin",
+    "en": "Area Admin",
+    "ar": "إدارة المناطق",
+    "permissions": ["area_manage"]
+}]

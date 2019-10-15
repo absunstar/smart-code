@@ -1,0 +1,157 @@
+[{
+        "name": "book_course",
+        "en": "Book Course",
+        "ar": "إستمارة حجز كورسات"
+    },
+    {
+        "name": "book_course_new",
+        "en": "New Book Course",
+        "ar":  "إستمارة حجز كورس جديد"
+    },
+    {
+        "name": "book_date",
+        "en": "Book Date",
+        "ar":  "تاريخ الحجز"
+    },
+    {
+        "name": "book_course_add",
+        "en": "Add Book Course",
+        "ar": "اضافة إستمارة حجز كورس"
+    },
+    {
+        "name": "book_course_edit",
+        "en": "Edit Book Course",
+        "ar": "تعديل إستمارة حجز كورس"
+    },
+    {
+        "name": "book_course_details",
+        "en": "Book Course Details",
+        "ar": "تفاصيل إستمارة حجز الكورس"
+    },
+    {
+        "name": "book_course_delete",
+        "en": "Delete Book Course",
+        "ar": "حذف إستمارة حجز كورس"
+    },
+    {
+        "name": "book_course_name",
+        "en": "Course Name",
+        "ar": "اسم الكورس "
+    },
+    {
+        "name": "accept_rest",
+        "en": "Accept Rest",
+        "ar": "تأكيد الدفعة"
+    },
+    {
+        "name": "book_course_total",
+        "en": "Total Duration",
+        "ar": "إجمالي المدة "
+    },
+    {
+        "name": "start_date",
+        "en": "Start Date Course",
+        "ar": "تاريخ بداية الكورس"
+    },
+    {
+        "name": "end_date",
+        "en": "End Date Course",
+        "ar": "تاريخ نهاية الكورس"
+    },
+    {
+        "name": "search_student",
+        "en": "Student Search",
+        "ar": "بحث الطالب"
+    },
+    {
+        "name": "search_course",
+        "en": "Course Search",
+        "ar": "بحث الكورسات"
+    },
+    {
+        "name": "safe_err",
+        "en": "Should Select Safe",
+        "ar": "يجب إختيار خزينة"
+    },
+    {
+        "name": "search_trainer",
+        "en": "Trainer Search",
+        "ar": "بحث المدرب"
+    },
+    {
+        "name": "student",
+        "en": "Student Name",
+        "ar": "إسم الطالب"
+    },
+    {
+        "name": "booking",
+        "en": "Booking",
+        "ar": "حجز"
+    },
+    {
+        "name": "should_student",
+        "en": "Should Select Student",
+        "ar": "يجب إختيار طالب"
+    },
+    {
+        "name": "booking_code",
+        "en": "Booking Code",
+        "ar": "كود الحجز"
+    },
+    {
+        "name": "course_accounts",
+        "en": "Course Accounts",
+        "ar": "حسابات الكورس"
+    },
+    {
+        "name": "total_rest",
+        "en": "Total Rest",
+        "ar": "إجمالي الدفعات"
+    },
+    {
+        "name": "dates",
+        "en": "Dates",
+        "ar": "المواعيد"
+    },
+    {
+        "name": "course_dates",
+        "en": "Course Dates",
+        "ar": "مواعيد الكورس"
+    },
+    {
+        "name": "safe",
+        "en": "Safe",
+        "ar": "الخزينة"
+    },
+    {
+        "name": "paid",
+        "en": "Paid",
+        "ar": "الدفعة"
+    },
+    {
+        "name": "previous_payments",
+        "en": "Previous Payments",
+        "ar": "الدفعات السابقة"
+    },
+    {
+        "name": "paid_payback",
+        "en": "Paid payback",
+        "ar": "تسديد الدفعة"
+    },
+    {
+        "name": "paid_payback",
+        "en": "Paids payback",
+        "ar": "تفاصيل الدفعات المسددة"
+    },
+    {
+        "name": "rest",
+        "en": "Rest",
+        "ar": "الباقي"
+    },
+    {
+        "name": "book_course_price",
+        "en": "Course Price",
+        "ar": "سعر الكورس "
+    }
+    
+]

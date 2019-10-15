@@ -1,0 +1,79 @@
+<div id="addTrainer" class="modal" fixed>
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.distribution_trainer##
+                <i class="fa fa-plus "></i>
+            </h2>
+
+        </div>
+
+        <div class="modal-body">
+
+            <div class="row">
+
+                <i-list class="col4" v="r" items="trainerList" ng-model="create_course.trainer"
+                    ng-search="create_course.$trainer_search" label="##word.trainer##"></i-list>
+                <i-button type="add" label="##word.create_trainer##" ng-click="addTrainer()"></i-button>
+
+            </div>
+
+            <fieldset class="col10">
+                <legend>
+                    ##word.dates##
+                </legend>
+
+                <table class="table center bold">
+
+                    <tr>
+                        <th>##word.trainer##</th>
+                        <th>##word.class_room##</th>
+                        <th>##word.date##</th>
+                        <th>##word.number_lecture_hours##</th>
+                        <th>##word.from##</th>
+                        <th>##word.to##</th>
+                        <th>##word.account_lectures##</th>
+                    </tr>
+
+                    <tr ng-repeat="attend in create_course.dates_list">
+
+                        <td>
+                            <i-list ng-model="attend.trainer" items="trainerList"
+                                ng-search="create_course.$class_room_search"></i-list>
+                        </td>
+
+                        <td> <br> {{attend.class_room.name}}</td>
+
+                        <td class="brown"> <br> {{attend.date_count | date : 'dd- MM -yyyy'}}</td>
+
+                        <td class="blue"> <br> {{attend.number_lecture}}</td>
+
+                        <td class="green"> <br> {{attend.from.minute}} : {{attend.from.hour}}</td>
+
+                        <td class="red"> <br> {{attend.to.minute}} : {{attend.to.hour}}</td>
+
+                        <td>
+                            <i-control type="number" ng-model="attend.account_lectures"></i-control>
+                        </td>
+
+                    </tr>
+
+                </table>
+
+            </fieldset>
+            
+        </div>
+
+
+
+        <div class="modal-footer center">
+            <h2 class="error"> {{error}} </h2>
+            <i-button type="save" label="##word.save##" ng-click="safeAttend()"></i-button>
+
+            <i-button type="close" label="##word.close##" onclick="site.hideModal( '#addTrainer')"></i-button>
+        </div>
+    </div>
+
+</div>

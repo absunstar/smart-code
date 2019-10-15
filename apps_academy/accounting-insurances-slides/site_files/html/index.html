@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="insurance_slide_ui || insurance_slide_manage" data-ng-app="myApp">
+
+<head x-import="head.html">
+
+</head>
+
+<body>
+
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+
+    </nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+
+    </nav>
+
+
+    <div id="main-layout" class="container">
+        <div class="row10 center">
+            <div class="col10" ng-controller="insurances_slides">
+                <div x-permissions="insurance_slide_add || insurance_slide_manage"
+                    x-import="accounting-insurances-slides/add_modal.html"></div>
+                <div x-permissions="insurance_slide_update || insurance_slide_manage"
+                    x-import="accounting-insurances-slides/update_modal.html"></div>
+                <div x-permissions="insurance_slide_delete || insurance_slide_manage"
+                    x-import="accounting-insurances-slides/delete_modal.html"></div>
+                <div x-permissions="insurance_slide_view || insurance_slide_manage"
+                    x-import="accounting-insurances-slides/view_modal.html"></div>
+                <div x-permissions="insurance_slide_search || insurance_slide_manage"
+                    x-import="accounting-insurances-slides/search_all_modal.html"></div>
+
+                <div class="row">
+                    <h1 class="bold text-center">##word.insurances_slides##</h1>
+                </div>
+
+                <div class="top-actions">
+                    <i-button x-permissions="insurance_slide_add || insurance_slide_manage" type="add"
+                        label="##word.insurances_slides_new##" ng-click="newInsurance_Slide()"></i-button>
+                    <i-button x-permissions="insurance_slide_search || insurance_slide_manage" type="search"
+                        label="##word.search_all##" onclick="site.showModal('#Insurance_slidesSearchModal')"></i-button>
+                </div>
+
+                <table class="table center bold loaded" id="t1">
+                    <tr>
+                        <th class="not-print">##word.insurances_slides_logo##</th>
+                        <th>##word.insurances_slides_name##</th>
+                        <th>##word.insurances_slides_value##</th>
+                        <th class="not-print" x-permission="owner">##word.actions##</th>
+                    </tr>
+                    <tr ng-repeat="c in list">
+                        <td class="not-print">
+                            <img class="logo" ng-src="{{c.image_url}}">
+                        </td>
+                        <td>{{c.name}}</td>
+                        <td class="green">{{c.value}} ##word.le##</td>
+                        <td class="not-print" x-permission="owner" class="center">
+
+                            <i-button x-permissions="insurance_slide_view || insurance_slide_manage" type="details"
+                                label="##word.details##" ng-click="details(c)"></i-button>
+                            <i-button x-permissions="insurance_slide_update || insurance_slide_manage" type="update"
+                                label="##word.update##" ng-click="edit(c)"></i-button>
+                            <i-button x-permissions="insurance_slide_delete || insurance_slide_manage" type="delete"
+                                label="##word.delete##" ng-click="remove(c)"></i-button>
+                        </td>
+                    </tr>
+
+                </table>
+
+                <i-button x-permissions="insurance_slide_export || insurance_slide_manage" type="export"
+                    label="##word.export_to_excel##" onclick="export_to_xlsx('t1' , 'insurances_slides.xlsx')">
+                </i-button>
+                <i-button x-permissions="insurance_slide_export || insurance_slide_manage" type="print"
+                    label="##word.print##" onclick="site.print('#t1')"></i-button>
+            </div>
+        </div>
+    </div>
+
+    <div x-import="scripts.html"></div>
+
+    <script x-import="accounting-insurances-slides/index.js"></script>
+
+
+</body>
+
+</html>

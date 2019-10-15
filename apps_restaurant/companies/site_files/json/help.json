@@ -1,0 +1,74 @@
+[
+    {
+        "id" : "vendors_code" ,"en":"Write Vendor Code", "ar" : "يكتب هنا كود المورد" 
+    },
+    {
+        "id" : "vendors_code" ,"en":"Could be leave blank", "ar" : "يمكن ان يترك فارغا" 
+    },
+    {
+        "id" : "vendors_code" ,"en":"Code could numbers or letters or both", "ar" : "يمكن ان يكون الكود حروف او ارقام او كلاهما" 
+    },
+    {
+        "id" : "vendors_code" ,"en":"Max length is 8 digit", "ar" : "الحد الاقصي لطول الكود 8 حروف او ارقام" 
+    },
+
+    {
+        "id" : "vendors_name_ar" ,"en":"Write Vendor Name In Arabic ", "ar" : "يكتب هنا إسم المورد بالعربية" 
+    },
+    {
+        "id" : "vendors_name_ar" ,"en":"Couldn't be leave blank ", "ar" : "لايمكن ان يترك فارغا" 
+    },
+    {
+        "id" : "vendors_name_ar" ,"en":"Name must be in arabic only ", "ar" : "يكتب إسم المورد بالعربية فقط" 
+    },
+    {
+        "id" : "vendors_name_ar" ,"en":"Max length is 60 digit ", "ar" : "الحد الاقصي لطول الإسم 60 حرف" 
+    },
+
+    {
+        "id" : "vendors_name_en" ,"en":"Write Vendor Name In English ", "ar" : "يكتب هنا إسم المورد بالانجليزية" 
+    },
+    {
+        "id" : "vendors_name_en" ,"en":"Could be leave blank ", "ar" : "يمكن ان يترك فارغا" 
+    },
+    {
+        "id" : "vendors_name_en" ,"en":"Name must be in English only ", "ar" : "يكتب إسم المورد بالانجليزية فقط" 
+    },
+    {
+        "id" : "vendors_name_en" ,"en":"Max length is 60 digit ", "ar" : "الحد الاقصي لطول الإسم 60 حرف" 
+    },
+
+
+    {
+        "id" : "vendors_active" ,"en":"On Select Vendor state is Active", "ar" : "عند تفعيل تكون حالة المورد نشط" 
+    },
+    {
+        "id" : "vendors_active" ,"en":"if not selected vendor state Inactive ", "ar" : "عند عدم التفعيل تكون حالة المورد غير نشط" 
+    },
+
+
+    {
+        "id" : "vendors_some_branches" ,"en":"On Select Vendor Work with some brahnces", "ar" : "عند تفعيل تكون حالة المورد يعمل مع بعض الفروع" 
+    },
+    {
+        "id" : "vendors_some_branches" ,"en":"if not selected vendor with all branches ", "ar" : "عند عدم التفعيل تكون حالة المورع يعمل مع جميع الفروع" 
+    },
+ 
+
+    {
+        "id" : "vendors_branches" ,"en":"if option all branch not selected must select one branch at least", "ar" : "عند عدم تفعيل اختيار لكل الفروع لابد من تحديد فرع واحد علي الاقل" 
+    },
+    {
+        "id" : "vendors_branches" ,"en":"couldn't be leave blank except activate all brances", "ar" : "لايمكن ان تكون فارغة الا عند تفعيل اختيار لكل الفروع" 
+    },
+
+    {
+        "id" : "vendors_groups" ,"en":"specify group for vendor", "ar" : "تستخدم لتحديد مجموعة للمورد" 
+    },
+    {
+        "id" : "vendors_groups" ,"en":"must select one group", "ar" : "لابد من تحديد مجموعة للمورد" 
+    },
+
+    {}
+
+]

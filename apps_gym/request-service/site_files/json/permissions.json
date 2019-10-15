@@ -1,0 +1,11 @@
+[
+    { "module_name" : "public" , "screen_name" : "request-service" , "name":"request_service_manage" , "en":"Manage" , "ar":"إدارة"},
+    { "module_name" : "public" , "screen_name" : "request-service" , "name":"request_service_add" , "en":"Add" , "ar":"إضافة"},
+    { "module_name" : "public" , "screen_name" : "request-service" , "name":"request_service_update" , "en":"Edit" , "ar":"تعديل"},
+    { "module_name" : "public" , "screen_name" : "request-service" , "name":"request_service_delete" , "en":"Delete" , "ar":"حذف"},
+    { "module_name" : "public" , "screen_name" : "request-service" , "name":"request_service_view" , "en":"View" , "ar":"عرض"},
+    { "module_name" : "public" , "screen_name" : "request-service" , "name":"request_service_search" , "en":"Search" , "ar":"بحث"},
+    { "module_name" : "public" , "screen_name" : "request-service" , "name":"request_service_export" , "en":"Export" , "ar":"تصدير"},
+    { "module_name" : "public" , "screen_name" : "request-service" , "name":"request_service_print" , "en":"Print" , "ar":"طباعة"},
+    { "module_name" : "public" , "screen_name" : "request-service" , "name":"request_service_ui" , "en":"Ui" , "ar":"الواجهة الرسومية"}
+]

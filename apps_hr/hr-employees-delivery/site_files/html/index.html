@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="delivery_employee_ui || delivery_employee_manage" data-ng-app="myApp">
+
+<head x-import="head.html">
+
+</head>
+
+<body class="##session.lang##">
+
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+
+    </nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+
+    </nav>
+    <div id="main-layout" class="container">
+        <div class="row">
+            <div class="row" ng-controller="delivery_employee_list">
+                <div x-permissions="delivery_employee_add || delivery_employee_manage" x-import="hr-employees-delivery/add_modal.html"></div>
+                <div x-permissions="delivery_employee_update || delivery_employee_manage" x-import="hr-employees-delivery/update_modal.html"></div>
+                <div x-permissions="delivery_employee_delete || delivery_employee_manage" x-import="hr-employees-delivery/delete_modal.html"></div>
+                <div x-permissions="delivery_employee_view || delivery_employee_manage" x-import="hr-employees-delivery/view_modal.html"></div>
+                <div x-permissions="delivery_employee_search || delivery_employee_manage" x-import="hr-employees-delivery/search_all_modal.html"></div>
+
+                <div class="row">
+                    <h1 class="bold text-center">##word.delivery_employees##</h1>
+                </div>
+
+                <div class="top-actions">
+                    <i-button x-permissions="delivery_employee_add || delivery_employee_manage" type="add" label="##word.delivery_employee_new##" ng-click="displayAddDeliveryEmployee()"></i-button>
+
+                    <i-button x-permissions="delivery_employee_search || delivery_employee_manage" type="search" label="##word.search_all##" ng-click="displaySearchModal()"></i-button>
+
+                    <h3 class="bold text-center"> ##word.count## : {{count}}</h3>
+                </div>
+
+                <table x-permissions="login" class="table bold hover loaded" id="t1">
+                    <tr>
+                        <th class="not-print">##word.logo##</th>
+                        <th>##word.name##</th>
+                        <th>##word.address##</th>
+                        <th>##word.mobile##</th>
+                        <th>##word.status##</th>
+                        <th class="not-print">##word.actions##</th>
+                    </tr>
+                    <tr ng-repeat="c in list">
+                        <td class="center not-print">
+                            <img class="logo" ng-src="{{c.image_url}}">
+                        </td>
+                        <td class="center title">{{c.name}}</td>
+                        <td class="center">{{c.gov.name + ' - ' + c.city.name + ' - ' + c.address}}</td>
+                        <td class="center blue">{{c.mobile}} <i class="fa fa-mobile" ng-show="c.mobile" aria-hidden="true"></i></td>
+                        <td class="center">
+                            <p ng-show="c.active ==true" class="green"> ##word.active## </p>
+                            <p ng-show="c.active ==false" class="red"> ##word.not_active## </p>
+                        </td>
+
+                        <td class="center not-print">
+                            <i-button x-permissions="delivery_employee_view || delivery_employee_manage" type="view" label="##word.details##" ng-click="displayDetailsDeliveryEmployee(c)"></i-button>
+
+                            <i-button x-permissions="delivery_employee_update || delivery_employee_manage" type="edit" label="##word.edit##" ng-click="displayUpdateDeliveryEmployee(c)"></i-button>
+
+                            <i-button x-permissions="delivery_employee_delete || delivery_employee_manage" type="delete" label="##word.delete##" ng-click="displayDeleteDeliveryEmployee(c)"></i-button>
+                        </td>
+                    </tr>
+                </table>
+
+                <i-button x-permissions="delivery_employee_print || delivery_employee_manage" type="print" label="##word.print##" onclick="site.print('#t1')"></i-button>
+
+            </div>
+        </div>
+    </div>
+
+    <div x-import="scripts.html"></div>
+    <script x-import="hr-employees-delivery/index.js"></script>
+</body>
+
+</html>

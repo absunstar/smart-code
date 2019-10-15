@@ -1,0 +1,51 @@
+<div id="orderInvoicesActiveAddModal" class="modal" fixed>
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.order_invoice_open##
+
+            </h2>
+
+        </div>
+
+
+        <div class="modal-body">
+            <br>
+            <br>
+            <br>
+
+            <table class="table bold center hover">
+                <tr>
+                    <th> ##word.code## </th>
+                    <th> ##word.transaction_type## </th>
+                    <th> ##word.customer## </th>
+                    <th> ##word.delivery_employee## </th>
+                    <th> ##word.tables_group## </th>
+                    <th> ##word.table## </th>
+                </tr>
+                <tr class="pointer" ng-repeat="item in invoicesActivelist" ng-click="returnWaitingOrder(item)">
+                    <td class="code"> {{item.code}} </td>
+                    <td> {{item.transaction_type.ar}} </td>
+                    <td> {{item.customer.name_ar}} </td>
+                    <td> {{item.delivery_employee.name}}</td>
+                    <td> {{item.table.tables_group.name}} </td>
+                    <td>{{item.table.name}}</td>
+                </tr>
+            </table>
+
+
+
+        </div>
+
+
+        <div class="modal-footer center">
+            <h2 class="error"> {{error}} </h2>
+
+            <i-button type="close" label="##word.close##" onclick="site.hideModal( '#orderInvoicesActiveAddModal')">
+            </i-button>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,23 @@
+<div id="customerUpdateModal" class="modal" fixed>
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.customers_edit##
+                <i class="fa fa-pencil"></i>
+            </h2>
+
+        </div>
+
+        <div class="modal-body">
+            <div x-import="customers/content.html"></div>
+        </div>
+
+        <div class="modal-footer center">
+            <h2 class="error"> {{error}} </h2>
+            <i-button type="save" label="##word.save##" ng-click="updateCustomer(customer)"> </i-button>
+
+            <i-button type="close" label="##word.close##" onclick="site.hideModal( '#customerUpdateModal')"></i-button>
+        </div>
+    </div>
+</div>

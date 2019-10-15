@@ -1,0 +1,25 @@
+<div class="row">
+    <table class="table border">
+
+        <tr>
+            <th>##word.useradd_user_info##</th>
+            <th>##word.useredit_user_info## </th>
+        </tr>
+
+        <tr>
+            <td class="center">
+                <p class="blue"> {{stores_transfer._created.name}} </p>
+                <small class="green"> {{stores_transfer._created.date |date:"hh:mm"}} </small>
+                <small> {{stores_transfer._created.date |date:"dd - MM - yyyy"}} </small>
+
+            </td>
+
+            <td class="center">
+                <p class="blue"> {{stores_transfer._updated.name}} </p>
+                <small class="green"> {{stores_transfer._updated.date |date:"hh:mm"}} </small>
+                <small> {{stores_transfer._updated.date |date:"dd - MM - yyyy"}} </small>
+            </td>
+        </tr>
+
+    </table>
+</div>

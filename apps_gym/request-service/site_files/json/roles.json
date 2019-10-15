@@ -1,0 +1,7 @@
+[{
+    "module_name" : "public" ,
+    "name": "request_service_admin",
+    "en": "Request Service Admin",
+    "ar": "إدارة طلب الخدمات",
+    "permissions": ["request_service_manage"]
+}]

@@ -1,0 +1,59 @@
+<div id="customerSendEmailModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                <i class="fa fa-send"></i>
+                 
+                ##word.customers_send_email_to_customer## </h2>
+        </div>
+
+        <div class="modal-body">
+            <fieldset>
+                <legend> ##word.customers_create_email## </legend>
+                <div class="row">
+                    <i-control class="col" label="##word.customers_mail_from##" ng-model="customer.mail_from"></i-control>
+                </div>
+
+                <div class="col">
+                    <div class="row">
+                        <i-checkbox class="col4" label="##word.customers_mail_cc##" ng-model="customers.send_mail_cc"></i-checkbox>
+
+                        <i-checkbox class="col4" label="##word.customers_mail_bcc##" ng-model="customers.send_mail_bcc"></i-checkbox>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <i-control class="col" label="##word.customers_mail_to##" ng-model="customer.mail_to"></i-control>
+                </div>
+
+                <div class="row" ng-show="customers.send_mail_cc === true">
+                    <i-control class="col" label=" ##word.customers_mail_cc##" ng-model="customer.mail_cc"></i-control>
+                </div>
+
+
+                <div class="row" ng-show="customers.send_mail_bcc === true">
+                    <i-control class="col" label=" ##word.customers_mail_bcc##" ng-model="customer.mail_bcc"></i-control>
+                </div>
+
+                <div class="row">
+                    <i-control class="col" label="##word.customers_mail_subject##"  ng-model="customer.mail_subject"></i-control>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <div class="control">
+                            <label> ##word.customers_mail_text## </label>
+                            <textarea ng-model="customer.mail_text" rows="50"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+            </fieldset>
+        </div>
+
+        <div class="modal-footer">
+            <i-button label="##word.customers_send##"></i-button>
+        </div>
+    </div>
+</div>

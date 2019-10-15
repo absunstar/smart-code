@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="safes_ui || safes_manage" data-ng-app="myApp">
+
+<head x-import="head.html">
+
+</head>
+
+<body class="##session.lang##">
+
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+
+    </nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+
+    </nav>
+    <div id="main-layout" x-permission="safes" class="container">
+        <div class="row center">
+            <div class="row" ng-controller="safes">
+                <div x-permissions="safes_add || safes_manage" x-import="accounting-safes/add_modal.html"></div>
+                <div x-permissions="safes_update || safes_manage" x-import="accounting-safes/update_modal.html"></div>
+                <div x-permissions="safes_delete || safes_manage" x-import="accounting-safes/delete_modal.html"></div>
+                <div x-permissions="safes_view || safes_manage" x-import="accounting-safes/view_modal.html"></div>
+                <div x-permissions="safes_search || safes_manage" x-import="accounting-safes/search_all_modal.html"></div>
+                <div class="row">
+                    <h1 class="text-center bold">##word.safes##</h1>
+                </div>
+                <div class="top-actions">
+
+                    <i-button x-permissions="safes_add || safes_manage" type="add" label="##word.safes_new##" ng-click="newSafe()"></i-button>
+                    <i-button x-permissions="safes_search || safes_manage" type="search" label="##word.search_all##" onclick="site.showModal('#SafesSearchModal')"></i-button>
+
+
+
+                </div>
+
+                <table class="table hover bold loaded" id="t1">
+                    <tr>
+                        <th class="not-print center">##word.safes_logo##</th>
+                        <th class="center">##word.safes_name##</th>
+                        <th class="center">##word.safes_employee##</th>
+
+                        <th class="center">##word.safes_balance##</th>
+                        <th class="center not-print">##word.actions##</th>
+                    </tr>
+                    <tr ng-repeat="c in list">
+                        <td class="not-print">
+                            <i-image view class="logo" ng-model="c.image_url"></i-image>
+
+                        </td>
+                        <td class="center title">{{c.name}}</td>
+
+                        <td class="center">{{c.employee.name}}</td>
+
+                        <td class="green center">{{c.balance }} <p class="green" ng-show = "c.balance">##word.pound##</p> </td>
+                        <td class="center not-print">
+                            <i-button x-permissions="safes_view || safes_manage" type="details" label="##word.details##" ng-click="details(c)"></i-button>
+                            <i-button x-permissions="safes_update || safes_manage" type="update" label="##word.update##" ng-click="edit(c)"></i-button>
+                            <i-button x-permissions="safes_delete || safes_manage" type="delete" label="##word.delete##" ng-click="remove(c)"></i-button>
+
+                        </td>
+
+                    </tr>
+
+                </table>
+
+                <i-button x-permissions="safes_print || safes_manage" type="print" label="##word.print##" onclick="site.print('#t1')"></i-button>
+            </div>
+        </div>
+    </div>
+
+
+    <div x-import="scripts.html"></div>
+
+    <script x-import="accounting-safes/index.js"></script>
+
+</body>
+
+</html>

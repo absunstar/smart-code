@@ -1,0 +1,260 @@
+<style>
+    .img {
+        width: 200px;
+        height: 200px;
+        margin: 5px;
+        padding: 5px;
+        border: 1px solid var(--background-color);
+    }
+</style>
+
+
+<div id="updateSafe_PaymentModal" class="modal">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                <i class="fa fa-plus"></i> ##word.safes_payments_edit##
+                <i ng-show="busy" class="fa fa-spinner white fa-pulse fa-3x fa-fw"></i>
+            </h2>
+        </div>
+        <div class="modal-body">
+            <div class="row10">
+                <div class="col7">
+                    <form class="form">
+                            <div class="row">
+                                    <div class="col2">
+                                        <div class="control">
+                                            <label>##word.safes_payments_name##</label>
+                                            <select ng-model="safe_payment.safe">
+                                                <option ng-repeat="sa in safes" ng-value="sa">{{sa.name}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+        
+                                    <div class="col2">
+                                        <div class="control">
+                                            <label>##word.safes_payments_type##</label>
+                                            <select ng-model="safe_payment.type">
+                                                <option ng-repeat="sm in safes_movements_types" ng-value="sm">{{sm.ar}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+        
+                                    <div class="col2">
+                                        <div class="control">
+                                            <label>##word.safes_payments_source##</label>
+                                            <select ng-model="safe_payment.source">
+                                                <option ng-repeat="ss in safes_movements_sources" ng-value="ss">{{ss.ar}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+        
+                                    <div class="col4">
+                                        <div class="control">
+                                            <label>##word.safes_payments_season##</label>
+                                            <select ng-model="safe_payment.seasonName">
+                                                    <option ng-repeat="se in seasons" ng-value="se">{{se.season.ar + ' ' + se.year}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+        
+                                    <div class="col2">
+                                        <div class="control">
+                                            <label>##word.safes_payments_payment_date##</label>
+                                            <input ng-model="safe_payment.date" type="date">
+                                        </div>
+                                    </div>
+                                </div>
+
+                        <div class="row10" ng-show="getSourceId() == 2">
+                            <div class="col3">
+                                <div class="control">
+                                    <label>##word.customers_payments_code##</label>
+                                    <input ng-model="safe_payment.customer.code" type="text" ng-keydown="getCustomer($event)">
+                                </div>
+                            </div>
+
+                            <div class="col7">
+                                <div class="control">
+                                    <label>##word.customers_payments_name##</label>
+                                    <select ng-model="safe_payment.customer" ng-change="setCustomerCode()">
+                                        <option ng-repeat="cu in customers" ng-value="cu" ng-selected="safe_payment.customer.id == cu.id">{{cu.name}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row10" ng-show="getSourceId() == 3">
+                            <div class="col3">
+                                <div class="control">
+                                    <label>##word.vendors_payments_code##</label>
+                                    <input ng-model="safe_payment.vendor.code" type="text" ng-keydown="getVendor($event)">
+                                </div>
+                            </div>
+
+                            <div class="col7">
+                                <div class="control">
+                                    <label>##word.vendors_payments_name##</label>
+                                    <select ng-model="safe_payment.vendor" ng-change="setVendorCode()">
+                                        <option ng-repeat="ve in vendors" ng-value="ve" ng-selected="safe_payment.vendor.id == ve.id">{{ve.name}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="control">
+                            <label>##word.safes_payments_notes##</label>
+                            <textarea rows="4" ng-model="safe_payment.notes"></textarea>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="col3 center">
+                    <form class="form">
+                        <label>##word.safes_payments_logo##</label>
+                        <br>
+                        <input type="file" name="file" onchange="angular.element(this).scope().uploadImage(this.files)" />
+                        <br>
+                        <img class="img " ng-src="{{safe_payment.image_url}}" />
+                        <br>
+                        <p>{{uploadStatus}}</p>
+                    </form>
+                </div>
+
+                <div class="border margin padding block">
+                    <table class="table box-shadow">
+                        <tr>
+                            <th colspan="10" class="pointer" ng-click="paymentEditor = !paymentEditor">##word.safes_payments_add##
+                                <i class="fa fa-edit"></i>
+                            </th>
+                        </tr>
+                        <tr>
+                            <td colspan="10">
+                                <form>
+                                    <div class="row10">
+                                        <div class="col2">
+                                            <div class="control">
+                                                <label>##word.safes_payments_method##</label>
+                                                <select ng-model="payment.method" ng-change="setDueDate()">
+                                                    <option ng-repeat="me in payments_methods" ng-value="me">{{me.ar}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="col2">
+                                            <div class="control">
+                                                <label>##word.safes_payments_value##</label>
+                                                <input ng-model="payment.value" type="text">
+                                            </div>
+                                        </div>
+
+                                        <div class="col6">
+                                            <div class="control">
+                                                <label>##word.safes_payments_descrebtion##</label>
+                                                <input ng-model="payment.descrebtion" type="text">
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col2" ng-show="getMethodId() == 2">
+                                            <div class="control">
+                                                <label>##word.safes_payments_cheque_id##</label>
+                                                <input ng-model="payment.cheque_id" type="text">
+                                            </div>
+                                        </div>
+
+                                        <div class="col2" ng-show="getMethodId() == 2">
+                                            <div class="control">
+                                                <label>##word.safes_payments_cheque_number##</label>
+                                                <input ng-model="payment.cheque_number" type="text">
+                                            </div>
+                                        </div>
+
+                                        <div class="col2" ng-show="getMethodId() == 2">
+                                            <div class="control">
+                                                <label>##word.safes_payments_due##</label>
+                                                <input ng-model="payment.due" type="date">
+                                            </div>
+                                        </div>
+
+                                        <div class="col2" ng-show="getMethodId() == 2">
+                                            <div class="control">
+                                                <label>##word.safes_payments_bank##</label>
+                                                <input ng-model="payment.bank" type="text">
+                                            </div>
+                                        </div>
+
+                                        <div class="col2" ng-show="getMethodId() == 2">
+                                            <div class="control">
+                                                <label>##word.safes_payments_drawn_on##</label>
+                                                <input ng-model="payment.drawn_on" type="text">
+                                            </div>
+                                        </div>
+                                        <a class="btn" ng-click="addPayment()">##word.safes_payments_add_to_details##</a>
+                                        <tr>
+                                            <th>##word.safes_payments_method##</th>
+                                            <th>##word.safes_payments_value##</th>
+                                            <th>##word.safes_payments_descrebtion##</th>
+                                            <th>##word.safes_payments_cheque_id##</th>
+                                            <th>##word.safes_payments_cheque_number##</th>
+                                            <th>##word.safes_payments_due##</th>
+                                            <th>##word.safes_payments_bank##</th>
+                                            <th>##word.safes_payments_drawn_on##</th>
+                                            <th>##word.actions##</th>
+                                        </tr>
+                                        <tr ng-repeat="s in safe_payment.payments">
+                                            <td>{{s.method.ar}}</td>
+                                            <td>{{s.value}}</td>
+                                            <td>{{s.descrebtion}}</td>
+                                            <td>{{s.cheque_id}}</td>
+                                            <td>{{s.cheque_number}}</td>
+                                            <td>{{s.dueX}}</td>
+                                            <td>{{s.bank}}</td>
+                                            <td>{{s.drawn_on}}</td>
+                                            <td>
+                                                <a class="btn bg-red" ng-click="deletePayment(s)">
+                                                    <i class="fa fa-trash"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+
+                                    </div>
+
+                                </form>
+
+                            </td>
+                        </tr>
+
+                    </table>
+                    <br>
+                    <div class="row10">
+
+                        <div class="control">
+                            <label class="text-center">##word.safes_payments_total##</label>
+                            <input ng-model="safe_payment.total" type="text">
+                        </div>
+
+                    </div>
+                    <br>
+
+                </div>
+                </form>
+
+            </div>
+        </div>
+        <h2 class="error">{{error}}</h2>
+        <div class="modal-footer center">
+            <a class="btn bg-green" ng-hide="busy" id="update_city_btn" ng-click="update(city)">
+                <i class="fa fa-save" aria-hidden="true"></i> ##word.update##</a>
+            <a class="btn bg-blue" onclick="hideModal('updateSafe_PaymentModal')">
+                <i class="fa fa-times" aria-hidden="true"></i> ##word.close##</a>
+
+
+        </div>
+    </div>
+
+
+</div>

@@ -1,0 +1,650 @@
+<div ng-hide="busy" class="row">
+
+    <div class="tabs col">
+        <div class="tabs-header full">
+            <a class="tab-link" onclick="site.showTabContent(event, '#personalInformation')">
+                ##word.vendors_personal_information## </a>
+            <a class="tab-link" onclick="site.showTabContent(event, '#officialDocuments')">
+                ##word.vendors_official_documents## </a>
+
+            <a class="tab-link" onclick="site.showTabContent(event, '#openingBalance')">
+                ##word.vendors_opening_balance## </a>
+            <a class="tab-link" onclick="site.showTabContent(event, '#bankingAndAccounting')">
+                ##word.vendors_banking_and_acounting## </a>
+            <a class="tab-link" onclick="site.showTabContent(event, '#contactAndAddress')">
+                ##word.vendors_contact_and_addresses## </a>
+            <a class="tab-link" onclick="site.showTabContent(event, '#vendorsBranches')">
+                ##word.vendors_branches## </a>
+            <a class="tab-link" onclick="site.showTabContent(event, '#vendorsFiles')">
+                ##word.vendors_files## </a>
+            <a class="tab-link" onclick="site.showTabContent(event, '#vendorsDealing')">
+                ##word.vendors_dealing## </a>
+        </div>
+
+        <div id="vendorAllInfo" class="tabs-content full bold">
+
+            <div id="personalInformation" class="tab-content">
+                <fieldset id="personalInformationTable">
+                    <legend> ##word.vendors_basic_information## </legend>
+                    <div class="row">
+                        <div class="col9">
+                            <table class="table hover">
+                                <tr>
+                                    <td class="title"> ##word.vendors_code## </td>
+                                    <td class="center blue"> {{vendor.code}} </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title"> ##word.vendors_name_ar## </td>
+                                    <td class="center"> {{vendor.name_ar}} </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title"> ##word.vendors_name_en## </td>
+                                    <td class="center"> {{vendor.name_en}} </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title"> ##word.status## </td>
+                                    <td ng-show="vendor.active == true" class="center green"> ##word.active## </td>
+                                    <td ng-show="vendor.active == false" class="center red"> ##word.not_active## </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title"> ##word.vendors_groups## </td>
+                                    <td class="center"> {{vendor.group.name}} </td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div class="col3">
+                            <i-image view ng-model="vendor.image_url"> </i-image>
+                        </div>
+
+                        <i-button class="not-print" x-permission="print" type="print left"
+                            onclick="site.print('#vendorDetailsModal #personalInformationTable')"></i-button>
+                    </div>
+                </fieldset>
+
+                <fieldset id="vendorsIdInforamationTable">
+                    <legend> ##word.vendors_id_inforamation## </legend>
+                    <table class="table hover">
+                        <tr>
+                            <td class="title"> ##word.vendors_nationality## </td>
+                            <td class="center"> {{vendor.nationality.name_ar}} </td>
+                        </tr>
+
+                        <tr>
+                            <td class="title"> ##word.vendors_id_number## </td>
+                            <td class="center blue"> {{vendor.id_number}} </td>
+                        </tr>
+
+                        <tr>
+                            <td class="title"> ##word.vendors_id_source## </td>
+                            <td class="center"> {{vendor.id_source}} </td>
+                        </tr>
+
+                        <tr>
+                            <td class="title"> ##word.vendors_id_release_date## </td>
+                            <td class="brown center"> {{vendor.id_release_date | xdate}} </td>
+                        </tr>
+
+                    </table>
+                    <i-button class="not-print" x-permission="print" type="print left"
+                        onclick="site.print('#vendorDetailsModal #vendorsIdInforamationTable')"></i-button>
+                </fieldset>
+            </div>
+
+            <div id="officialDocuments" class="tab-content">
+                <fieldset id="vendorsTaxInformations">
+                    <legend> ##word.vendors_tax_informations## </legend>
+                    <table class="table hover">
+                        <tr>
+                            <td class="title"> ##word.vendors_tax_regstration_number## </td>
+                            <td class="center blue"> {{vendor.tax_regstration_number}} </td>
+                        </tr>
+
+                        <tr>
+                            <td class="title"> ##word.vendors_tax_card_number## </td>
+                            <td class="center blue"> {{vendor.tax_card_number}} </td>
+                        </tr>
+
+                        <tr>
+                            <td class="title"> ##word.vendors_tax_office_code## </td>
+                            <td class="center blue"> {{vendor.tax_office_code}} </td>
+                        </tr>
+
+                        <tr>
+                            <td class="title"> ##word.vendors_tax_office_name## </td>
+                            <td class="center"> {{vendor.tax_office_name}} </td>
+                        </tr>
+
+                        <tr>
+                            <td class="title"> ##word.vendors_activity_address## </td>
+                            <td class="center"> {{vendor.activity_address}} </td>
+                        </tr>
+
+                        <tr>
+                            <td class="title"> ##word.vendors_file_number## </td>
+                            <td class="center blue"> {{vendor.file_number}} </td>
+                        </tr>
+
+                        <tr>
+                            <td class="title"> ##word.vendors_activity_name## </td>
+                            <td class="center"> {{vendor.activity_name}} </td>
+                        </tr>
+
+                        <tr>
+                            <td class="title"> ##word.vendors_financier_name## </td>
+                            <td class="center"> {{vendor.financier_name}} </td>
+                        </tr>
+
+
+                    </table>
+                    <i-button class="not-print" x-permission="print" type="print left "
+                        onclick="site.print('#vendorDetailsModal #vendorsTaxInformations')"></i-button>
+
+                </fieldset>
+
+                <fieldset id="commercialRegisterInformation">
+                    <legend> ##word.vendors_commercial_register_information## </legend>
+                    <table class="table hover">
+                        <tr>
+                            <td class="title"> ##word.vendors_commercial_name## </td>
+                            <td class="center"> {{vendor.commercial_name}} </td>
+                        </tr>
+
+                        <tr>
+                            <td class="title"> ##word.vendors_business_attribute## </td>
+                            <td class="center"> {{vendor.business_attribute}} </td>
+                        </tr>
+
+                        <tr>
+                            <td class="title"> ##word.vendors_used_name_in_trade## </td>
+                            <td class="center"> {{vendor.used_tarde_name}} </td>
+                        </tr>
+
+                        <tr>
+                            <td class="title"> ##word.vendors_trader_name## </td>
+                            <td class="center"> {{vendor.trader_name}} </td>
+                        </tr>
+
+
+                        <tr>
+                            <td class="title"> ##word.vendors_commerical_nationality## </td>
+                            <td class="center"> {{vendor.commerical_nationality.name_ar}} </td>
+                        </tr>
+
+                        <tr>
+                            <td class="title"> ##word.vendors_financial_system## </td>
+                            <td class="center"> {{vendor.financial_system}} </td>
+                        </tr>
+
+                        <tr>
+                            <td class="title"> ##word.vendors_commercial_validity## </td>
+                            <td class="center"> {{vendor.commercial_validity}} </td>
+                        </tr>
+
+                        <tr>
+                            <td class="title"> ##word.vendors_trade_type## </td>
+                            <td class="center"> {{vendor.trade_type}} </td>
+                        </tr>
+
+                        <tr>
+                            <td class="title"> ##word.vendors_commercial_start_date## </td>
+                            <td class="center brown"> {{vendor.commercial_start_date |xdate}} </td>
+                        </tr>
+
+
+                    </table>
+                    <i-button class="not-print" x-permission="print" type="print left "
+                        onclick="site.print('#vendorDetailsModal #commercialRegisterInformation')"></i-button>
+                </fieldset>
+            </div>
+
+            <div id="openingBalance" class="tab-content">
+                <fieldset id="vendorsBalanceAndCurrencyInformation" ng-repeat="openBalance in vendor.opening_balance">
+                    <legend> ##word.vendors_opening_balance_informations## </legend>
+                    <table class="table hover">
+                        <tr>
+                            <td class="title"> ##word.vendors_initial_balance## </td>
+                            <td class="center green"> {{openBalance.initial_balance}} </td>
+                        </tr>
+
+                        <tr>
+                            <td class="title"> ##word.vendors_currency_name## </td>
+                            <td class="center"> {{openBalance.currency.name_ar}} </td>
+                        </tr>
+
+                        <tr>
+                            <td class="title"> ##word.vendors_balance_type## </td>
+                            <td>
+                                <div class="row margin padding" ng-repeat="openBalance in vendor.opening_balance">
+
+                                    <div>
+                                        <p ng-show="openBalance.balance_type == 'debit'" class="center">
+                                            ##word.vendors_debit##
+                                        </p>
+
+                                        <p ng-show="openBalance.balance_type == 'credit'" class="center">
+                                            ##word.vendors_credit##
+                                        </p>
+                                    </div>
+
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="title"> ##word.date## </td>
+                            <td class="center brown"> {{openBalance.balance_date | xdate}} </td>
+                        </tr>
+
+                        <tr>
+                            <td class="title"> ##word.vendors_reference_number## </td>
+                            <td class="center"> {{openBalance.reference_number}} </td>
+                        </tr>
+
+                        <tr>
+                            <td class="title"> ##word.vendors_notes_arabic## </td>
+                            <td class="center"> {{openBalance.notes_ar}} </td>
+                        </tr>
+                        <tr>
+                            <td class="title"> ##word.vendors_notes_english## </td>
+                            <td class="center"> {{openBalance.notes_en}} </td>
+                        </tr>
+
+                    </table>
+                    <i-button class="not-print" x-permission="print" type="print left "
+                        onclick="site.print('#vendorDetailsModal #vendorsBalanceAndCurrencyInformation')"></i-button>
+                </fieldset>
+            </div>
+
+            <div id="bankingAndAccounting" class="tab-content">
+
+                <fieldset id="accounting">
+                    <legend> ##word.vendors_accounting_informations## </legend>
+                    <table class="table hover">
+                        <tr>
+                            <td class="title"> ##word.vendors_period_maturity_purchases## </td>
+                            <td class="center"> {{vendor.period_maturity_purchases}} </td>
+                        </tr>
+
+                        <tr>
+                            <td class="title"> ##word.vendors_prof_account## </td>
+                            <td class="center"> {{openBalance.prof_account.name}} </td>
+                        </tr>
+
+                        <tr>
+                            <td class="title"> ##word.vendors_discount## </td>
+                            <td class="center blue"> {{'%'+vendor.discount}} </td>
+                        </tr>
+
+                        <tr>
+                            <td class="title"> ##word.vendors_currency_name## </td>
+                            <td class="center"> {{vendor.currency.name_ar}} </td>
+                        </tr>
+
+                        <tr>
+                            <td class="title"> ##word.vendors_balance## </td>
+                            <td class="center green"> {{vendor.balance}} </td>
+                        </tr>
+
+                        <tr>
+                            <td class="title"> ##word.vendors_credit_limit## </td>
+                            <td class="center"> {{vendor.credit_limit}} </td>
+                        </tr>
+
+                        <tr>
+                            <td class="title"> ##word.vendors_delegate_commission## </td>
+                            <td class="center blue"> {{'%' + vendor.delegate_commission}} </td>
+                        </tr>
+
+                    </table>
+                    <i-button class="not-print" x-permission="print" type="print left "
+                        onclick="site.print('#vendorDetailsModal #accounting')"></i-button>
+                </fieldset>
+
+                <fieldset id="banking">
+                    <legend> ##word.vendors_bank_information## </legend>
+                    <fieldset ng-repeat="bank in vendor.bank_list">
+
+                        <table class="table hover">
+                            <tr>
+                                <td class="title"> ##word.vendors_bank_name## </td>
+                                <td class="center"> {{bank.bank_name.name_ar}} </td>
+                            </tr>
+
+                            <tr>
+                                <td class="title"> ##word.vendors_bank_account_number## </td>
+                                <td class="center blue"> {{bank.account_number}} </td>
+                            </tr>
+
+                        </table>
+                        <i-button class="not-print" x-permission="print" type="print left"
+                            onclick="site.print('#vendorDetailsModal #banking')"></i-button>
+                    </fieldset>
+                </fieldset>
+
+            </div>
+
+            <div id="contactAndAddress" class="tab-content">
+
+                <fieldset id="addressInformations">
+                    <legend> ##word.vendors_address_informations## </legend>
+                    <table class="table hover">
+                        <tr>
+                            <td class="title"> ##word.vendors_gov## </td>
+                            <td class="center"> {{vendor.gov.name}} </td>
+                        </tr>
+
+                        <tr>
+                            <td class="title"> ##word.vendors_city## </td>
+                            <td class="center"> {{vendor.city.name}} </td>
+                        </tr>
+
+                        <tr>
+                            <td class="title"> ##word.area## </td>
+                            <td class="center"> {{vendor.area.name}} </td>
+                        </tr>
+
+                        <tr>
+                            <td class="title"> ##word.vendors_address## </td>
+                            <td class="center"> {{vendor.address}} </td>
+                        </tr>
+                    </table>
+                    <i-button class="not-print" x-permission="print" type="print left "
+                        onclick="site.print('#vendorDetailsModal #addressInformations')"></i-button>
+
+                </fieldset>
+
+                <fieldset id="vendorsContactInformations">
+                    <legend> ##word.vendors_contact_informations## </legend>
+                    <table class="table hover">
+                        <tr>
+                            <td class="title"> ##word.vendors_phone## </td>
+                            <td class="center">
+                                <a ng-show="vendor.phone" href="tel:{{vendor.phone}}">
+                                    {{vendor.phone}}
+                                    <i class="fa fa-phone" aria-hidden="true"></i>
+                                </a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="title"> ##word.vendors_internal_number## </td>
+                            <td class="center blue"> {{vendor.internal_number}} </td>
+                        </tr>
+
+                        <tr>
+                            <td class="title"> ##word.vendors_mobile## </td>
+                            <td class="center">
+                                <a ng-show="vendor.mobile" href="tel:{{vendor.mobile}}">
+                                    {{vendor.mobile}}
+                                    <i class="fa fa-mobile" aria-hidden="true"></i>
+                                </a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="title"> ##word.vendors_fax## </td>
+                            <td class="center">
+                                <a ng-show="vendor.fax" href="tel:{{vendor.fax}}">
+                                    {{vendor.fax}}
+                                    <i class="fa fa-fax" aria-hidden="true"></i>
+                                </a>
+                            </td>
+                        </tr>
+
+                    </table>
+
+                    <i-button class="not-print" x-permission="print" type="print left "
+                        onclick="site.print('#vendorDetailsModal #vendorsContactInformations')"></i-button>
+
+                </fieldset>
+
+                <fieldset id="vendorsPostInformations">
+                    <legend> ##word.vendors_post_informations## </legend>
+                    <table class="table hover">
+                        <tr>
+                            <td class="title"> ##word.vendors_mailbox## </td>
+                            <td class="center"> {{vendor.mailbox}} </td>
+                        </tr>
+
+                        <tr>
+                            <td class="title"> ##word.vendors_post_number## </td>
+                            <td class="center blue"> {{vendor.post_number}} </td>
+                        </tr>
+
+                    </table>
+                    <i-button class="not-print" x-permission="print" type="print left "
+                        onclick="site.print('#vendorDetailsModal #vendorsPostInformations')"></i-button>
+
+                </fieldset>
+
+                <fieldset id="vendorsWebAndSocialAccounts">
+                    <legend> ##word.vendors_Web_and_social_accounts## </legend>
+                    <table class="table hover">
+                        <tr>
+                            <td class="title"> ##word.vendors_website## </td>
+                            <td class="center">
+                                <a ng-show="vendor.website" href="tel:{{vendor.website}}">
+                                    {{vendor.website}}
+                                    <i class="fa fa-globe" aria-hidden="true"></i>
+                                </a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="title"> ##word.vendors_social_facebook_account## </td>
+                            <td class="center">
+                                <a ng-show="vendor.social_facebook" href="tel:{{vendor.social_facebook}}">
+                                    {{vendor.social_facebook}}
+                                    <i class="fa fa-facebook" aria-hidden="true"></i>
+                                </a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="title"> ##word.vendors_social_twitter_account## </td>
+                            <td class="center">
+                                <a ng-show="vendor.social_twitter" href="tel:{{vendor.social_twitter}}">
+                                    {{vendor.social_twitter}}
+                                    <i class="blue fa fa-twitter" aria-hidden="true"></i>
+                                </a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="title"> ##word.vendors_social_google_account## </td>
+                            <td class="center">
+                                <a ng-show="vendor.social_google" href="tel:{{vendor.social_google}}">
+                                    {{vendor.social_google}}
+                                    <i class="red fa fa-google-plus" aria-hidden="true"></i>
+                                </a>
+                            </td>
+                        </tr>
+
+                    </table>
+
+                    <i-button class="not-print" x-permission="print" type="print left "
+                        onclick="site.print('#vendorDetailsModal #vendorsWebAndSocialAccounts')"></i-button>
+
+                </fieldset>
+
+            </div>
+
+            <div id="vendorsBranches" class="tab-content">
+                <fieldset ng-repeat="branch in vendor.branch_list">
+                    <legend> ##word.vendors_branches_informations## </legend>
+                    <fieldset id="branchInformations">
+                        <legend> ##word.vendors_branch_informations## </legend>
+                        <table class="table hover">
+                            <tr>
+                                <td class="title"> ##word.vendors_branch_code## </td>
+                                <td class="center blue"> {{branch.code}} </td>
+                            </tr>
+
+                            <tr>
+                                <td class="title"> ##word.vendors_branch_name## </td>
+                                <td class="center"> {{branch.name}} </td>
+                            </tr>
+
+                            <tr>
+                                <td class="title"> ##word.vendors_branch_notes## </td>
+                                <td class="center"> {{branch.notes}} </td>
+                            </tr>
+
+                            <tr>
+                                <td class="title"> ##word.vendors_branch_gov## </td>
+                                <td class="center"> {{branch.gov.name}} </td>
+                            </tr>
+
+                            <tr>
+                                <td class="title"> ##word.vendors_branch_city## </td>
+                                <td class="center"> {{branch.city.name}} </td>
+                            </tr>
+
+                            <tr>
+                                <td class="title"> ##word.vendors_branch_address## </td>
+                                <td class="center"> {{branch.address}} </td>
+                            </tr>
+
+                            <tr>
+                                <td class="title"> ##word.vendors_branch_phone## </td>
+                                <td class="center">
+                                    <a ng-show="branch.phone" href="tel:{{branch.phone}}">
+                                        {{branch.phone}}
+                                        <i class="fa fa-phone" aria-hidden="true"></i>
+                                    </a>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="title"> ##word.vendors_branch_mobile## </td>
+                                <td class="center">
+                                    <a ng-show="branch.mobile" href="tel:{{branch.mobile}}">
+                                        {{branch.mobile}}
+                                        <i class="fa fa-mobile" aria-hidden="true"></i>
+                                    </a>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="title"> ##word.vendors_branch_fax## </td>
+                                <td class="center">
+                                    <a ng-show="branch.fax" href="tel:{{branch.fax}}">
+                                        {{branch.fax}}
+                                        <i class="fa fa-fax" aria-hidden="true"></i>
+                                    </a>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="title"> ##word.vendors_branch_email## </td>
+                                <td class="center">
+                                    <a ng-show="branch.email" href="tel:{{branch.email}}">
+                                        {{branch.email}}
+                                        <i class="fa fa-envelope" aria-hidden="true"></i>
+                                    </a>
+                                </td>
+                            </tr>
+
+                        </table>
+                        <i-button class="not-print" x-permission="print" type="print left "
+                            onclick="site.print('#vendorDetailsModal #branchInformations')"></i-button>
+
+                    </fieldset>
+
+                    <fieldset id="chargeName" ng-repeat="charge in branch.charge">
+                        <legend> ##word.vendors_charge_contact_informations## </legend>
+                        <table class="table hover">
+                            <tr>
+                                <td class="title"> ##word.vendors_charge_name## </td>
+                                <td class="center"> {{charge.name}} </td>
+                            </tr>
+
+                            <tr>
+                                <td class="title"> ##word.vendors_charge_job## </td>
+                                <td class="center"> {{charge.job}} </td>
+                            </tr>
+
+                            <tr>
+                                <td class="title"> ##word.vendors_charge_phone## </td>
+                                <td class="center">
+                                    <a ng-show="charge.phone" href="tel:{{charge.phone}}">
+                                        {{charge.phone}}
+                                        <i class="fa fa-phone" aria-hidden="true"></i>
+                                    </a>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="title"> ##word.vendors_charge_internal_number## </td>
+                                <td class="center blue"> {{charge.internal_number}} </td>
+                            </tr>
+
+                            <tr>
+                                <td class="title"> ##word.vendors_charge_mobile## </td>
+                                <td class="center">
+                                    <a ng-show="charge.mobile" href="tel:{{charge.mobile}}">
+                                        {{charge.mobile}}
+                                        <i class="fa fa-mobile" aria-hidden="true"></i>
+                                    </a>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="title"> ##word.vendors_charge_email## </td>
+                                <td class="center">
+                                    <a ng-show="charge.email" href="tel:{{charge.email}}">
+                                        {{charge.email}}
+                                        <i class="fa fa-envelope" aria-hidden="true"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        </table>
+                        <i-button class="not-print" x-permission="print" type="print left "
+                            onclick="site.print('#vendorDetailsModal #chargeName')"></i-button>
+                    </fieldset>
+
+                    <i-button class="not-print" x-permission="print" type="print left "
+                        onclick="site.print('#vendorDetailsModal #vendorsBranches')"></i-button>
+
+                </fieldset>
+            </div>
+
+            <div id="vendorsFiles" class="tab-content">
+                <i-files view ng-model="vendor.files"></i-files>
+            </div>
+
+            <div id="vendorsDealing" class="tab-content">
+                <fieldset id="dealingInformationsAll">
+                    <legend> ##word.vendors_dealing_companies_branches## </legend>
+                    <fieldset id="dealingInformations" ng-repeat="dealCompany in vendor.dealing_company">
+                        <legend> ##word.vendors_branch_informations## </legend>
+                        <table class="table hover">
+                            <tr>
+                                <td class="title"> ##word.vendors_company_name## </td>
+                                <td class="center"> {{dealCompany.company.name_ar}} </td>
+                            </tr>
+
+                            <tr>
+                                <td class="title"> ##word.vendors_branch_name## </td>
+                                <td class="center"> {{dealCompany.branch.name}} </td>
+                            </tr>
+                        </table>
+
+                    </fieldset>
+                    <i-button class="not-print" x-permission="print" type="print left "
+                        onclick="site.print('#vendorDetailsModal #dealingInformationsAll')"></i-button>
+
+                </fieldset>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+</div>

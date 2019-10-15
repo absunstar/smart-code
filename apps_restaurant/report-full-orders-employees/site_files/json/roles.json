@@ -1,0 +1,7 @@
+[{
+    "module_name" : "accounting" ,
+    "name": "report_full_employees_admin",
+    "en": "Report Full Employee Admin",
+    "ar": "تقرير شامل لطلبات الموظفين",
+    "permissions": ["report_full_employees_manage"]
+}]

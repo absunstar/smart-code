@@ -1,0 +1,62 @@
+[
+    { "name": "employees_salary_report_search","en": "Search", "ar": "بحث"},
+    { "name": "employees_salary_report_date_from","en": "Date From", "ar": "من تاريخ"},
+    { "name": "employees_salary_report_date_to","en": "Date To", "ar": "الى تاريخ"},
+    { "name": "employees_salary_report_Employee_Name","en": "Employee Name", "ar": "أسم الموظف"},
+    { "name": "employees_salary_report","en": "Employees Salary", "ar": "مرتبات الموظفين"},
+
+    { "name": "employees_salary_report_Employee_Details","en": "Employee Details", "ar": "بيانات الموظف"},
+    { "name": "employees_salary_report_Division","en": " Division", "ar": " القسم"},
+    { "name": "employees_salary_report_job","en": " Job", "ar": "الوظيفة "},
+    { "name": "employees_salary_report_salary","en": "Employee Salary", "ar": "المرتب"},
+    { "name": "employees_salary_report_salary_differance","en": "Salary Differance", "ar": "فرق المرتب"},
+    { "name": "employees_salary_report_ticket_differance","en": "Ticket Differance", "ar": " فرق الطلب"},
+    { "name": "employees_salary_report_total_offer","en": "Total Offers", "ar": " اجمالي المكافئات"},
+    { "name": "employees_salary_report_total_discount","en": "Total Discount", "ar": "اجمالي الخصومات "},
+    { "name": "employees_salary_report_degree","en": "Employee Degrees", "ar": " الدرجة الوظيفية "},
+    
+    { "name": "employees_salary_report_accounting_system","en": "Accounting System", "ar": "نظام المحاسبة"},
+    { "name": "employees_salary_report_accounting_period","en": " Accounting Period", "ar": "الفترة المحاسبية "},
+    
+    { "name": "employees_salary_report_ticket_slide","en": " Ticket Slide", "ar": "الشريحة المحاسبية "},
+    { "name": "salary_approved","en": "Salary Approved ", "ar": " اعتماد المرتب "},
+    { "name": "le","en": " le ", "ar": "  جنيه "},
+    { "name": "employee_salary_report_description","en": " Description ", "ar": "  التفاصيل "},
+    { "name": "employees_salary_report_total_advances","en": " Total Advances ", "ar": "  اجمالي السلف "},
+
+    
+    
+    { "name": "employees_salary_report_applied_tickets_num","en": "Applied Tickets", "ar": "عدد الطلبات المستلمة "},
+    { "name": "employees_salary_report_distributed_tickets_num","en": "Distributed Tickets", "ar": " عدد الطلبات الموزعة "},
+    { "name": "employees_salary_report_close1_tickets_num","en": "Primary close Tickets", "ar": "عدد بلاغات تقفيل مبدئي  "},
+    { "name": "employees_salary_report_bact_to_eng_tickets_num","en": "Back To Engineer Tickets", "ar": "عدد بلاغات مرجعة للفني   "},
+    { "name": "employees_salary_report_close2_tickets_num","en": "Final Close Tickets", "ar": " عدد بلاغات تقفيل نهائي"},
+    { "name": "employees_salary_report_review_tickets_num","en": "Follow Up Tickets", "ar": "عدد بلاغات المتابعة"},
+    { "name": "employees_salary_report_total_insurance","en": "Total Insurance", "ar": " خصم التامينات"},
+    { "name": "employees_salary_report_total_phone_discount","en": "Total Phone Slide Discount", "ar": "اجمالي خصم شرائح التليفون"},
+
+
+    { "name": "employees_salary_report_applied_ticket_silde","en": "Applied Ticket Slide", "ar": "الشريحة المطبقة"},
+    { "name": "employees_salary_report_salary_cal","en": " Salary Calculate", "ar": " حساب المرتب"},
+    { "name": "employees_salary_report_total_salary","en": "Total Salary", "ar": " اجمالي المرتب"},
+    { "name": "employees_salary_report_offers","en": "Offers", "ar": "المكافئات"},
+
+    { "name": "employees_salary_report_date","en": "Offer Date", "ar": "التاريخ"},
+    { "name": "employees_salary_report_value","en": "Offer Value", "ar": " القيمة"},
+    { "name": "employees_salary_report_discount","en": "Discounts", "ar": " الخصومات"},
+    { "name": "employees_salary_report_applied_tickets","en": "Applied Tickets", "ar": " الطلبات التي تم اعتمادها"},
+
+    { "name": "employees_salary_report_ticket_code","en": "Ticket Code", "ar": "كود الطلب"},
+    { "name": "employees_salary_report_ticket_date","en": " Ticket Date", "ar": " تاريخ الطلب"},
+    { "name": "employees_salary_report_close1_date","en": "Close Date", "ar": " تاريخ التقفيل المبدئي"},
+    { "name": "employees_salary_report_ticket_state","en": "Ticket State", "ar": " حالة الطلب"},
+
+    { "name": "employees_salary_report_delivered_tickets","en": "Delivered Tickets", "ar": " الطلبات المستلمة "},
+    { "name": "employees_salary_report_distributed_tickets","en": "Distributed Tickets", "ar": "  الطلبات الموزعة "},
+    { "name": "employees_salary_report_close1_tickets","en": "Primary close Tickets", "ar": "الطلبات المقفلة مبدئيا  "},
+    { "name": "employees_salary_report_bact_to_eng_tickets","en": "Back To Engineer Tickets", "ar": " الطلبات المرجعة للفني   "},
+    { "name": "employees_salary_report_close2_tickets","en": "Final Close Tickets", "ar": "  الطلبات تقفيل نهائي"},
+    { "name": "employees_salary_report_review_tickets","en": "Follow Up Tickets", "ar": "  الطلبات التي تم متابعتها"},
+    { "name": "employees_salary_report_distributed_tickets","en": " Distributed Tickets", "ar": " الطلبات التي تم توزيعها"}
+
+]

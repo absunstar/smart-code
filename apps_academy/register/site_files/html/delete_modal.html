@@ -1,0 +1,28 @@
+<div id="registerDeleteModal" class="modal">
+    
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.register_delete##
+                <i class="fa fa-trash"></i>
+            </h2>
+        </div>
+
+        <div class="modal-body">
+
+        </div>
+
+        <h2 class="error"> {{error}} </h2>
+
+        <div class="modal-footer center">
+            <i-button type="print" label="##word.print##" onclick="site.print('#v1')"></i-button>
+
+            <i-button type="delete" label="##word.delete##" ng-click="deleteregister(register)"> </i-button>
+
+            <i-button type="close" label="##word.close##" onclick="site.hideModal('#registerDeleteModal')"> </i-button>
+
+        </div>
+    </div>
+    
+</div>

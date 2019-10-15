@@ -1,0 +1,11 @@
+[
+    { "module_name" : "public" , "screen_name" : "class-rooms" , "name":"class_rooms_manage" , "en":"Manage" , "ar":"إدارة"},
+    { "module_name" : "public" , "screen_name" : "class-rooms" , "name":"class_rooms_add" , "en":"Add" , "ar":"إضافة"},
+    { "module_name" : "public" , "screen_name" : "class-rooms" , "name":"class_rooms_update" , "en":"Edit" , "ar":"تعديل"},
+    { "module_name" : "public" , "screen_name" : "class-rooms" , "name":"class_rooms_delete" , "en":"Delete" , "ar":"حذف"},
+    { "module_name" : "public" , "screen_name" : "class-rooms" , "name":"class_rooms_view" , "en":"View" , "ar":"عرض"},
+    { "module_name" : "public" , "screen_name" : "class-rooms" , "name":"class_rooms_search" , "en":"Search" , "ar":"بحث"},
+    { "module_name" : "public" , "screen_name" : "class-rooms" , "name":"class_rooms_export" , "en":"Export" , "ar":"تصدير"},
+    { "module_name" : "public" , "screen_name" : "class-rooms" , "name":"class_rooms_print" , "en":"Print" , "ar":"طباعة"},
+    { "module_name" : "public" , "screen_name" : "class-rooms" , "name":"class_rooms_ui" , "en":"Ui" , "ar":"الواجهة الرسومية"}
+]

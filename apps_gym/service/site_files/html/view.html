@@ -1,0 +1,32 @@
+<div ng-hide="busy" class="row">
+    <div id="basicInformation">
+        <fieldset>
+            <legend> ##word.basic_information##</legend>
+            <div class="col9">
+                <table id="basicInformationTable" class="table hover bold">
+                    <tr>
+                        <td class="title">##word.service_name##</td>
+                        <td class="center">{{service.name}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="title">##word.service_price##</td>
+                        <td class="center blue">{{service.price}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="title">##word.status##</td>
+                        <td ng-show="service.active == true" class="green center"> ##word.active## </td>
+                        <td ng-show="service.active == false" class="red center"> ##word.not_active## </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="col3">
+                <i-image view ng-model="service.image_url"></i-image>
+            </div>
+
+        </fieldset>
+    </div>
+</div>
+<div x-import="service/action_info.html"></div>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="report_employee_user_ui || report_employee_user_manage" data-ng-app="myApp">
+
+<head x-import="head.html">
+
+</head>
+
+<body class="##session.lang##">
+
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+    </nav>
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+    </nav>
+
+    <div id="main-layout" class="container">
+        <div class="row">
+            <div class="row" ng-controller="report_employee_user" x-permissions="login">
+
+                <div x-import="report-employee-user/search_all_modal.html"></div>
+                <div class="row">
+                    <h1 class="bold text-center"> ##word.report_employees_order## </h1>
+                </div>
+
+                <div class="top-actions">
+                    <i-button type="search" x-permissions="report_employee_user_search || report_employee_user_manage"
+                        label="##word.search_all##" onclick="site.showModal('#reportEmployeeUserSearchModal')">
+                    </i-button>
+
+                    <span ng-show="busy">
+                        <span class="sr-only">Loading...</span>
+                    </span>
+                    <h3 class="bold text-center"> ##word.count## : {{count}} </h3>
+                    <br>
+                </div>
+
+                <div class="row">
+                    <div class="col5">
+                        <table class="table bold center hover">
+                            <tr>
+                                <td class="blue"> ##word.employee_name## </td>
+                                <td colspan="7" class="center"> {{report_invoices.employee.name}}
+                                    <i class="blue">({{report_invoices.employee.national_id}})</i>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="blue"> ##word.employees_degrees## </td>
+                                <td colspan="2" class="center"> {{report_invoices.employee.degree.name}} </td>
+                                <td class="blue"> ##word.job## </td>
+                                <td colspan="2" class="center"> {{report_invoices.employee.job.name}} </td>
+                                <td class="blue"> ##word.salary## </td>
+                                <td colspan="2" class="center"> {{report_invoices.employee.salary}} </td>
+                            </tr>
+                            <tr>
+                                <td class="blue"> ##word.gov## </td>
+                                <td colspan="2" class="center"> {{report_invoices.employee.gov.name}} </td>
+                                <td class="blue"> ##word.city## </td>
+                                <td colspan="2" class="center"> {{report_invoices.employee.city.name}} </td>
+                                <td class="blue"> ##word.area## </td>
+                                <td colspan="2" class="center"> {{report_invoices.employee.area.name}} </td>
+                            </tr>
+                            <tr>
+                                <td class="blue"> ##word.address## </td>
+                                <td colspan="7" class="center"> {{report_invoices.employee.address}}</td>
+                            </tr>
+                            <tr>
+                                <td class="blue"> ##word.mobile## </td>
+                                <td colspan="4" class="center"> {{report_invoices.employee.mobile}}</td>
+                                <td class="blue"> ##word.phone## </td>
+                                <td colspan="3" class="center"> {{report_invoices.employee.phone}}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" class="green"> ##word.order_add_count## </td>
+                                <td  class="center"> {{report_invoices.add_order.length}} </td>
+                                <td colspan="3" class="red"> ##word.invoice_close_count## </td>
+                                <td  class="center"> {{report_invoices.close_order.length}} </td>
+                            </tr>
+                        
+                        </table>
+                    </div>
+                </div>
+
+                <br>
+                <br>
+                <hr>
+                <div class="row">
+                    <div class="col5">
+                        <h2 class="center ">##word.order_add## <i
+                                class="blue">({{report_invoices.add_order.length}})</i> </h2>
+                        <table class="table loaded center hover bold" id="t1">
+                            <tr>
+                                <th class="not-print"> ##word.logo## </th>
+                                <th> ##word.date## </th>
+                                <th> ##word.order_code## </th>
+                                <th> ##word.order_type## </th>
+                                <th> ##word.order_status## </th>
+
+                            </tr>
+
+                            <tr ng-repeat="add in report_invoices.add_order | orderBy : '-id'">
+                                <td class="not-print">
+                                    <img class="logo" ng-src="{{add.image_url}}">
+                                </td>
+                                <td class="brown"> {{add.date | date : 'dd - MM - yyyy'}} </td>
+                                <td class="blue"> {{add.code}} </td>
+                                <td> {{add.transaction_type.ar}} </td>
+                                <td> {{add.status.ar}} </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col2"></div>
+                    <div class="col5">
+                        <h2 class="center ">##word.invoice_close## <i
+                                class="blue">({{report_invoices.close_order.length}})</i></h2>
+
+                        <table class="table loaded center hover bold" id="t1">
+                            <tr>
+                                <th class="not-print"> ##word.logo## </th>
+                                <th> ##word.date## </th>
+                                <th> ##word.order_code## </th>
+                                <th> ##word.order_type## </th>
+                                <th> ##word.order_status## </th>
+
+                            </tr>
+
+                            <tr ng-repeat="add in report_invoices.close_order | orderBy : '-id'">
+                                <td class="not-print">
+                                    <img class="logo" ng-src="{{add.image_url}}">
+                                </td>
+                                <td class="brown"> {{add.date | date : 'dd - MM - yyyy'}} </td>
+                                <td class="blue"> {{add.code}} </td>
+                                <td> {{add.transaction_type.ar}} </td>
+                                <td> {{add.status.ar}} </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+
+
+
+
+                <div class="row">
+                    <i-button x-permissions="report_employee_user_print || report_employee_user_manage" type="print"
+                        label="##word.print##" onclick="site.print('#t1')"></i-button>
+                    <i-button x-permissions="report_employee_user_export || report_employee_user_manage" type="export"
+                        label="##word.export_to_excel##" onclick="export_to_xlsx('t1' , 'report_employee_user.xlsx')">
+                    </i-button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div x-import="scripts.html"></div>
+
+    <script x-permissions="login" x-import="report-employee-user/index.js"></script>
+</body>
+
+</html>

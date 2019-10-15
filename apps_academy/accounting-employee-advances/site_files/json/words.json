@@ -1,0 +1,40 @@
+[
+    { "name": "employees_advances","en": "Employees Advance", "ar": "سلف الموظفين"},
+    { "name": "employees_advances_add","en": "Add Advance", "ar": "اضافة سلفة"},
+    { "name": "employees_advances_new","en": "New Advance", "ar": "تسجيل سلفة جديد"},
+    { "name": "employees_advances_details","en": "Advance  Details", "ar": "تفاصيل السلفة"},
+
+    { "name": "employees_advances_delete","en": "Delete Advance", "ar": "حذف سلفة"},
+    { "name": "employees_advances_logo","en": "Logo", "ar": "الشعار"},
+    { "name": "employees_advances_value","en": "Value", "ar": "قيمة السلفة"},
+    { "name": "employees_advances_date","en": "Date", "ar": "التاريخ"},
+    { "name": "employees_advances_from","en": "From", "ar": "من"},
+    { "name": "employees_advances_to","en": "To", "ar": "الي"},
+
+    { "name": "employees_advances_description","en": "Description", "ar": "التفاصيل "},
+    { "name": "employees_advances_safe","en": "Safe", "ar": "الخزينة"},
+    { "name": "employees_advances_time","en": "Time", "ar": "مدة السداد"},
+
+    
+    
+    { "name": "employees_advances_Company_name","en": "Company Name", "ar": "اسم الشركة "},
+    
+    { "name": "employees_advances_empty_search","en": "Empty Fields", "ar": "تفريغ الحقول "},
+
+    { "name": "employees_advances_search","en": "Search", "ar": "البحث "},
+
+    { "name": "employees_advances_companies","en": "From Company", "ar": "وارد من شركة"},
+
+    { "name": "employees_advances_date_from","en": "Date From", "ar": "من تاريخ"},
+
+    { "name": "employees_advances_date_to","en": "Date To ", "ar": "الى تاريخ"},
+
+    { "name": "employees_advances_employees","en": "From Employee", "ar": " اسم الموظف "},
+
+
+    
+    { "name": "employees_advances_img","en": "Image", "ar": "الشعار"},
+
+    { "name": "employees_advances_customers","en": "Customer Name", "ar": "اسم العميل"}
+   
+]

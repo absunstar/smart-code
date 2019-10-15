@@ -1,0 +1,52 @@
+[{
+        "name": "hall",
+        "en": "The Hall",
+        "ar": "القاعات"
+    },
+    {
+        "name": "hall_new",
+        "en": "New Hall",
+        "ar": "قاعة جديدة"
+    },
+    {
+        "name": "hall_add",
+        "en": "Add Hall",
+        "ar": "اضافة قاعة"
+    },
+    {
+        "name": "hall_edit",
+        "en": "Edit Hall",
+        "ar": "تعديل قاعة"
+    },
+    {
+        "name": "hall_details",
+        "en": "Hall Details",
+        "ar": "تفاصيل القاعة"
+    },
+    {
+        "name": "hall_delete",
+        "en": "Delete Hall",
+        "ar": "حذف قاعة"
+    },
+    {
+        "name": "hall_name",
+        "en": "Course Name",
+        "ar": "اسم القاعة "
+    },
+    {
+        "name": "hall_total",
+        "en": "Total Duration",
+        "ar": "إجمالي المدة "
+    },
+    {
+        "name": "hall_capaneighborhood",
+        "en": "Class Capaneighborhood",
+        "ar": "سعة القاعة "
+    },
+    {
+        "name": "hall_current",
+        "en": "Number Of Current Students",
+        "ar": "عدد الطلاب الحاليين"
+    }
+    
+]

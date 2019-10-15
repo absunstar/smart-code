@@ -1,0 +1,7 @@
+[{
+    "module_name" : "accounting" ,
+    "name": "in_out_names_admin",
+    "en": "In & Out Names Admin",
+    "ar": "إدارة مسميات الوارد و المنصرف",
+    "permissions": ["in_out_names_manage"]
+}]

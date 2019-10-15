@@ -1,0 +1,7 @@
+[{
+    "module_name" : "accounting" ,
+    "name": "report_employee_user_admin",
+    "en": "Report Employee Order Admin",
+    "ar": "تقرير طلبات الموظفين",
+    "permissions": ["report_employee_user_manage"]
+}]

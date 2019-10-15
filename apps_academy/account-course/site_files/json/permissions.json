@@ -1,0 +1,11 @@
+[
+    { "module_name" : "courses" , "screen_name" : "account-course" , "name":"account_course_manage" , "en":"Manage" , "ar":"إدارة"},
+    { "module_name" : "courses" , "screen_name" : "account-course" , "name":"account_course_add" , "en":"Add" , "ar":"إضافة"},
+    { "module_name" : "courses" , "screen_name" : "account-course" , "name":"account_course_update" , "en":"Edit" , "ar":"تعديل"},
+    { "module_name" : "courses" , "screen_name" : "account-course" , "name":"account_course_delete" , "en":"Delete" , "ar":"حذف"},
+    { "module_name" : "courses" , "screen_name" : "account-course" , "name":"account_course_view" , "en":"View" , "ar":"عرض"},
+    { "module_name" : "courses" , "screen_name" : "account-course" , "name":"account_course_search" , "en":"Search" , "ar":"بحث"},
+    { "module_name" : "courses" , "screen_name" : "account-course" , "name":"account_course_export" , "en":"Export" , "ar":"تصدير"},
+    { "module_name" : "courses" , "screen_name" : "account-course" , "name":"account_course_print" , "en":"Print" , "ar":"طباعة"},
+    { "module_name" : "courses" , "screen_name" : "account-course" , "name":"account_course_ui" , "en":"Ui" , "ar":"الواجهة الرسومية"}
+]

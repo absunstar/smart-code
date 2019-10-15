@@ -1,0 +1,7 @@
+[{
+    "module_name" : "hr" ,
+    "name": "employee_advances_admin",
+    "en": "Employee Advances Admin",
+    "ar": "إدارة سلف الموظفين",
+    "permissions": ["employee_advances_manage"]
+}]

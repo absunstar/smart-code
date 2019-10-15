@@ -1,0 +1,24 @@
+<div id="updateFacilityCodeModal" class="modal">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.facilities_codes_edit## <i class="fa fa-plus"></i>
+                <i ng-show="busy" class="fa fa-spinner white fa-pulse fa-3x fa-fw"></i>
+            </h2>
+        </div>
+        <div class="modal-body">
+            <div x-import="accounting-facilities-codes/content.html"></div>
+            <div x-import="accounting-facilities-codes/action_info.html"></div>
+        </div>
+        <h2 class="error">{{error}}</h2>
+        <div class="modal-footer center">
+            <i-button type="save" label="##word.save##" ng-click="update(facility_code)"></i-button>
+            <i-button type="close" onclick="site.hideModal('#updateFacilityCodeModal')" label="##word.close##"></i-button>
+
+        </div>
+    </div>
+
+
+</div>

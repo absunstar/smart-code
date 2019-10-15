@@ -1,0 +1,20 @@
+[{
+    "module_name":"public",
+    "name": "tasks_admin",
+    "en": "tasks Admin",
+    "ar": "ادارة الشركات",
+    "permissions": [
+        "tasks_manage"
+    ]
+},{
+    "module_name":"public",
+    "name": "tasks_developer",
+    "en": "tasks  Developer",
+    "ar": " المطورين",
+    "permissions": [
+        "tasks_developer"
+    ]
+}]
+
+
+

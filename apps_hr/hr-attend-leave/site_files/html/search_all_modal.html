@@ -1,0 +1,43 @@
+<div id="attendLeaveSearchModal" class="modal">
+    <div class="col2"></div>
+    <div class="modal-content col8">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.search_all## <i class="fa fa-search"></i>
+
+            </h2>
+        </div>
+
+        <div class="modal-body">
+            <form class="form">
+                <div class="row">
+                    <i-date2 class="col4" ng-model="attend_leave.date" label="##word.date##"></i-date2>
+                    <i-date2 class="col3" ng-model="search.date_from" label="##word.date_from##"></i-date2>
+                    <i-date2 class="col3" ng-model="search.date_to" label="##word.date_to##"></i-date2>
+                    <div class="control col3">
+                        <label> ##word.status## </label>
+                        <select ng-model="search.active">
+                            <option ng-value="true"> ##word.active## </option>
+                            <option ng-value="false"> ##word.not_active## </option>
+                        </select>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <h2 class="error">{{error}}</h2>
+
+        <div class="modal-footer center">
+
+            <i-button type="search" label="##word.search##" ng-click="searchAll()"> </i-button>
+
+            <i-button type="clear" label="##word.empty_search##" ng-click="search = {}"> </i-button>
+
+            <i-button type="close" label="##word.close##" onclick="site.hideModal('#attendLeaveSearchModal')">
+            </i-button>
+
+        </div>
+    </div>
+    <div class="col2"></div>
+</div>

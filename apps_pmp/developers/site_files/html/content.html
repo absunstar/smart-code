@@ -1,0 +1,80 @@
+<div class="form">
+    <div class="tabs">
+        <div class="tabs-header">
+            <a class="tab-link bold" label="##word.personal_information##" onclick="site.showTabContent(event,'#basicInformation')">
+                ##word.basic_information##</a>
+
+
+            <a class="tab-link bold" label="##word.login_information##" onclick="site.showTabContent(event,'#loginInformation')">
+                ##word.login_information##</a>
+        </div>
+
+        <div class="tabs-content">
+
+            <div id="basicInformation" class="tab-content">
+                <fieldset>
+                    <legend> ##word.basic_information## </legend>
+                    <div class="row">
+                        <div class="col9">
+                            <div class="row">
+                                <i-control help-id="cities_name" v="r" class="col6" label="##word.name##" ng-model="developer.name"></i-control>
+
+                                <i-list help-id="" v="r" class="col4" label="##word.job##" ng-model="developer.job"
+                                    display="name" items="jobList" ng-search="developer_position"></i-list>
+
+                                <i-checkbox help-id="cities_active" class="col2" label="##word.active##" ng-model="developer.active"></i-checkbox>
+
+                            </div>
+
+                            <div class="row">
+                                <i-control help-id="" class="col4" label="##word.mobile##" ng-model="developer.mobile"></i-control>
+
+                                <i-control help-id="" class="col4" label="##word.email##" ng-model="developer.email"></i-control>
+
+                                <i-control help-id="" class="col4" label="##word.github##" ng-model="developer.github"></i-control>
+
+
+                            </div>
+
+                            <div class="row">
+                                <i-control help-id="" class="col3" label="##word.whatsapp##" ng-model="developer.whatsapp"></i-control>
+
+                                <i-control help-id="" class="col3" label="##word.facebook##" ng-model="developer.facebook"></i-control>
+
+                                <i-control help-id="" class="col3" label="##word.skype##" ng-model="developer.skype"></i-control>
+
+                                <i-control help-id="" class="col3" label="##word.linkedin##" ng-model="developer.linkedin"></i-control>
+
+                            </div>
+
+
+                        </div>
+
+                        <div class="col3">
+                            <i-image help-id="cities_logo" ng-model="developer.logo"></i-image>
+                        </div>
+                    </div>
+
+
+                </fieldset>
+
+            </div>
+
+            <div id="loginInformation" class="tab-content">
+                <fieldset>
+                    <legend> ##word.login_information## </legend>
+
+                    <div class="row">
+                        <i-control class="col4" label="##word.username##" ng-model="developer.username"></i-control>
+                        <i-control class="col4" type="password" label="##word.password##" ng-model="developer.password"></i-control>
+                    </div>
+
+                </fieldset>
+
+            </div>
+
+        </div>
+    </div>
+
+
+</div>

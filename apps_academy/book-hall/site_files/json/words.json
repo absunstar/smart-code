@@ -1,0 +1,117 @@
+[{
+        "name": "book_hall",
+        "en": "Book Hall",
+        "ar": "حجز قاعة"
+    },
+    {
+        "name": "book_hall_new",
+        "en": "New Book Hall",
+        "ar":  "حجز قاعة جديد"
+    },
+    {
+        "name": "book_hall_add",
+        "en": "Book Hall",
+        "ar": "حجز قاعة"
+    },
+    {
+        "name": "err_dates",
+        "en": "Should Add Dates",
+        "ar": "يجب إضافة مواعيد"
+    },
+    {
+        "name": "book_hall_edit",
+        "en": "Edit Book Hall",
+        "ar": "تعديل حجز قاعة"
+    },
+    {
+        "name": "book_hall_details",
+        "en": "Book Hall Details",
+        "ar": "تفاصيل حجز قاعة"
+    },
+    {
+        "name": "book_hall_delete",
+        "en": "Delete Book Hall",
+        "ar": "حذف حجز قاعة"
+    },
+    {
+        "name": "book_hall_name",
+        "en": "Course Name",
+        "ar": "اسم الكورس "
+    },
+    {
+        "name": "dates",
+        "en": "Dates",
+        "ar": "المواعيد"
+    },
+    {
+        "name": "tenant",
+        "en": "Tenant",
+        "ar": "المستأجر"
+    },
+    {
+        "name": "search_tenant",
+        "en": "Search Tenant",
+        "ar": "بحث المستأجر"
+    },
+    {
+        "name": "book_hall_total",
+        "en": "Total Duration",
+        "ar": "إجمالي المدة "
+    },
+    {
+        "name": "create",
+        "en": "Create",
+        "ar": "إنشاء"
+    },
+    {
+        "name": "create_booking",
+        "en": "Create Booking",
+        "ar": "إنشاء حجز"
+    },
+    {
+        "name": "total_value",
+        "en": "Total Value Book",
+        "ar": "إجمالي قيمة الحجز"
+    },
+    {
+        "name": "price_hour",
+        "en": "Price Per Hour",
+        "ar": "سعر الساعة"
+    },
+    {
+        "name": "price_day",
+        "en": "Price Day",
+        "ar": "سعر اليوم"
+    },
+    {
+        "name": "total_period",
+        "en": "Total Period",
+        "ar": "إجمالي المدة"
+    },
+    {
+        "name": "trainer_account",
+        "en": "Trainer Account",
+        "ar": "حساب المدرب"
+    },
+    {
+        "name": "number_lecture",
+        "en": "Number of lectures",
+        "ar": "عدد المحاضرات"
+    },
+    {
+        "name": "start_book",
+        "en": "Start Date Book",
+        "ar": "تاريخ بداية الحجز"
+    },
+    {
+        "name": "end_book",
+        "en": "End Date Book",
+        "ar": "تاريخ نهاية الحجز"
+    },
+    {
+        "name": "book_hall_price",
+        "en": "Course Price",
+        "ar": "سعر الكورس "
+    }
+    
+]

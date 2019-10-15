@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="stores_in_ui || stores_in_manage" data-ng-app="myApp">
+
+<head x-import="head.html">
+
+</head>
+
+<body class="##session.lang##">
+
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+
+    </nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+
+    </nav>
+    <div id="main-layout" class="container">
+        <div class="row ">
+            <div class="row" ng-controller="stores_in">
+                <div x-permissions="stores_in_add || stores_in_manage" x-import="inventory-stores-in/add_modal.html"></div>
+                <div x-permissions="stores_in_delete || stores_in_manage" x-import="inventory-stores-in/delete_modal.html"></div>
+                <div x-permissions="stores_in_view || stores_in_manage" x-import="inventory-stores-in/view_modal.html"></div>
+                <div x-permissions="stores_in_search || stores_in_manage" x-import="inventory-stores-in/search_all_modal.html"></div>
+                <div x-permissions="stores_in_update || stores_in_manage" x-import="inventory-stores-in/update_modal.html"></div>
+                <div x-permissions="stores_in_add || stores_in_manage" x-import="inventory-stores-in/select_items_modal.html"></div>
+
+                <div class="row">
+                    <h1 class="bold text-center"> ##word.stores_in## </h1>
+                </div>
+                <div class="top-actions">
+
+                    <i-button x-permissions="stores_in_add || stores_in_manage" type="add" label="##word.stores_in_new##"
+                        ng-click="newStoreIn()"></i-button>
+                    <i-button x-permissions="stores_in_search || stores_in_manage" type="search" label="##word.search_all##"
+                        onclick="site.showModal('#StoresInSearchModal')"></i-button>
+
+                    <h3 class="bold text-center"> ##word.count## : {{count}}</h3>
+                </div>
+                <table id="t1" class="table loaded center hover">
+                    <tr>
+                        <th>##word.stores_in_date##</th>
+                        <th>##word.stores_in_id##</th>
+                        <th> ##word.stores_in_supply_number##</th>
+                        <th>##word.stores_in_Company_name##</th>
+                        <th>##word.stores_in_store_name##</th>
+                        <th>##word.stores_in_safe##</th>
+                        <th>##word.stores_in_total_value##</th>
+                        <th>##word.stores_in_net_value##</th>
+                        <th> ##word.stores_outtypes##</th>
+
+                        <th class="not-print">##word.actions##</th>
+                    </tr>
+                    <tr ng-repeat="c in list">
+
+                        <td>
+                            <p class="text-center brown"> <br> {{c.date | date : 'yyyy - MM - dd'}} </p>
+                        </td>
+                        <td>
+                            <p class="bold  text-center"> <br> {{c.number}} </p>
+                        </td>
+                        <td>
+                            <p class="bold text-center blue"> <br> {{c.supply_number}} </p>
+
+
+                        </td>
+                        <td>
+                            <p class="text-center blue"> <br> {{c.vendor.name_ar}} </p>
+                        </td>
+                        <td>
+                            <p class="text-center blue"> <br> {{c.store.name}} </p>
+                        </td>
+                        <td>
+                            <p class="text-center blue"> <br> {{c.safe.name}} </p>
+                            <p ng-show="!c.safe" class="text-center red bold"> ##word.stores_in_no_safe## </p>
+
+                        </td>
+                        <td>
+                            <p class="bold text-center"> <br> {{c.total_value}} </p>
+                        </td>
+                        <td>
+                            <p class="bold text-center green"> <br> {{c.net_value}} </p>
+                        </td>
+
+                        <td>
+                            <p class="bold text-center blue"> <br> {{c.type.ar}} </p>
+                        </td>
+
+
+                        <td class="center not-print">
+
+                            <i-button x-permissions="stores_in_view || stores_in_manage" type="details" label="##word.details##"
+                                ng-click="details(c)"></i-button>
+
+                            <i-button x-permissions="stores_in_update || stores_in_manage" type="update" label="##word.edit##"
+                                ng-click="edit(c)"></i-button>
+
+                            <i-button x-permissions="stores_in_delete || stores_in_manage" type="delete" label="##word.delete##"
+                                ng-click="remove(c)"></i-button>
+                        </td>
+
+                    </tr>
+
+                </table>
+
+                <i-button x-permissions="stores_in_print || stores_in_manage" type="print" label="##word.print##"
+                    onclick="site.print('#t1')"></i-button>
+
+            </div>
+        </div>
+    </div>
+
+    <div x-import="scripts.html"></div>
+    <script x-import="inventory-stores-in/index.js"></script>
+
+</body>
+
+</html>

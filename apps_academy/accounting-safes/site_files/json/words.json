@@ -1,0 +1,22 @@
+[
+    {"name" : "safes_add" , "en" : "Add Safe" , "ar" : "اضافة خزينة"},
+    {"name" : "safes_new" , "en" : "New Safe" , "ar" : "خزينة جديدة"},
+    {"name" : "safes_details" , "en" : "Safe Details" , "ar" : "تفاصيل خزينة"},
+    {"name" : "safes_edit" , "en" : "Edit Safe" , "ar" : "تعديل بيانات خزينة"},
+    {"name" : "safes_delete" , "en" : "Delete Safe" , "ar" : "حذف خزينة"},
+    {"name" : "safes_employee" , "en" : "Safe Employee" , "ar" : " أسم المسؤول"},   
+    {"name" : "safes_name" , "en" : "Safe Name" , "ar" : "اسم الخزينة"},   
+    {"name" : "safes_balance" , "en" : "Safe Balance" , "ar" : "رصيد الخزينة"},   
+    {"name" : "safes" , "en" : "Safes" , "ar" : "الخزائن"},   
+    {"name" : "" , "en" : "Record Found" , "ar" : "هذا البيان موجود من قبل"},   
+ 
+    {"name" : "safes_employee_name" , "en" : "Employee Name" , "ar" : " اسم المسؤول  "},   
+    {"name" : "safes_search" , "en" : "search" , "ar" : " بحث"},   
+    {"name" : "safes_empty_search" , "en" : "Reset" , "ar" : " تفريغ الحقول"},   
+    {"name" : "safes_description" , "en" : "Description" , "ar" : "التفاصيل"},   
+    {"name" : "duplicate_alarm" , "en" : "Duplicate" , "ar" : "هذا البيان موجود من قبل"},   
+    
+    
+    {"name" : "safes_logo" , "en" : "Safe Logo" , "ar" : "الشعار"},
+    {"name" : "safes_img" , "en" : "Safe Images" , "ar" : "الملفات"}
+]

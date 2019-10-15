@@ -1,0 +1,53 @@
+<style>
+    .notifications {
+        width: 100%;
+        padding: 5px;
+        background-color: var(--navbar-background-color);
+        box-shadow: 1px 1px 1px 1px;
+        list-style: none;
+    }
+
+    .notifications li {
+        text-align: left;
+    }
+
+    .notifications p {
+        padding: 3px;
+        margin: 3px;
+        color: #03a9f4;
+        display: inline-block;
+    }
+
+    .notifications p img{
+        width: 24px;
+        height: 24px;
+    }
+
+    .notifications b {
+        color: #fff;
+    }
+    .notifications small{
+        color:#03a9f4;
+    }
+
+    .notifications .op-add{
+        color:#4caf50;
+    }
+    .notifications .op-update{
+        color:#ffc107;
+    }
+    .notifications .op-delete{
+        color:#ff5722;
+    }
+</style>
+<style x-lang="ar">
+    .notifications li {
+        text-align: right;
+    }
+</style>
+<ul class="notifications" ng-controller="notifications">
+    <li ng-repeat="n in latestList"> 
+        <p x-lang="en"> <img ng-src="{{n.icon}}"> <b>{{n.source}}</b> <span class="op-{{n.action}}">{{n.message}}</span> <small>{{n.value}}</small></p>
+        <p x-lang="ar"> <img ng-src="{{n.icon}}"> <b>{{n.source_ar}}</b> <span class="op-{{n.action}}">{{n.message_ar}}</span> <small>{{n.value_ar}}</small> </p>
+    </li>
+</ul>

@@ -1,0 +1,24 @@
+[
+    { "name": "report_student_search","en": "Search", "ar": "بحث"},
+    { "name": "report_student_date_from","en": "Date From", "ar": "من تاريخ"},
+    { "name": "report_student_date_to","en": "Date To", "ar": "الى تاريخ"},
+    { "name": "report_student_date","en": "Date", "ar": "التاريخ"},
+
+    { "name": "report_student_courses","en": "Report Student Course", "ar": "تقرير كورسات الطالب"},
+    { "name": "report_student_start_date","en": "Start Date Course", "ar": "تاريخ بداية الكورس"},
+    { "name": "report_student_end_dete","en": "End Date Course", "ar": "تاريخ نهاية الكورس"},
+    { "name": "report_student_book_date","en": "Book Date Course", "ar": "تاريخ حجز الكورس"},
+
+    { "name": "report_student_course","en": "Course Name", "ar": "إسم الكورس"},
+    { "name": "report_student_serial","en": "Serial", "ar": "رقم مسلسل"},
+    { "name": "report_student_required","en": "Required", "ar": "المطلوب"},
+    { "name": "report_student_total_required","en": "Total Required", "ar": "إجمالي المطلوب"},
+    { "name": "report_student_paid","en": "paid", "ar": "المدفوع"},
+    { "name": "report_student_total","en": "Total Rest", "ar": "إجمالي المدفوع"},
+    { "name": "report_student_rest","en": "Rest", "ar": "الباقي"},
+    { "name": "report_student_total_rest","en": "Total Rest", "ar": "الباقي إجمالي"},
+
+
+    { "name": "report_student_date","en": "Offer Date", "ar": "التاريخ"}
+ 
+]

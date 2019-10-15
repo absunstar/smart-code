@@ -1,0 +1,31 @@
+<div class="form">
+    <div id="basicInformation">
+        <fieldset>
+            <legend> ##word.basic_information## </legend>
+            <div class="row">
+                <div class="col9">
+                    <div class="row">
+
+                        <i-control help-id="service_name" v="r ll2" class="col5" label="##word.service_name##"
+                            ng-model="service.name"></i-control>
+
+                        <div class="col2"></div>
+                        <i-checkbox help-id="service_active" class="col2" label="##word.active##" ng-model="service.active"></i-checkbox>
+                    </div>
+
+                    <div class="row">
+                        <i-control help-id="service_price" v="r" type="number" class="col2" label="##word.service_price##"
+                            ng-model="service.price"></i-control>
+
+                    </div>
+
+                </div>
+
+                <div class="col3">
+                    <i-image help-id="service_logo" ng-model="service.image_url"></i-image>
+                </div>
+            </div>
+        </fieldset>
+
+    </div>
+</div>

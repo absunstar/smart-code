@@ -1,0 +1,23 @@
+<div id="deleteEmployeeDiscountModal" class="modal">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                <i class="fa fa-plus"></i> ##word.employee_discount_delete## </h2>
+        </div>
+        <div class="modal-body">
+          
+            <div x-import="hr-employee-discount/view.html"></div>
+
+        </div>
+        <h2>{{error}}</h2>
+        <div class="modal-footer center">
+
+                <i-button type="delete" label="##word.delete##" ng-click="delete(employee_discount)"></i-button>
+                <i-button type="close" label="##word.close##" onclick="site.hideModal('#deleteEmployeeDiscountModal')"></i-button>
+        </div>
+    </div>
+
+
+</div>

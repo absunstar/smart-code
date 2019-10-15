@@ -1,0 +1,7 @@
+[{
+    "module_name" : "public" ,
+    "name": "hall_admin",
+    "en": "Hall Admin",
+    "ar": "إدارة القاعات",
+    "permissions": ["hall_manage"]
+}]

@@ -1,0 +1,54 @@
+<div class="row">
+
+    <div class="col9">
+        <form class="form">
+            <div class="row ">
+                <i-list v="r" class="col5" ng-search="_search.$employee_insurance_employee" space="-" display2="insurance_number" display="name"
+                    items="employees" ng-change="employee_insurance.employee.salary" ng-model="employee_insurance.employee"
+                    label="##word.employees_insurances_name##"></i-list>
+
+
+            </div>
+
+            <div class="row ">
+                <i-list ng-search="_search.$employee_insurance_facility" display2="insurance_number" display="name" items="facilities_codes"
+                    ng-model="employee_insurance.facility_name" class="col5" label="##word.employees_insurances_facility_name##"></i-list>
+                <i-list ng-search="_search.$employee_insurance_slides" class="col5" display2="value" display="name" items="insurances_slides"
+                    ng-model="employee_insurance.insurance_slide" label="##word.employees_insurances_insurance_slide##"></i-list>
+            </div>
+
+            <div class="row ">
+
+                <i-control ng-model="employee_insurance.employee.salary" class="col2" type="number" ng-change="calc_variable_fixed()"
+                    label="##word.employees_insurances_fixed_salary##"></i-control>
+                <i-control ng-model="employee_insurance.insurance_discount" class="col2" type="number" ng-change="calc()"
+                    label="##word.employees_insurances_insurance_discount##"></i-control>
+                <i-control ng-model="employee_insurance.variable_salary" class="col2" type="number" ng-change="calc_variable_fixed()"
+                    label="##word.employees_insurances_variable_salary##"></i-control>
+                <i-control ng-model="employee_insurance.salary_discount" class="col2" type="number" ng-change="calc()"
+                    label="##word.employees_insurances_salary_discount##"></i-control>
+
+                <div class="row ">
+                    <i-control ng-model="employee_insurance.total" class="col6" type="text" label="##word.employees_insurances_salary_total##"></i-control>
+
+                    <i-control ng-model="employee_insurance.total_fixed_variable" class="col6" type="text" label="##word.employees_insurances_salary_fixed_salary_and_variable_salary##"></i-control>
+
+                </div>
+
+                <div class="row ">
+                    <i-textarea ng-model="employee_insurance.description" label="##word.employee_insurance_description##"></i-textarea>
+
+                </div>
+            </div>
+
+
+        </form>
+
+    </div>
+
+    <div class="col3 ">
+        <i-image category="employee_insurance" ng-model="employee_insurance.image_url"></i-image>
+        <i-files ng-model="employee_insurance.files"></i-files>
+        <!-- -end-->
+    </div>
+</div>

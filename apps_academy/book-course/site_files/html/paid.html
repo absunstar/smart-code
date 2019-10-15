@@ -1,0 +1,65 @@
+<div id="paidModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.paid_payback##
+                <i class="fa fa-file"></i>
+            </h2>
+        </div>
+
+        <div class="modal-body">
+
+            <div class="row">
+                <i-date2 class="col3" type="number" ng-model="book_course.date_paid" label="##word.date##"></i-date2>
+                <i-control class="col2" type="number" ng-model="book_course.paid" label="##word.paid##"></i-control>
+
+                <i-list ng-search="book_course.$safes_search" class="col3" ng-model="book_course.safe"
+                    label="##word.safe##" items="safesList"></i-list>
+
+                <i-button type="update" label="##word.paid_payback##" ng-click="showAccept()"></i-button>
+
+            </div>
+
+            <div class="row" ng-show="book_course.paid_list.length > 0">
+                <div class=" col8 margin grid">
+                    <table class="table bold hover center ">
+                        <tr>
+                            <th>##word.date##</th>
+
+                            <th>##word.previous_payments##</th>
+
+                            <th>##word.safe##</th>
+                        </tr>
+
+                        <tr ng-repeat="b in book_course.paid_list">
+
+                            <td>
+                                <p class="brown">{{b.date_paid | date : 'dd - MM -yyyy'}}</p>
+                            </td>
+
+                            <td>
+                                <p class="green">{{b.payment}}</p>
+                            </td>
+
+                            <td>
+                                <p>{{b.safe.name}}</p>
+                            </td>
+                        </tr>
+
+                    </table>
+                </div>
+
+            </div>
+
+        </div>
+
+        <h2 class="error"> {{error}} </h2>
+
+        <div class="modal-footer center">
+            <i-button type="print" label="##word.print##" onclick="site.print('#v1')"></i-button>
+
+            <i-button type="close" label="##word.close##" onclick="site.hideModal('#paidModal')"></i-button>
+        </div>
+    </div>
+</div>

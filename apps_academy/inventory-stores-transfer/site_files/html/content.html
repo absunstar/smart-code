@@ -1,0 +1,160 @@
+<div class="row" fixed>
+    <form class="form">
+
+        <div class="row">
+            <div class="col9">
+                <div class="row">
+                    <i-date2 class="col4" ng-model="stores_transfer.date" label="##word.stores_transfer_date##"></i-date2>
+                    <i-control class="col4" ng-model="stores_transfer.number" label="##word.stores_transfer_number##"v="r"></i-control>
+                    <i-list display="ar" class="col4" ng-model="stores_transfer.type" ng-search="search_ytpes"
+                        items="stores_transfer_types" label="##word.stores_transfertypes##"></i-list>
+
+                </div>
+                
+                <div class="row">
+                    <i-list class="col4" ng-model="stores_transfer.vendor" items="vendors" display="name_ar"
+                        ng-search="search_vendor" label="##word.vendor_name##"></i-list>
+                    <i-list class="col4" ng-model="stores_transfer.store" v="r" items="stores" ng-search="stores_search"
+                        label="##word.stores_transfer_store_from##"></i-list>
+                    <i-list class="col4" ng-model="stores_transfer.store_to" v="r" items="stores"
+                        ng-search="stores_to_search" label="##word.stores_transfer_store_to##"></i-list>
+
+                </div>
+
+            </div>
+
+            <div class="col3">
+                <div class="row center">
+                    <i-image category="stores_images" category="stores_images" ng-model="stores_transfer.image_url">
+                    </i-image>
+                    <i-files ng-model="stores_transfer.files"></i-files>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="row padding">
+            <table class="table ">
+                <tr>
+                    <th class="pointer" ng-click="itemEditor = !itemEditor">##word.stores_transfer_items##
+                        <i class="fa fa-edit"></i>
+                    </th>
+                </tr>
+                <tr>
+                    <td>
+                        <form>
+                            <div class="row">
+                                <i-control class="col4" id="item_name" ng-model="item.name"
+                                    label="##word.stores_transfer_item_name##" ng-keydown="getItem($event)"></i-control>
+
+                            </div>
+
+                            <div class="row">
+                                <div ng-show="item.name" class="row">
+                                    <div class="col2">
+                                        <p>##word.stores_in_item_size##</p>
+                                    </div>
+
+                                    <div class="col2">
+                                        <div class="control">
+                                            <label>##word.stores_in_item_count##</label>
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="col2">
+                                        <div class="control">
+                                            <label>##word.stores_in_item_store_balance##</label>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col2"></div>
+                                </div>
+                                <div ng-repeat="s in item.sizes">
+                                    <div class="row"
+                                        ng-show="(s.vendor.id == stores_transfer.vendor.id && s.store.id ==  stores_transfer.store.id )">
+                                        <p class="col2" ng-hide="s.$new" class="bold">{{s.size}}</p>
+                                        <p class="col2" ng-show="s.$new" class="bold">
+                                            <i-control ng-model="s.size" type="text"></i-control>
+
+                                        </p>
+
+                                        <i-control class="col2" ng-model="s.count" type="number"></i-control>
+
+                                        <i-control class="col2" disabled ng-model="s.current_count" type="number">
+                                        </i-control>
+
+                                        <div class="col2"></div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <i-button ng-show="item.sizes.length > 0" ng-click="addToItems()" type="add"
+                                        label="##word.stores_transfer_add_to_items##"> </i-button>
+                                    <i-button ng-show="item.code" ng-click="addToSizes()" type="add"
+                                        label="##word.stores_transfer_add_to_sizes##"></i-button>
+                                </div>
+                            </div>
+                        </form>
+                    </td>
+                </tr>
+
+            </table>
+
+        </div>
+
+        <div class="row border margin padding">
+            <table class="table">
+                <tr>
+                    <th>##word.serial##</th>
+                    <th>##word.stores_in_item_name##</th>
+                    <th>##word.stores_in_item_size##</th>
+                    <th>##word.stores_in_item_count##</th>
+                    <th ng-hide="true">##word.stores_in_item_cost##</th>
+                    <th ng-hide="true">##word.stores_in_item_total##</th>
+                    <th>##word.actions##</th>
+                </tr>
+                <tr ng-repeat="itm in stores_transfer.items">
+                    <td>{{$index + 1}}</td>
+                    <td>{{itm.name}}</td>
+                    <td>{{itm.size}}</td>
+                    <td>
+                        <i-control ng-model="itm.count" ng-change="itm.total = itm.count * itm.cost"></i-control>
+
+                    </td>
+                    <td ng-hide="true">
+                        <i-control ng-model="itm.cost" ng-change="itm.total = itm.count * itm.cost"></i-control>
+
+                    </td>
+                    <td ng-hide="true">{{itm.total}}</td>
+                    <td>
+                        <i-button type="delete" ng-click="deleteRow(itm)"></i-button>
+
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+
+
+        <div ng-hide="true" class="row">
+            <i-control class="col2" ng-model="stores_transfer.total_discount"
+                label="##word.stores_transfer_total_discount##" type="number" disabled></i-control>
+            <i-control class="col2" ng-model="stores_transfer.total_tax" label="##word.stores_transfer_total_tax##"
+                type="number" disabled></i-control>
+            <i-control class="col2" ng-model="stores_transfer.total_value" label="##word.stores_transfer_total_value##"
+                type="number" disabled></i-control>
+
+            <i-control class="col2" ng-model="stores_transfer.net_value" label="##word.stores_transfer_net_value##"
+                type="number" disabled></i-control>
+
+
+        </div>
+
+
+        <i-textarea label="##word.stores_transfer_notes##" ng-model="stores_transfer.notes"></i-textarea>
+
+    </form>
+</div>

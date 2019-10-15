@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="employee_insurances_ui || employee_insurances_manage" data-ng-app="myApp">
+
+<head x-import="head.html">
+
+</head>
+
+<body class="##session.lang##">
+
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+
+    </nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+
+    </nav>
+    <div id="main-layout" class="container">
+        <div class="row10 center">
+            <div class="col10" ng-controller="employees_insurances">
+                <div x-permissions="employee_insurances_add || employee_insurances_manage"
+                    x-import="hr-employees-insurances/add_modal.html"></div>
+                <div x-permissions="employee_insurances_update || employee_insurances_manage"
+                    x-import="hr-employees-insurances/update_modal.html"></div>
+                <div x-permissions="employee_insurances_delete || employee_insurances_manage"
+                    x-import="hr-employees-insurances/delete_modal.html"></div>
+                <div x-permissions="employee_insurances_view || employee_insurances_manage"
+                    x-import="hr-employees-insurances/view_modal.html"></div>
+                <div x-permissions="employee_insurances_search || employee_insurances_manage"
+                    x-import="hr-employees-insurances/search_all_modal.html"></div>
+                <div class="row">
+                    <h1 class="bold text-center">##word.employees_insurances##</h1>
+                </div>
+
+                <div class="top-actions">
+                    <i-button type="add" x-permissions="employee_insurances_add || employee_insurances_manage"
+                        label="##word.employees_insurances_new##" ng-click="newEmployee_Insurance()"></i-button>
+                    <i-button type="search" x-permissions="employee_insurances_search || employee_insurances_manage"
+                        label="##word.search_all##" onclick="site.showModal('#Employee_InsuranceSearchModal')">
+                    </i-button>
+
+
+
+                </div>
+
+                <table class="table center hover bold loaded" id="t1">
+                    <tr>
+                        <th class="not-print">##word.employees_insurances_logo##</th>
+                        <th>##word.employees_insurances_name##</th>
+                        <th>##word.employees_insurances_insurance_number##</th>
+                        <th>##word.employees_insurances_insurance_slide##</th>
+                        <th class="not-print" x-permission="owner">##word.actions##</th>
+                        
+                    </tr>
+
+                    <tr ng-repeat="c in list">
+                        <td class="not-print">
+                            <i-image view class="logo" ng-model="c.image_url"></i-image>
+                        <td>{{c.employee.name}}</td>
+                        <td class="blue">{{c.employee.insurance_number}}</td>
+
+                        <td>{{c.insurance_slide.name}}</td>
+
+                        <td class="not-print" x-permission="owner" class="center">
+                            <i-button type="details" label="##word.details##" ng-click="details(c)"></i-button>
+                            <i-button x-permissions="employee_insurances_update || employee_insurances_manage"
+                                type="update" label="##word.update##" ng-click="edit(c)"></i-button>
+                            <i-button x-permissions="employee_insurances_delete || employee_insurances_manage"
+                                type="delete" label="##word.delete##" ng-click="remove(c)"></i-button>
+                        </td>
+                    </tr>
+
+                </table>
+
+               
+                
+                <i-button type="print" x-permissions="employee_insurances_print || employee_insurances_manage"
+                    label="##word.print##" onclick="site.print('#t1')"></i-button>
+
+            </div>
+        </div>
+    </div>
+
+    <div x-import="scripts.html"></div>
+
+    <script x-import="hr-employees-insurances/index.js"></script>
+
+</body>
+
+</html>

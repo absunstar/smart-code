@@ -1,0 +1,114 @@
+<div ng-hide="busy" id="v1">
+    <div class="form">
+        <div>
+            <fieldset>
+                <legend> ##word.basic_information## </legend>
+                <div class="row">
+                    <div class="col9">
+                        <div class="row">
+
+                            <table class="table bold hover">
+
+                                <tr>
+                                    <td class="title"> ##word.status## </td>
+                                    <td class="center"> {{order_distributor.status.ar}} </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title"> ##word.invoice_type## </td>
+                                    <td class="center"> {{order_distributor.transaction_type.ar}}
+                                        <b ng-show="order_distributor.transaction_type.id ==2" class="blue">
+                                            ( {{order_distributor.status_delivery.ar}} )</b>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title"> ##word.code## </td>
+                                    <td class="center blue"> {{order_distributor.code}} </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title"> ##word.date## </td>
+                                    <td class="center brown"> {{order_distributor.date | date : 'dd - MM - yyyy'}} </td>
+                                </tr>
+
+                                <tr ng-show="order_distributor.service > 0">
+                                    <td class="title"> ##word.service## </td>
+                                    <td class="center"> {{order_distributor.service}} </td>
+                                </tr>
+
+                                <tr ng-show="order_distributor.price_delivery_service > 0">
+                                    <td class="title"> ##word.price_delivery_service## </td>
+                                    <td class="center"> {{order_distributor.price_delivery_service}} </td>
+                                </tr>
+
+                                <tr ng-show="order_distributor.total_discount > 0">
+                                    <td class="title"> ##word.stores_out_total_discount## </td>
+                                    <td class="center"> {{order_distributor.total_discount}} </td>
+                                </tr>
+
+                                <tr ng-show="order_distributor.total_tax > 0">
+                                    <td class="title"> ##word.stores_out_total_tax## </td>
+                                    <td class="center"> {{order_distributor.total_tax}} </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title"> ##word.net_value## </td>
+                                    <td class="center blue"> {{order_distributor.net_value}} </td>
+                                </tr>
+
+                                <tr ng-show="order_distributor.table">
+                                    <td class="title"> ##word.tables_group## </td>
+                                    <td class="center"> {{order_distributor.table.tables_group.name}} </td>
+                                </tr>
+
+                                <tr ng-show="order_distributor.table">
+                                    <td class="title"> ##word.table## </td>
+                                    <td class="center"> {{order_distributor.table.name}} </td>
+                                </tr>
+
+                                <tr ng-show="order_distributor.delivery_employee.id">
+                                    <td class="title"> ##word.delivery_employee## </td>
+                                    <td class="center"> {{order_distributor.delivery_employee.name}} </td>
+                                </tr>
+                                <tr>
+                                    <td class="title"> ##word.active## </td>
+                                    <td ng-show="order_distributor.active == true" class="center green"> ##word.active##
+                                    </td>
+                                    <td ng-show="order_distributor.active == false" class="center red">
+                                        ##word.not_active##
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div class="row">
+                            <table x-permissions="login" class="table bold hover loaded" id="t1">
+                                <tr>
+                                    <th>##word.stores_items_name##</th>
+                                    <th>##word.items_count##</th>
+                                    <th>##word.items_price##</th>
+                                    <th>##word.items_price_total##</th>
+                                </tr>
+                                <tr ng-repeat="c in order_distributor.book_list">
+                                    <td class="center title">{{c.size}}</td>
+                                    <td class="center blue">{{c.count}}</td>
+                                    <td class="center blue">{{c.price}}</td>
+                                    <td class="center green">{{c.total_price}}</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <br>
+                        <br>
+                    </div>
+
+                    <div class="col3">
+                        <i-image class="not-print" view ng-model="order_distributor.image_url"> </i-image>
+                    </div>
+
+                </div>
+            </fieldset>
+        </div>
+    </div>
+</div>
+<div x-import="order-distributor/action_info.html"></div>

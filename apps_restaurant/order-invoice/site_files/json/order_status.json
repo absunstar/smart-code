@@ -1,0 +1,27 @@
+[
+    {
+        "id": 1,
+        "en": "Opened",
+        "ar": "مفتوحة"
+    },
+    {
+        "id": 2,
+        "en": "Closed Of Orders Screen",
+        "ar": "مغلق من شاشة الأوردرات"
+    },
+    {
+        "id": 3,
+        "en": "Distributor",
+        "ar": "موزع"
+    },
+    {
+        "id": 4,
+        "en": "Closed & Invoiced",
+        "ar": "مغلق و تم عمل فواتير"
+    },
+    {
+        "id": 5,
+        "en": "Closed & paid",
+        "ar": "مغلق و تم الدفع"
+    }
+]

@@ -1,0 +1,32 @@
+<div class="form" id="setting_default">
+
+    <div class="row">
+        <i-list class="col4" ng-model="order_kitchen.kitchen" items="kitchensList" display="name"
+            ng-search="_search.$search_kitchen" ng-change="orderKitchensList()" label="##word.kitchen_name##">
+        </i-list>
+    </div>
+
+
+    <br>
+    <br>
+
+    <br>
+    <table x-permissions="login" class="table bold hover loaded" id="t1">
+        <tr>
+            <th>##word.code##</th>
+            <th>##word.stores_items_name##</th>
+            <th>##word.items_count##</th>
+            <th>##word.items_price##</th>
+            <th>##word.items_price_total##</th>
+        </tr>
+
+        <tr ng-repeat="i in book_list_report ">
+            <td class="center title">{{i.order.code}}</td>
+            <td class="center title">{{i.size}}</td>
+            <td class="center blue">{{i.count}}</td>
+            <td class="center">{{i.price}}</td>
+            <td class="center green">{{i.total_price}}</td>
+        </tr>
+
+    </table>
+</div>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+
+<html lang="en" data-ng-app="myApp" class="bg-white">
+
+<head x-import="head.html">
+</head>
+
+<body style="background : white" class=" ##session.lang##">
+
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+
+    </nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+
+    </nav>
+
+    <div class="container" ng-controller="report_student_attend">
+        <div class="row center">
+
+            <br>
+            <h1 class="center bold black">##word.report_student_attend##</h1>
+            <br>
+
+            <div x-import="report-student-attend/search_modal.html"></div>
+
+            <div class="top-actions">
+                <i-button type="search" id="searchAllBtn" label="##word.search_all##" ng-click="showSearch()">
+                </i-button>
+            </div>
+
+            <div class="row" id="print_id">
+
+                <div ng-show="student" class="row margin padding dashed">
+                    <div class="col6 padding">
+
+                        <table class="table bold" id="t1">
+
+                            <tr>
+                                <td class="title">##word.student##</td>
+                                <td>
+                                    <p class="center">{{student.name}}</p>
+                                </td>
+
+                            </tr>
+
+                        </table>
+
+
+                    </div>
+
+
+                </div>
+                <br>
+                <br>
+                <div class="row" ng-show="student" ng-repeat="c in list1">
+                    <br>
+                    <br>
+                    <hr>
+                    <br>
+                    <h1 class="center title bold">
+                        {{c.course.name}}
+                    </h1>
+                    <br>
+
+                    <table class="table bold hover dashed">
+                        <th>##word.report_student_serial##</th>
+                        <th>##word.date##</th>
+                        <th>##word.attend_absence_list##</th>
+                        <th>##word.attend_hour##</th>
+                        <th>##word.out_hour##</th>
+                        <th>##word.notes##</th>
+
+                        <tr ng-repeat="t in c.list">
+
+                            <td id="th">
+                                <p class="center blue"> {{$index + 1}} </p>
+                            </td>
+
+                            <td>
+                                <p class="center brown"> {{t.date_course | date : 'dd - MM -yyyy'}} </p>
+                            </td>
+                            <td>
+                                <p ng-show="t.attend.id == 1" class="center green"> {{t.attend.ar}} </p>
+                                <p ng-show="t.attend.id == 2" class="center red"> {{t.attend.ar}} </p>
+                            </td>
+                            <td>
+                                <p class="center green"> {{t.attend_hour.minute}} : {{t.attend_hour.hour}} </p>
+                            </td>
+                            <td>
+                                <p class="center red"> {{t.out_hour.minute}} : {{t.out_hour.hour}} </p>
+                            </td>
+                            <td>
+                                <p class="center"> {{t.notes_attend}} </p>
+                            </td>
+
+                        </tr>
+
+                    </table>
+
+                </div>
+
+                <i-button class="not-print" x-permission="export" type="export" label="##word.export_to_excel##"
+                    onclick="export_to_xlsx('t1' , 'Period_Engineer_Report.xlsx')"></i-button>
+                <i-button class="not-print" x-permission="print" type="print" label="##word.print##"
+                    onclick="site.print('#print_id')"></i-button>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div x-import="scripts.html"></div>
+    <script x-import="report-student-attend/index.js"></script>
+
+
+</body>
+
+</html>

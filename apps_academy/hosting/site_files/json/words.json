@@ -1,0 +1,65 @@
+[{
+        "name": "hosting",
+        "en": "Hosting",
+        "ar": "الإستضافة"
+    },
+    {
+        "name": "hosting_new",
+        "en": "New Hosting",
+        "ar": "إستضافة جديد"
+    },
+    {
+        "name": "hosting_time",
+        "en": "Hosting Time",
+        "ar": "ميعاد الإستضافة "
+    },
+    {
+        "name": "hosting_add",
+        "en": "Add Hosting",
+        "ar": "اضافة إستضافة "
+    },
+    {
+        "name": "hosting_edit",
+        "en": "Edit Hosting",
+        "ar": "تعديل إستضافة "
+    },
+    {
+        "name": "hosting_details",
+        "en": "Hosting Details",
+        "ar": "تفاصيل الإستضافة "
+    },
+    {
+        "name": "hosting_delete",
+        "en": "Delete Hosting",
+        "ar": "حذف إستضافة "
+    },
+    {
+        "name": "hosting_name",
+        "en": "Hosting Name",
+        "ar": "اسم الإستضافة "
+    },
+    {
+        "name": "hosting_type",
+        "en": "Hosting Type",
+        "ar": "نوع الإستضافة "
+    },
+    {
+        "name": "total_required",
+        "en": "Total Required",
+        "ar": "إجمالي المطلوب"
+    },
+    {
+        "name": "hosting_name",
+        "en": "Hosting Name",
+        "ar": "اسم الإستضافة "
+    },
+    {
+        "name": "hosting_price",
+        "en": "Hosting Price",
+        "ar": "سعر الإستضافة "
+    }
+
+
+
+
+]

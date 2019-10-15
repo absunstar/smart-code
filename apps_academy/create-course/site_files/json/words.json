@@ -1,0 +1,142 @@
+[{
+        "name": "create_course",
+        "en": "Create Course",
+        "ar": "إنشاء كورسات"
+    },
+    {
+        "name": "create_course_new",
+        "en": "New Create Course",
+        "ar":  "إنشاء كورس جديد"
+    },
+    {
+        "name": "create_course_add",
+        "en": "Create Course",
+        "ar": "إنشاء كورس"
+    },
+    {
+        "name": "create_course_edit",
+        "en": "Edit Create Course",
+        "ar": "تعديل إنشاء كورس"
+    },
+    {
+        "name": "create_course_details",
+        "en": "Create Course Details",
+        "ar": "تفاصيل إنشاء كورس"
+    },
+    {
+        "name": "create_course_delete",
+        "en": "Delete Create Course",
+        "ar": "حذف إنشاء كورس"
+    },
+    {
+        "name": "create_course_name",
+        "en": "Course Name",
+        "ar": "اسم الكورس "
+    },
+    {
+        "name": "dates",
+        "en": "Dates",
+        "ar": "المواعيد"
+    },
+    {
+        "name": "number_lecture_hours",
+        "en": "Number Of Lecture  Hours",
+        "ar": "عدد الساعات المحاضرة"
+    },
+    {
+        "name": "dates",
+        "en": "Dates",
+        "ar": "المواعيد"
+    },
+    {
+        "name": "error_dates",
+        "en": "Should Add Dates",
+        "ar": "يجب إضافة مواعيد"
+    },
+    {
+        "name": "create_course_total",
+        "en": "Total Duration",
+        "ar": "إجمالي المدة "
+    },
+    {
+        "name": "create_lectures",
+        "en": "Create Lectures",
+        "ar": "إنشاء المحاضرات"
+    },
+    {
+        "name": "account_lectures",
+        "en": "Account Lectures",
+        "ar": "حساب المحاضرة"
+    },
+    {
+        "name": "create_trainer",
+        "en": "Create Trainer",
+        "ar": "تفعيل المدرب"
+    },
+    {
+        "name": "distribution_trainer",
+        "en": "Distribution Trainer",
+        "ar": "تعيين المدربين"
+    },
+    {
+        "name": "attend",
+        "en": "Attend",
+        "ar": "حضور"
+    },
+    {
+        "name": "absence",
+        "en": "Absence",
+        "ar": "غياب"
+    },
+    {
+        "name": "attend_absence_list",
+        "en": "Attend & Absence List",
+        "ar": "بيان الحضور و الغياب"
+    },
+    {
+        "name": "attend_absence",
+        "en": "Attend & Absence",
+        "ar": "الحضور و الغياب"
+    },
+    {
+        "name": "attend_hour",
+        "en": "Attend Hour",
+        "ar": "حضور الساعة"
+    },
+    {
+        "name": "out_hour",
+        "en": "Out Hour",
+        "ar": "إنصراف الساعة"
+    },
+    {
+        "name": "class_room",
+        "en": "The Hall",
+        "ar": "القاعة"
+    },
+    {
+        "name": "trainer_account",
+        "en": "Trainer Account",
+        "ar": "حساب المدرب"
+    },
+    {
+        "name": "number_lecture",
+        "en": "Number of lectures",
+        "ar": "عدد المحاضرات"
+    },
+    {
+        "name": "start_date",
+        "en": "Start Date Course",
+        "ar": "تاريخ بداية الكورس"
+    },
+    {
+        "name": "end_date",
+        "en": "End Date Course",
+        "ar": "تاريخ نهاية الكورس"
+    },
+    {
+        "name": "create_course_price",
+        "en": "Course Price",
+        "ar": "سعر الكورس "
+    }
+    
+]

@@ -1,0 +1,32 @@
+<div id="companyDeleteModal" class="modal">
+    
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.companies_delete##
+                <i class="fa fa-trash"></i>
+            </h2>
+        </div>
+
+        <div class="modal-body">
+            <span ng-show="busy">
+                <span class="sr-only">Loading...</span>
+            </span>
+            <div x-import="companies/view.html"></div>
+
+        </div>
+
+        <h2 class="error"> {{error}} </h2>
+
+        <div class="modal-footer center">
+            <i-button x-permission="print" type="print" label="##word.print##" onclick="site.print('#companyViewModal .tab-content')"></i-button>
+            
+            <i-button type="delete" label="##word.delete##" ng-click="deletecompany(company)"></i-button>
+
+            <i-button type="close" label="##word.close##" onclick="site.hideModal('#companyDeleteModal')"></i-button>
+
+        </div>
+    </div>
+    
+</div>

@@ -1,0 +1,31 @@
+<div class="form">
+    <div id="basicInformation" class="">
+        <fieldset>
+            <legend> ##word.basic_information## </legend>
+            <div class="row">
+                <div class="col9">
+                    <div class="row">
+                        <i-control type="text" help-id="tables_group_number" v="r" class="col3"
+                            label="##word.tables_group_number##" ng-model="tables_group.code"></i-control>
+
+                        <i-control type="text" help-id="tables_group_name" v="r" class="col4"
+                            label="##word.tables_group_name##" ng-model="tables_group.name"></i-control>
+                        <div class="col2"></div>
+
+                        <i-checkbox help-id="tables_group_active" class="col2" label="##word.active##"
+                            ng-model="tables_group.active"></i-checkbox>
+                    </div>
+
+                </div>
+
+                <div class="col3">
+
+                    <i-image help-id="tables_group_logo" ng-model="tables_group.image_url"></i-image>
+
+                </div>
+
+            </div>
+        </fieldset>
+
+    </div>
+</div>

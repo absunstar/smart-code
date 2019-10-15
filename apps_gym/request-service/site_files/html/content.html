@@ -1,0 +1,35 @@
+<div class="form">
+    <div id="basicInformation">
+        <fieldset>
+            <legend> ##word.basic_information## </legend>
+            <div class="row">
+                <div class="col9">
+
+                    <div class="row">
+                        <i-list ng-search="_search.$customer" class="col4" display="name_ar"
+                            ng-model="request_service.customer" label="##word.customer##"
+                            items="customersList"></i-list>
+
+                        <i-list ng-search="_search.$service" class="col4" display="name"
+                            ng-model="request_service.service" label="##word.service##"
+                            items="servicesList"></i-list>
+                    </div>
+                    <div class="row">
+                        <i-list ng-search="_search.$trainer" class="col4" display="name"
+                            ng-model="request_service.trainer" label="##word.trainer##"
+                            items="trainersList"></i-list>
+
+                        <i-list ng-search="_search.$hall" class="col4" display="name"
+                            ng-model="request_service.hall" label="##word.hall##"
+                            items="hallsList"></i-list>
+                    </div>
+                </div>
+
+                <div class="col3">
+                    <i-image help-id="request_service_logo" ng-model="request_service.image_url"></i-image>
+                </div>
+            </div>
+        </fieldset>
+
+    </div>
+</div>

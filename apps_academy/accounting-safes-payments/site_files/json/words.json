@@ -1,0 +1,29 @@
+[
+    {"name" : "safes_payments_add" , "en" : "Add Safe" , "ar" : "اضافة خزينة"},
+    {"name" : "safes_payments_new" , "en" : "New Safe" , "ar" : "خزينة جديدة"},
+    {"name" : "safes_payments_details" , "en" : "Safe Details" , "ar" : "تفاصيل خزينة"},
+    {"name" : "safes_payments_edit" , "en" : "Edit Safe" , "ar" : "تعديل بيانات خزينة"},
+    {"name" : "safes_payments_delete" , "en" : "Delete Safe" , "ar" : "حذف خزينة"},
+    {"name" : "safes_payments_employee" , "en" : "Safe Employee" , "ar" : "الموظف المسئول"},   
+    {"name" : "safes_payments_safe_name" , "en" : "Safe Name" , "ar" : "اسم الخزينة"},   
+    {"name" : "safes_payments_balance" , "en" : "Safe Balance" , "ar" : " قيمة المعاملة"},   
+    {"name" : "safes_payments" , "en" : "Safes Payment" , "ar" : "معاملات الخزينة"},   
+   
+    {"name" : "safes_payments_employee_name" , "en" : "Employee Name" , "ar" : " اسم الموظف  "},   
+    {"name" : "safes_payments_search" , "en" : "search" , "ar" : " بحث"},   
+    {"name" : "safes_payments_empty_search" , "en" : "Reset" , "ar" : " تفريغ الحقول"},   
+    {"name" : "safes_payments_value" , "en" : "Amounts_in Value" , "ar" : " القيمة  "},   
+    {"name" : "safes_payments_date" , "en" : "Amounts_in Date" , "ar" : " التاريخ  "}, 
+    {"name" : "safes_payments_source" , "en" : "Source Type" , "ar" : "  أسماء الشاشات الواردة  "},
+    {"name" : "safes_payments_safe" , "en" : "Safe Name" , "ar" : " أسم الخزينة   "}, 
+    {"name" : "safes_payments_sources" , "en" : "Source Name" , "ar" : " أسم المعاملة   "}, 
+    {"name" : "safes_payments_store_in" , "en" : "IN " , "ar" : " الوارد"}, 
+    {"name" : "safes_payments_store_out" , "en" : " OUT" , "ar" : "المنصرف"}, 
+    {"name" : "safes_payments_safe_balance" , "en" : " Safe Balance" , "ar" : " الرصيد الحالية"}, 
+    {"name" : "safes_payments_pre_safe_balance" , "en" : " Pre Safe Balance" , "ar" : " الرصيد السابقة"},
+    {"name" : "safes_payments_description" , "en" : " Descroiption" , "ar" : "البيان"},
+
+    
+    {"name" : "safes_payments_logo" , "en" : "Safe Logo" , "ar" : "الشعار"},
+    {"name" : "safes_payments_img" , "en" : "Safe Images" , "ar" : "الملفات"}
+]

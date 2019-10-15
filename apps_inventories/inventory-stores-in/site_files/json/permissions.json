@@ -1,0 +1,11 @@
+[
+    { "module_name" : "inventory" , "screen_name" : "inventory-stores-in" , "name":"stores_in_manage" , "en":"Manage" , "ar":"إدارة"},
+    { "module_name" : "inventory" , "screen_name" : "inventory-stores-in" , "name":"stores_in_add" , "en":"Add" , "ar":"إضافة"},
+    { "module_name" : "inventory" , "screen_name" : "inventory-stores-in" , "name":"stores_in_update" , "en":"Edit" , "ar":"تعديل"},
+    { "module_name" : "inventory" , "screen_name" : "inventory-stores-in" , "name":"stores_in_delete" , "en":"Delete" , "ar":"حذف"},
+    { "module_name" : "inventory" , "screen_name" : "inventory-stores-in" , "name":"stores_in_view" , "en":"View" , "ar":"عرض"},
+    { "module_name" : "inventory" , "screen_name" : "inventory-stores-in" , "name":"stores_in_search" , "en":"Search" , "ar":"بحث"},
+    { "module_name" : "inventory" , "screen_name" : "inventory-stores-in" , "name":"stores_in_export" , "en":"Export" , "ar":"تصدير"},
+    { "module_name" : "inventory" , "screen_name" : "inventory-stores-in" , "name":"stores_in_print" , "en":"Print" , "ar":"طباعة"},
+    { "module_name" : "inventory" , "screen_name" : "inventory-stores-in" , "name":"stores_in_ui" , "en":"UI" , "ar":"الواجهة الرسومية"}
+]

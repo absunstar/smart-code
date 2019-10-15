@@ -1,0 +1,63 @@
+<div id="reportInvoicesSearchModal" class="modal" fixed>
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.search_all## <i class="fa fa-search"></i>
+
+            </h2>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <form class="form">
+                    <div class="row">
+                        <i-date2 class="col3" ng-model="search.date" label="##word.date##"></i-date2>
+                        <i-date2 class="col3" ng-model="search.date_from" label="##word.date_from##"></i-date2>
+                        <i-date2 class="col3" ng-model="search.date_to" label="##word.date_to##"></i-date2>
+
+                    </div>
+                    <div class="row">
+
+                        <i-list help-id="" ng-search="_search.$order_status_search" class="col2"
+                            label="##word.order_status##" ng-model="search.order_status" items="orderStatusList"
+                            display="ar">
+                        </i-list>
+
+                        <i-list help-id="" ng-search="_search.$transaction_type_search" class="col2"
+                            label="##word.invoice_type##" ng-model="search.transaction_type" items="transactionTypeList"
+                            display="ar">
+                        </i-list>
+
+                        <i-list ng-search="_search.$order_customers" class="col4" display="name_ar"
+                            ng-model="search.customer" label="##word.customer_name##" items="customersList">
+                        </i-list>
+
+                        <i-list ng-search="_search.$order_invoice_employee" class="col4" display="name"
+                            ng-model="search.delivery_employee" label="##word.delivery_employee##"
+                            items="deliveryEmployeesList"></i-list>
+
+                    </div>
+                    <div class="row">
+
+                        <i-list ng-search="_search.$tables_group" class="col4" display="name"
+                            ng-change="getTablesList(search.tables_group)" ng-model="search.tables_group"
+                            label="##word.tables_group##" items="tablesGroupList">
+                        </i-list>
+                        <i-list ng-search="_search.$table" class="col4" display="name" ng-model="search.table"
+                            label="##word.table##" items="tablesList">
+                        </i-list>
+                    </div>
+
+                </form>
+            </div>
+
+            <h2 class="error"> {{error}} </h2>
+            <div class="modal-footer center">
+                <i-button type="search" ng-click="searchAll()" label="##word.search##"></i-button>
+                <i-button type="clear" ng-click="search = {}" label="##word.empty_search##"></i-button>
+                <i-button type="close" onclick="hideModal('reportInvoicesSearchModal')" label="##word.close##">
+                </i-button>
+            </div>
+        </div>
+    </div>
+</div>

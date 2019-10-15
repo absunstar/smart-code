@@ -1,0 +1,7 @@
+[{
+    "module_name" : "public" ,
+    "name": "order_distributor_admin",
+    "en": "Order Distributor Admin",
+    "ar": "الطلبات الموزعة",
+    "permissions": ["order_distributor_manage"]
+}]

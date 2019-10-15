@@ -1,0 +1,62 @@
+[{
+        "name": "request_service",
+        "en": "The request Service",
+        "ar": "طلب الخدمات"
+    },
+    {
+        "name": "request_service_new",
+        "en": "New request Service",
+        "ar": "طلب خدمة جديدة"
+    },
+    {
+        "name": "request_service_add",
+        "en": "Add request Service",
+        "ar": "اضافة طلب خدمة"
+    },
+    {
+        "name": "trainer",
+        "en": "Trainer",
+        "ar": "المدرب"
+    },
+    {
+        "name": "request_service_edit",
+        "en": "Edit request Service",
+        "ar": "تعديل طلب خدمة"
+    },
+    {
+        "name": "request_service_details",
+        "en": "request Service Details",
+        "ar": "تفاصيل طلب الخدمة"
+    },
+    {
+        "name": "request_service_delete",
+        "en": "Delete request Service",
+        "ar": "حذف طلب خدمة"
+    },
+    {
+        "name": "request_service_name",
+        "en": "Course Name",
+        "ar": "اسم طلب الخدمة "
+    },
+    {
+        "name": "request_service_price",
+        "en": "Course Price",
+        "ar": "سعر طلب الخدمة "
+    },
+    {
+        "name": "request_service_total",
+        "en": "Total Duration",
+        "ar": "إجمالي المدة "
+    },
+    {
+        "name": "request_service_capaneighborhood",
+        "en": "Class Capaneighborhood",
+        "ar": "سعة طلب الخدمة "
+    },
+    {
+        "name": "request_service_current",
+        "en": "Number Of Current Students",
+        "ar": "عدد الطلاب الحاليين"
+    }
+    
+]

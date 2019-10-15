@@ -1,0 +1,65 @@
+[{
+        "name": "attend_leave",
+        "en": "Attend & Leave",
+        "ar": "حضور و إنصراف"
+    },
+    {
+        "name": "attend_leave_new",
+        "en": "New Attend & Leave",
+        "ar": "حضور و إنصراف جديد"
+    },
+    {
+        "name": "leaved",
+        "en": "Leaved",
+        "ar": "تم الإنصراف"
+    },
+    {
+        "name": "status_now",
+        "en": "Status Now",
+        "ar": "الحالة الحالية"
+    },
+    {
+        "name": "status_attend",
+        "en": "Status Attend",
+        "ar": "حالة الحضور"
+    },
+    {
+        "name": "available_place",
+        "en": "Available Place",
+        "ar": "موجود بالمكان"
+    },
+    {
+        "name": "attend_leave_add",
+        "en": "Add Attend & Leave",
+        "ar": "اضافة حضور و إنصراف "
+    },
+    {
+        "name": "attend_leave_edit",
+        "en": "Edit Attend & Leave",
+        "ar": "تعديل حضور و إنصراف "
+    },
+    {
+        "name": "attend_leave_details",
+        "en": "attend_leave Details",
+        "ar": "تفاصيل الحضور و إنصراف "
+    },
+    {
+        "name": "attend_leave_delete",
+        "en": "Delete Attend & Leave",
+        "ar": "حذف حضور و إنصراف "
+    },
+    {
+        "name": "attend_leave_name",
+        "en": "attend_leave Name",
+        "ar": "اسم الحضور و إنصراف "
+    },
+    {
+        "name": "attend_leave_price",
+        "en": "attend_leave Price",
+        "ar": "سعر الحضور و إنصراف "
+    }
+
+
+
+
+]

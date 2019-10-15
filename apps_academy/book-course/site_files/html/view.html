@@ -1,0 +1,150 @@
+<div ng-hide="busy" class="row">
+
+    <div class="tabs">
+        <div class="tabs-header full">
+            <a class="tab-link" onclick="site.showTabContent(event, '#basicInformation')">
+                ##word.basic_information## </a>
+
+        </div>
+
+        <div id="courseAllInfo" class="tabs-content bold full">
+
+            <div id="basicInformation" class="tab-content ">
+                <fieldset>
+                    <div class="col9">
+                        <legend> ##word.basic_information##</legend>
+                        <div class="row">
+
+                            <table id="basicInformationTable" class="table hover bold">
+                                <tr>
+                                    <th>##word.student##</th>
+                                    <th>##word.status##</th>
+                                </tr>
+                                <tr>
+                                    <td class="center title">
+                                        <div class="row">
+                                            <div class="col5">
+                                                <br>
+                                                <p> {{book_course.student.name}}</p>
+                                            </div>
+                                            <div class="col2"></div>
+                                            <i-button class="col3" ng-show="book_course.student.id" type="details"
+                                                label="##word.students_details##"
+                                                ng-click="showStudent(book_course.student.id)"></i-button>
+                                        </div>
+                                    </td>
+
+                                    <td ng-show="book_course.active == true" class="green center"> <br> ##word.active##
+                                    </td>
+                                    <td ng-show="book_course.active == false" class="red center"> <br>
+                                        ##word.not_active##
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <br>
+                        <hr>
+                        <br>
+                        <div class="row margin" ng-show="book_course.select_book">
+                            <table class="table bold hover center ">
+                                <tr>
+                                    <th>##word.book_course_name##</th>
+                                    <th>##word.trainer##</th>
+                                    <th>##word.book_course_total##</th>
+                                    <th>##word.book_course_price##</th>
+                                    <th>##word.start_date##</th>
+                                    <th>##word.end_date##</th>
+                                    <th>##word.actions##</th>
+                                </tr>
+
+                                <tr>
+
+                                    <td>
+                                        <br>
+                                        <p>{{book_course.select_book.course.name}}</p>
+                                    </td>
+                                    <td>
+                                        <br>
+                                        <p>{{book_course.select_book.trainer.name}}</p>
+                                    </td>
+
+                                    <td class="blue">
+                                        <p class="blue">{{book_course.select_book.course.courses_total}}</p>
+                                        <p class="blue">{{book_course.select_book.course.period.ar}}</p>
+
+                                    </td>
+
+                                    <td>
+                                        <br>
+                                        <p>{{book_course.select_book.course.price}}</p>
+                                    </td>
+
+                                    <td>
+                                        <br>
+                                        <p class="brown">{{book_course.select_book.start_date | date : 'dd - MM
+                                            -yyyy'}}</p>
+                                    </td>
+
+                                    <td>
+                                        <br>
+                                        <p class="brown">{{book_course.select_book.end_date | date : 'dd - MM -yyyy'}}
+                                        </p>
+
+                                    </td>
+
+                                    <td>
+                                        <i-button type="view" label="##word.course_dates##"
+                                            onclick="site.showModal( '#courseDatesModal')"></i-button>
+                                    </td>
+                                </tr>
+
+                            </table>
+                        </div>
+
+
+                        <div class="row" ng-show="book_course.paid_list.length > 0">
+                            <div class="col8  grid">
+                                <table class="table hover bold center ">
+                                    <tr>
+                                        <th>##word.previous_payments##</th>
+
+                                        <th>##word.date##</th>
+
+                                        <th>##word.safe##</th>
+                                    </tr>
+
+                                    <tr ng-repeat="b in book_course.paid_list">
+
+                                        <td>
+                                            <p class="green">{{b.payment}}</p>
+                                        </td>
+
+                                        <td>
+                                            <p class="brown">{{b.date_paid | date : 'dd - MM -yyyy'}}</p>
+                                        </td>
+
+                                        <td>
+                                            <p>{{b.safe.name}}</p>
+                                        </td>
+                                    </tr>
+
+                                </table>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col3">
+                        <i-image view ng-model="book_course.image_url"></i-image>
+                    </div>
+                </fieldset>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+</div>
+<div x-import="book-course/action_info.html"></div>

@@ -1,0 +1,11 @@
+[
+    { "module_name" : "accounting" , "screen_name" : "accounting-employees-insurances" , "name":"employee_insurances_manage" , "en":"Manage" , "ar":"إدارة"},
+    { "module_name" : "accounting" , "screen_name" : "accounting-employees-insurances" , "name":"employee_insurances_add" , "en":"Add" , "ar":"إضافة"},
+    { "module_name" : "accounting" , "screen_name" : "accounting-employees-insurances" , "name":"employee_insurances_update" , "en":"Edit" , "ar":"تعديل"},
+    { "module_name" : "accounting" , "screen_name" : "accounting-employees-insurances" , "name":"employee_insurances_delete" , "en":"Delete" , "ar":"حذف"},
+    { "module_name" : "accounting" , "screen_name" : "accounting-employees-insurances" , "name":"employee_insurances_view" , "en":"View" , "ar":"عرض"},
+    { "module_name" : "accounting" , "screen_name" : "accounting-employees-insurances" , "name":"employee_insurances_search" , "en":"Search" , "ar":"بحث"},
+    { "module_name" : "accounting" , "screen_name" : "accounting-employees-insurances" , "name":"employee_insurances_export" , "en":"Export" , "ar":"تصدير"},
+    { "module_name" : "accounting" , "screen_name" : "accounting-employees-insurances" , "name":"employee_insurances_print" , "en":"Print" , "ar":"طباعة"},
+    { "module_name" : "accounting" , "screen_name" : "accounting-employees-insurances" , "name":"employee_insurances_ui" , "en":"Ui" , "ar":"الواجهة الرسومية"}
+]

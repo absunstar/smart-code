@@ -1,0 +1,27 @@
+<div id="classRoomsAddModal" class="modal" fixed>
+    
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.class_rooms_add##
+                <i class="fa fa-plus "></i>
+            </h2>
+
+        </div>
+
+        <div class="modal-body">
+            <div x-import="class-rooms/content.html"></div>
+        </div>
+
+
+
+        <div class="modal-footer center">
+            <h2 class="error"> {{error}} </h2>
+            <i-button type="add" label="##word.add##" ng-click="addClassRooms()"></i-button>
+
+            <i-button type="close" label="##word.close##" onclick="site.hideModal( '#classRoomsAddModal')"></i-button>
+        </div>
+    </div>
+    
+</div>

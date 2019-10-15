@@ -1,0 +1,32 @@
+<div ng-hide="busy" class="row">
+    <div id="basicInformation">
+        <fieldset>
+            <legend> ##word.basic_information##</legend>
+            <div class="col9">
+                <table id="basicInformationTable" class="table hover bold">
+                    <tr>
+                        <td class="title">##word.hall_name##</td>
+                        <td class="center">{{hall.name}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="title">##word.hall_capaneighborhood##</td>
+                        <td class="center blue">{{hall.capaneighborhood}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="title">##word.status##</td>
+                        <td ng-show="hall.active == true" class="green center"> ##word.active## </td>
+                        <td ng-show="hall.active == false" class="red center"> ##word.not_active## </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="col3">
+                <i-image view ng-model="hall.image_url"></i-image>
+            </div>
+
+        </fieldset>
+    </div>
+</div>
+<div x-import="hall/action_info.html"></div>

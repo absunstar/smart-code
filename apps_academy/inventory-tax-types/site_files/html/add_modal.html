@@ -1,0 +1,26 @@
+<div id="addTaxTypeModal" class="modal" fixed>
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.tax_types_add## <i class="fa fa-plus"></i>
+                <i ng-show="busy" class="fa fa-spinner white fa-pulse fa-3x fa-fw"></i>
+            </h2>
+        </div>
+        <div class="modal-body">
+
+            <div x-import="inventory-tax-types/content.html"></div>
+
+        </div>
+        <h2 class="error">{{error}}</h2>
+        <div class="modal-footer center">
+            <i-button type="add" label="##word.add##" ng-click="add()" ng-hide="busy" id="add_tax_type_btn"></i-button>
+            <i-button type="close" label="##word.close##" onclick="site.hideModal('#addTaxTypeModal')"></i-button>
+
+
+        </div>
+    </div>
+
+
+</div>

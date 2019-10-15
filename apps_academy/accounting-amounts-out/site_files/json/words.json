@@ -1,0 +1,38 @@
+[
+    { "name": "amounts_out","en": "Amount In", "ar": "المنصرف"},
+    { "name": "amounts_out_add","en": "Add Amount", "ar": "اضافة منصرف"},
+    { "name": "amounts_out_new","en": "New Amount", "ar": "تسجيل منصرف جديد"},
+    { "name": "amounts_out_details","en": "Amount  Details", "ar": "تفاصيل منصرف"},
+    { "name": "amounts_out_edit","en": "Edit Amount", "ar": "تعديل منصرف"},
+    { "name": "amounts_out_delete","en": "Delete Amount", "ar": "حذف منصرف"},
+    { "name": "amounts_out_logo","en": "Logo", "ar": "الشعار"},
+    { "name": "amounts_out_value","en": "Value", "ar": "القيمة"},
+    { "name": "amounts_out_date","en": "Date", "ar": "التاريخ"},
+    { "name": "amounts_out_from","en": "From", "ar": "من"},
+    { "name": "amounts_out_to","en": "To", "ar": "الي"},
+    { "name": "amounts_out_source","en": "Source", "ar": "نوع المنصرف"},
+    { "name": "amounts_out_description","en": "Description", "ar": "تفاصيل المنصرف"},
+    { "name": "amounts_out_safe","en": "Safe", "ar": " الخزينة"},
+    { "name": "amounts_out_Safe_name","en": "Safe Name", "ar": " أسم الخزينة"},
+    
+    { "name": "amounts_out_Company_name","en": "Company Name", "ar": "اسم الشركة "},
+    
+    { "name": "amounts_out_empty_search","en": "Empty Fields", "ar": "تفريغ الحقول "},
+
+    { "name": "amounts_out_search","en": "Search", "ar": "البحث "},
+
+    { "name": "amounts_out_companies","en": "From Company", "ar": "أسم الشركة"},
+
+    { "name": "amounts_out_date_from","en": "Date From", "ar": "من تاريخ"},
+
+    { "name": "amounts_out_date_to","en": "Date To ", "ar": "الى تاريخ"},
+
+    { "name": "amounts_out_employees","en": "From Employee", "ar": " اسم الموظف "},
+
+    { "name": "amounts_out_img","en": "Image", "ar": "الشعار"},
+
+    { "name": "notzero","en": "This Value Not Equal Zero", "ar": "هذه القيمة لا تساوي صفر"},
+
+    { "name": "amounts_out_customers","en": "Customer Name", "ar": "اسم العميل"}
+    
+]

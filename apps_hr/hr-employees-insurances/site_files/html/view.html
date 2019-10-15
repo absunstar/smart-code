@@ -1,0 +1,62 @@
+<div ng-hide="busy" class="row">
+    <div class="col8">
+        <br>
+        <table class="table bold hover">
+            <tr>
+                <td class="title">##word.employees_insurances_name##</td>
+                <td class="center">{{employee_insurance.employee.name}}</td>
+            </tr>
+
+            <tr>
+                <td class="title">##word.employees_insurances_insurance_number##</td>
+                <td class="center">{{employee_insurance.employee.insurance_number}}</td>
+            </tr>
+
+            <tr>
+                <td class="title">##word.employees_insurances_facility_name##</td>
+                <td class="center">{{employee_insurance.facility_name.name}}</td>
+            </tr>
+
+            <tr>
+                <td class="title">##word.employees_insurances_insurance_slide##</td>
+                <td class="center">{{employee_insurance.insurance_slide.name}}</td>
+            </tr>
+
+            <tr>
+                <td class="title">##word.employees_insurances_fixed_salary##</td>
+                <td class="green center">{{employee_insurance.employee.salary}}##word.le##</td>
+            </tr>
+
+            <tr>
+                <td class="title">##word.employees_insurances_insurance_discount##</td>
+                <td class="center">{{employee_insurance.insurance_discount}}</td>
+            </tr>
+
+            <tr>
+                <td class="title">##word.employees_insurances_variable_salary##</td>
+                <td class="green center">{{employee_insurance.variable_salary + '##word.le## '}}</td>
+            </tr>
+
+            <tr>
+                <td class="title">##word.employees_insurances_salary_discount##</td>
+                <td class="center">{{employee_insurance.salary_discount}}</td>
+            </tr>
+
+            <tr>
+                <td class="title">##word.employee_insurance_description##</td>
+                <td class="center">{{employee_insurance.description}}</td>
+            </tr>
+
+        </table>
+
+
+    </div>
+    <div class="col1"></div>
+    <div class="col3 ">
+
+        <i-image view ng-model="employee_insurance.image_url"></i-image>
+        <i-files view ng-model="employee_insurance.files"></i-files>
+
+    </div>
+</div>
+<div x-import="hr-employees-insurances/action_info.html"></div>

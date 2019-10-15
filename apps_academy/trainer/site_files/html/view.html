@@ -1,0 +1,206 @@
+<div ng-hide="busy" class="row">
+
+    <div class="tabs">
+        <div class="tabs-header full">
+            <a class="tab-link" onclick="site.showTabContent(event,'#basicInformation')">
+                ##word.basic_information##
+            </a>
+
+            <a class="tab-link" onclick="site.showTabContent(event,'#filesInformation')">
+                ##word.files##
+            </a>
+
+            <a class="tab-link" onclick="site.showTabContent(event,'#loginInformation')">
+                ##word.login_information##
+            </a>
+
+
+        </div>
+        <div id="insuranceAllInfo" class="tabs-content bold full">
+            <div id="basicInformation" class="tab-content">
+
+                <fieldset>
+                    <legend> ##word.basic_information##</legend>
+                    <div class="col9">
+                        <div>
+                            <table id="basicInformationTable" class="table hover bold">
+
+                                <tr>
+                                    <td class="title">##word.name##</td>
+                                    <td class="center">{{trainer.name}}</td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title">##word.national_id##</td>
+                                    <td class="center blue">{{trainer.national_id}}</td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title">##word.status##</td>
+                                    <td ng-show="trainer.active == true" class="green center"> ##word.active## </td>
+                                    <td ng-show="trainer.active == false" class="red center"> ##word.not_active## </td>
+                                </tr>
+
+                            </table>
+                        </div>
+
+                        <br>
+                        <br>
+                        <div>
+                            <fieldset>
+                                <legend>##word.trainer_info##</legend>
+                                <table class="table hover bold">
+                                    <tr>
+                                        <td class="title">##word.trainer_indentfy##</td>
+                                        <td class="center">{{trainer.indentfy.ar}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="title">##word.qualification##</td>
+                                        <td class="center">{{trainer.qualification}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="title">##word.birth_date##</td>
+                                        <td class="center brown">{{trainer.birth_date | date : 'dd
+                                            - MM -
+                                            yyyy'}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="title">##word.job##</td>
+                                        <td class="center">{{trainer.job.name}}</td>
+                                    </tr>
+
+                                </table>
+
+                            </fieldset>
+                        </div>
+                        <br>
+                        <br>
+
+                        <div>
+                            <fieldset>
+                                <legend>##word.addresses##</legend>
+                                <table id="informationTable" class="table hover bold">
+
+                                    <tr>
+                                        <td class="title">##word.gov##</td>
+                                        <td class="center">{{trainer.gov.name}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="title">##word.neighborhood##</td>
+                                        <td class="center">{{trainer.neighborhood.name}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="title">##word.address##</td>
+                                        <td class="center">{{trainer.address}}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="title">##word.phone##</td>
+                                        <td class="center">
+                                            <a ng-show="trainer.phone" href="tel:{{trainer.phone}}">
+                                                {{trainer.phone}}
+                                                <i class="fa fa-phone" aria-hidden="true"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="title">##word.mobile##</td>
+                                        <td class="center">
+                                            <a ng-show="trainer.mobile" href="tel:{{trainer.mobile}}">
+                                                {{trainer.mobile}}
+                                                <i class="fa fa-mobile" aria-hidden="true"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="title">##word.whatsapp##</td>
+                                        <td class="center">
+                                            <a ng-show="trainer.whatsapp" href="tel:{{trainer.whatsapp}}">
+                                                {{trainer.whatsapp}}
+                                                <i class="fa fa-whatsapp" aria-hidden="true"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="title">##word.email##</td>
+                                        <td class="center">
+                                            <a ng-show="trainer.email" target="_blank" href="tel:{{trainer.email}}">
+                                                {{trainer.email}}
+                                                <i class="fa fa-envelope" aria-hidden="true"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="title">##word.facebook##</td>
+                                        <td class="center">
+                                            <a ng-show="trainer.facebook" href="tel:{{trainer.facebook}}">
+                                                {{trainer.facebook}}
+                                                <i class="fa fa-facebook" aria-hidden="true"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="title">##word.twitter##</td>
+                                        <td class="center">
+                                            <a ng-show="trainer.twitter" href="tel:{{trainer.twitter}}">
+                                                {{trainer.twitter}}
+                                                <i class="fa fa-twitter" aria-hidden="true"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="title">##word.notes##</td>
+                                        <td class="center blue">{{trainer.notes}}</td>
+                                    </tr>
+
+                                </table>
+
+                            </fieldset>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col3">
+                        <i-image view ng-model="trainer.image_url"></i-image>
+                    </div>
+
+                </fieldset>
+            </div>
+
+            <div id="filesInformation" class="tab-content">
+
+                <fieldset>
+                    <legend> ##word.files## </legend>
+                    <div class="row">
+                        <i-files view ng-model="trainer.files"></i-files>
+
+                    </div>
+                </fieldset>
+            </div>
+
+
+            <div id="loginInformation" class="tab-content">
+
+                <fieldset>
+                    <legend> ##word.login_information## </legend>
+
+                    <table class="table hover bold">
+                        <tr>
+                            <td class="title">##word.email##</td>
+                            <td class="center">{{trainer.username}}</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="title">##word.password##</td>
+                            <td class="center">{{trainer.password}}</td>
+                        </tr>
+                    </table>
+                </fieldset>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div x-import="trainer/action_info.html"></div>

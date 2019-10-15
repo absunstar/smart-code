@@ -1,0 +1,38 @@
+
+
+<div id="searchModal" class="modal">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.search_all## <i class="fa fa-search"></i>
+                <i ng-show="busy" class="fa fa-spinner white fa-pulse fa-fw"></i>
+            </h2>
+        </div>
+        <div class="modal-body">
+
+            <form>
+
+                <div class="row">
+                        <i-list class="col4" ng-search="_search.$engRep_search" class="col12" ng-model="search.employee" items="employeeList"
+                        label="##word.employees_salary_report_Employee_Name##"></i-list>
+
+                </div>
+                    
+                <i-month2 type="date" class="col4" ng-model="search.date" label="##word.employees_salary_report_date##"></i-month2>
+
+            </form>
+
+        </div>
+        <h2>{{error}}</h2>
+        <div class="modal-footer row center">
+
+           
+
+                <i-button  type="search" label="##word.search##" ng-click="searchEmployeeReport()"></i-button>
+                <i-button  type="clear" label="##word.clear##" ng-click="search.employee = {}"></i-button>
+                <i-button  type="close" label="##word.close##" onclick="site.hideModal('#searchModal')"></i-button>
+        </div>
+    </div>
+</div>
