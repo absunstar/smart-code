@@ -1,7 +1,0 @@
-[{
-    "module_name" : "public" ,
-    "name": "lecture_admin",
-    "en": "Lecture Admin",
-    "ar": "إدارة المحاضرات",
-    "permissions": ["lecture_manage"]
-}]

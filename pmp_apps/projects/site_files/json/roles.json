@@ -1,7 +1,0 @@
-[{
-    "module_name" : "public" ,
-    "name": "projects_admin",
-    "en": "projects",
-    "ar": "إدارة المشاريع",
-    "permissions": ["projects_manage"]
-}]

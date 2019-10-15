@@ -1,7 +1,0 @@
-[{
-    "module_name" : "public" ,
-    "name": "book_hall_admin",
-    "en": "Book Hall Admin",
-    "ar": "إدارة حجز القاعات",
-    "permissions": ["book_hall_manage"]
-}]

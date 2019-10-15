@@ -1,7 +1,0 @@
-[{
-    "module_name" : "courses" ,
-    "name": "create_course_admin",
-    "en": "Create Courses Admin",
-    "ar": "إدارة إنشاء الكورسات",
-    "permissions": ["create_course_manage"]
-}]

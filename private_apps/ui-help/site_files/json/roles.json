@@ -1,7 +1,0 @@
-[{
-    "module_name" : "public" ,
-    "name": "help",
-    "en": "Show Help",
-    "ar": "تفعيل المساعدة",
-    "permissions": ["help"]
-}]

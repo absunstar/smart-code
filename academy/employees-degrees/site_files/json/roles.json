@@ -1,7 +1,0 @@
-[{
-    "module_name" : "public" ,
-    "name": "employees_degrees_admin",
-    "en": "Employees Degree Admin",
-    "ar": "إدارة الدرجات الوظيفية",
-    "permissions": ["employees_degrees_manage"]
-}]

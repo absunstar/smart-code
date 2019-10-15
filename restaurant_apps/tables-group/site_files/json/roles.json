@@ -1,7 +1,0 @@
-[{
-    "module_name" : "public" ,
-    "name": "tables_group_admin",
-    "en": "Tables Gruop Admin",
-    "ar": "إدارة مجموعة الطاولات",
-    "permissions": ["tables_group_manage"]
-}]

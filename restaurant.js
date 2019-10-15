@@ -41,6 +41,6 @@ site.features.push('restaurant')
 
 setTimeout(() => {
     site.importApp(__dirname + '/apps_private/companies')
-}, 1000);
+}, 1000)
 
 site.run()

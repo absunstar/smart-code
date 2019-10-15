@@ -1,7 +1,0 @@
-[{
-    "module_name" : "public" ,
-    "name": "tenant_admin",
-    "en": "Tenants Admin",
-    "ar": "إدارة المستأجرين",
-    "permissions": ["tenant_manage"]
-}]

@@ -1,7 +1,0 @@
-[{
-    "module_name" : "courses" ,
-    "name": "book_course_admin",
-    "en": "Booking Courses Admin",
-    "ar": "إدارة حجز الكورسات",
-    "permissions": ["book_course_manage"]
-}]

@@ -1,7 +1,0 @@
-[{
-    "module_name" : "inventory" ,
-    "name": "item_transaction_admin",
-    "en": "item_transaction",
-    "ar": "إدارة كارتة الصنف",
-    "permissions": ["item_transaction_manage"]
-}]
