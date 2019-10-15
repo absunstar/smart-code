@@ -17,7 +17,7 @@ module.exports = function init(site) {
 
   
 
-  site.on('[register][stores][add]', doc => {
+  site.on('[company][created]', doc => {
 
     $stores.add({
       name: "مخزن إفتراضي",

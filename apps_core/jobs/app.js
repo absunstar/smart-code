@@ -1,7 +1,7 @@
 module.exports = function init(site) {
   const $jobs = site.connectCollection("jobs")
 
-  site.on('[register][job][add]', doc => {
+  site.on('[company][created]', doc => {
 
     $jobs.add({
       code: "1" ,

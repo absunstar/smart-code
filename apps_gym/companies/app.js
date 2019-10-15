@@ -16,21 +16,21 @@ module.exports = function init(site) {
     }, (err, doc) => {
       if (!err && doc) {
 
-        site.call('[register][gov][add]', doc)
-        site.call('[register][items_group][add]', doc)
-        site.call('[register][tax_types][add]', doc)
-        site.call('[register][discount_types][add]', doc)
-        site.call('[register][delivery_employee][add]', doc)
-        site.call('[register][employee][add]', doc)
-        site.call('[register][customers_group][add]', doc)
-        site.call('[register][vendors_group][add]', doc)
-        site.call('[register][stores][add]', doc)
-        site.call('[register][safes][add]', doc)
-        site.call('[register][tables_group][add]', doc)
-        site.call('[register][kitchen][add]', doc)
-        site.call('[register][hall][add]', doc)
-        site.call('[register][job][add]', doc)
-        site.call('[register][service][add]', doc)
+        site.call('[company][created]', doc)
+        site.call('[company][created]', doc)
+        site.call('[company][created]', doc)
+        site.call('[company][created]', doc)
+        site.call('[company][created]', doc)
+        site.call('[company][created]', doc)
+        site.call('[company][created]', doc)
+        site.call('[company][created]', doc)
+        site.call('[company][created]', doc)
+        site.call('[company][created]', doc)
+        site.call('[company][created]', doc)
+        site.call('[company][created]', doc)
+        site.call('[company][created]', doc)
+        site.call('[company][created]', doc)
+        site.call('[company][created]', doc)
 
         
         site.call('please add user', {
@@ -100,18 +100,18 @@ module.exports = function init(site) {
         response.done = true
         response.doc = doc
 
-        site.call('[register][gov][add]', doc)
-        site.call('[register][items_group][add]', doc)
-        site.call('[register][tax_types][add]', doc)
-        site.call('[register][discount_types][add]', doc)
-        site.call('[register][delivery_employee][add]', doc)
-        site.call('[register][employee][add]', doc)
-        site.call('[register][customers_group][add]', doc)
-        site.call('[register][vendors_group][add]', doc)
-        site.call('[register][stores][add]', doc)
-        site.call('[register][safes][add]', doc)
-        site.call('[register][tables_group][add]', doc)
-        site.call('[register][kitchen][add]', doc)
+        site.call('[company][created]', doc)
+        site.call('[company][created]', doc)
+        site.call('[company][created]', doc)
+        site.call('[company][created]', doc)
+        site.call('[company][created]', doc)
+        site.call('[company][created]', doc)
+        site.call('[company][created]', doc)
+        site.call('[company][created]', doc)
+        site.call('[company][created]', doc)
+        site.call('[company][created]', doc)
+        site.call('[company][created]', doc)
+        site.call('[company][created]', doc)
 
         site.call('please add user', {
           id: doc.id,

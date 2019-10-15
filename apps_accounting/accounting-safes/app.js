@@ -2,7 +2,7 @@ module.exports = function init(site) {
 
   const $safes = site.connectCollection("safes")
 
-  site.on('[register][safes][add]', doc => {
+  site.on('[company][created]', doc => {
 
     $safes.add({
       name: "خزينة إفتراضي",

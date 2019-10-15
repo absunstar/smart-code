@@ -23,7 +23,7 @@ module.exports = function init(site) {
     path: __dirname + '/site_files/images/'
   })
 
-  site.on('[register][customers_group][add]', doc => {
+  site.on('[company][created]', doc => {
 
     $customers_group.add({
       name: "مجموعة عملاء إفتراضية",

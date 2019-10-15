@@ -14,7 +14,7 @@ module.exports = function init(site) {
   })
 
 
-  site.on('[register][vendors_group][add]', doc => {
+  site.on('[company][created]', doc => {
 
     $vendors_group.add({
       name: "مجموعة موردين إفتراضية",

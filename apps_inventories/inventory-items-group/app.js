@@ -13,7 +13,7 @@ module.exports = function init(site) {
     compress: true
   })
   
-  site.on('[register][items_group][add]', doc => {
+  site.on('[company][created]', doc => {
 
     $items_group.add({
       code : "1",

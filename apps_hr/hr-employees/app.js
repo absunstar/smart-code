@@ -38,7 +38,7 @@ module.exports = function init(site) {
     })
   })
 
-  site.on('[register][employee][add]', doc => {
+  site.on('[company][created]', doc => {
 
     $employee_list.add({
       name: "موظف إفتراضي",

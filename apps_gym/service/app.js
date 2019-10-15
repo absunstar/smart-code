@@ -1,7 +1,7 @@
 module.exports = function init(site) {
   const $service = site.connectCollection("service")
 
-  site.on('[register][service][add]', doc => {
+  site.on('[company][created]', doc => {
 
     $service.add({
       code: "1" ,

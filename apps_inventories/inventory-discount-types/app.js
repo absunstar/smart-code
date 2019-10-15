@@ -27,7 +27,7 @@ module.exports = function init(site) {
   })
 
 
-  site.on('[register][discount_types][add]', doc => {
+  site.on('[company][created]', doc => {
 
     $discount_types.add({
       name: "خصم إفتراضي",

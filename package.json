@@ -1,11 +1,14 @@
 {
-  "name": "smart_code_restaurants",
+  "name": "smart_code",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js" ,
-    "restaurant": "node restaurant.js"
+    "start": "node server.js",
+    "restaurant": "node restaurant.js",
+    "gym": "node gym.js",
+    "academy": "node academy.js",
+    "pmp": "node pmp.js"
   },
   "keywords": [],
   "author": "",

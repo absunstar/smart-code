@@ -2,15 +2,15 @@ const site = require('../isite')({
     port: 40004,
     lang:'ar',
     saving_time: 0.2,
-    name : 'restaurant' ,
+    name : 'gym' ,
     theme: 'theme_paper',
     mongodb: {
-        db: 'smart_code_restaurants',
+        db: 'smart_code_gyms',
         limit: 100000
     },
     security : {
         admin :{
-            email : 'restaurant',
+            email : 'gym',
             password : 'P@$$w0rd'
         }
     }
@@ -29,18 +29,13 @@ site.get({
 
 site.loadLocalApp('client-side')
 site.importApp(__dirname + '/apps_private/cloud_security' , 'security')
-
 site.importApp(__dirname + '/apps_private/ui-print')
 site.importApp(__dirname + '/apps_private/ui-help')
 site.importApps(__dirname + '/apps_core')
 site.importApps(__dirname + '/apps_accounting')
 site.importApps(__dirname + '/apps_inventories')
 site.importApps(__dirname + '/apps_hr')
-site.importApps(__dirname + '/apps_restaurant')
-site.features.push('restaurant')
-
-setTimeout(() => {
-    site.importApp(__dirname + '/apps_private/companies')
-}, 1000);
+site.importApps(__dirname + '/apps_gym')
+site.features.push('gym')
 
 site.run()

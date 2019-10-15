@@ -1,7 +1,7 @@
 module.exports = function init(site) {
   const $hall = site.connectCollection("hall")
 
-  site.on('[register][hall][add]', doc => {
+  site.on('[company][created]', doc => {
 
     $hall.add({
       code: "1" ,

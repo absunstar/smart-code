@@ -13,7 +13,7 @@ module.exports = function init(site) {
     compress: true
   })
 
-  site.on('[register][tables_group][add]', doc => {
+  site.on('[company][created]', doc => {
 
     $tables_group.add({
       code: "1" ,

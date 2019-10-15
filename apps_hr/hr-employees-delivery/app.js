@@ -39,7 +39,7 @@ module.exports = function init(site) {
     })
   })
 
-  site.on('[register][delivery_employee][add]', doc => {
+  site.on('[company][created]', doc => {
 
     $delivery_employee_list.add({
       name: "موظف توصيل إفتراضي",

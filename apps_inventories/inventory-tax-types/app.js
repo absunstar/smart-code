@@ -26,7 +26,7 @@ module.exports = function init(site) {
   })
 
 
-  site.on('[register][tax_types][add]', doc => {
+  site.on('[company][created]', doc => {
 
     $tax_types.add({
       name: "ضريبة إفتراضية",

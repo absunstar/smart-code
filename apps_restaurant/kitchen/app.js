@@ -13,7 +13,7 @@ module.exports = function init(site) {
     compress: true
   })
 
-  site.on('[register][kitchen][add]', doc => {
+  site.on('[company][created]', doc => {
 
     $kitchen.add({
       code: "1" ,

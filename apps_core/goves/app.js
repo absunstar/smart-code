@@ -14,7 +14,7 @@ module.exports = function init(site) {
   })
 
 
-  site.on('[register][gov][add]', doc => {
+  site.on('[company][created]', doc => {
 
     $goves.add({
       name: "محافظة إفتراضية",
