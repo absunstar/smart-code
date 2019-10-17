@@ -3,20 +3,21 @@
         <div class="tabs-header">
             <a class="tab-link" onclick="site.showTabContent(event, '#personalInformation')">
                 ##word.customers_personal_information## </a>
-            <a class="tab-link" onclick="site.showTabContent(event, '#officialDocuments')">
-                ##word.customers_official_documents## </a>
-            <a class="tab-link" ng-Show="showOpeningBalance" onclick="site.showTabContent(event, '#openingBalance')">
-                ##word.customers_opening_balance## </a>
-            <a class="tab-link" ng-click="displaybankingAndAccounting(event)">
-                ##word.customers_banking_and_acounting## </a>
             <a class="tab-link" onclick="site.showTabContent(event, '#contactAndAddress')">
                 ##word.customers_contact_and_addresses## </a>
-            <a class="tab-link" onclick="site.showTabContent(event, '#customersBranches')">
-                ##word.customers_branches## </a>
-            <a class="tab-link" onclick="site.showTabContent(event, '#customersFiles')">
+            <a class="tab-link " onclick="site.showTabContent(event, '#customersFiles')">
                 ##word.customers_files## </a>
-            <a class="tab-link" onclick="site.showTabContent(event, '#customers_dealing')">
+            <a class="tab-link hide" onclick="site.showTabContent(event, '#customersBranches')">
+                ##word.customers_branches## </a>
+            <a class="tab-link hide" onclick="site.showTabContent(event, '#customers_dealing')">
                 ##word.customers_dealing## </a>
+            <a class="tab-link hide" onclick="site.showTabContent(event, '#officialDocuments')">
+                ##word.customers_official_documents## </a>
+            <a class="tab-link hide" ng-Show="showOpeningBalance"
+                onclick="site.showTabContent(event, '#openingBalance')">
+                ##word.customers_opening_balance## </a>
+            <a class="tab-link hide" ng-click="displaybankingAndAccounting(event)">
+                ##word.customers_banking_and_acounting## </a>
         </div>
 
         <div class="tabs-content">
@@ -35,12 +36,14 @@
                                 <i-control class="col4" label="##word.customers_name_en##" ng-model="customer.name_en">
                                 </i-control>
 
-                                <i-checkbox class="col2" label="##word.active##" ng-model="customer.active"></i-checkbox>
+                                <i-checkbox class="col2" label="##word.active##" ng-model="customer.active">
+                                </i-checkbox>
                             </div>
 
                             <div class="row">
-                                <i-list class="col4" label="##word.customers_groups##" ng-model="customer.group"
-                                    items="customerGroupList" display="name" ng-search="_search.$$customerGroup"></i-list>
+                                <i-list class="col4 hide" label="##word.customers_groups##" ng-model="customer.group"
+                                    items="customerGroupList" display="name" ng-search="_search.$$customerGroup">
+                                </i-list>
 
                                 <i-button type="bg-blue white" fa="fa-paper-plane" label="##word.customers_send_email##"
                                     ng-click="displaySendEmail()"></i-button>
@@ -53,11 +56,12 @@
                     </div>
                 </fieldset>
 
-                <fieldset>
+                <fieldset class="hide">
                     <legend> ##word.customers_id_inforamation## </legend>
                     <div class="row">
                         <i-list class="col3" label="##word.customers_nationality##" ng-model="customer.nationality"
-                            items="nationalityList" display="name_ar" ng-search="_search.$$customernationality"></i-list>
+                            items="nationalityList" display="name_ar" ng-search="_search.$$customernationality">
+                        </i-list>
 
                         <i-control class="col3" label="##word.customers_id_number##" ng-model="customer.id_number">
                         </i-control>
@@ -101,7 +105,8 @@
                         <i-control class="col3" label="##word.customers_file_number##" ng-model="customer.file_number">
                         </i-control>
 
-                        <i-control class="col3" label="##word.customers_activity_name##" ng-model="customer.activity_name">
+                        <i-control class="col3" label="##word.customers_activity_name##"
+                            ng-model="customer.activity_name">
                         </i-control>
 
                         <i-control class="col3" label="##word.customers_financier_name##"
@@ -190,7 +195,8 @@
                         <i-control class="col6" label="##word.customers_notes_arabic##" ng-model="openBalance.notes_ar">
                         </i-control>
 
-                        <i-control class="col6" label="##word.customers_notes_english##" ng-model="openBalance.notes_en">
+                        <i-control class="col6" label="##word.customers_notes_english##"
+                            ng-model="openBalance.notes_en">
                         </i-control>
                     </div>
 
@@ -211,7 +217,8 @@
                         </i-list>
 
 
-                        <i-control sign="%" class="col4" label="##word.customers_discount##" ng-model="customer.discount">
+                        <i-control sign="%" class="col4" label="##word.customers_discount##"
+                            ng-model="customer.discount">
                         </i-control>
                     </div>
 
@@ -220,9 +227,11 @@
                             disabled display="currency.code" display2="currency.name_ar" space="--"
                             ng-search="_search.$search_currency"></i-list>
 
-                        <i-control class="col3" label="##word.customers_balance##" ng-model="customer.balance"></i-control>
+                        <i-control class="col3" label="##word.customers_balance##" ng-model="customer.balance">
+                        </i-control>
 
-                        <i-control class="col3" label="##word.customers_credit_limit##" ng-model="customer.credit_limit">
+                        <i-control class="col3" label="##word.customers_credit_limit##"
+                            ng-model="customer.credit_limit">
                         </i-control>
 
                         <i-control sign="%" class="col3" label="##word.customers_delegate_commission##"
@@ -235,7 +244,8 @@
                         <i-button type="add default" ng-click="customer.bank_list.push({})"></i-button>
                         ##word.customers_bank_information##
                         <i-button type="delete default"
-                            ng-click="customer.bank_list.length === 1 || customer.bank_list.splice($index,1)"></i-button>
+                            ng-click="customer.bank_list.length === 1 || customer.bank_list.splice($index,1)">
+                        </i-button>
                     </legend>
 
                     <div class="row">
@@ -259,12 +269,13 @@
                             display="name" ng-change="getCityList(customer.gov)" ng-search="_search.$$govNameContact">
                         </i-list>
 
-                        <i-list class="col4" label="##word.city##" ng-model="customer.city"
-                            items="cityList" ng-change="getAreaList(customer.city)" display="name"
+                        <i-list class="col4" label="##word.city##" ng-model="customer.city" items="cityList"
+                            ng-change="getAreaList(customer.city)" display="name"
                             ng-search="_search.$customer.$city_search"></i-list>
                         <i-list class="col4" label="##word.area##" ng-model="customer.area" items="areaList"
                             display="name" ng-search="_search.$customer.$area_search"></i-list>
-                        <i-control class="col6" label="##word.customers_address##" ng-model="customer.address"></i-control>
+                        <i-control class="col6" label="##word.customers_address##" ng-model="customer.address">
+                        </i-control>
                     </div>
 
                 </fieldset>
@@ -274,12 +285,13 @@
                     <div class="row">
                         <i-control class="col3" label="##word.customers_phone##" ng-model="customer.phone"></i-control>
 
-                        <i-control class="col3" label="##word.customers_internal_number##"
-                            ng-model="customer.internal_number"></i-control>
 
-                        <i-control class="col3" label="##word.customers_mobile##" ng-model="customer.mobile"></i-control>
+                        <i-control class="col3" label="##word.customers_mobile##" ng-model="customer.mobile">
+                        </i-control>
 
                         <i-control class="col3" label="##word.customers_fax##" ng-model="customer.fax"></i-control>
+                        <i-control class="col3 hide" label="##word.customers_internal_number##"
+                            ng-model="customer.internal_number"></i-control>
                     </div>
                 </fieldset>
 
@@ -287,7 +299,8 @@
                     <legend> ##word.customers_post_informations## </legend>
                     <div class="row">
 
-                        <i-control class="col6" label="##word.customers_mailbox##" ng-model="customer.mailbox"></i-control>
+                        <i-control class="col6" label="##word.customers_mailbox##" ng-model="customer.mailbox">
+                        </i-control>
 
                         <i-control class="col6" label="##word.customers_post_number##" ng-model="customer.post_number">
                         </i-control>
@@ -296,7 +309,8 @@
                 <fieldset>
                     <legend> ##word.customers_Web_and_social_accounts## </legend>
                     <div class="row">
-                        <i-control class="col3" label="##word.customers_website##" ng-model="customer.website"></i-control>
+                        <i-control class="col3" label="##word.customers_website##" ng-model="customer.website">
+                        </i-control>
 
                         <i-control class="col3" label="##word.customers_social_facebook_account##"
                             ng-model="customer.social_facebook"></i-control>
@@ -431,7 +445,8 @@
                                 items="companyList" display="name_ar" ng-search="_search.$$dealCompanyName"></i-list>
 
                             <i-list class="col6" label="##word.customers_branch_name##" ng-model="dealCompany.branch"
-                                items="dealCompany.company.branch_list" ng-search="_search.$$dealCompanyBranchName"></i-list>
+                                items="dealCompany.company.branch_list" ng-search="_search.$$dealCompanyBranchName">
+                            </i-list>
 
                         </div>
 

@@ -8,10 +8,9 @@ app.controller("request_service", function ($scope, $http, $timeout) {
       image_url: '/images/request_service.png',
       active: true,
       /* capaneighborhood : " - طالب", */
-      immediate : false
+      immediate: false
     };
     site.showModal('#requestServiceAddModal');
-    
   };
 
   $scope.addRequestService = function () {
@@ -237,8 +236,8 @@ app.controller("request_service", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/employees/all",
       data: {
-        where :{
-          'job.trainer' : true
+        where: {
+          'job.trainer': true
         }
       }
     }).then(
@@ -280,7 +279,14 @@ app.controller("request_service", function ($scope, $http, $timeout) {
 
   };
 
-  $scope.searchAll = function () { 
+  $scope.changePrice = function (request_service) {
+
+    if (request_service.service.id == 1) request_service.session_price = request_service.service.session_price;
+    else if (request_service.service.id == 2) request_service.month_price = request_service.service.month_price;
+
+  };
+
+  $scope.searchAll = function () {
     $scope.getRequestServiceList($scope.search);
     site.hideModal('#requestServiceSearchModal');
     $scope.search = {};
@@ -290,7 +296,7 @@ app.controller("request_service", function ($scope, $http, $timeout) {
   $scope.getRequestServiceList();
   $scope.getPeriod();
   $scope.getCustomerList();
-  $scope.getServiceList ();
+  $scope.getServiceList();
   $scope.getHallList();
   $scope.getTrainerList();
 });

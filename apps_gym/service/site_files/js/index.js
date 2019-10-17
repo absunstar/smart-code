@@ -170,23 +170,30 @@ app.controller("service", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.getPeriod = function () {
+  $scope.getSubscriptionsSystem = function () {
     $scope.busy = true;
-    $scope.periodList = [];
+    $scope.subscriptionsSystemList = [];
     $http({
       method: "POST",
-      url: "/api/period_class/all"
+      url: "/api/subscriptions_system/all"
 
     }).then(
       function (response) {
         $scope.busy = false;
-        $scope.periodList = response.data;
+        $scope.subscriptionsSystemList = response.data;
       },
       function (err) {
         $scope.busy = false;
         $scope.error = err;
       }
     )
+  };
+
+  $scope.calc = function (service) {
+    $scope.error = '';
+    $timeout(() => {
+      service.total_session_price =  service.session_count * service.session_price
+    }, 200);
   };
 
   $scope.displaySearchModal = function () {
@@ -203,6 +210,7 @@ app.controller("service", function ($scope, $http, $timeout) {
   };
 
   $scope.getServiceList();
-  $scope.getPeriod();
-
+  $scope.getSubscriptionsSystem();
+/*   $scope.getPeriod();
+ */
 });

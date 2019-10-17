@@ -1,4 +1,4 @@
-const site = require('../isite')({
+const site = require('../node_modules/isite')({
     port: 40004,
     lang:'ar',
     saving_time: 0.2,
@@ -37,5 +37,8 @@ site.importApps(__dirname + '/apps_inventories')
 site.importApps(__dirname + '/apps_hr')
 site.importApps(__dirname + '/apps_gym')
 site.features.push('gym')
+setTimeout(() => {
+    site.importApp(__dirname + '/apps_private/companies')
+}, 1000)
 
 site.run()

@@ -19,9 +19,15 @@ module.exports = function init(site) {
     }, (err, doc) => {})
   })
 
-  site.post({
+ /*  site.post({
     name: "/api/period_class/all",
     path: __dirname + "/site_files/json/period_class.json"
+
+  }) */
+
+  site.post({
+    name: "/api/subscriptions_system/all",
+    path: __dirname + "/site_files/json/subscriptions_system.json"
 
   })
 

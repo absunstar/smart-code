@@ -22,34 +22,34 @@
 
             <a x-feature="gym" class="tab-link" onclick="site.showTabContent(event, '#companyTab')">
                 <img src="/images/company.png">
-                <span> إعدادات الجيم </span>
+                <span> ##word.gym_setting##</span>
             </a>
 
             <a class="tab-link" onclick="site.showTabContent(event, '#securityTab')">
                 <img src="/images/users.png">
-                <span> نظام الحماية </span>
+                <span> ##word.security_system##</span>
             </a>
             <a class="tab-link" onclick="site.showTabContent(event, '#inventoryTab')">
                 <img src="/images/pic_store2.png">
-                <span> المخازن </span>
+                <span>##word.inventories##</span>
             </a>
             <a class="tab-link" onclick="site.showTabContent(event, '#accountingTab')">
                 <img src="/images/safe.png">
-                <span> الحسابات </span>
+                <span>##word.accounting## </span>
             </a>
 
             <a class="tab-link" onclick="site.showTabContent(event, '#generalTab')">
                 <img src="/images/gov.png">
-                <span> إعدادات عامة </span>
+                <span>##word.general_setting##</span>
             </a>
             <a class="tab-link" onclick="site.showTabContent(event, '#employeesTab')">
                 <img src="/images/employee_list.png">
-                <span> الموظفين </span>
+                <span>##word.employees## </span>
             </a>
 
             <a class="tab-link" onclick="site.showTabContent(event, '#reportingTab')">
                 <img src="/images/item_transaction.png">
-                <span> التقارير </span>
+                <span>##word.reports## </span>
             </a>
 
         </div>
@@ -126,11 +126,7 @@
                     <p> ##word.menu_customers_groups_tag##</p>
                 </a>
 
-                <a class="item" href="/customers" x-permissions="customers_ui || customers_manage">
-                    <img src="/images/vendor.png">
-                    <h2> ##word.menu_customers## </h2>
-                    <p> ##word.menu_customers_tag##</p>
-                </a>
+
 
                 <br>
                 <br>
@@ -361,6 +357,12 @@
             </div>
 
             <div id="companyTab" class="tab-content">
+
+                <a class="item" href="/customers" x-permissions="customers_ui || customers_manage">
+                    <img src="/images/vendor.png">
+                    <h2> ##word.menu_customers## </h2>
+                    <p> ##word.menu_customers_tag##</p>
+                </a>
 
                 <a class="item" href="/hall" x-permissions="hall_ui || hall_manage">
                     <img src="/images/hall.png">

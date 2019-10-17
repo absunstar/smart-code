@@ -1,7 +1,7 @@
 [{
         "name": "request_service",
-        "en": "The request Service",
-        "ar": "طلب الخدمات"
+        "en": "The request Service / Subscriptions",
+        "ar": "طلبات الخدمات / الإشتراكات"
     },
     {
         "name": "request_service_new",

@@ -29,7 +29,6 @@ site.get({
 
 site.loadLocalApp('client-side')
 site.importApp(__dirname + '/apps_private/cloud_security' , 'security')
-
 site.importApp(__dirname + '/apps_private/ui-print')
 site.importApp(__dirname + '/apps_private/ui-help')
 site.importApps(__dirname + '/apps_core')

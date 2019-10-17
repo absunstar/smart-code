@@ -10,9 +10,20 @@
                     </tr>
 
                     <tr>
-                        <td class="title">##word.service_price##</td>
-                        <td class="center blue">{{service.price}}</td>
+                        <td class="title">##word.subscriptions_system##</td>
+                        <td class="center blue">{{service.subscriptions_system.ar}}</td>
                     </tr>
+
+                    <tr ng-show="service.subscriptions_system.id == 1">
+                        <td class="title">##word.session_price##</td>
+                        <td class="center blue">{{service.session_price}}</td>
+                    </tr>
+
+                    <tr ng-show="service.subscriptions_system.id == 2">
+                        <td class="title">##word.month_price##</td>
+                        <td class="center blue">{{service.month_price}}</td>
+                    </tr>
+
 
                     <tr>
                         <td class="title">##word.status##</td>

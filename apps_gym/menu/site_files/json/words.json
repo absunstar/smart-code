@@ -5,6 +5,41 @@
         "ar": "المراقبة"
     },
     {
+        "name": "gym_setting",
+        "en": "Gym Setting",
+        "ar": "إعدادات الجيم"
+    },
+    {
+        "name": "security_system",
+        "en": "Security System",
+        "ar": "نظام الحماية"
+    },
+    {
+        "name": "general_setting",
+        "en": "General Setting",
+        "ar": "إعدادات عامة"
+    },
+    {
+        "name": "inventories",
+        "en": "Inventories",
+        "ar": "المخازن"
+    },
+    {
+        "name": "accounting",
+        "en": "Accounting",
+        "ar": "الحسابات"
+    },
+    {
+        "name": "employees",
+        "en": "Employees",
+        "ar": "الموظفين"
+    },
+    {
+        "name": "reports",
+        "en": "Reports",
+        "ar": "التقارير"
+    },
+    {
         "name": "safes_payments_menus",
         "en": "Safes Payments Menu",
         "ar": "قائمة معاملات الخزينة"
@@ -1036,13 +1071,13 @@
     },
     {
         "name": "request_service_management",
-        "en": "Request Service Management",
-        "ar": "إدارة طلبات الخدمات"
+        "en": "Request Service / Subscriptions Management",
+        "ar": "إدارة طلبات الخدمات / الإشتراكات"
     },
     {
         "name": "request_service_menus",
-        "en": "Request Service Menu",
-        "ar": "قائمة طلبات الخدمات"
+        "en": "Request Service / Subscriptions Menu",
+        "ar": "قائمة طلبات الخدمات / الإشتراكات"
     },
     {
         "name": "hall_management",

@@ -9,6 +9,31 @@
         "en": "Enterprise Resources Planing",
         "ar": "نظام إدارة الجيم"
     },
+
+    {
+        "name": "menu_customers",
+        "en": "Subscribers Menu",
+        "ar": "قائمة المشتركين"
+    },
+    {
+        "name": "menu_customers_tag",
+        "en": "Add Subscribers",
+        "ar": "إضافة مشتركين"
+    },
+    {"name" : "customers" , "en" : "Subscribers" , "ar" : "المشتركين"},
+    {"name" : "customers_new" , "en" : "New Subscriber" , "ar" : "مشترك جديد"},   
+    {"name" : "customers_add" , "en" : "Add Subscriber" , "ar" : "إضافة مشترك"}, 
+    {"name" : "customers_edit" , "en" : "Subscriber Edit" , "ar" : "تعديل بيانات مشترك"},
+    {"name" : "customers_details" , "en" : "Subscriber Details" , "ar" : "تفاصيل مشترك"}, 
+    {"name" : "customers_delete" , "en" : "Delete Subscriber" , "ar" : "حذف مشترك"},
+
+    {"name" : "customers_code" , "en" : "Subscriber Code" , "ar" : "كود المشترك"},
+    {"name" : "customers_name_ar" , "en" : "Subscriber Name Arabic" , "ar" : "إسم المشترك بالعربي"},
+    {"name" : "customers_name_en" , "en" : "Subscriber Name English" , "ar" : "إسم المشترك بالانجليزية"},
+    {"name" : "customer_name" , "en" : "Subscriber Name" , "ar" : "إسم المشترك"},
+    {"name" : "customer" , "en" : "Subscriber " , "ar" : " المشترك"},
+
+
         {"name" : "companies" , "en" : "Gyms" , "ar" : "الجيم"},
         {"name" : "companies_add" , "en" : "Add gym" , "ar" : "إضافة جيم"},
         {"name" : "companies_edit" , "en" : "Edit gym" , "ar" : "تعديل جيم"},

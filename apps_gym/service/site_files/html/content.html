@@ -9,13 +9,30 @@
                         <i-control help-id="service_name" v="r ll2" class="col5" label="##word.service_name##"
                             ng-model="service.name"></i-control>
 
-                        <div class="col2"></div>
-                        <i-checkbox help-id="service_active" class="col2" label="##word.active##" ng-model="service.active"></i-checkbox>
+                        <div class="col5"></div>
+                        <i-checkbox help-id="service_active" class="col2" label="##word.active##"
+                            ng-model="service.active"></i-checkbox>
                     </div>
 
                     <div class="row">
-                        <i-control help-id="service_price" v="r" type="number" class="col2" label="##word.service_price##"
-                            ng-model="service.price"></i-control>
+
+                        <i-list class="col3" label="##word.subscriptions_system##"
+                            ng-model="service.subscriptions_system" items="subscriptionsSystemList" display="ar"
+                            ng-search="_search.$subscriptions_system"></i-list>
+
+                        <i-control ng-show="service.subscriptions_system.id ==1" help-id="session_count" type="number"
+                            class="col2" label="##word.session_count##" ng-model="service.session_count"></i-control>
+
+                        <i-control ng-show="service.subscriptions_system.id ==1" help-id="session_price" type="number"
+                            class="col2" label="##word.session_price##" ng-change="calc(service)"
+                            ng-model="service.session_price"></i-control>
+
+                        <i-control ng-show="service.subscriptions_system.id ==1" help-id="total_session_price"
+                            type="number" class="col2" label="##word.total_session_price##" ng-change="calc(service)"
+                            ng-model="service.total_session_price"></i-control>
+
+                        <i-control ng-show="service.subscriptions_system.id ==2" help-id="month_price" type="number"
+                            class="col2" label="##word.month_price##" ng-model="service.month_price"></i-control>
 
                     </div>
 
