@@ -1,4 +1,4 @@
-const site = require('../isite')({
+const site = require('../node_modules/isite')({
     port: 40004,
     lang:'ar',
     saving_time: 0.2,
