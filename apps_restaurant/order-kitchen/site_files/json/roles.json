@@ -1,0 +1,7 @@
+[{
+    "module_name" : "public" ,
+    "name": "order_kitchen_admin",
+    "en": "Order Kitchen Admin",
+    "ar": "إدارة طلبات المطبخ",
+    "permissions": ["order_kitchen_manage"]
+}]

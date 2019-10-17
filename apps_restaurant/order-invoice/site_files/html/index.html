@@ -225,10 +225,11 @@
                         </div>
 
                         <div class="row">
-                            <i-list ng-search="_search.$transaction_type" class="col4" display="ar"
+                            <i-list ng-search="_search.$transaction_type" class="col4" display="##session.lang##"
                                 ng-model="order_invoice.transaction_type" label="##word.transaction_type##"
                                 items="transactionTypeList" ng-change="calc()">
                             </i-list>
+
                             <i-button ng-show="order_invoice.transaction_type.id == 1 && order_invoice.id" type="edit"
                                 label="##word.merge_table##" ng-click="viewInvoicesTablesList()">
                             </i-button>
@@ -250,7 +251,7 @@
                         </div>
 
                         <fieldset ng-show="order_invoice.transaction_type.id == 2">
-                            <legend> بيانات العميل </legend>
+                            <legend> ##word.customer_data##</legend>
                             <div class="row">
 
                                 <div class="row">

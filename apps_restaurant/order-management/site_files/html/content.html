@@ -9,7 +9,7 @@
                         <i-date2 class="col3" ng-model="report_invoices.date" label="##word.date##"></i-date2>
                         <i-list help-id="" ng-search="_search.$payment_method_search" class="col2"
                             label="##word.payment_method##" ng-model="report_invoices.payment_method"
-                            items="paymentMethodList" display="ar">
+                            items="paymentMethodList" display="##session.lang##">
                         </i-list>
                         <div class="col5"></div>
                         <i-checkbox class="col2" label="##word.active##" ng-model="report_invoices.active"></i-checkbox>
@@ -19,12 +19,12 @@
                         <div class="row">
                             <i-list help-id="" ng-search="_search.$source_type_search" class="col2"
                                 label="##word.source_type##" ng-model="report_invoices.source_type"
-                                items="sourceTypeList" display="ar"></i-list>
+                                items="sourceTypeList" display="##session.lang##"></i-list>
 
                             <i-list help-id="" ng-show="report_invoices.source_type.id == 2"
                                 ng-search="_search.$order_invoices_type_search" class="col2"
                                 label="##word.invoice_type##" ng-model="report_invoices.order_invoices_type"
-                                items="transactionTypeList" display="ar"></i-list>
+                                items="transactionTypeList" display="##session.lang##"></i-list>
                             <!-- ng-change="loadOrderInvoicesType(report_invoices.order_invoices_type)" -->
 
                             <i-control ng-keydown="loadOrderInvoicesType($event)" id="item_name" class="col3"
@@ -99,7 +99,6 @@
                                 class="col3" type="number"></i-control>
                             <i-control class="col3" ng-show="report_invoices.service" ng-change="calc()"
                                 ng-model="report_invoices.service" label="##word.service##" type="number"></i-control>
-
                         </div>
 
                         <div class="row">

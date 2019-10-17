@@ -71,7 +71,7 @@
                         <i-control v="r" v="r" class="col2" type="number" label="##word.total_period##"
                             ng-model="book_hall.total_period"></i-control>
 
-                        <i-list v="r" class="col2" label="##word.period##" display="ar" ng-model="book_hall.period"
+                        <i-list v="r" class="col2" label="##word.period##" display="##session.lang##" ng-model="book_hall.period"
                             items="periodList" ng-search="book_hall.$period_search"></i-list>
 
                         <i-control ng-show="book_hall.period.id == 2" class="col2" label="##word.price_hour##"
@@ -102,8 +102,8 @@
                         <div class="row" ng-repeat="date in book_hall.dates_list">
 
                             <i-date2 class="col5" ng-model="date.date_count" label="##word.date##"></i-date2>
-                            <i-time class="col2" display="ar" ng-model="date.of" label="##word.of##"></i-time>
-                            <i-time class="col2" display="ar" ng-model="date.to" label="##word.to##"></i-time>
+                            <i-time class="col2" display="##session.lang##" ng-model="date.of" label="##word.of##"></i-time>
+                            <i-time class="col2" display="##session.lang##" ng-model="date.to" label="##word.to##"></i-time>
                             <i-button type="delete default"
                                 ng-click="book_hall.dates_list.length ===1 ||book_hall.dates_list.splice($index,1)">
                             </i-button>

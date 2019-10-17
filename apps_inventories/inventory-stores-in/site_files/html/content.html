@@ -20,7 +20,7 @@
                 </div>
 
                 <div class="row">
-                    <i-list v="r" ng-search="_search.$storein_type" display="ar" class="col4" ng-model="store_in.type"
+                    <i-list v="r" ng-search="_search.$storein_type" display="##session.lang##" class="col4" ng-model="store_in.type"
                         items="stores_in_types" label="##word.stores_outtypes##"></i-list>
                     <i-list ng-show="store_in.type.id== 1" class="col4" ng-model="store_in.safe" items="safes"
                         ng-search="_search.$serach_safes" label="##word.stores_in_safe##"></i-list>

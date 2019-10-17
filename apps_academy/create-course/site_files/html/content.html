@@ -17,7 +17,7 @@
                         <i-control ng-show="create_course.course.id" type="number" class="col2" label="##word.create_course_total##"
                             ng-model="create_course.course.courses_total"></i-control>
                         <i-list class="col2" ng-show="create_course.course.id" label="##word.period##" ng-model="create_course.course.period"
-                            items="periodList" display="ar"></i-list>
+                            items="periodList" display="##session.lang##"></i-list>
 
                         <i-control v="r" ng-show="create_course.course.period.id == 1" type="number" class="col2" label="##word.number_lecture_hours##"
                             ng-model="create_course.course.number_lecture_hours"></i-control>
@@ -51,9 +51,9 @@
 
                             <i-control class="col2" type="number" ng-model="d.number_lecture" label="##word.number_lecture_hours##"></i-control>
 
-                            <i-time class="col2" display="ar" ng-model="d.from" label="##word.from##"></i-time>
+                            <i-time class="col2" display="##session.lang##" ng-model="d.from" label="##word.from##"></i-time>
 
-                            <i-time class="col2" display="ar" ng-model="d.to" label="##word.to##"></i-time>
+                            <i-time class="col2" display="##session.lang##" ng-model="d.to" label="##word.to##"></i-time>
 
                             <i-button type="delete default" class="col1" ng-click="create_course.dates_list.length ===1 ||create_course.dates_list.splice($index,1)"></i-button>
 

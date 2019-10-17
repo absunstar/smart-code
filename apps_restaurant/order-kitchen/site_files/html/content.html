@@ -6,11 +6,10 @@
         </i-list>
     </div>
 
+    <br>
+    <br>
+    <br>
 
-    <br>
-    <br>
-
-    <br>
     <table x-permissions="login" class="table bold hover loaded" id="t1">
         <tr>
             <th>##word.code##</th>
@@ -18,6 +17,7 @@
             <th>##word.items_count##</th>
             <th>##word.items_price##</th>
             <th>##word.items_price_total##</th>
+            <th>##word.actions##</th>
         </tr>
 
         <tr ng-repeat="i in book_list_report ">
@@ -26,6 +26,11 @@
             <td class="center blue">{{i.count}}</td>
             <td class="center">{{i.price}}</td>
             <td class="center green">{{i.total_price}}</td>
+
+            <td class="center"> <i-button type="add"
+                x-permissions="order_kitchen_edit || order_kitchen_manage"
+                label="##word.done_deliver##" ng-click="doneDelivery(i)"></i-button>
+            </td>
         </tr>
 
     </table>

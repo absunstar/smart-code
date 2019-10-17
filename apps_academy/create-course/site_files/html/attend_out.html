@@ -30,7 +30,7 @@
                                 {{current_attend.trainer.name}}
                             </td>
                             <td>
-                                <i-list disabled ng-model="current_attend.attend" display="ar" items="attendList">
+                                <i-list disabled ng-model="current_attend.attend" display="##session.lang##" items="attendList">
                                 </i-list>
                                 <i-button type="update" ng-hide="current_attend.attend.id" label="##word.attend##"
                                     ng-click="attendTrainer(current_attend)"></i-button>
@@ -38,11 +38,11 @@
                                     ng-click="absenceTrainer(current_attend)"></i-button>
                             </td>
                             <td ng-hide="current_attend.attend.id == 2">
-                                <i-time ng-model="current_attend.attend_hour" display="ar" items="timeList"></i-time>
+                                <i-time ng-model="current_attend.attend_hour" display="##session.lang##" items="timeList"></i-time>
                             </td>
 
                             <td ng-hide="current_attend.attend.id == 2">
-                                <i-time ng-model="current_attend.out_hour" display="ar" items="timeList"></i-time>
+                                <i-time ng-model="current_attend.out_hour" display="##session.lang##" items="timeList"></i-time>
                             </td>
 
                             <td>
@@ -76,18 +76,18 @@
                                 {{student.name}}
                             </td>
                             <td>
-                                <i-list disabled ng-model="student.attend" display="ar" items="attendList"></i-list>
+                                <i-list disabled ng-model="student.attend" display="##session.lang##" items="attendList"></i-list>
                                 <i-button type="update" ng-hide="student.attend.id" label="##word.attend##"
                                     ng-click="attend(student)"></i-button>
                                 <i-button type="close" ng-hide="student.attend.id" label="##word.absence##"
                                     ng-click="absence(student)"></i-button>
                             </td>
                             <td>
-                                <i-time ng-disabled="student.attend.id == 2" ng-model="student.attend_hour" display="ar"
+                                <i-time ng-disabled="student.attend.id == 2" ng-model="student.attend_hour" display="##session.lang##"
                                     items="timeList"></i-time>
                             </td>
                             <td>
-                                <i-time ng-disabled="student.attend.id == 2" ng-model="student.out_hour" display="ar"
+                                <i-time ng-disabled="student.attend.id == 2" ng-model="student.out_hour" display="##session.lang##"
                                     items="timeList"></i-time>
                             </td>
                             <td class="w200">

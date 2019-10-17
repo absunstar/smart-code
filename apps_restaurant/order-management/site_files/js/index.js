@@ -6,7 +6,29 @@ app.controller("order_management", function ($scope, $http, $timeout) {
   $scope.showDetailes = function (order) {
     $scope.order_management = order;
     site.showModal('#reportInvoicesDetailsModal');
+  };
 
+  $scope.returnToKitchen = function (order, i) {
+    $scope.error = '';
+    $scope.busy = true;
+    i.order_id = order.id;
+
+    $http({
+      method: "POST",
+      url: "/api/order_management/update_kitchen",
+      data: i
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+        } else {
+          $scope.error = 'Please Login First';
+        }
+      },
+      function (err) {
+        console.log(err);
+      }
+    )
   };
 
   $scope.updateOrderManagement = function (order) {
@@ -266,7 +288,7 @@ app.controller("order_management", function ($scope, $http, $timeout) {
   $scope.getDeliveryEmployeesList();
   $scope.getTransactionTypeList();
   $scope.getCustomerList();
-  $scope.getTablesGroupList ();
+  $scope.getTablesGroupList();
   $scope.getOrderStatusList();
   $scope.getDeliveryEmployeesList();
   $scope.getDefaultSettingsList();

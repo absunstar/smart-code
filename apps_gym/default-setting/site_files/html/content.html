@@ -39,16 +39,16 @@
 
                         <i-list help-id="" ng-search="_search.$discount_method_search" class="col2"
                             label="##word.discount_method##" ng-model="default_setting.general_Settings.discount_method"
-                            items="discountMethodList" display="ar">
+                            items="discountMethodList" display="##session.lang##">
                         </i-list>
                         <i-list help-id="" ng-search="_search.$payment_method_search" class="col2"
                             label="##word.payment_method##" ng-model="default_setting.general_Settings.payment_method"
-                            items="paymentMethodList" display="ar">
+                            items="paymentMethodList" display="##session.lang##">
                         </i-list>
                         <i-list help-id="" ng-search="_search.$source_type_search" class="col2"
                             label="##word.source_type##" ng-model="default_setting.general_Settings.source_type"
-                            items="sourceTypeList" display="ar"></i-list>
-                        <i-list ng-search="_search.$order_type" class="col2" display="ar"
+                            items="sourceTypeList" display="##session.lang##"></i-list>
+                        <i-list ng-search="_search.$order_type" class="col2" display="##session.lang##"
                             ng-model="default_setting.general_Settings.order_type" label="##word.order_type##"
                             items="transactionTypeList">
                         </i-list>

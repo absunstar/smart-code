@@ -87,7 +87,7 @@
                                 <td class="green"> {{d.of.minute}} : {{d.of.hour}} </td>
                                 <td class="red"> {{d.to.minute}} : {{d.to.hour}} </td>
                                 <td>
-                                    <i-list disabled ng-model="d.attend" display="ar" items="attendList">
+                                    <i-list disabled ng-model="d.attend" display="##session.lang##" items="attendList">
                                     </i-list>
                                     <i-button type="update" ng-hide="d.attend.id" label="##word.attend##"
                                         ng-click="attend(d)"></i-button>

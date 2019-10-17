@@ -9,7 +9,7 @@
                         <i-date2 class="col3" ng-model="report_sales.date" label="##word.date##"></i-date2>
                         <i-list help-id="" ng-search="_search.$payment_method_search" class="col2"
                             label="##word.payment_method##" ng-model="report_sales.payment_method"
-                            items="paymentMethodList" display="ar">
+                            items="paymentMethodList" display="##session.lang##">
                         </i-list>
                         <div class="col5"></div>
                         <i-checkbox class="col2" label="##word.active##" ng-model="report_sales.active"></i-checkbox>
@@ -19,12 +19,12 @@
                         <div class="row">
                             <i-list help-id="" ng-search="_search.$source_type_search" class="col2"
                                 label="##word.source_type##" ng-model="report_sales.source_type"
-                                items="sourceTypeList" display="ar"></i-list>
+                                items="sourceTypeList" display="##session.lang##"></i-list>
 
                             <i-list help-id="" ng-show="report_sales.source_type.id == 2"
                                 ng-search="_search.$order_invoices_type_search" class="col2"
                                 label="##word.invoice_type##" ng-model="report_sales.order_invoices_type"
-                                items="transactionTypeList" display="ar"></i-list>
+                                items="transactionTypeList" display="##session.lang##"></i-list>
                             <!-- ng-change="loadOrderInvoicesType(report_sales.order_invoices_type)" -->
 
                             <i-control ng-keydown="loadOrderInvoicesType($event)" id="item_name" class="col3"

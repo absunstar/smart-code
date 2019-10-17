@@ -28,7 +28,7 @@
                             <i-control class="col3" disabled label="##word.employee##" ng-model="d.name"></i-control>
 
                             <div class="col3">
-                                <i-list disabled label="##word.status_attend##" ng-model="d.attend" display="ar"
+                                <i-list disabled label="##word.status_attend##" ng-model="d.attend" display="##session.lang##"
                                     items="attendList"></i-list>
 
                                 <i-button type="save" ng-hide="d.attend.id" label="##word.attend##"
@@ -41,7 +41,7 @@
                             </div>
 
                             <div class="col3" ng-show="d.attend.id==1">
-                                <i-list label="##word.status_now##" ng-model="d.status_now" display="ar"
+                                <i-list label="##word.status_now##" ng-model="d.status_now" display="##session.lang##"
                                     items="statusNowList">
                                 </i-list>
 
@@ -51,11 +51,11 @@
 
                             </div>
 
-                            <i-list ng-show="d.attend.id==1" class="col1" items="timeList" display="ar"
+                            <i-list ng-show="d.attend.id==1" class="col1" items="timeList" display="##session.lang##"
                                 ng-model="d.from" label="##word.from##">
                             </i-list>
 
-                            <i-list ng-show="d.attend.id==1" class="col1" items="timeList" display="ar" ng-model="d.to"
+                            <i-list ng-show="d.attend.id==1" class="col1" items="timeList" display="##session.lang##" ng-model="d.to"
                                 label="##word.to##">
                             </i-list>
 

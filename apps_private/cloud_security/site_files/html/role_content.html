@@ -39,7 +39,7 @@
                        
                             <fieldset ng-repeat="screen in public_screens">
                                 <legend> {{screen.name}} </legend>
-                                <i-checklist primary="name" label="" items="screen.permissions" display="ar" ng-model="role.$permissions"></i-checklist>
+                                <i-checklist primary="name" label="" items="screen.permissions" display="##session.lang##" ng-model="role.$permissions"></i-checklist>
                             </fieldset>
 
                        
@@ -54,7 +54,7 @@
                       
                             <fieldset ng-repeat="screen in accounting_screens">
                                 <legend> {{screen.name}} </legend>
-                                <i-checklist primary="name" label="" items="screen.permissions" display="ar" ng-model="role.$permissions"></i-checklist>
+                                <i-checklist primary="name" label="" items="screen.permissions" display="##session.lang##" ng-model="role.$permissions"></i-checklist>
                             </fieldset>
 
                       
@@ -69,7 +69,7 @@
                       
                             <fieldset ng-repeat="screen in inventory_screens">
                                 <legend> {{screen.name}} </legend>
-                                <i-checklist primary="name" label="" items="screen.permissions" display="ar" ng-model="role.$permissions"></i-checklist>
+                                <i-checklist primary="name" label="" items="screen.permissions" display="##session.lang##" ng-model="role.$permissions"></i-checklist>
                             </fieldset>
 
                        

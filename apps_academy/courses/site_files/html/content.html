@@ -15,7 +15,7 @@
 
                     <div class="row" >
                         <i-control type="number" class="col2" label="##word.courses_total##" ng-model="courses.courses_total"></i-control>
-                        <i-list class="col3" label="##word.period##" ng-model="courses.period" items="periodList" display="ar"></i-list>
+                        <i-list class="col3" label="##word.period##" ng-model="courses.period" items="periodList" display="##session.lang##"></i-list>
                         <i-control ng-show="courses.period.id == 1" type="number" class="col2" label="##word.number_lecture_hours##" ng-model="courses.number_lecture_hours"></i-control>
                         <i-control class="col2" type="number" ng-model="courses.number_lecture" label="##word.number_lecture##"></i-control>
                     </div>

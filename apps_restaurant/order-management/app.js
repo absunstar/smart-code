@@ -13,6 +13,33 @@ module.exports = function init(site) {
     path: __dirname + '/site_files/images/'
   })
 
+  site.post("/api/order_management/update_kitchen", (req, res) => {
+
+    let response = {
+      done: false
+    }
+    let item = req.body
+
+    $order_invoice.findOne({
+      id: item.order_id,
+    }, (err, doc) => {
+
+      if (!err && doc) {
+        doc.book_list.forEach(book_list => {
+          if (book_list.size == item.size && book_list.barcode == item.barcode)
+            book_list.done_kitchen = false;
+        });
+        $order_invoice.update(doc, (err, result) => {
+          response.done = true
+
+          res.json(response)
+
+        })
+      }
+    })
+  })
+
+
   site.post("/api/order_management/update", (req, res) => {
     let response = {
       done: false
@@ -44,7 +71,7 @@ module.exports = function init(site) {
           response.done = true
           if (result.doc.reset_items && result.doc.status.id == 2 && result.doc.post) {
             $order_invoice.update(result.doc)
-            result.doc.book_list.forEach(itm => {              
+            result.doc.book_list.forEach(itm => {
               site.call('[order_invoice][stores_items][-]', Object.assign({}, itm))
               itm.company = result.doc.company
               itm.branch = result.doc.branch
@@ -108,7 +135,7 @@ module.exports = function init(site) {
         '$lt': d2
       }
     } else if (where && where.date_from) {
-      let d1 = site.toDate( where.date_from)
+      let d1 = site.toDate(where.date_from)
       let d2 = site.toDate(where.date_to)
       d2.setDate(d2.getDate() + 1);
       where.date = {

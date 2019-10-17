@@ -89,12 +89,25 @@
                                     <th>##word.items_count##</th>
                                     <th>##word.items_price##</th>
                                     <th>##word.items_price_total##</th>
+                                    <th>##word.kitchen##</th>
+                                    <th>##word.actions##</th>
                                 </tr>
                                 <tr ng-repeat="c in order_management.book_list">
                                     <td class="center title">{{c.size}}</td>
                                     <td class="center blue">{{c.count}}</td>
                                     <td class="center blue">{{c.price}}</td>
                                     <td class="center green">{{c.total_price}}</td>
+                                    <td class="center green">{{c.kitchen.name}}</td>
+                                    <td class="center" ng-show="order_management.status ==1">
+                                        <i-button type="add" ng-show="c.done_kitchen"
+                                            x-permissions="order_management_edit || order_kitchen_manage"
+                                            label="##word.return_to_kitchen##"
+                                            ng-click="returnToKitchen(order_management , c)"></i-button>
+
+                                        <h2 class="red center" ng-show="!c.done_kitchen">
+                                            ##word.in_kitchen##</h2>
+
+                                    </td>
                                 </tr>
                             </table>
                         </div>

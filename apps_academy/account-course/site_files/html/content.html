@@ -15,7 +15,7 @@
                     <div class="row">
                         <i-control type="number" class="col2" label="##word.account_course_total##" ng-model="account_course.courses_total"></i-control>
                         <i-list class="col2" label="##word.period##" ng-model="account_course.period" items="periodList"
-                            display="ar"></i-list>
+                            display="##session.lang##"></i-list>
 
                     </div>
 
@@ -40,7 +40,7 @@
                         </legend>
                         <div class="row" ng-repeat="date in account_course.dates_list">
                             <i-date2 class="col5" ng-model="date.date_count" label="##word.date##"></i-date2>
-                            <i-list class="col2" items="timeList" display="ar" ng-model="date.hour" label="##word.hour##"></i-list>
+                            <i-list class="col2" items="timeList" display="##session.lang##" ng-model="date.hour" label="##word.hour##"></i-list>
                             <i-button type="delete default" ng-click="account_course.dates_list.length ===1 ||account_course.dates_list.splice($index,1)"></i-button>
 
                         </div>

@@ -45,7 +45,7 @@
                             </i-list>
 
                             <i-list help-id="" class="col3" ng-show="employee_list.job.trainer == true"
-                                display="ar"
+                                display="##session.lang##"
                                 items="accountingSystemList" ng-search="_search.$employee.$accounting_system"
                                 label="##word.accounting_system##" ng-model="employee_list.accounting_system">
                             </i-list>
@@ -55,7 +55,7 @@
 
                             <i-list help-id="" ng-search="_search.$indentfy_search" class="col2"
                                 label="##word.employee_indentfy##" ng-model="employee_list.indentfy"
-                                items="indentfyList" display="ar"></i-list>
+                                items="indentfyList" display="##session.lang##"></i-list>
 
                             <i-list help-id="" class="col3" items="degreeList"
                                 ng-search="_search.$employee.$degree_search" label="##word.employees_degrees##"

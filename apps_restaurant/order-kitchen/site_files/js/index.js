@@ -18,6 +18,29 @@ app.controller("order_kitchen", function ($scope, $http, $interval) {
     $scope.search = new Search();
   };
 
+  $scope.doneDelivery = function (i) {
+
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/order_kitchen/update",
+      data: i
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+        } else {
+          $scope.error = 'Please Login First';
+        }
+      },
+      function (err) {
+        console.log(err);
+      }
+    )
+  };
+
+
   $scope.loadKitchens = function () {
     $scope.error = '';
     $scope.busy = true;
@@ -58,10 +81,10 @@ app.controller("order_kitchen", function ($scope, $http, $interval) {
           $scope.defaultSettings = response.data.doc;
           $scope.error = '';
           $scope.order_kitchen = {};
-          $scope.order_kitchen.kitchen = $scope.defaultSettings.general_Settings? $scope.defaultSettings.general_Settings.kitchen:null
-          if($scope.order_kitchen.kitchen && $scope.order_kitchen.kitchen.id){
+          $scope.order_kitchen.kitchen = $scope.defaultSettings.general_Settings ? $scope.defaultSettings.general_Settings.kitchen : null
+          if ($scope.order_kitchen.kitchen && $scope.order_kitchen.kitchen.id) {
             $scope.orderKitchensList();
-          }          
+          }
         };
       },
       function (err) {
@@ -82,19 +105,9 @@ app.controller("order_kitchen", function ($scope, $http, $interval) {
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done) {
-          $scope.book_list_report = [];
-          
-          response.data.list.forEach(o => {
-            o.book_list.forEach(itm => {
-              if (itm.kitchen.id == $scope.order_kitchen.kitchen.id)
-              itm.order = {
-                id : o.id,
-                code : o.code
-              }
-                $scope.book_list_report.push(itm);
-            });
-          });
+        if (response.data.done){
+          $scope.count = response.data.count;
+          $scope.book_list_report = response.data.list
         }
       },
       function (err) {
@@ -107,9 +120,9 @@ app.controller("order_kitchen", function ($scope, $http, $interval) {
   $scope.loadKitchens();
   $scope.getDefaultSettings();
 
-  $interval(()=>{
+  $interval(() => {
     $scope.orderKitchensList();
-  } , 1000 * 5);
+  }, 1000 * 5);
 });
 
 

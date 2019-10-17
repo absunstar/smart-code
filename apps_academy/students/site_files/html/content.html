@@ -49,7 +49,7 @@
                         <div class="row">
 
                             <i-list help-id="" class="col4" label="##word.students_indentfy##" ng-model="students.indentfy"
-                                items="indentfyList" display="ar"></i-list>
+                                items="indentfyList" display="##session.lang##"></i-list>
 
                             <i-date2 help-id="" class="col4" label="##word.birth_date##" ng-model="students.birth_date"></i-date2>
 
@@ -114,7 +114,7 @@
 
             <div id="familyInformation" class="tab-content">
                 <fieldset class="row">
-                    <i-list class="col3" items="hostList" label="##word.host##" display="ar" ng-model="students.host"></i-list>
+                    <i-list class="col3" items="hostList" label="##word.host##" display="##session.lang##" ng-model="students.host"></i-list>
                 </fieldset>
 
                 <fieldset ng-show="students.host.id == 2 || students.host.id == 1">
@@ -253,7 +253,7 @@
                         <i-list class="col4" items="medicineList" label="##word.medicine##" ng-search="medicine.$medicines"
                             ng-model="medicine.name"></i-list>
                         <i-control class="col2" type="number" label="##word.count_dosage##" ng-model="medicine.count_dosage"></i-control>
-                        <i-list class="col2" items="timeList" display="ar" label="##word.beginning_dosage##" ng-model="medicine.time"></i-list>
+                        <i-list class="col2" items="timeList" display="##session.lang##" label="##word.beginning_dosage##" ng-model="medicine.time"></i-list>
                         <i-button class="col1" type="delete default" ng-click="students.medicine_list.length ==1 || students.medicine_list.splice($index,1)"></i-button>
 
                     </div>

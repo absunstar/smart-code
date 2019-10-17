@@ -24,6 +24,11 @@
         "ar": "التاريخ"
     },
     {
+        "name": "done_deliver",
+        "en": "Done Deliver",
+        "ar": "تم التسليم"
+    },
+    {
         "name": "general_Settings",
         "en": "General Settings",
         "ar": "إعدادات عامة"

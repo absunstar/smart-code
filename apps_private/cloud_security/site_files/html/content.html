@@ -67,7 +67,7 @@
                         <legend>
                             ##word.security_public_roles##
                         </legend>
-                        <i-checklist primary="name" label="" items="public_roles" display="ar" ng-model="user.roles"></i-checklist>
+                        <i-checklist primary="name" label="" items="public_roles" display="##session.lang##" ng-model="user.roles"></i-checklist>
                     </fieldset>
                 </div>
 
@@ -76,7 +76,7 @@
                             <legend>
                                 ##word.security_custom_roles##
                             </legend>
-                            <i-checklist primary="name" label="" items="custom_roles" display="ar" ng-model="user.roles"></i-checklist>
+                            <i-checklist primary="name" label="" items="custom_roles" display="##session.lang##" ng-model="user.roles"></i-checklist>
                         </fieldset>
                     </div>
                     
@@ -85,7 +85,7 @@
                         <legend>
                             ##word.security_accounting_roles##
                         </legend>
-                        <i-checklist primary="name" label="" items="accounting_roles" display="ar" ng-model="user.roles"></i-checklist>
+                        <i-checklist primary="name" label="" items="accounting_roles" display="##session.lang##" ng-model="user.roles"></i-checklist>
                     </fieldset>
                 </div>
 
@@ -95,7 +95,7 @@
                             <legend>
                                 ##word.security_hr_roles##
                             </legend>
-                            <i-checklist primary="name" label="" items="hr_roles" display="ar" ng-model="user.roles"></i-checklist>
+                            <i-checklist primary="name" label="" items="hr_roles" display="##session.lang##" ng-model="user.roles"></i-checklist>
                         </fieldset>
                     </div>
 
@@ -104,7 +104,7 @@
                             <legend>
                                 ##word.security_inventory_roles##
                             </legend>
-                            <i-checklist primary="name" label="" items="inventory_roles" display="ar" ng-model="user.roles"></i-checklist>
+                            <i-checklist primary="name" label="" items="inventory_roles" display="##session.lang##" ng-model="user.roles"></i-checklist>
                         </fieldset>
                     </div>
 
@@ -119,7 +119,7 @@
                      
                             <fieldset ng-repeat="screen in public_screens">
                                 <legend> {{screen.name}} </legend>
-                                <i-checklist primary="name" label="" items="screen.permissions" display="ar" ng-model="user.permissions"></i-checklist>
+                                <i-checklist primary="name" label="" items="screen.permissions" display="##session.lang##" ng-model="user.permissions"></i-checklist>
                             </fieldset>
 
                     </div>
@@ -134,7 +134,7 @@
                        
                             <fieldset ng-repeat="screen in accounting_screens">
                                 <legend> {{screen.name}} </legend>
-                                <i-checklist primary="name" label="" items="screen.permissions" display="ar" ng-model="user.permissions"></i-checklist>
+                                <i-checklist primary="name" label="" items="screen.permissions" display="##session.lang##" ng-model="user.permissions"></i-checklist>
                             </fieldset>
 
                     </div>
@@ -149,7 +149,7 @@
                            
                                 <fieldset ng-repeat="screen in hr_screens">
                                     <legend> {{screen.name}} </legend>
-                                    <i-checklist primary="name" label="" items="screen.permissions" display="ar" ng-model="user.permissions"></i-checklist>
+                                    <i-checklist primary="name" label="" items="screen.permissions" display="##session.lang##" ng-model="user.permissions"></i-checklist>
                                 </fieldset>
     
                         </div>
@@ -164,7 +164,7 @@
                       
                             <fieldset ng-repeat="screen in inventory_screens">
                                 <legend> {{screen.name}} </legend>
-                                <i-checklist primary="name" label="" items="screen.permissions" display="ar" ng-model="user.permissions"></i-checklist>
+                                <i-checklist primary="name" label="" items="screen.permissions" display="##session.lang##" ng-model="user.permissions"></i-checklist>
                             </fieldset>
 
                     </div>

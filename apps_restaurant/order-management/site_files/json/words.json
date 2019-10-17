@@ -15,6 +15,16 @@
         "ar": "حالة الطلب"
     },
     {
+        "name": "return_to_kitchen",
+        "en": "Return To Kitchen",
+        "ar": "إعادة إلى المطبخ"
+    },
+    {
+        "name": "in_kitchen",
+        "en": "In Kitchen",
+        "ar": "في المطبخ"
+    },
+    {
         "name": "report_invoices_informations",
         "en": "Report Invoices Informations",
         "ar": "بيانات تقرير فاتورة"

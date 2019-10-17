@@ -74,16 +74,16 @@
                         <td ng-click="showDetailes(c)" class="pointer">{{c.status.ar}}</td>
                         <td>
                             <i-button type="add" ng-show="c.transaction_type.id == 2 && (c.status.id == 1 || c.status_delivery.id == 1)"
-                                x-permissions="order_management_add || order_management_manage"
+                                x-permissions="order_management_edit || order_management_manage"
                                 label="##word.set_employee_delivery##" ng-click="showDeliveryEmployee(c)"></i-button>
 
                             <i-button type="save"
                                 ng-show="!c.reset_items && defaultSettings.general_Settings.discount_method.id == 2 && c.status.id == 2"
-                                x-permissions="order_management_add || order_management_manage" label="##word.post##"
+                                x-permissions="order_management_edit || order_management_manage" label="##word.post##"
                                 ng-click="postOrder(c)"></i-button>
 
                             <i-button type="exit" ng-show="!c.reset_items && (c.status.id == 2)"
-                                x-permissions="order_management_add || order_management_manage"
+                                x-permissions="order_management_edit || order_management_manage"
                                 label="##word.return_to_order##" ng-click="returnToOrders(c)"></i-button>
                         </td>
                     </tr>
