@@ -312,8 +312,6 @@ module.exports = function init(site) {
       }
     }
 
-
-
     // if (where['active'] !== 'all') {
     //   where['active'] = true
     // } else {

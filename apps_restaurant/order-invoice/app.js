@@ -287,7 +287,6 @@ module.exports = function init(site) {
     }
 
     let order_invoice_doc = req.body
-    console.log(order_invoice_doc)
     let id = req.body.id
     if (order_invoice_doc.table) {
         let table = order_invoice_doc.table
@@ -371,6 +370,10 @@ module.exports = function init(site) {
       res.json(response)
     })
   })
+
+ /*  site.isItemInOrder = function(params) {
+   
+ }  */
 
 
   site.post("/api/order_invoice/active_all", (req, res) => {
