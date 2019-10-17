@@ -4,9 +4,34 @@
         "ar": "الخدمات"
     },
     {
+        "name": "subscriptions_system",
+        "en": "Subscriptions System",
+        "ar": "نظام الإشتراكات"
+    },
+    {
         "name": "service_new",
         "en": "New Hall",
         "ar": "خدمة جديدة"
+    },
+    {
+        "name": "session_count",
+        "en": "Sessions Count",
+        "ar": "عدد الجلسات"
+    },
+    {
+        "name": "session_price",
+        "en": "Session Price",
+        "ar": "سعر الجلسة"
+    },
+    {
+        "name": "total_session_price",
+        "en": "Total Session Price",
+        "ar": "إجمالي سعر الجلسات"
+    },
+    {
+        "name": "month_price",
+        "en": "Month Price",
+        "ar": "سعر الشهر"
     },
     {
         "name": "service_add",
