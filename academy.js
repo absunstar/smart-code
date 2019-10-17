@@ -30,7 +30,7 @@ site.importApps(__dirname + '/core_apps')
 site.importApps(__dirname + '/academy')
 site.features.push('academy')
 
-setTimeout(() => {
+setTimeout(() => { 
     site.importApp(__dirname + '/private_apps/companies')
     site.importApp(__dirname + '/private_apps/ui-print')
     site.importApp(__dirname + '/private_apps/ui-help')
