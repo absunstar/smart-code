@@ -412,12 +412,12 @@
     {
         "name": "menu_company",
         "en": "company",
-        "ar": "المطاعم"
+        "ar": "الجيم"
     },
     {
         "name": "menu_company_tag",
         "en": "Add company Manegment",
-        "ar": "إدارة نظام المطاعم"
+        "ar": "إدارة نظام الجيم"
     },
     {
         "name": "menu_jobs",
