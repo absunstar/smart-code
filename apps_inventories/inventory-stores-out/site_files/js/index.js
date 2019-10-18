@@ -115,13 +115,14 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
       $scope.error = '##word.stores_out_error_discount##';
       return;
     } else {
+      $scope.discount.type = 'number';
+
       $scope.store_out.discountes = $scope.store_out.discountes || [];
       $scope.store_out.discountes.push({
         name: $scope.discount.name,
         value: $scope.discount.value,
         type: $scope.discount.type
       });
-      $scope.discount = {};
       $scope.calc();
     };
   };

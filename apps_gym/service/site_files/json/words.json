@@ -49,6 +49,16 @@
         "ar": "تفاصيل الخدمة"
     },
     {
+        "name": "service_count",
+        "en": "Service Count",
+        "ar": "العدد"
+    },
+    {
+        "name": "err_select_service",
+        "en": "Must Select Service",
+        "ar": "يجب إختيار خدمة"
+    },
+    {
         "name": "service_delete",
         "en": "Delete Hall",
         "ar": "حذف خدمة"
@@ -62,6 +72,36 @@
         "name": "service_price",
         "en": "Course Price",
         "ar": "سعر الخدمة "
+    },
+    {
+        "name": "complex_service",
+        "en": "Assembler Service",
+        "ar": "خدمة مجمعة"
+    },
+    {
+        "name": "complex_services",
+        "en": "Assembler Services",
+        "ar": "الخدمات المجمعة"
+    },
+    {
+        "name": "total_complex_services_price",
+        "en": "Total Assembler Services Price",
+        "ar": "إجمالي سعر الخدمات المجمعة"
+    },
+    {
+        "name": "paid",
+        "en": "Paid",
+        "ar": "المدفوع"
+    },
+    {
+        "name": "paid_require",
+        "en": "Paid Require",
+        "ar": "المطلوب دفعه"
+    },
+    {
+        "name": "services_price",
+        "en": "Service Price",
+        "ar": "سعر الخدمة"
     },
     {
         "name": "service_total",

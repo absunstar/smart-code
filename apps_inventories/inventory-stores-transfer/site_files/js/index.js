@@ -29,6 +29,8 @@ app.controller("stores_transfer", function ($scope, $http, $timeout) {
 
   $scope.addDiscount = function () {
     $scope.stores_transfer.discountes = $scope.stores_transfer.discountes || [];
+    $scope.discount.type = 'number';
+
     $scope.stores_transfer.discountes.push({
       name: $scope.discount.name,
       value: $scope.discount.value,

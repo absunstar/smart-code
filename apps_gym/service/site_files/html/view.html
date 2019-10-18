@@ -8,8 +8,52 @@
                         <td class="title">##word.service_name##</td>
                         <td class="center">{{service.name}}</td>
                     </tr>
+                    <tr>
+                        <td class="title">##word.services_price##</td>
+                        <td class="center blue">{{service.services_price}}</td>
+                    </tr>
 
                     <tr>
+                        <td class="title">##word.status##</td>
+                        <td ng-show="service.active == true" class="green center"> ##word.active## </td>
+                        <td ng-show="service.active == false" class="red center"> ##word.not_active## </td>
+                    </tr>
+
+                    <tr ng-show="service.selectedServicesList.length > 0">
+                            <td class="title">##word.complex_services##</td>
+                            <td>
+                                <div class="row" >
+    
+                                    <table class="table hover bold">
+                                        <tr>
+                                            <th>##word.service_name##</th>
+                                            <th>##word.services_price##</th>
+                                            <th>##word.service_count##</th>
+                                        </tr>
+    
+                                        <tr class="bold" ng-repeat="s in service.selectedServicesList">
+    
+                                            <td>
+                                                <p class="center bold blue">{{s.name}}</p>
+                                            </td>
+    
+                                            <td>
+                                                <p class="center bold green">{{s.services_price}}</p>
+                                            </td>
+    
+                                            <td>
+                                                <p class="center bold blue">{{s.count}}</p>
+                                            </td>
+    
+                                        </tr>
+    
+                                    </table>
+                                </div>
+                            </td>
+                        </tr>
+    
+
+                    <!--  <tr>
                         <td class="title">##word.subscriptions_system##</td>
                         <td class="center blue">{{service.subscriptions_system.ar}}</td>
                     </tr>
@@ -24,12 +68,8 @@
                         <td class="center blue">{{service.month_price}}</td>
                     </tr>
 
-
-                    <tr>
-                        <td class="title">##word.status##</td>
-                        <td ng-show="service.active == true" class="green center"> ##word.active## </td>
-                        <td ng-show="service.active == false" class="red center"> ##word.not_active## </td>
-                    </tr>
+ -->
+                  
                 </table>
             </div>
 

@@ -755,6 +755,8 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
       $scope.error = '##word.error_discount##';
       return;
     } else {
+      $scope.discount.type = 'number';
+
       $scope.order_invoice.discountes = $scope.order_invoice.discountes || [];
       $scope.order_invoice.discountes.push({
         name: $scope.discount.name,
@@ -799,10 +801,10 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         });
       };
 
-      if ($scope.order_invoice.discountes) {
+      if ($scope.order_invoice.discountes && $scope.order_invoice.discountes.length > 0) {
         $scope.order_invoice.discountes.forEach(ds => {
           if (ds.type === "percent") {
-            $scope.order_invoice.total_discount += $scope.order_invoice.total_value * parseFloat(ds.value) / 100;
+            4 += $scope.order_invoice.total_value * parseFloat(ds.value) / 100;
           } else {
             $scope.order_invoice.total_discount += parseFloat(ds.value);
           };

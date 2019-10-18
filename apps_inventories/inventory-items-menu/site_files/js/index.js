@@ -382,6 +382,8 @@ app.controller("items_menu", function ($scope, $http, $timeout) {
       $scope.error = '##word.stores_out_error_discount##';
       return;
     } else {
+      $scope.discount.type = 'number';
+
       $scope.items_menu.discountes = $scope.items_menu.discountes || [];
       $scope.items_menu.discountes.push({
         name: $scope.discount.name,

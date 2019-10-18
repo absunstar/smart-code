@@ -205,15 +205,17 @@ module.exports = function init(site) {
     if (where['name']) {
       where['name'] = new RegExp(where['name'], "i");
     }
-    if (where.search && where.search.capaneighborhood) {
+
+    if (where.search && where.search.services_price) {
     
-      where['capaneighborhood'] = where.search.capaneighborhood
+      where['services_price'] = where.search.services_price
     }
 
     if (where.search && where.search.current) {
     
       where['current'] = where.search.current
     }
+
     delete where.search
 
     where['company.id'] = site.get_company(req).id

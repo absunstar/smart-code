@@ -1,5 +1,5 @@
 const site = require('../node_modules/isite')({
-    port: 40004,
+    port: 4000,
     lang:'ar',
     saving_time: 0.2,
     name : 'gym' ,

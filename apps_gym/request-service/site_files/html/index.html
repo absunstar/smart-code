@@ -40,9 +40,12 @@
                     <tr>
                         <th class="not-print">##word.logo##</th>
                         <th>##word.customer##</th>
-                        <th>##word.service##</th>
                         <th>##word.trainer##</th>
                         <th>##word.hall##</th>
+                        <th>##word.service##</th>
+                        <th>##word.start_date##</th>
+                        <th>##word.expired_date##</th>
+                        <th>##word.paid_require##</th>
                         <th>##word.status##</th>
                         <th class="not-print">##word.actions##</th>
                     </tr>
@@ -51,9 +54,12 @@
                             <img class="logo" ng-src="{{c.image_url}}">
                         </td>
                         <td class="center title">{{c.customer.name_ar}}</td>
-                        <td class="center">{{c.service.name}}</td>
                         <td class="center">{{c.trainer.name}}</td>
                         <td class="center">{{c.hall.name}}</td>
+                        <td class="center">{{c.service.name}}</td>
+                        <td class="center brown">{{c.from_date | date : 'yyyy - MM - dd'}}</td>
+                        <td class="center red">{{c.to_date | date : 'yyyy - MM - dd'}}</td>
+                        <td class="center green">{{c.paid_require}}</td>
 
                         <td class="center">
                             <p ng-show="c.active ==true" class="green"> ##word.active## </p>

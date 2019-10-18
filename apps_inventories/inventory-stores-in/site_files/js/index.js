@@ -33,6 +33,8 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
   };
   $scope.addDiscount = function () {
     $scope.store_in.discountes = $scope.store_in.discountes || [];
+    $scope.discount.type = 'number';
+
     $scope.store_in.discountes.push({
       name: $scope.discount.name,
       value: $scope.discount.value,

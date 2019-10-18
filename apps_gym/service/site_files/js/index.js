@@ -8,10 +8,10 @@ app.controller("service", function ($scope, $http, $timeout) {
       image_url: '/images/service.png',
       active: true,
       /* capaneighborhood : " - طالب", */
-      immediate : false
+      immediate: false
     };
     site.showModal('#serviceAddModal');
-    
+
   };
 
   $scope.addService = function () {
@@ -189,10 +189,56 @@ app.controller("service", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.calc = function (service) {
+  $scope.getService = function (ev) {
+    $scope.error = '';
+    if (ev.which === 13) {
+      $http({
+        method: "POST",
+        url: "/api/service/all",
+        data: {
+          search: $scope.search_service,
+          select: { id: 1, name: 1, services_price: 1 }
+        }
+      }).then(
+        function (response) {
+          $scope.busy = false;
+          if (response.data.done) {
+            if (response.data.list.length > 0) {
+              $scope.servicesList = response.data.list;
+            }
+          }
+        },
+        function (err) {
+          console.log(err);
+        }
+      );
+    }
+  };
+
+  $scope.incertServices = function () {
+    $scope.error = '';
+    $scope.service.selectedServicesList = $scope.service.selectedServicesList || [];
+
+    if ($scope.selectedService && $scope.selectedService.id) {
+      $scope.service.selectedServicesList.unshift($scope.selectedService);
+
+    } else $scope.error = '##word.err_select_service##';
+
+    $scope.selectedService = {};
+  };
+
+  $scope.deleteServiceList = function (service) {
+    $scope.error = '';
+    $scope.service.selectedServicesList.splice($scope.service.selectedServicesList.indexOf(service), 1);
+  };
+
+  $scope.calc = function () {
     $scope.error = '';
     $timeout(() => {
-      service.total_session_price =  service.session_count * service.session_price
+
+      $scope.service.total_complex_services_price = 0;
+      $scope.service.selectedServicesList.map(s => $scope.service.total_complex_services_price += Number(s.services_price) * Number(s.count));
+
     }, 200);
   };
 
@@ -202,7 +248,7 @@ app.controller("service", function ($scope, $http, $timeout) {
 
   };
 
-  $scope.searchAll = function () { 
+  $scope.searchAll = function () {
     $scope.getServiceList($scope.search);
     site.hideModal('#serviceSearchModal');
     $scope.search = {};
@@ -211,6 +257,6 @@ app.controller("service", function ($scope, $http, $timeout) {
 
   $scope.getServiceList();
   $scope.getSubscriptionsSystem();
-/*   $scope.getPeriod();
- */
+  /*   $scope.getPeriod();
+   */
 });

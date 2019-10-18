@@ -14,6 +14,26 @@
         "ar": "اضافة طلب خدمة"
     },
     {
+        "name": "paid_require",
+        "en": "Paid Require",
+        "ar": "المطلوب دفعه"
+    },
+    {
+        "name": "beginning_of_day",
+        "en": "The beginning of the day",
+        "ar": " بداية الإشتراك اليوم"
+    },
+    {
+        "name": "start_date",
+        "en": "Start Date",
+        "ar": "تاريخ بداية الإشتراك"
+    },
+    {
+        "name": "expired_date",
+        "en": "Expired Date",
+        "ar": "تاريخ إنتهاء الإشتراك"
+    },
+    {
         "name": "trainer",
         "en": "Trainer",
         "ar": "المدرب"

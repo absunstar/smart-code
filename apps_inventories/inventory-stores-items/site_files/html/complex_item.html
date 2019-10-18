@@ -10,70 +10,64 @@
         <div class="modal-body">
             <form class="form">
 
+                <div class="row">
+                    <i-control ng-keydown="getItemsName($event)" id="item_name" class="col3" ng-model="search_item_name"
+                        label="##word.search##" type="text"></i-control>
 
-                    <div class="row">
-                            <i-control ng-keydown="getItemsName($event)" id="item_name" class="col3"
-                                ng-model="search_item_name" label="##word.search##" type="text"></i-control>
+                    <i-list class="col4" label="##word.stores_in_item_name##" ng-model="selectedItem" display="name"
+                        items="itemsNameList" ng-change="itemsStoresIn()" ng-search="_search.$item_searching"></i-list>
 
-                            <i-list class="col4" label="##word.stores_in_item_name##" ng-model="selectedItem"
-                                display="name" items="itemsNameList" ng-change="itemsStoresIn()"
-                                ng-search="_search.$item_searching"></i-list>
+                    <i-list ng-search="_search.$items_size" class="col4" display="size" ng-model="items_size"
+                        label="##word.barcode##" items="selectedItem.sizes">
+                    </i-list>
 
-                                <i-list ng-search="_search.$items_size" class="col4" display="size" ng-model="items_size"
-                                label="##word.stores_items_name##" items="selectedItem.sizes">
-                            </i-list>
-        
-                            <i-button type="add" class="col2" label="##word.add##" ng-click="incertComplexItem()"> </i-button>
+                    <i-button type="add" class="col2" label="##word.add##" ng-click="incertComplexItem()"> </i-button>
 
-                        </div>
+                </div>
 
                 <div class="row">
-                  
-                </div>
-
-                <br>
-                <br>
-                <br>
-                <div class="row" >
-                    <div class="row">
-
-                        <table class="table">
-                            <tr>
-                            <tr>
-                                <th>##word.item_name##</th>
-                                <th>##word.stores_items_sizes##</th>
-                                <th>##word.items_price##</th>
-                                <th>##word.item_count##</th>
-                                <th>##word.actions##</th>
-                            </tr>
-
-                            <tr class="bold" ng-repeat="i in item.complex_items">
-                                <td>
-                                    <br>
-                                    <p class="center bold blue">{{i.stores_item_name}}</p>
-                                </td>
-                                <td>
-                                    <br>
-                                    <p class="center bold blue">{{i.size}}</p>
-                                </td>
-                                <td>
-                                    <br>
-                                    <p class="center bold green">{{i.price}}</p>
-                                </td>
-                                <td>
-                                    <i-control ng-model="i.count" type="number"></i-control>
-                                </td>
-
-                                <td class="center">
-                                    <i-button type="delete" ng-click="deleteItemComplex(i)"></i-button>
-                                </td>
-
-                            </tr>
-
-                        </table>
-                    </div>
 
                 </div>
+
+                <br>
+                <br>
+                <br>
+                <div class="row">
+                    <table class="table">
+                        <tr>
+                            <th>##word.item_name##</th>
+                            <th>##word.stores_items_sizes##</th>
+                            <th>##word.items_price##</th>
+                            <th>##word.item_count##</th>
+                            <th>##word.actions##</th>
+                        </tr>
+
+                        <tr class="bold" ng-repeat="i in item.complex_items">
+                            <td>
+                                <br>
+                                <p class="center bold blue">{{i.stores_item_name}}</p>
+                            </td>
+                            <td>
+                                <br>
+                                <p class="center bold blue">{{i.size}}</p>
+                            </td>
+                            <td>
+                                <br>
+                                <p class="center bold green">{{i.price}}</p>
+                            </td>
+                            <td>
+                                <i-control ng-model="i.count" type="number"></i-control>
+                            </td>
+
+                            <td class="center">
+                                <i-button type="delete" ng-click="deleteItemComplex(i)"></i-button>
+                            </td>
+
+                        </tr>
+
+                    </table>
+                </div>
+
             </form>
         </div>
         <h2 class="error">{{error}}</h2>

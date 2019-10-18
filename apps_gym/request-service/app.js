@@ -4,7 +4,7 @@ module.exports = function init(site) {
   site.on('[register][request_service][add]', doc => {
 
     $request_service.add({
-      code: "1" ,
+      code: "1",
       name: "طلب خدمة إفتراضية",
       image_url: '/images/request_service.png',
       company: {
@@ -16,7 +16,7 @@ module.exports = function init(site) {
         name_ar: doc.branch_list[0].name_ar
       },
       active: true
-    }, (err, doc) => {})
+    }, (err, doc) => { })
   })
 
   site.post({
@@ -63,31 +63,16 @@ module.exports = function init(site) {
     request_service_doc.company = site.get_company(req)
     request_service_doc.branch = site.get_branch(req)
 
-
-
-    $request_service.find({
-      where: {
-        
-        'company.id': site.get_company(req).id,
-        'branch.code': site.get_branch(req).code,
-        'name': request_service_doc.name
-      }
-    }, (err, doc) => {
-      if (!err && doc) {
-        response.error = 'Name Exists'
-        res.json(response)
+    $request_service.add(request_service_doc, (err, doc) => {
+      if (!err) {
+        response.done = true
+        response.doc = doc
       } else {
-        $request_service.add(request_service_doc, (err, doc) => {
-          if (!err) {
-            response.done = true
-            response.doc = doc
-          } else {
-            response.error = err.message
-          }
-          res.json(response)
-        })
+        response.error = err.message
       }
+      res.json(response)
     })
+
   })
 
   site.post("/api/request_service/update", (req, res) => {
@@ -189,7 +174,7 @@ module.exports = function init(site) {
   })
 
   site.post("/api/request_service/all", (req, res) => {
-    
+
     let response = {
       done: false
     }
@@ -200,12 +185,12 @@ module.exports = function init(site) {
       where['name'] = new RegExp(where['name'], "i");
     }
     if (where.search && where.search.capaneighborhood) {
-    
+
       where['capaneighborhood'] = where.search.capaneighborhood
     }
 
     if (where.search && where.search.current) {
-    
+
       where['current'] = where.search.current
     }
     delete where.search

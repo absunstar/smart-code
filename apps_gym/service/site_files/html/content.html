@@ -8,15 +8,76 @@
 
                         <i-control help-id="service_name" v="r ll2" class="col5" label="##word.service_name##"
                             ng-model="service.name"></i-control>
+                        <i-control help-id="services_price" type="number" v="r" class="col2" label="##word.services_price##"
+                            ng-model="service.services_price"></i-control>
 
-                        <div class="col5"></div>
+                        <i-control help-id="total_complex_services_price"  type="number" class="col3"
+                        disabled  label="##word.total_complex_services_price##" ng-model="service.total_complex_services_price"></i-control>
+
+                        <div class="col2"></div>
                         <i-checkbox help-id="service_active" class="col2" label="##word.active##"
                             ng-model="service.active"></i-checkbox>
                     </div>
-
                     <div class="row">
+                        <div class="col1"></div>
+                        <i-checkbox help-id="complex_service" class="col2" label="##word.complex_service##"
+                            ng-model="service.complex_service"></i-checkbox>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="row" ng-show="service.complex_service">
 
-                        <i-list class="col3" label="##word.subscriptions_system##"
+                        <div class="row">
+                            <i-control ng-keydown="getService($event)" id="service" class="col3"
+                                ng-model="search_service" label="##word.search##" type="text"></i-control>
+
+                            <i-list class="col4" label="##word.service_name##" ng-model="selectedService" display="name"
+                                items="servicesList" ng-search="_search.$item_searching">
+                            </i-list>
+                            <i-button type="add" class="col2" label="##word.add##" ng-click="incertServices()">
+                            </i-button>
+                        </div>
+
+                        <div class="row" ng-show="service.selectedServicesList.length > 0">
+                            <div class="col6">
+
+                                <table class="table">
+                                    <tr>
+                                        <th>##word.service_name##</th>
+                                        <th>##word.services_price##</th>
+                                        <th>##word.service_count##</th>
+                                        <th>##word.actions##</th>
+                                    </tr>
+
+                                    <tr class="bold" ng-repeat="s in service.selectedServicesList">
+
+                                        <td>
+                                            <br>
+                                            <p class="center bold blue">{{s.name}}</p>
+                                        </td>
+
+                                        <td>
+                                            <br>
+                                            <p class="center bold blue">{{s.services_price}}</p>
+                                        </td>
+
+                                        <td>
+                                            <i-control ng-model="s.count" ng-change="calc()" type="number"></i-control>
+                                        </td>
+
+                                        <td class="center">
+                                            <i-button type="delete" ng-click="deleteServiceList(s)"></i-button>
+                                        </td>
+
+                                    </tr>
+
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!--     <i-list class="col3" label="##word.subscriptions_system##"
                             ng-model="service.subscriptions_system" items="subscriptionsSystemList" display="##session.lang##"
                             ng-search="_search.$subscriptions_system"></i-list>
 
@@ -33,8 +94,7 @@
 
                         <i-control ng-show="service.subscriptions_system.id ==2" help-id="month_price" type="number"
                             class="col2" label="##word.month_price##" ng-model="service.month_price"></i-control>
-
-                    </div>
+ -->
 
                 </div>
 

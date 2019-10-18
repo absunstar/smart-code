@@ -479,6 +479,8 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
   $scope.showComplexItems = function (item) {
     item.complex_items = item.complex_items || [];
     $scope.item = item;
+    $scope.selectedItem = {};
+    $scope.items_size = {};
     $scope.error = "";
     site.showModal('#complexItemModal');
   };
