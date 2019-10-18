@@ -21,6 +21,9 @@ app.controller("safes_payments", function ($scope, $http) {
       method: "POST",
       url: "/api/employees/all",
       data: {
+        where: {
+          'job.trainer': { $ne: true }
+        },
         select: {
           id: 1,
           name: 1

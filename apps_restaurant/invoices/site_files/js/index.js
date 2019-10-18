@@ -7,8 +7,8 @@ app.controller("invoices", function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.invoices = {
       image_url: '/images/invoices.png',
-      active: true,
-      immediate: false
+      active: true/* ,
+      immediate: false */
 
     };
     site.showModal('#invoicesAddModal');

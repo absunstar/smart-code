@@ -18,11 +18,10 @@
                     <div class="row">
                         <i-list ng-search="_search.$service" class="col3" display="name" v="r"
                             ng-model="request_service.service" label="##word.service##"
-                            ng-change="changeService(request_service)" items="servicesList"></i-list>
+                            ng-change="changeService(request_service) ;calc()" items="servicesList"></i-list>
 
                         <i-control ng-show="request_service.service" help-id="services_price" type="number" class="col2"
-                            disabled label="##word.services_price##" ng-model="request_service.services_price"
-                            ng-change="calc()">
+                            disabled label="##word.services_price##" ng-model="request_service.services_price">
                         </i-control>
 
                         <i-control ng-show="request_service.service" help-id="service_count" type="number" class="col2"

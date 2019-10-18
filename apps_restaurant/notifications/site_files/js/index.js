@@ -308,7 +308,9 @@ app.controller("notifications", function ($scope, $http, $interval) {
     } else if (n.link.collection == 'order_slides') {
       $scope.order_slides = n.add;
       site.showModal('#viewOrderlidesModal');
-
+    } else if (n.link.collection == 'create_invoices') {
+      $scope.create_invoices = n.add;
+      site.showModal('#creatInvoicesDetailsModal');
     } else {
       site.showModal('#displayModal');
       $('#displayContent').html(site.toHtmlTable(n.add));
@@ -495,7 +497,9 @@ app.controller("notifications", function ($scope, $http, $interval) {
     } else if (n.link.collection == 'order_slides') {
       $scope.order_slides = n.update;
       site.showModal('#viewOrderlidesModal');
-
+    } else if (n.link.collection == 'create_invoices') {
+      $scope.create_invoices = n.update;
+      site.showModal('#creatInvoicesDetailsModal');
     } else {
       site.showModal('#displayModal')
       $('#displayContent').html(site.toHtmlTable(n.update));
@@ -681,7 +685,9 @@ app.controller("notifications", function ($scope, $http, $interval) {
     } else if (n.link.collection == 'order_slides') {
       $scope.order_slides = n.delete;
       site.showModal('#viewOrderlidesModal');
-
+    } else if (n.link.collection == 'create_invoices') {
+      $scope.create_invoices = n.delete;
+      site.showModal('#creatInvoicesDetailsModal');
     } else {
       site.showModal('#displayModal')
       $('#displayContent').html(site.toHtmlTable(n.delete));

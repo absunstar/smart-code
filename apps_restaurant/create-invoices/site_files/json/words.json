@@ -50,6 +50,11 @@
         "ar": "أمر بيع"
     },
     {
+        "name": "order_value",
+        "en": "Order Value",
+        "ar": "القيمة"
+    },
+    {
         "name": "payable",
         "en": "Payable",
         "ar": "مستحق الدفع"

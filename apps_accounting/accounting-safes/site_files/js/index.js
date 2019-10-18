@@ -10,7 +10,11 @@ app.controller("safes", function ($scope, $http) {
       method: "POST",
       url: "/api/employees/all",
       data: {
-        select : {id:1 , name : 1}
+        where: {
+          'job.trainer': { $ne: true }
+        },
+        select: { id: 1, name: 1 },
+
       }
     }).then(
       function (response) {
@@ -23,27 +27,28 @@ app.controller("safes", function ($scope, $http) {
         $scope.busy = false;
         $scope.error = err;
       }
-      )
+    )
   };
-  
-  
-  $scope.loadAll = function (where , limit) {
+
+
+  $scope.loadAll = function (where, limit) {
     $scope.list = {};
     $scope.busy = true;
     $http({
       method: "POST",
       url: "/api/safes/all",
-      data: {where : where,
-      limit : limit ||1000000000
+      data: {
+        where: where,
+        limit: limit || 1000000000
       }
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          
+
           $scope.list = response.data.list;
           $scope.count = response.data.count;
-          site.hideModal('#safesSearchModal'); 
+          site.hideModal('#safesSearchModal');
         }
       },
       function (err) {
@@ -55,8 +60,8 @@ app.controller("safes", function ($scope, $http) {
 
   $scope.newSafe = function () {
     $scope.error = '';
-    $scope.safe = { image_url: '/images/safe.png' , balance:0 };
-    
+    $scope.safe = { image_url: '/images/safe.png', balance: 0 };
+
     site.showModal('#addSafeModal');
     $('#safe_name').focus();
   };
@@ -79,20 +84,20 @@ app.controller("safes", function ($scope, $http) {
         if (response.data.done) {
           site.hideModal('#addSafeModal');
           $scope.loadAll();
-        } 
-       
-        else if(response.data.error.includes('duplicate')){
+        }
+
+        else if (response.data.error.includes('duplicate')) {
 
           $scope.error = "##word.duplicate_alarm##";
         }
         else {
-         $scope.error = '##word.error##';
+          $scope.error = '##word.error##';
         }
       },
       function (err) {
         console.log(err);
       }
-      )
+    )
   };
 
   $scope.edit = function (safe) {
@@ -121,13 +126,13 @@ app.controller("safes", function ($scope, $http) {
           site.hideModal('#updateSafeModal');
           $scope.loadAll();
         } else {
-         $scope.error = '##word.error##';
+          $scope.error = '##word.error##';
         }
       },
       function (err) {
         console.log(err);
       }
-      )
+    )
   };
 
   $scope.remove = function (safe) {
@@ -155,7 +160,7 @@ app.controller("safes", function ($scope, $http) {
       function (err) {
         console.log(err);
       }
-      )
+    )
   };
   $scope.details = function (safe) {
     $scope.error = '';
@@ -183,7 +188,7 @@ app.controller("safes", function ($scope, $http) {
       function (err) {
         console.log(err);
       }
-      )
+    )
   };
 
   $scope.searchAll = function () {
@@ -193,19 +198,19 @@ app.controller("safes", function ($scope, $http) {
     if ($scope.search.employee) {
       where['employee'] = $scope.search.employee;
     }
-   
+
     if ($scope.search.balance) {
       where['balance'] = site.toNumber($scope.search.balance);
     }
     if ($scope.search.name) {
       where['name'] = $scope.search.name;
     }
-    
+
     if ($scope.search.description) {
       where['description'] = $scope.search.description;
     }
-    $scope.loadAll(where , $scope.search.limit);
-    site.hideModal('#SafesSearchModal'); 
+    $scope.loadAll(where, $scope.search.limit);
+    site.hideModal('#SafesSearchModal');
 
   };
 
@@ -213,5 +218,5 @@ app.controller("safes", function ($scope, $http) {
   $scope.loadEmployees();
   // $scope.loadSafes();
 
- 
+
 });

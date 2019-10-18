@@ -7,8 +7,8 @@ app.controller("jobs", function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.jobs = {
       image_url: '/images/jobs.png',
-      active: true,
-      immediate : false
+      active: true/* ,
+      immediate : false */
     };
     site.showModal('#jobsAddModal');
     

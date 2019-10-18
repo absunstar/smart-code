@@ -7,9 +7,9 @@ app.controller("tables", function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.tables = {
       image_url: '/images/tables.png',
-      active: true,
-      immediate : false
-    };
+      active: true
+/*       immediate : false
+ */    };
     site.showModal('#tablesAddModal');
     
   };

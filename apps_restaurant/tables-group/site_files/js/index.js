@@ -7,8 +7,8 @@ app.controller("tables_group", function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.tables_group = {
       image_url: '/images/tables_group.png',
-      active: true,
-      immediate : false
+      active: true/* ,
+      immediate : false */
     };
     site.showModal('#tablesGroupAddModal');
     

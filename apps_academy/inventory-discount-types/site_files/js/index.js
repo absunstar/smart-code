@@ -8,7 +8,14 @@ app.controller("discount_types", function ($scope, $http) {
     $http({
       method: "POST",
       url: "/api/discount_types/all",
-      data: {}
+      data: {
+        select: {
+          id: 1,
+          name: 1,
+          value: 1,
+          type: 1
+        }
+      }
     }).then(
       function (response) {
         $scope.busy = false;

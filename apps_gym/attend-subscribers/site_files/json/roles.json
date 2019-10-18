@@ -1,0 +1,7 @@
+[{
+    "module_name" : "public" ,
+    "name": "attend_subscribers_admin",
+    "en": "Attend Subscribers Admin",
+    "ar": "إدارة حضور المشتركين",
+    "permissions": ["attend_subscribers_manage"]
+}]

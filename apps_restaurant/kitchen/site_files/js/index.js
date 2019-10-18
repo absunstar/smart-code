@@ -5,8 +5,8 @@ app.controller("kitchen", function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.kitchen = {
       image_url: '/images/kitchen.png',
-      active: true,
-      immediate : false
+      active: true/* ,
+      immediate : false */
     };
     site.showModal('#kitchenAddModal');
     

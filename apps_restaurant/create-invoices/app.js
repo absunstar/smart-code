@@ -148,7 +148,7 @@ module.exports = function init(site) {
       $res: res
     })
 
-    if (!create_invoices_doc.total_paid_up) create_invoices_doc.total_paid_up = 0
+   create_invoices_doc.total_paid_up = 0
 
     create_invoices_doc.total_remain = 0
     create_invoices_doc.payment_list.forEach(payment_list => {

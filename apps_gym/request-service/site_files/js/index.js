@@ -4,13 +4,13 @@ app.controller("request_service", function ($scope, $http, $timeout) {
 
   $scope.displayAddRequestService = function () {
     $scope.error = '';
-    $scope.discount= {};
+    $scope.discount = {};
     $scope.request_service = {
       image_url: '/images/request_service.png',
       active: true,
       /* capaneighborhood : " - طالب", */
-      immediate: false
-    };
+/*       immediate: false
+ */    };
     site.showModal('#requestServiceAddModal');
   };
 
@@ -170,13 +170,18 @@ app.controller("request_service", function ($scope, $http, $timeout) {
     )
   };
 
-
   $scope.getCustomerList = function () {
     $scope.busy = true;
     $http({
       method: "POST",
       url: "/api/customers/all",
-      data: {}
+      data: {
+        select: {
+          id: 1,
+          name_ar: 1,
+          name_en: 1,
+        }
+      }
     }).then(
       function (response) {
         $scope.busy = false;
@@ -262,7 +267,12 @@ app.controller("request_service", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/discount_types/all",
       data: {
-        select: {}
+        select: {
+          id: 1,
+          name: 1,
+          value: 1,
+          type: 1
+        }
       }
     }).then(
       function (response) {
@@ -278,7 +288,7 @@ app.controller("request_service", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.getPeriod = function () {
+ /*  $scope.getPeriod = function () {
     $scope.busy = true;
     $scope.periodList = [];
     $http({
@@ -295,7 +305,7 @@ app.controller("request_service", function ($scope, $http, $timeout) {
         $scope.error = err;
       }
     )
-  };
+  }; */
 
   $scope.displaySearchModal = function () {
     $scope.error = '';
@@ -340,7 +350,7 @@ app.controller("request_service", function ($scope, $http, $timeout) {
     $scope.error = '';
     $timeout(() => {
       let total_discount = 0;
-      $scope.request_service.paid_require = 0;
+      $scope.request_service.paid_require = Number($scope.request_service.services_price);
       if ($scope.request_service.discountes && $scope.request_service.discountes.length > 0) {
         $scope.request_service.discountes.forEach(ds => {
           if (ds.type === "percent") {
@@ -350,7 +360,7 @@ app.controller("request_service", function ($scope, $http, $timeout) {
           };
         });
       };
-      $scope.request_service.paid_require = (Number($scope.request_service.services_price) * Number($scope.request_service.service_count)) - total_discount;
+      $scope.request_service.paid_require = (Number($scope.request_service.services_price) * Number($scope.request_service.service_count || 1)) - total_discount;
     }, 200);
   };
 
@@ -368,8 +378,9 @@ app.controller("request_service", function ($scope, $http, $timeout) {
   };
 
   $scope.getRequestServiceList();
-  $scope.getPeriod();
-  $scope.getCustomerList();
+/*   $scope.getPeriod();
+ */ 
+ $scope.getCustomerList();
   $scope.getServiceList();
   $scope.getHallList();
   $scope.getTrainerList();

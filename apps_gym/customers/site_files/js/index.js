@@ -318,6 +318,26 @@ app.controller("customers", function ($scope, $http, $timeout) {
       }
     )
   };
+
+  $scope.getIndentfy = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $scope.indentfyList = [];
+    $http({
+      method: "POST",
+      url: "/api/indentfy_employee/all"
+
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.indentfyList = response.data;
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
   
   $scope.getAreaList = function (city) {
     $scope.busy = true;
@@ -393,4 +413,5 @@ app.controller("customers", function ($scope, $http, $timeout) {
   $scope.getCustomerList();
   $scope.getCustomerGroupList();
   $scope.getGovList();
+  $scope.getIndentfy();
 });

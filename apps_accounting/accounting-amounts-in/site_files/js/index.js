@@ -248,7 +248,11 @@ app.controller("amounts_in", function ($scope, $http) {
     $http({
       method: "POST",
       url: "/api/employees/all",
-      data: {}
+      data: {
+        where: {
+          'job.trainer': { $ne: true }
+        }
+      }
     }).then(
       function (response) {
         $scope.busy = false;

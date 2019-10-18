@@ -14,6 +14,11 @@
         "ar": "اضافة طلب خدمة"
     },
     {
+        "name": "total_discount",
+        "en": "Total DiscountS",
+        "ar": "إجمالي الخصومات"
+    },
+    {
         "name": "paid_require",
         "en": "Paid Require",
         "ar": "المطلوب دفعه"
@@ -37,6 +42,11 @@
         "name": "trainer",
         "en": "Trainer",
         "ar": "المدرب"
+    },
+    {
+        "name": "trainers",
+        "en": "Trainers",
+        "ar": "المدربين"
     },
     {
         "name": "request_service_edit",

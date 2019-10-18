@@ -454,7 +454,7 @@ module.exports = function init(site) {
         'table.name': new RegExp(search, "i")
       })
       where.$or.push({
-        'customer.name': new RegExp(search, "i")
+        'customer.name_ar': new RegExp(search, "i")
       })
       where.$or.push({
         'tables_group.name': new RegExp(search, "i")

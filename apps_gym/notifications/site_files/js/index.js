@@ -317,6 +317,12 @@ app.controller("notifications", function ($scope, $http, $interval) {
     } else if (n.link.collection == 'request_service') {
       $scope.request_service = n.add;
       site.showModal('#requestServiceViewModal');
+    } else if (n.link.collection == 'create_invoices') {
+      $scope.create_invoices = n.add;
+      site.showModal('#creatInvoicesDetailsModal');
+    } else if (n.link.collection == 'attend_subscribers') {
+      $scope.attend_subscribers = n.add;
+      site.showModal('#attendSubscribersViewModal');
 
     } else {
       site.showModal('#displayModal');
@@ -513,6 +519,14 @@ app.controller("notifications", function ($scope, $http, $interval) {
     } else if (n.link.collection == 'request_service') {
       $scope.request_service = n.update;
       site.showModal('#requestServiceViewModal');
+    } else if (n.link.collection == 'create_invoices') {
+      $scope.create_invoices = n.update;
+      site.showModal('#creatInvoicesDetailsModal');
+    } else if (n.link.collection == 'attend_subscribers') {
+      $scope.attend_subscribers = n.update;
+      site.showModal('#attendSubscribersViewModal');
+
+
     } else {
       site.showModal('#displayModal')
       $('#displayContent').html(site.toHtmlTable(n.update));
@@ -707,6 +721,13 @@ app.controller("notifications", function ($scope, $http, $interval) {
     } else if (n.link.collection == 'request_service') {
       $scope.request_service = n.delete;
       site.showModal('#requestServiceViewModal');
+    } else if (n.link.collection == 'create_invoices') {
+      $scope.create_invoices = n.delete;
+      site.showModal('#creatInvoicesDetailsModal');
+    } else if (n.link.collection == 'attend_subscribers') {
+      $scope.attend_subscribers = n.delete;
+      site.showModal('#attendSubscribersViewModal');
+
     } else {
       site.showModal('#displayModal')
       $('#displayContent').html(site.toHtmlTable(n.delete));

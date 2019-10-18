@@ -574,7 +574,14 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/discount_types/all",
       data: {
-        select: {}
+        select: {
+          select: {
+            id: 1,
+            name: 1,
+            value: 1,
+            type: 1
+          }
+        }
       }
     }).then(
       function (response) {

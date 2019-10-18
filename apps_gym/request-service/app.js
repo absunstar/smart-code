@@ -1,6 +1,14 @@
 module.exports = function init(site) {
   const $request_service = site.connectCollection("request_service")
 
+
+  site.on('[create_invoices][request_service][+]', function (obj) {
+    $request_service.findOne({ id: obj }, (err, doc) => {
+      doc.invoice = true
+      $request_service.update(doc);
+    });
+  });
+
   site.on('[register][request_service][add]', doc => {
 
     $request_service.add({
@@ -63,6 +71,11 @@ module.exports = function init(site) {
     request_service_doc.company = site.get_company(req)
     request_service_doc.branch = site.get_branch(req)
 
+    if (request_service_doc.discountes && request_service_doc.discountes.length > 0) {
+      request_service_doc.total_discount = 0
+      request_service_doc.discountes.map(discountes => request_service_doc.total_discount += discountes.value)
+    }
+
     $request_service.add(request_service_doc, (err, doc) => {
       if (!err) {
         response.done = true
@@ -92,6 +105,11 @@ module.exports = function init(site) {
       $req: req,
       $res: res
     })
+
+    if (request_service_doc.discountes && request_service_doc.discountes.length > 0) {
+      request_service_doc.total_discount = 0
+      request_service_doc.discountes.map(discountes => request_service_doc.total_discount += discountes.value)
+    }
 
     if (request_service_doc.id) {
       $request_service.edit({
@@ -180,6 +198,43 @@ module.exports = function init(site) {
     }
 
     let where = req.body.where || {}
+    let search = req.body.search
+
+    if (search) {
+      where.$or = []
+      where.$or.push({
+        'service.name': new RegExp(search, "i")
+      })
+      where.$or.push({
+        'customer.name_ar': new RegExp(search, "i")
+      })
+      where.$or.push({
+        'trainer.name': new RegExp(search, "i")
+      })
+      where.$or.push({
+        'hall.name': new RegExp(search, "i")
+      })
+    }
+
+    if (where.date) {
+      let d1 = site.toDate(where.date)
+      let d2 = site.toDate(where.date)
+      d2.setDate(d2.getDate() + 1)
+      where.date = {
+        '$gte': d1,
+        '$lt': d2
+      }
+    } else if (where && where.date_from) {
+      let d1 = site.toDate(where.date_from)
+      let d2 = site.toDate(where.date_to)
+      d2.setDate(d2.getDate() + 1);
+      where.date = {
+        '$gte': d1,
+        '$lt': d2
+      }
+      delete where.date_from
+      delete where.date_to
+    }
 
     if (where['name']) {
       where['name'] = new RegExp(where['name'], "i");

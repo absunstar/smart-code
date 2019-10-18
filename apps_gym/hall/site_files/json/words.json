@@ -1,7 +1,12 @@
 [{
+        "name": "halls",
+        "en": "The Halls",
+        "ar": "القاعات"
+    },
+    {
         "name": "hall",
         "en": "The Hall",
-        "ar": "القاعات"
+        "ar": "القاعة"
     },
     {
         "name": "hall_new",

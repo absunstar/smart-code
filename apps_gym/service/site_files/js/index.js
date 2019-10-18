@@ -7,9 +7,9 @@ app.controller("service", function ($scope, $http, $timeout) {
     $scope.service = {
       image_url: '/images/service.png',
       active: true,
-      /* capaneighborhood : " - طالب", */
-      immediate: false
-    };
+      /* capaneighborhood : " - طالب",       
+       immediate: false
+ */    };
     site.showModal('#serviceAddModal');
 
   };

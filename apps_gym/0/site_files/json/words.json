@@ -20,6 +20,10 @@
         "en": "Add Subscribers",
         "ar": "إضافة مشتركين"
     },
+    
+    {"name" : "customers_indentfy" , "en" : "Subscriber indentfy" , "ar" : "نوع المشترك"},
+    {"name" : "child" , "en" : "Child" , "ar" : "طفل"},
+
     {"name" : "customers" , "en" : "Subscribers" , "ar" : "المشتركين"},
     {"name" : "customers_new" , "en" : "New Subscriber" , "ar" : "مشترك جديد"},   
     {"name" : "customers_add" , "en" : "Add Subscriber" , "ar" : "إضافة مشترك"}, 

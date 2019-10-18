@@ -148,7 +148,11 @@ app.controller("goves", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/goves/all",
       data: {
-        where: where
+        where: where,
+        select: {
+          id: 1,
+          name: 1
+        }
       }
     }).then(
       function (response) {

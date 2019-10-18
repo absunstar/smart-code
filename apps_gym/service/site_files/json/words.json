@@ -1,7 +1,12 @@
 [{
-        "name": "service",
-        "en": "The Hall",
+        "name": "services",
+        "en": "The Services",
         "ar": "الخدمات"
+    },
+    {
+        "name": "service",
+        "en": "The Service",
+        "ar": "الخدمة"
     },
     {
         "name": "subscriptions_system",
@@ -10,7 +15,7 @@
     },
     {
         "name": "service_new",
-        "en": "New Hall",
+        "en": "New Service",
         "ar": "خدمة جديدة"
     },
     {
@@ -35,17 +40,17 @@
     },
     {
         "name": "service_add",
-        "en": "Add Hall",
+        "en": "Add Service",
         "ar": "اضافة خدمة"
     },
     {
         "name": "service_edit",
-        "en": "Edit Hall",
+        "en": "Edit Service",
         "ar": "تعديل خدمة"
     },
     {
         "name": "service_details",
-        "en": "Hall Details",
+        "en": "Service Details",
         "ar": "تفاصيل الخدمة"
     },
     {
@@ -60,7 +65,7 @@
     },
     {
         "name": "service_delete",
-        "en": "Delete Hall",
+        "en": "Delete Service",
         "ar": "حذف خدمة"
     },
     {

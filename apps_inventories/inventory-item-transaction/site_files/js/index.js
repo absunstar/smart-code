@@ -73,6 +73,9 @@ app.controller("item_transaction", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/employees/all",
       data: {
+        where: {
+          'job.trainer': { $ne: true }
+        },
         select: {
           name: 1,
           id: 1
