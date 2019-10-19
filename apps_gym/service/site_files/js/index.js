@@ -7,6 +7,7 @@ app.controller("service", function ($scope, $http, $timeout) {
     $scope.service = {
       image_url: '/images/service.png',
       active: true,
+      complex_service: false,
       /* capaneighborhood : " - طالب",       
        immediate: false
  */    };
