@@ -11,6 +11,33 @@
         <div class="modal-body">
             <form class="form">
                 <div class="row">
+
+                    <div class="row">
+                        <div class="col2"></div>
+                        <div class="col8">
+
+                            <table class="table hover bold">
+                                <tr>
+                                    <th>##word.service_name##</th>
+                                    <th>##word.attend_count##</th>
+                                    <th>##word.current_ttendance##</th>
+                                    <th>##word.remain##</th>
+                                    <th>##word.actions##</th>
+                                </tr>
+
+                                <tr class="bold" ng-repeat="s in attend_service.selectedServicesList">
+
+                                    <td>
+                                        <p class="center bold">{{s.name}}</p>
+                                    </td>
+                                </tr>
+
+                        </div>
+                        <div class="col2"></div>
+
+                    </div>
+
+
                     <div class="row" ng-show="attend_service.selectedServicesList.length > 0">
                         <div class="col2"></div>
                         <div class="col8">
@@ -47,7 +74,7 @@
                                             <p class="center bold blue">{{s.remain}}</p>
                                         </td>
                                         <td class="center">
-                                            <i-button type="add" label="##word.attend##" ng-click="attendNow()">
+                                            <i-button type="add" label="##word.attend##" ng-click="attendNow(s)">
                                             </i-button>
 
                                         </td>
@@ -60,7 +87,7 @@
 
                     </div>
 
-                    <div class="row">
+                    <div class="row" ng-show="attend_service.attend_service_list.length > 0">
                         <fieldset>
                             <legend>##word.complex_services##</legend>
 
@@ -69,10 +96,9 @@
                                     <th>##word.service_name##</th>
                                     <th>##word.attend_date##</th>
                                     <th>##word.leave_date##</th>
-
                                 </tr>
 
-                                <tr class="bold" ng-repeat="s in attend_service.selectedServicesList">
+                                <tr class="bold" ng-repeat="s in attend_service.attend_service_list">
 
                                     <td>
                                         <p class="center bold">{{s.name}}</p>
@@ -83,20 +109,21 @@
                                         <p class="green" ng-show="s.attend_date">
                                             {{s.attend_date |date:'dd - MM - yyyy'}}</p>
 
-                                        <p class="green" ng-show="s.attend_date">{{s.attend.minute}} :
-                                            {{s.attend.hour}}
+                                        <p class="green" ng-show="s.attend_date">{{s.attend_time.minute}} :
+                                            {{s.attend_time.hour}}
                                         </p>
                                     </td>
                                     <td class="center ">
-                                            <i-button type="add" ng-hide="s.leave_date" label="##word.attend##" ng-click="attendNow()">
-                                            </i-button>
-                                            <p class="green" ng-show="s.leave_date">
-                                                {{s.leave_date |date:'dd - MM - yyyy'}}</p>
-    
-                                            <p class="green" ng-show="s.leave_date">{{s.attend.minute}} :
-                                                {{s.attend.hour}}
-                                            </p>
-                                        </td>
+                                        <i-button type="exit" ng-hide="s.leave_date" label="##word.leave##"
+                                            ng-click="leaveNow(s)">
+                                        </i-button>
+                                        <p class="red" ng-show="s.leave_date">
+                                            {{s.leave_date |date:'dd - MM - yyyy'}}</p>
+
+                                        <p class="red" ng-show="s.leave_date">{{s.leave_time.minute}} :
+                                            {{s.leave_time.hour}}
+                                        </p>
+                                    </td>
                                 </tr>
 
                             </table>
@@ -110,7 +137,7 @@
 
         <div class="modal-footer center">
 
-            <i-button type="search" label="##word.search##" ng-click="searchAll()"> </i-button>
+            <i-button type="edit" label="##word.edit##" ng-click="updateRequestService(attend_service)"></i-button>
 
             <i-button type="clear" label="##word.empty_search##" ng-click="search = {}"> </i-button>
 

@@ -34,6 +34,11 @@
         "ar": "الباقي"
     },
     {
+        "name": "leave",
+        "en": "Leave",
+        "ar": "إنصراف"
+    },
+    {
         "name": "attend_date",
         "en": "Attend Date",
         "ar": "تاريخ الحضور"

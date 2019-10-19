@@ -338,9 +338,26 @@ app.controller("request_service", function ($scope, $http, $timeout) {
     $scope.request_service.date_from = new Date();
   };
 
-  $scope.insertAttend = function () {
+  $scope.attendNow = function (s) {
     $scope.attend_service.attend_service_list = $scope.attend_service.attend_service_list || [];
-    
+
+    $scope.attend_service.attend_service_list.unshift({
+      id : s.id,
+      name : s.name,
+      attend_date: new Date(),
+      attend_time: {
+        hour: new Date().getHours(),
+        minute: new Date().getMinutes()
+      }
+    })
+  };
+
+  $scope.leaveNow = function (s) {
+    s.leave_date = new Date();
+    s.leave_time = {
+      hour: new Date().getHours(),
+      minute: new Date().getMinutes()
+    };
   };
 
   $scope.showAttendServices = function (service) {
@@ -348,8 +365,7 @@ app.controller("request_service", function ($scope, $http, $timeout) {
     $scope.attend_service = service;
     $scope.attend_service.selectedServicesList.forEach(attend_service => {
       if ($scope.attend_service.attend_service_list && $scope.attend_service.attend_service_list.length) {
-        /*         $scope.attend_service.attend_service_list.filter()
-         */
+     
         attend_service.current_ttendance = $scope.attend_service.attend_service_list.length;
       } else attend_service.current_ttendance = 0;
 
@@ -357,11 +373,6 @@ app.controller("request_service", function ($scope, $http, $timeout) {
     });
 
     $scope.attend_service.attend_service_list = $scope.attend_service.attend_service_list || [];
-
-    /* $scope.attend_service.attend_service_list.unshift({
-
-    });
-   */
 
     site.showModal('#attendServiceModal');
 
