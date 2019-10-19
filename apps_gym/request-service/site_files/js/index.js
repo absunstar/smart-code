@@ -366,8 +366,8 @@ app.controller("request_service", function ($scope, $http, $timeout) {
     $scope.attend_service.attend_service_list = $scope.attend_service.attend_service_list || [];
 
     $scope.attend_service.attend_service_list.unshift({
-      id : s.id,
-      name : s.name || $scope.attend_service.service_name,
+      id: s.id,
+      name: s.name || $scope.attend_service.service_name,
       attend_date: new Date(),
       attend_time: {
         hour: new Date().getHours(),
@@ -385,11 +385,19 @@ app.controller("request_service", function ($scope, $http, $timeout) {
   };
 
   $scope.showAttendServices = function (service) {
-    
+
     $scope.attend_service = service;
-    
+
+    if ($scope.attend_service.selectedServicesList && $scope.attend_service.selectedServicesList.length > 0) {
+
+
+    } else {
+
+    }
+
     $scope.attend_service.selectedServicesList.forEach(attend_service => {
-      if ($scope.attend_service.attend_service_list && $scope.attend_service.attend_service_list.length) {
+      if ($scope.attend_service.attend_service_list && $scope.attend_service.attend_service_list.length > 0) {
+        attend_service.total_attend_count = attend_service.total_attend_count * service.service_count
         attend_service.current_ttendance = $scope.attend_service.attend_service_list.length;
       } else attend_service.current_ttendance = 0;
 
