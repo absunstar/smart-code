@@ -390,6 +390,7 @@ app.controller("request_service", function ($scope, $http, $timeout) {
 
     if ($scope.attend_service.selectedServicesList && $scope.attend_service.selectedServicesList.length > 0) {
 
+      
 
     } else {
 
