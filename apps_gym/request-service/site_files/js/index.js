@@ -363,7 +363,8 @@ app.controller("request_service", function ($scope, $http, $timeout) {
   };
 
   $scope.attendNow = function (s) {
-    $scope.attend_service.attend_service_list = $scope.attend_service.attend_service_list || [];
+
+    $scope.handleServiceAttend(s);
 
     $scope.attend_service.attend_service_list.unshift({
       id: s.id,
@@ -373,7 +374,10 @@ app.controller("request_service", function ($scope, $http, $timeout) {
         hour: new Date().getHours(),
         minute: new Date().getMinutes()
       }
-    })
+    });
+
+    $scope.handleServiceAttend(s);
+
   };
 
   $scope.leaveNow = function (s) {
@@ -384,28 +388,28 @@ app.controller("request_service", function ($scope, $http, $timeout) {
     };
   };
 
-  $scope.showAttendServices = function (service) {
-
-    $scope.attend_service = service;
+  $scope.handleServiceAttend = function(service){
+   
+    $scope.attend_service.attend_service_list = $scope.attend_service.attend_service_list || [];
 
     if ($scope.attend_service.selectedServicesList && $scope.attend_service.selectedServicesList.length > 0) {
 
-      
+      $scope.attend_service.selectedServicesList.forEach(attend_service => {
+        attend_service.total_real_attend_count = attend_service.total_attend_count  * $scope.attend_service.service_count;
+        attend_service.current_ttendance = $scope.attend_service.attend_service_list.length;
+        attend_service.remain = attend_service.total_real_attend_count - attend_service.current_ttendance || 0;
+      });
 
     } else {
-
+      service.total_real_attend_count = service.attend_count * $scope.attend_service.service_count;
+      service.current_ttendance = $scope.attend_service.attend_service_list.length;
+      service.remain = service.total_real_attend_count - service.current_ttendance || 0;
     }
+  };
 
-    $scope.attend_service.selectedServicesList.forEach(attend_service => {
-      if ($scope.attend_service.attend_service_list && $scope.attend_service.attend_service_list.length > 0) {
-        attend_service.total_attend_count = attend_service.total_attend_count * service.service_count
-        attend_service.current_ttendance = $scope.attend_service.attend_service_list.length;
-      } else attend_service.current_ttendance = 0;
-
-      attend_service.remain = attend_service.total_attend_count - attend_service.current_ttendance || 0;
-    });
-
-    $scope.attend_service.attend_service_list = $scope.attend_service.attend_service_list || [];
+  $scope.showAttendServices = function (service) {
+    $scope.attend_service = service;
+    $scope.handleServiceAttend(service);
 
     site.showModal('#attendServiceModal');
 

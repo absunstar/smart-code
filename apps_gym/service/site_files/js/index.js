@@ -25,7 +25,10 @@ app.controller("service", function ($scope, $http, $timeout) {
     };
 
     if ($scope.service.complex_service) {
-      $scope.service.attend_count = null;
+      $scope.service.attend_count = 0;
+      $scope.service.selectedServicesList.forEach(s => {
+        $scope.service.attend_count += (s.attend_count * s.count);
+      });
     } else {
       $scope.service.selectedServicesList = [];
     }
@@ -228,9 +231,7 @@ app.controller("service", function ($scope, $http, $timeout) {
 
     if ($scope.selectedService && $scope.selectedService.id) {
       $scope.selectedService.count = 1;
-      $scope.selectedService.total_attend_count = $scope.selectedService.attend_count;
       $scope.service.selectedServicesList.unshift($scope.selectedService);
-
     } else $scope.error = '##word.err_select_service##';
 
     $scope.selectedService = {};
@@ -255,10 +256,16 @@ app.controller("service", function ($scope, $http, $timeout) {
 
   $scope.attendCalc = function (s) {
     $scope.error = '';
-    $timeout(() => {
-      s.total_attend_count = 0;
-      s.total_attend_count += Number(s.attend_count) * Number(s.count);
-    }, 200);
+    $scope.service.attend_count = 0;
+    $timeout(()=>{
+      if ($scope.service.complex_service) {
+        $scope.service.selectedServicesList.forEach(s => {
+          s.total_attend_count = s.attend_count * s.count;
+          $scope.service.attend_count += s.total_attend_count;
+        });
+      }
+    } , 100);
+   
   };
 
   $scope.displaySearchModal = function () {
