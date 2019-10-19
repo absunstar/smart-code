@@ -16,9 +16,9 @@
                     <legend> ##word.general_Settings## </legend>
                     <div class="row">
 
-                        <i-list class="col2" ng-model="default_setting.general_Settings.vendor" items="vendorsList"
+                        <!--    <i-list class="col2" ng-model="default_setting.general_Settings.vendor" items="vendorsList"
                             display="name_ar" ng-search="_search.$search_vendor"
-                            label="##word.stores_in_Company_name##"></i-list>
+                            label="##word.stores_in_Company_name##"></i-list> -->
                         <i-list class="col2" ng-model="default_setting.general_Settings.customer" items="customersList"
                             display="name_ar" ng-search="_search.$search_customer" label="##word.customer_name##">
                         </i-list>
@@ -26,13 +26,13 @@
                             ng-model="default_setting.general_Settings.delivery_employee"
                             label="##word.delivery_employee##" items="deliveryEmployeesList"></i-list>
 
-                            <i-list class="col2" ng-model="default_setting.general_Settings.kitchen" items="kitchensList" display="name"
+                        <!--      <i-list class="col2" ng-model="default_setting.general_Settings.kitchen" items="kitchensList" display="name"
                             ng-search="_search.$search_kitchen"
                             label="##word.kitchen_name##">
-                        </i-list>
+                        </i-list> -->
 
                         <i-control class="col2" ng-model="default_setting.general_Settings.service"
-                        label="##word.service##" type="number"></i-control>
+                            label="##word.service##" type="number"></i-control>
                     </div>
 
                     <div class="row">
@@ -48,14 +48,14 @@
                         <i-list help-id="" ng-search="_search.$source_type_search" class="col2"
                             label="##word.source_type##" ng-model="default_setting.general_Settings.source_type"
                             items="sourceTypeList" display="##session.lang##"></i-list>
-                        <i-list ng-search="_search.$order_type" class="col2" display="##session.lang##"
+                     <!--    <i-list ng-search="_search.$order_type" class="col2" display="##session.lang##"
                             ng-model="default_setting.general_Settings.order_type" label="##word.order_type##"
                             items="transactionTypeList">
-                        </i-list>
+                        </i-list> -->
 
                     </div>
 
-                
+
 
                 </fieldset>
 

@@ -98,11 +98,11 @@ app.controller("employees_advances_fin", function ($scope, $http) {
     }
 
     if ($scope.search.dateFrom) {
-      where['from_date'] = $scope.search.dateFrom;
+      where['date_from'] = $scope.search.dateFrom;
     }
 
     if ($scope.search.dateTo) {
-      where['to_date'] = $scope.search.dateTo;
+      where['date_to'] = $scope.search.dateTo;
     }
 
     if ($scope.search.employee && $scope.search.employee.id) {

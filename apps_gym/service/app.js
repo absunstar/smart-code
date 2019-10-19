@@ -202,6 +202,7 @@ module.exports = function init(site) {
 
     let where = req.body.where || {}
 
+
     if (where['name']) {
       where['name'] = new RegExp(where['name'], "i");
     }

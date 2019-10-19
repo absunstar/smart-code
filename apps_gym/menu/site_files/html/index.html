@@ -300,32 +300,38 @@
             <div id="reportingTab" class="tab-content">
 
                 <fieldset>
-                    <legend></legend>
-                    <!-- <a class="item" href="/employees_salary_report">
-                        <img src="images/pic_reportEmployee1.png">
-                        <h2>##word.system_employees_salary_report_menus##</h2>
-                        <p> ##word.system_employees_salary_report## </p>
-                    </a>
+                    <legend>##word.reports##</legend>
 
+                    <a class="item" href="/item_transaction" x-permissions="item_transaction_ui || item_transaction_manage">
+                        <img src="/images/item_transaction.png">
+                        <h2>##word.system_item_transaction_menus##</h2>
+                        <p>##word.system_item_details##</p>
+                    </a>
+    
+                    <a class="item" href="/report_invoices" x-permissions="report_invoices_ui || report_invoices_manage">
+                        <img src="/images/report_invoices.png">
+                        <h2>##word.report_invoices_menus##</h2>
+                        <p>##word.report_invoices_name##</p>
+                    </a>
+    
+                    <a class="item" href="/report_sales" x-permissions="report_sales_ui || report_sales_manage">
+                        <img src="/images/report_sales.png">
+                        <h2>##word.report_sales_menus##</h2>
+                        <p>##word.report_sales_name##</p>
+                    </a>
+                    
+                    <a class="item" href="/report_full_employees"
+                        x-permissions="report_full_employees_ui || report_full_employees_manage">
+                        <img src="/images/report_full_employees.png">
+                        <h2>##word.report_full_employees_name##</h2>
+                        <p>##word.report_full_employees_menus##</p>
+                    </a>
                 </fieldset>
 
-                <a class="item" href="/item_transaction" x-permissions="item_transaction_ui || item_transaction_manage">
-                    <img src="/images/item_transaction.png">
-                    <h2>##word.system_item_transaction_menus##</h2>
-                    <p>##word.system_item_details##</p>
-                </a>
+              
 
-                <a class="item" href="/report_invoices" x-permissions="report_invoices_ui || report_invoices_manage">
-                    <img src="/images/report_invoices.png">
-                    <h2>##word.report_invoices_menus##</h2>
-                    <p>##word.report_invoices_name##</p>
-                </a>
 
-                <a class="item" href="/report_sales" x-permissions="report_sales_ui || report_sales_manage">
-                    <img src="/images/report_sales.png">
-                    <h2>##word.report_sales_menus##</h2>
-                    <p>##word.report_sales_name##</p>
-                </a>
+                <!-- 
 
                 <a class="item" href="/report_employee_user"
                     x-permissions="report_employee_user_ui || report_employee_user_manage">
@@ -334,13 +340,7 @@
                     <p>##word.report_employee_user_menus##</p>
                 </a>
 
-                <a class="item" href="/report_full_employees"
-                    x-permissions="report_full_employees_ui || report_full_employees_manage">
-                    <img src="/images/report_full_employees.png">
-                    <h2>##word.report_full_employees_name##</h2>
-                    <p>##word.report_full_employees_menus##</p>
-                </a>
-
+              
                 <a class="item" href="/report_employee_delivery"
                     x-permissions="report_employee_delivery_ui || report_employee_delivery_manage">
                     <img src="/images/report_employee_delivery.png">

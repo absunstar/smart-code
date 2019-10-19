@@ -26,11 +26,11 @@
 
                     <tr>
                         <td class="title">##word.start_date##</td>
-                        <td class="center brown">{{request_service.from_date | date : 'yyyy - MM - dd'}}</td>
+                        <td class="center brown">{{request_service.date_from | date : 'yyyy - MM - dd'}}</td>
                     </tr>
                     <tr>
                         <td class="title">##word.expired_date##</td>
-                        <td class="center red">{{request_service.to_date | date : 'yyyy - MM - dd'}}</td>
+                        <td class="center red">{{request_service.date_to | date : 'yyyy - MM - dd'}}</td>
                     </tr>
 
                     <tr>
@@ -41,6 +41,11 @@
                     <tr>
                         <td class="title">##word.paid_require##</td>
                         <td class="center green">{{request_service.paid_require}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="title">##word.service_count##</td>
+                        <td class="center blue">{{request_service.service_count}}</td>
                     </tr>
 
                     <tr>

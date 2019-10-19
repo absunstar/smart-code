@@ -20,7 +20,16 @@
         "en": "Add Subscribers",
         "ar": "إضافة مشتركين"
     },
-    
+    {
+        "name": "yes",
+        "en": "Yes",
+        "ar": "نعم"
+    },
+    {
+        "name": "no",
+        "en": "No",
+        "ar": "لا"
+    },
     {"name" : "customers_indentfy" , "en" : "Subscriber indentfy" , "ar" : "نوع المشترك"},
     {"name" : "child" , "en" : "Child" , "ar" : "طفل"},
 

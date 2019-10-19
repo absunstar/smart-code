@@ -8,6 +8,7 @@ app.controller("request_service", function ($scope, $http, $timeout) {
     $scope.request_service = {
       image_url: '/images/request_service.png',
       active: true,
+      service_count: 1
       /* capaneighborhood : " - طالب", */
 /*       immediate: false
  */    };
@@ -170,50 +171,60 @@ app.controller("request_service", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.getCustomerList = function () {
+  $scope.getCustomerList = function (ev) {
+    $scope.error = '';
     $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/customers/all",
-      data: {
-        select: {
-          id: 1,
-          name_ar: 1,
-          name_en: 1,
+    if (ev.which === 13) {
+      $http({
+        method: "POST",
+        url: "/api/customers/all",
+        data: {
+          search: $scope.search_customer
+          /*  select: {
+            id: 1,
+            name_ar: 1,
+            name_en: 1,
+          } */
         }
-      }
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.customersList = response.data.list;
+      }).then(
+        function (response) {
+          $scope.busy = false;
+          if (response.data.done && response.data.list.length > 0) {
+            $scope.customersList = response.data.list;
+          }
+        },
+        function (err) {
+          $scope.busy = false;
+          $scope.error = err;
         }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
+      )
+    };
   };
 
-  $scope.getServiceList = function () {
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/service/all",
-      data: {}
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.servicesList = response.data.list;
+  $scope.getService = function (ev) {
+    $scope.error = '';
+    if (ev.which === 13) {
+      $http({
+        method: "POST",
+        url: "/api/service/all",
+        data: {
+          where: { name: $scope.search_service },
+          select: { id: 1, name: 1, services_price: 1, selectedServicesList: 1 }
         }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
+      }).then(
+        function (response) {
+          $scope.busy = false;
+          if (response.data.done) {
+            if (response.data.list.length > 0) {
+              $scope.servicesList = response.data.list;
+            }
+          }
+        },
+        function (err) {
+          console.log(err);
+        }
+      );
+    }
   };
 
   $scope.getHallList = function () {
@@ -221,7 +232,9 @@ app.controller("request_service", function ($scope, $http, $timeout) {
     $http({
       method: "POST",
       url: "/api/hall/all",
-      data: {}
+      data: {
+        select: { id: 1, name: 1, capaneighborhood: 1 }
+      }
     }).then(
       function (response) {
         $scope.busy = false;
@@ -288,24 +301,24 @@ app.controller("request_service", function ($scope, $http, $timeout) {
     )
   };
 
- /*  $scope.getPeriod = function () {
-    $scope.busy = true;
-    $scope.periodList = [];
-    $http({
-      method: "POST",
-      url: "/api/period_class/all"
-
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        $scope.periodList = response.data;
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
-  }; */
+  /*  $scope.getPeriod = function () {
+     $scope.busy = true;
+     $scope.periodList = [];
+     $http({
+       method: "POST",
+       url: "/api/period_class/all"
+ 
+     }).then(
+       function (response) {
+         $scope.busy = false;
+         $scope.periodList = response.data;
+       },
+       function (err) {
+         $scope.busy = false;
+         $scope.error = err;
+       }
+     )
+   }; */
 
   $scope.displaySearchModal = function () {
     $scope.error = '';
@@ -313,22 +326,13 @@ app.controller("request_service", function ($scope, $http, $timeout) {
 
   };
 
-  $scope.changeService = function (request_service) {
-
-    request_service.services_price = request_service.service.services_price;
-    request_service.service_count = request_service.service.service_count;
-
-  };
-
   $scope.startDateToDay = function () {
-
-    $scope.request_service.from_date = new Date();
-
+    $scope.request_service.date_from = new Date();
   };
+
 
   $scope.addDiscount = function () {
     $scope.error = '';
-
     if (!$scope.discount.value) {
 
       $scope.error = '##word.error_discount##';
@@ -378,10 +382,8 @@ app.controller("request_service", function ($scope, $http, $timeout) {
   };
 
   $scope.getRequestServiceList();
-/*   $scope.getPeriod();
- */ 
- $scope.getCustomerList();
-  $scope.getServiceList();
+  /*   $scope.getPeriod();
+   */
   $scope.getHallList();
   $scope.getTrainerList();
   $scope.loadDiscountTypes();

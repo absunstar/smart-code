@@ -186,6 +186,33 @@ module.exports = function init(site) {
     }
 
     let where = req.data.where || {}
+    let search = req.body.search
+
+    if (search) {
+      where.$or = []
+      where.$or.push({
+        'name_ar': new RegExp(search, "i")
+      })
+      where.$or.push({
+        'name_en': new RegExp(search, "i")
+      })
+      where.$or.push({
+        'mobile': new RegExp(search, "i")
+      })
+
+      where.$or.push({
+        'phone': new RegExp(search, "i")
+      })
+
+      where.$or.push({
+        'national_id': new RegExp(search, "i")
+      })
+
+      where.$or.push({
+        'email': new RegExp(search, "i")
+      })
+
+    }
 
     if (where['name_ar']) {
       where['name_ar'] = new RegExp(where['name_ar'], 'i')

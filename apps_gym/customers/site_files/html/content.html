@@ -39,19 +39,24 @@
                                 <i-checkbox class="col2" label="##word.active##" ng-model="customer.active">
                                 </i-checkbox>
                             </div>
-
                             <div class="row">
-                                <i-list class="col4 hide" label="##word.customers_groups##" ng-model="customer.group"
-                                    items="customerGroupList" display="name" ng-search="_search.$customerGroup">
-                                </i-list>
 
                                 <i-list help-id="" ng-search="_search.$indentfy_search" class="col2"
                                     label="##word.customers_indentfy##" ng-model="customer.indentfy"
                                     items="indentfyList" display="##session.lang##">
                                 </i-list>
 
+                                <div class="col1"></div>
+
                                 <i-checkbox class="col2" x-feature="gym" label="##word.child##"
                                     ng-model="customer.child"></i-checkbox>
+
+                            </div>
+
+                            <div class="row">
+                                <i-list class="col4 hide" label="##word.customers_groups##" ng-model="customer.group"
+                                    items="customerGroupList" display="name" ng-search="_search.$customerGroup">
+                                </i-list>
 
                                 <i-button type="bg-blue white" fa="fa-paper-plane" label="##word.customers_send_email##"
                                     ng-click="displaySendEmail()"></i-button>

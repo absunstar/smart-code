@@ -263,8 +263,8 @@ app.controller("employees_report", function ($scope, $http) {
       url: "/api/employee_offer/all",
       data: {
         where: {
-          from_date: $scope.search.dateFrom,
-          to_date: $scope.search.dateTo,
+          date_from: $scope.search.dateFrom,
+          date_to: $scope.search.dateTo,
           'employee.id': $scope.search.employee.id,
         },
         limit: 1
@@ -292,8 +292,8 @@ app.controller("employees_report", function ($scope, $http) {
       data: {
         where: {
           'employee.id': $scope.search.employee.id,
-          from_date: $scope.search.dateFrom,
-          to_date: $scope.search.dateTo,
+          date_from: $scope.search.dateFrom,
+          date_to: $scope.search.dateTo,
         },
         limit: 1
       }
@@ -320,8 +320,8 @@ app.controller("employees_report", function ($scope, $http) {
       data: {
         where: {
           'employee.id': $scope.search.employee.id,
-          from_date: $scope.search.dateFrom,
-          to_date: $scope.search.dateTo,
+          date_from: $scope.search.dateFrom,
+          date_to: $scope.search.dateTo,
         },
         limit: 1
       }

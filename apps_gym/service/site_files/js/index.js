@@ -196,8 +196,8 @@ app.controller("service", function ($scope, $http, $timeout) {
         method: "POST",
         url: "/api/service/all",
         data: {
-          search: $scope.search_service,
-          select: { id: 1, name: 1, services_price: 1 }
+          where: { name: $scope.search_service },
+          select: { id: 1, name: 1, services_price: 1, selectedServicesList: 1 }
         }
       }).then(
         function (response) {
@@ -220,11 +220,13 @@ app.controller("service", function ($scope, $http, $timeout) {
     $scope.service.selectedServicesList = $scope.service.selectedServicesList || [];
 
     if ($scope.selectedService && $scope.selectedService.id) {
+      $scope.selectedService.count = 1;
       $scope.service.selectedServicesList.unshift($scope.selectedService);
 
     } else $scope.error = '##word.err_select_service##';
 
     $scope.selectedService = {};
+    $scope.calc();
   };
 
   $scope.deleteServiceList = function (service) {

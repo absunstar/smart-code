@@ -231,15 +231,16 @@
         "ar": "عرض المزيـد"
     },
     {
-        "name": "from_date",
+        "name": "date_from",
         "en": "From Date",
         "ar": "من تاريخ"
     },
     {
-        "name": "to_date",
+        "name": "date_to",
         "en": "To Date",
         "ar": "الى تاريخ"
     },
+   
     {
         "name": "le",
         "en": "LE",

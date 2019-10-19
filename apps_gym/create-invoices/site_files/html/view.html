@@ -68,12 +68,12 @@
 
                                 <tr>
                                     <td class="title">##word.start_date##</td>
-                                    <td class="center brown">{{create_invoices.from_date | date : 'yyyy - MM - dd'}}
+                                    <td class="center brown">{{create_invoices.date_from | date : 'yyyy - MM - dd'}}
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="title">##word.expired_date##</td>
-                                    <td class="center red">{{create_invoices.to_date | date : 'yyyy - MM - dd'}}
+                                    <td class="center red">{{create_invoices.date_to | date : 'yyyy - MM - dd'}}
                                     </td>
                                 </tr>
 

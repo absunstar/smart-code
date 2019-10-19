@@ -171,16 +171,16 @@ module.exports = function init(site) {
         '$lt': d2
       }
     }
-    if (where && where.from_date) {
-      let d1 = site.toDate(where.from_date)
-      let d2 = site.toDate(where.to_date)
+    if (where && where.date_from) {
+      let d1 = site.toDate(where.date_from)
+      let d2 = site.toDate(where.date_to)
       d2.setDate(d2.getDate() + 1);
       where.date = {
         '$gte': d1,
         '$lt': d2
       }
-      delete where.from_date
-      delete where.to_date
+      delete where.date_from
+      delete where.date_to
     }
 
 
@@ -196,9 +196,9 @@ module.exports = function init(site) {
       }
     }
 
-    if (where && where.search && where.search.from_date) {
-      let d1 = site.toDate(where.search.from_date)
-      let d2 = site.toDate(where.search.to_date)
+    if (where && where.search && where.search.date_from) {
+      let d1 = site.toDate(where.search.date_from)
+      let d2 = site.toDate(where.search.date_to)
       d2.setDate(d2.getDate() + 1);
       where.date = {
         '$gte': d1,

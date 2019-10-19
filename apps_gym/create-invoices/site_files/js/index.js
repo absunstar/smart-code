@@ -324,8 +324,8 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
     $scope.create_invoices.trainer = service.trainer;
     $scope.create_invoices.hall = service.hall;
     $scope.create_invoices.service = service.service;
-    $scope.create_invoices.from_date = service.from_date;
-    $scope.create_invoices.to_date = service.to_date;
+    $scope.create_invoices.date_from = service.date_from;
+    $scope.create_invoices.date_to = service.date_to;
     $scope.create_invoices.paid_require = service.paid_require;
     $scope.create_invoices.total_discount = service.total_discount;
     $scope.total_tax = $scope.create_invoices.total_tax;

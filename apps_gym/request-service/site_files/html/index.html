@@ -36,7 +36,7 @@
                     <h3 class="bold text-center"> ##word.count## : {{count}}</h3>
                 </div>
 
-                <table x-permissions="login" class="table bold loaded" id="t1">
+                <table x-permissions="login" class="table bold hover pointer loaded" id="t1">
                     <tr>
                         <th class="not-print">##word.logo##</th>
                         <th>##word.customer##</th>
@@ -46,29 +46,31 @@
                         <th>##word.start_date##</th>
                         <th>##word.expired_date##</th>
                         <th>##word.paid_require##</th>
+                        <th>##word.service_count##</th>
                         <th>##word.status##</th>
                         <th class="not-print">##word.actions##</th>
                     </tr>
                     <tr ng-repeat="c in list">
-                        <td class="center not-print">
+                        <td ng-click="displayDetailsRequestService(c)" class="center not-print">
                             <img class="logo" ng-src="{{c.image_url}}">
                         </td>
-                        <td class="center title">{{c.customer.name_ar}}</td>
-                        <td class="center">{{c.trainer.name}}</td>
-                        <td class="center">{{c.hall.name}}</td>
-                        <td class="center">{{c.service.name}}</td>
-                        <td class="center brown">{{c.from_date | date : 'yyyy - MM - dd'}}</td>
-                        <td class="center red">{{c.to_date | date : 'yyyy - MM - dd'}}</td>
-                        <td class="center green">{{c.paid_require}}</td>
+                        <td ng-click="displayDetailsRequestService(c)" class="center title">{{c.customer.name_ar}}</td>
+                        <td ng-click="displayDetailsRequestService(c)" class="center">{{c.trainer.name}}</td>
+                        <td ng-click="displayDetailsRequestService(c)" class="center">{{c.hall.name}}</td>
+                        <td ng-click="displayDetailsRequestService(c)" class="center">{{c.service.name}}</td>
+                        <td ng-click="displayDetailsRequestService(c)" class="center brown">{{c.date_from | date : 'yyyy - MM - dd'}}</td>
+                        <td ng-click="displayDetailsRequestService(c)" class="center red">{{c.date_to | date : 'yyyy - MM - dd'}}</td>
+                        <td ng-click="displayDetailsRequestService(c)" class="center green">{{c.paid_require}}</td>
+                        <td ng-click="displayDetailsRequestService(c)" class="center green">{{c.service_count}}</td>
 
-                        <td class="center">
+                        <td ng-click="displayDetailsRequestService(c)" class="center">
                             <p ng-show="c.active ==true" class="green"> ##word.active## </p>
                             <p ng-show="c.active ==false" class="red"> ##word.not_active## </p>
                         </td>
 
                         <td class="center not-print">
-                            <i-button x-permissions="request_service_view || service_manage" type="view" label="##word.details##" ng-click="displayDetailsRequestService(c)"></i-button>
-
+<!--                             <i-button x-permissions="request_service_view || service_manage" type="view" label="##word.details##" ng-click="displayDetailsRequestService(c)"></i-button>
+ -->
                             <i-button x-permissions="request_service_update || service_manage" type="edit" label="##word.edit##" ng-click="displayUpdateRequestService(c)"></i-button>
 
                             <i-button x-permissions="request_service_delete || service_manage" type="delete" label="##word.delete##" ng-click="displayDeleteRequestService(c)"></i-button>
