@@ -1,0 +1,32 @@
+<div ng-hide="busy" class="row">
+    <div id="basicInformation" class="tab-content">
+        <fieldset>
+            <legend> ##word.basic_information##</legend>
+            <div class="col9">
+                <table id="basicInformationTable" class="table bold">
+                    <tr>
+                        <td class="title">##word.medicine_name##</td>
+                        <td class="center">{{medicine.name}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="title">##word.medicine_price##</td>
+                        <td class="center green">{{medicine.price}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="title">##word.status##</td>
+                        <td ng-show="medicine.active == true" class="green center"> ##word.active## </td>
+                        <td ng-show="medicine.active == false" class="red center"> ##word.not_active## </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="col3">
+                <i-image view ng-model="medicine.image_url"></i-image>
+            </div>
+
+        </fieldset>
+    </div>
+</div>
+<div x-import="medicine/action_info.html"></div>

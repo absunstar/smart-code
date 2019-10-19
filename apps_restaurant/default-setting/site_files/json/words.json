@@ -14,6 +14,11 @@
         "ar": "الى تاريخ"
     },
     {
+        "name": "default_settings",
+        "en": "Default Settings",
+        "ar": "الاعدادت الافتراضية"
+    },
+    {
         "name": "order_type",
         "en": "Order Type",
         "ar": "نوع الطلب"

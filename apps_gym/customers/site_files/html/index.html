@@ -43,8 +43,8 @@
                             <th class="not-print"> ##word.logo## </th>
                         <th> ##word.customers_code## </th>
                         <th> ##word.customers_name_ar## </th>
-                        <th> ##word.customers_balance## </th>
-                        <th> ##word.status## </th>
+<!--                         <th> ##word.customers_balance## </th>
+ -->                        <th> ##word.status## </th>
                         <th class="not-print"> ##word.actions## </th>
                     </tr>
                     <tr ng-repeat="c in list | orderBy: '-id'">
@@ -55,7 +55,7 @@
                         <td class="blue"> {{c.code}} </td>
                         <td> {{c.name_ar}} </td>
 
-                        <td class="green bold">
+                       <!--  <td class="green bold">
 
                             <div class="row margin padding" ng-repeat="openBranch in c.opening_balance">
 
@@ -76,7 +76,7 @@
                             </div>
 
                         </td>
-
+ -->
 
                         <td>
                             <p ng-show="c.active == true" class="green"> ##word.active## </p>

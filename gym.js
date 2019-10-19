@@ -36,6 +36,7 @@ site.importApps(__dirname + '/apps_accounting')
 site.importApps(__dirname + '/apps_inventories')
 site.importApps(__dirname + '/apps_hr')
 site.importApps(__dirname + '/apps_gym')
+site.importApps(__dirname + '/apps_medic')
 site.features.push('gym')
 setTimeout(() => {
     site.importApp(__dirname + '/apps_private/companies')

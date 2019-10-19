@@ -23,6 +23,10 @@ app.controller("service", function ($scope, $http, $timeout) {
       return;
     };
 
+    if(!$scope.service.complex_service){
+     $scope.service.selectedServicesList = [];
+    }
+
     $scope.busy = true;
     $http({
       method: "POST",
@@ -196,7 +200,7 @@ app.controller("service", function ($scope, $http, $timeout) {
         method: "POST",
         url: "/api/service/all",
         data: {
-          where: { name: $scope.search_service },
+          where: { name: $scope.search_service , complex_service : false },
           select: { id: 1, name: 1, services_price: 1, selectedServicesList: 1 }
         }
       }).then(

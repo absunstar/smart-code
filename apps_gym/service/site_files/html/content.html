@@ -11,8 +11,8 @@
                         <i-control help-id="services_price" type="number" v="r" class="col2"
                             label="##word.services_price##" ng-model="service.services_price"></i-control>
 
-                        <i-control help-id="total_complex_services_price" type="number" class="col3" disabled
-                            label="##word.total_complex_services_price##"
+                        <i-control help-id="total_complex_services_price" ng-show="service.complex_service"
+                            type="number" class="col3" disabled label="##word.total_complex_services_price##"
                             ng-model="service.total_complex_services_price"></i-control>
 
                         <div class="col2"></div>
