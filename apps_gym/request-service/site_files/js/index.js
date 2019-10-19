@@ -365,7 +365,6 @@ app.controller("request_service", function ($scope, $http, $timeout) {
     $scope.attend_service = service;
     $scope.attend_service.selectedServicesList.forEach(attend_service => {
       if ($scope.attend_service.attend_service_list && $scope.attend_service.attend_service_list.length) {
-     
         attend_service.current_ttendance = $scope.attend_service.attend_service_list.length;
       } else attend_service.current_ttendance = 0;
 
