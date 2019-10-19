@@ -29,6 +29,31 @@
         "ar": "حضور الخدمات"
     },
     {
+        "name": "remain",
+        "en": "Remain",
+        "ar": "الباقي"
+    },
+    {
+        "name": "attend_date",
+        "en": "Attend Date",
+        "ar": "تاريخ الحضور"
+    },
+    {
+        "name": "leave_date",
+        "en": "Leave Date",
+        "ar": "تاريخ الإنصراف"
+    },
+    {
+        "name": "service_name",
+        "en": "Service Name",
+        "ar": "إسم الخدمة"
+    },
+    {
+        "name": "current_ttendance",
+        "en": "Current Attendance",
+        "ar": "عدد الحضور الحالي"
+    },
+    {
         "name": "beginning_of_day",
         "en": "The beginning of the day",
         "ar": " بداية الإشتراك اليوم"

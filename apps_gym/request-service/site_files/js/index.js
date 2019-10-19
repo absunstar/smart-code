@@ -323,20 +323,48 @@ app.controller("request_service", function ($scope, $http, $timeout) {
   $scope.displaySearchModal = function () {
     $scope.error = '';
     site.showModal('#requestServiceSearchModal');
-
   };
 
-
   $scope.changeService = function (request_service) {
-
-    request_service.attend_count = request_service.service.attend_count || 1;
-    request_service.available_period = request_service.service.available_period || 0;
-    request_service.services_price = request_service.service.services_price || 0;
-
+    request_service.service_name = $scope.service.name;
+    request_service.selectedServicesList = $scope.service.selectedServicesList;
+    request_service.attend_count = $scope.service.attend_count || null;
+    request_service.available_period = $scope.service.available_period || 0;
+    request_service.services_price = $scope.service.services_price || 0;
+    $scope.service = {};
   };
 
   $scope.startDateToDay = function () {
     $scope.request_service.date_from = new Date();
+  };
+
+  $scope.insertAttend = function () {
+    $scope.attend_service.attend_service_list = $scope.attend_service.attend_service_list || [];
+    
+  };
+
+  $scope.showAttendServices = function (service) {
+
+    $scope.attend_service = service;
+    $scope.attend_service.selectedServicesList.forEach(attend_service => {
+      if ($scope.attend_service.attend_service_list && $scope.attend_service.attend_service_list.length) {
+        /*         $scope.attend_service.attend_service_list.filter()
+         */
+        attend_service.current_ttendance = $scope.attend_service.attend_service_list.length;
+      } else attend_service.current_ttendance = 0;
+
+      attend_service.remain = attend_service.total_attend_count - attend_service.current_ttendance || 0;
+    });
+
+    $scope.attend_service.attend_service_list = $scope.attend_service.attend_service_list || [];
+
+    /* $scope.attend_service.attend_service_list.unshift({
+
+    });
+   */
+
+    site.showModal('#attendServiceModal');
+
   };
 
   $scope.addDiscount = function () {
@@ -361,18 +389,18 @@ app.controller("request_service", function ($scope, $http, $timeout) {
   $scope.calc = function () {
     $scope.error = '';
     $timeout(() => {
-      let total_discount = 0;
+      $scope.request_service.total_discount = 0;
       $scope.request_service.paid_require = Number($scope.request_service.services_price);
       if ($scope.request_service.discountes && $scope.request_service.discountes.length > 0) {
         $scope.request_service.discountes.forEach(ds => {
           if (ds.type === "percent") {
-            total_discount * parseFloat(ds.value) / 100;
+            $scope.request_service.total_discount * parseFloat(ds.value) / 100;
           } else {
-            total_discount += parseFloat(ds.value);
+            $scope.request_service.total_discount += parseFloat(ds.value);
           };
         });
       };
-      $scope.request_service.paid_require = (Number($scope.request_service.services_price) * Number($scope.request_service.service_count || 1)) - total_discount;
+      $scope.request_service.paid_require = (Number($scope.request_service.services_price) * Number($scope.request_service.service_count || 1)) - $scope.request_service.total_discount;
     }, 200);
   };
 

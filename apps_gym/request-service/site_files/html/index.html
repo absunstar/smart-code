@@ -18,21 +18,29 @@
     <div id="main-layout" class="container">
         <div class="row">
             <div class="row" ng-controller="request_service">
-                <div x-permissions="request_service_add || service_manage" x-import="request-service/add_modal.html"></div>
-                <div x-permissions="request_service_update || service_manage" x-import="request-service/update_modal.html"></div>
-                <div x-permissions="request_service_update || service_manage" x-import="request-service/attend_service.html"></div>
-                <div x-permissions="request_service_delete || service_manage" x-import="request-service/delete_modal.html"></div>
-                <div x-permissions="request_service_view || service_manage" x-import="request-service/view_modal.html"></div>
-                <div x-permissions="request_service_search || service_manage" x-import="request-service/search_all_modal.html"></div>
+                <div x-permissions="request_service_add || service_manage" x-import="request-service/add_modal.html">
+                </div>
+                <div x-permissions="request_service_update || service_manage"
+                    x-import="request-service/update_modal.html"></div>
+                <div x-permissions="request_service_update || service_manage"
+                    x-import="request-service/attend_service.html"></div>
+                <div x-permissions="request_service_delete || service_manage"
+                    x-import="request-service/delete_modal.html"></div>
+                <div x-permissions="request_service_view || service_manage" x-import="request-service/view_modal.html">
+                </div>
+                <div x-permissions="request_service_search || service_manage"
+                    x-import="request-service/search_all_modal.html"></div>
 
                 <div class="row">
                     <h1 class="bold text-center">##word.request_service##</h1>
                 </div>
 
                 <div class="top-actions">
-                    <i-button x-permissions="request_service_add || service_manage" type="add" label="##word.service_new##" ng-click="displayAddRequestService()"></i-button>
+                    <i-button x-permissions="request_service_add || service_manage" type="add"
+                        label="##word.service_new##" ng-click="displayAddRequestService()"></i-button>
 
-                    <i-button x-permissions="request_service_search || service_manage" type="search" label="##word.search_all##" ng-click="displaySearchModal()"></i-button>
+                    <i-button x-permissions="request_service_search || service_manage" type="search"
+                        label="##word.search_all##" ng-click="displaySearchModal()"></i-button>
 
                     <h3 class="bold text-center"> ##word.count## : {{count}}</h3>
                 </div>
@@ -60,9 +68,11 @@
                         <td ng-click="displayDetailsRequestService(c)" class="center title">{{c.customer.name_ar}}</td>
                         <td ng-click="displayDetailsRequestService(c)" class="center">{{c.trainer.name}}</td>
                         <td ng-click="displayDetailsRequestService(c)" class="center">{{c.hall.name}}</td>
-                        <td ng-click="displayDetailsRequestService(c)" class="center">{{c.service.name}}</td>
-                        <td ng-click="displayDetailsRequestService(c)" class="center brown">{{c.date_from | date : 'yyyy - MM - dd'}}</td>
-                        <td ng-click="displayDetailsRequestService(c)" class="center red">{{c.date_to | date : 'yyyy - MM - dd'}}</td>
+                        <td ng-click="displayDetailsRequestService(c)" class="center">{{c.service_name}}</td>
+                        <td ng-click="displayDetailsRequestService(c)" class="center brown">
+                            {{c.date_from | date : 'yyyy - MM - dd'}}</td>
+                        <td ng-click="displayDetailsRequestService(c)" class="center red">
+                            {{c.date_to | date : 'yyyy - MM - dd'}}</td>
                         <td ng-click="displayDetailsRequestService(c)" class="center green">{{c.paid_require}}</td>
                         <td ng-click="displayDetailsRequestService(c)" class="center green">{{c.service_count}}</td>
 
@@ -72,18 +82,23 @@
                         </td>
 
                         <td class="center not-print">
-<!--                             <i-button x-permissions="request_service_view || service_manage" type="view" label="##word.details##" ng-click="displayDetailsRequestService(c)"></i-button>
+                            <!--                             <i-button x-permissions="request_service_view || service_manage" type="view" label="##word.details##" ng-click="displayDetailsRequestService(c)"></i-button>
  -->
- <i-button x-permissions="request_service_update || service_manage" type="view" label="##word.attend_services##" ng-click="attendServices(c)"></i-button>
-                            <i-button x-permissions="request_service_update || service_manage" type="edit" label="##word.edit##" ng-click="displayUpdateRequestService(c)"></i-button>
+                            <i-button x-permissions="request_service_update || service_manage" type="view"
+                                label="##word.attend_services##" ng-click="showAttendServices(c)"></i-button>
+                            <i-button x-permissions="request_service_update || service_manage" type="edit"
+                                label="##word.edit##" ng-click="displayUpdateRequestService(c)"></i-button>
 
-                            <i-button x-permissions="request_service_delete || service_manage" type="delete" label="##word.delete##" ng-click="displayDeleteRequestService(c)"></i-button>
+                            <i-button x-permissions="request_service_delete || service_manage" type="delete"
+                                label="##word.delete##" ng-click="displayDeleteRequestService(c)"></i-button>
                         </td>
                     </tr>
                 </table>
-                <i-button x-permissions="request_service_print || service_manage" type="print" label="##word.print##" onclick="site.print('#t1')"></i-button>
+                <i-button x-permissions="request_service_print || service_manage" type="print" label="##word.print##"
+                    onclick="site.print('#t1')"></i-button>
 
-                <i-button x-permissions="request_service_export || service_manage" type="export" label="##word.export_to_excel##" onclick="export_to_xlsx('t1' , 'request_service.xlsx')"></i-button>
+                <i-button x-permissions="request_service_export || service_manage" type="export"
+                    label="##word.export_to_excel##" onclick="export_to_xlsx('t1' , 'request_service.xlsx')"></i-button>
             </div>
         </div>
     </div>
