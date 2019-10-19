@@ -29,6 +29,11 @@
         "ar": "عدد مرات الحضور"
     },
     {
+        "name": "total_attend_count",
+        "en": "Total Attend Count",
+        "ar": "إجمالي مرات الحضور"
+    },
+    {
         "name": "available_period",
         "en": "Available Period",
         "ar": "الفترة المتاحة"

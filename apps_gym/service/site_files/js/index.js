@@ -227,6 +227,7 @@ app.controller("service", function ($scope, $http, $timeout) {
 
     if ($scope.selectedService && $scope.selectedService.id) {
       $scope.selectedService.count = 1;
+      $scope.selectedService.total_attend_count = $scope.selectedService.attend_count;
       $scope.service.selectedServicesList.unshift($scope.selectedService);
 
     } else $scope.error = '##word.err_select_service##';
@@ -247,6 +248,15 @@ app.controller("service", function ($scope, $http, $timeout) {
       $scope.service.total_complex_services_price = 0;
       $scope.service.selectedServicesList.map(s => $scope.service.total_complex_services_price += Number(s.services_price) * Number(s.count));
 
+    }, 200);
+  };
+
+
+  $scope.attendCalc = function (s) {
+    $scope.error = '';
+    $timeout(() => {
+      s.total_attend_count = 0;
+      s.total_attend_count += Number(s.attend_count) * Number(s.count);
     }, 200);
   };
 

@@ -54,7 +54,7 @@
                         </td>
                         <td class="center title">{{c.name}}</td>
                         <td class="center green">{{c.services_price}}</td>
-                        <td class="center blue">  {{c.available_period}}  ##word.day##</td>
+                        <td class="center blue"> {{c.available_period}} ##word.day##</td>
                         <td>
                             <div class="row" ng-show="c.selectedServicesList.length > 0">
 
@@ -64,6 +64,7 @@
                                         <th>##word.services_price##</th>
                                         <th>##word.attend_count##</th>
                                         <th>##word.service_count##</th>
+                                        <th>##word.total_attend_count##</th>
                                     </tr>
 
                                     <tr class="bold" ng-repeat="s in c.selectedServicesList">
@@ -83,7 +84,9 @@
                                         <td>
                                             <p class="center bold blue">{{s.count}}</p>
                                         </td>
-
+                                        <td>
+                                            <p class="center bold blue">{{s.total_attend_count}}</p>
+                                        </td>
                                     </tr>
 
                                 </table>

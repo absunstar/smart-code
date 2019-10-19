@@ -80,17 +80,17 @@
                     <div class="row">
 
                         </i-list>
+                        <i-list ng-search="_search.$hall" class="col3" display="name" ng-model="request_service.hall"
+                            label="##word.hall##" items="hallsList"></i-list>
                         <i-list ng-search="_search.$trainer" class="col4" display="name"
                             ng-model="request_service.trainer" label="##word.trainer##" items="trainersList"></i-list>
-                        <i-list ng-search="_search.$hall" class="col4" display="name" ng-model="request_service.hall"
-                            label="##word.hall##" items="hallsList"></i-list>
 
                     </div>
                     <div class="row">
                         <i-control ng-keydown="getService($event)" id="service" class="col3" ng-model="search_service"
                             label="##word.search##" type="text"></i-control>
 
-                        <i-list ng-search="_search.$service" class="col3" display="name" v="r"
+                        <i-list ng-search="_search.$service" class="col4" display="name" v="r"
                             ng-model="request_service.service" label="##word.service##"
                             ng-change="changeService(request_service)  ;calc()" items="servicesList"></i-list>
 
@@ -184,37 +184,44 @@
                         <div class="row">
                             <div class="row" ng-show="request_service.service.selectedServicesList.length > 0">
                                 <div class="col6">
+                                    <fieldset>
+                                        <legend>##word.complex_services##</legend>
 
-                                    <table class="table hover bold">
-                                        <tr>
-                                            <th>##word.service_name##</th>
-                                            <th>##word.services_price##</th>
-                                            <th>##word.attend_count##</th>
-                                            <th>##word.service_count##</th>
-                                        </tr>
+                                        <table class="table hover bold">
+                                            <tr>
+                                                <th>##word.service_name##</th>
+                                                <th>##word.services_price##</th>
+                                                <th>##word.attend_count##</th>
+                                                <th>##word.service_count##</th>
+                                                <th>##word.total_attend_count##</th>
+                                            </tr>
 
-                                        <tr class="bold" ng-repeat="s in request_service.service.selectedServicesList">
+                                            <tr class="bold"
+                                                ng-repeat="s in request_service.service.selectedServicesList">
 
-                                            <td>
-                                                <p class="center bold">{{s.name}}</p>
-                                            </td>
+                                                <td>
+                                                    <p class="center bold">{{s.name}}</p>
+                                                </td>
 
-                                            <td>
-                                                <p class="center bold green">{{s.services_price}}</p>
-                                            </td>
-
-
-                                            <td>
-                                                <p class="center bold blue">{{s.attend_count}}</p>
-                                            </td>
-                                            <td>
-                                                <p class="center bold blue">{{s.count}}</p>
-                                            </td>
+                                                <td>
+                                                    <p class="center bold green">{{s.services_price}}</p>
+                                                </td>
 
 
-                                        </tr>
+                                                <td>
+                                                    <p class="center bold blue">{{s.attend_count}}</p>
+                                                </td>
+                                                <td>
+                                                    <p class="center bold blue">{{s.count}}</p>
+                                                </td>
+                                                <td>
+                                                    <p class="center bold blue">{{s.total_attend_count}}</p>
+                                                </td>
 
-                                    </table>
+                                            </tr>
+
+                                        </table>
+                                    </fieldset>
                                 </div>
 
                             </div>

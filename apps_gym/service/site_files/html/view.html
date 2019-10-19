@@ -20,7 +20,7 @@
 
                     <tr>
                         <td class="title">##word.available_period##</td>
-                        <td class="center blue">{{service.available_period}}  ##word.day## </td>
+                        <td class="center blue">{{service.available_period}} ##word.day## </td>
                     </tr>
 
                     <tr>
@@ -40,6 +40,7 @@
                                         <th>##word.services_price##</th>
                                         <th>##word.attend_count##</th>
                                         <th>##word.service_count##</th>
+                                        <th>##word.total_attend_count##</th>
                                     </tr>
 
                                     <tr class="bold" ng-repeat="s in service.selectedServicesList">
@@ -57,6 +58,9 @@
 
                                         <td>
                                             <p class="center bold blue">{{s.count}}</p>
+                                        </td>
+                                        <td>
+                                            <p class="center bold blue">{{s.total_attend_count}}</p>
                                         </td>
 
                                     </tr>

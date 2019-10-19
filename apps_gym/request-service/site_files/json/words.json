@@ -24,6 +24,11 @@
         "ar": "المطلوب دفعه"
     },
     {
+        "name": "attend_services",
+        "en": "Attend Services",
+        "ar": "حضور الخدمات"
+    },
+    {
         "name": "beginning_of_day",
         "en": "The beginning of the day",
         "ar": " بداية الإشتراك اليوم"

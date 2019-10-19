@@ -20,8 +20,8 @@
                             ng-model="service.active"></i-checkbox>
                     </div>
                     <div class="row">
-                        <i-control ng-hide="service.complex_service" help-id="attend_count" class="col2" label="##word.attend_count##" type="number"
-                            ng-model="service.attend_count"></i-control>
+                        <i-control ng-hide="service.complex_service" help-id="attend_count" class="col2"
+                            label="##word.attend_count##" type="number" ng-model="service.attend_count"></i-control>
                         <i-control help-id="available_period" class="col2" label="##word.available_period##"
                             type="number" ng-model="service.available_period"></i-control>
                     </div>
@@ -54,25 +54,35 @@
                                         <th>##word.services_price##</th>
                                         <th>##word.attend_count##</th>
                                         <th>##word.service_count##</th>
+                                        <th>##word.total_attend_count##</th>
                                         <th>##word.actions##</th>
                                     </tr>
 
                                     <tr class="bold" ng-repeat="s in service.selectedServicesList">
 
                                         <td>
+                                            <br>
                                             <p class="center bold">{{s.name}}</p>
                                         </td>
 
                                         <td>
+                                            <br>
                                             <p class="center bold green">{{s.services_price}}</p>
                                         </td>
 
                                         <td>
+                                            <br>
                                             <p class="center bold blue">{{s.attend_count}}</p>
                                         </td>
 
                                         <td>
-                                            <i-control ng-model="s.count" ng-change="calc()" type="number"></i-control>
+                                            <i-control ng-model="s.count" ng-change="calc() ; attendCalc(s)"
+                                                type="number"></i-control>
+                                        </td>
+
+                                        <td>
+                                            <br>
+                                            <p class="center bold blue">{{s.total_attend_count}}</p>
                                         </td>
 
                                         <td class="center">
