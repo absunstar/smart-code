@@ -80,6 +80,30 @@ app.controller("request_service", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.updateAttendService = function (attend_service) {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/request_service/update",
+      data: attend_service
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          site.hideModal('#attendServiceModal');
+          $scope.getRequestServiceList();
+        } else {
+          $scope.error = 'Please Login First';
+        }
+      },
+      function (err) {
+        console.log(err);
+      }
+    )
+  };
+
+
   $scope.displayDetailsRequestService = function (request_service) {
     $scope.error = '';
     $scope.viewRequestService(request_service);
@@ -343,7 +367,7 @@ app.controller("request_service", function ($scope, $http, $timeout) {
 
     $scope.attend_service.attend_service_list.unshift({
       id : s.id,
-      name : s.name,
+      name : s.name || $scope.attend_service.service_name,
       attend_date: new Date(),
       attend_time: {
         hour: new Date().getHours(),
@@ -361,11 +385,11 @@ app.controller("request_service", function ($scope, $http, $timeout) {
   };
 
   $scope.showAttendServices = function (service) {
-
+    
     $scope.attend_service = service;
+    
     $scope.attend_service.selectedServicesList.forEach(attend_service => {
       if ($scope.attend_service.attend_service_list && $scope.attend_service.attend_service_list.length) {
-     
         attend_service.current_ttendance = $scope.attend_service.attend_service_list.length;
       } else attend_service.current_ttendance = 0;
 

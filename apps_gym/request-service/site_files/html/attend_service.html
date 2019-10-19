@@ -12,26 +12,43 @@
             <form class="form">
                 <div class="row">
 
-                    <div class="row">
+                    <div class="row" ng-hide="attend_service.selectedServicesList.length > 0">
                         <div class="col2"></div>
                         <div class="col8">
 
-                            <table class="table hover bold">
-                                <tr>
-                                    <th>##word.service_name##</th>
-                                    <th>##word.attend_count##</th>
-                                    <th>##word.current_ttendance##</th>
-                                    <th>##word.remain##</th>
-                                    <th>##word.actions##</th>
-                                </tr>
-
-                                <tr class="bold" ng-repeat="s in attend_service.selectedServicesList">
-
-                                    <td>
-                                        <p class="center bold">{{s.name}}</p>
-                                    </td>
-                                </tr>
-
+                                <table class="table hover bold">
+                                        <tr>
+                                            <th>##word.service_name##</th>
+                                            <th>##word.attend_count##</th>
+                                         <!--    <th>##word.current_ttendance##</th>
+                                            <th>##word.remain##</th> -->
+                                            <th>##word.actions##</th>
+                                        </tr>
+    
+                                        <tr class="bold">
+    
+                                            <td>
+                                                <p class="center bold">{{attend_service.service_name}}</p>
+                                            </td>
+    
+                                            <td>
+                                                <p class="center bold blue">{{attend_service.attend_count}}</p>
+                                            </td>
+                                         <!--    <td>
+                                                <p class="center bold blue">{{attend_service.current_ttendance}}</p>
+                                            </td>
+                                            <td>
+                                                <p class="center bold blue">{{attend_service.remain}}</p>
+                                            </td> -->
+                                            <td class="center">
+                                                <i-button type="add" label="##word.attend##" ng-click="attendNow(attend_service)">
+                                                </i-button>
+    
+                                            </td>
+                                        </tr>
+    
+                                    </table>
+                            
                         </div>
                         <div class="col2"></div>
 
@@ -49,8 +66,8 @@
                                         <th>##word.service_name##</th>
                                         <!--<th>##word.services_price##</th> -->
                                         <th>##word.attend_count##</th>
-                                        <th>##word.current_ttendance##</th>
-                                        <th>##word.remain##</th>
+                                      <!--   <th>##word.current_ttendance##</th>
+                                        <th>##word.remain##</th> -->
                                         <th>##word.actions##</th>
                                     </tr>
 
@@ -67,12 +84,12 @@
                                         <td>
                                             <p class="center bold blue">{{s.total_attend_count}}</p>
                                         </td>
-                                        <td>
+                                     <!--    <td>
                                             <p class="center bold blue">{{s.current_ttendance}}</p>
                                         </td>
                                         <td>
                                             <p class="center bold blue">{{s.remain}}</p>
-                                        </td>
+                                        </td> -->
                                         <td class="center">
                                             <i-button type="add" label="##word.attend##" ng-click="attendNow(s)">
                                             </i-button>
@@ -137,7 +154,7 @@
 
         <div class="modal-footer center">
 
-            <i-button type="edit" label="##word.edit##" ng-click="updateRequestService(attend_service)"></i-button>
+            <i-button type="save" label="##word.save##" ng-click="updateAttendService(attend_service)"></i-button>
 
             <i-button type="clear" label="##word.empty_search##" ng-click="search = {}"> </i-button>
 

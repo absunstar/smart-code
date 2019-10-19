@@ -90,7 +90,7 @@
                         <i-control ng-keydown="getService($event)" id="service" class="col3" ng-model="search_service"
                             label="##word.search##" type="text"></i-control>
 
-                        <i-list ng-search="_search.$service" class="col4" display="name" v="r" ng-model="service"
+                        <i-list ng-search="_search.$service" class="col4" display="name" ng-model="service"
                             label="##word.service##" ng-change="changeService(request_service)  ;calc()"
                             items="servicesList"></i-list>
 
@@ -150,10 +150,8 @@
                                                 ng-show="d1.type === 'number'">{{d1.value}}##word.le##</span>
                                             <i-button type="delete" ng-click="deleteDiscount(d1) ; calc()"> </i-button>
                                         </td>
-
                                     </tr>
                                 </table>
-
                             </div>
 
                         </div>
