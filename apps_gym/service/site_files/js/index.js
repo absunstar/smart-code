@@ -23,8 +23,10 @@ app.controller("service", function ($scope, $http, $timeout) {
       return;
     };
 
-    if(!$scope.service.complex_service){
-     $scope.service.selectedServicesList = [];
+    if ($scope.service.complex_service) {
+      $scope.service.attend_count = null;
+    } else {
+      $scope.service.selectedServicesList = [];
     }
 
     $scope.busy = true;
@@ -200,8 +202,8 @@ app.controller("service", function ($scope, $http, $timeout) {
         method: "POST",
         url: "/api/service/all",
         data: {
-          where: { name: $scope.search_service , complex_service : false },
-          select: { id: 1, name: 1, services_price: 1, selectedServicesList: 1 }
+          where: { name: $scope.search_service, complex_service: false },
+          select: { id: 1, name: 1, services_price: 1, selectedServicesList: 1, attend_count: 1 }
         }
       }).then(
         function (response) {

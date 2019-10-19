@@ -364,6 +364,55 @@ app.controller("customers", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.getDiseaseList = function (where) {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/disease/all",
+      data: {
+        where: {
+          active: true
+        },
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.diseaseList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.getMedicineList = function (where) {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/medicine/all",
+      data: {
+        where: {
+          active: true
+        },
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.medicineList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+
   $scope.getAreaList = function (city) {
     $scope.busy = true;
     $http({
@@ -440,4 +489,6 @@ app.controller("customers", function ($scope, $http, $timeout) {
   $scope.getGovList();
   $scope.getIndentfy();
   $scope.getBloodType();
+  $scope.getDiseaseList();
+  $scope.getMedicineList();
 });

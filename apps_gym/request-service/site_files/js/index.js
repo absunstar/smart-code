@@ -209,7 +209,7 @@ app.controller("request_service", function ($scope, $http, $timeout) {
         url: "/api/service/all",
         data: {
           where: { name: $scope.search_service },
-          select: { id: 1, name: 1, services_price: 1, selectedServicesList: 1 }
+          select: { id: 1, name: 1, services_price: 1, selectedServicesList: 1, attend_count: 1, available_period: 1, complex_service: 1 }
         }
       }).then(
         function (response) {
@@ -326,10 +326,18 @@ app.controller("request_service", function ($scope, $http, $timeout) {
 
   };
 
+
+  $scope.changeService = function (request_service) {
+
+    request_service.attend_count = request_service.service.attend_count || 1;
+    request_service.available_period = request_service.service.available_period || 0;
+    request_service.services_price = request_service.service.services_price || 0;
+
+  };
+
   $scope.startDateToDay = function () {
     $scope.request_service.date_from = new Date();
   };
-
 
   $scope.addDiscount = function () {
     $scope.error = '';

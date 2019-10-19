@@ -29,9 +29,21 @@
                                 <td colspan="2" ng-show="!request_service.customer.child">
                                     <p class="red"> ##word.no## </p>
                                 </td>
-
                                 <td colspan="2"></td>
+                            </tr>
 
+
+                            <tr>
+                                <td class="blue"> ##word.weight## </td>
+                                <td colspan="2" class="center"> {{request_service.customer.weight}} </td>
+                                <td class="blue"> ##word.tall## </td>
+                                <td colspan="2" class="center"> {{request_service.customer.tall}} </td>
+                                <td class="blue"> ##word.blood_type## </td>
+                                <td colspan="2" class="center red"> {{request_service.customer.blood_type.name}} </td>
+                            </tr>
+                            <tr>
+                                <td class="blue"> ##word.medicine_notes## </td>
+                                <td colspan="7" class="center"> {{request_service.customer.medicine_notes}}</td>
                             </tr>
                             <tr>
                                 <td class="blue"> ##word.gov## </td>
@@ -41,6 +53,7 @@
                                 <td class="blue"> ##word.area## </td>
                                 <td colspan="2" class="center"> {{request_service.customer.area.name}} </td>
                             </tr>
+
                             <tr>
                                 <td class="blue"> ##word.address## </td>
                                 <td colspan="7" class="center"> {{request_service.customer.address}}</td>
@@ -79,8 +92,7 @@
 
                         <i-list ng-search="_search.$service" class="col3" display="name" v="r"
                             ng-model="request_service.service" label="##word.service##"
-                            ng-change="request_service.services_price =request_service.service.services_price  ;calc()"
-                            items="servicesList"></i-list>
+                            ng-change="changeService(request_service)  ;calc()" items="servicesList"></i-list>
 
                         <div class="col1"></div>
 
@@ -147,6 +159,16 @@
                         </div>
 
                         <div class="row">
+                            <i-control ng-show="request_service.service && !request_service.service.complex_service"
+                                help-id="attend_count" type="number" class="col2" disabled label="##word.attend_count##"
+                                ng-model="request_service.attend_count">
+                            </i-control>
+
+                            <i-control ng-show="request_service.service" help-id="available_period" type="number"
+                                class="col2" disabled label="##word.available_period##"
+                                ng-model="request_service.available_period">
+                            </i-control>
+
                             <i-control ng-show="request_service.service" help-id="services_price" type="number"
                                 class="col2" disabled label="##word.services_price##"
                                 ng-model="request_service.services_price">
@@ -156,6 +178,46 @@
                                 class="col2" label="##word.service_count##" ng-model="request_service.service_count"
                                 ng-change="calc()">
                             </i-control>
+
+
+                        </div>
+                        <div class="row">
+                            <div class="row" ng-show="request_service.service.selectedServicesList.length > 0">
+                                <div class="col6">
+
+                                    <table class="table hover bold">
+                                        <tr>
+                                            <th>##word.service_name##</th>
+                                            <th>##word.services_price##</th>
+                                            <th>##word.attend_count##</th>
+                                            <th>##word.service_count##</th>
+                                        </tr>
+
+                                        <tr class="bold" ng-repeat="s in request_service.service.selectedServicesList">
+
+                                            <td>
+                                                <p class="center bold">{{s.name}}</p>
+                                            </td>
+
+                                            <td>
+                                                <p class="center bold green">{{s.services_price}}</p>
+                                            </td>
+
+
+                                            <td>
+                                                <p class="center bold blue">{{s.attend_count}}</p>
+                                            </td>
+                                            <td>
+                                                <p class="center bold blue">{{s.count}}</p>
+                                            </td>
+
+
+                                        </tr>
+
+                                    </table>
+                                </div>
+
+                            </div>
                         </div>
 
                         <!--      <i-control ng-show="request_service.service.subscriptions_system.id ==1" help-id="session_price"
