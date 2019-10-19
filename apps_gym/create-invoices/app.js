@@ -99,6 +99,7 @@ module.exports = function init(site) {
         if (doc.safe) {
           let paid_value = {
             value: doc.paid_up,
+            notes : doc.notes,
             company: doc.company,
             branch: doc.branch,
             date: doc.date,

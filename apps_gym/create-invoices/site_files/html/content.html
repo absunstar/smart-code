@@ -7,7 +7,7 @@
 
                     <div class="row">
                         <i-date2 class="col3" ng-model="create_invoices.date" label="##word.date##"></i-date2>
-                        
+
                         <i-list help-id="" ng-search="_search.$payment_method_search" class="col2"
                             label="##word.payment_method##" ng-model="create_invoices.payment_method"
                             items="paymentMethodList" display="##session.lang##">
@@ -38,6 +38,7 @@
                             <table x-permissions="login" class="table bold hover loaded" id="t1">
 
                                 <tr>
+                                    <th> ##word.code## </th>
                                     <th> ##word.customers## </th>
                                     <th> ##word.trainers## </th>
                                     <th> ##word.halls## </th>
@@ -47,6 +48,7 @@
 
                                 <tr class="pointer" ng-repeat="service in requestServiceList"
                                     ng-click="selectRequestService(service)">
+                                    <td class="center blue"> {{service.code}} </td>
                                     <td class="center"> {{service.customer.name_ar}} </td>
                                     <td class="center"> {{service.trainer.name}}</td>
                                     <td class="center"> {{service.hall.name}} </td>
@@ -60,11 +62,17 @@
                         <br>
                         <br>
                         <br>
-                        <div class="row" ng-show ="create_invoices.customer">
+                        <div class="row" ng-show="create_invoices.customer">
                             <div class="col6">
 
 
                                 <table id="basicInformationTable" class="table hover bold">
+
+                                    <tr>
+                                        <td class="title">##word.code##</td>
+                                        <td class="center blue">{{create_invoices.code}}</td>
+                                    </tr>
+
                                     <tr>
                                         <td class="title">##word.customer##</td>
                                         <td class="center">{{create_invoices.customer.name_ar}}</td>
@@ -87,7 +95,7 @@
 
                                     <tr>
                                         <td class="title">##word.start_date##</td>
-                                        <td class="center brown">{{create_invoices.date_from | date : 'yyyy - MM - dd'}}
+                                        <td class="center green">{{create_invoices.date_from | date : 'yyyy - MM - dd'}}
                                         </td>
                                     </tr>
                                     <tr>
@@ -101,7 +109,7 @@
 
                         </div>
 
-                        <div class="row" ng-show ="create_invoices.customer">
+                        <div class="row" ng-show="create_invoices.customer">
 
                             <i-control class="col2" ng-show="create_invoices.total_discount"
                                 ng-model="create_invoices.total_discount" disabled label="##word.total_discount##"
@@ -123,6 +131,14 @@
                         </div>
 
                     </div>
+                    <div class="row">
+                        <div class="col6">
+                            <i-textarea class="col" label="##word.notes##" ng-model="create_invoices.notes">
+                            </i-textarea>
+
+                        </div>
+                    </div>
+
                 </div>
 
                 <div class="col3">

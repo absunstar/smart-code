@@ -53,18 +53,7 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
     } else if ($scope.create_invoices.paid_up > 0 && !$scope.create_invoices.safe) {
       $scope.error = "##word.should_select_safe##";
       return;
-    } else if ($scope.create_invoices.total_tax > $scope.total_tax) {
-      $scope.error = "##word.err_total_tax##";
-      return;
-    } else if ($scope.create_invoices.total_discount > $scope.total_discount) {
-      $scope.error = "##word.err_total_discount##";
-      return;
-    } else if ($scope.create_invoices.price_delivery_service > $scope.price_delivery_service) {
-      $scope.error = "##word.err_price_delivery_service##";
-      return;
-    } else if ($scope.create_invoices.service > $scope.service) {
-      $scope.error = "##word.err_service##";
-      return;
+  
     } else if ($scope.create_invoices.paid_up > $scope.create_invoices.paid_require) {
       $scope.error = "##word.err_paid_require##";
       return;
@@ -327,6 +316,7 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
     $scope.create_invoices.date_from = service.date_from;
     $scope.create_invoices.date_to = service.date_to;
     $scope.create_invoices.paid_require = service.paid_require;
+    $scope.create_invoices.code = service.code;
     $scope.create_invoices.total_discount = service.total_discount;
     $scope.total_tax = $scope.create_invoices.total_tax;
     $scope.total_discount = $scope.create_invoices.total_discount;

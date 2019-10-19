@@ -37,8 +37,10 @@ module.exports = function init(site) {
 
               obj.pre_balance = doc.pre_balance
               obj.image_url = obj.image_url
-              obj.academy = doc.academy
+              obj.company = doc.company
               obj.branch = doc.branch
+              obj.notes = doc.notes
+
               obj.balance = doc.balance
               obj.operation = 'حساب فاتورة'
               obj.sourceName = obj.code
@@ -67,15 +69,19 @@ module.exports = function init(site) {
 
             }, (err, doc) => {
 
-              obj.pre_balance = doc.pre_balance
-              obj.image_url = obj.image_url
-              obj.academy = doc.academy
-              obj.branch = doc.branch
-              obj.balance = doc.balance
-              obj.operation = 'حساب فاتورة'
-              obj.sourceName = obj.code
-              obj.transition_type = 'in';
-              site.call('[safes][safes_payments][+]', obj)
+              if (!err) {
+
+                obj.pre_balance = doc.pre_balance
+                obj.image_url = obj.image_url
+                obj.company = doc.company
+                obj.branch = doc.branch
+                obj.balance = doc.balance
+                obj.notes = doc.notes
+                obj.operation = 'حساب فاتورة'
+                obj.sourceName = obj.code
+                obj.transition_type = 'in';
+                site.call('[safes][safes_payments][+]', obj)
+              }
 
             })
           }
@@ -101,6 +107,7 @@ module.exports = function init(site) {
               obj.pre_balance = doc.pre_balance
               obj.image_url = doc.image_url
               obj.company = doc.company
+              obj.notes = doc.notes
               obj.branch = doc.branch
               obj.balance = doc.balance
               obj.operation = 'دفعة كورس لطالب'

@@ -3,26 +3,6 @@ app.controller("report_invoices", function ($scope, $http, $timeout) {
 
   $scope.report_invoices = {};
 
-  $scope.getTransactionTypeList = function () {
-    $scope.error = '';
-    $scope.busy = true;
-    $scope.transactionTypeList = [];
-    $http({
-      method: "POST",
-      url: "/api/order_invoice/transaction_type/all"
-
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        $scope.transactionTypeList = response.data;
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
-  };
-
   $scope.getPaymentMethodList = function () {
     $scope.error = '';
     $scope.busy = true;
@@ -84,12 +64,12 @@ app.controller("report_invoices", function ($scope, $http, $timeout) {
           $scope.total_tax = 0;
           $scope.total_discount = 0;
           $scope.list.forEach(invoice => {
-            $scope.remain_amount += invoice.remain_amount;
-            $scope.paid_require += invoice.paid_require;
-            $scope.total_tax += invoice.total_tax;
-            $scope.total_discount += invoice.total_discount;
-            
+            $scope.remain_amount += invoice.remain_amount ||0;
+            $scope.paid_require += invoice.paid_require ||0;
+            $scope.total_discount += invoice.total_discount ||0;
           });
+
+
           $scope.paid_up = $scope.paid_require - $scope.remain_amount
         }
       },
@@ -108,7 +88,6 @@ app.controller("report_invoices", function ($scope, $http, $timeout) {
   };
  
   $scope.getReportInvoicesList();
-  $scope.getTransactionTypeList();
   $scope.getPaymentMethodList();
   $scope.getSourceType();
 

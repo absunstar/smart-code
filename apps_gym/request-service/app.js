@@ -2,6 +2,32 @@ module.exports = function init(site) {
   const $request_service = site.connectCollection("request_service")
 
 
+  function addZero(code, number) {
+    let c = number - code.toString().length
+    for (let i = 0; i < c; i++) {
+      code = '0' + code.toString()
+    }
+    return code
+  }
+
+  $request_service.newCode = function () {
+
+    let y = new Date().getFullYear().toString().substr(2, 2)
+    let m = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L'][new Date().getMonth()].toString()
+    let d = new Date().getDate()
+    let lastCode = site.storage('ticket_last_code') || 0
+    let lastMonth = site.storage('ticket_last_month') || m
+    if (lastMonth != m) {
+      lastMonth = m
+      lastCode = 0
+    }
+    lastCode++
+    site.storage('ticket_last_code', lastCode)
+    site.storage('ticket_last_month', lastMonth)
+    return y + lastMonth + addZero(d, 2) + addZero(lastCode, 4)
+  }
+
+
   site.on('[create_invoices][request_service][+]', function (obj) {
     $request_service.findOne({ id: obj }, (err, doc) => {
       doc.invoice = true
@@ -15,6 +41,8 @@ module.exports = function init(site) {
       code: "1",
       name: "طلب خدمة إفتراضية",
       image_url: '/images/request_service.png',
+
+      code: $request_service.newCode(),
       company: {
         id: doc.id,
         name_ar: doc.name_ar
@@ -67,7 +95,7 @@ module.exports = function init(site) {
     if (typeof request_service_doc.active === 'undefined') {
       request_service_doc.active = true
     }
-
+    request_service_doc.code = $request_service.newCode()
     request_service_doc.company = site.get_company(req)
     request_service_doc.branch = site.get_branch(req)
 

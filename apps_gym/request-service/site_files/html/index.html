@@ -39,6 +39,7 @@
                 <table x-permissions="login" class="table bold hover pointer loaded" id="t1">
                     <tr>
                         <th class="not-print">##word.logo##</th>
+                        <th> ##word.code## </th>
                         <th>##word.customer##</th>
                         <th>##word.trainer##</th>
                         <th>##word.hall##</th>
@@ -54,6 +55,7 @@
                         <td ng-click="displayDetailsRequestService(c)" class="center not-print">
                             <img class="logo" ng-src="{{c.image_url}}">
                         </td>
+                        <td ng-click="displayDetailsRequestService(c)" class="center blue">{{c.code}}</td>
                         <td ng-click="displayDetailsRequestService(c)" class="center title">{{c.customer.name_ar}}</td>
                         <td ng-click="displayDetailsRequestService(c)" class="center">{{c.trainer.name}}</td>
                         <td ng-click="displayDetailsRequestService(c)" class="center">{{c.hall.name}}</td>
