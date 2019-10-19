@@ -10,7 +10,17 @@
                     </tr>
                     <tr>
                         <td class="title">##word.services_price##</td>
-                        <td class="center blue">{{service.services_price}}</td>
+                        <td class="center green">{{service.services_price}}</td>
+                    </tr>
+
+                    <tr ng-hide="service.complex_service">
+                        <td class="title">##word.attend_count##</td>
+                        <td class="center blue">{{service.attend_count}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="title">##word.available_period##</td>
+                        <td class="center blue">{{service.available_period}} ##word.day## </td>
                     </tr>
 
                     <tr>
@@ -20,38 +30,46 @@
                     </tr>
 
                     <tr ng-show="service.selectedServicesList.length > 0">
-                            <td class="title">##word.complex_services##</td>
-                            <td>
-                                <div class="row" >
-    
-                                    <table class="table hover bold">
-                                        <tr>
-                                            <th>##word.service_name##</th>
-                                            <th>##word.services_price##</th>
-                                            <th>##word.service_count##</th>
-                                        </tr>
-    
-                                        <tr class="bold" ng-repeat="s in service.selectedServicesList">
-    
-                                            <td>
-                                                <p class="center bold blue">{{s.name}}</p>
-                                            </td>
-    
-                                            <td>
-                                                <p class="center bold green">{{s.services_price}}</p>
-                                            </td>
-    
-                                            <td>
-                                                <p class="center bold blue">{{s.count}}</p>
-                                            </td>
-    
-                                        </tr>
-    
-                                    </table>
-                                </div>
-                            </td>
-                        </tr>
-    
+                        <td class="title">##word.complex_services##</td>
+                        <td>
+                            <div class="row">
+
+                                <table class="table hover bold">
+                                    <tr>
+                                        <th>##word.service_name##</th>
+                                        <th>##word.services_price##</th>
+                                        <th>##word.attend_count##</th>
+                                        <th>##word.service_count##</th>
+                                        <th>##word.total_attend_count##</th>
+                                    </tr>
+
+                                    <tr class="bold" ng-repeat="s in service.selectedServicesList">
+
+                                        <td>
+                                            <p class="center bold">{{s.name}}</p>
+                                        </td>
+
+                                        <td>
+                                            <p class="center bold green">{{s.services_price}}</p>
+                                        </td>
+                                        <td>
+                                            <p class="center bold green">{{s.attend_count}}</p>
+                                        </td>
+
+                                        <td>
+                                            <p class="center bold blue">{{s.count}}</p>
+                                        </td>
+                                        <td>
+                                            <p class="center bold blue">{{s.total_attend_count}}</p>
+                                        </td>
+
+                                    </tr>
+
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+
 
                     <!--  <tr>
                         <td class="title">##word.subscriptions_system##</td>
@@ -69,7 +87,7 @@
                     </tr>
 
  -->
-                  
+
                 </table>
             </div>
 

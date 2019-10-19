@@ -8,16 +8,22 @@ app.controller("customers", function ($scope, $http, $timeout) {
     $scope.customer = {
       image_url: '/images/customer.png',
       active: true,
-      balance: 0,
-      branch_list: [{
-        charge: [{}]
-      }],
-      currency_list: [],
-      opening_balance: [{ initial_balance: 0 }],
-      bank_list: [{}],
-      dealing_company: [{}]
+      allergic_food_list: [{}],
+      allergic_drink_list: [{}],
+      medicine_list: [{}],
+      disease_list: [{}],
+      /*       balance: 0,
+             branch_list: [{
+              charge: [{}]
+            }], 
+            currency_list: [],
+        opening_balance: [{ initial_balance: 0 }], 
+      
+            bank_list: [{}],
+            dealing_company: [{}] */
     };
-    $scope.showOpeningBalance=true;
+    /*     $scope.showOpeningBalance = true;
+     */
     site.showModal('#customerAddModal');
     document.querySelector('#customerAddModal .tab-link').click();
   };
@@ -35,7 +41,7 @@ app.controller("customers", function ($scope, $http, $timeout) {
     }
 
     $scope.busy = true;
-  
+
     $http({
       method: "POST",
       url: "/api/customers/add",
@@ -62,7 +68,7 @@ app.controller("customers", function ($scope, $http, $timeout) {
     $scope.detailsCustomer(customer);
     $scope.customer = {};
     site.showModal('#customerUpdateModal');
-    $scope.showOpeningBalance=false;
+    $scope.showOpeningBalance = false;
     document.querySelector('#customerUpdateModal .tab-link').click();
   };
 
@@ -87,11 +93,11 @@ app.controller("customers", function ($scope, $http, $timeout) {
 
     }
 
-    if($scope.showOpeningBalance ){
+    if ($scope.showOpeningBalance) {
 
       $scope.customer.balance = parseInt(num);
     }
-    
+
 
 
   };
@@ -243,7 +249,7 @@ app.controller("customers", function ($scope, $http, $timeout) {
       }
     )
   };
-  
+
   $scope.getCustomerGroupList = function () {
     $http({
       method: "POST",
@@ -265,6 +271,25 @@ app.controller("customers", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.getBloodType = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $scope.bloodTypeList = [];
+    $http({
+      method: "POST",
+      url: "/api/blood_type/all"
+
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.bloodTypeList = response.data;
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
 
   $scope.getGovList = function (where) {
     $scope.busy = true;
@@ -275,7 +300,7 @@ app.controller("customers", function ($scope, $http, $timeout) {
         where: {
           active: true
         },
-        select : {id : 1 , name : 1}
+        select: { id: 1, name: 1 }
       }
     }).then(
       function (response) {
@@ -303,7 +328,7 @@ app.controller("customers", function ($scope, $http, $timeout) {
           'gov.id': gov.id,
           active: true
         },
-        select : {id : 1 , name : 1}
+        select: { id: 1, name: 1 }
       }
     }).then(
       function (response) {
@@ -338,7 +363,56 @@ app.controller("customers", function ($scope, $http, $timeout) {
       }
     )
   };
-  
+
+  $scope.getDiseaseList = function (where) {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/disease/all",
+      data: {
+        where: {
+          active: true
+        },
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.diseaseList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.getMedicineList = function (where) {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/medicine/all",
+      data: {
+        where: {
+          active: true
+        },
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.medicineList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+
   $scope.getAreaList = function (city) {
     $scope.busy = true;
     $http({
@@ -414,4 +488,7 @@ app.controller("customers", function ($scope, $http, $timeout) {
   $scope.getCustomerGroupList();
   $scope.getGovList();
   $scope.getIndentfy();
+  $scope.getBloodType();
+  $scope.getDiseaseList();
+  $scope.getMedicineList();
 });

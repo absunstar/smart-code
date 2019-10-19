@@ -380,6 +380,16 @@
         "ar": "إدارة إستمارات حجز الكورسات"
     },
     {
+        "name": "menu_disease",
+        "en": "Diseases",
+        "ar": "الأمراض"
+    },
+    {
+        "name": "menu_disease_tag",
+        "en": "Add Diseases Manegment",
+        "ar": "إدارة نظام الأمراض"
+    },
+    {
         "name": "menu_medicine",
         "en": "Medicines",
         "ar": "الأدوية"

@@ -14,6 +14,91 @@
     {"name" : "customers_name_en" , "en" : "Customer Name English" , "ar" : "إسم العميل بالانجليزية"},
     {"name" : "customer_name" , "en" : "Customer Name" , "ar" : "إسم العميل"},
     {"name" : "customer" , "en" : "Customer " , "ar" : " العميل"},
+    {
+        "name": "beginning_dosage",
+        "en": "Beginning Of Dosage",
+        "ar": "بداية الجرعة"
+    },
+    {
+        "name": "count_dosage",
+        "en": "Count Of Dosage",
+        "ar": " عدد الجرعات اليومية"
+    },
+    {
+        "name": "count_hours_dosage",
+        "en": "Count Hours Of Dosage",
+        "ar": " عدد الساعات بين الجرعات "
+    },
+    {
+        "name": "medical_condition",
+        "en": "Medical Condition",
+        "ar": "الحالة الطبية"
+    },
+    {
+        "name": "weight",
+        "en": "Weight",
+        "ar": "الوزن"
+    },
+    {
+        "name": "tall",
+        "en": "Tall",
+        "ar": "الطول"
+    },
+    {
+        "name": "disease_name",
+        "en": "Disease Name",
+        "ar": "إسم المرض"
+    },
+    {
+        "name": "blood_type",
+        "en": "Blood Type",
+        "ar": "فصيلة الدم"
+    },
+    {
+        "name": "family_info",
+        "en": "Family Informations",
+        "ar": "معلومات العائلة"
+    },
+    {
+        "name": "medical_info",
+        "en": "Medical Information",
+        "ar": "معلومــــــات طبيـــــة"
+    },
+    {
+        "name": "allergic_food",
+        "en": "Allergic Food",
+        "ar": "حساسية الأطعمة"
+    },
+    {
+        "name": "allergic_drink",
+        "en": "Allergic Drink",
+        "ar": "حساسية المشروبات"
+    },
+    {
+        "name": "allergic",
+        "en": "Allergic",
+        "ar": "الحســــــــاسيـــــة "
+    },
+    {
+        "name": "medicines",
+        "en": "Medicines",
+        "ar": "الأدويـــــــة "
+    },
+    {
+        "name": "diseases",
+        "en": "Diseases",
+        "ar": "الأمـــــراض"
+    },
+    {
+        "name": "medicine_notes",
+        "en": "Medicine Notes",
+        "ar": "ملاحظات طبية"
+    },
+    {
+        "name": "medicine",
+        "en": "Medicine Name",
+        "ar": "إسم الدواء "
+    },
 
     {"name" : "customers_groups" , "en" : "Customer Group" , "ar" : "مجموعة العملاء"},
 

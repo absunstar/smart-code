@@ -43,8 +43,8 @@
                         <th class="not-print">##word.logo##</th>
                         <th>##word.service_name##</th>
                         <th>##word.services_price##</th>
+                        <th>##word.available_period##</th>
                         <th>##word.complex_services##</th>
-
                         <th>##word.status##</th>
                         <th class="not-print">##word.actions##</th>
                     </tr>
@@ -54,6 +54,7 @@
                         </td>
                         <td class="center title">{{c.name}}</td>
                         <td class="center green">{{c.services_price}}</td>
+                        <td class="center blue"> {{c.available_period}} ##word.day##</td>
                         <td>
                             <div class="row" ng-show="c.selectedServicesList.length > 0">
 
@@ -61,7 +62,9 @@
                                     <tr>
                                         <th>##word.service_name##</th>
                                         <th>##word.services_price##</th>
+                                        <th>##word.attend_count##</th>
                                         <th>##word.service_count##</th>
+                                        <th>##word.total_attend_count##</th>
                                     </tr>
 
                                     <tr class="bold" ng-repeat="s in c.selectedServicesList">
@@ -75,9 +78,15 @@
                                         </td>
 
                                         <td>
-                                            <p class="center bold blue">{{s.count}}</p>
+                                            <p class="center bold ">{{s.attend_count}}</p>
                                         </td>
 
+                                        <td>
+                                            <p class="center bold blue">{{s.count}}</p>
+                                        </td>
+                                        <td>
+                                            <p class="center bold blue">{{s.total_attend_count}}</p>
+                                        </td>
                                     </tr>
 
                                 </table>

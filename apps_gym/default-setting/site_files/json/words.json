@@ -19,6 +19,11 @@
         "ar": "نوع الطلب"
     },
     {
+        "name": "default_settings",
+        "en": "Default Settings",
+        "ar": "الاعدادت الافتراضية"
+    },
+    {
         "name": "discount_method",
         "en": "Discount Method of Store",
         "ar": "طريقة الخصم من المخزن"

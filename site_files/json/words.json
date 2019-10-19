@@ -221,6 +221,11 @@
         "ar": "جارى التحميل"
     },
     {
+        "name": "day",
+        "en": "Day",
+        "ar": "يوم"
+    },
+    {
         "name": "menu_class",
         "en": "left-fixed-menu",
         "ar": "right-fixed-menu"

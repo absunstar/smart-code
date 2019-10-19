@@ -4,20 +4,25 @@
         <div class="tabs-header full">
             <a class="tab-link" onclick="site.showTabContent(event, '#personalInformation')">
                 ##word.customers_personal_information## </a>
-            <a class="tab-link" onclick="site.showTabContent(event, '#officialDocuments')">
-                ##word.customers_official_documents## </a>
 
-            <a class="tab-link" onclick="site.showTabContent(event, '#openingBalance')">
-                ##word.customers_opening_balance## </a>
-            <a class="tab-link" onclick="site.showTabContent(event, '#bankingAndAccounting')">
-                ##word.customers_banking_and_acounting## </a>
             <a class="tab-link" onclick="site.showTabContent(event, '#contactAndAddress')">
                 ##word.customers_contact_and_addresses## </a>
-            <a class="tab-link" onclick="site.showTabContent(event, '#customersBranches')">
-                ##word.customers_branches## </a>
+            <a class="tab-link" onclick="site.showTabContent(event,'#medicalConditionInformation')">
+                ##word.medical_condition##
+            </a>
             <a class="tab-link" onclick="site.showTabContent(event, '#customersFiles')">
                 ##word.customers_files## </a>
-            <a class="tab-link" onclick="site.showTabContent(event, '#customersDealing')">
+            <a class="tab-link hide" onclick="site.showTabContent(event, '#officialDocuments')">
+                ##word.customers_official_documents## </a>
+            <a class="tab-link hide" onclick="site.showTabContent(event, '#openingBalance')">
+                ##word.customers_opening_balance## </a>
+            <a class="tab-link hide" onclick="site.showTabContent(event, '#bankingAndAccounting')">
+                ##word.customers_banking_and_acounting## </a>
+
+            <a class="tab-link hide" onclick="site.showTabContent(event, '#customersBranches')">
+                ##word.customers_branches## </a>
+
+            <a class="tab-link hide" onclick="site.showTabContent(event, '#customersDealing')">
                 ##word.customers_dealing## </a>
         </div>
 
@@ -93,6 +98,127 @@
                     <i-button class="not-print" x-permission="print" type="print left"
                         onclick="site.print('#customerDetailsModal #customersIdInforamationTable')"></i-button>
                 </fieldset>
+            </div>
+
+            <div id="medicalConditionInformation" class="tab-content">
+                <fieldset>
+
+                    <legend>
+                        ##word.medical_info##
+                    </legend>
+
+                    <table class="table hover bold">
+
+                        <tr>
+                            <td class="title">##word.weight##</td>
+                            <td class="center">{{customer.weight}}</td>
+                        </tr>
+                        <tr>
+                            <td class="title">##word.tall##</td>
+                            <td class="center">{{customer.tall}}</td>
+                        </tr>
+                        <tr>
+                            <td class="title">##word.blood_type##</td>
+                            <td class="center red">{{customer.blood_type.name}}</td>
+                        </tr>
+                        <tr>
+                            <td class="title">##word.medicine_notes##</td>
+                            <td class="center">{{customer.medicine_notes}}</td>
+                        </tr>
+
+                    </table>
+
+                </fieldset>
+
+                <fieldset>
+
+                    <legend>
+                        ##word.allergic##
+                    </legend>
+                    <div class="row">
+                        <div class="col6">
+                            <div class="row">
+
+                                <table class="table hover bold">
+                                    <tr>
+                                        <th class="title">##word.allergic_food##</th>
+                                    </tr>
+                                    <tr ng-repeat="food in customer.allergic_food_list">
+                                        <td class="center">{{food.name}}</td>
+                                    </tr>
+
+                                </table>
+                            </div>
+
+                        </div>
+
+                        <div class="col6">
+                            <div class="row">
+
+                                <table class="table hover bold">
+                                    <tr>
+                                        <th class="title">##word.allergic_drink##</th>
+                                    </tr>
+                                    <tr ng-repeat="drink in customer.allergic_drink_list">
+                                        <td class="center">{{drink.name}}</td>
+                                    </tr>
+
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </fieldset>
+                <div class="row">
+                    <div class="col6">
+
+                        <fieldset>
+                            <legend>
+                                ##word.medicines##
+                            </legend>
+                            <table class="table hover bold">
+
+                                <tr>
+                                    <th class="title">##word.medicine##</th>
+                                    <th class="title">##word.count_dosage##</th>
+                                    <!--                             <th class="title">##word.beginning_dosage##</th>
+ -->
+                                </tr>
+
+                                <tr ng-repeat="medicine in customer.medicine_list">
+                                    <td class="center">{{medicine.name.name}}</td>
+                                    <td class="center">{{medicine.count_dosage}}</td>
+                                    <!--                             <td class="center">{{medicine.time.ar}}</td>
+ -->
+                                </tr>
+
+                            </table>
+
+                        </fieldset>
+                    </div>
+                    <div class="col6">
+
+                        <fieldset>
+                            <legend>
+                                ##word.diseases##
+                            </legend>
+
+                            <table class="table hover bold">
+
+                                <tr>
+                                    <th class="title">##word.disease_name##</th>
+                                </tr>
+
+                                <tr ng-repeat="disease in customer.disease_list">
+                                    <td class="center">{{disease.name.name}}</td>
+                                </tr>
+
+                            </table>
+                        </fieldset>
+                    </div>
+                </div>
+
             </div>
 
             <div id="officialDocuments" class="tab-content">
@@ -203,7 +329,8 @@
             </div>
 
             <div id="openingBalance" class="tab-content">
-                <fieldset id="customersBalanceAndCurrencyInformation" ng-repeat="openBalance in customer.opening_balance">
+                <fieldset id="customersBalanceAndCurrencyInformation"
+                    ng-repeat="openBalance in customer.opening_balance">
                     <legend> ##word.customers_opening_balance_informations## </legend>
                     <table class="table hover">
                         <tr>
@@ -256,7 +383,8 @@
 
                     </table>
                     <i-button class="not-print" x-permission="print" type="print left "
-                        onclick="site.print('#customerDetailsModal #customersBalanceAndCurrencyInformation')"></i-button>
+                        onclick="site.print('#customerDetailsModal #customersBalanceAndCurrencyInformation')">
+                    </i-button>
                 </fieldset>
             </div>
 

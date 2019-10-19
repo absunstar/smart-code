@@ -11,13 +11,19 @@
                         <i-control help-id="services_price" type="number" v="r" class="col2"
                             label="##word.services_price##" ng-model="service.services_price"></i-control>
 
-                        <i-control help-id="total_complex_services_price" type="number" class="col3" disabled
-                            label="##word.total_complex_services_price##"
+                        <i-control help-id="total_complex_services_price" ng-show="service.complex_service"
+                            type="number" class="col3" disabled label="##word.total_complex_services_price##"
                             ng-model="service.total_complex_services_price"></i-control>
 
                         <div class="col2"></div>
                         <i-checkbox help-id="service_active" class="col2" label="##word.active##"
                             ng-model="service.active"></i-checkbox>
+                    </div>
+                    <div class="row">
+                        <i-control ng-hide="service.complex_service" help-id="attend_count" class="col2"
+                            label="##word.attend_count##" type="number" ng-model="service.attend_count"></i-control>
+                        <i-control help-id="available_period" class="col2" label="##word.available_period##"
+                            type="number" ng-model="service.available_period"></i-control>
                     </div>
                     <div class="row">
                         <div class="col1"></div>
@@ -42,11 +48,13 @@
                         <div class="row" ng-show="service.selectedServicesList.length > 0">
                             <div class="col6">
 
-                                <table class="table">
+                                <table class="table hover bold">
                                     <tr>
                                         <th>##word.service_name##</th>
                                         <th>##word.services_price##</th>
+                                        <th>##word.attend_count##</th>
                                         <th>##word.service_count##</th>
+                                        <th>##word.total_attend_count##</th>
                                         <th>##word.actions##</th>
                                     </tr>
 
@@ -54,16 +62,27 @@
 
                                         <td>
                                             <br>
-                                            <p class="center bold blue">{{s.name}}</p>
+                                            <p class="center bold">{{s.name}}</p>
                                         </td>
 
                                         <td>
                                             <br>
-                                            <p class="center bold blue">{{s.services_price}}</p>
+                                            <p class="center bold green">{{s.services_price}}</p>
                                         </td>
 
                                         <td>
-                                            <i-control ng-model="s.count" ng-change="calc()" type="number"></i-control>
+                                            <br>
+                                            <p class="center bold blue">{{s.attend_count}}</p>
+                                        </td>
+
+                                        <td>
+                                            <i-control ng-model="s.count" ng-change="calc() ; attendCalc(s)"
+                                                type="number"></i-control>
+                                        </td>
+
+                                        <td>
+                                            <br>
+                                            <p class="center bold blue">{{s.total_attend_count}}</p>
                                         </td>
 
                                         <td class="center">

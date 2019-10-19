@@ -29,9 +29,21 @@
                                 <td colspan="2" ng-show="!request_service.customer.child">
                                     <p class="red"> ##word.no## </p>
                                 </td>
-
                                 <td colspan="2"></td>
+                            </tr>
 
+
+                            <tr>
+                                <td class="blue"> ##word.weight## </td>
+                                <td colspan="2" class="center"> {{request_service.customer.weight}} </td>
+                                <td class="blue"> ##word.tall## </td>
+                                <td colspan="2" class="center"> {{request_service.customer.tall}} </td>
+                                <td class="blue"> ##word.blood_type## </td>
+                                <td colspan="2" class="center red"> {{request_service.customer.blood_type.name}} </td>
+                            </tr>
+                            <tr>
+                                <td class="blue"> ##word.medicine_notes## </td>
+                                <td colspan="7" class="center"> {{request_service.customer.medicine_notes}}</td>
                             </tr>
                             <tr>
                                 <td class="blue"> ##word.gov## </td>
@@ -41,6 +53,7 @@
                                 <td class="blue"> ##word.area## </td>
                                 <td colspan="2" class="center"> {{request_service.customer.area.name}} </td>
                             </tr>
+
                             <tr>
                                 <td class="blue"> ##word.address## </td>
                                 <td colspan="7" class="center"> {{request_service.customer.address}}</td>
@@ -67,24 +80,23 @@
                     <div class="row">
 
                         </i-list>
+                        <i-list ng-search="_search.$hall" class="col3" display="name" ng-model="request_service.hall"
+                            label="##word.hall##" items="hallsList"></i-list>
                         <i-list ng-search="_search.$trainer" class="col4" display="name"
                             ng-model="request_service.trainer" label="##word.trainer##" items="trainersList"></i-list>
-                        <i-list ng-search="_search.$hall" class="col4" display="name" ng-model="request_service.hall"
-                            label="##word.hall##" items="hallsList"></i-list>
 
                     </div>
                     <div class="row">
                         <i-control ng-keydown="getService($event)" id="service" class="col3" ng-model="search_service"
                             label="##word.search##" type="text"></i-control>
 
-                        <i-list ng-search="_search.$service" class="col3" display="name" v="r"
-                            ng-model="request_service.service" label="##word.service##"
-                            ng-change="request_service.services_price =request_service.service.services_price  ;calc()"
+                        <i-list ng-search="_search.$service" class="col4" display="name" v="r" ng-model="service"
+                            label="##word.service##" ng-change="changeService(request_service)  ;calc()"
                             items="servicesList"></i-list>
 
                         <div class="col1"></div>
 
-                        <div class="col5" ng-show="request_service.service">
+                        <div class="col5" ng-show="request_service.service_name">
 
                             <div class="padding margin">
                                 <table class="table box-shadow " ng-init="discountEditorAdd = true">
@@ -147,28 +159,90 @@
                         </div>
 
                         <div class="row">
-                            <i-control ng-show="request_service.service" help-id="services_price" type="number"
+                            <i-control ng-show="request_service.service_name" help-id="service_name" class="col3"
+                                disabled label="##word.service_name##" ng-model="request_service.service_name">
+                            </i-control>
+                        </div>
+
+                        <div class="row">
+
+                            <i-control ng-show="request_service.attend_count && !service.complex_service"
+                                help-id="attend_count" type="number" class="col2" disabled label="##word.attend_count##"
+                                ng-model="request_service.attend_count">
+                            </i-control>
+
+                            <i-control ng-show="request_service.available_period" help-id="available_period"
+                                type="number" class="col2" disabled label="##word.available_period##"
+                                ng-model="request_service.available_period">
+                            </i-control>
+
+                            <i-control ng-show="request_service.services_price" help-id="services_price" type="number"
                                 class="col2" disabled label="##word.services_price##"
                                 ng-model="request_service.services_price">
                             </i-control>
 
-                            <i-control ng-show="request_service.service" help-id="service_count" type="number"
+                            <i-control ng-show="request_service.service_name" help-id="service_count" type="number"
                                 class="col2" label="##word.service_count##" ng-model="request_service.service_count"
                                 ng-change="calc()">
                             </i-control>
                         </div>
 
-                        <!--      <i-control ng-show="request_service.service.subscriptions_system.id ==1" help-id="session_price"
+                        <div class="row">
+                            <div class="row" ng-show="request_service.selectedServicesList.length > 0">
+                                <div class="col6">
+                                    <fieldset>
+                                        <legend>##word.complex_services##</legend>
+
+                                        <table class="table hover bold">
+                                            <tr>
+                                                <th>##word.service_name##</th>
+                                                <th>##word.services_price##</th>
+                                               <!--  <th>##word.attend_count##</th>
+                                                <th>##word.service_count##</th> -->
+                                                <th>##word.attend_count##</th>
+                                            </tr>
+
+                                            <tr class="bold" ng-repeat="s in request_service.selectedServicesList">
+
+                                                <td>
+                                                    <p class="center bold">{{s.name}}</p>
+                                                </td>
+
+                                                <td>
+                                                    <p class="center bold green">{{s.services_price}}</p>
+                                                </td>
+
+
+                                              <!--   <td>
+                                                    <p class="center bold blue">{{s.attend_count}}</p>
+                                                </td>
+                                                <td>
+                                                    <p class="center bold blue">{{s.count}}</p>
+                                                </td> -->
+                                                <td>
+                                                    <p class="center bold blue">{{s.total_attend_count}}</p>
+                                                </td>
+
+                                            </tr>
+
+                                        </table>
+                                    </fieldset>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <!--      <i-control ng-show="service.subscriptions_system.id ==1" help-id="session_price"
                             type="number" class="col2" label="##word.session_price##" ng-change="calc(service)"
                             ng-model="request_service.session_price"></i-control>
 
-                        <i-control ng-show="request_service.service.subscriptions_system.id ==2" help-id="month_price"
+                        <i-control ng-show="service.subscriptions_system.id ==2" help-id="month_price"
                             type="number" class="col2" label="##word.month_price##"
                             ng-model="request_service.month_price"></i-control> -->
 
                     </div>
 
-                    <div class="row" ng-show="request_service.service">
+                    <div class="row" ng-show="service">
 
                         <div class="row">
                             <i-button type="save" label="##word.beginning_of_day##" ng-click="startDateToDay()">
@@ -179,12 +253,14 @@
                         </i-date2>
                         <i-date2 class="col4" v="r" ng-model="request_service.date_to" label="##word.expired_date##">
                         </i-date2>
+                        <i-control help-id="total_discount" type="number" class="col2" disabled
+                            label="##word.total_discount##" ng-model="request_service.total_discount">
+                        </i-control>
                         <i-control help-id="paid_require" type="number" class="col2" disabled
                             label="##word.paid_require##" ng-model="request_service.paid_require">
                         </i-control>
                     </div>
                 </div>
-
 
                 <div class="col3">
                     <i-image help-id="request_service_logo" ng-model="request_service.image_url"></i-image>

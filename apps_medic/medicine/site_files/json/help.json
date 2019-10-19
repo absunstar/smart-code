@@ -1,0 +1,19 @@
+[
+    {
+        "id" : "companies_name" ,"en":"Please Enter Company Name", "ar" : "رجاء ادخال اسم الشركة" 
+    },
+    {
+        "id" : "customer_service" ,"en":"Please Enter Company Customer Service Number", "ar" : "رجاء ادخال رقم خدمة عملاء الشركة" 
+    },
+    {
+        "id" : "online_chat" ,"en":"Please Enter Online Chat Link", "ar" : "يرجي ادخال رابط التحدث اون لاين للشركة" 
+    },
+    {
+        "id" : "companies_active" ,"en":"Please Select Company Status", "ar" : "حالة الشركة" 
+    },
+    {
+        "id" : "companies_logo" ,"en":"Please Select Company Logo", "ar" : "يرجي تحميل شعار الشركة" 
+    }
+
+    
+]

@@ -1,0 +1,46 @@
+[{
+        "name": "medicine",
+        "en": "Medicine",
+        "ar": "الأدوية"
+    },
+    {
+        "name": "medicine_new",
+        "en": "New Medicine",
+        "ar": "دواء  جديد"
+    },
+
+    {
+        "name": "medicine_add",
+        "en": "Add Medicine",
+        "ar": "اضافة دواء "
+    },
+    {
+        "name": "medicine_edit",
+        "en": "Edit Medicine",
+        "ar": "تعديل دواء "
+    },
+    {
+        "name": "medicine_details",
+        "en": "medicine Details",
+        "ar": "تفاصيل الدواء "
+    },
+    {
+        "name": "medicine_delete",
+        "en": "Delete Medicine",
+        "ar": "حذف دواء "
+    },
+    {
+        "name": "medicine_name",
+        "en": "medicine Name",
+        "ar": "اسم الدواء "
+    },
+    {
+        "name": "medicine_price",
+        "en": "medicine Price",
+        "ar": "سعر الدواء "
+    }
+
+
+
+
+]
