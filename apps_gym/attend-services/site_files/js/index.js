@@ -1,22 +1,22 @@
-app.controller("attend_subscribers", function ($scope, $http, $timeout) {
+app.controller("attend_services", function ($scope, $http, $timeout) {
 
-  $scope.attend_subscribers = {};
+  $scope.attend_services = {};
 
-  $scope.displayAddAttendSubscribers = function () {
+  $scope.displayAddAttendServices = function () {
     $scope.error = '';
-    $scope.attend_subscribers = {
-      image_url: '/images/attend_subscribers.png',
+    $scope.attend_services = {
+      image_url: '/images/attend_services.png',
       active: true,
       date: new Date()
       /* capaneighborhood : " - طالب",       immediate : false
  */    };
-    site.showModal('#attendSubscribersAddModal');
+    site.showModal('#attendServicesAddModal');
 
   };
 
-  $scope.addAttendSubscribers = function () {
+  $scope.addAttendServices = function () {
     $scope.error = '';
-    const v = site.validated('#attendSubscribersAddModal');
+    const v = site.validated('#attendServicesAddModal');
 
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
@@ -26,14 +26,14 @@ app.controller("attend_subscribers", function ($scope, $http, $timeout) {
     $scope.busy = true;
     $http({
       method: "POST",
-      url: "/api/attend_subscribers/add",
-      data: $scope.attend_subscribers
+      url: "/api/attend_services/add",
+      data: $scope.attend_services
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#attendSubscribersAddModal');
-          $scope.getAttendSubscribersList();
+          site.hideModal('#attendServicesAddModal');
+          $scope.getAttendServicesList();
         } else {
           $scope.error = response.data.error;
         }
@@ -44,16 +44,16 @@ app.controller("attend_subscribers", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.displayUpdateAttendSubscribers = function (attend_subscribers) {
+  $scope.displayUpdateAttendServices = function (attend_services) {
     $scope.error = '';
-    $scope.viewAttendSubscribers(attend_subscribers);
-    $scope.attend_subscribers = {};
-    site.showModal('#attendSubscribersUpdateModal');
+    $scope.viewAttendServices(attend_services);
+    $scope.attend_services = {};
+    site.showModal('#attendServicesUpdateModal');
   };
 
-  $scope.updateAttendSubscribers = function () {
+  $scope.updateAttendServices = function () {
     $scope.error = '';
-    const v = site.validated('#attendSubscribersUpdateModal');
+    const v = site.validated('#attendServicesUpdateModal');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
@@ -61,14 +61,14 @@ app.controller("attend_subscribers", function ($scope, $http, $timeout) {
     $scope.busy = true;
     $http({
       method: "POST",
-      url: "/api/attend_subscribers/update",
-      data: $scope.attend_subscribers
+      url: "/api/attend_services/update",
+      data: $scope.attend_services
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#attendSubscribersUpdateModal');
-          $scope.getAttendSubscribersList();
+          site.hideModal('#attendServicesUpdateModal');
+          $scope.getAttendServicesList();
         } else {
           $scope.error = 'Please Login First';
         }
@@ -79,27 +79,27 @@ app.controller("attend_subscribers", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.displayDetailsAttendSubscribers = function (attend_subscribers) {
+  $scope.displayDetailsAttendServices = function (attend_services) {
     $scope.error = '';
-    $scope.viewAttendSubscribers(attend_subscribers);
-    $scope.attend_subscribers = {};
-    site.showModal('#attendSubscribersViewModal');
+    $scope.viewAttendServices(attend_services);
+    $scope.attend_services = {};
+    site.showModal('#attendServicesViewModal');
   };
 
-  $scope.viewAttendSubscribers = function (attend_subscribers) {
+  $scope.viewAttendServices = function (attend_services) {
     $scope.busy = true;
     $scope.error = '';
     $http({
       method: "POST",
-      url: "/api/attend_subscribers/view",
+      url: "/api/attend_services/view",
       data: {
-        id: attend_subscribers.id
+        id: attend_services.id
       }
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          $scope.attend_subscribers = response.data.doc;
+          $scope.attend_services = response.data.doc;
         } else {
           $scope.error = response.data.error;
         }
@@ -110,30 +110,30 @@ app.controller("attend_subscribers", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.displayDeleteAttendSubscribers = function (attend_subscribers) {
+  $scope.displayDeleteAttendServices = function (attend_services) {
     $scope.error = '';
-    $scope.viewAttendSubscribers(attend_subscribers);
-    $scope.attend_subscribers = {};
-    site.showModal('#attendSubscribersDeleteModal');
+    $scope.viewAttendServices(attend_services);
+    $scope.attend_services = {};
+    site.showModal('#attendServicesDeleteModal');
 
   };
 
-  $scope.deleteAttendSubscribers = function () {
+  $scope.deleteAttendServices = function () {
     $scope.busy = true;
     $scope.error = '';
 
     $http({
       method: "POST",
-      url: "/api/attend_subscribers/delete",
+      url: "/api/attend_services/delete",
       data: {
-        id: $scope.attend_subscribers.id
+        id: $scope.attend_services.id
       }
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#attendSubscribersDeleteModal');
-          $scope.getAttendSubscribersList();
+          site.hideModal('#attendServicesDeleteModal');
+          $scope.getAttendServicesList();
         } else {
           $scope.error = response.data.error;
         }
@@ -144,12 +144,12 @@ app.controller("attend_subscribers", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.getAttendSubscribersList = function (where) {
+  $scope.getAttendServicesList = function (where) {
     $scope.busy = true;
     $scope.list = [];
     $http({
       method: "POST",
-      url: "/api/attend_subscribers/all",
+      url: "/api/attend_services/all",
       data: {
         where: where
       }
@@ -159,7 +159,7 @@ app.controller("attend_subscribers", function ($scope, $http, $timeout) {
         if (response.data.done && response.data.list.length > 0) {
           $scope.list = response.data.list;
           $scope.count = response.data.count;
-          site.hideModal('#attendSubscribersSearchModal');
+          site.hideModal('#attendServicesSearchModal');
           $scope.search = {};
         }
       },
@@ -198,22 +198,22 @@ app.controller("attend_subscribers", function ($scope, $http, $timeout) {
 
   $scope.displaySearchModal = function () {
     $scope.error = '';
-    site.showModal('#attendSubscribersSearchModal');
+    site.showModal('#attendServicesSearchModal');
 
   };
 
   $scope.attendNow = function () {
-    $scope.attend_subscribers.attend_date = new Date();
+    $scope.attend_services.attend_date = new Date();
 
-    $scope.attend_subscribers.attend = {
+    $scope.attend_services.attend = {
       hour: new Date().getHours(),
       minute: new Date().getMinutes()
     };
   };
 
   $scope.leaveNow = function () {
-    $scope.attend_subscribers.leave_date = new Date();
-    $scope.attend_subscribers.leave = {
+    $scope.attend_services.leave_date = new Date();
+    $scope.attend_services.leave = {
       hour: new Date().getHours(),
       minute: new Date().getMinutes()
     };
@@ -221,12 +221,12 @@ app.controller("attend_subscribers", function ($scope, $http, $timeout) {
   };
 
   $scope.searchAll = function () {
-    $scope.getAttendSubscribersList($scope.search);
-    site.hideModal('#attendSubscribersSearchModal');
+    $scope.getAttendServicesList($scope.search);
+    site.hideModal('#attendServicesSearchModal');
     $scope.search = {};
 
   };
 
-  $scope.getAttendSubscribersList();
+  $scope.getAttendServicesList();
   $scope.getCustomerList();
 });

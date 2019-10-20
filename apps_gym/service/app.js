@@ -4,7 +4,7 @@ module.exports = function init(site) {
   site.on('[company][created]', doc => {
 
     $service.add({
-      code: "1" ,
+      code: "1",
       name: "خدمة إفتراضية",
       image_url: '/images/service.png',
       company: {
@@ -16,14 +16,14 @@ module.exports = function init(site) {
         name_ar: doc.branch_list[0].name_ar
       },
       active: true
-    }, (err, doc) => {})
+    }, (err, doc) => { })
   })
 
- /*  site.post({
-    name: "/api/period_class/all",
-    path: __dirname + "/site_files/json/period_class.json"
-
-  }) */
+  /*  site.post({
+     name: "/api/period_class/all",
+     path: __dirname + "/site_files/json/period_class.json"
+ 
+   }) */
 
   site.post({
     name: "/api/subscriptions_system/all",
@@ -73,7 +73,7 @@ module.exports = function init(site) {
 
     $service.find({
       where: {
-        
+
         'company.id': site.get_company(req).id,
         'branch.code': site.get_branch(req).code,
         'name': service_doc.name
@@ -174,28 +174,39 @@ module.exports = function init(site) {
     }
 
     let id = req.body.id
+    let data = { name: 'service', id: req.body.id };
 
-    if (id) {
-      $service.delete({
-        id: id,
-        $req: req,
-        $res: res
-      }, (err, result) => {
-        if (!err) {
-          response.done = true
-        } else {
-          response.error = err.message
-        }
+    site.getRequestServices(data, callback => {
+
+      if (callback == true) {
+        response.error = 'Cant Delete Its Exist In Other Transaction'
         res.json(response)
-      })
-    } else {
-      response.error = 'no id'
-      res.json(response)
-    }
+
+      } else {
+
+        if (id) {
+          $service.delete({
+            id: id,
+            $req: req,
+            $res: res
+          }, (err, result) => {
+            if (!err) {
+              response.done = true
+            } else {
+              response.error = err.message
+            }
+            res.json(response)
+          })
+        } else {
+          response.error = 'no id'
+          res.json(response)
+        }
+      }
+    })
   })
 
   site.post("/api/service/all", (req, res) => {
-    
+
     let response = {
       done: false
     }
@@ -208,12 +219,12 @@ module.exports = function init(site) {
     }
 
     if (where.search && where.search.services_price) {
-    
+
       where['services_price'] = where.search.services_price
     }
 
     if (where.search && where.search.current) {
-    
+
       where['current'] = where.search.current
     }
 

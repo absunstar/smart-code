@@ -53,13 +53,13 @@ module.exports = function init(site) {
       },
       active: true
     }, (err, doc1) => {
-      
-     
-     })
+
+
+    })
   })
 
   site.on('[job][employee_trainer][+]', job_doc => {
-  
+
     $employee_list.add({
       name: "مدرب إفتراضي",
       image_url: '/images/employee_list.png',
@@ -341,24 +341,34 @@ module.exports = function init(site) {
     }
 
     let id = req.body.id
+    let data = { name: 'trainer', id: req.body.id };
 
-    if (id) {
-      $employee_list.delete({
-        id: id,
-        $req: req,
-        $res: res
-      }, (err, result) => {
-        if (!err) {
-          response.done = true
-        } else {
-          response.error = err.message
-        }
+    site.getRequestServices(data, callback => {
+
+      if (callback == true) {
+        response.error = 'Cant Delete Its Exist In Other Transaction'
         res.json(response)
-      })
-    } else {
-      response.error = 'no id'
-      res.json(response)
-    }
+
+      } else {
+        if (id) {
+          $employee_list.delete({
+            id: id,
+            $req: req,
+            $res: res
+          }, (err, result) => {
+            if (!err) {
+              response.done = true
+            } else {
+              response.error = err.message
+            }
+            res.json(response)
+          })
+        } else {
+          response.error = 'no id'
+          res.json(response)
+        }
+      }
+    })
   })
 
   site.post("/api/employees/all", (req, res) => {

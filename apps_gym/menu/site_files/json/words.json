@@ -365,6 +365,11 @@
         "ar": "قائمة مجموعة العملاء"
     },
     {
+        "name": "attend_subscribers_registration",
+        "en": "Attendance Subscribers Registration",
+        "ar": "تسجيل حضور المشتركين للجيم"
+    },
+    {
         "name": "menu_customers_groups_tag",
         "en": "Add Customer Groups",
         "ar": "إضافة مجموعة عملاء"

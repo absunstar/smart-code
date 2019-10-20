@@ -1,0 +1,48 @@
+<div ng-hide="busy" class="row">
+    <div id="basicInformation">
+        <fieldset>
+            <legend> ##word.basic_information##</legend>
+            <div class="col9">
+                <table id="basicInformationTable" class="table hover bold">
+
+                    <tr>
+                        <td class="title">##word.subscribers_name##</td>
+                        <td class="center">{{attend_services.customer.name_ar}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="title">##word.attend_services_attend##</td>
+                        <td class="center green">
+                            {{attend_services.attend_date |date:'dd - MM - yyyy'}}
+                            <p class="green">{{attend_services.attend.minute}} : {{attend_services.attend.hour}}
+                            </p>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="title">##word.attend_services_leave##</td>
+                        <td class="center red">
+                            {{attend_services.leave_date |date:'dd - MM - yyyy'}}
+                            <p class="red">{{attend_services.leave.minute}} : {{attend_services.leave.hour}}
+                            </p>
+                        </td>
+                    </tr>
+
+
+
+                    <tr>
+                        <td class="title">##word.status##</td>
+                        <td ng-show="attend_services.active == true" class="green center"> ##word.active## </td>
+                        <td ng-show="attend_services.active == false" class="red center"> ##word.not_active## </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="col3">
+                <i-image view ng-model="attend_services.image_url"></i-image>
+            </div>
+
+        </fieldset>
+    </div>
+</div>
+<div x-import="attend-services/action_info.html"></div>

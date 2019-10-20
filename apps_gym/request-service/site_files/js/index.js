@@ -375,6 +375,7 @@ app.controller("request_service", function ($scope, $http, $timeout) {
   };
 
   $scope.changeService = function (request_service) {
+    request_service.service_id = $scope.service.id;
     request_service.service_name = $scope.service.name;
     request_service.selectedServicesList = $scope.service.selectedServicesList;
     request_service.attend_count = $scope.service.attend_count || null;

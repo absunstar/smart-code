@@ -47,6 +47,21 @@
     {"name" : "customer" , "en" : "Subscriber " , "ar" : " المشترك"},
 
 
+    {"name" : "order_slides_add" , "en" : "Add Orders Slide" , "ar" : "إضافة حساب شريحة جلسات"},
+    {"name" : "order_slides" , "en" : "Orders Slide" , "ar" : "حساب شريحة جلسات"},
+    {"name" : "order_slides_name" , "en" : "Slide Name" , "ar" : "اسم حساب الشريحة"},
+    {"name" : "order_slides_from" , "en" : "Slide From" , "ar" : "بداية حساب الشريحة"},
+    {"name" : "order_slides_to" , "en" : "Slide To" , "ar" : "نهاية حساب شريحة"},
+    {"name" : "order_slides_value" , "en" : "Session Value" , "ar" : "قيمة الجلسة"},
+
+    {"name" : "order_slides_new" , "en" : "New Slide" , "ar" : "حساب شريحة جلسات جديدة "},
+    {"name" : "order_slides_logo" , "en" : "Slides Logo" , "ar" : "صورة شريحة الجلسات"},
+
+    {"name" : "order_slides_edit" , "en" : "Edit Slide" , "ar" : "تعديل بيانات شريحة الجلسات"},
+    {"name" : "order_slides_details" , "en" : "Slide Details" , "ar" : " تفاصيل شريحة الجلسات"},
+    {"name" : "order_slides_delete" , "en" : "Delete Slide" , "ar" : "حذف حساب شريحة الجلسات"},
+    {"name" : "order_slides_img" , "en" : "Sessions Slides Image" , "ar" : "ملفات شريحة الجلسات"} ,
+
         {"name" : "companies" , "en" : "Gyms" , "ar" : "الجيم"},
         {"name" : "companies_add" , "en" : "Add gym" , "ar" : "إضافة جيم"},
         {"name" : "companies_edit" , "en" : "Edit gym" , "ar" : "تعديل جيم"},

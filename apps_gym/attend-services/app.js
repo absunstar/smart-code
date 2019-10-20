@@ -1,12 +1,12 @@
 module.exports = function init(site) {
-  const $attend_subscribers = site.connectCollection("attend_subscribers")
+  const $attend_services = site.connectCollection("attend_services")
 
   site.on('[company][created]', doc => {
 
-    $attend_subscribers.add({
+    $attend_services.add({
       code: "1",
       name: "قاعة إفتراضية",
-      image_url: '/images/attend_subscribers.png',
+      image_url: '/images/attend_services.png',
       company: {
         id: doc.id,
         name_ar: doc.name_ar
@@ -27,13 +27,13 @@ module.exports = function init(site) {
   })
 
   site.get({
-    name: "attend_subscribers",
+    name: "attend_services",
     path: __dirname + "/site_files/html/index.html",
     parser: "html",
     compress: true
   })
 
-  site.post("/api/attend_subscribers/add", (req, res) => {
+  site.post("/api/attend_services/add", (req, res) => {
     let response = {
       done: false
     }
@@ -43,23 +43,23 @@ module.exports = function init(site) {
       return
     }
 
-    let attend_subscribers_doc = req.body
-    attend_subscribers_doc.$req = req
-    attend_subscribers_doc.$res = res
+    let attend_services_doc = req.body
+    attend_services_doc.$req = req
+    attend_services_doc.$res = res
 
-    attend_subscribers_doc.add_user_info = site.security.getUserFinger({
+    attend_services_doc.add_user_info = site.security.getUserFinger({
       $req: req,
       $res: res
     })
 
-    if (typeof attend_subscribers_doc.active === 'undefined') {
-      attend_subscribers_doc.active = true
+    if (typeof attend_services_doc.active === 'undefined') {
+      attend_services_doc.active = true
     }
 
-    attend_subscribers_doc.company = site.get_company(req)
-    attend_subscribers_doc.branch = site.get_branch(req)
+    attend_services_doc.company = site.get_company(req)
+    attend_services_doc.branch = site.get_branch(req)
 
-    $attend_subscribers.add(attend_subscribers_doc, (err, doc) => {
+    $attend_services.add(attend_services_doc, (err, doc) => {
       if (!err) {
         response.done = true
         response.doc = doc
@@ -71,7 +71,7 @@ module.exports = function init(site) {
 
   })
 
-  site.post("/api/attend_subscribers/update", (req, res) => {
+  site.post("/api/attend_services/update", (req, res) => {
     let response = {
       done: false
     }
@@ -82,19 +82,19 @@ module.exports = function init(site) {
       return
     }
 
-    let attend_subscribers_doc = req.body
+    let attend_services_doc = req.body
 
-    attend_subscribers_doc.edit_user_info = site.security.getUserFinger({
+    attend_services_doc.edit_user_info = site.security.getUserFinger({
       $req: req,
       $res: res
     })
 
-    if (attend_subscribers_doc.id) {
-      $attend_subscribers.edit({
+    if (attend_services_doc.id) {
+      $attend_services.edit({
         where: {
-          id: attend_subscribers_doc.id
+          id: attend_services_doc.id
         },
-        set: attend_subscribers_doc,
+        set: attend_services_doc,
         $req: req,
         $res: res
       }, err => {
@@ -111,7 +111,7 @@ module.exports = function init(site) {
     }
   })
 
-  site.post("/api/attend_subscribers/view", (req, res) => {
+  site.post("/api/attend_services/view", (req, res) => {
     let response = {
       done: false
     }
@@ -122,7 +122,7 @@ module.exports = function init(site) {
       return
     }
 
-    $attend_subscribers.findOne({
+    $attend_services.findOne({
       where: {
         id: req.body.id
       }
@@ -137,7 +137,7 @@ module.exports = function init(site) {
     })
   })
 
-  site.post("/api/attend_subscribers/delete", (req, res) => {
+  site.post("/api/attend_services/delete", (req, res) => {
     let response = {
       done: false
     }
@@ -151,7 +151,7 @@ module.exports = function init(site) {
     let id = req.body.id
 
     if (id) {
-      $attend_subscribers.delete({
+      $attend_services.delete({
         id: id,
         $req: req,
         $res: res
@@ -169,7 +169,7 @@ module.exports = function init(site) {
     }
   })
 
-  site.post("/api/attend_subscribers/all", (req, res) => {
+  site.post("/api/attend_services/all", (req, res) => {
 
     let response = {
       done: false
@@ -235,7 +235,7 @@ module.exports = function init(site) {
     where['company.id'] = site.get_company(req).id
     where['branch.code'] = site.get_branch(req).code
 
-    $attend_subscribers.findMany({
+    $attend_services.findMany({
       select: req.body.select || {},
       where: where,
       sort: req.body.sort || {

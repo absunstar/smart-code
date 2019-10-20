@@ -1,0 +1,45 @@
+<div class="form">
+    <div id="basicInformation">
+        <fieldset>
+            <legend> ##word.basic_information## </legend>
+            <div class="row">
+                <div class="col9">
+                    <div class="row">
+
+                        <i-list ng-search="_search.$customer" class="col4" display="name_ar" v="r"
+                            ng-model="attend_services.customer" label="##word.subscribers_name##"
+                            items="customersList">
+                        </i-list>
+
+                        <div class="col2"></div>
+                        <i-checkbox help-id="attend_services_active" class="col2" label="##word.active##"
+                            ng-model="attend_services.active"></i-checkbox>
+                    </div>
+                    <br>
+
+                    <div class="row">
+
+                        <i-button type="add" class="col2" label="##word.attend_now##" ng-click="attendNow()"></i-button>
+                        <i-date2 class="col3" ng-model="attend_services.attend_date" label="##word.attend_services_attend##"></i-date2>
+                        <i-time help-id="attend_services_attend" class="col3"
+                            label="##word.attend_services_attend##" ng-model="attend_services.attend"></i-time>
+                    </div>
+
+                    <br>
+                    <div class="row">
+                        <i-button type="exit" class="col2" label="##word.leave_now##" ng-click="leaveNow()"></i-button>
+                        <i-date2 class="col3" ng-model="attend_services.leave_date" label="##word.attend_services_leave##"></i-date2>
+                        <i-time help-id="attend_services_leave" class="col3"
+                            label="##word.attend_services_leave##" ng-model="attend_services.leave"></i-time>
+                    </div>
+
+                </div>
+
+                <div class="col3">
+                    <i-image help-id="attend_services_logo" ng-model="attend_services.image_url"></i-image>
+                </div>
+            </div>
+        </fieldset>
+
+    </div>
+</div>

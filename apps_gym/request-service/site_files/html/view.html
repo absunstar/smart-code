@@ -3,64 +3,127 @@
         <fieldset>
             <legend> ##word.basic_information##</legend>
             <div class="col9">
-                <table id="basicInformationTable" class="table hover bold">
+                <div class="row">
 
-                    <tr>
-                        <td class="title">##word.code##</td>
-                        <td class="center blue">{{request_service.code}}</td>
-                    </tr>
+                    <table id="basicInformationTable" class="table hover bold">
 
-                    <tr>
-                        <td class="title">##word.customer##</td>
-                        <td class="center">{{request_service.customer.name_ar}}</td>
-                    </tr>
+                        <tr>
+                            <td class="title">##word.code##</td>
+                            <td class="center blue">{{request_service.code}}</td>
+                        </tr>
 
-                    <tr>
-                        <td class="title">##word.trainer##</td>
-                        <td class="center">{{request_service.trainer.name}}</td>
-                    </tr>
+                        <tr>
+                            <td class="title">##word.customer##</td>
+                            <td class="center">{{request_service.customer.name_ar}}</td>
+                        </tr>
 
-                    <tr>
-                        <td class="title">##word.hall##</td>
-                        <td class="center">{{request_service.hall.name}}</td>
-                    </tr>
+                        <tr>
+                            <td class="title">##word.trainer##</td>
+                            <td class="center">{{request_service.trainer.name}}</td>
+                        </tr>
 
-                    <tr>
-                        <td class="title">##word.service##</td>
-                        <td class="center">{{request_service.service_name}}</td>
-                    </tr>
+                        <tr>
+                            <td class="title">##word.hall##</td>
+                            <td class="center">{{request_service.hall.name}}</td>
+                        </tr>
 
-                    <tr>
-                        <td class="title">##word.start_date##</td>
-                        <td class="center brown">{{request_service.date_from | date : 'yyyy - MM - dd'}}</td>
-                    </tr>
-                    <tr>
-                        <td class="title">##word.expired_date##</td>
-                        <td class="center red">{{request_service.date_to | date : 'yyyy - MM - dd'}}</td>
-                    </tr>
+                        <tr>
+                            <td class="title">##word.service##</td>
+                            <td class="center">{{request_service.service_name}}</td>
+                        </tr>
 
-                    <tr>
-                        <td class="title">##word.total_discount##</td>
-                        <td class="center red">{{request_service.total_discount}}</td>
-                    </tr>
+                        <tr>
+                            <td class="title">##word.start_date##</td>
+                            <td class="center brown">{{request_service.date_from | date : 'yyyy - MM - dd'}}</td>
+                        </tr>
+                        <tr>
+                            <td class="title">##word.expired_date##</td>
+                            <td class="center red">{{request_service.date_to | date : 'yyyy - MM - dd'}}</td>
+                        </tr>
+                        <tr>
+                            <td class="title">##word.available_period##</td>
+                            <td class="center green">{{request_service.available_period}}</td>
+                        </tr>
+                        <tr>
+                            <td class="title" ng-show="request_service.attend_count">##word.attend_count##</td>
+                            <td class="center red">{{request_service.attend_count}}</td>
+                        </tr>
 
-                    <tr>
-                        <td class="title">##word.paid_require##</td>
-                        <td class="center green">{{request_service.paid_require}}</td>
-                    </tr>
+                        <tr>
+                            <td class="title">##word.services_price##</td>
+                            <td class="center red">{{request_service.services_price}}</td>
+                        </tr>
 
-                    <tr>
-                        <td class="title">##word.service_count##</td>
-                        <td class="center blue">{{request_service.service_count}}</td>
-                    </tr>
+                        <tr>
+                            <td class="title">##word.service_count##</td>
+                            <td class="center blue">{{request_service.service_count}}</td>
+                        </tr>
+                        <tr>
+                            <td class="title">##word.total_discount##</td>
+                            <td class="center red">{{request_service.total_discount}}</td>
+                        </tr>
 
-                    <tr>
-                        <td class="title">##word.status##</td>
-                        <td ng-show="request_service.active == true" class="green center"> ##word.active## </td>
-                        <td ng-show="request_service.active == false" class="red center"> ##word.not_active## </td>
-                    </tr>
-                </table>
+                        <tr>
+                            <td class="title">##word.paid_require##</td>
+                            <td class="center green">{{request_service.paid_require}}</td>
+                        </tr>
+
+
+
+                        <tr>
+                            <td class="title">##word.status##</td>
+                            <td ng-show="request_service.active == true" class="green center"> ##word.active## </td>
+                            <td ng-show="request_service.active == false" class="red center"> ##word.not_active## </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="row" ng-show="request_service.selectedServicesList.length > 0">
+                    <div class="col6">
+                        <fieldset>
+                            <legend>##word.complex_services##</legend>
+
+                            <table class="table hover bold">
+                                <tr>
+                                    <th>##word.service_name##</th>
+                                    <th>##word.services_price##</th>
+                                    <!--  <th>##word.attend_count##</th>
+                                            <th>##word.service_count##</th> -->
+                                    <th>##word.attend_count##</th>
+                                </tr>
+
+                                <tr class="bold" ng-repeat="s in request_service.selectedServicesList">
+
+                                    <td>
+                                        <p class="center bold">{{s.name}}</p>
+                                    </td>
+
+                                    <td>
+                                        <p class="center bold green">{{s.services_price}}</p>
+                                    </td>
+
+
+                                    <!--   <td>
+                                                <p class="center bold blue">{{s.attend_count}}</p>
+                                            </td>
+                                            <td>
+                                                <p class="center bold blue">{{s.count}}</p>
+                                            </td> -->
+                                    <td>
+                                        <p class="center bold blue">{{s.total_attend_count}}</p>
+                                    </td>
+
+                                </tr>
+
+                            </table>
+                        </fieldset>
+                    </div>
+
+                </div>
+
             </div>
+
+
 
             <div class="col3">
                 <i-image view ng-model="request_service.image_url"></i-image>

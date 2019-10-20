@@ -267,6 +267,7 @@ module.exports = function init(site) {
     if (where['name']) {
       where['name'] = new RegExp(where['name'], "i");
     }
+
     if (where.search && where.search.capaneighborhood) {
 
       where['capaneighborhood'] = where.search.capaneighborhood
@@ -300,11 +301,13 @@ module.exports = function init(site) {
     })
   })
 
-
   site.getRequestServices = function (data, callback) {
     let where = {}
 
     if (data.name == 'hall') where['hall.id'] = data.id
+    if (data.name == 'customer') where['customer.id'] = data.id
+    if (data.name == 'trainer') where['trainer.id'] = data.id
+    if (data.name == 'service') where['service_id'] = data.id
 
     $request_service.findOne({
       where: where,

@@ -1,33 +1,33 @@
 [
     {
-        "name": "attend_subscribers",
-        "en": "Attend Subscriberss",
-        "ar": "حضور المشتركين للجيم"
+        "name": "attend_services",
+        "en": "Attend Services",
+        "ar": "حضور الخدمات للمشتركين"
     },
     {
-        "name": "attend_subscribers",
-        "en": "The Attend Subscribers",
-        "ar": "حضور مشترك"
+        "name": "attend_services",
+        "en": "The Attend Services",
+        "ar": "حضور خدمة"
     },
     {
-        "name": "attend_subscribers_new",
-        "en": "New Attend Subscribers",
-        "ar": "حضور مشترك جديدة"
+        "name": "attend_services_new",
+        "en": "New Attend Services",
+        "ar": "حضور خدمة جديدة"
     },
     {
-        "name": "subscribers_name",
-        "en": "Subscribers Name",
-        "ar": "إسم المشترك"
-    },
-    {
-        "name": "attend_subscribers_attend",
+        "name": "attend_services_attend",
         "en": "Attend Time",
         "ar": "وقت الحضور"
     },
     {
-        "name": "attend_subscribers_leave",
+        "name": "attend_services_leave",
         "en": "Leave Time",
         "ar": "وقت المغادرة"
+    },
+    {
+        "name": "attend_now",
+        "en": "Attend Now",
+        "ar": "حضور الأن"
     },
     {
         "name": "leave_now",
@@ -73,32 +73,32 @@
     },
     
     {
-        "name": "attend_subscribers_add",
-        "en": "Add Attend Subscribers",
+        "name": "attend_services_add",
+        "en": "Add Attend Services",
         "ar": "إضافة حضور مشترك"
     },
     {
-        "name": "attend_subscribers_edit",
-        "en": "Edit Attend Subscribers",
+        "name": "attend_services_edit",
+        "en": "Edit Attend Services",
         "ar": "تعديل حضور مشترك"
     },
     {
-        "name": "attend_subscribers_details",
-        "en": "Attend Subscribers Details",
+        "name": "attend_services_details",
+        "en": "Attend Services Details",
         "ar": "تفاصيل حضور مشترك"
     },
     {
-        "name": "attend_subscribers_delete",
-        "en": "Delete Attend Subscribers",
+        "name": "attend_services_delete",
+        "en": "Delete Attend Services",
         "ar": "حذف حضور مشترك"
     },
     {
-        "name": "attend_subscribers_name",
+        "name": "attend_services_name",
         "en": "Course Name",
         "ar": "اسم الحضور مشترك "
     },
     {
-        "name": "attend_subscribers_total",
+        "name": "attend_services_total",
         "en": "Total Duration",
         "ar": "إجمالي المدة "
     }

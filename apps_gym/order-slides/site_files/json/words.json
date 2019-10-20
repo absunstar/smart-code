@@ -15,8 +15,6 @@
     {"name" : "order_slides_salary_yes" , "en" : "Yes" , "ar" : "نعم"},
     {"name" : "order_slides_salary_no" , "en" : "No" , "ar" : "لا"},
 
-    
-
     {"name" : "order_slides_img" , "en" : "Orderss Slides Image" , "ar" : "ملفات شريحة الطلبات"}  
    
     

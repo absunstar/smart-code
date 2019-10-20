@@ -8,7 +8,7 @@ module.exports = function init(site) {
     compress: true
   })
 
-  
+
   site.post({
     name: "/api/blood_type/all",
     path: __dirname + "/site_files/json/blood_type.json"
@@ -24,10 +24,10 @@ module.exports = function init(site) {
   site.on('[register][customer][add]', doc => {
 
     $customers.add({
-      group:{
-        id : doc.id,
-        name : doc.name
-      } ,
+      group: {
+        id: doc.id,
+        name: doc.name
+      },
       code: "1",
       name_ar: "عميل إفتراضي",
       branch_list: [
@@ -54,8 +54,8 @@ module.exports = function init(site) {
         code: doc.branch.code,
         name_ar: doc.branch.name_ar
       },
-      active : true
-    }, (err, doc1) => {})
+      active: true
+    }, (err, doc1) => { })
   })
 
   site.post("/api/customers/add", (req, res) => {
@@ -72,7 +72,7 @@ module.exports = function init(site) {
     let customers_doc = req.body
     customers_doc.$req = req
     customers_doc.$res = res
-    
+
     customers_doc.company = site.get_company(req)
     customers_doc.branch = site.get_branch(req)
 
@@ -108,7 +108,7 @@ module.exports = function init(site) {
         set: customers_doc,
         $req: req,
         $res: res
-      },(err , result) => {
+      }, (err, result) => {
         if (!err) {
           response.done = true
           response.doc = result.doc
@@ -161,25 +161,35 @@ module.exports = function init(site) {
     }
 
     let id = req.body.id
+    let data = { name: 'customer', id: req.body.id };
 
-    if (id) {
-      $customers.delete({
-        id: id,
-        $req: req,
-        $res: res
-      }, (err, result) => {
-        if (!err) {
-          response.done = true
-          response.doc=result.doc
-        } else {
-          response.error = err.message
-        }
+    site.getRequestServices(data, callback => {
+
+      if (callback == true) {
+        response.error = 'Cant Delete Its Exist In Other Transaction'
         res.json(response)
-      })
-    } else {
-      response.error = 'no id'
-      res.json(response)
-    }
+
+      } else {
+        if (id) {
+          $customers.delete({
+            id: id,
+            $req: req,
+            $res: res
+          }, (err, result) => {
+            if (!err) {
+              response.done = true
+              response.doc = result.doc
+            } else {
+              response.error = err.message
+            }
+            res.json(response)
+          })
+        } else {
+          response.error = 'no id'
+          res.json(response)
+        }
+      }
+    })
   })
 
   site.post("/api/customers/all", (req, res) => {
@@ -225,7 +235,7 @@ module.exports = function init(site) {
     if (where['name_ar']) {
       where['name_ar'] = new RegExp(where['name_ar'], 'i')
     }
-    
+
     if (where['name_en']) {
       where['name_en'] = new RegExp(where['name_en'], 'i')
     }
@@ -237,11 +247,11 @@ module.exports = function init(site) {
 
     where['company.id'] = site.get_company(req).id
     where['branch.code'] = site.get_branch(req).code
-    
+
     $customers.findMany({
       select: req.body.select || {},
-      where: where ,
-      sort: req.body.sort || {id:-1},
+      where: where,
+      sort: req.body.sort || { id: -1 },
       limit: req.body.limit
     }, (err, docs, count) => {
       if (!err) {
