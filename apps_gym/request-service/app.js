@@ -300,4 +300,20 @@ module.exports = function init(site) {
     })
   })
 
+
+  site.getRequestServices = function (data, callback) {
+    let where = {}
+
+    if (data.name == 'hall') where['hall.id'] = data.id
+
+    $request_service.findOne({
+      where: where,
+    }, (err, docs, count) => {
+      if (!err) {
+        if (docs) callback(true)
+        else callback(false)
+      }
+    })
+  }
+
 }
