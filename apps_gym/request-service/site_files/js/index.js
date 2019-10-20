@@ -1,18 +1,43 @@
 app.controller("request_service", function ($scope, $http, $timeout) {
 
   $scope.request_service = {};
-
   $scope.displayAddRequestService = function () {
-    $scope.error = '';
-    $scope.discount = {};
-    $scope.request_service = {
-      image_url: '/images/request_service.png',
-      active: true,
-      service_count: 1
-      /* capaneighborhood : " - طالب", */
-/*       immediate: false
- */    };
+    $scope.getDefaultSettings();
     site.showModal('#requestServiceAddModal');
+  };
+
+
+  $scope.getDefaultSettings = function () {
+
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/default_setting/get",
+      data: {}
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.doc) {
+          $scope.defaultSettings = response.data.doc;
+          $scope.error = '';
+          $scope.error = '';
+          $scope.discount = {};
+          $scope.request_service = {
+            image_url: '/images/request_service.png',
+            active: true,
+            service_count: 1,
+            hall: $scope.defaultSettings.general_Settings ? $scope.defaultSettings.general_Settings.hall : null,
+            trainer: $scope.defaultSettings.general_Settings ? $scope.defaultSettings.general_Settings.trainer : null,
+          }
+
+        };
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+
   };
 
   $scope.addRequestService = function () {
@@ -388,14 +413,14 @@ app.controller("request_service", function ($scope, $http, $timeout) {
     };
   };
 
-  $scope.handleServiceAttend = function(service){
-   
+  $scope.handleServiceAttend = function (service) {
+
     $scope.attend_service.attend_service_list = $scope.attend_service.attend_service_list || [];
 
     if ($scope.attend_service.selectedServicesList && $scope.attend_service.selectedServicesList.length > 0) {
 
       $scope.attend_service.selectedServicesList.forEach(attend_service => {
-        attend_service.total_real_attend_count = attend_service.total_attend_count  * $scope.attend_service.service_count;
+        attend_service.total_real_attend_count = attend_service.total_attend_count * $scope.attend_service.service_count;
         attend_service.current_ttendance = $scope.attend_service.attend_service_list.length;
         attend_service.remain = attend_service.total_real_attend_count - attend_service.current_ttendance || 0;
       });
@@ -430,7 +455,6 @@ app.controller("request_service", function ($scope, $http, $timeout) {
         value: $scope.discount.value,
         type: $scope.discount.type
       });
-
     };
   };
 

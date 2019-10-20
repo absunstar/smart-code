@@ -5,16 +5,16 @@
             <div class="row">
                     <i-control v="r" class="col4" ng-model="discount_type.name" type="text" label="##word.discount_types_name##"></i-control>
                     <i-control v="r" class="col2" ng-model="discount_type.value" label="##word.discount_types_value##" type="number"></i-control>
-        
+
             </div>
 
             <br>
 
             <div class="row">
-                <h2 class="col3 brown">نوع الخصم :</h2>
-                <i-radio class="col3" ng-model="discount_type.type" label="##word.discount_types_number##" ng-value="0"
+                <h2 class="col3 brown">##wordزdiscount_types_type## :</h2>
+                <i-radio class="col3" ng-model="discount_type.type" label="##word.discount_types_number##" ng-value="number"
                     group="type" type="radio"></i-radio>
-                <i-radio class="col3" ng-model="discount_type.type" label="##word.discount_types_percent##" ng-value="%"
+                <i-radio class="col3" ng-model="discount_type.type" label="##word.discount_types_percent##" ng-value="percent"
                     group="type" type="radio"></i-radio>
 
             </div>

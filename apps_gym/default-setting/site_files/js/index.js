@@ -71,26 +71,7 @@ app.controller("default_setting", function ($scope, $http) {
     )
   };
 
-  $scope.loadKitchens = function () {
-    $scope.error = '';
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/kitchen/all",
-      data: {}
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          $scope.kitchensList = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
-  };
+
 
   $scope.loadStores = function () {
     $scope.error = '';
@@ -151,19 +132,23 @@ app.controller("default_setting", function ($scope, $http) {
     )
   };
 
-  $scope.getTablesGroupList = function () {
+  $scope.getTrainerList = function () {
     $scope.busy = true;
-    $scope.tablesGroupList = [];
     $http({
       method: "POST",
-      url: "/api/tables_group/all",
+      url: "/api/employees/all",
       data: {
+        where: {
+          'job.trainer': true
+        }
       }
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done && response.data.list.length > 0) {
-          $scope.tablesGroupList = response.data.list;
+          $scope.trainerList = response.data.list;
+          console.log($scope.trainerList);
+
         }
       },
       function (err) {
@@ -173,17 +158,22 @@ app.controller("default_setting", function ($scope, $http) {
     )
   };
 
-  $scope.getDeliveryEmployeesList = function () {
+  $scope.getHallList = function () {
     $scope.busy = true;
+    $scope.hallList = [];
     $http({
       method: "POST",
-      url: "/api/delivery_employees/all",
-      data: {}
+      url: "/api/hall/all",
+      data: {
+        select: {
+          id: 1, name: 1
+        }
+      }
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done && response.data.list.length > 0) {
-          $scope.deliveryEmployeesList = response.data.list;
+          $scope.hallList = response.data.list;
         }
       },
       function (err) {
@@ -192,6 +182,7 @@ app.controller("default_setting", function ($scope, $http) {
       }
     )
   };
+
 
   $scope.getDiscountMethodList = function () {
     $scope.error = '';
@@ -213,25 +204,7 @@ app.controller("default_setting", function ($scope, $http) {
     )
   };
 
-  $scope.getTransactionTypeList = function () {
-    $scope.error = '';
-    $scope.busy = true;
-    $scope.transactionTypeList = [];
-    $http({
-      method: "POST",
-      url: "/api/order_invoice/transaction_type/all"
 
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        $scope.transactionTypeList = response.data;
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
-  };
 
   $scope.getPaymentMethodList = function () {
     $scope.error = '';
@@ -303,13 +276,11 @@ app.controller("default_setting", function ($scope, $http) {
   $scope.loadSafes();
   $scope.loadStores();
   $scope.loadVendors();
-  $scope.getTransactionTypeList();
   $scope.loadCustomers();
-  $scope.getTablesGroupList();
-  $scope.getDeliveryEmployeesList();
+  $scope.getTrainerList();
   $scope.getPaymentMethodList();
   $scope.getDiscountMethodList();
-  $scope.loadKitchens();
+  $scope.getHallList();
   $scope.getSourceType();
   $scope.loadSetting();
 });

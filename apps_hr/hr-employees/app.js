@@ -52,8 +52,24 @@ module.exports = function init(site) {
         name_ar: doc.branch_list[0].name_ar
       },
       active: true
+    }, (err, doc1) => {
+      
+     
+     })
+  })
+
+  site.on('[job][employee_trainer][+]', job_doc => {
+  
+    $employee_list.add({
+      name: "مدرب إفتراضي",
+      image_url: '/images/employee_list.png',
+      job: job_doc,
+      company: job_doc.company,
+      branch: job_doc.branch,
+      active: true
     }, (err, doc) => { })
   })
+
 
   site.post({
     name: "/api/indentfy_employee/all",

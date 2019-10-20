@@ -17,7 +17,11 @@ module.exports = function init(site) {
         name_ar: doc.branch_list[0].name_ar
       },
       active: true
-    }, (err, doc) => {})
+    }, (err, job_doc) => {
+      
+      site.call('[job][employee_trainer][+]', job_doc)
+
+    })
   })
 
   site.get({

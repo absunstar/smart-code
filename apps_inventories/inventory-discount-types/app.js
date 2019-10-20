@@ -18,6 +18,28 @@ module.exports = function init(site) {
     })
   })
 
+  site.on('[company][created]', doc => {
+
+    $goves.add({
+      name: "خصم إفتراضي",
+      image_url: '/images/gov.png',
+      value : 1,
+      type : 'number',
+      company: {
+        id: doc.id,
+        name_ar: doc.name_ar
+      },
+      branch: {
+        code: doc.branch_list[0].code,
+        name_ar: doc.branch_list[0].name_ar
+      },
+      active: true
+    }, (err, doc) => {
+      site.call('[register][city][add]', doc)
+
+    })
+  })
+
 
   site.get({
     name: "discount_types",

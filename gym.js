@@ -1,17 +1,17 @@
-const site = require('../isite')({
-    port: 80,
-    lang:'ar',
+const site = require('../node_modules/isite')({
+    port: 4000,
+    lang: 'ar',
     saving_time: 0.2,
-    name : 'gym' ,
+    name: 'gym',
     theme: 'theme_paper',
     mongodb: {
         db: 'smart_code_gyms',
         limit: 100000
     },
-    security : {
-        admin :{
-            email : 'gym',
-            password : 'P@$$w0rd'
+    security: {
+        admin: {
+            email: 'gym',
+            password: 'P@$$w0rd'
         }
     }
 })
@@ -28,7 +28,7 @@ site.get({
 })
 
 site.loadLocalApp('client-side')
-site.importApp(__dirname + '/apps_private/cloud_security' , 'security')
+site.importApp(__dirname + '/apps_private/cloud_security', 'security')
 site.importApp(__dirname + '/apps_private/ui-print')
 site.importApp(__dirname + '/apps_private/ui-help')
 site.importApps(__dirname + '/apps_core')

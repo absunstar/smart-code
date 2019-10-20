@@ -9,7 +9,6 @@ app.controller("amounts_in", function ($scope, $http) {
     site.showModal('#addAmountInModal');
 
   };
-
  
   $scope.getDefaultSettings = function () {
 
