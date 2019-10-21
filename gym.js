@@ -44,8 +44,9 @@ site.importApps(__dirname + '/apps_gym')
 site.importApps(__dirname + '/apps_medic')
 site.features.push('gym')
 setTimeout(() => {
+site.importApps(__dirname + '/apps_core')
+    
     site.importApp(__dirname + '/apps_private/companies')
-    site.importApps(__dirname + '/apps_core')
 
 }, 1000)
 

@@ -110,10 +110,11 @@
 
             <div id="accountingTab" class="tab-content">
 
-                <a class="item" href="/vendors_group" x-permissions="vendors_group_ui || vendors_group_manage">
-                    <img src="/images/vendor_group.png">
-                    <h2> ##word.menu_vendors_groups## </h2>
-                    <p> ##word.menu_vendors_groups_tag##</p>
+
+                <a class="item" href="/customers" x-permissions="customers_ui || customers_manage">
+                    <img src="/images/vendor.png">
+                    <h2> ##word.menu_customers## </h2>
+                    <p> ##word.menu_customers_tag##</p>
                 </a>
 
                 <a class="item" href="/vendors" x-permissions="vendors_ui || vendors_manage">
@@ -129,10 +130,10 @@
                     <p> ##word.menu_customers_groups_tag##</p>
                 </a>
 
-                <a class="item" href="/customers" x-permissions="customers_ui || customers_manage">
-                    <img src="/images/vendor.png">
-                    <h2> ##word.menu_customers## </h2>
-                    <p> ##word.menu_customers_tag##</p>
+                <a class="item" href="/vendors_group" x-permissions="vendors_group_ui || vendors_group_manage">
+                    <img src="/images/vendor_group.png">
+                    <h2> ##word.menu_vendors_groups## </h2>
+                    <p> ##word.menu_vendors_groups_tag##</p>
                 </a>
 
                 <br>
@@ -308,7 +309,8 @@
 
                 <fieldset>
                     <legend></legend>
-                    <a class="item" href="/employees_salary_report"  x-permissions="employees_salary_report_ui || employees_salary_report_manage">
+                    <a class="item" href="/employees_salary_report"
+                        x-permissions="employees_salary_report_ui || employees_salary_report_manage">
                         <img src="images/pic_reportEmployee1.png">
                         <h2>##word.system_employees_salary_report_menus##</h2>
                         <p> ##word.system_employees_salary_report## </p>

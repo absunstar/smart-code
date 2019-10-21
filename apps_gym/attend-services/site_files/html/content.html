@@ -6,32 +6,133 @@
                 <div class="col9">
                     <div class="row">
 
-                        <i-list ng-search="_search.$customer" class="col4" display="name_ar" v="r"
-                            ng-model="attend_services.customer" label="##word.subscribers_name##"
-                            items="customersList">
+                        <div class="row">
+                            <i-control ng-keydown="getCustomerList($event)" id="service" class="col3"
+                                ng-model="search_customer" label="##word.search##" type="text"></i-control>
+                            <i-list ng-search="_search.$customer" class="col4" display="name_ar" v="r"
+                                ng-model="attend_services.customer" label="##word.customer##" items="customersList">
+                            </i-list>
+
+                            <div class="col3"></div>
+                            <i-checkbox help-id="attend_services_active" class="col2" label="##word.active##"
+                                ng-model="attend_services.active"></i-checkbox>
+                        </div>
+
+                        <div class="row" ng-show="attend_services.customer.id">
+                            <table class="table bold center hover">
+                                <tr>
+                                    <td class="blue"> ##word.customer_name## </td>
+                                    <td colspan="7" class="center"> {{attend_services.customer.name_ar}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="blue"> ##word.customers_indentfy## </td>
+                                    <td colspan="2" class="center"> {{attend_services.customer.indentfy.ar}} </td>
+                                    <td class="blue"> ##word.child## </td>
+                                    <td colspan="2" ng-show="attend_services.customer.child == true">
+                                        <p class="green"> ##word.yes## </p>
+                                    </td>
+                                    <td colspan="2" ng-show="!attend_services.customer.child">
+                                        <p class="red"> ##word.no## </p>
+                                    </td>
+                                    <td colspan="2"></td>
+                                </tr>
+
+
+                                <tr>
+                                    <td class="blue"> ##word.weight## </td>
+                                    <td colspan="2" class="center"> {{attend_services.customer.weight}} </td>
+                                    <td class="blue"> ##word.tall## </td>
+                                    <td colspan="2" class="center"> {{attend_services.customer.tall}} </td>
+                                    <td class="blue"> ##word.blood_type## </td>
+                                    <td colspan="2" class="center red"> {{attend_services.customer.blood_type.name}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="blue"> ##word.medicine_notes## </td>
+                                    <td colspan="7" class="center"> {{attend_services.customer.medicine_notes}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="blue"> ##word.gov## </td>
+                                    <td colspan="2" class="center"> {{attend_services.customer.gov.name}} </td>
+                                    <td class="blue"> ##word.city## </td>
+                                    <td colspan="2" class="center"> {{attend_services.customer.city.name}} </td>
+                                    <td class="blue"> ##word.area## </td>
+                                    <td colspan="2" class="center"> {{attend_services.customer.area.name}} </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="blue"> ##word.address## </td>
+                                    <td colspan="7" class="center"> {{attend_services.customer.address}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="blue"> ##word.mobile## </td>
+                                    <td colspan="4" class="center"> {{attend_services.customer.mobile}}</td>
+                                    <td class="blue"> ##word.phone## </td>
+                                    <td colspan="3" class="center"> {{attend_services.customer.phone}}</td>
+                                </tr>
+                                <!--    <tr>
+                                                    <td colspan="3" class="green"> ##word.order_add_count## </td>
+                                                    <td  class="center"> {{attend_services.add_order.length}} </td>
+                                                    <td colspan="3" class="red"> ##word.invoice_close_count## </td>
+                                                    <td  class="center"> {{attend_services.close_order.length}} </td>
+                                                </tr> -->
+
+                            </table>
+                        </div>
+
+                        <br>
+                        <br>
+
+                    </div>
+
+
+
+                    <br>
+
+                    <div class="row">
+
+                        <i-list ng-search="_search.$trainer" class="col4" display="name"
+                            ng-model="attend_services.trainer" label="##word.trainer##" items="trainersList"></i-list>
+
+                        <i-list ng-search="_search.$hall" class="col4" display="name" v="r"
+                            ng-model="attend_services.hall" label="##word.hall##" items="hallsList">
                         </i-list>
 
-                        <div class="col2"></div>
-                        <i-checkbox help-id="attend_services_active" class="col2" label="##word.active##"
-                            ng-model="attend_services.active"></i-checkbox>
+
+
                     </div>
+
                     <br>
+                    <br>
+
+                    <div class="row">
+                            <i-control ng-keydown="getService($event)" id="service" class="col3" ng-model="search_service"
+                            label="##word.search##" type="text"></i-control>
+
+                        <i-list ng-search="_search.$service" class="col4" display="name" ng-model="service"
+                            label="##word.service##" ng-change="changeService(request_service)  ;calc()"
+                            items="servicesList"></i-list>
+
+                        <div class="col1"></div>
+                    </div>
 
                     <div class="row">
 
                         <i-button type="add" class="col2" label="##word.attend_now##" ng-click="attendNow()"></i-button>
-                        <i-date2 class="col3" ng-model="attend_services.attend_date" label="##word.attend_services_attend##"></i-date2>
-                        <i-time help-id="attend_services_attend" class="col3"
-                            label="##word.attend_services_attend##" ng-model="attend_services.attend"></i-time>
+                        <i-date2 class="col3" ng-model="attend_services.attend_date"
+                            label="##word.attend_services_attend##"></i-date2>
+                        <i-time help-id="attend_services_attend" class="col3" label="##word.attend_services_attend##"
+                            ng-model="attend_services.attend"></i-time>
                     </div>
 
                     <br>
-                    <div class="row">
+                    <!--     <div class="row">
                         <i-button type="exit" class="col2" label="##word.leave_now##" ng-click="leaveNow()"></i-button>
-                        <i-date2 class="col3" ng-model="attend_services.leave_date" label="##word.attend_services_leave##"></i-date2>
-                        <i-time help-id="attend_services_leave" class="col3"
-                            label="##word.attend_services_leave##" ng-model="attend_services.leave"></i-time>
-                    </div>
+                        <i-date2 class="col3" ng-model="attend_services.leave_date"
+                            label="##word.attend_services_leave##"></i-date2>
+                        <i-time help-id="attend_services_leave" class="col3" label="##word.attend_services_leave##"
+                            ng-model="attend_services.leave"></i-time>
+                    </div> -->
 
                 </div>
 

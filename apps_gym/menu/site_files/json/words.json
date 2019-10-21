@@ -370,6 +370,11 @@
         "ar": "تسجيل حضور المشتركين للجيم"
     },
     {
+        "name": "attend_services_registration",
+        "en": "Attendance Services Registration",
+        "ar": "تسجيل حضور الخدمات"
+    },
+    {
         "name": "menu_customers_groups_tag",
         "en": "Add Customer Groups",
         "ar": "إضافة مجموعة عملاء"

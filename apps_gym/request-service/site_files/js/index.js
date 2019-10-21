@@ -393,7 +393,7 @@ app.controller("request_service", function ($scope, $http, $timeout) {
     $scope.handleServiceAttend(s);
 
     $scope.attend_service.attend_service_list.unshift({
-      id: s.id,
+      id: s.service_id || s.id,
       name: s.name || $scope.attend_service.service_name,
       attend_date: new Date(),
       attend_time: {

@@ -301,6 +301,68 @@ module.exports = function init(site) {
     })
   })
 
+  site.post("/api/request_service/all_services", (req, res) => {
+
+    let response = {
+      done: false
+    }
+
+    let where = req.body.where || {}
+  
+    if (where['name']) {
+      where['name'] = new RegExp(where['name'], "i");
+    }
+
+    if (where.search && where.search.capaneighborhood) {
+
+      where['capaneighborhood'] = where.search.capaneighborhood
+    }
+
+    if (where.search && where.search.current) {
+
+      where['current'] = where.search.current
+    }
+    delete where.search
+
+
+
+    where['company.id'] = site.get_company(req).id
+    where['branch.code'] = site.get_branch(req).code
+
+    $request_service.findMany({
+      select: req.body.select || {},
+      where: where,
+      sort: req.body.sort || {
+        id: -1
+      },
+      limit: req.body.limit
+    }, (err, docs, count) => {
+      if (!err) {
+
+        let services = []
+        docs.forEach(request_service => {
+          if(request_service.selectedServicesList && request_service.selectedServicesList.length > 0){
+           
+            services.map(request_service.selectedServicesList)
+
+
+          } else{
+            services.push({})
+          }
+          
+        });
+
+        response.done = true
+        response.list = docs
+        response.count = count
+      } else {
+        response.error = err.message
+      }
+      res.json(response)
+    })
+  })
+
+
   site.getRequestServices = function (data, callback) {
     let where = {}
 

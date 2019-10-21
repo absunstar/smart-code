@@ -5,6 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
+    "sales": "node sales.js",
     "restaurant": "node restaurant.js",
     "gym": "node gym.js",
     "academy": "node academy.js",

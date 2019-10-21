@@ -52,12 +52,14 @@ app.controller("attend_services", function ($scope, $http, $timeout) {
   };
 
   $scope.updateAttendServices = function () {
+
     $scope.error = '';
     const v = site.validated('#attendServicesUpdateModal');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
     }
+
     $scope.busy = true;
     $http({
       method: "POST",
@@ -171,19 +173,51 @@ app.controller("attend_services", function ($scope, $http, $timeout) {
   };
 
 
-  $scope.getCustomerList = function () {
+  $scope.getCustomerList = function (ev) {
+    $scope.error = '';
+    $scope.busy = true;
+    if (ev.which === 13) {
+      $http({
+        method: "POST",
+        url: "/api/customers/all",
+        data: {
+          search: $scope.search_customer
+          /*  select: {
+            id: 1,
+            name_ar: 1,
+            name_en: 1,
+          } */
+        }
+      }).then(
+        function (response) {
+          $scope.busy = false;
+          if (response.data.done && response.data.list.length > 0) {
+            $scope.customersList = response.data.list;
+          }
+        },
+        function (err) {
+          $scope.busy = false;
+          $scope.error = err;
+        }
+      )
+    };
+  };
+
+  $scope.getTrainerList = function () {
     $scope.busy = true;
     $http({
       method: "POST",
-      url: "/api/customers/all",
+      url: "/api/employees/all",
       data: {
-        select:{}
+        where: {
+          'job.trainer': true
+        }
       }
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done && response.data.list.length > 0) {
-          $scope.customersList = response.data.list;
+          $scope.trainersList = response.data.list;
         }
       },
       function (err) {
@@ -193,8 +227,30 @@ app.controller("attend_services", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.getHallList = function () {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/hall/all",
+      data: {
+        select: {
+          id: 1, capaneighborhood: 1, active: 1, name: 1
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.hallsList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
 
- 
 
   $scope.displaySearchModal = function () {
     $scope.error = '';
@@ -211,12 +267,30 @@ app.controller("attend_services", function ($scope, $http, $timeout) {
     };
   };
 
-  $scope.leaveNow = function () {
-    $scope.attend_services.leave_date = new Date();
-    $scope.attend_services.leave = {
+  $scope.leaveNow = function (attend_services) {
+    attend_services.leave_date = new Date();
+    attend_services.leave = {
       hour: new Date().getHours(),
       minute: new Date().getMinutes()
     };
+
+    $http({
+      method: "POST",
+      url: "/api/attend_services/update",
+      data: attend_services
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.getAttendServicesList();
+        } else {
+          $scope.error = 'Please Login First';
+        }
+      },
+      function (err) {
+        console.log(err);
+      }
+    )
 
   };
 
@@ -228,5 +302,6 @@ app.controller("attend_services", function ($scope, $http, $timeout) {
   };
 
   $scope.getAttendServicesList();
-  $scope.getCustomerList();
+  $scope.getHallList();
+  $scope.getTrainerList();
 });

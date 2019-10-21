@@ -194,7 +194,35 @@ app.controller("attend_subscribers", function ($scope, $http, $timeout) {
   };
 
 
- 
+  $scope.getCustomerList = function (ev) {
+    $scope.error = '';
+    $scope.busy = true;
+    if (ev.which === 13) {
+      $http({
+        method: "POST",
+        url: "/api/customers/all",
+        data: {
+          search: $scope.search_customer
+          /*  select: {
+            id: 1,
+            name_ar: 1,
+            name_en: 1,
+          } */
+        }
+      }).then(
+        function (response) {
+          $scope.busy = false;
+          if (response.data.done && response.data.list.length > 0) {
+            $scope.customersList = response.data.list;
+          }
+        },
+        function (err) {
+          $scope.busy = false;
+          $scope.error = err;
+        }
+      )
+    };
+  };
 
   $scope.displaySearchModal = function () {
     $scope.error = '';
@@ -228,5 +256,4 @@ app.controller("attend_subscribers", function ($scope, $http, $timeout) {
   };
 
   $scope.getAttendSubscribersList();
-  $scope.getCustomerList();
 });
