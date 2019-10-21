@@ -1,0 +1,9 @@
+[{
+    "module_name":"public",
+    "name": "companies_admin",
+    "en": "Restaurant Add Admin",
+    "ar": "إدارة المطعم",
+    "permissions": [
+        "*"
+    ]
+}]

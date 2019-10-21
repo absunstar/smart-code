@@ -1,9 +1,1 @@
-[{
-    "module_name":"public",
-    "name": "companies_admin",
-    "en": "Academies Add Admin",
-    "ar": "إدارة المطاعم",
-    "permissions": [
-        "*"
-    ]
-}]
+[]
