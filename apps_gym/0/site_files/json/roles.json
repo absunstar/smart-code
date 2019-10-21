@@ -1,0 +1,9 @@
+[{
+    "module_name":"public",
+    "name": "companies_admin",
+    "en": "Gym Add Admin",
+    "ar": "إدارة الجيم",
+    "permissions": [
+        "*"
+    ]
+}]
