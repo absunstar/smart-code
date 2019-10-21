@@ -78,7 +78,20 @@ module.exports = function init(site) {
       return
     }
 
+
+    let where = req.body.where || {}
+
+    if(req.session.user.is_admin){
+      where = {}
+    }else{
+      where['company.id'] = site.get_company(req).id
+      where['branch.code'] = site.get_branch(req).code
+    }
+
+    console.log(where)
+
     site.security.getUsers({
+      where: where,
       limit: 1000
     }, (err, docs, count) => {
       if (!err) {
@@ -110,6 +123,10 @@ module.exports = function init(site) {
     let user = req.body
     user.$req = req
     user.$res = res
+
+    user.company = site.get_company(req)
+    user.branch = site.get_branch(req)
+
     site.security.addUser(user, (err, _id) => {
       if (!err) {
         response.done = true

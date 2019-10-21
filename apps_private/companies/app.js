@@ -18,10 +18,9 @@ module.exports = function init(site) {
         site.call('[company][created]', doc)
 
         site.call('please add user', {
-          id: doc.id,
+          is_company: true,
           email: doc.username,
           password: doc.password,
-          branch_list: [{}],
           roles: [{
             name: "companies_admin"
           }],
@@ -29,8 +28,7 @@ module.exports = function init(site) {
             company: doc,
             branch: doc.branch_list[0]
           }],
-          companies_id: doc.id,
-          is_companies: true,
+          company_id: doc.id,
           profile: {
             name: doc.name_ar,
             image_url: doc.image_url
@@ -87,7 +85,8 @@ module.exports = function init(site) {
         site.call('[company][created]', doc)
       
         site.call('please add user', {
-          id: doc.id,
+          is_company: true,
+          company_id: doc.id,
           email: doc.username,
           password: doc.password,
           roles: [{
@@ -97,8 +96,6 @@ module.exports = function init(site) {
             company: doc,
             branch: doc.branch_list[0]
           }],
-          companies_id: doc.id,
-          is_companies: true,
           profile: {
             name: doc.name_ar,
             mobile: doc.mobile,
@@ -145,8 +142,8 @@ module.exports = function init(site) {
             roles: [{
               name: "companies"
             }],
-            companies_id: companies_doc.id,
-            is_companies: true,
+            company_id: companies_doc.id,
+            is_company: true,
             profile: {
               name: companies_doc.name_ar,
               mobile: companies_doc.mobile,
@@ -231,16 +228,18 @@ module.exports = function init(site) {
 
     let where = req.body.where || {}
 
-    where['company.id'] = site.get_company(req).id
-    where['branch.code'] = site.get_branch(req).code
+   
 
-    if (req.session.user.roles[0].name === 'companies') {
-      where['id'] = req.session.user.companies_id;
+    if (req.session.user.is_company) {
+      where['id'] = req.session.user.company_id;
+    }else{
+      where['company.id'] = site.get_company(req).id
+      where['branch.code'] = site.get_branch(req).code
     }
 
     $companies.findMany({
       select: req.body.select || {},
-      where: req.body.where || {},
+      where: where,
       sort: req.body.sort || {
         id: -1
       },
