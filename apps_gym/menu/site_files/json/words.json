@@ -167,12 +167,12 @@
     {
         "name": "order_slides_menus",
         "en": "Order Slides Menu",
-        "ar": "قائمة شرائح الطلبات"
+        "ar": "حساب شريحة جلسات"
     },
     {
         "name": "order_slides_management",
         "en": "Order Slides Management",
-        "ar": "إدارة شرائح الطلبات"
+        "ar": "إدارة شرائح الجلسات"
     },
     {
         "name": "add_course_tag",

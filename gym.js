@@ -1,5 +1,5 @@
-const site = require('../node_modules/isite')({
-    port: 4000,
+const site = require('../isite')({
+    port: 80,
     lang: 'ar',
     saving_time: 0.2,
     name: 'gym',
@@ -25,6 +25,12 @@ site.get({
     name: '/',
     path: site.dir + '/html/index.html',
     parser: 'html css js'
+})
+
+site.words.add({
+    "name": "le",
+    "en": "Ryal",
+    "ar": "ريال"
 })
 
 site.loadLocalApp('client-side')
