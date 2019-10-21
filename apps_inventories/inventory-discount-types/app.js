@@ -20,7 +20,7 @@ module.exports = function init(site) {
 
   site.on('[company][created]', doc => {
 
-    $goves.add({
+    $discount_types.add({
       name: "خصم إفتراضي",
       image_url: '/images/gov.png',
       value : 1,
