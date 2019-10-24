@@ -42,6 +42,7 @@
                         <th class="not-print">##word.logo##</th>
                         <th>##word.kitchen_number##</th>
                         <th>##word.table_name##</th>
+                        <th>##word.printers_path##</th>
                         <th>##word.status##</th>
                         <th class="not-print">##word.actions##</th>
                     </tr>
@@ -49,8 +50,9 @@
                         <td class="center not-print">
                             <img class="logo" ng-src="{{c.image_url}}">
                         </td>
-                        <td class="center title">{{c.code}}</td>
+                        <td class="center blue">{{c.code}}</td>
                         <td class="center title">{{c.name}}</td>
+                        <td class="center title">{{c.printer_path.name}}</td>
                         <td class="center">
                             <p ng-show="c.active ==true" class="green"> ##word.active## </p>
                             <p ng-show="c.active ==false" class="red"> ##word.not_active## </p>

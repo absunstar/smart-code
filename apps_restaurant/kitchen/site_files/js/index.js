@@ -190,6 +190,34 @@ app.controller("kitchen", function ($scope, $http, $timeout) {
     )
   };
 
+
+  $scope.getPrintersPath = function () {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/printers_path/all",
+      data: {
+        select: {
+          id: 1,
+          name: 1,
+          type: 1,
+          ip: 1,
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.printersPathList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
  
   $scope.displaySearchModal = function () {
     $scope.error = '';
@@ -206,4 +234,5 @@ app.controller("kitchen", function ($scope, $http, $timeout) {
 
   $scope.getKitchenList();
   $scope.getKitchenGroupList();
+  $scope.getPrintersPath();
 });

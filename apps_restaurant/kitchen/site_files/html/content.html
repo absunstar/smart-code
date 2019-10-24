@@ -9,6 +9,10 @@
                             ng-model="kitchen.code"></i-control>
                         <i-control type="text" help-id="kitchen_name" v="r" class="col4" label="##word.kitchen_name##"
                             ng-model="kitchen.name"></i-control>
+                        <i-list ng-search="_search.$printers_path" class="col4" display="name"
+                            ng-model="kitchen.printer_path" label="##word.printers_path##" items="printersPathList"></i-list>
+                        </i-list>
+
                         <i-checkbox help-id="kitchen_active" class="col2" label="##word.active##"
                             ng-model="kitchen.active"></i-checkbox>
                     </div>

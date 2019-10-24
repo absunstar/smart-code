@@ -439,7 +439,8 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name: 1
+          name: 1,
+          printer_path:1
         }
       }
     }).then(

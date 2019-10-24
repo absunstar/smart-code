@@ -50,7 +50,8 @@ app.controller("order_kitchen", function ($scope, $http, $interval) {
       data: {
         select: {
           id: 1,
-          name: 1
+          name: 1,
+          printer_path:1
         }
       }
     }).then(
