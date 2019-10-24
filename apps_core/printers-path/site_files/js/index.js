@@ -1,23 +1,23 @@
-app.controller("vendors_group", function ($scope, $http, $timeout) {
+app.controller("printers_path", function ($scope, $http, $timeout) {
   $scope._search = {};
 
-  $scope.vendor_group = {};
+  $scope.printer_path = {};
 
-  $scope.displayAddVendorGroup = function () {
+  $scope.displayAddPrinterPath = function () {
     $scope.error = '';
-    $scope.vendor_group = {
-      image_url: '/images/vendor_group.png',
+    $scope.printer_path = {
+      image_url: '/images/printer_path.png',
       active: true
     };
-    site.showModal('#vendorGroupAddModal');
+    site.showModal('#printerPathAddModal');
   };
 
-  $scope.addVendorGroup = function () {
+  $scope.addPrinterPath = function () {
     $scope.error = '';
     if ($scope.busy) {
       return;
     }
-    const v = site.validated('#vendorGroupAddModal');
+    const v = site.validated('#printerPathAddModal');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
@@ -26,13 +26,13 @@ app.controller("vendors_group", function ($scope, $http, $timeout) {
     $scope.busy = true;
     $http({
       method: "POST",
-      url: "/api/vendors_group/add",
-      data: $scope.vendor_group
+      url: "/api/printers_path/add",
+      data: $scope.printer_path
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#vendorGroupAddModal');
+          site.hideModal('#printerPathAddModal');
           $scope.list.push(response.data.doc);
           $scope.count += 1;
         } else {
@@ -45,23 +45,23 @@ app.controller("vendors_group", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.displayUpdateVendorGroup = function (vendor_group) {
+  $scope.displayUpdatePrinterPath = function (printer_path) {
     $scope.error = '';
-    $scope.detailsVendorGroup(vendor_group);
-    $scope.vendor_group = {
+    $scope.detailsPrinterPath(printer_path);
+    $scope.printer_path = {
       image_url: '/images/vendor_logo.png',
 
     };
-    site.showModal('#vendorGroupUpdateModal');
+    site.showModal('#printerPathUpdateModal');
   };
 
-  $scope.updateVendorGroup = function () {
+  $scope.updatePrinterPath = function () {
     $scope.error = '';
     if ($scope.busy) {
       return;
     }
 
-    const v = site.validated('#vendorGroupUpdateModal');
+    const v = site.validated('#printerPathUpdateModal');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
@@ -69,13 +69,13 @@ app.controller("vendors_group", function ($scope, $http, $timeout) {
     $scope.busy = true;
     $http({
       method: "POST",
-      url: "/api/vendors_group/update",
-      data: $scope.vendor_group
+      url: "/api/printers_path/update",
+      data: $scope.printer_path
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#vendorGroupUpdateModal');
+          site.hideModal('#printerPathUpdateModal');
           $scope.list.forEach((b, i) => {
             if (b.id == response.data.doc.id) {
               $scope.list[i] = response.data.doc;
@@ -91,28 +91,28 @@ app.controller("vendors_group", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.displayDetailsVendorGroup = function (vendor_group) {
+  $scope.displayDetailsPrinterPath = function (printer_path) {
     $scope.error = '';
-    $scope.detailsVendorGroup(vendor_group);
-    $scope.vendor_group = {};
-    site.showModal('#vendorGroupDetailsModal');
+    $scope.detailsPrinterPath(printer_path);
+    $scope.printer_path = {};
+    site.showModal('#printerPathDetailsModal');
   };
 
-  $scope.detailsVendorGroup = function (vendor_group) {
+  $scope.detailsPrinterPath = function (printer_path) {
     $scope.error = '';
     $scope.busy = true;
     $http({
       method: "POST",
-      url: "/api/vendors_group/view",
+      url: "/api/printers_path/view",
       data: {
-        id: vendor_group.id
+        id: printer_path.id
       }
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
           response.data.doc.date = new Date(response.data.doc.date);
-          $scope.vendor_group = response.data.doc;
+          $scope.printer_path = response.data.doc;
         } else {
           $scope.error = response.data.error;
         }
@@ -123,28 +123,28 @@ app.controller("vendors_group", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.displayDeleteVendorGroup = function (vendor_group) {
+  $scope.displayDeletePrinterPath = function (printer_path) {
     $scope.error = '';
-    $scope.detailsVendorGroup(vendor_group);
-    $scope.vendor_group = {};
-    site.showModal('#vendorGroupDeleteModal');
+    $scope.detailsPrinterPath(printer_path);
+    $scope.printer_path = {};
+    site.showModal('#printerPathDeleteModal');
   };
 
-  $scope.deleteVendorGroup = function () {
+  $scope.deletePrinterPath = function () {
     $scope.error = '';
     $scope.busy = true;
     $http({
       method: "POST",
-      url: "/api/vendors_group/delete",
+      url: "/api/printers_path/delete",
       data: {
-        id: $scope.vendor_group.id
+        id: $scope.printer_path.id
 
       }
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#vendorGroupDeleteModal');
+          site.hideModal('#printerPathDeleteModal');
           $scope.list.forEach((b, i) => {
             if (b.id == response.data.doc.id) {
               $scope.list.splice(i, 1);
@@ -161,14 +161,14 @@ app.controller("vendors_group", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.getVendorGroupList = function (where) {
+  $scope.getPrinterPathList = function (where) {
     $scope.error = '';
     $scope.busy = true;
     $scope.list = [];
     $scope.count = 0;
     $http({
       method: "POST",
-      url: "/api/vendors_group/all",
+      url: "/api/printers_path/all",
       data: {
         where: where
       }
@@ -188,14 +188,12 @@ app.controller("vendors_group", function ($scope, $http, $timeout) {
   };
 
   $scope.searchAll = function () {
-
-    $scope.getVendorGroupList($scope.search);
-
-    site.hideModal('#vendorGroupSearchModal');
+    $scope.getPrinterPathList($scope.search);
+    site.hideModal('#printerPathSearchModal');
     $scope.search = {}
 
   };
 
-  $scope.getVendorGroupList();
+  $scope.getPrinterPathList();
 
 });

@@ -1,0 +1,30 @@
+<div class="form">
+    <div id="vendorsGroupAddModal">
+        <fieldset>
+            <legend> ##word.printers_path_informations## </legend>
+            <div class="row">
+                <div class="col9">
+                    <div class="row">
+
+                        <i-control v="r" class="col4" label="##word.printers_path_name##" ng-model="printer_path.name">
+                        </i-control>
+                        <div class="col6"></div>
+                        <i-checkbox class="col2" label="##word.active##" ng-model="printer_path.active"></i-checkbox>
+                    </div>
+
+                    <div class="row">
+                        <i-control class="col3" label="##word.printers_path_type##" ng-model="printer_path.type">
+                        </i-control>
+                        <i-control class="col3" label="##word.printers_path_ip##" ng-model="printer_path.ip">
+                        </i-control>
+                    </div>
+
+                </div>
+
+                <div class="col3">
+                    <i-image category="printer_path" ng-model="printer_path.image_url"> </i-image>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+</div>

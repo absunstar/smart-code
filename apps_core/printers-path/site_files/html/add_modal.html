@@ -1,0 +1,22 @@
+<div id="printerPathAddModal" class="modal" fixed>
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.printers_path_add_name##
+                <i class="fa fa-plus"></i>
+            </h2>
+        </div>
+
+        <div class="modal-body">
+            <div x-import="printers-path/content.html"></div>
+        </div>
+
+        <div class="modal-footer center">
+            <h2 class="error"> {{error}} </h2>
+            <i-button type="add" label="##word.add##" ng-click="addPrinterPath()"></i-button>
+            
+            <i-button type="close" label="##word.close##" onclick="site.hideModal('#printerPathAddModal')"></i-button>
+        </div>
+    </div>
+</div>

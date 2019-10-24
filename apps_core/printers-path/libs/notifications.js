@@ -1,24 +1,24 @@
 module.exports = function init(site) {
 
-  let collection_name = 'vendors_group'
+  let collection_name = 'printers_path'
 
   let source = {
-    name: 'Vendors group System',
-    ar: ' نظام مجموعات الموردين'
+    name: 'Printer Path System',
+    ar: ' نظام مسار الطابعات'
   }
 
   let image_url = '/images/vendor_group.png'
   let add_message = {
-    name: 'New Vendors group Added',
-    ar: 'تم أضافة مجموعة موردين جديدة'
+    name: 'New Printer Path Added',
+    ar: 'تم إضافة مسار طابعة جديدة'
   }
   let update_message = {
-    name: ' Vendors group Updated',
-    ar: 'تم تعديل مجموعة موردين'
+    name: ' Printer Path Updated',
+    ar: 'تم تعديل مسار طابعة'
   }
   let delete_message = {
-    name: ' Vendors group Deleted',
-    ar: 'تم حذف مجموعة موردين '
+    name: ' Printer Path Deleted',
+    ar: 'تم حذف مسار طابعة '
   }
 
 

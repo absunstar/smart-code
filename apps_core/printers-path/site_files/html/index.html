@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="printers_path_ui || printers_path_manage" data-ng-app="myApp">
+
+<head x-import="head.html">
+
+</head>
+
+<body class="##session.lang##">
+
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+
+    </nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+
+    </nav>
+    <div id="main-layout" class="container">
+        <div class="row">
+            <div class="row" ng-controller="printers_path" x-permission="login">
+                <div x-permissions="printers_path_add || printers_path_manage" x-import="printers-path/add_modal.html">
+                </div>
+                <div x-permissions="printers_path_update || printers_path_manage"
+                    x-import="printers-path/update_modal.html"></div>
+                <div x-permissions="printers_path_delete || printers_path_manage"
+                    x-import="printers-path/delete_modal.html"></div>
+                <div x-permissions="printers_path_view || printers_path_manage"
+                    x-import="printers-path/view_modal.html"></div>
+                <div x-permissions="printers_path_search || printers_path_manage"
+                    x-import="printers-path/search_all_modal.html"></div>
+
+                <div class="row">
+                    <h1 class="bold text-center"> ##word.printers_path## </h1>
+                </div>
+
+                <div class="top-actions">
+                    <i-button type="add" x-permissions="printers_path_add || printers_path_manage"
+                        label="##word.printers_path_new##" ng-click="displayAddPrinterPath()"></i-button>
+
+                    <i-button type="search" x-permissions="printers_path_search || printers_path_manage"
+                        label="##word.search_all##" onclick="site.showModal('#printerPathSearchModal')"></i-button>
+
+                    <span ng-show="busy">
+                        <span class="sr-only">Loading...</span>
+                    </span>
+                    <h3 class="bold text-center"> ##word.count## : {{count}} </h3>
+                    <br>
+                </div>
+
+                <table class="table hover loaded center bold" id="t1">
+                    <tr>
+                        <th class="not-print"> ##word.logo## </th>
+                        <th> ##word.printers_path_name## </th>
+                        <th> ##word.printers_path_type## </th>
+                        <th> ##word.printers_path_ip## </th>
+                        <th> ##word.status## </th>
+
+                        <th class="not-print"> ##word.actions## </th>
+                    </tr>
+                    <tr ng-repeat="c in list | orderBy : '-id'">
+                        <td class="not-print">
+                            <img class="logo" ng-src="{{c.image_url}}">
+                        </td>
+
+                        <td> {{c.name}} </td>
+                        <td> {{c.type}} </td>
+                        <td class="blue"> {{c.ip}} </td>
+
+                        <td>
+                            <p ng-show="c.active == true" class="green"> ##word.active## </p>
+                            <p ng-show="c.active == false" class="red"> ##word.not_active## </p>
+                        </td>
+
+                        <td class="center not-print">
+                            <i-button x-permissions="printers_path_view || printers_path_manage" type="details"
+                                label="##word.details##" ng-click="displayDetailsPrinterPath(c)"></i-button>
+
+                            <i-button x-permissions="printers_path_update || printers_path_manage" type="update"
+                                label="##word.update##" ng-click="displayUpdatePrinterPath(c)"></i-button>
+
+                            <i-button x-permissions="printers_path_delete || printers_path_manage" type="delete"
+                                label="##word.delete##" ng-click="displayDeletePrinterPath(c)"></i-button>
+                        </td>
+                    </tr>
+                </table>
+
+                <div class="row">
+                    <i-button x-permissions="printers_path_print || printers_path_manage" x-permission="print"
+                        type="print" label="##word.print##" onclick="site.print('#t1')"></i-button>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div x-import="scripts.html"></div>
+
+    <script x-permission="login" x-import="printers-path/index.js"></script>
+</body>
+
+</html>

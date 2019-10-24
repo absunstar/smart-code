@@ -1,0 +1,43 @@
+<div ng-hide="busy" id="v1">
+    <div class="form">
+        <div id="vendorsGroupViewModal">
+            <fieldset>
+                <legend> ##word.printers_path_informations## </legend>
+                <div class="row">
+                    <div class="col9">
+                        <table class="table hover bold">
+
+                            <tr>
+                                <td class="title"> ##word.printers_path_name## </td>
+                                <td class="center"> {{printer_path.name}} </td>
+                            </tr>
+
+                            <tr>
+                                <td class="title"> ##word.printers_path_type## </td>
+                                <td class="center"> {{printer_path.type}} </td>
+                            </tr>
+
+                            <tr>
+                                <td class="title"> ##word.printers_path_ip## </td>
+                                <td class="center blue"> {{printer_path.ip}} </td>
+                            </tr>
+
+                            <tr>
+                                <td class="title"> ##word.active## </td>
+                                <td ng-show="printer_path.active == true" class="center green"> ##word.active## </td>
+                                <td ng-show="printer_path.active == false" class="center red"> ##word.not_active## </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="col3">
+                        <i-image view ng-model="printer_path.image_url"> </i-image>
+                    </div>
+
+                    <i-button x-permission="print" type="print left " onclick="site.print('#vendorsGroupViewModal')">
+                    </i-button>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+</div>
