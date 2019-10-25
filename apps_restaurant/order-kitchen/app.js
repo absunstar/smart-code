@@ -34,8 +34,10 @@ module.exports = function init(site) {
     where['branch.code'] = site.get_branch(req).code
     where['status.id'] = 1
 
-    where['book_list.kitchen.id'] = where['kitchen'].id;
-    delete where['kitchen']
+    if (where['kitchen']) {
+      where['book_list.kitchen.id'] = where['kitchen'].id;
+      delete where['kitchen']
+    }
 
     $order_invoice.findMany({
       select: req.body.select || {},

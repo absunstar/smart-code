@@ -3,12 +3,12 @@
         <div class="tabs-header">
             <a class="tab-link" onclick="site.showTabContent(event, '#personalInformation')">
                 ##word.customers_personal_information## </a>
-            <a class="tab-link" onclick="site.showTabContent(event,'#medicalConditionInformation')">
-                ##word.medical_condition##</a>
             <a class="tab-link" onclick="site.showTabContent(event, '#contactAndAddress')">
                 ##word.customers_contact_and_addresses## </a>
             <a class="tab-link " onclick="site.showTabContent(event, '#customersFiles')">
                 ##word.customers_files## </a>
+            <a class="tab-link" x-feature="gym" onclick="site.showTabContent(event,'#medicalConditionInformation')">
+                ##word.medical_condition##</a>
             <a class="tab-link hide" onclick="site.showTabContent(event, '#customersBranches')">
                 ##word.customers_branches## </a>
             <a class="tab-link hide" onclick="site.showTabContent(event, '#customers_dealing')">
@@ -41,7 +41,7 @@
                                 <i-checkbox class="col2" label="##word.active##" ng-model="customer.active">
                                 </i-checkbox>
                             </div>
-                            <div class="row">
+                            <div class="row" x-feature="gym">
 
                                 <i-list help-id="" ng-search="_search.$indentfy_search" class="col2"
                                     label="##word.customers_indentfy##" ng-model="customer.indentfy"
@@ -50,8 +50,7 @@
 
                                 <div class="col1"></div>
 
-                                <i-checkbox class="col2" x-feature="gym" label="##word.child##"
-                                    ng-model="customer.child"></i-checkbox>
+                                <i-checkbox class="col2" label="##word.child##" ng-model="customer.child"></i-checkbox>
 
                             </div>
 
@@ -96,7 +95,7 @@
 
             </div>
 
-            <div id="medicalConditionInformation" class="tab-content">
+            <div id="medicalConditionInformation" class="tab-content" x-feature="gym">
                 <fieldset>
 
                     <legend>
@@ -108,7 +107,7 @@
                         <i-control help-id="" class="col3" type="number" label="##word.tall##" ng-model="customer.tall">
                         </i-control>
                         <i-list help-id="" class="col3" label="##word.blood_type##" ng-model="customer.blood_type"
-                          ng-search="_search.$blood_type"  items="bloodTypeList" display="name"></i-list>
+                            ng-search="_search.$blood_type" items="bloodTypeList" display="name"></i-list>
                     </div>
 
                     <div class="row">
@@ -170,7 +169,7 @@
                             ng-search="medicine.$medicines" ng-model="medicine.name"></i-list>
                         <i-control class="col2" type="number" label="##word.count_dosage##"
                             ng-model="medicine.count_dosage"></i-control>
-                      <!--   <i-list class="col2" items="timeList" display="##session.lang##"
+                        <!--   <i-list class="col2" items="timeList" display="##session.lang##"
                             label="##word.beginning_dosage##" ng-model="medicine.time"></i-list> -->
                         <i-button class="col1" type="delete default"
                             ng-click="customer.medicine_list.length ==1 || customer.medicine_list.splice($index,1)">

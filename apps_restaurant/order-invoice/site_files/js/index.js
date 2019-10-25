@@ -785,8 +785,6 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     };
   };
 
-
-
   $scope.calc = function () {
 
     $timeout(() => {
@@ -796,13 +794,13 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
       $scope.order_invoice.total_tax = 0;
       $scope.order_invoice.total_discount = 0;
 
-      if ($scope.order_invoice.book_list) {
+      if ($scope.order_invoice.book_list && $scope.order_invoice.book_list.length > 0) {
         $scope.order_invoice.book_list.forEach(itm => {
           itm.total_price = itm.price * itm.count;
           $scope.order_invoice.total_value += parseFloat(itm.total_price);
         });
       };
-      if ($scope.order_invoice.taxes) {
+      if ($scope.order_invoice.taxes && $scope.order_invoice.taxes.length > 0) {
         $scope.order_invoice.taxes.forEach(tx => {
           $scope.order_invoice.total_tax += $scope.order_invoice.total_value * parseFloat(tx.value) / 100;
         });
@@ -811,24 +809,24 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
       if ($scope.order_invoice.discountes && $scope.order_invoice.discountes.length > 0) {
         $scope.order_invoice.discountes.forEach(ds => {
           if (ds.type === "percent") {
-            4 += $scope.order_invoice.total_value * parseFloat(ds.value) / 100;
+            $scope.order_invoice.total_discount +=  $scope.order_invoice.total_value * parseFloat(ds.value) / 100;
           } else {
             $scope.order_invoice.total_discount += parseFloat(ds.value);
           };
         });
       };
 
-      if ($scope.order_invoice.transaction_type.id == 2) {
+      if ($scope.order_invoice.transaction_type && $scope.order_invoice.transaction_type.id == 2) {
         $scope.order_invoice.service = 0;
         $scope.order_invoice.price_delivery_service = $scope.order_invoice.price_delivery_service || 0;
       };
 
-      if ($scope.order_invoice.transaction_type.id == 1) {
+      if ($scope.order_invoice.transaction_type && $scope.order_invoice.transaction_type.id == 1) {
         $scope.order_invoice.service = $scope.order_invoice.service || 0;
         $scope.order_invoice.price_delivery_service = 0;
       };
 
-      if ($scope.order_invoice.transaction_type.id == 3) {
+      if ($scope.order_invoice.transaction_type && $scope.order_invoice.transaction_type.id == 3) {
         $scope.order_invoice.service = 0;
         $scope.order_invoice.price_delivery_service = 0;
       };
