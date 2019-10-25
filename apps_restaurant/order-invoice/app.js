@@ -193,7 +193,7 @@ module.exports = function init(site) {
     })
 
     if (order_invoice_doc.transaction_type && order_invoice_doc.transaction_type.id == 2) {
-      
+
       order_invoice_doc.status_delivery = {
         id: 1,
         en: "Under Delivery",
@@ -206,7 +206,7 @@ module.exports = function init(site) {
         let table = order_invoice_doc.table
         table.busy = false
         site.call('[order_invoice][tables][busy]', table)
-      }else if (order_invoice_doc.status.id == 1) {
+      } else if (order_invoice_doc.status.id == 1) {
         let table = order_invoice_doc.table
         table.busy = true
         site.call('[order_invoice][tables][busy]', table)
@@ -289,9 +289,9 @@ module.exports = function init(site) {
     let order_invoice_doc = req.body
     let id = req.body.id
     if (order_invoice_doc.table) {
-        let table = order_invoice_doc.table
-        table.busy = false
-        site.call('[order_invoice][tables][busy]', table)
+      let table = order_invoice_doc.table
+      table.busy = false
+      site.call('[order_invoice][tables][busy]', table)
     };
 
     if (id) {
@@ -371,9 +371,9 @@ module.exports = function init(site) {
     })
   })
 
- /*  site.isItemInOrder = function(params) {
-   
- }  */
+  /*  site.isItemInOrder = function(params) {
+    
+  }  */
 
 
   site.post("/api/order_invoice/active_all", (req, res) => {
@@ -464,7 +464,7 @@ module.exports = function init(site) {
     where['company.id'] = site.get_company(req).id
     where['branch.code'] = site.get_branch(req).code
     where['under_paid.net_value'] = { $gt: 0 }
-    
+
     where['status.id'] = {
       '$gte': 2,
       '$lt': 5
@@ -488,4 +488,31 @@ module.exports = function init(site) {
       res.json(response)
     })
   })
+
+  site.getDataToDelete = function (data, callback) {
+    let where = {}
+
+     if (data.name == 'trainer') {
+      where = {
+        $or: [
+          { 'trainer.id': data.id },
+          { 'add_user_info.id': data.id },
+          { 'edit_user_info.id': data.id }
+        ]
+      }
+    }
+    else if (data.name == 'trainer') where['trainer.id'] = data.id
+
+    $order_invoice.findOne({
+      where: where,
+    }, (err, docs, count) => {
+      if (!err) {
+
+        if (docs) callback(true)
+        else callback(false)
+
+      }
+    })
+  }
+
 }

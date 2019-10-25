@@ -2,8 +2,6 @@ module.exports = function init(site) {
   const $stores_items = site.connectCollection("stores_items")
   const $complex_items = site.connectCollection("complex_items")
 
- 
-
   $stores_items.busy5 = false
   site.on('[stores_in][stores_items][opening_balance]', obj => {
     if ($stores_items.busy5) {
@@ -14,15 +12,17 @@ module.exports = function init(site) {
     };
     $stores_items.busy5 = true
     $stores_items.findOne({
-      name: obj.name
+      name: obj.name,
+      'company.id': obj.company.id,
+      'branch.code': obj.branch.code
     }, (err, doc) => {
       if (!err && doc) {
         let exist = true
         doc.sizes.forEach(size => {
           if (size.barcode == obj.barcode) {
-            if (obj.status_store_in.id == 3) {
-              size.start_count = site.toNumber(size.start_count) + site.toNumber(obj.count)
-            }
+
+            if (obj.status_store_in.id == 3) size.start_count = site.toNumber(size.start_count) + site.toNumber(obj.count)
+
             size.current_count = site.toNumber(size.current_count) + site.toNumber(obj.count)
             size.cost = site.toNumber(obj.cost)
             size.price = site.toNumber(obj.price)
@@ -61,6 +61,8 @@ module.exports = function init(site) {
     $stores_items.busy22 = true
     $stores_items.find({
       name: obj.name,
+      'company.id': obj.company.id,
+      'branch.code': obj.branch.code
     }, (err, doc) => {
       if (!err && doc) {
         let exist = false
@@ -88,7 +90,9 @@ module.exports = function init(site) {
     }
     $stores_items.busy4 = true
     $stores_items.find({
-      name: obj.name
+      name: obj.name,
+      'company.id': obj.company.id,
+      'branch.code': obj.branch.code
     }, (err, doc) => {
       if (!err && doc) {
         let exist = false
@@ -118,6 +122,8 @@ module.exports = function init(site) {
 
     $stores_items.find({
       name: obj.name,
+      'company.id': obj.company.id,
+      'branch.code': obj.branch.code
     }, (err, doc) => {
       if (!err && doc) {
         let exist = false
@@ -147,6 +153,8 @@ module.exports = function init(site) {
     $stores_items.busy3 = true
     $stores_items.find({
       name: obj.name,
+      'company.id': obj.company.id,
+      'branch.code': obj.branch.code
     }, (err, doc) => {
       if (!err && doc) {
 
@@ -181,7 +189,9 @@ module.exports = function init(site) {
 
     $stores_items.busy2 = true
     $stores_items.find({
-      name: obj.name
+      name: obj.name,
+      'company.id': obj.company.id,
+      'branch.code': obj.branch.code
     }, (err, doc) => {
 
       if (!err && doc) {
@@ -230,7 +240,9 @@ module.exports = function init(site) {
 
     $stores_items.busy5 = true
     $stores_items.find({
-      name: obj.name
+      name: obj.name,
+      'company.id': obj.company.id,
+      'branch.code': obj.branch.code
     }, (err, doc) => {
       if (!err && doc) {
         let exist = false
@@ -292,7 +304,7 @@ module.exports = function init(site) {
       if (!err && doc) {
         doc.sizes.forEach(s => {
           if (s.barcode == obj.barcode) {
-            s.current_count = site.toNumber(s.current_count) - site.toNumber(obj.count)            
+            s.current_count = site.toNumber(s.current_count) - site.toNumber(obj.count)
             if (s.item_complex) {
               s.complex_items.forEach(s2 => {
                 s2.count = s2.count * obj.count
@@ -307,34 +319,34 @@ module.exports = function init(site) {
     })
   })
 
-/*   site.on('[order_invoice][stores_items][+]', obj => {
-    if ($stores_items.busy23) {
-      setTimeout(() => {
-        site.call('[order_invoice][stores_items][+]', Object.assign({}, obj))
-      }, 200);
-      return
-    }
-    $stores_items.busy23 = true
-    $stores_items.find({
-      'sizes.barcode': obj.barcode,
-    }, (err, doc) => {
-      if (!err && doc) {
-        doc.sizes.forEach(s => {
-          if (s.barcode == obj.barcode) {
-            s.current_count = site.toNumber(s.current_count) + site.toNumber(obj.count)
-            if (s.item_complex) {
-              s.complex_items.forEach(s2 => {
-                s2.count = s2.count * obj.count
-                site.call('[order_invoice][stores_items][+]', Object.assign({}, s2))
-              })
-            }
-          }
-        });
-        $stores_items.update(doc)
-        $stores_items.busy23 = false
+  /*   site.on('[order_invoice][stores_items][+]', obj => {
+      if ($stores_items.busy23) {
+        setTimeout(() => {
+          site.call('[order_invoice][stores_items][+]', Object.assign({}, obj))
+        }, 200);
+        return
       }
-    })
-  }) */
+      $stores_items.busy23 = true
+      $stores_items.find({
+        'sizes.barcode': obj.barcode,
+      }, (err, doc) => {
+        if (!err && doc) {
+          doc.sizes.forEach(s => {
+            if (s.barcode == obj.barcode) {
+              s.current_count = site.toNumber(s.current_count) + site.toNumber(obj.count)
+              if (s.item_complex) {
+                s.complex_items.forEach(s2 => {
+                  s2.count = s2.count * obj.count
+                  site.call('[order_invoice][stores_items][+]', Object.assign({}, s2))
+                })
+              }
+            }
+          });
+          $stores_items.update(doc)
+          $stores_items.busy23 = false
+        }
+      })
+    }) */
 
   site.on('[stores_transfer][stores_items][+]', obj => {
     if ($stores_items.busy5) {

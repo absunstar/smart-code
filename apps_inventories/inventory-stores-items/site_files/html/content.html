@@ -48,7 +48,7 @@
                         </i-control>
                         <i-control class="col2" ng-model="item.price" label="##word.stores_items_price##" type="number">
                         </i-control>
-                        <i-list class="col2" ng-model="item.kitchen" ng-search="_search.$kitchen_search"
+                        <i-list x-feature="restaurant" class="col3" ng-model="item.kitchen" ng-search="_search.$kitchen_search"
                         label="##word.kitchen_name##" items="itemsKitchenList"></i-list>
                      
                     </div>

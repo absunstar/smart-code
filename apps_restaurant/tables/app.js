@@ -170,24 +170,34 @@ module.exports = function init(site) {
     }
 
     let id = req.body.id
+    let data = { name: 'tables', id: req.body.id };
 
-    if (id) {
-      $tables.delete({
-        id: id,
-        $req: req,
-        $res: res
-      }, (err, result) => {
-        if (!err) {
-          response.done = true
-        } else {
-          response.error = err.message
-        }
+    site.getDataToDelete(data, callback => {
+
+      if (callback == true) {
+        response.error = 'Cant Delete Its Exist In Other Transaction'
         res.json(response)
-      })
-    } else {
-      response.error = 'no id'
-      res.json(response)
-    }
+
+      } else {
+        if (id) {
+          $tables.delete({
+            id: id,
+            $req: req,
+            $res: res
+          }, (err, result) => {
+            if (!err) {
+              response.done = true
+            } else {
+              response.error = err.message
+            }
+            res.json(response)
+          })
+        } else {
+          response.error = 'no id'
+          res.json(response)
+        }
+      }
+    })
   })
 
   site.post("/api/tables/all", (req, res) => {

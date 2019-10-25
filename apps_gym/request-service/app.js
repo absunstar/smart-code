@@ -362,14 +362,13 @@ module.exports = function init(site) {
     })
   })
 
-
-  site.getRequestServices = function (data, callback) {
+  site.getDataToDelete = function (data, callback) {
     let where = {}
 
     if (data.name == 'hall') where['hall.id'] = data.id
-    if (data.name == 'customer') where['customer.id'] = data.id
-    if (data.name == 'trainer') where['trainer.id'] = data.id
-    if (data.name == 'service') where['service_id'] = data.id
+   else if (data.name == 'customer') where['customer.id'] = data.id
+   else if (data.name == 'trainer') where['trainer.id'] = data.id
+   else if (data.name == 'service') where['service_id'] = data.id
 
     $request_service.findOne({
       where: where,

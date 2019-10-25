@@ -873,11 +873,7 @@ module.exports = function init(site) {
     if (req.session.user && req.session.user.roles[0].name == 'tasks_developer') {
 
       where['$or']=[{ 'appointment_status.id': 1 }, { 'developers_list.name.id': req.session.user.developer_id }]
-      
-
-
-
-
+ 
     }
 
 

@@ -343,8 +343,8 @@ module.exports = function init(site) {
     let id = req.body.id
     let data = { name: 'trainer', id: req.body.id };
 
-    site.getRequestServices(data, callback => {
-
+    site.getDataToDelete(data, callback => {
+      
       if (callback == true) {
         response.error = 'Cant Delete Its Exist In Other Transaction'
         res.json(response)
