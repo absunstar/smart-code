@@ -24,7 +24,7 @@
         "ar": "المطلوب دفعه"
     },
     {
-        "name": "attend_services",
+        "name": "attend_services_",
         "en": "Attend Services",
         "ar": "حضور الخدمات"
     },
@@ -69,9 +69,29 @@
         "ar": "تاريخ بداية الإشتراك"
     },
     {
+        "name": "start_date_from",
+        "en": "Start Date From",
+        "ar": "تاريخ بداية الإشتراك من"
+    },
+    {
+        "name": "start_date_to",
+        "en": "Start Date To",
+        "ar": "تاريخ بداية الإشتراك إلى"
+    },
+    {
         "name": "expired_date",
         "en": "Expired Date",
         "ar": "تاريخ إنتهاء الإشتراك"
+    },
+    {
+        "name": "expired_date_from",
+        "en": "Expired Date From",
+        "ar": "تاريخ إنتهاء الإشتراك من"
+    },
+    {
+        "name": "expired_date_to",
+        "en": "Expired Date To",
+        "ar": "تاريخ إنتهاء الإشتراك إلى"
     },
     {
         "name": "trainer",

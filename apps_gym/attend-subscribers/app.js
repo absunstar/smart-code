@@ -1,7 +1,7 @@
 module.exports = function init(site) {
   const $attend_subscribers = site.connectCollection("attend_subscribers")
 
-  site.on('[company][created]', doc => {
+ /*  site.on('[company][created]', doc => {
 
     $attend_subscribers.add({
       code: "1",
@@ -18,7 +18,7 @@ module.exports = function init(site) {
       active: true
     }, (err, doc) => { })
   })
-
+ */
  
 
   site.get({

@@ -307,12 +307,13 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
   };
 
   $scope.selectRequestService = function (service) {
+
     $scope.error = '';
     $scope.create_invoices.request_service_id = service.id;
     $scope.create_invoices.customer = service.customer;
     $scope.create_invoices.trainer = service.trainer;
     $scope.create_invoices.hall = service.hall;
-    $scope.create_invoices.service = service.service;
+    $scope.create_invoices.service_name = service.service_name;
     $scope.create_invoices.date_from = service.date_from;
     $scope.create_invoices.date_to = service.date_to;
     $scope.create_invoices.paid_require = service.paid_require;

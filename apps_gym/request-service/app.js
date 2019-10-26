@@ -244,40 +244,62 @@ module.exports = function init(site) {
       })
     }
 
-    if (where.date) {
-      let d1 = site.toDate(where.date)
-      let d2 = site.toDate(where.date)
-      d2.setDate(d2.getDate() + 1)
-      where.date = {
-        '$gte': d1,
-        '$lt': d2
-      }
-    } else if (where && where.date_from) {
-      let d1 = site.toDate(where.date_from)
-      let d2 = site.toDate(where.date_to)
+    if (where.date_from_to && where.date_from_from) {
+      let d1 = site.toDate(where.date_from_from)
+      let d2 = site.toDate(where.date_from_to)
       d2.setDate(d2.getDate() + 1);
-      where.date = {
+      where.date_from = {
         '$gte': d1,
         '$lt': d2
       }
-      delete where.date_from
-      delete where.date_to
+      delete where.date_from_from
+      delete where.date_from_to
     }
 
-    if (where['name']) {
-      where['name'] = new RegExp(where['name'], "i");
+    if (where.date_to_to && where.date_to_from) {
+      let d1 = site.toDate(where.date_to_from)
+      let d2 = site.toDate(where.date_to_to)
+      d2.setDate(d2.getDate() + 1);
+      where.date_to = {
+        '$gte': d1,
+        '$lt': d2
+      }
+      delete where.date_to_from
+      delete where.date_to_to
     }
 
-    if (where.search && where.search.capaneighborhood) {
-
-      where['capaneighborhood'] = where.search.capaneighborhood
+    if (where.date_from) {
+      let d1 = site.toDate(where.date_from)
+      let d2 = site.toDate(where.date_from)
+      d2.setDate(d2.getDate() + 1)
+      where.date_from = {
+        '$gte': d1,
+        '$lt': d2
+      }
     }
 
-    if (where.search && where.search.current) {
-
-      where['current'] = where.search.current
+    if (where.date_to) {
+      let d1 = site.toDate(where.date_to)
+      let d2 = site.toDate(where.date_to)
+      d2.setDate(d2.getDate() + 1)
+      where.date_to = {
+        '$gte': d1,
+        '$lt': d2
+      }
     }
-    delete where.search
+
+    if (where['hall']) {
+      where['hall.id'] = where['hall'].id;
+      delete where['hall']
+    }
+
+    if (where['service_name']) where['service_name'] = new RegExp(where['service_name'], 'i')
+
+    if (where['customer']) where['customer.name_ar'] = new RegExp(where['customer'], 'i')
+
+    if (where['trainer']) where['trainer.name'] = new RegExp(where['trainer'], 'i')
+
+    if (where['code']) where['code'] = new RegExp(where['code'], "i");
 
     where['company.id'] = site.get_company(req).id
     where['branch.code'] = site.get_branch(req).code
@@ -308,7 +330,7 @@ module.exports = function init(site) {
     }
 
     let where = req.body.where || {}
-  
+
     if (where['name']) {
       where['name'] = new RegExp(where['name'], "i");
     }
@@ -341,15 +363,14 @@ module.exports = function init(site) {
 
         let services = []
         docs.forEach(request_service => {
-          if(request_service.selectedServicesList && request_service.selectedServicesList.length > 0){
-           
+          if (request_service.selectedServicesList && request_service.selectedServicesList.length > 0) {
+
             services.map(request_service.selectedServicesList)
 
-
-          } else{
+          } else {
             services.push({})
           }
-          
+
         });
 
         response.done = true
@@ -366,9 +387,9 @@ module.exports = function init(site) {
     let where = {}
 
     if (data.name == 'hall') where['hall.id'] = data.id
-   else if (data.name == 'customer') where['customer.id'] = data.id
-   else if (data.name == 'trainer') where['trainer.id'] = data.id
-   else if (data.name == 'service') where['service_id'] = data.id
+    else if (data.name == 'customer') where['customer.id'] = data.id
+    else if (data.name == 'trainer') where['trainer.id'] = data.id
+    else if (data.name == 'service') where['service_id'] = data.id
 
     $request_service.findOne({
       where: where,

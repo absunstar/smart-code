@@ -490,18 +490,19 @@ module.exports = function init(site) {
   })
 
   site.getDataToDelete = function (data, callback) {
+
     let where = {}
 
-     if (data.name == 'trainer') {
+    if (data.name == 'trainer') {
       where = {
         $or: [
-          { 'trainer.id': data.id },
+          { 'delivery_employee.id': data.id },
           { 'add_user_info.id': data.id },
           { 'edit_user_info.id': data.id }
         ]
       }
     }
-    else if (data.name == 'trainer') where['trainer.id'] = data.id
+    else if (data.name == 'customer') where['customer.id'] = data.id
 
     $order_invoice.findOne({
       where: where,

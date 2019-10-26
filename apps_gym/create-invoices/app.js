@@ -253,8 +253,8 @@ module.exports = function init(site) {
       where['code'] = new RegExp(where['code'], 'i')
     }
 
-    if (where['name']) {
-      where['name'] = new RegExp(where['name'], 'i')
+    if (where['service_name']) {
+      where['service_name'] = new RegExp(where['service_name'], 'i')
     }
 
     if (where['source_type']) {

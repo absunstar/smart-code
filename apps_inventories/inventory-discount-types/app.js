@@ -34,10 +34,7 @@ module.exports = function init(site) {
         name_ar: doc.branch_list[0].name_ar
       },
       active: true
-    }, (err, doc) => {
-      site.call('[register][city][add]', doc)
-
-    })
+    }, (err, doc) => {})
   })
 
 
