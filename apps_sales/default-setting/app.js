@@ -18,6 +18,11 @@ module.exports = function init(site) {
     path: __dirname + "/site_files/json/discount_method.json"
   })
 
+  site.post({
+    name: "/api/place_program/all",
+    path: __dirname + "/site_files/json/place_program.json"
+  })
+
   site.post("/api/default_setting/get", (req, res) => {
     let response = {
       done: false

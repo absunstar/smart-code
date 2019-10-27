@@ -14,6 +14,11 @@ module.exports = function init(site) {
   })
 
   site.post({
+    name: "/api/place_program/all",
+    path: __dirname + "/site_files/json/place_program.json"
+  })
+
+  site.post({
     name: "/api/discount_method/all",
     path: __dirname + "/site_files/json/discount_method.json"
   })
@@ -82,14 +87,14 @@ module.exports = function init(site) {
     return true;
   }
 
- /*  site.getDefaultSetting = function (callback) {
-    $default_setting.get({
-    }, (err, doc) => {
-      if (!err && doc) {
-        return callback(err, doc)
-      }
-    })
-  } */
+  /*  site.getDefaultSetting = function (callback) {
+     $default_setting.get({
+     }, (err, doc) => {
+       if (!err && doc) {
+         return callback(err, doc)
+       }
+     })
+   } */
 
   site.post("/api/default_setting/save", (req, res) => {
     let response = {

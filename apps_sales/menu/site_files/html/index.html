@@ -20,9 +20,9 @@
         <div class="tabs-header">
 
 
-            <a x-feature="gym" class="tab-link" onclick="site.showTabContent(event, '#companyTab')">
+            <a class="tab-link" onclick="site.showTabContent(event, '#companyTab')">
                 <img src="/images/company.png">
-                <span> ##word.gym_setting##</span>
+                <span> ##word.sales_setting##</span>
             </a>
 
             <a class="tab-link" onclick="site.showTabContent(event, '#securityTab')">
@@ -84,6 +84,12 @@
                     <img src="/images/default_setting.png">
                     <h2>##word.default_setting_menus## </h2>
                     <p>##word.default_setting_management##</p>
+                </a>
+
+                <a class="item" href="/printers_path" x-permissions="printers_path_ui || printers_path_manage">
+                    <img src="/images/printer_path.png">
+                    <h2> ##word.printers_path## </h2>
+                    <p> ##word.printers_path_add##</p>
                 </a>
 
                 <a class="item" href="/goves" x-permissions="goves_ui || goves_manage">
@@ -284,18 +290,18 @@
                     <p>##word.safes_payments##</p>
                 </a>
 
-                <a class="item" href="/report_invoices" x-permissions="report_invoices_ui || report_invoices_manage">
+                <!--     <a class="item" href="/report_invoices" x-permissions="report_invoices_ui || report_invoices_manage">
                     <img src="/images/report_invoices.png">
                     <h2>##word.report_invoices_menus##</h2>
                     <p>##word.report_invoices_name##</p>
                 </a>
 
-            <!--     <a class="item" href="/report_full_employees"
+                <a class="item" href="/report_full_employees"
                     x-permissions="report_full_employees_ui || report_full_employees_manage">
                     <img src="/images/report_full_employees.png">
                     <h2>##word.report_full_employees_name##</h2>
                     <p>##word.report_full_employees_menus##</p>
-                </a> -->
+                </a> 
                 <a class="item" href="/report_employee_user"
                     x-permissions="report_employee_user_ui || report_employee_user_manage">
                     <img src="/images/report_employee_user.png">
@@ -303,20 +309,13 @@
                     <p>##word.report_employee_user_menus##</p>
                 </a>
 
-                <!-- 
+               
                     <a class="item" href="/report_sales" x-permissions="report_sales_ui || report_sales_manage">
                         <img src="/images/report_sales.png">
                         <h2>##word.report_sales_menus##</h2>
                         <p>##word.report_sales_name##</p>
                     </a>
-               
- -->
 
-
-
-                <!-- 
-
-         
               
                 <a class="item" href="/report_employee_delivery"
                     x-permissions="report_employee_delivery_ui || report_employee_delivery_manage">
@@ -352,10 +351,7 @@
                     <p> ##word.menu_vendors_groups_tag##</p>
                 </a>
 
-
-
-
-                <br>
+              <!--   <br>
                 <br>
                 <br>
 
@@ -363,7 +359,7 @@
                     <img src="/images/create_invoices.png">
                     <h2>##word.invoices_menus## </h2>
                     <p>##word.invoices_management##</p>
-                </a>
+                </a> -->
 
                 <!--    <a class="item" href="/service" x-permissions="service_ui || service_manage">
                     <img src="/images/service.png">

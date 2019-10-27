@@ -4,6 +4,8 @@
         <div class="tabs-header">
             <a class="tab-link" onclick="site.showTabContent(event, '#general_Settings')">
                 ##word.general_Settings## </a>
+            <a class="tab-link" onclick="site.showTabContent(event, '#printer_program')">
+                ##word.printer_program## </a>
             <a class="tab-link" onclick="site.showTabContent(event, '#accounting_settings')">
                 ##word.accounting_settings## </a>
             <a class="tab-link" onclick="site.showTabContent(event, '#inventory_settings')">
@@ -48,7 +50,7 @@
                         <i-list help-id="" ng-search="_search.$source_type_search" class="col3"
                             label="##word.source_type##" ng-model="default_setting.general_Settings.source_type"
                             items="sourceTypeList" display="##session.lang##"></i-list>
-                      <!--   <i-list help-id="" ng-search="_search.$discount_method_search" class="col3"
+                        <!--   <i-list help-id="" ng-search="_search.$discount_method_search" class="col3"
                             label="##word.discount_method##" ng-model="default_setting.general_Settings.discount_method"
                             items="discountMethodList" display="##session.lang##">
                         </i-list> -->
@@ -65,6 +67,27 @@
                     </div>
 
 
+
+                </fieldset>
+
+                <i-button type="default left" fa="2x fa-angle-double-left"
+                    onclick="document.querySelector('.tab-link.active + .tab-link').click();"></i-button>
+            </div>
+
+            <div id="printer_program" class="tab-content">
+                <fieldset>
+                    <legend> ##word.printer_program## </legend>
+
+                    <div class="row">
+
+                        <i-list class="col3" ng-model="default_setting.printer_program.place_program"
+                            items="placeProgramList" display="##session.lang##" ng-search="_search.$place_program"
+                            label="##word.place_program##"></i-list>
+                        <i-control help-id="printer_program" class="col3" label="##word.program_ip##"
+                            ng-model="default_setting.printer_program.ip"></i-control>
+                        <i-control help-id="printer_program" class="col3" label="##word.program_port##"
+                            ng-model="default_setting.printer_program.port"></i-control>
+                    </div>
 
                 </fieldset>
 

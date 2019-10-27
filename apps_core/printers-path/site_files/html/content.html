@@ -13,8 +13,11 @@
                     </div>
 
                     <div class="row">
-                        <i-control class="col3" label="##word.printers_path_type##" ng-model="printer_path.type">
-                        </i-control>
+
+                        <i-list help-id="" v="r" class="col3" label="##word.printers_path_type##"
+                            ng-model="printer_path.type" display="##session.lang##" items="printerTypeList"
+                            ng-search="_search.$printers_path_type"></i-list>
+
                         <i-control class="col3" label="##word.printers_path_ip##" ng-model="printer_path.ip">
                         </i-control>
                     </div>

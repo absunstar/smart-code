@@ -252,6 +252,26 @@ app.controller("default_setting", function ($scope, $http) {
     )
   };
 
+  $scope.getPlaceProgramList = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $scope.placeProgramList = [];
+    $http({
+      method: "POST",
+      url: "/api/place_program/all"
+
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.placeProgramList = response.data;
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
   $scope.saveSetting = function (where) {
     $scope.busy = true;
     $http({
@@ -283,4 +303,5 @@ app.controller("default_setting", function ($scope, $http) {
   $scope.getHallList();
   $scope.getSourceType();
   $scope.loadSetting();
+  $scope.getPlaceProgramList();
 });

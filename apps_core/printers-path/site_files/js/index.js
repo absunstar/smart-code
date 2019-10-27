@@ -187,6 +187,26 @@ app.controller("printers_path", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.getPrinterTypeList = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $scope.printerTypeList = [];
+    $http({
+      method: "POST",
+      url: "/api/printer_type/all"
+
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.printerTypeList = response.data;
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
   $scope.searchAll = function () {
     $scope.getPrinterPathList($scope.search);
     site.hideModal('#printerPathSearchModal');
@@ -195,5 +215,5 @@ app.controller("printers_path", function ($scope, $http, $timeout) {
   };
 
   $scope.getPrinterPathList();
-
+  $scope.getPrinterTypeList();
 });

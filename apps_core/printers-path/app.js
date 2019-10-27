@@ -13,6 +13,11 @@ module.exports = function init(site) {
     path: __dirname + '/site_files/images/'
   })
 
+  site.post({
+    name: '/api/printer_type/all',
+    path: __dirname + '/site_files/json/printer_type.json'
+  });
+
 
   site.on('[company][created]', doc => {
 

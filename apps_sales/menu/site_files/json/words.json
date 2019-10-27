@@ -20,6 +20,11 @@
         "ar": "المخازن"
     },
     {
+        "name": "sales_setting",
+        "en": "Inventory Accounting Setting",
+        "ar": "إعدادات المخازن و الحسابات"
+    },
+    {
         "name": "accounting",
         "en": "Accounting",
         "ar": "الحسابات"

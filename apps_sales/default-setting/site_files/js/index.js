@@ -204,7 +204,25 @@ app.controller("default_setting", function ($scope, $http) {
     )
   };
 
+  $scope.getPlaceProgramList = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $scope.placeProgramList = [];
+    $http({
+      method: "POST",
+      url: "/api/place_program/all"
 
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.placeProgramList = response.data;
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
 
   $scope.getPaymentMethodList = function () {
     $scope.error = '';
@@ -280,6 +298,7 @@ app.controller("default_setting", function ($scope, $http) {
   $scope.getTrainerList();
   $scope.getPaymentMethodList();
   $scope.getDiscountMethodList();
+  $scope.getPlaceProgramList();
   $scope.getHallList();
   $scope.getSourceType();
   $scope.loadSetting();

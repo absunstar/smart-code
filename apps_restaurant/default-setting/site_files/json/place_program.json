@@ -1,0 +1,17 @@
+[
+    {
+        "id" : 1,
+        "en": "On The Server",
+        "ar": "على السيرفر"
+    },
+    {
+        "id" : 2,
+        "en": "At The Client",
+        "ar": "عند العميل"
+    },
+    {
+        "id" : 3,
+        "en": "Fixed place",
+        "ar": "مكان ثابت"
+    }
+]
