@@ -6,28 +6,8 @@
     },
     {
         "name": "brand_tag",
-        "en": "Enterprise Resources Planing",
-        "ar": "نظام إدارة المطاعم"
-    },
-    {
-        "name": "companies",
-        "en": "Academies",
-        "ar": "المطاعم"
-    },
-    {
-        "name": "companies_add",
-        "en": "Add company",
-        "ar": "إضافة مطعم"
-    },
-    {
-        "name": "companies_edit",
-        "en": "Edit company",
-        "ar": "تعديل مطعم"
-    },
-    {
-        "name": "companies_informations",
-        "en": "company Informations",
-        "ar": "بيانات المطعم"
+        "en": "Accounting & Inventories",
+        "ar": "مخازن وحسابات"
     },
     {
         "name": "companies_basic_information",
@@ -38,21 +18,6 @@
         "name": "companies_contact_information",
         "en": "Contact Informations",
         "ar": "بيانات الاتصال"
-    },
-    {
-        "name": "companies_details",
-        "en": "company Details",
-        "ar": "تفاصيل المطعم"
-    },
-    {
-        "name": "companies_delete",
-        "en": "Delete company",
-        "ar": "حذف مطعم"
-    },
-    {
-        "name": "companies_code",
-        "en": "company Code",
-        "ar": "كود المطعم"
     },
     {
         "name": "companies_phone",

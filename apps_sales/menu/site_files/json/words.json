@@ -5,11 +5,6 @@
         "ar": "المراقبة"
     },
     {
-        "name": "gym_setting",
-        "en": "Gym Setting",
-        "ar": "إعدادات الجيم"
-    },
-    {
         "name": "security_system",
         "en": "Security System",
         "ar": "نظام الحماية"
@@ -365,11 +360,6 @@
         "ar": "قائمة مجموعة العملاء"
     },
     {
-        "name": "attend_subscribers_registration",
-        "en": "Attendance Subscribers Registration",
-        "ar": "تسجيل حضور المشتركين للجيم"
-    },
-    {
         "name": "menu_customers_groups_tag",
         "en": "Add Customer Groups",
         "ar": "إضافة مجموعة عملاء"
@@ -427,12 +417,12 @@
     {
         "name": "menu_company",
         "en": "company",
-        "ar": "الجيم"
+        "ar": "الشركة"
     },
     {
         "name": "menu_company_tag",
         "en": "Add company Manegment",
-        "ar": "إدارة نظام الجيم"
+        "ar": "إدارة نظام الشركة"
     },
     {
         "name": "menu_jobs",
