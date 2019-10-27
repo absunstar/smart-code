@@ -1,5 +1,5 @@
 const site = require('../isite')({
-    port: 40005,
+    port: 80,
     lang:'ar',
     saving_time: 0.2,
     theme: 'theme_paper',

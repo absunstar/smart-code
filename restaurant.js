@@ -1,5 +1,5 @@
-const site = require('../node_modules/isite')({
-    port: 5050,
+const site = require('../isite')({
+    port: 80,
     lang:'ar',
     saving_time: 0.2,
     name : 'restaurant' ,
