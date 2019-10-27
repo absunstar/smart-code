@@ -20,6 +20,26 @@
         "ar": "رقم التليفون"
     },
     {
+        "name": "printer_program",
+        "en": "Printer Program",
+        "ar": "برنامج الطباعة"
+    },
+    {
+        "name": "place_program",
+        "en": "Place Program",
+        "ar": "مكان البرنامج "
+    },
+    {
+        "name": "program_ip",
+        "en": "Program Ip",
+        "ar": " أي بي البرنامج"
+    },
+    {
+        "name": "program_port",
+        "en": "Program Port",
+        "ar": "بورت البرنامج"
+    },
+    {
         "name": "mobile",
         "en": "Mobile",
         "ar": "رقم الموبيل"
