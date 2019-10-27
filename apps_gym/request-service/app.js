@@ -330,57 +330,58 @@ module.exports = function init(site) {
     }
 
     let where = req.body.where || {}
+    let search = req.body.search
 
-    if (where['name']) {
-      where['name'] = new RegExp(where['name'], "i");
+    if (search) {
+      where.$or = []
+      
+      where.$or.push({
+        'customer.id': search.id
+      })
+
+      where['company.id'] = site.get_company(req).id
+      where['branch.code'] = site.get_branch(req).code
+
+      $request_service.findMany({
+        select: req.body.select || {},
+        where: where,
+        sort: req.body.sort || {
+          id: -1
+        },
+        limit: req.body.limit
+      }, (err, docs, count) => {
+        if (!err) {
+          let services = []
+          docs.forEach(request_service => {
+            if (request_service.selectedServicesList && request_service.selectedServicesList.length > 0) {
+              request_service.selectedServicesList.forEach(selectedServices => {
+
+                services.push({
+                  id: request_service.id,
+                  name: selectedServices.name,
+                  general_service : request_service.service_name,
+                  service_id: selectedServices.id
+                })
+              });
+            } else {
+              services.push({
+                id: request_service.id,
+                name: request_service.service_name,
+                service_id: request_service.service_id
+              })
+            }
+
+          });
+
+          response.done = true
+          response.list = services
+          response.count = count
+        } else {
+          response.error = err.message
+        }
+        res.json(response)
+      })
     }
-
-    if (where.search && where.search.capaneighborhood) {
-
-      where['capaneighborhood'] = where.search.capaneighborhood
-    }
-
-    if (where.search && where.search.current) {
-
-      where['current'] = where.search.current
-    }
-    delete where.search
-
-
-
-    where['company.id'] = site.get_company(req).id
-    where['branch.code'] = site.get_branch(req).code
-
-    $request_service.findMany({
-      select: req.body.select || {},
-      where: where,
-      sort: req.body.sort || {
-        id: -1
-      },
-      limit: req.body.limit
-    }, (err, docs, count) => {
-      if (!err) {
-
-        let services = []
-        docs.forEach(request_service => {
-          if (request_service.selectedServicesList && request_service.selectedServicesList.length > 0) {
-
-            services.map(request_service.selectedServicesList)
-
-          } else {
-            services.push({})
-          }
-
-        });
-
-        response.done = true
-        response.list = docs
-        response.count = count
-      } else {
-        response.error = err.message
-      }
-      res.json(response)
-    })
   })
 
   site.getDataToDelete = function (data, callback) {

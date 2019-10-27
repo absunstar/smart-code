@@ -227,6 +227,33 @@ app.controller("attend_services", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.getService = function (ev) {
+    $scope.error = '';
+    if (ev.which === 13) {
+      $http({
+        method: "POST",
+        url: "/api/request_service/all_services",
+        data: {
+          search: $scope.attend_services.customer,
+          select: {}
+        }
+      }).then(
+        function (response) {
+          $scope.busy = false;
+          if (response.data.done) {
+            if (response.data.list.length > 0) {
+              $scope.servicesList = response.data.list;
+            }
+          }
+        },
+        function (err) {
+          console.log(err);
+        }
+      );
+    }
+  };
+
+
   $scope.getHallList = function () {
     $scope.busy = true;
     $http({

@@ -98,8 +98,6 @@
                             ng-model="attend_services.hall" label="##word.hall##" items="hallsList">
                         </i-list>
 
-
-
                     </div>
 
                     <br>
@@ -109,7 +107,7 @@
                             <i-control ng-keydown="getService($event)" id="service" class="col3" ng-model="search_service"
                             label="##word.search##" type="text"></i-control>
 
-                        <i-list ng-search="_search.$service" class="col4" display="name" ng-model="service"
+                        <i-list ng-search="_search.$service" class="col4" display="name" space="-" display2="general_service" ng-model="service"
                             label="##word.service##" ng-change="changeService(request_service)  ;calc()"
                             items="servicesList"></i-list>
 
@@ -126,13 +124,6 @@
                     </div>
 
                     <br>
-                    <!--     <div class="row">
-                        <i-button type="exit" class="col2" label="##word.leave_now##" ng-click="leaveNow()"></i-button>
-                        <i-date2 class="col3" ng-model="attend_services.leave_date"
-                            label="##word.attend_services_leave##"></i-date2>
-                        <i-time help-id="attend_services_leave" class="col3" label="##word.attend_services_leave##"
-                            ng-model="attend_services.leave"></i-time>
-                    </div> -->
 
                 </div>
 
