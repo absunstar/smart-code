@@ -52,15 +52,22 @@ module.exports = function init(site) {
       $res: res
     })
 
-    if (typeof attend_session_doc.active === 'undefined') {
-      attend_session_doc.active = true
-    }
+    if (typeof attend_session_doc.active === 'undefined') attend_session_doc.active = true
 
     attend_session_doc.company = site.get_company(req)
     attend_session_doc.branch = site.get_branch(req)
 
     $attend_session.add(attend_session_doc, (err, doc) => {
-      if (!err) {
+      if (!err && doc) {
+
+        response.done = true
+        let obj = {
+          busy: true,
+          trainerId: doc.trainer.id,
+          customerId: doc.customer.id
+        }
+        site.call('[attend_session][busy][+]', obj)
+
         response.done = true
         response.doc = doc
       } else {
@@ -111,7 +118,6 @@ module.exports = function init(site) {
     }
   })
 
-
   site.post("/api/attend_session/update_leave", (req, res) => {
     let response = {
       done: false
@@ -138,14 +144,14 @@ module.exports = function init(site) {
         set: attend_session_doc,
         $req: req,
         $res: res
-      }, (err, doc) => {
-        if (!err && doc) {
-          response.done = true
+      }, (err, attend_doc) => {
+        if (!err && attend_doc) {
           let obj = {
-            
+            busy: false,
+            trainerId: attend_doc.doc.trainer.id,
+            customerId: attend_doc.doc.customer.id
           }
-          site.call('[attend_session][store_in][+]', obj)
-
+          site.call('[attend_session][busy][+]', obj)
         } else {
           response.error = 'Code Already Exist'
         }

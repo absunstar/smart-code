@@ -323,7 +323,7 @@ module.exports = function init(site) {
     })
   })
 
-  site.post("/api/request_service/all_services", (req, res) => {
+  site.post("/api/request_service/all_session", (req, res) => {
 
     let response = {
       done: false

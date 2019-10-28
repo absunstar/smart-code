@@ -181,7 +181,10 @@ app.controller("attend_session", function ($scope, $http, $timeout) {
         method: "POST",
         url: "/api/customers/all",
         data: {
-          search: $scope.search_customer
+          search: $scope.search_customer,
+          where: {
+            busy: { $ne: true }
+          }
           /*  select: {
             id: 1,
             name_ar: 1,
@@ -210,7 +213,8 @@ app.controller("attend_session", function ($scope, $http, $timeout) {
       url: "/api/employees/all",
       data: {
         where: {
-          'job.trainer': true
+          'job.trainer': true,
+          busy: { $ne: true }
         }
       }
     }).then(
@@ -235,7 +239,7 @@ app.controller("attend_session", function ($scope, $http, $timeout) {
         url: "/api/request_service/all_session",
         data: {
           search: $scope.attend_session.customer,
-          select: {}
+          select: { id: 1, customer: 1, service_id: 1, selectedServicesList: 1, service_name: 1 }
         }
       }).then(
         function (response) {

@@ -52,14 +52,20 @@ module.exports = function init(site) {
         name_ar: doc.branch_list[0].name_ar
       },
       active: true
-    }, (err, doc1) => {
+    }, (err, doc1) => { })
+  })
 
-
+  site.on('[attend_session][busy][+]', obj => {
+    $employee_list.findOne({
+      where: { id: obj.trainerId }
+    }, (err, doc) => {      
+      if (obj.busy) doc.busy = true;
+      else if (!obj.busy) doc.busy = false;
+      if (!err && doc) $employee_list.edit(doc)
     })
   })
 
   site.on('[job][employee_trainer][+]', job_doc => {
-
     $employee_list.add({
       name: "مدرب إفتراضي",
       image_url: '/images/employee_list.png',
@@ -344,7 +350,7 @@ module.exports = function init(site) {
     let data = { name: 'trainer', id: req.body.id };
 
     site.getDataToDelete(data, callback => {
-      
+
       if (callback == true) {
         response.error = 'Cant Delete Its Exist In Other Transaction'
         res.json(response)

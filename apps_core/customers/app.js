@@ -21,6 +21,16 @@ module.exports = function init(site) {
     path: __dirname + '/site_files/images/'
   })
 
+  site.on('[attend_session][busy][+]', obj => {
+    $customers.findOne({
+      where: { id: obj.customerId }
+    }, (err, doc) => {
+      if (obj.busy) doc.busy = true;
+      else if (!obj.busy) doc.busy = false;
+      if (!err && doc) $customers.edit(doc)
+    })
+  })
+
   site.on('[register][customer][add]', doc => {
 
     $customers.add({
