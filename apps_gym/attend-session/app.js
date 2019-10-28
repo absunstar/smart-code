@@ -1,12 +1,12 @@
 module.exports = function init(site) {
-  const $attend_services = site.connectCollection("attend_services")
+  const $attend_session = site.connectCollection("attend_session")
 
-  site.on('[company][created]', doc => {
+  /* site.on('[company][created]', doc => {
 
-    $attend_services.add({
+    $attend_session.add({
       code: "1",
       name: "قاعة إفتراضية",
-      image_url: '/images/attend_services.png',
+      image_url: '/images/attend_session.png',
       company: {
         id: doc.id,
         name_ar: doc.name_ar
@@ -17,9 +17,9 @@ module.exports = function init(site) {
       },
       active: true
     }, (err, doc) => { })
-  })
+  }) */
 
- 
+
 
   site.get({
     name: 'images',
@@ -27,13 +27,13 @@ module.exports = function init(site) {
   })
 
   site.get({
-    name: "attend_services",
+    name: "attend_session",
     path: __dirname + "/site_files/html/index.html",
     parser: "html",
     compress: true
   })
 
-  site.post("/api/attend_services/add", (req, res) => {
+  site.post("/api/attend_session/add", (req, res) => {
     let response = {
       done: false
     }
@@ -43,23 +43,23 @@ module.exports = function init(site) {
       return
     }
 
-    let attend_services_doc = req.body
-    attend_services_doc.$req = req
-    attend_services_doc.$res = res
+    let attend_session_doc = req.body
+    attend_session_doc.$req = req
+    attend_session_doc.$res = res
 
-    attend_services_doc.add_user_info = site.security.getUserFinger({
+    attend_session_doc.add_user_info = site.security.getUserFinger({
       $req: req,
       $res: res
     })
 
-    if (typeof attend_services_doc.active === 'undefined') {
-      attend_services_doc.active = true
+    if (typeof attend_session_doc.active === 'undefined') {
+      attend_session_doc.active = true
     }
 
-    attend_services_doc.company = site.get_company(req)
-    attend_services_doc.branch = site.get_branch(req)
+    attend_session_doc.company = site.get_company(req)
+    attend_session_doc.branch = site.get_branch(req)
 
-    $attend_services.add(attend_services_doc, (err, doc) => {
+    $attend_session.add(attend_session_doc, (err, doc) => {
       if (!err) {
         response.done = true
         response.doc = doc
@@ -71,7 +71,7 @@ module.exports = function init(site) {
 
   })
 
-  site.post("/api/attend_services/update", (req, res) => {
+  site.post("/api/attend_session/update", (req, res) => {
     let response = {
       done: false
     }
@@ -82,19 +82,19 @@ module.exports = function init(site) {
       return
     }
 
-    let attend_services_doc = req.body
+    let attend_session_doc = req.body
 
-    attend_services_doc.edit_user_info = site.security.getUserFinger({
+    attend_session_doc.edit_user_info = site.security.getUserFinger({
       $req: req,
       $res: res
     })
 
-    if (attend_services_doc.id) {
-      $attend_services.edit({
+    if (attend_session_doc.id) {
+      $attend_session.edit({
         where: {
-          id: attend_services_doc.id
+          id: attend_session_doc.id
         },
-        set: attend_services_doc,
+        set: attend_session_doc,
         $req: req,
         $res: res
       }, err => {
@@ -111,7 +111,8 @@ module.exports = function init(site) {
     }
   })
 
-  site.post("/api/attend_services/view", (req, res) => {
+
+  site.post("/api/attend_session/update_leave", (req, res) => {
     let response = {
       done: false
     }
@@ -122,7 +123,52 @@ module.exports = function init(site) {
       return
     }
 
-    $attend_services.findOne({
+    let attend_session_doc = req.body
+
+    attend_session_doc.edit_user_info = site.security.getUserFinger({
+      $req: req,
+      $res: res
+    })
+
+    if (attend_session_doc.id) {
+      $attend_session.edit({
+        where: {
+          id: attend_session_doc.id
+        },
+        set: attend_session_doc,
+        $req: req,
+        $res: res
+      }, (err, doc) => {
+        if (!err && doc) {
+          response.done = true
+          let obj = {
+            
+          }
+          site.call('[attend_session][store_in][+]', obj)
+
+        } else {
+          response.error = 'Code Already Exist'
+        }
+        res.json(response)
+      })
+    } else {
+      response.error = 'no id'
+      res.json(response)
+    }
+  })
+
+  site.post("/api/attend_session/view", (req, res) => {
+    let response = {
+      done: false
+    }
+
+    if (!req.session.user) {
+      response.error = 'Please Login First'
+      res.json(response)
+      return
+    }
+
+    $attend_session.findOne({
       where: {
         id: req.body.id
       }
@@ -137,7 +183,7 @@ module.exports = function init(site) {
     })
   })
 
-  site.post("/api/attend_services/delete", (req, res) => {
+  site.post("/api/attend_session/delete", (req, res) => {
     let response = {
       done: false
     }
@@ -151,7 +197,7 @@ module.exports = function init(site) {
     let id = req.body.id
 
     if (id) {
-      $attend_services.delete({
+      $attend_session.delete({
         id: id,
         $req: req,
         $res: res
@@ -169,7 +215,7 @@ module.exports = function init(site) {
     }
   })
 
-  site.post("/api/attend_services/all", (req, res) => {
+  site.post("/api/attend_session/all", (req, res) => {
 
     let response = {
       done: false
@@ -235,7 +281,7 @@ module.exports = function init(site) {
     where['company.id'] = site.get_company(req).id
     where['branch.code'] = site.get_branch(req).code
 
-    $attend_services.findMany({
+    $attend_session.findMany({
       select: req.body.select || {},
       where: where,
       sort: req.body.sort || {

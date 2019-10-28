@@ -1,0 +1,25 @@
+<div id="attendSessionUpdateModal" class="modal" fixed>
+        
+    <div class="modal-content ">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.attend_session_edit##
+                <i class="fa fa-pencil"></i>
+            </h2>
+        </div>
+
+        <div class="modal-body">
+
+            <div x-import="attend-session/content.html"></div>
+            <div x-import="attend-session/action_info.html"></div>
+        </div>
+
+        <div class="modal-footer center">
+            <h2 class="error"> {{error}} </h2>
+            <i-button type="edit" label="##word.edit##" ng-click="updateAttendSession()"></i-button>
+            <i-button type="close" label="##word.close##" onclick="site.hideModal( '#attendSessionUpdateModal')"></i-button>
+        </div>
+    </div>
+    
+</div>

@@ -1,7 +1,0 @@
-[{
-    "module_name" : "public" ,
-    "name": "attend_services_admin",
-    "en": "Attend Services Admin",
-    "ar": "إدارة حضور الخدمة",
-    "permissions": ["attend_services_manage"]
-}]

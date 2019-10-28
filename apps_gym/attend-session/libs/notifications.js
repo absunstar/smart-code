@@ -1,27 +1,27 @@
 module.exports = function init(site) {
 
-  let collection_name = 'attend_service'
+  let collection_name = 'attend_session'
 
   let source = {
-    name: 'Attend Service System',
-    ar: 'نظام حضور الخدمات'
+    name: 'Attend Session System',
+    ar: 'نظام حضور الجلسات'
   }
 
-  let image_url = '/images/attend_service.png'
+  let image_url = '/images/attend_session.png'
 
   let add_message = {
-    name: 'New Attend Service Added',
-    ar: 'تم إضافة حضور خدمة جديدة'
+    name: 'New Attend Session Added',
+    ar: 'تم إضافة حضور جلسة جديدة'
   }
 
   let update_message = {
-    name: ' Attend Service Updated',
-    ar: 'تم تعديل حضور خدمة'
+    name: ' Attend Session Updated',
+    ar: 'تم تعديل حضور جلسة'
   }
 
   let delete_message = {
-    name: ' Attend Service Deleted',
-    ar: 'تم حذف حضور خدمة '
+    name: ' Attend Session Deleted',
+    ar: 'تم حذف حضور جلسة '
   }
 
 

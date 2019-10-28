@@ -1,23 +1,23 @@
-<div id="attendServicesAddModal" class="modal" fixed>
+<div id="attendSessionAddModal" class="modal" fixed>
     
     <div class="modal-content">
         <div class="modal-header">
             <span class="close">&times;</span>
             <h2>
-                ##word.attend_services_add##
+                ##word.attend_session_add##
                 <i class="fa fa-plus "></i>
             </h2>
         </div>
 
         <div class="modal-body">
-            <div x-import="attend-services/content.html"></div>
+            <div x-import="attend-session/content.html"></div>
         </div>
 
         <div class="modal-footer center">
             <h2 class="error"> {{error}} </h2>
-            <i-button type="add" label="##word.add##" ng-click="addAttendServices()"></i-button>
+            <i-button type="add" label="##word.add##" ng-click="addAttendSession()"></i-button>
 
-            <i-button type="close" label="##word.close##" onclick="site.hideModal( '#attendServicesAddModal')"></i-button>
+            <i-button type="close" label="##word.close##" onclick="site.hideModal( '#attendSessionAddModal')"></i-button>
         </div>
     </div>
     

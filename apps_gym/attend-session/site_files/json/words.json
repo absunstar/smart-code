@@ -1,26 +1,26 @@
 [
     {
-        "name": "attend_services",
-        "en": "Attend Services",
-        "ar": "حضور الخدمات للمشتركين"
+        "name": "attend_session",
+        "en": "Attend Session",
+        "ar": "حضور الجلسات للمشتركين"
     },
     {
-        "name": "attend_services",
-        "en": "The Attend Services",
-        "ar": "حضور خدمة"
+        "name": "attend_session",
+        "en": "The Attend Session",
+        "ar": "حضور جلسة"
     },
     {
-        "name": "attend_services_new",
-        "en": "New Attend Services",
-        "ar": "حضور خدمة جديدة"
+        "name": "attend_session_new",
+        "en": "New Attend Session",
+        "ar": "حضور جلسة جديدة"
     },
     {
-        "name": "attend_services_attend",
+        "name": "attend_session_attend",
         "en": "Attend Time",
         "ar": "وقت الحضور"
     },
     {
-        "name": "attend_services_leave",
+        "name": "attend_session_leave",
         "en": "Leave Time",
         "ar": "وقت المغادرة"
     },
@@ -73,32 +73,32 @@
     },
     
     {
-        "name": "attend_services_add",
-        "en": "Add Attend Services",
+        "name": "attend_session_add",
+        "en": "Add Attend Session",
         "ar": "إضافة حضور مشترك"
     },
     {
-        "name": "attend_services_edit",
-        "en": "Edit Attend Services",
+        "name": "attend_session_edit",
+        "en": "Edit Attend Session",
         "ar": "تعديل حضور مشترك"
     },
     {
-        "name": "attend_services_details",
-        "en": "Attend Services Details",
+        "name": "attend_session_details",
+        "en": "Attend Session Details",
         "ar": "تفاصيل حضور مشترك"
     },
     {
-        "name": "attend_services_delete",
-        "en": "Delete Attend Services",
+        "name": "attend_session_delete",
+        "en": "Delete Attend Session",
         "ar": "حذف حضور مشترك"
     },
     {
-        "name": "attend_services_name",
+        "name": "attend_session_name",
         "en": "Course Name",
         "ar": "اسم الحضور مشترك "
     },
     {
-        "name": "attend_services_total",
+        "name": "attend_session_total",
         "en": "Total Duration",
         "ar": "إجمالي المدة "
     }

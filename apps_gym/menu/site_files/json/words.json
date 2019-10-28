@@ -370,9 +370,9 @@
         "ar": "تسجيل حضور المشتركين للجيم"
     },
     {
-        "name": "attend_services_registration",
-        "en": "Attendance Services Registration",
-        "ar": "تسجيل حضور الخدمات"
+        "name": "attend_sessions_registration",
+        "en": "Attendance Sessions Registration",
+        "ar": "تسجيل حضور الجلسات"
     },
     {
         "name": "menu_customers_groups_tag",
