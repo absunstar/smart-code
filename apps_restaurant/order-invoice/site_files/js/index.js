@@ -4,8 +4,6 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
   $scope.discount = { type: 'number' };
   $scope.tax = {};
 
-
-
   $scope.displayAddOrderInvoice = function () {
     $scope.error = '';
     $scope.order_invoice = {
@@ -69,6 +67,47 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     if ($scope.order_invoice.transaction_type.id != 2 && $scope.order_invoice.price_delivery_service)
       $scope.order_invoice.price_delivery_service = 0;
 
+    let item_kitchen = [];
+    $scope.order_invoice.book_list.forEach(i => {
+      if (!i.brinted) {
+        if (item_kitchen.length > 0) {
+          item_kitchen.forEach(i_k => {
+            if (i.kitchen.id == i_k.kitchenId) {
+              i_k.data.push({
+                type: 'text',
+                value: i.count + ' - ' + i.name
+              }, {
+                type: 'line'
+              })
+            } else {
+              item_kitchen.push({
+                kitchenId: i.kitchen.id,
+                printer: i.kitchen.printer_path.ip,
+                data: [{
+                  type: 'text',
+                  value: i.count + ' - ' + i.name
+                }, {
+                  type: 'line'
+                }]
+              })
+            };
+
+          });
+        } else {
+          item_kitchen.push({
+            kitchenId: i.kitchen.id,
+            printer: i.kitchen.printer_path.ip,
+            data: [{
+              type: 'text',
+              value: i.count + ' - ' + i.name
+            }, {
+              type: 'line'
+            }]
+          })
+        }
+      };
+    });
+
     let url = "/api/order_invoice/update";
     if ($scope.order_invoice.id) url = '/api/order_invoice/update';
     else url = '/api/order_invoice/add';
@@ -81,9 +120,26 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done) {
+        if (response) {
           $scope.order_invoice = response.data.doc;
+          item_kitchen.forEach(i_k => {
+            $http({
+              method: "POST",
+              url: "http://127.0.0.1:11111/print",
+              data: i_k
+            }).then(
+              function (response) {
+                if (response) {
 
+                } else {
+                  $scope.error = response.data.error;
+                }
+              },
+              function (err) {
+                console.log(err);
+              }
+            )
+          });
         } else {
           $scope.error = response.data.error;
         }
@@ -160,7 +216,6 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     )
   };
 
-
   $scope.deleteOrderInvoice = function (order) {
     $scope.busy = true;
     $scope.error = '';
@@ -212,7 +267,6 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     )
   };
 
-
   $scope.loadItemsGroups = function () {
     $scope.busy = true;
     $scope.itemsGroupList = [];
@@ -262,7 +316,6 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     )
   };
 
-
   $scope.getDefaultSettingsList = function () {
     $scope.busy = true;
     $http({
@@ -310,7 +363,6 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     )
   };
 
-
   $scope.loadDiscountTypes = function () {
     $scope.busy = true;
     $http({
@@ -339,7 +391,6 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
       }
     )
   };
-
 
   $scope.getCustomerList = function () {
     $scope.busy = true;
@@ -687,12 +738,13 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
   };
 
   $scope.bookList = function (item) {
+
     $scope.error = '';
     $scope.order_invoice.book_list = $scope.order_invoice.book_list || [];
     let exist = false;
 
     $scope.order_invoice.book_list.forEach(el => {
-      if (item.size == el.size) {
+      if (item.size == el.size && !el.brinted) {
         exist = true;
         el.total_price += item.price;
         el.count += 1;
@@ -809,7 +861,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
       if ($scope.order_invoice.discountes && $scope.order_invoice.discountes.length > 0) {
         $scope.order_invoice.discountes.forEach(ds => {
           if (ds.type === "percent") {
-            $scope.order_invoice.total_discount +=  $scope.order_invoice.total_value * parseFloat(ds.value) / 100;
+            $scope.order_invoice.total_discount += $scope.order_invoice.total_value * parseFloat(ds.value) / 100;
           } else {
             $scope.order_invoice.total_discount += parseFloat(ds.value);
           };
@@ -846,7 +898,6 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     $scope.order_invoice.transaction_type.id == 2 ? $scope.order_invoice.price_delivery_service = customer.area.price_delivery_service : 0;
   };
 
-
   $scope.showTable = function () {
     $scope.error = '';
     $scope.getTablesList(() => {
@@ -881,7 +932,6 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     $scope.addOrderInvoice();
 
   };
-
 
   $scope.displaySearchModal = function () {
     $scope.error = '';

@@ -390,7 +390,8 @@ app.controller("request_service", function ($scope, $http, $timeout) {
 
   $scope.attendNow = function (s) {
 
-    $scope.handleServiceAttend(s);
+    s.current_ttendance = (s.current_ttendance || 0) + 1;
+    s.remain = s.remain - 1;
 
     $scope.attend_service.attend_service_list.unshift({
       id: s.service_id || s.id,
@@ -401,9 +402,6 @@ app.controller("request_service", function ($scope, $http, $timeout) {
         minute: new Date().getMinutes()
       }
     });
-
-    $scope.handleServiceAttend(s);
-
   };
 
   $scope.leaveNow = function (s) {

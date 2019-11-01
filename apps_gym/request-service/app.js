@@ -27,6 +27,16 @@ module.exports = function init(site) {
     return y + lastMonth + addZero(d, 2) + addZero(lastCode, 4)
   }
 
+  site.on('[attend_session][attend_request][+]', obj => {
+    $request_service.findOne({
+      where: { id: obj.service.id }
+    }, (err, doc) => {
+
+      
+
+      if (!err && doc) $request_service.edit(doc)
+    })
+  })
 
   site.on('[create_invoices][request_service][+]', function (obj) {
     $request_service.findOne({ id: obj }, (err, doc) => {
@@ -334,7 +344,7 @@ module.exports = function init(site) {
 
     if (search) {
       where.$or = []
-      
+
       where.$or.push({
         'customer.id': search.id
       })
@@ -359,7 +369,7 @@ module.exports = function init(site) {
                 services.push({
                   id: request_service.id,
                   name: selectedServices.name,
-                  general_service : request_service.service_name,
+                  general_service: request_service.service_name,
                   service_id: selectedServices.id
                 })
               });

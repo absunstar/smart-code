@@ -146,12 +146,21 @@ module.exports = function init(site) {
         $res: res
       }, (err, attend_doc) => {
         if (!err && attend_doc) {
-          let obj = {
+
+          let busy_obj = {
             busy: false,
             trainerId: attend_doc.doc.trainer.id,
             customerId: attend_doc.doc.customer.id
           }
-          site.call('[attend_session][busy][+]', obj)
+
+          let service_obj = {
+            service : attend_doc.doc.service,
+            attend : attend_doc.doc.attend,
+            leave : attend_doc.doc.leave,
+          }
+
+          site.call('[attend_session][busy][+]', busy_obj)
+          site.call('[attend_session][attend_request][+]', service_obj)
         } else {
           response.error = 'Code Already Exist'
         }

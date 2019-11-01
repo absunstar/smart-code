@@ -284,12 +284,9 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
     $scope.category_item = {};
     $scope.item = {};
     $scope.items_size = {};
+    $scope.getDefaultSettings();
     $scope.view(category_item);
 
-    $scope.item = {
-      image_url: '/images/sizes_img.png',
-      kitchen: $scope.defaultSettings.general_Settings.kitchen
-    };
     site.showModal('#updateCategoryItemModal');
   };
 
