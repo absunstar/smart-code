@@ -69,21 +69,25 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
 
     let item_kitchen = [];
     $scope.order_invoice.book_list.forEach(i => {
+
       if (!i.brinted) {
+        i.brinted = true;
         if (item_kitchen.length > 0) {
           item_kitchen.forEach(i_k => {
             if (i.kitchen.id == i_k.kitchenId) {
               i_k.data.push({
                 type: 'text',
                 value: i.count + ' - ' + i.name
-              }, {
-                type: 'line'
               })
             } else {
               item_kitchen.push({
                 kitchenId: i.kitchen.id,
-                printer: i.kitchen.printer_path.ip,
+                printer: i.kitchen.printer_path.ip.trim(),
                 data: [{
+                  type: 'text',
+                  value: 'Table' + ' : ' + $scope.order_invoice.table.name || ''
+                },
+                {
                   type: 'text',
                   value: i.count + ' - ' + i.name
                 }, {
@@ -91,18 +95,26 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
                 }]
               })
             };
-
           });
         } else {
           item_kitchen.push({
             kitchenId: i.kitchen.id,
-            printer: i.kitchen.printer_path.ip,
-            data: [{
-              type: 'text',
-              value: i.count + ' - ' + i.name
-            }, {
-              type: 'line'
-            }]
+            printer: i.kitchen.printer_path.ip.trim(),
+            data: [
+              {
+                type: 'text',
+                value: 'Table' + ' : ' + $scope.order_invoice.table.name || ''
+              },
+              {
+                type: 'text',
+                value: 'Kitchen' + ' : ' + i.kitchen.name
+              },
+              {
+                type: 'text',
+                value: i.count + ' - ' + i.name
+              }, {
+                type: 'line'
+              }]
           })
         }
       };
@@ -122,21 +134,15 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response) {
           $scope.order_invoice = response.data.doc;
+          console.log(item_kitchen);
           item_kitchen.forEach(i_k => {
             $http({
               method: "POST",
               url: "http://127.0.0.1:11111/print",
               data: i_k
             }).then(
-              function (response) {
-                if (response) {
-
-                } else {
-                  $scope.error = response.data.error;
-                }
-              },
               function (err) {
-                console.log(err);
+                console.log(err, "aaaaaaa");
               }
             )
           });
@@ -516,7 +522,9 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     $http({
       method: "POST",
       url: "/api/tables_group/all",
-      data: {}
+      data: {
+        select: { id: 1, name: 1, code: 1 }
+      }
     }).then(
       function (response) {
         $scope.busy = false;

@@ -164,6 +164,7 @@ app.controller("default_setting", function ($scope, $http) {
       method: "POST",
       url: "/api/tables_group/all",
       data: {
+        select: { id: 1, name: 1 , code: 1 }
       }
     }).then(
       function (response) {

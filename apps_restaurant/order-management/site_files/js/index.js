@@ -140,6 +140,7 @@ app.controller("order_management", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/tables_group/all",
       data: {
+        select: { id: 1, name: 1 , code: 1 },
         where: where
       }
     }).then(

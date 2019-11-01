@@ -11,7 +11,7 @@ app.controller("tables", function ($scope, $http, $timeout) {
 /*       immediate : false
  */    };
     site.showModal('#tablesAddModal');
-    
+
   };
 
   $scope.addTables = function () {
@@ -150,6 +150,7 @@ app.controller("tables", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/tables_group/all",
       data: {
+        select: { id: 1, name: 1, code: 1 },
         where: where
       }
     }).then(
@@ -192,14 +193,14 @@ app.controller("tables", function ($scope, $http, $timeout) {
     )
   };
 
- 
+
   $scope.displaySearchModal = function () {
     $scope.error = '';
     site.showModal('#tablesSearchModal');
 
   };
 
-  $scope.searchAll = function () { 
+  $scope.searchAll = function () {
     $scope.getTablesList($scope.search);
     site.hideModal('#tablesSearchModal');
     $scope.search = {};
