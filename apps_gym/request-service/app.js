@@ -32,7 +32,25 @@ module.exports = function init(site) {
       where: { id: obj.service.id }
     }, (err, doc) => {
 
-      
+      if (doc.selectedServicesList && doc.selectedServicesList.length > 0) {
+        doc.selectedServicesList.forEach(attend_service => {
+          if(attend_service.id == obj.service.service_id){            
+            attend_service.current_attendance = attend_service.current_attendance + 1;
+            attend_service.remain = attend_service.remain - 1;
+          }
+        });
+      } else {
+        doc.current_attendance = doc.current_attendance + 1;
+        doc.remain = doc.remain - 1;
+      }
+
+      doc.attend_service_list.push({
+        name: obj.service.name,
+        attend_date: obj.attend_date,
+        attend_time: obj.attend_time,
+        leave_date: obj.leave_date,
+        leave_time: obj.leave_time,
+      })
 
       if (!err && doc) $request_service.edit(doc)
     })
@@ -114,6 +132,19 @@ module.exports = function init(site) {
       request_service_doc.discountes.map(discountes => request_service_doc.total_discount += discountes.value)
     }
 
+    request_service_doc.attend_service_list = []
+    if (request_service_doc.selectedServicesList && request_service_doc.selectedServicesList.length > 0) {
+      request_service_doc.selectedServicesList.forEach(attend_service => {
+        attend_service.total_real_attend_count = attend_service.total_attend_count * request_service_doc.service_count;
+        attend_service.current_attendance = request_service_doc.attend_service_list.length || 0;
+        attend_service.remain = attend_service.total_real_attend_count - attend_service.current_attendance || 0;
+      });
+    } else {
+      request_service_doc.total_real_attend_count = request_service_doc.attend_count * request_service_doc.service_count;
+      request_service_doc.current_attendance = request_service_doc.attend_service_list.length || 0;
+      request_service_doc.remain = request_service_doc.total_real_attend_count - request_service_doc.current_attendance || 0;
+    }
+
     $request_service.add(request_service_doc, (err, doc) => {
       if (!err) {
         response.done = true
@@ -147,6 +178,18 @@ module.exports = function init(site) {
     if (request_service_doc.discountes && request_service_doc.discountes.length > 0) {
       request_service_doc.total_discount = 0
       request_service_doc.discountes.map(discountes => request_service_doc.total_discount += discountes.value)
+    }
+
+    if (request_service_doc.selectedServicesList && request_service_doc.selectedServicesList.length > 0) {
+      request_service_doc.selectedServicesList.forEach(attend_service => {
+        attend_service.total_real_attend_count = attend_service.total_attend_count * request_service_doc.service_count;
+        attend_service.current_attendance = request_service_doc.attend_service_list.length || 0;
+        attend_service.remain = attend_service.total_real_attend_count - attend_service.current_attendance || 0;
+      });
+    } else {
+      request_service_doc.total_real_attend_count = request_service_doc.attend_count * request_service_doc.service_count;
+      request_service_doc.current_attendance = request_service_doc.attend_service_list.length || 0;
+      request_service_doc.remain = request_service_doc.total_real_attend_count - request_service_doc.current_attendance || 0;
     }
 
     if (request_service_doc.id) {

@@ -154,9 +154,11 @@ module.exports = function init(site) {
           }
 
           let service_obj = {
-            service : attend_doc.doc.service,
-            attend : attend_doc.doc.attend,
-            leave : attend_doc.doc.leave,
+            service: attend_doc.doc.service,
+            attend_date: attend_doc.doc.attend_date,
+            attend: attend_doc.doc.attend,
+            leave_date: attend_doc.doc.leave_date,
+            leave: attend_doc.doc.leave,
           }
 
           site.call('[attend_session][busy][+]', busy_obj)
