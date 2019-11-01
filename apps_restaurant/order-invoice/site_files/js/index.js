@@ -67,6 +67,9 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     if ($scope.order_invoice.transaction_type.id != 2 && $scope.order_invoice.price_delivery_service)
       $scope.order_invoice.price_delivery_service = 0;
 
+    let ip = $scope.defaultSettings.printer_program.ip || '127.0.0.1';
+    let port = $scope.defaultSettings.printer_program.port || '11111';
+
     let item_kitchen = [];
     $scope.order_invoice.book_list.forEach(i => {
 
@@ -89,6 +92,10 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
                 },
                 {
                   type: 'text',
+                  value: 'Kitchen' + ' : ' + i.kitchen.name || ''
+                },
+                {
+                  type: 'text',
                   value: i.count + ' - ' + i.name
                 }, {
                   type: 'line'
@@ -107,7 +114,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
               },
               {
                 type: 'text',
-                value: 'Kitchen' + ' : ' + i.kitchen.name
+                value: 'Kitchen' + ' : ' + i.kitchen.name || ''
               },
               {
                 type: 'text',
@@ -134,15 +141,14 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response) {
           $scope.order_invoice = response.data.doc;
-          console.log(item_kitchen);
           item_kitchen.forEach(i_k => {
             $http({
               method: "POST",
-              url: "http://127.0.0.1:11111/print",
+              url: `http://${ip}:${port}/print`,
               data: i_k
             }).then(
               function (err) {
-                console.log(err, "aaaaaaa");
+                console.log(err);
               }
             )
           });
