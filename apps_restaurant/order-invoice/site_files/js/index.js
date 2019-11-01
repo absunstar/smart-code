@@ -73,15 +73,19 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     let item_kitchen = [];
     $scope.order_invoice.book_list.forEach(i => {
 
-      if (!i.brinted) {
-        i.brinted = true;
+      if (!i.printed) {
+        i.printed = true;
+
         if (item_kitchen.length > 0) {
-          item_kitchen.forEach(i_k => {
-            if (i.kitchen.id == i_k.kitchenId) {
-              i_k.data.push({
+          item_kitchen.forEach(_item_kitchen => {
+
+            if (i.kitchen.id == _item_kitchen.kitchenId) {
+              
+              _item_kitchen.data.push({
                 type: 'text',
-                value: i.count + ' - ' + i.name
+                value: i.count + ' - ' + i.size
               })
+
             } else {
               item_kitchen.push({
                 kitchenId: i.kitchen.id,
@@ -93,12 +97,12 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
                 {
                   type: 'text',
                   value: 'Kitchen' + ' : ' + i.kitchen.name || ''
+                }, {
+                  type: 'line'
                 },
                 {
                   type: 'text',
-                  value: i.count + ' - ' + i.name
-                }, {
-                  type: 'line'
+                  value: i.count + ' - ' + i.size
                 }]
               })
             };
@@ -115,12 +119,12 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
               {
                 type: 'text',
                 value: 'Kitchen' + ' : ' + i.kitchen.name || ''
+              }, {
+                type: 'line'
               },
               {
                 type: 'text',
-                value: i.count + ' - ' + i.name
-              }, {
-                type: 'line'
+                value: i.count + ' - ' + i.size
               }]
           })
         }
@@ -141,16 +145,19 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response) {
           $scope.order_invoice = response.data.doc;
-          item_kitchen.forEach(i_k => {
-            $http({
-              method: "POST",
-              url: `http://${ip}:${port}/print`,
-              data: i_k
-            }).then(
-              function (err) {
-                console.log(err);
-              }
-            )
+          item_kitchen.forEach(( _item_kitchen , i) => {
+            $timeout(()=>{
+              $http({
+                method: "POST",
+                url: `http://${ip}:${port}/print`,
+                data: _item_kitchen
+              }).then(
+                function (err) {
+                  console.log(err);
+                }
+              )
+            } , 1000 * i)
+            
           });
         } else {
           $scope.error = response.data.error;
@@ -758,7 +765,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     let exist = false;
 
     $scope.order_invoice.book_list.forEach(el => {
-      if (item.size == el.size && !el.brinted) {
+      if (item.size == el.size && !el.printed) {
         exist = true;
         el.total_price += item.price;
         el.count += 1;
