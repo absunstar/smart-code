@@ -491,7 +491,7 @@ module.exports = function init(site) {
 
   site.getDataToDelete = function (data, callback) {
 
-    let where = {}
+    let where = {};
 
     if (data.name == 'trainer') {
       where = {
@@ -502,16 +502,18 @@ module.exports = function init(site) {
         ]
       }
     }
+
     else if (data.name == 'customer') where['customer.id'] = data.id
+    else if (data.name == 'stores_item') where['book_list.item_id'] = data.id
+    else if (data.name == 'tables') where['table.id'] = data.id
 
     $order_invoice.findOne({
       where: where,
     }, (err, docs, count) => {
-      if (!err) {
 
+      if (!err) {
         if (docs) callback(true)
         else callback(false)
-
       }
     })
   }

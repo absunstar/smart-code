@@ -66,8 +66,13 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     if ($scope.order_invoice.transaction_type.id != 2 && $scope.order_invoice.price_delivery_service)
       $scope.order_invoice.price_delivery_service = 0;
 
-    let ip = $scope.defaultSettings.printer_program.ip || '127.0.0.1';
-    let port = $scope.defaultSettings.printer_program.port || '11111';
+
+    let ip = '127.0.0.1';
+    let port = '11111';
+    if ($scope.defaultSettings.printer_program) {
+      ip = $scope.defaultSettings.printer_program.ip || '127.0.0.1';
+      port = $scope.defaultSettings.printer_program.port || '11111';
+    }
 
     let item_kitchen = [];
     $scope.order_invoice.book_list.forEach(item_book => {
@@ -88,10 +93,10 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
             } else {
               item_kitchen.push({
                 kitchenId: item_book.kitchen.id,
-                printer: item_book.kitchen.printer_path.ip.trim(),
+                printer: item_book.kitchen.printer_path ? item_book.kitchen.printer_path.ip.trim() : '',
                 data: [{
                   type: 'text',
-                  value: 'Table' + ' : ' + ($scope.order_invoice.table.name || '')
+                  value: 'Table' + ' : ' + ($scope.order_invoice.table ? $scope.order_invoice.table.name : '')
                 },
                 {
                   type: 'text',
@@ -109,11 +114,11 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         } else {
           item_kitchen.push({
             kitchenId: item_book.kitchen.id,
-            printer: item_book.kitchen.printer_path.ip.trim(),
+            printer: item_book.kitchen.printer_path ? item_book.kitchen.printer_path.ip.trim() : '',
             data: [
               {
                 type: 'text',
-                value: 'Table' + ' : ' + ($scope.order_invoice.table.name || '')
+                value: 'Table' + ' : ' + ($scope.order_invoice.table ? $scope.order_invoice.table.name : '')
               },
               {
                 type: 'text',
@@ -146,6 +151,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         if (response) {
           $scope.order_invoice = response.data.doc;
           item_kitchen.forEach((_item_kitchen, i) => {
+
             $timeout(() => {
               $http({
                 method: "POST",
@@ -393,7 +399,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         select: {
           id: 1,
           name: 1,
-          printer_path:1
+          printer_path: 1
         }
       }
     }).then(
@@ -615,7 +621,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     )
   };
 
- 
+
 
   $scope.getTablesList = function (callback) {
     callback = callback || function () { };
@@ -627,6 +633,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
       url: "/api/tables/all",
       data: {
         where: {
+          select: { id: 1, name: 1, code: 1, busy: 1, tables_group: 1 },
           /*'tables_group.id': tables_group.id,*/
           active: true
         },
@@ -808,7 +815,11 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
 
   $scope.showItemsIn = function (i) {
     $scope.current_items = i;
-    if ($scope.current_items.sizes) $scope.current_items.sizes.map(size => size.name = $scope.current_items.name);
+    if ($scope.current_items.sizes) $scope.current_items.sizes.forEach(size => {
+      size.item_id = $scope.current_items.id;
+      size.name = $scope.current_items.name;
+
+    });
   };
 
   $scope.deliveryServiceHide = function () {
@@ -831,6 +842,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
 
     if (!exist) {
       $scope.order_invoice.book_list.push({
+        item_id: item.item_id,
         kitchen: item.kitchen,
         name: item.name,
         store: item.store,
@@ -1007,7 +1019,6 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     });
     $scope.order_invoice.table_group = g;
     site.hideModal('#showTablesModal');
-    $scope.addOrderInvoice();
 
   };
 

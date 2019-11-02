@@ -16,7 +16,7 @@ module.exports = function init(site) {
   site.on('[company][created]', doc => {
 
     $kitchen.add({
-      code: "1" ,
+      code: "1",
       name: "مطبخ إفتراضى",
       image_url: '/images/kitchen.png',
       company: {
@@ -28,7 +28,7 @@ module.exports = function init(site) {
         name_ar: doc.branch_list[0].name_ar
       },
       active: true
-    }, (err, doc) => {})
+    }, (err, doc) => { })
   })
 
 
@@ -161,24 +161,34 @@ module.exports = function init(site) {
     }
 
     let id = req.body.id
+    let data = { name: 'kitchen', id: req.body.id };
 
-    if (id) {
-      $kitchen.delete({
-        id: id,
-        $req: req,
-        $res: res
-      }, (err, result) => {
-        if (!err) {
-          response.done = true
-        } else {
-          response.error = err.message
-        }
+    site.getKitchenToDelete(data, callback => {
+
+      if (callback == true) {
+        response.error = 'Cant Delete Its Exist In Other Transaction'
         res.json(response)
-      })
-    } else {
-      response.error = 'no id'
-      res.json(response)
-    }
+
+      } else {
+        if (id) {
+          $kitchen.delete({
+            id: id,
+            $req: req,
+            $res: res
+          }, (err, result) => {
+            if (!err) {
+              response.done = true
+            } else {
+              response.error = err.message
+            }
+            res.json(response)
+          })
+        } else {
+          response.error = 'no id'
+          res.json(response)
+        }
+      }
+    })
   })
 
   site.post("/api/kitchen/all", (req, res) => {

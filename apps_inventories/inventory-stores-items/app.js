@@ -505,39 +505,48 @@ module.exports = function init(site) {
     if (req.session.user === undefined) {
       res.json(response)
     }
-    let _id = req.body._id
-    if (_id) {
+    let id = req.body.id
 
+    let data = { name: 'stores_item', id: req.body.id };
+    site.getDataToDelete(data, callback => {
 
-      $stores_items.delete({
-        _id: $stores_items.ObjectID(_id),
-        $req: req,
-        $res: res
-      }, (err, result) => {
-        if (!err) {
-
-          let stores_items_doc = result.doc
-          stores_items_doc.sizes.forEach(itm => {
-            itm.name = stores_items_doc.name
-            itm.cost = site.toNumber(itm.cost)
-            itm.price = site.toNumber(itm.price)
-            itm.count = site.toNumber(itm.current_count)
-            itm.barcode = itm.barcode
-            itm.date = stores_items_doc.date
-            itm.transaction_type = 'out'
-            itm.company = site.get_company(req)
-            itm.branch = site.get_branch(req)
-            site.call('please out item', itm)
-            site.call('[stores_items][store_out]', itm)
-
-          })
-          response.done = true
-        }
+      if (callback == true) {
+        response.error = 'Cant Delete Its Exist In Other Transaction'
         res.json(response)
-      })
-    } else {
-      res.json(response)
-    }
+
+      } else {
+        if (id) {
+          $stores_items.delete({
+            id: id,
+            $req: req,
+            $res: res
+          }, (err, result) => {
+            if (!err) {
+
+              let stores_items_doc = result.doc
+              stores_items_doc.sizes.forEach(itm => {
+                itm.name = stores_items_doc.name
+                itm.cost = site.toNumber(itm.cost)
+                itm.price = site.toNumber(itm.price)
+                itm.count = site.toNumber(itm.current_count)
+                itm.barcode = itm.barcode
+                itm.date = stores_items_doc.date
+                itm.transaction_type = 'out'
+                itm.company = site.get_company(req)
+                itm.branch = site.get_branch(req)
+                site.call('please out item', itm)
+                site.call('[stores_items][store_out]', itm)
+
+              })
+              response.done = true
+            }
+            res.json(response)
+          })
+        } else {
+          res.json(response)
+        }
+      }
+    })
   })
 
   site.post("/api/stores_items/view", (req, res) => {
@@ -891,7 +900,6 @@ module.exports = function init(site) {
     })
   })
 
-
   site.post("/api/complex_items/all", (req, res) => {
     let response = {
       done: false
@@ -993,4 +1001,23 @@ module.exports = function init(site) {
       res.json(response)
     })
   })
+
+
+  site.getKitchenToDelete = function (data, callback) {
+
+    let where = {};
+
+   if (data.name == 'kitchen') where['sizes.kitchen.id'] = data.id
+
+    $stores_items.findOne({
+      where: where,
+    }, (err, docs, count) => {
+
+      if (!err) {
+        if (docs) callback(true)
+        else callback(false)
+      }
+    })
+  }
+
 }

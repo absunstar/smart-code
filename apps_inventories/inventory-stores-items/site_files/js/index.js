@@ -362,7 +362,7 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/stores_items/delete",
       data: {
-        _id: $scope.category_item._id,
+        id: $scope.category_item.id,
         name: $scope.category_item.name
       }
     }).then(
