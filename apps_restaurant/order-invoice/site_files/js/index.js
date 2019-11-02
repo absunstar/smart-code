@@ -150,8 +150,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response) {
           $scope.order_invoice = response.data.doc;
-          item_kitchen.forEach((_item_kitchen, i) => {
-
+          item_kitchen.forEach((_item_kitchen, i) => {            
             $timeout(() => {
               $http({
                 method: "POST",

@@ -10,6 +10,11 @@
         "ar": "صنف جديد"
     },
     {
+        "name": "err_size",
+        "en": "Cant Delete Size Its Exist In Other Transaction" ,
+        "ar": "لا يمكن حذف المقاس لإستخدامه في معاملات أخرى"
+    },
+    {
         "name": "stores_items_delete",
         "en": "Delete Category",
         "ar": "حذف صنف"

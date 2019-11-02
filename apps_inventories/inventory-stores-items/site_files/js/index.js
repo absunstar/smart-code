@@ -65,7 +65,29 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
   };
 
   $scope.deleteSize = function (itm) {
-    $scope.category_item.sizes.splice($scope.category_item.sizes.indexOf(itm), 1)
+    $scope.error = '';
+    let obj_id = {
+      item_id: $scope.category_item.id,
+      barcode: itm.barcode,
+    };
+
+    $http({
+      method: "POST",
+      url: "/api/order_invoice/get_size",
+      data: obj_id
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.docs) {
+          $scope.error = '##word.err_size##';
+        } else $scope.category_item.sizes.splice($scope.category_item.sizes.indexOf(itm), 1)
+
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
   };
 
   $scope.loadAll = function (where) {
@@ -437,7 +459,7 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
         select: {
           id: 1,
           name: 1,
-          printer_path:1
+          printer_path: 1
         }
       }
     }).then(
@@ -542,7 +564,7 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
   };
 
   $scope.searchAll = function () {
-    $scope.error = ''; 
+    $scope.error = '';
     $scope.loadAll($scope.search);
     site.hideModal('#CategoryItemSearchModal');
     $scope.search = {};
