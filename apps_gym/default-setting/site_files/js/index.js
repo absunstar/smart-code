@@ -183,6 +183,33 @@ app.controller("default_setting", function ($scope, $http) {
     )
   };
 
+  $scope.getPrintersPath = function () {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/printers_path/all",
+      data: {
+        select: {
+          id: 1,
+          name: 1,
+          type: 1,
+          ip: 1,
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.printersPathList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
 
   $scope.getDiscountMethodList = function () {
     $scope.error = '';
@@ -303,5 +330,6 @@ app.controller("default_setting", function ($scope, $http) {
   $scope.getHallList();
   $scope.getSourceType();
   $scope.loadSetting();
+  $scope.getPrintersPath();
   $scope.getPlaceProgramList();
 });
