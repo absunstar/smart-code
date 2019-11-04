@@ -44,8 +44,9 @@ module.exports = function init(site) {
         doc.remain = doc.remain - 1;
       }
 
-      doc.attend_service_list.push({
+      doc.attend_service_list.unshift({
         name: obj.service.name,
+        trainer_attend: obj.trainer,
         attend_date: obj.attend_date,
         attend_time: obj.attend_time,
         leave_date: obj.leave_date,

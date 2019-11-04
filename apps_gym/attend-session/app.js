@@ -155,6 +155,7 @@ module.exports = function init(site) {
 
           let service_obj = {
             service: attend_doc.doc.service,
+            trainer: attend_doc.doc.trainer,
             attend_date: attend_doc.doc.attend_date,
             attend: attend_doc.doc.attend,
             leave_date: attend_doc.doc.leave_date,

@@ -3,8 +3,7 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
 
   $scope.create_invoices = {};
 
-  $scope.displayAddCreatInvoices = function () {
-
+  $scope.getDefaultSettingsList = function () {
     $scope.busy = true;
     $http({
       method: "POST",
@@ -15,28 +14,31 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done && response.data.doc) {
           $scope.defaultSettings = response.data.doc;
-          $scope._search = {};
-          $scope.search_order = "";
-          $scope.error = '';
-          $scope.requestServiceList = [];
-
-          $scope.create_invoices = {
-            source_type: $scope.defaultSettings.general_Settings ? $scope.defaultSettings.general_Settings.source_type : null,
-            payment_method: $scope.defaultSettings.general_Settings ? $scope.defaultSettings.general_Settings.payment_method : null,
-            image_url: '/images/create_invoices.png',
-            date: new Date(),
-            active: true,
-
-          };
-          site.showModal('#creatInvoicesAddModal');
-
-        };
+        }
       },
       function (err) {
         $scope.busy = false;
         $scope.error = err;
       }
     )
+  };
+
+  $scope.displayAddCreatInvoices = function () {
+    $scope._search = {};
+    $scope.search_order = '';
+    $scope.error = '';
+    $scope.requestServiceList = [];
+
+    $scope.create_invoices = {
+      source_type: $scope.defaultSettings.general_Settings ? $scope.defaultSettings.general_Settings.source_type : null,
+      payment_method: $scope.defaultSettings.general_Settings ? $scope.defaultSettings.general_Settings.payment_method : null,
+      safe: $scope.defaultSettings.accounting ? $scope.defaultSettings.accounting.safe : null,
+      image_url: '/images/create_invoices.png',
+      date: new Date(),
+      active: true,
+
+    };
+    site.showModal('#creatInvoicesAddModal');
 
   };
 
@@ -53,11 +55,42 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
     } else if ($scope.create_invoices.paid_up > 0 && !$scope.create_invoices.safe) {
       $scope.error = "##word.should_select_safe##";
       return;
-  
+
     } else if ($scope.create_invoices.paid_up > $scope.create_invoices.paid_require) {
       $scope.error = "##word.err_paid_require##";
       return;
     }
+
+    if ($scope.create_invoices.paid_up <= 0) $scope.create_invoices.safe = null;
+
+    let ip = '127.0.0.1';
+    let port = '11111';
+    if ($scope.defaultSettings.printer_program) {
+      ip = $scope.defaultSettings.printer_program.ip || '127.0.0.1';
+      port = $scope.defaultSettings.printer_program.port || '11111';
+
+    }
+    let obj_print = {
+
+      printer: $scope.defaultSettings.printer_program ? $scope.defaultSettings.printer_program.printer_path.ip.trim() : '',
+      data: [
+       /*  {
+          type: 'text',
+          value: 'Table' + ' : ' + ($scope.create_invoices.table ? $scope.create_invoices.table.name : '')
+        }, */
+        
+        {
+          type: 'text',
+          value: 'Kitchen' + ' : ' + (item_book.kitchen.name || '')
+        },
+        {
+          type: 'line'
+        },
+        {
+          type: 'text',
+          value: item_book.count + ' - ' + item_book.size
+        }]
+    };
 
     $http({
       method: "POST",
@@ -66,12 +99,27 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done) {
-          site.hideModal('#creatInvoicesAddModal');
-          $scope.getCreatInvoicesList();
+        if (response) {
+
+          $http({
+            method: "POST",
+            url: `http://${ip}:${port}/print`,
+            data: obj_print
+          }).then(
+            function (response) {
+
+              if (response) {
+                site.hideModal('#creatInvoicesAddModal');
+                $scope.getCreatInvoicesList();
+              }
+            },
+            function (err) {
+              console.log(err);
+            }
+          )
         } else {
           $scope.error = response.data.error;
-        
+
         }
       },
       function (err) {
@@ -460,4 +508,5 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
   $scope.getSourceType();
   $scope.getSafesList();
   $scope.getPaymentMethodList();
+  $scope.getDefaultSettingsList();
 });

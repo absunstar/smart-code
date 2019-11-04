@@ -23,6 +23,7 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
           $scope.create_invoices = {
             source_type: $scope.defaultSettings.general_Settings ? $scope.defaultSettings.general_Settings.source_type : null,
             payment_method: $scope.defaultSettings.general_Settings ? $scope.defaultSettings.general_Settings.payment_method : null,
+            safe: $scope.defaultSettings.accounting ? $scope.defaultSettings.accounting.safe : null,
             image_url: '/images/create_invoices.png',
             date: new Date(),
             active: true,
@@ -69,6 +70,8 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
       $scope.error = "##word.err_net_value##";
       return;
     }
+
+    if ($scope.create_invoices.paid_up <= 0) $scope.create_invoices.safe = null;
 
     $http({
       method: "POST",
