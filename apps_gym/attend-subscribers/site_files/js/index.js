@@ -171,7 +171,7 @@ app.controller("attend_subscribers", function ($scope, $http, $timeout) {
   };
 
 
-  $scope.getCustomerList = function () {
+/*   $scope.getCustomerList = function () {
     $scope.busy = true;
     $http({
       method: "POST",
@@ -191,7 +191,7 @@ app.controller("attend_subscribers", function ($scope, $http, $timeout) {
         $scope.error = err;
       }
     )
-  };
+  }; */
 
 
   $scope.getCustomerList = function (ev) {

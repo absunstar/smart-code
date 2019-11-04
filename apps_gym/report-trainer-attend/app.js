@@ -1,5 +1,5 @@
 module.exports = function init(site) {
-  const $create_course = site.connectCollection("create_course")
+  const $request_service = site.connectCollection("request_service")
 
   site.get({
     name: "report_trainer_attend",
@@ -10,7 +10,7 @@ module.exports = function init(site) {
 
 
 
-  site.post("/api/create_course/trainer_attend", (req, res) => {
+  site.post("/api/request_service/trainer_attend", (req, res) => {
     let response = {
       done: false
     }
@@ -20,7 +20,7 @@ module.exports = function init(site) {
     where['academy.id'] = site.get_company(req).id
     where['branch.code'] = site.get_branch(req).code
 
-    $create_course.findMany({
+    $request_service.findMany({
       select: req.body.select || {},
       where: where,
       sort: req.body.sort || {
@@ -42,7 +42,7 @@ module.exports = function init(site) {
                   attend_hour: d.attend_hour,
                   out_hour: d.out_hour,
                   notes_attend: d.notes_attend,
-                })
+                });
               }
             }
           });

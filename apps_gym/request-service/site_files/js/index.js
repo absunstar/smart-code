@@ -6,7 +6,6 @@ app.controller("request_service", function ($scope, $http, $timeout) {
     site.showModal('#requestServiceAddModal');
   };
 
-
   $scope.getDefaultSettings = function () {
 
     $scope.busy = true;
@@ -20,12 +19,21 @@ app.controller("request_service", function ($scope, $http, $timeout) {
         if (response.data.done && response.data.doc) {
           $scope.defaultSettings = response.data.doc;
           $scope.error = '';
-          $scope.error = '';
           $scope.discount = {};
           $scope.request_service = {
             image_url: '/images/request_service.png',
             active: true,
             service_count: 1,
+            date_from: new Date(),
+            date_to: new Date(),
+            time_from: {
+              hour: new Date().getHours(),
+              minute: new Date().getMinutes()
+            },
+            time_to: {
+              hour: new Date().getHours(),
+              minute: new Date().getMinutes()
+            },
             hall: $scope.defaultSettings.general_Settings ? $scope.defaultSettings.general_Settings.hall : null,
             trainer: $scope.defaultSettings.general_Settings ? $scope.defaultSettings.general_Settings.trainer : null,
           }
@@ -395,6 +403,7 @@ app.controller("request_service", function ($scope, $http, $timeout) {
 
     $scope.attend_service.attend_service_list.unshift({
       id: s.service_id || s.id,
+      trainer_attend: s.trainer_attend,
       name: s.name || $scope.attend_service.service_name,
       attend_date: new Date(),
       attend_time: {
@@ -411,28 +420,50 @@ app.controller("request_service", function ($scope, $http, $timeout) {
       minute: new Date().getMinutes()
     };
   };
-/* 
-  $scope.handleServiceAttend = function (service) {
-
-    $scope.attend_service.attend_service_list = $scope.attend_service.attend_service_list || [];
-
-    if ($scope.attend_service.selectedServicesList && $scope.attend_service.selectedServicesList.length > 0) {
-
-      $scope.attend_service.selectedServicesList.forEach(attend_service => {
-        attend_service.total_real_attend_count = attend_service.total_attend_count * $scope.attend_service.service_count;
-        attend_service.current_attendance = $scope.attend_service.attend_service_list.length;
-        attend_service.remain = attend_service.total_real_attend_count - attend_service.current_attendance || 0;
-      });
-
-    } else {
-      service.total_real_attend_count = service.attend_count * $scope.attend_service.service_count;
-      service.current_attendance = $scope.attend_service.attend_service_list.length;
-      service.remain = service.total_real_attend_count - service.current_attendance || 0;
-    }
-  };
- */
+  /* 
+    $scope.handleServiceAttend = function (service) {
+  
+      $scope.attend_service.attend_service_list = $scope.attend_service.attend_service_list || [];
+  
+      if ($scope.attend_service.selectedServicesList && $scope.attend_service.selectedServicesList.length > 0) {
+  
+        $scope.attend_service.selectedServicesList.forEach(attend_service => {
+          attend_service.total_real_attend_count = attend_service.total_attend_count * $scope.attend_service.service_count;
+          attend_service.current_attendance = $scope.attend_service.attend_service_list.length;
+          attend_service.remain = attend_service.total_real_attend_count - attend_service.current_attendance || 0;
+        });
+  
+      } else {
+        service.total_real_attend_count = service.attend_count * $scope.attend_service.service_count;
+        service.current_attendance = $scope.attend_service.attend_service_list.length;
+        service.remain = service.total_real_attend_count - service.current_attendance || 0;
+      }
+    };
+   */
   $scope.showAttendServices = function (service) {
     $scope.attend_service = service;
+
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/default_setting/get",
+      data: {}
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.doc) {
+          $scope.defaultSettings = response.data.doc;
+          if ($scope.attend_service && $scope.attend_service.selectedServicesList.length > 0) {
+            $scope.attend_service.selectedServicesList.forEach(selectedServicesList => {
+              selectedServicesList.trainer_attend = $scope.defaultSettings.general_Settings ? $scope.defaultSettings.general_Settings.trainer : null
+            });
+          } else {
+            $scope.attend_service.trainer_attend = $scope.defaultSettings.general_Settings ? $scope.defaultSettings.general_Settings.trainer : null
+          }
+        }
+      }
+    );
+
     site.showModal('#attendServiceModal');
 
   };

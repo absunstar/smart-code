@@ -34,11 +34,17 @@
 
                         <tr>
                             <td class="title">##word.start_date##</td>
-                            <td class="center brown">{{request_service.date_from | date : 'yyyy - MM - dd'}}</td>
+                            <td class="center brown">{{request_service.date_from | date : 'yyyy - MM - dd'}}
+                                <p class="center green"> {{request_service.time_from.minute}} :
+                                    {{request_service.time_from.hour}}</p>
+                            </td>
                         </tr>
                         <tr>
                             <td class="title">##word.expired_date##</td>
-                            <td class="center red">{{request_service.date_to | date : 'yyyy - MM - dd'}}</td>
+                            <td class="center red">{{request_service.date_to | date : 'yyyy - MM - dd'}}
+                                <p class="center red"> {{request_service.time_to.minute}} :
+                                    {{request_service.time_to.hour}}</p>
+                            </td>
                         </tr>
                         <tr>
                             <td class="title">##word.available_period##</td>

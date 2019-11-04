@@ -22,6 +22,7 @@
                                     <th>##word.attend_count##</th>
                                     <th>##word.current_attendance##</th>
                                     <th>##word.remain##</th>
+                                    <th>##word.trainer##</th>
                                     <th>##word.actions##</th>
                                 </tr>
 
@@ -41,6 +42,11 @@
 
                                     <td>
                                         <p class="center bold blue">{{attend_service.remain}}</p>
+                                    </td>
+
+                                    <td>
+                                        <i-list ng-search="_search.$trainer" display="name"
+                                            ng-model="attend_service.trainer_attend" items="trainersList"></i-list>
                                     </td>
 
                                     <td class="center">
@@ -70,6 +76,7 @@
                                     <th>##word.attend_count##</th>
                                     <th>##word.current_attendance##</th>
                                     <th>##word.remain##</th>
+                                    <th>##word.trainer##</th>
                                     <th>##word.actions##</th>
                                 </tr>
 
@@ -87,6 +94,10 @@
                                     </td>
                                     <td>
                                         <p class="center bold blue">{{s.remain}}</p>
+                                    </td>
+                                    <td>
+                                        <i-list ng-search="s.$trainer_attend_search" display="name" ng-model="s.trainer_attend"
+                                            items="trainersList"></i-list>
                                     </td>
                                     <td class="center">
                                         <i-button type="add" label="##word.attend##" ng-click="attendNow(s)">
@@ -112,6 +123,7 @@
                             <table class="table hover bold">
                                 <tr>
                                     <th>##word.service_name##</th>
+                                    <th>##word.trainer##</th>
                                     <th>##word.attend_date##</th>
                                     <th>##word.leave_date##</th>
                                 </tr>
@@ -120,6 +132,10 @@
 
                                     <td>
                                         <p class="center bold">{{s.name}}</p>
+                                    </td>
+
+                                    <td>
+                                        <p class="center bold">{{s.trainer_attend.name}}</p>
                                     </td>
 
                                     <td class="center ">

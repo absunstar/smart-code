@@ -197,7 +197,7 @@
                                             <tr>
                                                 <th>##word.service_name##</th>
                                                 <th>##word.services_price##</th>
-                                               <!--  <th>##word.attend_count##</th>
+                                                <!--  <th>##word.attend_count##</th>
                                                 <th>##word.service_count##</th> -->
                                                 <th>##word.attend_count##</th>
                                             </tr>
@@ -213,7 +213,7 @@
                                                 </td>
 
 
-                                              <!--   <td>
+                                                <!--   <td>
                                                     <p class="center bold blue">{{s.attend_count}}</p>
                                                 </td>
                                                 <td>
@@ -243,22 +243,30 @@
                     </div>
 
                     <div class="row" ng-show="request_service.service_name">
-
-                        <div class="row">
-                            <i-button type="save" label="##word.beginning_of_day##" ng-click="startDateToDay()">
-                            </i-button>
-                        </div>
-
-                        <i-date2 class="col4" v="r" ng-model="request_service.date_from" label="##word.start_date##">
-                        </i-date2>
-                        <i-date2 class="col4" v="r" ng-model="request_service.date_to" label="##word.expired_date##">
-                        </i-date2>
                         <i-control help-id="total_discount" type="number" class="col2" disabled
                             label="##word.total_discount##" ng-model="request_service.total_discount">
                         </i-control>
                         <i-control help-id="paid_require" type="number" class="col2" disabled
                             label="##word.paid_require##" ng-model="request_service.paid_require">
                         </i-control>
+                    </div>
+
+                    <div class="row" ng-show="request_service.service_name">
+
+                        <i-date2 class="col4" v="r" ng-model="request_service.date_from" label="##word.start_date##">
+                        </i-date2>
+                        <i-time help-id="request_service_from" class="col3" label="##word.time##"
+                            ng-model="request_service.time_from"></i-time>
+                    </div>
+
+                    <div class="row" ng-show="request_service.service_name">
+
+
+                        <i-date2 class="col4" v="r" ng-model="request_service.date_to" label="##word.expired_date##">
+                        </i-date2>
+                        <i-time help-id="request_service_to" class="col3" label="##word.time##"
+                            ng-model="request_service.time_to"></i-time>
+
                     </div>
                 </div>
 

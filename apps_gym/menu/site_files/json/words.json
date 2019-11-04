@@ -60,9 +60,14 @@
         "ar": "اﻻجراءات"
     },
     {
-        "name": "report_trainer_attend",
-        "en": "Report Trainer Attend Course",
-        "ar": "تقرير حضور الكورسات للمدربين"
+        "name": "report_trainer_attend_name",
+        "en": "Report Trainer Attend Session",
+        "ar": "تقرير حضور الجلسات للمدربين"
+    },
+    {
+        "name": "report_trainer_attend_menus",
+        "en": "Trainer Attend Session",
+        "ar": "حضور الجلسات للمدربين"
     },
     {
         "name": "report_trainer_detailed",
@@ -359,6 +364,7 @@
         "en": "Add Customer",
         "ar": "إضافة عملاء"
     },
+
     {
         "name": "menu_customers_groups",
         "en": "Customer Groups Menu",

@@ -7,6 +7,7 @@ app.controller("service", function ($scope, $http, $timeout) {
     $scope.service = {
       image_url: '/images/service.png',
       active: true,
+      attend_count: 1,
       complex_service: false,
       /* capaneighborhood : " - طالب",       
        immediate: false
@@ -257,15 +258,15 @@ app.controller("service", function ($scope, $http, $timeout) {
   $scope.attendCalc = function (s) {
     $scope.error = '';
     $scope.service.attend_count = 0;
-    $timeout(()=>{
+    $timeout(() => {
       if ($scope.service.complex_service) {
         $scope.service.selectedServicesList.forEach(s => {
           s.total_attend_count = s.attend_count * s.count;
           $scope.service.attend_count += s.total_attend_count;
         });
       }
-    } , 100);
-   
+    }, 100);
+
   };
 
   $scope.displaySearchModal = function () {

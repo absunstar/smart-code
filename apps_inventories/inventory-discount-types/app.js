@@ -45,7 +45,7 @@ module.exports = function init(site) {
     compress: false
   })
 
-
+/* 
   site.on('[company][created]', doc => {
 
     $discount_types.add({
@@ -63,7 +63,7 @@ module.exports = function init(site) {
       active: true
     }, (err, doc) => {})
   })
-
+ */
 
   site.post("/api/discount_types/add", (req, res) => {
     let response = {}

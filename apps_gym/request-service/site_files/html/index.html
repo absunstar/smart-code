@@ -70,9 +70,14 @@
                         <td ng-click="displayDetailsRequestService(c)" class="center">{{c.hall.name}}</td>
                         <td ng-click="displayDetailsRequestService(c)" class="center">{{c.service_name}}</td>
                         <td ng-click="displayDetailsRequestService(c)" class="center brown">
-                            {{c.date_from | date : 'yyyy - MM - dd'}}</td>
+                            {{c.date_from | date : 'yyyy - MM - dd'}}
+                            <p class="center green"> {{c.time_from.minute}} : {{c.time_from.hour}}</p>
+                        </td>
                         <td ng-click="displayDetailsRequestService(c)" class="center red">
-                            {{c.date_to | date : 'yyyy - MM - dd'}}</td>
+                            {{c.date_to | date : 'yyyy - MM - dd'}}
+                            <p class="center red"> {{c.time_to.minute}} : {{c.time_to.hour}}</p>
+
+                        </td>
                         <td ng-click="displayDetailsRequestService(c)" class="center green">{{c.paid_require}}</td>
                         <td ng-click="displayDetailsRequestService(c)" class="center green">{{c.service_count}}</td>
 
