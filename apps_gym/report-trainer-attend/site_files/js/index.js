@@ -65,17 +65,14 @@ app.controller("report_trainer_attend", function ($scope, $http) {
       method: "POST",
       url: "/api/request_service/trainer_attend",
       data: {
-        where: {
-
-          'dates_list.trainer.id': trainer.id,
-        }
+        where: { 'dates_list.trainer.id': trainer.id }
       }
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.attendList = response.data.list;
-          
+
           $scope.list1 = [];
 
           $scope.attendList.forEach(itm1 => {

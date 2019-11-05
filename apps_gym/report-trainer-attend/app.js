@@ -11,9 +11,7 @@ module.exports = function init(site) {
 
 
   site.post("/api/request_service/trainer_attend", (req, res) => {
-    let response = {
-      done: false
-    }
+    let response = { done: false }
 
     var where = req.body.where || {}
 
@@ -31,12 +29,12 @@ module.exports = function init(site) {
       if (!err) {
         response.done = true
         response.list = []
-        docs.forEach(b => {
-          b.dates_list.forEach(d => {
+        docs.forEach(doc => {
+          doc.dates_list.forEach(d => {
             if (d.trainer.id == where['dates_list.trainer.id']) {
               if (d.attend) {
                 response.list.push({
-                  course: b.course,
+                  course: doc.course,
                   date_course: d.date_count,
                   attend: d.attend,
                   attend_hour: d.attend_hour,

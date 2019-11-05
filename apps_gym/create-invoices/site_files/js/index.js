@@ -45,8 +45,7 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
   $scope.addCreatInvoices = function () {
     $scope.error = '';
     const v = site.validated('#creatInvoicesAddModal');
-    if ($scope.busy)
-      return;
+    if ($scope.busy) return;
     else if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
@@ -61,13 +60,41 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
 
     if ($scope.create_invoices.paid_up <= 0) $scope.create_invoices.safe = null;
 
+
+    $http({
+      method: "POST",
+      url: "/api/create_invoices/add",
+      data: $scope.create_invoices
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response) {
+
+          site.hideModal('#creatInvoicesAddModal');
+          $scope.getCreatInvoicesList();
+        } else {
+          $scope.error = response.data.error;
+
+        }
+      },
+      function (err) {
+        console.log(err);
+      }
+    )
+  };
+
+  $scope.printInvoiceCreat = function () {
+    $scope.error = '';
+    if ($scope.busy) return;
+    $scope.busy = true;
+
+
     let ip = '127.0.0.1';
     let port = '11111';
     if ($scope.defaultSettings.printer_program) {
       ip = $scope.defaultSettings.printer_program.ip || '127.0.0.1';
       port = $scope.defaultSettings.printer_program.port || '11111';
-
-    }
+    };
 
     let obj_print = {
 
@@ -99,38 +126,80 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
 
       ]
     };
-
     $http({
       method: "POST",
-      url: "/api/create_invoices/add",
-      data: $scope.create_invoices
+      url: `http://${ip}:${port}/print`,
+      data: obj_print
     }).then(
       function (response) {
-        $scope.busy = false;
-        if (response) {
-
-          $http({
-            method: "POST",
-            url: `http://${ip}:${port}/print`,
-            data: obj_print
-          }).then(
-
-            function (err) {
-              console.log(err);
-            }
-          );
-          site.hideModal('#creatInvoicesAddModal');
-          $scope.getCreatInvoicesList();
-        } else {
-          $scope.error = response.data.error;
-
-        }
+        if (response)
+          $scope.busy = false;
       },
       function (err) {
         console.log(err);
       }
-    )
+    );
   };
+
+  $scope.printInvoiceCreat = function () {
+    let ip = '127.0.0.1';
+    let port = '11111';
+    if ($scope.defaultSettings.printer_program) {
+      ip = $scope.defaultSettings.printer_program.ip || '127.0.0.1';
+      port = $scope.defaultSettings.printer_program.port || '11111';
+
+    }
+    let obj_print = {
+
+      printer: $scope.defaultSettings.printer_program ? $scope.defaultSettings.printer_program.printer_path.ip.trim() : '',
+      data: [
+        {
+          type: 'text',
+          value: 'Customer' + ' : ' + ($scope.current.customer.name_ar || '')
+        },
+        {
+          type: 'text',
+          value: 'Service' + ' : ' + ($scope.current.service_name || '')
+        },
+        {
+          type: 'line'
+        },
+        {
+          type: 'text',
+          value: 'paid Require' + ' : ' + ($scope.current.paid_require || 0)
+        },
+        {
+          type: 'text',
+          value: 'Current Paid Up' + ' : ' + ($scope.current.payment_paid_up || 0)
+        },
+        {
+          type: 'text',
+          value: 'Total Paid Up' + ' : ' + ($scope.current.total_paid_up || 0)
+        },
+        {
+          type: 'text',
+          value: 'Total Remain' + ' : ' + ($scope.current.total_remain || 0)
+        },
+
+      ]
+    };
+    $http({
+      method: "POST",
+      url: `http://${ip}:${port}/print`,
+      data: obj_print
+    }).then(
+      function (response) {
+        if (response)
+          $scope.busy = false;
+      },
+      function (err) {
+        console.log(err);
+      }
+    );
+
+  }
+
+
 
   $scope.displayUpdateCreatInvoices = function (create_invoices) {
     $scope._search = {};
@@ -302,48 +371,6 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.busy = true;
 
-    let ip = '127.0.0.1';
-    let port = '11111';
-    if ($scope.defaultSettings.printer_program) {
-      ip = $scope.defaultSettings.printer_program.ip || '127.0.0.1';
-      port = $scope.defaultSettings.printer_program.port || '11111';
-
-    }
-    let obj_print = {
-
-      printer: $scope.defaultSettings.printer_program ? $scope.defaultSettings.printer_program.printer_path.ip.trim() : '',
-      data: [
-        {
-          type: 'text',
-          value: 'Customer' + ' : ' + ($scope.current.customer.name_ar || '')
-        },
-        {
-          type: 'text',
-          value: 'Service' + ' : ' + ($scope.current.service_name || '')
-        },
-        {
-          type: 'line'
-        },
-        {
-          type: 'text',
-          value: 'paid Require' + ' : ' + ($scope.current.paid_require || 0)
-        },
-        {
-          type: 'text',
-          value: 'Current Paid Up' + ' : ' + ($scope.current.payment_paid_up || 0)
-        },
-        {
-          type: 'text',
-          value: 'Total Paid Up' + ' : ' + ($scope.current.total_paid_up || 0)
-        },
-        {
-          type: 'text',
-          value: 'Total Remain' + ' : ' + ($scope.current.total_remain || 0)
-        },
-
-      ]
-    };
-
     $http({
       method: "POST",
       url: "/api/create_invoices/update",
@@ -352,16 +379,6 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          $http({
-            method: "POST",
-            url: `http://${ip}:${port}/print`,
-            data: obj_print
-          }).then(
-
-            function (err) {
-              console.log(err);
-            }
-          );
           $scope.getCreatInvoicesList();
           site.hideModal('#invoicesPaymentModal');
         } else {
