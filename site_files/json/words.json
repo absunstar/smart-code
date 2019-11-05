@@ -25,6 +25,11 @@
         "ar": "برنامج الطباعة"
     },
     {
+        "name": "basic_printer",
+        "en": "Basic Printer",
+        "ar": "الطابعة الرئيسية"
+    },
+    {
         "name": "place_program",
         "en": "Place Program",
         "ar": "مكان البرنامج "

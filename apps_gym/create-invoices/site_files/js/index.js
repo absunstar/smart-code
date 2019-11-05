@@ -88,7 +88,6 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
     if ($scope.busy) return;
     $scope.busy = true;
 
-
     let ip = '127.0.0.1';
     let port = '11111';
     if ($scope.defaultSettings.printer_program) {
@@ -100,6 +99,14 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
 
       printer: $scope.defaultSettings.printer_program ? $scope.defaultSettings.printer_program.printer_path.ip.trim() : '',
       data: [
+        {
+          type: 'text',
+          value: 'Date' + ' : ' + $scope.create_invoices.date | { date: 'dd - MM - yyyy' }
+        },
+        {
+          type: 'text',
+          value: 'Invoice Service'
+        },
         {
           type: 'text',
           value: 'Customer' + ' : ' + ($scope.create_invoices.customer.name_ar || '')
@@ -126,6 +133,8 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
 
       ]
     };
+    console.log(obj_print.data);
+    
     $http({
       method: "POST",
       url: `http://${ip}:${port}/print`,
@@ -152,6 +161,14 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
 
       printer: $scope.defaultSettings.printer_program ? $scope.defaultSettings.printer_program.printer_path.ip.trim() : '',
       data: [
+        {
+          type: 'text',
+          value: 'Date' + ' : ' + $scope.create_invoices.payment_date
+        },
+        {
+          type: 'text',
+          value: 'Invoice Service'
+        },
         {
           type: 'text',
           value: 'Customer' + ' : ' + ($scope.current.customer.name_ar || '')

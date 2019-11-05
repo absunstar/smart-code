@@ -28,7 +28,10 @@
                     <legend> ##word.printer_program## </legend>
 
                     <div class="row">
-
+                        <i-list ng-search="_search.$basic_printer" class="col3" display="name"
+                            ng-model="default_setting.printer_program.printer_path" label="##word.basic_printer##"
+                            items="printersPathList">
+                        </i-list>
                         <i-list class="col3" ng-model="default_setting.printer_program.place_program"
                             items="placeProgramList" display="##session.lang##" ng-search="_search.$place_program"
                             label="##word.place_program##"></i-list>
