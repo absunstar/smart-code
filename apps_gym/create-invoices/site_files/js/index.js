@@ -141,7 +141,7 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.printInvoiceCreat = function () {
+  $scope.printInvoicePay = function () {
     let ip = '127.0.0.1';
     let port = '11111';
     if ($scope.defaultSettings.printer_program) {
