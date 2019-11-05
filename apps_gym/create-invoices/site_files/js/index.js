@@ -147,7 +147,6 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
     if ($scope.defaultSettings.printer_program) {
       ip = $scope.defaultSettings.printer_program.ip || '127.0.0.1';
       port = $scope.defaultSettings.printer_program.port || '11111';
-
     }
     let obj_print = {
 
@@ -197,9 +196,7 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
       }
     );
 
-  }
-
-
+  };
 
   $scope.displayUpdateCreatInvoices = function (create_invoices) {
     $scope._search = {};
