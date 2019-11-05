@@ -44,22 +44,20 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
 
   $scope.addCreatInvoices = function () {
     $scope.error = '';
-    if ($scope.busy) {
-      return;
-    }
-    $scope.busy = true;
     const v = site.validated('#creatInvoicesAddModal');
-    if (!v.ok) {
+    if ($scope.busy)
+      return;
+    else if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
     } else if ($scope.create_invoices.paid_up > 0 && !$scope.create_invoices.safe) {
       $scope.error = "##word.should_select_safe##";
       return;
-
     } else if ($scope.create_invoices.paid_up > $scope.create_invoices.paid_require) {
       $scope.error = "##word.err_paid_require##";
       return;
     }
+    $scope.busy = true;
 
     if ($scope.create_invoices.paid_up <= 0) $scope.create_invoices.safe = null;
 
@@ -70,26 +68,36 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
       port = $scope.defaultSettings.printer_program.port || '11111';
 
     }
+
     let obj_print = {
 
       printer: $scope.defaultSettings.printer_program ? $scope.defaultSettings.printer_program.printer_path.ip.trim() : '',
       data: [
-       /*  {
-          type: 'text',
-          value: 'Table' + ' : ' + ($scope.create_invoices.table ? $scope.create_invoices.table.name : '')
-        }, */
-        
         {
           type: 'text',
-          value: 'Kitchen' + ' : ' + (item_book.kitchen.name || '')
+          value: 'Customer' + ' : ' + ($scope.create_invoices.customer.name_ar || '')
+        },
+        {
+          type: 'text',
+          value: 'Service' + ' : ' + ($scope.create_invoices.service_name || '')
         },
         {
           type: 'line'
         },
         {
           type: 'text',
-          value: item_book.count + ' - ' + item_book.size
-        }]
+          value: 'Current Paid Up' + ' : ' + ($scope.create_invoices.paid_up || 0)
+        },
+        {
+          type: 'text',
+          value: 'paid Require' + ' : ' + ($scope.create_invoices.paid_require || 0)
+        },
+        {
+          type: 'text',
+          value: 'Total Remain' + ' : ' + ($scope.create_invoices.total_remain || 0)
+        },
+
+      ]
     };
 
     $http({
@@ -106,17 +114,13 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
             url: `http://${ip}:${port}/print`,
             data: obj_print
           }).then(
-            function (response) {
 
-              if (response) {
-                site.hideModal('#creatInvoicesAddModal');
-                $scope.getCreatInvoicesList();
-              }
-            },
             function (err) {
               console.log(err);
             }
-          )
+          );
+          site.hideModal('#creatInvoicesAddModal');
+          $scope.getCreatInvoicesList();
         } else {
           $scope.error = response.data.error;
 
@@ -296,8 +300,50 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
 
   $scope.acceptPaymentInvoice = function () {
     $scope.error = '';
-
     $scope.busy = true;
+
+    let ip = '127.0.0.1';
+    let port = '11111';
+    if ($scope.defaultSettings.printer_program) {
+      ip = $scope.defaultSettings.printer_program.ip || '127.0.0.1';
+      port = $scope.defaultSettings.printer_program.port || '11111';
+
+    }
+    let obj_print = {
+
+      printer: $scope.defaultSettings.printer_program ? $scope.defaultSettings.printer_program.printer_path.ip.trim() : '',
+      data: [
+        {
+          type: 'text',
+          value: 'Customer' + ' : ' + ($scope.current.customer.name_ar || '')
+        },
+        {
+          type: 'text',
+          value: 'Service' + ' : ' + ($scope.current.service_name || '')
+        },
+        {
+          type: 'line'
+        },
+        {
+          type: 'text',
+          value: 'paid Require' + ' : ' + ($scope.current.paid_require || 0)
+        },
+        {
+          type: 'text',
+          value: 'Current Paid Up' + ' : ' + ($scope.current.payment_paid_up || 0)
+        },
+        {
+          type: 'text',
+          value: 'Total Paid Up' + ' : ' + ($scope.current.total_paid_up || 0)
+        },
+        {
+          type: 'text',
+          value: 'Total Remain' + ' : ' + ($scope.current.total_remain || 0)
+        },
+
+      ]
+    };
+
     $http({
       method: "POST",
       url: "/api/create_invoices/update",
@@ -305,9 +351,17 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
-
         if (response.data.done) {
+          $http({
+            method: "POST",
+            url: `http://${ip}:${port}/print`,
+            data: obj_print
+          }).then(
 
+            function (err) {
+              console.log(err);
+            }
+          );
           $scope.getCreatInvoicesList();
           site.hideModal('#invoicesPaymentModal');
         } else {
@@ -380,8 +434,7 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
     $scope.current = invoices;
     $scope.current.payment_date = new Date();
     $scope.current.payment_paid_up = 0;
-    $scope.current.payment_safe = {};
-
+    $scope.current.payment_safe = $scope.defaultSettings.accounting ? $scope.defaultSettings.accounting.safe : null;
     site.showModal('#invoicesPaymentModal');
   };
 
