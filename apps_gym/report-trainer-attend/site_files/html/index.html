@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 
-<html lang="en" data-ng-app="myApp" class="bg-white" x-permissions="report_trainer_attend_ui || report_trainer_attend_manage">
+<html lang="en" data-ng-app="myApp" class="bg-white"
+    x-permissions="report_trainer_attend_ui || report_trainer_attend_manage">
 
 <head x-import="head.html">
 </head>
@@ -25,7 +26,8 @@
             <div x-import="report-trainer-attend/search_modal.html"></div>
 
             <div class="top-actions">
-                <i-button x-permissions="report_trainer_attend_search || report_trainer_attend_manage" type="search" id="searchAllBtn" label="##word.search_all##" ng-click="showSearch()">
+                <i-button x-permissions="report_trainer_attend_search || report_trainer_attend_manage" type="search"
+                    id="searchAllBtn" label="##word.search_all##" ng-click="showSearch()">
                 </i-button>
             </div>
 
@@ -63,38 +65,36 @@
                     <br>
                     <table class="table bold hover dashed">
                         <th>##word.report_trainer_serial##</th>
-                        <th>##word.courses##</th>
-                        <th>##word.date##</th>
-                        <th>##word.attend_absence_list##</th>
-                        <th>##word.attend_hour##</th>
-                        <th>##word.out_hour##</th>
-                        <th>##word.notes##</th>
+                        <th>##word.service_name##</th>
+                        <th>##word.attend_date##</th>
+                        <th>##word.leave_date##</th>
 
-                        <tr ng-repeat="t in c.list">
+                        <tr ng-repeat="s in c.list">
 
                             <td id="th">
                                 <p class="center blue"> {{$index + 1}} </p>
                             </td>
 
                             <td>
-                                <p class="center"> {{t.course.name}} </p>
+                                <p class="center"> {{s.name}} </p>
                             </td>
 
-                            <td>
-                                <p class="center brown"> {{t.date_course | date : 'dd - MM -yyyy'}} </p>
+                            <td class="center ">
+
+                                <p class="green">
+                                    {{s.attend_date |date:'dd - MM - yyyy'}}</p>
+
+                                <p class="green">{{s.attend_time.minute}} :
+                                    {{s.attend_time.hour}}
+                                </p>
                             </td>
                             <td>
-                                <p ng-show="t.attend.id == 1" class="center green"> {{t.attend.ar}} </p>
-                                <p ng-show="t.attend.id == 2" class="center red"> {{t.attend.ar}} </p>
-                            </td>
-                            <td>
-                                <p class="center green"> {{t.attend_hour.minute}} : {{t.attend_hour.hour}} </p>
-                            </td>
-                            <td>
-                                <p class="center red"> {{t.out_hour.minute}} : {{t.out_hour.hour}} </p>
-                            </td>
-                            <td>
-                                <p class="center"> {{t.notes_attend}} </p>
+                                <p class="red">
+                                    {{s.leave_date |date:'dd - MM - yyyy'}}</p>
+
+                                <p class="red">{{s.leave_time.minute}} :
+                                    {{s.leave_time.hour}}
+                                </p>
                             </td>
 
                         </tr>
@@ -111,8 +111,9 @@
     </div>
 
 
-    <div x-import="scripts.html" ></div>
-    <script x-import="report-trainer-attend/index.js" x-permissions="report_trainer_attend_search || report_trainer_attend_manage"></script>
+    <div x-import="scripts.html"></div>
+    <script x-import="report-trainer-attend/index.js"
+        x-permissions="report_trainer_attend_search || report_trainer_attend_manage"></script>
 
 
 </body>

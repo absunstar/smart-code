@@ -55,31 +55,23 @@ app.controller("report_trainer_attend", function ($scope, $http) {
 
   $scope.getAttendList = function (trainer) {
 
-    $scope.report = {
-      date: $scope.search.date,
-    };
-
+    $scope.report = { date: $scope.search.date };
     $scope.busy = true;
 
     $http({
       method: "POST",
-      url: "/api/request_service/trainer_attend",
-      data: {
-        where: { 'dates_list.trainer.id': trainer.id }
-      }
+      url: "/api/report_trainer_attend/trainer_attend",
+      data: { search: trainer }
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.attendList = response.data.list;
-
           $scope.list1 = [];
-
           $scope.attendList.forEach(itm1 => {
             let exit = false;
-
             $scope.list1.forEach(itm2 => {
-              if (itm1.course.id == itm2.course.id) {
+              if (itm1.code == itm2.code) {
                 itm2.list.push(itm1);
                 exit = true;
               }
@@ -87,7 +79,7 @@ app.controller("report_trainer_attend", function ($scope, $http) {
 
             if (!exit) {
               $scope.list1.push({
-                course: itm1.course,
+                code: itm1.code,
                 list: [itm1]
               });
             }

@@ -8,50 +8,49 @@ module.exports = function init(site) {
     compress: false
   })
 
-
-
-  site.post("/api/request_service/trainer_attend", (req, res) => {
+  site.post("/api/report_trainer_attend/trainer_attend", (req, res) => {
     let response = { done: false }
 
-    var where = req.body.where || {}
 
-    where['academy.id'] = site.get_company(req).id
-    where['branch.code'] = site.get_branch(req).code
+    /*  where['company.id'] = site.get_company(req).id
+     where['branch.code'] = site.get_branch(req).code */
 
-    $request_service.findMany({
-      select: req.body.select || {},
-      where: where,
-      sort: req.body.sort || {
-        id: -1
-      },
-      limit: req.body.limit
-    }, (err, docs, count) => {
-      if (!err) {
-        response.done = true
-        response.list = []
-        docs.forEach(doc => {
-          doc.dates_list.forEach(d => {
-            if (d.trainer.id == where['dates_list.trainer.id']) {
-              if (d.attend) {
-                response.list.push({
-                  course: doc.course,
-                  date_course: d.date_count,
-                  attend: d.attend,
-                  attend_hour: d.attend_hour,
-                  out_hour: d.out_hour,
-                  notes_attend: d.notes_attend,
-                });
+    let where = req.body.where || {}
+    let search = req.body.search
+    if (search) {
+      where.$or = []
+
+      where.$or.push({
+        'attend_service_list.trainer_attend.id': search.id
+      })
+
+      $request_service.findMany({
+        select: { attend_service_list: 1, code: 1, id: 1 },
+        where: where,
+        sort: req.body.sort || {
+          id: -1
+        },
+        limit: req.body.limit
+      }, (err, docs, count) => {
+        if (!err) {
+          response.done = true
+          response.list = []
+          docs.forEach(doc => {
+            doc.attend_service_list.forEach(attend_service => {
+              if (attend_service.trainer_attend.id == search.id) {                
+                attend_service.code = doc.code
+                response.list.push(attend_service);
               }
-            }
+            });
           });
-        });
-        response.count = count
-      } else {
-        response.error = err.message
-      }
-      res.json(response)
-    })
-  })
 
+          response.count = count
+        } else {
+          response.error = err.message
+        }
+        res.json(response)
+      })
+    }
+  })
 
 }
