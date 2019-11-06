@@ -118,6 +118,10 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
             data: [
               {
                 type: 'text',
+                value: $scope.defaultSettings.printer_program ? $scope.defaultSettings.printer_program.invoice_header : ''
+              },
+              {
+                type: 'text',
                 value: 'Date' + ' : ' + new Date($scope.order_invoice.date).toString()
               },
               {
@@ -138,6 +142,10 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
               {
                 type: 'text',
                 value: item_book.count + ' - ' + item_book.size
+              },
+              {
+                type: 'text',
+                value: $scope.defaultSettings.printer_program ? $scope.defaultSettings.printer_program.invoice_footer : ''
               }]
           })
         }

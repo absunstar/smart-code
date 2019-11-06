@@ -491,6 +491,10 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
       data: [
         {
           type: 'text',
+          value: $scope.defaultSettings.printer_program ? $scope.defaultSettings.printer_program.invoice_header : ''
+        },
+        {
+          type: 'text',
           value: 'Date' + ' : ' + new Date($scope.create_invoices.date).toString()
         },
         {
@@ -520,7 +524,10 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
           type: 'text',
           value: 'Total Remain' + ' : ' + ($scope.create_invoices.total_remain || 0)
         },
-
+        {
+          type: 'text',
+          value: $scope.defaultSettings.printer_program ? $scope.defaultSettings.printer_program.invoice_footer : ''
+        }
       ]
     };
 
@@ -551,6 +558,10 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
 
       printer: $scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.printer_path ? $scope.defaultSettings.printer_program.printer_path.ip.trim() : '',
       data: [
+        {
+          type: 'text',
+          value: $scope.defaultSettings.printer_program ? $scope.defaultSettings.printer_program.invoice_header : ''
+        },
         {
           type: 'text',
           value: 'Date' + ' : ' + new Date($scope.current.payment_date).toString()
@@ -586,7 +597,10 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
           type: 'text',
           value: 'Total Remain' + ' : ' + ($scope.current.total_remain || 0)
         },
-
+        {
+          type: 'text',
+          value: $scope.defaultSettings.printer_program ? $scope.defaultSettings.printer_program.invoice_footer : ''
+        }
       ]
     };
 

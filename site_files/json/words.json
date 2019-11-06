@@ -10,6 +10,16 @@
         "ar": "الوصف"
     },
     {
+        "name": "invoice_header",
+        "en": "Invoice Header",
+        "ar": "مقدمة الفاتورة"
+    },
+    {
+        "name": "invoice_footer",
+        "en": "Invoice Footer",
+        "ar": "هامش الفاتورة"
+    },
+    {
         "name": "email",
         "en": "Email",
         "ar": "البريد الإلكترونى"
