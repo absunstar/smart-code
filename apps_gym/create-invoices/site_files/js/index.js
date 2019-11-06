@@ -97,15 +97,15 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
 
     let obj_print = {
 
-      printer: $scope.defaultSettings.printer_program ? $scope.defaultSettings.printer_program.printer_path.ip.trim() : '',
+      printer: $scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.printer_path ? $scope.defaultSettings.printer_program.printer_path.ip.trim() : '',
       data: [
         {
           type: 'text',
-          value: 'Date' + ' : ' + $scope.create_invoices.date | { date: 'dd - MM - yyyy' }
+          value: 'Date' + ' : ' + new Date($scope.create_invoices.date).toString()
         },
         {
           type: 'text',
-          value: 'Invoice Service'
+          value: 'Invoice Service' + ' ' + $scope.create_invoices.code
         },
         {
           type: 'text',
@@ -133,8 +133,7 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
 
       ]
     };
-    console.log(obj_print.data);
-    
+
     $http({
       method: "POST",
       url: `http://${ip}:${port}/print`,
@@ -159,15 +158,15 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
     }
     let obj_print = {
 
-      printer: $scope.defaultSettings.printer_program ? $scope.defaultSettings.printer_program.printer_path.ip.trim() : '',
+      printer: $scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.printer_path ? $scope.defaultSettings.printer_program.printer_path.ip.trim() : '',
       data: [
         {
           type: 'text',
-          value: 'Date' + ' : ' + $scope.create_invoices.payment_date
+          value: 'Date' + ' : ' + new Date($scope.current.payment_date).toString()
         },
         {
           type: 'text',
-          value: 'Invoice Service'
+          value: 'Invoice Service' + ' ' + $scope.current.code
         },
         {
           type: 'text',
@@ -199,6 +198,7 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
 
       ]
     };
+
     $http({
       method: "POST",
       url: `http://${ip}:${port}/print`,

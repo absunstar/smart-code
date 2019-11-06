@@ -1,7 +1,6 @@
 module.exports = function init(site) {
   const $create_invoices = site.connectCollection("create_invoices")
 
- 
   function addZero(code, number) {
     let c = number - code.toString().length
     for (let i = 0; i < c; i++) {

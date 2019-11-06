@@ -174,6 +174,7 @@ app.controller("tables", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/tables/all",
       data: {
+        select: { id: 1, name: 1, code: 1, busy: 1, tables_group: 1, image_url: 1 },
         where: where
       }
     }).then(

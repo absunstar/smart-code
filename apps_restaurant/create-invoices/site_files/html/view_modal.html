@@ -1,5 +1,4 @@
 <div id="creatInvoicesDetailsModal" class="modal">
-   
 
     <div class="modal-content">
         <div class="modal-header">
@@ -19,10 +18,10 @@
         <h2 class="error"> {{error}} </h2>
         <div class="modal-footer center">
 
-
             <i-button type="close" label="##word.close##" onclick="site.hideModal('#creatInvoicesDetailsModal')"></i-button>
-            <i-button class="not-print" label="##word.print##" type="print " onclick="site.print('#creatInvoicesDetailsModal')"></i-button>
-        </div>
+            <i-button class="not-print" label="##word.print##" type="print " ng-click="printInvoiceCreat()"></i-button>
+<!--             <i-button class="not-print" label="##word.print##" type="print " onclick="site.print('#creatInvoicesDetailsModal')"></i-button>
+ -->        </div>
     </div>
    
 </div>

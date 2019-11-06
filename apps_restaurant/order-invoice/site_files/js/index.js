@@ -118,6 +118,14 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
             data: [
               {
                 type: 'text',
+                value: 'Date' + ' : ' + new Date($scope.order_invoice.date).toString()
+              },
+              {
+                type: 'text',
+                value: 'Order Invoice' + ' ' + $scope.order_invoice.code
+              },
+              {
+                type: 'text',
                 value: 'Table' + ' : ' + ($scope.order_invoice.table ? $scope.order_invoice.table.name : '')
               },
               {
@@ -150,7 +158,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response) {
           $scope.order_invoice = response.data.doc;
-          item_kitchen.forEach((_item_kitchen, i) => {            
+          item_kitchen.forEach((_item_kitchen, i) => {
             $timeout(() => {
               $http({
                 method: "POST",
@@ -448,12 +456,10 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
       url: "/api/discount_types/all",
       data: {
         select: {
-          select: {
-            id: 1,
-            name: 1,
-            value: 1,
-            type: 1
-          }
+          id: 1,
+          name: 1,
+          value: 1,
+          type: 1
         }
       }
     }).then(
@@ -601,13 +607,14 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
+        console.log($scope.tablesList);
+
         if (response.data.done && response.data.list.length > 0) {
           response.data.list.forEach(tablesGroup => {
             tablesGroup.tables_list = [];
             $scope.tablesList.forEach(tables => {
-              if (tablesGroup.id === tables.tables_group.id) {
+              if (tablesGroup.id === tables.tables_group.id)
                 tablesGroup.tables_list.push(tables)
-              }
             });
           });
           $scope.tablesGroupList = response.data.list;
@@ -620,8 +627,6 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     )
   };
 
-
-
   $scope.getTablesList = function (callback) {
     callback = callback || function () { };
 
@@ -631,8 +636,8 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/tables/all",
       data: {
+        select: { id: 1, name: 1, code: 1, busy: 1, tables_group: 1,image_url:1 },
         where: {
-          select: { id: 1, name: 1, code: 1, busy: 1, tables_group: 1 },
           /*'tables_group.id': tables_group.id,*/
           active: true
         },
@@ -642,7 +647,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done && response.data.list.length > 0)
           $scope.tablesList = response.data.list;
-        callback()
+        callback();
       },
       function (err) {
         $scope.busy = false;
@@ -662,9 +667,8 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
+        if (response.data.done && response.data.list.length > 0)
           $scope.invoicesActivelist = response.data.list;
-        }
         callback()
       },
       function (err) {

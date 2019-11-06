@@ -9,6 +9,14 @@
 
                             <table class="table bold hover">
                                 <tr>
+                                    <td class="title"> ##word.date## </td>
+                                    <td class="center brown"> {{create_invoices.date | date : 'dd - MM - yyyy'}} </td>
+                                </tr>
+                                <tr>
+                                    <td class="title"> ##word.code## </td>
+                                    <td class="center blue"> {{create_invoices.code.name}} </td>
+                                </tr>
+                                <tr>
                                     <td class="title"> ##word.source_type## </td>
                                     <td class="center"> {{create_invoices.source_type.ar}} </td>
                                 </tr>
@@ -16,13 +24,21 @@
                                     <td class="title"> ##word.invoice_type## </td>
                                     <td class="center"> {{create_invoices.order_invoices_type.ar}} </td>
                                 </tr>
-                                <tr>
-                                    <td class="title"> ##word.code## </td>
-                                    <td class="center blue"> {{create_invoices.code}} </td>
+                                <tr ng-show="create_invoices.customer.name_ar">
+                                    <td class="title"> ##word.customer## </td>
+                                    <td class="center blue"> {{create_invoices.customer.name_ar}} </td>
                                 </tr>
-                                <tr>
-                                    <td class="title"> ##word.date## </td>
-                                    <td class="center brown"> {{create_invoices.date | date : 'dd - MM - yyyy'}} </td>
+                                <tr ng-show="create_invoices.delivery_employee">
+                                    <td class="title"> ##word.delivery_employee## </td>
+                                    <td class="center blue"> {{create_invoices.delivery_employee.name}} </td>
+                                </tr>
+                                <tr ng-show="create_invoices.table">
+                                    <td class="title"> ##word.tables_group## </td>
+                                    <td class="center blue"> {{create_invoices.table.tables_group.name}} </td>
+                                </tr>
+                                <tr ng-show="create_invoices.table">
+                                    <td class="title"> ##word.table## </td>
+                                    <td class="center blue"> {{create_invoices.table.name}} </td>
                                 </tr>
                                 <tr ng-show="create_invoices.service > 0">
                                     <td class="title"> ##word.service## </td>
