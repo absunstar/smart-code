@@ -494,42 +494,63 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
           value: $scope.defaultSettings.printer_program ? $scope.defaultSettings.printer_program.invoice_header : ''
         },
         {
+          type: 'line'
+        },
+        {
           type: 'text',
           value: 'Date' + ' : ' + new Date($scope.create_invoices.date).toString()
         },
         {
           type: 'text',
-          value: 'Invoice Service' + ' ' + $scope.create_invoices.code
+          value: 'Invoice Service'
         },
         {
           type: 'text',
-          value: 'Customer' + ' : ' + ($scope.create_invoices.customer.name_ar || '')
+          value: $scope.create_invoices.customer ? 'Customer' + ' : ' + $scope.create_invoices.customer.name_ar : ''
         },
         {
           type: 'text',
-          value: 'Table' + ' : ' + ($scope.create_invoices.table ? $scope.create_invoices.table.name + ' - ' + $scope.create_invoices.table.tables_group.name : '')
+          value: $scope.create_invoices.table ? 'Table' + ' : ' + ($scope.create_invoices.table.tables_group.name + ' - ' + $scope.create_invoices.table.name) : ''
         },
         {
           type: 'line'
-        },
-        {
-          type: 'text',
-          value: 'paid Require' + ' : ' + ($scope.create_invoices.net_value || 0)
-        },
-        {
-          type: 'text',
-          value: 'Current Paid Up' + ' : ' + ($scope.create_invoices.paid_up || 0)
-        },
-        {
-          type: 'text',
-          value: 'Total Remain' + ' : ' + ($scope.create_invoices.total_remain || 0)
-        },
-        {
-          type: 'text',
-          value: $scope.defaultSettings.printer_program ? $scope.defaultSettings.printer_program.invoice_footer : ''
         }
+
       ]
     };
+
+    if ($scope.create_invoices.current_book_list && $scope.create_invoices.current_book_list.length > 0) {
+      $scope.create_invoices.current_book_list.forEach(_current_book_list => {
+        obj_print.data.push({
+          type: 'text',
+          value: _current_book_list.count + ' - ' + _current_book_list.name + ' - ' + _current_book_list.size
+        })
+      });
+    };
+
+    obj_print.data.push(
+      {
+        type: 'line'
+      },
+      {
+        type: 'text',
+        value: 'paid Require' + ' : ' + ($scope.create_invoices.net_value || 0)
+      },
+      {
+        type: 'text',
+        value: 'Current Paid Up' + ' : ' + ($scope.create_invoices.paid_up || 0)
+      },
+      {
+        type: 'text',
+        value: 'Total Remain' + ' : ' + ($scope.create_invoices.total_remain || 0)
+      },
+      {
+        type: 'line'
+      },
+      {
+        type: 'text',
+        value: $scope.defaultSettings.printer_program ? $scope.defaultSettings.printer_program.invoice_footer : ''
+      });
 
     $http({
       method: "POST",
@@ -563,6 +584,9 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
           value: $scope.defaultSettings.printer_program ? $scope.defaultSettings.printer_program.invoice_header : ''
         },
         {
+          type: 'line'
+        },
+        {
           type: 'text',
           value: 'Date' + ' : ' + new Date($scope.current.payment_date).toString()
         },
@@ -572,37 +596,57 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
         },
         {
           type: 'text',
-          value: 'Customer' + ' : ' + ($scope.current.customer.name_ar || '')
+          value: $scope.current.customer ? 'Customer' + ' : ' + $scope.current.customer.name_ar : ''
         },
         {
           type: 'text',
-          value: 'Table' + ' : ' + ($scope.current.table ? $scope.current.table.name + ' - ' + $scope.current.table.tables_group.name : '')
+          value: $scope.current.table ? 'Table' + ' : ' + ($scope.current.table.tables_group.name + ' - ' + $scope.current.table.name) : ''
         },
         {
           type: 'line'
-        },
-        {
-          type: 'text',
-          value: 'paid Require' + ' : ' + ($scope.current.paid_require || 0)
-        },
-        {
-          type: 'text',
-          value: 'Current Paid Up' + ' : ' + ($scope.current.payment_paid_up || 0)
-        },
-        {
-          type: 'text',
-          value: 'Total Paid Up' + ' : ' + ($scope.current.total_paid_up || 0)
-        },
-        {
-          type: 'text',
-          value: 'Total Remain' + ' : ' + ($scope.current.total_remain || 0)
-        },
-        {
-          type: 'text',
-          value: $scope.defaultSettings.printer_program ? $scope.defaultSettings.printer_program.invoice_footer : ''
         }
+
       ]
     };
+
+    if ($scope.current.current_book_list && $scope.current.current_book_list.length > 0) {
+      $scope.current.current_book_list.forEach(_current_book_list => {
+        obj_print.data.push({
+          type: 'text',
+          value: _current_book_list.count + ' - ' + _current_book_list.name + ' - ' + _current_book_list.size
+        })
+      });
+    };
+
+    $scope.current.total_paid_up = $scope.current.total_paid_up + $scope.current.payment_paid_up;
+    $scope.current.total_remain = $scope.current.total_remain - $scope.current.payment_paid_up;
+    obj_print.data.push(
+      {
+        type: 'line'
+      },
+      {
+        type: 'text',
+        value: 'paid Require' + ' : ' + ($scope.current.net_value || 0)
+      },
+      {
+        type: 'text',
+        value: 'Current Paid Up' + ' : ' + ($scope.current.payment_paid_up || 0)
+      },
+      {
+        type: 'text',
+        value: 'Total Paid Up' + ' : ' + ($scope.current.total_paid_up || 0)
+      },
+      {
+        type: 'text',
+        value: 'Total Remain' + ' : ' + ($scope.current.total_remain || 0)
+      },
+      {
+        type: 'line'
+      },
+      {
+        type: 'text',
+        value: $scope.defaultSettings.printer_program ? $scope.defaultSettings.printer_program.invoice_footer : ''
+      });
 
     $http({
       method: "POST",

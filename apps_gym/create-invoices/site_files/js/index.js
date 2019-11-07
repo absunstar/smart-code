@@ -94,7 +94,7 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
       ip = $scope.defaultSettings.printer_program.ip || '127.0.0.1';
       port = $scope.defaultSettings.printer_program.port || '11111';
     };
-
+    $scope.create_invoices.total_remain = $scope.create_invoices.paid_require - $scope.create_invoices.paid_up;
     let obj_print = {
 
       printer: $scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.printer_path ? $scope.defaultSettings.printer_program.printer_path.ip.trim() : '',
@@ -104,27 +104,26 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
           value: $scope.defaultSettings.printer_program ? $scope.defaultSettings.printer_program.invoice_header : ''
         },
         {
+          type: 'line'
+        },
+        {
           type: 'text',
           value: 'Date' + ' : ' + new Date($scope.create_invoices.date).toString()
         },
         {
           type: 'text',
-          value: 'Invoice Service' + ' ' + $scope.create_invoices.code
+          value: 'Invoice Service'
         },
         {
           type: 'text',
-          value: 'Customer' + ' : ' + ($scope.create_invoices.customer.name_ar || '')
+          value: $scope.create_invoices.customer ? 'Customer' + ' : ' + $scope.create_invoices.customer.name_ar : ''
         },
         {
           type: 'text',
-          value: 'Service' + ' : ' + ($scope.create_invoices.service_name || '')
+          value: $scope.create_invoices.service_name ? 'Service' + ' : ' + $scope.create_invoices.service_name : ''
         },
         {
           type: 'line'
-        },
-        {
-          type: 'text',
-          value: 'Current Paid Up' + ' : ' + ($scope.create_invoices.paid_up || 0)
         },
         {
           type: 'text',
@@ -132,7 +131,14 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
         },
         {
           type: 'text',
+          value: 'Current Paid Up' + ' : ' + ($scope.create_invoices.paid_up || 0)
+        },
+        {
+          type: 'text',
           value: 'Total Remain' + ' : ' + ($scope.create_invoices.total_remain || 0)
+        },
+        {
+          type: 'line'
         },
         {
           type: 'text',
@@ -163,6 +169,8 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
       ip = $scope.defaultSettings.printer_program.ip || '127.0.0.1';
       port = $scope.defaultSettings.printer_program.port || '11111';
     }
+    $scope.current.total_paid_up = $scope.current.total_paid_up + $scope.current.payment_paid_up;
+    $scope.current.total_remain = $scope.current.paid_require - $scope.current.total_paid_up ;
     let obj_print = {
 
       printer: $scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.printer_path ? $scope.defaultSettings.printer_program.printer_path.ip.trim() : '',
@@ -170,6 +178,9 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
         {
           type: 'text',
           value: $scope.defaultSettings.printer_program ? $scope.defaultSettings.printer_program.invoice_header : ''
+        },
+        {
+          type: 'line'
         },
         {
           type: 'text',
@@ -181,11 +192,11 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
         },
         {
           type: 'text',
-          value: 'Customer' + ' : ' + ($scope.current.customer.name_ar || '')
+          value: $scope.create_invoices.customer ? 'Customer' + ' : ' + $scope.create_invoices.customer.name_ar : ''
         },
         {
           type: 'text',
-          value: 'Service' + ' : ' + ($scope.current.service_name || '')
+          value: $scope.create_invoices.service_name ? 'Service' + ' : ' + $scope.create_invoices.service_name : ''
         },
         {
           type: 'line'
@@ -205,6 +216,9 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
         {
           type: 'text',
           value: 'Total Remain' + ' : ' + ($scope.current.total_remain || 0)
+        },
+        {
+          type: 'line'
         },
         {
           type: 'text',
