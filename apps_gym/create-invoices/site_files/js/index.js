@@ -192,7 +192,7 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
         },
         {
           type: 'text',
-          value: $scope.create_invoices.customer ? 'Customer' + ' : ' + $scope.create_invoices.customer.name_ar : ''
+          value: $scope.create_invoices.customer ? ('Customer' + ' : ' + $scope.create_invoices.customer.name_ar) : ''
         },
         {
           type: 'text',
@@ -226,6 +226,9 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
         }
       ]
     };
+
+
+    obj_print.data.push({});
 
     $http({
       method: "POST",

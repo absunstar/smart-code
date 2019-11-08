@@ -243,24 +243,24 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
 
   $scope.paymentInvoice = function () {
     $scope.error = '';
-    if (!$scope.current.payment_safe.id) {
+    if (!$scope.create_invoices.payment_safe.id) {
       $scope.error = "##word.should_select_safe##";
       return;
     };
-    if (!$scope.current.payment_paid_up) {
+    if (!$scope.create_invoices.payment_paid_up) {
       $scope.error = "##word.err_paid_up##";
       return;
     };
-    if ($scope.current.payment_paid_up > $scope.current.remain_amount) {
+    if ($scope.create_invoices.payment_paid_up > $scope.create_invoices.remain_amount) {
       $scope.error = "##word.err_paid_up_payment##";
       return;
     };
-    $scope.current.payment_list = $scope.current.payment_list || [];
-    $scope.current.remain_amount = $scope.current.remain_amount - $scope.current.payment_paid_up;
-    $scope.current.payment_list.push({
-      paid_up: $scope.current.payment_paid_up,
-      safe: $scope.current.payment_safe,
-      date: $scope.current.payment_date,
+    $scope.create_invoices.payment_list = $scope.create_invoices.payment_list || [];
+    $scope.create_invoices.remain_amount = $scope.create_invoices.remain_amount - $scope.create_invoices.payment_paid_up;
+    $scope.create_invoices.payment_list.push({
+      paid_up: $scope.create_invoices.payment_paid_up,
+      safe: $scope.create_invoices.payment_safe,
+      date: $scope.create_invoices.payment_date,
     });
   };
 
@@ -271,7 +271,7 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
     $http({
       method: "POST",
       url: "/api/create_invoices/update",
-      data: $scope.current
+      data: $scope.create_invoices
     }).then(
       function (response) {
         $scope.busy = false;
@@ -350,10 +350,10 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
 
   $scope.displayPaymentInvoices = function (invoices) {
     $scope.error = '';
-    $scope.current = invoices;
-    $scope.current.payment_date = new Date();
-    $scope.current.payment_paid_up = 0;
-    $scope.current.payment_safe = $scope.defaultSettings.accounting ? $scope.defaultSettings.accounting.safe : null;
+    $scope.create_invoices = invoices;
+    $scope.create_invoices.payment_date = new Date();
+    $scope.create_invoices.payment_paid_up = 0;
+    $scope.create_invoices.payment_safe = $scope.defaultSettings.accounting ? $scope.defaultSettings.accounting.safe : null;
     site.showModal('#invoicesPaymentModal');
   };
 
@@ -486,73 +486,115 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
     $scope.create_invoices.total_remain = $scope.create_invoices.net_value - $scope.create_invoices.paid_up;
 
     let obj_print = {
-
       printer: $scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.printer_path ? $scope.defaultSettings.printer_program.printer_path.ip.trim() : '',
       data: [
         {
           type: 'title',
-          value: 'فاتورة حساب'
+          value: $scope.create_invoices.payment_paid_up ? 'دفعة فاتورة حساب' : 'فاتورة حساب'
         },
         {
           type: 'space'
         },
         {
           type: 'text',
-          value: $scope.defaultSettings.printer_program ? $scope.defaultSettings.printer_program.invoice_header : ''
+          value: $scope.defaultSettings.printer_program ? $scope.defaultSettings.printer_program.invoice_header : 'Welcome'
         },
         {
           type: 'text2',
           value: site.toDateXF($scope.create_invoices.date),
           value2: 'التاريخ'
-        },
-        
-        {
-          type: 'text2',
-          value: $scope.create_invoices.customer ?  $scope.create_invoices.customer.name_ar : '' ,
-          value2:  'العميل'
-        },
-        {
-          type: 'text2',
-          value: $scope.create_invoices.table ? $scope.create_invoices.table.name : '' ,
-          value2: $scope.create_invoices.table ?  $scope.create_invoices.table.tables_group.name : ''
-        },
-        {
-          type: 'space'
         }
-
       ]
     };
 
-    if ($scope.create_invoices.current_book_list && $scope.create_invoices.current_book_list.length > 0) {
+    if ($scope.create_invoices.customer)
       obj_print.data.push({
-        type: 'text3b',
-        value: "السعر",
-        value2: "الصنف",
-        value3: "العدد"
+        type: 'text2',
+        value: $scope.create_invoices.customer.name_ar,
+        value2: 'العميل'
       });
+
+    if ($scope.create_invoices.table)
+      obj_print.data.push({
+        type: 'text2',
+        value: $scope.create_invoices.table.name,
+        value2: $scope.create_invoices.table.tables_group.name
+      });
+
+    if ($scope.create_invoices.current_book_list && $scope.create_invoices.current_book_list.length > 0) {
+      obj_print.data.push(
+        {
+          type: 'space'
+        },
+        {
+          type: 'text3b',
+          value: "السعر",
+          value2: "الصنف",
+          value3: "العدد"
+        }
+      );
       $scope.create_invoices.current_book_list.forEach(_current_book_list => {
         obj_print.data.push({
           type: 'text3',
-          value:_current_book_list.total_price ,
-          value2: _current_book_list.size ,
+          value: _current_book_list.total_price,
+          value2: _current_book_list.size,
           value3: _current_book_list.count
         })
       });
     };
+    obj_print.data.push({
+      type: 'line'
+    });
 
+    if ($scope.create_invoices.total_tax)
+      obj_print.data.push({
+        type: 'text2',
+        value: $scope.create_invoices.total_tax,
+        value2: "إجمالي الضرائب"
+      });
+
+    if ($scope.create_invoices.total_discount)
+      obj_print.data.push({
+        type: 'text2',
+        value: $scope.create_invoices.total_discount,
+        value2: "إجمالي الخصومات"
+      });
+
+    if ($scope.create_invoices.price_delivery_service)
+      obj_print.data.push({
+        type: 'text2',
+        value: $scope.create_invoices.price_delivery_service,
+        value2: "إجمالي خدمة التوصيل"
+      });
+
+    if ($scope.create_invoices.service)
+      obj_print.data.push({
+        type: 'text2',
+        value: $scope.create_invoices.service,
+        value2: "إجمالي الخدمة"
+      });
+
+    obj_print.data.push({ type: 'space' });
+
+    if($scope.create_invoices.payment_paid_up){
+      $scope.create_invoices.total_remain = $scope.create_invoices.total_remain - $scope.create_invoices.payment_paid_up;
+      $scope.create_invoices.total_paid_up = $scope.create_invoices.total_paid_up + $scope.create_invoices.payment_paid_up;
+    }
     obj_print.data.push(
       {
-        type: 'line'
-      },
-      {
         type: 'text2',
-        value: $scope.create_invoices.net_value ,
+        value: $scope.create_invoices.net_value,
         value2: "القيمة الاجمالية"
       },
       {
         type: 'text2',
-        value: $scope.create_invoices.paid_up ,
+        value: $scope.create_invoices.payment_paid_up || $scope.create_invoices.paid_up,
         value2: "المدفوع"
+      },
+      {
+        type: 'text2',
+        value: $scope.create_invoices.total_paid_up || $scope.create_invoices.paid_up,
+        value2: "أجمالى المدفوعات"
       },
       {
         type: 'space'
@@ -564,7 +606,7 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
       },
       {
         type: 'text',
-        value: $scope.defaultSettings.printer_program ? $scope.defaultSettings.printer_program.invoice_footer : ''
+        value: $scope.defaultSettings.printer_program ? $scope.defaultSettings.printer_program.invoice_footer : 'End'
       });
 
     $http({
@@ -634,8 +676,8 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
       $scope.current.current_book_list.forEach(_current_book_list => {
         obj_print.data.push({
           type: 'text3',
-          value:_current_book_list.total_price ,
-          value2: _current_book_list.size ,
+          value: _current_book_list.total_price,
+          value2: _current_book_list.size,
           value3: _current_book_list.count
         });
       });
@@ -654,7 +696,7 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
       },
       {
         type: 'text2',
-        value: $scope.current.payment_paid_up ,
+        value: $scope.current.payment_paid_up,
         value2: "المدفوع"
       },
       {
@@ -664,7 +706,7 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
       },
       {
         type: 'text2',
-        value: $scope.current.total_remain ,
+        value: $scope.current.total_remain,
         value2: "الباقى"
       },
       {
