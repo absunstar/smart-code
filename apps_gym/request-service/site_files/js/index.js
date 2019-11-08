@@ -475,7 +475,8 @@ app.controller("request_service", function ($scope, $http, $timeout) {
       $scope.error = '##word.error_discount##';
       return;
     } else {
-      $scope.discount.type = 'number';
+
+      /* $scope.discount.type = 'number'; */
 
       $scope.request_service.discountes = $scope.request_service.discountes || [];
       $scope.request_service.discountes.push({
@@ -490,11 +491,12 @@ app.controller("request_service", function ($scope, $http, $timeout) {
     $scope.error = '';
     $timeout(() => {
       $scope.request_service.total_discount = 0;
+      let total_attend_count = Number($scope.request_service.services_price) * $scope.request_service.service_count;
       $scope.request_service.paid_require = Number($scope.request_service.services_price);
       if ($scope.request_service.discountes && $scope.request_service.discountes.length > 0) {
         $scope.request_service.discountes.forEach(ds => {
           if (ds.type === "percent") {
-            $scope.request_service.total_discount * parseFloat(ds.value) / 100;
+            $scope.request_service.total_discount += total_attend_count * parseFloat(ds.value) / 100;
           } else {
             $scope.request_service.total_discount += parseFloat(ds.value);
           };

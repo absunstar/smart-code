@@ -128,10 +128,10 @@ module.exports = function init(site) {
     request_service_doc.company = site.get_company(req)
     request_service_doc.branch = site.get_branch(req)
 
-    if (request_service_doc.discountes && request_service_doc.discountes.length > 0) {
+/*     if (request_service_doc.discountes && request_service_doc.discountes.length > 0) {
       request_service_doc.total_discount = 0
       request_service_doc.discountes.map(discountes => request_service_doc.total_discount += discountes.value)
-    }
+    } */
 
     request_service_doc.attend_service_list = []
     if (request_service_doc.selectedServicesList && request_service_doc.selectedServicesList.length > 0) {
@@ -175,11 +175,11 @@ module.exports = function init(site) {
       $req: req,
       $res: res
     })
-
+/* 
     if (request_service_doc.discountes && request_service_doc.discountes.length > 0) {
       request_service_doc.total_discount = 0
       request_service_doc.discountes.map(discountes => request_service_doc.total_discount += discountes.value)
-    }
+    } */
 
     if (request_service_doc.selectedServicesList && request_service_doc.selectedServicesList.length > 0) {
       request_service_doc.selectedServicesList.forEach(attend_service => {
