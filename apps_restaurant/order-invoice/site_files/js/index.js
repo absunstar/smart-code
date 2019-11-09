@@ -84,8 +84,8 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
               _item_kitchen.data.push({
                 type: 'text3',
                 value: item_book.size,
-                value2: item_book.notes,
-                value3: item_book.count
+                value2: item_book.count,
+                value3: item_book.notes
               });
           });
 
@@ -123,16 +123,22 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
                   type: 'space'
                 },
                 {
+                  type: 'space'
+                },
+                {
+                  type: 'line'
+                },
+                {
                   type: 'text3b',
                   value: 'Item',
-                  value2: "Notes",
-                  value3: 'Count'
+                  value2: 'Count',
+                  value3: "Notes"
                 },
                 {
                   type: 'text3',
                   value: item_book.size,
-                  value2: item_book.notes,
-                  value3: item_book.count
+                  value2: item_book.count,
+                  value3: item_book.notes
                 }
               ]
             });
@@ -171,18 +177,23 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
                 type: 'space'
               },
               {
+                type: 'space'
+              },
+              {
+                type: 'line'
+              },
+              {
                 type: 'text3b',
                 value: 'Item',
-                value2: "Notes",
-                value3: 'Count'
+                value2: 'Count',
+                value3: "Notes"
               },
               {
                 type: 'text3',
                 value: item_book.size,
-                value2: item_book.notes,
-                value3: item_book.count
+                value2: item_book.count,
+                value3: item_book.notes
               }
-
             ]
           });
         };
@@ -191,25 +202,12 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
 
     item_kitchen.forEach(item => {
 
-      item.data.push({ type: 'space' });
-
-      if ($scope.order_invoice.customer)
-        item.data.push({
-          type: 'text2',
-          value2: $scope.order_invoice.customer.name_ar,
-          value: 'Customer'
-        });
-
-      if ($scope.order_invoice.table)
-        item.data.push({
-          type: 'text2',
-          value2: $scope.order_invoice.table.name + ' - ' + $scope.order_invoice.table.tables_group.name,
-          value: 'Table'
-        });
-
       item.data.push(
         {
           type: 'line'
+        },
+        {
+          type: 'space'
         },
         {
           type: 'text',
@@ -237,6 +235,20 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
               type: 'title',
               value: 'Order Invoice' + ' - ' + $scope.order_invoice.code
             };
+
+            if ($scope.order_invoice.customer)
+              _item_kitchen.data[6] = {
+                type: 'text2',
+                value2: $scope.order_invoice.customer.name_ar,
+                value: 'Customer'
+              };
+
+            if ($scope.order_invoice.table)
+              _item_kitchen.data[6] = {
+                type: 'text2',
+                value2: $scope.order_invoice.table.name + ' - ' + $scope.order_invoice.table.tables_group.name,
+                value: 'Table'
+              };
 
             $timeout(() => {
               $http({
