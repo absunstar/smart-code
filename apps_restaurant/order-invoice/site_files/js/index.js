@@ -72,14 +72,17 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
       ip = $scope.defaultSettings.printer_program.ip || '127.0.0.1';
       port = $scope.defaultSettings.printer_program.port || '11111';
     }
-    let item_kitchen = [];
+
+    let item_kitchen_list = [];
     $scope.order_invoice.book_list.forEach(item_book => {
+
+      if(!item_book.kitchen) return;
 
       if (!item_book.printed) {
         item_book.printed = true;
-        if (item_kitchen.length > 0) {
+        if (item_kitchen_list.length > 0) {
 
-          item_kitchen.forEach(_item_kitchen => {
+          item_kitchen_list.forEach(_item_kitchen => {
             if (item_book.kitchen.id == _item_kitchen.kitchenId)
               _item_kitchen.data.push({
                 type: 'text3',
@@ -89,12 +92,12 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
               });
           });
 
-          let found = item_kitchen.some(_i => _i.kitchenId == item_book.kitchen.id);
+          let found = item_kitchen_list.some(_i => _i.kitchenId == item_book.kitchen.id);
 
           if (!found) {
-            item_kitchen.push({
+            item_kitchen_list.push({
               kitchenId: item_book.kitchen.id,
-              printer: item_book.kitchen.printer_path ? item_book.kitchen.printer_path.ip.trim() : '',
+              printer: item_book.kitchen.printer_path ? item_book.kitchen.printer_path.ip.trim() : '',/* read from kitchen list loadKitchen() */
               data: [
                 {
                   type: 'text',
@@ -146,7 +149,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
           };
 
         } else {
-          item_kitchen.push({
+          item_kitchen_list.push({
             kitchenId: item_book.kitchen.id,
             printer: item_book.kitchen.printer_path ? item_book.kitchen.printer_path.ip.trim() : '',
             data: [
@@ -200,7 +203,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
       };
     });
 
-    item_kitchen.forEach(item => {
+    item_kitchen_list.forEach(item => {
 
       item.data.push(
         {
@@ -229,7 +232,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response) {
           $scope.order_invoice = response.data.doc;
-          item_kitchen.forEach((_item_kitchen, i) => {
+          item_kitchen_list.forEach((_item_kitchen, i) => {
 
             _item_kitchen.data[1] = {
               type: 'title',
