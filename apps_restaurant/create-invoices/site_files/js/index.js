@@ -527,9 +527,9 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
         },
         {
           type: 'text3b',
-          value: "Price",
-          value2: "Item Name",
-          value3: "Count"
+          value: 'Price',
+          value2: 'Item',
+          value3: 'Count'
         }
       );
       $scope.create_invoices.current_book_list.forEach(_current_book_list => {
@@ -549,28 +549,28 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
       obj_print.data.push({
         type: 'text2',
         value2: $scope.create_invoices.total_tax,
-        value: "Total Taxes"
+        value: 'Total Taxes'
       });
 
     if ($scope.create_invoices.total_discount)
       obj_print.data.push({
         type: 'text2',
         value2: $scope.create_invoices.total_discount,
-        value: "Total Discount"
+        value: 'Total Discount'
       });
 
     if ($scope.create_invoices.price_delivery_service)
       obj_print.data.push({
         type: 'text2',
         value2: $scope.create_invoices.price_delivery_service,
-        value: "Service Delivery"
+        value: 'Service Delivery'
       });
 
     if ($scope.create_invoices.service)
       obj_print.data.push({
         type: 'text2',
         value2: $scope.create_invoices.service,
-        value: "Service"
+        value: 'Service'
       });
 
     obj_print.data.push({ type: 'space' });

@@ -79,7 +79,65 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         item_book.printed = true;
         if (item_kitchen.length > 0) {
 
+          item_kitchen.forEach(_item_kitchen => {
+            if (item_book.kitchen.id == _item_kitchen.kitchenId)
+              _item_kitchen.data.push({
+                type: 'text3',
+                value: item_book.size,
+                value2: item_book.notes,
+                value3: item_book.count
+              });
+          });
 
+          let found = item_kitchen.some(_i => _i.kitchenId == item_book.kitchen.id);
+
+          if (!found) {
+            item_kitchen.push({
+              kitchenId: item_book.kitchen.id,
+              printer: item_book.kitchen.printer_path ? item_book.kitchen.printer_path.ip.trim() : '',
+              data: [
+                {
+                  type: 'text',
+                  value: $scope.defaultSettings.printer_program ? $scope.defaultSettings.printer_program.invoice_header : 'Welcome'
+                },
+                {
+                  type: 'space'
+                },
+                {
+                  type: 'space'
+                },
+                {
+                  type: 'line'
+                },
+                {
+                  type: 'text2',
+                  value2: site.toDateXF($scope.order_invoice.date),
+                  value: 'Date'
+                },
+                {
+                  type: 'text2b',
+                  value2: item_book.kitchen.name,
+                  value: 'Kitchen'
+                },
+                {
+                  type: 'space'
+                },
+                {
+                  type: 'text3b',
+                  value: 'Item',
+                  value2: "Notes",
+                  value3: 'Count'
+                },
+                {
+                  type: 'text3',
+                  value: item_book.size,
+                  value2: item_book.notes,
+                  value3: item_book.count
+                }
+              ]
+            });
+
+          };
 
         } else {
           item_kitchen.push({
@@ -91,8 +149,10 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
                 value: $scope.defaultSettings.printer_program ? $scope.defaultSettings.printer_program.invoice_header : 'Welcome'
               },
               {
-                type: 'text',
-                value: 'Order Invoice' + ' - ' + ($scope.order_invoice.code || '')
+                type: 'space'
+              },
+              {
+                type: 'space'
               },
               {
                 type: 'line'
@@ -101,133 +161,52 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
                 type: 'text2',
                 value2: site.toDateXF($scope.order_invoice.date),
                 value: 'Date'
-              }]
+              },
+              {
+                type: 'text2b',
+                value2: item_book.kitchen.name,
+                value: 'Kitchen'
+              },
+              {
+                type: 'space'
+              },
+              {
+                type: 'text3b',
+                value: 'Item',
+                value2: "Notes",
+                value3: 'Count'
+              },
+              {
+                type: 'text3',
+                value: item_book.size,
+                value2: item_book.notes,
+                value3: item_book.count
+              }
+
+            ]
           });
-          if ($scope.order_invoice.customer)
-            item_kitchen[0].data.push({
-              type: 'text2',
-              value2: $scope.order_invoice.customer.name_ar,
-              value: 'Customer'
-            });
-          if ($scope.order_invoice.table)
-            item_kitchen[0].data.push({
-              type: 'text2',
-              value2: $scope.order_invoice.table + ' - ' + $scope.order_invoice.table.tables_group.name,
-              value: 'Table'
-            })
-
-          item_kitchen[0].data.push(
-            {
-              type: 'space'
-            },
-            {
-              type: 'text2',
-              value2: "Item Name",
-              value: "Count",
-            },
-            {
-              type: 'text2',
-              value2: item_book.size,
-              value: item_book.count
-            }
-          );
         };
-
-
-        /*  item_book.printed = true;
-         let found = false;
-         if (item_kitchen.length > 0) {
-           item_kitchen.forEach(_item_kitchen => {
-             if (item_book.kitchen.id == _item_kitchen.kitchenId) {
-               _item_kitchen.data.push({ type: 'text', value: item_book.count + ' - ' + item_book.name + ' - ' + item_book.size });
-               found = true;
-             } else {
-               if (!found) {
-                 item_kitchen.push({
-                   kitchenId: item_book.kitchen.id,
-                   printer: item_book.kitchen.printer_path ? item_book.kitchen.printer_path.ip.trim() : '',
-                   data: [
-                     {
-                       type: 'text',
-                       value: $scope.defaultSettings.printer_program ? $scope.defaultSettings.printer_program.invoice_header : 'Welcome'
-                     },
-                     {
-                       type: 'text',
-                       value: 'Order Invoice' + ' : ' + $scope.order_invoice.code
-                     },
-                     {
-                       type: 'line'
-                     },
-                     {
-                       type: 'text2',
-                       value2: site.toDateXF($scope.order_invoice.date),
-                       value: 'Date'
-                     },
-                     {
-                       type: 'text',
-                       value: $scope.order_invoice.table ? 'Table' + ' : ' + ($scope.order_invoice.table.name) : ''
-                     },
-                     {
-                       type: 'text',
-                       value: item_book.kitchen ? 'Kitchen' + ' : ' + (item_book.kitchen.name) : ''
-                     },
-                     {
-                       type: 'line'
-                     },
-                     {
-                       type: 'text',
-                       value: item_book.count + ' - ' + item_book.name + ' - ' + item_book.size
-                     }]
-                 });
-               }
-             };
-             found = true;
-           });
-         } else {
-           if (!found)
-             item_kitchen.push({
-               kitchenId: item_book.kitchen.id,
-               printer: item_book.kitchen.printer_path ? item_book.kitchen.printer_path.ip.trim() : '',
-               data: [
-                 {
-                   type: 'text',
-                   value: $scope.defaultSettings.printer_program ? $scope.defaultSettings.printer_program.invoice_header : 'Welcome'
-                 },
-                 {
-                   type: 'line'
-                 },
-                 {
-                   type: 'text2',
-                   value2: site.toDateXF($scope.order_invoice.date),
-                   value: 'Date'
-                 },
-                 {
-                   type: 'text',
-                   value: 'Order Invoice' + ' : ' + $scope.order_invoice.code ? $scope.order_invoice.code : ''
-                 },
-                 {
-                   type: 'text',
-                   value: $scope.order_invoice.table ? 'Table' + ' : ' + $scope.order_invoice.table.name : ''
-                 },
-                 {
-                   type: 'text',
-                   value: 'Kitchen' + ' : ' + (item_book.kitchen ? item_book.kitchen.name : '')
-                 },
-                 {
-                   type: 'line'
-                 },
-                 {
-                   type: 'text',
-                   value: item_book.count + ' - ' + item_book.name + ' - ' + item_book.size
-                 }
-               ]
-             });
-           found = true;
-         } */
       };
     });
 
     item_kitchen.forEach(item => {
+
+      item.data.push({ type: 'space' });
+
+      if ($scope.order_invoice.customer)
+        item.data.push({
+          type: 'text2',
+          value2: $scope.order_invoice.customer.name_ar,
+          value: 'Customer'
+        });
+
+      if ($scope.order_invoice.table)
+        item.data.push({
+          type: 'text2',
+          value2: $scope.order_invoice.table.name + ' - ' + $scope.order_invoice.table.tables_group.name,
+          value: 'Table'
+        });
+
       item.data.push(
         {
           type: 'line'
@@ -253,6 +232,12 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         if (response) {
           $scope.order_invoice = response.data.doc;
           item_kitchen.forEach((_item_kitchen, i) => {
+
+            _item_kitchen.data[1] = {
+              type: 'title',
+              value: 'Order Invoice' + ' - ' + $scope.order_invoice.code
+            };
+
             $timeout(() => {
               $http({
                 method: "POST",

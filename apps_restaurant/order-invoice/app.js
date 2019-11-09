@@ -84,6 +84,7 @@ module.exports = function init(site) {
   });
 
   site.post("/api/order_invoice/add", (req, res) => {
+
     let response = {
       done: false
     };
@@ -112,14 +113,12 @@ module.exports = function init(site) {
     order_invoice_doc.code = $order_invoice.newCode()
     order_invoice_doc.image_url = '/images/order_invoice.png'
 
-    if (!order_invoice_doc.status) {
-
+    if (!order_invoice_doc.status)
       order_invoice_doc.status = {
         id: 1,
         en: "Opened",
         ar: "مفتوحة"
       }
-    };
 
     if (order_invoice_doc.transaction_type && order_invoice_doc.transaction_type.id == 2) {
       order_invoice_doc.status_delivery = {

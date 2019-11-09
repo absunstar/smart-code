@@ -263,13 +263,11 @@
                                     </i-list>
 
                                     <i-list class="col3" label="##word.customers_gov##" ng-model="order_invoice.gov"
-                                        items="govList" display="name"
-                                        ng-change="getCityList(order_invoice.gov)"
+                                        items="govList" display="name" ng-change="getCityList(order_invoice.gov)"
                                         ng-search="_search.$govNameContact"></i-list>
 
-                                    <i-list class="col3" label="##word.city##"
-                                        ng-model="order_invoice.city" items="cityList"
-                                        ng-change="getAreaList(order_invoice.city)" display="name"
+                                    <i-list class="col3" label="##word.city##" ng-model="order_invoice.city"
+                                        items="cityList" ng-change="getAreaList(order_invoice.city)" display="name"
                                         ng-search="_search.$order_invoice_city_search"></i-list>
 
                                     <i-list class="col3" label="##word.area##" ng-model="order_invoice.area"
@@ -298,7 +296,6 @@
                             </div>
                         </fieldset>
 
-
                         <div class="row ">
 
                             <table x-permissions="login" class="table bold loaded" id="t1">
@@ -308,6 +305,7 @@
                                     <th>##word.items_count##</th>
                                     <th>##word.items_price##</th>
                                     <th>##word.items_price_total##</th>
+                                    <th>##word.notes##</th>
                                     <th class="not-print">##word.actions##</th>
                                 </tr>
 
@@ -319,6 +317,9 @@
                                     </td>
                                     <td class="center blue">{{c.price}}</td>
                                     <td class="center green">{{c.total_price}}</td>
+                                    <td class="center">
+                                        <i-control ng-model="c.notes"></i-control>
+                                    </td>
                                     <td class="center not-print">
                                         <i-button type="delete" label="##word.delete##"
                                             ng-click="deleteItemsList(c) ; calc()"></i-button>
@@ -342,7 +343,7 @@
                                     <tr ng-hide="discountEditorAdd">
                                         <td colspan="2">
                                             <form>
-                                                
+
                                                 <div class="row ">
                                                     <i-list class="col4" ng-model="discount"
                                                         ng-search="_search.$discount_name" items="discount_types"
