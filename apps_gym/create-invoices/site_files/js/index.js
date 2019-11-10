@@ -94,84 +94,111 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
       ip = $scope.defaultSettings.printer_program.ip || '127.0.0.1';
       port = $scope.defaultSettings.printer_program.port || '11111';
     };
-/*     $scope.create_invoices.total_remain = $scope.create_invoices.paid_require - $scope.create_invoices.paid_up;
- */
 
-    if($scope.create_invoices.payment_paid_up){
+    $scope.create_invoices.total_remain = $scope.create_invoices.paid_require - $scope.create_invoices.paid_up;
+
+    let obj_print = {
+      printer: $scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.printer_path ? $scope.defaultSettings.printer_program.printer_path.ip.trim() : '',
+      data: []
+    };
+    if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.invoice_header)
+      obj_print.data.push({
+        type: 'header',
+        value: $scope.defaultSettings.printer_program.invoice_header
+      });
+
+    obj_print.data.push(
+      {
+        type: 'title',
+        value: $scope.create_invoices.payment_paid_up ? 'Bill payment account' : 'Bill account' + ($scope.create_invoices.code || '')
+      },
+      {
+        type: 'space'
+      },
+      {
+        type: 'text2',
+        value2: site.toDateXF($scope.create_invoices.date),
+        value: 'Date'
+      });
+
+    if ($scope.create_invoices.customer)
+      obj_print.data.push({
+        type: 'text2',
+        value2: $scope.create_invoices.customer.name_ar,
+        value: 'Cutomer'
+      });
+
+    if ($scope.create_invoices.service_name)
+      obj_print.data.push({
+        type: 'text2',
+        value2: $scope.create_invoices.service_name,
+        value: 'Service'
+      });
+
+    if ($scope.create_invoices.table)
+      obj_print.data.push({
+        type: 'text2',
+        value: $scope.create_invoices.table.name,
+        value2: $scope.create_invoices.table.tables_group.name
+      });
+
+    obj_print.data.push({
+      type: 'line'
+    });
+
+    if ($scope.create_invoices.total_discount)
+      obj_print.data.push({
+        type: 'text2',
+        value2: $scope.create_invoices.total_discount,
+        value: 'Total Discount'
+      });
+
+
+    obj_print.data.push({ type: 'space' });
+
+    if ($scope.create_invoices.payment_paid_up) {
       $scope.create_invoices.total_remain = $scope.create_invoices.total_remain - $scope.create_invoices.payment_paid_up;
       $scope.create_invoices.total_paid_up = $scope.create_invoices.total_paid_up + $scope.create_invoices.payment_paid_up;
     }
 
-    let obj_print = {
-
-      printer: $scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.printer_path ? $scope.defaultSettings.printer_program.printer_path.ip.trim() : '',
-      data: [
-        {
-          type: 'text',
-          value: $scope.defaultSettings.printer_program ? $scope.defaultSettings.printer_program.invoice_header : 'Welcome'
-        },
-        {
-          type: 'title',
-          value: ($scope.create_invoices.payment_paid_up ? 'Bill payment account' : 'Bill account') + ' - ' + ($scope.create_invoices.code || '' )
-        },
-        {
-          type: 'line'
-        },
-        {
-          type: 'text2',
-          value2: site.toDateXF($scope.create_invoices.date),
-          value: 'Date'
-        },
-        {
-          type: 'text2',
-          value2: $scope.create_invoices.customer.name_ar,
-          value: 'Customer'
-        },
-        {
-          type: 'text2',
-          value2: $scope.create_invoices.service_name,
-          value: 'Service'
-        },
-        {
-          type: 'line'
-        },
-        {
-          type: 'text2',
-          value2: $scope.create_invoices.total_discount || 0,
-          value: 'Total Discount'
-        },
+    if ($scope.create_invoices.paid_require)
+      obj_print.data.push(
         {
           type: 'text2',
           value2: $scope.create_invoices.paid_require,
-          value: 'Total Value'
-        },
+          value: "Total Value"
+        });
+
+    if ($scope.create_invoices.payment_paid_up || $scope.create_invoices.paid_up)
+      obj_print.data.push(
         {
           type: 'text2',
           value2: $scope.create_invoices.payment_paid_up || $scope.create_invoices.paid_up,
-          value: 'Paid Up'
-        },
+          value: "Paid Up"
+        });
+
+    if ($scope.create_invoices.payment_paid_up || $scope.create_invoices.paid_up)
+      obj_print.data.push(
         {
           type: 'text2',
           value2: $scope.create_invoices.total_paid_up || $scope.create_invoices.paid_up,
           value: "Total Payments"
-        },
-        {
-          type: 'space'
-        },
-        {
-          type: 'text2b',
-          value2: $scope.create_invoices.total_remain,
-          value: 'Required to pay'
-        },
-        {
-          type: 'line'
-        },
-        {
-          type: 'text',
-          value: $scope.defaultSettings.printer_program ? $scope.defaultSettings.printer_program.invoice_footer : 'End'
-        }
-      ]
-    };
+        });
+
+    obj_print.data.push({ type: 'space' });
+
+    if ($scope.create_invoices.total_remain)
+      obj_print.data.push({
+        type: 'text2b',
+        value2: $scope.create_invoices.total_remain,
+        value: "Required to pay"
+      });
+
+    if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.invoice_footer)
+      obj_print.data.push({
+        type: 'footer',
+        value: $scope.defaultSettings.printer_program.invoice_footer
+      });
 
     $http({
       method: "POST",
@@ -414,7 +441,7 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
   };
 
   $scope.selectRequestService = function (service) {
-    
+
     $scope.error = '';
     $scope.create_invoices.request_service_id = service.id;
     $scope.create_invoices.customer = service.customer;
@@ -448,7 +475,7 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
 
         total_price_item += item.total_price;
       });
-      $scope.create_invoices.net_value = total_price_item + ($scope.create_invoices.service || 0) + ($scope.create_invoices.price_delivery_service || 0) + ($scope.create_invoices.total_tax || 0) - ($scope.create_invoices.total_discount || 0)
+      $scope.create_invoices.paid_require = total_price_item + ($scope.create_invoices.service || 0) + ($scope.create_invoices.price_delivery_service || 0) + ($scope.create_invoices.total_tax || 0) - ($scope.create_invoices.total_discount || 0)
     }, 250);
   }; */
 

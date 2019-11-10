@@ -49,16 +49,28 @@
                                     <td class="center"> {{customer.name_en}} </td>
                                 </tr>
 
-                                <tr>
-                                    <td class="title"> ##word.status## </td>
-                                    <td ng-show="customer.active == true" class="center green"> ##word.active## </td>
-                                    <td ng-show="customer.active == false" class="center red"> ##word.not_active## </td>
+                                <tr x-feature="gym">
+                                    <td class="title"> ##word.finger_code## </td>
+                                    <td class="center"> {{customer.finger_code}} </td>
+                                </tr>
+
+                                <tr x-feature="gym">
+                                    <td class="title"> ##word.customers_indentfy## </td>
+                                    <td class="center"> {{customer.indentfy}} <b ng-show="customer.child"> ' - ' ##word.child##</b> </td>
                                 </tr>
 
                                 <tr>
                                     <td class="title"> ##word.customers_groups## </td>
                                     <td class="center"> {{customer.group.name}} </td>
                                 </tr>
+
+                                <tr>
+                                    <td class="title"> ##word.status## </td>
+                                    <td ng-show="customer.active == true" class="center green"> ##word.active## </td>
+                                    <td ng-show="customer.active == false" class="center red"> ##word.not_active## </td>
+                                </tr>
+
+
                             </table>
                         </div>
 

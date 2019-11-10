@@ -35,6 +35,16 @@
         "ar": "برنامج الطباعة"
     },
     {
+        "name": "finger_program",
+        "en": "Finger Print Program",
+        "ar": "برنامج البصمة"
+    },
+    {
+        "name": "finger_code",
+        "en": "Finger Print Code",
+        "ar": "كود البصمة"
+    },
+    {
         "name": "basic_printer",
         "en": "Basic Printer",
         "ar": "الطابعة الرئيسية"

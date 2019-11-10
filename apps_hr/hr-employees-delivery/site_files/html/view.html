@@ -25,8 +25,13 @@
                             <table id="basicInformationTable" class="table hover bold">
 
                                 <tr>
-                                    <td class="title">##word.name##</td> 
+                                    <td class="title">##word.name##</td>
                                     <td class="center">{{delivery_employee_list.name}}</td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title">##word.finger_code##</td>
+                                    <td class="center blue">{{delivery_employee_list.finger_code}}</td>
                                 </tr>
 
                                 <tr>
@@ -41,8 +46,10 @@
 
                                 <tr>
                                     <td class="title">##word.status##</td>
-                                    <td ng-show="delivery_employee_list.active == true" class="green center"> ##word.active## </td>
-                                    <td ng-show="delivery_employee_list.active == false" class="red center"> ##word.not_active## </td>
+                                    <td ng-show="delivery_employee_list.active == true" class="green center">
+                                        ##word.active## </td>
+                                    <td ng-show="delivery_employee_list.active == false" class="red center">
+                                        ##word.not_active## </td>
                                 </tr>
 
                             </table>
@@ -58,7 +65,7 @@
                                         <td class="title">##word.delivery_employee_indentfy##</td>
                                         <td class="center">{{delivery_employee_list.indentfy.ar}}</td>
                                     </tr>
-                                   
+
                                     <tr>
                                         <td class="title">##word.birth_date##</td>
                                         <td class="center brown">{{delivery_employee_list.birth_date | date : 'dd
@@ -105,7 +112,8 @@
                                     <tr>
                                         <td class="title">##word.phone##</td>
                                         <td class="center">
-                                            <a ng-show="delivery_employee_list.phone" href="tel:{{delivery_employee_list.phone}}">
+                                            <a ng-show="delivery_employee_list.phone"
+                                                href="tel:{{delivery_employee_list.phone}}">
                                                 {{delivery_employee_list.phone}}
                                                 <i class="fa fa-phone" aria-hidden="true"></i>
                                             </a>
@@ -115,7 +123,8 @@
                                     <tr>
                                         <td class="title">##word.mobile##</td>
                                         <td class="center">
-                                            <a ng-show="delivery_employee_list.mobile" href="tel:{{delivery_employee_list.mobile}}">
+                                            <a ng-show="delivery_employee_list.mobile"
+                                                href="tel:{{delivery_employee_list.mobile}}">
                                                 {{delivery_employee_list.mobile}}
                                                 <i class="fa fa-mobile" aria-hidden="true"></i>
                                             </a>
@@ -124,7 +133,8 @@
                                     <tr>
                                         <td class="title">##word.whatsapp##</td>
                                         <td class="center">
-                                            <a ng-show="delivery_employee_list.whatsapp" href="tel:{{delivery_employee_list.whatsapp}}">
+                                            <a ng-show="delivery_employee_list.whatsapp"
+                                                href="tel:{{delivery_employee_list.whatsapp}}">
                                                 {{delivery_employee_list.whatsapp}}
                                                 <i class="fa fa-whatsapp" aria-hidden="true"></i>
                                             </a>
@@ -133,7 +143,8 @@
                                     <tr>
                                         <td class="title">##word.email##</td>
                                         <td class="center">
-                                            <a ng-show="delivery_employee_list.email" target="_blank" href="tel:{{delivery_employee_list.email}}">
+                                            <a ng-show="delivery_employee_list.email" target="_blank"
+                                                href="tel:{{delivery_employee_list.email}}">
                                                 {{delivery_employee_list.email}}
                                                 <i class="fa fa-envelope" aria-hidden="true"></i>
                                             </a>
@@ -142,7 +153,8 @@
                                     <tr>
                                         <td class="title">##word.facebook##</td>
                                         <td class="center">
-                                            <a ng-show="delivery_employee_list.facebook" href="tel:{{delivery_employee_list.facebook}}">
+                                            <a ng-show="delivery_employee_list.facebook"
+                                                href="tel:{{delivery_employee_list.facebook}}">
                                                 {{delivery_employee_list.facebook}}
                                                 <i class="fa fa-facebook" aria-hidden="true"></i>
                                             </a>
@@ -151,7 +163,8 @@
                                     <tr>
                                         <td class="title">##word.twitter##</td>
                                         <td class="center">
-                                            <a ng-show="delivery_employee_list.twitter" href="tel:{{delivery_employee_list.twitter}}">
+                                            <a ng-show="delivery_employee_list.twitter"
+                                                href="tel:{{delivery_employee_list.twitter}}">
                                                 {{delivery_employee_list.twitter}}
                                                 <i class="fa fa-twitter" aria-hidden="true"></i>
                                             </a>

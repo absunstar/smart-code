@@ -100,7 +100,6 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     )
   };
 
-
   $scope.sendToKitchens = function(_order_invoice){
     let ip = '127.0.0.1';
     let port = '11111';
@@ -165,9 +164,9 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
 
       _kitchen.data.push({
         type: 'text3b',
-        value: 'Item',
-        value2: 'Count',
-        value3: "Notes"
+        value: 'Item/الصنف',
+        value2: 'Count/العدد',
+        value3: "Notes/ملاحظات"
       });
 
       _order_invoice.book_list.forEach(item_book => {
@@ -182,8 +181,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
             value3: item_book.notes || ' ... '
           });
         }
-            
-  
+
       });
 
       _kitchen.data.push({
@@ -196,7 +194,6 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
           value: $scope.defaultSettings.printer_program.invoice_footer
         })
       }
-
 
       if(_kitchen.has_items){
         $http({

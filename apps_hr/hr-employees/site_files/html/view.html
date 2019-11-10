@@ -14,7 +14,6 @@
                 ##word.login_information##
             </a>
 
-
         </div>
         <div id="insuranceAllInfo" class="tabs-content bold full">
             <div id="basicInformation" class="tab-content">
@@ -26,8 +25,13 @@
                             <table id="basicInformationTable" class="table hover bold">
 
                                 <tr>
-                                    <td class="title">##word.name##</td> 
+                                    <td class="title">##word.name##</td>
                                     <td class="center">{{employee_list.name}}</td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title">##word.finger_code##</td>
+                                    <td class="center blue">{{employee_list.finger_code}}</td>
                                 </tr>
 
                                 <tr>
@@ -36,10 +40,9 @@
                                 </tr>
 
                                 <tr>
-                                        <td class="title">##word.employees_degrees##</td>
-                                        <td class="center">{{employee_list.degree.name}}</td>
-                                    </tr>
-    
+                                    <td class="title">##word.employees_degrees##</td>
+                                    <td class="center">{{employee_list.degree.name}}</td>
+                                </tr>
 
                                 <tr>
                                     <td class="title">##word.salary##</td>
@@ -48,8 +51,10 @@
 
                                 <tr>
                                     <td class="title">##word.status##</td>
-                                    <td ng-show="employee_list.active == true" class="green center"> ##word.active## </td>
-                                    <td ng-show="employee_list.active == false" class="red center"> ##word.not_active## </td>
+                                    <td ng-show="employee_list.active == true" class="green center"> ##word.active##
+                                    </td>
+                                    <td ng-show="employee_list.active == false" class="red center"> ##word.not_active##
+                                    </td>
                                 </tr>
 
                             </table>
@@ -65,7 +70,7 @@
                                         <td class="title">##word.employee_indentfy##</td>
                                         <td class="center">{{employee_list.indentfy.ar}}</td>
                                     </tr>
-                                 
+
                                     <tr>
                                         <td class="title">##word.birth_date##</td>
                                         <td class="center brown">{{employee_list.birth_date | date : 'dd
@@ -140,7 +145,8 @@
                                     <tr>
                                         <td class="title">##word.email##</td>
                                         <td class="center">
-                                            <a ng-show="employee_list.email" target="_blank" href="tel:{{employee_list.email}}">
+                                            <a ng-show="employee_list.email" target="_blank"
+                                                href="tel:{{employee_list.email}}">
                                                 {{employee_list.email}}
                                                 <i class="fa fa-envelope" aria-hidden="true"></i>
                                             </a>

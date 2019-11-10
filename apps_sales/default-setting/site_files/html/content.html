@@ -4,6 +4,8 @@
         <div class="tabs-header">
             <a class="tab-link" onclick="site.showTabContent(event, '#general_Settings')">
                 ##word.general_Settings## </a>
+            <a class="tab-link" onclick="site.showTabContent(event, '#finger_program')">
+                ##word.finger_program## </a>
             <a class="tab-link" onclick="site.showTabContent(event, '#printer_program')">
                 ##word.printer_program## </a>
             <a class="tab-link" onclick="site.showTabContent(event, '#accounting_settings')">
@@ -22,6 +24,24 @@
                 <i-button type="default left" fa="2x fa-angle-double-left"
                     onclick="document.querySelector('.tab-link.active + .tab-link').click();"></i-button>
             </div>
+
+            <div id="finger_program" class="tab-content">
+                <fieldset>
+                    <legend> ##word.finger_program## </legend>
+                    <div class="row">
+
+                        <i-control help-id="finger_program" class="col3" label="##word.program_ip##"
+                            ng-model="default_setting.finger_program.ip"></i-control>
+                        <i-control help-id="finger_program" class="col3" label="##word.program_port##"
+                            ng-model="default_setting.finger_program.port"></i-control>
+
+                    </div>
+
+                </fieldset>
+                <i-button type="default left" fa="2x fa-angle-double-left"
+                onclick="document.querySelector('.tab-link.active + .tab-link').click();"></i-button>
+            </div>
+
 
             <div id="printer_program" class="tab-content">
                 <fieldset>

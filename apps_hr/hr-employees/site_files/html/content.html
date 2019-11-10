@@ -27,11 +27,17 @@
                             <i-control help-id="" v="r ll2" class="col5" label="##word.name##"
                                 ng-model="employee_list.name"></i-control>
 
-                            <i-control help-id="" v="r ll2" class="col4" label="##word.national_id##"
-                                ng-model="employee_list.national_id"></i-control>
-                            <div class="col1"></div>
+
+                            <div class="col5"></div>
                             <i-checkbox help-id="employee_active" class="col2" label="##word.active##"
                                 ng-model="employee_list.active"></i-checkbox>
+                        </div>
+
+                        <div class="row">
+                            <i-control help-id="" class="col4" label="##word.finger_code##"
+                                ng-model="employee_list.finger_code"></i-control>
+                            <i-control help-id="" v="r ll2" class="col4" label="##word.national_id##"
+                                ng-model="employee_list.national_id"></i-control>
                         </div>
 
                     </fieldset>
@@ -45,9 +51,9 @@
                             </i-list>
 
                             <i-list help-id="" class="col3" ng-show="employee_list.job.trainer == true"
-                                display="##session.lang##"
-                                items="accountingSystemList" ng-search="_search.$employee.$accounting_system"
-                                label="##word.accounting_system##" ng-model="employee_list.accounting_system">
+                                display="##session.lang##" items="accountingSystemList"
+                                ng-search="_search.$employee.$accounting_system" label="##word.accounting_system##"
+                                ng-model="employee_list.accounting_system">
                             </i-list>
 
                         </div>
