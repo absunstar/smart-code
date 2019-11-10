@@ -15,19 +15,20 @@
             <th>##word.code##</th>
             <th>##word.stores_items_name##</th>
             <th>##word.items_count##</th>
-            <th>##word.items_price##</th>
-            <th>##word.items_price_total##</th>
+            <th>##word.items_notes##</th>
             <th>##word.actions##</th>
         </tr>
 
-        <tr ng-repeat="i in book_list_report ">
-            <td class="center title">{{i.order.code}}</td>
+        <tr ng-hide="busy" ng-repeat="i in book_list_report ">
+            <td class="">
+                <p class="code">{{i.order.code}}</p>
+                <p class="bold"> {{i.table.name}} / {{i.table.tables_group.name}} </p>
+            </td>
             <td class="center title">{{i.size}}</td>
-            <td class="center blue">{{i.count}}</td>
-            <td class="center">{{i.price}}</td>
-            <td class="center green">{{i.total_price}}</td>
+            <td class="center code">{{i.count}}</td>
+            <td class="center">{{i.notes}}</td>
 
-            <td class="center"> <i-button type="add"
+            <td class="center"> <i-button type="bg-green"
                 x-permissions="order_kitchen_edit || order_kitchen_manage"
                 label="##word.done_deliver##" ng-click="doneDelivery(i)"></i-button>
             </td>

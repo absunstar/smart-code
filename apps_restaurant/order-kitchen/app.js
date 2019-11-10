@@ -58,6 +58,7 @@ module.exports = function init(site) {
                 code: order.code,
                 id: order.id,
               }
+              itm.table = order.table
               book_list_report.push(itm);
             }
           });

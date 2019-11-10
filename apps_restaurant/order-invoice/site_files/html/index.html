@@ -110,8 +110,10 @@
             font-weight: bold;
             font-size: 22px;
         }
-
-        .btn.save {
+        .btn{
+            min-width: 200px;
+        }
+        .btn.saving {
             width: 200px;
             height: 100px;
             font-size: 22px;
@@ -120,7 +122,7 @@
             font-weight: bold;
         }
 
-        .btn.exit {
+        .btn.closing {
             width: 200px;
             height: 100px;
             font-size: 22px;
@@ -212,11 +214,11 @@
                         <h2 class="bold center red">{{error}}</h2>
                         <div class="row">
                             <div class="row">
-                                <i-button class="right" type="new" label="##word.new_order##"
-                                    ng-click="newOrderInvoice()">
+                                <i-button type="bg-green" label="##word.new_order##" ng-click="newOrderInvoice()">
                                 </i-button>
-                                <i-button type="view" label="##word.open_orders##" ng-click="viewInvoicesActiveList()"
-                                    class="left">
+                                <i-button type="bg-blue" label="##word.open_orders##" ng-click="viewInvoicesActiveList()">
+                                </i-button>
+                                <i-button type="bg-red" label="##word.cancel_order##" ng-click="cancelOrderInvoice()">
                                 </i-button>
                             </div>
                             <i-control class="col3 code" disabled label="##word.code##" ng-model="order_invoice.code">
@@ -230,7 +232,7 @@
                                 items="transactionTypeList" ng-change="calc()">
                             </i-list>
 
-                            <i-button ng-show="order_invoice.transaction_type.id == 1 && order_invoice.id" type="edit"
+                            <i-button ng-show="order_invoice.transaction_type.id == 1 && order_invoice.id" type="bg-blue"
                                 label="##word.merge_table##" ng-click="viewInvoicesTablesList()">
                             </i-button>
                             <i-list ng-show="order_invoice.transaction_type.id == 2"
@@ -239,7 +241,7 @@
                                 items="deliveryEmployeesList"></i-list>
 
                             <div class="row" ng-show="order_invoice.transaction_type.id == 1">
-                                <i-button type="view" label="##word.select_table##" ng-click="showTable()">
+                                <i-button type="bg-blue" label="##word.select_table##" ng-click="showTable()">
                                 </i-button>
                                 <i-control class="col4" ng-model="order_invoice.table.name" label="##word.table##"
                                     type="text" disabled></i-control>
@@ -449,23 +451,19 @@
                             <i-control class="col6" ng-model="order_invoice.net_value" label="##word.net_value##"
                                 type="number" disabled></i-control>
                             <div class="col6 center" ng-hide="order_invoice.status.id == 2">
-                                <i-button type="save" label="##word.save##" ng-click="addOrderInvoice()">
+                                <i-button type="saving" label="##word.save##" ng-click="addOrderInvoice()">
                                 </i-button>
                                 <br>
                                 <br>
                                 <br>
-                                <i-button type="exit" ng-hide="order_invoice.active == false"
+                                <i-button type="closing" ng-hide="order_invoice.active == false"
                                     label="##word.close_order##" ng-click="closeOrder()">
                                 </i-button>
                             </div>
 
                         </div>
 
-                        <div class="row right">
-                            <i-button x-permissions="order_invoice_print || order_invoice_manage" type="print"
-                                label="##word.print##" onclick="site.print('#t1')"></i-button>
-
-                        </div>
+                       
 
                     </div>
                 </div>

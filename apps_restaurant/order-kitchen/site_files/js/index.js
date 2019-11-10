@@ -30,8 +30,9 @@ app.controller("order_kitchen", function ($scope, $http, $interval) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
+          $scope.orderKitchensList();
         } else {
-          $scope.error = 'Please Login First';
+          $scope.error = response.data.error;
         }
       },
       function (err) {
@@ -124,6 +125,7 @@ app.controller("order_kitchen", function ($scope, $http, $interval) {
   $interval(() => {
     $scope.orderKitchensList();
   }, 1000 * 5);
+
 });
 
 

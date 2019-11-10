@@ -148,6 +148,10 @@
         "name": "close_order",
         "en": "Close Order",
         "ar": "غلق الطلب"
+    },{
+        "name": "cancel_order",
+        "en": "Cancel Order",
+        "ar": "الغاء الطلب"
     },
     {
         "name": "should_select_safe",

@@ -119,6 +119,11 @@
         "name": "order_kitchen_tenant_date",
         "en": "Offer Date",
         "ar": "التاريخ"
+    },
+    {
+        "name": "items_notes",
+        "en": "Notes",
+        "ar": "ملاحظات"
     }
-
+    
 ]

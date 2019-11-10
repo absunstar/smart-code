@@ -9,11 +9,13 @@ module.exports = function init(site) {
         timeout: 5000,
         attendanceParser: 'v6.60',
         connectionType: 'udp',
-        auto : false
+        auto: false,
+        auto_time: 1000 * 3
     }
+    site.zk.attendance_array = []
 
     site.zk.new = function (_options) {
-        _options = Object.assign(site.zk.options , _options)
+        _options = Object.assign(site.zk.options, _options)
         zk = new ZKLib(_options)
         return zk
     }
@@ -24,29 +26,68 @@ module.exports = function init(site) {
         });
         return attendance_array
     }
-    site.zk.load_attendance = function(_options , callback){
+    site.zk.load_attendance = function (_options, callback) {
+        _options = Object.assign(site.zk.options, _options)
         let zk = site.zk.new(_options)
         zk.connect(function (err) {
             if (!err) {
                 zk.getAttendance(function (err, attendance_array) {
+
                     if (!err) {
-                        callback(site.zk.handleAttendance(attendance_array))
+                        let attendance_array = site.zk.handleAttendance(attendance_array)
+                        callback(attendance_array)
+                        attendance_array.forEach(attend => {
+                            if (!site.zk.attendance_array.some(a => (a.id == attend.id && a.uid == attend.uid))) {
+                                site.zk.attendance_array.push(attend)
+                            }
+                        })
+
+                    } else {
+                        callback(err)
                     }
+
                     zk.disconnect();
-                    if(_options.auto){
+                    if (_options.auto) {
                         setTimeout(() => {
-                            site.zk.load_attendance(_options , callback)
-                        }, 1000 * 3);
+                            site.zk.load_attendance(_options, callback)
+                        }, _options.auto_time);
                     }
-                    
+
                 })
             } else {
-                if(_options.auto){
+                callback(err)
+                if (_options.auto) {
                     setTimeout(() => {
-                        site.zk.load_attendance(_options , callback)
-                    }, 1000 * 3);
+                        site.zk.load_attendance(_options, callback)
+                    }, _options.auto_time);
                 }
             }
         })
     }
+
+
+
+    site.get('/api/zk/attendance/all', (req, res) => {
+        site.zk.load_attendance({}, (err, attendance_array) => {
+            if (!err) {
+                res.json({
+                    done: true,
+                    list: attendance_array
+                })
+            } else {
+                res.json({
+                    done: false,
+                    error: err.message
+                })
+            }
+        })
+    })
 }
+
+
+// site.zk.load_attendance({
+//     auto: true
+// }, (err, attendance_array) => {
+//     console.log(err)
+//     console.log(attendance_array)
+// })
