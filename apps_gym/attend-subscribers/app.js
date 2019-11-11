@@ -6,9 +6,9 @@ module.exports = function init(site) {
   //       user_id = attend.user_id
   //       // get customer by user_id
   //       if(attend.check_status == "check_in"){
-  //         $attend_subscribers.add({customer , date : attend.timestamp})
+  //         $attend_subscribers.add({customer , date : attend.date})
   //       }else{
-  //         $attend_subscribers.add({customer , date : attend.timestamp})
+  //         $attend_subscribers.add({customer , date : attend.date})
   //       }
        
   // })
