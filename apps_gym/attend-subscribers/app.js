@@ -1,25 +1,38 @@
 module.exports = function init(site) {
   const $attend_subscribers = site.connectCollection("attend_subscribers")
 
- /*  site.on('[company][created]', doc => {
 
-    $attend_subscribers.add({
-      code: "1",
-      name: "قاعة إفتراضية",
-      image_url: '/images/attend_subscribers.png',
-      company: {
-        id: doc.id,
-        name_ar: doc.name_ar
-      },
-      branch: {
-        code: doc.branch_list[0].code,
-        name_ar: doc.branch_list[0].name_ar
-      },
-      active: true
-    }, (err, doc) => { })
-  })
- */
- 
+  // site.on('zk attend', attend => {
+  //       user_id = attend.user_id
+  //       // get customer by user_id
+  //       if(attend.check_status == "check_in"){
+  //         $attend_subscribers.add({customer , date : attend.timestamp})
+  //       }else{
+  //         $attend_subscribers.add({customer , date : attend.timestamp})
+  //       }
+       
+  // })
+
+
+  /*  site.on('[company][created]', doc => {
+
+     $attend_subscribers.add({
+       code: "1",
+       name: "قاعة إفتراضية",
+       image_url: '/images/attend_subscribers.png',
+       company: {
+         id: doc.id,
+         name_ar: doc.name_ar
+       },
+       branch: {
+         code: doc.branch_list[0].code,
+         name_ar: doc.branch_list[0].name_ar
+       },
+       active: true
+     }, (err, doc) => { })
+   })
+  */
+
 
   site.get({
     name: 'images',
