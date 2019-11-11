@@ -110,6 +110,10 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
 
     $scope.kitchensList.forEach(_kitchen=>{
       _kitchen.data = [];
+      if(!_kitchen.printer_path){
+        _kitchen.printer = null
+        return 
+      }
       _kitchen.printer = _kitchen.printer_path.ip;
       _kitchen.has_items = false;
 
