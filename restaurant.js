@@ -42,7 +42,6 @@ site.features.push('restaurant')
 
 setTimeout(() => {
     site.importApp(__dirname + '/apps_private/companies')
-    site.importApp(__dirname + '/apps_private/zk-reader')
 }, 1000)
 setTimeout(() => {
     site.ready = true
