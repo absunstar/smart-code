@@ -1,6 +1,8 @@
 module.exports = function init(site) {
     const ZKLib = require('zklib');
 
+    $zk_attend = site.connectCollection('zk_attend')
+
     site.zk = {}
     site.zk.options = {
         ip: '192.168.100.201',
@@ -13,6 +15,11 @@ module.exports = function init(site) {
         auto_time: 1000 * 3
     }
     site.zk.attendance_array = []
+    $zk_attend.findMany({}, (err, docs) => {
+        if (!err && docs) {
+            site.zk.attendance_array = docs
+        }
+    })
 
     site.zk.new = function (_options) {
         _options = Object.assign(site.zk.options, _options)
@@ -22,6 +29,8 @@ module.exports = function init(site) {
 
     site.zk.handleAttendance = function (attendance_array) {
         attendance_array.forEach(attend => {
+            attend.attend_id = attend.id
+            delete attend.id
             attend.check_status = attend.inOutStatus == 0 ? 'check_in' : 'check_out'
         });
         return attendance_array
@@ -37,8 +46,10 @@ module.exports = function init(site) {
                         let attendance_array = site.zk.handleAttendance(attendance_array)
                         callback(attendance_array)
                         attendance_array.forEach(attend => {
-                            if (!site.zk.attendance_array.some(a => (a.id == attend.id && a.uid == attend.uid))) {
+                            if (!site.zk.attendance_array.some(a => (a.attend_id == attend.attend_id && a.uid == attend.uid))) {
                                 site.zk.attendance_array.push(attend)
+                                site.call('zk attend', attend)
+                                $zk_attend.add(attend)
                             }
                         })
 
@@ -82,9 +93,23 @@ module.exports = function init(site) {
             }
         })
     })
+
+
+    site.get('/api/zk/attend', (req, res) => {
+        attend = {
+            attend_id: 1,
+            uid: 1,
+            timestamp: new Date().toUTCString(),
+            check_status: "check_in"
+        }
+        site.call('zk attend', attend)
+        res.json({
+            done: true,
+            doc: attend
+        })
+    })
+
 }
-
-
 // site.zk.load_attendance({
 //     auto: true
 // }, (err, attendance_array) => {

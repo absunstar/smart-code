@@ -1,4 +1,4 @@
-const site = require('../node_modules/isite')({
+const site = require('../isite')({
     port: 80,
     lang:'ar',
     saving_time: 0.2,
@@ -27,6 +27,8 @@ site.get({
     parser: 'html css js'
 })
 
+ site.ready = false
+
 site.loadLocalApp('client-side')
 site.importApp(__dirname + '/apps_private/cloud_security' , 'security')
 site.importApp(__dirname + '/apps_private/ui-print')
@@ -42,5 +44,8 @@ setTimeout(() => {
     site.importApp(__dirname + '/apps_private/companies')
     site.importApp(__dirname + '/apps_private/zk-reader')
 }, 1000)
+setTimeout(() => {
+    site.ready = true
+}, 1000 * 2);
 
 site.run()

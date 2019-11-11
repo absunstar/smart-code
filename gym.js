@@ -1,4 +1,4 @@
-const site = require('../node_modules/isite')({
+const site = require('../isite')({
     port: 80,
     lang: 'ar',
     saving_time: 0.2,
@@ -47,7 +47,26 @@ setTimeout(() => {
 site.importApps(__dirname + '/apps_core')
     
     site.importApp(__dirname + '/apps_private/companies')
+    site.importApp(__dirname + '/apps_private/zk-reader')
+
+    site.zk.load_attendance( {
+        ip: '192.168.100.201',
+        port: 4370,
+        inport: 5200,
+        timeout: 5000,
+        attendanceParser: 'v6.60',
+        connectionType: 'udp',
+        auto: true,
+        auto_time: 1000 * 3
+    }, (err, attendance_array) => {
+        console.log(attendance_array || err)
+    })
 
 }, 1000)
 
 site.run()
+
+site.on('zk attend', attend=>{
+    console.log(attend)
+})
+

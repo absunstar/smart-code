@@ -1,8 +1,11 @@
 [
     {
-        "name": "user",
-        "en": "User",
-        "ar": "مستخدم",
-        "permissions": ["view", "download"]
+        "module_name": "public",
+        "name": "default_setting",
+        "en": "Default Setting",
+        "ar": "الاعدادات الافتراصية",
+        "permissions": [
+            "default_setting_manage"
+        ]
     }
 ]
