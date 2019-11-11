@@ -30,8 +30,11 @@ module.exports = function init(site) {
     site.zk.handleAttendance = function (attendance_array) {
         attendance_array.forEach(attend => {
             attend.attend_id = attend.id
+            attend.user_id = attend.uid
+            delete attend.uid
             delete attend.id
             attend.check_status = attend.inOutStatus == 0 ? 'check_in' : 'check_out'
+            attend.date = new Date(attend.timestamp)
         });
         return attendance_array
     }
@@ -98,8 +101,8 @@ module.exports = function init(site) {
     site.get('/api/zk/attend', (req, res) => {
         attend = {
             attend_id: 1,
-            uid: 1,
-            timestamp: new Date().toUTCString(),
+            user_id: 1,
+            date: new Date(),
             check_status: "check_in"
         }
         site.call('zk attend', attend)
