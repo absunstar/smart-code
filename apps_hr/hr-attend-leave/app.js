@@ -29,6 +29,42 @@ module.exports = function init(site) {
     compress: true
   })
 
+  //  site.on('zk attend', attend => {
+  //   user_id = attend.user_id
+  //   site.getEmployeeAttend(user_id, callback => {
+
+  //     let from = {
+  //       hour: new Date(attend.date).getHours(),
+  //       minute: new Date(attend.date).getMinutes()
+  //     }
+
+  //     let to = {
+  //       hour: new Date(attend.date).getHours(),
+  //       minute: new Date(attend.date).getMinutes()
+  //     }
+
+  //     if (attend.check_status == "check_in") {
+  //       $attend_subscribers.add({
+  //         active:true,
+  //         customer: callback,
+  //         date: attend.date,
+  //         from: from
+  //       })
+  //     } else {
+  //       $attend_subscribers.add({ customer, date: attend.date })
+  //     }
+
+  //     if (callback == true) {
+  //       response.error = 'Cant Delete Its Exist In Other Transaction'
+  //       res.json(response)
+
+  //     } else {
+
+  //     }
+
+  //   })
+  // }) 
+
   site.post("/api/attend_leave/add", (req, res) => {
     let response = {
       done: false
@@ -257,7 +293,7 @@ module.exports = function init(site) {
         '$lt': d2
       }
     } else if (where && where.date_from) {
-      let d1 = site.toDate( where.date_from)
+      let d1 = site.toDate(where.date_from)
       let d2 = site.toDate(where.date_to)
       d2.setDate(d2.getDate() + 1);
       where.date = {

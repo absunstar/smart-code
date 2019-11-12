@@ -162,7 +162,7 @@ app.controller("delivery_employee_list", function ($scope, $http, $timeout) {
           $scope.list = response.data.list;
           $scope.count = response.data.count;
           site.hideModal('#deliveryEmployeeSearchModal');
-          $scope.search ={};
+          $scope.search = {};
 
         }
       },
@@ -233,6 +233,9 @@ app.controller("delivery_employee_list", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/jobs/all",
       data: {
+        select: {
+          id: 1, active: 1, trainer: 1, name: 1, code: 1
+        },
         where: {
           active: true
         },
@@ -282,7 +285,7 @@ app.controller("delivery_employee_list", function ($scope, $http, $timeout) {
         where: {
           active: true
         },
-        select : {id : 1 , name : 1}
+        select: { id: 1, name: 1 }
       }
     }).then(
       function (response) {
@@ -324,7 +327,7 @@ app.controller("delivery_employee_list", function ($scope, $http, $timeout) {
       }
     )
   };
-  
+
   $scope.getAreaList = function (city) {
     $scope.busy = true;
     $http({
@@ -377,10 +380,10 @@ app.controller("delivery_employee_list", function ($scope, $http, $timeout) {
   };
 
   $scope.searchAll = function () {
-  
+
     $scope.getDeliveryEmployeeList($scope.search);
     site.hideModal('#deliveryEmployeeSearchModal');
-    $scope.search ={};
+    $scope.search = {};
   };
 
   $scope.getDeliveryEmployeeList();

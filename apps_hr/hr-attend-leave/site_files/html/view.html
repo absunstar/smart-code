@@ -23,10 +23,10 @@
 
                     <fieldset ng-show="attend_leave.employee_list.length > 0" >
                         <legend>
-                            ##word.dates##
+                            ##word.dates_menu##
                         </legend>
 
-                        <table class="table bold loaded">
+                        <table class="table bold hover loaded">
                             <tr>
                                 <th>##word.employee##</th>
                                 <th>##word.status_attend##</th>
@@ -34,6 +34,7 @@
                                 <th>##word.from##</th>
                                 <th>##word.to##</th>
                             </tr>
+
                             <tr ng-repeat="d in attend_leave.employee_list">
 
                                 <td class="center">{{d.name}}</td>

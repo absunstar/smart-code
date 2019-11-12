@@ -1,21 +1,57 @@
 module.exports = function init(site) {
   const $attend_subscribers = site.connectCollection("attend_subscribers")
+  site.on('zk attend', attend => {
+    user_id = attend.user_id
 
+    site.getCustomerAttend(user_id, customerCb => {
+      // get customer by user_id
 
-  // site.on('zk attend', attend => {
-  //       user_id = attend.user_id
-  //       // get customer by user_id
-  //       if(attend.check_status == "check_in"){
-  //         $attend_subscribers.add({customer , date : attend.date})
-  //       }else{
-  //         $attend_subscribers.add({customer , date : attend.date})
-  //       }
-       
-  // })
+      if (!customerCb) return;
 
+      $attend_subscribers.findOne({
+        where: {
+          'customer.id': user_id,
+          leave_date: undefined
+        },
+        sort: { id: -1 }
+      }, (err, customerDoc) => {
+        if (!err) {          
+
+          let attend_time = {
+            hour: new Date(attend.date).getHours(),
+            minute: new Date(attend.date).getMinutes()
+          }
+
+          if (attend.check_status == "check_in" && customerDoc == null) {
+            $attend_subscribers.add({
+              image_url: '/images/attend_subscribers.png',
+              customer: customerCb,
+              active: true,
+              attend_date: new Date(attend.date),
+              attend: attend_time,
+              company: customerCb.company,
+              branch: customerCb.branch
+            })
+
+          } else if (attend.check_status == "check_out" && customerDoc) {
+
+            let leave_time = {
+              hour: new Date(attend.date).getHours(),
+              minute: new Date(attend.date).getMinutes()
+            }
+            customerDoc.leave_date = new Date(attend.date)
+            customerDoc.leave = leave_time
+            $attend_subscribers.update(customerDoc)
+
+          }
+
+        }
+      })
+    })
+  })
 
   /*  site.on('[company][created]', doc => {
-
+ 
      $attend_subscribers.add({
        code: "1",
        name: "قاعة إفتراضية",

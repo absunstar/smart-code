@@ -14,6 +14,16 @@
         "ar": "تم الحضور"
     },
     {
+        "name": "from",
+        "en": "From",
+        "ar": "من"
+    },
+    {
+        "name": "to",
+        "en": "To",
+        "ar": "إلى"
+    },
+    {
         "name": "leaved",
         "en": "Leaved",
         "ar": "تم الإنصراف"
