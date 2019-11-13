@@ -171,27 +171,27 @@ app.controller("attend_subscribers", function ($scope, $http, $timeout) {
   };
 
 
-/*   $scope.getCustomerList = function () {
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/customers/all",
-      data: {
-        select:{}
-      }
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.customersList = response.data.list;
+  /*   $scope.getCustomerList = function () {
+      $scope.busy = true;
+      $http({
+        method: "POST",
+        url: "/api/customers/all",
+        data: {
+          select:{}
         }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
-  }; */
+      }).then(
+        function (response) {
+          $scope.busy = false;
+          if (response.data.done && response.data.list.length > 0) {
+            $scope.customersList = response.data.list;
+          }
+        },
+        function (err) {
+          $scope.busy = false;
+          $scope.error = err;
+        }
+      )
+    }; */
 
 
   $scope.getCustomerList = function (ev) {
@@ -232,19 +232,37 @@ app.controller("attend_subscribers", function ($scope, $http, $timeout) {
 
   $scope.attendNow = function () {
     $scope.attend_subscribers.attend_date = new Date();
-
     $scope.attend_subscribers.attend = {
       hour: new Date().getHours(),
       minute: new Date().getMinutes()
     };
   };
 
-  $scope.leaveNow = function () {
-    $scope.attend_subscribers.leave_date = new Date();
-    $scope.attend_subscribers.leave = {
+  $scope.leaveNow = function (attend_subscribers) {
+    attend_subscribers.leave_date = new Date();
+    attend_subscribers.leave = {
       hour: new Date().getHours(),
       minute: new Date().getMinutes()
     };
+
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/attend_subscribers/update",
+      data: attend_subscribers
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.getAttendSubscribersList();
+        } else {
+          $scope.error = 'Please Login First';
+        }
+      },
+      function (err) {
+        console.log(err);
+      }
+    )
 
   };
 

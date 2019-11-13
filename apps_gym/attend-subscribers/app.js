@@ -1,37 +1,73 @@
 module.exports = function init(site) {
   const $attend_subscribers = site.connectCollection("attend_subscribers")
+  site.on('zk attend', attend => {
+    user_id = attend.user_id
 
+    site.getCustomerAttend(user_id.toString(), customerCb => {
+      // get customer by user_id
 
-  // site.on('zk attend', attend => {
-  //       user_id = attend.user_id
-  //       // get customer by user_id
-  //       if(attend.check_status == "check_in"){
-  //         $attend_subscribers.add({customer , date : attend.date})
-  //       }else{
-  //         $attend_subscribers.add({customer , date : attend.date})
-  //       }
-  // })
+      if (!customerCb) return;
 
+      $attend_subscribers.findMany({
+        where: {
+          'customer.id': customerCb.id
+        },
+        limit : 1 ,
+        sort: { id: -1 }
+      }, (err, docs) => {
 
-  /*  site.on('[company][created]', doc => {
+        let  customerDoc = null
 
-     $attend_subscribers.add({
-       code: "1",
-       name: "قاعة إفتراضية",
-       image_url: '/images/attend_subscribers.png',
-       company: {
-         id: doc.id,
-         name_ar: doc.name_ar
-       },
-       branch: {
-         code: doc.branch_list[0].code,
-         name_ar: doc.branch_list[0].name_ar
-       },
-       active: true
-     }, (err, doc) => { })
-   })
-  */
+        if(!err && docs.length == 1){
+          customerDoc = docs[0]
+        }
+        
+          let attend_time = {
+            hour: new Date(attend.date).getHours(),
+            minute: new Date(attend.date).getMinutes()
+          }
 
+          let can_check_in = false
+          let can_check_out = false
+          if(customerDoc == null){
+            can_check_in = true
+          }
+          if(customerDoc && customerDoc.leave_date){
+            can_check_in = true
+          }
+
+          if(customerDoc && customerDoc.attend_date){
+            can_check_out = true
+          }
+
+          if (attend.check_status == "check_in" && can_check_in) {
+            $attend_subscribers.add({
+              image_url: '/images/attend_subscribers.png',
+              customer: customerCb,
+              active: true,
+              attend_date: new Date(attend.date),
+              attend: attend_time,
+              company: customerCb.company,
+              branch: customerCb.branch
+            })
+
+          } else if (attend.check_status == "check_out" && can_check_out) {
+
+            let leave_time = {
+              hour: new Date(attend.date).getHours(),
+              minute: new Date(attend.date).getMinutes()
+            }
+            customerDoc.leave_date = new Date(attend.date)
+            customerDoc.leave = leave_time
+            $attend_subscribers.update(customerDoc)
+
+          }
+
+        
+      })
+    })
+
+  })
 
   site.get({
     name: 'images',

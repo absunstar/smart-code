@@ -58,7 +58,7 @@ module.exports = function init(site) {
   site.on('[attend_session][busy][+]', obj => {
     $employee_list.findOne({
       where: { id: obj.trainerId }
-    }, (err, doc) => {      
+    }, (err, doc) => {
       if (obj.busy) doc.busy = true;
       else if (!obj.busy) doc.busy = false;
       if (!err && doc) $employee_list.edit(doc)
@@ -487,5 +487,22 @@ module.exports = function init(site) {
       res.json(response)
     })
   })
+
+  site.getEmployeeAttend = function (data, callback) {
+
+    let select = { id: 1, name: 1, active: 1, finger_code: 1}
+    let where = { id: data }
+
+    $employee_list.findOne({
+      select: select,
+      where: where,
+    }, (err, doc, count) => {
+
+      if (!err) {
+        if (doc) callback(doc)
+        else callback(false)
+      }
+    })
+  }
 
 }

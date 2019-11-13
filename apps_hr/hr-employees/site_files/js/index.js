@@ -236,6 +236,9 @@ app.controller("employee_list", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/jobs/all",
       data: {
+        select: {
+          id: 1, active: 1, trainer: 1, name: 1, code: 1
+        },
         where: {
           active: true
         },

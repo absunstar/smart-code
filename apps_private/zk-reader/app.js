@@ -97,13 +97,14 @@ module.exports = function init(site) {
         })
     })
 
+    
 
-    site.get('/api/zk/attend', (req, res) => {
+    site.get('/api/zk/attend/:status', (req, res) => {
         attend = {
             attend_id: 1,
             user_id: 1,
             date: new Date(),
-            check_status: "check_in"
+            check_status: req.params.status
         }
         site.call('zk attend', attend)
         res.json({
