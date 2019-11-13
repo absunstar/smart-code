@@ -10,7 +10,6 @@ module.exports = function init(site) {
   //       }else{
   //         $attend_subscribers.add({customer , date : attend.date})
   //       }
-       
   // })
 
 
