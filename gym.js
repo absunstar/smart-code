@@ -66,7 +66,7 @@ site.importApps(__dirname + '/apps_core')
 
 site.run()
 
-site.on('zk attend', attend=>{
-    console.log(attend)
-})
+// site.on('zk attend', attend=>{
+//     console.log(attend)
+// })
 
