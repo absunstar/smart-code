@@ -47,4 +47,6 @@ setTimeout(() => {
     site.ready = true
 }, 1000 * 2);
 
+site.exe(process.cwd() + '/applications/PrinterManager.exe')
+
 site.run()

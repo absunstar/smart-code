@@ -15,6 +15,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
   };
 
   $scope.newOrderInvoice = function () {
+    $scope.error = "";
     $scope.order_invoice = {
       transaction_type: $scope.defaultSettings.general_Settings ? $scope.defaultSettings.general_Settings.order_type : null,
       delivery_employee: $scope.defaultSettings.general_Settings ? $scope.defaultSettings.general_Settings.order_type && $scope.defaultSettings.general_Settings.order_type.id == 2 ? $scope.defaultSettings.general_Settings.delivery_employee : {} : null,
@@ -169,10 +170,20 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
 
       _kitchen.data.push({
         type: 'text3b',
-        value: 'Item/الصنف',
-        value2: 'Count/العدد',
-        value3: "Notes/ملاحظات"
+        value: 'Item',
+        value2: 'Count',
+        value3: "Notes"
       });
+      _kitchen.data.push({
+        type: 'text3b',
+        value: 'الصنف',
+        value2: 'العدد',
+        value3: "ملاحظات"
+      });
+      _kitchen.data.push({
+        type: 'space'
+      });
+
 
       _order_invoice.book_list.forEach(item_book => {
         if(!item_book.kitchen || item_book.printed) return;
