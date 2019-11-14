@@ -43,10 +43,10 @@ module.exports = function init(site) {
         let zk = site.zk.new(_options)
         zk.connect(function (err) {
             if (!err) {
-                zk.getAttendance(function (err, attendance_array) {
+                zk.getAttendance(function (err, _attendance_array) {
 
                     if (!err) {
-                        let attendance_array = site.zk.handleAttendance(attendance_array)
+                        let attendance_array = site.zk.handleAttendance(_attendance_array)
                         callback(attendance_array)
                         attendance_array.forEach(attend => {
                             if (!site.zk.attendance_array.some(a => (a.attend_id == attend.attend_id && a.uid == attend.uid))) {

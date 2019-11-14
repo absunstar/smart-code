@@ -101,5 +101,13 @@
         "name": "attend_subscribers_total",
         "en": "Total Duration",
         "ar": "إجمالي المدة "
+    },
+    {
+        "name": "auto_load_attendance",
+        "en": "Auto Load Attendance",
+        "ar": "تحميل تلقائى للبصمة"
     }
+
+
+    
 ]

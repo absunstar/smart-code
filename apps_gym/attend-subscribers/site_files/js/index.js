@@ -1,4 +1,4 @@
-app.controller("attend_subscribers", function ($scope, $http, $timeout) {
+app.controller("attend_subscribers", function ($scope, $http, $timeout , $interval) {
 
   $scope.attend_subscribers = {};
 
@@ -274,4 +274,12 @@ app.controller("attend_subscribers", function ($scope, $http, $timeout) {
   };
 
   $scope.getAttendSubscribersList();
+
+  $interval(()=>{
+    if($scope.auto_load_attendance){
+      $scope.getAttendSubscribersList();
+    };
+    
+  } , 1000 * 3);
+
 });
