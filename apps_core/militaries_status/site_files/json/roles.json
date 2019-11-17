@@ -1,0 +1,7 @@
+[{
+    "module_name" : "public" ,
+    "name": "militaries_status_admin",
+    "en": "militaries_status",
+    "ar": "إدارة حالة التجنيد",
+    "permissions": ["militaries_status_manage"]
+}]

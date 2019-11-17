@@ -1,0 +1,7 @@
+[{
+    "module_name" : "public" ,
+    "name": "maritals_status_admin",
+    "en": "maritals_status",
+    "ar": "إدارة الحالة الاجتماعية",
+    "permissions": ["maritals_status_manage"]
+}]

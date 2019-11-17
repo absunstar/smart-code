@@ -1,0 +1,135 @@
+<div id="customerAddAddressModal" class="modal" fixed>
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                <i class="fa fa-plus"></i>
+                 ##word.customers_add_new_address## </h2>
+        </div>
+
+        <div class="modal-body">
+
+            <legend> ##word.customers_contact_informations## </legend>
+
+                <div class="row">
+                    <div class="col6">
+                        <div class="control">
+                            <label> ##word.customers_post_numner## </label>
+                            <input ng-model="customer.post_numner" type="text">
+                        </div>
+                    </div>
+
+                    <div class="col6">
+                        <div class="control">
+                            <label> ##word.customers_mailbox## </label>
+                            <input ng-model="customer.mailbox" type="text">
+                        </div>
+                    </div>
+                </div>
+            
+
+
+
+            <div class="row">
+                <div class="col3">
+                    <div class="control">
+                        <label> ##word.customers_gov## </label>
+                        <select ng-model="customer.gov">
+                            <option ng-repeat="gov in goves" ng-value="gov">{{gov.name}}</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col3">
+                    <div class="control">
+                        <label> ##word.customers_city## </label>
+                        <select ng-model="customer.city">
+                            <option ng-repeat="city in Cities" ng-value="city">{{city.name}}</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col6">
+                    <div class="control">
+                        <label> ##word.customers_address## </label>
+                        <input ng-model="customer.address" type="text">
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <div class="row">
+                <div class="col3">
+                    <div class="control">
+                        <label> ##word.customers_phone## </label>
+                        <input ng-model="customer.phone" type="text">
+                    </div>
+                </div>
+                <div class="col3">
+                    <div class="control">
+                        <label> ##word.customers_mobile## </label>
+                        <input ng-model="customer.mobile" type="text">
+                    </div>
+                </div>
+                <div class="col3">
+                    <div class="control">
+                        <label> ##word.customers_fax## </label>
+                        <input ng-model="customer.fax" type="text">
+                    </div>
+                </div>
+
+                <div class="col3">
+                    <div class="control">
+                        <label> ##word.customers_website## </label>
+                        <input ng-model="customer.website" type="text">
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col3">
+                    <div class="control">
+                        <label> ##word.customers_contact_name## </label>
+                        <input ng-model="customer.contact_name" type="text">
+                    </div>
+                </div>
+
+                <div class="col3">
+                    <div class="control">
+                        <label> ##word.customers_contact_mobile## </label>
+                        <input ng-model="customer.contact_mobile" type="text">
+                    </div>
+                </div>
+
+                <div class="col3">
+                    <div class="control">
+                        <label> ##word.customers_internal_number## </label>
+                        <input ng-model="customer.internal_number" type="text">
+                    </div>
+                </div>
+
+                <div class="col3">
+                    <div class="control">
+                        <label> ##word.customers_email## </label>
+                        <input ng-model="customer.email" type="text">
+                    </div>
+                </div>
+            </div>
+
+
+
+
+        </div>
+
+        <div class="modal-footer center">
+            <a class="btn bg-blue" onclick="site.hideModal('#customerAddAddressModal')">
+                <i class="fa fa-times" aria-hidden="true"></i> ##word.cancel## </a>
+
+            <a class="btn bg-green" ng-click="add()" ng-hide="busy" id="add_customer_btn">
+                <i class="fa fa-plus" aria-hidden="true"></i> ##word.save## </a>
+        </div>
+    </div>
+</div>
