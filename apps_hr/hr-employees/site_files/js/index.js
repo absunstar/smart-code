@@ -230,6 +230,50 @@ app.controller("employee_list", function ($scope, $http, $timeout) {
 
   };
 
+  $scope.loadMaritalsStatus = function () {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/maritals_status/all",
+      data: {
+        select : {id:1 , name : 1}
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.maritals_status = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.loadMilitariesStatus = function () {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/militaries_status/all",
+      data: {
+        select : {id:1 , name : 1}
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.militaries_status = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
   $scope.getJobsList = function (where) {
     $scope.busy = true;
     $http({
@@ -257,6 +301,26 @@ app.controller("employee_list", function ($scope, $http, $timeout) {
 
     )
 
+  };
+
+  $scope.getDegree = function () {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/employees_degrees/all",
+      data: {}
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.degreeList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
   };
 
   $scope.getIndentfy = function () {
@@ -374,26 +438,6 @@ app.controller("employee_list", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.getDegree = function () {
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/employees_degrees/all",
-      data: {}
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.degreeList = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
-  };
-
   $scope.displaySearchModal = function () {
     $scope.error = '';
     site.showModal('#employeeSearchModal');
@@ -413,5 +457,7 @@ app.controller("employee_list", function ($scope, $http, $timeout) {
   $scope.getJobsList();
   $scope.getDegree();
   $scope.getIndentfy();
+  $scope.loadMaritalsStatus();
+  $scope.loadMilitariesStatus();
   $scope.getAccountingSystem();
 });

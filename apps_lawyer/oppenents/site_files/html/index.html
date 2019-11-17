@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="oppenents_ui || oppenents_manage" data-ng-app="myApp">
+
+<head x-import="head.html">
+
+</head>
+
+<body class="##session.lang##">
+
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+
+    </nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+
+    </nav>
+
+    <div id="main-layout" class="container">
+        <div class="row">
+            <div class="row" ng-controller="oppenents" x-permissions="login">
+                <div x-permissions="oppenents_add || oppenents_manage" x-import="oppenents/add_modal.html"></div>
+                <div x-permissions="oppenents_add || oppenents_manage" x-import="oppenents/send_email.html"></div>
+                <div x-permissions="oppenents_update || oppenents_manage" x-import="oppenents/update_modal.html"></div>
+                <div x-permissions="oppenents_delete || oppenents_manage" x-import="oppenents/delete_modal.html"></div>
+                <div x-permissions="oppenents_view || oppenents_manage" x-import="oppenents/view_modal.html"></div>
+                <div x-permissions="oppenents_search || oppenents_manage" x-import="oppenents/search_all_modal.html"></div>
+
+                <div class="row">
+                        <h1 class="bold text-center"> ##word.oppenents## </h1>
+                    </div>
+
+                <div class="top-actions">
+                    <i-button type="add" x-permissions="oppenents_add || oppenents_manage" label="##word.oppenents_new##" ng-click="displayAddCustomer()"></i-button>
+
+                    <i-button type="search" x-permissions="oppenents_search || oppenents_manage" label="##word.search_all##" onclick="site.showModal('#oppenentSearchModal')"></i-button>
+
+                    <h3 class="bold text-center"> ##word.count## : {{count}} </h3>
+                    <br>
+                </div>
+
+                <table class="table loaded hover center bold" id="t1">
+                    <tr>
+                            <th class="not-print"> ##word.logo## </th>
+                        <th> ##word.oppenents_code## </th>
+                        <th> ##word.oppenents_name_ar## </th>
+<!--                         <th> ##word.oppenents_balance## </th>
+ -->                        <th> ##word.status## </th>
+                        <th class="not-print"> ##word.actions## </th>
+                    </tr>
+                    <tr ng-repeat="c in list | orderBy: '-id'">
+                        <td class="not-print">
+                            <img class="logo" ng-src="{{c.image_url}}">
+                        </td>
+
+                        <td class="blue"> {{c.code}} </td>
+                        <td> {{c.name_ar}} </td>
+
+                       <!--  <td class="green bold">
+
+                            <div class="row margin padding" ng-repeat="openBranch in c.opening_balance">
+
+                                <div class="col6">
+                                    <p> {{openBranch.initial_balance}} </p>
+                                </div>
+
+                                <div class="col6">
+                                    <p ng-show="openBranch.balance_type == 'debit'">
+                                        ##word.oppenents_debit##
+                                    </p>
+
+                                    <p ng-show="openBranch.balance_type == 'credit'">
+                                        ##word.oppenents_credit##
+                                    </p>
+                                </div>
+
+                            </div>
+
+                        </td>
+ -->
+
+                        <td>
+                            <p ng-show="c.active == true" class="green"> ##word.active## </p>
+                            <p ng-show="c.active == false" class="red"> ##word.not_active## </p>
+                        </td>
+
+                        <td class="center not-print">
+
+                            <i-button type="details" x-permissions="oppenents_view || oppenents_manage" label="##word.details##" ng-click="displayDetailsCustomer(c)"></i-button>
+
+                            <i-button type="update" x-permissions="oppenents_edit || oppenents_manage" label="##word.update##" ng-click="displayUpdateCustomer(c)"></i-button>
+
+                            <i-button type="delete" x-permissions="oppenents_delete || oppenents_manage" label="##word.delete##" ng-click="displayDeleteCustomer(c)"></i-button>
+                        </td>
+                    </tr>
+
+                </table>
+                <div class="row">
+                    <i-button x-permissions="oppenents_print || oppenents_manage" type="print" label="##word.print##" onclick="site.print('#t1')"></i-button>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div x-import="scripts.html"></div>
+
+    <script x-permissions="login" x-import="oppenents/index.js"></script>
+</body>
+
+</html>

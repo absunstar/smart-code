@@ -1,0 +1,23 @@
+<div id="oppenentAddModal" class="modal" fixed>
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close"> &times; </span>
+            <h2>
+                ##word.oppenents_add##
+                <i class="fa fa-plus "></i>
+            </h2>
+
+        </div>
+
+        <div class="modal-body">
+            <div x-import="oppenents/content.html"></div>
+        </div>
+
+        <div class="modal-footer center">
+            <h2 class="error"> {{error}} </h2>
+            <i-button type="add" label="##word.add##" ng-click="addCustomer()"> </i-button>
+
+            <i-button type="close" label="##word.close##" onclick="site.hideModal( '#oppenentAddModal')"> </i-button>
+
+        </div>
+    </div>

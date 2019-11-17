@@ -5,9 +5,9 @@
         "ar": "المراقبة"
     },
     {
-        "name": "restaurant_setting",
-        "en": "Restaurant Setting",
-        "ar": "إعدادات المطعم"
+        "name": "lawyer_office_setting",
+        "en": "Lawyer Office Setting",
+        "ar": "إعدادات مكتب المحاماه"
     },
     {
         "name": "security_system",
@@ -348,6 +348,36 @@
         "name": "menu_vendors_groups_tag",
         "en": "Add Vendors Groups",
         "ar": "إضافة مجموعة موردين"
+    },
+    {
+        "name": "menu_office_lawyers",
+        "en": "Office Screen",
+        "ar": "شاشة محاميين المكتب"
+    },
+    {
+        "name": "menu_office_lawyers_tag",
+        "en": "Add Office Lawyers",
+        "ar": "إضافة محاميين مكتب"
+    },
+    {
+        "name": "menu_oppenents_lawyers",
+        "en": "Oppenents Lawyers Screen",
+        "ar": "شاشة محاميين الخصوم"
+    },
+    {
+        "name": "menu_oppenents_lawyers_tag",
+        "en": "Add Oppenents Lawyers",
+        "ar": "إضافة محاميين خصوم"
+    },
+    {
+        "name": "menu_oppenents",
+        "en": "Oppenents Screen",
+        "ar": "شاشة الخصوم"
+    },
+    {
+        "name": "menu_oppenents_tag",
+        "en": "Add Oppenents",
+        "ar": "إضافة خصوم"
     },
     {
         "name": "menu_customers",

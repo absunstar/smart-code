@@ -1,0 +1,23 @@
+<div id="oppenentUpdateModal" class="modal" fixed>
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.oppenents_edit##
+                <i class="fa fa-pencil"></i>
+            </h2>
+
+        </div>
+
+        <div class="modal-body">
+            <div x-import="oppenents/content.html"></div>
+        </div>
+
+        <div class="modal-footer center">
+            <h2 class="error"> {{error}} </h2>
+            <i-button type="save" label="##word.save##" ng-click="updateCustomer(oppenent)"> </i-button>
+
+            <i-button type="close" label="##word.close##" onclick="site.hideModal( '#oppenentUpdateModal')"></i-button>
+        </div>
+    </div>
+</div>

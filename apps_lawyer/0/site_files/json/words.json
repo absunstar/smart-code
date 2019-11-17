@@ -7,27 +7,27 @@
     {
         "name": "brand_tag",
         "en": "Enterprise Resources Planing",
-        "ar": "نظام إدارة المطاعم"
+        "ar": "نظام إدارة مكاتب المحاماه"
     },
     {
         "name": "companies",
-        "en": "Academies",
-        "ar": "المطاعم"
+        "en": "Lawyers Office",
+        "ar": "مكاتب المحاماه"
     },
     {
         "name": "companies_add",
-        "en": "Add company",
-        "ar": "إضافة مطعم"
+        "en": "Add LAwyers Office",
+        "ar": "إضافة مكتب المحاماه"
     },
     {
         "name": "companies_edit",
-        "en": "Edit company",
-        "ar": "تعديل مطعم"
+        "en": "Edit LAwyers Office",
+        "ar": "تعديل مكتب المحاماه"
     },
     {
         "name": "companies_informations",
-        "en": "company Informations",
-        "ar": "بيانات المطعم"
+        "en": "LAwyers Office Informations",
+        "ar": "بيانات مكتب المحاماه"
     },
     {
         "name": "companies_basic_information",
@@ -41,18 +41,18 @@
     },
     {
         "name": "companies_details",
-        "en": "company Details",
-        "ar": "تفاصيل المطعم"
+        "en": "LAwyers Office Details",
+        "ar": "تفاصيل مكتب المحاماه"
     },
     {
         "name": "companies_delete",
-        "en": "Delete company",
-        "ar": "حذف مطعم"
+        "en": "Delete LAwyers Office",
+        "ar": "حذف مكتب المحاماه"
     },
     {
         "name": "companies_code",
-        "en": "company Code",
-        "ar": "كود المطعم"
+        "en": "LAwyers Office Code",
+        "ar": "كود مكتب المحاماه"
     },
     {
         "name": "companies_phone",
@@ -196,13 +196,13 @@
     },
     {
         "name": "companies_name_ar",
-        "en": "company Name Arabic",
-        "ar": "إسم المطعم"
+        "en": "LAwyers Office Name Arabic",
+        "ar": "إسم مكتب المحاماه"
     },
     {
         "name": "companies_name_en",
-        "en": "company Name English",
-        "ar": "إسم المطعم بالانجليزية"
+        "en": "LAwyers Office Name English",
+        "ar": "إسم مكتب المحاماه بالانجليزية"
     },
     {
         "name": "companies_excahange_price",
@@ -216,8 +216,8 @@
     },
     {
         "name": "companies_new",
-        "en": "New company",
-        "ar": "مطعم جديد"
+        "en": "New LAwyers Office",
+        "ar": "مكتب المحاماه جديد"
     },
     {
         "name": "companies_country",
