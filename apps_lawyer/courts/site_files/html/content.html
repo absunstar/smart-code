@@ -9,7 +9,13 @@
                         <i-control help-id="courts_name" v="r ll2" class="col5" label="##word.courts_name##"
                             ng-model="court.name"></i-control>
                         <div class="col4"></div>
-                        <i-checkbox help-id="courts_active" class="col3" label="##word.active##" ng-model="court.active"></i-checkbox>
+                        <i-checkbox help-id="courts_active" class="col3" label="##word.active##"
+                            ng-model="court.active"></i-checkbox>
+                    </div>
+
+                    <div class="row">
+                        <i-textarea ng-model="court.description" class="col6" label="##word.description##">
+                        </i-textarea>
                     </div>
 
                 </div>

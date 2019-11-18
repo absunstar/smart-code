@@ -2,6 +2,6 @@
     "module_name" : "public" ,
     "name": "employee_admin",
     "en": "Employee Admin",
-    "ar": "ادارة الموظفين",
+    "ar": "إدارة الموظفين",
     "permissions": ["employee_manage"]
 }]

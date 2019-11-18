@@ -2,6 +2,6 @@
     "module_name" : "public" ,
     "name": "vendors_admin",
     "en": "Vendors Admin",
-    "ar": "ادارة الموردين",
+    "ar": "إدارة الموردين",
     "permissions": ["vendors_manage"]
 }]

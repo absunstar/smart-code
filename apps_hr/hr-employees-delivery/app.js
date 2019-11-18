@@ -19,7 +19,7 @@ module.exports = function init(site) {
             module_name: "public",
             name: "delivery_employee_admin",
             en: "Delivery Employee Admin",
-            ar: "ادارة موظفين التوصيل",
+            ar: "إدارة موظفين التوصيل",
             permissions: ["delivery_employee_manage"]
           }],
           type: 'delivery',
@@ -143,7 +143,7 @@ module.exports = function init(site) {
           module_name: "public",
           name: "delivery_employee_admin",
           en: "Delivery Employee Admin",
-          ar: "ادارة موظفين التوصيل",
+          ar: "إدارة موظفين التوصيل",
           permissions: ["delivery_employee_manage"]
         }]
 
@@ -228,7 +228,7 @@ module.exports = function init(site) {
         module_name: "public",
         name: "delivery_employee_admin",
         en: "Delivery Employee Admin",
-        ar: "ادارة موظفين التوصيل",
+        ar: "إدارة موظفين التوصيل",
         permissions: ["delivery_employee_manage"]
       }]
     }

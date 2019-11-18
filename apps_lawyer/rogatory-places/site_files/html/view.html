@@ -1,0 +1,40 @@
+<div ng-hide="busy" id="v1">
+    <div class="form">
+        <div id="customersGroupViewModal">
+            <fieldset>
+                <legend> ##word.rogatory_places_informations## </legend>
+                <div class="row">
+                    <div class="col9">
+                        <table class="table bold">
+
+                            <tr>
+                                <td class="title"> ##word.rogatory_places_name## </td>
+                                <td class="center"> {{rogatory_places.name}} </td>
+                            </tr>
+
+                            <tr>
+                                <td class="title">##word.description##</td>
+                                <td class="center">{{rogatory_places.description}}</td>
+                            </tr>
+
+
+                            <tr>
+                                <td class="title"> ##word.active## </td>
+                                <td ng-show="rogatory_places.active == true" class="center green"> ##word.active## </td>
+                                <td ng-show="rogatory_places.active == false" class="center red"> ##word.not_active##
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="col3">
+                        <i-image class="not-print" view ng-model="rogatory_places.image_url"> </i-image>
+                    </div>
+
+
+                </div>
+            </fieldset>
+        </div>
+    </div>
+</div>
+<div x-import="rogatory-places/action_info.html"></div>

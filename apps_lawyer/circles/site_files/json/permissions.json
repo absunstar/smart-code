@@ -1,0 +1,11 @@
+[
+    { "module_name" : "public" , "screen_name" : "circles" , "name":"circles_manage" , "en":"Manage" , "ar":"إدارة"},
+    { "module_name" : "public" , "screen_name" : "circles" , "name":"circles_add" , "en":"Add" , "ar":"إضافة"},
+    { "module_name" : "public" , "screen_name" : "circles" , "name":"circles_update" , "en":"Edit" , "ar":"تعديل"},
+    { "module_name" : "public" , "screen_name" : "circles" , "name":"circles_delete" , "en":"Delete" , "ar":"حذف"},
+    { "module_name" : "public" , "screen_name" : "circles" , "name":"circles_view" , "en":"View" , "ar":"عرض"},
+    { "module_name" : "public" , "screen_name" : "circles" , "name":"circles_search" , "en":"Search" , "ar":"بحث"},
+    { "module_name" : "public" , "screen_name" : "circles" , "name":"circles_export" , "en":"Export" , "ar":"تصدير"},
+    { "module_name" : "public" , "screen_name" : "circles" , "name":"circles_print" , "en":"Print" , "ar":"طباعة"},
+    { "module_name" : "public" , "screen_name" : "circles" , "name":"circles_ui" , "en":"UI" , "ar":"الواجهة الرسومية"}
+]

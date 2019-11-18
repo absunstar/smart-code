@@ -1,0 +1,15 @@
+[
+    {"name" : "request_types_informations" , "en" : "Request Type Informations" , "ar" : "بيانات نوع الطلب"},
+
+    {"name" : "request_types" , "en" : "Request Type" , "ar" : "أنواع الطلبات"},
+    {"name" : "request_types_menus" , "en" : "Request Type Menu" , "ar" : "قائمة نوع الطلب"},
+    {"name" : "request_types_code" , "en" : "Request Type Code" , "ar" : "كود نوع الطلب"},
+    {"name" : "request_types_name" , "en" : "Administrative work type" , "ar" : "نوع العمل الإداري"},
+
+    {"name" : "request_types_new" , "en" : "New Request Type" , "ar" : "نوع الطلب جديدة"},
+    {"name" : "request_types_details" , "en" : "Request Type Details" , "ar" : "تفاصيل نوع الطلب"},
+    {"name" : "request_types_update" , "en" : "Edit Request Type" , "ar" : "تعديل نوع الطلب"},
+    {"name" : "request_types_delete" , "en" : "Delte Request Type" , "ar" : "حذف نوع الطلب"},
+    {"name" : "request_types_add_name" , "en" : "Add Request Type" , "ar" : "إضافة نوع الطلب"}
+    
+]

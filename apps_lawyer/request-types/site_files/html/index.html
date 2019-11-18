@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="request_types_ui || request_types_manage" data-ng-app="myApp">
+
+<head x-import="head.html">
+
+</head>
+
+<body class="##session.lang##">
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+
+    </nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+
+    </nav>
+    <div id="main-layout" class="container">
+        <div class="row">
+            <div class="row" ng-controller="request_types" x-permissions="login">
+                <div x-import="request-types/add_modal.html"></div>
+                <div x-import="request-types/update_modal.html"></div>
+                <div x-import="request-types/delete_modal.html"></div>
+                <div x-import="request-types/view_modal.html"></div>
+                <div x-import="request-types/search_all_modal.html"></div>
+
+                <div class="row">
+                    <h1 class="bold text-center"> ##word.request_types## </h1>
+                </div>
+
+                <div class="top-actions">
+                    <i-button type="add" x-permissions="request_types_add || request_types_manage" label="##word.request_types_new##" ng-click="displayAddRequestTypes()"></i-button>
+                    <i-button type="search" x-permissions="request_types_search || request_types_manage" label="##word.search_all##" onclick="site.showModal('#requestTypesSearchModal')"></i-button>
+
+                    <span ng-show="busy">
+                        <span class="sr-only">Loading...</span>
+                    </span>
+                    <h3 class="bold text-center"> ##word.count## : {{count}} </h3>
+                    <br>
+                </div>
+
+                <table class="table loaded center hover bold" id="t1">
+                    <tr>
+                        <th class="not-print"> ##word.logo## </th>
+                        <th> ##word.request_types_name## </th>
+                        <th> ##word.status## </th>
+
+                        <th class="not-print"> ##word.actions## </th>
+                    </tr>
+                    <tr ng-repeat="c in list | orderBy : '-id'">
+                        <td class="not-print">
+                            <img class="logo" ng-src="{{c.image_url}}">
+                        </td>
+
+                        <td> {{c.name}} </td>
+
+                        <td>
+                            <p ng-show="c.active == true" class="green"> ##word.active## </p>
+                            <p ng-show="c.active == false" class="red"> ##word.not_active## </p>
+                        </td>
+
+                        <td class="center not-print">
+                            <i-button type="details" x-permissions="request_types_view || request_types_manage" label="##word.details##" ng-click="displayDetailsRequestTypes(c)"></i-button>
+
+                            <i-button type="update" x-permissions="request_types_edit || request_types_manage" label="##word.update##" ng-click="displayUpdateRequestTypes(c)"></i-button>
+
+                            <i-button type="delete" x-permissions="request_types_delete || request_types_manage" label="##word.delete##" ng-click="displayDeleteRequestTypes(c)"></i-button>
+                        </td>
+                    </tr>
+                </table>
+
+                <div class="row">
+                    <i-button x-permissions="request_types_print || request_types_manage" type="print" label="##word.print##" onclick="site.print('#t1')"></i-button>
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div x-import="scripts.html"></div>
+
+    <script x-permissions="login" x-import="request-types/index.js"></script>
+</body>
+
+</html>

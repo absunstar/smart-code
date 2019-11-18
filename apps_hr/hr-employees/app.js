@@ -18,7 +18,7 @@ module.exports = function init(site) {
                 module_name: "public",
                 name: "employee_admin",
                 en: "Employee Admin",
-                ar: "ادارة الموظفين",
+                ar: "إدارة الموظفين",
                 permissions: ["employee_manage"]
               }],
               employee_id: doc.id,
@@ -166,7 +166,7 @@ module.exports = function init(site) {
           module_name: "public",
           name: "employee_admin",
           en: "Employee Admin",
-          ar: "ادارة الموظفين",
+          ar: "إدارة الموظفين",
           permissions: ["employee_manage"]
         }]
 
@@ -247,7 +247,7 @@ module.exports = function init(site) {
       module_name: "public",
       name: "employee_admin",
       en: "Employee Admin",
-      ar: "ادارة الموظفين",
+      ar: "إدارة الموظفين",
       permissions: ["employee_manage"]
     }]
 

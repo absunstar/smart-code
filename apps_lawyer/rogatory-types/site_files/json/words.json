@@ -1,0 +1,15 @@
+[
+    {"name" : "rogatory_types_informations" , "en" : "Rogatory Type Informations" , "ar" : "بيانات نوع التوكيل"},
+
+    {"name" : "rogatory_types" , "en" : "Rogatory Type" , "ar" : "أنواع التوكيلات"},
+    {"name" : "rogatory_types_menus" , "en" : "Rogatory Type Menu" , "ar" : "قائمة نوع التوكيل"},
+    {"name" : "rogatory_types_code" , "en" : "Rogatory Type Code" , "ar" : "كود نوع التوكيل"},
+    {"name" : "rogatory_types_name" , "en" : "Rogatory Type Name" , "ar" : "اسم نوع التوكيل"},
+
+    {"name" : "rogatory_types_new" , "en" : "New Rogatory Type" , "ar" : "نوع التوكيل جديدة"},
+    {"name" : "rogatory_types_details" , "en" : "Rogatory Type Details" , "ar" : "تفاصيل نوع التوكيل"},
+    {"name" : "rogatory_types_update" , "en" : "Edit Rogatory Type" , "ar" : "تعديل نوع التوكيل"},
+    {"name" : "rogatory_types_delete" , "en" : "Delte Rogatory Type" , "ar" : "حذف نوع التوكيل"},
+    {"name" : "rogatory_types_add_name" , "en" : "Add Rogatory Type" , "ar" : "إضافة نوع التوكيل"}
+    
+]

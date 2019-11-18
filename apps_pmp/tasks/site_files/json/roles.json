@@ -2,7 +2,7 @@
     "module_name":"public",
     "name": "tasks_admin",
     "en": "tasks Admin",
-    "ar": "ادارة الشركات",
+    "ar": "إدارة الشركات",
     "permissions": [
         "tasks_manage"
     ]

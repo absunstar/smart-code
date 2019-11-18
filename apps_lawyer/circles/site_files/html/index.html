@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="circles_ui || circles_manage" data-ng-app="myApp">
+
+<head x-import="head.html">
+
+</head>
+
+<body class="##session.lang##">
+
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+
+    </nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+
+    </nav>
+    <div id="main-layout" class="container">
+        <div class="row">
+            <div class="row" ng-controller="circles">
+                <div x-permissions="circles_add || circles_manage" x-import="circles/add_modal.html"></div>
+                <div x-permissions="circles_update || circles_manage" x-import="circles/update_modal.html"></div>
+                <div x-permissions="circles_delete || circles_manage" x-import="circles/delete_modal.html"></div>
+                <div x-permissions="circles_view || circles_manage" x-import="circles/view_modal.html"></div>
+                <div x-permissions="circles_search || circles_manage" x-import="circles/search_all_modal.html"></div>
+
+                <div class="row">
+                    <h1 class="bold text-center">##word.circles##</h1>
+                </div>
+
+                <div class="top-actions">
+                    <i-button x-permissions="circles_add || circles_manage" type="add" label="##word.circles_new##" ng-click="displayAddCircle()"></i-button>
+
+                    <i-button x-permissions="circles_search || circles_manage" type="search" label="##word.search_all##"
+                        ng-click="displaySearchModal()"></i-button>
+
+                    <h3 class="bold text-center"> ##word.count## : {{count}}</h3>
+
+                </div>
+
+                <table x-permissions="login" class="table hover bold loaded" id="t1">
+                    <tr>
+                        <th class="not-print">##word.logo##</th>
+                        <th>##word.circles_name##</th>
+
+                        <th>##word.status##</th>
+                        <th class="not-print">##word.actions##</th>
+                    </tr>
+                    <tr ng-repeat="c in list">
+                        <td class="center not-print">
+                            <img class="logo" ng-src="{{c.image_url}}">
+                        </td>
+                        <td class="center title">{{c.name}}</td>
+                        <td class="center">
+                            <p ng-show="c.active ==true" class="green"> ##word.active## </p>
+                            <p ng-show="c.active ==false" class="red"> ##word.not_active## </p>
+                        </td>
+
+                        <td class="center not-print">
+                            <i-button x-permissions="circles_view || circles_manage" type="view" label="##word.details##"
+                                ng-click="displayDetailsCircle(c)"></i-button>
+
+                            <i-button x-permissions="circles_update || circles_manage" type="edit" label="##word.edit##"
+                                ng-click="displayUpdateCircle(c)"></i-button>
+
+                            <i-button x-permissions="circles_delete || circles_manage" type="delete" label="##word.delete##"
+                                ng-click="displayDeleteCircle(c)"></i-button>
+                        </td>
+                    </tr>
+                </table>
+
+                <i-button x-permissions="circles_print || circles_manage" type="print" label="##word.print##" onclick="site.print('#t1')"></i-button>
+
+                
+            </div>
+        </div>
+    </div>
+
+    <div x-import="scripts.html"></div>
+    <script x-import="circles/index.js"></script>
+</body>
+
+</html>
