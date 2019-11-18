@@ -412,6 +412,50 @@ app.controller("customers", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.loadMaritalsStatus = function () {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/maritals_status/all",
+      data: {
+        select : {id:1 , name : 1}
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.maritals_status = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.loadMilitariesStatus = function () {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/militaries_status/all",
+      data: {
+        select : {id:1 , name : 1}
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.militaries_status = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
 
   $scope.getAreaList = function (city) {
     $scope.busy = true;
@@ -490,5 +534,7 @@ app.controller("customers", function ($scope, $http, $timeout) {
   $scope.getIndentfy();
   $scope.getBloodType();
   $scope.getDiseaseList();
+  $scope.loadMaritalsStatus();
+  $scope.loadMilitariesStatus();
   $scope.getMedicineList();
 });

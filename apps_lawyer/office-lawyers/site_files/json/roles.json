@@ -1,0 +1,7 @@
+[{
+    "module_name" : "public" ,
+    "name": "office_lawyers_admin",
+    "en": "Office Admin",
+    "ar": "إدارة محامين المكتب",
+    "permissions": ["office_lawyers_manage"]
+}]

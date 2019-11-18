@@ -1,0 +1,19 @@
+<div id="addMilitary_StateModal" class="modal">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.military_status_add## <i class="fa fa-plus"></i>
+            </h2>
+        </div>
+        <div class="modal-body">
+            <div x-import="militaries_status/content.html"></div>
+        </div>
+        <h2 class="error">{{error}}</h2>
+        <div class="modal-footer center">
+            <i-button type="add" ng-click="add()" label="##word.add##"></i-button>
+            <i-button type="close" onclick="site.hideModal('#addMilitary_StateModal')" label="##word.close##"></i-button>
+        </div>
+    </div>
+</div>

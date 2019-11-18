@@ -1,0 +1,269 @@
+<div ng-hide="busy" class="row">
+
+    <div class="tabs col">
+        <div class="tabs-header full">
+            <a class="tab-link" onclick="site.showTabContent(event, '#personalInformation')">
+                ##word.oppenents_lawyers_personal_information## </a>
+
+            <a class="tab-link" onclick="site.showTabContent(event, '#contactAndAddress')">
+                ##word.oppenents_lawyers_contact_and_addresses## </a>
+
+            <a class="tab-link" onclick="site.showTabContent(event, '#oppenents_lawyersFiles')">
+                ##word.oppenents_lawyers_files## </a>
+
+        </div>
+
+        <div id="oppenentAllInfo" class="tabs-content full bold">
+
+            <div id="personalInformation" class="tab-content">
+                <fieldset id="personalInformationTable">
+                    <legend> ##word.oppenents_lawyers_basic_information## </legend>
+                    <div class="row">
+                        <div class="col9">
+                            <table class="table hover">
+                                <tr>
+                                    <td class="title"> ##word.oppenents_lawyers_code## </td>
+                                    <td class="center blue"> {{oppenents_lawyers.code}} </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title"> ##word.oppenents_lawyers_name_ar## </td>
+                                    <td class="center"> {{oppenents_lawyers.name_ar}} </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title"> ##word.oppenents_lawyers_name_en## </td>
+                                    <td class="center"> {{oppenents_lawyers.name_en}} </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title">##word.national_id##</td>
+                                    <td class="center blue">{{oppenents_lawyers.national_id}}</td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title"> ##word.oppenents_lawyers_indentfy## </td>
+                                    <td class="center"> {{oppenents_lawyers.indentfy.ar}}</td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title">##word.birth_date##</td>
+                                    <td class="center brown">{{oppenents_lawyers.birth_date | date:'dd - MM - yyyy'}}
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title">##word.employees_marital_status##</td>
+                                    <td class="center">{{oppenents_lawyers.marital_status.name}}</td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title">##word.employees_military_status##</td>
+                                    <td class="center">{{oppenents_lawyers.military_status.name}}</td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title"> ##word.status## </td>
+                                    <td ng-show="oppenents_lawyers.active == true" class="center green"> ##word.active## </td>
+                                    <td ng-show="oppenents_lawyers.active == false" class="center red"> ##word.not_active## </td>
+                                </tr>
+
+
+                            </table>
+                        </div>
+
+                        <div class="col3">
+                            <i-image view ng-model="oppenents_lawyers.image_url"> </i-image>
+                        </div>
+
+                        <i-button class="not-print" x-permission="print" type="print left"
+                            onclick="site.print('#oppenentDetailsModal #personalInformationTable')"></i-button>
+                    </div>
+                </fieldset>
+
+              <!--   <fieldset id="oppenents_lawyersIdInforamationTable">
+                    <legend> ##word.oppenents_lawyers_id_inforamation## </legend>
+                    <table class="table hover">
+                        <tr>
+                            <td class="title"> ##word.oppenents_lawyers_nationality## </td>
+                            <td class="center"> {{oppenents_lawyers.nationality.name_ar}} </td>
+                        </tr>
+
+                        <tr>
+                            <td class="title"> ##word.oppenents_lawyers_id_number## </td>
+                            <td class="center blue"> {{oppenents_lawyers.id_number}} </td>
+                        </tr>
+
+                        <tr>
+                            <td class="title"> ##word.oppenents_lawyers_id_source## </td>
+                            <td class="center"> {{oppenents_lawyers.id_source}} </td>
+                        </tr>
+
+                        <tr>
+                            <td class="title"> ##word.oppenents_lawyers_id_release_date## </td>
+                            <td class="brown center"> {{oppenents_lawyers.id_release_date | xdate}} </td>
+                        </tr>
+
+                    </table>
+                    <i-button class="not-print" x-permission="print" type="print left"
+                        onclick="site.print('#oppenentDetailsModal #oppenents_lawyersIdInforamationTable')"></i-button>
+                </fieldset> -->
+            </div>
+
+            <div id="contactAndAddress" class="tab-content">
+
+                <fieldset id="addressInformations">
+                    <legend> ##word.oppenents_lawyers_address_informations## </legend>
+                    <table class="table hover">
+                        <tr>
+                            <td class="title"> ##word.oppenents_lawyers_gov## </td>
+                            <td class="center"> {{oppenents_lawyers.gov.name}} </td>
+                        </tr>
+
+                        <tr>
+                            <td class="title"> ##word.oppenents_lawyers_city## </td>
+                            <td class="center"> {{oppenents_lawyers.city.name}} </td>
+                        </tr>
+
+                        <tr>
+                            <td class="title"> ##word.area## </td>
+                            <td class="center"> {{oppenents_lawyers.area.name}} </td>
+                        </tr>
+
+                        <tr>
+                            <td class="title"> ##word.oppenents_lawyers_address## </td>
+                            <td class="center"> {{oppenents_lawyers.address}} </td>
+                        </tr>
+                    </table>
+                    <i-button class="not-print" x-permission="print" type="print left "
+                        onclick="site.print('#oppenentDetailsModal #addressInformations')"></i-button>
+
+                </fieldset>
+
+                <fieldset id="oppenents_lawyersContactInformations">
+                    <legend> ##word.oppenents_lawyers_contact_informations## </legend>
+                    <table class="table hover">
+                        <tr>
+                            <td class="title"> ##word.oppenents_lawyers_phone## </td>
+                            <td class="center">
+                                <a ng-show="oppenents_lawyers.phone" href="tel:{{oppenents_lawyers.phone}}">
+                                    {{oppenents_lawyers.phone}}
+                                    <i class="fa fa-phone" aria-hidden="true"></i>
+                                </a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="title"> ##word.oppenents_lawyers_internal_number## </td>
+                            <td class="center blue"> {{oppenents_lawyers.internal_number}} </td>
+                        </tr>
+
+                        <tr>
+                            <td class="title"> ##word.oppenents_lawyers_mobile## </td>
+                            <td class="center">
+                                <a ng-show="oppenents_lawyers.mobile" href="tel:{{oppenents_lawyers.mobile}}">
+                                    {{oppenents_lawyers.mobile}}
+                                    <i class="fa fa-mobile" aria-hidden="true"></i>
+                                </a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="title"> ##word.oppenents_lawyers_fax## </td>
+                            <td class="center">
+                                <a ng-show="oppenents_lawyers.fax" href="tel:{{oppenents_lawyers.fax}}">
+                                    {{oppenents_lawyers.fax}}
+                                    <i class="fa fa-fax" aria-hidden="true"></i>
+                                </a>
+                            </td>
+                        </tr>
+
+                    </table>
+
+                    <i-button class="not-print" x-permission="print" type="print left "
+                        onclick="site.print('#oppenentDetailsModal #oppenents_lawyersContactInformations')"></i-button>
+
+                </fieldset>
+
+                <fieldset id="oppenents_lawyersPostInformations">
+                    <legend> ##word.oppenents_lawyers_post_informations## </legend>
+                    <table class="table hover">
+                        <tr>
+                            <td class="title"> ##word.oppenents_lawyers_mailbox## </td>
+                            <td class="center"> {{oppenents_lawyers.mailbox}} </td>
+                        </tr>
+
+                        <tr>
+                            <td class="title"> ##word.oppenents_lawyers_post_number## </td>
+                            <td class="center blue"> {{oppenents_lawyers.post_number}} </td>
+                        </tr>
+
+                    </table>
+                    <i-button class="not-print" x-permission="print" type="print left "
+                        onclick="site.print('#oppenentDetailsModal #oppenents_lawyersPostInformations')"></i-button>
+
+                </fieldset>
+
+                <fieldset id="oppenents_lawyersWebAndSocialAccounts">
+                    <legend> ##word.oppenents_lawyers_Web_and_social_accounts## </legend>
+                    <table class="table hover">
+                        <tr>
+                            <td class="title"> ##word.oppenents_lawyers_website## </td>
+                            <td class="center">
+                                <a ng-show="oppenents_lawyers.website" href="tel:{{oppenents_lawyers.website}}">
+                                    {{oppenents_lawyers.website}}
+                                    <i class="fa fa-globe" aria-hidden="true"></i>
+                                </a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="title"> ##word.oppenents_lawyers_social_facebook_account## </td>
+                            <td class="center">
+                                <a ng-show="oppenents_lawyers.social_facebook" href="tel:{{oppenents_lawyers.social_facebook}}">
+                                    {{oppenents_lawyers.social_facebook}}
+                                    <i class="fa fa-facebook" aria-hidden="true"></i>
+                                </a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="title"> ##word.oppenents_lawyers_social_twitter_account## </td>
+                            <td class="center">
+                                <a ng-show="oppenents_lawyers.social_twitter" href="tel:{{oppenents_lawyers.social_twitter}}">
+                                    {{oppenents_lawyers.social_twitter}}
+                                    <i class="blue fa fa-twitter" aria-hidden="true"></i>
+                                </a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="title"> ##word.oppenents_lawyers_social_google_account## </td>
+                            <td class="center">
+                                <a ng-show="oppenents_lawyers.social_google" href="tel:{{oppenents_lawyers.social_google}}">
+                                    {{oppenents_lawyers.social_google}}
+                                    <i class="red fa fa-google-plus" aria-hidden="true"></i>
+                                </a>
+                            </td>
+                        </tr>
+
+                    </table>
+
+                    <i-button class="not-print" x-permission="print" type="print left "
+                        onclick="site.print('#oppenentDetailsModal #oppenents_lawyersWebAndSocialAccounts')"></i-button>
+
+                </fieldset>
+
+            </div>
+
+            <div id="oppenents_lawyersFiles" class="tab-content">
+                <i-files view ng-model="oppenents_lawyers.files"></i-files>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</div>

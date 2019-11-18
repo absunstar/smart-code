@@ -11,22 +11,22 @@
     },
     {
         "name": "companies",
-        "en": "Academies",
+        "en": "ٌRestaurant",
         "ar": "المطاعم"
     },
     {
         "name": "companies_add",
-        "en": "Add company",
+        "en": "Add Restaurant",
         "ar": "إضافة مطعم"
     },
     {
         "name": "companies_edit",
-        "en": "Edit company",
+        "en": "Edit Restaurant",
         "ar": "تعديل مطعم"
     },
     {
         "name": "companies_informations",
-        "en": "company Informations",
+        "en": "Restaurant Informations",
         "ar": "بيانات المطعم"
     },
     {
@@ -41,17 +41,17 @@
     },
     {
         "name": "companies_details",
-        "en": "company Details",
+        "en": "Restaurant Details",
         "ar": "تفاصيل المطعم"
     },
     {
         "name": "companies_delete",
-        "en": "Delete company",
+        "en": "Delete Restaurant",
         "ar": "حذف مطعم"
     },
     {
         "name": "companies_code",
-        "en": "company Code",
+        "en": "Restaurant Code",
         "ar": "كود المطعم"
     },
     {
@@ -196,12 +196,12 @@
     },
     {
         "name": "companies_name_ar",
-        "en": "company Name Arabic",
+        "en": "Restaurant Name Arabic",
         "ar": "إسم المطعم"
     },
     {
         "name": "companies_name_en",
-        "en": "company Name English",
+        "en": "Restaurant Name English",
         "ar": "إسم المطعم بالانجليزية"
     },
     {
@@ -216,7 +216,7 @@
     },
     {
         "name": "companies_new",
-        "en": "New company",
+        "en": "New Restaurant",
         "ar": "مطعم جديد"
     },
     {

@@ -1,0 +1,140 @@
+[
+    {"name" : "office_lawyers" , "en" : "Office Lawyers" , "ar" : "محامين المكتب"},
+    {"name" : "office_lawyers_new" , "en" : "New Oppenent Lawyer" , "ar" : "محامي المكتب جديد"},   
+    {"name" : "office_lawyers_add" , "en" : "Add Oppenent Lawyer" , "ar" : "إضافة محامي المكتب"}, 
+    {"name" : "office_lawyers_edit" , "en" : "Oppenent Lawyer Edit" , "ar" : "تعديل بيانات محامي المكتب"},
+    {"name" : "office_lawyers_details" , "en" : "Oppenent Lawyer Details" , "ar" : "تفاصيل محامي المكتب"}, 
+    {"name" : "office_lawyers_delete" , "en" : "Delete Oppenent Lawyer" , "ar" : "حذف محامي المكتب"},
+    {"name" : "office_lawyers_indentfy" , "en" : "Oppenent Lawyer indentfy" , "ar" : "نوع محامي المكتب"},
+
+    {"name" : "office_lawyers_personal_information" , "en" : "Personal Information" , "ar" : "البيانات الشخصية"},
+    {"name" : "office_lawyers_basic_information" , "en" : "Basic Information" , "ar" : "البيانات الاساسية"},
+    {"name" : "office_lawyers_code" , "en" : "Oppenent Lawyer Code" , "ar" : "كود محامي المكتب"},
+    {"name" : "office_lawyers_name_ar" , "en" : "Oppenent Lawyer Name Arabic" , "ar" : "إسم محامي المكتب بالعربي"},
+    {"name" : "office_lawyers_name_en" , "en" : "Oppenent Lawyer Name English" , "ar" : "إسم محامي المكتب بالانجليزية"},
+    {"name" : "oppenent_name" , "en" : "Oppenent Lawyer Name" , "ar" : "إسم محامي المكتب"},
+    {"name" : "oppenent" , "en" : "Oppenent Lawyer " , "ar" : " محامي المكتب"},
+
+    {"name" : "office_lawyers_id_inforamation" , "en" : "Personal Information" , "ar" : "بيانات الهوية"},
+    {"name" : "office_lawyers_nationality" , "en" : "Nationality" , "ar" : "الجنسية"},
+    {"name" : "office_lawyers_id_number" , "en" : "Id Number" , "ar" : "رقم الهوية"},
+    {"name" : "office_lawyers_id_source" , "en" : "Id Source" , "ar" : "مصدر الهوية"},
+
+    {"name" : "office_lawyers_id_release_date" , "en" : "Id Release Date" , "ar" : "تاريخ اصدار الهوية"},
+    {"name" : "office_lawyers_id_release_date_gregorian" , "en" : "Id Release Gregorian Date" , "ar" : "تاريخ اصدار الهوية ميلادي"},
+    {"name" : "office_lawyers_id_release_date_hijri" , "en" : "Id Release Hijri Date" , "ar" : "تاريخ اصدار الهوية هجري"},
+
+    {"name" : "office_lawyers_official_documents" , "en" : "Official Documents" , "ar" : "الوثائق الرسمية"},
+    {"name" : "office_lawyers_tax_informations" , "en" : "Tax Information" , "ar" : "البيانات الضريبية"},
+    {"name" : "office_lawyers_tax_regstration_number" , "en" : "Tax Registration Number" , "ar" : "رقم التسجيل الضريبي"},
+    {"name" : "office_lawyers_tax_card_number" , "en" : "Tax Card Number" , "ar" : "رقم البطاقة الضريبية"},
+    {"name" : "office_lawyers_tax_office_code" , "en" : "Tax Office Code" , "ar" : "كود المأمورية"},
+    {"name" : "office_lawyers_tax_office_name" , "en" : "Tax Office Name" , "ar" : " إسم المأمورية"},
+    {"name" : "office_lawyers_activity_address" , "en" : "Activity Address" , "ar" : "عنوان النشاط"},
+    {"name" : "office_lawyers_file_number" , "en" : "File Number" , "ar" : "رقم الملف"},
+    {"name" : "office_lawyers_activity_name" , "en" : "Activity Name" , "ar" : "إسم النشاط"},
+    {"name" : "office_lawyers_financier_name" , "en" : "Financier Name" , "ar" : "إسم الممول"},
+
+    {"name" : "office_lawyers_commercial_register_information" , "en" : "Commercial Register Information" , "ar" : "بيانات السجل التجاري"},
+    {"name" : "office_lawyers_commercial_name" , "en" : "Commercial Name" , "ar" : "الإسم التجاري"},
+    {"name" : "office_lawyers_business_attribute" , "en" : "Busines Attribute" , "ar" : "السمة التجارية"},
+    {"name" : "office_lawyers_used_name_in_trade" , "en" : "Used Name In trade" , "ar" : "الإسم المستخدم في التجارة"},
+    {"name" : "office_lawyers_trader_name" , "en" : "Trader Name" , "ar" : "إسم التاجر"},
+    {"name" : "office_lawyers_commerical_nationality" , "en" : "Nathionality Name" , "ar" : "إسم الجنسية"},
+    {"name" : "office_lawyers_financial_system" , "en" : "Financial System" , "ar" : "النظام المالي"},
+    {"name" : "office_lawyers_commercial_validity" , "en" : "Commercial Validity" , "ar" : "الاهلية التجارية"},
+    {"name" : "office_lawyers_trade_type" , "en" : "Trade Type" , "ar" : "نوع التجارة"},
+    {"name" : "office_lawyers_commercial_start_date_gregorian" , "en" : "Commercial Start Gregorian Date" , "ar" : "تاريج بداية النشاط ميلادي"},
+    {"name" : "office_lawyers_commercial_start_date_hijri" , "en" : "Commercial Start Hijri Date" , "ar" : "تاريج بداية النشاط هجري"},
+
+    {"name" : "office_lawyers_commercial_start_date" , "en" : "Commercial Start Date" , "ar" : "تاريج بداية النشاط"},
+    
+    {"name" : "office_lawyers_opening_balance" , "en" : "Opening Balance" , "ar" : "الرصيد الافتتاحي"},
+    {"name" : "office_lawyers_opening_balance_informations" , "en" : "Opening Balance Informations" , "ar" : "بيانات الرصيد الافتتاحي"},
+    {"name" : "office_lawyers_initial_balance" , "en" : "Initial Balance " , "ar" : "الرصيد الافتتاحي"},
+    {"name" : "office_lawyers_currency_name" , "en" : "Currency Name" , "ar" : "إسم العملة"},    
+    {"name" : "office_lawyers_balance_type" , "en" : "Balance Type" , "ar" : "نوع الرصيد"},
+    {"name" : "office_lawyers_debit" , "en" : "Debit" , "ar" : "مدين"},
+    {"name" : "office_lawyers_credit" , "en" : "Credit" , "ar" : "دائن"},
+
+    {"name" : "office_lawyers_due_date" , "en" : "Date" , "ar" : "التاريخ"},
+    {"name" : "office_lawyers_due_date_gregorian" , "en" : "Due Gregorian Date" , "ar" : "تاريج الاستحقاق ميلادي"},
+    {"name" : "office_lawyers_due_date_hijri" , "en" : "Due Hijri Date" , "ar" : "تاريج الاستحقاق هجري"},
+
+    {"name" : "office_lawyers_reference_number" , "en" : "Reference Number" , "ar" : "الرقم المرجعي"},
+    {"name" : "office_lawyers_notes_arabic" , "en" : "Notes Arabic" , "ar" : "ملاحظات بالعربي"},
+    {"name" : "office_lawyers_notes_english" , "en" : "Notes English" , "ar" : "ملاحظات بالانجليزية"},
+
+
+    {"name" : "office_lawyers_contact_and_addresses" , "en" : "Contact and Addresses" , "ar" : "الاتصال والعناوين"},
+    {"name" : "office_lawyers_address_informations" , "en" : "Address Informaion" , "ar" : "بيانات العناوين"},
+    {"name" : "office_lawyers_gov" , "en" : "Gov" , "ar" : "المحافظة"},
+    {"name" : "office_lawyers_city" , "en" : "City" , "ar" : "المدينة"},
+    {"name" : "office_lawyers_address" , "en" : "Address" , "ar" : "العنوان"},
+
+    {"name" : "office_lawyers_contact_informations" , "en" : "Contact Informaion" , "ar" : "بيانات الاتصال"},
+    {"name" : "office_lawyers_phone" , "en" : "Phone" , "ar" : "التليفون"},
+    {"name" : "office_lawyers_internal_number" , "en" : "Internal Number" , "ar" : "الرقم الداخلي"},
+    {"name" : "office_lawyers_mobile" , "en" : "Mobile" , "ar" : "المحمول "},
+    {"name" : "office_lawyers_fax" , "en" : "Fax" , "ar" : "الفاكس"},
+
+    {"name" : "office_lawyers_post_informations" , "en" : "Post Informaion" , "ar" : "بيانات البريد"},
+    {"name" : "office_lawyers_mailbox" , "en" : "Mail Box" , "ar" : "صندوق البريد"},
+    {"name" : "office_lawyers_post_number" , "en" : "Post Number" , "ar" : "الرقم البريدي"},
+
+    {"name" : "office_lawyers_Web_and_social_accounts" , "en" : "Web And Social Accounts" , "ar" : "المواقع والحسابات الاجتماعية"},   
+    {"name" : "office_lawyers_website" , "en" : "Website" , "ar" : "الموقع الالكتروني"},
+    {"name" : "office_lawyers_social_facebook_account" , "en" : "FaceBook Account" , "ar" : "حساب الفيس بوك"},
+    {"name" : "office_lawyers_social_twitter_account" , "en" : "Twitter Account" , "ar" : "حساب تويتر"},
+    {"name" : "office_lawyers_social_google_account" , "en" : "Google Account" , "ar" : "حساب جوجل"},
+
+    {"name" : "office_lawyers_branches" , "en" : "Branches" , "ar" : "فروع محامي المكتب"},
+    {"name" : "office_lawyers_branches_informations" , "en" : "Branches Informations" , "ar" : "بيانات الفروع"},   
+    {"name" : "office_lawyers_branch_informations" , "en" : "Branch Informations" , "ar" : "بيانات الفرع"},
+    {"name" : "office_lawyers_branch_code" , "en" : "Branch Code" , "ar" : "كود الفرع"},
+    {"name" : "office_lawyers_branch_name" , "en" : "Branch Name" , "ar" : "إسم الفرع"},
+    {"name" : "office_lawyers_branch_notes" , "en" : "Branch Notes" , "ar" : "ملاحظات الفرع"},
+    {"name" : "office_lawyers_branch_gov" , "en" : "Branch Gov" , "ar" : "المحافظة"},
+    {"name" : "office_lawyers_branch_city" , "en" : "Branch  City" , "ar" : "المدينة"},
+    {"name" : "office_lawyers_branch_address" , "en" : "Branch  Address" , "ar" : "العنوان"},
+    {"name" : "office_lawyers_branch_phone" , "en" : "Branch Phone" , "ar" : "التليفون"},
+    {"name" : "office_lawyers_branch_mobile" , "en" : "Branch  Mobile" , "ar" : "المحمول "},
+    {"name" : "office_lawyers_branch_fax" , "en" : "Branch Fax" , "ar" : "الفاكس"},
+    {"name" : "office_lawyers_branch_email" , "en" : "Branch Email" , "ar" : "البريد الالكتروني"},
+
+    {"name" : "office_lawyers_charge_contact_informations" , "en" : "Charge Informaion" , "ar" : "بيانات مسئول"},
+    {"name" : "office_lawyers_charge_name" , "en" : "Charge Name" , "ar" : "الإسم"},
+    {"name" : "office_lawyers_charge_job" , "en" : "Charge Job" , "ar" : "الوظيفة"},   
+    {"name" : "office_lawyers_charge_phone" , "en" : "Charge Phone" , "ar" : "التليفون"},
+    {"name" : "office_lawyers_charge_internal_number" , "en" : "Charge Internal Number" , "ar" : "الرقم الداخلي"},
+    {"name" : "office_lawyers_charge_mobile" , "en" : "Charge Mobile" , "ar" : "المحمول "},
+    {"name" : "office_lawyers_charge_email" , "en" : "Charge Email" , "ar" : "البريد الالكتروني"},
+    {"name" : "office_lawyers_files" , "en" : "Files" , "ar" : "الملفات"},
+
+
+    {"name" : "office_lawyers_dealing" , "en" : "Office Dealing" , "ar" : "تعاملات محامي المكتب"},
+
+    {"name" : "office_lawyers_dealing_companies_branches" , "en" : "Dealing Companies And Branches" , "ar" : "الشركات والفروع"},
+    {"name" : "office_lawyers_dealing_companies_branches_informatons" , "en" : "Companies And Branches Informations" , "ar" : "بيانات الشركات والفروع"},
+    {"name" : "office_lawyers_company_name" , "en" : "Company Name" , "ar" : "إسم الشركة"},
+    {"name" : "office_lawyers_branch_name" , "en" : "Branch Name" , "ar" : "إسم الفرع"},
+
+
+          
+ 
+    {"name" : "office_lawyers_send_email" , "en" : "Send Email" , "ar" : "ارسال بريد الكتروني"},
+    {"name" : "office_lawyers_send_email_to_oppenent" , "en" : "Send Email To Oppenent" , "ar" : "ارسال بريد الكتروني لالمكتب"},
+    {"name" : "office_lawyers_create_email" , "en" : "Create Email" , "ar" : "انشاء ايميل"},
+    {"name" : "office_lawyers_mail_from" , "en" : "From" , "ar" : "من"},
+    {"name" : "office_lawyers_mail_to" , "en" : "To" , "ar" : "الي"},
+    {"name" : "office_lawyers_mail_cc" , "en" : "Cc" , "ar" : "نسخة كربونية"},
+    {"name" : "office_lawyers_mail_bcc" , "en" : "Bcc" , "ar" : "نسخة كربونية مخفية"},
+    {"name" : "office_lawyers_mail_subject" , "en" : "Subject" , "ar" : "الموضوع"},
+    {"name" : "office_lawyers_mail_send" , "en" : "Send" , "ar" : "ارسال"},
+    {"name" : "office_lawyers_mail_text" , "en" : "Email Text" , "ar" : "نص الرسالة"},
+   
+    {"name" : "office_lawyers_send" , "en" : "Send" , "ar" : "ارسال"}
+
+    
+    
+]

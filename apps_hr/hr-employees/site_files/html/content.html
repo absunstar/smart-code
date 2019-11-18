@@ -44,8 +44,21 @@
 
                     <fieldset>
                         <legend>##word.employee_info##</legend>
+                        <div class="row">
+                            <i-date ng-model="employee_list.birth_date" class="col3" label="##word.birth_date##">
+                            </i-date>
+                            <i-date ng-model="employee_list.employment_date" class="col3"
+                                label="##word.employment_date##"></i-date>
+                        </div>
 
                         <div class="row">
+                            <i-list ng-search="employees_marital_status" class="col3" items="maritals_status"
+                                ng-model="employee_list.marital_status" label="##word.employees_marital_status##">
+                            </i-list>
+                            <i-list ng-search="employees_military_status" class="col3" items="militaries_status"
+                                ng-model="employee_list.military_status" label="##word.employees_military_status##">
+                            </i-list>
+
                             <i-list help-id="" class="col3" items="jobsList" ng-search="_search.$employee.$jobs"
                                 label="##word.job##" ng-model="employee_list.job">
                             </i-list>

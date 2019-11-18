@@ -70,12 +70,24 @@
                                         <td class="title">##word.employee_indentfy##</td>
                                         <td class="center">{{employee_list.indentfy.ar}}</td>
                                     </tr>
-
                                     <tr>
                                         <td class="title">##word.birth_date##</td>
-                                        <td class="center brown">{{employee_list.birth_date | date : 'dd
-                                            - MM -
-                                            yyyy'}}</td>
+                                        <td class="center brown">{{employee_list.birth_date | date : 'dd / MM / yyyy'}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="title">##word.employment_date##</td>
+                                        <td class="center brown">
+                                            {{employee_list.employment_date | date : 'dd / MM / yyyy'}}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="title">##word.employees_marital_status##</td>
+                                        <td class="center">{{employee_list.marital_status.name}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="title">##word.employees_military_status##</td>
+                                        <td class="center">{{employee_list.military_status.name}}</td>
                                     </tr>
                                     <tr>
                                         <td class="title">##word.job##</td>

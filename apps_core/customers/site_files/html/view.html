@@ -49,6 +49,32 @@
                                     <td class="center"> {{customer.name_en}} </td>
                                 </tr>
 
+                                <tr x-feature="lawyer">
+                                    <td class="title">##word.national_id##</td>
+                                    <td class="center blue">{{customer.national_id}}</td>
+                                </tr>
+
+                                <tr x-feature="lawyer">
+                                    <td class="title"> ##word.customers_indentfy## </td>
+                                    <td class="center"> {{customer.indentfy.ar}}</td>
+                                </tr>
+
+                                <tr x-feature="lawyer">
+                                    <td class="title">##word.birth_date##</td>
+                                    <td class="center brown">{{customer.birth_date | date:'dd - MM - yyyy'}}
+                                    </td>
+                                </tr>
+
+                                <tr x-feature="lawyer">
+                                    <td class="title">##word.employees_marital_status##</td>
+                                    <td class="center">{{customer.marital_status.name}}</td>
+                                </tr>
+
+                                <tr x-feature="lawyer">
+                                    <td class="title">##word.employees_military_status##</td>
+                                    <td class="center">{{customer.military_status.name}}</td>
+                                </tr>
+
                                 <tr x-feature="gym">
                                     <td class="title"> ##word.finger_code## </td>
                                     <td class="center"> {{customer.finger_code}} </td>
@@ -56,7 +82,19 @@
 
                                 <tr x-feature="gym">
                                     <td class="title"> ##word.customers_indentfy## </td>
-                                    <td class="center"> {{customer.indentfy}} <b ng-show="customer.child"> ' - ' ##word.child##</b> </td>
+                                    <td class="center"> {{customer.indentfy.ar}}</td>
+                                </tr>
+
+                                <tr x-feature="gym">
+                                    <td class="title"> ##word.child## </td>
+                                    <td ng-show="customer.child" class="center green"> ##word.yes## </td>
+                                    <td ng-show="!customer.child" class="center red"> ##word.no## </td>
+                                </tr>
+
+                                <tr x-feature="gym">
+                                    <td class="title">##word.birth_date##</td>
+                                    <td class="center brown">{{customer.birth_date | date : 'dd / MM / yyyy'}}
+                                    </td>
                                 </tr>
 
                                 <tr>

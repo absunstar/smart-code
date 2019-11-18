@@ -1,0 +1,13 @@
+[
+    {"name" : "military_status_add" , "en" : "Add MilitaryState" , "ar" : "اضافة موقف تجنيد"},
+    {"name" : "military_status_new" , "en" : "New MilitaryState" , "ar" : "موقف تجنيد جديد"},
+    {"name" : "military_status_details" , "en" : "MilitaryState Details" , "ar" : "تفاصيل موقف تجنيد"},
+    {"name" : "military_status_edit" , "en" : "Edit MilitaryState" , "ar" : "نعديل موقف تجنيد"},
+    {"name" : "military_status_delete" , "en" : "Delete MilitaryState" , "ar" : "حذف موقف تجنيد"},
+    {"name" : "military_status_logo" , "en" : "MilitaryState logo" , "ar" : "صورة موقف التجنيد"},
+    {"name" : "military_status_name" , "en" : "MilitaryState Name" , "ar" : "موقف التجنيد"},
+
+    
+    {"name" : "military_status_img" , "en" : "Military Status Image" , "ar" : "شعار موقف النجنيد"}
+
+]

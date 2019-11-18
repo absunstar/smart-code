@@ -25,6 +25,16 @@
         "ar": "البريد الإلكترونى"
     },
     {
+        "name": "useradd_user_info",
+        "en": "User Created",
+        "ar": "معلومات الإضافة"
+    },
+    {
+        "name": "useredit_user_info",
+        "en": "User Updated",
+        "ar": "معلومات التعديل"
+    },
+    {
         "name": "phone",
         "en": "Phone",
         "ar": "رقم التليفون"
@@ -209,7 +219,6 @@
         "en": "Add Permission",
         "ar": "أضف الى الصلاحيات"
     },
-   
     {
         "name": "stores",
         "en": "Stores",
@@ -290,7 +299,6 @@
         "en": "To Date",
         "ar": "الى تاريخ"
     },
-   
     {
         "name": "le",
         "en": "LE",

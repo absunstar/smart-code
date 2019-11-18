@@ -1,0 +1,25 @@
+<div id="updateMilitary_StateModal" class="modal">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.military_status_edit## <i class="fa fa-pencil"></i>
+            </h2>
+        </div>
+        <div class="modal-body">
+
+            <div x-import="militaries_status/content.html"></div>
+            <div x-import="militaries_status/action_info.html"></div>
+
+        </div>
+        <h2 class="error">{{error}}</h2>
+        <div class="modal-footer center">
+            <i-button type="save" ng-click="update(military_state)" label="##word.save##"></i-button>
+            <i-button type="close" onclick="site.hideModal('#updateMilitary_StateModal')" label="##word.close##"></i-button>
+
+        </div>
+    </div>
+
+
+</div>

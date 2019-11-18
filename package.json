@@ -8,6 +8,7 @@
     "sales": "node sales.js",
     "restaurant": "node restaurant.js",
     "gym": "node gym.js",
+    "lawyer": "node lawyer.js",
     "academy": "node academy.js",
     "pmp": "node pmp.js"
   },

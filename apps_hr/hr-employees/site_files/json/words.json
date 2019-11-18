@@ -1,4 +1,5 @@
-[{
+[
+    {
         "name": "employee",
         "en": "Employees",
         "ar": "الموظفين"
@@ -12,6 +13,21 @@
         "name": "basic_information",
         "en": "Basic Information",
         "ar": "البيانات الأساسية"
+    },
+    {
+        "name": "employees_marital_status",
+        "en": "Marital Status",
+        "ar": "الحالة الاجتماعية"
+    },
+    {
+        "name": "employees_military_status",
+        "en": "Military Status",
+        "ar": "موقف التجنيد"
+    },
+    {
+        "name": "employment_date",
+        "en": "Employment Date",
+        "ar": "تاريخ التوظيف"
     },
     {
         "name": "delivery_difference",
@@ -113,5 +129,4 @@
         "en": "Employee Informations",
         "ar": "معلومات الموظف"
     }
-
 ]

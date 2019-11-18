@@ -1,0 +1,24 @@
+<div id="oppenentDeleteModal" class="modal">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.oppenents_delete##
+                <i class="fa fa-trash"></i>
+            </h2>
+        </div>
+
+        <div class="modal-body">
+            <div x-import="oppenents/view.html"></div>
+
+        </div>
+
+        <h2 class="error"> {{error}} </h2>
+
+        <div class="modal-footer center">
+            <i-button type="delete" label="##word.delete##" ng-click="deleteCustomer(oppenent)"></i-button>
+            
+            <i-button type="close" label="##word.close##" onclick="site.hideModal('#oppenentDeleteModal')"></i-button>
+        </div>
+    </div>

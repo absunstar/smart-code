@@ -1,0 +1,239 @@
+[
+    {"name" : "oppenents" , "en" : "Oppenents" , "ar" : "الخصوم"},
+    {"name" : "oppenents_new" , "en" : "New Oppenent" , "ar" : "خصم جديد"},   
+    {"name" : "oppenents_add" , "en" : "Add Oppenent" , "ar" : "إضافة خصم"}, 
+    {"name" : "oppenents_edit" , "en" : "Oppenent Edit" , "ar" : "تعديل بيانات خصم"},
+    {"name" : "oppenents_details" , "en" : "Oppenent Details" , "ar" : "تفاصيل خصم"}, 
+    {"name" : "oppenents_delete" , "en" : "Delete Oppenent" , "ar" : "حذف خصم"},
+    {"name" : "oppenents_indentfy" , "en" : "Oppenent indentfy" , "ar" : "نوع الخصم"},
+
+    {"name" : "oppenents_personal_information" , "en" : "Personal Information" , "ar" : "البيانات الشخصية"},
+    {"name" : "oppenents_basic_information" , "en" : "Basic Information" , "ar" : "البيانات الاساسية"},
+    {"name" : "oppenents_code" , "en" : "Oppenent Code" , "ar" : "كود الخصم"},
+    {"name" : "oppenents_name_ar" , "en" : "Oppenent Name Arabic" , "ar" : "إسم الخصم بالعربي"},
+    {"name" : "oppenents_name_en" , "en" : "Oppenent Name English" , "ar" : "إسم الخصم بالانجليزية"},
+    {"name" : "oppenent_name" , "en" : "Oppenent Name" , "ar" : "إسم الخصم"},
+    {"name" : "oppenent" , "en" : "Oppenent " , "ar" : " الخصم"},
+    {
+        "name": "beginning_dosage",
+        "en": "Beginning Of Dosage",
+        "ar": "بداية الجرعة"
+    },
+    {
+        "name": "count_dosage",
+        "en": "Count Of Dosage",
+        "ar": " عدد الجرعات اليومية"
+    },
+    {
+        "name": "count_hours_dosage",
+        "en": "Count Hours Of Dosage",
+        "ar": " عدد الساعات بين الجرعات "
+    },
+    {
+        "name": "medical_condition",
+        "en": "Medical Condition",
+        "ar": "الحالة الطبية"
+    },
+    {
+        "name": "weight",
+        "en": "Weight",
+        "ar": "الوزن"
+    },
+    {
+        "name": "tall",
+        "en": "Tall",
+        "ar": "الطول"
+    },
+    {
+        "name": "disease_name",
+        "en": "Disease Name",
+        "ar": "إسم المرض"
+    },
+    {
+        "name": "blood_type",
+        "en": "Blood Type",
+        "ar": "فصيلة الدم"
+    },
+    {
+        "name": "family_info",
+        "en": "Family Informations",
+        "ar": "معلومات العائلة"
+    },
+    {
+        "name": "medical_info",
+        "en": "Medical Information",
+        "ar": "معلومــــــات طبيـــــة"
+    },
+    {
+        "name": "allergic_food",
+        "en": "Allergic Food",
+        "ar": "حساسية الأطعمة"
+    },
+    {
+        "name": "allergic_drink",
+        "en": "Allergic Drink",
+        "ar": "حساسية المشروبات"
+    },
+    {
+        "name": "allergic",
+        "en": "Allergic",
+        "ar": "الحســــــــاسيـــــة "
+    },
+    {
+        "name": "medicines",
+        "en": "Medicines",
+        "ar": "الأدويـــــــة "
+    },
+    {
+        "name": "diseases",
+        "en": "Diseases",
+        "ar": "الأمـــــراض"
+    },
+    {
+        "name": "medicine_notes",
+        "en": "Medicine Notes",
+        "ar": "ملاحظات طبية"
+    },
+    {
+        "name": "medicine",
+        "en": "Medicine Name",
+        "ar": "إسم الدواء "
+    },
+
+    {"name" : "oppenents_groups" , "en" : "Oppenent Group" , "ar" : "مجموعة العملاء"},
+
+    {"name" : "oppenents_id_inforamation" , "en" : "Personal Information" , "ar" : "بيانات الهوية"},
+    {"name" : "oppenents_nationality" , "en" : "Nationality" , "ar" : "الجنسية"},
+    {"name" : "oppenents_id_number" , "en" : "Id Number" , "ar" : "رقم الهوية"},
+    {"name" : "oppenents_id_source" , "en" : "Id Source" , "ar" : "مصدر الهوية"},
+
+    {"name" : "oppenents_id_release_date" , "en" : "Id Release Date" , "ar" : "تاريخ اصدار الهوية"},
+    {"name" : "oppenents_id_release_date_gregorian" , "en" : "Id Release Gregorian Date" , "ar" : "تاريخ اصدار الهوية ميلادي"},
+    {"name" : "oppenents_id_release_date_hijri" , "en" : "Id Release Hijri Date" , "ar" : "تاريخ اصدار الهوية هجري"},
+
+    {"name" : "oppenents_official_documents" , "en" : "Official Documents" , "ar" : "الوثائق الرسمية"},
+    {"name" : "oppenents_tax_informations" , "en" : "Tax Information" , "ar" : "البيانات الضريبية"},
+    {"name" : "oppenents_tax_regstration_number" , "en" : "Tax Registration Number" , "ar" : "رقم التسجيل الضريبي"},
+    {"name" : "oppenents_tax_card_number" , "en" : "Tax Card Number" , "ar" : "رقم البطاقة الضريبية"},
+    {"name" : "oppenents_tax_office_code" , "en" : "Tax Office Code" , "ar" : "كود المأمورية"},
+    {"name" : "oppenents_tax_office_name" , "en" : "Tax Office Name" , "ar" : " إسم المأمورية"},
+    {"name" : "oppenents_activity_address" , "en" : "Activity Address" , "ar" : "عنوان النشاط"},
+    {"name" : "oppenents_file_number" , "en" : "File Number" , "ar" : "رقم الملف"},
+    {"name" : "oppenents_activity_name" , "en" : "Activity Name" , "ar" : "إسم النشاط"},
+    {"name" : "oppenents_financier_name" , "en" : "Financier Name" , "ar" : "إسم الممول"},
+
+    {"name" : "oppenents_commercial_register_information" , "en" : "Commercial Register Information" , "ar" : "بيانات السجل التجاري"},
+    {"name" : "oppenents_commercial_name" , "en" : "Commercial Name" , "ar" : "الإسم التجاري"},
+    {"name" : "oppenents_business_attribute" , "en" : "Busines Attribute" , "ar" : "السمة التجارية"},
+    {"name" : "oppenents_used_name_in_trade" , "en" : "Used Name In trade" , "ar" : "الإسم المستخدم في التجارة"},
+    {"name" : "oppenents_trader_name" , "en" : "Trader Name" , "ar" : "إسم التاجر"},
+    {"name" : "oppenents_commerical_nationality" , "en" : "Nathionality Name" , "ar" : "إسم الجنسية"},
+    {"name" : "oppenents_financial_system" , "en" : "Financial System" , "ar" : "النظام المالي"},
+    {"name" : "oppenents_commercial_validity" , "en" : "Commercial Validity" , "ar" : "الاهلية التجارية"},
+    {"name" : "oppenents_trade_type" , "en" : "Trade Type" , "ar" : "نوع التجارة"},
+    {"name" : "oppenents_commercial_start_date_gregorian" , "en" : "Commercial Start Gregorian Date" , "ar" : "تاريج بداية النشاط ميلادي"},
+    {"name" : "oppenents_commercial_start_date_hijri" , "en" : "Commercial Start Hijri Date" , "ar" : "تاريج بداية النشاط هجري"},
+
+    {"name" : "oppenents_commercial_start_date" , "en" : "Commercial Start Date" , "ar" : "تاريج بداية النشاط"},
+    
+    {"name" : "oppenents_opening_balance" , "en" : "Opening Balance" , "ar" : "الرصيد الافتتاحي"},
+    {"name" : "oppenents_opening_balance_informations" , "en" : "Opening Balance Informations" , "ar" : "بيانات الرصيد الافتتاحي"},
+    {"name" : "oppenents_initial_balance" , "en" : "Initial Balance " , "ar" : "الرصيد الافتتاحي"},
+    {"name" : "oppenents_currency_name" , "en" : "Currency Name" , "ar" : "إسم العملة"},    
+    {"name" : "oppenents_balance_type" , "en" : "Balance Type" , "ar" : "نوع الرصيد"},
+    {"name" : "oppenents_debit" , "en" : "Debit" , "ar" : "مدين"},
+    {"name" : "oppenents_credit" , "en" : "Credit" , "ar" : "دائن"},
+
+    {"name" : "oppenents_due_date" , "en" : "Date" , "ar" : "التاريخ"},
+    {"name" : "oppenents_due_date_gregorian" , "en" : "Due Gregorian Date" , "ar" : "تاريج الاستحقاق ميلادي"},
+    {"name" : "oppenents_due_date_hijri" , "en" : "Due Hijri Date" , "ar" : "تاريج الاستحقاق هجري"},
+
+    {"name" : "oppenents_reference_number" , "en" : "Reference Number" , "ar" : "الرقم المرجعي"},
+    {"name" : "oppenents_notes_arabic" , "en" : "Notes Arabic" , "ar" : "ملاحظات بالعربي"},
+    {"name" : "oppenents_notes_english" , "en" : "Notes English" , "ar" : "ملاحظات بالانجليزية"},
+
+    {"name" : "oppenents_banking_and_acounting" , "en" : "Banking And Accounting" , "ar" : "البنوك والحسابات"},   
+    {"name" : "oppenents_accounting_informations" , "en" : "Accounting Informations" , "ar" : "البيانات المحاسبية"},
+    {"name" : "oppenents_period_maturity_purchases" , "en" : "Period Of Maturity Of Purchases" , "ar" : "فترة استحقاق المشتريات"},
+    {"name" : "oppenents_prof_account" , "en" : "Prof Account" , "ar" : "حساب الاستاذ"},
+    {"name" : "oppenents_discount" , "en" : "Discount" , "ar" : "نسبة الخصم"},
+    {"name" : "oppenents_balance" , "en" : "Balance" , "ar" : "الرصيد"},    
+    {"name" : "oppenents_credit_limit" , "en" : "Credit Limit" , "ar" : "حد الائتمان"},
+    {"name" : "oppenents_delegate_commission" , "en" : "Delegate Commission" , "ar" : "عمولة المندوب"},
+
+    {"name" : "oppenents_bank_information" , "en" : "Bank Information" , "ar" : "بيانات البنك"},
+    {"name" : "oppenents_bank_name" , "en" : "Bank Name" , "ar" : "إسم البنك"},
+    {"name" : "oppenents_bank_account_number" , "en" : "Bank Account Number" , "ar" : "رقم حساب البنك"},
+
+    {"name" : "oppenents_contact_and_addresses" , "en" : "Contact and Addresses" , "ar" : "الاتصال والعناوين"},
+    {"name" : "oppenents_address_informations" , "en" : "Address Informaion" , "ar" : "بيانات العناوين"},
+    {"name" : "oppenents_gov" , "en" : "Gov" , "ar" : "المحافظة"},
+    {"name" : "oppenents_city" , "en" : "City" , "ar" : "المدينة"},
+    {"name" : "oppenents_address" , "en" : "Address" , "ar" : "العنوان"},
+
+    {"name" : "oppenents_contact_informations" , "en" : "Contact Informaion" , "ar" : "بيانات الاتصال"},
+    {"name" : "oppenents_phone" , "en" : "Phone" , "ar" : "التليفون"},
+    {"name" : "oppenents_internal_number" , "en" : "Internal Number" , "ar" : "الرقم الداخلي"},
+    {"name" : "oppenents_mobile" , "en" : "Mobile" , "ar" : "المحمول "},
+    {"name" : "oppenents_fax" , "en" : "Fax" , "ar" : "الفاكس"},
+
+    {"name" : "oppenents_post_informations" , "en" : "Post Informaion" , "ar" : "بيانات البريد"},
+    {"name" : "oppenents_mailbox" , "en" : "Mail Box" , "ar" : "صندوق البريد"},
+    {"name" : "oppenents_post_number" , "en" : "Post Number" , "ar" : "الرقم البريدي"},
+
+    {"name" : "oppenents_Web_and_social_accounts" , "en" : "Web And Social Accounts" , "ar" : "المواقع والحسابات الاجتماعية"},   
+    {"name" : "oppenents_website" , "en" : "Website" , "ar" : "الموقع الالكتروني"},
+    {"name" : "oppenents_social_facebook_account" , "en" : "FaceBook Account" , "ar" : "حساب الفيس بوك"},
+    {"name" : "oppenents_social_twitter_account" , "en" : "Twitter Account" , "ar" : "حساب تويتر"},
+    {"name" : "oppenents_social_google_account" , "en" : "Google Account" , "ar" : "حساب جوجل"},
+
+    {"name" : "oppenents_branches" , "en" : "Branches" , "ar" : "فروع الخصم"},
+    {"name" : "oppenents_branches_informations" , "en" : "Branches Informations" , "ar" : "بيانات الفروع"},   
+    {"name" : "oppenents_branch_informations" , "en" : "Branch Informations" , "ar" : "بيانات الفرع"},
+    {"name" : "oppenents_branch_code" , "en" : "Branch Code" , "ar" : "كود الفرع"},
+    {"name" : "oppenents_branch_name" , "en" : "Branch Name" , "ar" : "إسم الفرع"},
+    {"name" : "oppenents_branch_notes" , "en" : "Branch Notes" , "ar" : "ملاحظات الفرع"},
+    {"name" : "oppenents_branch_gov" , "en" : "Branch Gov" , "ar" : "المحافظة"},
+    {"name" : "oppenents_branch_city" , "en" : "Branch  City" , "ar" : "المدينة"},
+    {"name" : "oppenents_branch_address" , "en" : "Branch  Address" , "ar" : "العنوان"},
+    {"name" : "oppenents_branch_phone" , "en" : "Branch Phone" , "ar" : "التليفون"},
+    {"name" : "oppenents_branch_mobile" , "en" : "Branch  Mobile" , "ar" : "المحمول "},
+    {"name" : "oppenents_branch_fax" , "en" : "Branch Fax" , "ar" : "الفاكس"},
+    {"name" : "oppenents_branch_email" , "en" : "Branch Email" , "ar" : "البريد الالكتروني"},
+
+    {"name" : "oppenents_charge_contact_informations" , "en" : "Charge Informaion" , "ar" : "بيانات مسئول"},
+    {"name" : "oppenents_charge_name" , "en" : "Charge Name" , "ar" : "الإسم"},
+    {"name" : "oppenents_charge_job" , "en" : "Charge Job" , "ar" : "الوظيفة"},   
+    {"name" : "oppenents_charge_phone" , "en" : "Charge Phone" , "ar" : "التليفون"},
+    {"name" : "oppenents_charge_internal_number" , "en" : "Charge Internal Number" , "ar" : "الرقم الداخلي"},
+    {"name" : "oppenents_charge_mobile" , "en" : "Charge Mobile" , "ar" : "المحمول "},
+    {"name" : "oppenents_charge_email" , "en" : "Charge Email" , "ar" : "البريد الالكتروني"},
+    {"name" : "oppenents_files" , "en" : "Files" , "ar" : "الملفات"},
+
+
+    {"name" : "oppenents_dealing" , "en" : "Oppenents Dealing" , "ar" : "تعاملات الخصم"},
+
+    {"name" : "oppenents_dealing_companies_branches" , "en" : "Dealing Companies And Branches" , "ar" : "الشركات والفروع"},
+    {"name" : "oppenents_dealing_companies_branches_informatons" , "en" : "Companies And Branches Informations" , "ar" : "بيانات الشركات والفروع"},
+    {"name" : "oppenents_company_name" , "en" : "Company Name" , "ar" : "إسم الشركة"},
+    {"name" : "oppenents_branch_name" , "en" : "Branch Name" , "ar" : "إسم الفرع"},
+
+
+          
+ 
+    {"name" : "oppenents_send_email" , "en" : "Send Email" , "ar" : "ارسال بريد الكتروني"},
+    {"name" : "oppenents_send_email_to_oppenent" , "en" : "Send Email To Oppenent" , "ar" : "ارسال بريد الكتروني لخصم"},
+    {"name" : "oppenents_create_email" , "en" : "Create Email" , "ar" : "انشاء ايميل"},
+    {"name" : "oppenents_mail_from" , "en" : "From" , "ar" : "من"},
+    {"name" : "oppenents_mail_to" , "en" : "To" , "ar" : "الي"},
+    {"name" : "oppenents_mail_cc" , "en" : "Cc" , "ar" : "نسخة كربونية"},
+    {"name" : "oppenents_mail_bcc" , "en" : "Bcc" , "ar" : "نسخة كربونية مخفية"},
+    {"name" : "oppenents_mail_subject" , "en" : "Subject" , "ar" : "الموضوع"},
+    {"name" : "oppenents_mail_send" , "en" : "Send" , "ar" : "ارسال"},
+    {"name" : "oppenents_mail_text" , "en" : "Email Text" , "ar" : "نص الرسالة"},
+   
+    {"name" : "oppenents_send" , "en" : "Send" , "ar" : "ارسال"}
+
+    
+    
+]

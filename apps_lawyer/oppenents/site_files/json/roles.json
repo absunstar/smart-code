@@ -1,0 +1,7 @@
+[{
+    "module_name" : "public" ,
+    "name": "oppenents_admin",
+    "en": "Oppenents Admin",
+    "ar": "إدارة الخصوم",
+    "permissions": ["oppenents_manage"]
+}]

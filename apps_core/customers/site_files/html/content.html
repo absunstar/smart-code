@@ -42,6 +42,32 @@
                                 </i-checkbox>
                             </div>
 
+                            <div class="row" x-feature="lawyer">
+
+                                <i-control help-id="" v="r ll2" class="col4" label="##word.national_id##"
+                                    ng-model="customer.national_id"></i-control>
+
+                                <i-date ng-model="customer.birth_date" class="col4" label="##word.birth_date##">
+                                </i-date>
+
+                            </div>
+
+                            <div class="row" x-feature="lawyer">
+
+                                <i-list help-id="" ng-search="_search.$indentfy_search" class="col2"
+                                    label="##word.customers_indentfy##" ng-model="customer.indentfy"
+                                    items="indentfyList" display="##session.lang##">
+                                </i-list>
+
+                                <i-list ng-search="employees_marital_status" class="col3" items="maritals_status"
+                                    ng-model="customer.marital_status" label="##word.employees_marital_status##">
+                                </i-list>
+                                <i-list ng-search="employees_military_status" class="col3" items="militaries_status"
+                                    ng-model="customer.military_status" label="##word.employees_military_status##">
+                                </i-list>
+                            </div>
+
+
                             <div class="row" x-feature="gym">
 
                                 <i-control class="col4" label="##word.finger_code##" ng-model="customer.finger_code">

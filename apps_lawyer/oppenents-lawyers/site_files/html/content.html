@@ -1,0 +1,150 @@
+<div class="form">
+    <div class="tabs">
+        <div class="tabs-header">
+            <a class="tab-link" onclick="site.showTabContent(event, '#personalInformation')">
+                ##word.oppenents_lawyers_personal_information## </a>
+            <a class="tab-link" onclick="site.showTabContent(event, '#contactAndAddress')">
+                ##word.oppenents_lawyers_contact_and_addresses## </a>
+            <a class="tab-link " onclick="site.showTabContent(event, '#oppenents_lawyersFiles')">
+                ##word.oppenents_lawyers_files## </a>
+        </div>
+
+        <div class="tabs-content">
+            <div id="personalInformation" class="tab-content">
+                <fieldset>
+                    <legend> ##word.oppenents_lawyers_basic_information## </legend>
+                    <div class="row">
+                        <div class="col9">
+                            <div class="row">
+                                <i-control class="col2" label="##word.oppenents_lawyers_code##" ng-model="oppenents_lawyers.code">
+                                </i-control>
+
+                                <i-control class="col4" label="##word.oppenents_lawyers_name_ar##" ng-model="oppenents_lawyers.name_ar">
+                                </i-control>
+
+                                <i-control class="col4" label="##word.oppenents_lawyers_name_en##" ng-model="oppenents_lawyers.name_en">
+                                </i-control>
+
+                                <i-checkbox class="col2" label="##word.active##" ng-model="oppenents_lawyers.active">
+                                </i-checkbox>
+                            </div>
+
+                            <div class="row">
+
+                                <i-control help-id="" v="r" class="col4" label="##word.national_id##"
+                                    ng-model="oppenents_lawyers.national_id"></i-control>
+
+                                <i-date ng-model="oppenents_lawyers.birth_date" class="col4" label="##word.birth_date##">
+                                </i-date>
+
+                            </div>
+
+                            <div class="row">
+
+                                <i-list help-id="" ng-search="_search.$indentfy_search" class="col2"
+                                    label="##word.oppenents_lawyers_indentfy##" ng-model="oppenents_lawyers.indentfy"
+                                    items="indentfyList" display="##session.lang##">
+                                </i-list>
+
+                                <i-list ng-search="employees_marital_status" class="col3" items="maritals_status"
+                                    ng-model="oppenents_lawyers.marital_status" label="##word.employees_marital_status##">
+                                </i-list>
+                                <i-list ng-search="employees_military_status" class="col3" items="militaries_status"
+                                    ng-model="oppenents_lawyers.military_status" label="##word.employees_military_status##">
+                                </i-list>
+                            </div>
+
+                        </div>
+
+                        <div class="col3">
+                            <i-image category="oppenents_lawyers" ng-model="oppenents_lawyers.image_url"></i-image>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <i-button type="default left" fa="2x fa-angle-double-left"
+                    onclick="document.querySelector('.tab-link.active + .tab-link').click();"></i-button>
+
+            </div>
+
+            <div id="contactAndAddress" class="tab-content">
+                <fieldset>
+                    <legend> ##word.oppenents_lawyers_address_informations## </legend>
+                    <div class="row">
+                        <i-list class="col3" label="##word.oppenents_lawyers_gov##" ng-model="oppenents_lawyers.gov" items="govList"
+                            display="name" ng-change="getCityList(oppenent.gov)" ng-search="_search.$$govNameContact">
+                        </i-list>
+
+                        <i-list class="col4" label="##word.city##" ng-model="oppenents_lawyers.city" items="cityList"
+                            ng-change="getAreaList(oppenent.city)" display="name"
+                            ng-search="_search.$oppenent.$city_search"></i-list>
+                        <i-list class="col4" label="##word.area##" ng-model="oppenents_lawyers.area" items="areaList"
+                            display="name" ng-search="_search.$oppenent.$area_search"></i-list>
+                        <i-control class="col6" label="##word.oppenents_lawyers_address##" ng-model="oppenents_lawyers.address">
+                        </i-control>
+                    </div>
+
+                </fieldset>
+
+                <fieldset>
+                    <legend> ##word.oppenents_lawyers_contact_informations## </legend>
+                    <div class="row">
+                        <i-control class="col3" label="##word.oppenents_lawyers_phone##" ng-model="oppenents_lawyers.phone"></i-control>
+
+
+                        <i-control class="col3" label="##word.oppenents_lawyers_mobile##" ng-model="oppenents_lawyers.mobile">
+                        </i-control>
+
+                        <i-control class="col3" label="##word.oppenents_lawyers_fax##" ng-model="oppenents_lawyers.fax"></i-control>
+                        <i-control class="col3 hide" label="##word.oppenents_lawyers_internal_number##"
+                            ng-model="oppenents_lawyers.internal_number"></i-control>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend> ##word.oppenents_lawyers_post_informations## </legend>
+                    <div class="row">
+
+                        <i-control class="col6" label="##word.oppenents_lawyers_mailbox##" ng-model="oppenents_lawyers.mailbox">
+                        </i-control>
+
+                        <i-control class="col6" label="##word.oppenents_lawyers_post_number##" ng-model="oppenents_lawyers.post_number">
+                        </i-control>
+                </fieldset>
+
+                <fieldset>
+                    <legend> ##word.oppenents_lawyers_Web_and_social_accounts## </legend>
+                    <div class="row">
+                        <i-control class="col3" label="##word.oppenents_lawyers_website##" ng-model="oppenents_lawyers.website">
+                        </i-control>
+
+                        <i-control class="col3" label="##word.oppenents_lawyers_social_facebook_account##"
+                            ng-model="oppenents_lawyers.social_facebook"></i-control>
+
+                        <i-control class="col3" label="##word.oppenents_lawyers_social_twitter_account##"
+                            ng-model="oppenents_lawyers.social_twitter"></i-control>
+
+                        <i-control class="col3" label="##word.oppenents_lawyers_social_google_account##"
+                            ng-model="oppenents_lawyers.social_google"></i-control>
+                    </div>
+
+                </fieldset>
+
+                <i-button type="default left" fa="2x fa-angle-double-left"
+                    onclick="document.querySelector('.tab-link.active + .tab-link').click();"></i-button>
+            </div>
+
+            <div id="oppenents_lawyersFiles" class="tab-content">
+                <fieldset>
+                    <legend> ##word.oppenents_lawyers_files## </legend>
+                    <div class="row">
+                        <i-files ng-model="oppenents_lawyers.files"></i-files>
+                    </div>
+                </fieldset>
+                <i-button type="default left" fa="2x fa-angle-double-left"
+                    onclick="document.querySelector('.tab-link.active + .tab-link').click();"></i-button>
+            </div>
+
+        </div>
+    </div>
+</div>

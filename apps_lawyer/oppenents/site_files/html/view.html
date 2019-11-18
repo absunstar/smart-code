@@ -1,0 +1,269 @@
+<div ng-hide="busy" class="row">
+
+    <div class="tabs col">
+        <div class="tabs-header full">
+            <a class="tab-link" onclick="site.showTabContent(event, '#personalInformation')">
+                ##word.oppenents_personal_information## </a>
+
+            <a class="tab-link" onclick="site.showTabContent(event, '#contactAndAddress')">
+                ##word.oppenents_contact_and_addresses## </a>
+
+            <a class="tab-link" onclick="site.showTabContent(event, '#oppenentsFiles')">
+                ##word.oppenents_files## </a>
+
+        </div>
+
+        <div id="oppenentAllInfo" class="tabs-content full bold">
+
+            <div id="personalInformation" class="tab-content">
+                <fieldset id="personalInformationTable">
+                    <legend> ##word.oppenents_basic_information## </legend>
+                    <div class="row">
+                        <div class="col9">
+                            <table class="table hover">
+                                <tr>
+                                    <td class="title"> ##word.oppenents_code## </td>
+                                    <td class="center blue"> {{oppenent.code}} </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title"> ##word.oppenents_name_ar## </td>
+                                    <td class="center"> {{oppenent.name_ar}} </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title"> ##word.oppenents_name_en## </td>
+                                    <td class="center"> {{oppenent.name_en}} </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title">##word.national_id##</td>
+                                    <td class="center blue">{{oppenent.national_id}}</td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title"> ##word.oppenents_indentfy## </td>
+                                    <td class="center"> {{oppenent.indentfy.ar}}</td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title">##word.birth_date##</td>
+                                    <td class="center brown">{{oppenent.birth_date | date:'dd - MM - yyyy'}}
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title">##word.employees_marital_status##</td>
+                                    <td class="center">{{oppenent.marital_status.name}}</td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title">##word.employees_military_status##</td>
+                                    <td class="center">{{oppenent.military_status.name}}</td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title"> ##word.status## </td>
+                                    <td ng-show="oppenent.active == true" class="center green"> ##word.active## </td>
+                                    <td ng-show="oppenent.active == false" class="center red"> ##word.not_active## </td>
+                                </tr>
+
+
+                            </table>
+                        </div>
+
+                        <div class="col3">
+                            <i-image view ng-model="oppenent.image_url"> </i-image>
+                        </div>
+
+                        <i-button class="not-print" x-permission="print" type="print left"
+                            onclick="site.print('#oppenentDetailsModal #personalInformationTable')"></i-button>
+                    </div>
+                </fieldset>
+
+              <!--   <fieldset id="oppenentsIdInforamationTable">
+                    <legend> ##word.oppenents_id_inforamation## </legend>
+                    <table class="table hover">
+                        <tr>
+                            <td class="title"> ##word.oppenents_nationality## </td>
+                            <td class="center"> {{oppenent.nationality.name_ar}} </td>
+                        </tr>
+
+                        <tr>
+                            <td class="title"> ##word.oppenents_id_number## </td>
+                            <td class="center blue"> {{oppenent.id_number}} </td>
+                        </tr>
+
+                        <tr>
+                            <td class="title"> ##word.oppenents_id_source## </td>
+                            <td class="center"> {{oppenent.id_source}} </td>
+                        </tr>
+
+                        <tr>
+                            <td class="title"> ##word.oppenents_id_release_date## </td>
+                            <td class="brown center"> {{oppenent.id_release_date | xdate}} </td>
+                        </tr>
+
+                    </table>
+                    <i-button class="not-print" x-permission="print" type="print left"
+                        onclick="site.print('#oppenentDetailsModal #oppenentsIdInforamationTable')"></i-button>
+                </fieldset> -->
+            </div>
+
+            <div id="contactAndAddress" class="tab-content">
+
+                <fieldset id="addressInformations">
+                    <legend> ##word.oppenents_address_informations## </legend>
+                    <table class="table hover">
+                        <tr>
+                            <td class="title"> ##word.oppenents_gov## </td>
+                            <td class="center"> {{oppenent.gov.name}} </td>
+                        </tr>
+
+                        <tr>
+                            <td class="title"> ##word.oppenents_city## </td>
+                            <td class="center"> {{oppenent.city.name}} </td>
+                        </tr>
+
+                        <tr>
+                            <td class="title"> ##word.area## </td>
+                            <td class="center"> {{oppenent.area.name}} </td>
+                        </tr>
+
+                        <tr>
+                            <td class="title"> ##word.oppenents_address## </td>
+                            <td class="center"> {{oppenent.address}} </td>
+                        </tr>
+                    </table>
+                    <i-button class="not-print" x-permission="print" type="print left "
+                        onclick="site.print('#oppenentDetailsModal #addressInformations')"></i-button>
+
+                </fieldset>
+
+                <fieldset id="oppenentsContactInformations">
+                    <legend> ##word.oppenents_contact_informations## </legend>
+                    <table class="table hover">
+                        <tr>
+                            <td class="title"> ##word.oppenents_phone## </td>
+                            <td class="center">
+                                <a ng-show="oppenent.phone" href="tel:{{oppenent.phone}}">
+                                    {{oppenent.phone}}
+                                    <i class="fa fa-phone" aria-hidden="true"></i>
+                                </a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="title"> ##word.oppenents_internal_number## </td>
+                            <td class="center blue"> {{oppenent.internal_number}} </td>
+                        </tr>
+
+                        <tr>
+                            <td class="title"> ##word.oppenents_mobile## </td>
+                            <td class="center">
+                                <a ng-show="oppenent.mobile" href="tel:{{oppenent.mobile}}">
+                                    {{oppenent.mobile}}
+                                    <i class="fa fa-mobile" aria-hidden="true"></i>
+                                </a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="title"> ##word.oppenents_fax## </td>
+                            <td class="center">
+                                <a ng-show="oppenent.fax" href="tel:{{oppenent.fax}}">
+                                    {{oppenent.fax}}
+                                    <i class="fa fa-fax" aria-hidden="true"></i>
+                                </a>
+                            </td>
+                        </tr>
+
+                    </table>
+
+                    <i-button class="not-print" x-permission="print" type="print left "
+                        onclick="site.print('#oppenentDetailsModal #oppenentsContactInformations')"></i-button>
+
+                </fieldset>
+
+                <fieldset id="oppenentsPostInformations">
+                    <legend> ##word.oppenents_post_informations## </legend>
+                    <table class="table hover">
+                        <tr>
+                            <td class="title"> ##word.oppenents_mailbox## </td>
+                            <td class="center"> {{oppenent.mailbox}} </td>
+                        </tr>
+
+                        <tr>
+                            <td class="title"> ##word.oppenents_post_number## </td>
+                            <td class="center blue"> {{oppenent.post_number}} </td>
+                        </tr>
+
+                    </table>
+                    <i-button class="not-print" x-permission="print" type="print left "
+                        onclick="site.print('#oppenentDetailsModal #oppenentsPostInformations')"></i-button>
+
+                </fieldset>
+
+                <fieldset id="oppenentsWebAndSocialAccounts">
+                    <legend> ##word.oppenents_Web_and_social_accounts## </legend>
+                    <table class="table hover">
+                        <tr>
+                            <td class="title"> ##word.oppenents_website## </td>
+                            <td class="center">
+                                <a ng-show="oppenent.website" href="tel:{{oppenent.website}}">
+                                    {{oppenent.website}}
+                                    <i class="fa fa-globe" aria-hidden="true"></i>
+                                </a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="title"> ##word.oppenents_social_facebook_account## </td>
+                            <td class="center">
+                                <a ng-show="oppenent.social_facebook" href="tel:{{oppenent.social_facebook}}">
+                                    {{oppenent.social_facebook}}
+                                    <i class="fa fa-facebook" aria-hidden="true"></i>
+                                </a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="title"> ##word.oppenents_social_twitter_account## </td>
+                            <td class="center">
+                                <a ng-show="oppenent.social_twitter" href="tel:{{oppenent.social_twitter}}">
+                                    {{oppenent.social_twitter}}
+                                    <i class="blue fa fa-twitter" aria-hidden="true"></i>
+                                </a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="title"> ##word.oppenents_social_google_account## </td>
+                            <td class="center">
+                                <a ng-show="oppenent.social_google" href="tel:{{oppenent.social_google}}">
+                                    {{oppenent.social_google}}
+                                    <i class="red fa fa-google-plus" aria-hidden="true"></i>
+                                </a>
+                            </td>
+                        </tr>
+
+                    </table>
+
+                    <i-button class="not-print" x-permission="print" type="print left "
+                        onclick="site.print('#oppenentDetailsModal #oppenentsWebAndSocialAccounts')"></i-button>
+
+                </fieldset>
+
+            </div>
+
+            <div id="oppenentsFiles" class="tab-content">
+                <i-files view ng-model="oppenent.files"></i-files>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</div>

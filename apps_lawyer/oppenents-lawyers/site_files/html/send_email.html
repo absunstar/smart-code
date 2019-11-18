@@ -1,0 +1,59 @@
+<div id="oppenentsLawyersSendEmailModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                <i class="fa fa-send"></i>
+                 
+                ##word.oppenents_lawyers_send_email_to_oppenent## </h2>
+        </div>
+
+        <div class="modal-body">
+            <fieldset>
+                <legend> ##word.oppenents_lawyers_create_email## </legend>
+                <div class="row">
+                    <i-control class="col" label="##word.oppenents_lawyers_mail_from##" ng-model="oppenent.mail_from"></i-control>
+                </div>
+
+                <div class="col">
+                    <div class="row">
+                        <i-checkbox class="col4" label="##word.oppenents_lawyers_mail_cc##" ng-model="oppenents_lawyers.send_mail_cc"></i-checkbox>
+
+                        <i-checkbox class="col4" label="##word.oppenents_lawyers_mail_bcc##" ng-model="oppenents_lawyers.send_mail_bcc"></i-checkbox>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <i-control class="col" label="##word.oppenents_lawyers_mail_to##" ng-model="oppenent.mail_to"></i-control>
+                </div>
+
+                <div class="row" ng-show="oppenents_lawyers.send_mail_cc === true">
+                    <i-control class="col" label=" ##word.oppenents_lawyers_mail_cc##" ng-model="oppenent.mail_cc"></i-control>
+                </div>
+
+
+                <div class="row" ng-show="oppenents_lawyers.send_mail_bcc === true">
+                    <i-control class="col" label=" ##word.oppenents_lawyers_mail_bcc##" ng-model="oppenent.mail_bcc"></i-control>
+                </div>
+
+                <div class="row">
+                    <i-control class="col" label="##word.oppenents_lawyers_mail_subject##"  ng-model="oppenent.mail_subject"></i-control>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <div class="control">
+                            <label> ##word.oppenents_lawyers_mail_text## </label>
+                            <textarea ng-model="oppenent.mail_text" rows="50"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+            </fieldset>
+        </div>
+
+        <div class="modal-footer">
+            <i-button label="##word.oppenents_lawyers_send##"></i-button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,24 @@
+<div id="updateMarital_StateModal" class="modal">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.maritals_status_edit## <i class="fa fa-pencil"></i>
+            </h2>
+        </div>
+        <div class="modal-body">
+            <div x-import="maritals_status/content.html"></div>
+            <div x-import="maritals_status/action_info.html"></div>
+
+        </div>
+        <h2 class="error">{{error}}</h2>
+        <div class="modal-footer center">
+            <i-button type="save" ng-click="update(marital_state)" label="##word.save##"></i-button>
+            <i-button type="close" onclick="site.hideModal('#updateMarital_StateModal')" label="##word.close##"></i-button>
+
+        </div>
+    </div>
+
+
+</div>
