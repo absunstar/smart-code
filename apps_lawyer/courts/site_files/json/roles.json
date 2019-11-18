@@ -1,0 +1,7 @@
+[{
+    "module_name" : "public" ,
+    "name": "courts_admin",
+    "en": "Courts Admin",
+    "ar": "إدارة المحاكم",
+    "permissions": ["courts_manage"]
+}]

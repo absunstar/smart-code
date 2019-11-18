@@ -8,7 +8,7 @@ module.exports = function init(site) {
   }
 
   let image_url = '/images/insurance_slides.png'
-  let add_message = {name : 'New Slide Added' , ar : ' تم أضافة شريحة تأمين جديد'}
+  let add_message = {name : 'New Slide Added' , ar : ' تم إضافة شريحة تأمين جديد'}
   let update_message =  {name : 'Slide updated' , ar : 'تم تعديل شريحة تأمين'}
   let delete_message =  {name : 'Slide deleted' , ar : 'تم حذف شريحة تأمين '}
 

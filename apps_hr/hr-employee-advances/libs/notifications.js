@@ -8,7 +8,7 @@ module.exports = function init(site) {
   }
 
   let image_url = '/images/discount.png'
-  let add_message = {name : 'New Employee Advance Added' , ar : ' تم أضافة سلفة جديد'}
+  let add_message = {name : 'New Employee Advance Added' , ar : ' تم إضافة سلفة جديد'}
   let update_message =  {name : 'Employee Advance updated' , ar : 'تم تعديل السلفة'}
   let delete_message =  {name : 'Employee Advance deleted' , ar : 'تم حذف السلفة '}
 

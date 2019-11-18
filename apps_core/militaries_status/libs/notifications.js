@@ -8,7 +8,7 @@ module.exports = function init(site) {
     }
   
     let image_url = '/images/military_state.png'
-    let add_message = {name : 'New Military_state Added' , ar : 'تم أضافة موقف تجنيد جديدة'}
+    let add_message = {name : 'New Military_state Added' , ar : 'تم إضافة موقف تجنيد جديدة'}
     let update_message =  {name : ' Military_state updated' , ar : 'تم تعديل موقف تجنيد'}
     let delete_message =  {name : ' Military_state dleteted' , ar : 'تم حذف موقف تجنيد '}
   

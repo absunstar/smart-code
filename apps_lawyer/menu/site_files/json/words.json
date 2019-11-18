@@ -782,7 +782,7 @@
     {
         "name": "system_add_amounts_out",
         "en": "Add Amount out",
-        "ar": "أضافة بنود المصاريف"
+        "ar": "إضافة بنود المصاريف"
     },
     {
         "name": "system_in_out_names_menus",
@@ -1143,6 +1143,16 @@
         "name": "system_social_status",
         "en": "Add Social Status",
         "ar": "  إضافة الحالة الاجتماعية "
+    },
+    {
+        "name": "system_court_menus",
+        "en": "Social Status Menu",
+        "ar": "قائمة المحاكم"
+    },
+    {
+        "name": "system_court",
+        "en": "Add Social Status",
+        "ar": "إضافة محاكم جديدة"
     },
     {
         "name": "system_military_menus",

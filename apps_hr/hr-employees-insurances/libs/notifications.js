@@ -8,7 +8,7 @@ module.exports = function init(site) {
   }
 
   let image_url = '/images/customer.png'
-  let add_message = {name : 'New Employee Insurance Added' , ar : ' تم أضافة تأمين لموظف '}
+  let add_message = {name : 'New Employee Insurance Added' , ar : ' تم إضافة تأمين لموظف '}
   let update_message =  {name : ' Employee Insurance updated' , ar : 'تم تعديل تامين لموظف  '}
   let delete_message =  {name : ' Employee Insurance deleted' , ar : 'تم حذف تأمين لموظف '}
 

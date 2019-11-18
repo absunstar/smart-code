@@ -8,7 +8,7 @@ module.exports = function init(site) {
   }
 
   let image_url = '/images/stores.png'
-  let add_message = {name : 'New store Added' , ar : 'تم أضافة مخزن جديدة'}
+  let add_message = {name : 'New store Added' , ar : 'تم إضافة مخزن جديدة'}
   let update_message =  {name : ' Store updated' , ar : 'تم تعديل مخزن'}
   let delete_message =  {name : ' Store dleteted' , ar : 'تم حذف مخزن '}
 

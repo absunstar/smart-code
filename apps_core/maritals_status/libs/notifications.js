@@ -8,7 +8,7 @@ module.exports = function init(site) {
     }
   
     let image_url = '/images/marital_state.png'
-    let add_message = {name : 'New marital_state Added' , ar : 'تم أضافة حالة اجتماعية جديدة'}
+    let add_message = {name : 'New marital_state Added' , ar : 'تم إضافة حالة اجتماعية جديدة'}
     let update_message =  {name : ' marital_state updated' , ar : 'تم تعديل حالة اجتماعية'}
     let delete_message =  {name : ' marital_state dleteted' , ar : 'تم حذف حالة اجتماعية '}
   

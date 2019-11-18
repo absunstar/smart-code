@@ -10,7 +10,7 @@ module.exports = function init(site) {
   let image_url = '/images/bank.jpeg'
   let add_message = {
     name: 'New Bank Added',
-    ar: 'تم أضافة بنك جديد'
+    ar: 'تم إضافة بنك جديد'
   }
   let update_message = {
     name: ' Bank Updated',

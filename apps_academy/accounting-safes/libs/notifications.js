@@ -8,7 +8,7 @@ module.exports = function init(site) {
   }
 
   let image_url = '/images/safe.png'
-  let add_message = {name : 'New safe Added' , ar : ' تم أضافة خزينة جديدة'}
+  let add_message = {name : 'New safe Added' , ar : ' تم إضافة خزينة جديدة'}
   let update_message =  {name : 'IN/Out updated' , ar : 'تم تعديل الخزينة'}
   let delete_message =  {name : 'IN/Out deleted' , ar : 'تم حذف الخزينة '}
 

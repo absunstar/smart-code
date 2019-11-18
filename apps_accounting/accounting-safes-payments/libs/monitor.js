@@ -7,7 +7,7 @@ module.exports = function init(site) {
           source: "Safes System",
           source_ar: "نظام الخزن",
           message: "New Safe Added",
-          message_ar: "تم أضافة خزينة جديدة",
+          message_ar: "تم إضافة خزينة جديدة",
           value: result.doc.name,
           value_ar: result.doc.name,
           add: result.doc,

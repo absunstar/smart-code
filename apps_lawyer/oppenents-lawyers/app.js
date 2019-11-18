@@ -8,12 +8,6 @@ module.exports = function init(site) {
     compress: true
   })
 
-  site.post({
-    name: "/api/blood_type/all",
-    path: __dirname + "/site_files/json/blood_type.json"
-
-  })
-
   site.get({
     name: 'images',
     path: __dirname + '/site_files/images/'

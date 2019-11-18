@@ -8,7 +8,7 @@ module.exports = function init(site) {
   }
 
   let image_url = '/images/in_out_name.png'
-  let add_message = {name : 'New IN/Out Added' , ar : ' تم أضافة مسمى جديد'}
+  let add_message = {name : 'New IN/Out Added' , ar : ' تم إضافة مسمى جديد'}
   let update_message =  {name : 'IN/Out updated' , ar : 'تم تعديل المسمى'}
   let delete_message =  {name : 'IN/Out deleted' , ar : 'تم حذف المسمى '}
 

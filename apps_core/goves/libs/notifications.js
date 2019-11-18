@@ -10,7 +10,7 @@ module.exports = function init(site) {
   let image_url = '/images/gov.png'
   let add_message = {
     name: 'New gov Added',
-    ar: 'تم أضافة محافظة جديدة'
+    ar: 'تم إضافة محافظة جديدة'
   }
   let update_message = {
     name: ' gov Updated',

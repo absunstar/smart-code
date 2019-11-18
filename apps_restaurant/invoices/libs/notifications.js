@@ -10,7 +10,7 @@ module.exports = function init(site) {
   let image_url = '/images/invoices.png'
   let add_message = {
     name: 'New Invoices Added',
-    ar: 'تم أضافة فاتورة جديدة'
+    ar: 'تم إضافة فاتورة جديدة'
   }
   let update_message = {
     name: ' Invoices Updated',

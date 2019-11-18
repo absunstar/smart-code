@@ -10,7 +10,7 @@ module.exports = function init(site) {
   let image_url = '/images/vendor_group.png'
   let add_message = {
     name: 'New Vendors group Added',
-    ar: 'تم أضافة مجموعة مورد جديدة'
+    ar: 'تم إضافة مجموعة مورد جديدة'
   }
   let update_message = {
     name: ' Vendors group Updated',

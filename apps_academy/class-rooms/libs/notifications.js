@@ -10,7 +10,7 @@ module.exports = function init(site) {
   let image_url = '/images/class_rooms.png'
   let add_message = {
     name: 'New Class Rooms Added',
-    ar: 'تم أضافة فصل دراسي جديدة'
+    ar: 'تم إضافة فصل دراسي جديدة'
   }
   let update_message = {
     name: ' Class Rooms Updated',
