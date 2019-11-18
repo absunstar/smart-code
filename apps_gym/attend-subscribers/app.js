@@ -1,5 +1,7 @@
 module.exports = function init(site) {
   const $attend_subscribers = site.connectCollection("attend_subscribers")
+  const $request_service = site.connectCollection("request_service")
+
   site.on('zk attend', attend => {
     user_id = attend.user_id
 
@@ -41,15 +43,19 @@ module.exports = function init(site) {
           }
 
           if (attend.check_status == "check_in" && can_check_in) {
-            $attend_subscribers.add({
-              image_url: '/images/attend_subscribers.png',
-              customer: customerCb,
-              active: true,
-              attend_date: new Date(attend.date),
-              attend: attend_time,
-              company: customerCb.company,
-              branch: customerCb.branch
+            $request_service.findMany({where : {'customer.id' :customerCb.id }} , (err , docs)=>{
+              $attend_subscribers.add({
+                image_url: '/images/attend_subscribers.png',
+                customer: customerCb,
+                active: true,
+                attend_date: new Date(attend.date),
+                attend: attend_time,
+                company: customerCb.company,
+                branch: customerCb.branch,
+                service_list : docs
+              })
             })
+           
 
           } else if (attend.check_status == "check_out" && can_check_out) {
 

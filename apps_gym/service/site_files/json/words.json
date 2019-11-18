@@ -137,6 +137,13 @@
         "name": "service_current",
         "en": "Number Of Current Students",
         "ar": "عدد الطلاب الحاليين"
+    },
+    {
+        "name": "service_remain",
+        "en": "Service Remain Count",
+        "ar": "عدد الجلسات الباقية"
     }
+    
+
     
 ]

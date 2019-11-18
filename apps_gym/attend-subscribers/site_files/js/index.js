@@ -1,6 +1,7 @@
 app.controller("attend_subscribers", function ($scope, $http, $timeout , $interval) {
 
   $scope.attend_subscribers = {};
+  $scope.auto_load_attendance = true;
 
   $scope.displayAddAttendSubscribers = function () {
     $scope.error = '';

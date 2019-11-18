@@ -32,7 +32,7 @@ site.words.add({
     "en": "Ryal",
     "ar": "ريال"
 })
-
+site.ready = false
 site.loadLocalApp('client-side')
 site.importApp(__dirname + '/apps_private/cloud_security', 'security')
 site.importApp(__dirname + '/apps_private/ui-print')
@@ -63,7 +63,9 @@ site.importApps(__dirname + '/apps_core')
     // })
 
 }, 1000)
-
+setTimeout(() => {
+    site.ready = true
+}, 1000 * 2);
 site.run()
 
 // site.on('zk attend', attend=>{

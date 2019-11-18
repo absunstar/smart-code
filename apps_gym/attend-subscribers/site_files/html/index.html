@@ -45,7 +45,7 @@
                     <i-checkbox ng-model="auto_load_attendance" label="##word.auto_load_attendance##"></i-checkbox>
                 </div>
 
-                <table x-permissions="login" class="table bold loaded" id="t1">
+                <table x-permissions="login" class="table bold loaded hover" id="t1">
                     <tr>
                         <th class="not-print">##word.logo##</th>
                         <th>##word.subscribers_name##</th>
@@ -77,6 +77,18 @@
                         </td>
 
                         <td class="center not-print">
+                            <div class="row" ng-repeat="service in c.service_list">
+                                <table class="table">
+                                    <tr>
+                                        <th>##word.service##</th>
+                                        <th>##word.service_remain##</th>
+                                    </tr>
+                                    <tr>
+                                        <td class="center bold blue">{{service.service_name}}</td>
+                                        <td class="center bold ">{{service.remain}}</td>
+                                    </tr>
+                                </table>
+                            </div>
                             <i-button x-permissions="attend_subscribers_view || attend_subscribers_manage" type="view"
                                 label="##word.details##" ng-click="displayDetailsAttendSubscribers(c)"></i-button>
 
