@@ -1,0 +1,15 @@
+[
+    {"name" : "administrative_business_informations" , "en" : "Request Type Informations" , "ar" : "بيانات نوع الطلب"},
+
+    {"name" : "administrative_business" , "en" : "Request Type" , "ar" : "أنواع الطلبات"},
+    {"name" : "administrative_business_menus" , "en" : "Request Type Menu" , "ar" : "قائمة نوع الطلب"},
+    {"name" : "administrative_business_code" , "en" : "Request Type Code" , "ar" : "كود نوع الطلب"},
+    {"name" : "administrative_business_name" , "en" : "Administrative work type" , "ar" : "نوع العمل الإداري"},
+
+    {"name" : "administrative_business_new" , "en" : "New Request Type" , "ar" : "نوع الطلب جديدة"},
+    {"name" : "administrative_business_details" , "en" : "Request Type Details" , "ar" : "تفاصيل نوع الطلب"},
+    {"name" : "administrative_business_update" , "en" : "Edit Request Type" , "ar" : "تعديل نوع الطلب"},
+    {"name" : "administrative_business_delete" , "en" : "Delte Request Type" , "ar" : "حذف نوع الطلب"},
+    {"name" : "administrative_business_add_name" , "en" : "Add Request Type" , "ar" : "إضافة نوع الطلب"}
+    
+]

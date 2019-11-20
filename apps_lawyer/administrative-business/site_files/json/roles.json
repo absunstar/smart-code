@@ -1,0 +1,7 @@
+[{
+    "module_name" : "public" ,
+    "name": "administrative_business_admin",
+    "en": "Request Types Admin",
+    "ar": "إدارة أنواع الطلبات",
+    "permissions": ["administrative_business_manage"]
+}]
