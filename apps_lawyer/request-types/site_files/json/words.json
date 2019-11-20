@@ -6,7 +6,7 @@
     {"name" : "request_types_code" , "en" : "Request Type Code" , "ar" : "كود نوع الطلب"},
     {"name" : "request_types_name" , "en" : "Administrative work type" , "ar" : "نوع العمل الإداري"},
 
-    {"name" : "request_types_new" , "en" : "New Request Type" , "ar" : "نوع الطلب جديدة"},
+    {"name" : "request_types_new" , "en" : "New Request Type" , "ar" : "نوع طلب جديد"},
     {"name" : "request_types_details" , "en" : "Request Type Details" , "ar" : "تفاصيل نوع الطلب"},
     {"name" : "request_types_update" , "en" : "Edit Request Type" , "ar" : "تعديل نوع الطلب"},
     {"name" : "request_types_delete" , "en" : "Delte Request Type" , "ar" : "حذف نوع الطلب"},

@@ -320,6 +320,16 @@
         "ar": "إدارة إنشاء الكورسات"
     },
     {
+        "name": "menu_administrative_business",
+        "en": "Administrative Business Screen",
+        "ar": "شاشة الأعمال الإدارية"
+    },
+    {
+        "name": "menu_administrative_business_tag",
+        "en": "Add Administrative Business",
+        "ar": "إضافة أعمال إدارية"
+    },
+    {
         "name": "menu_account_course",
         "en": "Account Trainer",
         "ar": "حساب المدربين"

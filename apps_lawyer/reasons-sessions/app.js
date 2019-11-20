@@ -1,15 +1,15 @@
 module.exports = function init(site) {
   const $reasons_sessions = site.connectCollection("reasons_sessions")
 
-/*   $reasons_sessions.deleteDuplicate({
-    code: 1,
-    'company.id': 1
-  }, (err, result) => {
-    $reasons_sessions.createUnique({
-      code: 1,
-      'company.id': 1
-    }, (err, result) => { })
-  }) */
+  //  $reasons_sessions.deleteDuplicate({
+  //   code: 1,
+  //   'company.id': 1
+  // }, (err, result) => {
+  //   $reasons_sessions.createUnique({
+  //     code: 1,
+  //     'company.id': 1
+  //   }, (err, result) => { })
+  // }) 
 
   site.get({
     name: "reasons_sessions",

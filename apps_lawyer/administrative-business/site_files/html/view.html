@@ -8,9 +8,21 @@
                         <table class="table bold">
 
                             <tr>
+                                <td class="title"> ##word.date## </td>
+                                <td class="center"> {{administrative_business.date | date : 'dd - mm - yyyy'}} </td>
+                            </tr>
+
+                            <tr>
                                 <td class="title"> ##word.administrative_business_name## </td>
                                 <td class="center"> {{administrative_business.name}} </td>
                             </tr>
+
+
+                            <tr>
+                                <td class="title"> ##word.request_type## </td>
+                                <td class="center"> {{administrative_business.request_type.name}} </td>
+                            </tr>
+
 
                             <tr>
                                 <td class="title">##word.description##</td>
@@ -20,8 +32,10 @@
 
                             <tr>
                                 <td class="title"> ##word.active## </td>
-                                <td ng-show="administrative_business.active == true" class="center green"> ##word.active## </td>
-                                <td ng-show="administrative_business.active == false" class="center red"> ##word.not_active##
+                                <td ng-show="administrative_business.active == true" class="center green">
+                                    ##word.active## </td>
+                                <td ng-show="administrative_business.active == false" class="center red">
+                                    ##word.not_active##
                                 </td>
                             </tr>
                         </table>

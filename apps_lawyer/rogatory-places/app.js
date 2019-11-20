@@ -1,16 +1,16 @@
 module.exports = function init(site) {
   const $rogatory_places = site.connectCollection("rogatory_places")
 
- /*  $rogatory_places.deleteDuplicate({
-    code: 1,
-    'company.id': 1
-  }, (err, result) => {
-    $rogatory_places.createUnique({
-      code: 1,
-      'company.id': 1
-    }, (err, result) => { })
-  })
- */
+  //  $rogatory_places.deleteDuplicate({
+  //   code: 1,
+  //   'company.id': 1
+  // }, (err, result) => {
+  //   $rogatory_places.createUnique({
+  //     code: 1,
+  //     'company.id': 1
+  //   }, (err, result) => { })
+  // })
+
   site.get({
     name: "rogatory_places",
     path: __dirname + "/site_files/html/index.html",

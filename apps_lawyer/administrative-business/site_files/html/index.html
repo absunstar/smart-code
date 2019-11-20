@@ -27,8 +27,13 @@
                 </div>
 
                 <div class="top-actions">
-                    <i-button type="add" x-permissions="administrative_business_add || administrative_business_manage" label="##word.administrative_business_new##" ng-click="displayAddAdministrativeBusiness()"></i-button>
-                    <i-button type="search" x-permissions="administrative_business_search || administrative_business_manage" label="##word.search_all##" onclick="site.showModal('#administrativeBusinessSearchModal')"></i-button>
+                    <i-button type="add" x-permissions="administrative_business_add || administrative_business_manage"
+                        label="##word.administrative_business_new##" ng-click="displayAddAdministrativeBusiness()">
+                    </i-button>
+                    <i-button type="search"
+                        x-permissions="administrative_business_search || administrative_business_manage"
+                        label="##word.search_all##" onclick="site.showModal('#administrativeBusinessSearchModal')">
+                    </i-button>
 
                     <span ng-show="busy">
                         <span class="sr-only">Loading...</span>
@@ -40,7 +45,9 @@
                 <table class="table loaded center hover bold" id="t1">
                     <tr>
                         <th class="not-print"> ##word.logo## </th>
+                        <th> ##word.date## </th>
                         <th> ##word.administrative_business_name## </th>
+                        <th> ##word.request_type## </th>
                         <th> ##word.status## </th>
 
                         <th class="not-print"> ##word.actions## </th>
@@ -50,7 +57,11 @@
                             <img class="logo" ng-src="{{c.image_url}}">
                         </td>
 
+                        <td class="brown"> {{c.date | date:'dd - MM - yyyy'}} </td>
+
                         <td> {{c.name}} </td>
+
+                        <td> {{c.request_type.name}} </td>
 
                         <td>
                             <p ng-show="c.active == true" class="green"> ##word.active## </p>
@@ -58,17 +69,24 @@
                         </td>
 
                         <td class="center not-print">
-                            <i-button type="details" x-permissions="administrative_business_view || administrative_business_manage" label="##word.details##" ng-click="displayDetailsAdministrativeBusiness(c)"></i-button>
+                            <i-button type="details"
+                                x-permissions="administrative_business_view || administrative_business_manage"
+                                label="##word.details##" ng-click="displayDetailsAdministrativeBusiness(c)"></i-button>
 
-                            <i-button type="update" x-permissions="administrative_business_edit || administrative_business_manage" label="##word.update##" ng-click="displayUpdateAdministrativeBusiness(c)"></i-button>
+                            <i-button type="update"
+                                x-permissions="administrative_business_edit || administrative_business_manage"
+                                label="##word.update##" ng-click="displayUpdateAdministrativeBusiness(c)"></i-button>
 
-                            <i-button type="delete" x-permissions="administrative_business_delete || administrative_business_manage" label="##word.delete##" ng-click="displayDeleteAdministrativeBusiness(c)"></i-button>
+                            <i-button type="delete"
+                                x-permissions="administrative_business_delete || administrative_business_manage"
+                                label="##word.delete##" ng-click="displayDeleteAdministrativeBusiness(c)"></i-button>
                         </td>
                     </tr>
                 </table>
 
                 <div class="row">
-                    <i-button x-permissions="administrative_business_print || administrative_business_manage" type="print" label="##word.print##" onclick="site.print('#t1')"></i-button>
+                    <i-button x-permissions="administrative_business_print || administrative_business_manage"
+                        type="print" label="##word.print##" onclick="site.print('#t1')"></i-button>
 
 
                 </div>

@@ -1,15 +1,15 @@
 module.exports = function init(site) {
   const $rogatory_types = site.connectCollection("rogatory_types")
 
- /*  $rogatory_types.deleteDuplicate({
-    code: 1,
-    'company.id': 1
-  }, (err, result) => {
-    $rogatory_types.createUnique({
-      code: 1,
-      'company.id': 1
-    }, (err, result) => { })
-  }) */
+  //  $rogatory_types.deleteDuplicate({
+  //   code: 1,
+  //   'company.id': 1
+  // }, (err, result) => {
+  //   $rogatory_types.createUnique({
+  //     code: 1,
+  //     'company.id': 1
+  //   }, (err, result) => { })
+  // }) 
 
   site.get({
     name: "rogatory_types",

@@ -1,15 +1,16 @@
 [
-    {"name" : "administrative_business_informations" , "en" : "Request Type Informations" , "ar" : "بيانات نوع الطلب"},
+    {"name" : "administrative_business_informations" , "en" : "Administrative Business Informations" , "ar" : "بيانات العمل الإداري"},
 
-    {"name" : "administrative_business" , "en" : "Request Type" , "ar" : "أنواع الطلبات"},
-    {"name" : "administrative_business_menus" , "en" : "Request Type Menu" , "ar" : "قائمة نوع الطلب"},
-    {"name" : "administrative_business_code" , "en" : "Request Type Code" , "ar" : "كود نوع الطلب"},
-    {"name" : "administrative_business_name" , "en" : "Administrative work type" , "ar" : "نوع العمل الإداري"},
+    {"name" : "administrative_business" , "en" : "Administrative Business" , "ar" : "الأعمال الإدارية"},
+    {"name" : "administrative_business_menus" , "en" : "Administrative Business Menu" , "ar" : "قائمة العمل الإداري"},
+    {"name" : "administrative_business_code" , "en" : "Administrative Business Code" , "ar" : "كود العمل الإداري"},
+    {"name" : "administrative_business_name" , "en" : "Subject Name" , "ar" : "إسم الموضوع"},
 
-    {"name" : "administrative_business_new" , "en" : "New Request Type" , "ar" : "نوع الطلب جديدة"},
-    {"name" : "administrative_business_details" , "en" : "Request Type Details" , "ar" : "تفاصيل نوع الطلب"},
-    {"name" : "administrative_business_update" , "en" : "Edit Request Type" , "ar" : "تعديل نوع الطلب"},
-    {"name" : "administrative_business_delete" , "en" : "Delte Request Type" , "ar" : "حذف نوع الطلب"},
-    {"name" : "administrative_business_add_name" , "en" : "Add Request Type" , "ar" : "إضافة نوع الطلب"}
-    
+    {"name" : "administrative_business_new" , "en" : "New Administrative Business" , "ar" : "عمل إداري جديد"},
+    {"name" : "request_type" , "en" : "Request Type" , "ar" : "نوع الطلب"},
+    {"name" : "administrative_business_details" , "en" : "Administrative Business Details" , "ar" : "تفاصيل العمل الإداري"},
+    {"name" : "administrative_business_update" , "en" : "Edit Administrative Business" , "ar" : "تعديل العمل الإداري"},
+    {"name" : "administrative_business_delete" , "en" : "Delte Administrative Business" , "ar" : "حذف العمل الإداري"},
+    {"name" : "administrative_business_add_name" , "en" : "Add Administrative Business" , "ar" : "إضافة العمل الإداري"}
+
 ]

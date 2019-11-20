@@ -8,7 +8,8 @@ app.controller("administrative_business", function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.administrative_business = {
       image_url: '/images/administrative_business.png',
-      active: true
+      active: true,
+      date : new Date()
     };
     site.showModal('#administrativeBusinessAddModal');
   };
@@ -201,20 +202,19 @@ app.controller("administrative_business", function ($scope, $http, $timeout) {
 
   };
 
-  $scope.getScreenType = function () {
+  $scope.loadAdministrativeBusiness = function () {
     $scope.busy = true;
-
     $http({
       method: "POST",
-      url: "/api/numbering_transactions_status/get",
+      url: "/api/request_types/all",
       data: {
-        screen_name: "administrative_business"
+        select: { id: 1, name: 1, description: 1 }
       }
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data) {
-          $scope.disabledCode = response.data.doc == 'auto' ? true : false;
+        if (response.data.done) {
+          $scope.administrativeBusinessList = response.data.list;
         }
       },
       function (err) {
@@ -223,7 +223,7 @@ app.controller("administrative_business", function ($scope, $http, $timeout) {
       }
     )
   };
-  $scope.getScreenType();
-  $scope.getAdministrativeBusinessList();
 
+  $scope.getAdministrativeBusinessList();
+  $scope.loadAdministrativeBusiness();
 });

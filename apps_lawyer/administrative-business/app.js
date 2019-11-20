@@ -1,15 +1,15 @@
 module.exports = function init(site) {
   const $administrative_business = site.connectCollection("administrative_business")
 
-/*   $administrative_business.deleteDuplicate({
-    code: 1,
-    'company.id': 1
-  }, (err, result) => {
-    $administrative_business.createUnique({
-      code: 1,
-      'company.id': 1
-    }, (err, result) => { })
-  }) */
+  //  $administrative_business.deleteDuplicate({
+  //   code: 1,
+  //   'company.id': 1
+  // }, (err, result) => {
+  //   $administrative_business.createUnique({
+  //     code: 1,
+  //     'company.id': 1
+  //   }, (err, result) => { })
+  // }) 
 
   site.get({
     name: "administrative_business",
@@ -27,7 +27,7 @@ module.exports = function init(site) {
 
     $administrative_business.add({
       name: "مجموعة عملاء إفتراضية",
-      code : "1",
+      code: "1",
       image_url: '/images/administrative_business.png',
       company: {
         id: doc.id,
@@ -195,6 +195,21 @@ module.exports = function init(site) {
 
     if (where['name']) {
       where['name'] = new RegExp(where['name'], 'i')
+    }
+
+    if (where['request_type']) {
+      where['request_type.id'] = where['request_type'].id;
+      delete where['request_type']
+    }
+
+    if (where.date) {      
+      let d1 = site.toDate(where.date)
+      let d2 = site.toDate(where.date)
+      d2.setDate(d2.getDate() + 1);
+      where.date = {
+        '$gte': d1,
+        '$lt': d2
+      }
     }
 
     // if (where['active'] !== 'all') {

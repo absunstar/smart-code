@@ -1,15 +1,15 @@
 module.exports = function init(site) {
   const $request_types = site.connectCollection("request_types")
 
-/*   $request_types.deleteDuplicate({
-    code: 1,
-    'company.id': 1
-  }, (err, result) => {
-    $request_types.createUnique({
-      code: 1,
-      'company.id': 1
-    }, (err, result) => { })
-  }) */
+  // $request_types.deleteDuplicate({
+  //   code: 1,
+  //   'company.id': 1
+  // }, (err, result) => {
+  //   $request_types.createUnique({
+  //     code: 1,
+  //     'company.id': 1
+  //   }, (err, result) => { })
+  // }) 
 
   site.get({
     name: "request_types",
