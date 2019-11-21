@@ -1,24 +1,24 @@
 module.exports = function init(site) {
 
-  let collection_name = 'administrative_business'
+  let collection_name = 'rogatory_add'
 
   let source = {
-    name: 'Administrative Business System',
-    ar: ' نظام الأعمال الإدارية'
+    name: 'Rogatory Add System',
+    ar: ' نظام إضافة التوكيلات'
   }
 
-  let image_url = '/images/administrative_business.png'
+  let image_url = '/images/rogatory_add.png'
   let add_message = {
-    name: 'New Administrative Business Added',
-    ar: 'تم إضافة عمل إداري جديد'
+    name: 'New Rogatory Add Added',
+    ar: 'تم إضافة توكيل جديد'
   }
   let update_message = {
-    name: ' Administrative Business Updated',
-    ar: 'تم تعديل عمل إداري'
+    name: ' Rogatory Add Updated',
+    ar: 'تم تعديل إضافة توكيل'
   }
   let delete_message = {
-    name: ' Administrative Business Deleted',
-    ar: 'تم حذف عمل إداري '
+    name: ' Rogatory Add Deleted',
+    ar: 'تم حذف إضافة توكيل '
   }
 
 

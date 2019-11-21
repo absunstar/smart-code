@@ -360,6 +360,16 @@
         "ar": "إضافة مجموعة موردين"
     },
     {
+        "name": "menu_rogatory_add",
+        "en": "Rogatory Add Screen",
+        "ar": "شاشة إضافة التوكيلات"
+    },
+    {
+        "name": "menu_rogatory_add_tag",
+        "en": "Rogatory Add Business",
+        "ar": "إضافة توكيلات جديدة"
+    },
+    {
         "name": "menu_office_lawyers",
         "en": "Office Screen",
         "ar": "شاشة محاميين المكتب"
