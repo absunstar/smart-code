@@ -300,6 +300,16 @@
         "ar": "إدارة نظام القاعات"
     },
     {
+        "name": "menu_lawsuit_add",
+        "en": "Lawsuit Add Screen",
+        "ar": "شاشة إضافة الدعاوي"
+    },
+    {
+        "name": "menu_lawsuit_add_tag",
+        "en": "Lawsuit Add Business",
+        "ar": "إضافة دعوة جديدة"
+    },
+    {
         "name": "menu_courses",
         "en": "Courses Menu",
         "ar": "قائمة الكورسات"
@@ -338,6 +348,16 @@
         "name": "menu_account_course_tag",
         "en": "Account Trainers Manegment",
         "ar": "إدارة حساب المدربين"
+    },
+    {
+        "name": "menu_session_add",
+        "en": "Session Add Screen",
+        "ar": "شاشة إضافة الجلسات"
+    },
+    {
+        "name": "menu_session_add_tag",
+        "en": "Session Add Business",
+        "ar": "إضافة جلسات جديدة"
     },
     {
         "name": "menu_vendors",

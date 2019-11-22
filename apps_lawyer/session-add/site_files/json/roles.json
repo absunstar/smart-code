@@ -1,0 +1,7 @@
+[{
+    "module_name" : "public" ,
+    "name": "session_add_admin",
+    "en": "Session Add Admin",
+    "ar": "إدارة إضافة الجلسات",
+    "permissions": ["session_add_manage"]
+}]

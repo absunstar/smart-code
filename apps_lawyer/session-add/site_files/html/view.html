@@ -1,0 +1,40 @@
+<div ng-hide="busy" id="v1">
+    <div class="form">
+        <div id="customersGroupViewModal">
+            <fieldset>
+                <legend> ##word.session_add_informations## </legend>
+                <div class="row">
+                    <div class="col9">
+                        <table class="table bold">
+
+                            <tr>
+                                <td class="title"> ##word.session_add_name## </td>
+                                <td class="center"> {{session_add.name}} </td>
+                            </tr>
+
+                            <tr>
+                                <td class="title">##word.description##</td>
+                                <td class="center">{{session_add.description}}</td>
+                            </tr>
+
+
+                            <tr>
+                                <td class="title"> ##word.active## </td>
+                                <td ng-show="session_add.active == true" class="center green"> ##word.active## </td>
+                                <td ng-show="session_add.active == false" class="center red"> ##word.not_active##
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="col3">
+                        <i-image class="not-print" view ng-model="session_add.image_url"> </i-image>
+                    </div>
+
+
+                </div>
+            </fieldset>
+        </div>
+    </div>
+</div>
+<div x-import="session-add/action_info.html"></div>

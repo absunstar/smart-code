@@ -1,0 +1,75 @@
+<div ng-hide="busy" class="row">
+
+    <div class="tabs col">
+        <div class="tabs-header full">
+            <a class="tab-link" onclick="site.showTabContent(event, '#lawsuitData')">
+                ##word.lawsuit_data## </a>
+            <a class="tab-link" onclick="site.showTabContent(event, '#oppenents')">
+                ##word.oppenents## </a>
+            <a class="tab-link" onclick="site.showTabContent(event, '#clients')">
+                ##word.clients## </a>
+            <a class="tab-link " onclick="site.showTabContent(event, '#lawsuitFiles')">
+                ##word.lawsuit_files## </a>
+        </div>
+
+        <div id="lawsuitAllInfo" class="tabs-content full bold">
+
+            <div id="lawsuitData" class="tab-content">
+
+                <fieldset>
+                    <legend> ##word.lawsuit_add_informations## </legend>
+                    <div class="row">
+                        <div class="col9">
+                            <table class="table bold">
+
+                                <tr>
+                                    <td class="title"> ##word.lawsuit_start_date## </td>
+                                    <td class="center"> {{lawsuit_add.date | date:'dd - MM - yyyy'}} </td>
+                                </tr>
+                                <tr>
+                                    <td class="title"> ##word.active## </td>
+                                    <td ng-show="lawsuit_add.active == true" class="center green"> ##word.active## </td>
+                                    <td ng-show="lawsuit_add.active == false" class="center red"> ##word.not_active##
+                                    </td>
+                                </tr>
+
+
+                                <tr>
+                                    <td class="title">##word.description##</td>
+                                    <td class="center">{{lawsuit_add.description}}</td>
+                                </tr>
+
+
+
+                            </table>
+                        </div>
+
+                        <div class="col3">
+                            <i-image class="not-print" view ng-model="lawsuit_add.image_url"> </i-image>
+                        </div>
+
+
+                    </div>
+                </fieldset>
+            </div>
+            <div id="oppenents" class="tab-content">
+
+                <fieldset>
+                    <legend> ##word.oppenents## </legend>
+                </fieldset>
+            </div>
+
+            <div id="clients" class="tab-content">
+
+                <fieldset>
+                    <legend> ##word.clients## </legend>
+                </fieldset>
+            </div>
+
+            <div id="lawsuitFiles" class="tab-content">
+                <i-files view ng-model="lawsuit_add.files"></i-files>
+            </div>
+        </div>
+    </div>
+</div>
+<div x-import="lawsuit-add/action_info.html"></div>

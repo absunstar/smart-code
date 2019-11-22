@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="lawsuit_add_ui || lawsuit_add_manage" data-ng-app="myApp">
+
+<head x-import="head.html">
+
+</head>
+
+<body class="##lawsuit.lang##">
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+
+    </nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+
+    </nav>
+    <div id="main-layout" class="container">
+        <div class="row">
+            <div class="row" ng-controller="lawsuit_add" x-permissions="login">
+                <div x-import="lawsuit-add/add_modal.html"></div>
+                <div x-import="lawsuit-add/update_modal.html"></div>
+                <div x-import="lawsuit-add/delete_modal.html"></div>
+                <div x-import="lawsuit-add/view_modal.html"></div>
+                <div x-import="lawsuit-add/search_all_modal.html"></div>
+
+                <div class="row">
+                    <h1 class="bold text-center"> ##word.lawsuit_add## </h1>
+                </div>
+
+                <div class="top-actions">
+                    <i-button type="add" x-permissions="lawsuit_add_add || lawsuit_add_manage" label="##word.lawsuit_add_new##" ng-click="displayAddLawsuitAdd()"></i-button>
+                    <i-button type="search" x-permissions="lawsuit_add_search || lawsuit_add_manage" label="##word.search_all##" onclick="site.showModal('#lawsuitAddSearchModal')"></i-button>
+
+                    <span ng-show="busy">
+                        <span class="sr-only">Loading...</span>
+                    </span>
+                    <h3 class="bold text-center"> ##word.count## : {{count}} </h3>
+                    <br>
+                </div>
+
+                <table class="table loaded center hover bold" id="t1">
+                    <tr>
+                        <th class="not-print"> ##word.logo## </th>
+                        <th> ##word.lawsuit_add_name## </th>
+                        <th> ##word.status## </th>
+
+                        <th class="not-print"> ##word.actions## </th>
+                    </tr>
+                    <tr ng-repeat="c in list | orderBy : '-id'">
+                        <td class="not-print">
+                            <img class="logo" ng-src="{{c.image_url}}">
+                        </td>
+
+                        <td> {{c.name}} </td>
+
+                        <td>
+                            <p ng-show="c.active == true" class="green"> ##word.active## </p>
+                            <p ng-show="c.active == false" class="red"> ##word.not_active## </p>
+                        </td>
+
+                        <td class="center not-print">
+                            <i-button type="details" x-permissions="lawsuit_add_view || lawsuit_add_manage" label="##word.details##" ng-click="displayDetailsLawsuitAdd(c)"></i-button>
+
+                            <i-button type="update" x-permissions="lawsuit_add_edit || lawsuit_add_manage" label="##word.update##" ng-click="displayUpdateLawsuitAdd(c)"></i-button>
+
+                            <i-button type="delete" x-permissions="lawsuit_add_delete || lawsuit_add_manage" label="##word.delete##" ng-click="displayDeleteLawsuitAdd(c)"></i-button>
+                        </td>
+                    </tr>
+                </table>
+
+                <div class="row">
+                    <i-button x-permissions="lawsuit_add_print || lawsuit_add_manage" type="print" label="##word.print##" onclick="site.print('#t1')"></i-button>
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div x-import="scripts.html"></div>
+
+    <script x-permissions="login" x-import="lawsuit-add/index.js"></script>
+</body>
+
+</html>

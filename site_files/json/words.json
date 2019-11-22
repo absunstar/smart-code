@@ -10,6 +10,21 @@
         "ar": "الوصف"
     },
     {
+        "name": "reason",
+        "en": "Reason",
+        "ar": "السبب"
+    },
+    {
+        "name": "requests",
+        "en": "Requests",
+        "ar": "الطلبات"
+    },
+    {
+        "name": "circle",
+        "en": "Circle",
+        "ar": "الدائرة"
+    },
+    {
         "name": "empty_search",
         "en": "Empty Search",
         "ar": "تفريغ البحث"

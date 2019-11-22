@@ -1,0 +1,135 @@
+<div class="form">
+    <div class="tabs">
+        <div class="tabs-header">
+            <a class="tab-link" onclick="site.showTabContent(event, '#lawsuitData')">
+                ##word.lawsuit_data## </a>
+            <a class="tab-link" onclick="site.showTabContent(event, '#oppenents')">
+                ##word.oppenents## </a>
+                <a class="tab-link" onclick="site.showTabContent(event, '#clients')">
+                        ##word.clients## </a>
+            <a class="tab-link " onclick="site.showTabContent(event, '#lawsuitFiles')">
+                ##word.lawsuit_files## </a>
+        </div>
+
+        <div class="tabs-content">
+            <div id="lawsuitData" class="tab-content">
+                <fieldset>
+                    <legend> ##word.lawsuit_data## </legend>
+                    <div class="row">
+                        <div class="col9">
+                            <div class="row">
+                                <i-date2 ng-model="lawsuit_add.date" class="col4" label="##word.lawsuit_start_date##">
+                                </i-date2>
+
+                                <div class="col6"></div>
+
+                                <i-checkbox class="col2" label="##word.active##" ng-model="lawsuit_add.active">
+                                </i-checkbox>
+                            </div>
+
+                            <div class="row">
+                                <i-control class="col2" label="##word.lawsuit_number##" ng-model="lawsuit_add.number">
+                                </i-control>
+
+                                <i-control class="col2" type="number" label="##word.lawsuit_year##"
+                                    ng-model="lawsuit_add.year">
+                                </i-control>
+                            </div>
+
+                            <div class="row">
+                                <i-list ng-search="lawsuit_place" class="col3" items="courtsList"
+                                    ng-model="lawsuit_add.courts" label="##word.lawsuit_place##">
+                                </i-list>
+
+                                <i-list ng-search="circles" class="col3" items="circlesList"
+                                    ng-model="lawsuit_add.circle" label="##word.circle##">
+                                </i-list>
+                            </div>
+
+                            <div class="row">
+                                <i-textarea ng-model="lawsuit_add.lawsuit_topic" class="col6"
+                                    label="##word.lawsuit_topic##">
+                                </i-textarea>
+                            </div>
+
+                            <div class="row">
+                                <fieldset>
+                                    <legend> ##word.lawsuit_properties## </legend>
+
+                                    <div class="row">
+                                        <i-list ng-search="lawsuit_degree" class="col4" items="lawsuitDegreeList"
+                                            ng-model="lawsuit_add.lawsuit_degree" label="##word.lawsuit_degree##">
+                                        </i-list>
+                                        <i-list ng-search="lawsuit_type" class="col4" items="lawsuitTypeList"
+                                            ng-model="lawsuit_add.lawsuit_type" label="##word.lawsuit_type##">
+                                        </i-list>
+                                    </div>
+                                    <div class="row">
+                                        <i-list ng-search="lawsuit_status" class="col4" items="lawsuitStatusList"
+                                            ng-model="lawsuit_add.lawsuit_status" label="##word.lawsuit_status##">
+                                        </i-list>
+                                        <i-list ng-search="lawsuit_basic" class="col4" items="lawsuitBasicList"
+                                            ng-model="lawsuit_add.lawsuit_basic" label="##word.lawsuit_basic##">
+                                        </i-list>
+                                    </div>
+                                </fieldset>
+                            </div>
+
+                            <div class="row">
+                                <i-textarea ng-model="lawsuit_add.notes" class="col8" label="##word.notes##">
+                                </i-textarea>
+                            </div>
+
+                        </div>
+
+                        <div class="col3">
+                            <i-image category="lawsuit_add" ng-model="lawsuit_add.image_url"> </i-image>
+                        </div>
+                    </div>
+                </fieldset>
+                <i-button type="default left" fa="2x fa-angle-double-left"
+                    onclick="document.querySelector('.tab-link.active + .tab-link').click();"></i-button>
+
+            </div>
+
+            <div id="oppenents" class="tab-content">
+
+                <fieldset>
+                    <legend> ##word.oppenents## </legend>
+                    <div class="row">
+
+                    </div>
+                </fieldset>
+
+                <i-button type="default left" fa="2x fa-angle-double-left"
+                    onclick="document.querySelector('.tab-link.active + .tab-link').click();"></i-button>
+            </div>
+
+            <div id="clients" class="tab-content">
+
+                <fieldset>
+                    <legend> ##word.clients## </legend>
+                    <div class="row">
+                      
+                    </div>
+                </fieldset>
+
+                <i-button type="default left" fa="2x fa-angle-double-left"
+                    onclick="document.querySelector('.tab-link.active + .tab-link').click();"></i-button>
+            </div>
+
+            <div id="lawsuitFiles" class="tab-content">
+
+                <fieldset>
+                    <legend> ##word.lawsuit_files## </legend>
+                    <div class="row">
+                        <i-files ng-model="lawsuit_add.files"></i-files>
+                    </div>
+                </fieldset>
+
+                <i-button type="default left" fa="2x fa-angle-double-left"
+                    onclick="document.querySelector('.tab-link.active + .tab-link').click();"></i-button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,55 @@
+<div class="form">
+    <div id="sessionAddAddModal">
+        <fieldset>
+            <legend> ##word.session_add_informations## </legend>
+            <div class="row">
+                <div class="col9">
+                    <div class="row">
+                        <i-date2 ng-model="session_add.date" class="col4" label="##word.session_start_date##">
+                        </i-date2>
+
+                        <div class="col6"></div>
+                        <i-checkbox class="col2" label="##word.active##" ng-model="session_add.active"></i-checkbox>
+                    </div>
+
+                    <div class="row">
+                        <i-control ng-keydown="getCustomerList($event)" class="col3" ng-model="search_lawsuit"
+                            label="##word.search##" type="text"></i-control>
+                        <i-list ng-search="_search.$customer" class="col4" display="name" v="r"
+                            ng-model="session_add.lawsuit" label="##word.lawsuit_number##" items="lawsuitList">
+                        </i-list>
+
+                    </div>
+
+                    <div class="row">
+                        <i-control class="col2" label="##word.roll_number##" ng-model="session_add.roll_number">
+                        </i-control>
+
+                        <i-list ng-search="reason" class="col4" items="reasonSessionList" ng-model="session_add.reason"
+                            label="##word.reason##">
+                        </i-list>
+
+                    </div>
+
+                    <div class="row">
+                        <i-textarea ng-model="session_add.requests" class="col6" label="##word.requests##">
+                        </i-textarea>
+
+                        <i-textarea ng-model="session_add.decision" class="col6" label="##word.decision##">
+                        </i-textarea>
+                    </div>
+
+                    <div class="row">
+                        <i-textarea ng-model="session_add.description" class="col6" label="##word.description##">
+                        </i-textarea>
+                    </div>
+
+                </div>
+
+                <div class="col3">
+                    <i-image category="session_add" ng-model="session_add.image_url"> </i-image>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+</div>
