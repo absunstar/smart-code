@@ -15,9 +15,8 @@ module.exports = function init(site) {
 
 
   site.on('[company][created]', doc => {
-
     $courts.add({
-      name: "محافظة إفتراضية",
+      name: "محكمة إفتراضية",
       image_url: '/images/court.png',
       company: {
         id: doc.id,
@@ -28,10 +27,7 @@ module.exports = function init(site) {
         name_ar: doc.branch_list[0].name_ar
       },
       active: true
-    }, (err, doc) => {
-      site.call('[register][city][add]', doc)
-
-    })
+    }, (err, doc) => { })
   })
 
 
@@ -64,14 +60,14 @@ module.exports = function init(site) {
     $courts.find({
 
       where: {
-        
+
         'company.id': site.get_company(req).id,
         'branch.code': site.get_branch(req).code,
         'name': courts_doc.name
       }
     }, (err, doc) => {
       if (!err && doc) {
-        
+
         response.error = 'Name Exists'
         res.json(response)
       } else {

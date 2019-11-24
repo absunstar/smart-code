@@ -9,6 +9,7 @@ module.exports = function init(site) {
     let branch = req.session('branch')
     return site.fromJson(branch)
   }
+
   site.get({
     name: "maritals_status",
     path: __dirname + "/site_files/html/index.html",
@@ -16,6 +17,23 @@ module.exports = function init(site) {
     compress: true
   })
 
+  site.on('[company][created]', doc => {
+
+    $maritals_status.add({
+      name: "حالة إجتماعية إفتراضية",
+      code : "1",
+      image_url: '/images/marital.png',
+      company: {
+        id: doc.id,
+        name_ar: doc.name_ar
+      },
+      branch: {
+        code: doc.branch_list[0].code,
+        name_ar: doc.branch_list[0].name_ar
+      },
+      active: true
+    }, (err, doc) => {})
+  })
 
   site.post("/api/maritals_status/add", (req, res) => {
     let response = {}

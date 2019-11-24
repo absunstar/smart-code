@@ -23,25 +23,21 @@ module.exports = function init(site) {
     path: __dirname + '/site_files/images/'
   })
 
-  site.on('[company][created]', doc => {
+  site.on('[request_types][administrative_business][add]', doc => {
 
     $administrative_business.add({
-      name: "مجموعة عملاء إفتراضية",
+      name: "عمل إداري إفتراضي",
       code: "1",
       image_url: '/images/administrative_business.png',
-      company: {
-        id: doc.id,
-        name_ar: doc.name_ar
+      date : new Date(),
+      request_type : {
+        name : doc.name,
+        id : doc.id
       },
-      branch: {
-        code: doc.branch_list[0].code,
-        name_ar: doc.branch_list[0].name_ar
-      },
+      company: doc.company,
+      branch: doc.branch,
       active: true
-    }, (err, doc) => {
-      site.call('[register][customer][add]', doc)
-
-    })
+    }, (err, doc) => { })
   })
 
 
@@ -202,7 +198,7 @@ module.exports = function init(site) {
       delete where['request_type']
     }
 
-    if (where.date) {      
+    if (where.date) {
       let d1 = site.toDate(where.date)
       let d2 = site.toDate(where.date)
       d2.setDate(d2.getDate() + 1);

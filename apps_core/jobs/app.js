@@ -18,7 +18,6 @@ module.exports = function init(site) {
       },
       active: true
     }, (err, job_doc) => {
-      
       site.call('[job][employee_trainer][+]', job_doc)
 
     })

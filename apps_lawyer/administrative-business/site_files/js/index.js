@@ -214,7 +214,7 @@ app.controller("administrative_business", function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          $scope.administrativeBusinessList = response.data.list;
+          $scope.requestTypeList = response.data.list;
         }
       },
       function (err) {

@@ -147,10 +147,6 @@ app.controller("circles", function ($scope, $http, $timeout) {
       url: "/api/circles/all",
       data: {
         where: where,
-        select: {
-          id: 1,
-          name: 1
-        }
       }
     }).then(
       function (response) {

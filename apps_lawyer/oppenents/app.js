@@ -23,15 +23,12 @@ module.exports = function init(site) {
     })
   })
 
-  site.on('[register][oppenent][add]', doc => {
+  site.on('[company][created]', doc => {
 
     $oppenents.add({
-      group: {
-        id: doc.id,
-        name: doc.name
-      },
+
       code: "1",
-      name_ar: "عميل إفتراضي",
+      name_ar: "خصم إفتراضي",
       // branch_list: [
       //   {
       //     charge: [{}]
@@ -49,12 +46,12 @@ module.exports = function init(site) {
       // accounts_debt: [{}],
       image_url: '/images/oppenent.png',
       company: {
-        id: doc.company.id,
-        name_ar: doc.company.name_ar
+        id: doc.id,
+        name_ar: doc.name_ar
       },
       branch: {
-        code: doc.branch.code,
-        name_ar: doc.branch.name_ar
+        code: doc.branch_list[0].code,
+        name_ar: doc.branch_list[0].name_ar
       },
       active: true
     }, (err, doc1) => { })

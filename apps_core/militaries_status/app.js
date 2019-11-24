@@ -16,6 +16,23 @@ module.exports = function init(site) {
     compress: true
   })
 
+  site.on('[company][created]', doc => {
+
+    $militaries_status.add({
+      name: "موقف تجنيد إفتراضي",
+      code : "1",
+      image_url: '/images/military.png',
+      company: {
+        id: doc.id,
+        name_ar: doc.name_ar
+      },
+      branch: {
+        code: doc.branch_list[0].code,
+        name_ar: doc.branch_list[0].name_ar
+      },
+      active: true
+    }, (err, doc) => {})
+  })
 
   site.post("/api/militaries_status/add", (req, res) => {
     let response = {}

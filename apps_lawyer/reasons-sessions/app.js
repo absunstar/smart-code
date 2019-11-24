@@ -26,7 +26,7 @@ module.exports = function init(site) {
   site.on('[company][created]', doc => {
 
     $reasons_sessions.add({
-      name: "مجموعة عملاء إفتراضية",
+      name: "سبب جلسة إفتراضي",
       code : "1",
       image_url: '/images/reasons_sessions.png',
       company: {
@@ -38,13 +38,8 @@ module.exports = function init(site) {
         name_ar: doc.branch_list[0].name_ar
       },
       active: true
-    }, (err, doc) => {
-      site.call('[register][customer][add]', doc)
-
-    })
+    }, (err, doc) => {})
   })
-
-
 
   site.post("/api/reasons_sessions/add", (req, res) => {
     let response = {}

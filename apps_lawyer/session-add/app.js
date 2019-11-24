@@ -23,29 +23,6 @@ module.exports = function init(site) {
     path: __dirname + '/site_files/images/'
   })
 
-  site.on('[company][created]', doc => {
-
-    $session_add.add({
-      name: "مجموعة عملاء إفتراضية",
-      code : "1",
-      image_url: '/images/session_add.png',
-      company: {
-        id: doc.id,
-        name_ar: doc.name_ar
-      },
-      branch: {
-        code: doc.branch_list[0].code,
-        name_ar: doc.branch_list[0].name_ar
-      },
-      active: true
-    }, (err, doc) => {
-      site.call('[register][customer][add]', doc)
-
-    })
-  })
-
-
-
   site.post("/api/session_add/add", (req, res) => {
     let response = {}
     response.done = false

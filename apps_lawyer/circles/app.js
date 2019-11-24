@@ -13,11 +13,10 @@ module.exports = function init(site) {
     compress: true
   })
 
-
   site.on('[company][created]', doc => {
 
     $circles.add({
-      name: "محافظة إفتراضية",
+      name: "دائرة إفتراضية",
       image_url: '/images/circle.png',
       company: {
         id: doc.id,
@@ -28,10 +27,7 @@ module.exports = function init(site) {
         name_ar: doc.branch_list[0].name_ar
       },
       active: true
-    }, (err, doc) => {
-      site.call('[register][city][add]', doc)
-
-    })
+    }, (err, doc) => {})
   })
 
 

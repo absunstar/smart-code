@@ -26,8 +26,8 @@ module.exports = function init(site) {
   site.on('[company][created]', doc => {
 
     $rogatory_places.add({
-      name: "مجموعة عملاء إفتراضية",
-      code : "1",
+      name: "مكان توكيل إفتراضي",
+      code: "1",
       image_url: '/images/rogatory_places.png',
       company: {
         id: doc.id,
@@ -38,13 +38,8 @@ module.exports = function init(site) {
         name_ar: doc.branch_list[0].name_ar
       },
       active: true
-    }, (err, doc) => {
-      site.call('[register][customer][add]', doc)
-
-    })
+    }, (err, doc) => { })
   })
-
-
 
   site.post("/api/rogatory_places/add", (req, res) => {
     let response = {}

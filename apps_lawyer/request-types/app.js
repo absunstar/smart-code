@@ -26,7 +26,7 @@ module.exports = function init(site) {
   site.on('[company][created]', doc => {
 
     $request_types.add({
-      name: "مجموعة عملاء إفتراضية",
+      name: "نوع طلب إفتراضي",
       code : "1",
       image_url: '/images/request_types.png',
       company: {
@@ -38,9 +38,8 @@ module.exports = function init(site) {
         name_ar: doc.branch_list[0].name_ar
       },
       active: true
-    }, (err, doc) => {
-      site.call('[register][customer][add]', doc)
-
+    }, (err, requestTypeDoc) => {
+      site.call('[request_types][administrative_business][add]', requestTypeDoc)
     })
   })
 

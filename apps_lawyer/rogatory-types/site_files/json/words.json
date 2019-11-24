@@ -4,7 +4,7 @@
     {"name" : "rogatory_types" , "en" : "Rogatory Type" , "ar" : "أنواع التوكيلات"},
     {"name" : "rogatory_types_menus" , "en" : "Rogatory Type Menu" , "ar" : "قائمة نوع التوكيل"},
     {"name" : "rogatory_types_code" , "en" : "Rogatory Type Code" , "ar" : "كود نوع التوكيل"},
-    {"name" : "rogatory_types_name" , "en" : "Rogatory Type Name" , "ar" : "اسم نوع التوكيل"},
+    {"name" : "rogatory_types_name" , "en" : "Rogatory Type" , "ar" : "نوع التوكيل"},
 
     {"name" : "rogatory_types_new" , "en" : "New Rogatory Type" , "ar" : "نوع التوكيل جديدة"},
     {"name" : "rogatory_types_details" , "en" : "Rogatory Type Details" , "ar" : "تفاصيل نوع التوكيل"},
