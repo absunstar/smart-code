@@ -53,8 +53,8 @@ app.controller("oppenents_lawyers", function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.detailsOppenentsLawyers(oppenent);
     $scope.oppenents_lawyers = {};
-    site.showModal('#oppenentsLawyersUpdateModal');
     $scope.showOpeningBalance = false;
+    site.showModal('#oppenentsLawyersUpdateModal');
     document.querySelector('#oppenentsLawyersUpdateModal .tab-link').click();
   };
 
@@ -74,18 +74,11 @@ app.controller("oppenents_lawyers", function ($scope, $http, $timeout) {
         } else {
           num = num + parseInt(ln[i].initial_balance);
         }
-
       }
-
     }
 
-    if ($scope.showOpeningBalance) {
-
+    if ($scope.showOpeningBalance) 
       $scope.oppenents_lawyers.balance = parseInt(num);
-    }
-
-
-
   };
 
 

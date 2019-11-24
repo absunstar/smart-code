@@ -48,7 +48,7 @@ app.controller("maritals_status", function ($scope, $http) {
   $scope.newMarital_State = function () {
     $scope.error = '';
     $scope.marital_state = { image_url: '/images/marital.png' };
-    site.showModal('#addMarital_StateModal');
+    site.showModal('#addMaritalStateModal');
   };
   
   $scope.add = function () {
@@ -68,7 +68,7 @@ app.controller("maritals_status", function ($scope, $http) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#addMarital_StateModal');
+          site.hideModal('#addMaritalStateModal');
           $scope.loadAll();
         } else {
           $scope.error = '##word.error##';
@@ -84,7 +84,7 @@ app.controller("maritals_status", function ($scope, $http) {
     $scope.error = '';
     $scope.view(marital_state);
     $scope.marital_state = {};
-    site.showModal('#updateMarital_StateModal');
+    site.showModal('#updateMaritalStateModal');
   };
   $scope.update = function () {
     $scope.busy = true;
@@ -96,7 +96,7 @@ app.controller("maritals_status", function ($scope, $http) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#updateMarital_StateModal');
+          site.hideModal('#updateMaritalStateModal');
           $scope.loadAll();
         } else {
           $scope.error = '##word.error##';
@@ -112,7 +112,7 @@ app.controller("maritals_status", function ($scope, $http) {
     $scope.error = '';
     $scope.view(marital_state);
     $scope.marital_state = {};
-    site.showModal('#deleteMarital_StateModal');
+    site.showModal('#deleteMaritalStateModal');
   };
 
   $scope.view = function (marital_state) {
@@ -139,7 +139,7 @@ app.controller("maritals_status", function ($scope, $http) {
     $scope.error = '';
     $scope.view(marital_state);
     $scope.marital_state = {};
-    site.showModal('#viewMarital_StateModal');
+    site.showModal('#viewMaritalStateModal');
   };
   $scope.delete = function () {
     $scope.busy = true;
@@ -151,7 +151,7 @@ app.controller("maritals_status", function ($scope, $http) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#deleteMarital_StateModal');
+          site.hideModal('#deleteMaritalStateModal');
           $scope.loadAll();
         } else {
           $scope.error = response.data.error;

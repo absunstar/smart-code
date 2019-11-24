@@ -1,6 +1,6 @@
 module.exports = function init(site) {
-
   const $maritals_status = site.connectCollection("maritals_status")
+
   site.get_company = function (req) {
     let company = req.session('company')
     return site.fromJson(company)
@@ -21,7 +21,7 @@ module.exports = function init(site) {
 
     $maritals_status.add({
       name: "حالة إجتماعية إفتراضية",
-      code : "1",
+      code: "1",
       image_url: '/images/marital.png',
       company: {
         id: doc.id,
@@ -32,7 +32,7 @@ module.exports = function init(site) {
         name_ar: doc.branch_list[0].name_ar
       },
       active: true
-    }, (err, doc) => {})
+    }, (err, doc) => { })
   })
 
   site.post("/api/maritals_status/add", (req, res) => {

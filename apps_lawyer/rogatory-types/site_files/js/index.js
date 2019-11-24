@@ -201,29 +201,6 @@ app.controller("rogatory_types", function ($scope, $http, $timeout) {
 
   };
 
-  $scope.getScreenType = function () {
-    $scope.busy = true;
-
-    $http({
-      method: "POST",
-      url: "/api/numbering_transactions_status/get",
-      data: {
-        screen_name: "rogatory_types"
-      }
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data) {
-          $scope.disabledCode = response.data.doc == 'auto' ? true : false;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
-  };
-  $scope.getScreenType();
   $scope.getRogatoryTypesList();
 
 });

@@ -16,7 +16,7 @@
     <div id="main-layout" class="container">
         <div class="row">
             <div class="row" ng-controller="administrative_business" x-permissions="login">
-                <div x-import="administrative-business/add_modal.html"></div>
+                <div x-permissions="administrative_business_add || administrative_business_manage" x-import="administrative-business/add_modal.html"></div>
                 <div x-import="administrative-business/update_modal.html"></div>
                 <div x-import="administrative-business/delete_modal.html"></div>
                 <div x-import="administrative-business/view_modal.html"></div>

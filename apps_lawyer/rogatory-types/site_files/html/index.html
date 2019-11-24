@@ -16,11 +16,11 @@
     <div id="main-layout" class="container">
         <div class="row">
             <div class="row" ng-controller="rogatory_types" x-permissions="login">
-                <div x-import="rogatory-types/add_modal.html"></div>
+                <div x-permissions="rogatory_types_add || rogatory_types_manage"  x-import="rogatory-types/add_modal.html"></div>
                 <div x-import="rogatory-types/update_modal.html"></div>
                 <div x-import="rogatory-types/delete_modal.html"></div>
                 <div x-import="rogatory-types/view_modal.html"></div>
-                <div x-import="rogatory-types/search_all_modal.html"></div>
+                <div x-permissions="rogatory_types_search || rogatory_types_manage" x-import="rogatory-types/search_all_modal.html"></div>
 
                 <div class="row">
                     <h1 class="bold text-center"> ##word.rogatory_types## </h1>

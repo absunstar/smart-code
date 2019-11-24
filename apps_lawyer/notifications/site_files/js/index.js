@@ -305,12 +305,79 @@ app.controller("notifications", function ($scope, $http, $interval) {
     } else if (n.link.collection == 'kitchen') {
       $scope.kitchen = n.add;
       site.showModal('#kitchenViewModal');
+
     } else if (n.link.collection == 'order_slides') {
       $scope.order_slides = n.add;
       site.showModal('#viewOrderlidesModal');
+
     } else if (n.link.collection == 'create_invoices') {
       $scope.create_invoices = n.add;
       site.showModal('#creatInvoicesDetailsModal');
+
+    } else if (n.link.collection == 'oppenents') {
+      $scope.oppenent = n.add;
+      site.showModal('#oppenentDetailsModal');
+      document.querySelector('#oppenentDetailsModal .tab-link').click();
+
+    } else if (n.link.collection == 'oppenents_lawyers') {
+      $scope.oppenents_lawyers = n.add;
+      site.showModal('#oppenentsLawyersDetailsModal');
+      document.querySelector('#oppenentsLawyersDetailsModal .tab-link').click();
+
+    } else if (n.link.collection == 'office_lawyers') {
+      $scope.office_lawyers = n.add;
+      site.showModal('#officeLawyersDetailsModal');
+      document.querySelector('#officeLawyersDetailsModal .tab-link').click();
+
+    } else if (n.link.collection == 'administrative_business') {
+      $scope.administrative_business = n.add;
+      site.showModal('#administrativeBusinessDetailsModal');
+
+    } else if (n.link.collection == 'rogatory_add') {
+      $scope.rogatory_add = n.add;
+      site.showModal('#rogatoryAddDetailsModal');
+
+    } else if (n.link.collection == 'session_add') {
+      $scope.session_add = n.add;
+      site.showModal('#sessionAddDetailsModal');
+
+    } else if (n.link.collection == 'lawsuit_add') {
+      $scope.lawsuit_add = n.add;
+      site.showModal('#lawsuitAddDetailsModal');
+      document.querySelector('#lawsuitAddDetailsModal .tab-link').click();
+
+    } else if (n.link.collection == 'courts') {
+      $scope.court = n.add;
+      site.showModal('#courtViewModal');
+
+    } else if (n.link.collection == 'circles') {
+      $scope.circle = n.add;
+      site.showModal('#circleViewModal');
+
+    } else if (n.link.collection == 'reasons_sessions') {
+      $scope.reasons_sessions = n.add;
+      site.showModal('#reasonsSessionsDetailsModal');
+
+    } else if (n.link.collection == 'request_types') {
+      $scope.request_types = n.add;
+      site.showModal('#requestTypesDetailsModal');
+
+    } else if (n.link.collection == 'rogatory_types') {
+      $scope.rogatory_types = n.add;
+      site.showModal('#rogatoryTypesDetailsModal');
+
+    } else if (n.link.collection == 'rogatory_places') {
+      $scope.rogatory_places = n.add;
+      site.showModal('#rogatoryPlacesDetailsModal');
+
+    } else if (n.link.collection == 'maritals_status') {
+      $scope.marital_state = n.add;
+      site.showModal('#viewMaritalStateModal');
+
+    } else if (n.link.collection == 'militaries_status') {
+      $scope.military_state = n.add;
+      site.showModal('#viewMilitaryStateModal');
+
     } else {
       site.showModal('#displayModal');
       $('#displayContent').html(site.toHtmlTable(n.add));
@@ -500,6 +567,71 @@ app.controller("notifications", function ($scope, $http, $interval) {
     } else if (n.link.collection == 'create_invoices') {
       $scope.create_invoices = n.update;
       site.showModal('#creatInvoicesDetailsModal');
+
+    } else if (n.link.collection == 'oppenents') {
+      $scope.oppenent = n.update;
+      site.showModal('#oppenentDetailsModal');
+      document.querySelector('#oppenentDetailsModal .tab-link').click();
+
+    } else if (n.link.collection == 'oppenents_lawyers') {
+      $scope.oppenents_lawyers = n.update;
+      site.showModal('#oppenentsLawyersDetailsModal');
+      document.querySelector('#oppenentsLawyersDetailsModal .tab-link').click();
+
+    } else if (n.link.collection == 'office_lawyers') {
+      $scope.office_lawyers = n.update;
+      site.showModal('#officeLawyersDetailsModal');
+      document.querySelector('#officeLawyersDetailsModal .tab-link').click();
+
+    } else if (n.link.collection == 'administrative_business') {
+      $scope.administrative_business = n.update;
+      site.showModal('#administrativeBusinessDetailsModal');
+
+    } else if (n.link.collection == 'rogatory_add') {
+      $scope.rogatory_add = n.update;
+      site.showModal('#rogatoryAddDetailsModal');
+
+    } else if (n.link.collection == 'session_add') {
+      $scope.session_add = n.update;
+      site.showModal('#sessionAddDetailsModal');
+
+    } else if (n.link.collection == 'lawsuit_add') {
+      $scope.lawsuit_add = n.update;
+      site.showModal('#lawsuitAddDetailsModal');
+      document.querySelector('#lawsuitAddDetailsModal .tab-link').click();
+
+    } else if (n.link.collection == 'courts') {
+      $scope.court = n.update;
+      site.showModal('#courtViewModal');
+
+    } else if (n.link.collection == 'courts') {
+      $scope.court = n.update;
+      site.showModal('#courtViewModal');
+
+    } else if (n.link.collection == 'reasons_sessions') {
+      $scope.reasons_sessions = n.update;
+      site.showModal('#reasonsSessionsDetailsModal');
+
+    } else if (n.link.collection == 'request_types') {
+      $scope.request_types = n.update;
+      site.showModal('#requestTypesDetailsModal');
+
+    } else if (n.link.collection == 'rogatory_types') {
+      $scope.rogatory_types = n.update;
+      site.showModal('#rogatoryTypesDetailsModal');
+
+    } else if (n.link.collection == 'rogatory_places') {
+      $scope.rogatory_places = n.update;
+      site.showModal('#rogatoryPlacesDetailsModal');
+
+    } else if (n.link.collection == 'maritals_status') {
+      $scope.marital_state = n.update;
+      site.showModal('#viewMaritalStateModal');
+
+    } else if (n.link.collection == 'militaries_status') {
+      $scope.military_state = n.update;
+      site.showModal('#viewMilitaryStateModal');
+
     } else {
       site.showModal('#displayModal')
       $('#displayContent').html(site.toHtmlTable(n.update));
@@ -688,6 +820,71 @@ app.controller("notifications", function ($scope, $http, $interval) {
     } else if (n.link.collection == 'create_invoices') {
       $scope.create_invoices = n.delete;
       site.showModal('#creatInvoicesDetailsModal');
+
+    } else if (n.link.collection == 'oppenents') {
+      $scope.oppenent = n.delete;
+      site.showModal('#oppenentDetailsModal');
+      document.querySelector('#oppenentDetailsModal .tab-link').click();
+
+    } else if (n.link.collection == 'oppenents_lawyers') {
+      $scope.oppenents_lawyers = n.delete;
+      site.showModal('#oppenentsLawyersDetailsModal');
+      document.querySelector('#oppenentsLawyersDetailsModal .tab-link').click();
+
+    } else if (n.link.collection == 'office_lawyers') {
+      $scope.office_lawyers = n.delete;
+      site.showModal('#officeLawyersDetailsModal');
+      document.querySelector('#officeLawyersDetailsModal .tab-link').click();
+
+    } else if (n.link.collection == 'administrative_business') {
+      $scope.administrative_business = n.delete;
+      site.showModal('#administrativeBusinessDetailsModal');
+
+    } else if (n.link.collection == 'rogatory_add') {
+      $scope.rogatory_add = n.delete;
+      site.showModal('#rogatoryAddDetailsModal');
+
+    } else if (n.link.collection == 'session_add') {
+      $scope.session_add = n.delete;
+      site.showModal('#sessionAddDetailsModal');
+
+    } else if (n.link.collection == 'lawsuit_add') {
+      $scope.lawsuit_add = n.delete;
+      site.showModal('#lawsuitAddDetailsModal');
+      document.querySelector('#lawsuitAddDetailsModal .tab-link').click();
+
+    } else if (n.link.collection == 'courts') {
+      $scope.court = n.delete;
+      site.showModal('#courtViewModal');
+
+    } else if (n.link.collection == 'courts') {
+      $scope.court = n.delete;
+      site.showModal('#courtViewModal');
+
+    } else if (n.link.collection == 'reasons_sessions') {
+      $scope.reasons_sessions = n.delete;
+      site.showModal('#reasonsSessionsDetailsModal');
+
+    } else if (n.link.collection == 'request_types') {
+      $scope.request_types = n.delete;
+      site.showModal('#requestTypesDetailsModal');
+
+    } else if (n.link.collection == 'rogatory_types') {
+      $scope.rogatory_types = n.delete;
+      site.showModal('#rogatoryTypesDetailsModal');
+
+    } else if (n.link.collection == 'rogatory_places') {
+      $scope.rogatory_places = n.delete;
+      site.showModal('#rogatoryPlacesDetailsModal');
+
+    } else if (n.link.collection == 'maritals_status') {
+      $scope.marital_state = n.delete;
+      site.showModal('#viewMaritalStateModal');
+
+    } else if (n.link.collection == 'militaries_status') {
+      $scope.military_state = n.update;
+      site.showModal('#viewMilitaryStateModal');
+
     } else {
       site.showModal('#displayModal')
       $('#displayContent').html(site.toHtmlTable(n.delete));

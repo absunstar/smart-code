@@ -16,11 +16,11 @@
     <div id="main-layout" class="container">
         <div class="row">
             <div class="row" ng-controller="lawsuit_add" x-permissions="login">
-                <div x-import="lawsuit-add/add_modal.html"></div>
+                <div x-permissions="lawsuit_add_add || lawsuit_add_manage" x-import="lawsuit-add/add_modal.html"></div>
                 <div x-import="lawsuit-add/update_modal.html"></div>
                 <div x-import="lawsuit-add/delete_modal.html"></div>
                 <div x-import="lawsuit-add/view_modal.html"></div>
-                <div x-import="lawsuit-add/search_all_modal.html"></div>
+                <div x-permissions="lawsuit_add_search || lawsuit_add_manage" x-import="lawsuit-add/search_all_modal.html"></div>
 
                 <div class="row">
                     <h1 class="bold text-center"> ##word.lawsuit_add## </h1>

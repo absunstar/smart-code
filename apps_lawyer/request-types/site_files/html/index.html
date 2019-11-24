@@ -16,11 +16,11 @@
     <div id="main-layout" class="container">
         <div class="row">
             <div class="row" ng-controller="request_types" x-permissions="login">
-                <div x-import="request-types/add_modal.html"></div>
+                <div x-permissions="request_types_add || request_types_manage" x-import="request-types/add_modal.html"></div>
                 <div x-import="request-types/update_modal.html"></div>
                 <div x-import="request-types/delete_modal.html"></div>
                 <div x-import="request-types/view_modal.html"></div>
-                <div x-import="request-types/search_all_modal.html"></div>
+                <div x-permissions="request_types_search || request_types_manage" x-import="request-types/search_all_modal.html"></div>
 
                 <div class="row">
                     <h1 class="bold text-center"> ##word.request_types## </h1>

@@ -48,7 +48,7 @@ app.controller("militaries_status", function ($scope, $http) {
   $scope.newMilitary_State = function () {
     $scope.error = '';
     $scope.military_state = { image_url: '/images/military.png' };
-    site.showModal('#addMilitary_StateModal');
+    site.showModal('#addMilitaryStateModal');
   };
   
   $scope.add = function () {
@@ -69,7 +69,7 @@ app.controller("militaries_status", function ($scope, $http) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#addMilitary_StateModal');
+          site.hideModal('#addMilitaryStateModal');
           $scope.loadAll();
         } else {
           $scope.error = '##word.error##';
@@ -85,7 +85,7 @@ app.controller("militaries_status", function ($scope, $http) {
     $scope.error = '';
     $scope.view(military_state);
     $scope.military_state = {};
-    site.showModal('#updateMilitary_StateModal');
+    site.showModal('#updateMilitaryStateModal');
   };
   $scope.update = function () {
     $scope.busy = true;
@@ -97,7 +97,7 @@ app.controller("militaries_status", function ($scope, $http) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#updateMilitary_StateModal');
+          site.hideModal('#updateMilitaryStateModal');
           $scope.loadAll();
         } else {
           $scope.error = '##word.error##';
@@ -113,7 +113,7 @@ app.controller("militaries_status", function ($scope, $http) {
     $scope.error = '';
     $scope.view(military_state);
     $scope.military_state = {};
-    site.showModal('#deleteMilitary_StateModal');
+    site.showModal('#deleteMilitaryStateModal');
   };
 
   $scope.view = function (military_state) {
@@ -140,7 +140,7 @@ app.controller("militaries_status", function ($scope, $http) {
     $scope.error = '';
     $scope.view(military_state);
     $scope.military_state = {};
-    site.showModal('#viewMilitary_StateModal');
+    site.showModal('#viewMilitaryStateModal');
   };
   $scope.delete = function () {
     $scope.busy = true;
@@ -152,7 +152,7 @@ app.controller("militaries_status", function ($scope, $http) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#deleteMilitary_StateModal');
+          site.hideModal('#deleteMilitaryStateModal');
           $scope.loadAll();
         } else {
           $scope.error = response.data.error;

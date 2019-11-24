@@ -18,16 +18,16 @@
     <div id="main-layout" class="container" >
         <div class="row">
             <div class="col" ng-controller="militaries_status">
-                <div x-import="militaries_status/add_modal.html"></div>
-                <div x-import="militaries_status/update_modal.html"></div>
-                <div x-import="militaries_status/delete_modal.html"></div>
-                <div x-import="militaries_status/view_modal.html"></div>
+                <div x-permissions="militaries_status_add || militaries_status_manage" x-import="militaries-status/add_modal.html"></div>
+                <div x-import="militaries-status/update_modal.html"></div>
+                <div x-import="militaries-status/delete_modal.html"></div>
+                <div x-import="militaries-status/view_modal.html"></div>
                 <div class="top-actions">
                     <i-button type="add" x-permissions="militaries_status_add || militaries_status_manage" ng-click="newMilitary_State()" label="##word.military_status_new##"></i-button>
                   
                 </div>
 
-                <table class="table loaded" id="t1">
+                <table class="table loaded hover" id="t1">
                     <tr>
                         <th class="not-print">##word.military_status_logo##</th>
                         <th>##word.military_status_name##</th>
@@ -56,7 +56,7 @@
 
     <div x-import="scripts.html"></div>
 
-    <script  x-import="militaries_status/index.js"></script>
+    <script  x-import="militaries-status/index.js"></script>
 
 </body>
 
