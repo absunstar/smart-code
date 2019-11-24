@@ -21,7 +21,7 @@
                                     <th>##word.service_name##</th>
                                     <th>##word.attend_count##</th>
                                     <th>##word.current_attendance##</th>
-                                    <th>##word.remain##</th>
+                                    <th>##word.remain_attendance##</th>
                                     <th>##word.trainer##</th>
                                     <th>##word.actions##</th>
                                 </tr>
@@ -29,18 +29,22 @@
                                 <tr class="bold">
 
                                     <td>
+                                        <br>
                                         <p class="center bold">{{attend_service.service_name}}</p>
                                     </td>
 
                                     <td>
+                                        <br>
                                         <p class="center bold blue">{{attend_service.total_real_attend_count}}</p>
                                     </td>
 
                                     <td>
+                                        <br>
                                         <p class="center bold blue">{{attend_service.current_attendance}}</p>
                                     </td>
 
                                     <td>
+                                        <br>
                                         <p class="center bold blue">{{attend_service.remain}}</p>
                                     </td>
 
@@ -96,8 +100,8 @@
                                         <p class="center bold blue">{{s.remain}}</p>
                                     </td>
                                     <td>
-                                        <i-list ng-search="s.$trainer_attend_search" display="name" ng-model="s.trainer_attend"
-                                            items="trainersList"></i-list>
+                                        <i-list ng-search="s.$trainer_attend_search" display="name"
+                                            ng-model="s.trainer_attend" items="trainersList"></i-list>
                                     </td>
                                     <td class="center">
                                         <i-button type="add" label="##word.attend##" ng-click="attendNow(s)">

@@ -1,49 +1,79 @@
 module.exports = function init(site) {
   const $attend_subscribers = site.connectCollection("attend_subscribers")
   const $request_service = site.connectCollection("request_service")
+  const $create_invoices = site.connectCollection("create_invoices")
 
   site.on('zk attend', attend => {
     user_id = attend.user_id
 
     site.getCustomerAttend(user_id.toString(), customerCb => {
       // get customer by user_id
-
       if (!customerCb) return;
 
       $attend_subscribers.findMany({
-        where: {
-          'customer.id': customerCb.id
-        },
-        limit : 1 ,
+        where: { 'customer.id': customerCb.id },
+        limit: 1,
         sort: { id: -1 }
       }, (err, docs) => {
 
-        let  customerDoc = null
+        let customerDoc = null
 
-        if(!err && docs.length == 1){
-          customerDoc = docs[0]
+        if (!err && docs.length == 1) customerDoc = docs[0]
+
+        let attend_time = {
+          hour: new Date(attend.date).getHours(),
+          minute: new Date(attend.date).getMinutes()
         }
-        
-          let attend_time = {
-            hour: new Date(attend.date).getHours(),
-            minute: new Date(attend.date).getMinutes()
-          }
 
-          let can_check_in = false
-          let can_check_out = false
-          if(customerDoc == null){
-            can_check_in = true
-          }
-          if(customerDoc && customerDoc.leave_date){
-            can_check_in = true
-          }
+        let can_check_in = false
+        let can_check_out = false
 
-          if(customerDoc && customerDoc.attend_date){
-            can_check_out = true
-          }
+        if (customerDoc == null) can_check_in = true
+        if (customerDoc && customerDoc.leave_date) can_check_in = true
+        if (customerDoc && customerDoc.attend_date) can_check_out = true
 
-          if (attend.check_status == "check_in" && can_check_in) {
-            $request_service.findMany({where : {'customer.id' :customerCb.id }} , (err , docs)=>{
+        if (attend.check_status == "check_in" && can_check_in) {
+
+          $request_service.findMany({ where: { 'customer.id': customerCb.id } }, (err, request_service_doc) => {
+            $create_invoices.findMany({ where: { 'customer.id': customerCb.id } }, (err, create_invoices_doc) => {
+              let request_services_list = [];
+              request_service_doc.forEach(_request_service => {
+                if (_request_service.selectedServicesList && _request_service.selectedServicesList.length > 0) {
+                  request_services_list.push({
+                    service_name: _request_service.service_name,
+                    complex_service: _request_service.selectedServicesList,
+                    date_from: _request_service.date_from,
+                    date_to: _request_service.date_to,
+                    time_from: _request_service.time_from,
+                    time_to: _request_service.time_to,
+                    request_service_id: _request_service.id
+                  });
+                } else {
+                  request_services_list.push({
+                    service_name: _request_service.service_name,
+                    remain: _request_service.remain,
+                    date_from: _request_service.date_from,
+                    date_to: _request_service.date_to,
+                    time_from: _request_service.time_from,
+                    time_to: _request_service.time_to,
+                    request_service_id: _request_service.id
+                  });
+                }
+              });
+
+              request_services_list.forEach(_request_services => {
+                if (_request_services.complex_service && _request_services.complex_service.length > 0) {
+                  let total_remain = 0;
+                  _request_services.complex_service.map(_complex_service => total_remain += _complex_service.remain)
+                  _request_services.remain = total_remain
+                }
+
+                create_invoices_doc.forEach(_create_invoices => {
+                  if (_request_services.request_service_id == _create_invoices.request_service_id)
+                    _request_services.invoice_remain = _create_invoices.total_remain
+                });
+              });
+
               $attend_subscribers.add({
                 image_url: '/images/attend_subscribers.png',
                 customer: customerCb,
@@ -52,24 +82,22 @@ module.exports = function init(site) {
                 attend: attend_time,
                 company: customerCb.company,
                 branch: customerCb.branch,
-                service_list : docs
-              })
-            })
-           
+                service_list: request_services_list,
+              });
+            });
+          });
 
-          } else if (attend.check_status == "check_out" && can_check_out) {
+        } else if (attend.check_status == "check_out" && can_check_out) {
 
-            let leave_time = {
-              hour: new Date(attend.date).getHours(),
-              minute: new Date(attend.date).getMinutes()
-            }
-            customerDoc.leave_date = new Date(attend.date)
-            customerDoc.leave = leave_time
-            $attend_subscribers.update(customerDoc)
-
+          let leave_time = {
+            hour: new Date(attend.date).getHours(),
+            minute: new Date(attend.date).getMinutes()
           }
+          customerDoc.leave_date = new Date(attend.date)
+          customerDoc.leave = leave_time
+          $attend_subscribers.update(customerDoc)
+        }
 
-        
       })
     })
 
@@ -279,11 +307,10 @@ module.exports = function init(site) {
       }
     }
 
-
     if (where.search && where.search.current) {
-
       where['current'] = where.search.current
     }
+
     delete where.search
 
     where['company.id'] = site.get_company(req).id

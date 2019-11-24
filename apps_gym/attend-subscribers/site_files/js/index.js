@@ -274,13 +274,11 @@ app.controller("attend_subscribers", function ($scope, $http, $timeout , $interv
 
   };
 
-  $scope.getAttendSubscribersList();
 
   $interval(()=>{
     if($scope.auto_load_attendance){
       $scope.getAttendSubscribersList();
     };
-    
   } , 1000 * 3);
 
 });

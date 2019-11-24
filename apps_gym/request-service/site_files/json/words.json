@@ -56,7 +56,12 @@
     {
         "name": "current_attendance",
         "en": "Current Attendance",
-        "ar": "عدد الحضور الحالي"
+        "ar": "الحضور الحالي"
+    },
+    {
+        "name": "remain_attendance",
+        "en": "Remain Attendance",
+        "ar": "الحضور المتبقي"
     },
     {
         "name": "beginning_of_day",

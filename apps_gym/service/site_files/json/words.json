@@ -26,7 +26,7 @@
     {
         "name": "attend_count",
         "en": "Attend Count",
-        "ar": "عدد مرات الحضور"
+        "ar": "مرات الحضور"
     },
     {
         "name": "total_attend_count",
@@ -140,8 +140,8 @@
     },
     {
         "name": "service_remain",
-        "en": "Service Remain Count",
-        "ar": "عدد الجلسات الباقية"
+        "en": "Service Remain",
+        "ar": "الجلسات الباقية"
     }
     
 

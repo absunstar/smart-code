@@ -275,9 +275,8 @@ module.exports = function init(site) {
     })
   })
 
-
   site.getCustomerAttend = function (data, callback) {
-
+    
     let select = {
       id: 1, name_ar: 1,
       active: 1, finger_code: 1,
