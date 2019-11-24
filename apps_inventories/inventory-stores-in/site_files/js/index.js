@@ -25,42 +25,43 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
     $scope.error = '';
     for (let i = 0; i < $scope.store_in.taxes.length; i++) {
       let tx = $scope.store_in.taxes[i];
-      if (tx.name == _tx.name && tx.value == _tx.value) {
+      if (tx.name == _tx.name && tx.value == _tx.value) 
         $scope.store_in.taxes.splice(i, 1);
-      }
     }
     $scope.calc();
   };
   $scope.addDiscount = function () {
-    $scope.store_in.discountes = $scope.store_in.discountes || [];
-    $scope.discount.type = 'number';
+    $scope.error = '';
 
-    $scope.store_in.discountes.push({
-      name: $scope.discount.name,
-      value: $scope.discount.value,
-      type: $scope.discount.type
-    });
-    $scope.discount = {};
-    $scope.calc();
+    if (!$scope.discount.value) {
+      $scope.error = '##word.error_discount##';
+      return;
+    } else {
+      $scope.store_in.discountes = $scope.store_in.discountes || [];
+
+      $scope.store_in.discountes.push({
+        name: $scope.discount.name,
+        value: $scope.discount.value,
+        type: $scope.discount.type
+      });
+      $scope.calc();
+    };
+
   };
   $scope.deleteDiscount = function (_ds) {
     $scope.error = '';
     for (let i = 0; i < $scope.store_in.discountes.length; i++) {
       let ds = $scope.store_in.discountes[i];
-      if (ds.name == _ds.name && ds.value == _ds.value && ds.type == _ds.type) {
+      if (ds.name == _ds.name && ds.value == _ds.value && ds.type == _ds.type)
         $scope.store_in.discountes.splice(i, 1);
-      }
     }
-
     $scope.calc();
   };
-
 
   $scope.calc = function () {
     $scope.error = '';
     $scope.store_in.total_value = 0;
     $scope.store_in.net_value = 0;
-
 
     $scope.store_in.items.forEach(itm => {
       $scope.store_in.total_value += parseFloat(itm.total);
@@ -72,15 +73,18 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
     });
 
     $scope.store_in.total_discount = 0;
-    $scope.store_in.discountes.forEach(ds => {
-      if (ds.type == '1') {
-        $scope.store_in.total_discount += $scope.store_in.total_value * parseFloat(ds.value) / 100;
-      } else {
-        $scope.store_in.total_discount += parseFloat(ds.value);
-      }
-    });
+    if ($scope.store_in.discountes && $scope.store_in.discountes.length > 0)
+      $scope.store_in.discountes.forEach(ds => {
+        
+        if (ds.type == 'percent')
+          $scope.store_in.total_discount += $scope.store_in.total_value * parseFloat(ds.value) / 100;
+        else $scope.store_in.total_discount += parseFloat(ds.value);
+      });
 
     $scope.store_in.net_value = $scope.store_in.total_value + $scope.store_in.total_tax - $scope.store_in.total_discount;
+    $scope.discount = {
+      type: 'number'
+    };
   };
 
   $scope.deleteRow = function (itm) {
@@ -95,7 +99,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
   };
   $scope.newStoreIn = function () {
     $scope.getDefaultSettings();
-      site.showModal('#addStoreInModal');
+    site.showModal('#addStoreInModal');
   };
 
   $scope.getDefaultSettings = function () {
@@ -161,25 +165,26 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
             site.hideModal('#addStoreInModal');
             $scope.loadAll();
 
-          } else {
-            $scope.error = response.data.error;
-          }
+          } else $scope.error = response.data.error;
+
         },
         function (err) {
           $scope.error = err.message;
         }
       )
     } else {
-      $scope.error = "يجب ادخال الكمية";
+      $scope.error = "##word.must_enter_quantity##";
       return;
     }
   };
+
   $scope.remove = function (store_in) {
     $scope.error = '';
     $scope.view(store_in);
     $scope.store_in = {};
     site.showModal('#deleteStoreInModal');
   };
+
   $scope.view = function (store_in) {
     $scope.error = '';
     $scope.busy = true;
@@ -195,9 +200,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
         if (response.data.done) {
           response.data.doc.date = new Date(response.data.doc.date);
           $scope.store_in = response.data.doc;
-        } else {
-          $scope.error = response.data.error;
-        }
+        } else $scope.error = response.data.error;
       },
       function (err) {
         console.log(err);
@@ -228,9 +231,8 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
         if (response.data.done) {
           site.hideModal('#deleteStoreInModal');
           $scope.loadAll();
-        } else {
-          $scope.error = response.data.error;
-        }
+        } else $scope.error = response.data.error;
+
       },
       function (err) {
         console.log(err);
@@ -240,35 +242,28 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
 
   $scope.addToItems = function () {
     $scope.error = "";
-   
-      if ($scope.store_in.type) {
-        $scope.item.sizes.forEach(s => {
-          if(s.count > 0){
-            $scope.store_in.items.push({
-              image_url: $scope.item.image_url,
-              name: s.item_name,
-              size: s.size,
-              barcode: s.barcode,
-              count: s.count,
-              cost: s.cost,
-              price: s.price,
-              total: s.total,
-              current_count: s.current_count,
-              ticket_code: s.ticket_code,
-              status_store_in: $scope.store_in.type.id
-            });
-          }
-        
-        });
-
-        $scope.calc();
-        $scope.item.sizes = [];
-
-      } else {
-        $scope.error = "##word.err_transaction_type##";
-      }
-
-    
+    if ($scope.store_in.type) {
+      $scope.item.sizes.forEach(s => {
+        if (s.count > 0) {
+          $scope.store_in.items.push({
+            image_url: $scope.item.image_url,
+            name: s.item_name,
+            size: s.size,
+            barcode: s.barcode,
+            average_cost: s.average_cost,
+            count: s.count,
+            cost: s.cost,
+            price: s.price,
+            total: s.total,
+            current_count: s.current_count,
+            ticket_code: s.ticket_code,
+            status_store_in: $scope.store_in.type.id
+          });
+        }
+      });
+      $scope.calc();
+      $scope.item.sizes = [];
+    } else $scope.error = "##word.err_transaction_type##";
   };
 
   $scope.calcSize = function (s) {
@@ -277,8 +272,9 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
       if (s.cost && s.count) {
         s.total = site.toNumber(s.cost) * site.toNumber(s.count)
       }
+      $scope.calc();
     }, 100);
-  }
+  };
 
   $scope.addToSizes = function () {
     $scope.error = '';
@@ -338,6 +334,42 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
     }
   };
 
+  $scope.getBarcode = function (ev) {
+    $scope.error = '';
+    if (ev.which === 13) {
+      $http({
+        method: "POST",
+        url: "/api/stores_items/name_all",
+        data: {
+          search: $scope.search_barcode
+        }
+      }).then(
+        function (response) {
+          $scope.busy = false;
+          if (response.data.done) {
+            if (response.data.list.length > 0) {
+              response.data.list[0].sizes.forEach(_size => {
+                if (_size.barcode == $scope.search_barcode) {
+                  _size.name = response.data.list[0].name
+                  _size.count = 1
+                  _size.total = _size.count * _size.cost
+                  $scope.store_in.items.push(_size)
+                }
+              });
+              $scope.calc();
+            };
+
+          } else {
+            $scope.error = response.data.error;
+          };
+        },
+        function (err) {
+          console.log(err);
+        }
+      );
+    }
+  };
+
   $scope.itemsStoresIn = function () {
     $scope.error = '';
     $scope.item.sizes = [];
@@ -354,13 +386,12 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
       $scope.item.sizes = [];
       $scope.item.item_name.sizes.forEach(item => {
         item.item_name = $scope.item.item_name.name
-        item.count = 0;
+        item.count = 1;
         item.total = item.count * item.cost
         $scope.item.sizes.push(item);
       });
     };
-  }
-
+  };
 
   /*  $scope.getItem = function () {
      if ($scope.item.item_name) {
@@ -402,7 +433,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
            console.log(err);
          }
        );
- 
+   
      }
    }; */
 
@@ -456,9 +487,8 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done) {
-          $scope.stores = response.data.list;
-        }
+        if (response.data.done) $scope.stores = response.data.list;
+
       },
       function (err) {
         $scope.busy = false;
@@ -482,9 +512,8 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done) {
-          $scope.safes = response.data.list;
-        }
+        if (response.data.done) $scope.safes = response.data.list;
+
       },
       function (err) {
         $scope.busy = false;
@@ -529,9 +558,8 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done) {
-          $scope.categories = response.data.list;
-        }
+        if (response.data.done) $scope.categories = response.data.list;
+
       },
       function (err) {
         $scope.busy = false;
@@ -556,9 +584,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done) {
-          $scope.tax_types = response.data.list;
-        }
+        if (response.data.done) $scope.tax_types = response.data.list;
       },
       function (err) {
         $scope.busy = false;
@@ -574,21 +600,18 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/discount_types/all",
       data: {
-        select: {
           select: {
             id: 1,
             name: 1,
             value: 1,
             type: 1
-          }
+          
         }
       }
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done) {
-          $scope.discount_types = response.data.list;
-        }
+        if (response.data.done) $scope.discount_types = response.data.list;
       },
       function (err) {
         $scope.busy = false;

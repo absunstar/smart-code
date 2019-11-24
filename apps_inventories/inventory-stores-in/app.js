@@ -170,7 +170,7 @@ module.exports = function init(site) {
     })
 
     stores_in_doc.discount = site.toNumber(stores_in_doc.discount)
-    stores_in_doc.octazion = site.toNumber(stores_in_doc.octazion)
+    // stores_in_doc.octazion = site.toNumber(stores_in_doc.octazion)
     stores_in_doc.net_discount = site.toNumber(stores_in_doc.net_discount)
     stores_in_doc.total_value = site.toNumber(stores_in_doc.total_value)
     stores_in_doc.net_value = site.toNumber(stores_in_doc.net_value)
@@ -248,7 +248,7 @@ module.exports = function init(site) {
     })
 
     stores_in_doc.discount = site.toNumber(stores_in_doc.discount)
-    stores_in_doc.octazion = site.toNumber(stores_in_doc.octazion)
+    // stores_in_doc.octazion = site.toNumber(stores_in_doc.octazion)
     stores_in_doc.net_discount = site.toNumber(stores_in_doc.net_discount)
     stores_in_doc.total_value = site.toNumber(stores_in_doc.total_value)
 

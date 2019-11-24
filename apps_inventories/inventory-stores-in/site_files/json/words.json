@@ -19,6 +19,9 @@
     {"name" : "stores_in_store_name" , "en" : "Store In" , "ar" : "  إسم المخزن "},
     {"name" : "err_barcode_exist" , "en" : "The barcode is exist" , "ar" : "الباركود مسجل من قبل"},
 
+    {"name" : "permission_detailes" , "en" : "Permission Detailes" , "ar" : "تفاصيل الإذن"},
+    {"name" : "must_enter_quantity" , "en" : "Must Enter Quantity" , "ar" : "يجب إدخال الكمية"},
+
     {"name" : "stores_in_safe" , "en" : "Safe Number" , "ar" : "  الخزينة "},
     {"name" : "stores_in_no_safe" , "en" : "No Safe" , "ar" : "  لا يوجد خزينة "},
     {"name" : "nosafe_warning" , "en" : "You should choose a Safe" , "ar" : "  يرجى التأكد من اختيار الخزينة"},

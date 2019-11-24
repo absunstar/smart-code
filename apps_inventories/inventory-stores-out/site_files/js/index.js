@@ -56,6 +56,41 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
     }
   };
 
+  $scope.getBarcode = function (ev) {
+    $scope.error = '';
+    if (ev.which === 13) {
+      $http({
+        method: "POST",
+        url: "/api/stores_items/name_all",
+        data: {
+          search: $scope.search_barcode
+        }
+      }).then(
+        function (response) {
+          $scope.busy = false;
+          if (response.data.done) {
+            if (response.data.list.length > 0) {
+              response.data.list[0].sizes.forEach(_size => {
+                if (_size.barcode == $scope.search_barcode) {
+                  _size.name = response.data.list[0].name
+                  _size.count = 1
+                  _size.total = _size.count * _size.cost
+                  $scope.store_out.items.push(_size)
+                }
+              });
+              $scope.calc();
+            };
+
+          } else {
+            $scope.error = response.data.error;
+          };
+        },
+        function (err) {
+          console.log(err);
+        }
+      );
+    }
+  };
 
   $scope.itemsStoresOut = function () {
     $scope.error = '';
@@ -64,7 +99,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
       $scope.item.item_name.sizes.forEach(item => {
         if ($scope.item.item_name) {
           item.item_name = $scope.item.item_name.name
-          item.count = 0;
+          item.count = 1;
           item.total = item.count * item.cost
           $scope.item.sizes.push(item);
         }
@@ -73,7 +108,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
       $scope.item.sizes = [];
       $scope.item.item_name.sizes.forEach(item => {
         item.item_name = $scope.item.item_name.name
-        item.count = 0;
+        item.count = 1;
         item.total = item.count * item.cost
         $scope.item.sizes.push(item);
       });
@@ -101,22 +136,18 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
   $scope.deleteTax = function (_tx) {
     for (let i = 0; i < $scope.store_out.taxes.length; i++) {
       let tx = $scope.store_out.taxes[i];
-      if (tx.name == _tx.name && tx.value == _tx.value) {
+      if (tx.name == _tx.name && tx.value == _tx.value) 
         $scope.store_out.taxes.splice(i, 1);
-      }
     }
     $scope.calc();
   };
 
   $scope.addDiscount = function () {
     $scope.error = '';
-
     if (!$scope.discount.value) {
       $scope.error = '##word.stores_out_error_discount##';
       return;
     } else {
-      $scope.discount.type = 'number';
-
       $scope.store_out.discountes = $scope.store_out.discountes || [];
       $scope.store_out.discountes.push({
         name: $scope.discount.name,
@@ -153,7 +184,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
 
     $scope.store_out.total_discount = 0;
     $scope.store_out.discountes.forEach(ds => {
-      if (ds.type == '1') {
+      if (ds.type == 'percent') {
         $scope.store_out.total_discount += $scope.store_out.total_value * parseFloat(ds.value) / 100;
       } else {
         $scope.store_out.total_discount += parseFloat(ds.value);
@@ -161,6 +192,9 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
     });
 
     $scope.store_out.net_value = $scope.store_out.total_value + $scope.store_out.total_tax - $scope.store_out.total_discount;
+    $scope.discount = {
+      type: 'number'
+    };
   };
 
   $scope.deleteRow = function (itm) {
@@ -251,20 +285,19 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
       url: "/api/discount_types/all",
       data: {
         select: {
-          select: {
             id: 1,
             name: 1,
             value: 1,
             type: 1
-          }
+          
         }
       }
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done) {
-          $scope.discount_types = response.data.list;
-        }
+
+        if (response.data.done) 
+          $scope.discountTypesList = response.data.list;
       },
       function (err) {
         $scope.busy = false;
@@ -454,14 +487,14 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done && response.data.doc) {
-          $scope.defaultSettings = response.data.doc;          
+          $scope.defaultSettings = response.data.doc;
           $scope.error = '';
           $scope.item = {}
           $scope.store_out = {
             image_url: '/images/store_out.png',
-            vendor: $scope.defaultSettings.general_Settings? $scope.defaultSettings.general_Settings.vendor: null,
-            store: $scope.defaultSettings.inventory? $scope.defaultSettings.inventory.store: null,
-            safe: $scope.defaultSettings.accounting? $scope.defaultSettings.accounting.safe : null,
+            vendor: $scope.defaultSettings.general_Settings ? $scope.defaultSettings.general_Settings.vendor : null,
+            store: $scope.defaultSettings.inventory ? $scope.defaultSettings.inventory.store : null,
+            safe: $scope.defaultSettings.accounting ? $scope.defaultSettings.accounting.safe : null,
             items: [],
             discountes: [],
             taxes: [],
@@ -616,22 +649,23 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
     $scope.error = "";
 
     $scope.item.sizes.forEach(s => {
-     
-        if (s.count > 0) {
-          $scope.store_out.items.push({
-            image_url: $scope.item.image_url,
-            name: s.item_name,
-            size: s.size,
-            barcode: s.barcode,
-            count: s.count,
-            cost: s.cost,
-            price: s.price,
-            total: s.total,
-            current_count: s.current_count,
 
-          });
-        }
-      
+      if (s.count > 0) {
+        $scope.store_out.items.push({
+          image_url: $scope.item.image_url,
+          name: s.item_name,
+          size: s.size,
+          average_cost: s.average_cost,
+          barcode: s.barcode,
+          count: s.count,
+          cost: s.cost,
+          price: s.price,
+          total: s.total,
+          current_count: s.current_count,
+
+        });
+      }
+
     });
 
     $scope.calc();
@@ -645,7 +679,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
     $scope.item.sizes.push({
       $new: true,
       size: $scope.size_name,
-      count: 0,
+      count: 1,
       cost: 0,
       price: 0,
       total: 0
@@ -672,7 +706,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
             if (response.data.list.length > 0) {
               $('#public_count').focus();
               response.data.list[0].sizes.forEach(itm => {
-                itm.count = 0;
+                itm.count = 1;
               });
               $scope.item = response.data.list[0];
 
@@ -698,8 +732,12 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
   };
 
   $scope.calcSize = function (s) {
+    $scope.error = '';
     setTimeout(() => {
-      s.total = site.toNumber(s.price) * site.toNumber(s.count)
+      if (s.cost && s.count) {
+        s.total = site.toNumber(s.cost) * site.toNumber(s.count)
+      }
+      $scope.calc();
     }, 100);
   };
 
