@@ -1,4 +1,4 @@
-app.controller("attend_subscribers", function ($scope, $http, $timeout , $interval) {
+app.controller("attend_subscribers", function ($scope, $http, $timeout, $interval) {
 
   $scope.attend_subscribers = {};
   $scope.auto_load_attendance = true;
@@ -9,10 +9,8 @@ app.controller("attend_subscribers", function ($scope, $http, $timeout , $interv
       image_url: '/images/attend_subscribers.png',
       active: true,
       date: new Date()
-      /* capaneighborhood : " - طالب",       immediate : false
- */    };
+    };
     site.showModal('#attendSubscribersAddModal');
-
   };
 
   $scope.addAttendSubscribers = function () {
@@ -171,7 +169,6 @@ app.controller("attend_subscribers", function ($scope, $http, $timeout , $interv
     )
   };
 
-
   /*   $scope.getCustomerList = function () {
       $scope.busy = true;
       $http({
@@ -264,21 +261,18 @@ app.controller("attend_subscribers", function ($scope, $http, $timeout , $interv
         console.log(err);
       }
     )
-
   };
 
   $scope.searchAll = function () {
     $scope.getAttendSubscribersList($scope.search);
     site.hideModal('#attendSubscribersSearchModal');
     $scope.search = {};
-
   };
 
-
-  $interval(()=>{
-    if($scope.auto_load_attendance){
+  $interval(() => {
+    if ($scope.auto_load_attendance) {
       $scope.getAttendSubscribersList();
     };
-  } , 1000 * 3);
+  }, 1000 * 3);
 
 });
