@@ -2,41 +2,33 @@
     <form class="form">
 
         <div class="row">
-            <div class="col8">
-                <div class="row">
-                    <i-date2 class="col4" ng-model="store_out.date" label="##word.stores_out_date##"></i-date2>
-                    <i-control class="col4" ng-model="store_out.number" label="##word.stores_out_number##" v="r">
-                    </i-control>
-                    <i-list class="col4" ng-model="store_out.safe" items="safes" ng-search="_search.$serach_safes"
-                        label="##word.stores_out_safe##" v="r"></i-list>
-                </div>
-
-                <div class="row">
-                    <i-list class="col4" ng-model="store_out.vendor" display="name_ar" items="vendorsList"
-                        ng-search="_search.$search_vendor" label="##word.stores_in_Company_name##"></i-list>
-                    <i-list class="col4" ng-model="store_out.store" items="stores" ng-search="_search.$stores_search"
-                        label="##word.stores_out_store##"></i-list>
-                    <i-list display="##session.lang##" ng-search="_search.$search_in_out" class="col4"
-                        ng-model="store_out.type" items="stores_out_types" label="##word.stores_outtypes##"></i-list>
-                </div>
-
+            <div class="row">
+                <i-list display="##session.lang##" ng-search="_search.$search_in_out" class="col3"
+                    ng-model="store_out.type" items="stores_out_types" label="##word.stores_outtypes##"></i-list>
+                <i-date2 class="col3" ng-model="store_out.date" label="##word.stores_out_date##"></i-date2>
+                <i-control class="col3" ng-model="store_out.number" label="##word.stores_out_number##" v="r">
+                </i-control>
+                <i-list class="col3" ng-model="store_out.safe" items="safes" ng-search="_search.$serach_safes"
+                    label="##word.stores_out_safe##" v="r"></i-list>
             </div>
-            <div class="col1">
+
+            <div class="row">
+
+                <i-list class="col3" ng-model="store_out.store" items="stores" ng-search="_search.$stores_search"
+                    label="##word.stores_out_store##"></i-list>
+
+                <i-files class="col3" ng-model="store_out.files"></i-files>
 
             </div>
 
-            <div class="col3">
-                <div class="row center">
-                    <i-image category="stores_images" ng-model="store_out.image_url"></i-image>
-                    <i-files ng-model="store_out.files"></i-files>
 
-                </div>
-            </div>
+
+
         </div>
 
         <div class="row">
-            <i-control id="search_barcode" class="col4" ng-keydown="getBarcode($event)" class="col3" ng-model="search_barcode"
-                label="##word.search##" type="text"></i-control>
+            <i-control id="search_barcode" class="col4" ng-keydown="getBarcode($event)" class="col3"
+                ng-model="search_barcode" label="##word.search##" type="text"></i-control>
             <div class="col1"></div>
             <i-button type="search" label=" ##word.select_items##" onclick="site.showModal('#selectItemsModal')">
             </i-button>
