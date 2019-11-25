@@ -79,8 +79,13 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
                 }
               });
               $scope.calc();
-            };
-
+              $scope.search_barcode = "";
+              
+             
+            }
+            $timeout(()=>{
+              document.querySelector('#search_barcode input').focus();
+            } , 500);
           } else {
             $scope.error = response.data.error;
           };

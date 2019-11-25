@@ -62,7 +62,7 @@
    
     {"name" : "item_transaction_type" , "en" : "transactions Type" , "ar" : "نوع العمليةٍ"},
     {"name" : "item_transaction_type_in" , "en" : "Items transactions In" , "ar" : "اذن اضافة"},
-    {"name" : "item_transaction_type_out" , "en" : "Items transactions Out" , "ar" : " اذن صرف"},
+    {"name" : "item_transaction_type_out" , "en" : "Items transactions Out" , "ar" : "إذن صرف / فاتورة بيع"},
     {"name" : "item_transaction_eng" , "en" : "Eng " , "ar" : "  الفنى "},
     {"name" : "item_transaction_total" , "en" : "Total" , "ar" : "الاجمالي"},
     {"name" : "item_transaction_logo" , "en" : "Logo" , "ar" : "الشعار"},

@@ -351,15 +351,18 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
              
               response.data.list[0].sizes.forEach(_size => {
                 if (_size.barcode == $scope.search_barcode) {
-                  _size.name = response.data.list[0].name
-                  _size.count = 1
-                  _size.total = _size.count * _size.cost
-                  $scope.store_in.items.push(_size)
+                  _size.name = response.data.list[0].name;
+                  _size.count = 1;
+                  _size.total = _size.count * _size.cost;
+                  $scope.store_in.items.unshift(_size);
                 }
               });
               $scope.calc();
               $scope.search_barcode = "";
-            };
+            }
+            $timeout(()=>{
+              document.querySelector('#search_barcode input').focus();
+            } , 100);
 
           } else {
             $scope.error = response.data.error;
