@@ -4,6 +4,10 @@ const site = require('../isite')({
     saving_time: 0.2,
     name: 'gym',
     theme: 'theme_paper',
+    https:{
+        enabled : true,
+        port : 5050
+    },
     mongodb: {
         db: 'smart_code_gyms',
         limit: 100000
