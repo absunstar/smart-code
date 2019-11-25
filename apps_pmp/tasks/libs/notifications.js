@@ -10,7 +10,7 @@ module.exports = function init(site) {
   let image_url = '/images/task.png'
   let add_message = {
     name: 'New Task Added',
-    ar: 'تم أضافة مهمة جديدة'
+    ar: 'تم إضافة مهمة جديدة'
   }
   let update_message = {
     name: ' Task Updated',

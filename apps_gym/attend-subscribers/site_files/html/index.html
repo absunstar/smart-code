@@ -54,6 +54,7 @@
                         <th>##word.status##</th>
                         <th class="not-print">##word.actions##</th>
                     </tr>
+
                     <tr ng-repeat="c in list">
                         <td class="center not-print">
                             <img class="logo" ng-src="{{c.image_url}}">
@@ -75,20 +76,9 @@
                             <p ng-show="c.active ==true" class="green"> ##word.active## </p>
                             <p ng-show="c.active ==false" class="red"> ##word.not_active## </p>
                         </td>
-
                         <td class="center not-print">
-                            <div class="row" ng-repeat="service in c.service_list">
-                                <table class="table">
-                                    <tr>
-                                        <th>##word.service##</th>
-                                        <th>##word.service_remain##</th>
-                                    </tr>
-                                    <tr>
-                                        <td class="center bold blue">{{service.service_name}}</td>
-                                        <td class="center bold ">{{service.remain}}</td>
-                                    </tr>
-                                </table>
-                            </div>
+
+
                             <i-button x-permissions="attend_subscribers_view || attend_subscribers_manage" type="view"
                                 label="##word.details##" ng-click="displayDetailsAttendSubscribers(c)"></i-button>
 

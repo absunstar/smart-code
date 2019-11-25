@@ -10,7 +10,7 @@ module.exports = function init(site) {
   let image_url = '/images/items_menu.png'
   let add_message = {
     name: 'New Items Menu Added',
-    ar: 'تم أضافة قائمة أصناف جديدة'
+    ar: 'تم إضافة قائمة أصناف جديدة'
   }
   let update_message = {
     name: ' Items Menu Updated',

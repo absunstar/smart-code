@@ -10,7 +10,7 @@ module.exports = function init(site) {
   let image_url = '/images/kitchen.png'
   let add_message = {
     name: 'New Kitchen Added',
-    ar: 'تم أضافة تعريف مطبخ جديد'
+    ar: 'تم إضافة تعريف مطبخ جديد'
   }
   let update_message = {
     name: ' Kitchen Updated',

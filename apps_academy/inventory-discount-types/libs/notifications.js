@@ -8,7 +8,7 @@ module.exports = function init(site) {
   }
 
   let image_url = '/images/discount_type.png'
-  let add_message = {name : 'New Discount Added' , ar : 'تم أضافة خصم جديد'}
+  let add_message = {name : 'New Discount Added' , ar : 'تم إضافة خصم جديد'}
   let update_message =  {name : ' Discount  updated' , ar : 'تم تعديل   خصم'}
   let delete_message =  {name : ' Discount  dleteted' , ar : 'تم حذف  خصم  '}
 

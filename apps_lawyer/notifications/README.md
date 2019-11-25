@@ -19,7 +19,7 @@ module.exports = function init(site) {
           source: "Categories System",
           source_ar: "نظام مجموعات الاصناف",
           message: "New Category Added",
-          message_ar: "تم أضافة مجموعة صنف جديدة",
+          message_ar: "تم إضافة مجموعة صنف جديدة",
           value: result.doc.name,
           value_ar: result.doc.name,
           add: result.doc,

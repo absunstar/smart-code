@@ -3,7 +3,7 @@
     {
         "module_name": "public",
         "name": "user_management",
-        "ar": "ادارة المستخدميين",
+        "ar": "إدارة المستخدميين",
         "en": "User Management",
         "permissions": [
             "security",

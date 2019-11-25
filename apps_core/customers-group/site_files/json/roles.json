@@ -2,6 +2,6 @@
     "module_name" : "sales" ,
     "name": "sales_customers_group_admin",
     "en": "Customers Group  Admin",
-    "ar": "ادارة مجموعة العملاء",
+    "ar": "إدارة مجموعة العملاء",
     "permissions": ["sales_customers_group_manage"]
 }]

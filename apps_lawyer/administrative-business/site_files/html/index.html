@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="administrative_business_ui || administrative_business_manage" data-ng-app="myApp">
+
+<head x-import="head.html">
+
+</head>
+
+<body class="##session.lang##">
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+
+    </nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+
+    </nav>
+    <div id="main-layout" class="container">
+        <div class="row">
+            <div class="row" ng-controller="administrative_business" x-permissions="login">
+                <div x-permissions="administrative_business_add || administrative_business_manage" x-import="administrative-business/add_modal.html"></div>
+                <div x-import="administrative-business/update_modal.html"></div>
+                <div x-import="administrative-business/delete_modal.html"></div>
+                <div x-import="administrative-business/view_modal.html"></div>
+                <div x-import="administrative-business/search_all_modal.html"></div>
+
+                <div class="row">
+                    <h1 class="bold text-center"> ##word.administrative_business## </h1>
+                </div>
+
+                <div class="top-actions">
+                    <i-button type="add" x-permissions="administrative_business_add || administrative_business_manage"
+                        label="##word.administrative_business_new##" ng-click="displayAddAdministrativeBusiness()">
+                    </i-button>
+                    <i-button type="search"
+                        x-permissions="administrative_business_search || administrative_business_manage"
+                        label="##word.search_all##" onclick="site.showModal('#administrativeBusinessSearchModal')">
+                    </i-button>
+
+                    <span ng-show="busy">
+                        <span class="sr-only">Loading...</span>
+                    </span>
+                    <h3 class="bold text-center"> ##word.count## : {{count}} </h3>
+                    <br>
+                </div>
+
+                <table class="table loaded center hover bold" id="t1">
+                    <tr>
+                        <th class="not-print"> ##word.logo## </th>
+                        <th> ##word.date## </th>
+                        <th> ##word.administrative_business_name## </th>
+                        <th> ##word.request_type## </th>
+                        <th> ##word.status## </th>
+
+                        <th class="not-print"> ##word.actions## </th>
+                    </tr>
+                    <tr ng-repeat="c in list | orderBy : '-id'">
+                        <td class="not-print">
+                            <img class="logo" ng-src="{{c.image_url}}">
+                        </td>
+
+                        <td class="brown"> {{c.date | date:'dd - MM - yyyy'}} </td>
+
+                        <td> {{c.name}} </td>
+
+                        <td> {{c.request_type.name}} </td>
+
+                        <td>
+                            <p ng-show="c.active == true" class="green"> ##word.active## </p>
+                            <p ng-show="c.active == false" class="red"> ##word.not_active## </p>
+                        </td>
+
+                        <td class="center not-print">
+                            <i-button type="details"
+                                x-permissions="administrative_business_view || administrative_business_manage"
+                                label="##word.details##" ng-click="displayDetailsAdministrativeBusiness(c)"></i-button>
+
+                            <i-button type="update"
+                                x-permissions="administrative_business_edit || administrative_business_manage"
+                                label="##word.update##" ng-click="displayUpdateAdministrativeBusiness(c)"></i-button>
+
+                            <i-button type="delete"
+                                x-permissions="administrative_business_delete || administrative_business_manage"
+                                label="##word.delete##" ng-click="displayDeleteAdministrativeBusiness(c)"></i-button>
+                        </td>
+                    </tr>
+                </table>
+
+                <div class="row">
+                    <i-button x-permissions="administrative_business_print || administrative_business_manage"
+                        type="print" label="##word.print##" onclick="site.print('#t1')"></i-button>
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div x-import="scripts.html"></div>
+
+    <script x-permissions="login" x-import="administrative-business/index.js"></script>
+</body>
+
+</html>

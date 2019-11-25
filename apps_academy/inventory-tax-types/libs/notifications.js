@@ -8,7 +8,7 @@ module.exports = function init(site) {
   }
 
   let image_url = '/images/tax_type.png'
-  let add_message = {name : 'New Tax Added' , ar : 'تم أضافة أذن ضريبة جديدة'}
+  let add_message = {name : 'New Tax Added' , ar : 'تم إضافة أذن ضريبة جديدة'}
   let update_message =  {name : ' Tax updated' , ar : 'تم تعديل  ضريبة'}
   let delete_message =  {name : ' Tax dleteted' , ar : 'تم حذف ضريبة '}
 

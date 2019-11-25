@@ -2,6 +2,6 @@
     "module_name" : "public" ,
     "name": "students_admin",
     "en": "Students Admin",
-    "ar": "ادارة الطلاب",
+    "ar": "إدارة الطلاب",
     "permissions": ["students_manage"]
 }]

@@ -10,7 +10,7 @@ module.exports = function init(site) {
   let image_url = '/images/slides.png'
   let add_message = {
     name: 'New Order Slides Added',
-    ar: 'تم أضافة شريحة طلب جديدة'
+    ar: 'تم إضافة شريحة طلب جديدة'
   }
   let update_message = {
     name: ' Order Slides Updated',

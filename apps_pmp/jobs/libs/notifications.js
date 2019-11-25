@@ -10,7 +10,7 @@ module.exports = function init(site) {
   let image_url = '/images/job.png'
   let add_message = {
     name: 'New Job Added',
-    ar: 'تم أضافة وظيفة جديدة'
+    ar: 'تم إضافة وظيفة جديدة'
   }
   let update_message = {
     name: ' Job Updated',

@@ -10,7 +10,7 @@ module.exports = function init(site) {
   let image_url = '/images/city.png'
   let add_message = {
     name: 'New city Added',
-    ar: 'تم أضافة مدينة جيدية'
+    ar: 'تم إضافة مدينة جيدية'
   }
   let update_message = {
     name: ' city Updated',

@@ -102,7 +102,7 @@ module.exports = function init(site) {
     site.get('/api/zk/attend/:status', (req, res) => {
         attend = {
             attend_id: 1,
-            user_id: 1,
+            finger_id: 2,
             date: new Date(),
             check_status: req.params.status
         }

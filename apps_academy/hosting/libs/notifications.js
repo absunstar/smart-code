@@ -11,7 +11,7 @@ module.exports = function init(site) {
   let image_url = '/images/hosting.png'
   let add_message = {
     name: 'New Hosting Added',
-    ar: 'تم أضافة إستضافة جديدة'
+    ar: 'تم إضافة إستضافة جديدة'
   }
 
   let update_message = {

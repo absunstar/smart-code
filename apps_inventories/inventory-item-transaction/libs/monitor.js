@@ -7,7 +7,7 @@ module.exports = function init(site) {
           source: "Categories Items System",
           source_ar: "نظام الاصناف",
           message: "New Category Item Added",
-          message_ar: "تم أضافة صنف جديد",
+          message_ar: "تم إضافة صنف جديد",
           value: result.doc.name,
           value_ar: result.doc.name,
           add: result.doc,

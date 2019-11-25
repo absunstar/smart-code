@@ -1,0 +1,41 @@
+[{
+        "name": "circles",
+        "en": "Circles",
+        "ar": "الدوائر"
+    },
+    {
+        "name": "circles_new",
+        "en": "New Circle",
+        "ar": "دائرة جديد"
+    },
+
+    {
+        "name": "circles_add",
+        "en": "Add Circle",
+        "ar": "إضافة دائرة "
+    },
+    {
+        "name": "circles_edit",
+        "en": "Edit Circle",
+        "ar": "تعديل دائرة "
+    },
+    {
+        "name": "circles_details",
+        "en": "Circle Details",
+        "ar": "تفاصيل الدائرة "
+    },
+    {
+        "name": "circles_delete",
+        "en": "Delete Circle",
+        "ar": "حذف دائرة "
+    },
+    {
+        "name": "circles_name",
+        "en": "Circle Name",
+        "ar": "إسم الدائرة "
+    }
+
+
+
+
+]

@@ -40,7 +40,6 @@ module.exports = function init(site) {
       active: true
     }, (err, doc) => {
       site.call('[register][customer][add]', doc)
-
     })
   })
 

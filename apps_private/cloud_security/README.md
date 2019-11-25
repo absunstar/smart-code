@@ -24,7 +24,7 @@ company
     {"name" : "company_delete" , "en":"Delete" , "ar" : "حذف"},
     {"name" : "company_search" , "en":"Search" , "ar" : "بحث"},
     {"name" : "company_view" , "en":"View" , "ar" : "عرض"},
-    {"name" : "company_manage" , "en":"Manage" , "ar" : "ادارة"}
+    {"name" : "company_manage" , "en":"Manage" , "ar" : "إدارة"}
 ]
 ```
 

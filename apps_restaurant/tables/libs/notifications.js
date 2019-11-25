@@ -10,7 +10,7 @@ module.exports = function init(site) {
   let image_url = '/images/tables.png'
   let add_message = {
     name: 'New Tables Added',
-    ar: 'تم أضافة تعريف طاولة جديدة'
+    ar: 'تم إضافة تعريف طاولة جديدة'
   }
   let update_message = {
     name: ' Tables Updated',

@@ -8,7 +8,7 @@ module.exports = function init(site) {
   }
 
   let image_url = '/images/category_item.png'
-  let add_message = {name : 'New Item Added' , ar : 'تم أضافة صنف جديد'}
+  let add_message = {name : 'New Item Added' , ar : 'تم إضافة صنف جديد'}
   let update_message =  {name : ' Item  updated' , ar : 'تم تعديل   صنف'}
   let delete_message =  {name : ' Item  dleteted' , ar : 'تم حذف  صنف  '}
 

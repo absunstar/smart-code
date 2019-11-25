@@ -1,0 +1,7 @@
+[{
+    "module_name" : "public" ,
+    "name": "rogatory_add_admin",
+    "en": "Rogatory Add Admin",
+    "ar": "إدارة إضافة التوكيلات",
+    "permissions": ["rogatory_add_manage"]
+}]

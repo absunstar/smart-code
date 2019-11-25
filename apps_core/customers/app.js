@@ -40,21 +40,21 @@ module.exports = function init(site) {
       },
       code: "1",
       name_ar: "عميل إفتراضي",
-      // branch_list: [
-      //   {
-      //     charge: [{}]
-      //   }
-      // ],
-      // currency_list: [],
-      // opening_balance: [
-      //   {
-      //     initial_balance: 0
-      //   }
-      // ],
-      // bank_list: [{}],
-      // dealing_company: [{}],
-      // employee_delegate: [{}],
-      // accounts_debt: [{}],
+      branch_list: [
+        {
+          charge: [{}]
+        }
+      ],
+      currency_list: [],
+      opening_balance: [
+        {
+          initial_balance: 0
+        }
+      ],
+      bank_list: [{}],
+      dealing_company: [{}],
+      employee_delegate: [{}],
+      accounts_debt: [{}],
       image_url: '/images/customer.png',
       company: {
         id: doc.company.id,
@@ -275,9 +275,8 @@ module.exports = function init(site) {
     })
   })
 
-
   site.getCustomerAttend = function (data, callback) {
-
+    
     let select = {
       id: 1, name_ar: 1,
       active: 1, finger_code: 1,

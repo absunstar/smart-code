@@ -1,0 +1,24 @@
+<div id="reasonsSessionsUpdateModal" class="modal" fixed>
+    <div class="modal-content">
+
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.reasons_sessions_update##
+                <i class="fa fa-pencil"></i>
+            </h2>
+        </div>
+
+        <div class="modal-body">
+            <div x-import="reasons-sessions/content.html"></div>
+            <div x-import="reasons-sessions/action_info.html"></div>
+        </div>
+
+        <div class="modal-footer center">
+            <h2 class="error"> {{error}} </h2>
+            <i-button type="save" label="##word.save##" ng-click="updateReasonsSessions(reasons_sessions)" ></i-button>
+            
+            <i-button type="close" label="##word.close##"onclick="site.hideModal( '#reasonsSessionsUpdateModal')" ></i-button>
+        </div>
+    </div>
+</div>

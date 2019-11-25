@@ -1,0 +1,7 @@
+[{
+    "module_name" : "public" ,
+    "name": "rogatory_types_admin",
+    "en": "Rogatory Types Admin",
+    "ar": "إدارة أنواع التوكيلات",
+    "permissions": ["rogatory_types_manage"]
+}]

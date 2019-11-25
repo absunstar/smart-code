@@ -8,7 +8,7 @@ module.exports = function init(site) {
   }
 
   let image_url = '/images/store_out.png'
-  let add_message = {name : 'New store  Out Added' , ar : 'تم أضافة أذن صرف جديد'}
+  let add_message = {name : 'New store  Out Added' , ar : 'تم إضافة أذن صرف جديد'}
   let update_message =  {name : ' Store Out updated' , ar : 'تم تعديل أذن صرف'}
   let delete_message =  {name : ' Store Out dleteted' , ar : 'تم حذف أذن صرف '}
 

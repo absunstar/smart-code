@@ -1,0 +1,53 @@
+<div class="form">
+    <div id="rogatoryAddAddModal">
+        <fieldset>
+            <legend> ##word.rogatory_add_informations## </legend>
+            <div class="row">
+                <div class="col9">
+                    <div class="row">
+                        <i-date2 ng-model="rogatory_add.date" class="col4" label="##word.rogatory_start_date##">
+                        </i-date2>
+
+
+                        <div class="col6"></div>
+                        <i-checkbox class="col2" label="##word.active##" ng-model="rogatory_add.active"></i-checkbox>
+                    </div>
+
+                    <div class="row">
+                        <i-control class="col2" label="##word.rogatory_character##" ng-model="rogatory_add.character">
+                        </i-control>
+
+                        <i-control class="col2" label="##word.rogatory_number##" ng-model="rogatory_add.number">
+                        </i-control>
+                        
+                        <i-control class="col2" type="number" label="##word.rogatory_year##"
+                            ng-model="rogatory_add.year">
+                        </i-control>
+                    </div>
+
+                    <div class="row">
+
+                        <i-list ng-search="rogatory_place" class="col3" items="rogatoryPlaceList"
+                            ng-model="rogatory_add.rogatory_place" label="##word.rogatory_place##">
+                        </i-list>
+
+                        <i-list ng-search="rogatory_type" class="col3" items="rogatoryTypeList"
+                            ng-model="rogatory_add.rogatory_type" label="##word.rogatory_type##">
+                        </i-list>
+
+                    </div>
+
+                    <div class="row">
+                        <i-textarea ng-model="rogatory_add.description" class="col6" label="##word.description##">
+                        </i-textarea>
+                    </div>
+
+                </div>
+
+                <div class="col3">
+                    <i-image category="rogatory_add" ng-model="rogatory_add.image_url"> </i-image>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+</div>

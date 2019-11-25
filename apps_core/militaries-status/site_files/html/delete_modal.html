@@ -1,0 +1,22 @@
+<div id="deleteMilitaryStateModal" class="modal">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                    ##word.military_status_delete## <i class="fa fa-trash"></i> 
+             </h2>
+        </div>
+        <div class="modal-body">
+            <div x-import="militaries-status/view.html"></div>
+
+            <h2>{{error}}</h2>
+            <div class="modal-footer center">
+                <i-button type="delete" ng-click="delete(military_state)" label="##word.delete##"></i-button>
+                <i-button type="close" onclick="site.hideModal('#deleteMilitaryStateModal')" label="##word.close##"></i-button>
+            </div>
+        </div>
+    </div>
+
+
+</div>

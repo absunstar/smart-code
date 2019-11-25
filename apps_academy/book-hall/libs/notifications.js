@@ -10,7 +10,7 @@ module.exports = function init(site) {
   let image_url = '/images/book_hall.png'
   let add_message = {
     name: 'New Book Hall Added',
-    ar: 'تم أضافة حجز قاعة جديدة'
+    ar: 'تم إضافة حجز قاعة جديدة'
   }
   let update_message = {
     name: ' Book Hall Updated',

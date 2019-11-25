@@ -127,7 +127,7 @@
     {
         "name": "address_menus_manegment",
         "en": "Address Menu Manegment",
-        "ar": "ادارة العناوين"
+        "ar": "إدارة العناوين"
     },
     {
         "name": "menu_goves",
@@ -137,7 +137,7 @@
     {
         "name": "menu_goves_tag",
         "en": " Goves Manegment",
-        "ar": "ادارة المحافظات"
+        "ar": "إدارة المحافظات"
     },
     {
         "name": "invoices_menus",
@@ -272,7 +272,7 @@
     {
         "name": "menu_book_hall_tag",
         "en": " Book Hall Manegment",
-        "ar": "ادارة حجز القاعات"
+        "ar": "إدارة حجز القاعات"
     },
     {
         "name": "menu_city",
@@ -292,7 +292,7 @@
     {
         "name": "menu_area_tag",
         "en": "Area Manegment",
-        "ar": "ادارة المناطق"
+        "ar": "إدارة المناطق"
     },
     {
         "name": "menu_class_rooms",
@@ -778,7 +778,7 @@
     {
         "name": "system_add_amounts_out",
         "en": "Add Amount out",
-        "ar": "أضافة بنود المصاريف"
+        "ar": "إضافة بنود المصاريف"
     },
     {
         "name": "system_in_out_names_menus",

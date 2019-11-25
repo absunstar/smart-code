@@ -1,0 +1,7 @@
+[{
+    "module_name" : "public" ,
+    "name": "lawsuit_add_admin",
+    "en": "Lawsuit Add Admin",
+    "ar": "إدارة إضافة الدعاوي",
+    "permissions": ["lawsuit_add_manage"]
+}]

@@ -145,6 +145,31 @@
         "ar": "سعر البيع"
     },
     {
+        "name": "total_purchase_price",
+        "en": "Total Purchase Price",
+        "ar": "إجمالي سعر المشتريات"
+    },
+    {
+        "name": "total_purchase_count",
+        "en": "Total Purchase Count",
+        "ar": "إجمالي عدد المشتريات"
+    },
+    {
+        "name": "average_cost",
+        "en": "Average Cost",
+        "ar": "متوسط التكلفة"
+    },
+    {
+        "name": "total_selling_price",
+        "en": "Total Selling Price",
+        "ar": "إجمالي سعر المبيعات"
+    },
+    {
+        "name": "total_selling_count",
+        "en": "Total Selling Count",
+        "ar": "إجمالي عدد المبيعات"
+    },
+    {
         "name": "stores_items_balance",
         "en": "Balance",
         "ar": "الرصيد"

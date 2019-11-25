@@ -2,6 +2,6 @@
     "module_name" : "public" ,
     "name": "disease_admin",
     "en": "Disease Admin",
-    "ar": "ادارة الأمراض",
+    "ar": "إدارة الأمراض",
     "permissions": ["disease_manage"]
 }]

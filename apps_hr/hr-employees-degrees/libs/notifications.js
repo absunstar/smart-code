@@ -8,7 +8,7 @@ module.exports = function init(site) {
     }
   
     let image_url = '/images/employee_degree.png'
-    let add_message = {name : 'New Employee_degree Added' , ar : 'تم أضافة درجة وظيفية جديدة'}
+    let add_message = {name : 'New Employee_degree Added' , ar : 'تم إضافة درجة وظيفية جديدة'}
     let update_message =  {name : ' Employee_degree updated' , ar : 'تم تعديل درجة وظيفية'}
     let delete_message =  {name : ' Employee_degree dleteted' , ar : 'تم حذف درجة وظيفية '}
   

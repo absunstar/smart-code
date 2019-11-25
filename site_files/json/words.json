@@ -10,6 +10,26 @@
         "ar": "الوصف"
     },
     {
+        "name": "reason",
+        "en": "Reason",
+        "ar": "السبب"
+    },
+    {
+        "name": "requests",
+        "en": "Requests",
+        "ar": "الطلبات"
+    },
+    {
+        "name": "circle",
+        "en": "Circle",
+        "ar": "الدائرة"
+    },
+    {
+        "name": "empty_search",
+        "en": "Empty Search",
+        "ar": "تفريغ البحث"
+    },
+    {
         "name": "invoice_header",
         "en": "Invoice Header",
         "ar": "مقدمة الفاتورة"
@@ -197,7 +217,7 @@
     {
         "name": "add_new_user",
         "en": "Add New User",
-        "ar": "أضافة مستخدم جديد"
+        "ar": "إضافة مستخدم جديد"
     },
     {
         "name": "user_details",

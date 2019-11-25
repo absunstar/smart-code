@@ -169,25 +169,6 @@ app.controller("hall", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.getPeriod = function () {
-    $scope.busy = true;
-    $scope.periodList = [];
-    $http({
-      method: "POST",
-      url: "/api/period_class/all"
-
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        $scope.periodList = response.data;
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
-  };
-
   $scope.displaySearchModal = function () {
     $scope.error = '';
     site.showModal('#hallSearchModal');
@@ -202,6 +183,4 @@ app.controller("hall", function ($scope, $http, $timeout) {
   };
 
   $scope.getHallList();
-  $scope.getPeriod();
-
 });

@@ -72,21 +72,23 @@
                                 <p ng-show="!c.sizes || c.sizes.length < 1">##word.no_items##</p>
                                 <table ng-show="c.sizes.length > 0" class="table bold">
                                     <tr>
-                                        <th>##word.kitchen_name##</th>
                                         <th>##word.stores_size##</th>
                                         <th>##word.barcode##</th>
+                                        <th>##word.kitchen_name##</th>
                                         <th>##word.stores_cost##</th>
                                         <th>##word.stores_price##</th>
+                                        <th>##word.average_cost##</th>
                                         <th>##word.stores_current_balance##</th>
                                         <th>##word.stores_start_balance##</th>
                                     </tr>
 
                                     <tr ng-repeat="s in c.sizes">
-                                        <td class="center">{{s.kitchen.name}}</td>
                                         <td class="center">{{s.size}}</td>
                                         <td class="center blue">{{s.barcode}}</td>
+                                        <td class="center">{{s.kitchen.name}}</td>
                                         <td class="center red">{{s.cost}}</td>
                                         <td class="center green">{{s.price}}</td>
+                                        <td class="center red">{{s.average_cost}}</td>
                                         <td class="center blue">{{s.current_count}}</td>
                                         <td class="center blue">{{s.start_count}}</td>
                                     </tr>

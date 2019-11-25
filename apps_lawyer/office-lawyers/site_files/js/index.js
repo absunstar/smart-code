@@ -53,8 +53,8 @@ app.controller("office_lawyers", function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.detailsOfficeLawyers(oppenent);
     $scope.office_lawyers = {};
-    site.showModal('#officeLawyersUpdateModal');
     $scope.showOpeningBalance = false;
+    site.showModal('#officeLawyersUpdateModal');
     document.querySelector('#officeLawyersUpdateModal .tab-link').click();
   };
 
@@ -70,21 +70,13 @@ app.controller("office_lawyers", function ($scope, $http, $timeout) {
 
         if (ln[i].balance_type == "credit") {
           num = num - parseInt(ln[i].initial_balance);
-
         } else {
           num = num + parseInt(ln[i].initial_balance);
         }
-
       }
-
     }
-
-    if ($scope.showOpeningBalance) {
-
+    if ($scope.showOpeningBalance) 
       $scope.office_lawyers.balance = parseInt(num);
-    }
-
-
 
   };
 

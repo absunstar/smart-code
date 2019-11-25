@@ -1,4 +1,4 @@
-const site = require('../node_modules/isite')({
+const site = require('isite')({
     port: 80,
     lang: 'ar',
     saving_time: 0.2,
@@ -41,8 +41,7 @@ site.importApps(__dirname + '/apps_hr')
 site.importApps(__dirname + '/apps_lawyer')
 site.features.push('lawyer')
 setTimeout(() => {
-site.importApps(__dirname + '/apps_core')
-    
+    site.importApps(__dirname + '/apps_core')
     site.importApp(__dirname + '/apps_private/companies')
     site.importApp(__dirname + '/apps_private/zk-reader')
 

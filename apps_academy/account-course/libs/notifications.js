@@ -10,7 +10,7 @@ module.exports = function init(site) {
   let image_url = '/images/account_course.png'
   let add_message = {
     name: 'New Account Course Added',
-    ar: 'تم أضافة حساب كورس جديدة'
+    ar: 'تم إضافة حساب كورس جديدة'
   }
   let update_message = {
     name: ' Account Course Updated',

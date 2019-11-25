@@ -114,7 +114,6 @@ module.exports = function init(site) {
       if (!err) {
         response.done = true
         response.list = docs
-        console.log(docs)
       } else {
         console.log(err)
         response.error = err.message

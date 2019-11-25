@@ -29,10 +29,21 @@ module.exports = function init(site) {
             exist = false
           };
         });
+
         if (exist) {
           obj.current_count = site.toNumber(obj.count)
           doc.sizes.push(obj)
         };
+
+        doc.sizes.forEach(_size => {
+          if (_size.barcode == obj.barcode) {
+            let totalCost = obj.cost * obj.count;
+            _size.total_purchase_price = _size.total_purchase_price + totalCost
+            _size.total_purchase_count = _size.total_purchase_count + obj.count
+            _size.average_cost =site.toNumber(_size.total_purchase_price) / site.toNumber(_size.total_purchase_count)
+          }
+        });
+
         $stores_items.update(doc, () => {
           $stores_items.busy5 = false
         });
@@ -453,30 +464,30 @@ module.exports = function init(site) {
           site.call('[stores_items][store_in]', itm)
         })
         response.done = true
-      } else {
-        response.error = err.message
-      }
+      } else response.error = err.message
+
       res.json(response)
     })
   })
+
   site.post("/api/stores_items/update", (req, res) => {
-    let response = {}
+    let response = {};
     response.done = false
 
-    if (req.session.user === undefined) {
-      res.json(response)
-    }
-    let stores_items_doc = req.body
+    if (req.session.user === undefined) res.json(response)
+
+    let stores_items_doc = req.body;
 
     stores_items_doc.edit_user_info = site.security.getUserFinger({
       $req: req,
       $res: res
-    })
+    });
 
     stores_items_doc.sizes.forEach(itm => {
       itm.cost = site.toNumber(itm.cost)
       itm.price = site.toNumber(itm.price)
-    })
+    });
+
 
     if (stores_items_doc._id) {
       $stores_items.edit({
@@ -488,17 +499,14 @@ module.exports = function init(site) {
         $req: req,
         $res: res
       }, err => {
-        if (!err) {
-          response.done = true
-        } else {
-          response.error = err.message
-        }
+        if (!err) response.done = true
+        else response.error = err.message
         res.json(response)
-      })
-    } else {
-      res.json(response)
-    }
-  })
+      });
+    } else res.json(response);
+
+  });
+
   site.post("/api/stores_items/delete", (req, res) => {
     let response = {}
     response.done = false
@@ -1007,7 +1015,7 @@ module.exports = function init(site) {
 
     let where = {};
 
-   if (data.name == 'kitchen') where['sizes.kitchen.id'] = data.id
+    if (data.name == 'kitchen') where['sizes.kitchen.id'] = data.id
 
     $stores_items.findOne({
       where: where,

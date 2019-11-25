@@ -7,7 +7,7 @@ module.exports = function init(site) {
           source: "Stores In System",
           source_ar: "نظام اذونات الدخول",
           message: "New Store In Added",
-          message_ar: "تم أضافة اذن وارد جديد",
+          message_ar: "تم إضافة اذن وارد جديد",
           value: result.doc.vendor.name,
           value_ar: result.doc.vendor.name,
           add: result.doc,

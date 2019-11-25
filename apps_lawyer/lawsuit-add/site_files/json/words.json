@@ -1,0 +1,32 @@
+[
+    {"name" : "lawsuit_add_informations" , "en" : "Lawsuit Add Informations" , "ar" : "بيانات إضافة الدعوى"},
+
+    {"name" : "lawsuit_add" , "en" : "Lawsuit Add" , "ar" : "إضافة الدعاوي"},
+    {"name" : "lawsuit_start_date" , "en" : "Date Of Filing A Lawsuit" , "ar" : "تاريخ رفع الدعوى"},
+    {"name" : "lawsuit_add_menus" , "en" : "Lawsuit Add Menu" , "ar" : "قائمة إضافة الدعوى"},
+    {"name" : "lawsuit_add_code" , "en" : "Lawsuit Add Code" , "ar" : "كود إضافة دعوى"},
+    {"name" : "lawsuit_add_name" , "en" : "Lawsuit Add Name" , "ar" : "اسم دعوى"},
+    {"name" : "lawsuit_number" , "en" : "Lawsuit Number" , "ar" : "رقم دعوى"},
+    {"name" : "lawsuit_year" , "en" : "For A Year" , "ar" : "لسنة"},
+    {"name" : "lawsuit_character" , "en" : "Lawsuit Character" , "ar" : "حرف الدعوى"},
+    {"name" : "lawsuit_place" , "en" : "Lawsuit Place" , "ar" : "مكان الدعوى"},
+    {"name" : "lawsuit_type" , "en" : "Lawsuit Type" , "ar" : "نوع الدعوى"},
+    {"name" : "lawsuit_data" , "en" : "Lawsuit Data" , "ar" : "بيانات الدعوى"},
+    {"name" : "lawsuit_files" , "en" : "Lawsuit Files" , "ar" : "ملفات الدعوى"},
+    {"name" : "lawsuit_topic" , "en" : "Lawsuit Topic" , "ar" : "موضوع الدعوى"},
+    {"name" : "lawsuit_properties" , "en" : "Lawsuit Properties" , "ar" : "خصائص الدعوى"},
+
+    {"name" : "lawsuit_degree" , "en" : "Lawsuit Degree " , "ar" : "درجة الدعوى"},
+    {"name" : "clients" , "en" : "Clients" , "ar" : "الموكلين"},
+    {"name" : "lawsuit_type" , "en" : "Lawsuit Type" , "ar" : "نوع الدعوى"},
+    {"name" : "lawsuit_status" , "en" : "Lawsuit Status" , "ar" : "حالة الدعوى"},
+    {"name" : "lawsuit_basic" , "en" : "Lawsuit Basic" , "ar" : "الدعوى الرئيسية"},
+
+
+    {"name" : "lawsuit_add_new" , "en" : "New Lawsuit Add" , "ar" : "إضافة دعوى جديد"},
+    {"name" : "lawsuit_add_details" , "en" : "Lawsuit Add Details" , "ar" : "تفاصيل إضافة دعوى"},
+    {"name" : "lawsuit_add_update" , "en" : "Edit Lawsuit Add" , "ar" : "تعديل إضافة دعوى"},
+    {"name" : "lawsuit_add_delete" , "en" : "Delte Lawsuit Add" , "ar" : "حذف إضافة دعوى"},
+    {"name" : "lawsuit_add_add_name" , "en" : "Add Lawsuit Add" , "ar" : "إضافة إضافة دعوى"}
+    
+]

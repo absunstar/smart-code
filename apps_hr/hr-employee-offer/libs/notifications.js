@@ -8,7 +8,7 @@ module.exports = function init(site) {
   }
 
   let image_url = '/images/pic_offer.jpg'
-  let add_message = {name : 'New Employee Offer Added' , ar : ' تم أضافة مكافئة جديد'}
+  let add_message = {name : 'New Employee Offer Added' , ar : ' تم إضافة مكافئة جديد'}
   let update_message =  {name : 'Employee Offer updated' , ar : 'تم تعديل المكافئة'}
   let delete_message =  {name : 'Employee Offer deleted' , ar : 'تم حذف المكافئة '}
 

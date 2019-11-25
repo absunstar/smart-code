@@ -10,7 +10,7 @@ module.exports = function init(site) {
   let image_url = '/images/vendor.png'
   let add_message = {
     name: 'New Oppenents Lawyer Added',
-    ar: 'تم أضافة محامي خصم جديدة'
+    ar: 'تم إضافة محامي خصم جديدة'
   }
   let update_message = {
     name: ' Oppenents Lawyer Updated',

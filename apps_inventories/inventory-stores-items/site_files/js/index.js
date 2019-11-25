@@ -54,8 +54,15 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
       $scope.com_item = { complex_items: $scope.complex_items };
       $scope.complex.push($scope.com_item);
     };
+
     $scope.item.start_count = 0;
     $scope.item.current_count = 0;
+    $scope.item.total_purchase_price = 0;
+    $scope.item.total_purchase_count = 0;
+
+    if(!$scope.item.average_cost)
+    $scope.item.average_cost = site.toNumber(_size.cost);
+
     $scope.category_item.sizes.unshift(Object.assign({}, $scope.item));
     $scope.complex_items = [];
     $scope.item = {

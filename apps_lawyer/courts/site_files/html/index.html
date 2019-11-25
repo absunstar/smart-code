@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="courts_ui || courts_manage" data-ng-app="myApp">
+
+<head x-import="head.html">
+
+</head>
+
+<body class="##session.lang##">
+
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+
+    </nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+
+    </nav>
+    <div id="main-layout" class="container">
+        <div class="row">
+            <div class="row" ng-controller="courts">
+                <div x-permissions="courts_add || courts_manage" x-import="courts/add_modal.html"></div>
+                <div x-permissions="courts_update || courts_manage" x-import="courts/update_modal.html"></div>
+                <div x-permissions="courts_delete || courts_manage" x-import="courts/delete_modal.html"></div>
+                <div x-permissions="courts_view || courts_manage" x-import="courts/view_modal.html"></div>
+                <div x-permissions="courts_search || courts_manage" x-import="courts/search_all_modal.html"></div>
+
+                <div class="row">
+                    <h1 class="bold text-center">##word.courts##</h1>
+                </div>
+
+                <div class="top-actions">
+                    <i-button x-permissions="courts_add || courts_manage" type="add" label="##word.courts_new##" ng-click="displayAddCourt()"></i-button>
+
+                    <i-button x-permissions="courts_search || courts_manage" type="search" label="##word.search_all##"
+                        ng-click="displaySearchModal()"></i-button>
+
+                    <h3 class="bold text-center"> ##word.count## : {{count}}</h3>
+
+                </div>
+
+                <table x-permissions="login" class="table hover bold loaded" id="t1">
+                    <tr>
+                        <th class="not-print">##word.logo##</th>
+                        <th>##word.courts_name##</th>
+
+                        <th>##word.status##</th>
+                        <th class="not-print">##word.actions##</th>
+                    </tr>
+                    <tr ng-repeat="c in list">
+                        <td class="center not-print">
+                            <img class="logo" ng-src="{{c.image_url}}">
+                        </td>
+                        <td class="center title">{{c.name}}</td>
+                        <td class="center">
+                            <p ng-show="c.active == true" class="green"> ##word.active## </p>
+                            <p ng-show="c.active == false" class="red"> ##word.not_active## </p>
+                        </td>
+
+                        <td class="center not-print">
+                            <i-button x-permissions="courts_view || courts_manage" type="view" label="##word.details##"
+                                ng-click="displayDetailsCourt(c)"></i-button>
+
+                            <i-button x-permissions="courts_update || courts_manage" type="edit" label="##word.edit##"
+                                ng-click="displayUpdateCourt(c)"></i-button>
+
+                            <i-button x-permissions="courts_delete || courts_manage" type="delete" label="##word.delete##"
+                                ng-click="displayDeleteCourt(c)"></i-button>
+                        </td>
+                    </tr>
+                </table>
+
+                <i-button x-permissions="courts_print || courts_manage" type="print" label="##word.print##" onclick="site.print('#t1')"></i-button>
+
+                
+            </div>
+        </div>
+    </div>
+
+    <div x-import="scripts.html"></div>
+    <script x-import="courts/index.js"></script>
+</body>
+
+</html>

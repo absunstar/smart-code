@@ -11,7 +11,7 @@ module.exports = function init(site) {
 
   let add_message = {
     name: 'New area Added',
-    ar: 'تم أضافة منطقة جديدة'
+    ar: 'تم إضافة منطقة جديدة'
   }
 
   let update_message = {

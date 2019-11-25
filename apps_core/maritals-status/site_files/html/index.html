@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="maritals_status_ui || maritals_status_manage" data-ng-app="myApp">
+
+<head x-import="head.html">
+
+</head>
+
+<body class="##session.lang##">
+
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+
+    </nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+
+    </nav>
+
+    <div id="main-layout" class="container">
+        <div class="row">
+            <div class="col" ng-controller="maritals_status">
+                <div x-permissions="maritals_status_add || maritals_status_manage"
+                    x-import="maritals-status/add_modal.html"></div>
+                <div x-import="maritals-status/update_modal.html"></div>
+                <div x-import="maritals-status/delete_modal.html"></div>
+                <div x-import="maritals-status/view_modal.html"></div>
+                <div class="top-actions">
+                    <i-button type="add" x-permissions="maritals_status_add || maritals_status_manage"
+                        ng-click="newMarital_State()" label="##word.maritals_status_new##"></i-button>
+
+                </div>
+
+                <table class="table loaded hover" id="t1">
+                    <tr>
+                        <th class="not-print">##word.maritals_status_logo##</th>
+                        <th>##word.maritals_status_name##</th>
+                        <th class="not-print">##word.actions##</th>
+                    </tr>
+                    <tr ng-repeat="c in list">
+                        <td class="center not-print">
+                            <i-image view class="logo" category="maritals_status" ng-model="c.image_url"></i-image>
+                        </td>
+                        <td class="center bold indigo">{{c.name}}</td>
+                        <td class="center not-print">
+                            <i-button x-permissions="maritals_status_view || maritals_status_manage" type="details"
+                                ng-click="details(c)" label="##word.details##"></i-button>
+                            <i-button x-permissions="maritals_status_edit || maritals_status_manage" type="update"
+                                ng-click="edit(c)" label="##word.update##"></i-button>
+                            <i-button x-permissions="maritals_status_delete || maritals_status_manage" type="delete"
+                                ng-click="remove(c)" label="##word.delete##"></i-button>
+                        </td>
+                    </tr>
+
+                </table>
+                <i-button type="export" x-permissions="maritals_status_export || maritals_status_manage"
+                    onclick="export_to_xlsx('t1' , 'maritals_status.xlsx')" label="##word.export_to_excel##"></i-button>
+                <i-button type="print" x-permissions="maritals_status_print || maritals_status_manage"
+                    label="##word.print##" onclick="site.print('#t1')"> </i-button>
+
+            </div>
+        </div>
+    </div>
+
+    <div x-import="scripts.html"></div>
+
+    <script x-import="maritals-status/index.js"></script>
+
+</body>
+
+</html>

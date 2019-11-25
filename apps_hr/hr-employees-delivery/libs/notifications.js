@@ -10,7 +10,7 @@ module.exports = function init(site) {
   let image_url = '/images/delivery_employee_list.png'
   let add_message = {
     name: 'New Delivery Employee Added',
-    ar: 'تم أضافة موظف توصيل'
+    ar: 'تم إضافة موظف توصيل'
   }
   let update_message = {
     name: ' Delivery Employee Updated',

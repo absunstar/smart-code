@@ -50,7 +50,7 @@ module.exports = function init(site) {
           source: "Security System",
           source_ar: "نظام الحماية",
           message: "New user Added",
-          message_ar: "تم أضافة مستخدم جديد",
+          message_ar: "تم إضافة مستخدم جديد",
           value: result.doc.email,
           value_ar: result.doc.email,
           add: result.doc,

@@ -8,12 +8,6 @@ module.exports = function init(site) {
     compress: true
   })
 
-  site.post({
-    name: "/api/blood_type/all",
-    path: __dirname + "/site_files/json/blood_type.json"
-
-  })
-
   site.get({
     name: 'images',
     path: __dirname + '/site_files/images/'
@@ -29,7 +23,7 @@ module.exports = function init(site) {
     })
   })
 
-  site.on('[register][oppenent][add]', doc => {
+  site.on('[company][created]', doc => {
 
     $office_lawyers.add({
       group: {
@@ -37,7 +31,7 @@ module.exports = function init(site) {
         name: doc.name
       },
       code: "1",
-      name_ar: "عميل إفتراضي",
+      name_ar: "محامي مكتب إفتراضي",
       // branch_list: [
       //   {
       //     charge: [{}]
@@ -55,12 +49,12 @@ module.exports = function init(site) {
       // accounts_debt: [{}],
       image_url: '/images/oppenent.png',
       company: {
-        id: doc.company.id,
-        name_ar: doc.company.name_ar
+        id: doc.id,
+        name_ar: doc.name_ar
       },
       branch: {
-        code: doc.branch.code,
-        name_ar: doc.branch.name_ar
+        code: doc.branch_list[0].code,
+        name_ar: doc.branch_list[0].name_ar
       },
       active: true
     }, (err, doc1) => { })

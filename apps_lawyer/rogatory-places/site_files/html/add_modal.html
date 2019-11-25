@@ -1,0 +1,23 @@
+<div id="rogatoryPlacesAddModal" class="modal" fixed>
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.rogatory_places_add_name##
+                <i class="fa fa-plus"></i>
+            </h2>
+        </div>
+
+        <div class="modal-body">
+            <div x-import="rogatory-places/content.html"></div>
+        </div>
+
+        <div class="modal-footer center">
+            <h2 class="error"> {{error}} </h2>
+            <h2 class="green center"> {{success}} </h2>
+            <i-button type="add" label="##word.add##" ng-click="addRogatoryPlaces()"></i-button>
+            
+            <i-button type="close" label="##word.close##" onclick="site.hideModal('#rogatoryPlacesAddModal')"></i-button>
+        </div>
+    </div>
+</div>

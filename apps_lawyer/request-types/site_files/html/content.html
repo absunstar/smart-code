@@ -1,0 +1,28 @@
+<div class="form">
+    <div id="requestTypesAddModal">
+        <fieldset>
+            <legend> ##word.request_types_informations## </legend>
+            <div class="row">
+                <div class="col9">
+                    <div class="row">
+
+                        <i-control v="r" class="col5" label="##word.request_types_name##" ng-model="request_types.name">
+                        </i-control>
+                        <div class="col4"></div>
+                        <i-checkbox class="col2" label="##word.active##" ng-model="request_types.active"></i-checkbox>
+                    </div>
+
+                    <div class="row">
+                        <i-textarea ng-model="request_types.description" class="col6" label="##word.description##">
+                        </i-textarea>
+                    </div>
+
+                </div>
+
+                <div class="col3">
+                    <i-image category="request_types" ng-model="request_types.image_url"> </i-image>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+</div>

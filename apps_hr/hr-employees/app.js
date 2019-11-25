@@ -1,43 +1,6 @@
 module.exports = function init(site) {
   const $employee_list = site.connectCollection("hr_employee_list")
 
-  site.on('[register][employee_list][add]', doc => {
-    $employee_list.add({
-      name: doc.name,
-      active: true,
-      mobile: doc.mobile,
-      username: doc.username,
-      password: doc.password,
-      image_url: doc.image_url
-    }, (err, doc) => {
-      if (!err && doc) {
-        /*     site.call('please add user', {
-              email: doc.username,
-              password: doc.password,
-              roles: [{
-                module_name: "public",
-                name: "employee_admin",
-                en: "Employee Admin",
-                ar: "ادارة الموظفين",
-                permissions: ["employee_manage"]
-              }],
-              employee_id: doc.id,
-              branch_list: [{
-                company: site.get_company(req),
-                branch: site.get_branch(req)
-              }]
-              ,
-              is_employee: true,
-              profile: {
-                name: doc.name,
-                mobile: doc.mobile,
-                image_url: doc.image_url
-              }
-            }) */
-      }
-    })
-  })
-
   site.on('[company][created]', doc => {
 
     $employee_list.add({
@@ -166,7 +129,7 @@ module.exports = function init(site) {
           module_name: "public",
           name: "employee_admin",
           en: "Employee Admin",
-          ar: "ادارة الموظفين",
+          ar: "إدارة الموظفين",
           permissions: ["employee_manage"]
         }]
 
@@ -247,7 +210,7 @@ module.exports = function init(site) {
       module_name: "public",
       name: "employee_admin",
       en: "Employee Admin",
-      ar: "ادارة الموظفين",
+      ar: "إدارة الموظفين",
       permissions: ["employee_manage"]
     }]
 

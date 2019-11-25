@@ -405,12 +405,12 @@ module.exports = function init(site) {
         limit: req.body.limit
       }, (err, docs, count) => {
         if (!err) {
-          let services = []
+          let services_list = []
           docs.forEach(request_service => {
             if (request_service.selectedServicesList && request_service.selectedServicesList.length > 0) {
               request_service.selectedServicesList.forEach(selectedServices => {
 
-                services.push({
+                services_list.push({
                   id: request_service.id,
                   name: selectedServices.name,
                   general_service: request_service.service_name,
@@ -418,7 +418,7 @@ module.exports = function init(site) {
                 })
               });
             } else {
-              services.push({
+              services_list.push({
                 id: request_service.id,
                 name: request_service.service_name,
                 service_id: request_service.service_id
