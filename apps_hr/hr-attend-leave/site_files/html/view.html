@@ -49,9 +49,9 @@
                                     <p class="red center" ng-show="d.status_now.id == 2">##word.leaved##</p>
                                 </td>
 
-                                <td class="green center">{{d.from.minute}} : {{d.from.hour}}</td>
+                                <td class="green center">{{d.from.minute}} <b ng-show="d.from">:</b>  {{d.from.hour}}</td>
 
-                                <td class="red center">{{d.to.minute}} : {{d.to.hour}}</td>
+                                <td class="red center">{{d.to.minute}} <b ng-show="d.to">:</b> {{d.to.hour}}</td>
                             </tr>
                         </table>
 

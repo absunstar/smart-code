@@ -4,10 +4,10 @@ module.exports = function init(site) {
   const $create_invoices = site.connectCollection("create_invoices")
 
   site.on('zk attend', attend => {
-    user_id = attend.user_id
+    finger_id = attend.finger_id
 
-    site.getCustomerAttend(user_id.toString(), customerCb => {
-      // get customer by user_id
+    site.getCustomerAttend(finger_id.toString(), customerCb => {
+      // get customer by finger_id
       if (!customerCb) return;
 
       $attend_subscribers.findMany({
@@ -40,31 +40,18 @@ module.exports = function init(site) {
 
               let request_services_list = [];
               request_service_doc.forEach(_request_service => {
-                if (new Date(_request_service.date_to) >= new Date() ) {
-
-                  if (_request_service.selectedServicesList && _request_service.selectedServicesList.length > 0) {
-                    request_services_list.push({
-                      service_name: _request_service.service_name,
-                      complex_service: _request_service.selectedServicesList,
-                      date_from: _request_service.date_from,
-                      date_to: _request_service.date_to,
-                      time_from: _request_service.time_from,
-                      time_to: _request_service.time_to,
-                      request_service_id: _request_service.id
-                    });
-                  } else {
-                    request_services_list.push({
-                      service_name: _request_service.service_name,
-                      remain: _request_service.remain,
-                      date_from: _request_service.date_from,
-                      date_to: _request_service.date_to,
-                      time_from: _request_service.time_from,
-                      time_to: _request_service.time_to,
-                      request_service_id: _request_service.id
-                    });
-                  }
+                if (new Date(_request_service.date_to) >= new Date()) {
+                  request_services_list.push({
+                    service_name: _request_service.service_name,
+                    complex_service: _request_service.selectedServicesList,
+                    date_from: _request_service.date_from,
+                    date_to: _request_service.date_to,
+                    time_from: _request_service.time_from,
+                    time_to: _request_service.time_to,
+                    remain : _request_service.remain,
+                    request_service_id: _request_service.id
+                  });
                 }
-
               });
 
               request_services_list.forEach(_request_services => {

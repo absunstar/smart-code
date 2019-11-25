@@ -1,44 +1,6 @@
 module.exports = function init(site) {
   const $delivery_employee_list = site.connectCollection("hr_delivery_employee_list")
 
-  site.on('[register][delivery_employee_list][add]', doc => {
-    $delivery_employee_list.add({
-      name: doc.name,
-      active: true,
-      mobile: doc.mobile,
-      username: doc.username,
-      password: doc.password,
-      image_url: doc.image_url
-    }, (err, doc) => {
-      if (!err && doc) {
-      /*   site.call('please add user', {
-          id: doc.id,
-          email: doc.username,
-          password: doc.password,
-          roles: [{
-            module_name: "public",
-            name: "delivery_employee_admin",
-            en: "Delivery Employee Admin",
-            ar: "إدارة موظفين التوصيل",
-            permissions: ["delivery_employee_manage"]
-          }],
-          type: 'delivery',
-          delivery_employee_id: doc.id,
-          branch_list: [{
-            company: site.get_company(req),
-            branch: site.get_branch(req)
-          }],
-          is_delivery_employee: true,
-          profile: {
-            name: doc.name,
-            mobile: doc.mobile,
-            image_url: doc.image_url
-          }
-        }) */
-      }
-    })
-  })
-
   site.on('[company][created]', doc => {
 
     $delivery_employee_list.add({
