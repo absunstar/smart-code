@@ -36,29 +36,35 @@ module.exports = function init(site) {
 
           $request_service.findMany({ where: { 'customer.id': customerCb.id } }, (err, request_service_doc) => {
             $create_invoices.findMany({ where: { 'customer.id': customerCb.id } }, (err, create_invoices_doc) => {
+
+
               let request_services_list = [];
               request_service_doc.forEach(_request_service => {
-                if (_request_service.selectedServicesList && _request_service.selectedServicesList.length > 0) {
-                  request_services_list.push({
-                    service_name: _request_service.service_name,
-                    complex_service: _request_service.selectedServicesList,
-                    date_from: _request_service.date_from,
-                    date_to: _request_service.date_to,
-                    time_from: _request_service.time_from,
-                    time_to: _request_service.time_to,
-                    request_service_id: _request_service.id
-                  });
-                } else {
-                  request_services_list.push({
-                    service_name: _request_service.service_name,
-                    remain: _request_service.remain,
-                    date_from: _request_service.date_from,
-                    date_to: _request_service.date_to,
-                    time_from: _request_service.time_from,
-                    time_to: _request_service.time_to,
-                    request_service_id: _request_service.id
-                  });
+                if (new Date(_request_service.date_to) >= new Date() ) {
+
+                  if (_request_service.selectedServicesList && _request_service.selectedServicesList.length > 0) {
+                    request_services_list.push({
+                      service_name: _request_service.service_name,
+                      complex_service: _request_service.selectedServicesList,
+                      date_from: _request_service.date_from,
+                      date_to: _request_service.date_to,
+                      time_from: _request_service.time_from,
+                      time_to: _request_service.time_to,
+                      request_service_id: _request_service.id
+                    });
+                  } else {
+                    request_services_list.push({
+                      service_name: _request_service.service_name,
+                      remain: _request_service.remain,
+                      date_from: _request_service.date_from,
+                      date_to: _request_service.date_to,
+                      time_from: _request_service.time_from,
+                      time_to: _request_service.time_to,
+                      request_service_id: _request_service.id
+                    });
+                  }
                 }
+
               });
 
               request_services_list.forEach(_request_services => {
