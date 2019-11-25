@@ -1,0 +1,25 @@
+<div id="shiftUpdateModal" class="modal" fixed>
+        
+    <div class="modal-content ">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.shifts_edit##
+                <i class="fa fa-pencil"></i>
+            </h2>
+        </div>
+
+        <div class="modal-body">
+
+            <div x-import="shifts/content.html"></div>
+            <div x-import="shifts/action_info.html"></div>
+        </div>
+
+        <div class="modal-footer center">
+            <h2 class="error"> {{error}} </h2>
+            <i-button type="edit" label="##word.edit##" ng-click="updateShift(shift)"></i-button>
+            <i-button type="close" label="##word.close##" onclick="site.hideModal( '#shiftUpdateModal')"></i-button>
+        </div>
+    </div>
+    
+</div>

@@ -1,0 +1,56 @@
+<div class="form">
+    <div id="basicInformation" class="">
+        <fieldset>
+            <legend> ##word.basic_information## </legend>
+            <div class="row">
+                <div class="col9">
+                    <div class="row">
+
+                        <i-control help-id="shifts_name" v="r ll2" class="col5" label="##word.shifts_name##"
+                            ng-model="shift.name"></i-control>
+                        <div class="col4"></div>
+                        <i-checkbox help-id="shifts_active" class="col3" label="##word.active##"
+                            ng-model="shift.active"></i-checkbox>
+                    </div>
+
+                    <div>
+                        <i-control help-id="shift_period" class="col2" type="number" label="##word.shift_period##"
+                            ng-model="shift.period"></i-control>
+
+                        <i-button type="save" class="col2" label="##word.shift_start##" ng-click="shifStart()">
+                        </i-button>
+                    </div>
+                    <br>
+
+                    <div class="row">
+
+                        <i-date2 class="col3" label="##word.startup_date##" ng-model="shift.from_date"></i-date2>
+                        <i-time help-id="hour_min" class="col3" label="##word.hour_min##" ng-model="shift.from_time">
+                        </i-time>
+                    </div>
+
+                    <br>
+                    <br>
+                    <div class="row">
+
+                        <i-date2 class="col3" ng-model="shift.to_date" label="##word.deadline_date##"></i-date2>
+                        <i-time help-id="hour_min" class="col3" label="##word.hour_min##" ng-model="shift.to_time">
+                        </i-time>
+
+                    </div>
+
+                    <div class="row">
+                        <i-textarea ng-model="shift.description" class="col6" label="##word.description##">
+                        </i-textarea>
+                    </div>
+
+                </div>
+
+                <div class="col3">
+                    <i-image help-id="shifts_logo" ng-model="shift.image_url"></i-image>
+                </div>
+            </div>
+        </fieldset>
+
+    </div>
+</div>

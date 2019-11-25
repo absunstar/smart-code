@@ -1,0 +1,50 @@
+[{
+        "name": "shifts",
+        "en": "Courts",
+        "ar": "الشيفتات"
+    },
+    {
+        "name": "shifts_new",
+        "en": "New Court",
+        "ar": "شيفت جديد"
+    },
+    {
+        "name": "shift_start",
+        "en": "Add Start",
+        "ar": "بدء الشيفت"
+    },
+    {
+        "name": "shift_period",
+        "en": "Add Period",
+        "ar": "مدة الشيفت"
+    },
+    {
+        "name": "shifts_add",
+        "en": "Add Court",
+        "ar": "إضافة شيفت "
+    },
+    {
+        "name": "shifts_edit",
+        "en": "Edit Court",
+        "ar": "تعديل شيفت "
+    },
+    {
+        "name": "shifts_details",
+        "en": "Court Details",
+        "ar": "تفاصيل الشيفت "
+    },
+    {
+        "name": "shifts_delete",
+        "en": "Delete Court",
+        "ar": "حذف شيفت "
+    },
+    {
+        "name": "shifts_name",
+        "en": "Court Name",
+        "ar": "إسم الشيفت "
+    }
+
+
+
+
+]

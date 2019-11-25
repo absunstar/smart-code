@@ -305,6 +305,16 @@
         "ar": "قائمة الكورسات"
     },
     {
+        "name": "menu_shift",
+        "en": "Shifts Menu",
+        "ar": "قائمة الشيفتات"
+    },
+    {
+        "name": "menu_shift_tag",
+        "en": "Shifts Manegment",
+        "ar": "إدارة الشيفتات"
+    },
+    {
         "name": "menu_courses_tag",
         "en": "Add Courses Manegment",
         "ar": "إدارة نظام الكورسات"
