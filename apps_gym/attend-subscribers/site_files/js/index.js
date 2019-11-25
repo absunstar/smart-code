@@ -120,7 +120,10 @@ app.controller("attend_subscribers", function ($scope, $http, $timeout, $interva
   $scope.deleteAttendSubscribers = function () {
     $scope.busy = true;
     $scope.error = '';
-
+    let id = $scope.attend_subscribers ? $scope.attend_subscribers.id : null;
+    if(!id){
+      return false;
+    }
     $http({
       method: "POST",
       url: "/api/attend_subscribers/delete",
@@ -143,9 +146,10 @@ app.controller("attend_subscribers", function ($scope, $http, $timeout, $interva
     )
   };
 
+  $scope.list = [];
   $scope.getAttendSubscribersList = function (where) {
     $scope.busy = true;
-    $scope.list = [];
+    
     $http({
       method: "POST",
       url: "/api/attend_subscribers/all",
@@ -156,10 +160,23 @@ app.controller("attend_subscribers", function ($scope, $http, $timeout, $interva
       function (response) {
         $scope.busy = false;
         if (response.data.done && response.data.list.length > 0) {
-          $scope.list = response.data.list;
-          $scope.count = response.data.count;
-          site.hideModal('#attendSubscribersSearchModal');
-          $scope.search = {};
+          if($scope.list.length == response.data.list.length){
+            response.data.list.forEach((d , i) => {
+              if(!$scope.list[i].leave_date && d.leave_date){
+                $scope.list[i].leave_date = d.leave_date;
+                $scope.list[i].leave = d.leave;
+              }
+              
+            });
+          }else{
+            $scope.list = response.data.list;
+            $scope.count = response.data.count;
+            site.hideModal('#attendSubscribersSearchModal');
+            $scope.search = {};
+          }
+          
+        }else{
+          $scope.list = [];
         }
       },
       function (err) {
