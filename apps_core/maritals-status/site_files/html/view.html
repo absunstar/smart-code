@@ -12,6 +12,12 @@
                 <td class="center blue">{{marital_state.notes}}</td>
             </tr>
 
+            <tr>
+                <td class="title">##word.status##</td>
+                <td ng-show="marital_state.active == true" class="green center"> ##word.active## </td>
+                <td ng-show="marital_state.active == false" class="red center"> ##word.not_active## </td>
+            </tr>
+
         </table>
     </div>
     <div class="col2"></div>

@@ -71,7 +71,6 @@
             text-align: center;
         }
 
-
         .item-types {
             display: block;
             padding: 10px;
@@ -110,9 +109,11 @@
             font-weight: bold;
             font-size: 22px;
         }
-        .btn{
+
+        .btn {
             min-width: 200px;
         }
+
         .btn.saving {
             width: 200px;
             height: 100px;
@@ -216,9 +217,11 @@
                             <div class="row">
                                 <i-button type="bg-green" label="##word.new_order##" ng-click="newOrderInvoice()">
                                 </i-button>
-                                <i-button type="bg-blue" label="##word.open_orders##" ng-click="viewInvoicesActiveList()">
+                                <i-button type="bg-blue" label="##word.open_orders##"
+                                    ng-click="viewInvoicesActiveList()">
                                 </i-button>
-                                <i-button class="hidden" type="bg-red" label="##word.cancel_order##" ng-click="cancelOrderInvoice()">
+                                <i-button class="hidden" type="bg-red" label="##word.cancel_order##"
+                                    ng-click="cancelOrderInvoice()">
                                 </i-button>
                             </div>
                             <i-control class="col3 code" disabled label="##word.code##" ng-model="order_invoice.code">
@@ -232,8 +235,8 @@
                                 items="transactionTypeList" ng-change="calc()">
                             </i-list>
 
-                            <i-button ng-show="order_invoice.transaction_type.id == 1 && order_invoice.id" type="bg-blue"
-                                label="##word.merge_table##" ng-click="viewInvoicesTablesList()">
+                            <i-button ng-show="order_invoice.transaction_type.id == 1 && order_invoice.id"
+                                type="bg-blue" label="##word.merge_table##" ng-click="viewInvoicesTablesList()">
                             </i-button>
                             <i-list ng-show="order_invoice.transaction_type.id == 2"
                                 ng-search="_search.$order_invoice_employee" class="col4" display="name"
@@ -307,23 +310,28 @@
                                     <th>##word.items_count##</th>
                                     <th>##word.items_price##</th>
                                     <th>##word.items_price_total##</th>
+                                    <th>##word.discount##</th>
                                     <th>##word.notes##</th>
                                     <th class="not-print">##word.actions##</th>
                                 </tr>
 
                                 <tr ng-repeat="c in order_invoice.book_list">
                                     <td class="center title">{{c.size}}</td>
-                                    <td class="center w200 ">
+                                    <td class="center">
                                         <i-control ng-change="calc()" ng-model="c.count" type="number">
                                         </i-control>
                                     </td>
-                                    <td class="center blue">{{c.price}}</td>
-                                    <td class="center green">{{c.total_price}}</td>
+                                    <td class="center blue"><br> {{c.price}}</td>
+                                    <td class="center green"><br> {{c.total_price}}</td>
+                                    <td class="center">
+                                        <i-control type="number" ng-change="calc()" ng-model="c.discount"></i-control>
+                                    </td>
                                     <td class="center">
                                         <i-control ng-model="c.notes"></i-control>
                                     </td>
+
                                     <td class="center not-print">
-                                        <i-button type="delete" label="##word.delete##"
+                                        <i-button type="delete default" label="##word.delete##"
                                             ng-click="deleteItemsList(c) ; calc()"></i-button>
                                     </td>
                                 </tr>
@@ -463,7 +471,7 @@
 
                         </div>
 
-                       
+
 
                     </div>
                 </div>

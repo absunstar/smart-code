@@ -83,12 +83,14 @@
                                     <th>##word.items_count##</th>
                                     <th>##word.items_price##</th>
                                     <th>##word.items_price_total##</th>
+                                    <th>##word.discount##</th>
                                 </tr>
                                 <tr ng-repeat="c in create_invoices.current_book_list">
                                     <td class="center title">{{c.size}}</td>
                                     <td class="center blue">{{c.count}}</td>
                                     <td class="center blue">{{c.price}}</td>
                                     <td class="center green">{{c.total_price}}</td>
+                                    <td class="center green">{{c.discount}}</td>
                                 </tr>
                             </table>
                         </div>

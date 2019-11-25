@@ -12,7 +12,7 @@ app.controller("order_management", function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.busy = true;
     i.order_id = order.id;
-
+    
     $http({
       method: "POST",
       url: "/api/order_management/update_kitchen",
@@ -21,6 +21,7 @@ app.controller("order_management", function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
+          i.done_kitchen = false
         } else {
           $scope.error = 'Please Login First';
         }

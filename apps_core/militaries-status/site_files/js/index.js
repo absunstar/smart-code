@@ -2,22 +2,22 @@ app.controller("militaries_status", function ($scope, $http) {
 
   $scope.military_state = {};
 
-  $scope.loadMilitaries_Status = function() {
+  $scope.loadMilitaries_Status = function () {
     $scope.busy = true;
     $http({
       method: "POST",
       url: "/api/militaries_status/all",
       data: {
-        select : {id:1 , name : 1}
+        select: { id: 1, name: 1 }
       }
     }).then(
-      function(response) {
+      function (response) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.militaries_status = response.data.list;
         }
       },
-      function(err) {
+      function (err) {
         $scope.busy = false;
         $scope.error = err;
       }
@@ -41,16 +41,19 @@ app.controller("militaries_status", function ($scope, $http) {
         $scope.busy = false;
         $scope.error = err;
       }
-      )
+    )
   };
-  
- 
+
+
   $scope.newMilitary_State = function () {
     $scope.error = '';
-    $scope.military_state = { image_url: '/images/military.png' };
+    $scope.military_state = {
+      active: true,
+      image_url: '/images/military.png'
+    };
     site.showModal('#addMilitaryStateModal');
   };
-  
+
   $scope.add = function () {
 
     $scope.error = '';
@@ -78,7 +81,7 @@ app.controller("militaries_status", function ($scope, $http) {
       function (err) {
         console.log(err);
       }
-      )
+    )
   };
 
   $scope.edit = function (military_state) {
@@ -106,7 +109,7 @@ app.controller("militaries_status", function ($scope, $http) {
       function (err) {
         console.log(err);
       }
-      )
+    )
   };
 
   $scope.remove = function (military_state) {
@@ -134,7 +137,7 @@ app.controller("militaries_status", function ($scope, $http) {
       function (err) {
         console.log(err);
       }
-      )
+    )
   };
   $scope.details = function (military_state) {
     $scope.error = '';
@@ -161,8 +164,8 @@ app.controller("militaries_status", function ($scope, $http) {
       function (err) {
         console.log(err);
       }
-      )
+    )
   };
-  $scope.loadAll();    
+  $scope.loadAll();
   $scope.loadMilitaries_Status();
 });

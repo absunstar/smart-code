@@ -1,4 +1,3 @@
-
 </span>
 <div ng-hide="busy" class="row">
     <div class="col7">
@@ -10,9 +9,15 @@
             </tr>
 
             <tr>
-                    <td class="title">##word.notes##</td>
-                   <td class="center blue">{{military_state.notes}}</td>
-              </tr>
+                <td class="title">##word.notes##</td>
+                <td class="center blue">{{military_state.notes}}</td>
+            </tr>
+
+            <tr>
+                <td class="title">##word.status##</td>
+                <td ng-show="military_state.active == true" class="green center"> ##word.active## </td>
+                <td ng-show="military_state.active == false" class="red center"> ##word.not_active## </td>
+            </tr>
 
         </table>
     </div>

@@ -10,6 +10,11 @@
         "ar": "الوصف"
     },
     {
+        "name": "discount",
+        "en": "Discount",
+        "ar": "الخصم"
+    },
+    {
         "name": "reason",
         "en": "Reason",
         "ar": "السبب"

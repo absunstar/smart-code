@@ -32,7 +32,7 @@ module.exports = function init(site) {
     let kitchen = where['kitchen']
     where['company.id'] = site.get_company(req).id
     where['branch.code'] = site.get_branch(req).code
-    where['status.id'] = 1
+    // where['status.id'] = 1
 
     if (where['kitchen']) {
       where['book_list.kitchen.id'] = where['kitchen'].id;

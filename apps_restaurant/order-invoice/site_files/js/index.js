@@ -905,6 +905,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         vendor: item.vendor,
         store: item.store,
         price: item.price,
+        discount: 0,
         count: 1
       });
     };
@@ -979,6 +980,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
 
     $timeout(() => {
       $scope.order_invoice.total_value = 0;
+      $scope.order_invoice.items_discount = 0;
       $scope.order_invoice.net_value = 0;
       $scope.order_invoice.total_tax = 0;
       $scope.order_invoice.total_discount = 0;
@@ -987,6 +989,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         $scope.order_invoice.book_list.forEach(itm => {
           itm.total_price = itm.price * itm.count;
           $scope.order_invoice.total_value += parseFloat(itm.total_price);
+          $scope.order_invoice.items_discount += parseFloat(itm.discount);
         });
       };
       if ($scope.order_invoice.taxes && $scope.order_invoice.taxes.length > 0) {
@@ -1019,7 +1022,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         $scope.order_invoice.service = 0;
         $scope.order_invoice.price_delivery_service = 0;
       };
-      $scope.order_invoice.net_value = ($scope.order_invoice.total_value + ($scope.order_invoice.service || 0) + ($scope.order_invoice.total_tax || 0) + ($scope.order_invoice.price_delivery_service || 0)) - ($scope.order_invoice.total_discount || 0);
+      $scope.order_invoice.net_value = ($scope.order_invoice.total_value + ($scope.order_invoice.service || 0) + ($scope.order_invoice.total_tax || 0) + ($scope.order_invoice.price_delivery_service || 0)) - ($scope.order_invoice.total_discount || 0) - ($scope.order_invoice.items_discount ||0);
       $scope.discount = {
         type: 'number'
       };

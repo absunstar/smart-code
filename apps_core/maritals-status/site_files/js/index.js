@@ -47,7 +47,10 @@ app.controller("maritals_status", function ($scope, $http) {
  
   $scope.newMarital_State = function () {
     $scope.error = '';
-    $scope.marital_state = { image_url: '/images/marital.png' };
+    $scope.marital_state = { 
+      active : true,
+      image_url: '/images/marital.png' 
+    };
     site.showModal('#addMaritalStateModal');
   };
   
