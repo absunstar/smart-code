@@ -1,14 +1,5 @@
-orders 
-    -- tables
-    -- delivery
-    -- ticaway
+## Restaurant
 
- invoives
-    -- from order
- 
-  kitchen_orders
-    -- from order
-
--- delivery boys
--- customer
-
+- Reports search by none dates not working
+- report_sales search by item not working
+- 

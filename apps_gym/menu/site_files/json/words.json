@@ -643,22 +643,22 @@
     {
         "name": "system_stores_in_menus",
         "en": "Store In",
-        "ar": "إذن دخول"
+        "ar": "إذن وارد / فاتورة شراء"
     },
     {
         "name": "system_register_stores_in",
         "en": "Register Store in",
-        "ar": "تسجيل إذن دخول"
+        "ar": "تسجيل إذن وارد / فاتورة شراء"
     },
     {
         "name": "system_stores_out_menus",
         "en": "Store Out",
-        "ar": "إذن صرف"
+        "ar": "إذن صرف / فاتورة بيع"
     },
     {
         "name": "system_register_stores_out",
         "en": "register Store Out",
-        "ar": "تسجيل إذن صرف"
+        "ar": "تسجيل إذن صرف / فاتورة بيع"
     },
     {
         "name": "system_add_tax_menus",

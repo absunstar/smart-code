@@ -38,8 +38,8 @@ module.exports = function init(site) {
         doc.sizes.forEach(_size => {
           if (_size.barcode == obj.barcode) {
             let totalCost = obj.cost * obj.count;
-            _size.total_purchase_price = _size.total_purchase_price + totalCost
-            _size.total_purchase_count = _size.total_purchase_count + obj.count
+            _size.total_purchase_price = (_size.total_purchase_price || 0) + totalCost
+            _size.total_purchase_count = (_size.total_purchase_count || 0) + obj.count
             _size.average_cost =site.toNumber(_size.total_purchase_price) / site.toNumber(_size.total_purchase_count)
           }
         });

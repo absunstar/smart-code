@@ -348,6 +348,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
           $scope.busy = false;
           if (response.data.done) {
             if (response.data.list.length > 0) {
+             
               response.data.list[0].sizes.forEach(_size => {
                 if (_size.barcode == $scope.search_barcode) {
                   _size.name = response.data.list[0].name
@@ -357,6 +358,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
                 }
               });
               $scope.calc();
+              $scope.search_barcode = "";
             };
 
           } else {
