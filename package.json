@@ -10,6 +10,7 @@
     "gym": "node gym.js",
     "lawyer": "node lawyer.js",
     "academy": "node academy.js",
+    "employee": "node employee.js",
     "pmp": "node pmp.js"
   },
   "keywords": [],
