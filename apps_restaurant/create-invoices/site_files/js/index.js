@@ -36,7 +36,7 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
             if ($scope.defaultSettings.accounting && $scope.defaultSettings.accounting.safe)
               $scope.create_invoices.safe = $scope.defaultSettings.accounting.safe;
 
-              if ($scope.defaultSettings.general_Settings.order_type)
+            if ($scope.defaultSettings.general_Settings.order_type)
               $scope.create_invoices.order_invoices_type = $scope.defaultSettings.general_Settings.order_type;
           }
 
@@ -225,7 +225,7 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.getCreatInvoicesList = function () {
+  $scope.getCreatInvoicesList = function (where) {
     $scope.error = '';
     $scope.busy = true;
     $scope.list = [];
@@ -235,6 +235,7 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/create_invoices/all",
       data: {
+        where: where,
         search: 'new_date'
       }
     }).then(
@@ -314,7 +315,8 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
         method: "POST",
         url: "/api/order_invoice/invoices",
         data: {
-          search: $scope.search_order
+          search: $scope.search_order,
+          order_invoices_type: $scope.create_invoices.order_invoices_type
         }
       }).then(
         function (response) {

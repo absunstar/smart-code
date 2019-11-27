@@ -3,8 +3,8 @@ module.exports = function init(site) {
   const $stores_items = site.connectCollection("stores_items")
 
   site.on('[create_invoices][order_invoice][+]', function (obj) {
-    
-    $order_invoice.findOne({ id: obj.order_invoices_id }, (err, doc) => {      
+
+    $order_invoice.findOne({ id: obj.order_invoices_id }, (err, doc) => {
       doc.under_paid.net_value = doc.under_paid.net_value - obj.net_value;
       doc.under_paid.total_tax = doc.under_paid.total_tax - obj.total_tax;
       doc.under_paid.total_discount = doc.under_paid.total_discount - obj.total_discount;
@@ -467,6 +467,11 @@ module.exports = function init(site) {
     where['status.id'] = {
       '$gte': 2,
       '$lt': 5
+    }    
+
+    if (req.data.order_invoices_type && req.data.order_invoices_type.id) {
+      where['transaction_type.id'] = req.data.order_invoices_type.id;
+      delete where['transaction_type']
     }
 
     $order_invoice.findMany({
