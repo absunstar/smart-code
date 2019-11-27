@@ -203,7 +203,6 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
       url: "/api/create_invoices/delete",
       data: {
         id: $scope.create_invoices.id
-
       }
     }).then(
       function (response) {
@@ -226,16 +225,17 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.getCreatInvoicesList = function (where) {
+  $scope.getCreatInvoicesList = function () {
     $scope.error = '';
     $scope.busy = true;
     $scope.list = [];
     $scope.count = 0;
+
     $http({
       method: "POST",
       url: "/api/create_invoices/all",
       data: {
-        where: where
+        search: 'new_date'
       }
     }).then(
       function (response) {

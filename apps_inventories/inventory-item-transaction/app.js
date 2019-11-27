@@ -103,7 +103,7 @@ module.exports = function init(site) {
     delete itm.id
     delete itm._id
 
-    $item_transaction.findMany({ sort: { id: -1 }, where: {  size: itm.size, name: itm.name }, limit: 1 }, (err, docs) => {
+    $item_transaction.findMany({ sort: { id: -1 }, where: { size: itm.size, name: itm.name }, limit: 1 }, (err, docs) => {
 
       if (docs && docs.length === 1) {
         itm.last_count = docs[0].current_count
@@ -191,7 +191,7 @@ module.exports = function init(site) {
         '$lt': d2
       }
     } else if (where && where.date_from) {
-      let d1 = site.toDate( where.date_from)
+      let d1 = site.toDate(where.date_from)
       let d2 = site.toDate(where.date_to)
       d2.setDate(d2.getDate() + 1);
       where.date = {
@@ -200,7 +200,7 @@ module.exports = function init(site) {
       }
       delete where.date_from
       delete where.date_to
-    } else {
+    } else if (where.date_today) {
       let d1 = site.toDate(new Date())
       let d2 = site.toDate(new Date())
       d2.setDate(d2.getDate() + 1);
