@@ -21,14 +21,25 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
           $scope.orderInvoicesTypeList = [];
 
           $scope.create_invoices = {
-            source_type: $scope.defaultSettings.general_Settings ? $scope.defaultSettings.general_Settings.source_type : null,
-            payment_method: $scope.defaultSettings.general_Settings ? $scope.defaultSettings.general_Settings.payment_method : null,
-            safe: $scope.defaultSettings.accounting ? $scope.defaultSettings.accounting.safe : null,
             image_url: '/images/create_invoices.png',
             date: new Date(),
             active: true,
-
           };
+
+          if ($scope.defaultSettings.general_Settings) {
+            if ($scope.defaultSettings.general_Settings.source_type)
+              $scope.create_invoices.source_type = $scope.defaultSettings.general_Settings.source_type;
+
+            if ($scope.defaultSettings.general_Settings.payment_method)
+              $scope.create_invoices.payment_method = $scope.defaultSettings.general_Settings.payment_method;
+
+            if ($scope.defaultSettings.accounting && $scope.defaultSettings.accounting.safe)
+              $scope.create_invoices.safe = $scope.defaultSettings.accounting.safe;
+
+              if ($scope.defaultSettings.general_Settings.order_type)
+              $scope.create_invoices.order_invoices_type = $scope.defaultSettings.general_Settings.order_type;
+          }
+
           site.showModal('#creatInvoicesAddModal');
 
         };

@@ -95,7 +95,7 @@ module.exports = function init(site) {
     });
 
     $create_invoices.add(create_invoices_doc, (err, doc) => {
-
+      
       if (!err) {
         response.done = true;
         response.doc = doc;

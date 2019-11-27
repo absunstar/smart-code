@@ -3,8 +3,8 @@ module.exports = function init(site) {
   const $stores_items = site.connectCollection("stores_items")
 
   site.on('[create_invoices][order_invoice][+]', function (obj) {
-    $order_invoice.findOne({ id: obj.order_invoices_id }, (err, doc) => {
-
+    
+    $order_invoice.findOne({ id: obj.order_invoices_id }, (err, doc) => {      
       doc.under_paid.net_value = doc.under_paid.net_value - obj.net_value;
       doc.under_paid.total_tax = doc.under_paid.total_tax - obj.total_tax;
       doc.under_paid.total_discount = doc.under_paid.total_discount - obj.total_discount;

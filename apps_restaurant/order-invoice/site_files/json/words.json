@@ -10,6 +10,11 @@
         "ar": "قائمة أصناف جديد"
     },
     {
+        "name": "create_an_invoice",
+        "en": "Create An Invoice",
+        "ar": "إنشاء فاتورة"
+    },
+    {
         "name": "select_table",
         "en": "Select Table",
         "ar": "إختيار الطاولة"
