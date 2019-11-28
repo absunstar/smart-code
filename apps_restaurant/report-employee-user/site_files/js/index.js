@@ -54,6 +54,6 @@ app.controller("report_employee_user", function ($scope, $http, $timeout) {
     site.hideModal('#reportEmployeeUserSearchModal');
     $scope.search = {}
   };
-  $scope.getReportEmployeeUserList({date : new Date()})
+
   $scope.getUserEmployeesList();
 });
