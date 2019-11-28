@@ -586,7 +586,7 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
   };
 
   $scope.getDefaultSetting();
-  $scope.getCreatInvoicesList();
+  $scope.getCreatInvoicesList({date : new Date()});
   $scope.getSourceType();
   $scope.getSafesList();
   $scope.getPaymentMethodList();

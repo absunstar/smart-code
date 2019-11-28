@@ -37,5 +37,5 @@ app.controller("report_sales", function ($scope, $http, $timeout) {
     $scope.search = {}
   };
 
-  $scope.getReportSalesList();
+  $scope.getReportSalesList({date : new Date()});
 });

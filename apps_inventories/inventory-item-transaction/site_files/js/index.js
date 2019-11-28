@@ -13,8 +13,6 @@ app.controller("item_transaction", function ($scope, $http, $timeout) {
     {name:"##word.item_transaction_current_status_4##" , value:"sold"},
     {name:"##word.item_transaction_current_status_5##" , value:"transferred"},
     {name:"##word.item_transaction_current_status_6##" , value:"storein"}
-
-
     ]
 
   $scope.loadvendors = function () {
@@ -140,7 +138,6 @@ app.controller("item_transaction", function ($scope, $http, $timeout) {
 
     if ($scope.search.transaction_type) {
       where['transaction_type'] = $scope.search.transaction_type.type;
-      console.log($scope.search.transaction_type.type);
     }
 
     if ($scope.search.vendor) {
@@ -183,20 +180,19 @@ app.controller("item_transaction", function ($scope, $http, $timeout) {
       where['date_to'] = $scope.search.dateTo;
     }
 
-    $scope.loadAll(where , $scope.search.limit);
+    $scope.loadAll(where);
     site.hideModal('#itemTransactionSearchModal');
     $scope.search = {};
   };
 
-  $scope.loadAll = function (where , limit) {
+  $scope.loadAll = function (where) {
     $scope.busy = true;
     $scope.list = [];
     $http({
       method: "POST",
       url: "/api/item_transaction/all",
       data: {
-        where: where,
-        limit : limit || 100000
+        where: where
       }
     }).then(
       function (response) {
@@ -248,6 +244,6 @@ app.controller("item_transaction", function ($scope, $http, $timeout) {
   $scope.loadvendors();
   $scope.loadStores();
   $scope.loadEng();
-  $scope.loadAll();
+  $scope.loadAll({date : new Date()});
 
 });

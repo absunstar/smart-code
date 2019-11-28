@@ -447,20 +447,19 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
       where['notes'] = $scope.search.notes;
     }
 
-    $scope.loadAll(where, $scope.search.limit);
+    $scope.loadAll(where);
     site.hideModal('#StoresOutSearchModal');
     $scope.search = {};
   };
 
-  $scope.loadAll = function (where, limit) {
+  $scope.loadAll = function (where) {
     $scope.list = {};
     $scope.busy = true;
     $http({
       method: "POST",
       url: "/api/stores_out/all",
       data: {
-        where: where,
-        limit: limit || 1000000
+        where: where
       }
     }).then(
       function (response) {
@@ -753,6 +752,6 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
   $scope.loadTaxTypes();
   $scope.loadDiscountTypes();
   $scope.loadSafes();
-  $scope.loadAll();
+  $scope.loadAll({date : new Date()});
 
 });

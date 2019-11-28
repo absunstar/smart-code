@@ -746,11 +746,11 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
     }
 
 
-    $scope.loadAll(where, $scope.search.limit);
+    $scope.loadAll(where);
     site.hideModal('#StoresInSearchModal');
     $scope.search = {};
   };
-  $scope.loadAll = function (where, limit) {
+  $scope.loadAll = function (where) {
     $scope.error = '';
     $scope.list = {};
     $scope.busy = true;
@@ -758,8 +758,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/stores_in/all",
       data: {
-        where: where,
-        limit: limit || 1000000
+        where: where
       }
     }).then(
       function (response) {
@@ -785,6 +784,6 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
   $scope.loadCategories();
   $scope.loadTax_Types();
   $scope.loadDiscount_Types();
-  $scope.loadAll();
+  $scope.loadAll({date : new Date()});
   $scope.loadSafes();
 });

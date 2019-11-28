@@ -105,6 +105,6 @@ app.controller("order_distributor", function ($scope, $http, $timeout) {
     $scope.search = {}
   };
 
-  $scope.getOrderDistributor();
+  $scope.getOrderDistributor({date : new Date()});
   $scope.getDeliveryEmployeesList();
 });

@@ -129,18 +129,14 @@ app.controller("safes_payments", function ($scope, $http) {
     )
   };
 
-
-
-
-  $scope.loadAll = function (where, limit) {
+  $scope.loadAll = function (where) {
     $scope.list = {};
     $scope.busy = true;
     $http({
       method: "POST",
       url: "/api/safes_payments/all",
       data: {
-        where: where,
-        limit: limit || 10000000000
+        where: where
       }
     }).then(
       function (response) {
@@ -183,7 +179,7 @@ app.controller("safes_payments", function ($scope, $http) {
     }
     site.hideModal('#Safes_payment_SearchModal');
 
-    $scope.loadAll(where, $scope.search.limit);
+    $scope.loadAll(where);
 
 
   };
@@ -193,7 +189,7 @@ app.controller("safes_payments", function ($scope, $http) {
 
 
 
-  $scope.loadAll();
+  $scope.loadAll({date : new Date()});
   // $scope.loadEmployees();
   $scope.loadSafes();
 

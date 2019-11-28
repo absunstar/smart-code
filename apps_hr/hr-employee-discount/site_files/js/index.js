@@ -4,14 +4,13 @@ app.controller("employee_discount", function ($scope, $http) {
   $scope.employee_discount = {};
   $scope.search = {};
 
-  $scope.loadAll = function (where , limit) {
+  $scope.loadAll = function (where) {
     $scope.busy = true;
     
     $http({
       method: "POST",
       url: "/api/employee_discount/all",
-      data: {where : where,
-      limit:limit ||10000000
+      data: {where : where
       }
     }).then(
       function (response) {
@@ -101,7 +100,7 @@ app.controller("employee_discount", function ($scope, $http) {
 
     site.hideModal('#Employee_Discount_SearchModal');
 
-    $scope.loadAll(where , $scope.search.limit);
+    $scope.loadAll(where);
   };
 
   $scope.loadCities = function (gov) {
@@ -285,5 +284,5 @@ app.controller("employee_discount", function ($scope, $http) {
    
   $scope.loadSafes();
   $scope.loadEmployees();
-  $scope.loadAll();
+  $scope.loadAll({date : new Date()});
 });

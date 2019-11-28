@@ -892,7 +892,7 @@ app.controller("notifications", function ($scope, $http, $interval) {
 
   };
 
-  $scope.loadAll();
+  $scope.loadAll({date : new Date()});
   $scope.loadUsers();
   $scope.loadSystem();
 

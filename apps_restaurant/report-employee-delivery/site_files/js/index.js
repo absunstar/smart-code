@@ -64,6 +64,6 @@ app.controller("report_employee_delivery", function ($scope, $http, $timeout) {
     $scope.search = {}
   };
 
-  $scope.getReportEmployeeDeliveryList();
+  $scope.getReportEmployeeDeliveryList({date : new Date()});
   $scope.getDeliveryEmployeesList();
 });

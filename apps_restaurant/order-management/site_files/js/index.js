@@ -287,7 +287,7 @@ app.controller("order_management", function ($scope, $http, $timeout) {
     $scope.search = {}
   };
 
-  $scope.getOrderManagementList();
+  $scope.getOrderManagementList({date : new Date()});
   $scope.getDeliveryEmployeesList();
   $scope.getTransactionTypeList();
   $scope.getCustomerList();

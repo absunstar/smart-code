@@ -235,7 +235,7 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/create_invoices/all",
       data: {
-        where: where,
+        where: where
       }
     }).then(
       function (response) {

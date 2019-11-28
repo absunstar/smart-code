@@ -87,7 +87,7 @@ app.controller("report_invoices", function ($scope, $http, $timeout) {
     $scope.search = {}
   };
  
-  $scope.getReportInvoicesList();
+  $scope.getReportInvoicesList({date : new Date()});
   $scope.getPaymentMethodList();
   $scope.getSourceType();
 

@@ -321,20 +321,19 @@ app.controller("stores_transfer", function ($scope, $http, $timeout) {
     }
 
 
-    $scope.loadAll(where , $scope.search.limit);
+    $scope.loadAll(where);
     site.hideModal('#StoresOutSearchModal');
     $scope.search = {};
   };
 
-  $scope.loadAll = function (where , limit) {
+  $scope.loadAll = function (where) {
     $scope.list = {};
     $scope.busy = true;
     $http({
       method: "POST",
       url: "/api/stores_transfer/all",
       data: {
-        where: where,
-        limit : limit || 100000
+        where: where
       }
     }).then(
       function (response) {
@@ -598,6 +597,6 @@ app.controller("stores_transfer", function ($scope, $http, $timeout) {
   $scope.loadTax_Types();
   $scope.loadDiscount_Types();
   $scope.loadSafes();
-  $scope.loadAll();
+  $scope.loadAll({date : new Date()});
   
 });

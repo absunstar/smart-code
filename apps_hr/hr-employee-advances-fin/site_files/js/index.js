@@ -32,14 +32,13 @@ app.controller("employees_advances_fin", function ($scope, $http) {
       )
   };
 
-  $scope.loadAll = function (where , limit) {
+  $scope.loadAll = function (where) {
     $scope.busy = true;
     
     $http({
       method: "POST",
       url: "/api/employees_advances_fin/all",
-      data: {where : where,
-      limit : limit ||10000000
+      data: {where : where
       }
     }).then(
       function (response) {
@@ -115,7 +114,7 @@ app.controller("employees_advances_fin", function ($scope, $http) {
 
 
     
-    $scope.loadAll(where , $scope.search.limit);
+    $scope.loadAll(where);
   };
 
   $scope.add = function () {
@@ -237,5 +236,5 @@ app.controller("employees_advances_fin", function ($scope, $http) {
   
    
   $scope.loadSafes();
-  $scope.loadAll();
+  $scope.loadAll({date : new Date()});
 });

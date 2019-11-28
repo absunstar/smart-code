@@ -3,14 +3,13 @@ app.controller("amounts_out", function ($scope, $http) {
 
   $scope.amount_out = {};
 
-  $scope.loadAll = function (where, limit) {
+  $scope.loadAll = function (where) {
     $scope.busy = true;
     $http({
       method: "POST",
       url: "/api/amounts_out/all",
       data: {
-        where: where,
-        limit: limit || 10000000
+        where: where
       }
     }).then(
       function (response) {
@@ -267,5 +266,5 @@ app.controller("amounts_out", function ($scope, $http) {
   $scope.loadSafes();
   $scope.loadInOutNames();
   $scope.loadEmployees();
-  $scope.loadAll();
+  $scope.loadAll({date : new Date()});
 });
