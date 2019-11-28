@@ -4,7 +4,7 @@ module.exports = function init(site) {
   const $create_invoices = site.connectCollection("create_invoices")
 
   site.on('zk attend', attend => {
-    finger_id = attend.finger_id
+    finger_id = attend.finger_id || 0
 
     site.getCustomerAttend(finger_id.toString(), customerCb => {
       // get customer by finger_id
