@@ -236,7 +236,6 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
       url: "/api/create_invoices/all",
       data: {
         where: where,
-        search: 'new_date'
       }
     }).then(
       function (response) {
@@ -676,7 +675,7 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
   };
 
   $scope.getDefaultSetting();
-  $scope.getCreatInvoicesList();
+  $scope.getCreatInvoicesList({date : new Date()});
   $scope.getSourceType();
   $scope.getTransactionTypeList();
   $scope.getSafesList();
