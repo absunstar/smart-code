@@ -1,5 +1,5 @@
 <div id="attendLeaveDeleteModal" class="modal">
-    
+
     <div class="modal-content">
         <div class="modal-header">
             <span class="close">&times;</span>
@@ -10,7 +10,7 @@
         </div>
 
         <div class="modal-body">
-               <div x-import="hr-attend-leave/view.html"></div>
+            <div x-import="hr-attend-leave/view.html"></div>
 
         </div>
 
@@ -21,9 +21,10 @@
 
             <i-button type="delete" label="##word.delete##" ng-click="deleteAttendLeave(attend_leave)"> </i-button>
 
-            <i-button type="close" label="##word.close##" onclick="site.hideModal('#attendLeaveDeleteModal')"> </i-button>
+            <i-button type="close" label="##word.close##" onclick="site.hideModal('#attendLeaveDeleteModal')">
+            </i-button>
 
         </div>
     </div>
-    
+
 </div>

@@ -458,14 +458,19 @@ module.exports = function init(site) {
 
   site.getEmployeeAttend = function (data, callback) {
 
-    let select = { id: 1, name: 1, active: 1, finger_code: 1}
-    let where = { id: data }
+    let select = {
+      id: 1, name: 1,
+      active: 1, finger_code: 1,
+      indentfy: 1,
+      company: 1, branch: 1
+    }
+
+    let where = { finger_code: data }
 
     $employee_list.findOne({
       select: select,
       where: where,
-    }, (err, doc, count) => {
-
+    }, (err, doc) => {
       if (!err) {
         if (doc) callback(doc)
         else callback(false)

@@ -1,26 +1,28 @@
 module.exports = function init(site) {
 
-  let collection_name = 'medicine'
+  let collection_name = 'attend_leave'
 
   let source = {
-    name: 'Medicine System',
-    ar: 'نظام الأدوية'
+    name: 'Attend leave Employees System',
+    ar: 'نظام حضور و إنصراف الموظفين'
   }
 
-  let image_url = '/images/medicine.png'
+  let image_url = '/images/attend_leave.png'
+
   let add_message = {
-    name: 'New Medicine Added',
-    ar: 'تم إضافة دواء جديد'
-  }
-  let update_message = {
-    name: ' Medicine Updated',
-    ar: 'تم تعديل دواء'
-  }
-  let delete_message = {
-    name: ' Medicine Deleted',
-    ar: 'تم حذف دواء '
+    name: 'New Attend leave Added',
+    ar: 'تم إضافة حضور و إنصراف جديد'
   }
 
+  let update_message = {
+    name: ' Attend leave Updated',
+    ar: 'تم تعديل حضور و إنصراف'
+  }
+
+  let delete_message = {
+    name: ' Attend leave Deleted',
+    ar: 'تم حذف حضور و إنصراف '
+  }
 
   site.on('mongodb after insert', function (result) {
     if (result.collection === collection_name) {

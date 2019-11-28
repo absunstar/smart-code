@@ -12,9 +12,9 @@
         <div class="modal-body">
             <form class="form">
                 <div class="row">
-                    <i-date2 class="col4" ng-model="attend_leave.date" label="##word.date##"></i-date2>
-                    <i-date2 class="col3" ng-model="search.date_from" label="##word.date_from##"></i-date2>
-                    <i-date2 class="col3" ng-model="search.date_to" label="##word.date_to##"></i-date2>
+
+                    <i-control class="col3" label="##word.leave_name##" ng-model="search.name_ar"></i-control>
+
                     <div class="control col3">
                         <label> ##word.status## </label>
                         <select ng-model="search.active">
@@ -23,6 +23,24 @@
                         </select>
                     </div>
                 </div>
+                
+                <div class="row">
+                    <i-date2 class="col3" ng-model="search.attend_date" label="##word.attend_date##"></i-date2>
+                    <i-date2 class="col3" ng-model="search.attend_date_from" label="##word.attend_date_from##">
+                    </i-date2>
+                    <i-date2 class="col3" ng-model="search.attend_date_to" label="##word.attend_date_to##"></i-date2>
+
+                </div>
+
+                <div class="row">
+                    <i-date2 class="col3" ng-model="search.leave_date" label="##word.leave_date##"></i-date2>
+                    <i-date2 class="col3" ng-model="search.leave_date_from" label="##word.leave_date_from##"></i-date2>
+                    <i-date2 class="col3" ng-model="search.leave_date_to" label="##word.leave_date_to##"></i-date2>
+
+                </div>
+
+
+
             </form>
         </div>
 

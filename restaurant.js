@@ -1,17 +1,17 @@
 const site = require('isite')({
     port: 80,
-    lang:'ar',
+    lang: 'ar',
     saving_time: 0.2,
-    name : 'restaurant' ,
+    name: 'restaurant',
     theme: 'theme_paper',
     mongodb: {
         db: 'smart_code_restaurants',
         limit: 100000
     },
-    security : {
-        admin :{
-            email : 'restaurant',
-            password : 'P@$$w0rd'
+    security: {
+        admin: {
+            email: 'restaurant',
+            password: 'P@$$w0rd'
         }
     }
 })
@@ -27,10 +27,10 @@ site.get({
     parser: 'html css js'
 })
 
- site.ready = false
+site.ready = false
 
 site.loadLocalApp('client-side')
-site.importApp(__dirname + '/apps_private/cloud_security' , 'security')
+site.importApp(__dirname + '/apps_private/cloud_security', 'security')
 site.importApp(__dirname + '/apps_private/ui-print')
 site.importApp(__dirname + '/apps_private/ui-help')
 site.importApps(__dirname + '/apps_core')
@@ -42,6 +42,8 @@ site.features.push('restaurant')
 
 setTimeout(() => {
     site.importApp(__dirname + '/apps_private/companies')
+    site.importApp(__dirname + '/apps_private/zk-reader')
+
 }, 1000)
 setTimeout(() => {
     site.ready = true

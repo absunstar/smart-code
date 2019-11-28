@@ -1,71 +1,103 @@
 <div class="form">
-    <div id="basicInformation" class="">
+    <div id="basicInformation">
         <fieldset>
             <legend> ##word.basic_information## </legend>
             <div class="row">
                 <div class="col9">
                     <div class="row">
+                        <i-control ng-keydown="getCustomerList($event)" id="service" class="col3"
+                            ng-model="search_employee" label="##word.search##" type="text"></i-control>
+                        <i-list ng-search="_search.$employee" class="col4" display="name_ar" v="r"
+                            ng-model="attend_leave.employee" label="##word.leave_name##"
+                            items="employeesList">
+                        </i-list>
 
-                        <i-date2 class="col4" ng-model="attend_leave.date" label="##word.date##"></i-date2>
-
-                        <div class="col5"></div>
-
-                        <i-checkbox help-id="attend_leave_active" class="col3" label="##word.active##"
-                            ng-model="attend_leave.active">
-                        </i-checkbox>
-
-                        <i-button type="add" ng-click="getTrainerList()"></i-button>
-
+                        <div class="col3"></div>
+                        <i-checkbox help-id="attend_leave_active" class="col2" label="##word.active##"
+                            ng-model="attend_leave.active"></i-checkbox>
                     </div>
+                    <br>
+                    <br>
+                    <div class="row">
+                        <div class="row" ng-show="attend_leave.employee.id">
+                            <table class="table bold center hover">
+                                <tr>
+                                    <td class="blue"> ##word.employee_name## </td>
+                                    <td colspan="7" class="center"> {{attend_leave.employee.name_ar}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="blue"> ##word.employees_indentfy## </td>
+                                    <td colspan="2" class="center"> {{attend_leave.employee.indentfy.ar}} </td>
+                                    <td class="blue"> ##word.child## </td>
+                                    <td colspan="2" ng-show="attend_leave.employee.child == true">
+                                        <p class="green"> ##word.yes## </p>
+                                    </td>
+                                    <td colspan="2" ng-show="!attend_leave.employee.child">
+                                        <p class="red"> ##word.no## </p>
+                                    </td>
+                                    <td colspan="2"></td>
+                                </tr>
+
+                                <tr>
+                                    <td class="blue"> ##word.medicine_notes## </td>
+                                    <td colspan="7" class="center"> {{attend_leave.employee.medicine_notes}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="blue"> ##word.gov## </td>
+                                    <td colspan="2" class="center"> {{attend_leave.employee.gov.name}} </td>
+                                    <td class="blue"> ##word.city## </td>
+                                    <td colspan="2" class="center"> {{attend_leave.employee.city.name}} </td>
+                                    <td class="blue"> ##word.area## </td>
+                                    <td colspan="2" class="center"> {{attend_leave.employee.area.name}} </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="blue"> ##word.address## </td>
+                                    <td colspan="7" class="center"> {{attend_leave.employee.address}}</td>
+                                </tr>
+
+                                <tr>
+                                    <td class="blue"> ##word.mobile## </td>
+                                    <td colspan="4" class="center"> {{attend_leave.employee.mobile}}</td>
+                                    <td class="blue"> ##word.phone## </td>
+                                    <td colspan="3" class="center"> {{attend_leave.employee.phone}}</td>
+                                </tr>
+                                <!--    <tr>
+                                                            <td colspan="3" class="green"> ##word.order_add_count## </td>
+                                                            <td  class="center"> {{attend_leave.add_order.length}} </td>
+                                                            <td colspan="3" class="red"> ##word.invoice_close_count## </td>
+                                                            <td  class="center"> {{attend_leave.close_order.length}} </td>
+                                                        </tr> -->
+
+                            </table>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+ 
+                    <div class="row">
+
+                        <i-button type="add" class="col2" label="##word.attend_now##" ng-click="attendNow()"></i-button>
+                        <i-date2 class="col3" ng-model="attend_leave.attend_date"
+                            label="##word.attend_leave_attend##"></i-date2>
+                        <i-time help-id="attend_leave_attend" class="col3"
+                            label="##word.attend_leave_attend##" ng-model="attend_leave.attend"></i-time>
+                    </div>
+
+                    <br>
+                   <!--  <div class="row">
+                        <i-button type="exit" class="col2" label="##word.leave_now##" ng-click="leaveNow(attend_leave)"></i-button>
+                        <i-date2 class="col3" ng-model="attend_leave.leave_date"
+                            label="##word.attend_leave_leave##"></i-date2>
+                        <i-time help-id="attend_leave_leave" class="col3"
+                            label="##word.attend_leave_leave##" ng-model="attend_leave.leave"></i-time>
+                    </div> -->
 
                 </div>
 
                 <div class="col3">
                     <i-image help-id="attend_leave_logo" ng-model="attend_leave.image_url"></i-image>
                 </div>
-            </div>
-            <div class="row">
-                <fieldset ng-show="attend_leave.employee_list.length > 0">
-                    <legend>
-                        ##word.dates_menu##
-                    </legend>
-                    <div class="row" ng-repeat="d in attend_leave.employee_list">
-                        <hr>
-
-                        <i-control class="col3" disabled label="##word.employee_name##" ng-model="d.name"></i-control>
-
-                        <div class="col3">
-                            <i-list disabled label="##word.status_attend##" ng-model="d.attend" display="##session.lang##"
-                                items="attendList"></i-list>
-
-                            <i-button type="save" ng-hide="d.attend.id" label="##word.attend##" ng-click="attend(d)">
-                            </i-button>
-
-                            <i-button type="exit" ng-hide="d.attend.id" label="##word.absence##" ng-click="absence(d)">
-                            </i-button>
-                        </div>
-
-                        <div class="col2" ng-show="d.attend.id==1">
-                            <i-list disabled label="##word.status_now##" ng-model="d.status_now" display="##session.lang##"
-                                items="statusNowList">
-                            </i-list>
-
-                            <i-button type="exit" ng-show="d.status_now.id==1" label="##word.leaved##"
-                                ng-click="leaved(d)">
-                            </i-button>
-
-                        </div>
-
-                        <i-time ng-show="d.attend.id==1" class="col2" display="##session.lang##" disabled ng-model="d.from"
-                            label="##word.from##">
-                        </i-time>
-
-                        <i-time ng-show="d.attend.id==1" class="col2" display="##session.lang##" disabled ng-model="d.to"
-                            label="##word.to##">
-                        </i-time>
-
-                    </div>
-                </fieldset>
             </div>
         </fieldset>
 

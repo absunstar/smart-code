@@ -1,25 +1,67 @@
 module.exports = function init(site) {
-  const $attend_leave = site.connectCollection("hr_attend_leave")
-  const $employee_list = site.connectCollection("hr_employee_list")
+  const $attend_leave = site.connectCollection("attend_leave")
+
+  site.on('zk attend', attend => {
+    finger_id = attend.finger_id || 0
+
+    site.getEmployeeAttend(finger_id.toString(), employeeCb => {
+      // get employee by finger_id
+      if (!employeeCb) return;
+
+      $attend_leave.findMany({
+        where: { 'employee.id': employeeCb.id },
+        limit: 1,
+        sort: { id: -1 }
+      }, (err, docs) => {
+
+        let employeeDoc = null
+        
+        if (!err && docs.length == 1) employeeDoc = docs[0]
+
+        let attend_time = {
+          hour: new Date(attend.date).getHours(),
+          minute: new Date(attend.date).getMinutes()
+        }
+
+        let can_check_in = false
+        let can_check_out = false
+
+        if (employeeDoc == null) can_check_in = true
+        if (employeeDoc && employeeDoc.leave_date) can_check_in = true
+        if (employeeDoc && employeeDoc.attend_date) can_check_out = true
+
+        if (attend.check_status == "check_in" && can_check_in) {
+
+          $attend_leave.add({
+            image_url: '/images/attend_leave.png',
+            employee: employeeCb,
+            active: true,
+            attend_date: new Date(attend.date),
+            attend: attend_time,
+            company: employeeCb.company,
+            branch: employeeCb.branch
+          });
+
+        } else if (attend.check_status == "check_out" && can_check_out) {
+
+          let leave_time = {
+            hour: new Date(attend.date).getHours(),
+            minute: new Date(attend.date).getMinutes()
+          }
+
+          employeeDoc.leave_date = new Date(attend.date)
+          employeeDoc.leave = leave_time
+          $attend_leave.update(employeeDoc)
+        }
+
+      })
+    })
+
+  })
 
   site.get({
     name: 'images',
     path: __dirname + '/site_files/images/'
-  })
-
-  site.post({
-    name: "/api/times_attend_leave/all",
-    path: __dirname + "/site_files/json/times_attend_leave.json"
-  })
-
-  site.post({
-    name: "/api/status_now/all",
-    path: __dirname + "/site_files/json/status_now.json"
-  })
-
-  site.post({
-    name: "/api/attend_leave_employee/all",
-    path: __dirname + "/site_files/json/attend_leave_employee.json"
   })
 
   site.get({
@@ -28,42 +70,6 @@ module.exports = function init(site) {
     parser: "html",
     compress: true
   })
-
-  //  site.on('zk attend', attend => {
-  //   user_id = attend.user_id
-  //   site.getEmployeeAttend(user_id, callback => {
-
-  //     let from = {
-  //       hour: new Date(attend.date).getHours(),
-  //       minute: new Date(attend.date).getMinutes()
-  //     }
-
-  //     let to = {
-  //       hour: new Date(attend.date).getHours(),
-  //       minute: new Date(attend.date).getMinutes()
-  //     }
-
-  //     if (attend.check_status == "check_in") {
-  //       $attend_subscribers.add({
-  //         active:true,
-  //         customer: callback,
-  //         date: attend.date,
-  //         from: from
-  //       })
-  //     } else {
-  //       $attend_subscribers.add({ customer, date: attend.date })
-  //     }
-
-  //     if (callback == true) {
-  //       response.error = 'Cant Delete Its Exist In Other Transaction'
-  //       res.json(response)
-
-  //     } else {
-
-  //     }
-
-  //   })
-  // }) 
 
   site.post("/api/attend_leave/add", (req, res) => {
     let response = {
@@ -169,74 +175,6 @@ module.exports = function init(site) {
     })
   })
 
-  site.post("/api/attend_leave/show", (req, res) => {
-    let response = {
-      done: false
-    }
-
-    if (!req.session.user) {
-      response.error = 'Please Login First'
-      res.json(response)
-      return
-    }
-
-
-    let where = {}
-
-    where['company.id'] = site.get_company(req).id
-    where['branch.code'] = site.get_branch(req).code
-
-    let data = req.body
-
-    let d1, d2 = null
-
-    d1 = site.toDate(data.date)
-    d2 = site.toDate(data.date)
-    d2.setDate(d2.getDate() + 1)
-    where['date'] = {
-      $gte: d1,
-      $lt: d2
-    }
-
-
-    $attend_leave.findOne(where, (err, doc) => {
-      if (!err && doc) {
-        response.done = true
-        response.doc = doc
-        res.json(response)
-      } else {
-
-        let doc2 = {
-          date: req.body.date
-        }
-
-        let where = req.body.where || {}
-
-        where['company.id'] = site.get_company(req).id
-        where['branch.code'] = site.get_branch(req).code
-
-        $employee_list.findMany({
-          where: where
-        }, (err, docs) => {
-
-          doc2.employee_list = docs
-          doc2.company = site.get_company(req)
-          doc2.branch = site.get_branch(req)
-          doc2.active = true
-          doc2.image_url = '/images/attend_leave.png'
-
-          $attend_leave.add(doc2, (err, new_doc) => {
-            if (!err && new_doc) {
-              response.done = true
-              response.doc = new_doc
-              res.json(response)
-            }
-          })
-        })
-      }
-    })
-  })
-
   site.post("/api/attend_leave/delete", (req, res) => {
     let response = {
       done: false
@@ -269,8 +207,8 @@ module.exports = function init(site) {
     }
   })
 
-
   site.post("/api/attend_leave/all", (req, res) => {
+
     let response = {
       done: false
     }
@@ -278,39 +216,61 @@ module.exports = function init(site) {
     let where = req.body.where || {}
 
     if (where['name']) {
-      where['name'] = new RegExp(where['name'], "i");
+      where['employee.name'] = new RegExp(where['name'], "i");
     }
+
+    if (where.attend_date_to && where.attend_date_from) {
+      let d1 = site.toDate(where.attend_date_from)
+      let d2 = site.toDate(where.attend_date_to)
+      d2.setDate(d2.getDate() + 1);
+      where.attend_date = {
+        '$gte': d1,
+        '$lt': d2
+      }
+      delete where.attend_date_from
+      delete where.attend_date_to
+    }
+
+    if (where.leave_date_to && where.leave_date_from) {
+      let d1 = site.toDate(where.leave_date_from)
+      let d2 = site.toDate(where.leave_date_to)
+      d2.setDate(d2.getDate() + 1);
+      where.leave_date = {
+        '$gte': d1,
+        '$lt': d2
+      }
+      delete where.leave_date_from
+      delete where.leave_date_to
+    }
+
+    if (where.attend_date) {
+      let d1 = site.toDate(where.attend_date)
+      let d2 = site.toDate(where.attend_date)
+      d2.setDate(d2.getDate() + 1)
+      where.attend_date = {
+        '$gte': d1,
+        '$lt': d2
+      }
+    }
+
+    if (where.leave_date) {
+      let d1 = site.toDate(where.leave_date)
+      let d2 = site.toDate(where.leave_date)
+      d2.setDate(d2.getDate() + 1)
+      where.leave_date = {
+        '$gte': d1,
+        '$lt': d2
+      }
+    }
+
+    if (where.search && where.search.current) {
+      where['current'] = where.search.current
+    }
+
+    delete where.search
 
     where['company.id'] = site.get_company(req).id
     where['branch.code'] = site.get_branch(req).code
-
-    if (where.date) {
-      let d1 = site.toDate(where.date)
-      let d2 = site.toDate(where.date)
-      d2.setDate(d2.getDate() + 1)
-      where.date = {
-        '$gte': d1,
-        '$lt': d2
-      }
-    } else if (where && where.date_from) {
-      let d1 = site.toDate(where.date_from)
-      let d2 = site.toDate(where.date_to)
-      d2.setDate(d2.getDate() + 1);
-      where.date = {
-        '$gte': d1,
-        '$lt': d2
-      }
-      delete where.date_from
-      delete where.date_to
-    } else if (where.date_today) {
-      let d1 = site.toDate(new Date())
-      let d2 = site.toDate(new Date())
-      d2.setDate(d2.getDate() + 1);
-      where.date = {
-        '$gte': d1,
-        '$lt': d2
-      }
-    }
 
     $attend_leave.findMany({
       select: req.body.select || {},

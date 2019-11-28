@@ -1,32 +1,31 @@
-app.controller("attend_leave", function ($scope, $http, $timeout) {
-  $scope._search = {};
+app.controller("attend_leave", function ($scope, $http, $timeout, $interval) {
 
   $scope.attend_leave = {};
+  $scope.auto_load_attendance = true;
 
   $scope.displayAddAttendLeave = function () {
     $scope.error = '';
     $scope.attend_leave = {
       image_url: '/images/attend_leave.png',
-      employee_attend_list: [],
-      date: new Date(),
-      active: true
-
+      active: true,
+      date: new Date()
     };
     site.showModal('#attendLeaveAddModal');
-
   };
 
   $scope.addAttendLeave = function () {
     $scope.error = '';
     const v = site.validated('#attendLeaveAddModal');
+
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
-    }
+    };
+
     $scope.busy = true;
     $http({
       method: "POST",
-      url: "/api/attend_leave/update",
+      url: "/api/attend_leave/add",
       data: $scope.attend_leave
     }).then(
       function (response) {
@@ -115,12 +114,16 @@ app.controller("attend_leave", function ($scope, $http, $timeout) {
     $scope.viewAttendLeave(attend_leave);
     $scope.attend_leave = {};
     site.showModal('#attendLeaveDeleteModal');
+
   };
 
   $scope.deleteAttendLeave = function () {
     $scope.busy = true;
     $scope.error = '';
-
+    let id = $scope.attend_leave ? $scope.attend_leave.id : null;
+    if(!id){
+      return false;
+    }
     $http({
       method: "POST",
       url: "/api/attend_leave/delete",
@@ -143,24 +146,38 @@ app.controller("attend_leave", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.list = [];
   $scope.getAttendLeaveList = function (where) {
     $scope.busy = true;
-    $scope.list = [];
+    
     $http({
       method: "POST",
       url: "/api/attend_leave/all",
       data: {
-        where: where
+        where: where,
+        limit : 10
       }
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done && response.data.list.length > 0) {
-          $scope.list = response.data.list;
-          $scope.count = response.data.count;
-          site.hideModal('#attendLeaveSearchModal');
-          $scope.search = {};
-
+          if($scope.list.length == response.data.list.length){
+            response.data.list.forEach((d , i) => {
+              if(!$scope.list[i].leave_date && d.leave_date){
+                $scope.list[i].leave_date = d.leave_date;
+                $scope.list[i].leave = d.leave;
+              }
+              
+            });
+          }else{
+            $scope.list = response.data.list;
+            $scope.count = response.data.count;
+            site.hideModal('#attendLeaveSearchModal');
+            $scope.search = {};
+          }
+          
+        }else{
+          $scope.list = [];
         }
       },
       function (err) {
@@ -170,107 +187,33 @@ app.controller("attend_leave", function ($scope, $http, $timeout) {
     )
   };
 
-
-  $scope.getTimeList = function () {
+  $scope.getCustomerList = function (ev) {
+    $scope.error = '';
     $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/times_attend_leave/all",
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        $scope.timeList = response.data;
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
-  };
-
-  $scope.getAttend = function () {
-    $scope.busy = true;
-    $scope.attendList = [];
-    $http({
-      method: "POST",
-      url: "/api/attend_leave_employee/all"
-
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        $scope.attendList = response.data;
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
-  };
-
-  $scope.getTrainerList = function () {
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/attend_leave/show",
-      data: {
-        date: $scope.attend_leave.date
-      }
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-
-          $scope.attend_leave = response.data.doc;
-        } else {
-          $scope.error = response.data.error;
+    if (ev.which === 13) {
+      $http({
+        method: "POST",
+        url: "/api/customers/all",
+        data: {
+          search: $scope.search_customer
+          /*  select: {
+            id: 1,
+            name_ar: 1,
+            name_en: 1,
+          } */
         }
-      },
-      function (err) {
-        console.log(err);
-      }
-    )
-  };
-
-  $scope.getStatusNow = function () {
-    $scope.busy = true;
-    $scope.statusNowList = [];
-    $http({
-      method: "POST",
-      url: "/api/status_now/all"
-
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        $scope.statusNowList = response.data;
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
-  };
-
-  $scope.attend = function (d) {
-    d.attend = $scope.attendList[0];
-    d.status_now = $scope.statusNowList[0];
-
-    d.from ={
-      hour : new Date().getHours(),
-      minute : new Date().getMinutes()
-    };
-
-  };
-
-
-  $scope.absence = function (d) {
-    d.attend = $scope.attendList[1];
-  };
-
-  $scope.leaved = function (d) {
-    d.status_now = $scope.statusNowList[1];
-    d.to ={
-      hour : new Date().getHours(),
-      minute : new Date().getMinutes()
+      }).then(
+        function (response) {
+          $scope.busy = false;
+          if (response.data.done && response.data.list.length > 0) {
+            $scope.customersList = response.data.list;
+          }
+        },
+        function (err) {
+          $scope.busy = false;
+          $scope.error = err;
+        }
+      )
     };
   };
 
@@ -280,15 +223,51 @@ app.controller("attend_leave", function ($scope, $http, $timeout) {
 
   };
 
-  $scope.searchAll = function () {
+  $scope.attendNow = function () {
+    $scope.attend_leave.attend_date = new Date();
+    $scope.attend_leave.attend = {
+      hour: new Date().getHours(),
+      minute: new Date().getMinutes()
+    };
+  };
 
+  $scope.leaveNow = function (attend_leave) {
+    attend_leave.leave_date = new Date();
+    attend_leave.leave = {
+      hour: new Date().getHours(),
+      minute: new Date().getMinutes()
+    };
+
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/attend_leave/update",
+      data: attend_leave
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.getAttendLeaveList();
+        } else {
+          $scope.error = 'Please Login First';
+        }
+      },
+      function (err) {
+        console.log(err);
+      }
+    )
+  };
+
+  $scope.searchAll = function () {
     $scope.getAttendLeaveList($scope.search);
     site.hideModal('#attendLeaveSearchModal');
     $scope.search = {};
   };
 
-  $scope.getAttendLeaveList();
-  $scope.getTimeList();
-  $scope.getAttend();
-  $scope.getStatusNow();
+  $interval(() => {
+    if ($scope.auto_load_attendance) {
+      $scope.getAttendLeaveList();
+    };
+  }, 1000 * 3);
+
 });
