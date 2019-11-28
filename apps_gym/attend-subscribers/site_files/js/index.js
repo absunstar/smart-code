@@ -154,7 +154,8 @@ app.controller("attend_subscribers", function ($scope, $http, $timeout, $interva
       method: "POST",
       url: "/api/attend_subscribers/all",
       data: {
-        where: where
+        where: where,
+        limit : 10
       }
     }).then(
       function (response) {

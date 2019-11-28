@@ -31,6 +31,7 @@ module.exports = function init(site) {
         attendance_array.forEach(attend => {
             attend.attend_id = attend.id
             attend.user_id = attend.uid
+            attend.finger_id = attend.uid
             delete attend.uid
             delete attend.id
             attend.check_status = attend.inOutStatus == 0 ? 'check_in' : 'check_out'
