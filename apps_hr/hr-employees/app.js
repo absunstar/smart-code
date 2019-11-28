@@ -32,7 +32,12 @@ module.exports = function init(site) {
     $employee_list.add({
       name: "مدرب إفتراضي",
       image_url: '/images/employee_list.png',
-      job: job_doc,
+      job: {
+        id: job_doc.id,
+        name: job_doc.name,
+        code: job_doc.code,
+        trainer: job_doc.trainer,
+      },
       company: job_doc.company,
       branch: job_doc.branch,
       active: true

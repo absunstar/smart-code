@@ -301,6 +301,7 @@ module.exports = function init(site) {
       }
       delete where.date_from
       delete where.date_to
+
     } else if (req.data.search === 'new_date') {
       let d1 = site.toDate(new Date())
       let d2 = site.toDate(new Date())
