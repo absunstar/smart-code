@@ -335,6 +335,26 @@ app.controller("default_setting", function ($scope, $http) {
     )
   };
 
+  $scope.getShiftsList = function () {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/shifts/all",
+      data: {}
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.shiftsList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
   $scope.saveSetting = function (where) {
     $scope.busy = true;
     $http({
@@ -369,5 +389,6 @@ app.controller("default_setting", function ($scope, $http) {
   $scope.getSourceType();
   $scope.getPlaceProgramList();
   $scope.getPrintersPath();
+  $scope.getShiftsList();
   $scope.loadSetting();
 });

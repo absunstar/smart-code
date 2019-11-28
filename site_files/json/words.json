@@ -15,9 +15,14 @@
         "ar": "الخصم"
     },
     {
-        "name": "startup_date",
-        "en": "StartuP Date",
-        "ar": "تاريخ البداية "
+        "name": "deadline_date",
+        "en": "Deadline Date",
+        "ar": "تاريخ النهاية "
+    },
+    {
+        "name": "not_found",
+        "en": "Not Found",
+        "ar": "غير موجود"
     },
     {
         "name": "deadline_date",

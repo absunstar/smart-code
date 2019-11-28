@@ -95,7 +95,7 @@ module.exports = function init(site) {
     });
 
     $create_invoices.add(create_invoices_doc, (err, doc) => {
-
+      
       if (!err) {
         response.done = true;
         response.doc = doc;
@@ -282,7 +282,7 @@ module.exports = function init(site) {
       where['payment_method.id'] = where['payment_method'].id;
       delete where['payment_method']
     }
-
+    
     if (where.date) {
       let d1 = site.toDate(where.date)
       let d2 = site.toDate(where.date)
@@ -301,7 +301,7 @@ module.exports = function init(site) {
       }
       delete where.date_from
       delete where.date_to
-    } else {
+    } else if (req.data.search === 'new_date') {
       let d1 = site.toDate(new Date())
       let d2 = site.toDate(new Date())
       d2.setDate(d2.getDate() + 1);
