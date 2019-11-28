@@ -32,6 +32,7 @@
             <h1 class="center bold black">##word.order_kitchens##</h1>
             <br>
 
+            <h2 class="bold red text-center">{{error}} </h2>
             <h3 class="bold text-center"> ##word.count## : {{book_list_report.length}} </h3>
             <div x-import="order-kitchen/content.html" x-permissions="order_kitchen_view || order_kitchen_manage"></div>
 

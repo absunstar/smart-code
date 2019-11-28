@@ -9,9 +9,19 @@
         "ar": "الشيفت"
     },
     {
-        "name": "shifts_new",
-        "en": "New Shift",
-        "ar": "شيفت جديد"
+        "name": "open_shift",
+        "en": "Open Shift",
+        "ar": "فتح شيفت"
+    },
+    {
+        "name": "open_shift_not_found",
+        "en": "Not Found Open Shift",
+        "ar": "لا يوجد شيفت مفتوح"
+    },
+    {
+        "name": "must_close_shift",
+        "en": "All Shifts Must Be Closed Before Opening A New Shift",
+        "ar": "يجب غلق جميع الشيفتات قبل فتح شيفت جديد"
     },
     {
         "name": "shift_start",

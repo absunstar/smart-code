@@ -4,12 +4,14 @@ app.controller("shifts", function ($scope, $http, $timeout) {
   $scope.shift = {};
 
   $scope.displayAddShift = function () {
-    $scope.error = '';
-    $scope.shift = {
-      image_url: '/images/shift.png',
-      active: true
-    };
-    site.showModal('#shiftAddModal');
+    if ($scope.openShift) {
+      $scope.error = '';
+      $scope.shift = {
+        image_url: '/images/shift.png',
+        active: true
+      };
+      site.showModal('#shiftAddModal');
+    } else $scope.error = '##word.must_close_shift##';
   };
 
   $scope.addShift = function () {
@@ -140,6 +142,7 @@ app.controller("shifts", function ($scope, $http, $timeout) {
   };
 
   $scope.getShiftList = function (where) {
+    $scope.error = '';
     $scope.busy = true;
     $scope.list = [];
     $http({
@@ -174,7 +177,33 @@ app.controller("shifts", function ($scope, $http, $timeout) {
 
   };
 
+  $scope.getOpenShiftList = function (where) {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/shifts/open_shift",
+      data: {
+        where: { active: true },
+        select: { id: 1, name: 1, code: 1, from_date: 1, from_time: 1, to_date: 1, to_time: 1 }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done)
+          $scope.openShift = true;
+        else $scope.openShift = false;
+      },
+
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
   $scope.searchAll = function () {
+    $scope.error = '';
 
     $scope.getShiftList($scope.search);
     site.hideModal('#shiftSearchModal');
@@ -182,21 +211,80 @@ app.controller("shifts", function ($scope, $http, $timeout) {
   };
 
   $scope.shifStart = function () {
+    $scope.error = '';
 
     $scope.shift.from_date = new Date();
     $scope.shift.from_time = { hour: new Date().getHours(), minute: new Date().getMinutes() };
 
-    $scope.shift.to_date = new Date();
-
-    if ($scope.shift.period) 
-      $scope.shift.to_date.setHours($scope.shift.to_date.getHours() + $scope.shift.period);
-
-    $scope.shift.to_time = {
-      hour: new Date($scope.shift.to_date).getHours(),
-      minute: new Date($scope.shift.to_date).getMinutes()
-    };
+    /*   $scope.shift.to_date = new Date();
+  
+      if ($scope.shift.period) 
+        $scope.shift.to_date.setHours($scope.shift.to_date.getHours() + $scope.shift.period);
+  
+      $scope.shift.to_time = {
+        hour: new Date($scope.shift.to_date).getHours(),
+        minute: new Date($scope.shift.to_date).getMinutes()
+      }; */
   };
 
-  $scope.getShiftList();
+  $scope.shifLeave = function (shift) {
+    $scope.error = '';
 
+    shift.to_date = new Date();
+    shift.to_time = { hour: new Date(shift.to_date).getHours(), minute: new Date(shift.to_date).getMinutes() };
+
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/shifts/update",
+      data: shift
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          site.hideModal('#shiftUpdateModal');
+          $scope.getShiftList();
+          $scope.getOpenShiftList();
+        } else $scope.error = 'Please Login First';
+      },
+      function (err) {
+        console.log(err);
+      }
+    )
+  };
+
+  $scope.shifOpen = function (shift) {
+    $scope.error = '';
+    if ($scope.openShift) {
+
+      shift.to_date = null;
+      shift.to_time = null;
+
+      $scope.busy = true;
+      $http({
+        method: "POST",
+        url: "/api/shifts/update",
+        data: shift
+      }).then(
+        function (response) {
+          $scope.busy = false;
+          if (response.data.done) {
+            site.hideModal('#shiftUpdateModal');
+            $scope.getShiftList();
+            $scope.getOpenShiftList();
+          } else {
+            $scope.error = 'Please Login First';
+          }
+        },
+        function (err) {
+          console.log(err);
+        }
+      )
+    } else $scope.error = '##word.must_close_shift##';
+
+  };
+
+
+  $scope.getShiftList();
+  $scope.getOpenShiftList();
 });

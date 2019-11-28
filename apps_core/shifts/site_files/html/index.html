@@ -28,17 +28,18 @@
                 </div>
 
                 <div class="top-actions">
-                    <i-button x-permissions="shifts_add || shifts_manage" type="add" label="##word.shifts_new##"
+                    <i-button x-permissions="shifts_add || shifts_manage" type="add" label="##word.open_shift##"
                         ng-click="displayAddShift()"></i-button>
 
                     <i-button x-permissions="shifts_search || shifts_manage" type="search" label="##word.search_all##"
                         ng-click="displaySearchModal()"></i-button>
 
-                    <h3 class="bold text-center"> ##word.count## : {{count}}</h3>
+                    <h2 class="bold red text-center"> {{error}}</h2>
+                        <h3 class="bold text-center"> ##word.count## : {{count}}</h3>
 
                 </div>
 
-                <table x-permissions="login" class="table hover bold loaded" id="t1">
+                <table x-permissions="login" class="table hover bold center loaded" id="t1">
                     <tr>
                         <th class="not-print">##word.logo##</th>
                         <th>##word.shifts_name##</th>
@@ -51,16 +52,20 @@
                         <td class="center not-print">
                             <img class="logo" ng-src="{{c.image_url}}">
                         </td>
-                        <td class="center title">{{c.name}}</td>
 
+                        <td class="center title">{{c.name}} <p class="blue">{{c.code}}</p>
+                        </td>
 
                         <td class="center green">{{c.from_date |date:'dd - MM - yyyy'}}
                             <p class="center green"> {{c.from_time.minute}} : {{c.from_time.hour}}</p>
                         </td>
 
                         <td class="center">
-                            <p class="center red">{{c.to_date |date:'dd - MM - yyyy'}}</p>
-                            <p class="center red"> {{c.to_time.minute}} : {{c.to_time.hour}}</p>
+                            <i-button type="exit" ng-hide="c.to_date" label="##word.leave_now##"
+                                ng-click="shifLeave(c)">
+                            </i-button>
+                            <p class="center red" ng-show="c.to_date">{{c.to_date |date:'dd - MM - yyyy'}}</p>
+                            <p class="center red" ng-show="c.to_date"> {{c.to_time.minute}} : {{c.to_time.hour}}</p>
                         </td>
 
                         <td class="center">
@@ -69,6 +74,9 @@
                         </td>
 
                         <td class="center not-print">
+                            <i-button x-permissions="shifts_update || shifts_manage" type="save" label="##word.open_shift##"
+                              ng-show="c.to_date"  ng-click="shifOpen(c)"></i-button>
+
                             <i-button x-permissions="shifts_view || shifts_manage" type="view" label="##word.details##"
                                 ng-click="displayDetailsShift(c)"></i-button>
 

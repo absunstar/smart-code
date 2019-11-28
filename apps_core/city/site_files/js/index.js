@@ -194,9 +194,7 @@ app.controller("city", function ($scope, $http, $timeout) {
         $scope.busy = false;
         $scope.error = err;
       }
-
     )
-
   };
 
   $scope.displaySearchModal = function () {

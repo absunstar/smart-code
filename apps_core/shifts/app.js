@@ -14,6 +14,33 @@ module.exports = function init(site) {
   })
 
 
+  function addZero(code, number) {
+    let c = number - code.toString().length
+    for (let i = 0; i < c; i++) {
+      code = '0' + code.toString()
+    }
+    return code
+  }
+
+  $shifts.newCode = function () {
+
+    let y = new Date().getFullYear().toString().substr(2, 2)
+    let m = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L'][new Date().getMonth()].toString()
+    let d = new Date().getDate()
+    let lastCode = site.storage('ticket_last_code') || 0
+    let lastMonth = site.storage('ticket_last_month') || m
+    if (lastMonth != m) {
+      lastMonth = m
+      lastCode = 0
+    }
+    lastCode++
+    site.storage('ticket_last_code', lastCode)
+    site.storage('ticket_last_month', lastMonth)
+    return y + lastMonth + addZero(d, 2) + addZero(lastCode, 4)
+  }
+
+
+
   site.on('[company][created]', doc => {
     $shifts.add({
       name: "شيفت إفتراضي",
@@ -44,7 +71,7 @@ module.exports = function init(site) {
     let shifts_doc = req.body
     shifts_doc.$req = req
     shifts_doc.$res = res
-
+    shifts_doc.code = $shifts.newCode();
     shifts_doc.add_user_info = site.security.getUserFinger({
       $req: req,
       $res: res
@@ -182,6 +209,47 @@ module.exports = function init(site) {
     }
   })
 
+  site.post("/api/shifts/open_shift", (req, res) => {
+    let response = { done: false }
+
+    let where = req.body.where || {}
+
+    where['to_date'] = null || undefined
+    where['company.id'] = site.get_company(req).id
+    where['branch.code'] = site.get_branch(req).code
+
+    $shifts.findOne({
+      select: req.body.select || {},
+      where: where,
+    }, (err, docs) => {
+      if (!err && docs) response.list = docs
+      else response.done = true
+
+      res.json(response)
+    })
+  })
+
+
+  site.getShift = function (req) {
+
+    let where = {}
+    let response = { done: false }
+    let select = { id: 1, name: 1, code: 1, from_date: 1, from_time: 1, to_date: 1, to_time: 1 }
+
+    where['to_date'] = null || undefined
+    where['company.id'] = site.get_company(req).id
+    where['branch.code'] = site.get_branch(req).code
+
+    $shifts.findOne({
+      select: select,
+      where: where,
+    }, (err, docs) => {
+      if (!err && docs) response.doc = docs
+      else response.done = true
+    })
+    return response
+  }
+
 
   site.post("/api/shifts/all", (req, res) => {
     let response = {
@@ -192,6 +260,10 @@ module.exports = function init(site) {
 
     if (where['name']) {
       where['name'] = new RegExp(where['name'], "i");
+    }
+
+    if (where['code']) {
+      where['code'] = new RegExp(where['code'], "i");
     }
 
     where['company.id'] = site.get_company(req).id
@@ -215,5 +287,6 @@ module.exports = function init(site) {
       res.json(response)
     })
   })
+
 
 }

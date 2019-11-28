@@ -16,130 +16,138 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
 
   $scope.newOrderInvoice = function () {
     $scope.error = "";
-    if ($scope.defaultSettings.general_Settings && $scope.defaultSettings.general_Settings.create_invoice) {
-      $scope.paid_up = 0;
 
-      if ($scope.defaultSettings && $scope.defaultSettings.accounting && $scope.defaultSettings.accounting.safe)
-        $scope.safe = $scope.defaultSettings.accounting.safe;
-    };
+    if (!$scope.openShift) {
 
-    $scope.order_invoice = {
-      book_list: [],
-      discountes: [],
-      taxes: [],
-      date: new Date(),
-      details: [],
-      status: {
-        id: 1, en: "Opened", ar: "مفتوحة"
-      }
-    };
+      if ($scope.defaultSettings.general_Settings && $scope.defaultSettings.general_Settings.create_invoice) {
+        $scope.paid_up = 0;
 
-    if ($scope.defaultSettings.general_Settings) {
-      if ($scope.defaultSettings.general_Settings.order_type) {
-        $scope.order_invoice.transaction_type = $scope.defaultSettings.general_Settings.order_type;
-
-        if ($scope.defaultSettings.general_Settings.order_type.id == 2)
-          $scope.order_invoice.delivery_employee = $scope.defaultSettings.general_Settings.delivery_employee;
-
-        if ($scope.defaultSettings.general_Settings.order_type.id == 1) {
-          if ($scope.defaultSettings.general_Settings.service)
-            $scope.order_invoice.service = $scope.defaultSettings.general_Settings.service;
-        };
+        if ($scope.defaultSettings && $scope.defaultSettings.accounting && $scope.defaultSettings.accounting.safe)
+          $scope.safe = $scope.defaultSettings.accounting.safe;
       };
 
-      if ($scope.defaultSettings.general_Settings.customer) {
-        $scope.order_invoice.customer = $scope.defaultSettings.general_Settings.customer;
-        if ($scope.defaultSettings.general_Settings.customer.gov)
-          $scope.order_invoice.gov = $scope.defaultSettings.general_Settings.customer.gov;
-
-        if ($scope.defaultSettings.general_Settings.customer.city)
-          $scope.order_invoice.city = $scope.defaultSettings.general_Settings.customer.city;
-
-        if ($scope.defaultSettings.general_Settings.customer.area) {
-          $scope.order_invoice.area = $scope.defaultSettings.general_Settings.customer.area;
-
-          if ($scope.defaultSettings.general_Settings.customer.area.price_delivery_service)
-            $scope.order_invoice.price_delivery_service = $scope.defaultSettings.general_Settings.customer.area.price_delivery_service;
-        };
-
-        if ($scope.defaultSettings.general_Settings.customer.address)
-          $scope.order_invoice.address = $scope.defaultSettings.general_Settings.customer.address;
-
-        if ($scope.defaultSettings.general_Settings.customer.customer_phone)
-          $scope.order_invoice.customer_phone = $scope.defaultSettings.general_Settings.customer.customer_phone;
-
-        if ($scope.defaultSettings.general_Settings.customer.customer_mobile)
-          $scope.order_invoice.customer_mobile = $scope.defaultSettings.general_Settings.customer.customer_mobile;
-
+      $scope.order_invoice = {
+        book_list: [],
+        discountes: [],
+        taxes: [],
+        date: new Date(),
+        details: [],
+        status: {
+          id: 1, en: "Opened", ar: "مفتوحة"
+        }
       };
 
-      if ($scope.defaultSettings.general_Settings.shift)
-        $scope.order_invoice.shift = $scope.defaultSettings.general_Settings.shift;
+      if ($scope.defaultSettings.general_Settings) {
+        if ($scope.defaultSettings.general_Settings.order_type) {
+          $scope.order_invoice.transaction_type = $scope.defaultSettings.general_Settings.order_type;
 
-    };
+          if ($scope.defaultSettings.general_Settings.order_type.id == 2)
+            $scope.order_invoice.delivery_employee = $scope.defaultSettings.general_Settings.delivery_employee;
+
+          if ($scope.defaultSettings.general_Settings.order_type.id == 1) {
+            if ($scope.defaultSettings.general_Settings.service)
+              $scope.order_invoice.service = $scope.defaultSettings.general_Settings.service;
+          };
+        };
+
+        if ($scope.defaultSettings.general_Settings.customer) {
+          $scope.order_invoice.customer = $scope.defaultSettings.general_Settings.customer;
+          if ($scope.defaultSettings.general_Settings.customer.gov)
+            $scope.order_invoice.gov = $scope.defaultSettings.general_Settings.customer.gov;
+
+          if ($scope.defaultSettings.general_Settings.customer.city)
+            $scope.order_invoice.city = $scope.defaultSettings.general_Settings.customer.city;
+
+          if ($scope.defaultSettings.general_Settings.customer.area) {
+            $scope.order_invoice.area = $scope.defaultSettings.general_Settings.customer.area;
+
+            if ($scope.defaultSettings.general_Settings.customer.area.price_delivery_service)
+              $scope.order_invoice.price_delivery_service = $scope.defaultSettings.general_Settings.customer.area.price_delivery_service;
+          };
+
+          if ($scope.defaultSettings.general_Settings.customer.address)
+            $scope.order_invoice.address = $scope.defaultSettings.general_Settings.customer.address;
+
+          if ($scope.defaultSettings.general_Settings.customer.customer_phone)
+            $scope.order_invoice.customer_phone = $scope.defaultSettings.general_Settings.customer.customer_phone;
+
+          if ($scope.defaultSettings.general_Settings.customer.customer_mobile)
+            $scope.order_invoice.customer_mobile = $scope.defaultSettings.general_Settings.customer.customer_mobile;
+
+        };
+
+        if ($scope.defaultSettings.general_Settings.shift)
+          $scope.order_invoice.shift = $scope.defaultSettings.general_Settings.shift;
+
+      };
+    } else $scope.error = '##word.open_shift_not_found##';
+
   };
 
   $scope.addOrderInvoice = function () {
     $scope.error = '';
-    const v = site.validated('#OrderInvoiceAddModal');
-    if (!v.ok) {
-      $scope.error = v.messages[0].ar;
-      return;
-    };
-    if (!$scope.order_invoice.transaction_type) {
-      $scope.error = "##word.err_transaction_type##";
-      return;
-    };
-    if (!$scope.order_invoice.customer && $scope.order_invoice.transaction_type == 2) {
-      $scope.error = "##word.err_customer##";
-      return;
-    };
-    if (!$scope.order_invoice.table && $scope.order_invoice.transaction_type == 1) {
-      $scope.error = "##word.err_table##";
-      return;
-    };
+    if (!$scope.openShift) {
 
-    if ($scope.order_invoice.transaction_type.id != 2 && $scope.order_invoice.delivery_employee)
-      $scope.order_invoice.delivery_employee = {};
+      const v = site.validated('#OrderInvoiceAddModal');
+      if (!v.ok) {
+        $scope.error = v.messages[0].ar;
+        return;
+      };
+      if (!$scope.order_invoice.transaction_type) {
+        $scope.error = "##word.err_transaction_type##";
+        return;
+      };
+      if (!$scope.order_invoice.customer && $scope.order_invoice.transaction_type == 2) {
+        $scope.error = "##word.err_customer##";
+        return;
+      };
+      if (!$scope.order_invoice.table && $scope.order_invoice.transaction_type == 1) {
+        $scope.error = "##word.err_table##";
+        return;
+      };
 
-    if ($scope.order_invoice.transaction_type.id != 1 && $scope.order_invoice.table)
-      $scope.order_invoice.table = {};
+      if ($scope.order_invoice.transaction_type.id != 2 && $scope.order_invoice.delivery_employee)
+        $scope.order_invoice.delivery_employee = {};
 
-    if ($scope.order_invoice.transaction_type.id != 1 && $scope.order_invoice.service)
-      $scope.order_invoice.service = 0;
+      if ($scope.order_invoice.transaction_type.id != 1 && $scope.order_invoice.table)
+        $scope.order_invoice.table = {};
 
-    if ($scope.order_invoice.transaction_type.id != 2 && $scope.order_invoice.price_delivery_service)
-      $scope.order_invoice.price_delivery_service = 0;
+      if ($scope.order_invoice.transaction_type.id != 1 && $scope.order_invoice.service)
+        $scope.order_invoice.service = 0;
 
-    let url = '/api/order_invoice/update';
-    if ($scope.order_invoice.id) url = '/api/order_invoice/update';
-    else url = '/api/order_invoice/add';
+      if ($scope.order_invoice.transaction_type.id != 2 && $scope.order_invoice.price_delivery_service)
+        $scope.order_invoice.price_delivery_service = 0;
 
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: url,
-      data: $scope.order_invoice
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          $scope.sendToKitchens(Object.assign({}, response.data.doc));
-          /*  if ($scope.order_invoice.status && $scope.order_invoice.status.id == 2) {
-             $scope.newOrderInvoice();
-           } else {
-           } */
+      let url = '/api/order_invoice/update';
+      if ($scope.order_invoice.id) url = '/api/order_invoice/update';
+      else url = '/api/order_invoice/add';
 
-          $scope.order_invoice = response.data.doc;
+      $scope.busy = true;
+      $http({
+        method: "POST",
+        url: url,
+        data: $scope.order_invoice
+      }).then(
+        function (response) {
+          $scope.busy = false;
+          if (response.data.done) {
+            $scope.sendToKitchens(Object.assign({}, response.data.doc));
+            /*  if ($scope.order_invoice.status && $scope.order_invoice.status.id == 2) {
+               $scope.newOrderInvoice();
+             } else {
+             } */
 
-        } else {
-          $scope.error = response.data.error;
+            $scope.order_invoice = response.data.doc;
+
+          } else {
+            $scope.error = response.data.error;
+          }
+        },
+        function (err) {
+          console.log(err);
         }
-      },
-      function (err) {
-        console.log(err);
-      }
-    )
+      )
+    } else $scope.error = '##word.open_shift_not_found##';
   };
 
   $scope.sendToKitchens = function (_order_invoice) {
@@ -691,7 +699,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.getShiftsList = function () {
+  /* $scope.getShiftsList = function () {
     $scope.busy = true;
     $http({
       method: "POST",
@@ -709,7 +717,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         $scope.error = err;
       }
     )
-  };
+  }; */
 
   $scope.getGovList = function (where) {
     $scope.busy = true;
@@ -892,32 +900,34 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
   };
 
   $scope.viewInvoicesTablesList = function () {
-    $scope.getOrderInvoicesActiveList(() => {
+    if (!$scope.openShift) {
+      $scope.getOrderInvoicesActiveList(() => {
+        $scope.invoicesTablelist = [];
+        $scope.invoicesActivelist.forEach(_invoiceActive => {
+          if (_invoiceActive.transaction_type && _invoiceActive.transaction_type.id == 1 && _invoiceActive.id != $scope.order_invoice.id) {
+            $scope.invoicesTablelist.push(_invoiceActive);
+          };
+        });
 
-      $scope.invoicesTablelist = [];
-      $scope.invoicesActivelist.forEach(_invoiceActive => {
-        if (_invoiceActive.transaction_type && _invoiceActive.transaction_type.id == 1 && _invoiceActive.id != $scope.order_invoice.id) {
-          $scope.invoicesTablelist.push(_invoiceActive);
+        if ($scope.invoicesActivelist && $scope.invoicesActivelist.length < 1) {
+          $scope.error = "##word.err_waiting_list_empty##";
+          return;
         };
+        site.showModal('#mergeTablesModal');
       });
-
-      if ($scope.invoicesActivelist && $scope.invoicesActivelist.length < 1) {
-        $scope.error = "##word.err_waiting_list_empty##";
-        return;
-      };
-
-      site.showModal('#mergeTablesModal');
-    });
+    } else $scope.error = '##word.open_shift_not_found##';
   };
 
   $scope.viewInvoicesActiveList = function () {
-    $scope.getOrderInvoicesActiveList(() => {
-      if ($scope.invoicesActivelist && $scope.invoicesActivelist.length < 1) {
-        $scope.error = "##word.err_waiting_list_empty##";
-        return;
-      };
-      site.showModal('#orderInvoicesActiveAddModal');
-    });
+    if (!$scope.openShift) {
+      $scope.getOrderInvoicesActiveList(() => {
+        if ($scope.invoicesActivelist && $scope.invoicesActivelist.length < 1) {
+          $scope.error = "##word.err_waiting_list_empty##";
+          return;
+        };
+        site.showModal('#orderInvoicesActiveAddModal');
+      });
+    } else $scope.error = '##word.open_shift_not_found##';
   };
 
   $scope.mergeTables = function (order) {
@@ -973,65 +983,68 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
 
 
   $scope.closeOrder = function () {
+    if (!$scope.openShift) {
 
-    if ($scope.order_invoice.book_list && $scope.order_invoice.book_list.length > 0) {
+      if ($scope.order_invoice.book_list && $scope.order_invoice.book_list.length > 0) {
 
-      if ($scope.defaultSettings.general_Settings && $scope.defaultSettings.general_Settings.discount_method && $scope.defaultSettings.general_Settings.discount_method.id == 1) {
-        $scope.order_invoice.reset_items = true
-      } else {
-        $scope.order_invoice.reset_items = false;
-        $scope.order_invoice.post = false;
-      }
+        if ($scope.defaultSettings.general_Settings && $scope.defaultSettings.general_Settings.discount_method && $scope.defaultSettings.general_Settings.discount_method.id == 1) {
+          $scope.order_invoice.reset_items = true
+        } else {
+          $scope.order_invoice.reset_items = false;
+          $scope.order_invoice.post = false;
+        }
 
-      $scope.order_invoice.status = { id: 2, en: "Closed Of Orders Screen", ar: "مغلق من شاشة الأوردرات" };
+        $scope.order_invoice.status = { id: 2, en: "Closed Of Orders Screen", ar: "مغلق من شاشة الأوردرات" };
 
-      $scope.order_invoice.under_paid = {
-        book_list: $scope.order_invoice.book_list,
-        total_tax: $scope.order_invoice.total_tax,
-        total_discount: $scope.order_invoice.total_discount,
-        price_delivery_service: $scope.order_invoice.price_delivery_service,
-        service: $scope.order_invoice.service,
-        net_value: $scope.order_invoice.net_value,
-        items_price: 0
-      };
+        $scope.order_invoice.under_paid = {
+          book_list: $scope.order_invoice.book_list,
+          total_tax: $scope.order_invoice.total_tax,
+          total_discount: $scope.order_invoice.total_discount,
+          price_delivery_service: $scope.order_invoice.price_delivery_service,
+          service: $scope.order_invoice.service,
+          net_value: $scope.order_invoice.net_value,
+          items_price: 0
+        };
 
-      if ($scope.order_invoice.id)
-        $scope.order_invoice.under_paid.order_invoice_id = $scope.order_invoice.id;
+        if ($scope.order_invoice.id)
+          $scope.order_invoice.under_paid.order_invoice_id = $scope.order_invoice.id;
+        $scope.order_invoice.book_list.forEach(book_list => {
+          $scope.order_invoice.under_paid.items_price += book_list.total_price;
+        });
 
-      $scope.order_invoice.book_list.forEach(book_list => {
-        $scope.order_invoice.under_paid.items_price += book_list.total_price;
-      });
-
-      $scope.addOrderInvoice();
-    } else $scope.error = '##word.err_book_list##';
-
+        $scope.addOrderInvoice();
+      } else $scope.error = '##word.err_book_list##';
+    } else $scope.error = '##word.open_shift_not_found##';
   };
 
   $scope.loadItems = function (group) {
-    $scope.busy = true;
-    $scope.itemsList = [];
-    $http({
-      method: "POST",
-      url: "/api/stores_items/all",
-      data: {
-        where: {
-          "item_group.id": group.id,
-          "is_pos": true
+    if (!$scope.openShift) {
+
+      $scope.busy = true;
+      $scope.itemsList = [];
+      $http({
+        method: "POST",
+        url: "/api/stores_items/all",
+        data: {
+          where: {
+            "item_group.id": group.id,
+            "is_pos": true
+          }
         }
-      }
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          $scope.itemsList = response.data.list;
-          $scope.current_items = [];
+      }).then(
+        function (response) {
+          $scope.busy = false;
+          if (response.data.done) {
+            $scope.itemsList = response.data.list;
+            $scope.current_items = [];
+          }
+        },
+        function (err) {
+          $scope.busy = false;
+          $scope.error = err;
         }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
+      )
+    } else $scope.error = '##word.open_shift_not_found##';
   };
 
   $scope.showItemsIn = function (i) {
@@ -1212,10 +1225,12 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
 
   $scope.showTable = function () {
     $scope.error = '';
-    $scope.getTablesList(() => {
-      $scope.getTablesGroupList();
-      site.showModal('#showTablesModal');
-    });
+    if (!$scope.openShift) {
+      $scope.getTablesList(() => {
+        $scope.getTablesGroupList();
+        site.showModal('#showTablesModal');
+      });
+    } else $scope.error = '##word.open_shift_not_found##';
   };
 
   $scope.selectTable = function (table, group) {
@@ -1257,6 +1272,31 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     $scope.search = {};
   };
 
+  $scope.getOpenShiftList = function (where) {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/shifts/open_shift",
+      data: {
+        where: { active: true },
+        select: { id: 1, name: 1, code: 1, from_date: 1, from_time: 1, to_date: 1, to_time: 1 }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done)
+          $scope.openShift = true;
+        else $scope.openShift = false;
+      },
+
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
   $scope.getOrderInvoiceList();
   $scope.loadItemsGroups();
   $scope.loadDiscountTypes();
@@ -1265,10 +1305,11 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
   $scope.getSafesList();
   $scope.getCustomerList();
   $scope.getDeliveryEmployeesList();
+  $scope.getOpenShiftList();
   $scope.getGovList();
   $scope.getTablesList();
   $scope.getPrintersPath();
   $scope.getDefaultSettingsList();
-  $scope.getShiftsList();
-  $scope.loadKitchenList();
+/*   $scope.getShiftsList();
+ */  $scope.loadKitchenList();
 });

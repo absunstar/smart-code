@@ -8,13 +8,13 @@ module.exports = function init(site) {
     compress: false
   })
 
-
   site.post("/api/order_kitchen/update", (req, res) => {
     let item = req.body
     $order_invoice.findOne({
       id: item.order.id,
     }, (err, doc) => {
       if (!err && doc) {
+        /*doc.edit_shift = site.getShift(req)*/
         doc.book_list.forEach(book_list => {
           if (book_list.size == item.size && book_list.barcode == item.barcode)
             book_list.done_kitchen = true;
@@ -28,13 +28,13 @@ module.exports = function init(site) {
     let response = {
       done: false
     }
+    let kitchen = {}
     let where = req.body.where || {}
-    let kitchen = where['kitchen']
     where['company.id'] = site.get_company(req).id
     where['branch.code'] = site.get_branch(req).code
     // where['status.id'] = 1
-
     if (where['kitchen']) {
+      kitchen = where['kitchen']
       where['book_list.kitchen.id'] = where['kitchen'].id;
       delete where['kitchen']
     }

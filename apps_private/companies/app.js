@@ -42,6 +42,7 @@ module.exports = function init(site) {
     let company = req.session('company')
     return site.fromJson(company)
   }
+
   site.get_branch = function (req) {
     let branch = req.session('branch')
     return site.fromJson(branch)
