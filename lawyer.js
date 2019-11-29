@@ -31,6 +31,10 @@ site.words.add({
     "name": "le",
     "en": "Ryal",
     "ar": "ريال"
+}, {
+    "name": "pound",
+    "en": "Ryal",
+    "ar": "ريال"
 })
 
 site.loadLocalApp('client-side')

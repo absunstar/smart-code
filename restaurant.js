@@ -29,6 +29,16 @@ site.get({
 
 site.ready = false
 
+site.words.add({
+    "name": "le",
+    "en": "Ryal",
+    "ar": "ريال"
+}, {
+    "name": "pound",
+    "en": "Ryal",
+    "ar": "ريال"
+})
+
 site.loadLocalApp('client-side')
 site.importApp(__dirname + '/apps_private/cloud_security', 'security')
 site.importApp(__dirname + '/apps_private/ui-print')

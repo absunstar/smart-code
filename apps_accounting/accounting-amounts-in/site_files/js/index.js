@@ -5,11 +5,14 @@ app.controller("amounts_in", function ($scope, $http) {
   $scope.search = {};
 
   $scope.newAmountIn = function () {
-    $scope.getDefaultSettings();
-    site.showModal('#addAmountInModal');
-
+    $scope.get_open_shift((shift) => {
+      if (shift) {
+        $scope.getDefaultSettings();
+        site.showModal('#addAmountInModal');
+      } else $scope.error = '##word.open_shift_not_found##';
+    });
   };
- 
+
   $scope.getDefaultSettings = function () {
 
     $scope.busy = true;
@@ -21,13 +24,19 @@ app.controller("amounts_in", function ($scope, $http) {
       function (response) {
         $scope.busy = false;
         if (response.data.done && response.data.doc) {
-          $scope.defaultSettings = response.data.doc;          
+          $scope.defaultSettings = response.data.doc;
           $scope.error = '';
           $scope.amount_in = {
             image_url: '/images/amount_in.png',
-            safe:$scope.defaultSettings.accounting? $scope.defaultSettings.accounting.safe : null,
+            shift: $scope.shift,
             date: new Date(),
           };
+
+          if ($scope.defaultSettings.accounting) {
+            if ($scope.defaultSettings.accounting.safe) {
+              $scope.amount_in.safe = $scope.defaultSettings.accounting.safe
+            }
+          }
         };
       },
       function (err) {
@@ -41,7 +50,7 @@ app.controller("amounts_in", function ($scope, $http) {
 
   $scope.searchAll = function () {
     $scope.error = '';
-   
+
     $scope.loadAll($scope.search);
     $scope.search = {};
   };
@@ -110,9 +119,13 @@ app.controller("amounts_in", function ($scope, $http) {
 
   $scope.remove = function (amount_in) {
     $scope.error = '';
-    $scope.view(amount_in);
-    $scope.amount_in = {};
-    site.showModal('#deleteAmountInModal');
+    $scope.get_open_shift((shift) => {
+      if (shift) {
+        $scope.view(amount_in);
+        $scope.amount_in = {};
+        site.showModal('#deleteAmountInModal');
+      } else $scope.error = '##word.open_shift_not_found##';
+    });
   };
 
   $scope.view = function (amount_in) {
@@ -196,7 +209,7 @@ app.controller("amounts_in", function ($scope, $http) {
       }
     )
   };
-  
+
   $scope.loadSafes = function () {
     $scope.list = {};
     $scope.busy = true;
@@ -224,7 +237,8 @@ app.controller("amounts_in", function ($scope, $http) {
       method: "POST",
       url: "/api/in_out_names/all",
       data: {
-        where: { in: true
+        where: {
+          in: true
         }
       }
     }).then(
@@ -265,8 +279,36 @@ app.controller("amounts_in", function ($scope, $http) {
     )
   };
 
+  $scope.get_open_shift = function (callback) {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/shifts/get_open_shift",
+      data: {
+        where: { active: true },
+        select: { id: 1, name: 1, code: 1, from_date: 1, from_time: 1, to_date: 1, to_time: 1 }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.doc) {
+          $scope.shift = response.data.doc;
+          callback(response.data.doc);
+        } else {
+          callback(null);
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+        callback(null);
+      }
+    )
+  };
+
   $scope.loadSafes();
   $scope.loadInOutNames();
   $scope.loadEmployees();
-  $scope.loadAll({date : new Date()});
+  $scope.loadAll({ date: new Date() });
 });

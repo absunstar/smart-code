@@ -33,8 +33,12 @@ app.controller("amounts_out", function ($scope, $http) {
   };
 
   $scope.newAmountOut = function () {
-    $scope.getDefaultSettings();
-    site.showModal('#addAmountOutModal');
+    $scope.get_open_shift((shift) => {
+      if (shift) {
+        $scope.getDefaultSettings();
+        site.showModal('#addAmountOutModal');
+      } else $scope.error = '##word.open_shift_not_found##';
+    });
   };
 
   $scope.getDefaultSettings = function () {
@@ -52,9 +56,16 @@ app.controller("amounts_out", function ($scope, $http) {
           $scope.error = '';
           $scope.amount_out = {
             image_url: '/images/amount_out.png',
-            safe: $scope.defaultSettings.accounting ? $scope.defaultSettings.accounting.safe : null,
+            shift: $scope.shift,
             date: new Date(),
           };
+
+          if ($scope.defaultSettings.accounting) {
+            if ($scope.defaultSettings.accounting.safe) {
+              $scope.amount_out.safe = $scope.defaultSettings.accounting.safe
+            }
+          }
+
         };
       },
       function (err) {
@@ -139,9 +150,13 @@ app.controller("amounts_out", function ($scope, $http) {
 
   $scope.remove = function (amount_out) {
     $scope.error = '';
-    $scope.view(amount_out);
-    $scope.amount_out = {};
-    site.showModal('#deleteAmountOutModal');
+    $scope.get_open_shift((shift) => {
+      if (shift) {
+        $scope.view(amount_out);
+        $scope.amount_out = {};
+        site.showModal('#deleteAmountOutModal');
+      } else $scope.error = '##word.open_shift_not_found##';
+    });
   };
 
   $scope.view = function (amount_out) {
@@ -262,9 +277,36 @@ app.controller("amounts_out", function ($scope, $http) {
     )
   };
 
+  $scope.get_open_shift = function (callback) {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/shifts/get_open_shift",
+      data: {
+        where: { active: true },
+        select: { id: 1, name: 1, code: 1, from_date: 1, from_time: 1, to_date: 1, to_time: 1 }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.doc) {
+          $scope.shift = response.data.doc;
+          callback(response.data.doc);
+        } else {
+          callback(null);
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+        callback(null);
+      }
+    )
+  };
 
   $scope.loadSafes();
   $scope.loadInOutNames();
   $scope.loadEmployees();
-  $scope.loadAll({date : new Date()});
+  $scope.loadAll({ date: new Date() });
 });

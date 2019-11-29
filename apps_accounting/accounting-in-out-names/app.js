@@ -3,7 +3,7 @@ module.exports = function init(site) {
   const $in_out_names = site.connectCollection("in_out_names")
 
   $in_out_names.deleteDuplicate({
-    name:1
+    name: 1
   }, (err, result) => {
     $in_out_names.createUnique({
       name: 1
@@ -11,12 +11,39 @@ module.exports = function init(site) {
 
     })
   })
-    
+
   site.get({
     name: "in_out_names",
     path: __dirname + "/site_files/html/index.html",
     parser: "html",
     compress: false
+  })
+
+  site.on('[company][created]', doc => {
+
+    $in_out_names.add({
+      name: "مسمى وارد إفتراضي",
+      image_url: '/images/in_out_name.png',
+      in: true,
+      company: {
+        id: doc.id,
+        name_ar: doc.name_ar
+      },
+      branch: {
+        code: doc.branch_list[0].code,
+        name_ar: doc.branch_list[0].name_ar
+      },
+      active: true
+    }, (err, in_out_doc) => {
+      $in_out_names.add({
+        name: "مسمى منصرف إفتراضي",
+        image_url: '/images/in_out_name.png',
+        out: true,
+        company: in_out_doc.company,
+        branch: in_out_doc.branch,
+        active: true
+      }, (err, doc) => { })
+    })
   })
 
 
@@ -29,7 +56,7 @@ module.exports = function init(site) {
     let in_out_names_doc = req.body
     in_out_names_doc.$req = req
     in_out_names_doc.$res = res
-    in_out_names_doc.add_user_info = site.security.getUserFinger({$req : req , $res : res})
+    in_out_names_doc.add_user_info = site.security.getUserFinger({ $req: req, $res: res })
 
     in_out_names_doc.company = site.get_company(req)
     in_out_names_doc.branch = site.get_branch(req)
@@ -50,7 +77,7 @@ module.exports = function init(site) {
     }
     let in_out_names_doc = req.body
 
-    in_out_names_doc.edit_user_info = site.security.getUserFinger({$req : req , $res : res})
+    in_out_names_doc.edit_user_info = site.security.getUserFinger({ $req: req, $res: res })
 
     if (in_out_names_doc._id) {
       $in_out_names.edit({
@@ -114,7 +141,7 @@ module.exports = function init(site) {
     let response = {}
     let where = req.body.where || {};
     response.done = false
-    
+
     if (where['name']) {
       where['name'] = new RegExp(where['name'], 'i')
     }
@@ -123,15 +150,23 @@ module.exports = function init(site) {
       where['details'] = new RegExp(where['details'], 'i')
     }
 
+    if (where['in']) {
+      where['in'] = true
+    }
+
+    if (where['out']) {
+      where['out'] = true
+    }
+
     where['company.id'] = site.get_company(req).id
     where['branch.code'] = site.get_branch(req).code
 
     $in_out_names.findMany({
       select: req.body.select || {},
-      sort : {id : -1},
+      sort: { id: -1 },
       limit: req.body.limit,
       where: where
-      
+
     }, (err, docs) => {
       if (!err) {
         response.done = true

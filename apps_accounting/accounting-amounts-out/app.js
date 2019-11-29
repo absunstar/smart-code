@@ -204,7 +204,10 @@ module.exports = function init(site) {
       where['description'] = new RegExp(where['description'], 'i')
     }
 
-
+    if (where['shift_code']) {
+      where['shift.code'] = new RegExp(where['shift_code'], 'i')
+      delete where['shift_code']
+    }
 
     if (where.search && where.search.value) {
 

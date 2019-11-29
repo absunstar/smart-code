@@ -3,13 +3,13 @@ app.controller("in_out_names", function ($scope, $http) {
 
   $scope.in_out_name = {};
 
-  $scope.loadAll = function (where , limit) {
+  $scope.loadAll = function (where) {
     $scope.busy = true;
     $http({
       method: "POST",
       url: "/api/in_out_names/all",
-      data: {where : where ,
-      limit : limit ||10000000
+      data: {
+        where: where
       }
     }).then(
       function (response) {
@@ -22,33 +22,14 @@ app.controller("in_out_names", function ($scope, $http) {
         $scope.busy = false;
         $scope.error = err;
       }
-      )
+    )
   };
 
   $scope.searchAll = function () {
     $scope.error = '';
-    let where = {};
-
-    
-    if ($scope.search.name) {
-      where['name'] = $scope.search.name;
-    }
-    
-   
-    if ($scope.search.in==true) {
-      where['in'] = $scope.search.in;
-    }
-    
-    if ($scope.search.out==true) {
-      where['out'] = $scope.search.out;
-    }
-
-if ($scope.search.details) {
-      where['details'] = $scope.search.details;
-    }
-
-    $scope.loadAll(where , $scope.search.limit);
-    
+    $scope.loadAll($scope.search);
+    site.hideModal('#inOutSearchModal');
+    $scope.search = {};
   };
 
   $scope.newIn_Out_Name = function () {
@@ -65,8 +46,8 @@ if ($scope.search.details) {
       return;
     }
 
-    if(!$scope.in_out_name.in && !$scope.in_out_name.out){
-      $scope.error= "##word.error_select##"
+    if (!$scope.in_out_name.in && !$scope.in_out_name.out) {
+      $scope.error = "##word.error_select##"
       return;
     };
 
@@ -75,7 +56,7 @@ if ($scope.search.details) {
       method: "POST",
       url: "/api/in_out_names/add",
       data: $scope.in_out_name
-     
+
     }).then(
       function (response) {
         $scope.busy = false;
@@ -83,13 +64,13 @@ if ($scope.search.details) {
           site.hideModal('#addInOutNameModal');
           $scope.loadAll();
         } else {
-         $scope.error = '##word.error##';
+          $scope.error = '##word.error##';
         }
       },
       function (err) {
         console.log(err);
       }
-      )
+    )
   };
 
   $scope.edit = function (in_out_name) {
@@ -111,13 +92,13 @@ if ($scope.search.details) {
           site.hideModal('#updateInOutNameModal');
           $scope.loadAll();
         } else {
-         $scope.error = '##word.error##';
+          $scope.error = '##word.error##';
         }
       },
       function (err) {
         console.log(err);
       }
-      )
+    )
   };
 
   $scope.remove = function (in_out_name) {
@@ -145,7 +126,7 @@ if ($scope.search.details) {
       function (err) {
         console.log(err);
       }
-      )
+    )
   };
   $scope.details = function (in_out_name) {
     $scope.error = '';
@@ -172,7 +153,7 @@ if ($scope.search.details) {
       function (err) {
         console.log(err);
       }
-      )
+    )
   };
   $scope.loadAll();
 });

@@ -31,6 +31,10 @@ site.words.add({
     "name": "le",
     "en": "Ryal",
     "ar": "ريال"
+}, {
+    "name": "pound",
+    "en": "Ryal",
+    "ar": "ريال"
 })
 
 site.loadLocalApp('client-side')
@@ -46,7 +50,7 @@ site.features.push('sales')
 setTimeout(() => {
 
     site.importApp(__dirname + '/apps_private/companies')
-    
+
 }, 1000)
 
 site.run()

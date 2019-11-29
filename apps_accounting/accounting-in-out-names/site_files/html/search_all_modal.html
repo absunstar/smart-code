@@ -1,11 +1,10 @@
-<div id="In_OutSearchModal" class="modal" fixed>
+<div id="inOutSearchModal" class="modal" fixed>
 
     <div class="modal-content">
         <div class="modal-header">
             <span class="close">&times;</span>
             <h2>
                 ##word.search_all## <i class="fa fa-search"></i>
-                 
             </h2>
         </div>
         <div class="modal-body">
@@ -15,7 +14,7 @@
 
                     <div class="row ">
                         <i-control class="col3" ng-model="search.name" type="text" label="##word.in_out_name_name##"></i-control>
-                        <i-control class="col2" label="##word.limit##" type="number" ng-model="search.limit"></i-control>
+                        <!-- <i-control class="col2" label="##word.limit##" type="number" ng-model="search.limit"></i-control> -->
                         <i-checkbox ng-model="search.in" label="##word.in_out_name_in##"></i-checkbox>
                         <i-checkbox ng-model="search.out" label="##word.in_out_name_out##"></i-checkbox>
                     </div>
