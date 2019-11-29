@@ -43,7 +43,7 @@
                                 </tr>
                                 <tr class="pointer" ng-repeat="item in orderInvoicesTypeList"
                                     ng-click="selectOrderInvoices(item)">
-                                    <td class="center"> {{item.code}} </td>
+                                    <td class="center blue"> {{item.code}} </td>
                                     <td class="center"> {{item.customer.name_ar}} <b ng-show="!item.customer.name_ar"> ##word.not_found##</b> </td>
                                     <td ng-show="create_invoices.order_invoices_type.id ==2" class="center"> {{item.delivery_employee.name}}</td>
                                     <td ng-show="create_invoices.order_invoices_type.id ==1" class="center"> {{item.table.tables_group.name}} </td>

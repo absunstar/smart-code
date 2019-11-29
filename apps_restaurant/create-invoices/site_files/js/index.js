@@ -504,11 +504,11 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
     };
 
     $scope.create_invoices.total_remain = $scope.create_invoices.net_value - $scope.create_invoices.paid_up;
+    let obj_print = { data: [] };
 
-    let obj_print = {
-      printer: $scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.printer_path ? $scope.defaultSettings.printer_program.printer_path.ip.trim() : '',
-      data: []
-    };
+    if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.printer_path)
+      obj_print.printer = $scope.defaultSettings.printer_program.printer_path.ip.trim();
+
     if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.invoice_header)
       obj_print.data.push({
         type: 'header',
@@ -544,6 +544,7 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
       });
 
     if ($scope.create_invoices.current_book_list && $scope.create_invoices.current_book_list.length > 0) {
+   
       obj_print.data.push(
         {
           type: 'space'
@@ -568,6 +569,7 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
         })
       });
     };
+
     obj_print.data.push({
       type: 'line'
     });
@@ -645,7 +647,7 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
         type: 'footer',
         value: $scope.defaultSettings.printer_program.invoice_footer
       });
-
+      
     $http({
       method: "POST",
       url: `http://${ip}:${port}/print`,

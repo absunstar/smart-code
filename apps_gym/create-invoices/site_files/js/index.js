@@ -97,10 +97,11 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
 
     $scope.create_invoices.total_remain = $scope.create_invoices.paid_require - $scope.create_invoices.paid_up;
 
-    let obj_print = {
-      printer: $scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.printer_path ? $scope.defaultSettings.printer_program.printer_path.ip.trim() : '',
-      data: []
-    };
+    let obj_print = { data: [] };
+
+    if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.printer_path)
+      obj_print.printer = $scope.defaultSettings.printer_program.printer_path.ip.trim();
+
     if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.invoice_header)
       obj_print.data.push({
         type: 'header',
@@ -586,7 +587,7 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
   };
 
   $scope.getDefaultSetting();
-  $scope.getCreatInvoicesList({date : new Date()});
+  $scope.getCreatInvoicesList({ date: new Date() });
   $scope.getSourceType();
   $scope.getSafesList();
   $scope.getPaymentMethodList();
