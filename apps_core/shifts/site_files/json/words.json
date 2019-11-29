@@ -10,8 +10,12 @@
     },
     {
         "name": "open_shift",
-        "en": "Open Shift",
-        "ar": "فتح شيفت"
+        "en": "Open New Shift",
+        "ar": " فتح شيفت جديد "
+    },{
+        "name": "close_shift",
+        "en": "Close Shift",
+        "ar": "غلق الشيفت"
     },
     {
         "name": "open_shift_not_found",

@@ -23,7 +23,7 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.displayAddCreatInvoices = function () {
+  $scope.displayaddCreateInvoice = function () {
     $scope._search = {};
     $scope.search_order = '';
     $scope.error = '';
@@ -42,7 +42,7 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
 
   };
 
-  $scope.addCreatInvoices = function () {
+  $scope.addCreateInvoice = function () {
     $scope.error = '';
     const v = site.validated('#creatInvoicesAddModal');
     if ($scope.busy) return;
@@ -83,7 +83,7 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.printInvoiceCreat = function () {
+  $scope.printCreateInvoive = function () {
     $scope.error = '';
     if ($scope.busy) return;
     $scope.busy = true;

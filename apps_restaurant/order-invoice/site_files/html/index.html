@@ -107,7 +107,13 @@
         .code input {
             color: blue;
             font-weight: bold;
-            font-size: 22px;
+            font-size: 18px;
+        }
+        .shift,
+        .shift input {
+            color: green;
+            font-weight: bold;
+            font-size: 20px;
         }
 
         .btn {
@@ -213,6 +219,7 @@
 
                     <div class="col6 order-invoice">
                         <h2 class="bold center red">{{error}}</h2>
+                      
                         <div class="row">
                             <i-button type="bg-green" label="##word.new_order##" ng-click="newOrderInvoice()">
                             </i-button>
@@ -226,6 +233,9 @@
                             <i-date2 class="col6" ng-model="order_invoice.date" label="##word.date##"></i-date2>
                             <i-control class="col3 code" disabled label="##word.code##" ng-model="order_invoice.code">
                             </i-control>
+                            <i-control class="col3 shift" disabled label="##word.shift##" ng-model="order_invoice.shift.code">
+                            </i-control>
+                          
                         </div>
 
                         <div class="row">
@@ -455,7 +465,6 @@
                                 type="number" disabled></i-control>
                         </div>
 
-                        <h2 class="bold center red">{{error}}</h2>
 
                         <div class="row">
                             <i-control class="col6" ng-model="order_invoice.net_value" label="##word.net_value##"
@@ -481,7 +490,7 @@
                                 ng-show="paid_up > 0" class="col4" ng-model="safe"
                                 label="##word.safe##" items="safesList"></i-list>
                             <div class="col5">
-                                <i-button type="add" label="##word.create_an_invoice##" ng-click="addCreatInvoices()">
+                                <i-button ng-hide="order_invoice.has_invoice" type="add" label="##word.create_an_invoice##" ng-click="addCreateInvoice()">
                                 </i-button>
                             </div>
                         </div>

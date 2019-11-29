@@ -14,7 +14,6 @@ module.exports = function init(site) {
       id: item.order.id,
     }, (err, doc) => {
       if (!err && doc) {
-        /*doc.edit_shift = site.getShift(req)*/
         doc.book_list.forEach(book_list => {
           if (book_list.size == item.size && book_list.barcode == item.barcode)
             book_list.done_kitchen = true;

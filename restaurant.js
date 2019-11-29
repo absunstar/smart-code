@@ -1,4 +1,4 @@
-const site = require('isite')({
+const site = require('../isite')({
     port: 80,
     lang: 'ar',
     saving_time: 0.2,
@@ -43,12 +43,28 @@ site.features.push('restaurant')
 setTimeout(() => {
     site.importApp(__dirname + '/apps_private/companies')
     site.importApp(__dirname + '/apps_private/zk-reader')
+    // site.zk.load_attendance( {
+    //     ip: '192.168.100.201',
+    //     port: 4370,
+    //     inport: 5200,
+    //     timeout: 5000,
+    //     attendanceParser: 'v6.60',
+    //     connectionType: 'udp',
+    //     auto: true,
+    //     auto_time: 1000 * 3
+    // }, (err, attendance_array) => {
+    //     console.log(attendance_array || err)
+    // })
+
+    // site.on('zk attend', attend=>{
+    //     console.log(attend)
+    // })
 
 }, 1000)
 setTimeout(() => {
     site.ready = true
 }, 1000 * 2);
 
-// site.exe(process.cwd() + '/applications/PrinterManager.exe')
+ site.exe(process.cwd() + '/applications/PrinterManager.exe')
 
 site.run()

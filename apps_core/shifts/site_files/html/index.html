@@ -45,7 +45,6 @@
                         <th>##word.shifts_name##</th>
                         <th>##word.startup_date##</th>
                         <th>##word.deadline_date##</th>
-                        <th>##word.status##</th>
                         <th class="not-print">##word.actions##</th>
                     </tr>
                     <tr ng-repeat="c in list">
@@ -61,27 +60,20 @@
                         </td>
 
                         <td class="center">
-                            <i-button type="exit" ng-hide="c.to_date" label="##word.leave_now##"
-                                ng-click="shifLeave(c)">
+                            <i-button type="exit" ng-hide="c.to_date" label="##word.close_shift##"
+                                ng-click="close_shift(c)">
                             </i-button>
                             <p class="center red" ng-show="c.to_date">{{c.to_date |date:'dd - MM - yyyy'}}</p>
                             <p class="center red" ng-show="c.to_date"> {{c.to_time.minute}} : {{c.to_time.hour}}</p>
                         </td>
 
-                        <td class="center">
-                            <p ng-show="c.active == true" class="green"> ##word.active## </p>
-                            <p ng-show="c.active == false" class="red"> ##word.not_active## </p>
-                        </td>
+                       
 
                         <td class="center not-print">
-                            <i-button x-permissions="shifts_update || shifts_manage" type="save" label="##word.open_shift##"
-                              ng-show="c.to_date"  ng-click="shifOpen(c)"></i-button>
+                          
 
                             <i-button x-permissions="shifts_view || shifts_manage" type="view" label="##word.details##"
                                 ng-click="displayDetailsShift(c)"></i-button>
-
-                            <i-button x-permissions="shifts_update || shifts_manage" type="edit" label="##word.edit##"
-                                ng-click="displayUpdateShift(c)"></i-button>
 
                             <i-button x-permissions="shifts_delete || shifts_manage" type="delete"
                                 label="##word.delete##" ng-click="displayDeleteShift(c)"></i-button>

@@ -27,15 +27,15 @@ module.exports = function init(site) {
     let y = new Date().getFullYear().toString().substr(2, 2)
     let m = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L'][new Date().getMonth()].toString()
     let d = new Date().getDate()
-    let lastCode = site.storage('ticket_last_code') || 0
-    let lastMonth = site.storage('ticket_last_month') || m
+    let lastCode = site.storage('shift_code') || 0
+    let lastMonth = site.storage('shift_month') || m
     if (lastMonth != m) {
       lastMonth = m
       lastCode = 0
     }
     lastCode++
-    site.storage('ticket_last_code', lastCode)
-    site.storage('ticket_last_month', lastMonth)
+    site.storage('shift_code', lastCode)
+    site.storage('shift_month', lastMonth)
     return y + lastMonth + addZero(d, 2) + addZero(lastCode, 4)
   }
 
@@ -87,15 +87,14 @@ module.exports = function init(site) {
     $shifts.find({
 
       where: {
-
         'company.id': site.get_company(req).id,
         'branch.code': site.get_branch(req).code,
-        'name': shifts_doc.name
+        'code': shifts_doc.code
       }
     }, (err, doc) => {
       if (!err && doc) {
 
-        response.error = 'Name Exists'
+        response.error = 'Code Exists'
         res.json(response)
       } else {
         $shifts.add(shifts_doc, (err, doc) => {
@@ -229,26 +228,47 @@ module.exports = function init(site) {
     })
   })
 
-
-  site.getShift = function (req) {
+  site.post("/api/shifts/is_shift_open", (req, res) => {
+    let response = { is_open : true }
 
     let where = {}
-    let response = { done: false }
-    let select = { id: 1, name: 1, code: 1, from_date: 1, from_time: 1, to_date: 1, to_time: 1 }
 
-    where['to_date'] = null || undefined
     where['company.id'] = site.get_company(req).id
     where['branch.code'] = site.get_branch(req).code
+    where['active'] = true
 
-    $shifts.findOne({
-      select: select,
+    $shifts.findMany({
+      select: req.body.select || {},
       where: where,
     }, (err, docs) => {
-      if (!err && docs) response.doc = docs
-      else response.done = true
+      if (!err && docs && docs.length == 0){
+        response.is_open = false
+      }
+      res.json(response)
     })
-    return response
-  }
+  })
+
+  site.post("/api/shifts/get_open_shift", (req, res) => {
+    let response = { done : false }
+
+    let where = {}
+
+    where['company.id'] = site.get_company(req).id
+    where['branch.code'] = site.get_branch(req).code
+    where['active'] = true
+
+    $shifts.findOne({
+      select: req.body.select || {},
+      where: where,
+    }, (err, doc) => {
+      if (!err && doc){
+        response.done = true
+        response.doc = doc
+      }
+      res.json(response)
+    })
+  })
+
 
 
   site.post("/api/shifts/all", (req, res) => {

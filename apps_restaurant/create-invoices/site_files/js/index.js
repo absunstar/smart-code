@@ -3,7 +3,7 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
 
   $scope.create_invoices = {};
 
-  $scope.displayAddCreatInvoices = function () {
+  $scope.displayaddCreateInvoice = function () {
     if (!$scope.openShift) {
 
       $scope.busy = true;
@@ -54,7 +54,7 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
 
   };
 
-  $scope.addCreatInvoices = function () {
+  $scope.addCreateInvoice = function () {
     $scope.error = '';
     if ($scope.busy) {
       return;
@@ -491,7 +491,7 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
 
   };
 
-  $scope.printInvoiceCreat = function () {
+  $scope.printCreateInvoive = function () {
     $scope.error = '';
     if ($scope.busy) return;
     $scope.busy = true;
@@ -518,7 +518,7 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
     obj_print.data.push(
       {
         type: 'title',
-        value: $scope.create_invoices.payment_paid_up ? 'Bill payment account' : 'Bill account' + ($scope.create_invoices.code || '')
+        value: $scope.create_invoices.payment_paid_up ? ' Bill payment ' : 'Bill ' + ($scope.create_invoices.code || '')
       },
       {
         type: 'space'
@@ -554,9 +554,17 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
         },
         {
           type: 'text3b',
-          value: 'Item/الصنف',
-          value2: 'Count/العدد',
-          value3: 'Price/السعر'
+          value: 'Item',
+          value2: 'Count',
+          value3: 'Price'
+        },
+        {
+          type: 'text3b',
+          value: 'الصنف',
+          value2: 'العدد',
+          value3: 'السعر'
+        },{
+          type: 'space'
         }
       );
 
