@@ -352,7 +352,11 @@ module.exports = function init(site) {
 
     where['company.id'] = site.get_company(req).id
     where['branch.code'] = site.get_branch(req).code
-
+        
+    if (where['shift_code']) {
+      where['shift.code'] = new RegExp(where['shift_code'], 'i')
+      delete where['shift_code']
+    }
 
     if (where && where['notes']) {
       where['notes'] = new RegExp(where['notes'], 'i')
@@ -378,7 +382,7 @@ module.exports = function init(site) {
         '$lt': d2
       }
     } else if (where && where.date_from) {
-      let d1 = site.toDate( where.date_from)
+      let d1 = site.toDate(where.date_from)
       let d2 = site.toDate(where.date_to)
       d2.setDate(d2.getDate() + 1);
       where.date = {

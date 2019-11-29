@@ -73,6 +73,11 @@ module.exports = function init(site) {
       where['name'] = new RegExp(where['name'], 'i')
     };
 
+    if (where['shift_code']) {
+      where['shift.code'] = new RegExp(where['shift_code'], 'i')
+      delete where['shift_code']
+    }
+
     if (where.date) {
       let d1 = site.toDate(where.date)
       let d2 = site.toDate(where.date)

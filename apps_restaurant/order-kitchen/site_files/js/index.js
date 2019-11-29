@@ -19,29 +19,30 @@ app.controller("order_kitchen", function ($scope, $http, $interval) {
   };
 
   $scope.doneDelivery = function (i) {
-    console.log($scope.openShift);
 
-    if (!$scope.openShift) {
-      $scope.error = '';
-      $scope.busy = true;
-      $http({
-        method: "POST",
-        url: "/api/order_kitchen/update",
-        data: i
-      }).then(
-        function (response) {
-          $scope.busy = false;
-          if (response.data.done) {
-            $scope.orderKitchensList();
-          } else {
-            $scope.error = response.data.error;
+    $scope.get_open_shift((shift) => {
+      if (shift) {
+        $scope.error = '';
+        $scope.busy = true;
+        $http({
+          method: "POST",
+          url: "/api/order_kitchen/update",
+          data: i
+        }).then(
+          function (response) {
+            $scope.busy = false;
+            if (response.data.done) {
+              $scope.orderKitchensList();
+            } else {
+              $scope.error = response.data.error;
+            }
+          },
+          function (err) {
+            console.log(err);
           }
-        },
-        function (err) {
-          console.log(err);
-        }
-      )
-    } else $scope.error = '##word.open_shift_not_found##';
+        )
+      } else $scope.error = '##word.open_shift_not_found##';
+    });
   };
 
 
@@ -122,12 +123,11 @@ app.controller("order_kitchen", function ($scope, $http, $interval) {
     )
   };
 
-  $scope.getOpenShiftList = function (where) {
-    $scope.error = '';
+  $scope.get_open_shift = function (callback) {
     $scope.busy = true;
     $http({
       method: "POST",
-      url: "/api/shifts/open_shift",
+      url: "/api/shifts/get_open_shift",
       data: {
         where: { active: true },
         select: { id: 1, name: 1, code: 1, from_date: 1, from_time: 1, to_date: 1, to_time: 1 }
@@ -135,25 +135,26 @@ app.controller("order_kitchen", function ($scope, $http, $interval) {
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done)
-          $scope.openShift = true;
-        else $scope.openShift = false;
+        if (response.data.done && response.data.doc) {
+          $scope.shift = response.data.doc;
+          callback(response.data.doc);
+        } else {
+          callback(null);
+        }
       },
-
       function (err) {
         $scope.busy = false;
         $scope.error = err;
+        callback(null);
       }
     )
   };
 
   $scope.loadKitchens();
   $scope.getDefaultSettings();
-  $scope.getOpenShiftList();
 
   $interval(() => {
     $scope.orderKitchensList();
-    $scope.getOpenShiftList();
   }, 1000 * 5);
 
 });

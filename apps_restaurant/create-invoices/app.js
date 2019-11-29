@@ -95,7 +95,7 @@ module.exports = function init(site) {
     });
 
     $create_invoices.add(create_invoices_doc, (err, doc) => {
-      
+
       if (!err) {
         response.done = true;
         response.doc = doc;
@@ -147,14 +147,14 @@ module.exports = function init(site) {
       $res: res
     })
 
-   create_invoices_doc.total_paid_up = 0
+    create_invoices_doc.total_paid_up = 0
 
     create_invoices_doc.total_remain = 0
     create_invoices_doc.payment_list.forEach(payment_list => {
       create_invoices_doc.total_paid_up += payment_list.paid_up
     });
     create_invoices_doc.total_remain = create_invoices_doc.net_value - create_invoices_doc.total_paid_up
-    
+
     if (create_invoices_doc.id) {
       $create_invoices.edit({
         where: {
@@ -265,13 +265,16 @@ module.exports = function init(site) {
 
     let where = req.data.where || {}
 
-    if (where['code']) {
+    if (where['code'])
       where['code'] = new RegExp(where['code'], 'i')
+
+    if (where['shift_code']) {
+      where['shift.code'] = new RegExp(where['shift_code'], 'i')
+      delete where['shift_code']
     }
 
-    if (where['name']) {
+    if (where['name'])
       where['name'] = new RegExp(where['name'], 'i')
-    }
 
     if (where['source_type']) {
       where['source_type.id'] = where['source_type'].id;
@@ -282,7 +285,7 @@ module.exports = function init(site) {
       where['payment_method.id'] = where['payment_method'].id;
       delete where['payment_method']
     }
-    
+
     if (where.date) {
       let d1 = site.toDate(where.date)
       let d2 = site.toDate(where.date)
@@ -292,7 +295,7 @@ module.exports = function init(site) {
         '$lt': d2
       }
     } else if (where && where.date_from) {
-      let d1 = site.toDate( where.date_from)
+      let d1 = site.toDate(where.date_from)
       let d2 = site.toDate(where.date_to)
       d2.setDate(d2.getDate() + 1);
       where.date = {

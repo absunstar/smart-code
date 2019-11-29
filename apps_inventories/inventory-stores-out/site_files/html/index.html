@@ -31,10 +31,11 @@
 
                 <div class="top-actions">
 
-                    <i-button x-permissions="stores_out_add || stores_out_manage" type="add" label="##word.stores_out_neew##" ng-click="newStoreOut()" > </i-button>
+                    <i-button x-permissions="stores_out_add || stores_out_manage" type="add" label="##word.stores_out_new##" ng-click="newStoreOut()" > </i-button>
                     <i-button x-permissions="stores_out_search || stores_out_manage" type="search" label="##word.search_all##" onclick="site.showModal('#StoresOutSearchModal')"  > </i-button>
 
                    
+                    <h2 class="bold red text-center">{{error}}</h2>
                     <h3 class="bold text-center"> ##word.count## : {{count}}</h3>
                 </div>
 
@@ -42,10 +43,8 @@
                     <tr>
                         <th>##word.stores_out_date##</th>
                         <th>##word.stores_out_id##</th>
-                        <th>##word.stores_out_Company_name##</th>
-
-
-                        <th>##word.stores_out_store##</th>
+<!--                         <th>##word.stores_out_Company_name##</th>
+ -->                        <th>##word.stores_out_store##</th>
                         <th>##word.stores_out_safe##</th>
                         <th>
                                 ##word.stores_outtypes##
@@ -63,10 +62,10 @@
                                 <br>
                             <p class="bold brown text-center"> {{c.number}} </p>
                         </td>
-                        <td>
+                      <!--   <td>
                             <br>
                              <p class="bold text-center"> {{c.vendor.name_ar}} </p>
-                        </td>
+                        </td> -->
                         <td>
                                 <br>
                             <p class="bold text-center"> {{c.store.name}} </p>

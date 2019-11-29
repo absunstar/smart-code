@@ -11,28 +11,30 @@ app.controller("order_management", function ($scope, $http, $timeout) {
 
   $scope.returnToKitchen = function (order, i) {
     $scope.error = '';
-    if (!$scope.openShift) {
-      $scope.busy = true;
-      i.order_id = order.id;
 
-      $http({
-        method: "POST",
-        url: "/api/order_management/update_kitchen",
-        data: i
-      }).then(
-        function (response) {
-          $scope.busy = false;
-          if (response.data.done) {
-            i.done_kitchen = false
-          } else {
-            $scope.error = 'Please Login First';
+    $scope.get_open_shift((shift) => {
+      if (shift) {
+        $scope.busy = true;
+        i.order_id = order.id;
+        $http({
+          method: "POST",
+          url: "/api/order_management/update_kitchen",
+          data: i
+        }).then(
+          function (response) {
+            $scope.busy = false;
+            if (response.data.done) {
+              i.done_kitchen = false
+            } else {
+              $scope.error = 'Please Login First';
+            }
+          },
+          function (err) {
+            console.log(err);
           }
-        },
-        function (err) {
-          console.log(err);
-        }
-      )
-    } else $scope.error = '##word.open_shift_not_found##';
+        )
+      } else $scope.error = '##word.open_shift_not_found##';
+    });
   };
 
   $scope.updateOrderManagement = function (order) {
@@ -271,28 +273,37 @@ app.controller("order_management", function ($scope, $http, $timeout) {
 
   $scope.showDeliveryEmployee = function (document) {
     $scope.error = '';
-    if (!$scope.openShift) {
-      $scope.delivery_management = document;
-      site.showModal('#employeeDeliveryModal');
-    } else $scope.error = '##word.open_shift_not_found##';
+    $scope.get_open_shift((shift) => {
+      if (shift) {
+        $scope.delivery_management = document;
+        site.showModal('#employeeDeliveryModal');
+      } else $scope.error = '##word.open_shift_not_found##';
+    });
   };
 
   $scope.postOrder = function (order) {
     $scope.error = '';
-    order.post = true;
-    order.reset_items = true;
-    $scope.updateOrderManagement(order);
+    $scope.get_open_shift((shift) => {
+      if (shift) {
+        order.post = true;
+        order.reset_items = true;
+        $scope.updateOrderManagement(order);
+      } else $scope.error = '##word.open_shift_not_found##';
+    });
   };
-
 
   $scope.returnToOrders = function (order) {
     $scope.error = '';
-    order.status = {
-      id: 1,
-      en: "Opened",
-      ar: "مفتوحة"
-    };
-    $scope.updateOrderManagement(order);
+    $scope.get_open_shift((shift) => {
+      if (shift) {
+        order.status = {
+          id: 1,
+          en: "Opened",
+          ar: "مفتوحة"
+        };
+        $scope.updateOrderManagement(order);
+      } else $scope.error = '##word.open_shift_not_found##';
+    });
   };
 
   $scope.searchAll = function () {
@@ -303,12 +314,11 @@ app.controller("order_management", function ($scope, $http, $timeout) {
     $scope.search = {}
   };
 
-  $scope.getOpenShiftList = function (where) {
-    $scope.error = '';
+  $scope.get_open_shift = function (callback) {
     $scope.busy = true;
     $http({
       method: "POST",
-      url: "/api/shifts/open_shift",
+      url: "/api/shifts/get_open_shift",
       data: {
         where: { active: true },
         select: { id: 1, name: 1, code: 1, from_date: 1, from_time: 1, to_date: 1, to_time: 1 }
@@ -316,18 +326,20 @@ app.controller("order_management", function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done)
-          $scope.openShift = true;
-        else $scope.openShift = false;
+        if (response.data.done && response.data.doc) {
+          $scope.shift = response.data.doc;
+          callback(response.data.doc);
+        } else {
+          callback(null);
+        }
       },
-
       function (err) {
         $scope.busy = false;
         $scope.error = err;
+        callback(null);
       }
     )
   };
-
 
   $scope.getOrderManagementList({ date: new Date() });
   $scope.getDeliveryEmployeesList();
@@ -337,5 +349,4 @@ app.controller("order_management", function ($scope, $http, $timeout) {
   $scope.getOrderStatusList();
   $scope.getDeliveryEmployeesList();
   $scope.getDefaultSettingsList();
-  $scope.getOpenShiftList();
 });

@@ -17,27 +17,35 @@
     <div id="main-layout" class="container">
         <div class="row ">
             <div class="row" ng-controller="stores_in">
-                <div x-permissions="stores_in_add || stores_in_manage" x-import="inventory-stores-in/add_modal.html"></div>
-                <div x-permissions="stores_in_delete || stores_in_manage" x-import="inventory-stores-in/delete_modal.html"></div>
-                <div x-permissions="stores_in_view || stores_in_manage" x-import="inventory-stores-in/view_modal.html"></div>
-                <div x-permissions="stores_in_search || stores_in_manage" x-import="inventory-stores-in/search_all_modal.html"></div>
-                <div x-permissions="stores_in_update || stores_in_manage" x-import="inventory-stores-in/update_modal.html"></div>
-                <div x-permissions="stores_in_add || stores_in_manage" x-import="inventory-stores-in/select_items_modal.html"></div>
+                <div x-permissions="stores_in_add || stores_in_manage" x-import="inventory-stores-in/add_modal.html">
+                </div>
+                <div x-permissions="stores_in_delete || stores_in_manage"
+                    x-import="inventory-stores-in/delete_modal.html"></div>
+                <div x-permissions="stores_in_view || stores_in_manage" x-import="inventory-stores-in/view_modal.html">
+                </div>
+                <div x-permissions="stores_in_search || stores_in_manage"
+                    x-import="inventory-stores-in/search_all_modal.html"></div>
+                <div x-permissions="stores_in_update || stores_in_manage"
+                    x-import="inventory-stores-in/update_modal.html"></div>
+                <div x-permissions="stores_in_add || stores_in_manage"
+                    x-import="inventory-stores-in/select_items_modal.html"></div>
 
                 <div class="row">
                     <h1 class="bold text-center"> ##word.stores_in## </h1>
                 </div>
                 <div class="top-actions">
 
-                    <i-button x-permissions="stores_in_add || stores_in_manage" type="add" label="##word.stores_in_new##"
-                        ng-click="newStoreIn()"></i-button>
-                    <i-button x-permissions="stores_in_search || stores_in_manage" type="search" label="##word.search_all##"
-                        onclick="site.showModal('#StoresInSearchModal')"></i-button>
+                    <i-button x-permissions="stores_in_add || stores_in_manage" type="add"
+                        label="##word.stores_in_new##" ng-click="newStoreIn()"></i-button>
+                    <i-button x-permissions="stores_in_search || stores_in_manage" type="search"
+                        label="##word.search_all##" onclick="site.showModal('#StoresInSearchModal')"></i-button>
 
+                    <h2 class="bold red text-center"> {{error}}</h2>
                     <h3 class="bold text-center"> ##word.count## : {{count}}</h3>
                 </div>
                 <table id="t1" class="table loaded center hover">
                     <tr>
+                        <th class="not-print"> ##word.logo## </th>
                         <th>##word.stores_in_date##</th>
                         <th>##word.stores_in_id##</th>
                         <th> ##word.stores_in_supply_number##</th>
@@ -51,6 +59,9 @@
                         <th class="not-print">##word.actions##</th>
                     </tr>
                     <tr ng-repeat="c in list">
+                        <td class="not-print">
+                            <img class="logo" ng-src="{{c.image_url}}">
+                        </td>
 
                         <td>
                             <p class="text-center brown"> <br> {{c.date | date : 'yyyy - MM - dd'}} </p>
@@ -88,14 +99,14 @@
 
                         <td class="center not-print">
 
-                            <i-button x-permissions="stores_in_view || stores_in_manage" type="details" label="##word.details##"
-                                ng-click="details(c)"></i-button>
+                            <i-button x-permissions="stores_in_view || stores_in_manage" type="details"
+                                label="##word.details##" ng-click="details(c)"></i-button>
 
-                            <i-button x-permissions="stores_in_update || stores_in_manage" type="update" label="##word.edit##"
-                                ng-click="edit(c)"></i-button>
+                            <i-button x-permissions="stores_in_update || stores_in_manage" type="update"
+                                label="##word.edit##" ng-click="edit(c)"></i-button>
 
-                            <i-button x-permissions="stores_in_delete || stores_in_manage" type="delete" label="##word.delete##"
-                                ng-click="remove(c)"></i-button>
+                            <i-button x-permissions="stores_in_delete || stores_in_manage" type="delete"
+                                label="##word.delete##" ng-click="remove(c)"></i-button>
                         </td>
 
                     </tr>

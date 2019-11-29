@@ -1,214 +1,222 @@
-<div class="row" fixed>
-    <form class="form">
+<form class="form">
+    <div class="row" fixed>
+        <div class="col9">
 
-        <div class="row">
             <div class="row">
-                <i-list display="##session.lang##" ng-search="_search.$search_in_out" class="col3"
-                    ng-model="store_out.type" items="stores_out_types" label="##word.stores_outtypes##"></i-list>
-                <i-date2 class="col3" ng-model="store_out.date" label="##word.stores_out_date##"></i-date2>
-                <i-control class="col3" ng-model="store_out.number" label="##word.stores_out_number##" v="r">
-                </i-control>
-                <i-list class="col3" ng-model="store_out.safe" items="safes" ng-search="_search.$serach_safes"
-                    label="##word.stores_out_safe##" v="r"></i-list>
+                <div class="row">
+                    <i-control class="col3 shift" disabled label="##word.shift##" ng-model="shift.code">
+                    </i-control>
+                </div>
+                <div class="row">
+                    <i-list display="##session.lang##" ng-search="_search.$search_in_out" class="col3"
+                        ng-model="store_out.type" items="stores_out_types" label="##word.stores_outtypes##"></i-list>
+                    <i-date2 class="col3" ng-model="store_out.date" label="##word.stores_out_date##"></i-date2>
+                    <i-control class="col3" ng-model="store_out.number" label="##word.stores_out_number##" v="r">
+                    </i-control>
+                    <i-list class="col3" ng-model="store_out.safe" items="safes" ng-search="_search.$serach_safes"
+                        label="##word.stores_out_safe##" v="r"></i-list>
+                </div>
+
+                <div class="row">
+
+                    <i-list class="col3" ng-model="store_out.store" items="stores" ng-search="_search.$stores_search"
+                        label="##word.stores_out_store##"></i-list>
+
+                </div>
+
             </div>
 
             <div class="row">
-
-                <i-list class="col3" ng-model="store_out.store" items="stores" ng-search="_search.$stores_search"
-                    label="##word.stores_out_store##"></i-list>
-
-                <i-files class="col3" ng-model="store_out.files"></i-files>
-
+                <i-control id="search_barcode" class="col4" ng-keydown="getBarcode($event)" class="col3"
+                    ng-model="search_barcode" label="##word.search##" type="text"></i-control>
+                <div class="col1"></div>
+                <i-button type="search" label=" ##word.select_items##" onclick="site.showModal('#selectItemsModal')">
+                </i-button>
             </div>
 
-
-
-
-        </div>
-
-        <div class="row">
-            <i-control id="search_barcode" class="col4" ng-keydown="getBarcode($event)" class="col3"
-                ng-model="search_barcode" label="##word.search##" type="text"></i-control>
-            <div class="col1"></div>
-            <i-button type="search" label=" ##word.select_items##" onclick="site.showModal('#selectItemsModal')">
-            </i-button>
-        </div>
-
-        <br>
-        <br>
-        <br>
-        <div class="row10 border margin padding">
-            <table class="table center">
-                <tr>
-                    <th>##word.serial##</th>
-                    <th>##word.barcode##</th>
-                    <th>##word.stores_in_item_name##</th>
-                    <th>##word.stores_in_item_size##</th>
-                    <th>##word.stores_in_item_count##</th>
-                    <th>##word.stores_in_item_price##</th>
-                    <th>##word.stores_in_item_total##</th>
-                    <th>##word.average_cost##</th>
-                    <th>##word.actions##</th>
-                </tr>
-                <tr ng-repeat="itm in store_out.items">
-
-                    <td>
-                        <br>
-                        <p class="bold center">{{$index + 1}}</p>
-                    </td>
-                    <td>
-                        <br>
-                        <p class="bold center">{{itm.name}}</p>
-                    </td>
-                    <td>
-                        <br>
-                        <p class="bold center">{{itm.barcode}}</p>
-                    </td>
-                    <td>
-                        <br>
-                        <p class="bold blue center">{{itm.size}}</p>
-                    </td>
-
-                    <td>
-                        <i-control ng-change="calcSize(itm)" type="number" ng-model="itm.count"></i-control>
-                    </td>
-
-                    <td>
-                        <i-control ng-change="calcSize(itm)" type="number" ng-model="itm.cost"></i-control>
-                    </td>
-
-                    <td>
-                        <br>
-                        <p class="bold green center">{{itm.total}}</p>
-                    </td>
-
-                    <td> <br> {{itm.average_cost}}</td>
-
-                    <td class="center">
-                        <i-button type="delete" ng-click="deleteRow(itm)"></i-button>
-
-                    </td>
-                </tr>
-            </table>
-        </div>
-
-        <div class="row ">
-
-            <div class="col6 padding margin">
-                <table class="table box-shadow " ng-init="discountEditorAdd = true">
+            <br>
+            <br>
+            <br>
+            <div class="row10 border margin padding">
+                <table class="table center">
                     <tr>
-                        <th colspan="2" class="pointer" ng-click="discountEditorAdd = !discountEditorAdd">
-                            ##word.stores_in_discountes##
-                            <i class="fa fa-edit"></i>
-                        </th>
+                        <th>##word.serial##</th>
+                        <th>##word.barcode##</th>
+                        <th>##word.stores_in_item_name##</th>
+                        <th>##word.stores_in_item_size##</th>
+                        <th>##word.stores_in_item_count##</th>
+                        <th>##word.stores_in_item_price##</th>
+                        <th>##word.stores_in_item_total##</th>
+                        <th>##word.average_cost##</th>
+                        <th>##word.actions##</th>
                     </tr>
-                    <tr ng-hide="discountEditorAdd">
-                        <td colspan="2">
-                            <form>
-                                <div class="row ">
-                                    <i-list ng-search="_search.$discount_name" class="col4" ng-model="discount"
-                                        items="discountTypesList" label="##word.stores_in_discount_name##">
-                                        {{di.name}}
-                                    </i-list>
-                                    <div class="col1"></div>
-                                    <i-control class="col2" ng-model="discount.value"
-                                        label="##word.stores_in_discount_value##" type="text"></i-control>
+                    <tr ng-repeat="itm in store_out.items">
 
-                                </div>
-                                <div class="row">
+                        <td>
+                            <br>
+                            <p class="bold center">{{$index + 1}}</p>
+                        </td>
+                        <td>
+                            <br>
+                            <p class="bold center">{{itm.name}}</p>
+                        </td>
+                        <td>
+                            <br>
+                            <p class="bold center">{{itm.barcode}}</p>
+                        </td>
+                        <td>
+                            <br>
+                            <p class="bold blue center">{{itm.size}}</p>
+                        </td>
 
-                                    <div class="col6">
-                                        <div class="row">
-                                            <i-radio class="col6" ng-model="discount.type"
-                                                label="##word.discount_types_number##" ng-value="number"></i-radio>
-                                            <i-radio class="col6" ng-model="discount.type"
-                                                label="##word.discount_types_percent##" ng-value="percent"></i-radio>
+                        <td>
+                            <i-control ng-change="calcSize(itm)" type="number" ng-model="itm.count"></i-control>
+                        </td>
+
+                        <td>
+                            <i-control ng-change="calcSize(itm)" type="number" ng-model="itm.cost"></i-control>
+                        </td>
+
+                        <td>
+                            <br>
+                            <p class="bold green center">{{itm.total}}</p>
+                        </td>
+
+                        <td> <br> {{itm.average_cost}}</td>
+
+                        <td class="center">
+                            <i-button type="delete" ng-click="deleteRow(itm)"></i-button>
+
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="row ">
+
+                <div class="col6 padding margin">
+                    <table class="table box-shadow " ng-init="discountEditorAdd = true">
+                        <tr>
+                            <th colspan="2" class="pointer" ng-click="discountEditorAdd = !discountEditorAdd">
+                                ##word.stores_in_discountes##
+                                <i class="fa fa-edit"></i>
+                            </th>
+                        </tr>
+                        <tr ng-hide="discountEditorAdd">
+                            <td colspan="2">
+                                <form>
+                                    <div class="row ">
+                                        <i-list ng-search="_search.$discount_name" class="col4" ng-model="discount"
+                                            items="discountTypesList" label="##word.stores_in_discount_name##">
+                                            {{di.name}}
+                                        </i-list>
+                                        <div class="col1"></div>
+                                        <i-control class="col2" ng-model="discount.value"
+                                            label="##word.stores_in_discount_value##" type="text"></i-control>
+
+                                    </div>
+                                    <div class="row">
+
+                                        <div class="col6">
+                                            <div class="row">
+                                                <i-radio class="col6" ng-model="discount.type"
+                                                    label="##word.discount_types_number##" ng-value="number"></i-radio>
+                                                <i-radio class="col6" ng-model="discount.type"
+                                                    label="##word.discount_types_percent##" ng-value="percent">
+                                                </i-radio>
+                                            </div>
+
                                         </div>
 
+                                        <div class="col2">
+                                            <i-button type="add default" label="##word.stores_in_add_discount##"
+                                                ng-click="addDiscount()"></i-button>
+                                        </div>
                                     </div>
 
-                                    <div class="col2">
-                                        <i-button type="add default" label="##word.stores_in_add_discount##"
-                                            ng-click="addDiscount()"></i-button>
+                                </form>
+                            </td>
+                        </tr>
+                        <tr ng-repeat="d1 in store_out.discountes">
+                            <td>
+                                <span>{{d1.name}}</span>
+                                <span class="blue" ng-show="d1.type === 'percent'">{{d1.value}} %</span>
+                                <span class="blue" ng-show="d1.type === 'number'">{{d1.value}} ##word.le##</span>
+                                <i-button type="delete" ng-click="deleteDiscount(d1)"></i-button>
+
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
+
+                <div class="col5 padding margin">
+                    <table class="table box-shadow " ng-init="taxEditorAdd = true">
+                        <tr>
+                            <th colspan="2" class="pointer" ng-click="taxEditorAdd = !taxEditorAdd">
+                                ##word.stores_out_taxes##
+                                <i class="fa fa-edit"></i>
+                            </th>
+
+                        </tr>
+                        <tr ng-hide="taxEditorAdd">
+                            <td colspan="2">
+                                <div class="row">
+
+                                    <i-list class="col6" ng-model="tax" label="##word.stores_out_discount_name##"
+                                        ng-search="_search.$taxtypes" items="tax_types"></i-list>
+
+                                    <div class="col1"></div>
+                                    <i-control class="col2" ng-model="tax.value"
+                                        label="##word.stores_out_discount_value##">
+                                    </i-control>
+                                    <div class="col3 padding">
+                                        <br>
+                                        <i-button type="add default" label="##word.stores_out_add_tax##"
+                                            ng-click="addTax()">
+                                        </i-button>
+
                                     </div>
                                 </div>
+                            </td>
+                        </tr>
+                        <tr ng-repeat="tx in store_out.taxes">
+                            <td>
+                                <span class="bold red">{{tx.name}} -</span>
+                                <span class="bold red">{{tx.value}} %</span>
+                                <i-button type="delete" ng-click="deleteTax(tx)"> </i-button>
 
-                            </form>
-                        </td>
-                    </tr>
-                    <tr ng-repeat="d1 in store_out.discountes">
-                        <td>
-                            <span>{{d1.name}}</span>
-                            <span class="blue" ng-show="d1.type === 'percent'">{{d1.value}} %</span>
-                            <span class="blue" ng-show="d1.type === 'number'">{{d1.value}} ##word.le##</span>
-                            <i-button type="delete" ng-click="deleteDiscount(d1)"></i-button>
+                            </td>
 
-                        </td>
-                    </tr>
-                </table>
+                        </tr>
+                    </table>
+
+                </div>
 
             </div>
 
-            <div class="col5 padding margin">
-                <table class="table box-shadow " ng-init="taxEditorAdd = true">
-                    <tr>
-                        <th colspan="2" class="pointer" ng-click="taxEditorAdd = !taxEditorAdd">
-                            ##word.stores_out_taxes##
-                            <i class="fa fa-edit"></i>
-                        </th>
+            <div class="row">
+                <i-control class="col2" ng-model="store_out.total_discount" label="##word.stores_out_total_discount##"
+                    type="number" disabled></i-control>
+                <i-control class="col2" ng-model="store_out.total_tax" label="##word.stores_out_total_tax##"
+                    type="number" disabled></i-control>
+                <i-control class="col2" ng-model="store_out.total_value" label="##word.total_value##" type="number"
+                    disabled></i-control>
 
-                    </tr>
-                    <tr ng-hide="taxEditorAdd">
-                        <td colspan="2">
-                            <div class="row">
+                <i-control class="col2" ng-model="store_out.net_value" label="##word.net_value##" type="number"
+                    disabled>
+                </i-control>
 
-                                <i-list class="col6" ng-model="tax" label="##word.stores_out_discount_name##"
-                                    ng-search="_search.$taxtypes" items="tax_types"></i-list>
-
-                                <div class="col1"></div>
-                                <i-control class="col2" ng-model="tax.value" label="##word.stores_out_discount_value##">
-                                </i-control>
-                                <div class="col3 padding">
-                                    <br>
-                                    <i-button type="add default" label="##word.stores_out_add_tax##"
-                                        ng-click="addTax()">
-                                    </i-button>
-
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr ng-repeat="tx in store_out.taxes">
-                        <td>
-                            <span class="bold red">{{tx.name}} -</span>
-                            <span class="bold red">{{tx.value}} %</span>
-                            <i-button type="delete" ng-click="deleteTax(tx)"> </i-button>
-
-                        </td>
-
-                    </tr>
-                </table>
 
             </div>
 
+
+            <i-textarea label="##word.stores_out_notes##" ng-model="store_out.notes"></i-textarea>
         </div>
-
-        <div class="row">
-            <i-control class="col2" ng-model="store_out.total_discount" label="##word.stores_out_total_discount##"
-                type="number" disabled></i-control>
-            <i-control class="col2" ng-model="store_out.total_tax" label="##word.stores_out_total_tax##" type="number"
-                disabled></i-control>
-            <i-control class="col2" ng-model="store_out.total_value" label="##word.total_value##" type="number"
-                disabled></i-control>
-
-            <i-control class="col2" ng-model="store_out.net_value" label="##word.net_value##" type="number" disabled>
-            </i-control>
-
+        <div class="col3">
+            <i-image category="store_out" ng-model="store_out.image_url"> </i-image>
+            <i-files ng-model="store_out.files"></i-files>
 
         </div>
-
-
-        <i-textarea label="##word.stores_out_notes##" ng-model="store_out.notes"></i-textarea>
-
-    </form>
-</div>
+    </div>
+</form>

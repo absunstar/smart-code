@@ -80,12 +80,12 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
               });
               $scope.calc();
               $scope.search_barcode = "";
-              
-             
+
+
             }
-            $timeout(()=>{
+            $timeout(() => {
               document.querySelector('#search_barcode input').focus();
-            } , 500);
+            }, 500);
           } else {
             $scope.error = response.data.error;
           };
@@ -141,7 +141,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
   $scope.deleteTax = function (_tx) {
     for (let i = 0; i < $scope.store_out.taxes.length; i++) {
       let tx = $scope.store_out.taxes[i];
-      if (tx.name == _tx.name && tx.value == _tx.value) 
+      if (tx.name == _tx.name && tx.value == _tx.value)
         $scope.store_out.taxes.splice(i, 1);
     }
     $scope.calc();
@@ -290,18 +290,18 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
       url: "/api/discount_types/all",
       data: {
         select: {
-            id: 1,
-            name: 1,
-            value: 1,
-            type: 1
-          
+          id: 1,
+          name: 1,
+          value: 1,
+          type: 1
+
         }
       }
     }).then(
       function (response) {
         $scope.busy = false;
 
-        if (response.data.done) 
+        if (response.data.done)
           $scope.discountTypesList = response.data.list;
       },
       function (err) {
@@ -391,6 +391,10 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
     $scope.error = '';
     let where = {};
 
+    if ($scope.search.shift_code) {
+      where['shift.code'] = $scope.search.shift_code;
+    }
+
     if ($scope.search.number) {
       where['number'] = ($scope.search.number);
     }
@@ -476,8 +480,12 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
     )
   };
   $scope.newStoreOut = function () {
-    $scope.getDefaultSettings();
-    site.showModal('#addStoreOutModal');
+    $scope.get_open_shift((shift) => {
+      if (shift) {
+        $scope.getDefaultSettings();
+        site.showModal('#addStoreOutModal');
+      } else $scope.error = '##word.open_shift_not_found##';
+    });
   };
 
   $scope.getDefaultSettings = function () {
@@ -496,9 +504,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
           $scope.item = {}
           $scope.store_out = {
             image_url: '/images/store_out.png',
-            vendor: $scope.defaultSettings.general_Settings ? $scope.defaultSettings.general_Settings.vendor : null,
-            store: $scope.defaultSettings.inventory ? $scope.defaultSettings.inventory.store : null,
-            safe: $scope.defaultSettings.accounting ? $scope.defaultSettings.accounting.safe : null,
+            shift: $scope.shift,
             items: [],
             discountes: [],
             taxes: [],
@@ -506,6 +512,20 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
             date: new Date(),
             supply_date: new Date()
           };
+          /*   if ($scope.defaultSettings.general_Settings) {
+              if ($scope.defaultSettings.general_Settings.vendor)
+                $scope.store_out.vendor = $scope.defaultSettings.general_Settings.vendor
+            } */
+          if ($scope.defaultSettings.inventory) {
+            if ($scope.defaultSettings.inventory.store) {
+              $scope.store_out.store = $scope.defaultSettings.inventory.store
+            }
+          }
+          if ($scope.defaultSettings.accounting) {
+            if ($scope.defaultSettings.accounting.safe) {
+              $scope.store_out.safe = $scope.defaultSettings.accounting.safe
+            }
+          }
         };
       },
       function (err) {
@@ -587,9 +607,13 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
 
   $scope.remove = function (store_out) {
     $scope.error = '';
-    $scope.view(store_out);
-    $scope.store_out = {};
-    site.showModal('#deleteStoreOutModal');
+    $scope.get_open_shift((shift) => {
+      if (shift) {
+        $scope.view(store_out);
+        $scope.store_out = {};
+        site.showModal('#deleteStoreOutModal');
+      } else $scope.error = '##word.open_shift_not_found##';
+    });
   };
 
   $scope.view = function (store_out) {
@@ -745,6 +769,34 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
     }, 100);
   };
 
+  $scope.get_open_shift = function (callback) {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/shifts/get_open_shift",
+      data: {
+        where: { active: true },
+        select: { id: 1, name: 1, code: 1, from_date: 1, from_time: 1, to_date: 1, to_time: 1 }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.doc) {
+          $scope.shift = response.data.doc;
+          callback(response.data.doc);
+        } else {
+          callback(null);
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+        callback(null);
+      }
+    )
+  };
+
   $scope.loadStoresOut();
   $scope.loadStoresOutTypes();
   $scope.loadVendors();
@@ -752,6 +804,6 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
   $scope.loadTaxTypes();
   $scope.loadDiscountTypes();
   $scope.loadSafes();
-  $scope.loadAll({date : new Date()});
+  $scope.loadAll({ date: new Date() });
 
 });

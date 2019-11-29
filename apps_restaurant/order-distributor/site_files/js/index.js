@@ -4,12 +4,16 @@ app.controller("order_distributor", function ($scope, $http, $timeout) {
   $scope.order_distributor = {};
 
   $scope.doneDelivery = function (order) {
-    order.status_delivery = {
-      id: 2,
-      en: "Done Delivery",
-      ar: "تم التوصيل"
-    };
-    $scope.updateTables(order);
+    $scope.get_open_shift((shift) => {
+      if (shift) {
+        order.status_delivery = {
+          id: 2,
+          en: "Done Delivery",
+          ar: "تم التوصيل"
+        };
+        $scope.updateTables(order);
+      } else $scope.error = '##word.open_shift_not_found##';
+    });
   };
 
   $scope.updateTables = function (order) {
@@ -105,6 +109,33 @@ app.controller("order_distributor", function ($scope, $http, $timeout) {
     $scope.search = {}
   };
 
-  $scope.getOrderDistributor({date : new Date()});
+  $scope.get_open_shift = function (callback) {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/shifts/get_open_shift",
+      data: {
+        where: { active: true },
+        select: { id: 1, name: 1, code: 1, from_date: 1, from_time: 1, to_date: 1, to_time: 1 }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.doc) {
+          $scope.shift = response.data.doc;
+          callback(response.data.doc);
+        } else {
+          callback(null);
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+        callback(null);
+      }
+    )
+  };
+
+  $scope.getOrderDistributor({ date: new Date() });
   $scope.getDeliveryEmployeesList();
 });

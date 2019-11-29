@@ -47,7 +47,7 @@ module.exports = function init(site) {
     parser: "html",
     compress: false
   })
-  
+
   site.post({
     name: '/api/stores_out/types/all',
     path: __dirname + '/site_files/json/types.json'
@@ -284,7 +284,7 @@ module.exports = function init(site) {
         '$lt': d2
       }
     } else if (where && where.date_from) {
-      let d1 = site.toDate( where.date_from)
+      let d1 = site.toDate(where.date_from)
       let d2 = site.toDate(where.date_to)
       d2.setDate(d2.getDate() + 1);
       where.date = {
@@ -295,6 +295,10 @@ module.exports = function init(site) {
       delete where.date_to
     }
 
+    if (where['shift_code']) {
+      where['shift.code'] = new RegExp(where['shift_code'], 'i')
+      delete where['shift_code']
+    }
 
     $stores_out.findMany({
       select: req.body.select || {},

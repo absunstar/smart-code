@@ -90,18 +90,12 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
               $scope.order_invoice.customer_mobile = $scope.defaultSettings.general_Settings.customer.customer_mobile;
 
           }
-
-          if ($scope.defaultSettings.general_Settings.shift)
-            $scope.order_invoice.shift = $scope.defaultSettings.general_Settings.shift;
-
         }
-
 
       } else {
         $scope.error = '##word.open_shift_not_found##'
       };
     });
-
 
   };
 
@@ -442,7 +436,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
       });
 
     if ($scope.create_invoices.current_book_list && $scope.create_invoices.current_book_list.length > 0) {
-   
+
       obj_print.data.push(
         {
           type: 'space'
@@ -461,9 +455,9 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
           value: 'الصنف',
           value2: 'العدد',
           value3: 'السعر'
-        },{
-          type: 'space'
-        }
+        }, {
+        type: 'space'
+      }
       );
 
       $scope.create_invoices.current_book_list.forEach(_current_book_list => {
@@ -553,7 +547,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         type: 'footer',
         value: $scope.defaultSettings.printer_program.invoice_footer
       });
-      
+
     $http({
       method: "POST",
       url: `http://${ip}:${port}/print`,
@@ -890,7 +884,10 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     $http({
       method: "POST",
       url: "/api/shifts/get_open_shift",
-      data: {}
+      data: {
+        where: { active: true },
+        select: { id: 1, name: 1, code: 1, from_date: 1, from_time: 1, to_date: 1, to_time: 1 }
+      }
     }).then(
       function (response) {
         $scope.busy = false;
@@ -1049,7 +1046,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
   };
 
   $scope.getTablesList = function (callback) {
-    callback = callback || function () {};
+    callback = callback || function () { };
 
     $scope.busy = true;
     $scope.tablesList = [];
@@ -1085,7 +1082,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
   };
 
   $scope.getOrderInvoicesActiveList = function (callback) {
-    callback = callback || function () {};
+    callback = callback || function () { };
     $scope.busy = true;
     $scope.invoicesActivelist = [];
     $http({
@@ -1370,8 +1367,6 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
   };
 
   $scope.calc = function () {
-
-    console.log('calc() .... ');
 
     $timeout(() => {
       $scope.order_invoice.total_value = 0;

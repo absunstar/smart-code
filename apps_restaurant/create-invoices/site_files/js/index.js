@@ -4,54 +4,55 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
   $scope.create_invoices = {};
 
   $scope.displayaddCreateInvoice = function () {
-    if (!$scope.openShift) {
+    $scope.get_open_shift((shift) => {
+      if (shift) {
+        $scope.busy = true;
+        $http({
+          method: "POST",
+          url: "/api/default_setting/get",
+          data: {}
+        }).then(
+          function (response) {
+            $scope.busy = false;
+            if (response.data.done && response.data.doc) {
+              $scope.defaultSettings = response.data.doc;
+              $scope._search = {};
+              $scope.search_order = "";
+              $scope.error = '';
+              $scope.orderInvoicesTypeList = [];
 
-      $scope.busy = true;
-      $http({
-        method: "POST",
-        url: "/api/default_setting/get",
-        data: {}
-      }).then(
-        function (response) {
-          $scope.busy = false;
-          if (response.data.done && response.data.doc) {
-            $scope.defaultSettings = response.data.doc;
-            $scope._search = {};
-            $scope.search_order = "";
-            $scope.error = '';
-            $scope.orderInvoicesTypeList = [];
+              $scope.create_invoices = {
+                image_url: '/images/create_invoices.png',
+                date: new Date(),
+                shift: shift,
+                active: true,
+              };
 
-            $scope.create_invoices = {
-              image_url: '/images/create_invoices.png',
-              date: new Date(),
-              active: true,
+              if ($scope.defaultSettings.general_Settings) {
+                if ($scope.defaultSettings.general_Settings.source_type)
+                  $scope.create_invoices.source_type = $scope.defaultSettings.general_Settings.source_type;
+
+                if ($scope.defaultSettings.general_Settings.payment_method)
+                  $scope.create_invoices.payment_method = $scope.defaultSettings.general_Settings.payment_method;
+
+                if ($scope.defaultSettings.accounting && $scope.defaultSettings.accounting.safe)
+                  $scope.create_invoices.safe = $scope.defaultSettings.accounting.safe;
+
+                if ($scope.defaultSettings.general_Settings.order_type)
+                  $scope.create_invoices.order_invoices_type = $scope.defaultSettings.general_Settings.order_type;
+              }
+
+              site.showModal('#creatInvoicesAddModal');
+
             };
-
-            if ($scope.defaultSettings.general_Settings) {
-              if ($scope.defaultSettings.general_Settings.source_type)
-                $scope.create_invoices.source_type = $scope.defaultSettings.general_Settings.source_type;
-
-              if ($scope.defaultSettings.general_Settings.payment_method)
-                $scope.create_invoices.payment_method = $scope.defaultSettings.general_Settings.payment_method;
-
-              if ($scope.defaultSettings.accounting && $scope.defaultSettings.accounting.safe)
-                $scope.create_invoices.safe = $scope.defaultSettings.accounting.safe;
-
-              if ($scope.defaultSettings.general_Settings.order_type)
-                $scope.create_invoices.order_invoices_type = $scope.defaultSettings.general_Settings.order_type;
-            }
-
-            site.showModal('#creatInvoicesAddModal');
-
-          };
-        },
-        function (err) {
-          $scope.busy = false;
-          $scope.error = err;
-        }
-      )
-    } else $scope.error = '##word.open_shift_not_found##';
-
+          },
+          function (err) {
+            $scope.busy = false;
+            $scope.error = err;
+          }
+        )
+      } else $scope.error = '##word.open_shift_not_found##';
+    });
   };
 
   $scope.addCreateInvoice = function () {
@@ -192,12 +193,13 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
 
   $scope.displayDeleteCreatInvoices = function (create_invoices) {
     $scope.error = '';
-
-    if (!$scope.openShift) {
-      $scope.detailsCreatInvoices(create_invoices);
-      $scope.create_invoices = {};
-      site.showModal('#creatInvoicesDeleteModal');
-    } else $scope.error = '##word.open_shift_not_found##';
+    $scope.get_open_shift((shift) => {
+      if (shift) {
+        $scope.detailsCreatInvoices(create_invoices);
+        $scope.create_invoices = {};
+        site.showModal('#creatInvoicesDeleteModal');
+      } else $scope.error = '##word.open_shift_not_found##';
+    });
   };
 
   $scope.deleteCreatInvoices = function () {
@@ -368,14 +370,15 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
   $scope.displayPaymentInvoices = function (invoices) {
     $scope.error = '';
 
-    if (!$scope.openShift) {
-      $scope.create_invoices = invoices;
-      $scope.create_invoices.payment_date = new Date();
-      $scope.create_invoices.payment_paid_up = 0;
-      $scope.create_invoices.payment_safe = $scope.defaultSettings.accounting ? $scope.defaultSettings.accounting.safe : null;
-      site.showModal('#invoicesPaymentModal');
-    } else $scope.error = '##word.open_shift_not_found##';
-
+    $scope.get_open_shift((shift) => {
+      if (shift) {
+        $scope.create_invoices = invoices;
+        $scope.create_invoices.payment_date = new Date();
+        $scope.create_invoices.payment_paid_up = 0;
+        $scope.create_invoices.payment_safe = $scope.defaultSettings.accounting ? $scope.defaultSettings.accounting.safe : null;
+        site.showModal('#invoicesPaymentModal');
+      } else $scope.error = '##word.open_shift_not_found##';
+    });
   };
 
   $scope.calc = function () {
@@ -544,7 +547,7 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
       });
 
     if ($scope.create_invoices.current_book_list && $scope.create_invoices.current_book_list.length > 0) {
-   
+
       obj_print.data.push(
         {
           type: 'space'
@@ -563,9 +566,9 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
           value: 'الصنف',
           value2: 'العدد',
           value3: 'السعر'
-        },{
-          type: 'space'
-        }
+        }, {
+        type: 'space'
+      }
       );
 
       $scope.create_invoices.current_book_list.forEach(_current_book_list => {
@@ -655,7 +658,7 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
         type: 'footer',
         value: $scope.defaultSettings.printer_program.invoice_footer
       });
-      
+
     $http({
       method: "POST",
       url: `http://${ip}:${port}/print`,
@@ -690,15 +693,13 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
         $scope.error = err;
       }
     )
-
   };
 
-  $scope.getOpenShiftList = function (where) {
-    $scope.error = '';
+  $scope.get_open_shift = function (callback) {
     $scope.busy = true;
     $http({
       method: "POST",
-      url: "/api/shifts/open_shift",
+      url: "/api/shifts/get_open_shift",
       data: {
         where: { active: true },
         select: { id: 1, name: 1, code: 1, from_date: 1, from_time: 1, to_date: 1, to_time: 1 }
@@ -706,14 +707,17 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done)
-          $scope.openShift = true;
-        else $scope.openShift = false;
+        if (response.data.done && response.data.doc) {
+          $scope.shift = response.data.doc;
+          callback(response.data.doc);
+        } else {
+          callback(null);
+        }
       },
-
       function (err) {
         $scope.busy = false;
         $scope.error = err;
+        callback(null);
       }
     )
   };
@@ -723,6 +727,5 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
   $scope.getSourceType();
   $scope.getTransactionTypeList();
   $scope.getSafesList();
-  $scope.getOpenShiftList();
   $scope.getPaymentMethodList();
 });

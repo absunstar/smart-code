@@ -12,6 +12,11 @@
                                     <td class="title"> ##word.date## </td>
                                     <td class="center brown"> {{create_invoices.date | date : 'dd - MM - yyyy'}} </td>
                                 </tr>
+
+                                <tr>
+                                    <td class="title"> ##word.shift## </td>
+                                    <td class="center blue"> {{create_invoices.shift.code}} </td>
+                                </tr>
                                 <tr>
                                     <td class="title"> ##word.code## </td>
                                     <td class="center blue"> {{create_invoices.code.name}} </td>

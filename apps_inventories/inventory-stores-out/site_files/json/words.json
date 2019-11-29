@@ -4,7 +4,7 @@
     {"name" : "stores_out_store" , "en" : "Store" , "ar" : "المخزن"},
     {"name" : "stores_out_empty_search" , "en" : "Empty Search" , "ar" : "تفريغ الحقول"},
     {"name" : "stores_out_add" , "en" : "Add Store In" , "ar" : " اذن صرف"},
-    {"name" : "stores_out_neew" , "en" : "New Store Out" , "ar" : "اذن صرف جديد"},
+    {"name" : "stores_out_new" , "en" : "New Store Out" , "ar" : "اذن صرف جديد"},
     {"name" : "stores_out_details" , "en" : "Store In Details" , "ar" : "تفاصيل اذن صرف"},
     {"name" : "stores_out_edit" , "en" : "Edit Store In" , "ar" : "تعديل بيانات اذن صرف"},
     {"name" : "stores_out_delete" , "en" : "Delete Store In" , "ar" : "حذف اذن صرف"},
