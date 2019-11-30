@@ -5,11 +5,11 @@
             <div class="row">
                 <div class="col9">
                     <div class="row">
-                        <i-control ng-keydown="getCustomerList($event)" id="service" class="col3"
+                        <i-control ng-keydown="getEmployeeList($event)" id="service" class="col3"
                             ng-model="search_employee" label="##word.search##" type="text"></i-control>
-                        <i-list ng-search="_search.$employee" class="col4" display="name_ar" v="r"
+                        <i-list ng-search="_search.$employee" class="col4" display="name" v="r"
                             ng-model="attend_leave.employee" label="##word.leave_name##"
-                            items="employeesList">
+                            items="employeeList">
                         </i-list>
 
                         <div class="col3"></div>

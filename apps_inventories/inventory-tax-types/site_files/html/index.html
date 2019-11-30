@@ -14,7 +14,7 @@
     <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
 
     </nav>
-    <div x-permission="stores" id="main-layout" class="container">
+    <div  id="main-layout" class="container">
         <div class="row center">
             <div class="col12" ng-controller="tax_types">
                 <div x-permissions="tax_types_add || tax_types_manage" x-import="inventory-tax-types/add_modal.html"></div>
@@ -70,7 +70,7 @@
 
 
     <div x-import="scripts.html"></div>
-    <script x-permission="stores" x-import="inventory-tax-types/index.js"></script>
+    <script  x-import="inventory-tax-types/index.js"></script>
 
 </body>
 

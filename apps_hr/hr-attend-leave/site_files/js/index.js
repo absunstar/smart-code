@@ -187,15 +187,15 @@ app.controller("attend_leave", function ($scope, $http, $timeout, $interval) {
     )
   };
 
-  $scope.getCustomerList = function (ev) {
+  $scope.getEmployeeList = function (ev) {
     $scope.error = '';
     $scope.busy = true;
     if (ev.which === 13) {
       $http({
         method: "POST",
-        url: "/api/customers/all",
+        url: "/api/employees/all",
         data: {
-          search: $scope.search_customer
+          search: $scope.search_employee
           /*  select: {
             id: 1,
             name_ar: 1,
@@ -206,7 +206,7 @@ app.controller("attend_leave", function ($scope, $http, $timeout, $interval) {
         function (response) {
           $scope.busy = false;
           if (response.data.done && response.data.list.length > 0) {
-            $scope.customersList = response.data.list;
+            $scope.employeeList = response.data.list;
           }
         },
         function (err) {

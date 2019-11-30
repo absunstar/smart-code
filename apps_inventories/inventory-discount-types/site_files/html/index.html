@@ -14,7 +14,7 @@
     <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
 
     </nav>
-    <div x-permission="stores" id="main-layout" class="container">
+    <div  id="main-layout" class="container">
         <div class="row10 center">
             <div class="col10" ng-controller="discount_types">
                 <div x-permissions="discount_types_add || discount_types_manage" x-import="inventory-discount-types/add_modal.html"></div>
@@ -67,7 +67,7 @@
 
 
     <div x-import="scripts.html"></div>
-    <script x-permission="stores" x-import="inventory-discount-types/index.js"></script>
+    <script x-import="inventory-discount-types/index.js"></script>
 
 </body>
 

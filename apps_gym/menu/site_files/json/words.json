@@ -1234,5 +1234,14 @@
         "name": "kitchen_management",
         "en": "Kitchen Management",
         "ar": "إدارة المطابخ"
+    },{
+        "name": "menu_shift",
+        "en": "Shifts Menu",
+        "ar": "قائمة الشيفتات"
+    },
+    {
+        "name": "menu_shift_tag",
+        "en": "Shifts Manegment",
+        "ar": "إدارة الشيفتات"
     }
 ]
