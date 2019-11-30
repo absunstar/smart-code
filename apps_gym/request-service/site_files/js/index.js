@@ -2,7 +2,6 @@ app.controller("request_service", function ($scope, $http, $timeout) {
 
   $scope.request_service = {};
   $scope.displayAddRequestService = function () {
-    $scope.getDefaultSettings();
     site.showModal('#requestServiceAddModal');
   };
 
@@ -54,7 +53,6 @@ app.controller("request_service", function ($scope, $http, $timeout) {
     )
   };
 
-
   $scope.getDefaultSettings = function () {
 
     $scope.busy = true;
@@ -69,6 +67,7 @@ app.controller("request_service", function ($scope, $http, $timeout) {
           $scope.defaultSettings = response.data.doc;
           $scope.error = '';
           $scope.discount = {};
+
           $scope.request_service = {
             image_url: '/images/request_service.png',
             active: true,
@@ -82,10 +81,15 @@ app.controller("request_service", function ($scope, $http, $timeout) {
             time_to: {
               hour: new Date().getHours(),
               minute: new Date().getMinutes()
-            },
-            hall: $scope.defaultSettings.general_Settings ? $scope.defaultSettings.general_Settings.hall : null,
-            trainer: $scope.defaultSettings.general_Settings ? $scope.defaultSettings.general_Settings.trainer : null,
-          }
+            }
+          };
+
+          if ($scope.defaultSettings.general_Settings) {
+            if ($scope.defaultSettings.general_Settings.hall)
+              $scope.request_service.hall = $scope.defaultSettings.general_Settings.hall;
+            if ($scope.defaultSettings.general_Settings.trainer)
+              $scope.request_service.trainer = $scope.defaultSettings.general_Settings.trainer;
+          };
 
         };
       },
@@ -94,7 +98,6 @@ app.controller("request_service", function ($scope, $http, $timeout) {
         $scope.error = err;
       }
     )
-
   };
 
   $scope.addRequestService = function () {
@@ -105,7 +108,6 @@ app.controller("request_service", function ($scope, $http, $timeout) {
       $scope.error = v.messages[0].ar;
       return;
     };
-
     $scope.busy = true;
     $http({
       method: "POST",
@@ -125,6 +127,210 @@ app.controller("request_service", function ($scope, $http, $timeout) {
         console.log(err);
       }
     )
+  };
+
+  $scope.displayCreateInvoice = function (request_service) {
+
+    $scope.create_invoices = {
+      image_url: '/images/create_invoices.png',
+      date: new Date(),
+      request_service_id: request_service.id,
+      customer: request_service.customer,
+      trainer: request_service.trainer,
+      hall: request_service.hall,
+      service_name: request_service.service_name,
+      date_from: request_service.date_from,
+      date_to: request_service.date_to,
+      paid_require: request_service.paid_require,
+      paid_up: 0,
+      service_code: request_service.code,
+      total_discount: request_service.total_discount,
+      active: true
+    };
+
+    if ($scope.defaultSettings.general_Settings) {
+      if ($scope.defaultSettings.general_Settings.source_type)
+        $scope.create_invoices.source_type = $scope.defaultSettings.general_Settings.source_type;
+      if ($scope.defaultSettings.general_Settings.payment_method)
+        $scope.create_invoices.payment_method = $scope.defaultSettings.general_Settings.payment_method;
+    };
+
+    if ($scope.defaultSettings.accounting) {
+      if ($scope.defaultSettings.accounting.safe)
+        $scope.create_invoices.safe = $scope.defaultSettings.accounting.safe;
+    };
+    site.showModal('#createInvoiceModal');
+  };
+
+  $scope.addCreateInvoice = function () {
+    $scope.error = '';
+    const v = site.validated('#creatInvoicesAddModal');
+    if ($scope.busy) return;
+
+    if (!v.ok) {
+      $scope.error = v.messages[0].ar;
+      return;
+    } else if ($scope.create_invoices.paid_up > 0 && !$scope.create_invoices.safe) {
+      $scope.error = "##word.should_select_safe##";
+      return;
+    } else if ($scope.create_invoices.paid_up > $scope.create_invoices.paid_require) {
+      $scope.error = "##word.err_paid_require##";
+      return;
+    }
+    $scope.busy = true;
+
+    if ($scope.create_invoices.paid_up <= 0) $scope.create_invoices.safe = null;
+    $http({
+      method: "POST",
+      url: "/api/create_invoices/add",
+      data: $scope.create_invoices
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response) {
+          site.hideModal('#createInvoiceModal');
+          $scope.printCreateInvoive();
+
+          $scope.updateRequestService();
+        } else $scope.error = response.data.error;
+      },
+      function (err) {
+        console.log(err);
+      }
+    )
+  };
+
+  $scope.printCreateInvoive = function () {
+    $scope.error = '';
+    if ($scope.busy) return;
+    $scope.busy = true;
+
+    let ip = '127.0.0.1';
+    let port = '11111';
+    if ($scope.defaultSettings.printer_program) {
+      ip = $scope.defaultSettings.printer_program.ip || '127.0.0.1';
+      port = $scope.defaultSettings.printer_program.port || '11111';
+    };
+
+    $scope.create_invoices.total_remain = $scope.create_invoices.paid_require - $scope.create_invoices.paid_up;
+
+    let obj_print = { data: [] };
+
+    if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.printer_path)
+      obj_print.printer = $scope.defaultSettings.printer_program.printer_path.ip.trim();
+
+    if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.invoice_header)
+      obj_print.data.push({
+        type: 'header',
+        value: $scope.defaultSettings.printer_program.invoice_header
+      });
+
+    obj_print.data.push(
+      {
+        type: 'title',
+        value: $scope.create_invoices.payment_paid_up ? 'Bill payment account' : 'Bill account' + ($scope.create_invoices.code || '')
+      },
+      {
+        type: 'space'
+      },
+      {
+        type: 'text2',
+        value2: site.toDateXF($scope.create_invoices.date),
+        value: 'Date'
+      });
+
+    if ($scope.create_invoices.customer)
+      obj_print.data.push({
+        type: 'text2',
+        value2: $scope.create_invoices.customer.name_ar,
+        value: 'Cutomer'
+      });
+
+    if ($scope.create_invoices.service_name)
+      obj_print.data.push({
+        type: 'text2',
+        value2: $scope.create_invoices.service_name,
+        value: 'Service'
+      });
+
+    if ($scope.create_invoices.table)
+      obj_print.data.push({
+        type: 'text2',
+        value: $scope.create_invoices.table.name,
+        value2: $scope.create_invoices.table.tables_group.name
+      });
+
+    obj_print.data.push({
+      type: 'line'
+    });
+
+    if ($scope.create_invoices.total_discount)
+      obj_print.data.push({
+        type: 'text2',
+        value2: $scope.create_invoices.total_discount,
+        value: 'Total Discount'
+      });
+
+
+    obj_print.data.push({ type: 'space' });
+
+    if ($scope.create_invoices.payment_paid_up) {
+      $scope.create_invoices.total_remain = $scope.create_invoices.total_remain - $scope.create_invoices.payment_paid_up;
+      $scope.create_invoices.total_paid_up = $scope.create_invoices.total_paid_up + $scope.create_invoices.payment_paid_up;
+    }
+
+    if ($scope.create_invoices.paid_require)
+      obj_print.data.push(
+        {
+          type: 'text2',
+          value2: $scope.create_invoices.paid_require,
+          value: "Total Value"
+        });
+
+    if ($scope.create_invoices.payment_paid_up || $scope.create_invoices.paid_up)
+      obj_print.data.push(
+        {
+          type: 'text2',
+          value2: $scope.create_invoices.payment_paid_up || $scope.create_invoices.paid_up,
+          value: "Paid Up"
+        });
+
+    if ($scope.create_invoices.payment_paid_up || $scope.create_invoices.paid_up)
+      obj_print.data.push(
+        {
+          type: 'text2',
+          value2: $scope.create_invoices.total_paid_up || $scope.create_invoices.paid_up,
+          value: "Total Payments"
+        });
+
+    obj_print.data.push({ type: 'space' });
+
+    if ($scope.create_invoices.total_remain)
+      obj_print.data.push({
+        type: 'text2b',
+        value2: $scope.create_invoices.total_remain,
+        value: "Required to pay"
+      });
+
+    if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.invoice_footer)
+      obj_print.data.push({
+        type: 'footer',
+        value: $scope.defaultSettings.printer_program.invoice_footer
+      });
+
+    $http({
+      method: "POST",
+      url: `http://${ip}:${port}/print`,
+      data: obj_print
+    }).then(
+      function (response) {
+        if (response)
+          $scope.busy = false;
+      },
+      function (err) {
+        console.log(err);
+      }
+    );
   };
 
   $scope.displayUpdateRequestService = function (request_service) {
@@ -520,13 +726,9 @@ app.controller("request_service", function ($scope, $http, $timeout) {
   $scope.addDiscount = function () {
     $scope.error = '';
     if (!$scope.discount.value) {
-
       $scope.error = '##word.error_discount##';
       return;
     } else {
-
-      /* $scope.discount.type = 'number'; */
-
       $scope.request_service.discountes = $scope.request_service.discountes || [];
       $scope.request_service.discountes.push({
         name: $scope.discount.name,
@@ -555,17 +757,14 @@ app.controller("request_service", function ($scope, $http, $timeout) {
     }, 200);
   };
 
-
   $scope.deleteDiscount = function (_ds) {
     $scope.request_service.discountes.splice($scope.request_service.discountes.indexOf(_ds), 1);
   };
-
 
   $scope.searchAll = function () {
     $scope.getRequestServiceList($scope.search);
     site.hideModal('#requestServiceSearchModal');
     $scope.search = {};
-
   };
 
   $scope.getCustomerGroupList = function () {
@@ -609,12 +808,53 @@ app.controller("request_service", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.getPaymentMethodList = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $scope.paymentMethodList = [];
+    $http({
+      method: "POST",
+      url: "/api/payment_method/all"
+
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.paymentMethodList = response.data;
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.getSourceType = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $scope.sourceTypeList = [];
+    $http({
+      method: "POST",
+      url: "/api/source_type/all"
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.sourceTypeList = response.data;
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+
   $scope.getRequestServiceList();
-  /*   $scope.getPeriod();
-   */
   $scope.getHallList();
   $scope.getTrainerList();
   $scope.getCustomerGroupList();
+  $scope.getPaymentMethodList();
+  $scope.getSourceType();
   $scope.getIndentfy();
+  $scope.getDefaultSettings();
   $scope.loadDiscountTypes();
 });

@@ -15,9 +15,19 @@
         "ar": "الخصم"
     },
     {
+        "name": "attend",
+        "en": "Attend",
+        "ar": "حضور"
+    },
+    {
         "name": "print_invoice",
         "en": "Print Invoice",
         "ar": "طباعة فاتورة"
+    },
+    {
+        "name": "create_an_invoice",
+        "en": "Create An Invoice",
+        "ar": "إنشاء فاتورة"
     },
     {
         "name": "startup_date",

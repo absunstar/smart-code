@@ -474,6 +474,7 @@
 
 
                         <div class="row">
+
                             <i-control class="col6" ng-model="order_invoice.net_value" label="##word.net_value##"
                                 type="number" disabled></i-control>
                             <div class="col6 center" ng-hide="order_invoice.status.id == 2">
@@ -486,7 +487,6 @@
                                     label="##word.close_order##" ng-click="closeOrder()">
                                 </i-button>
                             </div>
-
                         </div>
 
                         <div class="row"
@@ -499,7 +499,8 @@
                                 <i-button ng-hide="order_invoice.has_invoice" type="add"
                                     label="##word.create_an_invoice##" ng-click="addCreateInvoice()">
                                 </i-button>
-                                <i-button type="print" label="##word.print_invoice##" ng-click="printCreateInvoive()"></i-button>
+                                <i-button type="print" label="##word.print_invoice##" ng-click="printCreateInvoive()">
+                                </i-button>
                             </div>
                         </div>
 

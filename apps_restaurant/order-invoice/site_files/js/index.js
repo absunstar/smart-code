@@ -26,7 +26,6 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
   $scope.newOrderInvoice = function () {
     $scope.error = "";
 
-
     $scope.get_open_shift((shift) => {
       if (shift) {
         $scope.order_invoice = {
