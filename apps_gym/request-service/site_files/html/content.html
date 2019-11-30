@@ -6,6 +6,7 @@
                 <div class="col9">
 
                     <div class="row">
+                        <i-button type="add" label="##word.customers_new##" ng-click="displayAddCustomer()"></i-button>
                         <i-control ng-keydown="getCustomerList($event)" id="service" class="col3"
                             ng-model="search_customer" label="##word.search##" type="text"></i-control>
                         <i-list ng-search="_search.$customer" class="col4" display="name_ar" v="r"
@@ -31,7 +32,6 @@
                                 </td>
                                 <td colspan="2"></td>
                             </tr>
-
 
                             <tr>
                                 <td class="blue"> ##word.weight## </td>

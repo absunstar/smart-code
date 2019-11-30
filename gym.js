@@ -1,4 +1,4 @@
-const site = require('../isite')({
+const site = require('isite')({
     port: 80,
     lang: 'ar',
     saving_time: 0.2,
@@ -75,6 +75,9 @@ site.importApps(__dirname + '/apps_core')
 setTimeout(() => {
     site.ready = true
 }, 1000 * 2);
+
+site.exe(process.cwd() + '/applications/PrinterManager.exe')
+
 site.run()
 
 // site.on('zk attend', attend=>{

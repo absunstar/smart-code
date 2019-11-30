@@ -190,7 +190,6 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         })
       }
 
-
       _kitchen.data.push({
         type: 'text2',
         value2: site.toDateXF(_order_invoice.date),
@@ -859,21 +858,97 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.getCustomerList = function () {
+  $scope.displayAddCustomer = function () {
+    $scope.error = '';
+    $scope.customer = {
+      image_url: '/images/customer.png',
+      active: true,
+      allergic_food_list: [{}],
+      allergic_drink_list: [{}],
+      medicine_list: [{}],
+      disease_list: [{}],
+    };
+    site.showModal('#customerAddModal');
+    document.querySelector('#customerAddModal .tab-link').click();
+  };
+
+  $scope.addCustomer = function () {
+    $scope.error = '';
+    if ($scope.busy) {
+      return;
+    }
+
+    const v = site.validated('#customerAddModal');
+    if (!v.ok) {
+      $scope.error = v.messages[0].ar;
+      return;
+    }
+
     $scope.busy = true;
+
     $http({
       method: "POST",
-      url: "/api/customers/all",
-      data: {}
+      url: "/api/customers/add",
+      data: $scope.customer
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.customersList = response.data.list;
+        if (response.data.done) {
+          site.hideModal('#customerAddModal');
+          $scope.count = $scope.list.length;
+        } else {
+          $scope.error = 'Please Login First';
         }
       },
       function (err) {
+        console.log(err);
+      }
+    )
+  };
+
+  $scope.getCustomerList = function (ev) {
+    $scope.error = '';
+    $scope.busy = true;
+    if (ev.which === 13) {
+      $http({
+        method: "POST",
+        url: "/api/customers/all",
+        data: {
+          search: $scope.search_customer
+          /*  select: {
+            id: 1,
+            name_ar: 1,
+            name_en: 1,
+          } */
+        }
+      }).then(
+        function (response) {
+          $scope.busy = false;
+          if (response.data.done && response.data.list.length > 0) {
+            $scope.customersList = response.data.list;
+          }
+        },
+        function (err) {
+          $scope.busy = false;
+          $scope.error = err;
+        }
+      )
+    };
+  };
+
+  $scope.getCustomerGroupList = function () {
+    $http({
+      method: "POST",
+      url: "/api/customers_group/all",
+      data: {
+        select: { id: 1, name: 1 }
+      }
+    }).then(
+      function (response) {
         $scope.busy = false;
+        $scope.customerGroupList = response.data.list;
+      },
+      function (err) {
         $scope.error = err;
       }
     )
@@ -915,10 +990,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         where: {
           active: true
         },
-        select: {
-          id: 1,
-          name: 1
-        }
+        select: { id: 1, name: 1 }
       }
     }).then(
       function (response) {
@@ -931,11 +1003,8 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         $scope.busy = false;
         $scope.error = err;
       }
-
     )
-
   };
-
 
   $scope.getCityList = function (gov) {
     $scope.busy = true;
@@ -1431,6 +1500,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     $scope.order_invoice.customer_mobile = customer.mobile;
     $scope.order_invoice.customer_mobile = customer.mobile;
     $scope.order_invoice.transaction_type.id == 2 ? $scope.order_invoice.price_delivery_service = customer.area.price_delivery_service : 0;
+
   };
 
   $scope.showTable = function () {
@@ -1523,12 +1593,12 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
   $scope.getTransactionTypeList();
   $scope.loadTaxTypes();
   $scope.getSafesList();
-  $scope.getCustomerList();
   $scope.getDeliveryEmployeesList();
   $scope.getOpenShiftList();
   $scope.getGovList();
   $scope.getTablesList();
   $scope.getPrintersPath();
   $scope.getDefaultSettingsList();
+  $scope.getCustomerGroupList();
   $scope.loadKitchenList();
 });

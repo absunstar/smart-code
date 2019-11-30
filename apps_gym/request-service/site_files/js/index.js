@@ -6,6 +6,55 @@ app.controller("request_service", function ($scope, $http, $timeout) {
     site.showModal('#requestServiceAddModal');
   };
 
+  $scope.displayAddCustomer = function () {
+    $scope.error = '';
+    $scope.customer = {
+      image_url: '/images/customer.png',
+      active: true,
+      allergic_food_list: [{}],
+      allergic_drink_list: [{}],
+      medicine_list: [{}],
+      disease_list: [{}],
+    };
+    site.showModal('#customerAddModal');
+    document.querySelector('#customerAddModal .tab-link').click();
+  };
+
+  $scope.addCustomer = function () {
+    $scope.error = '';
+    if ($scope.busy) {
+      return;
+    }
+
+    const v = site.validated('#customerAddModal');
+    if (!v.ok) {
+      $scope.error = v.messages[0].ar;
+      return;
+    }
+
+    $scope.busy = true;
+
+    $http({
+      method: "POST",
+      url: "/api/customers/add",
+      data: $scope.customer
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          site.hideModal('#customerAddModal');
+          $scope.count = $scope.list.length;
+        } else {
+          $scope.error = 'Please Login First';
+        }
+      },
+      function (err) {
+        console.log(err);
+      }
+    )
+  };
+
+
   $scope.getDefaultSettings = function () {
 
     $scope.busy = true;
@@ -519,10 +568,53 @@ app.controller("request_service", function ($scope, $http, $timeout) {
 
   };
 
+  $scope.getCustomerGroupList = function () {
+    $http({
+      method: "POST",
+      url: "/api/customers_group/all",
+      data: {
+        select: {
+          id: 1,
+          name: 1
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.customerGroupList = response.data.list;
+      },
+      function (err) {
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.getIndentfy = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $scope.indentfyList = [];
+    $http({
+      method: "POST",
+      url: "/api/indentfy_employee/all"
+
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.indentfyList = response.data;
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
   $scope.getRequestServiceList();
   /*   $scope.getPeriod();
    */
   $scope.getHallList();
   $scope.getTrainerList();
+  $scope.getCustomerGroupList();
+  $scope.getIndentfy();
   $scope.loadDiscountTypes();
 });

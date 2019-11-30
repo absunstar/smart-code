@@ -15,6 +15,11 @@
         "ar": "الخصم"
     },
     {
+        "name": "print_invoice",
+        "en": "Print Invoice",
+        "ar": "طباعة فاتورة"
+    },
+    {
         "name": "startup_date",
         "en": "StartuP Date",
         "ar": "تاريخ البداية "

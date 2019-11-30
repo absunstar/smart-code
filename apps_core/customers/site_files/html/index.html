@@ -23,16 +23,19 @@
                 <div x-permissions="customers_update || customers_manage" x-import="customers/update_modal.html"></div>
                 <div x-permissions="customers_delete || customers_manage" x-import="customers/delete_modal.html"></div>
                 <div x-permissions="customers_view || customers_manage" x-import="customers/view_modal.html"></div>
-                <div x-permissions="customers_search || customers_manage" x-import="customers/search_all_modal.html"></div>
+                <div x-permissions="customers_search || customers_manage" x-import="customers/search_all_modal.html">
+                </div>
 
                 <div class="row">
-                        <h1 class="bold text-center"> ##word.customers## </h1>
-                    </div>
+                    <h1 class="bold text-center"> ##word.customers## </h1>
+                </div>
 
                 <div class="top-actions">
-                    <i-button type="add" x-permissions="customers_add || customers_manage" label="##word.customers_new##" ng-click="displayAddCustomer()"></i-button>
+                    <i-button type="add" x-permissions="customers_add || customers_manage"
+                        label="##word.customers_new##" ng-click="displayAddCustomer()"></i-button>
 
-                    <i-button type="search" x-permissions="customers_search || customers_manage" label="##word.search_all##" onclick="site.showModal('#customerSearchModal')"></i-button>
+                    <i-button type="search" x-permissions="customers_search || customers_manage"
+                        label="##word.search_all##" onclick="site.showModal('#customerSearchModal')"></i-button>
 
                     <h3 class="bold text-center"> ##word.count## : {{count}} </h3>
                     <br>
@@ -40,11 +43,12 @@
 
                 <table class="table loaded hover center bold" id="t1">
                     <tr>
-                            <th class="not-print"> ##word.logo## </th>
+                        <th class="not-print"> ##word.logo## </th>
                         <th> ##word.customers_code## </th>
                         <th> ##word.customers_name_ar## </th>
-<!--                         <th> ##word.customers_balance## </th>
- -->                        <th> ##word.status## </th>
+                        <!--                         <th> ##word.customers_balance## </th>
+ -->
+                        <th> ##word.status## </th>
                         <th class="not-print"> ##word.actions## </th>
                     </tr>
                     <tr ng-repeat="c in list | orderBy: '-id'">
@@ -55,7 +59,7 @@
                         <td class="blue"> {{c.code}} </td>
                         <td> {{c.name_ar}} </td>
 
-                       <!--  <td class="green bold">
+                        <!--  <td class="green bold">
 
                             <div class="row margin padding" ng-repeat="openBranch in c.opening_balance">
 
@@ -85,17 +89,21 @@
 
                         <td class="center not-print">
 
-                            <i-button type="details" x-permissions="customers_view || customers_manage" label="##word.details##" ng-click="displayDetailsCustomer(c)"></i-button>
+                            <i-button type="details" x-permissions="customers_view || customers_manage"
+                                label="##word.details##" ng-click="displayDetailsCustomer(c)"></i-button>
 
-                            <i-button type="update" x-permissions="customers_edit || customers_manage" label="##word.update##" ng-click="displayUpdateCustomer(c)"></i-button>
+                            <i-button type="update" x-permissions="customers_edit || customers_manage"
+                                label="##word.update##" ng-click="displayUpdateCustomer(c)"></i-button>
 
-                            <i-button type="delete" x-permissions="customers_delete || customers_manage" label="##word.delete##" ng-click="displayDeleteCustomer(c)"></i-button>
+                            <i-button type="delete" x-permissions="customers_delete || customers_manage"
+                                label="##word.delete##" ng-click="displayDeleteCustomer(c)"></i-button>
                         </td>
                     </tr>
 
                 </table>
                 <div class="row">
-                    <i-button x-permissions="customers_print || customers_manage" type="print" label="##word.print##" onclick="site.print('#t1')"></i-button>
+                    <i-button x-permissions="customers_print || customers_manage" type="print" label="##word.print##"
+                        onclick="site.print('#t1')"></i-button>
 
 
                 </div>

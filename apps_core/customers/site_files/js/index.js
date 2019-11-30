@@ -12,18 +12,7 @@ app.controller("customers", function ($scope, $http, $timeout) {
       allergic_drink_list: [{}],
       medicine_list: [{}],
       disease_list: [{}],
-      /*       balance: 0,
-             branch_list: [{
-              charge: [{}]
-            }], 
-            currency_list: [],
-        opening_balance: [{ initial_balance: 0 }], 
-      
-            bank_list: [{}],
-            dealing_company: [{}] */
     };
-    /*     $scope.showOpeningBalance = true;
-     */
     site.showModal('#customerAddModal');
     document.querySelector('#customerAddModal .tab-link').click();
   };
@@ -271,6 +260,26 @@ app.controller("customers", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.getIndentfy = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $scope.indentfyList = [];
+    $http({
+      method: "POST",
+      url: "/api/indentfy_employee/all"
+
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.indentfyList = response.data;
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
   $scope.getBloodType = function () {
     $scope.error = '';
     $scope.busy = true;
@@ -336,26 +345,6 @@ app.controller("customers", function ($scope, $http, $timeout) {
         if (response.data.done && response.data.list.length > 0) {
           $scope.cityList = response.data.list;
         }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
-  };
-
-  $scope.getIndentfy = function () {
-    $scope.error = '';
-    $scope.busy = true;
-    $scope.indentfyList = [];
-    $http({
-      method: "POST",
-      url: "/api/indentfy_employee/all"
-
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        $scope.indentfyList = response.data;
       },
       function (err) {
         $scope.busy = false;
@@ -530,8 +519,8 @@ app.controller("customers", function ($scope, $http, $timeout) {
 
   $scope.getCustomerList();
   $scope.getCustomerGroupList();
-  $scope.getGovList();
   $scope.getIndentfy();
+  $scope.getGovList();
   $scope.getBloodType();
   $scope.getDiseaseList();
   $scope.loadMaritalsStatus();

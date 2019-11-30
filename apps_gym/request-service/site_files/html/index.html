@@ -8,11 +8,9 @@
 <body class="##session.lang##">
 
     <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
-
     </nav>
 
     <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
-
     </nav>
 
     <div id="main-layout" class="container">
@@ -20,6 +18,8 @@
             <div class="row" ng-controller="request_service">
                 <div x-permissions="request_service_add || service_manage" x-import="request-service/add_modal.html">
                 </div>
+                <div x-permissions="request_service_add || service_manage" x-import="customers/add_modal.html"></div>
+
                 <div x-permissions="request_service_update || service_manage"
                     x-import="request-service/update_modal.html"></div>
                 <div x-permissions="request_service_update || service_manage"
