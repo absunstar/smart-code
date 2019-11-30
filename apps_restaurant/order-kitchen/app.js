@@ -52,7 +52,7 @@ module.exports = function init(site) {
         let book_list_report = [];
         docs.forEach(order => {
           order.book_list.forEach(itm => {
-            if (itm.kitchen.id === kitchen.id && !itm.done_kitchen) {
+            if (itm.kitchen && itm.kitchen.id === kitchen.id && !itm.done_kitchen) {
               itm.order = {
                 code: order.code,
                 id: order.id,
