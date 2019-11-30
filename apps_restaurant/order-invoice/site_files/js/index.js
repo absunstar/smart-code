@@ -1188,6 +1188,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
 
   $scope.closeOrder = function () {
 
+    $scope.order_invoice.shift = $scope.order_invoice.shift || $scope.shift;
     if (!$scope.order_invoice || !$scope.order_invoice.shift) {
       return;
     }
