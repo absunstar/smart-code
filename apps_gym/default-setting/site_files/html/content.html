@@ -18,7 +18,10 @@
             <div id="general_Settings" class="tab-content">
                 <fieldset>
                     <legend> ##word.general_Settings## </legend>
-
+                    <div class="row">
+                        <i-checkbox label="##word.create_invoice_from_order##"
+                            ng-model="default_setting.general_Settings.create_invoice"></i-checkbox>
+                    </div>
                     <div class="row">
 
                         <i-list help-id="" ng-search="_search.$trainer_search" class="col3" label="##word.trainer##"
@@ -33,16 +36,17 @@
                             label="##word.source_type##" ng-model="default_setting.general_Settings.source_type"
                             items="sourceTypeList" display="##session.lang##"></i-list>
 
-                        <i-list ng-search="_search.$hall" class="col3" display="name" ng-model="default_setting.general_Settings.hall"
-                            label="##word.hall##" items="hallList"></i-list>
-                       
+                        <i-list ng-search="_search.$hall" class="col3" display="name"
+                            ng-model="default_setting.general_Settings.hall" label="##word.hall##" items="hallList">
+                        </i-list>
+
 
                     </div>
-                    
+
 
                 </fieldset>
 
-              
+
             </div>
 
             <div id="finger_program" class="tab-content">
@@ -98,7 +102,7 @@
                         ng-search="_search.$serach_safes" label="##word.stores_in_safe##"></i-list>
                 </div>
             </fieldset>
-        
+
         </div>
 
         <div id="inventory_settings" class="tab-content">

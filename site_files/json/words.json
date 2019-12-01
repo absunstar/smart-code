@@ -20,6 +20,11 @@
         "ar": "لا يوجد إعدادات"
     },
     {
+        "name": "create_invoice_from_order",
+        "en": "Create Invoice From Order",
+        "ar": "إنشاء فاتورة من الطلبات"
+    },
+    {
         "name": "attend",
         "en": "Attend",
         "ar": "حضور"

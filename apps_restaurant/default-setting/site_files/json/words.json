@@ -19,11 +19,6 @@
         "ar": "الاعدادت الافتراضية"
     },
     {
-        "name": "create_invoice_from_order",
-        "en": "Create Invoice From Order",
-        "ar": "إنشاء فاتورة من الطلبات"
-    },
-    {
         "name": "order_type",
         "en": "Order Type",
         "ar": "نوع الطلب"

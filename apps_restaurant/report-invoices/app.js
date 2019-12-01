@@ -56,6 +56,10 @@ module.exports = function init(site) {
       delete where.date_to
     }
 
+    if (where['shift_code']) {
+      where['shift.code'] = new RegExp(where['shift_code'], 'i')
+      delete where['shift_code']
+    }
 
     if (where['payment_method']) {
       where['payment_method.id'] = where['payment_method'].id;

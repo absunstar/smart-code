@@ -10,6 +10,15 @@
                             <table class="table bold hover">
 
                                 <tr>
+                                    <td class="title"> ##word.shift## </td>
+                                    <td class="center"> {{order_management.shift.code}} </td>
+                                </tr>
+                                <tr>
+                                    <td class="title"> ##word.code## </td>
+                                    <td class="center blue"> {{order_management.code}} </td>
+                                </tr>
+
+                                <tr>
                                     <td class="title"> ##word.status## </td>
                                     <td class="center"> {{order_management.status.ar}} </td>
                                 </tr>
@@ -20,11 +29,6 @@
                                         <b ng-show="order_management.transaction_type.id ==2" class="blue">
                                             ( {{order_management.status_delivery.ar}} )</b>
                                     </td>
-                                </tr>
-
-                                <tr>
-                                    <td class="title"> ##word.code## </td>
-                                    <td class="center blue"> {{order_management.code}} </td>
                                 </tr>
 
                                 <tr>

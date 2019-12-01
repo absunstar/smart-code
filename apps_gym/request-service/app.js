@@ -298,6 +298,12 @@ module.exports = function init(site) {
       })
     }
 
+    
+    if (where['shift_code']) {
+      where['shift.code'] = new RegExp(where['shift_code'], 'i')
+      delete where['shift_code']
+    }
+
     if (where.date_from_to && where.date_from_from) {
       let d1 = site.toDate(where.date_from_from)
       let d2 = site.toDate(where.date_from_to)

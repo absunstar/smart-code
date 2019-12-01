@@ -98,7 +98,7 @@
                             <i-button x-permissions="request_service_update || service_manage" type="view"
                                 label="##word.attend_services_##" ng-click="showAttendServices(c)"></i-button>
 
-                            <i-button ng-hide="c.invoice" type="save" label="##word.create_an_invoice##"
+                            <i-button ng-show="!c.invoice && defaultSettings.general_Settings.create_invoice" type="save" label="##word.create_an_invoice##"
                                 ng-click="displayCreateInvoice(c)">
                             </i-button>
 
