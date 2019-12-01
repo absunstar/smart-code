@@ -71,12 +71,6 @@
                                     <td class="blue"> ##word.phone## </td>
                                     <td colspan="3" class="center"> {{attend_subscribers.customer.phone}}</td>
                                 </tr>
-                                <!--    <tr>
-                                                            <td colspan="3" class="green"> ##word.order_add_count## </td>
-                                                            <td  class="center"> {{attend_subscribers.add_order.length}} </td>
-                                                            <td colspan="3" class="red"> ##word.invoice_close_count## </td>
-                                                            <td  class="center"> {{attend_subscribers.close_order.length}} </td>
-                                                        </tr> -->
 
                             </table>
                         </div>
@@ -87,20 +81,13 @@
                     <div class="row">
 
                         <i-button type="add" class="col2" label="##word.attend_now##" ng-click="attendNow()"></i-button>
-                        <i-date2 class="col3" ng-model="attend_subscribers.attend_date"
+                        <i-date2 class="col4" ng-model="attend_subscribers.attend_date"
                             label="##word.attend_subscribers_attend##"></i-date2>
                         <i-time help-id="attend_subscribers_attend" class="col3"
                             label="##word.attend_subscribers_attend##" ng-model="attend_subscribers.attend"></i-time>
                     </div>
 
                     <br>
-                   <!--  <div class="row">
-                        <i-button type="exit" class="col2" label="##word.leave_now##" ng-click="leaveNow(attend_subscribers)"></i-button>
-                        <i-date2 class="col3" ng-model="attend_subscribers.leave_date"
-                            label="##word.attend_subscribers_leave##"></i-date2>
-                        <i-time help-id="attend_subscribers_leave" class="col3"
-                            label="##word.attend_subscribers_leave##" ng-model="attend_subscribers.leave"></i-time>
-                    </div> -->
 
                 </div>
 

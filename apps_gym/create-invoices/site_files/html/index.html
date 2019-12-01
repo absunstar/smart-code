@@ -34,6 +34,7 @@
                     <span ng-show="busy">
                         <span class="sr-only">Loading...</span>
                     </span>
+                    <h2 class="bold red text-center">{{error}} </h2>
                     <h3 class="bold text-center"> ##word.count## : {{count}} </h3>
                     <br>
                 </div>
@@ -70,8 +71,6 @@
                         <td class="center not-print">
                             <i-button type="details" x-permissions="create_invoices_view || create_invoices_manage"
                                 label="##word.details##" ng-click="displayDetailsCreatInvoices(c)"></i-button>
-                            <!--                             <i-button type="update" x-permissions="create_invoices_edit || create_invoices_manage" label="##word.update##" ng-click="displayUpdateCreatInvoices(c)"></i-button>
- -->
                             <i-button ng-hide="c.remain_amount == 0"
                                 x-permissions="create_invoices_edit || create_invoices_manage" type="edit"
                                 label="##word.payment##" ng-click="displayPaymentInvoices(c)"></i-button>

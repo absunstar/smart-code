@@ -2,10 +2,38 @@ app.controller("request_service", function ($scope, $http, $timeout) {
 
   $scope.request_service = {};
   $scope.displayAddRequestService = function () {
-    site.showModal('#requestServiceAddModal');
+    $scope.error = '';
+    $scope.get_open_shift((shift) => {
+      if (shift) {
+        $scope.discount = {};
+        $scope.request_service = {
+          image_url: '/images/request_service.png',
+          active: true,
+          service_count: 1,
+          date_from: new Date(),
+          date_to: new Date(),
+          time_from: {
+            hour: new Date().getHours(),
+            minute: new Date().getMinutes()
+          },
+          time_to: {
+            hour: new Date().getHours(),
+            minute: new Date().getMinutes()
+          }
+        };
+        if ($scope.defaultSettings.general_Settings) {
+          if ($scope.defaultSettings.general_Settings.hall)
+            $scope.request_service.hall = $scope.defaultSettings.general_Settings.hall;
+          if ($scope.defaultSettings.general_Settings.trainer)
+            $scope.request_service.trainer = $scope.defaultSettings.general_Settings.trainer;
+        };
+        site.showModal('#requestServiceAddModal');
+      } else $scope.error = '##word.open_shift_not_found##';
+    });
   };
 
   $scope.displayAddCustomer = function () {
+
     $scope.error = '';
     $scope.customer = {
       image_url: '/images/customer.png',
@@ -24,15 +52,12 @@ app.controller("request_service", function ($scope, $http, $timeout) {
     if ($scope.busy) {
       return;
     }
-
     const v = site.validated('#customerAddModal');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
     }
-
     $scope.busy = true;
-
     $http({
       method: "POST",
       url: "/api/customers/add",
@@ -53,7 +78,7 @@ app.controller("request_service", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.getDefaultSettings = function () {
+  $scope.getDefaultSettings = function (callback) {
 
     $scope.busy = true;
     $http({
@@ -65,33 +90,8 @@ app.controller("request_service", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done && response.data.doc) {
           $scope.defaultSettings = response.data.doc;
-          $scope.error = '';
-          $scope.discount = {};
-
-          $scope.request_service = {
-            image_url: '/images/request_service.png',
-            active: true,
-            service_count: 1,
-            date_from: new Date(),
-            date_to: new Date(),
-            time_from: {
-              hour: new Date().getHours(),
-              minute: new Date().getMinutes()
-            },
-            time_to: {
-              hour: new Date().getHours(),
-              minute: new Date().getMinutes()
-            }
-          };
-
-          if ($scope.defaultSettings.general_Settings) {
-            if ($scope.defaultSettings.general_Settings.hall)
-              $scope.request_service.hall = $scope.defaultSettings.general_Settings.hall;
-            if ($scope.defaultSettings.general_Settings.trainer)
-              $scope.request_service.trainer = $scope.defaultSettings.general_Settings.trainer;
-          };
-
-        };
+          callback(response.data.doc)
+        } else callback(null)
       },
       function (err) {
         $scope.busy = false;
@@ -130,54 +130,53 @@ app.controller("request_service", function ($scope, $http, $timeout) {
   };
 
   $scope.displayCreateInvoice = function (request_service) {
+    $scope.get_open_shift((shift) => {
+      if (shift) {
+        $scope.create_invoices = {
+          image_url: '/images/create_invoices.png',
+          date: new Date(),
+          request_service_id: request_service.id,
+          customer: request_service.customer,
+          trainer: request_service.trainer,
+          hall: request_service.hall,
+          shift: shift,
+          service_name: request_service.service_name,
+          date_from: request_service.date_from,
+          date_to: request_service.date_to,
+          paid_require: request_service.paid_require,
+          paid_up: 0,
+          service_code: request_service.code,
+          total_discount: request_service.total_discount,
+          active: true
+        };
 
-    $scope.create_invoices = {
-      image_url: '/images/create_invoices.png',
-      date: new Date(),
-      request_service_id: request_service.id,
-      customer: request_service.customer,
-      trainer: request_service.trainer,
-      hall: request_service.hall,
-      service_name: request_service.service_name,
-      date_from: request_service.date_from,
-      date_to: request_service.date_to,
-      paid_require: request_service.paid_require,
-      paid_up: 0,
-      service_code: request_service.code,
-      total_discount: request_service.total_discount,
-      active: true
-    };
+        if ($scope.defaultSettings.general_Settings) {
+          if ($scope.defaultSettings.general_Settings.source_type)
+            $scope.create_invoices.source_type = $scope.defaultSettings.general_Settings.source_type;
+          if ($scope.defaultSettings.general_Settings.payment_method)
+            $scope.create_invoices.payment_method = $scope.defaultSettings.general_Settings.payment_method;
+        };
 
-    if ($scope.defaultSettings.general_Settings) {
-      if ($scope.defaultSettings.general_Settings.source_type)
-        $scope.create_invoices.source_type = $scope.defaultSettings.general_Settings.source_type;
-      if ($scope.defaultSettings.general_Settings.payment_method)
-        $scope.create_invoices.payment_method = $scope.defaultSettings.general_Settings.payment_method;
-    };
-
-    if ($scope.defaultSettings.accounting) {
-      if ($scope.defaultSettings.accounting.safe)
-        $scope.create_invoices.safe = $scope.defaultSettings.accounting.safe;
-    };
-    site.showModal('#createInvoiceModal');
+        if ($scope.defaultSettings.accounting) {
+          if ($scope.defaultSettings.accounting.safe)
+            $scope.create_invoices.safe = $scope.defaultSettings.accounting.safe;
+        };
+        site.showModal('#createInvoiceModal');
+      } else $scope.error = '##word.open_shift_not_found##';
+    });
   };
 
   $scope.addCreateInvoice = function () {
     $scope.error = '';
-    const v = site.validated('#creatInvoicesAddModal');
-    if ($scope.busy) return;
+    $scope.busy = true;
 
-    if (!v.ok) {
-      $scope.error = v.messages[0].ar;
-      return;
-    } else if ($scope.create_invoices.paid_up > 0 && !$scope.create_invoices.safe) {
+     if ($scope.create_invoices.paid_up > 0 && !$scope.create_invoices.safe) {
       $scope.error = "##word.should_select_safe##";
       return;
     } else if ($scope.create_invoices.paid_up > $scope.create_invoices.paid_require) {
       $scope.error = "##word.err_paid_require##";
       return;
     }
-    $scope.busy = true;
 
     if ($scope.create_invoices.paid_up <= 0) $scope.create_invoices.safe = null;
     $http({
@@ -335,9 +334,13 @@ app.controller("request_service", function ($scope, $http, $timeout) {
 
   $scope.displayUpdateRequestService = function (request_service) {
     $scope.error = '';
-    $scope.viewRequestService(request_service);
-    $scope.request_service = {};
-    site.showModal('#requestServiceUpdateModal');
+    $scope.get_open_shift((shift) => {
+      if (shift) {
+        $scope.viewRequestService(request_service);
+        $scope.request_service = {};
+        site.showModal('#requestServiceUpdateModal');
+      } else $scope.error = '##word.open_shift_not_found##';
+    });
   };
 
   $scope.updateRequestService = function () {
@@ -425,10 +428,13 @@ app.controller("request_service", function ($scope, $http, $timeout) {
 
   $scope.displayDeleteRequestService = function (request_service) {
     $scope.error = '';
-    $scope.viewRequestService(request_service);
-    $scope.request_service = {};
-    site.showModal('#requestServiceDeleteModal');
-
+    $scope.get_open_shift((shift) => {
+      if (shift) {
+        $scope.viewRequestService(request_service);
+        $scope.request_service = {};
+        site.showModal('#requestServiceDeleteModal');
+      } else $scope.error = '##word.open_shift_not_found##';
+    });
   };
 
   $scope.deleteRequestService = function () {
@@ -843,6 +849,33 @@ app.controller("request_service", function ($scope, $http, $timeout) {
       function (err) {
         $scope.busy = false;
         $scope.error = err;
+      }
+    )
+  };
+
+  $scope.get_open_shift = function (callback) {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/shifts/get_open_shift",
+      data: {
+        where: { active: true },
+        select: { id: 1, name: 1, code: 1, from_date: 1, from_time: 1, to_date: 1, to_time: 1 }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.doc) {
+          $scope.shift = response.data.doc;
+          callback(response.data.doc);
+        } else {
+          callback(null);
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+        callback(null);
       }
     )
   };

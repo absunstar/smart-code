@@ -15,6 +15,11 @@
         "ar": "الخصم"
     },
     {
+        "name": "settings_not_found",
+        "en": "Settings Not Found",
+        "ar": "لا يوجد إعدادات"
+    },
+    {
         "name": "attend",
         "en": "Attend",
         "ar": "حضور"

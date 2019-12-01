@@ -5,12 +5,16 @@ app.controller("attend_subscribers", function ($scope, $http, $timeout, $interva
 
   $scope.displayAddAttendSubscribers = function () {
     $scope.error = '';
-    $scope.attend_subscribers = {
-      image_url: '/images/attend_subscribers.png',
-      active: true,
-      date: new Date()
-    };
-    site.showModal('#attendSubscribersAddModal');
+    $scope.get_open_shift((shift) => {
+      if (shift) {
+        $scope.attend_subscribers = {
+          image_url: '/images/attend_subscribers.png',
+          active: true,
+          date: new Date()
+        };
+        site.showModal('#attendSubscribersAddModal');
+      } else $scope.error = '##word.open_shift_not_found##';
+    });
   };
 
   $scope.addAttendSubscribers = function () {
@@ -110,18 +114,21 @@ app.controller("attend_subscribers", function ($scope, $http, $timeout, $interva
   };
 
   $scope.displayDeleteAttendSubscribers = function (attend_subscribers) {
-    $scope.error = '';
-    $scope.viewAttendSubscribers(attend_subscribers);
-    $scope.attend_subscribers = {};
-    site.showModal('#attendSubscribersDeleteModal');
-
+    $scope.get_open_shift((shift) => {
+      if (shift) {
+        $scope.error = '';
+        $scope.viewAttendSubscribers(attend_subscribers);
+        $scope.attend_subscribers = {};
+        site.showModal('#attendSubscribersDeleteModal');
+      } else $scope.error = '##word.open_shift_not_found##';
+    });
   };
 
   $scope.deleteAttendSubscribers = function () {
     $scope.busy = true;
     $scope.error = '';
     let id = $scope.attend_subscribers ? $scope.attend_subscribers.id : null;
-    if(!id){
+    if (!id) {
       return false;
     }
     $http({
@@ -149,34 +156,34 @@ app.controller("attend_subscribers", function ($scope, $http, $timeout, $interva
   $scope.list = [];
   $scope.getAttendSubscribersList = function (where) {
     $scope.busy = true;
-    
+
     $http({
       method: "POST",
       url: "/api/attend_subscribers/all",
       data: {
         where: where,
-        limit : 10
+        limit: 10
       }
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done && response.data.list.length > 0) {
-          if($scope.list.length == response.data.list.length){
-            response.data.list.forEach((d , i) => {
-              if(!$scope.list[i].leave_date && d.leave_date){
+          if ($scope.list.length == response.data.list.length) {
+            response.data.list.forEach((d, i) => {
+              if (!$scope.list[i].leave_date && d.leave_date) {
                 $scope.list[i].leave_date = d.leave_date;
                 $scope.list[i].leave = d.leave;
               }
-              
+
             });
-          }else{
+          } else {
             $scope.list = response.data.list;
             $scope.count = response.data.count;
             site.hideModal('#attendSubscribersSearchModal');
             $scope.search = {};
           }
-          
-        }else{
+
+        } else {
           $scope.list = [];
         }
       },
@@ -255,31 +262,64 @@ app.controller("attend_subscribers", function ($scope, $http, $timeout, $interva
   };
 
   $scope.leaveNow = function (attend_subscribers) {
-    attend_subscribers.leave_date = new Date();
-    attend_subscribers.leave = {
-      hour: new Date().getHours(),
-      minute: new Date().getMinutes()
-    };
+    $scope.get_open_shift((shift) => {
+      if (shift) {
+        attend_subscribers.leave_date = new Date();
+        attend_subscribers.leave = {
+          hour: new Date().getHours(),
+          minute: new Date().getMinutes()
 
+        };
+
+        $scope.busy = true;
+        $http({
+          method: "POST",
+          url: "/api/attend_subscribers/update",
+          data: attend_subscribers
+        }).then(
+          function (response) {
+            $scope.busy = false;
+            if (response.data.done) {
+              $scope.getAttendSubscribersList();
+            } else {
+              $scope.error = 'Please Login First';
+            }
+          },
+          function (err) {
+            console.log(err);
+          }
+        )
+      } else $scope.error = '##word.open_shift_not_found##';
+    });
+  };
+
+  $scope.get_open_shift = function (callback) {
     $scope.busy = true;
     $http({
       method: "POST",
-      url: "/api/attend_subscribers/update",
-      data: attend_subscribers
+      url: "/api/shifts/get_open_shift",
+      data: {
+        where: { active: true },
+        select: { id: 1, name: 1, code: 1, from_date: 1, from_time: 1, to_date: 1, to_time: 1 }
+      }
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done) {
-          $scope.getAttendSubscribersList();
+        if (response.data.done && response.data.doc) {
+          $scope.shift = response.data.doc;
+          callback(response.data.doc);
         } else {
-          $scope.error = 'Please Login First';
+          callback(null);
         }
       },
       function (err) {
-        console.log(err);
+        $scope.busy = false;
+        $scope.error = err;
+        callback(null);
       }
     )
   };
+
 
   $scope.searchAll = function () {
     $scope.getAttendSubscribersList($scope.search);

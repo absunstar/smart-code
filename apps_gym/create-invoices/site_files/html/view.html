@@ -9,6 +9,14 @@
 
                             <table class="table bold hover">
                                 <tr>
+                                    <td class="title"> ##word.shift## </td>
+                                    <td class="center"> {{create_invoices.shift.code}} </td>
+                                </tr>
+                                <tr>
+                                    <td class="title"> ##word.code## </td>
+                                    <td class="center blue"> {{create_invoices.code}} </td>
+                                </tr>
+                                <tr>
                                     <td class="title"> ##word.payment_method## </td>
                                     <td class="center"> {{create_invoices.payment_method.ar}} </td>
                                 </tr>
@@ -16,10 +24,7 @@
                                     <td class="title"> ##word.source_type## </td>
                                     <td class="center"> {{create_invoices.source_type.ar}} </td>
                                 </tr>
-                                <tr>
-                                    <td class="title"> ##word.code## </td>
-                                    <td class="center blue"> {{create_invoices.code}} </td>
-                                </tr>
+
                                 <tr>
                                     <td class="title"> ##word.date## </td>
                                     <td class="center brown"> {{create_invoices.date | date : 'dd - MM - yyyy'}} </td>
@@ -78,10 +83,10 @@
                                 </tr>
 
                                 <tr>
-                                        <td class="title">##word.notes##</td>
-                                        <td class="center">{{create_invoices.notes}}</td>
-                                    </tr>
-    
+                                    <td class="title">##word.notes##</td>
+                                    <td class="center">{{create_invoices.notes}}</td>
+                                </tr>
+
 
                                 <tr>
                                     <td class="title"> ##word.active## </td>
