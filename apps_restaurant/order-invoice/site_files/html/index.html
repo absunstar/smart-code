@@ -3,6 +3,9 @@
 
 <head x-import="head.html">
     <style>
+        body{
+            margin-bottom: 50px;
+        }
         .order-invoice {
             padding: 5px;
         }
@@ -159,8 +162,7 @@
     </nav>
 
     <div id="main-layout" class="container">
-        <div class="row" style="
-        margin-bottom: 200px !important;">
+        <div class="row" >
             <div class="row" ng-controller="order_invoice">
                 <div x-permissions="order_invoice_add || order_invoice_manage"
                     x-import="order-invoice/order_invoices_active.html">
@@ -499,10 +501,12 @@
                                 <i-button ng-hide="order_invoice.has_invoice" type="add"
                                     label="##word.create_an_invoice##" ng-click="addCreateInvoice()">
                                 </i-button>
-                                <i-button type="print" label="##word.print_invoice##" ng-click="printCreateInvoive()">
-                                </i-button>
+                                
                             </div>
                         </div>
+
+                        <i-button ng-show="order_invoice.code" type="print" label="##word.print_invoice##" ng-click="printCreateInvoive()">
+                        </i-button>
 
                     </div>
                 </div>

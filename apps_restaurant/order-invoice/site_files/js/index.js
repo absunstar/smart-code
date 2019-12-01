@@ -297,7 +297,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
       return;
     }
     $scope.busy = true;
-    const v = site.validated('#creatInvoicesAddModal');
+
     $scope.create_invoices = {
       shift: $scope.order_invoice.shift,
       source_type: {
@@ -348,10 +348,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
 
     }
 
-    if (!v.ok) {
-      $scope.error = v.messages[0].ar;
-      return;
-    }
+    
 
     if ($scope.create_invoices.paid_up <= 0) $scope.create_invoices.safe = null;
 
@@ -386,6 +383,57 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     if ($scope.busy) return;
     $scope.busy = true;
 
+
+    $scope.create_invoices = {
+      shift: $scope.order_invoice.shift,
+      source_type: {
+        id: 2,
+        en: "Order Invoices",
+        ar: "شاشة الطلبات"
+      },
+      image_url: '/images/create_invoices.png',
+      date: new Date(),
+      active: true,
+      net_value: $scope.order_invoice.net_value,
+      paid_up: $scope.paid_up || 0
+    };
+
+    if ($scope.defaultSettings.general_Settings) {
+      if ($scope.defaultSettings.general_Settings.payment_method)
+        $scope.create_invoices.payment_method = $scope.defaultSettings.general_Settings.payment_method;
+    }
+
+    if ($scope.safe)
+      $scope.create_invoices.safe = $scope.safe;
+    $scope.create_invoices.order_invoices_type = $scope.order_invoice.transaction_type;
+
+    if ($scope.order_invoice.customer)
+      $scope.create_invoices.customer = $scope.order_invoice.customer;
+
+    if ($scope.order_invoice.delivery_employee)
+      $scope.create_invoices.delivery_employee = $scope.order_invoice.delivery_employee;
+
+    if ($scope.order_invoice.table)
+      $scope.create_invoices.table = $scope.order_invoice.table;
+
+    if ($scope.order_invoice) {
+      $scope.create_invoices.current_book_list = $scope.order_invoice.book_list;
+      $scope.create_invoices.order_invoices_id = $scope.order_invoice.id;
+
+      if ($scope.order_invoice.total_tax)
+        $scope.create_invoices.total_tax = $scope.order_invoice.total_tax;
+
+      if ($scope.order_invoice.total_discount)
+        $scope.create_invoices.total_discount = $scope.order_invoice.total_discount;
+
+      if ($scope.order_invoice.price_delivery_service)
+        $scope.create_invoices.price_delivery_service = $scope.order_invoice.price_delivery_service;
+
+      if ($scope.order_invoice.service)
+        $scope.create_invoices.service = $scope.order_invoice.service;
+
+    }
+    
     let ip = '127.0.0.1';
     let port = '11111';
     if ($scope.defaultSettings.printer_program) {
