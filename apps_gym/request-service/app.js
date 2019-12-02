@@ -297,7 +297,6 @@ module.exports = function init(site) {
         'hall.name': new RegExp(search, "i")
       })
     }
-
     
     if (where['shift_code']) {
       where['shift.code'] = new RegExp(where['shift_code'], 'i')

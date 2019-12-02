@@ -1,15 +1,7 @@
 app.controller("report_trainer_attend", function ($scope, $http) {
 
-  var Search = function () {
-    return {
-      trainer: {},
-      date: new Date()
-    }
-  };
-
   $scope.report = {};
 
-  $scope.search = new Search();
 
   $scope.showSearch = function () {
     site.showModal('#searchModal');
@@ -19,15 +11,11 @@ app.controller("report_trainer_attend", function ($scope, $http) {
   $scope.searchAll = function () {
 
     $scope.trainer = $scope.search.trainer;
-    $scope.getAttendList($scope.search.trainer);
+    $scope.getAttendList($scope.search);
 
     site.hideModal('#searchModal');
-    $scope.clearAll();
   };
 
-  $scope.clearAll = function () {
-    $scope.search = new Search();
-  };
   $scope.getTrainerList = function () {
     $scope.busy = true;
     $http({
@@ -53,7 +41,7 @@ app.controller("report_trainer_attend", function ($scope, $http) {
     )
   };
 
-  $scope.getAttendList = function (trainer) {
+  $scope.getAttendList = function (where) {
 
     $scope.report = { date: $scope.search.date };
     $scope.busy = true;
@@ -61,33 +49,29 @@ app.controller("report_trainer_attend", function ($scope, $http) {
     $http({
       method: "POST",
       url: "/api/report_trainer_attend/trainer_attend",
-      data: { search: trainer }
+      data: { where: where }
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.attendList = response.data.list;
-          $scope.list1 = [];
+          $scope.list = [];
           $scope.attendList.forEach(itm1 => {
             let exit = false;
-            $scope.list1.forEach(itm2 => {
+            $scope.list.forEach(itm2 => {
               if (itm1.code == itm2.code) {
                 itm2.list.push(itm1);
                 exit = true;
               }
             });
-
             if (!exit) {
-              $scope.list1.push({
+              $scope.list.push({
                 code: itm1.code,
                 list: [itm1]
               });
             }
           });
-
-
         }
-
       },
       function (err) {
         $scope.busy = false;
