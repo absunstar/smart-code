@@ -4,6 +4,6 @@
     "en": "Sales Add Admin",
     "ar": "إدارة المبيعات",
     "permissions": [
-        "*"
+        "company"
     ]
 }]

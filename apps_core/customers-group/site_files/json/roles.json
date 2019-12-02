@@ -1,5 +1,5 @@
 [{
-    "module_name" : "sales" ,
+    "module_name" : "public" ,
     "name": "sales_customers_group_admin",
     "en": "Customers Group  Admin",
     "ar": "إدارة مجموعة العملاء",
