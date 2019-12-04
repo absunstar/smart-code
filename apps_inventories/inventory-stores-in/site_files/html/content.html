@@ -9,14 +9,16 @@
 
                 </div>
                 <div class="row">
+                    <i-list help-id="" ng-search="_search.$payment_method_search" class="col2"
+                        label="##word.payment_method##" ng-model="store_in.payment_method"
+                        items="paymentMethodList" display="##session.lang##">
+                    </i-list>
                     <i-list v="r" ng-search="_search.$storein_type" display="##session.lang##" class="col2"
-                        ng-model="store_in.type" items="stores_in_types" ng-change="getSafeBySetting()" label="##word.stores_outtypes##"></i-list>
-                  <!--   <i-control class="col2" ng-model="store_in.number" label="##word.stores_in_number##" type="text"
-                        v="r">
-                    </i-control> -->
+                        ng-model="store_in.type" items="storesInTypes" ng-change="getSafeBySetting()"
+                        label="##word.stores_outtypes##"></i-list>
                     <i-control class="col2" ng-model="store_in.supply_number" label="##word.stores_in_supply_number##"
                         type="text"></i-control>
-                    <i-date2 class="col2" ng-model="store_in.supply_date" label="##word.stores_in_supply_date##">
+                    <i-date2 class="col4" ng-model="store_in.supply_date" label="##word.stores_in_supply_date##">
                     </i-date2>
                 </div>
 
@@ -24,12 +26,10 @@
 
                     <i-list ng-show="store_in.type.id== 1" class="col3" ng-model="store_in.safe" items="safes"
                         ng-search="_search.$serach_safes" label="##word.stores_in_safe##"></i-list>
-
                     <i-list class="col3" ng-model="store_in.vendor" items="vendorsList" display="name_ar"
                         ng-search="_search.$search_vendor" label="##word.stores_in_Company_name##" v="r"></i-list>
                     <i-list class="col3" ng-model="store_in.store" items="stores" ng-search="_search.$search_stores"
                         label="##word.stores_in_store##" v="r"></i-list>
-
 
                 </div>
 

@@ -59,11 +59,7 @@
         "en": "Invoice Type",
         "ar": "نوع الفاتورة"
     },
-    {
-        "name": "payment_method",
-        "en": "Payment Method",
-        "ar": "طريقة الدفع"
-    },
+
     {
         "name": "payment",
         "en": "Payment",

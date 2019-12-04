@@ -50,6 +50,7 @@ app.controller("default_setting", function ($scope, $http) {
       }
     )
   };
+
   $scope.loadCustomers = function () {
     $scope.error = '';
     $scope.busy = true;

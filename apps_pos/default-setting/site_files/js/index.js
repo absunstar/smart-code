@@ -7,10 +7,7 @@ if (btn1) {
 app.controller("default_setting", function ($scope, $http) {
   $scope._search = {};
 
-  $scope.default_setting = {
-
-  };
-
+  $scope.default_setting = {};
 
   $scope.showSearch = function () {
     site.showModal('#searchModal');
@@ -28,7 +25,36 @@ app.controller("default_setting", function ($scope, $http) {
     $scope.search = new Search();
   };
 
+  $scope.getCustomerList = function (ev) {
+    $scope.error = '';
+    $scope.busy = true;
+    if (ev.which === 13) {
+      $http({
+        method: "POST",
+        url: "/api/customers/all",
+        data: {
+          search: $scope.search_customer,
 
+          /*  select: {
+            id: 1,
+            name_ar: 1,
+            name_en: 1,
+          } */
+        }
+      }).then(
+        function (response) {
+          $scope.busy = false;
+          if (response.data.done && response.data.list.length > 0) {
+            $scope.customersList = response.data.list;
+          }
+        },
+        function (err) {
+          $scope.busy = false;
+          $scope.error = err;
+        }
+      )
+    };
+  };
 
   $scope.loadVendors = function () {
     $scope.error = '';
@@ -50,28 +76,6 @@ app.controller("default_setting", function ($scope, $http) {
       }
     )
   };
-  $scope.loadCustomers = function () {
-    $scope.error = '';
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/customers/all",
-      data: {}
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          $scope.customersList = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
-  };
-
-
 
   $scope.loadStores = function () {
     $scope.error = '';
@@ -224,6 +228,43 @@ app.controller("default_setting", function ($scope, $http) {
     )
   };
 
+  $scope.loadStoresOutTypes = function () {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: '/api/stores_out/types/all',
+      data: {}
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.storesOutTypes = response.data;
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.loadStoresInTypes = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: '/api/stores_in/types/all',
+      data: {}
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.storesInTypes = response.data;
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
   $scope.getPaymentMethodList = function () {
     $scope.error = '';
     $scope.busy = true;
@@ -321,13 +362,14 @@ app.controller("default_setting", function ($scope, $http) {
   $scope.loadSafes();
   $scope.loadStores();
   $scope.loadVendors();
-  $scope.loadCustomers();
   $scope.getTrainerList();
   $scope.getPaymentMethodList();
   $scope.getDiscountMethodList();
   $scope.getPlaceProgramList();
+  $scope.loadStoresOutTypes();
   $scope.getHallList();
   $scope.getSourceType();
+  $scope.loadStoresInTypes();
   $scope.loadSetting();
   $scope.getPrintersPath();
 });

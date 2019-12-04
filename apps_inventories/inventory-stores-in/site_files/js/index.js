@@ -136,10 +136,20 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
           if ($scope.defaultSettings.general_Settings) {
             if ($scope.defaultSettings.general_Settings.vendor)
               $scope.store_in.vendor = $scope.defaultSettings.general_Settings.vendor
+            if ($scope.defaultSettings.general_Settings.payment_method)
+              $scope.store_in.payment_method = $scope.defaultSettings.general_Settings.payment_method;
           }
           if ($scope.defaultSettings.inventory) {
             if ($scope.defaultSettings.inventory.store) {
               $scope.store_in.store = $scope.defaultSettings.inventory.store
+            }
+            if ($scope.defaultSettings.inventory.type_in) {
+              $scope.store_in.type = $scope.defaultSettings.inventory.type_in
+              if ($scope.defaultSettings.inventory.type_in.id == 1) {
+                if ($scope.defaultSettings.accounting && $scope.defaultSettings.accounting.safe) 
+                    $scope.store_in.safe = $scope.defaultSettings.accounting.safe
+                
+              }
             }
           }
         };
@@ -549,6 +559,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
       }
     )
   };
+
   $scope.loadStoresInTypes = function () {
     $scope.error = '';
     $scope.busy = true;
@@ -559,7 +570,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
-        $scope.stores_in_types = response.data;
+        $scope.storesInTypes = response.data;
       },
       function (err) {
         $scope.busy = false;
@@ -567,8 +578,6 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
       }
     )
   };
-
-
 
   $scope.loadCategories = function () {
     $scope.error = '';
@@ -806,14 +815,34 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
 
   $scope.getSafeBySetting = function () {
     $scope.error = '';
-    if($scope.store_in.type.id == 1){      
-      if ($scope.defaultSettings.accounting) {                
+    if ($scope.store_in.type.id == 1) {
+      if ($scope.defaultSettings.accounting) {
         if ($scope.defaultSettings.accounting.safe) {
           $scope.store_in.safe = $scope.defaultSettings.accounting.safe
         }
       }
     }
-    
+  };
+  
+
+  $scope.getPaymentMethodList = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $scope.paymentMethodList = [];
+    $http({
+      method: "POST",
+      url: "/api/payment_method/all"
+
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.paymentMethodList = response.data;
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
   };
 
   $scope.get_open_shift = function (callback) {
@@ -848,6 +877,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
   $scope.loadVendors();
   $scope.loadStores();
   $scope.loadCategories();
+  $scope.getPaymentMethodList();
   $scope.loadTax_Types();
   $scope.loadDiscount_Types();
   $scope.loadAll({ date: new Date() });

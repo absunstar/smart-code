@@ -21,11 +21,15 @@
                     </i-list>
                 </div>
                 <div class="row">
+
+                    <i-list help-id="" ng-search="_search.$payment_method_search" class="col2"
+                        label="##word.payment_method##" ng-model="store_out.payment_method"
+                        items="paymentMethodList" display="##session.lang##">
+                    </i-list>
+
                     <i-list display="##session.lang##" ng-search="_search.$search_in_out" class="col3"
-                        ng-model="store_out.type" items="stores_out_types" label="##word.stores_outtypes##"></i-list>
-                    
-                    <!--  <i-control class="col3" ng-model="store_out.number" label="##word.stores_out_number##" v="r">
-                    </i-control> -->
+                        ng-model="store_out.type" items="storesOutTypes" label="##word.stores_outtypes##"></i-list>
+
                     <i-list class="col3" ng-model="store_out.safe" items="safes" ng-search="_search.$serach_safes"
                         label="##word.stores_out_safe##" v="r"></i-list>
                 </div>

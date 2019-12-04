@@ -10,6 +10,21 @@
         "ar": "الوصف"
     },
     {
+        "name": "payment_method",
+        "en": "Payment Method",
+        "ar": "طريقة الدفع"
+    },
+    {
+        "name": "purchases_invoice_type",
+        "en": "Purchases Invoice Type",
+        "ar": "نوع فاتورة المشتريات"
+    },
+    {
+        "name": "sales_invoice_type",
+        "en": "Sales Invoice Type",
+        "ar": "نوع فاتورة المبيعات"
+    },
+    {
         "name": "discount",
         "en": "Discount",
         "ar": "الخصم"

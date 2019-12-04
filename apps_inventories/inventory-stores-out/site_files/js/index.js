@@ -317,7 +317,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
-        $scope.stores_out_types = response.data;
+        $scope.storesOutTypes = response.data;
       },
       function (err) {
         $scope.busy = false;
@@ -582,15 +582,21 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
             date: new Date(),
             supply_date: new Date()
           };
-          /*   if ($scope.defaultSettings.general_Settings) {
-              if ($scope.defaultSettings.general_Settings.vendor)
-                $scope.store_out.vendor = $scope.defaultSettings.general_Settings.vendor
-            } */
-          if ($scope.defaultSettings.inventory) {
-            if ($scope.defaultSettings.inventory.store) {
-              $scope.store_out.store = $scope.defaultSettings.inventory.store
-            }
+
+          if ($scope.defaultSettings.general_Settings) {
+            if ($scope.defaultSettings.general_Settings.customer)
+            $scope.store_out.customer = $scope.defaultSettings.general_Settings.customer;
+            if ($scope.defaultSettings.general_Settings.payment_method)
+            $scope.store_out.payment_method = $scope.defaultSettings.general_Settings.payment_method;
           }
+
+          if ($scope.defaultSettings.inventory) {
+            if ($scope.defaultSettings.inventory.store) 
+              $scope.store_out.store = $scope.defaultSettings.inventory.store
+            if ($scope.defaultSettings.inventory.type_out) 
+              $scope.store_out.type = $scope.defaultSettings.inventory.type_out
+          }
+
           if ($scope.defaultSettings.accounting) {
             if ($scope.defaultSettings.accounting.safe) {
               $scope.store_out.safe = $scope.defaultSettings.accounting.safe
@@ -707,6 +713,26 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
       },
       function (err) {
         console.log(err);
+      }
+    )
+  };
+
+  $scope.getPaymentMethodList = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $scope.paymentMethodList = [];
+    $http({
+      method: "POST",
+      url: "/api/payment_method/all"
+
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.paymentMethodList = response.data;
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
       }
     )
   };
@@ -914,6 +940,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
   $scope.loadStores();
   $scope.loadTaxTypes();
   $scope.getIndentfy();
+  $scope.getPaymentMethodList();
   $scope.getCustomerGroupList();
   $scope.loadDiscountTypes();
   $scope.loadSafes();
