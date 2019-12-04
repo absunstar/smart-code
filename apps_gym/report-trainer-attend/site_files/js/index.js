@@ -56,21 +56,27 @@ app.controller("report_trainer_attend", function ($scope, $http) {
         if (response.data.done) {
           $scope.attendList = response.data.list;
           $scope.list = [];
-          $scope.attendList.forEach(itm1 => {
-            let exit = false;
-            $scope.list.forEach(itm2 => {
-              if (itm1.code == itm2.code) {
-                itm2.list.push(itm1);
-                exit = true;
+          $scope.attend_count = 0;
+
+          $scope.attendList.forEach(_attend => {
+            let found = false;
+            $scope.list.forEach(_list => {
+              if (_attend.code == _list.code) {
+                _list.list.push(_attend);
+                _list.count = _list.count + 1;
+                found = true;
               }
             });
-            if (!exit) {
+            if (!found) {
               $scope.list.push({
-                code: itm1.code,
-                list: [itm1]
+                code: _attend.code,
+                count: 1,
+                list: [_attend]
               });
             }
           });
+
+          $scope.list.map(_list => $scope.attend_count += _list.count)
         }
       },
       function (err) {

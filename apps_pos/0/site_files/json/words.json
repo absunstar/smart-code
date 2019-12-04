@@ -161,13 +161,13 @@
     },
     {
         "name": "companies_name_ar",
-        "en": "company Name Arabic",
-        "ar": "إسم المطعم"
+        "en": "Point Of Sale Name Arabic",
+        "ar": "إسم نقطة البيع"
     },
     {
         "name": "companies_name_en",
-        "en": "company Name English",
-        "ar": "إسم المطعم بالانجليزية"
+        "en": "Point Of Sale Name English",
+        "ar": "إسم نقطة البيع بالانجليزية"
     },
     {
         "name": "companies_excahange_price",
@@ -181,8 +181,8 @@
     },
     {
         "name": "companies_new",
-        "en": "New company",
-        "ar": "مطعم جديد"
+        "en": "New Point Of Sale",
+        "ar": "نقطة بيع جديدة"
     },
     {
         "name": "companies_country",

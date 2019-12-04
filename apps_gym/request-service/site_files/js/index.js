@@ -170,7 +170,7 @@ app.controller("request_service", function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.busy = true;
 
-     if ($scope.create_invoices.paid_up > 0 && !$scope.create_invoices.safe) {
+    if ($scope.create_invoices.paid_up > 0 && !$scope.create_invoices.safe) {
       $scope.error = "##word.should_select_safe##";
       return;
     } else if ($scope.create_invoices.paid_up > $scope.create_invoices.paid_require) {
@@ -752,15 +752,12 @@ app.controller("request_service", function ($scope, $http, $timeout) {
       $scope.request_service.paid_require = Number($scope.request_service.services_price);
       if ($scope.request_service.discountes && $scope.request_service.discountes.length > 0) {
         $scope.request_service.discountes.forEach(ds => {
-          if (ds.type === "percent") {
-            $scope.request_service.total_discount += total_attend_count * parseFloat(ds.value) / 100;
-          } else {
-            $scope.request_service.total_discount += parseFloat(ds.value);
-          };
+          if (ds.type === "percent") $scope.request_service.total_discount += total_attend_count * parseFloat(ds.value) / 100;
+          else $scope.request_service.total_discount += parseFloat(ds.value);
         });
       };
       $scope.request_service.paid_require = (Number($scope.request_service.services_price) * Number($scope.request_service.service_count || 1)) - $scope.request_service.total_discount;
-    }, 200);
+    }, 250);
   };
 
   $scope.deleteDiscount = function (_ds) {
@@ -884,10 +881,10 @@ app.controller("request_service", function ($scope, $http, $timeout) {
   $scope.getRequestServiceList();
   $scope.getHallList();
   $scope.getTrainerList();
-  $scope.getCustomerGroupList();
   $scope.getPaymentMethodList();
   $scope.getSourceType();
   $scope.getIndentfy();
+  $scope.getCustomerGroupList();
   $scope.getDefaultSettings();
   $scope.loadDiscountTypes();
 });

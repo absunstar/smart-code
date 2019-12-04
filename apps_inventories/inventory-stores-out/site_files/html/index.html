@@ -19,6 +19,8 @@
         <div class="row ">
             <div class="row" ng-controller="stores_out">
                 <div x-permissions="stores_out_add || stores_out_manage" x-import="inventory-stores-out/add_modal.html"></div>
+                <div x-permissions="stores_out_add || stores_out_manage" x-import="customers/add_modal.html">
+                </div>
                 <div x-permissions="stores_out_update || stores_out_manage" x-import="inventory-stores-out/update_modal.html"></div>
                 <div x-permissions="stores_out_delete || stores_out_manage" x-import="inventory-stores-out/delete_modal.html"></div>
                 <div x-permissions="stores_out_view || stores_out_manage" x-import="inventory-stores-out/view_modal.html"></div>

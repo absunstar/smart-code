@@ -46,6 +46,14 @@
 
                             </tr>
 
+                            <tr>
+                                <td class="title">##word.total_attend_count##</td>
+                                <td>
+                                    <p class="center">{{attend_count}}</p>
+                                </td>
+
+                            </tr>
+
                         </table>
                     </div>
 
@@ -56,12 +64,14 @@
 
                 <div class="row" ng-show="trainer" ng-repeat="c in list">
                     <br>
-                    <br>
                     <hr>
                     <br>
                     <h1 class="center title bold">
-                        {{c.code}}
+                       ##word.code## : <b class="blue">{{c.code}}</b> 
                     </h1>
+                    <h2 class="center title bold">
+                        ##word.attend_count## : <b class="green">{{c.count}}</b> 
+                    </h2>
                     <br>
                     <table class="table bold hover dashed">
                         <th>##word.report_trainer_serial##</th>
@@ -99,6 +109,9 @@
 
                         </tr>
                     </table>
+
+                    <br>
+                    <hr>
 
                 </div>
                 <i-button class="not-print" x-permission="export" type="export" label="##word.export_to_excel##"

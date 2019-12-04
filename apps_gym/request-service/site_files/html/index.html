@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" x-permissions="request_service_ui || service_manage" data-ng-app="myApp">
+<html lang="en" x-permissions="request_service_ui || request_service_manage" data-ng-app="myApp">
 
 <head x-import="head.html">
 
@@ -16,25 +16,25 @@
     <div id="main-layout" class="container">
         <div class="row">
             <div class="row" ng-controller="request_service">
-                <div x-permissions="request_service_add || service_manage" x-import="request-service/add_modal.html">
+                <div x-permissions="request_service_add || request_service_manage" x-import="request-service/add_modal.html">
                 </div>
 
-                <div x-permissions="request_service_add || service_manage"
+                <div x-permissions="request_service_add || request_service_manage"
                     x-import="request-service/create_invoice.html">
                 </div>
 
-                <div x-permissions="request_service_add || service_manage" x-import="customers/add_modal.html">
+                <div x-permissions="request_service_add || request_service_manage" x-import="customers/add_modal.html">
                 </div>
 
-                <div x-permissions="request_service_update || service_manage"
+                <div x-permissions="request_service_update || request_service_manage"
                     x-import="request-service/update_modal.html"></div>
-                <div x-permissions="request_service_update || service_manage"
+                <div x-permissions="request_service_update || request_service_manage"
                     x-import="request-service/attend_service.html"></div>
-                <div x-permissions="request_service_delete || service_manage"
+                <div x-permissions="request_service_delete || request_service_manage"
                     x-import="request-service/delete_modal.html"></div>
-                <div x-permissions="request_service_view || service_manage" x-import="request-service/view_modal.html">
+                <div x-permissions="request_service_view || request_service_manage" x-import="request-service/view_modal.html">
                 </div>
-                <div x-permissions="request_service_search || service_manage"
+                <div x-permissions="request_service_search || request_service_manage"
                     x-import="request-service/search_all_modal.html"></div>
 
                 <div class="row">
@@ -42,10 +42,10 @@
                 </div>
 
                 <div class="top-actions">
-                    <i-button x-permissions="request_service_add || service_manage" type="add"
+                    <i-button x-permissions="request_service_add || request_service_manage" type="add"
                         label="##word.service_new##" ng-click="displayAddRequestService()"></i-button>
 
-                    <i-button x-permissions="request_service_search || service_manage" type="search"
+                    <i-button x-permissions="request_service_search || request_service_manage" type="search"
                         label="##word.search_all##" ng-click="displaySearchModal()"></i-button>
 
                     <h2 class="bold red text-center">{{error}}</h2>
@@ -95,13 +95,13 @@
 
                         <td class="center not-print">
 
-                            <i-button x-permissions="request_service_update || service_manage" type="view"
+                            <i-button x-permissions="request_service_update || request_service_manage" type="view"
                                 label="##word.attend_services_##" ng-click="showAttendServices(c)"></i-button>
 
-                            <i-button x-permissions="request_service_update || service_manage" type="edit"
+                            <i-button x-permissions="request_service_update || request_service_manage" type="edit"
                                 label="##word.edit##" ng-click="displayUpdateRequestService(c)"></i-button>
 
-                            <i-button x-permissions="request_service_delete || service_manage" type="delete"
+                            <i-button x-permissions="request_service_delete || request_service_manage" type="delete"
                                 label="##word.delete##" ng-click="displayDeleteRequestService(c)"></i-button>
 
                             <i-button ng-show="!c.invoice && defaultSettings.general_Settings.create_invoice"
@@ -110,10 +110,10 @@
                         </td>
                     </tr>
                 </table>
-                <i-button x-permissions="request_service_print || service_manage" type="print" label="##word.print##"
+                <i-button x-permissions="request_service_print || request_service_manage" type="print" label="##word.print##"
                     onclick="site.print('#t1')"></i-button>
 
-                <i-button x-permissions="request_service_export || service_manage" type="export"
+                <i-button x-permissions="request_service_export || request_service_manage" type="export"
                     label="##word.export_to_excel##" onclick="export_to_xlsx('t1' , 'request_service.xlsx')">
                 </i-button>
             </div>

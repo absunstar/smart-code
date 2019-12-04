@@ -45,6 +45,7 @@ module.exports = function init(site) {
     $shifts.add({
       name: "شيفت إفتراضي",
       image_url: '/images/shift.png',
+      code : $shifts.newCode(),
       company: {
         id: doc.id,
         name_ar: doc.name_ar
@@ -52,6 +53,11 @@ module.exports = function init(site) {
       branch: {
         code: doc.branch_list[0].code,
         name_ar: doc.branch_list[0].name_ar
+      },
+      from_date: new Date(),
+      from_time: {
+        hour: new Date().getHours(),
+        minute: new Date().getMinutes()
       },
       active: true
     }, (err, doc) => { })
@@ -229,7 +235,7 @@ module.exports = function init(site) {
   })
 
   site.post("/api/shifts/is_shift_open", (req, res) => {
-    let response = { is_open : true }
+    let response = { is_open: true }
 
     let where = {}
 
@@ -241,7 +247,7 @@ module.exports = function init(site) {
       select: req.body.select || {},
       where: where,
     }, (err, docs) => {
-      if (!err && docs && docs.length == 0){
+      if (!err && docs && docs.length == 0) {
         response.is_open = false
       }
       res.json(response)
@@ -249,7 +255,7 @@ module.exports = function init(site) {
   })
 
   site.post("/api/shifts/get_open_shift", (req, res) => {
-    let response = { done : false }
+    let response = { done: false }
 
     let where = {}
 
@@ -261,7 +267,7 @@ module.exports = function init(site) {
       select: req.body.select || {},
       where: where,
     }, (err, doc) => {
-      if (!err && doc){
+      if (!err && doc) {
         response.done = true
         response.doc = doc
       }

@@ -13,6 +13,76 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
     sizes: []
   };
 
+  $scope.displayAddCustomer = function () {
+    $scope.error = '';
+    $scope.customer = {
+      image_url: '/images/customer.png',
+      active: true,
+    };
+    site.showModal('#customerAddModal');
+    document.querySelector('#customerAddModal .tab-link').click();
+  };
+
+  $scope.addCustomer = function () {
+    $scope.error = '';
+    if ($scope.busy) {
+      return;
+    }
+    const v = site.validated('#customerAddModal');
+    if (!v.ok) {
+      $scope.error = v.messages[0].ar;
+      return;
+    }
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/customers/add",
+      data: $scope.customer
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          site.hideModal('#customerAddModal');
+          $scope.count = $scope.list.length;
+        } else {
+          $scope.error = 'Please Login First';
+        }
+      },
+      function (err) {
+        console.log(err);
+      }
+    )
+  };
+
+  $scope.getCustomerList = function (ev) {
+    $scope.error = '';
+    $scope.busy = true;
+    if (ev.which === 13) {
+      $http({
+        method: "POST",
+        url: "/api/customers/all",
+        data: {
+          search: $scope.search_customer
+          /*  select: {
+            id: 1,
+            name_ar: 1,
+            name_en: 1,
+          } */
+        }
+      }).then(
+        function (response) {
+          $scope.busy = false;
+          if (response.data.done && response.data.list.length > 0) {
+            $scope.customersList = response.data.list;
+          }
+        },
+        function (err) {
+          $scope.busy = false;
+          $scope.error = err;
+        }
+      )
+    };
+  };
 
   $scope.getItemsName = function (ev) {
     $scope.error = '';
@@ -501,7 +571,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         if (response.data.done && response.data.doc) {
           $scope.defaultSettings = response.data.doc;
           $scope.error = '';
-          $scope.item = {}
+          $scope.item = {}          
           $scope.store_out = {
             image_url: '/images/store_out.png',
             shift: $scope.shift,
@@ -769,6 +839,47 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
     }, 100);
   };
 
+  $scope.getCustomerGroupList = function () {
+    $http({
+      method: "POST",
+      url: "/api/customers_group/all",
+      data: {
+        select: {
+          id: 1,
+          name: 1
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.customerGroupList = response.data.list;
+      },
+      function (err) {
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.getIndentfy = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $scope.indentfyList = [];
+    $http({
+      method: "POST",
+      url: "/api/indentfy_employee/all"
+
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.indentfyList = response.data;
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
   $scope.get_open_shift = function (callback) {
     $scope.error = '';
     $scope.busy = true;
@@ -802,6 +913,8 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
   $scope.loadVendors();
   $scope.loadStores();
   $scope.loadTaxTypes();
+  $scope.getIndentfy();
+  $scope.getCustomerGroupList();
   $scope.loadDiscountTypes();
   $scope.loadSafes();
   $scope.loadAll({ date: new Date() });

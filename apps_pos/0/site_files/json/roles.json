@@ -4,6 +4,6 @@
     "en": "POS Add Admin",
     "ar": "إدارة نقاط البيع",
     "permissions": [
-        "company"
+        "*"
     ]
 }]
