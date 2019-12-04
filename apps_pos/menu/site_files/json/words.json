@@ -20,9 +20,9 @@
         "ar": "المخازن"
     },
     {
-        "name": "sales_setting",
-        "en": "Inventory Accounting Setting",
-        "ar": "إعدادات المخازن و الحسابات"
+        "name": "pos_setting",
+        "en": "Point Of Sale Setting",
+        "ar": "إعدادات نقاط البيع"
     },
     {
         "name": "accounting",

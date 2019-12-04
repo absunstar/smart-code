@@ -1,8 +1,8 @@
 [{
     "module_name":"public",
     "name": "companies_admin",
-    "en": "Sales Add Admin",
-    "ar": "إدارة المبيعات",
+    "en": "POS Add Admin",
+    "ar": "إدارة نقاط البيع",
     "permissions": [
         "company"
     ]

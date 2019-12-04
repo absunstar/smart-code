@@ -2,15 +2,15 @@ const site = require('isite')({
     port: 80,
     lang: 'ar',
     saving_time: 0.2,
-    name: 'sales',
+    name: 'pos',
     theme: 'theme_paper',
     mongodb: {
-        db: 'smart_code_sales',
+        db: 'smart_code_pos',
         limit: 100000
     },
     security: {
         admin: {
-            email: 'sales',
+            email: 'pos',
             password: 'P@$$w0rd'
         }
     }
@@ -44,9 +44,9 @@ site.importApp(__dirname + '/apps_private/ui-help')
 site.importApps(__dirname + '/apps_accounting')
 site.importApps(__dirname + '/apps_inventories')
 site.importApps(__dirname + '/apps_hr')
-site.importApps(__dirname + '/apps_sales')
+site.importApps(__dirname + '/apps_pos')
 site.importApps(__dirname + '/apps_core')
-site.features.push('sales')
+site.features.push('pos')
 setTimeout(() => {
 
     site.importApp(__dirname + '/apps_private/companies')
