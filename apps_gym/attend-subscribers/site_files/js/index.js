@@ -156,7 +156,7 @@ app.controller("attend_subscribers", function ($scope, $http, $timeout, $interva
   $scope.list = [];
   $scope.getAttendSubscribersList = function (where) {
     $scope.busy = true;
-
+    $scope.error = "";
     $http({
       method: "POST",
       url: "/api/attend_subscribers/all",

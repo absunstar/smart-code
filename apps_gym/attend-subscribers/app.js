@@ -91,6 +91,9 @@ module.exports = function init(site) {
           customerDoc.leave = leave_time
           customerDoc.modifiy = new Date().getTime()
           $attend_subscribers.update(customerDoc)
+        }else if (customerDoc){
+          customerDoc.modifiy = new Date().getTime()
+          $attend_subscribers.update(customerDoc)
         }
 
       })

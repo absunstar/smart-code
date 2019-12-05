@@ -50,7 +50,7 @@ module.exports = function init(site) {
                         let attendance_array = site.zk.handleAttendance(_attendance_array)
                         callback(attendance_array)
                         attendance_array.forEach(attend => {
-                            if (!site.zk.attendance_array.some(a => (a.attend_id == attend.attend_id && a.uid == attend.uid))) {
+                            if (!site.zk.attendance_array.some(a => (a.date.getTime() == attend.date.getTime() && a.finger_id == attend.finger_id))) {
                                 site.zk.attendance_array.push(attend)
                                 site.call('zk attend', attend)
                                 $zk_attend.add(attend)
