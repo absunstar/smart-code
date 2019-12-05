@@ -76,6 +76,7 @@ module.exports = function init(site) {
                 company: customerCb.company,
                 branch: customerCb.branch,
                 service_list: request_services_list,
+                modifiy : new Date().getTime()
               });
             });
           });
@@ -88,6 +89,7 @@ module.exports = function init(site) {
           }
           customerDoc.leave_date = new Date(attend.date)
           customerDoc.leave = leave_time
+          customerDoc.modifiy = new Date().getTime()
           $attend_subscribers.update(customerDoc)
         }
 
@@ -313,7 +315,7 @@ module.exports = function init(site) {
       select: req.body.select || {},
       where: where,
       sort: req.body.sort || {
-        id: -1
+        modifiy : -1
       },
       limit: req.body.limit
     }, (err, docs, count) => {
