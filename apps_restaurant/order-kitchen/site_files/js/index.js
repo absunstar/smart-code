@@ -101,6 +101,7 @@ app.controller("order_kitchen", function ($scope, $http, $interval) {
   };
 
   $scope.orderKitchensList = function () {
+    $scope.error = "";
     $scope.busy = true;
     $http({
       method: "POST",
