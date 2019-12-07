@@ -3,9 +3,10 @@
 
 <head x-import="head.html">
     <style>
-        body{
+        body {
             margin-bottom: 50px;
         }
+
         .order-invoice {
             padding: 5px;
         }
@@ -148,6 +149,10 @@
             height: 50px;
             padding-top: 13px;
         }
+
+        .modal-header {
+            min-height: 35px;
+        }
     </style>
 </head>
 
@@ -162,7 +167,7 @@
     </nav>
 
     <div id="main-layout" class="container">
-        <div class="row" >
+        <div class="row">
             <div class="row" ng-controller="order_invoice">
                 <div x-permissions="order_invoice_add || order_invoice_manage"
                     x-import="order-invoice/order_invoices_active.html">
@@ -202,24 +207,64 @@
                             </a>
                         </div>
 
-                        <div class="item-list" ng-show="itemsList.length > 0">
-                            <a class="item pointer" ng-repeat="i in itemsList" ng-click="showItemsIn(i)"
-                                help-id="menu_monitor">
-                                <img ng-src="{{i.image_url}}">
-                                <h2>{{i.name}}</h2>
-                            </a>
+
+                        <div id="itemsListModal" class="modal">
+
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <span class="close">&times;</span>
+                                </div>
+
+                                <div class="modal-body">
+                                    <div class="item-list" ng-show="itemsList.length > 0">
+                                        <a class="item pointer" ng-repeat="i in itemsList" ng-click="showItemsIn(i)"
+                                            help-id="menu_monitor">
+                                            <img ng-src="{{i.image_url}}">
+                                            <h2>{{i.name}}</h2>
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class="modal-footer center">
+                                    <i-button type="close" label="##word.close##"
+                                        onclick="site.hideModal('#itemsListModal')"> </i-button>
+                                </div>
+                            </div>
+
                         </div>
+
+
+
 
                         <br>
 
-                        <div class="item-types">
-                            <a class="item pointer" ng-repeat="s in current_items.sizes" ng-click="bookList(s)"
-                                help-id="menu_monitor">
-                                <img ng-src="{{s.image_url}}" onerror="this.src='/images/no.png'">
-                                <h2>{{s.size}}</h2>
-                            </a>
+                        <div id="sizesModal" class="modal">
+
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <span class="close">&times;</span>
+                                </div>
+
+                                <div class="modal-body">
+                                    <div class="item-types">
+                                        <a class="item pointer" ng-repeat="s in current_items.sizes"
+                                            ng-click="bookList(s)" help-id="menu_monitor">
+                                            <img ng-src="{{s.image_url}}" onerror="this.src='/images/no.png'">
+                                            <h2>{{s.size}}</h2>
+                                        </a>
+
+                                    </div>
+                                </div>
+
+                                <div class="modal-footer center">
+                                    <i-button type="close" label="##word.close##"
+                                        onclick="site.hideModal('#sizesModal')"> </i-button>
+                                </div>
+                            </div>
 
                         </div>
+
+
                     </div>
 
                     <div class="col6 order-invoice">
@@ -501,11 +546,12 @@
                                 <i-button ng-hide="order_invoice.has_invoice" type="add"
                                     label="##word.create_an_invoice##" ng-click="addCreateInvoice()">
                                 </i-button>
-                                
+
                             </div>
                         </div>
 
-                        <i-button ng-show="order_invoice.code" type="print" label="##word.print_invoice##" ng-click="printCreateInvoive()">
+                        <i-button ng-show="order_invoice.code" type="print" label="##word.print_invoice##"
+                            ng-click="printCreateInvoive()">
                         </i-button>
 
                     </div>

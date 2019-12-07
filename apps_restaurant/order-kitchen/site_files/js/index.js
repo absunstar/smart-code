@@ -155,7 +155,7 @@ app.controller("order_kitchen", function ($scope, $http, $interval) {
 
   $interval(() => {
     $scope.orderKitchensList();
-  }, 1000 * 5);
+  }, 1000 * 20);
 
 });
 
