@@ -738,26 +738,6 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
     }
   };
 
-  $scope.getIndentfy = function () {
-    $scope.error = '';
-    $scope.busy = true;
-    $scope.indentfyList = [];
-    $http({
-      method: "POST",
-      url: "/api/indentfy_employee/all"
-
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        $scope.indentfyList = response.data;
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
-  };
-
   $scope.loadItemSize = function () {
     $scope.error = '';
     $scope.busy = true;
@@ -834,7 +814,6 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
   $scope.loadCategories();
   $scope.loadBranches();
   /*   $scope.getPaymentMethodList();*/
-  $scope.getIndentfy();
   $scope.loadItemSize();
   $scope.loadStoresFrom();
   $scope.loadStoresTo();

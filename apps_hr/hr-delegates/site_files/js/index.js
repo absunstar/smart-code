@@ -343,26 +343,6 @@ app.controller("delegate_list", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.getAccountingSystem = function () {
-    $scope.error = '';
-    $scope.busy = true;
-    $scope.accountingSystemList = [];
-    $http({
-      method: "POST",
-      url: "/api/accounting_system/all"
-
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        $scope.accountingSystemList = response.data;
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
-  };
-
   $scope.getGovList = function (where) {
     $scope.busy = true;
     $http({
@@ -459,5 +439,4 @@ app.controller("delegate_list", function ($scope, $http, $timeout) {
   $scope.getIndentfy();
   $scope.loadMaritalsStatus();
   $scope.loadMilitariesStatus();
-  $scope.getAccountingSystem();
 });

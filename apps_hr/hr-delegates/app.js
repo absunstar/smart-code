@@ -18,16 +18,6 @@ module.exports = function init(site) {
     }, (err, doc1) => { })
   })
 
-  site.post({
-    name: "/api/indentfy_delegate/all",
-    path: __dirname + "/site_files/json/indentfy_delegate.json"
-  })
-
-  site.post({
-    name: "/api/accounting_system/all",
-    path: __dirname + "/site_files/json/accounting_system.json"
-  })
-
   site.get({
     name: 'images',
     path: __dirname + '/site_files/images/'
