@@ -43,7 +43,6 @@
     {"name" : "stores_in_section" , "en" : "Section" , "ar" : "القسم"},   
     {"name" : "stores_in_item_cost" , "en" : "Price" , "ar" : "سعر الشراء"},   
     {"name" : "stores_in_item_price" , "en" : "Price" , "ar" : "سعر البيع"},   
-    {"name" : "stores_in_new_balance" , "en" : "Balance" , "ar" : "الرصيد"},   
     {"name" : "stores_in_item_total" , "en" : "Total" , "ar" : "الاجمالي"},   
     {"name" : "stores_in_categories" , "en" : "Categories" , "ar" : "مجموعة الصنف"},   
     {"name" : "stores_in_add_item" , "en" : "Add Item" , "ar" : "إضافة صنف"},   

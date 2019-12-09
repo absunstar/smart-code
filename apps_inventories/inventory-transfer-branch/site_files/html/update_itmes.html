@@ -1,0 +1,143 @@
+
+
+<div ng-hide="busy" class="row" id="v1" fixed>
+        <div class="col9">
+            <br>
+            <table class="table">
+    
+                <tr>
+                    <td class="title">##word.transfer_branch_date##</td>
+                    <td>{{transfer_branch.date | dateX}}</td>
+                </tr>
+    
+    
+                <tr>
+                    <td class="title">##word.transfer_branch_supply_date##</td>
+                    <td>{{transfer_branch.supply_date | dateX}}</td>
+                </tr>
+    
+                <tr>
+                    <td class="title">##word.transfer_branch_id##</td>
+                    <td>{{transfer_branch.number}}</td>
+                </tr>
+                <tr>
+                        <td class="title">##word.transfer_branch_supply_number##</td>
+                        <td>{{transfer_branch.supply_number}}</td>
+                </tr>
+    
+                <tr>
+                    <td class="title">##word.transfer_branch_Company_name##</td>
+                    <td>{{transfer_branch.vendor.name}}</td>
+                </tr>
+    
+                <tr>
+                    <td class="title">##word.transfer_branch_store_name##</td>
+                    <td>{{transfer_branch.store.name}}</td>
+                </tr>
+                <tr>
+                    <td class="title">##word.transfer_branch_categry##</td>
+                    <td>{{transfer_branch.category.name}}</td>
+                </tr>
+    
+                <tr>
+                    <td class="title">##word.transfer_branchtypes##</td>
+                    <td>{{transfer_branch.type.ar}}</td>
+                </tr>
+    
+    
+    
+    
+                <tr>
+                    <td class="title">##word.transfer_branch_items##</td>
+                    <td>
+                        <table class="table hover">
+                            <tr>
+                                <th>##word.serial##</th>
+                                <th>##word.transfer_branch_item_name##</th>
+                                <th>##word.transfer_branch_item_size##</th>
+                                <th>##word.transfer_branch_item_count##</th>
+                                <th class="not-print">##word.transfer_branch_item_cost##</th>
+                                <th class="not-print">##word.transfer_branch_item_price##</th>
+                                <th>##word.transfer_branch_item_total##</th>
+                                <th>##word.transfer_branch_ticket_code##</th>
+    
+                            </tr>
+                            <tr ng-repeat="itm in transfer_branch.items">
+                                <td>{{$index + 1}}</td>
+                                <td>{{itm.name}}</td>
+                                <td>{{itm.size}}</td>
+                                <td>{{itm.count}}</td>
+                                <td class="not-print">{{itm.cost}}</td>
+                                <td class="not-print">{{itm.price}}</td>
+                                <td>{{itm.total}}</td>
+                                <td>{{itm.ticket_code}}</td>
+    
+                                
+    
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+    
+                <tr ng-show="transfer_branch.taxes.length > 0">
+                    <td class="title">##word.transfer_branch_taxes##</td>
+                    <td>
+                        <table class="table hover margin">
+                            <tr>
+                                <th>##word.transfer_branch_tax_name##</th>
+                                <th>##word.transfer_branch_tax_value##</th>
+                            </tr>
+                            <tr ng-repeat="tax in transfer_branch.taxes">
+                                <td> <p class="text-center"> {{tax.name}} </p> </td>
+                                <td> <p class="text-center"> {{tax.value}} % </p>   </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+    
+                <tr ng-show="transfer_branch.discountes.length > 0">
+                    <td class="title">##word.transfer_branch_discountes##</td>
+                    <td>
+                        <table class="table hover margin">
+                            <tr>
+                                <th>##word.transfer_branch_discount_name##</th>
+                                <th>##word.transfer_branch_discount_value##</th>
+                            </tr>
+                            <tr ng-repeat="discount in transfer_branch.discountes">
+                                <td>{{discount.name}}</td>
+                                <td>
+                                    <p class="text-center" ng-show="discount.type == '%'"> {{discount.value}} % </p>
+                                    <p class="text-center" ng-show="discount.type == '0'"> {{discount.value}} ##word.le## </p>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+    
+                <tr>
+                    <td class="title">##word.transfer_branch_total_value##</td>
+                    <td>{{transfer_branch.total_value}} ##word.le##</td>
+                </tr>
+    
+                <tr>
+                    <td class="title">##word.transfer_branch_net_value##</td>
+                    <td>{{transfer_branch.net_value}} ##word.le##</td>
+                </tr>
+    
+                <tr>
+                    <td class="title">##word.transfer_branch_notes##</td>
+                    <td>{{transfer_branch.notes}}</td>
+                </tr>
+    
+            </table>
+        </div>
+           <div class="col3">
+                <br>
+            <i-image view category="stores_images" class="not-print" ng-model="transfer_branch.image_url"></i-image>
+            <br>
+            <i-files view ng-model="transfer_branch.files"></i-files>   
+           </div>
+    
+    </div>
+    
+    

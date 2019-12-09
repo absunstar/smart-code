@@ -5,6 +5,66 @@
         "ar": "الاسم"
     },
     {
+        "name": "quantity",
+        "en": "Quantity",
+        "ar": "الكمية"
+    },
+    {
+        "name": "default_discount",
+        "en": "Default Discount",
+        "ar": "خصم إفتراضي"
+    },
+    {
+        "name": "transaction_type",
+        "en": "Transaction Type",
+        "ar": "نوع المعاملة"
+    },
+    {
+        "name": "balance",
+        "en": "Balance",
+        "ar": "الرصيد"
+    },
+    {
+        "name": "select_items",
+        "en": "Select Items",
+        "ar": "إختيار الأصناف"
+    },
+    {
+        "name": "stores_balances",
+        "en": "Stores Balances",
+        "ar": "أرصدة المخازن"
+    },
+    {
+        "name": "default_store",
+        "en": "Default Store",
+        "ar": "مخزن إفتراضي"
+    },
+    {
+        "name": "store",
+        "en": "ًStore",
+        "ar": "مخزن"
+    },
+    {
+        "name": "store_from",
+        "en": "ًStore From",
+        "ar": "من مخزن"
+    },
+    {
+        "name": "store_to",
+        "en": "ًStore To",
+        "ar": "إلى مخزن"
+    },
+    {
+        "name": "branch_from",
+        "en": "ًBranch From",
+        "ar": "من فرع"
+    },
+    {
+        "name": "branch_to",
+        "en": "ًBranch To",
+        "ar": "إلى فرع"
+    },
+    {
         "name": "description",
         "en": "Description",
         "ar": "الوصف"

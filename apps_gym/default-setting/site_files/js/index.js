@@ -71,15 +71,13 @@ app.controller("default_setting", function ($scope, $http) {
     )
   };
 
-
-
   $scope.loadStores = function () {
     $scope.error = '';
     $scope.busy = true;
     $http({
       method: "POST",
       url: "/api/stores/all",
-      data: {}
+      data: { select: { id: 1, name: 1, type: 1 } }
     }).then(
       function (response) {
         $scope.busy = false;

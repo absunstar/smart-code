@@ -24,6 +24,7 @@ app.controller("stores", function ($scope, $http) {
   };
 
   $scope.loadStores = function () {
+    $scope.error = '';
     $scope.busy = true;
     $http({
       method: "POST",
@@ -43,7 +44,8 @@ app.controller("stores", function ($scope, $http) {
     )
   };
   $scope.loadAll = function (where , limit) {
-    $scope.busy = true;
+    $scope.error = '';
+     $scope.busy = true;
     $http({
       method: "POST",
       url: "/api/stores/all",
@@ -64,7 +66,8 @@ app.controller("stores", function ($scope, $http) {
   };
 
   $scope.loadStoreTypes = function () {
-    $scope.busy = true;
+    $scope.error = '';
+       $scope.busy = true;
     $http({
       method: "POST",
       url: '/api/stores/types/all',

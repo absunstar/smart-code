@@ -185,29 +185,26 @@ module.exports = function init(site) {
     stores_in_doc.date = site.toDateTime(stores_in_doc.date)
 
     stores_in_doc.items.forEach(itm => {
-
       itm.current_count = site.toNumber(itm.current_count)
       itm.count = site.toNumber(itm.count)
       itm.cost = site.toNumber(itm.cost)
       itm.price = site.toNumber(itm.price)
       itm.total = site.toNumber(itm.total)
-
     })
 
-    stores_in_doc.discount = site.toNumber(stores_in_doc.discount)
     // stores_in_doc.octazion = site.toNumber(stores_in_doc.octazion)
-    stores_in_doc.net_discount = site.toNumber(stores_in_doc.net_discount)
     stores_in_doc.total_value = site.toNumber(stores_in_doc.total_value)
     stores_in_doc.net_value = site.toNumber(stores_in_doc.net_value)
 
     $stores_in.add(stores_in_doc, (err, doc) => {
 
       if (!err) {
-        doc.items.forEach(itm => {
-          itm.status_store_in = doc.type
-          itm.company = doc.company
-          itm.branch = doc.branch
-          site.call('[stores_in][stores_items][opening_balance]', itm)
+        doc.items.forEach(_itm => {
+          _itm.status_store_in = doc.type
+          _itm.store = doc.store
+          _itm.company = doc.company
+          _itm.branch = doc.branch
+          site.call('[stores_in][stores_items][add_balance]', _itm)
         });
 
         response.done = true
@@ -221,14 +218,10 @@ module.exports = function init(site) {
           number: doc.number,
           notes: doc.notes
         }
+
         if (Obj.value && Obj.safe && Obj.date && Obj.number) {
           site.call('[stores_in][safes][-]', Obj)
         }
-
-        site.call('please add to vendor balance', {
-          id: stores_in_doc.vendor.id,
-          balance: stores_in_doc.net_value
-        })
 
         stores_in_doc.items.forEach(itm => {
           itm.company = stores_in_doc.company
@@ -272,9 +265,7 @@ module.exports = function init(site) {
       itm.total = site.toNumber(itm.total)
     })
 
-    stores_in_doc.discount = site.toNumber(stores_in_doc.discount)
     // stores_in_doc.octazion = site.toNumber(stores_in_doc.octazion)
-    stores_in_doc.net_discount = site.toNumber(stores_in_doc.net_discount)
     stores_in_doc.total_value = site.toNumber(stores_in_doc.total_value)
 
     if (stores_in_doc._id) {

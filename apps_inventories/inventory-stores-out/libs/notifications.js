@@ -8,9 +8,9 @@ module.exports = function init(site) {
   }
 
   let image_url = '/images/store_out.png'
-  let add_message = {name : 'New store  Out Added' , ar : 'تم إضافة أذن صرف جديد'}
-  let update_message =  {name : ' Store Out updated' , ar : 'تم تعديل أذن صرف'}
-  let delete_message =  {name : ' Store Out dleteted' , ar : 'تم حذف أذن صرف '}
+  let add_message = {name : 'New Store Out Added' , ar : 'تم إضافة إذن صرف جديد'}
+  let update_message =  {name : ' Store Out updated' , ar : 'تم تعديل إذن صرف'}
+  let delete_message =  {name : ' Store Out dleteted' , ar : 'تم حذف إذن صرف '}
 
 
   site.on('mongodb after insert', function (result) {
@@ -39,7 +39,8 @@ module.exports = function init(site) {
           value: {name : result.old_doc.number , ar : result.old_doc.number},
           update: site.objectDiff(result.update.$set, result.old_doc),
           action: 'update'
-        }, result : result })
+        }, result : result }
+        )
       }
   })
 

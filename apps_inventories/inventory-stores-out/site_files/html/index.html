@@ -14,90 +14,111 @@
     <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
 
     </nav>
-
     <div id="main-layout" class="container">
         <div class="row ">
             <div class="row" ng-controller="stores_out">
-                <div x-permissions="stores_out_add || stores_out_manage" x-import="inventory-stores-out/add_modal.html"></div>
+                <div x-permissions="stores_out_add || stores_out_manage" x-import="inventory-stores-out/add_modal.html">
+                </div>
                 <div x-permissions="stores_out_add || stores_out_manage" x-import="customers/add_modal.html">
                 </div>
-                <div x-permissions="stores_out_update || stores_out_manage" x-import="inventory-stores-out/update_modal.html"></div>
-                <div x-permissions="stores_out_delete || stores_out_manage" x-import="inventory-stores-out/delete_modal.html"></div>
-                <div x-permissions="stores_out_view || stores_out_manage" x-import="inventory-stores-out/view_modal.html"></div>
-                <div x-permissions="stores_out_search || stores_out_manage" x-import="inventory-stores-out/search_all_modal.html"></div>
-                <div x-permissions="stores_out_add || stores_out_manage" x-import="inventory-stores-out/select_items_modal.html"></div>
- 
+                <div x-permissions="stores_out_delete || stores_out_manage"
+                    x-import="inventory-stores-out/delete_modal.html"></div>
+                <div x-permissions="stores_out_view || stores_out_manage"
+                    x-import="inventory-stores-out/view_modal.html">
+                </div>
+                <div x-permissions="stores_out_search || stores_out_manage"
+                    x-import="inventory-stores-out/search_all_modal.html"></div>
+                <div x-permissions="stores_out_update || stores_out_manage"
+                    x-import="inventory-stores-out/update_modal.html"></div>
+                <div x-permissions="stores_out_add || stores_out_manage"
+                    x-import="inventory-stores-out/select_items_modal.html"></div>
+
                 <div class="row">
                     <h1 class="bold text-center"> ##word.stores_out## </h1>
                 </div>
-
                 <div class="top-actions">
 
-                    <i-button x-permissions="stores_out_add || stores_out_manage" type="add" label="##word.stores_out_new##" ng-click="newStoreOut()" > </i-button>
-                    <i-button x-permissions="stores_out_search || stores_out_manage" type="search" label="##word.search_all##" onclick="site.showModal('#StoresOutSearchModal')"  > </i-button>
+                    <i-button x-permissions="stores_out_add || stores_out_manage" type="add"
+                        label="##word.stores_out_new##" ng-click="newStoreOut()"></i-button>
+                    <i-button x-permissions="stores_out_search || stores_out_manage" type="search"
+                        label="##word.search_all##" onclick="site.showModal('#StoresOutSearchModal')"></i-button>
 
-                   
-                    <h2 class="bold red text-center">{{error}}</h2>
+                    <h2 class="bold red text-center"> {{error}}</h2>
                     <h3 class="bold text-center"> ##word.count## : {{count}}</h3>
                 </div>
-
-                <table class="table loaded center hover" id="t2">
+                <table id="t1" class="table loaded bold center hover">
                     <tr>
+                        <th class="not-print"> ##word.logo## </th>
                         <th>##word.stores_out_date##</th>
                         <th>##word.stores_out_id##</th>
-<!--                         <th>##word.stores_out_Company_name##</th>
- -->                        <th>##word.stores_out_store##</th>
+                        <th>##word.customer##</th>
+                        <th>##word.store##</th>
                         <th>##word.stores_out_safe##</th>
-                        <th>
-                                ##word.stores_outtypes##
-                        </th>
+                        <th>##word.stores_out_total_value##</th>
+                        <th>##word.stores_out_net_value##</th>
+                        <th> ##word.transaction_type##</th>
 
-                        <th  class="not-print">##word.actions##</th>
+                        <th class="not-print">##word.actions##</th>
                     </tr>
                     <tr ng-repeat="c in list">
+                        <td class="not-print">
+                            <img class="logo" ng-src="{{c.image_url}}">
+                        </td>
 
                         <td>
-                            <br>
-                            <p class="text-center"> {{c.date | date : 'yyyy - MM - dd'}} </p>
+                            <p class="text-center brown"> <br> {{c.date | date : 'yyyy - MM - dd'}} </p>
                         </td>
                         <td>
-                                <br>
-                            <p class="bold brown text-center"> {{c.number}} </p>
-                        </td>
-                      <!--   <td>
-                            <br>
-                             <p class="bold text-center"> {{c.vendor.name_ar}} </p>
-                        </td> -->
-                        <td>
-                                <br>
-                            <p class="bold text-center"> {{c.store.name}} </p>
+                            <p class="bold  text-center"> <br> {{c.number}} </p>
                         </td>
                         <td>
-                                <br>
-                            <p class="bold text-center green"> {{c.safe.name}} </p>
-                            <p ng-show="!c.safe" class="text-center red bold">  ##word.stores_out_no_safe## </p>
+                            <p class="text-center blue"> <br> {{c.customer.name_ar}} </p>
+                        </td>
+                        <td>
+                            <p class="text-center blue"> <br> {{c.store.name}} </p>
+                        </td>
+                        <td>
+                            <p class="text-center blue"> <br> {{c.safe.name}} </p>
+                            <p ng-show="!c.safe" class="text-center red bold"> ##word.stores_out_no_safe## </p>
 
                         </td>
                         <td>
-                            <br>
-                                {{c.type.ar}}
+                            <p class="bold text-center"> <br> {{c.total_value}} </p>
                         </td>
-                        <td  class="center not-print">
-                            <i-button type="details" x-permissions="stores_out_view || stores_out_manage"  label="##word.details##"  ng-click="details(c)" > </i-button>
-                            <i-button type="delete" x-permissions="stores_out_delete || stores_out_manage"  label="##word.delete##" ng-click="remove(c)"> </i-button>
-  
+                        <td>
+                            <p class="bold text-center green"> <br> {{c.net_value}} </p>
+                        </td>
+
+                        <td>
+                            <p class="bold text-center blue"> <br> {{c.type.ar}} </p>
+                        </td>
+
+
+                        <td class="center not-print">
+
+                            <i-button x-permissions="stores_out_view || stores_out_manage" type="details"
+                                label="##word.details##" ng-click="details(c)"></i-button>
+
+                            <i-button x-permissions="stores_out_update || stores_out_manage" type="update"
+                                label="##word.edit##" ng-click="edit(c)"></i-button>
+
+                            <i-button x-permissions="stores_out_delete || stores_out_manage" type="delete"
+                                label="##word.delete##" ng-click="remove(c)"></i-button>
                         </td>
 
                     </tr>
 
                 </table>
-                    
+
+                <i-button x-permissions="stores_out_print || stores_out_manage" type="print" label="##word.print##"
+                    onclick="site.print('#t1')"></i-button>
+
             </div>
         </div>
     </div>
 
     <div x-import="scripts.html"></div>
-    <script  x-import="inventory-stores-out/index.js"></script>
+    <script x-import="inventory-stores-out/index.js"></script>
 
 </body>
 

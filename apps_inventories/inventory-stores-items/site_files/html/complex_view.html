@@ -1,5 +1,92 @@
 <div id="complexViewModal" class="modal" fixed>
-    <div class="col4"></div>
+
+    <div class="col3"></div>
+    <div class="modal-content col6">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.complex_items## <i class="fa fa-pencil"></i>
+            </h2>
+        </div>
+        <div class="modal-body">
+            <form class="form">
+
+                <div class="row" ng-hide="complexView.view">
+                    <div class="row">
+
+                        <i-control ng-keydown="getItemsName($event)" id="item_name" class="col3"
+                            ng-model="search_item_name" label="##word.search##" type="text"></i-control>
+
+                        <i-list class="col4" label="##word.stores_in_item_name##" ng-model="selectedItem" display="name"
+                            items="itemsNameList" ng-change="itemsStoresIn()" ng-search="_search.$item_searching">
+                        </i-list>
+
+                        <i-list ng-search="_search.$items_size" class="col4" display="size" ng-model="items_size"
+                            label="##word.barcode##" items="selectedItem.sizes">
+                        </i-list>
+                    </div>
+                    <div class="row">
+
+                        <i-button type="add" class="col2" label="##word.add##"
+                            ng-click="incertComplexItemView(complexView)"> </i-button>
+                    </div>
+                </div>
+
+                <br>
+                <br>
+                <br>
+                <div class="row">
+                    <table class="table hover">
+                        <tr>
+                            <th>##word.item_name##</th>
+                            <th>##word.stores_items_sizes##</th>
+                            <th>##word.items_price##</th>
+                            <th>##word.item_count##</th>
+                            <th ng-hide="complexView.view">##word.actions##</th>
+                        </tr>
+
+                        <tr class="bold" ng-repeat="i in complexView.complex_items">
+                            <td>
+                                <br>
+                                <p class="center bold blue">{{i.item_name}}</p>
+                            </td>
+                            <td>
+                                <br>
+                                <p class="center bold blue">{{i.size}}</p>
+                            </td>
+                            <td>
+                                <br>
+                                <p class="center bold green">{{i.price}}</p>
+                            </td>
+                            <td>
+                                <i-control ng-disabled="complexView.view" ng-model="i.count" type="number"></i-control>
+                            </td>
+
+                            <td class="center" ng-hide="complexView.view">
+                                <i-button type="delete" ng-click="deleteItemComplex(complexView.complex_items,i)">
+                                </i-button>
+                            </td>
+
+                        </tr>
+
+                    </table>
+                </div>
+
+            </form>
+        </div>
+        <h2 class="error">{{error}}</h2>
+        <div class="modal-footer center">
+            <i-button type="close" onclick="site.hideModal('#complexViewModal')" label="##word.close##">
+            </i-button>
+
+        </div>
+    </div>
+
+
+
+
+
+    <!--  <div class="col4"></div>
     <div class="modal-content col5">
         <div class="modal-header">
             <span class="close">&times;</span>
@@ -69,6 +156,6 @@
 
         </div>
     </div>
-
+ -->
 
 </div>

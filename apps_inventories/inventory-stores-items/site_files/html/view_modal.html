@@ -8,18 +8,14 @@
             </h2>
         </div>
         <div class="modal-body">
-
             <div x-import="inventory-stores-items/view.html"></div>
         </div>
 
         <h2>{{error}}</h2>
         <div class="modal-footer center">
-            <i-button type="close" onclick="site.hideModal('#viewCategoryItemModal')" label="##word.close##"></i-button>
-
             <i-button type="print" onclick="site.print('#viewCategoryItemModal #v1')" label=" ##word.print##"></i-button>
 
+            <i-button type="close" onclick="site.hideModal('#viewCategoryItemModal')" label="##word.close##"></i-button>
         </div>
     </div>
-
-
 </div>

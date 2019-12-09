@@ -22,10 +22,12 @@
                     <div class="row">
                         <i-control ng-keydown="getCustomerList($event)" class="col3" ng-model="search_customer"
                             label="##word.search##" type="text"></i-control>
+
                         <i-list ng-search="_search.$customer" class="col4" display="name_ar" v="r"
                             ng-model="default_setting.general_Settings.customer" label="##word.customer##"
                             items="customersList">
                         </i-list>
+
                         <i-list class="col3" ng-model="default_setting.general_Settings.vendor" items="vendorsList"
                             display="name_ar" ng-search="_search.$search_vendor"
                             label="##word.stores_in_Company_name##"></i-list>
@@ -50,6 +52,7 @@
 
                         <i-control help-id="finger_program" class="col3" label="##word.program_ip##"
                             ng-model="default_setting.finger_program.ip"></i-control>
+
                         <i-control help-id="finger_program" class="col3" label="##word.program_port##"
                             ng-model="default_setting.finger_program.port"></i-control>
 
@@ -70,11 +73,14 @@
                             ng-model="default_setting.printer_program.printer_path" label="##word.basic_printer##"
                             items="printersPathList">
                         </i-list>
+
                         <i-list class="col3" ng-model="default_setting.printer_program.place_program"
                             items="placeProgramList" display="##session.lang##" ng-search="_search.$place_program"
                             label="##word.place_program##"></i-list>
+
                         <i-control help-id="printer_program" class="col3" label="##word.program_ip##"
                             ng-model="default_setting.printer_program.ip"></i-control>
+
                         <i-control help-id="printer_program" class="col3" label="##word.program_port##"
                             ng-model="default_setting.printer_program.port"></i-control>
                     </div>
@@ -101,14 +107,26 @@
                 <fieldset>
                     <legend> ##word.inventory_settings## </legend>
                     <div class="row">
-                        <i-list class="col3" ng-model="default_setting.inventory.store" items="stores"
-                            ng-search="_search.$search_stores" label="##word.stores_in_store##"></i-list>
+                        <i-list class="col3" ng-model="default_setting.inventory.item_group"
+                            ng-search="_search.$$items_group_search" label="##word.item_group##" items="itemsGroupList"></i-list>
+                        </i-list>
+
+                        <i-list class="col3" ng-model="default_setting.inventory.store" items="storesList"
+                            ng-search="_search.$_store" label="##word.store##"></i-list>
+
                         <i-list v="r" ng-search="_search.$storein_type" display="##session.lang##" class="col3"
                             ng-model="default_setting.inventory.type_in" items="storesInTypes"
                             label="##word.purchases_invoice_type##"></i-list>
+
                         <i-list display="##session.lang##" ng-search="_search.$search_in_out" class="col3"
-                            ng-model="default_setting.inventory.type_out" items="storesOutTypes" label="##word.sales_invoice_type##">
+                            ng-model="default_setting.inventory.type_out" items="storesOutTypes"
+                            label="##word.sales_invoice_type##">
                         </i-list>
+                    </div>
+                    <div class="row">
+                        <div class="row">
+                            <i-checkbox label="##word.dont_exceed_maximum_discount_item##" ng-model="default_setting.inventory.dont_max_discount_items"></i-checkbox>
+                        </div>
                     </div>
                 </fieldset>
 

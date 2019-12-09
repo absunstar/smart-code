@@ -8,9 +8,9 @@ module.exports = function init(site) {
   }
 
   let image_url = '/images/store_in.png'
-  let add_message = {name : 'New store Added' , ar : 'تم إضافة أذن توريد جديد'}
-  let update_message =  {name : ' Store updated' , ar : 'تم تعديل أذن توريد'}
-  let delete_message =  {name : ' Store dleteted' , ar : 'تم حذف أذن توريد '}
+  let add_message = {name : 'New Store In Added' , ar : 'تم إضافة إذن توريد جديد'}
+  let update_message =  {name : ' Store In updated' , ar : 'تم تعديل إذن توريد'}
+  let delete_message =  {name : ' Store In dleteted' , ar : 'تم حذف إذن توريد '}
 
 
   site.on('mongodb after insert', function (result) {

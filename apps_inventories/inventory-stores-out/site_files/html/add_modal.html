@@ -1,24 +1,21 @@
 
 
-<div id="addStoreOutModal" class="modal">
-
+<div id="addStoreOutModal" class="modal" fixed>
     <div class="modal-content">
         <div class="modal-header">
             <span class="close">&times;</span>
             <h2>
-                 ##word.stores_out## <i class="fa fa-plus"></i>
-                 
+                 ##word.stores_out##  <i class="fa fa-plus"></i>
             </h2>
         </div>
         <div class="modal-body">
             <div x-import="inventory-stores-out/content.html"></div>
 
         </div>
-        <h2 class="error">{{error}}</h2>
+        <h2 class="error center bold">{{error}}</h2>
         <div class="modal-footer center">
-            <i-button type="add" label="##word.add##"  ng-click="add()" ng-hide="busy" id="add_store_out_btn" > </i-button>
-            <i-button type="close"   label="##word.close##"  onclick="site.hideModal('#addStoreOutModal')"  > </i-button>
-
+            <i-button ng-hide="busy" type="add" label="##word.add##" ng-click="add()" ></i-button>
+            <i-button  type="close" label=" ##word.close##" onclick="site.hideModal('#addStoreOutModal')" ></i-button>
         </div>
     </div>
 </div>

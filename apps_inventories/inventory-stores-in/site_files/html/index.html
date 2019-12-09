@@ -43,19 +43,18 @@
                     <h2 class="bold red text-center"> {{error}}</h2>
                     <h3 class="bold text-center"> ##word.count## : {{count}}</h3>
                 </div>
-                <table id="t1" class="table loaded center hover">
+                <table id="t1" class="table loaded center bold hover">
                     <tr>
                         <th class="not-print"> ##word.logo## </th>
                         <th>##word.stores_in_date##</th>
                         <th>##word.stores_in_id##</th>
                         <th> ##word.stores_in_supply_number##</th>
                         <th>##word.stores_in_Company_name##</th>
-                        <th>##word.stores_in_store_name##</th>
+                        <th>##word.store##</th>
                         <th>##word.stores_in_safe##</th>
                         <th>##word.stores_in_total_value##</th>
                         <th>##word.stores_in_net_value##</th>
-                        <th> ##word.stores_outtypes##</th>
-
+                        <th> ##word.transaction_type##</th>
                         <th class="not-print">##word.actions##</th>
                     </tr>
                     <tr ng-repeat="c in list">

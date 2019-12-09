@@ -6,12 +6,843 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
     taxes: [],
     details: []
   };
-
   $scope.search = {};
-
   $scope.item = {
     sizes: []
   };
+
+  $scope.addTax = function () {
+    $scope.error = '';
+    $scope.store_out.taxes = $scope.store_out.taxes || [];
+    $scope.store_out.taxes.push({
+      name: $scope.tax.name,
+      value: $scope.tax.value
+    });
+    $scope.tax = {};
+    $scope.calc();
+  };
+
+  $scope.deleteTax = function (_tx) {
+    $scope.error = '';
+    for (let i = 0; i < $scope.store_out.taxes.length; i++) {
+      let tx = $scope.store_out.taxes[i];
+      if (tx.name == _tx.name && tx.value == _tx.value)
+        $scope.store_out.taxes.splice(i, 1);
+    }
+    $scope.calc();
+  };
+
+  $scope.addDiscount = function () {
+    $scope.error = '';
+
+    if (!$scope.discount.value) {
+      $scope.error = '##word.error_discount##';
+      return;
+    } else {
+      $scope.store_out.discountes = $scope.store_out.discountes || [];
+
+      $scope.store_out.discountes.push({
+        name: $scope.discount.name,
+        value: $scope.discount.value,
+        type: $scope.discount.type
+      });
+      $scope.calc();
+    };
+
+  };
+  $scope.deleteDiscount = function (_ds) {
+    $scope.error = '';
+    for (let i = 0; i < $scope.store_out.discountes.length; i++) {
+      let ds = $scope.store_out.discountes[i];
+      if (ds.name == _ds.name && ds.value == _ds.value && ds.type == _ds.type)
+        $scope.store_out.discountes.splice(i, 1);
+    }
+    $scope.calc();
+  };
+
+  $scope.calc = function () {
+    $scope.error = '';
+    $scope.store_out.total_value = 0;
+    $scope.store_out.net_value = 0;
+
+    $scope.store_out.items.forEach(itm => {
+      $scope.store_out.total_value += parseFloat(itm.total);
+    });
+
+    $scope.store_out.total_tax = 0;
+    $scope.store_out.taxes.forEach(tx => {
+      $scope.store_out.total_tax += $scope.store_out.total_value * parseFloat(tx.value) / 100;
+    });
+
+    $scope.store_out.total_discount = 0;
+    if ($scope.store_out.discountes && $scope.store_out.discountes.length > 0)
+      $scope.store_out.discountes.forEach(ds => {
+
+        if (ds.type == 'percent')
+          $scope.store_out.total_discount += $scope.store_out.total_value * parseFloat(ds.value) / 100;
+        else $scope.store_out.total_discount += parseFloat(ds.value);
+      });
+
+    $scope.store_out.net_value = $scope.store_out.total_value + $scope.store_out.total_tax - $scope.store_out.total_discount;
+    $scope.discount = {
+      type: 'number'
+    };
+  };
+
+  $scope.deleteRow = function (itm) {
+    $scope.error = '';
+    $scope.store_out.items.splice($scope.store_out.items.indexOf(itm), 1);
+
+  };
+
+  $scope.deleteitem = function (itm) {
+    $scope.error = '';
+    $scope.item.sizes.splice($scope.item.sizes.indexOf(itm), 1);
+
+  };
+  $scope.newStoreOut = function () {
+    $scope.error = '';
+    $scope.get_open_shift((shift) => {
+      if (shift) {
+        $scope.getDefaultSettings();
+        site.showModal('#addStoreOutModal');
+      } else $scope.error = '##word.open_shift_not_found##';
+    });
+  };
+
+  $scope.getDefaultSettings = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/default_setting/get",
+      data: {}
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.doc) {
+          $scope.defaultSettings = response.data.doc;
+          $scope.error = '';
+          $scope.item = {}
+          $scope.store_out = {
+            image_url: '/images/store_out.png',
+            shift: $scope.shift,
+            items: [],
+            discountes: [],
+            taxes: [],
+            details: [],
+            date: new Date(),
+            supply_date: new Date()
+          };
+
+          if ($scope.defaultSettings.general_Settings) {
+            if ($scope.defaultSettings.general_Settings.customer)
+              $scope.store_out.customer = $scope.defaultSettings.general_Settings.customer;
+            if ($scope.defaultSettings.general_Settings.payment_method)
+              $scope.store_out.payment_method = $scope.defaultSettings.general_Settings.payment_method;
+          }
+
+          if ($scope.defaultSettings.inventory) {
+            if ($scope.defaultSettings.inventory.store)
+              $scope.store_out.store = $scope.defaultSettings.inventory.store
+            if ($scope.defaultSettings.inventory.type_out)
+              $scope.store_out.type = $scope.defaultSettings.inventory.type_out
+          }
+
+          if ($scope.defaultSettings.accounting) {
+            if ($scope.defaultSettings.accounting.safe) {
+              $scope.store_out.safe = $scope.defaultSettings.accounting.safe
+            }
+          }
+        };
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+
+  };
+
+  $scope.add = function () {
+    $scope.error = '';
+    const v = site.validated();
+    if (!v.ok) {
+      $scope.error = v.messages[0].ar;
+      return;
+    }
+
+    if ($scope.defaultSettings.inventory && $scope.defaultSettings.inventory.dont_max_discount_items) {
+      let max_discount = false;
+      $scope.store_in.items.forEach(_itemSize => {
+        if (_itemSize.maximum_discount.value > _itemSize.maximum)
+          max_discount = true;
+      });
+
+      if (max_discount) {
+        $scope.error = "##word.err_maximum_discount##";
+        return;
+      }
+    }
+
+    if ($scope.store_out.items.length > 0) {
+      $scope.busy = true;
+      $http({
+        method: "POST",
+        url: "/api/stores_out/add",
+        data: $scope.store_out
+      }).then(
+        function (response) {
+          $scope.busy = false;
+          if (response.data.done) {
+            site.hideModal('#addStoreOutModal');
+            $scope.loadAll();
+
+          } else $scope.error = response.data.error;
+
+        },
+        function (err) {
+          $scope.error = err.message;
+        }
+      )
+    } else {
+      $scope.error = "##word.must_enter_quantity##";
+      return;
+    }
+  };
+
+  $scope.remove = function (store_out) {
+    $scope.error = '';
+    $scope.get_open_shift((shift) => {
+      if (shift) {
+        $scope.view(store_out);
+        $scope.store_out = {};
+        site.showModal('#deleteStoreOutModal');
+      } else $scope.error = '##word.open_shift_not_found##';
+    });
+  };
+
+  $scope.view = function (store_out) {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/stores_out/view",
+      data: {
+        _id: store_out._id
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          response.data.doc.date = new Date(response.data.doc.date);
+          $scope.store_out = response.data.doc;
+        } else $scope.error = response.data.error;
+      },
+      function (err) {
+        console.log(err);
+      }
+    )
+  };
+
+  $scope.details = function (store_out) {
+    $scope.error = '';
+    $scope.view(store_out);
+    $scope.store_out = {};
+    site.showModal('#viewStoreOutModal');
+  };
+
+  $scope.delete = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/stores_out/delete",
+      data: {
+        _id: $scope.store_out._id,
+        name: $scope.store_out.name
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          site.hideModal('#deleteStoreOutModal');
+          $scope.loadAll();
+        } else $scope.error = response.data.error;
+
+      },
+      function (err) {
+        console.log(err);
+      }
+    )
+  };
+
+  $scope.addToItems = function () {
+    $scope.error = '';
+    if ($scope.store_out.type) {
+      let foundSize = false;
+      $scope.item.sizes.forEach(_size => {
+        foundSize = $scope.store_out.items.some(_itemSize => _itemSize.barcode == _size.barcode);
+        if (_size.count > 0 && !foundSize) {
+          $scope.store_out.items.push({
+            image_url: $scope.item.image_url,
+            name: _size.item_name,
+            size: _size.size,
+            barcode: _size.barcode,
+            average_cost: _size.average_cost,
+            count: _size.count,
+            cost: _size.cost,
+            maximum_discount: _size.maximum_discount,
+            maximum: _size.maximum_discount.value,
+            price: _size.price,
+            total: _size.total,
+            current_count: _size.current_count,
+            ticket_code: _size.ticket_code,
+            status_store_out: $scope.store_out.type.id
+          });
+        }
+      });
+      $scope.calc();
+      $scope.item.sizes = [];
+    } else $scope.error = "##word.err_transaction_type##";
+  };
+
+  $scope.calcSize = function (size) {
+    $scope.error = '';
+    setTimeout(() => {
+      let discount = 0;
+      if (size.cost && size.count) {
+        if (size.maximum_discount.type == 'number')
+          discount = size.maximum_discount.value * size.count;
+        else if (size.maximum_discount.type == 'percent')
+          discount = size.maximum_discount.value * (size.cost * size.count) / 100;
+
+        size.total = (site.toNumber(size.cost) * site.toNumber(size.count)) - discount;
+      }
+      $scope.calc();
+    }, 100);
+  };
+
+  $scope.addToSizes = function () {
+    $scope.error = '';
+    $scope.item.sizes = $scope.item.sizes || [];
+    $scope.item.sizes.push({
+      $new: true,
+      customer: $scope.store_out.customer,
+      store: $scope.store_out.store,
+      count: 1,
+      cost: 0,
+      price: 0,
+      size: '',
+      current_count: 0,
+      total: 0,
+    });
+  };
+
+  $scope.getItemsName = function (ev) {
+    $scope.error = '';
+    if (ev.which === 13) {
+      $http({
+        method: "POST",
+        url: "/api/stores_items/name_all",
+        data: {
+          search: $scope.item.search_item_name
+        }
+      }).then(
+        function (response) {
+          $scope.busy = false;
+          if (response.data.done) {
+            if (response.data.list.length > 0) {
+              let foundSize = false;
+              $scope.item.sizes = $scope.item.sizes || [];
+              response.data.list.forEach(_item => {
+                _item.sizes.forEach(_size => {
+                  if (_size.barcode == $scope.item.search_item_name) {
+                    _size.item_name = _item.name
+                    _size.store = $scope.store_out.store
+                    _size.count = 1
+                    _size.total = _size.count * _size.cost
+                    if (_size.stores_list && _size.stores_list.length > 0) {
+                      _size.stores_list.forEach(_store => {
+                        if (_store.store.id == $scope.store_out.store.id)
+                          _size.store_count = _store.current_count
+                        else _size.store_count = 0
+                      });
+                    } else _size.store_count = 0;
+
+                    foundSize = $scope.item.sizes.some(_itemSize => _itemSize.barcode == _size.barcode);
+
+                    if (!foundSize) $scope.item.sizes.push(_size);
+                  };
+                });
+              });
+
+              if (!foundSize)
+                $scope.itemsNameList = response.data.list;
+              else if (foundSize) $scope.error = '##word.dublicate_item##';
+
+            };
+          } else {
+            $scope.error = response.data.error;
+            $scope.item = { sizes: [] };
+          };
+        },
+        function (err) {
+          console.log(err);
+        }
+      );
+    }
+  };
+
+  $scope.itemsStoresOut = function () {
+    $scope.error = '';
+    $scope.item.sizes = $scope.item.sizes || [];
+    let foundSize = false;
+
+    $scope.item.item_name.sizes.forEach(_item => {
+      _item.item_name = $scope.item.item_name.name
+      _item.store = $scope.store_out.store
+      _item.count = 1;
+      _item.total = _item.count * _item.cost
+      if (_item.stores_list && _item.stores_list.length > 0) {
+        _item.stores_list.forEach(_store => {
+          if (_store.store.id == $scope.store_out.store.id) {
+            _item.store_count = _store.current_count
+          } else _item.store_count = 0
+        });
+
+      } else _item.store_count = 0
+      foundSize = $scope.item.sizes.some(_itemSize => _itemSize.barcode == _item.barcode);
+      if (!foundSize)
+        $scope.item.sizes.push(_item);
+    });
+  };
+
+  $scope.getBarcode = function (ev) {
+    $scope.error = '';
+    if (ev.which === 13) {
+      $http({
+        method: "POST",
+        url: "/api/stores_items/name_all",
+        data: {
+          search: $scope.search_barcode
+        }
+      }).then(
+        function (response) {
+          $scope.busy = false;
+          if (response.data.done) {
+            if (response.data.list.length > 0) {
+              let foundSize = false;
+
+              response.data.list[0].sizes.forEach(_size => {
+                if (_size.barcode == $scope.search_barcode) {
+                  _size.name = response.data.list[0].name;
+                  _size.store = $scope.store_out.store;
+                  _size.count = 1;
+                  _size.maximum = _size.maximum_discount.value;
+                  _size.total = _size.count * _size.cost;
+                  foundSize = $scope.store_out.items.some(_itemSize => _itemSize.barcode == _size.barcode);
+                  if (!foundSize)
+                    $scope.store_out.items.unshift(_size);
+                }
+              });
+              if (foundSize) $scope.error = '##word.dublicate_item##';
+
+              $scope.calc();
+              $scope.search_barcode = "";
+            }
+            $timeout(() => {
+              document.querySelector('#search_barcode input').focus();
+            }, 100);
+
+          } else {
+            $scope.error = response.data.error;
+          };
+        },
+        function (err) {
+          console.log(err);
+        }
+      );
+    }
+  };
+
+  /*  $scope.getItem = function () {
+     if ($scope.item.item_name) {
+       console.log("Aaaaaaaaaaaaaaaaaaaaaaaaaaa");
+       
+       $http({
+         method: "POST",
+         url: "/api/stores_items/all",
+         data: {
+           where: {
+             name: $scope.item.item_name.name
+           }
+         }
+       }).then(
+         function (response) {
+           $scope.busy = false;
+           if (response.data.done) {
+             if (response.data.list.length > 0) {
+               $('#public_count').focus();
+               response.data.list[0].sizes.forEach(itm => {
+                 itm.count = 0;
+               });
+               $scope.item = response.data.list[0];
+             } else {
+               $scope.item = {
+                 sizes: [],
+                 name: $scope.item.item_name.name
+               };
+               $('#item_name').focus();
+             }
+           } else {
+             $scope.error = response.data.error;
+             $scope.item = {
+               sizes: []
+             };
+           }
+         },
+         function (err) {
+           console.log(err);
+         }
+       );
+   
+     }
+   }; */
+
+  $scope.edit = function (store_out) {
+    $scope.error = '';
+    $scope.get_open_shift((shift) => {
+      if (shift) {
+        $scope.view(store_out);
+        $scope.store_out = {};
+        site.showModal('#updateStoreOutModal');
+      } else $scope.error = '##word.open_shift_not_found##';
+    });
+  };
+
+  $scope.update = function () {
+    $scope.error = '';
+    const v = site.validated();
+    if (!v.ok) {
+      $scope.error = v.messages[0].ar;
+      return;
+    }
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/stores_out/update",
+      data: $scope.store_out
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          site.hideModal('#updateStoreOutModal');
+          $scope.loadAll();
+        } else {
+          $scope.error = '##word.error##';
+        }
+      },
+      function (err) {
+        console.log(err);
+      }
+    )
+  };
+
+  $scope.loadStores = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/stores/all",
+      data: { select: { id: 1, name: 1, type: 1 } }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) $scope.storesList = response.data.list;
+
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+  $scope.loadSafes = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/safes/all",
+      data: {
+        select: {
+          id: 1,
+          name: 1,
+          number: 1
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) $scope.safes = response.data.list;
+
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.loadStoresOutTypes = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: '/api/stores_out/types/all',
+      data: {}
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.storesOutTypes = response.data;
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.loadCategories = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $scope.categories = [];
+    $http({
+      method: "POST",
+      url: "/api/items_group/all",
+      data: {
+        select: {
+          id: 1,
+          name: 1
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) $scope.categories = response.data.list;
+
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.loadTax_Types = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/tax_types/all",
+      data: {
+        select: {
+          id: 1,
+          name: 1,
+          value: 1
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) $scope.tax_types = response.data.list;
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.loadDiscount_Types = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/discount_types/all",
+      data: {
+        select: {
+          id: 1,
+          name: 1,
+          value: 1,
+          type: 1
+
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) $scope.discount_types = response.data.list;
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.searchAll = function () {
+    $scope.error = '';
+    let where = {};
+
+    if ($scope.search.number) {
+      where['number'] = $scope.search.number;
+    }
+    if ($scope.search.shift_code) {
+      where['shift.code'] = $scope.search.shift_code;
+    }
+
+    if ($scope.search.category && $scope.search.category.id) {
+      where['category.id'] = $scope.search.category.id;
+    }
+    if ($scope.search.type) {
+      where['type.id'] = $scope.search.type.id;
+    }
+    if ($scope.search.supply_number) {
+      where['supply_number'] = $scope.search.supply_number;
+    }
+
+    if ($scope.search.ticket_code) {
+      where['items.ticket_code'] = $scope.search.ticket_code;
+    }
+
+    if ($scope.search.date) {
+      where['date'] = $scope.search.date;
+    }
+
+    if ($scope.search.dateFrom) {
+      where['date_from'] = $scope.search.dateFrom;
+    }
+
+    if ($scope.search.dateTo) {
+      where['date_to'] = $scope.search.dateTo;
+    }
+
+    if ($scope.search.store && $scope.search.store.id) {
+      where['store.id'] = $scope.search.store.id;
+    }
+    if ($scope.search.safe && $scope.search.safe.id) {
+      where['safe.id'] = $scope.search.safe.id;
+    }
+    if ($scope.search.notes) {
+
+      where['notes'] = $scope.search.notes;
+    }
+
+    if ($scope.search.total_valueGt) {
+      where['total_value'] = {
+        $gte: parseFloat($scope.search.total_valueGt)
+      };
+    }
+
+    if ($scope.search.total_valueLt) {
+      where['total_value'] = {
+        $lte: parseFloat($scope.search.total_valueLt)
+      };
+    }
+
+    if ($scope.search.total_valueGt && $scope.search.total_valueLt) {
+      where['total_value'] = {
+        $gte: parseFloat($scope.search.total_valueGt),
+        $lte: parseFloat($scope.search.total_valueLt)
+      };
+    }
+
+
+    $scope.loadAll(where);
+    site.hideModal('#StoresOutSearchModal');
+    $scope.search = {};
+  };
+  $scope.loadAll = function (where) {
+    $scope.error = '';
+    $scope.list = {};
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/stores_out/all",
+      data: {
+        where: where
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.list = response.data.list;
+          $scope.count = response.data.count;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+  /*   $scope.loadStores_Out();
+   */
+
+  $scope.getSafeBySetting = function () {
+    $scope.error = '';
+    if ($scope.store_out.type.id == 1) {
+      if ($scope.defaultSettings.accounting) {
+        if ($scope.defaultSettings.accounting.safe) {
+          $scope.store_out.safe = $scope.defaultSettings.accounting.safe
+        }
+      }
+    }
+  };
+
+  $scope.getCustomerGroupList = function () {
+    $http({
+      method: "POST",
+      url: "/api/customers_group/all",
+      data: {
+        select: {
+          id: 1,
+          name: 1
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.customerGroupList = response.data.list;
+      },
+      function (err) {
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.getIndentfy = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $scope.indentfyList = [];
+    $http({
+      method: "POST",
+      url: "/api/indentfy_employee/all"
+
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.indentfyList = response.data;
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
 
   $scope.displayAddCustomer = function () {
     $scope.error = '';
@@ -84,635 +915,103 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
     };
   };
 
-  $scope.getItemsName = function (ev) {
-    $scope.error = '';
-    if (ev.which === 13) {
-      $http({
-        method: "POST",
-        url: "/api/stores_items/name_all",
-        data: {
-          search: $scope.item.search_item_name
-        }
-      }).then(
-        function (response) {
-          $scope.busy = false;
-          if (response.data.done) {
-            if (response.data.list.length > 0) {
-              let exist = false;
-              response.data.list.forEach(item => {
-                item.sizes.forEach(size => {
-                  if (size.barcode == $scope.item.search_item_name) {
-                    size.item_name = item.name
-                    size.count = 1
-                    size.total = size.count * size.cost
-                    $scope.item.sizes.push(size);
-                    exist = false;
-                  };
-                });
-              });
-              if (!exist) $scope.itemsNameList = response.data.list;
-            };
-          } else {
-            $scope.error = response.data.error;
-            $scope.item = {
-              sizes: []
-            };
-          };
+  $scope.getGovList = function (where) {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/goves/all",
+      data: {
+        where: {
+          active: true
         },
-        function (err) {
-          console.log(err);
-        }
-      );
-    }
-  };
-
-  $scope.getBarcode = function (ev) {
-    $scope.error = '';
-    if (ev.which === 13) {
-      $http({
-        method: "POST",
-        url: "/api/stores_items/name_all",
-        data: {
-          search: $scope.search_barcode
-        }
-      }).then(
-        function (response) {
-          $scope.busy = false;
-          if (response.data.done) {
-            if (response.data.list.length > 0) {
-              response.data.list[0].sizes.forEach(_size => {
-                if (_size.barcode == $scope.search_barcode) {
-                  _size.name = response.data.list[0].name
-                  _size.count = 1
-                  _size.total = _size.count * _size.cost
-                  $scope.store_out.items.push(_size)
-                }
-              });
-              $scope.calc();
-              $scope.search_barcode = "";
-
-
-            }
-            $timeout(() => {
-              document.querySelector('#search_barcode input').focus();
-            }, 500);
-          } else {
-            $scope.error = response.data.error;
-          };
-        },
-        function (err) {
-          console.log(err);
-        }
-      );
-    }
-  };
-
-  $scope.itemsStoresOut = function () {
-    $scope.error = '';
-    $scope.item.sizes = [];
-    if ($scope.item.sizes && $scope.item.sizes.length > 0) {
-      $scope.item.item_name.sizes.forEach(item => {
-        if ($scope.item.item_name) {
-          item.item_name = $scope.item.item_name.name
-          item.count = 1;
-          item.total = item.count * item.cost
-          $scope.item.sizes.push(item);
-        }
-      });
-    } else {
-      $scope.item.sizes = [];
-      $scope.item.item_name.sizes.forEach(item => {
-        item.item_name = $scope.item.item_name.name
-        item.count = 1;
-        item.total = item.count * item.cost
-        $scope.item.sizes.push(item);
-      });
-    };
-  }
-
-  $scope.deleteitem = function (itm) {
-    $scope.item.sizes.splice($scope.item.sizes.indexOf(itm), 1);
-
-  };
-
-  $scope.addTax = function () {
-    $scope.store_out.taxes = $scope.store_out.taxes || [];
-    if ($scope.tax.value && $scope.store_out.taxes) {
-
-      $scope.store_out.taxes.push({
-        name: $scope.tax.name,
-        value: $scope.tax.value
-      });
-    };
-    $scope.tax = {};
-    $scope.calc();
-  };
-
-  $scope.deleteTax = function (_tx) {
-    for (let i = 0; i < $scope.store_out.taxes.length; i++) {
-      let tx = $scope.store_out.taxes[i];
-      if (tx.name == _tx.name && tx.value == _tx.value)
-        $scope.store_out.taxes.splice(i, 1);
-    }
-    $scope.calc();
-  };
-
-  $scope.addDiscount = function () {
-    $scope.error = '';
-    if (!$scope.discount.value) {
-      $scope.error = '##word.stores_out_error_discount##';
-      return;
-    } else {
-      $scope.store_out.discountes = $scope.store_out.discountes || [];
-      $scope.store_out.discountes.push({
-        name: $scope.discount.name,
-        value: $scope.discount.value,
-        type: $scope.discount.type
-      });
-      $scope.calc();
-    };
-  };
-
-  $scope.deleteDiscount = function (_ds) {
-    for (let i = 0; i < $scope.store_out.discountes.length; i++) {
-      let ds = $scope.store_out.discountes[i];
-      if (ds.name == _ds.name && ds.value == _ds.value && ds.type == _ds.type) {
-        $scope.store_out.discountes.splice(i, 1);
-      }
-    }
-    $scope.calc();
-  };
-
-  $scope.calc = function () {
-    $scope.store_out.total_value = 0;
-    $scope.store_out.net_value = 0;
-
-
-    $scope.store_out.items.forEach(itm => {
-      $scope.store_out.total_value += parseFloat(itm.total);
-    });
-
-    $scope.store_out.total_tax = 0;
-    $scope.store_out.taxes.forEach(tx => {
-      $scope.store_out.total_tax += $scope.store_out.total_value * parseFloat(tx.value) / 100;
-    });
-
-    $scope.store_out.total_discount = 0;
-    $scope.store_out.discountes.forEach(ds => {
-      if (ds.type == 'percent') {
-        $scope.store_out.total_discount += $scope.store_out.total_value * parseFloat(ds.value) / 100;
-      } else {
-        $scope.store_out.total_discount += parseFloat(ds.value);
-      }
-    });
-
-    $scope.store_out.net_value = $scope.store_out.total_value + $scope.store_out.total_tax - $scope.store_out.total_discount;
-    $scope.discount = {
-      type: 'number'
-    };
-  };
-
-  $scope.deleteRow = function (itm) {
-    if (!$scope.store_out.items) {
-      $scope.store_out.items = [];
-    }
-    for (let i = 0; i < $scope.store_out.items.length; i++) {
-      if ($scope.store_out.items[i].code == itm.code && $scope.store_out.items[i].size == itm.size) {
-        $scope.store_out.items.splice(i, 1);
-      }
-    }
-  };
-
-  $scope.loadStores = function () {
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/stores/all",
-      data: {
-        select: {
-          id: 1,
-          name: 1
-        }
-      }
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          $scope.stores = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
-  };
-
-  $scope.loadStoresOutTypes = function () {
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: '/api/stores_out/types/all',
-      data: {}
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        $scope.storesOutTypes = response.data;
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
-  };
-
-  $scope.loadTaxTypes = function () {
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/tax_types/all",
-      data: {
-        select: {
-          id: 1,
-          name: 1,
-          value: 1
-        }
-      }
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          $scope.tax_types = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
-  };
-
-
-  $scope.loadDiscountTypes = function () {
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/discount_types/all",
-      data: {
-        select: {
-          id: 1,
-          name: 1,
-          value: 1,
-          type: 1
-
-        }
-      }
-    }).then(
-      function (response) {
-        $scope.busy = false;
-
-        if (response.data.done)
-          $scope.discountTypesList = response.data.list;
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
-  };
-
-  $scope.loadVendors = function () {
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/vendors/all",
-      data: {
-        select: {
-          id: 1,
-          name_ar: 1,
-          balance: 1
-        }
-      }
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          $scope.vendorsList = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
-  };
-
-  $scope.loadStoresOut = function () {
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/stores_out/all",
-      data: {
-        select: {
-          id: 1,
-          name: 1,
-          items: 1
-        }
-      }
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          $scope.stores_out = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
-  };
-  $scope.loadSafes = function () {
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/safes/all",
-      data: {
-        select: {
-          id: 1,
-          name: 1
-        }
-      }
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          $scope.safes = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
-  };
-  $scope.searchAll = function () {
-
-    $scope.error = '';
-    let where = {};
-
-    if ($scope.search.shift_code) {
-      where['shift.code'] = $scope.search.shift_code;
-    }
-
-    if ($scope.search.number) {
-      where['number'] = ($scope.search.number);
-    }
-
-    if ($scope.search.date) {
-      where['date'] = $scope.search.date;
-    }
-
-    if ($scope.search.type) {
-
-      where['type.id'] = $scope.search.type.id;
-    }
-
-    if ($scope.search.dateFrom) {
-      where['date_from'] = $scope.search.dateFrom;
-    }
-
-    if ($scope.search.dateTo) {
-      where['date_to'] = $scope.search.dateTo;
-    }
-
-    if ($scope.search.vendor && $scope.search.vendor.id) {
-      where['vendor.id'] = $scope.search.vendor.id;
-    }
-
-    if ($scope.search.total_valueGt) {
-      where['total_value'] = {
-        $gte: parseFloat($scope.search.total_valueGt)
-      };
-    }
-
-    if ($scope.search.total_valueLt) {
-      where['total_value'] = {
-        $lte: parseFloat($scope.search.total_valueLt)
-      };
-    }
-
-    if ($scope.search.total_valueGt && $scope.search.total_valueLt) {
-      where['total_value'] = {
-        $gte: parseFloat($scope.search.total_valueGt),
-        $lte: parseFloat($scope.search.total_valueLt)
-      };
-    }
-
-    if ($scope.search.store) {
-      where['store.id'] = $scope.search.store.id;
-    }
-
-    if ($scope.search.safe) {
-      where['safe.id'] = $scope.search.safe.id;
-    }
-
-    if ($scope.search.notes) {
-      where['notes'] = $scope.search.notes;
-    }
-
-    $scope.loadAll(where);
-    site.hideModal('#StoresOutSearchModal');
-    $scope.search = {};
-  };
-
-  $scope.loadAll = function (where) {
-    $scope.list = {};
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/stores_out/all",
-      data: {
-        where: where
+        select: { id: 1, name: 1 }
       }
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done && response.data.list.length > 0) {
-          $scope.list = response.data.list;
-          $scope.count = response.data.count;
+          $scope.govList = response.data.list;
         }
       },
       function (err) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
-  };
-  $scope.newStoreOut = function () {
-    $scope.get_open_shift((shift) => {
-      if (shift) {
-        $scope.getDefaultSettings();
-        site.showModal('#addStoreOutModal');
-      } else $scope.error = '##word.open_shift_not_found##';
-    });
-  };
 
-  $scope.getDefaultSettings = function () {
-
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/default_setting/get",
-      data: {}
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.doc) {
-          $scope.defaultSettings = response.data.doc;
-          $scope.error = '';
-          $scope.item = {}          
-          $scope.store_out = {
-            image_url: '/images/store_out.png',
-            shift: $scope.shift,
-            items: [],
-            discountes: [],
-            taxes: [],
-            details: [],
-            date: new Date(),
-            supply_date: new Date()
-          };
-
-          if ($scope.defaultSettings.general_Settings) {
-            if ($scope.defaultSettings.general_Settings.customer)
-            $scope.store_out.customer = $scope.defaultSettings.general_Settings.customer;
-            if ($scope.defaultSettings.general_Settings.payment_method)
-            $scope.store_out.payment_method = $scope.defaultSettings.general_Settings.payment_method;
-          }
-
-          if ($scope.defaultSettings.inventory) {
-            if ($scope.defaultSettings.inventory.store) 
-              $scope.store_out.store = $scope.defaultSettings.inventory.store
-            if ($scope.defaultSettings.inventory.type_out) 
-              $scope.store_out.type = $scope.defaultSettings.inventory.type_out
-          }
-
-          if ($scope.defaultSettings.accounting) {
-            if ($scope.defaultSettings.accounting.safe) {
-              $scope.store_out.safe = $scope.defaultSettings.accounting.safe
-            }
-          }
-        };
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
     )
 
   };
 
-
-  $scope.add = function () {
-    $scope.error = '';
-    const v = site.validated();
-    if (!v.ok) {
-      $scope.error = v.messages[0].ar;
-      return;
-    }
-    if ($scope.store_out.items.length > 0) {
-      $scope.busy = true;
-      $http({
-        method: "POST",
-        url: "/api/stores_out/add",
-        data: $scope.store_out
-      }).then(
-        function (response) {
-          $scope.busy = false;
-          if (response.data.done) {
-            site.hideModal('#addStoreOutModal');
-            $scope.loadAll();
-          } else {
-            $scope.error = '##word.error##';
-          }
-        },
-        function (err) {
-          console.log(err);
-        }
-      )
-    } else {
-      $scope.error = "يجب ادخال الكمية ";
-      return;
-    }
-  };
-
-  $scope.edit = function (store_out) {
-    $scope.error = '';
-    $scope.view(store_out);
-    $scope.store_out = {};
-    site.showModal('#updateStoreOutModal');
-  };
-
-  $scope.update = function () {
-    $scope.error = '';
-    const v = site.validated();
-    if (!v.ok) {
-      $scope.error = v.messages[0].ar;
-      return;
-    }
+  $scope.getCityList = function (gov) {
     $scope.busy = true;
     $http({
       method: "POST",
-      url: "/api/stores_out/update",
-      data: $scope.store_out
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          site.hideModal('#updateStoreOutModal');
-          $scope.loadAll();
-        } else {
-          $scope.error = '##word.error##';
-        }
-      },
-      function (err) {
-        console.log(err);
-      }
-    )
-  };
-
-  $scope.remove = function (store_out) {
-    $scope.error = '';
-    $scope.get_open_shift((shift) => {
-      if (shift) {
-        $scope.view(store_out);
-        $scope.store_out = {};
-        site.showModal('#deleteStoreOutModal');
-      } else $scope.error = '##word.open_shift_not_found##';
-    });
-  };
-
-  $scope.view = function (store_out) {
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/stores_out/view",
+      url: "/api/city/all",
       data: {
-        _id: store_out._id
+        where: {
+          'gov.id': gov.id,
+          active: true
+        },
+        select: { id: 1, name: 1 }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.cityList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+  $scope.getAreaList = function (city) {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/area/all",
+      data: {
+        where: {
+          'city.id': city.id,
+          active: true
+        },
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.areaList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.loadItemSize = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $scope.itemSizeList = [];
+    $http({
+      method: "POST",
+      url: "/api/stores_items/sizes_all",
+      data: {
+        select: { maximum_discount: 1, barcode: 1, size: 1, id: 1 }
       }
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          response.data.doc.date = new Date(response.data.doc.date);
-          $scope.store_out = response.data.doc;
-
-        } else {
-          $scope.error = response.data.error;
+          $scope.itemSizeList = response.data.list;
         }
       },
       function (err) {
-        console.log(err);
+        $scope.busy = false;
+        $scope.error = err;
       }
     )
   };
@@ -737,174 +1036,6 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.details = function (store_out) {
-    $scope.error = '';
-    $scope.view(store_out);
-    $scope.store_out = {};
-    site.showModal('#viewStoreOutModal');
-  };
-
-  $scope.delete = function () {
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/stores_out/delete",
-      data: {
-        _id: $scope.store_out._id,
-        name: $scope.store_out.name
-      }
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          site.hideModal('#deleteStoreOutModal');
-          $scope.loadAll();
-        } else {
-          $scope.error = response.data.error;
-        }
-      },
-      function (err) {
-        console.log(err);
-      }
-    )
-  };
-
-  $scope.addToItems = function () {
-    $scope.error = "";
-
-    $scope.item.sizes.forEach(s => {
-
-      if (s.count > 0) {
-        $scope.store_out.items.push({
-          image_url: $scope.item.image_url,
-          name: s.item_name,
-          size: s.size,
-          average_cost: s.average_cost,
-          barcode: s.barcode,
-          count: s.count,
-          cost: s.cost,
-          price: s.price,
-          total: s.total,
-          current_count: s.current_count,
-
-        });
-      }
-
-    });
-
-    $scope.calc();
-    $scope.item = {
-      sizes: []
-    }
-  };
-
-  $scope.addToSizes = function () {
-    $scope.item.sizes = $scope.item.sizes || [];
-    $scope.item.sizes.push({
-      $new: true,
-      size: $scope.size_name,
-      count: 1,
-      cost: 0,
-      price: 0,
-      total: 0
-    });
-    $scope.size_name = '';
-  };
-
-  $scope.getItem = function (ev) {
-    $scope.error = "";
-    if (ev.which === 13) {
-
-      $http({
-        method: "POST",
-        url: "/api/stores_items/all",
-        data: {
-          where: {
-            name: $scope.item.name
-          }
-        }
-      }).then(
-        function (response) {
-          $scope.busy = false;
-          if (response.data.done) {
-            if (response.data.list.length > 0) {
-              $('#public_count').focus();
-              response.data.list[0].sizes.forEach(itm => {
-                itm.count = 1;
-              });
-              $scope.item = response.data.list[0];
-
-            } else {
-              $scope.item = {
-                sizes: [],
-                name: $scope.item.name
-              };
-              $('#item_name').focus();
-            }
-          } else {
-            $scope.error = response.data.error;
-            $scope.item = {
-              sizes: []
-            };
-          }
-        },
-        function (err) {
-          console.log(err);
-        }
-      );
-    }
-  };
-
-  $scope.calcSize = function (s) {
-    $scope.error = '';
-    setTimeout(() => {
-      if (s.cost && s.count) {
-        s.total = site.toNumber(s.cost) * site.toNumber(s.count)
-      }
-      $scope.calc();
-    }, 100);
-  };
-
-  $scope.getCustomerGroupList = function () {
-    $http({
-      method: "POST",
-      url: "/api/customers_group/all",
-      data: {
-        select: {
-          id: 1,
-          name: 1
-        }
-      }
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        $scope.customerGroupList = response.data.list;
-      },
-      function (err) {
-        $scope.error = err;
-      }
-    )
-  };
-
-  $scope.getIndentfy = function () {
-    $scope.error = '';
-    $scope.busy = true;
-    $scope.indentfyList = [];
-    $http({
-      method: "POST",
-      url: "/api/indentfy_employee/all"
-
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        $scope.indentfyList = response.data;
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
-  };
 
   $scope.get_open_shift = function (callback) {
     $scope.error = '';
@@ -934,16 +1065,16 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.loadStoresOut();
   $scope.loadStoresOutTypes();
-  $scope.loadVendors();
   $scope.loadStores();
-  $scope.loadTaxTypes();
-  $scope.getIndentfy();
+  $scope.loadCategories();
   $scope.getPaymentMethodList();
+  $scope.getGovList();
+  $scope.loadTax_Types();
+  $scope.getIndentfy();
   $scope.getCustomerGroupList();
-  $scope.loadDiscountTypes();
-  $scope.loadSafes();
+  $scope.loadItemSize();
+  $scope.loadDiscount_Types();
   $scope.loadAll({ date: new Date() });
-
+  $scope.loadSafes();
 });

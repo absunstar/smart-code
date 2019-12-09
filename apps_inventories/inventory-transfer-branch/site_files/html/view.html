@@ -1,0 +1,124 @@
+<div ng-hide="busy" class="row" fixed>
+    <div class="col9">
+        <br>
+        <table class="table hover bold">
+
+            <tr>
+                <td class="title">##word.transfer_branch_date##</td>
+                <td class="center brown">{{transfer_branch.date |date:"dd - MM - yyyy" }}</td>
+            </tr>
+
+            <tr>
+                <td class="title">##word.transfer_branch_id##</td>
+                <td class="center blue">{{transfer_branch.number}}</td>
+            </tr>
+
+            <tr>
+                <td class="title">##word.store##</td>
+                <td class="center">{{transfer_branch.store.name}}</td>
+            </tr>
+
+            <tr>
+                <td class="title">##word.transfer_branch_items##</td>
+                <td>
+                    <table class="table bold hover">
+                        <tr>
+                            <th>##word.serial##</th>
+                            <th>##word.transfer_branch_item_name##</th>
+                            <th>##word.transfer_branch_item_size##</th>
+                            <th>##word.barcode##</th>
+                            <th>##word.transfer_branch_item_count##</th>
+                            <th class="not-print">##word.transfer_branch_item_cost##</th>
+                            <th class="not-print">##word.transfer_branch_item_price##</th>
+                          <!--   <th>##word.discount##</th>
+                            <th>##word.transfer_branch_item_total##</th> -->
+
+                        </tr>
+                        <tr ng-repeat="itm in transfer_branch.items">
+                            <td class="center blue">{{$index + 1}}</td>
+                            <td class="center">{{itm.name}}</td>
+                            <td class="center">{{itm.size}}</td>
+                            <td class="center">{{itm.barcode}}</td>
+                            <td class="center">{{itm.count}}</td>
+                          <!--   <td class="not-print center">{{itm.cost}}</td>
+                            <td class="not-print center">{{itm.price}}</td> -->
+                            <td class="center">
+                                {{itm.maximum_discount.value}}
+                                <b class="red" ng-show="itm.maximum_discount.type =='number'">##word.le##</b>
+                                <b class="red" ng-show="itm.maximum_discount.type =='percent'">%</b>
+                            </td>
+                            <td class="center">{{itm.total}}</td>
+
+
+
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+            <tr ng-show="transfer_branch.taxes.length > 0">
+                <td class="title">##word.transfer_branch_taxes##</td>
+                <td>
+                    <table class="table hover margin">
+                        <tr>
+                            <th>##word.transfer_branch_tax_name##</th>
+                            <th>##word.transfer_branch_tax_value##</th>
+                        </tr>
+                        <tr ng-repeat="tax in transfer_branch.taxes">
+                            <td>
+                                <p class="text-center"> {{tax.name}} </p>
+                            </td>
+                            <td>
+                                <p class="text-center"> {{tax.value}} % </p>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+            <tr ng-show="transfer_branch.discountes.length > 0">
+                <td class="title">##word.transfer_branch_discountes##</td>
+                <td>
+                    <table class="table hover margin">
+                        <tr>
+                            <th>##word.transfer_branch_discount_name##</th>
+                            <th>##word.transfer_branch_discount_value##</th>
+                        </tr>
+                        <tr ng-repeat="discount in transfer_branch.discountes">
+                            <td>{{discount.name}}</td>
+                            <td>
+                                <p class="text-center" ng-show="discount.type == 'number'"> {{discount.value}} % </p>
+                                <p class="text-center" ng-show="discount.type == 'percent'"> {{discount.value}}
+                                    ##word.le## </p>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="title">##word.transfer_branch_total_value##</td>
+                <td class="center ">{{transfer_branch.total_value}} ##word.le##</td>
+            </tr>
+
+            <tr>
+                <td class="title">##word.transfer_branch_net_value##</td>
+                <td class="center green">{{transfer_branch.net_value}} ##word.le##</td>
+            </tr>
+
+            <tr>
+                <td class="title">##word.transfer_branch_notes##</td>
+                <td class="center">{{transfer_branch.notes}}</td>
+            </tr>
+
+        </table>
+    </div>
+    <div class="col3">
+        <br>
+        <i-image view category="stores_images" class="not-print" ng-model="transfer_branch.image_url"></i-image>
+        <br>
+        <i-files view ng-model="transfer_branch.files"></i-files>
+    </div>
+
+</div>
+<div class="not-print" x-import="inventory-transfer-branch/action_info.html"></div>

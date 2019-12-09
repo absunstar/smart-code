@@ -1,0 +1,143 @@
+
+
+<div ng-hide="busy" class="row" id="v1" fixed>
+        <div class="col9">
+            <br>
+            <table class="table">
+    
+                <tr>
+                    <td class="title">##word.stores_out_date##</td>
+                    <td>{{store_out.date | dateX}}</td>
+                </tr>
+    
+    
+                <tr>
+                    <td class="title">##word.stores_out_supply_date##</td>
+                    <td>{{store_out.supply_date | dateX}}</td>
+                </tr>
+    
+                <tr>
+                    <td class="title">##word.stores_out_id##</td>
+                    <td>{{store_out.number}}</td>
+                </tr>
+                <tr>
+                        <td class="title">##word.stores_out_supply_number##</td>
+                        <td>{{store_out.supply_number}}</td>
+                </tr>
+    
+                <tr>
+                    <td class="title">##word.stores_out_Company_name##</td>
+                    <td>{{store_out.vendor.name}}</td>
+                </tr>
+    
+                <tr>
+                    <td class="title">##word.stores_out_store_name##</td>
+                    <td>{{store_out.store.name}}</td>
+                </tr>
+                <tr>
+                    <td class="title">##word.stores_out_categry##</td>
+                    <td>{{store_out.category.name}}</td>
+                </tr>
+    
+                <tr>
+                    <td class="title">##word.stores_outtypes##</td>
+                    <td>{{store_out.type.ar}}</td>
+                </tr>
+    
+    
+    
+    
+                <tr>
+                    <td class="title">##word.stores_out_items##</td>
+                    <td>
+                        <table class="table hover">
+                            <tr>
+                                <th>##word.serial##</th>
+                                <th>##word.stores_out_item_name##</th>
+                                <th>##word.stores_out_item_size##</th>
+                                <th>##word.stores_out_item_count##</th>
+                                <th class="not-print">##word.stores_out_item_cost##</th>
+                                <th class="not-print">##word.stores_out_item_price##</th>
+                                <th>##word.stores_out_item_total##</th>
+                                <th>##word.stores_out_ticket_code##</th>
+    
+                            </tr>
+                            <tr ng-repeat="itm in store_out.items">
+                                <td>{{$index + 1}}</td>
+                                <td>{{itm.name}}</td>
+                                <td>{{itm.size}}</td>
+                                <td>{{itm.count}}</td>
+                                <td class="not-print">{{itm.cost}}</td>
+                                <td class="not-print">{{itm.price}}</td>
+                                <td>{{itm.total}}</td>
+                                <td>{{itm.ticket_code}}</td>
+    
+                                
+    
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+    
+                <tr ng-show="store_out.taxes.length > 0">
+                    <td class="title">##word.stores_out_taxes##</td>
+                    <td>
+                        <table class="table hover margin">
+                            <tr>
+                                <th>##word.stores_out_tax_name##</th>
+                                <th>##word.stores_out_tax_value##</th>
+                            </tr>
+                            <tr ng-repeat="tax in store_out.taxes">
+                                <td> <p class="text-center"> {{tax.name}} </p> </td>
+                                <td> <p class="text-center"> {{tax.value}} % </p>   </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+    
+                <tr ng-show="store_out.discountes.length > 0">
+                    <td class="title">##word.stores_out_discountes##</td>
+                    <td>
+                        <table class="table hover margin">
+                            <tr>
+                                <th>##word.stores_out_discount_name##</th>
+                                <th>##word.stores_out_discount_value##</th>
+                            </tr>
+                            <tr ng-repeat="discount in store_out.discountes">
+                                <td>{{discount.name}}</td>
+                                <td>
+                                    <p class="text-center" ng-show="discount.type == '%'"> {{discount.value}} % </p>
+                                    <p class="text-center" ng-show="discount.type == '0'"> {{discount.value}} ##word.le## </p>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+    
+                <tr>
+                    <td class="title">##word.stores_out_total_value##</td>
+                    <td>{{store_out.total_value}} ##word.le##</td>
+                </tr>
+    
+                <tr>
+                    <td class="title">##word.stores_out_net_value##</td>
+                    <td>{{store_out.net_value}} ##word.le##</td>
+                </tr>
+    
+                <tr>
+                    <td class="title">##word.stores_out_notes##</td>
+                    <td>{{store_out.notes}}</td>
+                </tr>
+    
+            </table>
+        </div>
+           <div class="col3">
+                <br>
+            <i-image view category="stores_images" class="not-print" ng-model="store_out.image_url"></i-image>
+            <br>
+            <i-files view ng-model="store_out.files"></i-files>   
+           </div>
+    
+    </div>
+    
+    

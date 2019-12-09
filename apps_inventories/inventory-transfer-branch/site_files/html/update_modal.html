@@ -1,0 +1,28 @@
+
+
+
+
+<div id="updateTransferBranchModal" class="modal">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+                <h2>
+                    ##word.safes_edit## <i class="fa fa-pencil"></i>
+                     
+                </h2>
+            </div>
+            <div class="modal-body">
+    
+                <div x-import="inventory-transfer-branch/content.html"></div>
+    
+            </div>
+            <h2 class="error">{{error}}</h2>
+            <div class="modal-footer center">
+                <i-button type="save" label="##word.save##" ng-click="update(transfer_branch)"></i-button>
+                <i-button type="close" label="##word.close##" onclick="site.hideModal('#updateTransferBranchModal')"></i-button>
+            </div>
+        </div>
+    </div>
+
+

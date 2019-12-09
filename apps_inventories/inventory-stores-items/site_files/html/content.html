@@ -1,21 +1,48 @@
 <div class="row">
     <form class="form">
         <div class="row">
-            <i-image class="col4" category="stores_images" ng-model="category_item.image_url"></i-image>
-            <div class="col8">
+            <i-image class="col3" category="stores_images" ng-model="category_item.image_url"></i-image>
+            <div class="col9">
+                <div class="row">
+                    <div class="col7">
+                        <div class="row">
+                            <i-control class="col6" id="category_name" ng-model="category_item.name"
+                                label="##word.stores_items_name##" type="text" v="r"></i-control>
 
-                <i-control class="col4" id="category_name" ng-model="category_item.name"
-                    label="##word.stores_items_name##" type="text" v="r"></i-control>
-                <i-list class="col4" ng-model="category_item.item_group" v="r"
-                    ng-search="_search.$category_item.$items_group_search" label="##word.item_group##"
-                    items="itemsGroupList"></i-list>
+                            <i-list class="col6" ng-model="category_item.item_group" v="r"
+                                ng-search="_search.$category_item.$items_group_search" label="##word.item_group##"
+                                items="itemsGroupList"></i-list>
+                        </div>
+                        <!--  <div class="row">
+                            <i-list class="col6" ng-model="store_in.store" items="storesList"
+                                ng-search="_search.$_default_store" label="##word.default_store##" v="r">
+                            </i-list>
+                        </div> -->
+                    </div>
+                    <div class="col1"></div>
 
-                <div class="row center">
-                    <i-checkbox label="##word.stores_items_allow_sell##" ng-model="category_item.allow_sell">
-                    </i-checkbox>
-                    <i-checkbox label="##word.stores_items_allow_buy##" ng-model="category_item.allow_buy">
-                    </i-checkbox>
-                    <i-checkbox label="##word.stores_items_is_pos##" ng-model="category_item.is_pos"> </i-checkbox>
+                    <div class="col4 center">
+                        <div class="row">
+
+                            <i-checkbox label="##word.stores_items_allow_sell##" ng-model="category_item.allow_sell">
+                            </i-checkbox>
+                        </div>
+                        <br>
+                        <br>
+                        <div class="row">
+
+                            <i-checkbox label="##word.stores_items_allow_buy##" ng-model="category_item.allow_buy">
+                            </i-checkbox>
+                        </div>
+                        <br>
+                        <br>
+
+                        <div class="row">
+
+                            <i-checkbox label="##word.stores_items_is_pos##" ng-model="category_item.is_pos">
+                            </i-checkbox>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -33,12 +60,12 @@
                     </i-checkbox>
                     <br>
                     <i-button ng-hide="!item.item_complex" type="view" label="##word.complex_items##"
-                        ng-click="showComplexItems(item)"> </i-button>
+                        ng-click="showComplexItems()"> </i-button>
                 </div>
 
                 <div class="col10">
 
-                    <div class="row">
+                    <div class="row center">
 
                         <i-control class="col2" ng-model="item.size" label="##word.stores_items_size##" type="text">
                         </i-control>
@@ -54,7 +81,10 @@
 
                     </div>
 
-                    <div class="row center">
+                    <div class="row">
+                        <!--    <i-list class="col3" ng-model="store" items="storesList"
+                            ng-search="_search.$_store" label="##word.store##" v="r">
+                        </i-list> -->
                         <i-list x-feature="restaurant" class="col3" ng-model="item.kitchen"
                             ng-search="_search.$kitchen_search" label="##word.kitchen_name##" items="itemsKitchenList">
                         </i-list>
@@ -63,7 +93,6 @@
 
                         <i-button type="add" class="col3" label="##word.stores_items_add_size##" ng-click="addSize()">
                         </i-button>
-
                     </div>
                 </div>
             </div>
@@ -77,12 +106,13 @@
                     <th>##word.logo##</th>
                     <th>##word.stores_items_sizes##</th>
                     <th>##word.barcode##</th>
-                    <th>##word.kitchen_name##</th>
+                    <th x-feature="restaurant">##word.kitchen_name##</th>
                     <th>##word.stores_items_cost##</th>
                     <th>##word.stores_items_price##</th>
                     <th>##word.average_cost##</th>
                     <th>##word.stores_current_balance##</th>
                     <th>##word.stores_items_start_count##</th>
+                    <th>##word.maximum_discount##</th>
                     <th>##word.actions##</th>
                 </tr>
 
@@ -101,7 +131,7 @@
                         <p class="center blue">{{itm.barcode}}</p>
                     </td>
 
-                    <td>
+                    <td x-feature="restaurant">
                         <i-list class="col3" ng-model="itm.kitchen" ng-search="_search.$kitchen_search"
                             items="itemsKitchenList"></i-list>
                     </td>
@@ -129,12 +159,26 @@
                     </td>
 
                     <td>
+                        <div class="row ">
+                            <i-control type="number" ng-model="itm.maximum_discount.value"></i-control>
+                        </div>
                         <div class="row center">
-                            <i-checkbox class="row" label="##word.stores_items_complex##" ng-model="itm.item_complex">
+                            <i-radio ng-model="itm.maximum_discount.type" label="##word.discount_types_number##"
+                                ng-value="number" group="type" type="radio"></i-radio>
+                            <i-radio ng-model="itm.maximum_discount.type" label="##word.discount_types_percent##"
+                                ng-value="percent" group="type" type="radio"></i-radio>
+                        </div>
+                    </td>
+
+                    <td>
+                        <div class="row center">
+                            <i-checkbox label="##word.stores_items_complex##" ng-model="itm.item_complex">
                             </i-checkbox>
-                            <br>
-                            <i-button class="row" ng-show="itm.item_complex == true" type="view"
-                                label="##word.complex_items##" ng-click="showComplexItems(itm)">
+                        </div>
+
+                        <div class="row center">
+                            <i-button ng-show="itm.item_complex == true" type="view" label="##word.complex_items##"
+                                ng-click="showComplexItemsView(itm)">
                             </i-button>
                         </div>
 

@@ -15,6 +15,11 @@
         "ar": "لا يمكن حذف المقاس لإستخدامه في معاملات أخرى"
     },
     {
+        "name": "err_Item_must_correctly",
+        "en": "Item Must Be Entered Correctly" ,
+        "ar": "يجب ادخال الكمية و الصنف بشكل صحيح"
+    },
+    {
         "name": "stores_items_delete",
         "en": "Delete Category",
         "ar": "حذف صنف"
@@ -73,6 +78,11 @@
         "name": "dublicate_item",
         "en": "Dublicate Item",
         "ar": "الصنف مكرر"
+    },
+    {
+        "name": "maximum_discount",
+        "en": "Maximum Discount",
+        "ar": "أقصى خصم"
     },
     {
         "name": "complex_items",
@@ -170,11 +180,6 @@
         "ar": "إجمالي عدد المبيعات"
     },
     {
-        "name": "stores_items_balance",
-        "en": "Balance",
-        "ar": "الرصيد"
-    },
-    {
         "name": "stores_items_start_count",
         "en": "Start Count",
         "ar": "الرصيد الافتتاحى"
@@ -250,11 +255,6 @@
         "ar": "سعر البيع"
     },
     {
-        "name": "stores_balance",
-        "en": "Balance",
-        "ar": "الرصيد"
-    },
-    {
         "name": "no_items",
         "en": "No Items",
         "ar": "لاتوجد مقاسات"
@@ -293,11 +293,6 @@
         "name": "stores_items_count",
         "en": "Result Count",
         "ar": "نتائج البحث"
-    },
-    {
-        "name": "stores_items_balance",
-        "en": "Balance",
-        "ar": "الرصيد"
     },
     {
         "name": "stores_items_balance_Gt",

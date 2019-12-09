@@ -83,12 +83,12 @@ app.controller("default_setting", function ($scope, $http) {
     $http({
       method: "POST",
       url: "/api/stores/all",
-      data: {}
+      data: { select: { id: 1, name: 1, type: 1 } }
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          $scope.stores = response.data.list;
+          $scope.storesList = response.data.list;
         }
       },
       function (err) {
@@ -264,6 +264,31 @@ app.controller("default_setting", function ($scope, $http) {
       }
     )
   };
+  $scope.loadItemsGroups = function () {
+    $scope.busy = true;
+    $scope.itemsGroupList = [];
+    $http({
+      method: "POST",
+      url: "/api/items_group/all",
+      data: {
+        select: {
+          id: 1,
+          name: 1
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.itemsGroupList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
 
   $scope.getPaymentMethodList = function () {
     $scope.error = '';
@@ -368,6 +393,7 @@ app.controller("default_setting", function ($scope, $http) {
   $scope.getPlaceProgramList();
   $scope.loadStoresOutTypes();
   $scope.getHallList();
+  $scope.loadItemsGroups();
   $scope.getSourceType();
   $scope.loadStoresInTypes();
   $scope.loadSetting();

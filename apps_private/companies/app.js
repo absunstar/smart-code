@@ -84,7 +84,7 @@ module.exports = function init(site) {
         response.doc = doc
 
         site.call('[company][created]', doc)
-      
+
         site.call('please add user', {
           is_company: true,
           company_id: doc.id,
@@ -222,6 +222,40 @@ module.exports = function init(site) {
     }
   })
 
+  site.post("/api/branches/all", (req, res) => {
+    let response = {
+      done: false
+    }
+
+    let where = req.body.where || {}
+
+    where['id'] = site.get_company(req).id
+
+    $companies.findOne({
+      select: req.body.select || {},
+      where: where,
+      sort: req.body.sort || {
+        id: -1
+      },
+      limit: req.body.limit
+    }, (err, docs, count) => {
+      if (!err) {
+        response.done = true
+        response.list = docs.branch_list
+        response.branch = {}
+        response.list.forEach(_list => {
+          if(_list.code == site.get_branch(req).code)
+          response.branch = _list
+        })
+        response.count = count
+      } else {
+        response.error = err.message
+      }
+      res.json(response)
+    })
+  })
+
+
   site.post(["/api/companies/all"], (req, res) => {
     let response = {
       done: false
@@ -229,11 +263,11 @@ module.exports = function init(site) {
 
     let where = req.body.where || {}
 
-   
+
 
     if (req.session.user.is_company) {
       where['id'] = req.session.user.company_id;
-    }else{
+    } else {
       where['company.id'] = site.get_company(req).id
       where['branch.code'] = site.get_branch(req).code
     }

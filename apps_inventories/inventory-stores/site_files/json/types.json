@@ -1,5 +1,5 @@
 [
-    {"id" : 1 ,  "en" : "normal" , "ar" : " مخزن عادى" },
+    {"id" : 1 ,  "en" : "Store Normal" , "ar" : " مخزن عادى" },
     {"id" : 2 ,  "en" : "Damage " , "ar" : " توالف" },
     {"id" : 3 ,  "en" : "kata3e" , "ar" : " جملة  " },
     {"id" : 4 ,  "en" : " Gomlla" , "ar" : " قطاعى  " },

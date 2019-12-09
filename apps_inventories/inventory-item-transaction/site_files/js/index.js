@@ -2,18 +2,18 @@ app.controller("item_transaction", function ($scope, $http, $timeout) {
   $scope._search = {};
 
   $scope.search = {};
-  $scope.transaction_types=[
-  {name:"##word.item_transaction_type_in##" , id:1, type:'in'},
-  {name:"##word.item_transaction_type_out##" , id:2 , type:'out'},
+  $scope.transaction_types = [
+    { name: "##word.item_transaction_type_in##", id: 1, type: 'in' },
+    { name: "##word.item_transaction_type_out##", id: 2, type: 'out' },
   ]
-  $scope.transaction_status=[
-    {name:"##word.item_transaction_current_status_1##" , value:"debt" },
-    {name:"##word.item_transaction_current_status_2##" , value:"replaced" },
-    {name:"##word.item_transaction_current_status_3##" , value:"damaged"},
-    {name:"##word.item_transaction_current_status_4##" , value:"sold"},
-    {name:"##word.item_transaction_current_status_5##" , value:"transferred"},
-    {name:"##word.item_transaction_current_status_6##" , value:"storein"}
-    ]
+  $scope.transaction_status = [
+    { name: "##word.item_transaction_current_status_1##", value: "debt" },
+    { name: "##word.item_transaction_current_status_2##", value: "replaced" },
+    { name: "##word.item_transaction_current_status_3##", value: "damaged" },
+    { name: "##word.item_transaction_current_status_4##", value: "sold" },
+    { name: "##word.item_transaction_current_status_5##", value: "transferred" },
+    { name: "##word.item_transaction_current_status_6##", value: "storein" }
+  ]
 
   $scope.loadvendors = function () {
     $scope.busy = true;
@@ -45,12 +45,7 @@ app.controller("item_transaction", function ($scope, $http, $timeout) {
     $http({
       method: "POST",
       url: "/api/stores/all",
-      data: {
-        select: {
-          id: 1,
-          name: 1
-        }
-      }
+      data: { select: { id: 1, name: 1, type: 1 } }
     }).then(
       function (response) {
         $scope.busy = false;
@@ -90,11 +85,11 @@ app.controller("item_transaction", function ($scope, $http, $timeout) {
       function (err) {
         $scope.busy = false;
         $scope.error = err;
-        
+
       }
     )
   };
-  
+
 
   $scope.searchAll = function () {
     let where = {};
@@ -244,6 +239,6 @@ app.controller("item_transaction", function ($scope, $http, $timeout) {
   $scope.loadvendors();
   $scope.loadStores();
   $scope.loadEng();
-  $scope.loadAll({date : new Date()});
+  $scope.loadAll({ date: new Date() });
 
 });

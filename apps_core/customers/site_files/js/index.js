@@ -353,6 +353,31 @@ app.controller("customers", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.getAreaList = function (city) {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/area/all",
+      data: {
+        where: {
+          'city.id': city.id,
+          active: true
+        },
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.areaList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
   $scope.getDiseaseList = function (where) {
     $scope.busy = true;
     $http({
@@ -407,7 +432,7 @@ app.controller("customers", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/maritals_status/all",
       data: {
-        select : {id:1 , name : 1}
+        select: { id: 1, name: 1 }
       }
     }).then(
       function (response) {
@@ -429,39 +454,13 @@ app.controller("customers", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/militaries_status/all",
       data: {
-        select : {id:1 , name : 1}
+        select: { id: 1, name: 1 }
       }
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.militaries_status = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
-  };
-
-
-  $scope.getAreaList = function (city) {
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/area/all",
-      data: {
-        where: {
-          'city.id': city.id,
-          active: true
-        },
-      }
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.areaList = response.data.list;
         }
       },
       function (err) {

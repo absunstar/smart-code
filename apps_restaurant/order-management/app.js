@@ -72,7 +72,7 @@ module.exports = function init(site) {
           if (result.doc.reset_items && result.doc.status.id == 2 && result.doc.post) {
             $order_invoice.update(result.doc)
             result.doc.book_list.forEach(itm => {
-              site.call('[order_invoice][stores_items][-]', Object.assign({}, itm))
+              site.call('[store_out][stores_items][-]', Object.assign({}, itm))
               itm.company = result.doc.company
               itm.branch = result.doc.branch
               itm.number = result.doc.code

@@ -157,7 +157,6 @@
     {"name" : "oppenents_period_maturity_purchases" , "en" : "Period Of Maturity Of Purchases" , "ar" : "فترة استحقاق المشتريات"},
     {"name" : "oppenents_prof_account" , "en" : "Prof Account" , "ar" : "حساب الاستاذ"},
     {"name" : "oppenents_discount" , "en" : "Discount" , "ar" : "نسبة الخصم"},
-    {"name" : "oppenents_balance" , "en" : "Balance" , "ar" : "الرصيد"},    
     {"name" : "oppenents_credit_limit" , "en" : "Credit Limit" , "ar" : "حد الائتمان"},
     {"name" : "oppenents_delegate_commission" , "en" : "Delegate Commission" , "ar" : "عمولة المندوب"},
 

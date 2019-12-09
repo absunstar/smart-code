@@ -22,6 +22,8 @@
                 <div x-permissions="stores_items_add || stores_items_manage"
                     x-import="inventory-stores-items/complex_view.html"></div>
                 <div x-permissions="stores_items_add || stores_items_manage"
+                    x-import="inventory-stores-items/store_balance.html"></div>
+                <div x-permissions="stores_items_add || stores_items_manage"
                     x-import="inventory-stores-items/complex_item.html"></div>
                 <div x-permissions="stores_items_update || stores_items_manage"
                     x-import="inventory-stores-items/update_modal.html"></div>
@@ -69,28 +71,35 @@
                             </td>
 
                             <td>
-                                <p ng-show="!c.sizes || c.sizes.length < 1">##word.no_items##</p>
+                                <p ng-hide="c.sizes.length > 0">##word.no_items##</p>
                                 <table ng-show="c.sizes.length > 0" class="table bold">
                                     <tr>
                                         <th>##word.stores_size##</th>
                                         <th>##word.barcode##</th>
-                                        <th>##word.kitchen_name##</th>
+                                        <th x-feature="restaurant">##word.kitchen_name##</th>
                                         <th>##word.stores_cost##</th>
                                         <th>##word.stores_price##</th>
                                         <th>##word.average_cost##</th>
                                         <th>##word.stores_current_balance##</th>
                                         <th>##word.stores_start_balance##</th>
+                                        <th>##word.maximum_discount##</th>
                                     </tr>
 
-                                    <tr ng-repeat="s in c.sizes">
-                                        <td class="center">{{s.size}}</td>
-                                        <td class="center blue">{{s.barcode}}</td>
-                                        <td class="center">{{s.kitchen.name}}</td>
-                                        <td class="center red">{{s.cost}}</td>
-                                        <td class="center green">{{s.price}}</td>
-                                        <td class="center red">{{s.average_cost}}</td>
-                                        <td class="center blue">{{s.current_count}}</td>
-                                        <td class="center blue">{{s.start_count}}</td>
+                                    <tr ng-repeat="_size in c.sizes">
+                                        <td class="center">{{_size.size}}</td>
+                                        <td class="center blue">{{_size.barcode}}</td>
+                                        <td class="center" x-feature="restaurant">{{_size.kitchen.name}}</td>
+                                        <td class="center red">{{_size.cost}}</td>
+                                        <td class="center green">{{_size.price}}</td>
+                                        <td class="center red">{{_size.average_cost}}</td>
+                                        <td class="center blue">{{_size.current_count}}</td>
+                                        <td class="center blue">{{_size.start_count}}</td>
+                                        <td class="center red">
+                                            {{_size.maximum_discount.value}}
+                                            <b class="red" ng-show="_size.maximum_discount.type == 'number'">
+                                                ##word.le##</b>
+                                            <b class="red" ng-show="_size.maximum_discount.type == 'percent'"> % </b>
+                                        </td>
                                     </tr>
                                 </table>
                             </td>

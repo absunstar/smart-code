@@ -1,25 +1,23 @@
-
-
 <div id="deleteStoreOutModal" class="modal">
 
     <div class="modal-content">
         <div class="modal-header">
             <span class="close">&times;</span>
             <h2>
-                <i class="fa fa-trash"></i> ##word.stores_in_delete## 
+                ##word.stores_out_delete## <i class="fa fa-trash"></i>  
             </h2>
         </div>
         <div class="modal-body">
-          
+            
             <div x-import="inventory-stores-out/view.html"></div>
 
         </div>
         <h2>{{error}}</h2>
 
         <div class="modal-footer center">
-            <i-button type="delete" x-permissions="stores_out_delete || stores_out_manage"  label="##word.delete##" ng-hide="busy" id="delete_store_out_btn" ng-click="delete(store_out)"></i-button>
-            <i-button type="close" label="##word.close##" onclick="site.hideModal('#deleteStoreOutModal')"></i-button>
-            
+            <i-button type="delete" label= "##word.delete##" ng-hide="busy" id="delete_store_out_btn" ng-click="delete(store_out)" ></i-button>
+            <i-button type="close" label= "##word.close##"  onclick="site.hideModal('#deleteStoreOutModal')" ></i-button>
+
 
         </div>
     </div>

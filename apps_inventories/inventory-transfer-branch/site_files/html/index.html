@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="transfer_branch_ui || transfer_branch_manage" data-ng-app="myApp">
+
+<head x-import="head.html">
+
+</head>
+
+<body class="##session.lang##">
+
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+    </nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+
+    </nav>
+    <div id="main-layout" class="container">
+        <div class="row ">
+            <div class="row" ng-controller="transfer_branch">
+                <div x-permissions="transfer_branch_add || transfer_branch_manage" x-import="inventory-transfer-branch/add_modal.html">
+                </div>
+                <div x-permissions="transfer_branch_add || transfer_branch_manage" x-import="customers/add_modal.html">
+                </div>
+                <div x-permissions="transfer_branch_delete || transfer_branch_manage"
+                    x-import="inventory-transfer-branch/delete_modal.html"></div>
+                <div x-permissions="transfer_branch_view || transfer_branch_manage"
+                    x-import="inventory-transfer-branch/view_modal.html">
+                </div>
+                <div x-permissions="transfer_branch_search || transfer_branch_manage"
+                    x-import="inventory-transfer-branch/search_all_modal.html"></div>
+                <div x-permissions="transfer_branch_update || transfer_branch_manage"
+                    x-import="inventory-transfer-branch/update_modal.html"></div>
+                <div x-permissions="transfer_branch_add || transfer_branch_manage"
+                    x-import="inventory-transfer-branch/select_items_modal.html"></div>
+
+                <div class="row">
+                    <h1 class="bold text-center"> ##word.transfer_branch_items## </h1>
+                </div>
+                <div class="top-actions">
+
+                    <i-button x-permissions="transfer_branch_add || transfer_branch_manage" type="add"
+                        label="##word.transfer_branch_new##" ng-click="newTransferBranch()"></i-button>
+                    <i-button x-permissions="transfer_branch_search || transfer_branch_manage" type="search"
+                        label="##word.search_all##" onclick="site.showModal('#StoresOutSearchModal')"></i-button>
+
+                    <h2 class="bold red text-center"> {{error}}</h2>
+                    <h3 class="bold text-center"> ##word.count## : {{count}}</h3>
+                </div>
+                <table id="t1" class="table loaded bold center hover">
+                    <tr>
+                        <th class="not-print"> ##word.logo## </th>
+                        <th>##word.transfer_branch_date##</th>
+                        <th>##word.transfer_branch_id##</th>
+                      
+
+                        <th class="not-print">##word.actions##</th>
+                    </tr>
+                    <tr ng-repeat="c in list">
+                        <td class="not-print">
+                            <img class="logo" ng-src="{{c.image_url}}">
+                        </td>
+
+                        <td>
+                            <p class="text-center brown"> <br> {{c.date | date : 'yyyy - MM - dd'}} </p>
+                        </td>
+
+                        <td>
+                            <p class="bold  text-center"> <br> {{c.number}} </p>
+                        </td>
+
+                        <td class="center not-print">
+
+                            <i-button x-permissions="transfer_branch_view || transfer_branch_manage" type="details"
+                                label="##word.details##" ng-click="details(c)"></i-button>
+
+                            <i-button x-permissions="transfer_branch_update || transfer_branch_manage" type="update"
+                                label="##word.edit##" ng-click="edit(c)"></i-button>
+
+                            <i-button x-permissions="transfer_branch_delete || transfer_branch_manage" type="delete"
+                                label="##word.delete##" ng-click="remove(c)"></i-button>
+                        </td>
+
+                    </tr>
+
+                </table>
+
+                <i-button x-permissions="transfer_branch_print || transfer_branch_manage" type="print" label="##word.print##"
+                    onclick="site.print('#t1')"></i-button>
+
+            </div>
+        </div>
+    </div>
+
+    <div x-import="scripts.html"></div>
+    <script x-import="inventory-transfer-branch/index.js"></script>
+
+</body>
+
+</html>
