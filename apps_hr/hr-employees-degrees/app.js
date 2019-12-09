@@ -2,7 +2,6 @@ module.exports = function init(site) {
 
   const $employees_degrees = site.connectCollection("hr_employees_degrees")
 
-  
   site.get({
     name: "employees_degrees",
     path: __dirname + "/site_files/html/index.html",
@@ -146,7 +145,7 @@ module.exports = function init(site) {
     if (where['notes']) {
       where['notes'] = new RegExp(where['notes'], 'i')
     }
-   
+
     where['company.id'] = site.get_company(req).id
     where['branch.code'] = site.get_branch(req).code
 

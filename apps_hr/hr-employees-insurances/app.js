@@ -1,6 +1,5 @@
 module.exports = function init(site) {
 
-
   const $employees_insurances = site.connectCollection("hr_employees_insurances")
   
   site.words.addList(__dirname + '/site_files/json/words.json')
