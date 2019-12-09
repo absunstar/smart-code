@@ -40,6 +40,16 @@
         "ar": "مخزن إفتراضي"
     },
     {
+        "name": "marital_status",
+        "en": "Marital Status",
+        "ar": "الحالة الاجتماعية"
+    },
+    {
+        "name": "military_status",
+        "en": "Military Status",
+        "ar": "موقف التجنيد"
+    },
+    {
         "name": "store",
         "en": "ًStore",
         "ar": "مخزن"

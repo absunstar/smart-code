@@ -1,0 +1,7 @@
+[{
+    "module_name" : "hr" ,
+    "name": "delegate_admin",
+    "en": "Delegate Admin",
+    "ar": "إدارة المناديب",
+    "permissions": ["delegate_manage"]
+}]

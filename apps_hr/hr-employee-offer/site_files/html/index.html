@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" x-permissions="employee_offer_ui || employee_offer_manage" data-ng-app="myApp">
+<html lang="en" data-ng-app="myApp">
 
 <head x-import="head.html">
 
@@ -7,12 +7,11 @@
 
 <body class="##session.lang##">
     <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
-
     </nav>
 
     <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
-
     </nav>
+
     <div id="main-layout" class="container">
         <div class="row">
             <div class="row" ng-controller="employee_offer">
@@ -81,8 +80,8 @@
                     </tr>
 
                 </table>
-               
-                
+
+
                 <i-button type="print" x-permissions="employee_offer_print || employee_offer_manage"
                     label="##word.print##" onclick="site.print('#t1')"></i-button>
 
@@ -95,7 +94,7 @@
 
     <div x-import="scripts.html"></div>
 
-    <script  x-import="hr-employee-offer/index.js"></script>
+    <script x-import="hr-employee-offer/index.js"></script>
 
 
 </body>

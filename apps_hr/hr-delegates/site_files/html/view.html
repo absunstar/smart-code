@@ -26,34 +26,34 @@
 
                                 <tr>
                                     <td class="title">##word.name##</td>
-                                    <td class="center">{{employee_list.name}}</td>
+                                    <td class="center">{{delegate_list.name}}</td>
                                 </tr>
 
                                 <tr>
                                     <td class="title">##word.finger_code##</td>
-                                    <td class="center blue">{{employee_list.finger_code}}</td>
+                                    <td class="center blue">{{delegate_list.finger_code}}</td>
                                 </tr>
 
                                 <tr>
                                     <td class="title">##word.national_id##</td>
-                                    <td class="center blue">{{employee_list.national_id}}</td>
+                                    <td class="center blue">{{delegate_list.national_id}}</td>
                                 </tr>
 
                                 <tr>
-                                    <td class="title">##word.employees_degrees##</td>
-                                    <td class="center">{{employee_list.degree.name}}</td>
+                                    <td class="title">##word.delegates_degrees##</td>
+                                    <td class="center">{{delegate_list.degree.name}}</td>
                                 </tr>
 
                                 <tr>
                                     <td class="title">##word.salary##</td>
-                                    <td class="center green">{{employee_list.degree.salary}}</td>
+                                    <td class="center green">{{delegate_list.degree.salary}}</td>
                                 </tr>
 
                                 <tr>
                                     <td class="title">##word.status##</td>
-                                    <td ng-show="employee_list.active == true" class="green center"> ##word.active##
+                                    <td ng-show="delegate_list.active == true" class="green center"> ##word.active##
                                     </td>
-                                    <td ng-show="employee_list.active == false" class="red center"> ##word.not_active##
+                                    <td ng-show="delegate_list.active == false" class="red center"> ##word.not_active##
                                     </td>
                                 </tr>
 
@@ -64,42 +64,42 @@
                         <br>
                         <div>
                             <fieldset>
-                                <legend>##word.employee_info##</legend>
+                                <legend>##word.delegate_info##</legend>
                                 <table class="table hover bold">
                                     <tr>
-                                        <td class="title">##word.employee_indentfy##</td>
-                                        <td class="center">{{employee_list.indentfy.ar}}</td>
+                                        <td class="title">##word.delegate_indentfy##</td>
+                                        <td class="center">{{delegate_list.indentfy.ar}}</td>
                                     </tr>
                                     <tr>
                                         <td class="title">##word.birth_date##</td>
-                                        <td class="center brown">{{employee_list.birth_date | date : 'dd / MM / yyyy'}}
+                                        <td class="center brown">{{delegate_list.birth_date | date : 'dd / MM / yyyy'}}
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="title">##word.employment_date##</td>
                                         <td class="center brown">
-                                            {{employee_list.employment_date | date : 'dd / MM / yyyy'}}</td>
+                                            {{delegate_list.employment_date | date : 'dd / MM / yyyy'}}</td>
                                     </tr>
 
                                     <tr>
                                         <td class="title">##word.marital_status##</td>
-                                        <td class="center">{{employee_list.marital_status.name}}</td>
+                                        <td class="center">{{delegate_list.marital_status.name}}</td>
                                     </tr>
                                     <tr>
                                         <td class="title">##word.military_status##</td>
-                                        <td class="center">{{employee_list.military_status.name}}</td>
+                                        <td class="center">{{delegate_list.military_status.name}}</td>
                                     </tr>
                                     <tr>
                                         <td class="title">##word.job##</td>
-                                        <td class="center">{{employee_list.job.name}}</td>
+                                        <td class="center">{{delegate_list.job.name}}</td>
                                     </tr>
                                     <tr>
                                         <td class="title">##word.qualification##</td>
-                                        <td class="center">{{employee_list.qualification}}</td>
+                                        <td class="center">{{delegate_list.qualification}}</td>
                                     </tr>
                                     <tr>
-                                        <td class="title">##word.employees_insurances_insurance_number##</td>
-                                        <td class="center">{{employee_list.insurance_number}}</td>
+                                        <td class="title">##word.delegates_insurances_insurance_number##</td>
+                                        <td class="center">{{delegate_list.insurance_number}}</td>
                                     </tr>
                                 </table>
 
@@ -115,22 +115,22 @@
 
                                     <tr>
                                         <td class="title">##word.gov##</td>
-                                        <td class="center">{{employee_list.gov.name}}</td>
+                                        <td class="center">{{delegate_list.gov.name}}</td>
                                     </tr>
                                     <tr>
                                         <td class="title">##word.city##</td>
-                                        <td class="center">{{employee_list.city.name}}</td>
+                                        <td class="center">{{delegate_list.city.name}}</td>
                                     </tr>
                                     <tr>
                                         <td class="title">##word.address##</td>
-                                        <td class="center">{{employee_list.address}}</td>
+                                        <td class="center">{{delegate_list.address}}</td>
                                     </tr>
 
                                     <tr>
                                         <td class="title">##word.phone##</td>
                                         <td class="center">
-                                            <a ng-show="employee_list.phone" href="tel:{{employee_list.phone}}">
-                                                {{employee_list.phone}}
+                                            <a ng-show="delegate_list.phone" href="tel:{{delegate_list.phone}}">
+                                                {{delegate_list.phone}}
                                                 <i class="fa fa-phone" aria-hidden="true"></i>
                                             </a>
                                         </td>
@@ -139,8 +139,8 @@
                                     <tr>
                                         <td class="title">##word.mobile##</td>
                                         <td class="center">
-                                            <a ng-show="employee_list.mobile" href="tel:{{employee_list.mobile}}">
-                                                {{employee_list.mobile}}
+                                            <a ng-show="delegate_list.mobile" href="tel:{{delegate_list.mobile}}">
+                                                {{delegate_list.mobile}}
                                                 <i class="fa fa-mobile" aria-hidden="true"></i>
                                             </a>
                                         </td>
@@ -148,8 +148,8 @@
                                     <tr>
                                         <td class="title">##word.whatsapp##</td>
                                         <td class="center">
-                                            <a ng-show="employee_list.whatsapp" href="tel:{{employee_list.whatsapp}}">
-                                                {{employee_list.whatsapp}}
+                                            <a ng-show="delegate_list.whatsapp" href="tel:{{delegate_list.whatsapp}}">
+                                                {{delegate_list.whatsapp}}
                                                 <i class="fa fa-whatsapp" aria-hidden="true"></i>
                                             </a>
                                         </td>
@@ -157,9 +157,9 @@
                                     <tr>
                                         <td class="title">##word.email##</td>
                                         <td class="center">
-                                            <a ng-show="employee_list.email" target="_blank"
-                                                href="tel:{{employee_list.email}}">
-                                                {{employee_list.email}}
+                                            <a ng-show="delegate_list.email" target="_blank"
+                                                href="tel:{{delegate_list.email}}">
+                                                {{delegate_list.email}}
                                                 <i class="fa fa-envelope" aria-hidden="true"></i>
                                             </a>
                                         </td>
@@ -167,8 +167,8 @@
                                     <tr>
                                         <td class="title">##word.facebook##</td>
                                         <td class="center">
-                                            <a ng-show="employee_list.facebook" href="tel:{{employee_list.facebook}}">
-                                                {{employee_list.facebook}}
+                                            <a ng-show="delegate_list.facebook" href="tel:{{delegate_list.facebook}}">
+                                                {{delegate_list.facebook}}
                                                 <i class="fa fa-facebook" aria-hidden="true"></i>
                                             </a>
                                         </td>
@@ -176,15 +176,15 @@
                                     <tr>
                                         <td class="title">##word.twitter##</td>
                                         <td class="center">
-                                            <a ng-show="employee_list.twitter" href="tel:{{employee_list.twitter}}">
-                                                {{employee_list.twitter}}
+                                            <a ng-show="delegate_list.twitter" href="tel:{{delegate_list.twitter}}">
+                                                {{delegate_list.twitter}}
                                                 <i class="fa fa-twitter" aria-hidden="true"></i>
                                             </a>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="title">##word.notes##</td>
-                                        <td class="center blue">{{employee_list.notes}}</td>
+                                        <td class="center blue">{{delegate_list.notes}}</td>
                                     </tr>
 
                                 </table>
@@ -196,7 +196,7 @@
                     </div>
 
                     <div class="col3">
-                        <i-image view ng-model="employee_list.image_url"></i-image>
+                        <i-image view ng-model="delegate_list.image_url"></i-image>
                     </div>
 
                 </fieldset>
@@ -207,7 +207,7 @@
                 <fieldset>
                     <legend> ##word.files## </legend>
                     <div class="row">
-                        <i-files view ng-model="employee_list.files"></i-files>
+                        <i-files view ng-model="delegate_list.files"></i-files>
 
                     </div>
                 </fieldset>
@@ -222,12 +222,12 @@
                     <table class="table hover bold">
                         <tr>
                             <td class="title">##word.email##</td>
-                            <td class="center">{{employee_list.username}}</a>
+                            <td class="center">{{delegate_list.username}}</a>
                             </td>
                         </tr>
                         <tr>
                             <td class="title">##word.password##</td>
-                            <td class="center">{{employee_list.password}}</td>
+                            <td class="center">{{delegate_list.password}}</td>
                         </tr>
                     </table>
                 </fieldset>
@@ -236,4 +236,4 @@
         </div>
     </div>
 </div>
-<div x-import="hr-employees/action_info.html"></div>
+<div x-import="hr-delegates/action_info.html"></div>

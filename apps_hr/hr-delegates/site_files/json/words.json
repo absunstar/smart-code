@@ -1,0 +1,78 @@
+[
+    {
+        "name": "delegate",
+        "en": "Delegates",
+        "ar": "المناديب"
+    },
+    {
+        "name": "delegate_new",
+        "en": "New Delegate",
+        "ar": "مندوب جديد"
+    },
+    {
+        "name": "basic_information",
+        "en": "Basic Information",
+        "ar": "البيانات الأساسية"
+    },
+    {
+        "name": "delivery_difference",
+        "en": "Delivery Difference",
+        "ar": "فرق التوصيل"
+    },
+    {
+        "name": "accounting_system",
+        "en": "Accounting System",
+        "ar": "النظام المحاسبي"
+    },
+   
+    {
+        "name": "delegate_add",
+        "en": "Add Delegate",
+        "ar": "إضافة مندوب"
+    },
+    {
+        "name": "delegates_degrees",
+        "en": "New Degree",
+        "ar": "الدرجة الوظيفية"
+    },
+    {
+        "name": "delegate_edit",
+        "en": "Edit Delegate",
+        "ar": "تعديل مندوب"
+    },
+    {
+        "name": "delegate_details",
+        "en": "Delegate Details",
+        "ar": "تفاصيل المندوب"
+    },
+    {
+        "name": "delegate_delete",
+        "en": "Delete Delegate",
+        "ar": "حذف مندوب"
+    },
+    {
+        "name": "delegate_name",
+        "en": "Delegate Name",
+        "ar": "إسم المندوب"
+    },
+    {
+        "name": "delegate_indentfy",
+        "en": "Delegate Indentfy",
+        "ar": "نوع المندوب"
+    },
+    {
+        "name": "birth_date",
+        "en": "Birth Date",
+        "ar": "تاريخ الميلاد"
+    },
+    {
+        "name": "qualification",
+        "en": "Qualification",
+        "ar": "المؤهل"
+    },
+    {
+        "name": "delegate_info",
+        "en": "Delegate Informations",
+        "ar": "معلومات المندوب"
+    }
+]

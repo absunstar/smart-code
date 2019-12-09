@@ -1,0 +1,76 @@
+<div id="delegateSearchModal" class="modal">
+    <div class="col2"></div>
+    <div class="modal-content col8">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.search_all## <i class="fa fa-search"></i>
+
+            </h2>
+        </div>
+
+        <div class="modal-body">
+            <form class="form">
+                <div class="row">
+
+                    <i-control help-id="" class="col3" label="##word.name##" ng-model="search.name"></i-control>
+
+                    <i-control help-id="" class="col3" label="##word.national_id##" ng-model="search.national_id"></i-control>
+                    <i-list help-id="" type="text" class="col3" items="jobsList" ng-search="_search.$delegate.$jobs"
+                    label="##word.job##" ng-model="search.job"></i-list>
+                    <div class="control col3">
+                        <label> ##word.status## </label>
+                        <select ng-model="search.active">
+                            <option ng-value="true"> ##word.active## </option>
+                            <option ng-value="false"> ##word.not_active## </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <i-list class="col3" label="##word.gov##" ng-model="search.gov" items="govList" ng-change="getCityList(search.gov)"
+                        display="name" ng-search="_search.$gov_search"></i-list>
+
+                    <i-list class="col3" label="##word.city##" ng-model="search.city" ng-change="getAreaList(search.city)" items="cityList"
+                        display="name" ng-search="_search.$city_search"></i-list>
+
+                    <i-list class="col3" label="##word.area##" ng-model="search.area"  items="areaList" display="name"
+                        ng-search="_search.$delegate.$area_search"></i-list>
+                    <i-control help-id="" class="col3" label="##word.address##" ng-model="search.address"></i-control>
+
+                </div>
+
+                <div class="row">
+                    <i-control help-id="" class="col3" label="##word.phone##" ng-model="search.phone"></i-control>
+
+                    <i-control help-id="" class="col3" label="##word.mobile##" ng-model="search.mobile"></i-control>
+
+                    <i-control help-id="" class="col3" label="##word.whatsapp##" ng-model="search.whatsapp"></i-control>
+
+                    <i-control help-id="" class="col3" label="##word.email##" ng-model="search.email"></i-control>
+
+                </div>
+
+                <div class="row">
+                    <i-control help-id="" class="col3" label="##word.facebook##" ng-model="search.facebook"></i-control>
+
+                    <i-control help-id="" class="col3" label="##word.twitter##" ng-model="search.twitter"></i-control>
+
+                </div>
+
+            </form>
+        </div>
+
+        <h2 class="error">{{error}}</h2>
+
+        <div class="modal-footer center">
+
+            <i-button type="search" label="##word.search##" ng-click="searchAll()"> </i-button>
+
+            <i-button type="clear" label="##word.empty_search##" ng-click="search = {}"> </i-button>
+
+            <i-button type="close" label="##word.close##" onclick="site.hideModal('#delegateSearchModal')"> </i-button>
+
+        </div>
+    </div>
+    <div class="col2"></div>
+</div>

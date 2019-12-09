@@ -433,7 +433,6 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
           if (response.data.done) {
             if (response.data.list.length > 0) {
               let foundSize = false;
-
               response.data.list[0].sizes.forEach(_size => {
                 if (_size.barcode == $scope.search_barcode) {
                   _size.name = response.data.list[0].name;

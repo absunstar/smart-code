@@ -25,72 +25,72 @@
                         <div class="row">
 
                             <i-control help-id="" v="r ll2" class="col5" label="##word.name##"
-                                ng-model="employee_list.name"></i-control>
+                                ng-model="delegate_list.name"></i-control>
 
 
                             <div class="col5"></div>
-                            <i-checkbox help-id="employee_active" class="col2" label="##word.active##"
-                                ng-model="employee_list.active"></i-checkbox>
+                            <i-checkbox help-id="delegate_active" class="col2" label="##word.active##"
+                                ng-model="delegate_list.active"></i-checkbox>
                         </div>
 
                         <div class="row">
                             <i-control help-id="" class="col4" label="##word.finger_code##"
-                                ng-model="employee_list.finger_code"></i-control>
+                                ng-model="delegate_list.finger_code"></i-control>
                             <i-control help-id="" v="r ll2" class="col4" label="##word.national_id##"
-                                ng-model="employee_list.national_id"></i-control>
+                                ng-model="delegate_list.national_id"></i-control>
                         </div>
 
                     </fieldset>
 
                     <fieldset>
-                        <legend>##word.employee_info##</legend>
+                        <legend>##word.delegate_info##</legend>
                         <div class="row">
-                            <i-date ng-model="employee_list.birth_date" class="col3" label="##word.birth_date##">
+                            <i-date ng-model="delegate_list.birth_date" class="col3" label="##word.birth_date##">
                             </i-date>
-                            <i-date ng-model="employee_list.employment_date" class="col3"
+                            <i-date ng-model="delegate_list.employment_date" class="col3"
                                 label="##word.employment_date##"></i-date>
                         </div>
 
                         <div class="row">
                             <i-list ng-search="marital_status" class="col3" items="maritals_status"
-                                ng-model="employee_list.marital_status" label="##word.marital_status##">
+                                ng-model="delegate_list.marital_status" label="##word.marital_status##">
                             </i-list>
                             <i-list ng-search="military_status" class="col3" items="militaries_status"
-                                ng-model="employee_list.military_status" label="##word.military_status##">
+                                ng-model="delegate_list.military_status" label="##word.military_status##">
                             </i-list>
 
-                            <i-list help-id="" class="col3" items="jobsList" ng-search="_search.$employee.$jobs"
-                                label="##word.job##" ng-model="employee_list.job">
+                            <i-list help-id="" class="col3" items="jobsList" ng-search="_search.$delegate.$jobs"
+                                label="##word.job##" ng-model="delegate_list.job">
                             </i-list>
 
-                            <i-list help-id="" class="col3" ng-show="employee_list.job.trainer == true"
+                            <i-list help-id="" class="col3" ng-show="delegate_list.job.trainer == true"
                                 display="##session.lang##" items="accountingSystemList"
-                                ng-search="_search.$employee.$accounting_system" label="##word.accounting_system##"
-                                ng-model="employee_list.accounting_system">
+                                ng-search="_search.$delegate.$accounting_system" label="##word.accounting_system##"
+                                ng-model="delegate_list.accounting_system">
                             </i-list>
 
                         </div>
                         <div class="row">
 
                             <i-list help-id="" ng-search="_search.$indentfy_search" class="col2"
-                                label="##word.employee_indentfy##" ng-model="employee_list.indentfy"
+                                label="##word.delegate_indentfy##" ng-model="delegate_list.indentfy"
                                 items="indentfyList" display="##session.lang##"></i-list>
 
                             <i-list help-id="" class="col3" items="degreeList"
-                                ng-search="_search.$employee.$degree_search" label="##word.employees_degrees##"
-                                ng-change="employee_list.salary = employee_list.degree.salary"
-                                ng-model="employee_list.degree"></i-list>
+                                ng-search="_search.$delegate.$degree_search" label="##word.delegates_degrees##"
+                                ng-change="delegate_list.salary = delegate_list.degree.salary"
+                                ng-model="delegate_list.degree"></i-list>
 
                             <i-control help-id="" class="col2" label="##word.salary##" type="number"
-                                ng-model="employee_list.salary"></i-control>
+                                ng-model="delegate_list.salary"></i-control>
 
                         </div>
                         <div class="row">
                             <i-control help-id="" type="text" class="col4"
-                                label="##word.employees_insurances_insurance_number##"
-                                ng-model="employee_list.insurance_number"></i-control>
+                                label="##word.delegates_insurances_insurance_number##"
+                                ng-model="delegate_list.insurance_number"></i-control>
                             <i-control help-id="" type="text" class="col6" label="##word.qualification##"
-                                ng-model="employee_list.qualification"></i-control>
+                                ng-model="delegate_list.qualification"></i-control>
 
                         </div>
 
@@ -99,28 +99,28 @@
                     <fieldset>
                         <legend>##word.addresses##</legend>
                         <div class="row">
-                            <i-list class="col4" label="##word.gov##" ng-model="employee_list.gov" items="govList"
-                                ng-change="getCityList(employee_list.gov)" display="name"
-                                ng-search="_search.$employee.$gov_search"></i-list>
+                            <i-list class="col4" label="##word.gov##" ng-model="delegate_list.gov" items="govList"
+                                ng-change="getCityList(delegate_list.gov)" display="name"
+                                ng-search="_search.$delegate.$gov_search"></i-list>
 
-                            <i-list class="col4" label="##word.city##" ng-model="employee_list.city" items="cityList"
-                                ng-change="getAreaList(employee_list.city)" display="name"
-                                ng-search="_search.$employee.$city_search"></i-list>
+                            <i-list class="col4" label="##word.city##" ng-model="delegate_list.city" items="cityList"
+                                ng-change="getAreaList(delegate_list.city)" display="name"
+                                ng-search="_search.$delegate.$city_search"></i-list>
 
-                            <i-list class="col4" label="##word.area##" ng-model="employee_list.area" items="areaList"
-                                display="name" ng-search="_search.$employee.$area_search"></i-list>
+                            <i-list class="col4" label="##word.area##" ng-model="delegate_list.area" items="areaList"
+                                display="name" ng-search="_search.$delegate.$area_search"></i-list>
                         </div>
                         <div class="row">
                             <i-control help-id="" class="col6" label="##word.address##"
-                                ng-model="employee_list.address"></i-control>
+                                ng-model="delegate_list.address"></i-control>
 
                         </div>
 
                         <div class="row">
-                            <i-control help-id="" class="col6" label="##word.phone##" ng-model="employee_list.phone">
+                            <i-control help-id="" class="col6" label="##word.phone##" ng-model="delegate_list.phone">
                             </i-control>
 
-                            <i-control help-id="" class="col6" label="##word.mobile##" ng-model="employee_list.mobile">
+                            <i-control help-id="" class="col6" label="##word.mobile##" ng-model="delegate_list.mobile">
                             </i-control>
 
                         </div>
@@ -128,24 +128,24 @@
 
                         <div class="row">
                             <i-control help-id="" class="col6" label="##word.whatsapp##"
-                                ng-model="employee_list.whatsapp"></i-control>
+                                ng-model="delegate_list.whatsapp"></i-control>
 
-                            <i-control help-id="" class="col6" label="##word.email##" ng-model="employee_list.email">
+                            <i-control help-id="" class="col6" label="##word.email##" ng-model="delegate_list.email">
                             </i-control>
 
                         </div>
 
                         <div class="row">
                             <i-control help-id="" class="col6" label="##word.facebook##"
-                                ng-model="employee_list.facebook"></i-control>
+                                ng-model="delegate_list.facebook"></i-control>
 
                             <i-control help-id="" class="col6" label="##word.twitter##"
-                                ng-model="employee_list.twitter"></i-control>
+                                ng-model="delegate_list.twitter"></i-control>
                         </div>
 
                         <div class="row">
 
-                            <i-textarea class="col" label="##word.notes##" ng-model="employee_list.notes"></i-textarea>
+                            <i-textarea class="col" label="##word.notes##" ng-model="delegate_list.notes"></i-textarea>
 
                         </div>
 
@@ -154,14 +154,14 @@
                 </div>
 
                 <div class="col3">
-                    <i-image help-id="employee_logo" ng-model="employee_list.image_url"></i-image>
+                    <i-image help-id="delegate_logo" ng-model="delegate_list.image_url"></i-image>
                 </div>
             </div>
 
             <div id="filesInformation" class="tab-content">
                 <fieldset>
                     <legend> ##word.files## </legend>
-                    <i-files label="##word.files##" categoty="employee_files" ng-model="employee_list.files"></i-files>
+                    <i-files label="##word.files##" categoty="delegate_files" ng-model="delegate_list.files"></i-files>
                 </fieldset>
             </div>
 
@@ -169,10 +169,10 @@
                 <fieldset>
                     <legend> ##word.login_information## </legend>
 
-                    <i-control help-id="" class="col4" label="##word.email##" ng-model="employee_list.username">
+                    <i-control help-id="" class="col4" label="##word.email##" ng-model="delegate_list.username">
                     </i-control>
 
-                    <i-control help-id="" class="col4" label="##word.password##" ng-model="employee_list.password">
+                    <i-control help-id="" class="col4" label="##word.password##" ng-model="delegate_list.password">
                     </i-control>
 
                 </fieldset>

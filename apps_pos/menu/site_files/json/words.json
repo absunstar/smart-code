@@ -460,6 +460,16 @@
         "ar": "إدارة الموظفين"
     },
     {
+        "name": "menu_delegetes",
+        "en": "Delegates",
+        "ar": "المناديب"
+    },
+    {
+        "name": "menu_delegetes_tag",
+        "en": "Delegates Add",
+        "ar": "إضافة المناديب"
+    },
+    {
         "name": "menu_trainer",
         "en": "Trainer",
         "ar": "المدربين"
@@ -633,6 +643,16 @@
         "name": "system_register_stores_in",
         "en": "Register Store in",
         "ar": "تسجيل إذن وارد / فاتورة شراء"
+    },
+    {
+        "name": "system_transfer_items_menus",
+        "en": "Transfer Items Between Branches",
+        "ar": "تحويل أصناف بين الفروع"
+    },
+    {
+        "name": "system_register_transfer_items",
+        "en": "Add Transfer Items Between Branches",
+        "ar": " إضافة تحويل أصناف بين الفروع"
     },
     {
         "name": "system_stores_out_menus",
