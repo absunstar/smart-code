@@ -55,6 +55,16 @@
         "ar": "مخزن"
     },
     {
+        "name": "total_tax",
+        "en": "ًTotal Tax",
+        "ar": "إجمالي الضرائب"
+    },
+    {
+        "name": "total_discount",
+        "en": "ًTotal Discount",
+        "ar": "إجمالي الخصم"
+    },
+    {
         "name": "store_from",
         "en": "ًStore From",
         "ar": "من مخزن"

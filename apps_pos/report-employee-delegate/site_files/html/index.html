@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="report_employee_delegate_ui || report_employee_delegate_manage" data-ng-app="myApp">
+
+<head x-import="head.html">
+
+</head>
+
+<body class="##session.lang##">
+
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+    </nav>
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+    </nav>
+
+    <div id="main-layout" class="container">
+        <div class="row">
+            <div class="row" ng-controller="report_employee_delegate" x-permissions="login">
+
+                <div x-import="report-employee-delegate/search_all_modal.html"></div>
+                <div class="row">
+                    <h1 class="bold text-center"> ##word.report_employees_delegate_name## </h1>
+                </div>
+
+                <div class="top-actions">
+                    <i-button type="search"
+                        x-permissions="report_employee_delegate_search || report_employee_delegate_manage"
+                        label="##word.search_all##" onclick="site.showModal('#reportEmployeeDelegateSearchModal')">
+                    </i-button>
+
+                    <span ng-show="busy">
+                        <span class="sr-only">Loading...</span>
+                    </span>
+                    <h3 class="bold text-center"> ##word.count## : {{count}} </h3>
+                    <br>
+                </div>
+
+                <div class="row">
+                    <i-control id="item_name" class="col2" ng-model="total_value"
+                        label="##word.stores_out_total_value##" type="number" disabled></i-control>
+                    <i-control id="item_name" class="col2" ng-model="net_value"
+                        label="##word.stores_out_net_value##" type="number" disabled></i-control>
+                </div>
+
+                <div class="row">
+                        <i-control id="item_name" class="col2" ng-model="total_tax"
+                            label="##word.total_tax##" type="number" disabled></i-control>
+                        <i-control id="item_name" class="col2" ng-model="total_discount"
+                            label="##word.total_discount##" type="number" disabled></i-control>
+                    </div>
+    
+
+                <table class="table loaded center hover bold" id="t1">
+                    <tr>
+                        <th class="not-print"> ##word.logo## </th>
+                        <th> ##word.date## </th>
+                        <th> ##word.shift## </th>
+                        <th> ##word.stores_out_id## </th>
+                        <th> ##word.delegate## </th>
+                        <th> ##word.stores_out_total_tax## </th>
+                        <th> ##word.stores_out_total_discount## </th>
+                        <th> ##word.stores_out_total_value## </th>
+                        <th> ##word.stores_out_net_value## </th>
+                    </tr>
+
+                    <tr ng-repeat="c in list | orderBy : '-id'">
+                        <td class="not-print">
+                            <img class="logo" ng-src="{{c.image_url}}">
+                        </td>
+                        <td class="brown"> {{c.date | date : 'dd - MM - yyyy'}} </td>
+                        <td class="blue"> {{c.shift.code}} </td>
+                        <td class="blue"> {{c.number}} </td>
+                        <td > {{c.delegate.name}} </td>
+                        <td class="red"> {{c.total_tax ||0}} </td>
+                        <td> {{c.total_discount ||0}} </td>
+                        <td>{{c.total_value}}</td>
+                        <td class="green"> {{c.net_value}} </td>
+                    </tr>
+                </table>
+
+                <div class="row">
+                    <i-button x-permissions="report_employee_delegate_print || report_employee_delegate_manage"
+                        type="print" label="##word.print##" onclick="site.print('#t1')"></i-button>
+                    <i-button x-permissions="report_employee_delegate_export || report_employee_delegate_manage"
+                        type="export" label="##word.export_to_excel##"
+                        onclick="export_to_xlsx('t1' , 'report_employee_delegate.xlsx')">
+                    </i-button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div x-import="scripts.html"></div>
+
+    <script x-permissions="login" x-import="report-employee-delegate/index.js"></script>
+</body>
+
+</html>

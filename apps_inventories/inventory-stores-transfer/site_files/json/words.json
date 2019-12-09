@@ -6,7 +6,7 @@
     {"name" : "stores_transfer_store_from" , "en" : " From Store" , "ar" : "من مخزن "},
     {"name" : "stores_transfer_store_to" , "en" : "To Store" , "ar" : "الى مخزن "},
     {"name" : "stores_transfer_empty_search" , "en" : "Empty Search" , "ar" : "تفريغ الحقول"},
-    {"name" : "stores_transfer_add" , "en" : "Add Store In" , "ar" : "تحويل اذن تحويل"},
+    {"name" : "stores_transfer_add" , "en" : "Add Store In" , "ar" : "إضافة اذن تحويل"},
     {"name" : "stores_transfer_neew" , "en" : "New Store Out" , "ar" : "اذن تحويل جديد"},
     {"name" : "stores_transfer_details" , "en" : "Store In Details" , "ar" : "تفاصيل اذن تحويل"},
     {"name" : "stores_transfer_edit" , "en" : "Edit Store In" , "ar" : "تعديل بيانات اذن تحويل"},

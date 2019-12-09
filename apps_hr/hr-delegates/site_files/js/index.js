@@ -6,7 +6,7 @@ app.controller("delegate_list", function ($scope, $http, $timeout) {
   $scope.displayAddDelegate = function () {
     $scope.error = '';
     $scope.delegate_list = {
-      image_url: '/images/delegate_list.png',
+      image_url: '/images/delegate.png',
      /*  class_rooms_list : [{}],
       courses_list : [{}], */
       active: true
@@ -329,7 +329,7 @@ app.controller("delegate_list", function ($scope, $http, $timeout) {
     $scope.indentfyList = [];
     $http({
       method: "POST",
-      url: "/api/indentfy_delegate/all"
+      url: "/api/indentfy_employee/all"
 
     }).then(
       function (response) {

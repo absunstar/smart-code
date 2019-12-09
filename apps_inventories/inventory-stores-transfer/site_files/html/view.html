@@ -4,7 +4,7 @@
         <table class="table bold">
 
             <tr>
-                <td class="title">##word.stores_in_date##</td>
+                <td class="title">##word.stores_transfer_date##</td>
                 <td class="center brow">{{stores_transfer.date | date:'yyyy - MM - dd'}}</td>
             </tr>
             <tr>
@@ -31,18 +31,18 @@
             </tr>
 
             <tr>
-                <td class="title">##word.stores_in_items##</td>
+                <td class="title">##word.stores_transfer_items##</td>
                 <td>
                     <table class="table center hover">
 
                         <tr>
                             <th>##word.serial##</th>
-                            <th>##word.stores_in_item_name##</th>
-                            <th>##word.stores_in_item_size##</th>
-                            <th>##word.stores_in_item_count##</th>
-                            <th>##word.stores_in_item_cost##</th>
-                            <th class="not-print">##word.stores_in_item_price##</th>
-                            <th>##word.stores_in_item_total##</th>
+                            <th>##word.stores_transfer_item_name##</th>
+                            <th>##word.stores_transfer_item_size##</th>
+                            <th>##word.stores_transfer_item_count##</th>
+                            <th>##word.stores_transfer_item_cost##</th>
+                            <th class="not-print">##word.stores_transfer_item_price##</th>
+                            <th>##word.stores_transfer_item_total##</th>
                         </tr>
 
                         <tr ng-repeat="itm in stores_transfer.items">
@@ -61,12 +61,12 @@
             </tr>
 
             <tr ng-show="stores_transfer.taxes.length > 0">
-                <td class="title">##word.stores_in_taxes##</td>
+                <td class="title">##word.stores_transfer_taxes##</td>
                 <td>
                     <table class="table hover margin">
                         <tr>
-                            <th>##word.stores_in_tax_name##</th>
-                            <th>##word.stores_in_tax_value##</th>
+                            <th>##word.stores_transfer_tax_name##</th>
+                            <th>##word.stores_transfer_tax_value##</th>
                         </tr>
                         <tr ng-repeat="tax in stores_transfer.taxes">
                             <td> <p class="text-center blue"> {{tax.name}} </p> </td>
@@ -77,12 +77,12 @@
             </tr>
 
             <tr ng-show="stores_transfer.discountes.length > 0">
-                <td class="title">##word.stores_in_discountes##</td>
+                <td class="title">##word.stores_transfer_discountes##</td>
                 <td>
                     <table class="table hover margin">
                         <tr>
-                            <th>##word.stores_in_discount_name##</th>
-                            <th>##word.stores_in_discount_value##</th>
+                            <th>##word.stores_transfer_discount_name##</th>
+                            <th>##word.stores_transfer_discount_value##</th>
                         </tr>
                         <tr ng-repeat="discount in stores_transfer.discountes">
                             <td class="center">{{discount.name}}</td>
@@ -96,17 +96,17 @@
             </tr>
 
             <tr>
-                <td class="title">##word.stores_in_total_value##</td>
+                <td class="title">##word.stores_transfer_total_value##</td>
                 <td class="center green">{{stores_transfer.total_value}} ##word.le##</td>
             </tr>
 
             <tr>
-                <td class="title">##word.stores_in_net_value##</td>
+                <td class="title">##word.stores_transfer_net_value##</td>
                 <td class="center green">{{stores_transfer.net_value}} ##word.le##</td>
             </tr>
 
             <tr>
-                <td class="title">##word.stores_in_notes##</td>
+                <td class="title">##word.stores_transfer_notes##</td>
                 <td class="center">{{stores_transfer.notes}}</td>
             </tr>
 

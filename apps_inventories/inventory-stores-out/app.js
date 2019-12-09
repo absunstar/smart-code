@@ -21,7 +21,6 @@ module.exports = function init(site) {
       total: 0,
       image_url: '/images/store_out.png',
       store: itm.store,
-      vendor: itm.vendor,
       date: new Date(itm.date),
       number: new Date().getTime().toString(),
       total_value: 0,
@@ -48,7 +47,6 @@ module.exports = function init(site) {
         total: 0,
         image_url: '/images/store_out.png',
         store: doc.store_to,
-        vendor: doc.vendor,
         safe: doc.safe,
         date: new Date(doc.date),
         number: new Date().getTime().toString(),
@@ -66,12 +64,10 @@ module.exports = function init(site) {
         if (!err) {
           doc.items.forEach(itm => {
 
-            delete itm.vendor
             delete itm.store
             itm.company = doc.company
             itm.branch = doc.branch
             itm.store = doc.store
-            itm.vendor = doc.vendor
             itm.date = doc.date
             itm.transaction_type = 'in'
             itm.supply_number = doc.supply_number
@@ -82,7 +78,6 @@ module.exports = function init(site) {
             let obj = {
               'itm.current_status': 'transferred',
               name: itm.name,
-              vendor: doc.vendor,
               store: doc.store,
               date: doc.date,
               item: nwitm,
@@ -115,7 +110,6 @@ module.exports = function init(site) {
       image_url: '/images/store_out.png',
       items: sizes,
       store: itm.store,
-      vendor: itm.vendor,
       date: new Date(itm.date),
       number: new Date().getTime().toString(),
       total_value: 0,
@@ -190,8 +184,6 @@ module.exports = function init(site) {
       _itm.total = site.toNumber(_itm.total)
     })
 
-    stores_out_doc.discount = site.toNumber(stores_out_doc.discount)
-    stores_out_doc.octazion = site.toNumber(stores_out_doc.octazion)
     stores_out_doc.net_discount = site.toNumber(stores_out_doc.net_discount)
     stores_out_doc.total_value = site.toNumber(stores_out_doc.total_value)
     stores_out_doc.net_value = site.toNumber(stores_out_doc.net_value)
@@ -225,7 +217,6 @@ module.exports = function init(site) {
         stores_out_doc.items.forEach(itm => {
           itm.company = stores_out_doc.company
           itm.branch = stores_out_doc.branch
-          itm.vendor = stores_out_doc.vendor
           itm.number = stores_out_doc.number
           itm.current_status = 'sold'
           itm.date = stores_out_doc.date
@@ -249,7 +240,6 @@ module.exports = function init(site) {
     let stores_out_doc = req.body
     stores_out_doc.edit_user_info = site.security.getUserFinger({ $req: req, $res: res })
 
-    stores_out_doc.vendor = site.fromJson(stores_out_doc.vendor)
     stores_out_doc.seasonName = stores_out_doc.seasonName
     stores_out_doc.type = site.fromJson(stores_out_doc.type)
     stores_out_doc.date = new Date(stores_out_doc.date)
@@ -261,7 +251,6 @@ module.exports = function init(site) {
       itm.total = site.toNumber(itm.total)
     })
 
-    // stores_out_doc.octazion = site.toNumber(stores_out_doc.octazion)
     stores_out_doc.total_value = site.toNumber(stores_out_doc.total_value)
 
     if (stores_out_doc._id) {
@@ -312,7 +301,6 @@ module.exports = function init(site) {
           result.doc.items.forEach(itm => {
 
             itm.number = result.doc.number
-            itm.vendor = result.doc.vendor
             itm.date = result.doc.date
             itm.transaction_type = 'out'
             itm.current_status = 'storeout'
@@ -322,7 +310,6 @@ module.exports = function init(site) {
               name: itm.name,
               size: itm.size,
               store: result.doc.store,
-              vendor: result.doc.vendor,
               item: itm
             }
 

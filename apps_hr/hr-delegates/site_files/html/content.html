@@ -45,9 +45,9 @@
                     <fieldset>
                         <legend>##word.delegate_info##</legend>
                         <div class="row">
-                            <i-date ng-model="delegate_list.birth_date" class="col3" label="##word.birth_date##">
+                            <i-date ng-model="delegate_list.birth_date" class="col4" label="##word.birth_date##">
                             </i-date>
-                            <i-date ng-model="delegate_list.employment_date" class="col3"
+                            <i-date ng-model="delegate_list.employment_date" class="col4"
                                 label="##word.employment_date##"></i-date>
                         </div>
 
@@ -59,35 +59,36 @@
                                 ng-model="delegate_list.military_status" label="##word.military_status##">
                             </i-list>
 
-                            <i-list help-id="" class="col3" items="jobsList" ng-search="_search.$delegate.$jobs"
+                            <!--     <i-list help-id="" class="col3" items="jobsList" ng-search="_search.$delegate.$jobs"
                                 label="##word.job##" ng-model="delegate_list.job">
                             </i-list>
-
-                            <i-list help-id="" class="col3" ng-show="delegate_list.job.trainer == true"
+ -->
+                            <!--      <i-list help-id="" class="col3" ng-show="delegate_list.job.trainer == true"
                                 display="##session.lang##" items="accountingSystemList"
                                 ng-search="_search.$delegate.$accounting_system" label="##word.accounting_system##"
                                 ng-model="delegate_list.accounting_system">
-                            </i-list>
+                            </i-list> -->
 
                         </div>
                         <div class="row">
 
-                            <i-list help-id="" ng-search="_search.$indentfy_search" class="col2"
-                                label="##word.delegate_indentfy##" ng-model="delegate_list.indentfy"
-                                items="indentfyList" display="##session.lang##"></i-list>
 
-                            <i-list help-id="" class="col3" items="degreeList"
+                            <!--    <i-list help-id="" class="col3" items="degreeList"
                                 ng-search="_search.$delegate.$degree_search" label="##word.delegates_degrees##"
                                 ng-change="delegate_list.salary = delegate_list.degree.salary"
                                 ng-model="delegate_list.degree"></i-list>
 
                             <i-control help-id="" class="col2" label="##word.salary##" type="number"
                                 ng-model="delegate_list.salary"></i-control>
-
+ -->
                         </div>
                         <div class="row">
+                            <i-list help-id="" ng-search="_search.$indentfy_search" class="col2"
+                                label="##word.delegate_indentfy##" ng-model="delegate_list.indentfy"
+                                items="indentfyList" display="##session.lang##"></i-list>
+
                             <i-control help-id="" type="text" class="col4"
-                                label="##word.delegates_insurances_insurance_number##"
+                                label="##word.employees_insurances_insurance_number##"
                                 ng-model="delegate_list.insurance_number"></i-control>
                             <i-control help-id="" type="text" class="col6" label="##word.qualification##"
                                 ng-model="delegate_list.qualification"></i-control>

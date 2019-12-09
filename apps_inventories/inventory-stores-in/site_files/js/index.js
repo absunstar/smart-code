@@ -3,8 +3,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
 
   $scope.store_in = {
     discountes: [],
-    taxes: [],
-    details: []
+    taxes: []
   };
   $scope.search = {};
   $scope.item = {
@@ -130,7 +129,6 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
             items: [],
             discountes: [],
             taxes: [],
-            details: [],
             date: new Date(),
             supply_date: new Date()
           };

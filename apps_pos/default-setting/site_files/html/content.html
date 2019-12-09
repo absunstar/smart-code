@@ -108,7 +108,7 @@
                     <legend> ##word.inventory_settings## </legend>
                     <div class="row">
                         <i-list class="col3" ng-model="default_setting.inventory.item_group"
-                            ng-search="_search.$$items_group_search" label="##word.item_group##" items="itemsGroupList"></i-list>
+                            ng-search="_search.$$items_group_search" label="##word.item_group##" items="itemsGroupList">
                         </i-list>
 
                         <i-list class="col3" ng-model="default_setting.inventory.store" items="storesList"
@@ -124,9 +124,13 @@
                         </i-list>
                     </div>
                     <div class="row">
-                        <div class="row">
-                            <i-checkbox label="##word.dont_exceed_maximum_discount_item##" ng-model="default_setting.inventory.dont_max_discount_items"></i-checkbox>
-                        </div>
+                        <i-list class="col3" ng-model="default_setting.inventory.delegate"
+                            ng-search="_search.$$items_group_search" label="##word.delegate##" items="delegatesList">
+                        </i-list>
+                    </div>
+                    <div class="row">
+                        <i-checkbox label="##word.dont_exceed_maximum_discount_item##"
+                            ng-model="default_setting.inventory.dont_max_discount_items"></i-checkbox>
                     </div>
                 </fieldset>
 

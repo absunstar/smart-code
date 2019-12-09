@@ -290,6 +290,31 @@ app.controller("default_setting", function ($scope, $http) {
     )
   };
 
+  $scope.loadDelegates = function () {
+    $scope.busy = true;
+    $scope.delegatesList = [];
+    $http({
+      method: "POST",
+      url: "/api/delegates/all",
+      data: {
+        where: {
+          active : true
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.delegatesList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
   $scope.getPaymentMethodList = function () {
     $scope.error = '';
     $scope.busy = true;
@@ -394,6 +419,7 @@ app.controller("default_setting", function ($scope, $http) {
   $scope.loadStoresOutTypes();
   $scope.getHallList();
   $scope.loadItemsGroups();
+  $scope.loadDelegates();
   $scope.getSourceType();
   $scope.loadStoresInTypes();
   $scope.loadSetting();

@@ -19,6 +19,10 @@
                     <i-list ng-search="_search.$customer" class="col4" display="name_ar" v="r"
                         ng-model="store_out.customer" label="##word.customer##" items="customersList">
                     </i-list>
+
+                    <i-list class="col4" ng-model="store_out.delegate"
+                    ng-search="_search.$$items_group_search" label="##word.delegate##" items="delegatesList">
+                </i-list>
                 </div>
                 <div class="row">
 

@@ -3,8 +3,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
 
   $scope.store_out = {
     discountes: [],
-    taxes: [],
-    details: []
+    taxes: []
   };
   $scope.search = {};
   $scope.item = {
@@ -104,8 +103,39 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.get_open_shift((shift) => {
       if (shift) {
-        $scope.getDefaultSettings();
-        site.showModal('#addStoreOutModal');
+        $scope.error = '';
+        $scope.item = {}
+        $scope.store_out = {
+          image_url: '/images/store_out.png',
+          shift: $scope.shift,
+          items: [],
+          discountes: [],
+          taxes: [],
+          date: new Date(),
+          supply_date: new Date()
+        };
+
+        if ($scope.defaultSettings.general_Settings) {
+          if ($scope.defaultSettings.general_Settings.customer)
+            $scope.store_out.customer = $scope.defaultSettings.general_Settings.customer;
+          if ($scope.defaultSettings.general_Settings.payment_method)
+            $scope.store_out.payment_method = $scope.defaultSettings.general_Settings.payment_method;
+        }
+
+        if ($scope.defaultSettings.inventory) {
+          if ($scope.defaultSettings.inventory.store)
+            $scope.store_out.store = $scope.defaultSettings.inventory.store;
+          if ($scope.defaultSettings.inventory.type_out)
+            $scope.store_out.type = $scope.defaultSettings.inventory.type_out;
+          if ($scope.defaultSettings.inventory.delegate)
+            $scope.store_out.delegate = $scope.defaultSettings.inventory.delegate
+        }
+
+        if ($scope.defaultSettings.accounting) {
+          if ($scope.defaultSettings.accounting.safe) {
+            $scope.store_out.safe = $scope.defaultSettings.accounting.safe
+          }
+        } site.showModal('#addStoreOutModal');
       } else $scope.error = '##word.open_shift_not_found##';
     });
   };
@@ -122,38 +152,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done && response.data.doc) {
           $scope.defaultSettings = response.data.doc;
-          $scope.error = '';
-          $scope.item = {}
-          $scope.store_out = {
-            image_url: '/images/store_out.png',
-            shift: $scope.shift,
-            items: [],
-            discountes: [],
-            taxes: [],
-            details: [],
-            date: new Date(),
-            supply_date: new Date()
-          };
 
-          if ($scope.defaultSettings.general_Settings) {
-            if ($scope.defaultSettings.general_Settings.customer)
-              $scope.store_out.customer = $scope.defaultSettings.general_Settings.customer;
-            if ($scope.defaultSettings.general_Settings.payment_method)
-              $scope.store_out.payment_method = $scope.defaultSettings.general_Settings.payment_method;
-          }
-
-          if ($scope.defaultSettings.inventory) {
-            if ($scope.defaultSettings.inventory.store)
-              $scope.store_out.store = $scope.defaultSettings.inventory.store
-            if ($scope.defaultSettings.inventory.type_out)
-              $scope.store_out.type = $scope.defaultSettings.inventory.type_out
-          }
-
-          if ($scope.defaultSettings.accounting) {
-            if ($scope.defaultSettings.accounting.safe) {
-              $scope.store_out.safe = $scope.defaultSettings.accounting.safe
-            }
-          }
         };
       },
       function (err) {
@@ -174,7 +173,8 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
 
     if ($scope.defaultSettings.inventory && $scope.defaultSettings.inventory.dont_max_discount_items) {
       let max_discount = false;
-      $scope.store_in.items.forEach(_itemSize => {
+
+      $scope.store_out.items.forEach(_itemSize => {
         if (_itemSize.maximum_discount.value > _itemSize.maximum)
           max_discount = true;
       });
@@ -991,6 +991,32 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.loadDelegates = function () {
+    $scope.busy = true;
+    $scope.delegatesList = [];
+    $http({
+      method: "POST",
+      url: "/api/delegates/all",
+      data: {
+        where: {
+          active: true
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.delegatesList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+
   $scope.loadItemSize = function () {
     $scope.error = '';
     $scope.busy = true;
@@ -1072,6 +1098,8 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
   $scope.loadTax_Types();
   $scope.getIndentfy();
   $scope.getCustomerGroupList();
+  $scope.loadDelegates();
+  $scope.getDefaultSettings();
   $scope.loadItemSize();
   $scope.loadDiscount_Types();
   $scope.loadAll({ date: new Date() });

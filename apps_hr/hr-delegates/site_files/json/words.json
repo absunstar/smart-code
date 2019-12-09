@@ -10,6 +10,11 @@
         "ar": "مندوب جديد"
     },
     {
+        "name": "delegate",
+        "en": "Delegate",
+        "ar": "مندوب"
+    },
+    {
         "name": "basic_information",
         "en": "Basic Information",
         "ar": "البيانات الأساسية"
