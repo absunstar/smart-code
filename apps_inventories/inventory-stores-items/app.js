@@ -86,15 +86,17 @@ module.exports = function init(site) {
             })
           }
         });
-
         $stores_items.update(doc, () => {
           $stores_items.busy5 = false
         });
       } else {
         let item = {
           name: obj.name,
-          sizes: obj
+          company: obj.company,
+          branch: obj.branch,
+          sizes: [obj]
         };
+
         $stores_items.add(item, () => {
           $stores_items.busy5 = false
 
@@ -114,7 +116,6 @@ module.exports = function init(site) {
     $stores_items.busy23 = true
     $stores_items.find({
       'sizes.barcode': obj.barcode,
-      'sizes.size': obj.size,
     }, (err, doc) => {
       if (!err && doc) {
         doc.sizes.forEach(_size => {
@@ -141,7 +142,104 @@ module.exports = function init(site) {
     })
   })
 
+  $stores_items.busy5 = false
+  site.on('[transfer_branch][stores_items][add_balance]', obj => {
+    if ($stores_items.busy5) {
+      setTimeout(() => {
+        site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, obj))
+      }, 200);
+      return
+    };
+    $stores_items.busy5 = true
+    $stores_items.findOne({
+      name: obj.name,
+      'company.id': obj.company.id,
+      'branch.code': obj.branch.code
+    }, (err, doc) => {
+      if (!err && doc) {
+        let exist = true
+        doc.sizes.forEach(_size => {
+          if (_size.barcode == obj.barcode) {
+            _size.start_count = site.toNumber(_size.start_count) + site.toNumber(obj.count)
+            _size.current_count = site.toNumber(_size.current_count) + site.toNumber(obj.count)
+            _size.cost = site.toNumber(obj.cost)
+            _size.price = site.toNumber(obj.price)
+            exist = false
+          };
+        });
 
+        if (exist) {
+          obj.current_count = site.toNumber(obj.count)
+          doc.sizes.push(obj)
+        };
+        doc.sizes.forEach(_size => {
+          if (_size.barcode == obj.barcode) {
+            let totalCost = obj.cost * site.toNumber(obj.count);
+            _size.total_purchase_price = (_size.total_purchase_price || 0) + totalCost
+            _size.total_purchase_count = (_size.total_purchase_count || 0) + site.toNumber(obj.count)
+            if (_size.stores_list && _size.stores_list.length > 0) {
+              _size.stores_list.forEach(_store => {
+                if (_store.store.id == obj.store.id) {
+                  _store.start_count = site.toNumber(_store.start_count || 0) + site.toNumber(obj.count)
+                  _store.current_count = site.toNumber(_store.current_count || 0) + site.toNumber(obj.count)
+                  _store.cost = site.toNumber(obj.cost)
+                  _store.price = site.toNumber(obj.price)
+                  _store.total_purchase_price = (_store.total_purchase_price || 0) + totalCost
+                  _store.total_purchase_count = (_store.total_purchase_count || 0) + site.toNumber(obj.count)
+                }
+              });
+
+              let foundStore = _size.stores_list.some(_store => _store.store.id == obj.store.id)
+              if (!foundStore)
+                _size.stores_list.push({
+                  store: obj.store,
+                  start_count: site.toNumber(obj.count),
+                  current_count: site.toNumber(obj.count),
+                  cost: site.toNumber(obj.cost),
+                  price: site.toNumber(obj.price),
+                  total_purchase_price: totalCost,
+                  total_purchase_count: site.toNumber(obj.count),
+                  average_cost: site.toNumber(totalCost) / site.toNumber(obj.count)
+                })
+            } else {
+              _size.stores_list = _size.stores_list || [];
+              _size.stores_list.push({
+                store: obj.store,
+                start_count: site.toNumber(obj.count),
+                current_count: site.toNumber(obj.count),
+                cost: site.toNumber(obj.cost),
+                price: site.toNumber(obj.price),
+                total_purchase_price: totalCost,
+                total_purchase_count: site.toNumber(obj.count),
+                average_cost: site.toNumber(totalCost) / site.toNumber(obj.count)
+              })
+            }
+          }
+          if (_size.item_complex) {
+            _size.complex_items.forEach(_complex_item => {
+              _complex_item.count = _complex_item.count * obj.count
+              site.call('[store_out][stores_items][-]', Object.assign({}, _complex_item))
+            })
+          }
+        });
+        $stores_items.update(doc, () => {
+          $stores_items.busy5 = false
+        });
+      } else {
+        let item = {
+          name: obj.name,
+          company: obj.company,
+          branch: obj.branch,
+          sizes: [obj]
+        };
+
+        $stores_items.add(item, () => {
+          $stores_items.busy5 = false
+
+        });
+      };
+    });
+  });
 
   $stores_items.busy22 = false
   site.on('[stores_out][stores_items][+]', obj => {
@@ -170,7 +268,6 @@ module.exports = function init(site) {
       }
     })
   })
-
 
   $stores_items.busy4 = false
   site.on('[eng_item_debt][stores_items][+]', obj => {

@@ -51,6 +51,7 @@ module.exports = function init(site) {
     if (req.session.user === undefined) {
       res.json(response)
     }
+
     let branch_ransfer_doc = req.body
     branch_ransfer_doc.$req = req
     branch_ransfer_doc.$res = res
@@ -82,10 +83,17 @@ module.exports = function init(site) {
 
         doc.items.forEach(_itm => {
           _itm.status_store_in = doc.type
-          _itm.store = doc.store
+          _itm.store = doc.store_from
           _itm.company = doc.company
-          _itm.branch = doc.branch
-          site.call('[transfer_branch][stores_items][-]', Object.assign({}, _itm))          
+          site.call('[store_out][stores_items][-]', Object.assign({}, _itm))
+        });
+
+        doc.items.forEach(_itm => {
+          _itm.status_store_in = doc.type
+          _itm.store = doc.store_to
+          _itm.company = doc.company
+          _itm.branch = doc.branch_to
+          site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _itm))
         });
 
         response.done = true

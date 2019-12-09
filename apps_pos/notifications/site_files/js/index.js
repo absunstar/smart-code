@@ -323,6 +323,9 @@ app.controller("notifications", function ($scope, $http, $interval) {
     } else if (n.link.collection == 'attend_subscribers') {
       $scope.attend_subscribers = n.add;
       site.showModal('#attendSubscribersViewModal');
+    } else if (n.link.collection == 'transfer_branch') {
+      $scope.transfer_branch = n.add;
+      site.showModal('#viewTransferBranchModal');
 
     } else {
       site.showModal('#displayModal');
@@ -525,7 +528,9 @@ app.controller("notifications", function ($scope, $http, $interval) {
     } else if (n.link.collection == 'attend_subscribers') {
       $scope.attend_subscribers = n.update;
       site.showModal('#attendSubscribersViewModal');
-
+    } else if (n.link.collection == 'transfer_branch') {
+      $scope.transfer_branch = n.update;
+      site.showModal('#viewTransferBranchModal');
 
     } else {
       site.showModal('#displayModal')
@@ -727,6 +732,9 @@ app.controller("notifications", function ($scope, $http, $interval) {
     } else if (n.link.collection == 'attend_subscribers') {
       $scope.attend_subscribers = n.delete;
       site.showModal('#attendSubscribersViewModal');
+    } else if (n.link.collection == 'transfer_branch') {
+      $scope.transfer_branch = n.delete;
+      site.showModal('#viewTransferBranchModal');
 
     } else {
       site.showModal('#displayModal')
@@ -735,7 +743,7 @@ app.controller("notifications", function ($scope, $http, $interval) {
 
   };
 
-  $scope.loadAll({date : new Date()});
+  $scope.loadAll({ date: new Date() });
   $scope.loadUsers();
   $scope.loadSystem();
 

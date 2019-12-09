@@ -160,19 +160,7 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
       return;
     }
 
-    if ($scope.defaultSettings.inventory && $scope.defaultSettings.inventory.dont_max_discount_items) {
-      let max_discount = false;
-
-      $scope.itemSizeList.forEach(_itemSize => {
-        max_discount = $scope.transfer_branch.items.some(_item => _item.maximum_discount.value > _itemSize.maximum_discount.value);
-
-      });
-
-      if (max_discount) {
-        $scope.error = "##word.err_maximum_discount##";
-      }
-    }
-
+  
     if ($scope.transfer_branch.items.length > 0) {
       $scope.busy = true;
       $http({
@@ -267,44 +255,34 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
 
   $scope.addToItems = function () {
     $scope.error = '';
-    if ($scope.transfer_branch.type) {
-      let foundSize = false;
-      $scope.item.sizes.forEach(_size => {
-        foundSize = $scope.transfer_branch.items.some(_itemSize => _itemSize.barcode == _size.barcode);
-        if (_size.count > 0 && !foundSize) {
-          $scope.transfer_branch.items.push({
-            image_url: $scope.item.image_url,
-            name: _size.item_name,
-            size: _size.size,
-            barcode: _size.barcode,
-            average_cost: _size.average_cost,
-            count: _size.count,
-            cost: _size.cost,
-            maximum_discount: _size.maximum_discount,
-            price: _size.price,
-            total: _size.total,
-            current_count: _size.current_count,
-            ticket_code: _size.ticket_code,
-            status_store_out: $scope.transfer_branch.type.id
-          });
-        }
-      });
-      $scope.calc();
-      $scope.item.sizes = [];
-    } else $scope.error = "##word.err_transaction_type##";
+    let foundSize = false;
+    $scope.item.sizes.forEach(_size => {
+      foundSize = $scope.transfer_branch.items.some(_itemSize => _itemSize.barcode == _size.barcode);
+      if (_size.count > 0 && !foundSize) {
+        $scope.transfer_branch.items.push({
+          image_url: $scope.item.image_url,
+          name: _size.item_name,
+          size: _size.size,
+          barcode: _size.barcode,
+          average_cost: _size.average_cost,
+          count: _size.count,
+          cost: _size.cost,
+          price: _size.price,
+          total: _size.total,
+          current_count: _size.current_count,
+          ticket_code: _size.ticket_code,
+        });
+      }
+    });
+    $scope.calc();
+    $scope.item.sizes = [];
   };
 
   $scope.calcSize = function (size) {
     $scope.error = '';
     setTimeout(() => {
-      let discount = 0;
       if (size.cost && size.count) {
-        if (size.maximum_discount.type == 'number')
-          discount = size.maximum_discount.value * size.count;
-        else if (size.maximum_discount.type == 'percent')
-          discount = size.maximum_discount.value * (size.cost * size.count) / 100;
-
-        size.total = (site.toNumber(size.cost) * site.toNumber(size.count)) - discount;
+        size.total = (site.toNumber(size.cost) * site.toNumber(size.count));
       }
       $scope.calc();
     }, 100);
@@ -393,7 +371,7 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
       _item.total = _item.count * _item.cost
       if (_item.stores_list && _item.stores_list.length > 0) {
         _item.stores_list.forEach(_store => {
-          if (_store.store_from.id == $scope.transfer_branch.store_from.id) {
+          if (_store.store.id == $scope.transfer_branch.store_from.id) {
             _item.store_count = _store.current_count
           } else _item.store_count = 0
         });
@@ -729,59 +707,12 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
 
   $scope.getSafeBySetting = function () {
     $scope.error = '';
-    if ($scope.transfer_branch.type.id == 1) {
-      if ($scope.defaultSettings.accounting) {
-        if ($scope.defaultSettings.accounting.safe) {
-          $scope.transfer_branch.safe = $scope.defaultSettings.accounting.safe
-        }
+    if ($scope.defaultSettings.accounting) {
+      if ($scope.defaultSettings.accounting.safe) {
+        $scope.transfer_branch.safe = $scope.defaultSettings.accounting.safe
       }
     }
   };
-
-  $scope.loadItemSize = function () {
-    $scope.error = '';
-    $scope.busy = true;
-    $scope.itemSizeList = [];
-    $http({
-      method: "POST",
-      url: "/api/stores_items/sizes_all",
-      data: {
-        select: { maximum_discount: 1, barcode: 1, size: 1, id: 1 }
-      }
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          $scope.itemSizeList = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
-  };
-
-  /*  $scope.getPaymentMethodList = function () {
-     $scope.error = '';
-     $scope.busy = true;
-     $scope.paymentMethodList = [];
-     $http({
-       method: "POST",
-       url: "/api/payment_method/all"
- 
-     }).then(
-       function (response) {
-         $scope.busy = false;
-         $scope.paymentMethodList = response.data;
-       },
-       function (err) {
-         $scope.busy = false;
-         $scope.error = err;
-       }
-     )
-   }; */
-
 
   $scope.get_open_shift = function (callback) {
     $scope.error = '';
@@ -813,8 +744,6 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
 
   $scope.loadCategories();
   $scope.loadBranches();
-  /*   $scope.getPaymentMethodList();*/
-  $scope.loadItemSize();
   $scope.loadStoresFrom();
   $scope.loadStoresTo();
   $scope.loadAll({ date: new Date() });
