@@ -1363,6 +1363,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
           if (response.data.done) {
             $scope.itemsList = response.data.list;
             $scope.current_items = [];
+            site.showModal('#itemsListModal');
           }
         },
         function (err) {
@@ -1378,8 +1379,8 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     if ($scope.current_items.sizes) $scope.current_items.sizes.forEach(size => {
       size.item_id = $scope.current_items.id;
       size.name = $scope.current_items.name;
-
     });
+    site.showModal('#sizesModal');
   };
 
   $scope.deliveryServiceHide = function () {
