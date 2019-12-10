@@ -24,6 +24,7 @@
 
     {"name" : "permission_detailes" , "en" : "Permission Detailes" , "ar" : "تفاصيل الإذن"},
     {"name" : "must_enter_quantity" , "en" : "Must Enter Quantity" , "ar" : "يجب إدخال الكمية"},
+    {"name" : "confirm_transfer" , "en" : "Confirm Transfer" , "ar" : "إعتماد التحويل"},
 
     {"name" : "transfer_branch_safe" , "en" : "Safe Number" , "ar" : "  الخزينة "},
     {"name" : "transfer_branch_no_safe" , "en" : "No Safe" , "ar" : "  لا يوجد خزينة "},

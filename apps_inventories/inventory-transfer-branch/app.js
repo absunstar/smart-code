@@ -7,7 +7,7 @@ module.exports = function init(site) {
     })
   })
 
- 
+
   site.post({
     name: '/api/transfer_branch/types/all',
     path: __dirname + '/site_files/json/types.json'
@@ -73,7 +73,6 @@ module.exports = function init(site) {
     })
 
     branch_ransfer_doc.discount = site.toNumber(branch_ransfer_doc.discount)
-    branch_ransfer_doc.octazion = site.toNumber(branch_ransfer_doc.octazion)
     branch_ransfer_doc.net_discount = site.toNumber(branch_ransfer_doc.net_discount)
     branch_ransfer_doc.total_value = site.toNumber(branch_ransfer_doc.total_value)
     branch_ransfer_doc.net_value = site.toNumber(branch_ransfer_doc.net_value)
@@ -81,47 +80,47 @@ module.exports = function init(site) {
     $transfer_branch.add(branch_ransfer_doc, (err, doc) => {
       if (!err) {
 
-        doc.items.forEach(_itm => {
-          _itm.status_store_in = doc.type
-          _itm.store = doc.store_from
-          _itm.company = doc.company
-          site.call('[store_out][stores_items][-]', Object.assign({}, _itm))
-        });
-
-        doc.items.forEach(_itm => {
-          _itm.status_store_in = doc.type
-          _itm.store = doc.store_to
-          _itm.company = doc.company
-          _itm.branch = doc.branch_to
-          site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _itm))
-        });
-
+        /*    doc.items.forEach(_itm => {
+             _itm.status_store_in = doc.type
+             _itm.store = doc.store_from
+             _itm.company = doc.company
+             site.call('[store_out][stores_items][-]', Object.assign({}, _itm))
+           });
+   
+           doc.items.forEach(_itm => {
+             _itm.status_store_in = doc.type
+             _itm.store = doc.store_to
+             _itm.company = doc.company
+             _itm.branch = doc.branch_to
+             site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _itm))
+           });
+    */
         response.done = true
+        /* 
+                let obj = {
+                  value: doc.net_value,
+                  safe: doc.safe,
+                  date: doc.date,
+                  number: doc.number,
+                  company: doc.company,
+                  branch: doc.branch,
+                  notes: doc.notes
+                }
+        
+                if (obj.value && obj.safe && obj.date && obj.number) 
+                  site.call('[transfer_branch][safes][+]', obj) */
 
-        let obj = {
-          value: doc.net_value,
-          safe: doc.safe,
-          date: doc.date,
-          number: doc.number,
-          company: doc.company,
-          branch: doc.branch,
-          notes: doc.notes
-        }
-
-        if (obj.value && obj.safe && obj.date && obj.number) 
-          site.call('[transfer_branch][safes][+]', obj)
-
-        branch_ransfer_doc.items.forEach(itm => {
-          itm.company = branch_ransfer_doc.company
-          itm.branch = branch_ransfer_doc.branch
-          itm.vendor = branch_ransfer_doc.vendor
-          itm.number = branch_ransfer_doc.number
-          itm.current_status = 'sold'
-          itm.date = branch_ransfer_doc.date
-          itm.transaction_type = 'out'
-          itm.store = branch_ransfer_doc.store
-          site.call('please out item', Object.assign({}, itm))
-        })
+        /*    branch_ransfer_doc.items.forEach(itm => {
+             itm.company = branch_ransfer_doc.company
+             itm.branch = branch_ransfer_doc.branch
+             itm.vendor = branch_ransfer_doc.vendor
+             itm.number = branch_ransfer_doc.number
+             itm.current_status = 'sold'
+             itm.date = branch_ransfer_doc.date
+             itm.transaction_type = 'out'
+             itm.store = branch_ransfer_doc.store
+             site.call('please out item', Object.assign({}, itm))
+           }) */
       } else {
         response.error = err.message
       }
@@ -129,7 +128,7 @@ module.exports = function init(site) {
     })
   })
 
-  site.post("/api/transfer_branch/update", (req, res) => {
+  site.post("/api/transfer_branch/confirm", (req, res) => {
     let response = {}
     response.done = false
     if (req.session.user === undefined) {
@@ -138,9 +137,76 @@ module.exports = function init(site) {
     let branch_ransfer_doc = req.body
     branch_ransfer_doc.edit_user_info = site.security.getUserFinger({ $req: req, $res: res })
 
-    branch_ransfer_doc.vendor = site.fromJson(branch_ransfer_doc.vendor)
-    branch_ransfer_doc.seasonName = branch_ransfer_doc.seasonName
-    branch_ransfer_doc.type = site.fromJson(branch_ransfer_doc.type)
+    branch_ransfer_doc.date = new Date(branch_ransfer_doc.date)
+
+    if (branch_ransfer_doc._id) {
+      $transfer_branch.edit({
+        where: {
+          _id: branch_ransfer_doc._id
+        },
+        set: branch_ransfer_doc,
+        $req: req,
+        $res: res
+      }, (err,document) => {
+        if (!err) {
+          response.done = true
+          let doc = document.doc
+          doc.items.forEach(itm => {
+            itm.company = doc.company
+            itm.branch = doc.branch
+            itm.number = doc.number
+            itm.current_status = 'transfer'
+            itm.date = doc.date
+            itm.transaction_type = 'out'
+            itm.store = doc.store_from
+            site.call('please out item', Object.assign({}, itm))
+          })
+      
+          doc.items.forEach(itm => {
+            itm.company = doc.company
+            itm.branch = doc.branch
+            itm.number = doc.number
+            itm.current_status = 'transfer'
+            itm.date = doc.date
+            itm.transaction_type = 'in'
+            itm.store = doc.store_from
+            site.call('please out item', Object.assign({}, itm))
+          })
+      
+          doc.items.forEach(_itm => {
+            _itm.status_store_in = doc.type
+            _itm.store = doc.store_from
+            _itm.company = doc.company
+            site.call('[store_out][stores_items][-]', Object.assign({}, _itm))
+          });
+      
+          doc.items.forEach(_itm => {
+            _itm.status_store_in = doc.type
+            _itm.store = doc.store_to
+            _itm.company = doc.company
+            _itm.branch = doc.branch_to
+            site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _itm))
+          });
+        } else {
+          response.error = err.message
+        }
+        res.json(response)
+      })
+    } else {
+      res.json(response)
+    }
+  })
+
+  site.post("/api/transfer_branch/update", (req, res) => {
+    let response = {}
+    response.done = false
+    if (req.session.user === undefined) {
+      res.json(response)
+    }
+
+    let branch_ransfer_doc = req.body
+    branch_ransfer_doc.edit_user_info = site.security.getUserFinger({ $req: req, $res: res })
+
     branch_ransfer_doc.date = new Date(branch_ransfer_doc.date)
 
     branch_ransfer_doc.items.forEach(itm => {
@@ -150,8 +216,7 @@ module.exports = function init(site) {
       itm.total = site.toNumber(itm.total)
     })
 
-    // branch_ransfer_doc.octazion = site.toNumber(branch_ransfer_doc.octazion)
-    branch_ransfer_doc.total_value = site.toNumber(branch_ransfer_doc.total_value)
+
 
     if (branch_ransfer_doc._id) {
       $transfer_branch.edit({
@@ -253,7 +318,7 @@ module.exports = function init(site) {
 
     where['company.id'] = site.get_company(req).id
     where['branch.code'] = site.get_branch(req).code
-        
+
     if (where['shift_code']) {
       where['shift.code'] = new RegExp(where['shift_code'], 'i')
       delete where['shift_code']

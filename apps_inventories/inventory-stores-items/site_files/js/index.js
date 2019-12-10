@@ -54,7 +54,6 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
       $scope.com_item = { complex_items: $scope.complex_items };
       $scope.complex.push($scope.com_item);
     };
-    $scope.item.maximum_discount = { value: 0, type: 'number' };
     $scope.item.start_count = 0;
     $scope.item.current_count = 0;
     $scope.item.total_purchase_price = 0;
@@ -72,7 +71,10 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
     $scope.category_item.sizes.unshift(Object.assign({}, $scope.item));
     $scope.complex_items = [];
 
-    $scope.item = { image_url: '/images/sizes_img.png' };
+    $scope.item = {
+      image_url: '/images/sizes_img.png',
+      maximum_discount : { value: 0, type: 'number' }
+    };
 
     if ($scope.defaultSettings.general_Settings) {
       if ($scope.defaultSettings.general_Settings.kitchen)
@@ -154,6 +156,7 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
     };
 
     $scope.item = {
+      maximum_discount: { value: 0, type: 'number' },
       image_url: '/images/sizes_img.png',
     };
 

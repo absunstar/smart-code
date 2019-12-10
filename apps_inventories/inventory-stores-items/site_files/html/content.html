@@ -85,6 +85,18 @@
                         <!--    <i-list class="col3" ng-model="store" items="storesList"
                             ng-search="_search.$_store" label="##word.store##" v="r">
                         </i-list> -->
+                        <div class="col2">
+
+                            <div class="row ">
+                                <i-control type="number" ng-model="item.maximum_discount.value"></i-control>
+                            </div>
+                            <div class="row center">
+                                <i-radio ng-model="item.maximum_discount.type" label="##word.discount_types_number##"
+                                    ng-value="number" group="type" type="radio"></i-radio>
+                                <i-radio ng-model="item.maximum_discount.type" label="##word.discount_types_percent##"
+                                    ng-value="percent" group="type" type="radio"></i-radio>
+                            </div>
+                        </div>
                         <i-list x-feature="restaurant" class="col3" ng-model="item.kitchen"
                             ng-search="_search.$kitchen_search" label="##word.kitchen_name##" items="itemsKitchenList">
                         </i-list>

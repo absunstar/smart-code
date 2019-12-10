@@ -159,7 +159,6 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
       $scope.error = v.messages[0].ar;
       return;
     }
-
   
     if ($scope.transfer_branch.items.length > 0) {
       $scope.busy = true;
@@ -501,6 +500,35 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           site.hideModal('#updateTransferBranchModal');
+          $scope.loadAll();
+        } else {
+          $scope.error = '##word.error##';
+        }
+      },
+      function (err) {
+        console.log(err);
+      }
+    )
+  };
+
+  $scope.confirmTransfer = function (transfer_branch) {
+    $scope.error = '';
+    const v = site.validated();
+
+    if (!v.ok) {
+      $scope.error = v.messages[0].ar;
+      return;
+    }
+    transfer_branch.transfer = true;
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/transfer_branch/confirm",
+      data: transfer_branch
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
           $scope.loadAll();
         } else {
           $scope.error = '##word.error##';
