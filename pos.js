@@ -1,4 +1,4 @@
-const site = require('isite')({
+const site = require('../isite')({
     port: 80,
     lang: 'ar',
     saving_time: 0.2,
@@ -52,5 +52,6 @@ setTimeout(() => {
     site.importApp(__dirname + '/apps_private/companies')
 
 }, 1000)
+site.exe(process.cwd() + '/applications/PrinterManager.exe')
 
 site.run()
