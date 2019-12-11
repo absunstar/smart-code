@@ -25,6 +25,7 @@
                             <th>##word.average_cost##</th>
                             <th>##word.stores_current_balance##</th>
                             <th>##word.stores_start_balance##</th>
+                            <th>##word.stores_in_discountes##</th>
                             <th>##word.actions##</th>
                         </tr>
 
@@ -39,28 +40,34 @@
                             <td class="center bold red"><br>{{item.average_cost}}</td>
                             <td class="center bold blue"><br>{{item.current_count}}</td>
                             <td class="center bold blue"><br>{{item.start_count}}</td>
-
-                            <td>
-                                <div class="row center">
-                                    <i-checkbox label="##word.stores_items_complex##" ng-model="item.item_complex">
-                                    </i-checkbox>
-                                    <i-button ng-show="item.item_complex == true" type="view"
-                                        label="##word.complex_items##"
-                                        ng-click="item.view = true ;showComplexItemsView(item)">
-                                    </i-button>
-                                </div>
-
-                                <div class="row center">
-                                    <i-button type="view" label="##word.stores_balances##"
-                                        ng-click="storesBalances(item)">
-                                    </i-button>
-                                </div>
-
+                            <td class="center bold blue"><br>
+                                <p>##word.maximum_discount## : <b class="red">{{item.maximum_discount.max}}</b></p>
+                                <p>##word.discount## : <b class="red">{{item.maximum_discount.value}} </b></p>
+                                </p> <b class="red" ng-show="item.maximum_discount.type == 'number'">
+                                    ##word.le##</b>
+                                <b class="red" ng-show="item.maximum_discount.type == 'percent'"> % </b>
                             </td>
-                        </tr>
-                    </table>
+                </td>
+
+                <td>
+                    <div class="row center">
+                        <i-checkbox label="##word.stores_items_complex##" ng-model="item.item_complex">
+                        </i-checkbox>
+                        <i-button ng-show="item.item_complex == true" type="view" label="##word.complex_items##"
+                            ng-click="item.view = true ;showComplexItemsView(item)">
+                        </i-button>
+                    </div>
+
+                    <div class="row center">
+                        <i-button type="view" label="##word.stores_balances##" ng-click="storesBalances(item)">
+                        </i-button>
+                    </div>
+
                 </td>
             </tr>
+        </table>
+        </td>
+        </tr>
 
         </table>
 

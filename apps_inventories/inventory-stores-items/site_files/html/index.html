@@ -95,8 +95,10 @@
                                         <td class="center blue">{{_size.current_count}}</td>
                                         <td class="center blue">{{_size.start_count}}</td>
                                         <td class="center red">
-                                            {{_size.maximum_discount.value}}
-                                            <b class="red" ng-show="_size.maximum_discount.type == 'number'">
+                                            <p>##word.maximum_discount## : <b
+                                                    class="red">{{_size.maximum_discount.max}}</b></p>
+                                            <p>##word.discount## : <b class="red">{{_size.maximum_discount.value}} </b>
+                                            </p> <b class="red" ng-show="_size.maximum_discount.type == 'number'">
                                                 ##word.le##</b>
                                             <b class="red" ng-show="_size.maximum_discount.type == 'percent'"> % </b>
                                         </td>

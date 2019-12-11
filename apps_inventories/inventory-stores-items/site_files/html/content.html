@@ -85,10 +85,13 @@
                         <!--    <i-list class="col3" ng-model="store" items="storesList"
                             ng-search="_search.$_store" label="##word.store##" v="r">
                         </i-list> -->
-                        <div class="col2">
+                        <div class="col3">
 
                             <div class="row ">
-                                <i-control type="number" ng-model="item.maximum_discount.value"></i-control>
+                                <i-control type="number" class="col6" label="##word.maximum_discount##"
+                                    ng-model="item.maximum_discount.max"></i-control>
+                                <i-control type="number" class="col6" label="##word.discount##"
+                                    ng-model="item.maximum_discount.value"></i-control>
                             </div>
                             <div class="row center">
                                 <i-radio ng-model="item.maximum_discount.type" label="##word.discount_types_number##"
@@ -124,7 +127,7 @@
                     <th>##word.average_cost##</th>
                     <th>##word.stores_current_balance##</th>
                     <th>##word.stores_items_start_count##</th>
-                    <th>##word.maximum_discount##</th>
+                    <th>##word.stores_in_discountes##</th>
                     <th>##word.actions##</th>
                 </tr>
 
@@ -172,7 +175,8 @@
 
                     <td>
                         <div class="row ">
-                            <i-control type="number" ng-model="itm.maximum_discount.value"></i-control>
+                            <i-control type="number" label="##word.maximum_discount##" class="col6" ng-model="itm.maximum_discount.max"></i-control>
+                            <i-control type="number" label="##word.discount##" class="col6" ng-model="itm.maximum_discount.value"></i-control>
                         </div>
                         <div class="row center">
                             <i-radio ng-model="itm.maximum_discount.type" label="##word.discount_types_number##"
