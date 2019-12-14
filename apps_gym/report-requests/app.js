@@ -63,6 +63,11 @@ module.exports = function init(site) {
       where['order_requests_type.id'] = where['order_requests_type'].id;
       delete where['order_requests_type']
     }
+    
+    if (where['trainer']) {
+      where['trainer.id'] = where['trainer'].id;
+      delete where['trainer']
+    }
 
     where['company.id'] = site.get_company(req).id
     where['branch.code'] = site.get_branch(req).code

@@ -9,6 +9,7 @@ app.controller("request_service", function ($scope, $http, $timeout) {
         $scope.request_service = {
           image_url: '/images/request_service.png',
           active: true,
+          shift: shift,
           service_count: 1,
           date_from: new Date(),
           date_to: new Date(),

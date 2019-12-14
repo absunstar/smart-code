@@ -55,19 +55,38 @@ app.controller("report_requests", function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done && response.data.list.length > 0) {
-          $scope.list = response.data.list;          
+          $scope.list = response.data.list;
           $scope.count = response.data.count;
-          $scope.remain_amount = 0;
           $scope.paid_require = 0;
-          $scope.paid_up = 0;
-          $scope.total_tax = 0;
           $scope.total_discount = 0;
           $scope.list.forEach(request => {
-            $scope.remain_amount += request.remain_amount ||0;
-            $scope.paid_require += request.paid_require ||0;
-            $scope.total_discount += request.total_discount ||0;
+            $scope.paid_require += request.paid_require || 0;
+            $scope.total_discount += request.total_discount || 0;
           });
-          $scope.paid_up = $scope.paid_require - $scope.remain_amount
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.getTrainerList = function () {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/employees/all",
+      data: {
+        where: {
+          'job.trainer': true
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.trainersList = response.data.list;
         }
       },
       function (err) {
@@ -79,13 +98,15 @@ app.controller("report_requests", function ($scope, $http, $timeout) {
 
   $scope.searchAll = function () {
     $scope._search = {};
+
     $scope.getReportServicesList($scope.search);
+    $scope.trainer = $scope.search.trainer;
+    $scope.search = {};
     site.hideModal('#reportServicesSearchModal');
-    $scope.search = {}
   };
 
-
-  $scope.getReportServicesList({date : new Date()});
+  $scope.getReportServicesList({ date: new Date() });
   $scope.getPaymentMethodList();
+  $scope.getTrainerList();
   $scope.getSourceType();
 });

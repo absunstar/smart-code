@@ -20,6 +20,11 @@
         "ar": "كود الطلب"
     },
     {
+        "name": "requests_count",
+        "en": "Requests Count",
+        "ar": "عدد الطلبات"
+    },
+    {
         "name": "invoices_code",
         "en": "Invoices Code",
         "ar": "كود الفاتورة"
