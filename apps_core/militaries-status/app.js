@@ -146,8 +146,8 @@ module.exports = function init(site) {
     response.done = false
     let where = req.body.where || {}
     where['company.id'] = site.get_company(req).id
-    where['branch.code'] = site.get_branch(req).code
-
+/*     where['branch.code'] = site.get_branch(req).code
+ */
     if (!req.session.user) {
       res.json(response)
       return

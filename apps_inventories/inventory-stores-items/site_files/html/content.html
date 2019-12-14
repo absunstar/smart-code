@@ -89,14 +89,14 @@
 
                             <div class="row ">
                                 <i-control type="number" class="col6" label="##word.maximum_discount##"
-                                    ng-model="item.maximum_discount.max"></i-control>
+                                    ng-model="item.discount.max"></i-control>
                                 <i-control type="number" class="col6" label="##word.discount##"
-                                    ng-model="item.maximum_discount.value"></i-control>
+                                    ng-model="item.discount.value"></i-control>
                             </div>
                             <div class="row center">
-                                <i-radio ng-model="item.maximum_discount.type" label="##word.discount_types_number##"
+                                <i-radio ng-model="item.discount.type" label="##word.discount_types_number##"
                                     ng-value="number" group="type" type="radio"></i-radio>
-                                <i-radio ng-model="item.maximum_discount.type" label="##word.discount_types_percent##"
+                                <i-radio ng-model="item.discount.type" label="##word.discount_types_percent##"
                                     ng-value="percent" group="type" type="radio"></i-radio>
                             </div>
                         </div>
@@ -175,13 +175,13 @@
 
                     <td>
                         <div class="row ">
-                            <i-control type="number" label="##word.maximum_discount##" class="col6" ng-model="itm.maximum_discount.max"></i-control>
-                            <i-control type="number" label="##word.discount##" class="col6" ng-model="itm.maximum_discount.value"></i-control>
+                            <i-control type="number" label="##word.maximum_discount##" class="col6" ng-model="itm.discount.max"></i-control>
+                            <i-control type="number" label="##word.discount##" class="col6" ng-model="itm.discount.value"></i-control>
                         </div>
                         <div class="row center">
-                            <i-radio ng-model="itm.maximum_discount.type" label="##word.discount_types_number##"
+                            <i-radio ng-model="itm.discount.type" label="##word.discount_types_number##"
                                 ng-value="number" group="type" type="radio"></i-radio>
-                            <i-radio ng-model="itm.maximum_discount.type" label="##word.discount_types_percent##"
+                            <i-radio ng-model="itm.discount.type" label="##word.discount_types_percent##"
                                 ng-value="percent" group="type" type="radio"></i-radio>
                         </div>
                     </td>

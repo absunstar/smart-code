@@ -1,0 +1,147 @@
+[
+    {
+        "name": "account_invoices_add",
+        "en": "Add Customer",
+        "ar": "إضافة عميل"
+    },
+    {
+        "name": "account_invoices_informations",
+        "en": "Account Invoices Informations",
+        "ar": "بيانات فاتورة حساب"
+    },
+    {
+        "name": "account_invoices_name",
+        "en": "Account Invoices",
+        "ar": "فواتير الحسابات"
+    },
+    {
+        "name": "account_invoices_menus",
+        "en": "Account Invoices Menu",
+        "ar": "قائمة فاتورة حساب"
+    },
+    {
+        "name": "account_invoices_name",
+        "en": "Account Invoices Name",
+        "ar": "اسم فاتورة حساب"
+    },
+    {
+        "name": "source_type",
+        "en": "Source Type",
+        "ar": "نوع المصدر"
+    },
+    {
+        "name": "order_invoices_type",
+        "en": "Order Invoices Type",
+        "ar": "نوع طلب الفاتورة"
+    },
+    {
+        "name": "err_source_type",
+        "en": "Must Select Source Type",
+        "ar": "يجب إختيار نوع المصدر"
+    },
+    {
+        "name": "order_sale",
+        "en": "Order Sale",
+        "ar": "أمر بيع"
+    },
+    {
+        "name": "order_value",
+        "en": "Order Value",
+        "ar": "القيمة"
+    },
+    {
+        "name": "payable",
+        "en": "Payable",
+        "ar": "مستحق الدفع"
+    },
+    {
+        "name": "order_type",
+        "en": "Order Type",
+        "ar": "نوع الطلب"
+    },
+    {
+        "name": "payment",
+        "en": "Payment",
+        "ar": "تسديد"
+    },
+    {
+        "name": "remain_amount",
+        "en": "Remain Amount",
+        "ar": "المبلغ المتبقي"
+    },
+    {
+        "name": "detailes_amounts_paid",
+        "en": "Detailes Amounts Paid",
+        "ar": "تفاصيل المدفوعات"
+    },
+    {
+        "name": "accept",
+        "en": "Accept",
+        "ar": "تأكيد"
+    },
+    {
+        "name": "err_paid_up",
+        "en": "Must Enter Paid",
+        "ar": "يجب إدخال مبلغ "
+    },
+    {
+        "name": "err_paid_up_payment",
+        "en": "Paid Up Greater Than Required Vaiue",
+        "ar": "المبلغ المسدد أكبر من الباقي"
+    },
+    {
+        "name": "paid_up",
+        "en": "Paid Up",
+        "ar": "المدفوع"
+    },
+    {
+        "name": "err_total_tax",
+        "en": "Total Taxes Greater Than Required",
+        "ar": "مجموع الضرائب أكبر من المطلوب"
+    },
+    {
+        "name": "err_total_discount",
+        "en": "Total Discount Greater Than Required",
+        "ar": "مجموع الخصومات أكبر من المطلوب"
+    },
+    {
+        "name": "err_service",
+        "en": "Service Greater Than Required",
+        "ar": "مبلغ الخدمة أكبر من المطلوب"
+    },
+    {
+        "name": "err_net_value",
+        "en": " Paid Up Greater Than Net Value",
+        "ar": " المدفوع أكبر من صافي المبلغ"
+    },
+    {
+        "name": "err_price_delivery_service",
+        "en": "Price Delivery Service Greater Than Required",
+        "ar": "مبلغ خدمة التوصيل أكبر من المطلوب"
+    },
+    {
+        "name": "account_invoices_new",
+        "en": "New Account Invoices",
+        "ar": "فاتورة حساب جديدة"
+    },
+    {
+        "name": "account_invoices_details",
+        "en": "Account Invoices Details",
+        "ar": "تفاصيل فاتورة حساب"
+    },
+    {
+        "name": "account_invoices_update",
+        "en": "Edit Account Invoices",
+        "ar": "تعديل فاتورة حساب"
+    },
+    {
+        "name": "account_invoices_delete",
+        "en": "Delte Account Invoices",
+        "ar": "حذف فاتورة حساب"
+    },
+    {
+        "name": "account_invoices_add_name",
+        "en": "Add Account Invoices",
+        "ar": "إضافة فاتورة حساب"
+    }
+]

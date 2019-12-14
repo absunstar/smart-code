@@ -3,5 +3,5 @@
     "name": "create_invoices_admin",
     "en": "Creat Invoices  Admin",
     "ar": "إدارة إنشاء الفواتير",
-    "permissions": ["reat_invoices_manage"]
+    "permissions": ["create_invoices_manage"]
 }]

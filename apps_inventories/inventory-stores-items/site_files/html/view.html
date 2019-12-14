@@ -41,11 +41,11 @@
                             <td class="center bold blue"><br>{{item.current_count}}</td>
                             <td class="center bold blue"><br>{{item.start_count}}</td>
                             <td class="center bold blue"><br>
-                                <p>##word.maximum_discount## : <b class="red">{{item.maximum_discount.max}}</b></p>
-                                <p>##word.discount## : <b class="red">{{item.maximum_discount.value}} </b></p>
-                                </p> <b class="red" ng-show="item.maximum_discount.type == 'number'">
+                                <p>##word.maximum_discount## : <b class="red">{{item.discount.max}}</b></p>
+                                <p>##word.discount## : <b class="red">{{item.discount.value}} </b></p>
+                                </p> <b class="red" ng-show="item.discount.type == 'number'">
                                     ##word.le##</b>
-                                <b class="red" ng-show="item.maximum_discount.type == 'percent'"> % </b>
+                                <b class="red" ng-show="item.discount.type == 'percent'"> % </b>
                             </td>
                 </td>
 

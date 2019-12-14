@@ -27,8 +27,8 @@ module.exports = function init(site) {
       $res: res
     })
     doc.company = site.get_company(req)
-    doc.branch = site.get_branch(req)
-    $order_slides.add(doc, (err, id) => {
+/*     doc.branch = site.get_branch(req)
+ */    $order_slides.add(doc, (err, id) => {
       if (!err) {
         response.done = true
       }
@@ -125,8 +125,8 @@ module.exports = function init(site) {
     response.done = false
     let where = req.body.where || {}
     where['company.id'] = site.get_company(req).id
-    where['branch.code'] = site.get_branch(req).code
-    if (!req.session.user) {
+/*     where['branch.code'] = site.get_branch(req).code
+ */    if (!req.session.user) {
       response.error = 'you are not login'
       res.json(response)
       return

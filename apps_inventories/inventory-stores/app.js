@@ -15,7 +15,7 @@ module.exports = function init(site) {
     path: __dirname + '/site_files/json/types.json'
   })
 
-  
+
 
   site.on('[company][created]', doc => {
 
@@ -149,14 +149,17 @@ module.exports = function init(site) {
     response.done = false
 
     where['company.id'] = site.get_company(req).id
-    where['branch.code'] = site.get_branch(req).code
+
+    if (req.body.branchTo) {
+      where['branch.code'] = req.body.branchTo.code
+    } else where['branch.code'] = site.get_branch(req).code
 
     $stores.findMany({
       select: req.body.select || {},
       limit: req.body.limit,
       where: where
     }, (err, docs) => {
-      if (!err) {        
+      if (!err) {
         response.done = true
         response.list = docs
       } else {

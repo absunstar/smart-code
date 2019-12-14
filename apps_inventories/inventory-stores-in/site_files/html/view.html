@@ -63,13 +63,11 @@
                             <td class="not-print center">{{itm.cost}}</td>
                             <td class="not-print center">{{itm.price}}</td>
                             <td class="center">
-                                {{itm.maximum_discount.value}}
-                                <b class="red" ng-show="itm.maximum_discount.type =='number'">##word.le##</b>
-                                <b class="red" ng-show="itm.maximum_discount.type =='percent'">%</b>
+                                {{itm.discount.value}}
+                                <b class="red" ng-show="itm.discount.type =='number'">##word.le##</b>
+                                <b class="red" ng-show="itm.discount.type =='percent'">%</b>
                             </td>
                             <td class="center">{{itm.total}}</td>
-
-
 
                         </tr>
                     </table>

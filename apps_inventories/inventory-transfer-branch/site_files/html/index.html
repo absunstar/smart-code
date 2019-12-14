@@ -51,9 +51,8 @@
                         <th class="not-print"> ##word.logo## </th>
                         <th>##word.transfer_branch_date##</th>
                         <th>##word.transfer_branch_id##</th>
-
-
                         <th class="not-print">##word.actions##</th>
+
                     </tr>
                     <tr ng-repeat="c in list">
                         <td class="not-print">
@@ -73,7 +72,7 @@
                             <i-button x-permissions="transfer_branch_view || transfer_branch_manage" type="details"
                                 label="##word.details##" ng-click="details(c)"></i-button>
 
-                            <i-button x-permissions="transfer_branch_update || transfer_branch_manage" type="safe"
+                            <i-button x-permissions="transfer_branch_confirm || transfer_branch_manage" type="safe"
                                 ng-show="!c.transfer" label="##word.confirm_transfer##" ng-click="confirmTransfer(c)">
                             </i-button>
 

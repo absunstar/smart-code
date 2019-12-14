@@ -10,6 +10,26 @@
         "ar": "الكمية"
     },
     {
+        "name": "vendor",
+        "en": "Vendor",
+        "ar": "المورد"
+    },
+    {
+        "name": "invoices_code",
+        "en": "Invoices Code",
+        "ar": "كود الفاتورة"
+    },
+    {
+        "name": "price",
+        "en": "Price",
+        "ar": "السعر"
+    },
+    {
+        "name": "paid_require",
+        "en": "Paid Require",
+        "ar": "المطلوب دفعه"
+    },
+    {
         "name": "default_discount",
         "en": "Default Discount",
         "ar": "خصم إفتراضي"

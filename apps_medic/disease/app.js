@@ -36,13 +36,13 @@ module.exports = function init(site) {
       disease_doc.active = true
     }
 
-    disease_doc.academy = site.get_company(req)
-    disease_doc.branch = site.get_branch(req)
-
+    disease_doc.company = site.get_company(req)
+/*     disease_doc.branch = site.get_branch(req)
+ */
     $disease.find({
-      'academy.id': site.get_company(req).id,
-      'branch.code': site.get_branch(req).code,
-      where: {
+      'company.id': site.get_company(req).id,
+/*       'branch.code': site.get_branch(req).code,
+ */      where: {
         'name': disease_doc.name
       }
     }, (err, doc) => {
@@ -174,9 +174,9 @@ module.exports = function init(site) {
       where['name'] = new RegExp(where['name'], "i");
     }
 
-    where['academy.id'] = site.get_company(req).id
-    where['branch.code'] = site.get_branch(req).code
-
+    where['company.id'] = site.get_company(req).id
+/*     where['branch.code'] = site.get_branch(req).code
+ */
     $disease.findMany({
       select: req.body.select || {},
       where: where,

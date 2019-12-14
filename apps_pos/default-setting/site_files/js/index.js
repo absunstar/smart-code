@@ -117,7 +117,7 @@ app.controller("default_setting", function ($scope, $http) {
       }
     )
   };
-  $scope.getSourceType = function () {
+/*   $scope.getSourceType = function () {
     $scope.error = '';
     $scope.busy = true;
     $scope.sourceTypeList = [];
@@ -134,7 +134,7 @@ app.controller("default_setting", function ($scope, $http) {
         $scope.error = err;
       }
     )
-  };
+  }; */
 
   $scope.getTrainerList = function () {
     $scope.busy = true;
@@ -374,6 +374,25 @@ app.controller("default_setting", function ($scope, $http) {
           $scope.error = response.data.error
         }
 
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.getSourceType = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $scope.sourceTypeList = [];
+    $http({
+      method: "POST",
+      url: "/api/invoice_source_type/all"
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.sourceTypeList = response.data;
       },
       function (err) {
         $scope.busy = false;

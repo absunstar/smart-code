@@ -79,7 +79,7 @@ app.controller("safes_payments", function ($scope, $http) {
 
 
   ];
-  
+
   $scope.loadSafes = function () {
     $scope.list = {};
     $scope.busy = true;
@@ -157,25 +157,27 @@ app.controller("safes_payments", function ($scope, $http) {
   $scope.searchAll = function () {
     let where = {};
 
+    if ($scope.search) {
 
-    if ($scope.search.date) {
-      where['date'] = $scope.search.date;
-    }
+      if ($scope.search.date) {
+        where['date'] = $scope.search.date;
+      }
 
-    if ($scope.search.safe && $scope.search.safe.id) {
-      where['safe.id'] = $scope.search.safe.id;
-    }
+      if ($scope.search.safe && $scope.search.safe.id) {
+        where['safe.id'] = $scope.search.safe.id;
+      }
 
 
-    if ($scope.search.value) {
-      where['value'] = site.toNumber($scope.search.value);
-    }
+      if ($scope.search.value) {
+        where['value'] = site.toNumber($scope.search.value);
+      }
 
-    if ($scope.search.source) {
-      where['source'] = $scope.search.source.name;
-    }
-    if ($scope.search.transition_type) {
-      where['transition_type'] = $scope.search.transition_type.type;
+      if ($scope.search.source) {
+        where['source'] = $scope.search.source.name;
+      }
+      if ($scope.search.transition_type) {
+        where['transition_type'] = $scope.search.transition_type.type;
+      }
     }
     site.hideModal('#Safes_payment_SearchModal');
 
@@ -189,7 +191,7 @@ app.controller("safes_payments", function ($scope, $http) {
 
 
 
-  $scope.loadAll({date : new Date()});
+  $scope.loadAll({ date: new Date() });
   // $scope.loadEmployees();
   $scope.loadSafes();
 

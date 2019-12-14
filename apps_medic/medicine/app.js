@@ -36,16 +36,16 @@ module.exports = function init(site) {
       medicine_doc.active = true
     }
 
-    medicine_doc.academy = site.get_company(req)
-    medicine_doc.branch = site.get_branch(req)
-  
+    medicine_doc.company = site.get_company(req)
+/*     medicine_doc.branch = site.get_branch(req)
+ */  
 
     $medicine.find({
       where: {
         
-        'academy.id': site.get_company(req).id,
-        'branch.code': site.get_branch(req).code,
-        'name': medicine_doc.name
+        'company.id': site.get_company(req).id,
+/*         'branch.code': site.get_branch(req).code,
+ */        'name': medicine_doc.name
       }
     }, (err, doc) => {
       if (!err && doc) {
@@ -175,9 +175,9 @@ module.exports = function init(site) {
       where['name'] = new RegExp(where['name'], "i");
     }
 
-    where['academy.id'] = site.get_company(req).id
-    where['branch.code'] = site.get_branch(req).code
-    
+    where['company.id'] = site.get_company(req).id
+/*     where['branch.code'] = site.get_branch(req).code
+ */    
 
     $medicine.findMany({
       select: req.body.select || {},

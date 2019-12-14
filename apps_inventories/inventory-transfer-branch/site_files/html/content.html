@@ -15,7 +15,7 @@
                     <i-list class="col3" ng-model="transfer_branch.branch_from" display="name_ar" items="branchesList"
                         ng-search="_search.$branch_from" label="##word.branch_from##"></i-list>
                     <i-list class="col3" ng-model="transfer_branch.branch_to" items="branchesList" display="name_ar"
-                        ng-search="_search.$branch_to" label="##word.branch_to##"></i-list>
+                      ng-change="loadStoresTo(transfer_branch.branch_to)"  ng-search="_search.$branch_to" label="##word.branch_to##"></i-list>
 
                 </div>
 

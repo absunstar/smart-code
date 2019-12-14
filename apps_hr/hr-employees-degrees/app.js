@@ -147,8 +147,8 @@ module.exports = function init(site) {
     }
 
     where['company.id'] = site.get_company(req).id
-    where['branch.code'] = site.get_branch(req).code
-
+/*     where['branch.code'] = site.get_branch(req).code
+ */
     $employees_degrees.findMany({
       select: req.body.select || {},
       where: where,

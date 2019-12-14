@@ -24,10 +24,10 @@ module.exports = function init(site) {
         id: doc.id,
         name_ar: doc.name_ar
       },
-      branch: {
+      /* branch: {
         code: doc.branch_list[0].code,
         name_ar: doc.branch_list[0].name_ar
-      },
+      }, */
       active: true
     }, (err, doc) => {
       site.call('[register][tables][add]', doc)
@@ -59,13 +59,13 @@ module.exports = function init(site) {
     }
 
     tables_group_doc.company = site.get_company(req)
-    tables_group_doc.branch = site.get_branch(req)
-
+/*     tables_group_doc.branch = site.get_branch(req)
+ */
     $tables_group.find({
       where: {
         'company.id': site.get_company(req).id,
-        'branch.code': site.get_branch(req).code,
-        'name': tables_group_doc.name
+/*         'branch.code': site.get_branch(req).code,
+ */        'name': tables_group_doc.name
       }
     }, (err, doc) => {
       if (!err && doc) {
@@ -206,8 +206,8 @@ module.exports = function init(site) {
     delete where.search
 
     where['company.id'] = site.get_company(req).id
-    where['branch.code'] = site.get_branch(req).code
-
+/*     where['branch.code'] = site.get_branch(req).code
+ */
     $tables_group.findMany({
       select: req.body.select || {},
       where: where,

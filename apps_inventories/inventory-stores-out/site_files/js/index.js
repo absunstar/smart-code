@@ -109,6 +109,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
           image_url: '/images/store_out.png',
           shift: $scope.shift,
           items: [],
+          invoice: false,
           discountes: [],
           taxes: [],
           date: new Date(),
@@ -118,7 +119,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         if ($scope.defaultSettings.general_Settings) {
           if ($scope.defaultSettings.general_Settings.customer)
             $scope.store_out.customer = $scope.defaultSettings.general_Settings.customer;
-          if ($scope.defaultSettings.general_Settings.payment_method)
+          if ($scope.defaultSettings.general_Settings.payment_method && $scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto)
             $scope.store_out.payment_method = $scope.defaultSettings.general_Settings.payment_method;
         }
 
@@ -132,7 +133,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         }
 
         if ($scope.defaultSettings.accounting) {
-          if ($scope.defaultSettings.accounting.safe) {
+          if ($scope.defaultSettings.accounting.safe && $scope.defaultSettings.accounting.create_invoice_auto) {
             $scope.store_out.safe = $scope.defaultSettings.accounting.safe
           }
         } site.showModal('#addStoreOutModal');
@@ -175,7 +176,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
       let max_discount = false;
 
       $scope.store_out.items.forEach(_itemSize => {
-        if (_itemSize.maximum_discount.value > _itemSize.maximum)
+        if (_itemSize.discount.value > _itemSize.discount.max)
           max_discount = true;
       });
 
@@ -195,6 +196,33 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         function (response) {
           $scope.busy = false;
           if (response.data.done) {
+            if ($scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto) {
+              let store_out_doc = response.data.doc
+              $scope.create_invoices = {
+                image_url: '/images/account_invoices.png',
+                date: store_out_doc.date,
+                invoice_id: store_out_doc.id,
+                customer: store_out_doc.customer,
+                shift: store_out_doc.shift,
+                net_value: store_out_doc.net_value,
+                paid_up: store_out_doc.net_value,
+                payment_method: store_out_doc.payment_method,
+                safe: store_out_doc.safe,
+                invoice_code: store_out_doc.number,
+                total_discount: store_out_doc.total_discount,
+                total_tax: store_out_doc.total_tax,
+                current_book_list: store_out_doc.items,
+                source_type: {
+                  id: 1,
+                  en: "Stores Out / Sales Invoice",
+                  ar: "إذن صرف / فاتورة مبيعات"
+                },
+                active: true
+              };
+
+            }
+            $scope.addAccountInvoice($scope.create_invoices)
+
             site.hideModal('#addStoreOutModal');
             $scope.loadAll();
 
@@ -292,13 +320,11 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
             average_cost: _size.average_cost,
             count: _size.count,
             cost: _size.cost,
-            maximum_discount: _size.maximum_discount,
-            maximum: _size.maximum_discount.value,
+            discount: _size.discount,
             price: _size.price,
             total: _size.total,
             current_count: _size.current_count,
             ticket_code: _size.ticket_code,
-            status_store_out: $scope.store_out.type.id
           });
         }
       });
@@ -311,13 +337,13 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
     $scope.error = '';
     setTimeout(() => {
       let discount = 0;
-      if (size.cost && size.count) {
-        if (size.maximum_discount.type == 'number')
-          discount = size.maximum_discount.value * size.count;
-        else if (size.maximum_discount.type == 'percent')
-          discount = size.maximum_discount.value * (size.cost * size.count) / 100;
+      if (size.price && size.count) {
+        if (size.discount.type == 'number')
+          discount = size.discount.value * size.count;
+        else if (size.discount.type == 'percent')
+          discount = size.discount.value * (size.cost * size.count) / 100;
 
-        size.total = (site.toNumber(size.cost) * site.toNumber(size.count)) - discount;
+        size.total = (site.toNumber(size.price) * site.toNumber(size.count)) - discount;
       }
       $scope.calc();
     }, 100);
@@ -438,7 +464,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
                   _size.name = response.data.list[0].name;
                   _size.store = $scope.store_out.store;
                   _size.count = 1;
-                  _size.maximum = _size.maximum_discount.value;
+                  _size.discount = _size.discount;
                   _size.total = _size.count * _size.cost;
                   foundSize = $scope.store_out.items.some(_itemSize => _itemSize.barcode == _size.barcode);
                   if (!foundSize)
@@ -790,6 +816,210 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
   /*   $scope.loadStores_Out();
    */
 
+  $scope.displayAccountInvoice = function (store_in) {
+    $scope.get_open_shift((shift) => {
+      if (shift) {
+        $scope.create_invoices = {
+          image_url: '/images/account_invoices.png',
+          date: new Date(),
+          invoice_id: store_in.id,
+          customer: store_in.customer,
+          shift: shift,
+          net_value: store_in.net_value,
+          paid_up: 0,
+          invoice_code: store_in.number,
+          total_discount: store_in.total_discount,
+          total_tax: store_in.total_tax,
+          current_book_list: store_in.items,
+          source_type: {
+            id: 1,
+            en: "Stores In / Purchase Invoice",
+            ar: "إذن وارد / فاتورة شراء"
+          },
+          active: true
+        };
+        
+        if ($scope.defaultSettings.general_Settings) {
+          if ($scope.defaultSettings.general_Settings.payment_method)
+            $scope.create_invoices.payment_method = $scope.defaultSettings.general_Settings.payment_method;
+        };
+
+        if ($scope.defaultSettings.accounting) {
+          if ($scope.defaultSettings.accounting.safe)
+            $scope.create_invoices.safe = $scope.defaultSettings.accounting.safe;
+        };
+        site.showModal('#createInvoiceModal');
+      } else $scope.error = '##word.open_shift_not_found##';
+    });
+  };
+
+  $scope.addAccountInvoice = function () {
+    $scope.error = '';
+    $scope.busy = true;
+
+    if ($scope.create_invoices.paid_up > 0 && !$scope.create_invoices.safe) {
+      $scope.error = "##word.should_select_safe##";
+      return;
+    } else if ($scope.create_invoices.paid_up > $scope.create_invoices.paid_require) {
+      $scope.error = "##word.err_paid_require##";
+      return;
+    }
+
+    if ($scope.create_invoices.paid_up <= 0) $scope.create_invoices.safe = null;
+    $http({
+      method: "POST",
+      url: "/api/account_invoices/add",
+      data: $scope.create_invoices
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response) {
+          site.hideModal('#createInvoiceModal');
+          $scope.printAccountInvoive();
+
+          $scope.updateRequestService();
+        } else $scope.error = response.data.error;
+      },
+      function (err) {
+        console.log(err);
+      }
+    )
+  };
+
+  $scope.printAccountInvoive = function () {
+    $scope.error = '';
+    if ($scope.busy) return;
+    $scope.busy = true;
+
+    let ip = '127.0.0.1';
+    let port = '11111';
+    if ($scope.defaultSettings.printer_program) {
+      ip = $scope.defaultSettings.printer_program.ip || '127.0.0.1';
+      port = $scope.defaultSettings.printer_program.port || '11111';
+    };
+
+    $scope.create_invoices.total_remain = $scope.create_invoices.paid_require - $scope.create_invoices.paid_up;
+
+    let obj_print = { data: [] };
+
+    if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.printer_path)
+      obj_print.printer = $scope.defaultSettings.printer_program.printer_path.ip.trim();
+
+    if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.invoice_header)
+      obj_print.data.push({
+        type: 'header',
+        value: $scope.defaultSettings.printer_program.invoice_header
+      });
+
+    obj_print.data.push(
+      {
+        type: 'title',
+        value: $scope.create_invoices.payment_paid_up ? 'Bill payment account' : 'Bill account' + ($scope.create_invoices.code || '')
+      },
+      {
+        type: 'space'
+      },
+      {
+        type: 'text2',
+        value2: site.toDateXF($scope.create_invoices.date),
+        value: 'Date'
+      });
+
+    if ($scope.create_invoices.customer)
+      obj_print.data.push({
+        type: 'text2',
+        value2: $scope.create_invoices.customer.name_ar,
+        value: 'Cutomer'
+      });
+
+    if ($scope.create_invoices.service_name)
+      obj_print.data.push({
+        type: 'text2',
+        value2: $scope.create_invoices.service_name,
+        value: 'Service'
+      });
+
+    if ($scope.create_invoices.table)
+      obj_print.data.push({
+        type: 'text2',
+        value: $scope.create_invoices.table.name,
+        value2: $scope.create_invoices.table.tables_group.name
+      });
+
+    obj_print.data.push({
+      type: 'line'
+    });
+
+    if ($scope.create_invoices.total_discount)
+      obj_print.data.push({
+        type: 'text2',
+        value2: $scope.create_invoices.total_discount,
+        value: 'Total Discount'
+      });
+
+
+    obj_print.data.push({ type: 'space' });
+
+    if ($scope.create_invoices.payment_paid_up) {
+      $scope.create_invoices.total_remain = $scope.create_invoices.total_remain - $scope.create_invoices.payment_paid_up;
+      $scope.create_invoices.total_paid_up = $scope.create_invoices.total_paid_up + $scope.create_invoices.payment_paid_up;
+    }
+
+    if ($scope.create_invoices.paid_require)
+      obj_print.data.push(
+        {
+          type: 'text2',
+          value2: $scope.create_invoices.paid_require,
+          value: "Total Value"
+        });
+
+    if ($scope.create_invoices.payment_paid_up || $scope.create_invoices.paid_up)
+      obj_print.data.push(
+        {
+          type: 'text2',
+          value2: $scope.create_invoices.payment_paid_up || $scope.create_invoices.paid_up,
+          value: "Paid Up"
+        });
+
+    if ($scope.create_invoices.payment_paid_up || $scope.create_invoices.paid_up)
+      obj_print.data.push(
+        {
+          type: 'text2',
+          value2: $scope.create_invoices.total_paid_up || $scope.create_invoices.paid_up,
+          value: "Total Payments"
+        });
+
+    obj_print.data.push({ type: 'space' });
+
+    if ($scope.create_invoices.total_remain)
+      obj_print.data.push({
+        type: 'text2b',
+        value2: $scope.create_invoices.total_remain,
+        value: "Required to pay"
+      });
+
+    if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.invoice_footer)
+      obj_print.data.push({
+        type: 'footer',
+        value: $scope.defaultSettings.printer_program.invoice_footer
+      });
+
+    $http({
+      method: "POST",
+      url: `http://${ip}:${port}/print`,
+      data: obj_print
+    }).then(
+      function (response) {
+        if (response)
+          $scope.busy = false;
+      },
+      function (err) {
+        console.log(err);
+      }
+    );
+  };
+
+
   $scope.getSafeBySetting = function () {
     $scope.error = '';
     if ($scope.store_out.type.id == 1) {
@@ -1025,7 +1255,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/stores_items/sizes_all",
       data: {
-        select: { maximum_discount: 1, barcode: 1, size: 1, id: 1 }
+        select: { discount: 1, barcode: 1, size: 1, id: 1 }
       }
     }).then(
       function (response) {

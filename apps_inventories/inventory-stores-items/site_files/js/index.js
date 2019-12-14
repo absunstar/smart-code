@@ -73,7 +73,7 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
 
     $scope.item = {
       image_url: '/images/sizes_img.png',
-      maximum_discount: { value: 0, discount: 0, type: 'number' }
+      discount: { value: 0, max: 0, type: 'number' }
     };
 
     if ($scope.defaultSettings.general_Settings) {
@@ -156,7 +156,7 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
     };
 
     $scope.item = {
-      maximum_discount: { max: 0, value: 0, type: 'number' },
+      discount: { value: 0, max: 0, type: 'number' },
       image_url: '/images/sizes_img.png',
     };
 

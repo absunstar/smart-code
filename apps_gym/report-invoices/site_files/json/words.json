@@ -20,11 +20,6 @@
         "ar": "قائمة تقرير فاتورة"
     },
     {
-        "name": "report_invoices_code",
-        "en": "Report Invoices Code",
-        "ar": "كود الفاتورة"
-    },
-    {
         "name": "total_items_price",
         "en": "Total Items Price",
         "ar": "مجموع سعر الأصناف"

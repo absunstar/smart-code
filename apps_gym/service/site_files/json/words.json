@@ -114,11 +114,6 @@
         "ar": "المدفوع"
     },
     {
-        "name": "paid_require",
-        "en": "Paid Require",
-        "ar": "المطلوب دفعه"
-    },
-    {
         "name": "services_price",
         "en": "Service Price",
         "ar": "سعر الخدمة"

@@ -37,8 +37,8 @@ module.exports = function init(site) {
     let where = req.data.where || {};
 
     where['company.id'] = site.get_company(req).id
-    where['branch.code'] = site.get_branch(req).code
-
+/*     where['branch.code'] = site.get_branch(req).code
+ */
     $default_setting.find({
       where: where
     }, (err, doc) => {
@@ -50,10 +50,10 @@ module.exports = function init(site) {
         $default_setting.add({
           company: {
             id: site.get_company(req).id
-          },
+          }/* ,
           branch: {
             code: site.get_branch(req).code
-          }
+          } */
         }, (err, doc) => {
           if (!err && doc) {
             response.done = true
@@ -69,32 +69,30 @@ module.exports = function init(site) {
     })
   })
 
-  site.getDefaultSetting = function (option, callback) {
-    callback = callback || {}
-    $default_setting.get({
+  site.getDefaultSetting = function (req, callback) {
+    callback = callback || {};
+
+    let where = req.data.where || {};
+    where['company.id'] = site.get_company(req).id
+/*     where['branch.code'] = site.get_branch(req).code
+ */
+    $default_setting.findOne({
+      where: where
     }, (err, doc) => {
-      if (!err && doc) {
-        callback(err, doc)
-      } else {
-        $default_setting.add({
-          company: site.get_company(option.req),
-          branch: site.get_branch(option.req)
-        }, (err2, doc2) => {
-          callback(err2, doc2)
-        })
-      }
+      if (!err && doc)
+        callback(doc)
+      else callback(false)
     })
-    return true;
   }
 
- /*  site.getDefaultSetting = function (callback) {
-    $default_setting.get({
-    }, (err, doc) => {
-      if (!err && doc) {
-        return callback(err, doc)
-      }
-    })
-  } */
+  /*  site.getDefaultSetting = function (callback) {
+     $default_setting.get({
+     }, (err, doc) => {
+       if (!err && doc) {
+         return callback(err, doc)
+       }
+     })
+   } */
 
   site.post("/api/default_setting/save", (req, res) => {
     let response = {

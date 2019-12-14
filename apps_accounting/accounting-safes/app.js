@@ -46,7 +46,64 @@ module.exports = function init(site) {
               obj.sourceName = obj.code
               obj.transition_type = 'in';
               site.call('[safes][safes_payments][+]', obj)
+            })
+          }
+        })
+      }
+    })
+  })
 
+  site.on('[account_invoices][safes][+]', function (obj) {
+    $safes.find({
+      id: obj.safe.id
+    }, (err, doc) => {
+      if (!err && doc) {
+        doc.pre_balance = doc.balance || 0
+        doc.balance = parseFloat(doc.balance) + parseFloat(obj.value)
+        $safes.update(doc, (err, result) => {
+          if (!err && result) {
+            $safes.find({
+              id: result.doc.id
+            }, (err, doc) => {
+              obj.pre_balance = doc.pre_balance
+              obj.image_url = obj.image_url
+              obj.company = doc.company
+              obj.branch = doc.branch
+              obj.notes = doc.notes
+              obj.balance = doc.balance
+              obj.operation = 'فاتورة حساب مبيعات'
+              obj.sourceName = obj.code
+              obj.transition_type = 'in';
+              site.call('[safes][safes_payments][+]', obj)
+            })
+          }
+        })
+      }
+    })
+  })
+
+  site.on('[account_invoices][safes][-]', function (obj) {
+    $safes.find({
+      id: obj.safe.id
+    }, (err, doc) => {
+      if (!err && doc) {
+        doc.pre_balance = doc.balance || 0
+        doc.balance = parseFloat(doc.balance) - parseFloat(obj.value)
+        $safes.update(doc, (err, result) => {
+          if (!err && result) {
+            $safes.find({
+              id: result.doc.id
+            }, (err, doc) => {
+              obj.pre_balance = doc.pre_balance
+              obj.image_url = obj.image_url
+              obj.company = doc.company
+              obj.branch = doc.branch
+              obj.notes = doc.notes
+              obj.balance = doc.balance
+              obj.operation = 'فاتورة حساب مشتريات'
+              obj.sourceName = obj.code
+              obj.transition_type = 'out';
+              site.call('[safes][safes_payments][-]', obj)
             })
           }
         })
@@ -923,8 +980,8 @@ module.exports = function init(site) {
     }
 
     where['company.id'] = site.get_company(req).id
-    where['branch.code'] = site.get_branch(req).code
-
+/*     where['branch.code'] = site.get_branch(req).code
+ */
     $safes.findMany({
       select: req.body.select || {},
       sort: {

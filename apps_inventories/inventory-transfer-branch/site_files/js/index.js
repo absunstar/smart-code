@@ -584,13 +584,16 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.loadStoresTo = function () {
+  $scope.loadStoresTo = function (branchTo) {
     $scope.error = '';
     $scope.busy = true;
     $http({
       method: "POST",
       url: "/api/stores/all",
-      data: { select: { id: 1, name: 1, type: 1 } }
+      data: { select: { id: 1, name: 1, type: 1 },
+      branchTo : branchTo
+     }
+      
     }).then(
       function (response) {
         $scope.busy = false;
@@ -773,6 +776,5 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
   $scope.loadCategories();
   $scope.loadBranches();
   $scope.loadStoresFrom();
-  $scope.loadStoresTo();
   $scope.loadAll({ date: new Date() });
 });

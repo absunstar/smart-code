@@ -7,6 +7,13 @@ module.exports = function init(site) {
     })
   })
 
+  site.on('[store_out][account_invoice][invoice]', function (obj) {
+    $stores_out.findOne({ id: obj }, (err, doc) => {
+      doc.invoice = true
+      $stores_out.update(doc);
+    });
+  });
+
   $stores_out.busy1 = false;
   site.on('[stores_items][store_out]', itm => {
     if ($stores_out.busy1 == true) {
@@ -196,24 +203,25 @@ module.exports = function init(site) {
           _itm.store = doc.store
           _itm.company = doc.company
           _itm.branch = doc.branch
-          site.call('[store_out][stores_items][-]', Object.assign({}, _itm))          
+          site.call('[store_out][stores_items][-]', Object.assign({}, _itm))
         });
 
         response.done = true
+        response.doc = doc
 
-        let obj = {
-          value: doc.net_value,
-          safe: doc.safe,
-          date: doc.date,
-          number: doc.number,
-          company: doc.company,
-          branch: doc.branch,
-          notes: doc.notes
-        }
-
-        if (obj.value && obj.safe && obj.date && obj.number) 
-          site.call('[stores_out][safes][+]', obj)
-
+        /*  let obj = {
+           value: doc.net_value,
+           safe: doc.safe,
+           date: doc.date,
+           number: doc.number,
+           company: doc.company,
+           branch: doc.branch,
+           notes: doc.notes
+         }
+ 
+         if (obj.value && obj.safe && obj.date && obj.number) 
+           site.call('[stores_out][safes][+]', obj)
+  */
         stores_out_doc.items.forEach(itm => {
           itm.company = stores_out_doc.company
           itm.branch = stores_out_doc.branch
@@ -349,9 +357,62 @@ module.exports = function init(site) {
     response.done = false
     let where = req.body.where || {}
 
+    let search = req.body.search || ''
+    
+    
+    if (search) {
+      where.$or = []
+      where.$or.push({
+        'customer.name': new RegExp(search, "i")
+      })
+
+      where.$or.push({
+        'customer.mobile': new RegExp(search, "i")
+      })
+
+      where.$or.push({
+        'customer.phone': new RegExp(search, "i")
+      })
+
+      where.$or.push({
+        'customer.national_id': new RegExp(search, "i")
+      })
+
+      where.$or.push({
+        'customer.email': new RegExp(search, "i")
+      })
+
+      where.$or.push({
+        'store.number': new RegExp(search, "i")
+      })
+
+      where.$or.push({
+        'store.name': new RegExp(search, "i")
+      })
+
+      where.$or.push({
+        'store.type.ar': new RegExp(search, "i")
+      })
+
+      where.$or.push({
+        'store.type.en': new RegExp(search, "i")
+      })
+
+      where.$or.push({
+        'store.payment_method.ar': new RegExp(search, "i")
+      })
+
+      where.$or.push({
+        'store.payment_method.en': new RegExp(search, "i")
+      })
+    }
+
     where['company.id'] = site.get_company(req).id
     where['branch.code'] = site.get_branch(req).code
-        
+
+    if(req.body.invoice)
+    where['invoice'] = false
+
     if (where['shift_code']) {
       where['shift.code'] = new RegExp(where['shift_code'], 'i')
       delete where['shift_code']
@@ -410,4 +471,20 @@ module.exports = function init(site) {
     })
   })
 
+  /*  site.getStoresOut = function (req, callback) {
+     callback = callback || {};
+ 
+     let where = req.data.where || {};
+     where['company.id'] = site.get_company(req).id
+     where['branch.code'] = site.get_branch(req).code
+     where['invoice'] = false
+     $stores_out.findOne({
+       where: where
+     }, (err, doc) => {
+       if (!err && doc)
+         callback(doc)
+       else callback(false)
+     })
+   }
+  */
 }

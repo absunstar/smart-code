@@ -1,7 +1,0 @@
-[{
-    "module_name" : "inventory" ,
-    "name": "stores_transfer_admin",
-    "en": "Stores Transfer",
-    "ar": "إدارة تحويلات المخازن",
-    "permissions": ["stores_transfer_manage"]
-}]

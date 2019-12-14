@@ -177,10 +177,7 @@ module.exports = function init(site) {
       res.json(response)
       return
     }
-    let where = req.data.where || {}
-
-    console.log(where);
-    
+    let where = req.data.where || {}    
 
     if (where['name']) {
       where['name'] = new RegExp(where['name'], 'i')
@@ -199,8 +196,8 @@ module.exports = function init(site) {
     }
 
     where['company.id'] = site.get_company(req).id
-    where['branch.code'] = site.get_branch(req).code
-    
+/*     where['branch.code'] = site.get_branch(req).code
+ */    
 
     $printers_path.findMany({
       select: req.body.select || {},

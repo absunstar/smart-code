@@ -19,6 +19,9 @@
             <div class="row" ng-controller="stores_in">
                 <div x-permissions="stores_in_add || stores_in_manage" x-import="inventory-stores-in/add_modal.html">
                 </div>
+                <div x-permissions="stores_in_add || stores_in_manage"
+                    x-import="inventory-stores-in/create_invoice.html">
+                </div>
                 <div x-permissions="stores_in_delete || stores_in_manage"
                     x-import="inventory-stores-in/delete_modal.html"></div>
                 <div x-permissions="stores_in_view || stores_in_manage" x-import="inventory-stores-in/view_modal.html">
@@ -100,7 +103,9 @@
 
                             <i-button x-permissions="stores_in_view || stores_in_manage" type="details"
                                 label="##word.details##" ng-click="details(c)"></i-button>
-
+                            <i-button ng-show="!c.invoice && !defaultSettings.accounting.create_invoice_auto"
+                                type="save" label="##word.create_an_invoice##" ng-click="displayAccountInvoice(c)">
+                            </i-button>
                             <i-button x-permissions="stores_in_update || stores_in_manage" type="update"
                                 label="##word.edit##" ng-click="edit(c)"></i-button>
 

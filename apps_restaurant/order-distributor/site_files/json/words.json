@@ -30,7 +30,7 @@
         "ar": "قائمة تقرير فاتورة"
     },
     {
-        "name": "report_invoices_code",
+        "name": "invoices_code",
         "en": "Report Invoices Code",
         "ar": "كود الفاتورة"
     },

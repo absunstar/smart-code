@@ -20,7 +20,7 @@
                     <legend> ##word.general_Settings## </legend>
 
                     <div class="row">
-                        <i-control ng-keydown="getCustomerList($event)" class="col3" ng-model="search_customer"
+                        <i-control ng-keydown="getCustomerList($event)" class="col2" ng-model="search_customer"
                             label="##word.search##" type="text"></i-control>
 
                         <i-list ng-search="_search.$customer" class="col4" display="name_ar" v="r"
@@ -63,26 +63,30 @@
                     onclick="document.querySelector('.tab-link.active + .tab-link').click();"></i-button>
             </div>
 
-
             <div id="printer_program" class="tab-content">
                 <fieldset>
                     <legend> ##word.printer_program## </legend>
 
                     <div class="row">
-                        <i-list ng-search="_search.$basic_printer" class="col3" display="name"
+                        <i-list ng-search="_search.$printers_path" class="col3" display="name"
                             ng-model="default_setting.printer_program.printer_path" label="##word.basic_printer##"
                             items="printersPathList">
                         </i-list>
-
+                        </i-list>
                         <i-list class="col3" ng-model="default_setting.printer_program.place_program"
                             items="placeProgramList" display="##session.lang##" ng-search="_search.$place_program"
                             label="##word.place_program##"></i-list>
-
                         <i-control help-id="printer_program" class="col3" label="##word.program_ip##"
                             ng-model="default_setting.printer_program.ip"></i-control>
-
                         <i-control help-id="printer_program" class="col3" label="##word.program_port##"
                             ng-model="default_setting.printer_program.port"></i-control>
+                    </div>
+
+                    <div class="row">
+                        <i-control help-id="invoice_header" class="col3" label="##word.invoice_header##"
+                            ng-model="default_setting.printer_program.invoice_header"></i-control>
+                        <i-control help-id="invoice_footer" class="col3" label="##word.invoice_footer##"
+                            ng-model="default_setting.printer_program.invoice_footer"></i-control>
                     </div>
 
                 </fieldset>
@@ -97,7 +101,15 @@
                     <div class="row">
                         <i-list class="col3" ng-model="default_setting.accounting.safe" items="safes"
                             ng-search="_search.$serach_safes" label="##word.stores_in_safe##"></i-list>
+                        <i-list help-id="" ng-search="_search.$source_type_search" class="col3"
+                            label="##word.source_type##" ng-model="default_setting.accounting.source_type"
+                            items="sourceTypeList" display="##session.lang##"></i-list>
                     </div>
+                    <div class="row">
+                        <i-checkbox label="##word.create_invoice_auto##"
+                            ng-model="default_setting.accounting.create_invoice_auto"></i-checkbox>
+                    </div>
+
                 </fieldset>
                 <i-button type="default left" fa="2x fa-angle-double-left"
                     onclick="document.querySelector('.tab-link.active + .tab-link').click();"></i-button>

@@ -20,11 +20,6 @@
         "ar": "قائمة إنشاء فاتورة"
     },
     {
-        "name": "create_invoices_code",
-        "en": "Creat Invoices Code",
-        "ar": "كود الفاتورة"
-    },
-    {
         "name": "date_from",
         "en": "From Date",
         "ar": "من تاريخ"

@@ -1,0 +1,12 @@
+[
+    {
+        "id": 1,
+        "en": "Stores In / Purchase Invoice",
+        "ar": "إذن وارد / فاتورة شراء"
+    },
+    {
+        "id": 2,
+        "en": "Stores Out / Sales Invoice",
+        "ar": "إذن صرف / فاتورة مبيعات"
+    }
+]
