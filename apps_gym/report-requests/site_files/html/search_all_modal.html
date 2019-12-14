@@ -1,4 +1,4 @@
-<div id="reportInvoicesSearchModal" class="modal">
+<div id="reportServicesSearchModal" class="modal">
     <div class="modal-content">
         <div class="modal-header">
             <span class="close">&times;</span>
@@ -19,19 +19,6 @@
                     <div class="row">
                         <i-control class="col3 shift" type="text" label="##word.shift##" ng-model="search.shift_code">
                         </i-control>
-                        <i-list help-id="" ng-search="_search.$payment_method_search" class="col2"
-                            label="##word.payment_method##" ng-model="search.payment_method" items="paymentMethodList"
-                            display="##session.lang##">
-                        </i-list>
-
-                        <i-list help-id="" ng-search="_search.$source_type_search" class="col2"
-                            label="##word.source_type##" ng-model="search.source_type" items="sourceTypeList"
-                            display="##session.lang##"></i-list>
-
-                      <!--   <i-list help-id="" ng-search="_search.$order_invoices_type_search" class="col2"
-                            label="##word.invoice_type##" ng-model="search.order_invoices_type"
-                            items="transactionTypeList" display="##session.lang##">
-                        </i-list> -->
                     </div>
 
                 </form>
@@ -41,7 +28,7 @@
             <div class="modal-footer center">
                 <i-button type="search" ng-click="searchAll()" label="##word.search##"></i-button>
                 <i-button type="clear" ng-click="search = {}" label="##word.empty_search##"></i-button>
-                <i-button type="close" onclick="hideModal('reportInvoicesSearchModal')" label="##word.close##">
+                <i-button type="close" onclick="hideModal('reportServicesSearchModal')" label="##word.close##">
                 </i-button>
             </div>
         </div>

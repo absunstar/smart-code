@@ -3,5 +3,5 @@
     "name": "report_invoices_admin",
     "en": "Report Invoices  Admin",
     "ar": "إدارة تقرير الفواتير",
-    "permissions": ["reat_invoices_manage"]
+    "permissions": ["report_invoices_manage"]
 }]

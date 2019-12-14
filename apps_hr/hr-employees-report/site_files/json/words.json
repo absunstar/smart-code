@@ -46,7 +46,6 @@
     { "name": "employees_report_discount","en": "Discounts", "ar": " الخصومات"},
     { "name": "employees_report_applied_tickets","en": "Applied Tickets", "ar": " الطلبات التي تم اعتمادها"},
 
-    { "name": "employees_report_ticket_code","en": "Ticket Code", "ar": "كود الطلب"},
     { "name": "employees_report_ticket_date","en": " Ticket Date", "ar": " تاريخ الطلب"},
     { "name": "employees_report_close1_date","en": "Close Date", "ar": " تاريخ التقفيل المبدئي"},
     { "name": "employees_report_ticket_state","en": "Ticket State", "ar": " حالة الطلب"},

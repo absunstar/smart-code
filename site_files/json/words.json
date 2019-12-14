@@ -15,6 +15,11 @@
         "ar": "المورد"
     },
     {
+        "name": "request_code",
+        "en": "Request Code",
+        "ar": "كود الطلب"
+    },
+    {
         "name": "invoices_code",
         "en": "Invoices Code",
         "ar": "كود الفاتورة"

@@ -701,6 +701,11 @@
         "ar": "قائمة تقارير الفواتير "
     },
     {
+        "name": "report_requests_trainer_menus",
+        "en": "Report Request Trainer Menu",
+        "ar": "قائمة تقارير طلبات المدربين "
+    },
+    {
         "name": "report_sales_menus",
         "en": "Report Sales Menu",
         "ar": "قائمة تقارير مبيعات الأصناف "
