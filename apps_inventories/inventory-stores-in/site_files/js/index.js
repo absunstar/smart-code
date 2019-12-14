@@ -54,7 +54,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
 
     console.log(create_invoices);
     console.log("Aaaaaaaaaaaaaaaa");
-    
+
 
     if (create_invoices.paid_up > 0 && !create_invoices.safe) {
       $scope.error = "##word.should_select_safe##";
@@ -112,7 +112,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
     obj_print.data.push(
       {
         type: 'title',
-        value: $scope.create_invoices.payment_paid_up ? 'Bill payment account' : 'Bill account' + ($scope.create_invoices.code || '')
+        value: $scope.account_invoices.payment_paid_up ? 'Payment Purchase Invoice' + $scope.account_invoices.code : 'Purchase Invoice'
       },
       {
         type: 'space'
@@ -123,12 +123,6 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
         value: 'Date'
       });
 
-    if ($scope.create_invoices.customer)
-      obj_print.data.push({
-        type: 'text2',
-        value2: $scope.create_invoices.customer.name_ar,
-        value: 'Cutomer'
-      });
 
     if ($scope.create_invoices.vendor)
       obj_print.data.push({

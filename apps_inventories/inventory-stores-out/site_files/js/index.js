@@ -838,7 +838,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
           },
           active: true
         };
-        
+
         if ($scope.defaultSettings.general_Settings) {
           if ($scope.defaultSettings.general_Settings.payment_method)
             $scope.create_invoices.payment_method = $scope.defaultSettings.general_Settings.payment_method;
@@ -911,10 +911,11 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         value: $scope.defaultSettings.printer_program.invoice_header
       });
 
+  
     obj_print.data.push(
       {
         type: 'title',
-        value: $scope.create_invoices.payment_paid_up ? 'Bill payment account' : 'Bill account' + ($scope.create_invoices.code || '')
+        value: $scope.account_invoices.payment_paid_up ? 'Payment Sales Invoice' + $scope.account_invoices.code : 'Sales Invoice'
       },
       {
         type: 'space'
@@ -932,20 +933,6 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         value: 'Cutomer'
       });
 
-    if ($scope.create_invoices.service_name)
-      obj_print.data.push({
-        type: 'text2',
-        value2: $scope.create_invoices.service_name,
-        value: 'Service'
-      });
-
-    if ($scope.create_invoices.table)
-      obj_print.data.push({
-        type: 'text2',
-        value: $scope.create_invoices.table.name,
-        value2: $scope.create_invoices.table.tables_group.name
-      });
-
     obj_print.data.push({
       type: 'line'
     });
@@ -957,6 +944,12 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         value: 'Total Discount'
       });
 
+    if ($scope.create_invoices.total_Tax)
+      obj_print.data.push({
+        type: 'text2',
+        value2: $scope.create_invoices.total_Tax,
+        value: 'Total Tax'
+      });
 
     obj_print.data.push({ type: 'space' });
 

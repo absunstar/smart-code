@@ -529,7 +529,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
     obj_print.data.push(
       {
         type: 'title',
-        value: $scope.account_invoices.payment_paid_up ? 'Payment Invoice' + $scope.account_invoices.code : bill
+        value: $scope.account_invoices.payment_paid_up ? 'Payment' + bill + $scope.account_invoices.code : bill
       },
       {
         type: 'space'
