@@ -492,14 +492,14 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         },
         {
           type: 'text3b',
-          value: 'Item',
-          value2: 'Count',
+          value2: 'Item',
+          value: 'Count',
           value3: 'Price'
         },
         {
           type: 'text3b',
-          value: 'الصنف',
-          value2: 'العدد',
+          value2: 'الصنف',
+          value: 'العدد',
           value3: 'السعر'
         }, {
         type: 'space'
@@ -508,9 +508,9 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
 
       $scope.create_invoices.current_book_list.forEach(_current_book_list => {
         obj_print.data.push({
-          type: 'text3',
-          value: _current_book_list.size,
-          value2: _current_book_list.count,
+          type: 'item',
+          value: _current_book_list.count,
+          value2: _current_book_list.size,
           value3: _current_book_list.total_price
         })
       });
@@ -558,7 +558,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     if ($scope.create_invoices.net_value)
       obj_print.data.push(
         {
-          type: 'text2',
+          type: 'total',
           value2: $scope.create_invoices.net_value,
           value: "Total Value"
         });
@@ -583,7 +583,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
 
     if ($scope.create_invoices.total_remain)
       obj_print.data.push({
-        type: 'text2b',
+        type: 'total',
         value2: $scope.create_invoices.total_remain,
         value: "Required to pay"
       });
