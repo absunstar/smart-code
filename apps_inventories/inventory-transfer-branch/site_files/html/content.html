@@ -49,12 +49,8 @@
                             <th>##word.transfer_branch_item_name##</th>
                             <th>##word.barcode##</th>
                             <th>##word.transfer_branch_item_size##</th>
+                            <th>##word.transfer_branch_item_store_balance##</th>
                             <th>##word.quantity##</th>
-                            <th>##word.transfer_branch_item_cost##</th>
-                            <!--    <th>##word.discount##</th>
-                            <th>##word.transfer_branch_item_total##</th> -->
-                            <th>##word.stores_in_item_total##</th>
-
                             <th>##word.actions##</th>
                         </tr>
 
@@ -63,25 +59,17 @@
                             <td> <br> {{itm.name}}</td>
                             <td> <br> {{itm.barcode}}</td>
                             <td> <br> {{itm.size}}</td>
+                            <td class="blue"> <br> {{itm.store_count}}</td>
                             <td>
-                                <i-control ng-change="calcSize(itm)" type="number" ng-model="itm.count"></i-control>
+                                <i-control type="number" ng-model="itm.count"></i-control>
                             </td>
-                            <td>
-                                <i-control ng-change="calcSize(itm)" type="number" ng-model="itm.cost"></i-control>
-                            </td>
-                            <td class="green"> <br> {{itm.total}}</td>
+                          
                             <td>
                                 <i-button type="delete" ng-click="deleteRow(itm)"></i-button>
                             </td>
                         </tr>
                     </table>
                 </fieldset>
-            </div>
-
-            <div class="row">
-
-                <i-control class="col2" ng-model="transfer_branch.total_value" type="number" disabled
-                    label="##word.transfer_branch_total_value##"></i-control>
             </div>
 
             <div class="row">

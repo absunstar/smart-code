@@ -13,7 +13,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
   $scope.displayAccountInvoice = function (store_in) {
     $scope.get_open_shift((shift) => {
       if (shift) {
-        $scope.create_invoices = {
+        $scope.account_invoices = {
           image_url: '/images/account_invoices.png',
           date: new Date(),
           invoice_id: store_in.id,
@@ -36,46 +36,42 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
 
         if ($scope.defaultSettings.general_Settings) {
           if ($scope.defaultSettings.general_Settings.payment_method)
-            $scope.create_invoices.payment_method = $scope.defaultSettings.general_Settings.payment_method;
+            $scope.account_invoices.payment_method = $scope.defaultSettings.general_Settings.payment_method;
         };
 
         if ($scope.defaultSettings.accounting) {
           if ($scope.defaultSettings.accounting.safe)
-            $scope.create_invoices.safe = $scope.defaultSettings.accounting.safe;
+            $scope.account_invoices.safe = $scope.defaultSettings.accounting.safe;
         };
         site.showModal('#createInvoiceModal');
       } else $scope.error = '##word.open_shift_not_found##';
     });
   };
 
-  $scope.addAccountInvoice = function (create_invoices) {
+  $scope.addAccountInvoice = function (account_invoices) {
     $scope.error = '';
     $scope.busy = true;
 
-    console.log(create_invoices);
-    console.log("Aaaaaaaaaaaaaaaa");
-
-
-    if (create_invoices.paid_up > 0 && !create_invoices.safe) {
+    if (account_invoices.paid_up > 0 && !account_invoices.safe) {
       $scope.error = "##word.should_select_safe##";
       return;
-    } else if (create_invoices.paid_up > create_invoices.paid_require) {
+    } else if (account_invoices.paid_up > account_invoices.paid_require) {
       $scope.error = "##word.err_paid_require##";
       return;
     }
 
-    if (create_invoices.paid_up <= 0) create_invoices.safe = null;
+    if (account_invoices.paid_up <= 0) account_invoices.safe = null;
     $http({
       method: "POST",
       url: "/api/account_invoices/add",
-      data: create_invoices
+      data: account_invoices
     }).then(
       function (response) {
         $scope.busy = false;
         if (response) {
           site.hideModal('#createInvoiceModal');
           $scope.printAccountInvoive();
-
+          $scope.loadAll();
         } else $scope.error = response.data.error;
       },
       function (err) {
@@ -96,7 +92,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
       port = $scope.defaultSettings.printer_program.port || '11111';
     };
 
-    $scope.create_invoices.total_remain = $scope.create_invoices.paid_require - $scope.create_invoices.paid_up;
+    $scope.account_invoices.total_remain = $scope.account_invoices.paid_require - $scope.account_invoices.paid_up;
 
     let obj_print = { data: [] };
 
@@ -119,15 +115,15 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
       },
       {
         type: 'text2',
-        value2: site.toDateXF($scope.create_invoices.date),
+        value2: site.toDateXF($scope.account_invoices.date),
         value: 'Date'
       });
 
 
-    if ($scope.create_invoices.vendor)
+    if ($scope.account_invoices.vendor)
       obj_print.data.push({
         type: 'text2',
-        value2: $scope.create_invoices.vendor.name_ar,
+        value2: $scope.account_invoices.vendor.name_ar,
         value: 'Vendor'
       });
 
@@ -135,57 +131,57 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
       type: 'line'
     });
 
-    if ($scope.create_invoices.total_discount)
+    if ($scope.account_invoices.total_discount)
       obj_print.data.push({
         type: 'text2',
-        value2: $scope.create_invoices.total_discount,
+        value2: $scope.account_invoices.total_discount,
         value: 'Total Discount'
       });
 
-    if ($scope.create_invoices.total_tax)
+    if ($scope.account_invoices.total_tax)
       obj_print.data.push({
         type: 'text2',
-        value2: $scope.create_invoices.total_tax,
+        value2: $scope.account_invoices.total_tax,
         value: 'Total Tax'
       });
 
     obj_print.data.push({ type: 'space' });
 
-    if ($scope.create_invoices.payment_paid_up) {
-      $scope.create_invoices.total_remain = $scope.create_invoices.total_remain - $scope.create_invoices.payment_paid_up;
-      $scope.create_invoices.total_paid_up = $scope.create_invoices.total_paid_up + $scope.create_invoices.payment_paid_up;
+    if ($scope.account_invoices.payment_paid_up) {
+      $scope.account_invoices.total_remain = $scope.account_invoices.total_remain - $scope.account_invoices.payment_paid_up;
+      $scope.account_invoices.total_paid_up = $scope.account_invoices.total_paid_up + $scope.account_invoices.payment_paid_up;
     }
 
-    if ($scope.create_invoices.paid_require)
+    if ($scope.account_invoices.paid_require)
       obj_print.data.push(
         {
           type: 'text2',
-          value2: $scope.create_invoices.paid_require,
+          value2: $scope.account_invoices.paid_require,
           value: "Total Value"
         });
 
-    if ($scope.create_invoices.payment_paid_up || $scope.create_invoices.paid_up)
+    if ($scope.account_invoices.payment_paid_up || $scope.account_invoices.paid_up)
       obj_print.data.push(
         {
           type: 'text2',
-          value2: $scope.create_invoices.payment_paid_up || $scope.create_invoices.paid_up,
+          value2: $scope.account_invoices.payment_paid_up || $scope.account_invoices.paid_up,
           value: "Paid Up"
         });
 
-    if ($scope.create_invoices.payment_paid_up || $scope.create_invoices.paid_up)
+    if ($scope.account_invoices.payment_paid_up || $scope.account_invoices.paid_up)
       obj_print.data.push(
         {
           type: 'text2',
-          value2: $scope.create_invoices.total_paid_up || $scope.create_invoices.paid_up,
+          value2: $scope.account_invoices.total_paid_up || $scope.account_invoices.paid_up,
           value: "Total Payments"
         });
 
     obj_print.data.push({ type: 'space' });
 
-    if ($scope.create_invoices.total_remain)
+    if ($scope.account_invoices.total_remain)
       obj_print.data.push({
         type: 'text2b',
-        value2: $scope.create_invoices.total_remain,
+        value2: $scope.account_invoices.total_remain,
         value: "Required to pay"
       });
 
@@ -369,7 +365,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
       $scope.error = v.messages[0].ar;
       return;
     }
-    if ($scope.store_in.type && $scope.store_in.type.id == 1) {
+    if ($scope.store_in.type && $scope.store_in.type.id == 1 && $scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto) {
       if (!$scope.store_in.safe) {
         $scope.error = "##word.nosafe_warning##";
         return;
@@ -404,7 +400,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
             site.hideModal('#addStoreInModal');
             if ($scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto) {
               let store_in_doc = response.data.doc
-              $scope.create_invoices = {
+              $scope.account_invoices = {
                 image_url: '/images/account_invoices.png',
                 date: store_in_doc.date,
                 invoice_id: store_in_doc.id,
@@ -425,9 +421,8 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
                 },
                 active: true
               };
-
+              $scope.addAccountInvoice($scope.account_invoices)
             }
-            $scope.addAccountInvoice($scope.create_invoices)
 
             $scope.loadAll();
 
@@ -593,13 +588,21 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
                     _size.store = $scope.store_in.store
                     _size.count = 1
                     _size.total = _size.count * _size.cost
-                    if (_size.stores_list && _size.stores_list.length > 0) {
-                      _size.stores_list.forEach(_store => {
-                        if (_store.store.id == $scope.store_in.store.id)
-                          _size.store_count = _store.current_count
-                        else _size.store_count = 0
+                    if (_size.branches_list && _size.branches_list.length > 0) {
+
+                      _size.branches_list.forEach(_branch => {          
+                        if (_branch.code == '##session.branch.code##') {
+                          if (_branch.stores_list && _branch.stores_list.length > 0) {
+                            
+                            _branch.stores_list.forEach(_store => {
+                              if (_store.store && _store.store.id == $scope.store_in.store.id){                  
+                                _size.store_count = _store.current_count
+                              }
+                            })
+                          } else _size.store_count = 0
+                        } else _size.store_count = 0
                       });
-                    } else _size.store_count = 0;
+                    } else _size.store_count = 0
 
                     foundSize = $scope.item.sizes.some(_itemSize => _itemSize.barcode == _size.barcode);
 
@@ -635,10 +638,18 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
       _item.store = $scope.store_in.store
       _item.count = 1;
       _item.total = _item.count * _item.cost
-      if (_item.stores_list && _item.stores_list.length > 0) {
-        _item.stores_list.forEach(_store => {
-          if (_store.store.id == $scope.store_in.store.id) {
-            _item.store_count = _store.current_count
+      if (_item.branches_list && _item.branches_list.length > 0) {
+
+        _item.branches_list.forEach(_branch => {          
+          if (_branch.code == '##session.branch.code##') {
+            if (_branch.stores_list && _branch.stores_list.length > 0) {
+              
+              _branch.stores_list.forEach(_store => {
+                if (_store.store && _store.store.id == $scope.store_in.store.id){                  
+                  _item.store_count = _store.current_count
+                }
+              })
+            } else _item.store_count = 0
           } else _item.store_count = 0
         });
       } else _item.store_count = 0
@@ -813,7 +824,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done) $scope.safes = response.data.list;
+        if (response.data.done) $scope.safesList = response.data.list;
 
       },
       function (err) {

@@ -11,86 +11,6 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
     sizes: []
   };
 
-  $scope.addTax = function () {
-    $scope.error = '';
-    $scope.transfer_branch.taxes = $scope.transfer_branch.taxes || [];
-    $scope.transfer_branch.taxes.push({
-      name: $scope.tax.name,
-      value: $scope.tax.value
-    });
-    $scope.tax = {};
-    $scope.calc();
-  };
-
-  $scope.deleteTax = function (_tx) {
-    $scope.error = '';
-    for (let i = 0; i < $scope.transfer_branch.taxes.length; i++) {
-      let tx = $scope.transfer_branch.taxes[i];
-      if (tx.name == _tx.name && tx.value == _tx.value)
-        $scope.transfer_branch.taxes.splice(i, 1);
-    }
-    $scope.calc();
-  };
-
-
-  $scope.addDiscount = function () {
-
-    $scope.error = '';
-
-    if (!$scope.discount.value) {
-      $scope.error = '##word.error_discount##';
-      return;
-    } else {
-      $scope.transfer_branch.discountes = $scope.transfer_branch.discountes || [];
-
-      $scope.transfer_branch.discountes.push({
-        name: $scope.discount.name,
-        value: $scope.discount.value,
-        type: $scope.discount.type
-      });
-      $scope.calc();
-    };
-
-  };
-  $scope.deleteDiscount = function (_ds) {
-    $scope.error = '';
-    for (let i = 0; i < $scope.transfer_branch.discountes.length; i++) {
-      let ds = $scope.transfer_branch.discountes[i];
-      if (ds.name == _ds.name && ds.value == _ds.value && ds.type == _ds.type)
-        $scope.transfer_branch.discountes.splice(i, 1);
-    }
-    $scope.calc();
-  };
-
-  $scope.calc = function () {
-    $scope.error = '';
-    $scope.transfer_branch.total_value = 0;
-    $scope.transfer_branch.net_value = 0;
-
-    $scope.transfer_branch.items.forEach(itm => {
-      $scope.transfer_branch.total_value += parseFloat(itm.total);
-    });
-
-    $scope.transfer_branch.total_tax = 0;
-    $scope.transfer_branch.taxes.forEach(tx => {
-      $scope.transfer_branch.total_tax += $scope.transfer_branch.total_value * parseFloat(tx.value) / 100;
-    });
-
-    $scope.transfer_branch.total_discount = 0;
-    if ($scope.transfer_branch.discountes && $scope.transfer_branch.discountes.length > 0)
-      $scope.transfer_branch.discountes.forEach(ds => {
-
-        if (ds.type == 'percent')
-          $scope.transfer_branch.total_discount += $scope.transfer_branch.total_value * parseFloat(ds.value) / 100;
-        else $scope.transfer_branch.total_discount += parseFloat(ds.value);
-      });
-
-    $scope.transfer_branch.net_value = $scope.transfer_branch.total_value + $scope.transfer_branch.total_tax - $scope.transfer_branch.total_discount;
-    $scope.discount = {
-      type: 'number'
-    };
-  };
-
   $scope.deleteRow = function (itm) {
     $scope.error = '';
     $scope.transfer_branch.items.splice($scope.transfer_branch.items.indexOf(itm), 1);
@@ -267,25 +187,16 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
           count: _size.count,
           cost: _size.cost,
           price: _size.price,
+          store_count : _size.store_count,
           total: _size.total,
           current_count: _size.current_count,
           ticket_code: _size.ticket_code,
         });
       }
     });
-    $scope.calc();
     $scope.item.sizes = [];
   };
 
-  $scope.calcSize = function (size) {
-    $scope.error = '';
-    setTimeout(() => {
-      if (size.cost && size.count) {
-        size.total = (site.toNumber(size.cost) * site.toNumber(size.count));
-      }
-      $scope.calc();
-    }, 100);
-  };
 
   $scope.addToSizes = function () {
     $scope.error = '';
@@ -326,13 +237,20 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
                     _size.store_from = $scope.transfer_branch.store_from
                     _size.count = 1
                     _size.total = _size.count * _size.cost
-                    if (_size.stores_list && _size.stores_list.length > 0) {
-                      _size.stores_list.forEach(_store => {
-                        if (_store.store_from.id == $scope.transfer_branch.store_from.id)
-                          _size.store_count = _store.current_count
-                        else _size.store_count = 0
+                    if (_size.branches_list && _size.branches_list.length > 0) {
+
+                      _size.branches_list.forEach(_branch => {
+                        if (_branch.code == '##session.branch.code##') {
+                          if (_branch.stores_list && _branch.stores_list.length > 0) {
+                            _branch.stores_list.forEach(_store => {
+                              if (_store.store && _store.store.id == $scope.transfer_branch.store_from.id) {
+                                _size.store_count = _store.current_count
+                              }
+                            })
+                          } else _size.store_count = 0
+                        } else _size.store_count = 0
                       });
-                    } else _size.store_count = 0;
+                    } else _size.store_count = 0
 
                     foundSize = $scope.item.sizes.some(_itemSize => _itemSize.barcode == _size.barcode);
 
@@ -368,13 +286,20 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
       _item.store_from = $scope.transfer_branch.store_from
       _item.count = 1;
       _item.total = _item.count * _item.cost
-      if (_item.stores_list && _item.stores_list.length > 0) {
-        _item.stores_list.forEach(_store => {
-          if (_store.store.id == $scope.transfer_branch.store_from.id) {
-            _item.store_count = _store.current_count
+      if (_item.branches_list && _item.branches_list.length > 0) {
+
+        _item.branches_list.forEach(_branch => {
+          if (_branch.code == '##session.branch.code##') {
+            if (_branch.stores_list && _branch.stores_list.length > 0) {
+
+              _branch.stores_list.forEach(_store => {
+                if (_store.store && _store.store.id == $scope.transfer_branch.store_from.id) {
+                  _item.store_count = _store.current_count
+                }
+              })
+            } else _item.store_count = 0
           } else _item.store_count = 0
         });
-
       } else _item.store_count = 0
       foundSize = $scope.item.sizes.some(_itemSize => _itemSize.barcode == _item.barcode);
       if (!foundSize)
@@ -403,6 +328,19 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
                   _size.store_from = $scope.transfer_branch.store_from;
                   _size.count = 1;
                   _size.total = _size.count * _size.cost;
+                  if (_size.branches_list && _size.branches_list.length > 0) {
+                    _size.branches_list.forEach(_branch => {
+                      if (_branch.code == '##session.branch.code##') {
+                        if (_branch.stores_list && _branch.stores_list.length > 0) {
+                          _branch.stores_list.forEach(_store => {
+                            if (_store.store && _store.store.id == $scope.transfer_branch.store_from.id) {
+                              _size.store_count = _store.current_count
+                            }
+                          })
+                        } else _size.store_count = 0
+                      } else _size.store_count = 0
+                    });
+                  } else _size.store_count = 0
                   foundSize = $scope.transfer_branch.items.some(_itemSize => _itemSize.barcode == _size.barcode);
                   if (!foundSize)
                     $scope.transfer_branch.items.unshift(_size);
@@ -410,8 +348,7 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
               });
               if (foundSize) $scope.error = '##word.dublicate_item##';
 
-              $scope.calc();
-              $scope.search_barcode = "";
+              $scope.search_barcode = '';
             }
             $timeout(() => {
               document.querySelector('#search_barcode input').focus();

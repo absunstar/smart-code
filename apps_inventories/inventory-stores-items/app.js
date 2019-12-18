@@ -2,15 +2,15 @@ module.exports = function init(site) {
   const $stores_items = site.connectCollection("stores_items")
   const $complex_items = site.connectCollection("complex_items")
 
-  $stores_items.busy5 = false
+  $stores_items.busy1 = false
   site.on('[stores_in][stores_items][add_balance]', obj => {
-    if ($stores_items.busy5) {
+    if ($stores_items.busy1) {
       setTimeout(() => {
         site.call('[stores_in][stores_items][add_balance]', Object.assign({}, obj))
       }, 200);
       return
     };
-    $stores_items.busy5 = true
+    $stores_items.busy1 = true
     $stores_items.findOne({
       name: obj.name,
       'company.id': obj.company.id,
@@ -43,7 +43,7 @@ module.exports = function init(site) {
             if (_size.stores_list && _size.stores_list.length > 0) {
               _size.stores_list.forEach(_store => {
                 if (_store.store.id == obj.store.id) {
-                  if (obj.status_store_in.id == 3) _store.start_count = site.toNumber(_store.start_count || 0) + site.toNumber(obj.count)
+                  if (obj.status_store_in == 3) _store.start_count = site.toNumber(_store.start_count || 0) + site.toNumber(obj.count)
                   _store.current_count = site.toNumber(_store.current_count || 0) + site.toNumber(obj.count)
                   _store.cost = site.toNumber(obj.cost)
                   _store.price = site.toNumber(obj.price)
@@ -57,7 +57,7 @@ module.exports = function init(site) {
               if (!foundStore)
                 _size.stores_list.push({
                   store: obj.store,
-                  start_count: obj.status_store_in.id == 3 ? site.toNumber(obj.count) : 0,
+                  start_count: obj.status_store_in == 3 ? site.toNumber(obj.count) : 0,
                   current_count: site.toNumber(obj.count),
                   cost: site.toNumber(obj.cost),
                   price: site.toNumber(obj.price),
@@ -69,7 +69,7 @@ module.exports = function init(site) {
               _size.stores_list = _size.stores_list || [];
               _size.stores_list.push({
                 store: obj.store,
-                start_count: obj.status_store_in.id == 3 ? site.toNumber(obj.count) : 0,
+                start_count: obj.status_store_in == 3 ? site.toNumber(obj.count) : 0,
                 current_count: site.toNumber(obj.count),
                 cost: site.toNumber(obj.cost),
                 price: site.toNumber(obj.price),
@@ -87,18 +87,17 @@ module.exports = function init(site) {
           }
         });
         $stores_items.update(doc, () => {
-          $stores_items.busy5 = false
+          $stores_items.busy1 = false
         });
       } else {
         let item = {
           name: obj.name,
           company: obj.company,
-          branch: obj.branch,
           sizes: [obj]
         };
 
         $stores_items.add(item, () => {
-          $stores_items.busy5 = false
+          $stores_items.busy1 = false
 
         });
       };
@@ -120,7 +119,10 @@ module.exports = function init(site) {
       if (!err && doc) {
         doc.sizes.forEach(_size => {
           if (_size.barcode == obj.barcode) {
+            let totalCost = obj.price * site.toNumber(obj.count);
             _size.current_count = site.toNumber(_size.current_count) - site.toNumber(obj.count)
+            _size.total_sell_price = (_size.total_sell_price || 0) + totalCost
+            _size.total_sell_count = (_size.total_sell_count || 0) + site.toNumber(obj.count)
             _size.stores_list.forEach(_store => {
               if (_store.store.id == obj.store.id) {
                 _store.current_count = site.toNumber(_store.current_count || 0) - site.toNumber(obj.count)
@@ -154,14 +156,18 @@ module.exports = function init(site) {
     $stores_items.findOne({
       name: obj.name,
       'company.id': obj.company.id,
-      'branch.code': obj.branch.code
     }, (err, doc) => {
       if (!err && doc) {
         let exist = true
+
         doc.sizes.forEach(_size => {
           if (_size.barcode == obj.barcode) {
-            _size.start_count = site.toNumber(_size.start_count) + site.toNumber(obj.count)
-            _size.current_count = site.toNumber(_size.current_count) + site.toNumber(obj.count)
+            if (obj._status == 3) _size.start_count = site.toNumber(_size.start_count) + site.toNumber(obj.count)
+            if (obj.type == 'sum')
+              _size.current_count = site.toNumber(_size.current_count) + site.toNumber(obj.count)
+            else if (obj.type == 'minus')
+              _size.current_count = site.toNumber(_size.current_count) - site.toNumber(obj.count)
+
             _size.cost = site.toNumber(obj.cost)
             _size.price = site.toNumber(obj.price)
             exist = false
@@ -175,43 +181,139 @@ module.exports = function init(site) {
         doc.sizes.forEach(_size => {
           if (_size.barcode == obj.barcode) {
             let totalCost = obj.cost * site.toNumber(obj.count);
-            _size.total_purchase_price = (_size.total_purchase_price || 0) + totalCost
-            _size.total_purchase_count = (_size.total_purchase_count || 0) + site.toNumber(obj.count)
-            if (_size.stores_list && _size.stores_list.length > 0) {
-              _size.stores_list.forEach(_store => {
-                if (_store.store.id == obj.store.id) {
-                  _store.start_count = site.toNumber(_store.start_count || 0) + site.toNumber(obj.count)
-                  _store.current_count = site.toNumber(_store.current_count || 0) + site.toNumber(obj.count)
-                  _store.cost = site.toNumber(obj.cost)
-                  _store.price = site.toNumber(obj.price)
-                  _store.total_purchase_price = (_store.total_purchase_price || 0) + totalCost
-                  _store.total_purchase_count = (_store.total_purchase_count || 0) + site.toNumber(obj.count)
+            let totalPrice = obj.price * site.toNumber(obj.count);
+
+            if (obj.type == 'sum') {
+              _size.total_buy_price = (_size.total_buy_price || 0) + totalCost
+              _size.total_buy_count = (_size.total_buy_count || 0) + site.toNumber(obj.count)
+
+            } else if (obj.type == 'minus') {
+              _size.total_sell_price = (_size.total_sell_price || 0) + totalPrice
+              _size.total_sell_count = (_size.total_sell_count || 0) + site.toNumber(obj.count)
+            }
+
+            if (obj._status == 1)
+              _size.average_cost = site.toNumber(_size.total_buy_price) / site.toNumber(_size.total_buy_count)
+            if (_size.branches_list && _size.branches_list.length > 0) {
+              let foundBranch = false
+              let indxBranch = 0
+              _size.branches_list.map((_branch, i) => {
+                if (_branch.code == obj.branch.code) {
+                  foundBranch = true
+                  indxBranch = i
                 }
               });
 
-              let foundStore = _size.stores_list.some(_store => _store.store.id == obj.store.id)
-              if (!foundStore)
-                _size.stores_list.push({
+              if (foundBranch) {
+
+                if (obj._status == 3) _size.branches_list[indxBranch].start_count = _size.branches_list[indxBranch].start_count + site.toNumber(obj.count)
+
+                if (obj.type == 'sum') {
+                  _size.branches_list[indxBranch].current_count = _size.branches_list[indxBranch].current_count + site.toNumber(obj.count)
+                  _size.branches_list[indxBranch].total_buy_price = (_size.branches_list[indxBranch].total_buy_price || 0) + totalCost
+                  _size.branches_list[indxBranch].total_buy_count = (_size.branches_list[indxBranch].total_buy_count || 0) + site.toNumber(obj.count)
+                }
+
+                if (obj.type == 'minus') {
+                  _size.branches_list[indxBranch].current_count = _size.branches_list[indxBranch].current_count - site.toNumber(obj.count)
+                  _size.branches_list[indxBranch].total_sell_price = (_size.branches_list[indxBranch].total_sell_price || 0) + totalPrice
+                  _size.branches_list[indxBranch].total_sell_count = (_size.branches_list[indxBranch].total_sell_count || 0) + site.toNumber(obj.count)
+                }
+
+                if (obj._status == 1) _size.branches_list[indxBranch].average_cost = site.toNumber(_size.branches_list[indxBranch].total_buy_price) / site.toNumber(_size.branches_list[indxBranch].total_buy_count)
+                if (_size.branches_list[indxBranch].stores_list && _size.branches_list[indxBranch].stores_list.length > 0) {
+                  let foundStore = false
+                  let indxStore = 0
+                  _size.branches_list[indxBranch].stores_list.map((_store, i) => {
+                    if (_store.store.id == obj.store.id) {
+                      foundStore = true
+                      indxStore = i
+                    }
+                  });
+                  if (foundStore) {
+                    if (obj._status == 3) _size.branches_list[indxBranch].stores_list[indxStore].start_count = site.toNumber(_size.branches_list[indxBranch].stores_list[indxStore].start_count || 0) + site.toNumber(obj.count)
+
+                    if (obj.type == 'sum') {
+                      _size.branches_list[indxBranch].stores_list[indxStore].current_count = site.toNumber(_size.branches_list[indxBranch].stores_list[indxStore].current_count || 0) + site.toNumber(obj.count)
+                      _size.branches_list[indxBranch].stores_list[indxStore].total_buy_price = (_size.branches_list[indxBranch].stores_list[indxStore].total_buy_price || 0) + totalCost
+                      _size.branches_list[indxBranch].stores_list[indxStore].total_buy_count = (_size.branches_list[indxBranch].stores_list[indxStore].total_buy_count || 0) + site.toNumber(obj.count)
+                    }
+
+                    if (obj.type == 'minus') {
+                      _size.branches_list[indxBranch].stores_list[indxStore].current_count = site.toNumber(_size.branches_list[indxBranch].stores_list[indxStore].current_count || 0) - site.toNumber(obj.count)
+                      _size.branches_list[indxBranch].stores_list[indxStore].total_sell_price = (_size.branches_list[indxBranch].stores_list[indxStore].total_sell_price || 0) + totalCost
+                      _size.branches_list[indxBranch].stores_list[indxStore].total_sell_count = (_size.branches_list[indxBranch].stores_list[indxStore].total_sell_count || 0) + site.toNumber(obj.count)
+                    }
+
+                    _size.branches_list[indxBranch].stores_list[indxStore].cost = site.toNumber(obj.cost)
+                    _size.branches_list[indxBranch].stores_list[indxStore].price = site.toNumber(obj.price)
+                    if (obj._status == 1) _size.branches_list[indxBranch].stores_list[indxStore].average_cost = site.toNumber(_size.branches_list[indxBranch].stores_list[indxStore].total_buy_price) / site.toNumber(_size.branches_list[indxBranch].stores_list[indxStore].total_buy_count)
+                  } else {
+                    _size.branches_list[indxBranch].stores_list.push({
+                      store: obj.store,
+                      start_count: obj._status == 3 ? site.toNumber(obj.count) : 0,
+                      current_count: site.toNumber(obj.count),
+                      cost: site.toNumber(obj.cost),
+                      price: site.toNumber(obj.price),
+                      total_buy_price:  totalCost,
+                      total_buy_count: site.toNumber(obj.count),
+                      average_cost: site.toNumber(totalCost) / site.toNumber(obj.count)
+                    })
+                  }
+
+                } else {
+                  _size.branches_list[indxBranch].stores_list = _size.branches_list[indxBranch].stores_list || [];
+                  _size.branches_list[indxBranch].stores_list.push({
+                    store: obj.store,
+                    start_count: obj._status == 3 ? site.toNumber(obj.count) : 0,
+                    current_count: site.toNumber(obj.count),
+                    cost: site.toNumber(obj.cost),
+                    price: site.toNumber(obj.price),
+                    total_buy_price: totalCost,
+                    total_buy_count: site.toNumber(obj.count),
+                    average_cost: site.toNumber(totalCost) / site.toNumber(obj.count)
+                  })
+                }
+              } else
+                _size.branches_list.push({
+                  name_ar: obj.branch.name_ar,
+                  code: obj.branch.code,
+                  start_count: obj._status == 3 ? site.toNumber(obj.count) : 0,
+                  current_count: site.toNumber(obj.count),
+                  total_buy_price: totalCost,
+                  total_buy_count: site.toNumber(obj.count),
+                  average_cost: site.toNumber(totalCost) / site.toNumber(obj.count),
+                  stores_list: [{
+                    store: obj.store,
+                    start_count: obj._status == 3 ? site.toNumber(obj.count) : 0,
+                    current_count: site.toNumber(obj.count),
+                    cost: site.toNumber(obj.cost),
+                    price: site.toNumber(obj.price),
+                    total_buy_price: totalCost,
+                    total_buy_count: site.toNumber(obj.count),
+                    average_cost: site.toNumber(totalCost) / site.toNumber(obj.count)
+                  }]
+                })
+            } else {
+              _size.branches_list = _size.branches_list || []
+              _size.branches_list.push({
+                name_ar: obj.branch.name_ar,
+                code: obj.branch.code,
+                start_count: obj._status == 3 ? site.toNumber(obj.count) : 0,
+                current_count: site.toNumber(obj.count),
+                total_buy_price: totalCost,
+                total_buy_count: site.toNumber(obj.count),
+                average_cost: site.toNumber(totalCost) / site.toNumber(obj.count),
+                stores_list: [{
                   store: obj.store,
-                  start_count: site.toNumber(obj.count),
+                  start_count: obj._status == 3 ? site.toNumber(obj.count) : 0,
                   current_count: site.toNumber(obj.count),
                   cost: site.toNumber(obj.cost),
                   price: site.toNumber(obj.price),
-                  total_purchase_price: totalCost,
-                  total_purchase_count: site.toNumber(obj.count),
+                  total_buy_price: totalCost,
+                  total_buy_count: site.toNumber(obj.count),
                   average_cost: site.toNumber(totalCost) / site.toNumber(obj.count)
-                })
-            } else {
-              _size.stores_list = _size.stores_list || [];
-              _size.stores_list.push({
-                store: obj.store,
-                start_count: site.toNumber(obj.count),
-                current_count: site.toNumber(obj.count),
-                cost: site.toNumber(obj.cost),
-                price: site.toNumber(obj.price),
-                total_purchase_price: totalCost,
-                total_purchase_count: site.toNumber(obj.count),
-                average_cost: site.toNumber(totalCost) / site.toNumber(obj.count)
+                }]
               })
             }
           }
@@ -226,6 +328,7 @@ module.exports = function init(site) {
           $stores_items.busy5 = false
         });
       } else {
+        delete obj._status
         let item = {
           name: obj.name,
           company: obj.company,
@@ -542,8 +645,6 @@ module.exports = function init(site) {
   })
 
   site.on('[stores_out][stores_items][-]', obj => {
-
-
     $stores_items.find({
       name: obj.item.name
     }, (err, doc) => {
@@ -553,15 +654,10 @@ module.exports = function init(site) {
           if (s.size == obj.item.size && s.barcode == obj.barcode) {
             s.current_count = site.toNumber(s.current_count) + site.toNumber(obj.item.count)
             exist = true
-
           }
-
         })
-
         $stores_items.update(doc)
-
       }
-
     })
   })
 
@@ -730,8 +826,8 @@ module.exports = function init(site) {
 
 
     where['company.id'] = site.get_company(req).id
-    where['branch.code'] = site.get_branch(req).code
-
+/*     where['branch.code'] = site.get_branch(req).code
+ */
 
     if (where && where['name']) {
       where['name'] = new RegExp(where['name'], 'i')
@@ -951,8 +1047,8 @@ module.exports = function init(site) {
     let where = req.body.where || {}
 
     where['company.id'] = site.get_company(req).id
-    where['branch.code'] = site.get_branch(req).code
-
+/*     where['branch.code'] = site.get_branch(req).code
+ */
     $stores_items.findMany({
       select: req.body.select || {},
       where: where,
@@ -997,8 +1093,8 @@ module.exports = function init(site) {
     }
 
     where['company.id'] = site.get_company(req).id
-    where['branch.code'] = site.get_branch(req).code
-
+/*     where['branch.code'] = site.get_branch(req).code
+ */
     $stores_items.findMany({
       select: req.body.select || {},
       where: where,
@@ -1042,8 +1138,8 @@ module.exports = function init(site) {
     }
 
     complex_items_doc.company = site.get_company(req)
-    complex_items_doc.branch = site.get_branch(req)
-
+/*     complex_items_doc.branch = site.get_branch(req)
+ */
     $complex_items.add(complex_items_doc, (err, doc) => {
       if (!err) {
         response.done = true
@@ -1067,8 +1163,8 @@ module.exports = function init(site) {
     }
 
     where['company.id'] = site.get_company(req).id
-    where['branch.code'] = site.get_branch(req).code
-
+/*     where['branch.code'] = site.get_branch(req).code
+ */
     $complex_items.findMany({
       select: req.body.select || {},
       where: where,
@@ -1136,8 +1232,8 @@ module.exports = function init(site) {
     let where = req.body.where || {}
 
     where['company.id'] = site.get_company(req).id
-    where['branch.code'] = site.get_branch(req).code
-
+/*     where['branch.code'] = site.get_branch(req).code
+ */
     $complex_items.findOne({
       select: req.body.select || {},
       where: where,

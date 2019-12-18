@@ -11,8 +11,9 @@
                 <div class="row">
                     <i-control ng-keydown="getItemsName($event)" id="item_name" class="col3"
                         ng-model="item.search_item_name" label="##word.search##" type="text"></i-control>
-                    <i-list class="col4" label="##word.transfer_branch_item_name##" ng-model="item.item_name" display="name"
-                        items="itemsNameList" ng-change="itemsStoresOut()" ng-search="item_searching"></i-list>
+                    <i-list class="col4" label="##word.transfer_branch_item_name##" ng-model="item.item_name"
+                        display="name" items="itemsNameList" ng-change="itemsStoresOut()" ng-search="item_searching">
+                    </i-list>
                 </div>
                 <div class="row">
 
@@ -22,9 +23,6 @@
                         <div class="row">
                             <div class="col2 center">
                                 <label>##word.transfer_branch_item_size##</label>
-                                <br>
-                                <i-button type="add" label="##word.transfer_branch_add_to_sizes##" ng-click="addToSizes()">
-                                </i-button>
                             </div>
                             <div class="col2 center">
                                 <label>##word.barcode##</label>
@@ -34,34 +32,21 @@
                                     <label>##word.balance##</label>
                                 </div>
                             </div>
+                            <div class="col1"></div>
+
                             <div class="col1 center">
                                 <div class="control">
                                     <label>##word.transfer_branch_item_store_balance##</label>
                                 </div>
                             </div>
+                            <div class="col1"></div>
+
                             <div class="col1 center">
                                 <div class="control">
                                     <label>##word.quantity##</label>
                                 </div>
                             </div>
 
-                            <div class="col1 center">
-                                <div class="control">
-                                    <label>##word.transfer_branch_item_cost##</label>
-                                </div>
-                            </div>
-
-                            <div class="col1 center">
-                                <div class="control">
-                                    <label>##word.transfer_branch_item_price##</label>
-                                </div>
-                            </div>
-
-                            <div class="col1 center">
-                                <div class="control">
-                                    <label>##word.transfer_branch_item_total##</label>
-                                </div>
-                            </div>
                             <div class="col1"></div>
                             <div class="col1 center">
                                 <div class="control">
@@ -74,36 +59,24 @@
                             <hr>
                             <div class="row center">
                                 <div class="col2">
-                                    <br ng-hide="s.$new">
-                                    <h3 ng-hide="s.$new" class="bold center">{{s.size}}</h3>
-                                    <i-control ng-show="s.$new" ng-model="s.size" type="text">
-                                    </i-control>
+                                    <br>
+                                    <h3 class="bold center">{{s.size}}</h3>
                                 </div>
 
                                 <div class="col2">
-                                    <br ng-hide="s.$new">
-                                    <h3 ng-hide="s.$new" class="bold center">{{s.barcode}}</h3>
-
-                                    <i-control ng-show="s.$new" ng-model="s.barcode" type="text">
-                                    </i-control>
+                                    <br>
+                                    <h3 class="bold center">{{s.barcode}}</h3>
                                 </div>
 
                                 <i-control disabled class="col1" ng-model="s.current_count" type="number">
                                 </i-control>
+                                <div class="col1"></div>
 
                                 <i-control disabled class="col1" ng-model="s.store_count" type="number">
                                 </i-control>
+                                <div class="col1"></div>
 
-                                <i-control class="col1" ng-model="s.count" type="number" ng-change="calcSize(s)">
-                                </i-control>
-
-                                <i-control class="col1" ng-model="s.cost" type="number" ng-change="calcSize(s)">
-                                </i-control>
-
-                                <i-control class="col1" ng-model="s.price" type="number" ng-change="calcSize(s)">
-                                </i-control>
-
-                                <i-control disabled class="col1" ng-model="s.total" type="number">
+                                <i-control class="col1" ng-model="s.count" type="number">
                                 </i-control>
                                 <div class="col1"></div>
 

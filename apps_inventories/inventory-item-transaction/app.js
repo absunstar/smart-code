@@ -68,6 +68,7 @@ module.exports = function init(site) {
 
           itm.last_count = docs[0].current_count
           itm.current_count = itm.last_count + itm.count
+
           itm.last_price = docs[0].price
           itm.transaction_type = 'in'
           itm.current_status = itm.current_status || 'damaged'
@@ -103,7 +104,7 @@ module.exports = function init(site) {
     delete itm.id
     delete itm._id
 
-    $item_transaction.findMany({ sort: { id: -1 }, where: { size: itm.size, name: itm.name }, limit: 1 }, (err, docs) => {
+    $item_transaction.findMany({ sort: { id: -1 }, where: { size: itm.size, 'barcode': itm.barcode, name: itm.name }, limit: 1 }, (err, docs) => {
 
       if (docs && docs.length === 1) {
         itm.last_count = docs[0].current_count

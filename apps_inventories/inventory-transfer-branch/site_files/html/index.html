@@ -73,7 +73,7 @@
                                 label="##word.details##" ng-click="details(c)"></i-button>
 
                             <i-button x-permissions="transfer_branch_confirm || transfer_branch_manage" type="safe"
-                                ng-show="!c.transfer" label="##word.confirm_transfer##" ng-click="confirmTransfer(c)">
+                                ng-show="!c.transfer && c.branch_to.code == ##session.branch.code##" label="##word.confirm_transfer##" ng-click="confirmTransfer(c)">
                             </i-button>
 
                             <i-button x-permissions="transfer_branch_update || transfer_branch_manage" type="update"

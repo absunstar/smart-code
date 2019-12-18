@@ -16,7 +16,7 @@ module.exports = function init(site) {
   });
 
 
-  $stores_in.busy1 = false;
+ /*  $stores_in.busy1 = false;
   site.on('[stores_items][store_in]', itm => {
     if ($stores_in.busy1 == true) {
       setTimeout(() => {
@@ -135,7 +135,7 @@ module.exports = function init(site) {
     }
     $stores_in.add(obj)
   })
-
+ */
   site.post({
     name: '/api/stores_in/types/all',
     path: __dirname + '/site_files/json/types.json'
@@ -208,11 +208,12 @@ module.exports = function init(site) {
 
       if (!err) {
         doc.items.forEach(_itm => {
-          _itm.status_store_in = doc.type
+          _itm.type = 'sum'
+          _itm._status = doc.type.id
           _itm.store = doc.store
           _itm.company = doc.company
           _itm.branch = doc.branch
-          site.call('[stores_in][stores_items][add_balance]', _itm)
+          site.call('[transfer_branch][stores_items][add_balance]', _itm)
         });
 
         response.done = true

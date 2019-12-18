@@ -21,8 +21,10 @@
                     x-import="inventory-stores-items/add_modal.html"></div>
                 <div x-permissions="stores_items_add || stores_items_manage"
                     x-import="inventory-stores-items/complex_view.html"></div>
-                <div x-permissions="stores_items_add || stores_items_manage"
+                <div x-permissions="stores_items_view || stores_items_manage"
                     x-import="inventory-stores-items/store_balance.html"></div>
+                <div x-permissions="stores_items_view || stores_items_manage"
+                    x-import="inventory-stores-items/branch_balance.html"></div>
                 <div x-permissions="stores_items_add || stores_items_manage"
                     x-import="inventory-stores-items/complex_item.html"></div>
                 <div x-permissions="stores_items_update || stores_items_manage"
@@ -95,8 +97,7 @@
                                         <td class="center blue">{{_size.current_count}}</td>
                                         <td class="center blue">{{_size.start_count}}</td>
                                         <td class="center red">
-                                            <p>##word.maximum_discount## : <b
-                                                    class="red">{{_size.discount.max}}</b></p>
+                                            <p>##word.maximum_discount## : <b class="red">{{_size.discount.max}}</b></p>
                                             <p>##word.discount## : <b class="red">{{_size.discount.value}} </b>
                                             </p> <b class="red" ng-show="_size.discount.type == 'number'">
                                                 ##word.le##</b>

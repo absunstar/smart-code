@@ -300,7 +300,7 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
     });
   }; */
 
-  $scope.updateComplexItems = function () {
+  /* $scope.updateComplexItems = function () {
 
     $scope.error = '';
     const v = site.validated();
@@ -311,7 +311,7 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
 
     $scope.complexItemsUpdate.forEach(element => {
 
-      let url = "";
+      let url = '';
 
       if (element.id) url = "/api/complex_items/update";
       else url = "/api/complex_items/add";
@@ -338,7 +338,7 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
         }
       )
     });
-  };
+  }; */
 
   $scope.loadComplexItems = function (iem) {
     $scope.busy = true;
@@ -367,7 +367,10 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
   $scope.edit = function (category_item) {
     $scope.error = '';
     $scope.category_item = {};
-    $scope.item = {};
+    $scope.item = {
+      discount: { value: 0, max: 0, type: 'number' },
+      image_url: '/images/sizes_img.png',
+    };
     $scope.items_size = {};
     $scope.view(category_item);
 
@@ -678,6 +681,12 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.storesBalance = storesBalance;
     site.showModal('#storesBalancesModal');
+  };
+
+  $scope.branchesBalances = function (branchesBalance) {
+    $scope.error = '';
+    $scope.branchesBalance = branchesBalance;
+    site.showModal('#branchesBalancesModal');
   };
 
   $scope.getDefaultSetting = function () {

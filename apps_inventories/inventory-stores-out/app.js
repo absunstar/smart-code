@@ -7,7 +7,7 @@ module.exports = function init(site) {
     })
   })
 
-  site.on('[store_out][account_invoice][invoice]', function (obj) {
+ /*  site.on('[store_out][account_invoice][invoice]', function (obj) {
     $stores_out.findOne({ id: obj }, (err, doc) => {
       doc.invoice = true
       $stores_out.update(doc);
@@ -127,7 +127,7 @@ module.exports = function init(site) {
     }
     $stores_out.add(obj)
   })
-
+ */
   site.post({
     name: '/api/stores_out/types/all',
     path: __dirname + '/site_files/json/types.json'
@@ -199,11 +199,11 @@ module.exports = function init(site) {
       if (!err) {
 
         doc.items.forEach(_itm => {
-          _itm.status_store_in = doc.type
+          _itm.type = 'minus'
           _itm.store = doc.store
           _itm.company = doc.company
           _itm.branch = doc.branch
-          site.call('[store_out][stores_items][-]', Object.assign({}, _itm))
+          site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _itm))
         });
 
         response.done = true
