@@ -62,12 +62,6 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
     if (!$scope.item.average_cost)
       $scope.item.average_cost = site.toNumber($scope.item.cost);
 
-    /* $scope.item.stores_list = [{
-      average_cost : $scope.item.average_cost,
-      store : $scope.store
-    }] */;
-
-
     $scope.category_item.sizes.unshift(Object.assign({}, $scope.item));
     $scope.complex_items = [];
 
@@ -80,39 +74,27 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
       if ($scope.defaultSettings.general_Settings.kitchen)
         $scope.item.kitchen = $scope.defaultSettings.general_Settings.kitchen
     }
-    /* if ($scope.defaultSettings.inventory.store)
-      $scope.store = $scope.defaultSettings.inventory.store; */
 
   };
 
   $scope.deleteSize = function (itm) {
     $scope.error = '';
-    let obj_id = {
-      item_id: $scope.category_item.id,
-      barcode: itm.barcode,
-    };
-    if ($scope.category_item.id)
-      $scope.category_item.sizes.splice($scope.category_item.sizes.indexOf(itm), 1);
-    else {
-      $http({
-        method: "POST",
-        url: "/api/order_invoice/get_size",
-        data: obj_id
-      }).then(
-        function (response) {
-          $scope.busy = false;
-          if (response.data.done && response.data.docs) {
-            $scope.error = '##word.err_size##';
-          } else $scope.category_item.sizes.splice($scope.category_item.sizes.indexOf(itm), 1)
-
-        },
-        function (err) {
-          $scope.busy = false;
-          $scope.error = err;
-        }
-      );
-    }
-
+    $http({
+      method: "POST",
+      url: "/api/item_transaction/get_size",
+      data: itm
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.error = '##word.err_size##';
+        } else $scope.category_item.sizes.splice($scope.category_item.sizes.indexOf(itm), 1)
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
   };
 
   $scope.loadAll = function (where) {
@@ -170,58 +152,10 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
       if ($scope.defaultSettings.inventory.item_group)
         $scope.category_item.item_group = $scope.defaultSettings.inventory.item_group;
 
-      /* if ($scope.defaultSettings.inventory.store)
-        $scope.store = $scope.defaultSettings.inventory.store; */
+
     }
-
     site.showModal('#addCategoryItemModal');
-
   };
-
-  /*  $scope.getDefaultSettings = function () {
- 
-     $scope.busy = true;
-     $http({
-       method: "POST",
-       url: "/api/default_setting/get",
-       data: {}
-     }).then(
-       function (response) {
-         $scope.busy = false;
-         if (response.data.done && response.data.doc) {
-           $scope.defaultSettings = response.data.doc;
-           $scope.error = '';
-           $scope.category_code = '';
-           $scope.item = {};
-           $scope.items_size = {};
-           $scope.category_item = {
-             image_url: '/images/category_item.png',
-             allow_sell: true,
-             allow_buy: true,
-             is_pos: true,
-             sizes: [],
-             with_discount: false
-           };
-           $scope.item = {
-             image_url: '/images/sizes_img.png',
-           };
-           if ($scope.defaultSettings.general_Settings) {
-             if ($scope.defaultSettings.general_Settings.kitchen)
-               $scope.item.kitchen = $scope.defaultSettings.general_Settings.kitchen
-           }
-           if ($scope.defaultSettings.inventory) {
- 
-             if ($scope.defaultSettings.inventory.item_group)
-               $scope.category_item.item_group = $scope.defaultSettings.inventory.item_group
-           }
-         };
-       },
-       function (err) {
-         $scope.busy = false;
-         $scope.error = err;
-       }
-     );
-   }; */
 
   $scope.add = function () {
 
@@ -263,105 +197,6 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
         }
       )
     } else $scope.error = "##word.err_Item_must_correctly##"
-  };
-
-  /* $scope.addComplexItems = function () {
-
-    $scope.error = '';
-    const v = site.validated();
-    if (!v.ok) {
-      $scope.error = v.messages[0].ar;
-      return;
-    }
-
-    $scope.complex.forEach(element => {
-
-      $scope.busy = true;
-      $http({
-        method: "POST",
-        url: "/api/complex_items/add",
-        data: element
-      }).then(
-        function (response) {
-          $scope.busy = false;
-          if (response.data.done) {
-            site.hideModal('#addCategoryItemModal');
-            $scope.loadAll();
-            $scope.category_item = {};
-
-          } else {
-            $scope.error = '##word.error##';
-          }
-        },
-        function (err) {
-          console.log(err);
-        }
-      )
-    });
-  }; */
-
-  /* $scope.updateComplexItems = function () {
-
-    $scope.error = '';
-    const v = site.validated();
-    if (!v.ok) {
-      $scope.error = v.messages[0].ar;
-      return;
-    }
-
-    $scope.complexItemsUpdate.forEach(element => {
-
-      let url = '';
-
-      if (element.id) url = "/api/complex_items/update";
-      else url = "/api/complex_items/add";
-
-      $scope.busy = true;
-      $http({
-        method: "POST",
-        url: url,
-        data: element
-      }).then(
-        function (response) {
-          $scope.busy = false;
-          if (response.data.done) {
-            site.hideModal('#addCategoryItemModal');
-            $scope.loadAll();
-            $scope.category_item = {};
-
-          } else {
-            $scope.error = '##word.error##';
-          }
-        },
-        function (err) {
-          console.log(err);
-        }
-      )
-    });
-  }; */
-
-  $scope.loadComplexItems = function (iem) {
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/complex_items/sizes_all",
-      data: {
-        where: {
-          'complex_items.barcode': iem.barcode
-        }
-      }
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          $scope.complexItemsList = response.data.list || {};
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
   };
 
   $scope.edit = function (category_item) {
@@ -450,7 +285,7 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
       url: "/api/stores_items/delete",
       data: {
         id: $scope.category_item.id,
-        name: $scope.category_item.name
+        category_item: $scope.category_item
       }
     }).then(
       function (response) {
@@ -460,6 +295,9 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
           $scope.loadAll();
         } else {
           $scope.error = response.data.error;
+          if (response.data.error.like('*Cant Delete Its Exist*')) {
+            $scope.error = "##word.err_item##";
+          }
         }
       },
       function (err) {

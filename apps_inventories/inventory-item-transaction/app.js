@@ -39,7 +39,7 @@ module.exports = function init(site) {
 
       $item_transaction.trackBusy = true
 
-      $item_transaction.findMany({ sort: { id: -1 }, where: { size: itm.size, 'barcode': itm.barcode, name: itm.name, 'branch.code': itm.branch.code, 'company.id': itm.company.id }, limit: 1 }, (err, docs) => {
+      $item_transaction.findMany({ sort: { id: -1 }, where: { 'barcode': itm.barcode, name: itm.name, 'branch.code': itm.branch.code, 'company.id': itm.company.id, 'store.id': itm.store.id }, limit: 1 }, (err, docs) => {
 
         delete itm._id
         delete itm.id
@@ -104,7 +104,7 @@ module.exports = function init(site) {
     delete itm.id
     delete itm._id
 
-    $item_transaction.findMany({ sort: { id: -1 }, where: { size: itm.size, 'barcode': itm.barcode, name: itm.name, 'branch.code': itm.branch.code, 'company.id': itm.company.id , 'store.id' : itm.store.id }, limit: 1 }, (err, docs) => {
+    $item_transaction.findMany({ sort: { id: -1 }, where: { 'barcode': itm.barcode, name: itm.name, 'branch.code': itm.branch.code, 'company.id': itm.company.id, 'store.id': itm.store.id }, limit: 1 }, (err, docs) => {
 
       if (docs && docs.length === 1) {
         itm.last_count = docs[0].current_count
@@ -219,13 +219,9 @@ module.exports = function init(site) {
     if (where && where.ticket_code) {
       where['ticket_code'] = new RegExp(where['ticket_code'], 'i')
     }
-
     where['company.id'] = site.get_company(req).id
     where['branch.code'] = site.get_branch(req).code
-
-
     response.done = false
-
     $item_transaction.findMany({
       select: req.body.select || {},
       limit: req.body.limit,
@@ -236,7 +232,6 @@ module.exports = function init(site) {
         response.done = true
         response.list = docs
         response.count = count
-
       } else {
         response.error = err.message
       }
@@ -244,5 +239,37 @@ module.exports = function init(site) {
     })
   })
 
+  site.post("/api/item_transaction/get_size", (req, res) => {
+    let response = {
+      done: false
+    }
+    let where = {};
+    where['barcode'] = req.body.barcode
+    where['company.id'] = site.get_company(req).id
+    $item_transaction.findOne({
+      where: where
+    }, (err, docs, count) => {
+      if (!err) {
+        if (docs) response.done = true
+      } else {
+        response.error = err.message
+      }
+      res.json(response)
+    })
+  })
+
+  site.getItemToDelete = function (data, callback) {
+    let where = {};    
+    where['company.id'] = data.company_id
+    where['barcode'] = { $in: data.barcodes }
+    $item_transaction.findOne({
+      where: where,
+    }, (err, docs, count) => {      
+      if (!err) {
+        if (docs) callback(true)
+        else callback(false)
+      }
+    })
+  }
 
 }

@@ -255,7 +255,7 @@ module.exports = function init(site) {
                       current_count: site.toNumber(obj.count),
                       cost: site.toNumber(obj.cost),
                       price: site.toNumber(obj.price),
-                      total_buy_price:  totalCost,
+                      total_buy_price: totalCost,
                       total_buy_count: site.toNumber(obj.count),
                       average_cost: site.toNumber(totalCost) / site.toNumber(obj.count)
                     })
@@ -691,22 +691,22 @@ module.exports = function init(site) {
     $stores_items.add(stores_items_doc, (err, doc) => {
       if (!err) {
         let stores_items_doc = doc
-        stores_items_doc.sizes.forEach(itm => {
-          itm.name = stores_items_doc.name
-          itm.cost = site.toNumber(itm.cost)
-          itm.total = site.toNumber(itm.total)
-          itm.price = site.toNumber(itm.price)
-          itm.count = site.toNumber(itm.current_count)
-          itm.current_count = site.toNumber(itm.current_count)
-          itm.barcode = itm.barcode
-          itm.date = stores_items_doc.date
-          itm.company = site.get_company(req)
-          itm.branch = site.get_branch(req)
-          itm.transaction_type = 'in'
-          itm.current_status = 'newitem'
-          site.call('please track item', itm)
-          site.call('[stores_items][store_in]', itm)
-        })
+        /*   stores_items_doc.sizes.forEach(itm => {
+            itm.name = stores_items_doc.name
+            itm.cost = site.toNumber(itm.cost)
+            itm.total = site.toNumber(itm.total)
+            itm.price = site.toNumber(itm.price)
+            itm.count = site.toNumber(itm.current_count)
+            itm.current_count = site.toNumber(itm.current_count)
+            itm.barcode = itm.barcode
+            itm.date = stores_items_doc.date
+            itm.company = site.get_company(req)
+            itm.branch = site.get_branch(req)
+            itm.transaction_type = 'in'
+            itm.current_status = 'newitem'
+            site.call('please track item', itm)
+            site.call('[stores_items][store_in]', itm)
+          }) */
         response.done = true
       } else response.error = err.message
 
@@ -748,7 +748,6 @@ module.exports = function init(site) {
         res.json(response)
       });
     } else res.json(response);
-
   });
 
   site.post("/api/stores_items/delete", (req, res) => {
@@ -758,9 +757,12 @@ module.exports = function init(site) {
       res.json(response)
     }
     let id = req.body.id
+    
+    let barcodes = req.body.category_item.sizes.map(_size => _size.barcode)
+    
+    let data = { name: 'stores_item', barcodes, company_id: req.body.category_item.company.id }
 
-    let data = { name: 'stores_item', id: req.body.id };
-    site.getDataToDelete(data, callback => {
+    site.getItemToDelete(data, callback => {
 
       if (callback == true) {
         response.error = 'Cant Delete Its Exist In Other Transaction'
@@ -776,7 +778,7 @@ module.exports = function init(site) {
             if (!err) {
 
               let stores_items_doc = result.doc
-              stores_items_doc.sizes.forEach(itm => {
+             /*  stores_items_doc.sizes.forEach(itm => {
                 itm.name = stores_items_doc.name
                 itm.cost = site.toNumber(itm.cost)
                 itm.price = site.toNumber(itm.price)
@@ -789,7 +791,7 @@ module.exports = function init(site) {
                 site.call('please out item', itm)
                 site.call('[stores_items][store_out]', itm)
 
-              })
+              }) */
               response.done = true
             }
             res.json(response)
@@ -824,10 +826,7 @@ module.exports = function init(site) {
     let where = req.body.where || {}
     let data = {};
 
-
     where['company.id'] = site.get_company(req).id
-/*     where['branch.code'] = site.get_branch(req).code
- */
 
     if (where && where['name']) {
       where['name'] = new RegExp(where['name'], 'i')
@@ -894,21 +893,6 @@ module.exports = function init(site) {
 
       delete where.current_countLt
     }
-
-
-    // if (where && where.store) {
-    //   st =where.store
-    //   console.log('sizes')
-    //   where['sizes'] = {
-    //     $all: [ {  "$elemMatch" : {
-    //       'store.id': st.id }
-    //     }]
-    //   }
-    //   delete where.store
-    // }
-
-
-
 
     response.done = false
     $stores_items.findMany({
@@ -1047,8 +1031,7 @@ module.exports = function init(site) {
     let where = req.body.where || {}
 
     where['company.id'] = site.get_company(req).id
-/*     where['branch.code'] = site.get_branch(req).code
- */
+
     $stores_items.findMany({
       select: req.body.select || {},
       where: where,
@@ -1075,6 +1058,7 @@ module.exports = function init(site) {
       res.json(response)
     })
   })
+
   site.post("/api/stores_items/name_all", (req, res) => {
     let response = {
       done: false
@@ -1091,10 +1075,8 @@ module.exports = function init(site) {
         'sizes.barcode': new RegExp(search, "i")
       })
     }
-
     where['company.id'] = site.get_company(req).id
-/*     where['branch.code'] = site.get_branch(req).code
- */
+  
     $stores_items.findMany({
       select: req.body.select || {},
       where: where,
@@ -1113,146 +1095,6 @@ module.exports = function init(site) {
       res.json(response)
     })
   })
-
-
-  site.post("/api/complex_items/add", (req, res) => {
-    let response = { done: false }
-
-    if (!req.session.user) {
-      response.error = 'Please Login First'
-      res.json(response)
-      return
-    }
-
-    let complex_items_doc = req.body
-    complex_items_doc.$req = req
-    complex_items_doc.$res = res
-
-    complex_items_doc.add_user_info = site.security.getUserFinger({
-      $req: req,
-      $res: res
-    })
-
-    if (typeof complex_items_doc.active === 'undefined') {
-      complex_items_doc.active = true
-    }
-
-    complex_items_doc.company = site.get_company(req)
-/*     complex_items_doc.branch = site.get_branch(req)
- */
-    $complex_items.add(complex_items_doc, (err, doc) => {
-      if (!err) {
-        response.done = true
-        response.doc = doc
-      } else {
-        response.error = err.message
-      }
-      res.json(response)
-    })
-  })
-
-  site.post("/api/complex_items/all", (req, res) => {
-    let response = {
-      done: false
-    }
-
-    let where = req.body.where || {}
-
-    if (where['name']) {
-      where['name'] = new RegExp(where['name'], "i");
-    }
-
-    where['company.id'] = site.get_company(req).id
-/*     where['branch.code'] = site.get_branch(req).code
- */
-    $complex_items.findMany({
-      select: req.body.select || {},
-      where: where,
-      sort: req.body.sort || {
-        id: -1
-      },
-      limit: req.body.limit
-    }, (err, docs, count) => {
-      if (!err) {
-        response.done = true
-        response.list = docs
-        response.count = count
-      } else {
-        response.error = err.message
-      }
-      res.json(response)
-    })
-  })
-
-  site.post("/api/complex_items/update", (req, res) => {
-    let response = {
-      done: false
-    }
-
-    if (!req.session.user) {
-      response.error = 'Please Login First'
-      res.json(response)
-      return
-    }
-
-    let complex_items_doc = req.body
-
-    complex_items_doc.edit_user_info = site.security.getUserFinger({
-      $req: req,
-      $res: res
-    })
-
-    if (complex_items_doc.id) {
-      $complex_items.edit({
-        where: {
-          id: complex_items_doc.id
-        },
-        set: complex_items_doc,
-        $req: req,
-        $res: res
-      }, err => {
-        if (!err) {
-          response.done = true
-        } else {
-          response.error = 'Code Already Exist'
-        }
-        res.json(response)
-      })
-    } else {
-      response.error = 'no id'
-      res.json(response)
-    }
-  })
-
-  site.post("/api/complex_items/sizes_all", (req, res) => {
-    let response = {
-      done: false
-    }
-
-    let where = req.body.where || {}
-
-    where['company.id'] = site.get_company(req).id
-/*     where['branch.code'] = site.get_branch(req).code
- */
-    $complex_items.findOne({
-      select: req.body.select || {},
-      where: where,
-      sort: req.body.sort || {
-        id: -1
-      },
-      limit: req.body.limit
-    }, (err, docs, count) => {
-      if (!err) {
-        response.done = true
-        response.list = docs
-        response.count = count
-      } else {
-        response.error = err.message
-      }
-      res.json(response)
-    })
-  })
-
 
   site.getKitchenToDelete = function (data, callback) {
 

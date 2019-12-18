@@ -15,6 +15,11 @@
         "ar": "لا يمكن حذف المقاس لإستخدامه في معاملات أخرى"
     },
     {
+        "name": "err_item",
+        "en": "Cant Delete Item Its Exist In Other Transaction" ,
+        "ar": "لا يمكن حذف الصنف لإستخدامه في معاملات أخرى"
+    },
+    {
         "name": "err_Item_must_correctly",
         "en": "Item Must Be Entered Correctly" ,
         "ar": "يجب ادخال الكمية و الصنف بشكل صحيح"

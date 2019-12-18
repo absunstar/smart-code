@@ -467,7 +467,7 @@ module.exports = function init(site) {
     where['status.id'] = {
       '$gte': 2,
       '$lt': 5
-    }    
+    }
 
     if (req.data.order_invoices_type && req.data.order_invoices_type.id) {
       where['transaction_type.id'] = req.data.order_invoices_type.id;
@@ -494,7 +494,7 @@ module.exports = function init(site) {
   })
 
 
-  site.post("/api/order_invoice/get_size", (req, res) => {
+ /*  site.post("/api/order_invoice/get_size", (req, res) => {
     let response = {
       done: false
     }
@@ -524,7 +524,7 @@ module.exports = function init(site) {
       res.json(response)
     })
   })
-
+ */
 
   site.getDataToDelete = function (data, callback) {
 
@@ -541,8 +541,8 @@ module.exports = function init(site) {
     }
 
     else if (data.name == 'customer') where['customer.id'] = data.id
-    else if (data.name == 'stores_item') where['book_list.item_id'] = data.id
     else if (data.name == 'tables') where['table.id'] = data.id
+    /*else if (data.name == 'stores_item') where['book_list.item_id'] = data.id*/
 
     $order_invoice.findOne({
       where: where,
