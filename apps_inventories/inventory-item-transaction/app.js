@@ -39,7 +39,7 @@ module.exports = function init(site) {
 
       $item_transaction.trackBusy = true
 
-      $item_transaction.findMany({ sort: { id: -1 }, where: { size: itm.size, 'barcode': itm.barcode, name: itm.name }, limit: 1 }, (err, docs) => {
+      $item_transaction.findMany({ sort: { id: -1 }, where: { size: itm.size, 'barcode': itm.barcode, name: itm.name, 'branch.code': itm.branch.code, 'company.id': itm.company.id }, limit: 1 }, (err, docs) => {
 
         delete itm._id
         delete itm.id
@@ -104,7 +104,7 @@ module.exports = function init(site) {
     delete itm.id
     delete itm._id
 
-    $item_transaction.findMany({ sort: { id: -1 }, where: { size: itm.size, 'barcode': itm.barcode, name: itm.name }, limit: 1 }, (err, docs) => {
+    $item_transaction.findMany({ sort: { id: -1 }, where: { size: itm.size, 'barcode': itm.barcode, name: itm.name, 'branch.code': itm.branch.code, 'company.id': itm.company.id }, limit: 1 }, (err, docs) => {
 
       if (docs && docs.length === 1) {
         itm.last_count = docs[0].current_count

@@ -12,7 +12,7 @@
                     <i-control ng-keydown="getItemsName($event)" id="item_name" class="col3"
                         ng-model="item.search_item_name" label="##word.search##" type="text"></i-control>
                     <i-list class="col4" label="##word.transfer_branch_item_name##" ng-model="item.item_name"
-                        display="name" items="itemsNameList" ng-change="itemsStoresOut()" ng-search="item_searching">
+                        display="name" items="itemsNameList" ng-change="itemsTransferBranch()" ng-search="item_searching">
                     </i-list>
                 </div>
                 <div class="row">

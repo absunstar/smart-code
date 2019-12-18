@@ -388,19 +388,33 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
                     _size.count = 1
                     _size.total = _size.count * _size.cost
                     if (_size.branches_list && _size.branches_list.length > 0) {
-
-                      _size.branches_list.forEach(_branch => {
+                      let foundBranch = false
+                      let indxBranch = 0
+                      _size.branches_list.map((_branch, i) => {
                         if (_branch.code == '##session.branch.code##') {
-                          if (_branch.stores_list && _branch.stores_list.length > 0) {
-
-                            _branch.stores_list.forEach(_store => {
-                              if (_store.store && _store.store.id == $scope.store_in.store.id) {
-                                _size.store_count = _store.current_count
-                              }
-                            })
-                          } else _size.store_count = 0
-                        } else _size.store_count = 0
+                          foundBranch = true
+                          indxBranch = i
+                        }
                       });
+                      if (foundBranch) {
+
+                        if (_size.branches_list[indxBranch].code == '##session.branch.code##') {
+                          if (_size.branches_list[indxBranch].stores_list && _size.branches_list[indxBranch].stores_list.length > 0) {
+                            let foundStore = false
+                            let indxStore = 0
+                            _size.branches_list[indxBranch].stores_list.map((_store, i) => {
+                              if (_store.store.id == $scope.store_out.store.id) {
+                                foundStore = true
+                                indxStore = i
+                              }
+                            });
+                            if (foundStore)
+                              _size.store_count = _size.branches_list[indxBranch].stores_list[indxStore].current_count
+                          } else _size.store_count = 0
+
+                        } else _size.store_count = 0
+                      } else _size.store_count = 0
+
                     } else _size.store_count = 0
 
                     foundSize = $scope.item.sizes.some(_itemSize => _itemSize.barcode == _size.barcode);
@@ -438,18 +452,34 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
       _item.count = 1;
       _item.total = _item.count * _item.cost
       if (_item.branches_list && _item.branches_list.length > 0) {
-        _item.branches_list.forEach(_branch => {
+        let foundBranch = false
+        let indxBranch = 0
+        _item.branches_list.map((_branch, i) => {
           if (_branch.code == '##session.branch.code##') {
-            if (_branch.stores_list && _branch.stores_list.length > 0) {
-
-              _branch.stores_list.forEach(_store => {
-                if (_store.store && _store.store.id == $scope.store_out.store.id) {
-                  _item.store_count = _store.current_count
-                }
-              })
-            } else _item.store_count = 0
-          } else _item.store_count = 0
+            foundBranch = true
+            indxBranch = i
+          }
         });
+        if (foundBranch) {
+
+          if (_item.branches_list[indxBranch].code == '##session.branch.code##') {
+            if (_item.branches_list[indxBranch].stores_list && _item.branches_list[indxBranch].stores_list.length > 0) {
+
+              let foundStore = false
+              let indxStore = 0
+              _item.branches_list[indxBranch].stores_list.map((_store, i) => {
+                if (_store.store.id == $scope.store_out.store.id) {
+                  foundStore = true
+                  indxStore = i
+                }
+              });
+              if (foundStore)
+                _item.store_count = _item.branches_list[indxBranch].stores_list[indxStore].current_count
+            } else _item.store_count = 0
+
+          } else _item.store_count = 0
+        } else _item.store_count = 0
+
       } else _item.store_count = 0
       foundSize = $scope.item.sizes.some(_itemSize => _itemSize.barcode == _item.barcode);
       if (!foundSize)
@@ -829,21 +859,21 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
   /*   $scope.loadStores_Out();
    */
 
-  $scope.displayAccountInvoice = function (store_in) {
+  $scope.displayAccountInvoice = function (store_out) {
     $scope.get_open_shift((shift) => {
       if (shift) {
         $scope.account_invoices = {
           image_url: '/images/account_invoices.png',
           date: new Date(),
-          invoice_id: store_in.id,
-          customer: store_in.customer,
+          invoice_id: store_out.id,
+          customer: store_out.customer,
           shift: shift,
-          net_value: store_in.net_value,
+          net_value: store_out.net_value,
           paid_up: 0,
-          invoice_code: store_in.number,
-          total_discount: store_in.total_discount,
-          total_tax: store_in.total_tax,
-          current_book_list: store_in.items,
+          invoice_code: store_out.number,
+          total_discount: store_out.total_discount,
+          total_tax: store_out.total_tax,
+          current_book_list: store_out.items,
           source_type: {
             id: 2,
             en: "Stores Out / Sales Invoice",

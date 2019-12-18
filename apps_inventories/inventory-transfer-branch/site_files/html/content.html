@@ -15,7 +15,8 @@
                     <i-list class="col3" ng-model="transfer_branch.branch_from" display="name_ar" items="branchesList"
                         ng-search="_search.$branch_from" label="##word.branch_from##"></i-list>
                     <i-list class="col3" ng-model="transfer_branch.branch_to" items="branchesList" display="name_ar"
-                      ng-change="loadStoresTo(transfer_branch.branch_to)"  ng-search="_search.$branch_to" label="##word.branch_to##"></i-list>
+                        ng-change="loadStoresTo(transfer_branch.branch_to)" ng-search="_search.$branch_to"
+                        label="##word.branch_to##"></i-list>
 
                 </div>
 
@@ -40,36 +41,39 @@
             <br>
             <br>
             <div class="row margin padding">
-                <fieldset>
-                    <legend> ##word.permission_detailes## </legend>
+                <div class="col10">
 
-                    <table class="table center bold hover">
-                        <tr>
-                            <th>##word.serial##</th>
-                            <th>##word.transfer_branch_item_name##</th>
-                            <th>##word.barcode##</th>
-                            <th>##word.transfer_branch_item_size##</th>
-                            <th>##word.transfer_branch_item_store_balance##</th>
-                            <th>##word.quantity##</th>
-                            <th>##word.actions##</th>
-                        </tr>
+                    <fieldset>
+                        <legend> ##word.permission_detailes## </legend>
 
-                        <tr ng-repeat="itm in transfer_branch.items">
-                            <td> <br> {{$index + 1}}</td>
-                            <td> <br> {{itm.name}}</td>
-                            <td> <br> {{itm.barcode}}</td>
-                            <td> <br> {{itm.size}}</td>
-                            <td class="blue"> <br> {{itm.store_count}}</td>
-                            <td>
-                                <i-control type="number" ng-model="itm.count"></i-control>
-                            </td>
-                          
-                            <td>
-                                <i-button type="delete" ng-click="deleteRow(itm)"></i-button>
-                            </td>
-                        </tr>
-                    </table>
-                </fieldset>
+                        <table class="table center bold hover">
+                            <tr>
+                                <th>##word.serial##</th>
+                                <th>##word.transfer_branch_item_name##</th>
+                                <th>##word.barcode##</th>
+                                <th>##word.transfer_branch_item_size##</th>
+                                <th>##word.transfer_branch_item_store_balance##</th>
+                                <th>##word.quantity##</th>
+                                <th>##word.actions##</th>
+                            </tr>
+
+                            <tr ng-repeat="itm in transfer_branch.items">
+                                <td> <br> {{$index + 1}}</td>
+                                <td> <br> {{itm.name}}</td>
+                                <td> <br> {{itm.barcode}}</td>
+                                <td> <br> {{itm.size}}</td>
+                                <td class="blue"> <br> {{itm.store_count}}</td>
+                                <td>
+                                    <i-control type="number" ng-model="itm.count"></i-control>
+                                </td>
+
+                                <td>
+                                    <i-button type="delete" ng-click="deleteRow(itm)"></i-button>
+                                </td>
+                            </tr>
+                        </table>
+                    </fieldset>
+                </div>
             </div>
 
             <div class="row">
