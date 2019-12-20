@@ -191,6 +191,26 @@ app.controller("safes", function ($scope, $http) {
     )
   };
 
+  $scope.getSafeTypeList = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $scope.safeTypeList = [];
+    $http({
+      method: "POST",
+      url: "/api/safe_type/all"
+
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.safeTypesList = response.data;
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
   $scope.searchAll = function () {
     $scope.error = '';
     let where = {};
@@ -215,6 +235,7 @@ app.controller("safes", function ($scope, $http) {
   };
 
   $scope.loadAll();
+  $scope.getSafeTypeList();
   $scope.loadEmployees();
   // $scope.loadSafes();
 

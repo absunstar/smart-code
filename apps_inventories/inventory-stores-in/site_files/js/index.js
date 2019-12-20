@@ -21,7 +21,6 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
           shift: shift,
           net_value: store_in.net_value,
           paid_up: 0,
-
           invoice_code: store_in.number,
           total_discount: store_in.total_discount,
           total_tax: store_in.total_tax,
@@ -34,15 +33,19 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
           active: true
         };
 
-        if ($scope.defaultSettings.general_Settings) {
-          if ($scope.defaultSettings.general_Settings.payment_method)
-            $scope.account_invoices.payment_method = $scope.defaultSettings.general_Settings.payment_method;
-        };
-
         if ($scope.defaultSettings.accounting) {
-          if ($scope.defaultSettings.accounting.safe)
-            $scope.account_invoices.safe = $scope.defaultSettings.accounting.safe;
-        };
+          if ($scope.defaultSettings.accounting.payment_method) {
+            $scope.account_invoices.payment_method = $scope.defaultSettings.accounting.payment_method
+            $scope.loadSafes($scope.account_invoices.payment_method)
+            if ($scope.account_invoices.payment_method.id == 1) {
+              if ($scope.defaultSettings.accounting.safe_box)
+                $scope.account_invoices.safe = $scope.defaultSettings.accounting.safe_box
+            } else {
+              if ($scope.defaultSettings.accounting.safe_bank)
+                $scope.account_invoices.safe = $scope.defaultSettings.accounting.safe_bank
+            }
+          }
+        }
         site.showModal('#createInvoiceModal');
       } else $scope.error = '##word.open_shift_not_found##';
     });
@@ -315,18 +318,28 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
         if ($scope.defaultSettings.general_Settings) {
           if ($scope.defaultSettings.general_Settings.vendor)
             $scope.store_in.vendor = $scope.defaultSettings.general_Settings.vendor
-          if ($scope.defaultSettings.general_Settings.payment_method && $scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto)
-            $scope.store_in.payment_method = $scope.defaultSettings.general_Settings.payment_method;
         }
+
         if ($scope.defaultSettings.inventory) {
           if ($scope.defaultSettings.inventory.store)
             $scope.store_in.store = $scope.defaultSettings.inventory.store
           if ($scope.defaultSettings.inventory.type_in) {
             $scope.store_in.type = $scope.defaultSettings.inventory.type_in
 
-            if ($scope.defaultSettings.inventory.type_in.id == 1) {
-              if ($scope.defaultSettings.accounting && $scope.defaultSettings.accounting.safe && $scope.defaultSettings.accounting.create_invoice_auto)
-                $scope.store_in.safe = $scope.defaultSettings.accounting.safe
+            if ($scope.defaultSettings.accounting) {
+              if ($scope.store_in.type.id == 1 && $scope.defaultSettings.accounting.create_invoice_auto) {
+                if ($scope.defaultSettings.accounting.payment_method) {
+                  $scope.store_in.payment_method = $scope.defaultSettings.accounting.payment_method
+                  $scope.loadSafes($scope.store_in.payment_method)
+                  if ($scope.store_in.payment_method.id == 1) {
+                    if ($scope.defaultSettings.accounting.safe_box)
+                      $scope.store_in.safe = $scope.defaultSettings.accounting.safe_box
+                  } else {
+                    if ($scope.defaultSettings.accounting.safe_bank)
+                      $scope.store_in.safe = $scope.defaultSettings.accounting.safe_bank
+                  }
+                }
+              }
             }
           }
         }
@@ -365,13 +378,18 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
       $scope.error = v.messages[0].ar;
       return;
     }
+
     if ($scope.store_in.type && $scope.store_in.type.id == 1 && $scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto) {
       if (!$scope.store_in.safe) {
         $scope.error = "##word.nosafe_warning##";
         return;
       }
-
-    } else $scope.store_in.safe = null;
+    } else {
+      if ($scope.store_in.payment_method)
+        $scope.store_in.payment_method = null;
+      if ($scope.store_in.safe)
+        $scope.store_in.safe = null;
+    }
 
     if ($scope.defaultSettings.inventory && $scope.defaultSettings.inventory.dont_max_discount_items) {
       let max_discount = false;
@@ -384,7 +402,6 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
         $scope.error = "##word.err_maximum_discount##";
         return;
       }
-
     }
 
     if ($scope.store_in.items.length > 0) {
@@ -398,7 +415,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
           $scope.busy = false;
           if (response.data.done) {
             site.hideModal('#addStoreInModal');
-            if ($scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto) {
+            if ($scope.store_in.type.id == 1 && $scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto) {
               let store_in_doc = response.data.doc
               $scope.account_invoices = {
                 image_url: '/images/account_invoices.png',
@@ -598,7 +615,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
                         }
                       });
                       if (foundBranch) {
-              
+
                         if (_size.branches_list[indxBranch].code == '##session.branch.code##') {
                           if (_size.branches_list[indxBranch].stores_list && _size.branches_list[indxBranch].stores_list.length > 0) {
                             let foundStore = false
@@ -612,10 +629,10 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
                             if (foundStore)
                               _size.store_count = _size.branches_list[indxBranch].stores_list[indxStore].current_count
                           } else _size.store_count = 0
-              
+
                         } else _size.store_count = 0
                       } else _size.store_count = 0
-              
+
                     } else _size.store_count = 0
 
                     foundSize = $scope.item.sizes.some(_itemSize => _itemSize.barcode == _size.barcode);
@@ -837,9 +854,16 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
       }
     )
   };
-  $scope.loadSafes = function () {
+
+  $scope.loadSafes = function (method) {
     $scope.error = '';
     $scope.busy = true;
+    let where = {};
+
+    if (method.id == 1)
+      where = { 'type.id': 1 };
+    else where = { 'type.id': 2 };
+
     $http({
       method: "POST",
       url: "/api/safes/all",
@@ -847,8 +871,10 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
         select: {
           id: 1,
           name: 1,
-          number: 1
-        }
+          number: 1,
+          type: 1
+        },
+        where: where
       }
     }).then(
       function (response) {
@@ -1118,10 +1144,34 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
 
   $scope.getSafeBySetting = function () {
     $scope.error = '';
-    if ($scope.store_in.type.id == 1) {
-      if ($scope.defaultSettings.accounting) {
-        if ($scope.defaultSettings.accounting.safe) {
-          $scope.store_in.safe = $scope.defaultSettings.accounting.safe
+    if ($scope.defaultSettings.accounting) {
+      if ($scope.store_in.type.id == 1 && $scope.defaultSettings.accounting.create_invoice_auto) {
+        if ($scope.defaultSettings.accounting.payment_method) {
+          $scope.store_in.payment_method = $scope.defaultSettings.accounting.payment_method
+          $scope.loadSafes($scope.store_in.payment_method)
+          if ($scope.store_in.payment_method.id == 1) {
+            if ($scope.defaultSettings.accounting.safe_box)
+              $scope.store_in.safe = $scope.defaultSettings.accounting.safe_box
+          } else {
+            if ($scope.defaultSettings.accounting.safe_bank)
+              $scope.store_in.safe = $scope.defaultSettings.accounting.safe_bank
+          }
+        }
+      }
+    }
+  };
+
+  $scope.getSafeByType = function (obj) {
+    $scope.error = '';
+    if ($scope.defaultSettings.accounting) {
+      if (obj.type.id == 1) {
+        $scope.loadSafes(obj.payment_method);
+        if (obj.payment_method.id == 1) {
+          if ($scope.defaultSettings.accounting.safe_box)
+            obj.safe = $scope.defaultSettings.accounting.safe_box
+        } else {
+          if ($scope.defaultSettings.accounting.safe_bank)
+            obj.safe = $scope.defaultSettings.accounting.safe_bank
         }
       }
     }
@@ -1209,5 +1259,4 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
   $scope.loadDiscount_Types();
   $scope.getDefaultSettings();
   $scope.loadAll({ date: new Date() });
-  $scope.loadSafes();
 });

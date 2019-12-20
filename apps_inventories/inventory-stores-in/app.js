@@ -383,8 +383,9 @@ module.exports = function init(site) {
 
     let search = req.body.search
     
-    if (search) {
+    if (search) {      
       where.$or = []
+
       where.$or.push({
         'vendor.name': new RegExp(search, "i")
       })
@@ -411,14 +412,6 @@ module.exports = function init(site) {
 
       where.$or.push({
         'store.number': new RegExp(search, "i")
-      })
-
-      where.$or.push({
-        'store.type.ar': new RegExp(search, "i")
-      })
-
-      where.$or.push({
-        'store.type.en': new RegExp(search, "i")
       })
 
       where.$or.push({

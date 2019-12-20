@@ -106,6 +106,7 @@ module.exports = function init(site) {
             branch: doc.branch,
             date: doc.date,
             image_url: doc.image_url,
+            payment_method: doc.payment_method,
             safe: doc.safe
           }
           if (doc.source_type.id == 1)
@@ -168,7 +169,6 @@ module.exports = function init(site) {
           response.doc = result.doc
           /*  if (response.doc.remain_amount == 0)
              site.call('[account_invoices][order_invoice][paid]', response.doc.order_invoices_id) */
-
           if (response.doc.payment_safe) {
             let paid_value = {
               value: response.doc.payment_paid_up,
@@ -176,12 +176,14 @@ module.exports = function init(site) {
               branch: response.doc.branch,
               date: response.doc.payment_date,
               image_url: response.doc.image_url,
-              safe: response.doc.payment_safe
+              safe: response.doc.payment_safe,
+              payment_method = response.doc.payment_method,
+              type: 'Batch'
             }
             if (response.doc.source_type.id == 1)
-            site.call('[account_invoices][safes][-]', paid_value)
-          else if (response.doc.source_type.id == 2)
-            site.call('[account_invoices][safes][+]', paid_value)
+              site.call('[account_invoices][safes][-]', paid_value)
+            else if (response.doc.source_type.id == 2)
+              site.call('[account_invoices][safes][+]', paid_value)
 
           }
         } else {

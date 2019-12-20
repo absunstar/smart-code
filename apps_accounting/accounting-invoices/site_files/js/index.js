@@ -27,23 +27,21 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
                 shift: shift,
                 active: true,
               };
-
-              if ($scope.defaultSettings.general_Settings) {
-
-                if ($scope.defaultSettings.general_Settings.payment_method)
-                  $scope.account_invoices.payment_method = $scope.defaultSettings.general_Settings.payment_method;
-
-                if ($scope.defaultSettings.accounting && $scope.defaultSettings.accounting.safe)
-                  $scope.account_invoices.safe = $scope.defaultSettings.accounting.safe;
-
-                if ($scope.defaultSettings.general_Settings.order_type)
-                  $scope.account_invoices.order_invoices_type = $scope.defaultSettings.general_Settings.order_type;
-              }
-
+            
               if ($scope.defaultSettings.accounting) {
-
                 if ($scope.defaultSettings.accounting.source_type)
                   $scope.account_invoices.source_type = $scope.defaultSettings.accounting.source_type;
+                if ($scope.defaultSettings.accounting.payment_method) {
+                  $scope.account_invoices.payment_method = $scope.defaultSettings.accounting.payment_method;
+                  $scope.loadSafes($scope.account_invoices.payment_method);
+                  if ($scope.account_invoices.payment_method.id == 1) {
+                    if ($scope.defaultSettings.accounting.safe_box)
+                      $scope.account_invoices.safe = $scope.defaultSettings.accounting.safe_box;
+                  } else {
+                    if ($scope.defaultSettings.accounting.safe_bank)
+                      $scope.account_invoices.safe = $scope.defaultSettings.accounting.safe_bank;
+                  }
+                }
               }
 
               site.showModal('#accountInvoicesAddModal');
@@ -322,10 +320,14 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
       return;
     } else if (ev.which === 13) {
 
+      let where = {};
       let url = "/api/stores_in/all";
+
       if ($scope.account_invoices.source_type) {
-        if ($scope.account_invoices.source_type.id == 1)
+        if ($scope.account_invoices.source_type.id == 1) {
           url = "/api/stores_in/all";
+          where = { 'type.id': 1 };
+        }
         else if ($scope.account_invoices.source_type.id == 2)
           url = "/api/stores_out/all";
       }
@@ -335,7 +337,8 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
         url: url,
         data: {
           search: $scope.search_order,
-          invoice: true
+          invoice: true,
+          where: where
         }
       }).then(
         function (response) {
@@ -378,7 +381,17 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
         $scope.account_invoices = invoices;
         $scope.account_invoices.payment_date = new Date();
         $scope.account_invoices.payment_paid_up = 0;
-        $scope.account_invoices.payment_safe = $scope.defaultSettings.accounting ? $scope.defaultSettings.accounting.safe : null;
+
+        if ($scope.defaultSettings.accounting) {
+          $scope.loadSafes($scope.account_invoices.payment_method);
+          if ($scope.account_invoices.payment_method.id == 1) {
+            if ($scope.defaultSettings.accounting.safe_box)
+              $scope.account_invoices.payment_safe = $scope.defaultSettings.accounting.safe_box
+          } else {
+            if ($scope.defaultSettings.accounting.safe_bank)
+              $scope.account_invoices.payment_safe = $scope.defaultSettings.accounting.safe_bank
+          }
+        }
         site.showModal('#invoicesPaymentModal');
       } else $scope.error = '##word.open_shift_not_found##';
     });
@@ -468,18 +481,45 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.getSafesList = function () {
+  $scope.getSafeByType = function (obj) {
+    $scope.error = '';
+    if ($scope.defaultSettings.accounting) {
+      $scope.loadSafes(obj.payment_method);
+      if (obj.payment_method.id == 1) {
+        if ($scope.defaultSettings.accounting.safe_box)
+          obj.safe = $scope.defaultSettings.accounting.safe_box
+      } else {
+        if ($scope.defaultSettings.accounting.safe_bank)
+          obj.safe = $scope.defaultSettings.accounting.safe_bank
+      }
+    }
+  };
+
+  $scope.loadSafes = function (method) {
+    $scope.error = '';
     $scope.busy = true;
+
+    let where = {};
+    if (method.id == 1)
+      where = { 'type.id': 1 };
+    else where = { 'type.id': 2 };
+
     $http({
       method: "POST",
       url: "/api/safes/all",
-      data: {}
+      data: {
+        select: {
+          id: 1,
+          name: 1,
+          number: 1,
+          type: 1
+        },
+        where: where
+      }
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.safesList = response.data.list;
-        }
+        if (response.data.done) $scope.safesList = response.data.list;
       },
       function (err) {
         $scope.busy = false;
@@ -719,7 +759,6 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
   $scope.getDefaultSetting();
   $scope.getAccountInvoicesList({ date: new Date() });
   $scope.getSourceType();
-  $scope.getSafesList();
   $scope.getPaymentMethodList();
 /*   $scope.getTransactionTypeList();
  */});

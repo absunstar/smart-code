@@ -41,6 +41,7 @@ module.exports = function init(site) {
           company: doc.company,
           branch: doc.branch,
           sourceName: doc.source.name,
+          payment_method: doc.payment_method,
           description: doc.description
         }
         if (Obj.value && Obj.safe && Obj.date && Obj.sourceName) {
@@ -112,7 +113,8 @@ module.exports = function init(site) {
             company: result.doc.company,
             branch: result.doc.branch,
             sourceName: result.doc.source.name,
-            description: result.doc.description
+            description: result.doc.description,
+            payment_method: result.doc.payment_method,
 
           }
           if (Obj.value && Obj.safe && Obj.date && Obj.sourceName) {
@@ -161,7 +163,7 @@ module.exports = function init(site) {
         '$lt': d2
       }
     } else if (where && where.date_from) {
-      let d1 = site.toDate( where.date_from)
+      let d1 = site.toDate(where.date_from)
       let d2 = site.toDate(where.date_to)
       d2.setDate(d2.getDate() + 1);
       where.date = {

@@ -7,7 +7,28 @@ app.controller("amounts_in", function ($scope, $http) {
   $scope.newAmountIn = function () {
     $scope.get_open_shift((shift) => {
       if (shift) {
-        $scope.getDefaultSettings();
+        $scope.error = '';
+        $scope.amount_in = {
+          image_url: '/images/amount_in.png',
+          shift: $scope.shift,
+          date: new Date(),
+        };
+        if ($scope.defaultSettings) {
+
+          if ($scope.defaultSettings.accounting) {
+            if ($scope.defaultSettings.accounting.payment_method) {
+              $scope.amount_in.payment_method = $scope.defaultSettings.accounting.payment_method;
+              $scope.loadSafes($scope.amount_in.payment_method);
+              if ($scope.amount_in.payment_method.id == 1) {
+                if ($scope.defaultSettings.accounting.safe_box)
+                  $scope.amount_in.safe = $scope.defaultSettings.accounting.safe_box;
+              } else {
+                if ($scope.defaultSettings.accounting.safe_bank)
+                  $scope.amount_in.safe = $scope.defaultSettings.accounting.safe_bank;
+              }
+            }
+          }
+        }
         site.showModal('#addAmountInModal');
       } else $scope.error = '##word.open_shift_not_found##';
     });
@@ -25,18 +46,7 @@ app.controller("amounts_in", function ($scope, $http) {
         $scope.busy = false;
         if (response.data.done && response.data.doc) {
           $scope.defaultSettings = response.data.doc;
-          $scope.error = '';
-          $scope.amount_in = {
-            image_url: '/images/amount_in.png',
-            shift: $scope.shift,
-            date: new Date(),
-          };
 
-          if ($scope.defaultSettings.accounting) {
-            if ($scope.defaultSettings.accounting.safe) {
-              $scope.amount_in.safe = $scope.defaultSettings.accounting.safe
-            }
-          }
         };
       },
       function (err) {
@@ -210,19 +220,66 @@ app.controller("amounts_in", function ($scope, $http) {
     )
   };
 
-  $scope.loadSafes = function () {
-    $scope.list = {};
+  $scope.getPaymentMethodList = function () {
+    $scope.error = '';
     $scope.busy = true;
+    $scope.paymentMethodList = [];
     $http({
       method: "POST",
-      url: "/api/safes/all",
-      data: {}
+      url: "/api/payment_method/all"
+
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.safes = response.data.list;
-        }
+        $scope.paymentMethodList = response.data;
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.getSafeByType = function (obj) {
+    $scope.error = '';
+    if ($scope.defaultSettings.accounting) {
+      $scope.loadSafes(obj.payment_method);
+      if (obj.payment_method.id == 1) {
+        if ($scope.defaultSettings.accounting.safe_box)
+          obj.safe = $scope.defaultSettings.accounting.safe_box
+      } else {
+        if ($scope.defaultSettings.accounting.safe_bank)
+          obj.safe = $scope.defaultSettings.accounting.safe_bank
+      }
+    }
+  };
+
+  $scope.loadSafes = function (method) {
+    $scope.error = '';
+    $scope.busy = true;
+    let where = {};
+
+    if (method.id == 1)
+      where = { 'type.id': 1 };
+    else where = { 'type.id': 2 };
+
+    $http({
+      method: "POST",
+      url: "/api/safes/all",
+      data: {
+        select: {
+          id: 1,
+          name: 1,
+          number: 1,
+          type: 1
+        },
+        where: where
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) $scope.safesList = response.data.list;
+
       },
       function (err) {
         $scope.busy = false;
@@ -306,8 +363,8 @@ app.controller("amounts_in", function ($scope, $http) {
       }
     )
   };
-
-  $scope.loadSafes();
+  $scope.getDefaultSettings();
+  $scope.getPaymentMethodList();
   $scope.loadInOutNames();
   $scope.loadEmployees();
   $scope.loadAll({ date: new Date() });

@@ -97,19 +97,27 @@ app.controller("default_setting", function ($scope, $http) {
       }
     )
   };
-  $scope.loadSafes = function () {
+
+  $scope.loadSafesBox = function () {
     $scope.error = '';
     $scope.busy = true;
     $http({
       method: "POST",
       url: "/api/safes/all",
-      data: {}
+      data: {
+        select: {
+          id: 1,
+          name: 1,
+          number: 1,
+          type: 1
+        },
+        where: { 'type.id': 1 }
+      }
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done) {
-          $scope.safes = response.data.list;
-        }
+        if (response.data.done) $scope.safesBoxList = response.data.list;
+
       },
       function (err) {
         $scope.busy = false;
@@ -117,6 +125,34 @@ app.controller("default_setting", function ($scope, $http) {
       }
     )
   };
+  $scope.loadSafesBank = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/safes/all",
+      data: {
+        select: {
+          id: 1,
+          name: 1,
+          number: 1,
+          type: 1
+        },
+        where: { 'type.id': 2 }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) $scope.safesBankList = response.data.list;
+
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
 /*   $scope.getSourceType = function () {
     $scope.error = '';
     $scope.busy = true;
@@ -428,7 +464,6 @@ app.controller("default_setting", function ($scope, $http) {
     )
   };
 
-  $scope.loadSafes();
   $scope.loadStores();
   $scope.loadVendors();
   $scope.getTrainerList();
@@ -440,6 +475,8 @@ app.controller("default_setting", function ($scope, $http) {
   $scope.loadItemsGroups();
   $scope.loadDelegates();
   $scope.getSourceType();
+  $scope.loadSafesBank();
+  $scope.loadSafesBox();
   $scope.loadStoresInTypes();
   $scope.loadSetting();
   $scope.getPrintersPath();

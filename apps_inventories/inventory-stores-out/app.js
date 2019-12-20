@@ -7,127 +7,129 @@ module.exports = function init(site) {
     })
   })
 
- /*  site.on('[store_out][account_invoice][invoice]', function (obj) {
+  site.on('[store_out][account_invoice][invoice]', function (obj) {
     $stores_out.findOne({ id: obj }, (err, doc) => {
       doc.invoice = true
       $stores_out.update(doc);
     });
   });
 
-  $stores_out.busy1 = false;
-  site.on('[stores_items][store_out]', itm => {
-    if ($stores_out.busy1 == true) {
-      setTimeout(() => {
-        site.call('[stores_items][store_out]', Object.assign({}, itm))
-      }, 200);
-      return
-    }
-    $stores_out.busy1 = true;
-    let obj = {
-      items: [],
-      total: 0,
-      image_url: '/images/store_out.png',
-      store: itm.store,
-      date: new Date(itm.date),
-      number: new Date().getTime().toString(),
-      total_value: 0,
-      net_value: 0,
-      total_tax: 0,
-      total_discount: 0,
-      price: itm.price,
-      cost: itm.cost,
-    }
-    obj.items.push(itm)
-
-    $stores_out.add(obj, (err, doc) => {
-      if (!err) {
-        $stores_out.busy1 = false;
-      }
-    })
-
-  })
-
-  site.on('[stores_transfer][store_out][+]', doc => {
-    doc.items.forEach(itm => {
-      let obj = {
-        items: [],
-        total: 0,
-        image_url: '/images/store_out.png',
-        store: doc.store_to,
-        safe: doc.safe,
-        date: new Date(doc.date),
-        number: new Date().getTime().toString(),
-        supply_number: doc.number,
-        total_value: 0,
-        net_value: 0,
-        total_tax: 0,
-        total_discount: 0,
-        price: itm.price,
-        cost: itm.cost,
-        current_status: 'transferred'
-      }
-      obj.items.push(itm)
-      $stores_out.add(obj, (err, doc) => {
-        if (!err) {
-          doc.items.forEach(itm => {
-
-            delete itm.store
-            itm.company = doc.company
-            itm.branch = doc.branch
-            itm.store = doc.store
-            itm.date = doc.date
-            itm.transaction_type = 'in'
-            itm.supply_number = doc.supply_number
-            itm.current_status = ' '
-
-            let nwitm = itm
-            nwitm.current_status = 'transferred'
-            let obj = {
-              'itm.current_status': 'transferred',
-              name: itm.name,
-              store: doc.store,
-              date: doc.date,
-              item: nwitm,
-            }
-
-            site.call('[stores_transfer][stores_items]', obj)
-            site.call('please track item', Object.assign({}, itm))
-
-          });
-        }
-      })
-    });
-  })
-
-  site.on('[eng_item_debt][stores_out][+]', itm => {
-
-    let sizes = [{
-      name: itm.name,
-      count: 1,
-      total: 0,
-      total_value: itm.price,
-      net_value: itm.price,
-      size: itm.size,
-      price: itm.price,
-      name: itm.name
-    }]
-
-    let obj = {
-      date: itm.date,
-      image_url: '/images/store_out.png',
-      items: sizes,
-      store: itm.store,
-      date: new Date(itm.date),
-      number: new Date().getTime().toString(),
-      total_value: 0,
-      net_value: 0,
-      total_tax: 0,
-      total_discount: 0,
-      count: itm.count
-    }
-    $stores_out.add(obj)
-  })
- */
+  /*  
+ 
+   $stores_out.busy1 = false;
+   site.on('[stores_items][store_out]', itm => {
+     if ($stores_out.busy1 == true) {
+       setTimeout(() => {
+         site.call('[stores_items][store_out]', Object.assign({}, itm))
+       }, 200);
+       return
+     }
+     $stores_out.busy1 = true;
+     let obj = {
+       items: [],
+       total: 0,
+       image_url: '/images/store_out.png',
+       store: itm.store,
+       date: new Date(itm.date),
+       number: new Date().getTime().toString(),
+       total_value: 0,
+       net_value: 0,
+       total_tax: 0,
+       total_discount: 0,
+       price: itm.price,
+       cost: itm.cost,
+     }
+     obj.items.push(itm)
+ 
+     $stores_out.add(obj, (err, doc) => {
+       if (!err) {
+         $stores_out.busy1 = false;
+       }
+     })
+ 
+   })
+ 
+   site.on('[stores_transfer][store_out][+]', doc => {
+     doc.items.forEach(itm => {
+       let obj = {
+         items: [],
+         total: 0,
+         image_url: '/images/store_out.png',
+         store: doc.store_to,
+         safe: doc.safe,
+         date: new Date(doc.date),
+         number: new Date().getTime().toString(),
+         supply_number: doc.number,
+         total_value: 0,
+         net_value: 0,
+         total_tax: 0,
+         total_discount: 0,
+         price: itm.price,
+         cost: itm.cost,
+         current_status: 'transferred'
+       }
+       obj.items.push(itm)
+       $stores_out.add(obj, (err, doc) => {
+         if (!err) {
+           doc.items.forEach(itm => {
+ 
+             delete itm.store
+             itm.company = doc.company
+             itm.branch = doc.branch
+             itm.store = doc.store
+             itm.date = doc.date
+             itm.transaction_type = 'in'
+             itm.supply_number = doc.supply_number
+             itm.current_status = ' '
+ 
+             let nwitm = itm
+             nwitm.current_status = 'transferred'
+             let obj = {
+               'itm.current_status': 'transferred',
+               name: itm.name,
+               store: doc.store,
+               date: doc.date,
+               item: nwitm,
+             }
+ 
+             site.call('[stores_transfer][stores_items]', obj)
+             site.call('please track item', Object.assign({}, itm))
+ 
+           });
+         }
+       })
+     });
+   })
+ 
+   site.on('[eng_item_debt][stores_out][+]', itm => {
+ 
+     let sizes = [{
+       name: itm.name,
+       count: 1,
+       total: 0,
+       total_value: itm.price,
+       net_value: itm.price,
+       size: itm.size,
+       price: itm.price,
+       name: itm.name
+     }]
+ 
+     let obj = {
+       date: itm.date,
+       image_url: '/images/store_out.png',
+       items: sizes,
+       store: itm.store,
+       date: new Date(itm.date),
+       number: new Date().getTime().toString(),
+       total_value: 0,
+       net_value: 0,
+       total_tax: 0,
+       total_discount: 0,
+       count: itm.count
+     }
+     $stores_out.add(obj)
+   })
+  */
   site.post({
     name: '/api/stores_out/types/all',
     path: __dirname + '/site_files/json/types.json'
@@ -248,7 +250,6 @@ module.exports = function init(site) {
     let stores_out_doc = req.body
     stores_out_doc.edit_user_info = site.security.getUserFinger({ $req: req, $res: res })
 
-    stores_out_doc.seasonName = stores_out_doc.seasonName
     stores_out_doc.type = site.fromJson(stores_out_doc.type)
     stores_out_doc.date = new Date(stores_out_doc.date)
 
@@ -358,8 +359,8 @@ module.exports = function init(site) {
     let where = req.body.where || {}
 
     let search = req.body.search || ''
-    
-    
+
+
     if (search) {
       where.$or = []
       where.$or.push({
@@ -410,8 +411,8 @@ module.exports = function init(site) {
     where['company.id'] = site.get_company(req).id
     where['branch.code'] = site.get_branch(req).code
 
-    if(req.body.invoice)
-    where['invoice'] = false
+    if (req.body.invoice)
+      where['invoice'] = false
 
     if (where['shift_code']) {
       where['shift.code'] = new RegExp(where['shift_code'], 'i')

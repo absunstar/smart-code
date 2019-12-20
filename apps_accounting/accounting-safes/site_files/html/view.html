@@ -1,11 +1,14 @@
-<div ng-hide="busy"  id="v1" fixed>
+<div ng-hide="busy" id="v1" fixed>
     <div class="col7">
-        <table class="table bold">
+        <table class="table hover bold">
             <tr>
                 <td class="title">##word.safes_name##</td>
                 <td class="center title">{{safe.name}}</td>
             </tr>
-
+            <tr>
+                <td class="title">##word.safe_type##</td>
+                <td class="center blue">{{safe.type.ar}}</td>
+            </tr>
             <tr>
                 <td class="title">##word.safes_employee##</td>
                 <td class="center">{{safe.employee.name}}</td>
@@ -13,7 +16,8 @@
 
             <tr>
                 <td class="title">##word.safes_balance##</td>
-                <td class="green center">{{safe.balance }} <p class="green" ng-show = "safe.balance">##word.pound##</p> </td>
+                <td class="green center">{{safe.balance }} <p class="green" ng-show="safe.balance">##word.le##</p>
+                </td>
             </tr>
             <tr>
                 <td class="title">##word.safes_description##</td>

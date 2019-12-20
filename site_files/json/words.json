@@ -70,6 +70,16 @@
         "ar": "القيمة الإجمالية"
     },
     {
+        "name": "safe_box",
+        "en": "Safe Box",
+        "ar": "خزينة الصندوق"
+    },
+    {
+        "name": "safe_bank",
+        "en": "Safe Bank",
+        "ar": "خزينة البنك"
+    },
+    {
         "name": "net_value",
         "en": "Net Value",
         "ar": "صافي القيمة"

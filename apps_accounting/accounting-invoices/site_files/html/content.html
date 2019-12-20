@@ -9,7 +9,7 @@
                         <i-date2 class="col4" ng-model="account_invoices.date" label="##word.date##"></i-date2>
                         <i-list help-id="" ng-search="_search.$payment_method_search" class="col2"
                             label="##word.payment_method##" ng-model="account_invoices.payment_method"
-                            items="paymentMethodList" display="##session.lang##">
+                            ng-change="getSafeByType(account_invoices)" items="paymentMethodList" display="##session.lang##">
                         </i-list>
 
                         <div class="col2"></div>

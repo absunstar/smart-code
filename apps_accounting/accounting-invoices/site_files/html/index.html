@@ -69,7 +69,7 @@
                         <td class="center not-print">
                             <i-button type="details" x-permissions="account_invoices_view || account_invoices_manage" label="##word.details##" ng-click="displayDetailsAccountInvoices(c)"></i-button>
 <!--                             <i-button type="update" x-permissions="account_invoices_edit || account_invoices_manage" label="##word.update##" ng-click="displayUpdateAccountInvoices(c)"></i-button>
- -->                            <i-button ng-hide="c.remain_amount == 0" x-permissions="account_invoices_edit || account_invoices_manage"
+ -->                            <i-button ng-hide="c.remain_amount <= 0" x-permissions="account_invoices_edit || account_invoices_manage"
                             type="edit" label="##word.payment##" ng-click="displayPaymentInvoices(c)"></i-button>
                             <i-button type="delete" x-permissions="account_invoices_delete || account_invoices_manage" label="##word.delete##" ng-click="displayDeleteAccountInvoices(c)"></i-button>
                         </td>

@@ -13,6 +13,7 @@
  
     {"name" : "safes_employee_name" , "en" : "Employee Name" , "ar" : " إسم المسؤول  "},   
     {"name" : "safes_search" , "en" : "search" , "ar" : " بحث"},   
+    {"name" : "safe_type" , "en" : "Safe Type" , "ar" : " نوع الخزينة"},   
     {"name" : "empty_search" , "en" : "Reset" , "ar" : " تفريغ الحقول"},   
     {"name" : "safes_description" , "en" : "Description" , "ar" : "التفاصيل"},   
     {"name" : "duplicate_alarm" , "en" : "Duplicate" , "ar" : "هذا البيان موجود من قبل"},   

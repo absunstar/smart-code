@@ -7,6 +7,11 @@ module.exports = function init(site) {
     $safes.add({
       name: "خزينة إفتراضي",
       balance: 0,
+      type: {
+        id: 1,
+        en: "Cash",
+        ar: "كاش"
+      },
       image_url: '/images/safe.png',
       company: {
         id: doc.id,
@@ -71,7 +76,10 @@ module.exports = function init(site) {
               obj.branch = doc.branch
               obj.notes = doc.notes
               obj.balance = doc.balance
-              obj.operation = 'فاتورة حساب مبيعات'
+              if (obj.type == 'Batch')
+                obj.operation = 'دفعة حساب مبيعات'
+              else obj.operation = 'فاتورة حساب مبيعات'
+
               obj.sourceName = obj.code
               obj.transition_type = 'in';
               site.call('[safes][safes_payments][+]', obj)
@@ -100,7 +108,12 @@ module.exports = function init(site) {
               obj.branch = doc.branch
               obj.notes = doc.notes
               obj.balance = doc.balance
-              obj.operation = 'فاتورة حساب مشتريات'
+              obj.payment_method = doc.payment_method
+
+              if (obj.type == 'Batch')
+                obj.operation = 'دفعة حساب مشتريات'
+              else obj.operation = 'فاتورة حساب مشتريات'
+
               obj.sourceName = obj.code
               obj.transition_type = 'out';
               site.call('[safes][safes_payments][-]', obj)
@@ -349,7 +362,6 @@ module.exports = function init(site) {
 
   })
 
-
   site.on('[stores_out][safes][-]', function (obj) {
 
     $safes.find({
@@ -379,7 +391,6 @@ module.exports = function init(site) {
     })
 
   })
-
 
   site.on('[amount in][safes][+]', function (obj) {
 
@@ -411,7 +422,6 @@ module.exports = function init(site) {
       }
     })
   })
-
 
   site.on('[amount in][safes][-]', function (obj) {
 
@@ -476,7 +486,6 @@ module.exports = function init(site) {
     })
 
   })
-
 
   site.on('[amount out][safes][-]', function (obj) {
 
@@ -573,7 +582,6 @@ module.exports = function init(site) {
     })
 
   })
-
 
   site.on('[employee_offer][safes][-]', function (obj) {
 
@@ -847,11 +855,15 @@ module.exports = function init(site) {
     compress: false
   })
 
+  site.post({
+    name: "/api/safe_type/all",
+    path: __dirname + "/site_files/json/safe_type.json"
+  })
+
   site.get({
     name: 'images',
     path: __dirname + '/site_files/images/'
   })
-
 
   site.post("/api/safes/add", (req, res) => {
     let response = {}
@@ -902,7 +914,10 @@ module.exports = function init(site) {
       return
     }
     let safes_doc = req.body
-
+    safes_doc.edit_user_info = site.security.getUserFinger({
+      $req: req,
+      $res: res
+    })
     safes_doc.employee = site.fromJson(safes_doc.employee)
     if (safes_doc._id) {
       $safes.edit({
@@ -980,8 +995,8 @@ module.exports = function init(site) {
     }
 
     where['company.id'] = site.get_company(req).id
-/*     where['branch.code'] = site.get_branch(req).code
- */
+    /*     where['branch.code'] = site.get_branch(req).code
+     */
     $safes.findMany({
       select: req.body.select || {},
       sort: {

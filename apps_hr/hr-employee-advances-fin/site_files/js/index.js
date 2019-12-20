@@ -4,14 +4,14 @@ app.controller("employees_advances_fin", function ($scope, $http) {
   $scope.employees_advances_fin = {};
   $scope.search = {};
 
- 
+
 
   $scope.approved = function () {
 
     $scope.busy = true;
 
-      $scope.employees_advances_fin.done = true
-    
+    $scope.employees_advances_fin.done = true
+
     $http({
       method: "POST",
       url: "/api/employees_advances_fin/approved",
@@ -29,31 +29,32 @@ app.controller("employees_advances_fin", function ($scope, $http) {
       function (err) {
         console.log(err);
       }
-      )
+    )
   };
 
   $scope.loadAll = function (where) {
     $scope.busy = true;
-    
+
     $http({
       method: "POST",
       url: "/api/employees_advances_fin/all",
-      data: {where : where
+      data: {
+        where: where
       }
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.list = response.data.list;
-          
-         site.hideModal('#amountsInSearchModal');
+
+          site.hideModal('#amountsInSearchModal');
         }
       },
       function (err) {
         $scope.busy = false;
         $scope.error = err;
       }
-      )
+    )
   };
 
 
@@ -63,7 +64,14 @@ app.controller("employees_advances_fin", function ($scope, $http) {
     $http({
       method: "POST",
       url: "/api/safes/all",
-      data: {}
+      data: {
+        select: {
+          id: 1,
+          name: 1,
+          number: 1,
+          type: 1
+        }
+      }
     }).then(
       function (response) {
         $scope.busy = false;
@@ -83,7 +91,7 @@ app.controller("employees_advances_fin", function ($scope, $http) {
 
   $scope.newemployees_advances_fin = function () {
     $scope.error = '';
-    $scope.employees_advances_fin = { image_url: '/images/discount.png', date: new Date() , from_eng : false , from_company : false };
+    $scope.employees_advances_fin = { image_url: '/images/discount.png', date: new Date(), from_eng: false, from_company: false };
     site.showModal('#addEmployeesAdvancesFinModal');
   };
 
@@ -91,7 +99,7 @@ app.controller("employees_advances_fin", function ($scope, $http) {
   $scope.searchAll = function () {
     let where = {};
 
-    
+
     if ($scope.search.date) {
       where['date'] = $scope.search.date;
     }
@@ -113,13 +121,13 @@ app.controller("employees_advances_fin", function ($scope, $http) {
     }
 
 
-    
+
     $scope.loadAll(where);
   };
 
   $scope.add = function () {
 
-     $scope.error = '';
+    $scope.error = '';
     let v = site.validated();
 
     if (!v.ok) {
@@ -127,13 +135,13 @@ app.controller("employees_advances_fin", function ($scope, $http) {
       return;
     }
 
-    
+
     $scope.busy = true;
     $http({
       method: "POST",
       url: "/api/employees_advances_fin/add",
       data: $scope.employees_advances_fin
-     
+
     }).then(
       function (response) {
         $scope.busy = false;
@@ -147,7 +155,7 @@ app.controller("employees_advances_fin", function ($scope, $http) {
       function (err) {
         console.log(err);
       }
-      )
+    )
   };
 
   $scope.edit = function (employees_advances_fin) {
@@ -157,7 +165,7 @@ app.controller("employees_advances_fin", function ($scope, $http) {
     site.showModal('#updateEmployeesAdvancesFinModal');
   };
 
- 
+
   $scope.update = function () {
     $scope.busy = true;
     $http({
@@ -177,7 +185,7 @@ app.controller("employees_advances_fin", function ($scope, $http) {
       function (err) {
         console.log(err);
       }
-      )
+    )
   };
 
   $scope.remove = function (employees_advances_fin) {
@@ -205,7 +213,7 @@ app.controller("employees_advances_fin", function ($scope, $http) {
       function (err) {
         console.log(err);
       }
-      )
+    )
   };
   $scope.details = function (employees_advances_fin) {
     $scope.view(employees_advances_fin);
@@ -231,10 +239,10 @@ app.controller("employees_advances_fin", function ($scope, $http) {
       function (err) {
         console.log(err);
       }
-      )
+    )
   };
-  
-   
+
+
   $scope.loadSafes();
-  $scope.loadAll({date : new Date()});
+  $scope.loadAll({ date: new Date() });
 });

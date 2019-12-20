@@ -119,8 +119,6 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         if ($scope.defaultSettings.general_Settings) {
           if ($scope.defaultSettings.general_Settings.customer)
             $scope.store_out.customer = $scope.defaultSettings.general_Settings.customer;
-          if ($scope.defaultSettings.general_Settings.payment_method && $scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto)
-            $scope.store_out.payment_method = $scope.defaultSettings.general_Settings.payment_method;
         }
 
         if ($scope.defaultSettings.inventory) {
@@ -133,10 +131,22 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         }
 
         if ($scope.defaultSettings.accounting) {
-          if ($scope.defaultSettings.accounting.safe && $scope.defaultSettings.accounting.create_invoice_auto) {
-            $scope.store_out.safe = $scope.defaultSettings.accounting.safe
+          if ($scope.defaultSettings.accounting.create_invoice_auto) {
+            if ($scope.defaultSettings.accounting.payment_method) {
+              $scope.store_out.payment_method = $scope.defaultSettings.accounting.payment_method
+              $scope.loadSafes($scope.store_out.payment_method)
+              if ($scope.store_out.payment_method.id == 1) {
+                if ($scope.defaultSettings.accounting.safe_box)
+                  $scope.store_out.safe = $scope.defaultSettings.accounting.safe_box
+              } else {
+                if ($scope.defaultSettings.accounting.safe_bank)
+                  $scope.store_out.safe = $scope.defaultSettings.accounting.safe_bank
+              }
+            }
           }
-        } site.showModal('#addStoreOutModal');
+        }
+
+        site.showModal('#addStoreOutModal');
       } else $scope.error = '##word.open_shift_not_found##';
     });
   };
@@ -636,9 +646,15 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
       }
     )
   };
-  $scope.loadSafes = function () {
+  $scope.loadSafes = function (method) {
     $scope.error = '';
     $scope.busy = true;
+    let where = {};
+
+    if (method.id == 1)
+      where = { 'type.id': 1 };
+    else where = { 'type.id': 2 };
+
     $http({
       method: "POST",
       url: "/api/safes/all",
@@ -646,8 +662,10 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         select: {
           id: 1,
           name: 1,
-          number: 1
-        }
+          number: 1,
+          type: 1
+        },
+        where: where
       }
     }).then(
       function (response) {
@@ -661,6 +679,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
       }
     )
   };
+
 
   $scope.loadStoresOutTypes = function () {
     $scope.error = '';
@@ -882,15 +901,19 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
           active: true
         };
 
-        if ($scope.defaultSettings.general_Settings) {
-          if ($scope.defaultSettings.general_Settings.payment_method)
-            $scope.account_invoices.payment_method = $scope.defaultSettings.general_Settings.payment_method;
-        };
-
         if ($scope.defaultSettings.accounting) {
-          if ($scope.defaultSettings.accounting.safe)
-            $scope.account_invoices.safe = $scope.defaultSettings.accounting.safe;
-        };
+          if ($scope.defaultSettings.accounting.payment_method) {
+            $scope.account_invoices.payment_method = $scope.defaultSettings.accounting.payment_method
+            $scope.loadSafes($scope.account_invoices.payment_method)
+            if ($scope.account_invoices.payment_method.id == 1) {
+              if ($scope.defaultSettings.accounting.safe_box)
+                $scope.account_invoices.safe = $scope.defaultSettings.accounting.safe_box
+            } else {
+              if ($scope.defaultSettings.accounting.safe_bank)
+                $scope.account_invoices.safe = $scope.defaultSettings.accounting.safe_bank
+            }
+          }
+        }
         site.showModal('#createInvoiceModal');
       } else $scope.error = '##word.open_shift_not_found##';
     });
@@ -1054,17 +1077,39 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
     );
   };
 
-
   $scope.getSafeBySetting = function () {
     $scope.error = '';
-    if ($scope.store_out.type.id == 1) {
-      if ($scope.defaultSettings.accounting) {
-        if ($scope.defaultSettings.accounting.safe) {
-          $scope.store_out.safe = $scope.defaultSettings.accounting.safe
+    if ($scope.defaultSettings.accounting) {
+      if ($scope.defaultSettings.accounting.create_invoice_auto) {
+        if ($scope.defaultSettings.accounting.payment_method) {
+          $scope.store_out.payment_method = $scope.defaultSettings.accounting.payment_method
+          $scope.loadSafes($scope.store_out.payment_method)
+          if ($scope.store_out.payment_method.id == 1) {
+            if ($scope.defaultSettings.accounting.safe_box)
+              $scope.store_out.safe = $scope.defaultSettings.accounting.safe_box
+          } else {
+            if ($scope.defaultSettings.accounting.safe_bank)
+              $scope.store_out.safe = $scope.defaultSettings.accounting.safe_bank
+          }
         }
       }
     }
   };
+
+  $scope.getSafeByType = function (obj) {
+    $scope.error = '';
+    if ($scope.defaultSettings.accounting) {
+      $scope.loadSafes(obj.payment_method);
+      if (obj.payment_method.id == 1) {
+        if ($scope.defaultSettings.accounting.safe_box)
+        obj.safe = $scope.defaultSettings.accounting.safe_box
+      } else {
+        if ($scope.defaultSettings.accounting.safe_bank)
+          obj.safe = $scope.defaultSettings.accounting.safe_bank
+      }
+    }
+  };
+
 
   $scope.getCustomerGroupList = function () {
     $http({
@@ -1368,5 +1413,5 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
   $scope.loadItemSize();
   $scope.loadDiscount_Types();
   $scope.loadAll({ date: new Date() });
-  $scope.loadSafes();
+
 });

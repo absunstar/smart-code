@@ -1,7 +1,7 @@
 <div ng-hide="busy" class="row" fixed>
     <div class="col9">
         <br>
-        <table class="table bold">
+        <table class="table hover bold">
             <tr>
                 <td class="title">##word.amounts_in_date##</td>
                 <td class="brown center">{{amount_in.date | date : 'dd - MM - yyyy'}}</td>
@@ -11,21 +11,29 @@
                 <td class="title">##word.shift##</td>
                 <td class="center blue">{{amount_in.shift.code}}</td>
             </tr>
-            <tr>
-                <td class="title">##word.amounts_in_value##</td>
-                <td class="green center">{{amount_in.value}}</td>
-            </tr>
 
+            <tr>
+                <td class="title">##word.payment_method##</td>
+                <td class="green center">{{amount_in.payment_method.ar}}</td>
+            </tr>
+            <tr>
+                <td class="title">##word.amounts_in_source##</td>
+                <td class="center">{{amount_in.source.name}}</td><br>
+
+            </tr>
             <tr ng-show="amount_in.employee">
                 <td class="title">##word.amounts_in_employees##</td>
                 <td class="center">{{amount_in.employee.name}}</td>
             </tr>
 
+            <tr>
+                <td class="title">##word.amounts_in_value##</td>
+                <td class="green center">{{amount_in.value}}</td>
+            </tr>
 
             <tr>
-                <td class="title">##word.amounts_in_source##</td>
-                <td class="center">{{amount_in.source.name}}</td><br>
-
+                <td class="title">##word.amounts_in_safe##</td>
+                <td class="green center">{{amount_in.safe.name}}</td>
             </tr>
 
             <tr>

@@ -6,6 +6,7 @@ module.exports = function init(site) {
     let obj = {
       number: info.number || '',
       safe: info.safe,
+      payment_method: info.payment_method,
       value: info.value || '',
       date: info.date || info.safe.date,
       source: info.operation,
@@ -23,10 +24,11 @@ module.exports = function init(site) {
   })
 
   site.on('[safes][safes_payments][-]', info => {
-    
+
     let obj = {
       number: info.number || '',
       safe: info.safe,
+      payment_method: info.payment_method,
       value: info.value,
       date: info.date,
       source: info.operation,
@@ -39,7 +41,7 @@ module.exports = function init(site) {
       sourceName: info.sourceName || '',
       description: info.description || '',
       notes: info.notes || ''
-    }    
+    }
     $safes_payments.add(obj)
   })
 
@@ -65,7 +67,7 @@ module.exports = function init(site) {
         '$lt': d2
       }
     } else if (where && where.date_from) {
-      let d1 = site.toDate( where.date_from)
+      let d1 = site.toDate(where.date_from)
       let d2 = site.toDate(where.date_to)
       d2.setDate(d2.getDate() + 1);
       where.date = {

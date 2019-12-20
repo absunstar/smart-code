@@ -12,8 +12,13 @@
             </div>
 
             <div class="row">
+                <i-list help-id="" ng-search="_search.$payment_method_search" class="col2"
+                    label="##word.payment_method##" ng-model="amount_in.payment_method" items="paymentMethodList"
+                    ng-change="getSafeByType(amount_in)"
+                    display="##session.lang##">
+                </i-list>
                 <i-list v="r" class="col4 control padding" ng-search="_search.$safe_amount_in" class="col12"
-                    ng-model="amount_in.safe" items="safes" label="##word.amounts_in_safe##"></i-list>
+                    ng-model="amount_in.safe" items="safesList" label="##word.amounts_in_safe##"></i-list>
                 <i-control class="col2" v="r" ng-model="amount_in.value" type="number"
                     label="##word.amounts_in_value##"></i-control>
             </div>

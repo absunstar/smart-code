@@ -97,7 +97,14 @@ app.controller("default_setting", function ($scope, $http) {
     $http({
       method: "POST",
       url: "/api/safes/all",
-      data: {}
+      data: {
+        select: {
+          id: 1,
+          name: 1,
+          number: 1,
+          type : 1
+        }
+      }
     }).then(
       function (response) {
         $scope.busy = false;
