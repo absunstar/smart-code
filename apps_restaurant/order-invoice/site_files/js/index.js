@@ -42,14 +42,10 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
           }
         };
 
-        if ($scope.defaultSettings.general_Settings && $scope.defaultSettings.general_Settings.create_invoice) {
-          $scope.paid_up = 0;
-
-          if ($scope.defaultSettings && $scope.defaultSettings.accounting && $scope.defaultSettings.accounting.safe) {
-            $scope.safe = $scope.defaultSettings.accounting.safe;
-          }
-
-        }
+        if ($scope.defaultSettings.inventory) {
+          if ($scope.defaultSettings.inventory.store)
+            $scope.order_invoice.store = $scope.defaultSettings.inventory.store;
+        };
 
         if ($scope.defaultSettings.general_Settings) {
           if ($scope.defaultSettings.general_Settings.order_type) {
@@ -87,7 +83,6 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
 
             if ($scope.defaultSettings.general_Settings.customer.customer_mobile)
               $scope.order_invoice.customer_mobile = $scope.defaultSettings.general_Settings.customer.customer_mobile;
-
           }
         }
 
@@ -301,7 +296,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     $scope.create_invoices = {
       shift: $scope.order_invoice.shift,
       source_type: {
-        id: 2,
+        id: 3,
         en: "Order Invoices",
         ar: "شاشة الطلبات"
       },
@@ -312,14 +307,12 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
       paid_up: $scope.paid_up || 0
     };
 
-    if ($scope.defaultSettings.general_Settings) {
-      if ($scope.defaultSettings.general_Settings.payment_method)
-        $scope.create_invoices.payment_method = $scope.defaultSettings.general_Settings.payment_method;
-    }
+    $scope.create_invoices.payment_method = $scope.payment_method;
+    $scope.create_invoices.order_invoices_type = $scope.order_invoice.transaction_type;
 
     if ($scope.safe)
       $scope.create_invoices.safe = $scope.safe;
-    $scope.create_invoices.order_invoices_type = $scope.order_invoice.transaction_type;
+
 
     if ($scope.order_invoice.customer)
       $scope.create_invoices.customer = $scope.order_invoice.customer;
@@ -348,7 +341,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
 
     }
 
-    
+
 
     if ($scope.create_invoices.paid_up <= 0) $scope.create_invoices.safe = null;
 
@@ -398,14 +391,11 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
       paid_up: $scope.paid_up || 0
     };
 
-    if ($scope.defaultSettings.general_Settings) {
-      if ($scope.defaultSettings.general_Settings.payment_method)
-        $scope.create_invoices.payment_method = $scope.defaultSettings.general_Settings.payment_method;
-    }
+    $scope.create_invoices.payment_method = $scope.payment_method;
+    $scope.create_invoices.order_invoices_type = $scope.order_invoice.transaction_type;
 
     if ($scope.safe)
       $scope.create_invoices.safe = $scope.safe;
-    $scope.create_invoices.order_invoices_type = $scope.order_invoice.transaction_type;
 
     if ($scope.order_invoice.customer)
       $scope.create_invoices.customer = $scope.order_invoice.customer;
@@ -433,7 +423,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         $scope.create_invoices.service = $scope.order_invoice.service;
 
     }
-    
+
     let ip = '127.0.0.1';
     let port = '11111';
     if ($scope.defaultSettings.printer_program) {
@@ -778,8 +768,29 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.getSafesList = function () {
+  $scope.getSafeByType = function () {
+    $scope.error = '';
+    if ($scope.defaultSettings.accounting) {
+      $scope.loadSafes($scope.payment_method);
+      if ($scope.payment_method.id == 1) {
+        if ($scope.defaultSettings.accounting.safe_box)
+          $scope.safe = $scope.defaultSettings.accounting.safe_box
+      } else {
+        if ($scope.defaultSettings.accounting.safe_bank)
+          $scope.safe = $scope.defaultSettings.accounting.safe_bank
+      }
+    }
+  };
+
+  $scope.loadSafes = function (method) {
+    $scope.error = '';
     $scope.busy = true;
+    let where = {};
+
+    if (method.id == 1)
+      where = { 'type.id': 1 };
+    else where = { 'type.id': 2 };
+
     $http({
       method: "POST",
       url: "/api/safes/all",
@@ -788,15 +799,15 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
           id: 1,
           name: 1,
           number: 1,
-          type : 1
-        }
+          type: 1
+        },
+        where: where
       }
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.safesList = response.data.list;
-        }
+        if (response.data.done) $scope.safesList = response.data.list;
+
       },
       function (err) {
         $scope.busy = false;
@@ -1347,6 +1358,22 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
 
     $scope.addOrderInvoice();
 
+    if ($scope.defaultSettings.accounting) {
+      if ($scope.defaultSettings.accounting.create_invoice_auto) {
+        $scope.paid_up = 0;
+        if ($scope.defaultSettings.accounting.payment_method) {
+          $scope.payment_method = $scope.defaultSettings.accounting.payment_method;
+          $scope.loadSafes($scope.payment_method);
+          if ($scope.payment_method.id == 1) {
+            if ($scope.defaultSettings.accounting.safe_box)
+              $scope.safe = $scope.defaultSettings.accounting.safe_box;
+          } else {
+            if ($scope.defaultSettings.accounting.safe_bank)
+              $scope.safe = $scope.defaultSettings.accounting.safe_bank;
+          }
+        }
+      }
+    }
 
   };
 
@@ -1607,6 +1634,26 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     $scope.search = {};
   };
 
+  $scope.getPaymentMethodList = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $scope.paymentMethodList = [];
+    $http({
+      method: "POST",
+      url: "/api/payment_method/all"
+
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.paymentMethodList = response.data;
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
   $scope.getOpenShiftList = function (where) {
     $scope.error = '';
     $scope.busy = true;
@@ -1647,12 +1694,12 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
   $scope.loadDiscountTypes();
   $scope.getTransactionTypeList();
   $scope.loadTaxTypes();
-  $scope.getSafesList();
   $scope.getDeliveryEmployeesList();
   $scope.getOpenShiftList();
   $scope.getGovList();
   $scope.getTablesList();
   $scope.getPrintersPath();
+  $scope.getPaymentMethodList();
   $scope.getDefaultSettingsList();
   $scope.getCustomerGroupList();
   $scope.loadKitchenList();

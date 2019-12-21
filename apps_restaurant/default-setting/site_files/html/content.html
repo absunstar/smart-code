@@ -27,8 +27,6 @@
                             display="name" ng-search="_search.$search_kitchen" label="##word.kitchen_name##">
                         </i-list>
 
-                        <i-checkbox label="##word.create_invoice_from_order##"
-                            ng-model="default_setting.general_Settings.create_invoice"></i-checkbox>
                     </div>
                     <div class="row">
 
@@ -52,10 +50,7 @@
                             label="##word.discount_method##" ng-model="default_setting.general_Settings.discount_method"
                             items="discountMethodList" display="##session.lang##">
                         </i-list>
-                        <i-list help-id="" ng-search="_search.$payment_method_search" class="col2"
-                            label="##word.payment_method##" ng-model="default_setting.general_Settings.payment_method"
-                            items="paymentMethodList" display="##session.lang##">
-                        </i-list>
+
                         <i-list help-id="" ng-search="_search.$source_type_search" class="col2"
                             label="##word.source_type##" ng-model="default_setting.general_Settings.source_type"
                             items="sourceTypeList" display="##session.lang##"></i-list>
@@ -122,14 +117,31 @@
                     onclick="document.querySelector('.tab-link.active + .tab-link').click();"></i-button>
             </div>
 
-
             <div id="accounting_settings" class="tab-content">
                 <fieldset>
                     <legend> ##word.accounting_settings## </legend>
                     <div class="row">
-                        <i-list class="col2" ng-model="default_setting.accounting.safe" items="safes"
-                            ng-search="_search.$serach_safes" label="##word.stores_in_safe##"></i-list>
+
+                        <i-list help-id="" ng-search="_search.$payment_method_search" class="col2"
+                            label="##word.payment_method##" ng-model="default_setting.accounting.payment_method"
+                            items="paymentMethodList" display="##session.lang##">
+                        </i-list>
+
+                        <i-list class="col3" ng-model="default_setting.accounting.safe_bank" items="safesBankList"
+                            ng-search="_search.$serach_safes_bank" label="##word.safe_bank##"></i-list>
+
+                        <i-list class="col3" ng-model="default_setting.accounting.safe_box" items="safesBoxList"
+                            ng-search="_search.$serach_safes_box" label="##word.safe_box##"></i-list>
+
+                        <i-list help-id="" ng-search="_search.$source_type_search" class="col3"
+                            label="##word.invoice_source##" ng-model="default_setting.accounting.source_type"
+                            items="sourceTypeList" display="##session.lang##"></i-list>
                     </div>
+                    <div class="row">
+                        <i-checkbox label="##word.create_invoice_auto##"
+                            ng-model="default_setting.accounting.create_invoice_auto"></i-checkbox>
+                    </div>
+
                 </fieldset>
                 <i-button type="default left" fa="2x fa-angle-double-left"
                     onclick="document.querySelector('.tab-link.active + .tab-link').click();"></i-button>
@@ -139,14 +151,34 @@
                 <fieldset>
                     <legend> ##word.inventory_settings## </legend>
                     <div class="row">
-                        <i-list class="col2" ng-model="default_setting.inventory.store" items="stores"
-                            ng-search="_search.$search_stores" label="##word.stores_in_store##"></i-list>
+                        <i-list class="col3" ng-model="default_setting.inventory.item_group"
+                            ng-search="_search.$$items_group_search" label="##word.item_group##" items="itemsGroupList">
+                        </i-list>
 
+                        <i-list class="col3" ng-model="default_setting.inventory.store" items="storesList"
+                            ng-search="_search.$_store" label="##word.store##"></i-list>
+
+                        <i-list v="r" ng-search="_search.$storein_type" display="##session.lang##" class="col3"
+                            ng-model="default_setting.inventory.type_in" items="storesInTypes"
+                            label="##word.purchases_invoice_type##"></i-list>
+
+                        <i-list display="##session.lang##" ng-search="_search.$search_in_out" class="col3"
+                            ng-model="default_setting.inventory.type_out" items="storesOutTypes"
+                            label="##word.sales_invoice_type##">
+                        </i-list>
+                    </div>
+                    <div class="row">
+                        <i-list class="col3" ng-model="default_setting.inventory.delegate"
+                            ng-search="_search.$$items_group_search" label="##word.delegate##" items="delegatesList">
+                        </i-list>
+                    </div>
+                    <div class="row">
+                        <i-checkbox label="##word.dont_exceed_maximum_discount_item##"
+                            ng-model="default_setting.inventory.dont_max_discount_items"></i-checkbox>
                     </div>
                 </fieldset>
 
             </div>
-
         </div>
     </div>
 

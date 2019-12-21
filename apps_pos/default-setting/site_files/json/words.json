@@ -14,11 +14,6 @@
         "ar": "الى تاريخ"
     },
     {
-        "name": "dont_exceed_maximum_discount_item",
-        "en": "Do not exceed the maximum discount for this items",
-        "ar": "عدم تجاوز الحد الأقصى من الخصم على الصنف"
-    },
-    {
         "name": "order_type",
         "en": "Order Type",
         "ar": "نوع الطلب"
@@ -123,11 +118,7 @@
         "en": "paid",
         "ar": "المدفوع"
     },
-    {
-        "name": "create_invoice_auto",
-        "en":  "Auto Create Invoice",
-        "ar": "إنشاء ألي للفاتورة"
-    },
+   
     {
         "name": "default_setting_tenant_date",
         "en": "Offer Date",

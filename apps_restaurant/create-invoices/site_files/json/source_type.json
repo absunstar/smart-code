@@ -1,12 +1,17 @@
 [
     {
         "id" : 1,
-        "en": "Store In",
+        "en": "Store In / Purchase Invoice",
         "ar": "إذن وارد / فاتورة شراء"
     },
     {
         "id" : 2,
-        "en": "Order Invoices",
+        "en": "Store In / Sales Invoice",
+        "ar": "إذن صرف / فاتورة مبيعات"
+    },
+    {
+        "id" : 3,
+        "en": "Orders Screen",
         "ar": "شاشة الطلبات"
     }
 ]

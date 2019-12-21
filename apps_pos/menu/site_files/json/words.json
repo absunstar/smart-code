@@ -470,16 +470,6 @@
         "ar": "إدارة الموظفين"
     },
     {
-        "name": "menu_delegetes",
-        "en": "Delegates",
-        "ar": "المناديب"
-    },
-    {
-        "name": "menu_delegetes_tag",
-        "en": "Delegates Add",
-        "ar": "إضافة المناديب"
-    },
-    {
         "name": "menu_trainer",
         "en": "Trainer",
         "ar": "المدربين"

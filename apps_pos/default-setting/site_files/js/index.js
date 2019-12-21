@@ -198,31 +198,6 @@ app.controller("default_setting", function ($scope, $http) {
     )
   };
 
-  $scope.getHallList = function () {
-    $scope.busy = true;
-    $scope.hallList = [];
-    $http({
-      method: "POST",
-      url: "/api/hall/all",
-      data: {
-        select: {
-          id: 1, name: 1
-        }
-      }
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.hallList = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
-  };
-
 
   $scope.getDiscountMethodList = function () {
     $scope.error = '';
@@ -256,6 +231,31 @@ app.controller("default_setting", function ($scope, $http) {
       function (response) {
         $scope.busy = false;
         $scope.placeProgramList = response.data;
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.loadDelegates = function () {
+    $scope.busy = true;
+    $scope.delegatesList = [];
+    $http({
+      method: "POST",
+      url: "/api/delegates/all",
+      data: {
+        where: {
+          active : true
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.delegatesList = response.data.list;
+        }
       },
       function (err) {
         $scope.busy = false;
@@ -300,6 +300,7 @@ app.controller("default_setting", function ($scope, $http) {
       }
     )
   };
+
   $scope.loadItemsGroups = function () {
     $scope.busy = true;
     $scope.itemsGroupList = [];
@@ -326,31 +327,7 @@ app.controller("default_setting", function ($scope, $http) {
     )
   };
 
-  $scope.loadDelegates = function () {
-    $scope.busy = true;
-    $scope.delegatesList = [];
-    $http({
-      method: "POST",
-      url: "/api/delegates/all",
-      data: {
-        where: {
-          active : true
-        }
-      }
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          $scope.delegatesList = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
-  };
-
+ 
   $scope.getPaymentMethodList = function () {
     $scope.error = '';
     $scope.busy = true;
@@ -471,7 +448,6 @@ app.controller("default_setting", function ($scope, $http) {
   $scope.getDiscountMethodList();
   $scope.getPlaceProgramList();
   $scope.loadStoresOutTypes();
-  $scope.getHallList();
   $scope.loadItemsGroups();
   $scope.loadDelegates();
   $scope.getSourceType();

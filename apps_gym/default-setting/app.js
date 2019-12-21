@@ -37,8 +37,8 @@ module.exports = function init(site) {
     let where = req.data.where || {};
 
     where['company.id'] = site.get_company(req).id
-/*     where['branch.code'] = site.get_branch(req).code
- */
+    where['branch.code'] = site.get_branch(req).code
+
     $default_setting.find({
       where: where
     }, (err, doc) => {
@@ -50,10 +50,10 @@ module.exports = function init(site) {
         $default_setting.add({
           company: {
             id: site.get_company(req).id
-          }/* ,
+          },
           branch: {
             code: site.get_branch(req).code
-          } */
+          }
         }, (err, doc) => {
           if (!err && doc) {
             response.done = true
@@ -78,8 +78,8 @@ module.exports = function init(site) {
       } else {
         $default_setting.add({
           company: site.get_company(option.req),
-/*           branch: site.get_branch(option.req)
- */        }, (err2, doc2) => {
+          branch: site.get_branch(option.req)
+        }, (err2, doc2) => {
           callback(err2, doc2)
         })
       }

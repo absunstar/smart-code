@@ -119,7 +119,7 @@ app.controller("default_setting", function ($scope, $http) {
       }
     )
   };
-  $scope.loadSafes = function () {
+  $scope.loadSafesBox = function () {
     $scope.error = '';
     $scope.busy = true;
     $http({
@@ -130,15 +130,42 @@ app.controller("default_setting", function ($scope, $http) {
           id: 1,
           name: 1,
           number: 1,
-          type : 1
-        }
+          type: 1
+        },
+        where: { 'type.id': 1 }
       }
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done) {
-          $scope.safes = response.data.list;
-        }
+        if (response.data.done) $scope.safesBoxList = response.data.list;
+
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+  $scope.loadSafesBank = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/safes/all",
+      data: {
+        select: {
+          id: 1,
+          name: 1,
+          number: 1,
+          type: 1
+        },
+        where: { 'type.id': 2 }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) $scope.safesBankList = response.data.list;
+
       },
       function (err) {
         $scope.busy = false;
@@ -363,6 +390,94 @@ app.controller("default_setting", function ($scope, $http) {
     )
   };
 
+  $scope.loadDelegates = function () {
+    $scope.busy = true;
+    $scope.delegatesList = [];
+    $http({
+      method: "POST",
+      url: "/api/delegates/all",
+      data: {
+        where: {
+          active : true
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.delegatesList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.loadStoresOutTypes = function () {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: '/api/stores_out/types/all',
+      data: {}
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.storesOutTypes = response.data;
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.loadStoresInTypes = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: '/api/stores_in/types/all',
+      data: {}
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.storesInTypes = response.data;
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.loadItemsGroups = function () {
+    $scope.busy = true;
+    $scope.itemsGroupList = [];
+    $http({
+      method: "POST",
+      url: "/api/items_group/all",
+      data: {
+        select: {
+          id: 1,
+          name: 1
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.itemsGroupList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
   $scope.saveSetting = function (where) {
     $scope.busy = true;
     $http({
@@ -384,11 +499,16 @@ app.controller("default_setting", function ($scope, $http) {
     )
   };
 
-  $scope.loadSafes();
   $scope.loadStores();
+  $scope.loadSafesBox();
+  $scope.loadSafesBank();
   $scope.loadVendors();
+  $scope.loadDelegates();
+  $scope.loadStoresOutTypes();
+  $scope.loadStoresInTypes();
   $scope.getTransactionTypeList();
   $scope.loadCustomers();
+  $scope.loadItemsGroups();
   $scope.getTablesGroupList();
   $scope.getDeliveryEmployeesList();
   $scope.getPaymentMethodList();

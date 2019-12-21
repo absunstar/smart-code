@@ -38,7 +38,6 @@ module.exports = function init(site) {
     path: __dirname + '/site_files/images/'
   })
 
-
   site.post({
     name: "/api/source_type/all",
     path: __dirname + "/site_files/json/source_type.json"

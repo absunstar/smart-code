@@ -227,9 +227,15 @@ module.exports = function init(site) {
           if (result.doc.reset_items && result.doc.status && result.doc.status.id == 2) {
             $order_invoice.update(result.doc)
             result.doc.book_list.forEach(itm => {
-              site.call('[store_out][stores_items][-]', Object.assign({}, itm))
               itm.company = result.doc.company
               itm.branch = result.doc.branch
+              itm.store = doc.store
+
+              let _item = itm
+
+              _itm.type = 'minus'
+              site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _item))
+
               itm.number = result.doc.code
               itm.current_status = 'order'
               itm.date = result.doc.date

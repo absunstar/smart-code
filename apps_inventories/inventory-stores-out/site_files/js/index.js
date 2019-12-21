@@ -119,7 +119,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         if ($scope.defaultSettings.general_Settings) {
           if ($scope.defaultSettings.general_Settings.customer)
             $scope.store_out.customer = $scope.defaultSettings.general_Settings.customer;
-        }
+        };
 
         if ($scope.defaultSettings.inventory) {
           if ($scope.defaultSettings.inventory.store)
@@ -127,24 +127,24 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
           if ($scope.defaultSettings.inventory.type_out)
             $scope.store_out.type = $scope.defaultSettings.inventory.type_out;
           if ($scope.defaultSettings.inventory.delegate)
-            $scope.store_out.delegate = $scope.defaultSettings.inventory.delegate
-        }
+            $scope.store_out.delegate = $scope.defaultSettings.inventory.delegate;
+        };
 
         if ($scope.defaultSettings.accounting) {
           if ($scope.defaultSettings.accounting.create_invoice_auto) {
             if ($scope.defaultSettings.accounting.payment_method) {
-              $scope.store_out.payment_method = $scope.defaultSettings.accounting.payment_method
-              $scope.loadSafes($scope.store_out.payment_method)
+              $scope.store_out.payment_method = $scope.defaultSettings.accounting.payment_method;
+              $scope.loadSafes($scope.store_out.payment_method);
               if ($scope.store_out.payment_method.id == 1) {
                 if ($scope.defaultSettings.accounting.safe_box)
-                  $scope.store_out.safe = $scope.defaultSettings.accounting.safe_box
+                  $scope.store_out.safe = $scope.defaultSettings.accounting.safe_box;
               } else {
                 if ($scope.defaultSettings.accounting.safe_bank)
-                  $scope.store_out.safe = $scope.defaultSettings.accounting.safe_bank
+                  $scope.store_out.safe = $scope.defaultSettings.accounting.safe_bank;
               }
             }
           }
-        }
+        };
 
         site.showModal('#addStoreOutModal');
       } else $scope.error = '##word.open_shift_not_found##';
@@ -726,7 +726,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.loadTax_Types = function () {
+  $scope.loadTaxTypes = function () {
     $scope.error = '';
     $scope.busy = true;
     $http({
@@ -751,7 +751,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.loadDiscount_Types = function () {
+  $scope.loadDiscountTypes = function () {
     $scope.error = '';
     $scope.busy = true;
     $http({
@@ -1405,13 +1405,13 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
   $scope.loadCategories();
   $scope.getPaymentMethodList();
   $scope.getGovList();
-  $scope.loadTax_Types();
+  $scope.loadTaxTypes();
   $scope.getIndentfy();
   $scope.getCustomerGroupList();
   $scope.loadDelegates();
   $scope.getDefaultSettings();
   $scope.loadItemSize();
-  $scope.loadDiscount_Types();
+  $scope.loadDiscountTypes();
   $scope.loadAll({ date: new Date() });
 
 });

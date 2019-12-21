@@ -60,6 +60,16 @@
         "ar": "الرصيد"
     },
     {
+        "name": "dont_exceed_maximum_discount_item",
+        "en": "Do not exceed the maximum discount for this items",
+        "ar": "عدم تجاوز الحد الأقصى من الخصم على الصنف"
+    },
+    {
+        "name": "create_invoice_auto",
+        "en":  "Auto Create Invoice",
+        "ar": "إنشاء ألي للفاتورة"
+    },
+    {
         "name": "select_items",
         "en": "Select Items",
         "ar": "إختيار الأصناف"
@@ -183,6 +193,16 @@
         "name": "attend",
         "en": "Attend",
         "ar": "حضور"
+    },
+    {
+        "name": "menu_delegates_tag",
+        "en": "Delegates Add",
+        "ar": "إضافة المناديب"
+    },
+    {
+        "name": "invoice_source",
+        "en": "Invoice Source",
+        "ar": "مصدر الفاتورة"
     },
     {
         "name": "print_invoice",
