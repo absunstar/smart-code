@@ -115,6 +115,20 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         return;
       };
 
+      if ($scope.defaultSettings.inventory && $scope.defaultSettings.inventory.dont_max_discount_items) {
+        let max_discount = false;
+  
+        $scope.order_invoice.book_list.forEach(_itemSize => {
+          if (_itemSize.discount.value > _itemSize.discount.max)
+            max_discount = true;
+        });
+  
+        if (max_discount) {
+          $scope.error = "##word.err_maximum_discount##";
+          return;
+        }
+      }
+
       if ($scope.order_invoice.transaction_type.id != 2 && $scope.order_invoice.delivery_employee)
         $scope.order_invoice.delivery_employee = {};
 
@@ -312,7 +326,6 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
 
     if ($scope.safe)
       $scope.create_invoices.safe = $scope.safe;
-
 
     if ($scope.order_invoice.customer)
       $scope.create_invoices.customer = $scope.order_invoice.customer;
@@ -1430,7 +1443,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     $scope.order_invoice.book_list.forEach(el => {
       if (item.size == el.size && !el.printed) {
         exist = true;
-        el.total_price += item.price;
+        el.total_price += (item.price - item.discount.value);
         el.count += 1;
       };
     });
@@ -1443,11 +1456,11 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         store: item.store,
         barcode: item.barcode,
         size: item.size,
-        total_price: item.price,
+        total_price: (item.price - item.discount.value),
         vendor: item.vendor,
         store: item.store,
         price: item.price,
-        discount: 0,
+        discount: item.discount,
         count: 1
       });
     };
@@ -1518,22 +1531,37 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     };
   };
 
+  $scope.calcSize = function (size) {
+    $scope.error = '';
+    setTimeout(() => {
+      let discount = 0;
+      if (size.price && size.count) {
+        if (size.discount.type == 'number')
+          discount = size.discount.value * size.count;
+        else if (size.discount.type == 'percent')
+          discount = size.discount.value * (size.cost * size.count) / 100;
+
+        size.total_price = (site.toNumber(size.price) * site.toNumber(size.count)) - discount;
+      }
+      $scope.calc();
+    }, 100);
+  };
+
+
   $scope.calc = function () {
 
     $timeout(() => {
       $scope.order_invoice.total_value = 0;
-      $scope.order_invoice.items_discount = 0;
       $scope.order_invoice.net_value = 0;
       $scope.order_invoice.total_tax = 0;
       $scope.order_invoice.total_discount = 0;
 
       if ($scope.order_invoice.book_list && $scope.order_invoice.book_list.length > 0) {
         $scope.order_invoice.book_list.forEach(itm => {
-          itm.total_price = itm.price * itm.count;
           $scope.order_invoice.total_value += site.toNumber(itm.total_price);
-          $scope.order_invoice.items_discount += site.toNumber(itm.discount);
         });
       };
+
       if ($scope.order_invoice.taxes && $scope.order_invoice.taxes.length > 0) {
         $scope.order_invoice.taxes.forEach(tx => {
           $scope.order_invoice.total_tax += $scope.order_invoice.total_value * site.toNumber(tx.value) / 100;
@@ -1564,7 +1592,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         $scope.order_invoice.service = 0;
         $scope.order_invoice.price_delivery_service = 0;
       };
-      $scope.order_invoice.net_value = ($scope.order_invoice.total_value + ($scope.order_invoice.service || 0) + ($scope.order_invoice.total_tax || 0) + ($scope.order_invoice.price_delivery_service || 0)) - ($scope.order_invoice.total_discount || 0) - ($scope.order_invoice.items_discount || 0);
+      $scope.order_invoice.net_value = ($scope.order_invoice.total_value + ($scope.order_invoice.service || 0) + ($scope.order_invoice.total_tax || 0) + ($scope.order_invoice.price_delivery_service || 0)) - ($scope.order_invoice.total_discount || 0);
       $scope.discount = {
         type: 'number'
       };

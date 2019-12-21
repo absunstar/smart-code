@@ -49,6 +49,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
     };
 
   };
+
   $scope.deleteDiscount = function (_ds) {
     $scope.error = '';
     for (let i = 0; i < $scope.store_out.discountes.length; i++) {
