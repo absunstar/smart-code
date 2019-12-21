@@ -144,16 +144,26 @@ module.exports = function init(site) {
     })
   })
 
-  $stores_items.busy5 = false
-  site.on('[transfer_branch][stores_items][add_balance]', obj => {
-    if ($stores_items.busy5) {
-      setTimeout(() => {
-        site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, obj))
-      }, 200);
-      return
-    };
-    $stores_items.busy5 = true
 
+  balance_list = []
+  site.on('[transfer_branch][stores_items][add_balance]', obj => {
+    balance_list.push(Object.assign({}, obj))
+  })
+
+  function balance_handle(obj){
+   // console.log(site.toDateXF(new Date()) +  '   balance_handle ( ' + balance_list.length + ' ) ')
+    if(obj == null){
+      if(balance_list.length > 0){
+        obj = balance_list[0]
+        balance_handle(obj)
+        balance_list.splice(0 , 1)
+      }else{
+        setTimeout(() => {
+          balance_handle(null)
+        }, 1000);
+      }
+      return
+    }
 
     let totalCost = obj.cost * site.toNumber(obj.count);
 
@@ -326,7 +336,6 @@ module.exports = function init(site) {
             } else _size.branches_list = [obj_branch]
           }
 
-0
           if (_size.item_complex) {
             _size.complex_items.forEach(_complex_item => {
               _complex_item.count = _complex_item.count * obj.count
@@ -336,7 +345,7 @@ module.exports = function init(site) {
         });
 
         $stores_items.update(doc, () => {
-          $stores_items.busy5 = false
+          balance_handle(null)
         });
 
       } else {
@@ -350,12 +359,13 @@ module.exports = function init(site) {
         };
 
         $stores_items.add(item, () => {
-          $stores_items.busy5 = false
-
+          balance_handle(null)
         });
       };
-    });
-  });
+    })
+  }
+
+  balance_handle(null)
 
   $stores_items.busy22 = false
   site.on('[stores_out][stores_items][+]', obj => {
@@ -1056,13 +1066,15 @@ module.exports = function init(site) {
       if (!err) {
         response.done = true
         let arr = [];
-        docs.forEach(item => {
-          item.sizes.forEach(size => {
-            size.itm_id = item.id
-            size.stores_item_name = item.name
-            arr.unshift(size)
-          });
-        });
+        if(docs){
+          docs.forEach(item => {
+            item.sizes.forEach(size => {
+              size.itm_id = item.id
+              size.stores_item_name = item.name
+              arr.unshift(size)
+            })
+          })
+        }
         response.count = count
         response.list = arr
       } else {

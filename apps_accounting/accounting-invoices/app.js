@@ -177,7 +177,7 @@ module.exports = function init(site) {
               date: response.doc.payment_date,
               image_url: response.doc.image_url,
               safe: response.doc.payment_safe,
-              payment_method = response.doc.payment_method,
+              payment_method : response.doc.payment_method,
               type: 'Batch'
             }
             if (response.doc.source_type.id == 1)
