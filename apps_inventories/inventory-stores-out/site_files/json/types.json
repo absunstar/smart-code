@@ -16,7 +16,12 @@
     },
     {
         "id": 4,
-        "en": "adding",
+        "en": "Orders Screen",
+        "ar": "شاشة الطلبات"
+    },
+    {
+        "id": 5,
+        "en": "Others",
         "ar": "أخرى"
     }
 ]

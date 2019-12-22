@@ -351,7 +351,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         if (size.discount.type == 'number')
           discount = size.discount.value * size.count;
         else if (size.discount.type == 'percent')
-          discount = size.discount.value * (size.cost * size.count) / 100;
+          discount = size.discount.value * (size.price * size.count) / 100;
 
         size.total = (site.toNumber(size.price) * site.toNumber(size.count)) - discount;
       }
@@ -397,7 +397,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
                     _size.item_name = _item.name
                     _size.store = $scope.store_out.store
                     _size.count = 1
-                    _size.total = _size.count * _size.cost
+                    _size.total = _size.count * _size.price
                     if (_size.branches_list && _size.branches_list.length > 0) {
                       let foundBranch = false
                       let indxBranch = 0
@@ -460,8 +460,8 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
     $scope.item.item_name.sizes.forEach(_item => {
       _item.item_name = $scope.item.item_name.name
       _item.store = $scope.store_out.store
-      _item.count = 1;
-      _item.total = _item.count * _item.cost
+      _item.count = 1
+      _item.total = _item.count * _item.price
       if (_item.branches_list && _item.branches_list.length > 0) {
         let foundBranch = false
         let indxBranch = 0
@@ -519,7 +519,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
                   _size.store = $scope.store_out.store;
                   _size.count = 1;
                   _size.discount = _size.discount;
-                  _size.total = _size.count * _size.cost;
+                  _size.total = _size.count * _size.price;
                   foundSize = $scope.store_out.items.some(_itemSize => _itemSize.barcode == _size.barcode);
                   if (!foundSize)
                     $scope.store_out.items.unshift(_size);
