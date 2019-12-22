@@ -38,7 +38,7 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
                 if ($scope.defaultSettings.accounting && $scope.defaultSettings.accounting.safe)
                   $scope.create_invoices.safe = $scope.defaultSettings.accounting.safe;
 
-                if ($scope.defaultSettings.general_Settings.order_type)
+                if ($scope.defaultSettings.general_Settings.order_type && $scope.create_invoices.source_type.id == 3)
                   $scope.create_invoices.order_invoices_type = $scope.defaultSettings.general_Settings.order_type;
               }
 
@@ -312,17 +312,33 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.busy = true;
     $scope.orderInvoicesTypeList = [];
-    if (!$scope.create_invoices.order_invoices_type) {
+    if ($scope.create_invoices.source_type.id == 3 && !$scope.create_invoices.order_invoices_type) {
       $scope.error = "##word.err_order_type##";
       return;
     } else if (ev.which === 13) {
 
+      let where = {};
+      let url = "/api/stores_in/all";
+
+      if ($scope.create_invoices.source_type) {
+        if ($scope.create_invoices.source_type.id == 1) {
+          url = "/api/stores_in/all";
+          where = { 'type.id': 1 };
+        }
+        else if ($scope.create_invoices.source_type.id == 2)
+          url = "/api/stores_out/all";
+
+          else if ($scope.create_invoices.source_type.id == 3)
+          url = "/api/order_invoice/invoices";
+      }
+
       $http({
         method: "POST",
-        url: "/api/order_invoice/invoices",
+        url: url,
         data: {
           search: $scope.search_order,
-          order_invoices_type: $scope.create_invoices.order_invoices_type
+          order_invoices_type: $scope.create_invoices.order_invoices_type,
+          where : where
         }
       }).then(
         function (response) {
@@ -475,7 +491,7 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
           id: 1,
           name: 1,
           number: 1,
-          type : 1
+          type: 1
         }
       }
     }).then(

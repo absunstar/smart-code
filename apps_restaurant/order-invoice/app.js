@@ -145,15 +145,21 @@ module.exports = function init(site) {
         response.doc = doc
         if (doc.status && doc.status.id == 2 && doc.reset_items) {
           doc.book_list.forEach(itm => {
-            site.call('[store_out][stores_items][-]', Object.assign({}, itm))
             itm.company = result.doc.company
             itm.branch = result.doc.branch
+            itm.store = doc.store
+
+            let _item = itm
+
+            _itm.type = 'minus'
+            site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _item))
+
             itm.number = result.doc.code
             itm.current_status = 'order'
             itm.date = result.doc.date
             itm.transaction_type = 'out'
             site.call('please out item', Object.assign({}, itm))
-          });
+          })
         }
         if (doc.under_paid && doc.under_paid.order_invoice_id == null) {
 
@@ -500,37 +506,37 @@ module.exports = function init(site) {
   })
 
 
- /*  site.post("/api/order_invoice/get_size", (req, res) => {
-    let response = {
-      done: false
-    }
-    let where = {};
-
-    where = {
-      $and: [{
-        'book_list.item_id': req.body.item_id
-      },
-      {
-        'book_list.barcode': req.body.barcode
-      }]
-    }
-
-    $order_invoice.findOne({
-      where: where
-    }, (err, docs, count) => {
-
-      if (!err) {
-        response.done = true
-        if (docs) response.docs = true
-        else response.docs = false
-
-      } else {
-        response.error = err.message
-      }
-      res.json(response)
-    })
-  })
- */
+  /*  site.post("/api/order_invoice/get_size", (req, res) => {
+     let response = {
+       done: false
+     }
+     let where = {};
+ 
+     where = {
+       $and: [{
+         'book_list.item_id': req.body.item_id
+       },
+       {
+         'book_list.barcode': req.body.barcode
+       }]
+     }
+ 
+     $order_invoice.findOne({
+       where: where
+     }, (err, docs, count) => {
+ 
+       if (!err) {
+         response.done = true
+         if (docs) response.docs = true
+         else response.docs = false
+ 
+       } else {
+         response.error = err.message
+       }
+       res.json(response)
+     })
+   })
+  */
 
   site.getDataToDelete = function (data, callback) {
 

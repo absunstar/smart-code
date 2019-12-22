@@ -6,27 +6,27 @@
                 <div class="col9">
 
                     <div class="row">
-                        <i-date2 class="col3" ng-model="create_invoices.date" label="##word.date##"></i-date2>
+                        <i-date2 class="col4" ng-model="create_invoices.date" label="##word.date##"></i-date2>
                         <i-list help-id="" ng-search="_search.$payment_method_search" class="col2"
                             label="##word.payment_method##" ng-model="create_invoices.payment_method"
                             items="paymentMethodList" display="##session.lang##">
                         </i-list>
 
-                        <div class="col2"></div>
+                        <div class="col1"></div>
 
                         <i-control class="col3 shift" disabled label="##word.shift##" ng-model="shift.code">
                         </i-control>
-                        
+
                         <i-checkbox class="col2" label="##word.active##" ng-model="create_invoices.active"></i-checkbox>
                     </div>
 
                     <div class="row">
                         <div class="row">
-                            <i-list help-id="" ng-search="_search.$source_type_search" class="col2"
+                            <i-list help-id="" ng-search="_search.$source_type_search" class="col4"
                                 label="##word.source_type##" ng-model="create_invoices.source_type"
                                 items="sourceTypeList" display="##session.lang##"></i-list>
 
-                            <i-list help-id="" ng-show="create_invoices.source_type.id == 2"
+                            <i-list help-id="" ng-show="create_invoices.source_type.id == 3"
                                 ng-change="orderInvoicesTypeList = []" ng-search="_search.$order_invoices_type_search"
                                 class="col2" label="##word.order_type##" ng-model="create_invoices.order_invoices_type"
                                 items="transactionTypeList" display="##session.lang##">

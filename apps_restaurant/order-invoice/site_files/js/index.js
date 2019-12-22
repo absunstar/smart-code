@@ -117,12 +117,12 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
 
       if ($scope.defaultSettings.inventory && $scope.defaultSettings.inventory.dont_max_discount_items) {
         let max_discount = false;
-  
+
         $scope.order_invoice.book_list.forEach(_itemSize => {
           if (_itemSize.discount.value > _itemSize.discount.max)
             max_discount = true;
         });
-  
+
         if (max_discount) {
           $scope.error = "##word.err_maximum_discount##";
           return;
@@ -300,7 +300,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
 
   };
 
-  $scope.addCreateInvoice = function () {
+  $scope.addAccountInvoice = function () {
     $scope.error = '';
     if ($scope.busy) {
       return;
@@ -311,7 +311,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
       shift: $scope.order_invoice.shift,
       source_type: {
         id: 3,
-        en: "Order Invoices",
+        en: "Orders Screen",
         ar: "شاشة الطلبات"
       },
       image_url: '/images/create_invoices.png',
@@ -351,10 +351,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
 
       if ($scope.order_invoice.service)
         $scope.create_invoices.service = $scope.order_invoice.service;
-
     }
-
-
 
     if ($scope.create_invoices.paid_up <= 0) $scope.create_invoices.safe = null;
 
@@ -368,7 +365,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         if (response.data.done) {
           $scope.order_invoice.has_invoice = true;
           $scope.create_invoices = response.data.doc;
-          $scope.printCreateInvoive();
+          $scope.printAccountInvoive();
         } else {
           $scope.error = response.data.error;
           if (response.data.error.like('*duplicate key error*')) {
@@ -384,7 +381,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.printCreateInvoive = function () {
+  $scope.printAccountInvoive = function () {
     $scope.error = '';
     if ($scope.busy) return;
     $scope.busy = true;
@@ -393,8 +390,8 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     $scope.create_invoices = {
       shift: $scope.order_invoice.shift,
       source_type: {
-        id: 2,
-        en: "Order Invoices",
+        id: 3,
+        en: "Orders Screen",
         ar: "شاشة الطلبات"
       },
       image_url: '/images/create_invoices.png',
@@ -649,6 +646,47 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.displayAccountInvoice = function (order_invoice) {
+    $scope.get_open_shift((shift) => {
+      if (shift) {
+        $scope.account_invoices = {
+          image_url: '/images/account_invoices.png',
+          date: new Date(),
+          invoice_id: order_invoice.id,
+          customer: order_invoice.customer,
+          shift: shift,
+          net_value: order_invoice.net_value,
+          paid_up: 0,
+          invoice_code: order_invoice.number,
+          total_discount: order_invoice.total_discount,
+          total_tax: order_invoice.total_tax,
+          current_book_list: order_invoice.items,
+          source_type: {
+            id: 2,
+            en: "Stores Out / Sales Invoice",
+            ar: "إذن صرف / فاتورة بيع"
+          },
+          active: true
+        };
+
+        if ($scope.defaultSettings.accounting) {
+          if ($scope.defaultSettings.accounting.payment_method) {
+            $scope.account_invoices.payment_method = $scope.defaultSettings.accounting.payment_method;
+            $scope.loadSafes($scope.account_invoices.payment_method);
+            if ($scope.account_invoices.payment_method.id == 1) {
+              if ($scope.defaultSettings.accounting.safe_box)
+                $scope.account_invoices.safe = $scope.defaultSettings.accounting.safe_box;
+            } else {
+              if ($scope.defaultSettings.accounting.safe_bank)
+                $scope.account_invoices.safe = $scope.defaultSettings.accounting.safe_bank;
+            }
+          }
+        }
+        site.showModal('#createInvoiceModal');
+      } else $scope.error = '##word.open_shift_not_found##';
+    });
+  };
+
   $scope.displayDetailsOrderInvoice = function (order_invoice) {
     $scope.error = '';
     $scope.viewOrderInvoice(order_invoice);
@@ -781,16 +819,16 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.getSafeByType = function () {
+  $scope.getSafeByType = function (account_invoices) {
     $scope.error = '';
     if ($scope.defaultSettings.accounting) {
-      $scope.loadSafes($scope.payment_method);
-      if ($scope.payment_method.id == 1) {
+      $scope.loadSafes(account_invoices.payment_method);
+      if (account_invoices.payment_method.id == 1) {
         if ($scope.defaultSettings.accounting.safe_box)
-          $scope.safe = $scope.defaultSettings.accounting.safe_box
+          account_invoices.safe = $scope.defaultSettings.accounting.safe_box
       } else {
         if ($scope.defaultSettings.accounting.safe_bank)
-          $scope.safe = $scope.defaultSettings.accounting.safe_bank
+          account_invoices.safe = $scope.defaultSettings.accounting.safe_bank
       }
     }
   };
@@ -1370,24 +1408,6 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     });
 
     $scope.addOrderInvoice();
-
-    if ($scope.defaultSettings.accounting) {
-      if ($scope.defaultSettings.accounting.create_invoice_auto) {
-        $scope.paid_up = 0;
-        if ($scope.defaultSettings.accounting.payment_method) {
-          $scope.payment_method = $scope.defaultSettings.accounting.payment_method;
-          $scope.loadSafes($scope.payment_method);
-          if ($scope.payment_method.id == 1) {
-            if ($scope.defaultSettings.accounting.safe_box)
-              $scope.safe = $scope.defaultSettings.accounting.safe_box;
-          } else {
-            if ($scope.defaultSettings.accounting.safe_bank)
-              $scope.safe = $scope.defaultSettings.accounting.safe_bank;
-          }
-        }
-      }
-    }
-
   };
 
   $scope.loadItems = function (group) {
