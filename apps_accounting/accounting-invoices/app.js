@@ -99,28 +99,24 @@ module.exports = function init(site) {
         response.done = true;
         response.doc = doc;
 
-        if (doc.safe) {
-          let paid_value = {
-            value: doc.paid_up,
-            company: doc.company,
-            branch: doc.branch,
-            date: doc.date,
-            image_url: doc.image_url,
-            payment_method: doc.payment_method,
-            safe: doc.safe
-          }
-          if (doc.source_type.id == 1)
-            site.call('[account_invoices][safes][-]', paid_value)
-          else if (doc.source_type.id == 2)
-            site.call('[account_invoices][safes][+]', paid_value)
+        let paid_value = {
+          value: doc.paid_up,
+          company: doc.company,
+          branch: doc.branch,
+          date: doc.date,
+          image_url: doc.image_url,
+          payment_method: doc.payment_method,
+          safe: doc.safe
+        }
 
-        };
-
-        if (doc.source_type.id == 1)
+        if (doc.source_type.id == 1) {
           site.call('[store_in][account_invoice][invoice]', doc.invoice_id)
-
-        else if (doc.source_type.id == 2)
+          if (doc.safe) site.call('[account_invoices][safes][-]', paid_value)
+        }
+        else if (doc.source_type.id == 2) {
           site.call('[store_out][account_invoice][invoice]', doc.invoice_id)
+          if (doc.safe) site.call('[account_invoices][safes][+]', paid_value)
+        }
 
       } else {
         response.error = err.message
@@ -168,7 +164,7 @@ module.exports = function init(site) {
           response.done = true
           response.doc = result.doc
           /*  if (response.doc.remain_amount == 0)
-             site.call('[account_invoices][order_invoice][paid]', response.doc.order_invoices_id) */
+             site.call('[account_invoices][order_invoice][paid]', response.doc.invoice_id) */
           if (response.doc.payment_safe) {
             let paid_value = {
               value: response.doc.payment_paid_up,
@@ -177,7 +173,7 @@ module.exports = function init(site) {
               date: response.doc.payment_date,
               image_url: response.doc.image_url,
               safe: response.doc.payment_safe,
-              payment_method : response.doc.payment_method,
+              payment_method: response.doc.payment_method,
               type: 'Batch'
             }
             if (response.doc.source_type.id == 1)

@@ -193,7 +193,6 @@ module.exports = function init(site) {
       _itm.total = site.toNumber(_itm.total)
     })
 
-    stores_out_doc.net_discount = site.toNumber(stores_out_doc.net_discount)
     stores_out_doc.total_value = site.toNumber(stores_out_doc.total_value)
     stores_out_doc.net_value = site.toNumber(stores_out_doc.net_value)
 
@@ -410,9 +409,6 @@ module.exports = function init(site) {
 
     where['company.id'] = site.get_company(req).id
     where['branch.code'] = site.get_branch(req).code
-
-    if (req.body.invoice)
-      where['invoice'] = false
 
     if (where['shift_code']) {
       where['shift.code'] = new RegExp(where['shift_code'], 'i')

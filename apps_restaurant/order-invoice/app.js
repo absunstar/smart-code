@@ -4,7 +4,7 @@ module.exports = function init(site) {
 
   site.on('[create_invoices][order_invoice][+]', function (obj) {
 
-    $order_invoice.findOne({ id: obj.order_invoices_id }, (err, doc) => {
+    $order_invoice.findOne({ id: obj.invoice_id }, (err, doc) => {
       doc.under_paid.net_value = doc.under_paid.net_value - obj.net_value;
       doc.under_paid.total_tax = doc.under_paid.total_tax - obj.total_tax;
       doc.under_paid.total_discount = doc.under_paid.total_discount - obj.total_discount;
@@ -12,7 +12,7 @@ module.exports = function init(site) {
       doc.under_paid.service = doc.under_paid.service - obj.service;
 
       if (doc.under_paid) {
-        if (doc.remain_amount == 0)
+        if (doc.remain_amount <= 0)
           doc.status = { id: 5, en: "Closed & paid", ar: "مغلق و تم الدفع" }
         else doc.status = { id: 4, en: "Closed & Invoiced", ar: "مغلق و تم عمل فواتير" }
 
@@ -143,7 +143,7 @@ module.exports = function init(site) {
       if (!err) {
         response.done = true
         response.doc = doc
-        if (doc.status && doc.status.id == 2 && doc.reset_items) {
+     /*    if (doc.status && doc.status.id == 2 && doc.reset_items) {
           doc.book_list.forEach(itm => {
             itm.company = result.doc.company
             itm.branch = result.doc.branch
@@ -160,13 +160,13 @@ module.exports = function init(site) {
             itm.transaction_type = 'out'
             site.call('please out item', Object.assign({}, itm))
           })
-        }
-        if (doc.under_paid && doc.under_paid.order_invoice_id == null) {
+        } */
+     /*    if (doc.under_paid && doc.under_paid.order_invoice_id == null) {
 
           doc.under_paid.order_invoice_id = doc.id
           $order_invoice.update(doc)
 
-        }
+        } */
       } else {
         response.error = err.message
       }
@@ -230,7 +230,7 @@ module.exports = function init(site) {
         if (!err, result) {
           response.done = true
           response.doc = result.doc
-          if (result.doc.reset_items && result.doc.status && result.doc.status.id == 2) {
+         /*  if (result.doc.reset_items && result.doc.status && result.doc.status.id == 2) {
             $order_invoice.update(result.doc)
             result.doc.book_list.forEach(itm => {
               itm.company = result.doc.company
@@ -248,7 +248,7 @@ module.exports = function init(site) {
               itm.transaction_type = 'out'
               site.call('please out item', Object.assign({}, itm))
             })
-          };
+          }; */
         } else {
           response.error = 'Code Already Exist'
         };

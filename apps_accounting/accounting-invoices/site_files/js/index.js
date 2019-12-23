@@ -27,7 +27,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
                 shift: shift,
                 active: true,
               };
-            
+
               if ($scope.defaultSettings.accounting) {
                 if ($scope.defaultSettings.accounting.source_type)
                   $scope.account_invoices.source_type = $scope.defaultSettings.accounting.source_type;
@@ -326,10 +326,11 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
       if ($scope.account_invoices.source_type) {
         if ($scope.account_invoices.source_type.id == 1) {
           url = "/api/stores_in/all";
-          where = { 'type.id': 1 };
+          where = { 'type.id': 1, invoice: false || undefined };
         }
         else if ($scope.account_invoices.source_type.id == 2)
           url = "/api/stores_out/all";
+        where = { invoice: false || undefined };
       }
 
       $http({
@@ -337,7 +338,6 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
         url: url,
         data: {
           search: $scope.search_order,
-          invoice: true,
           where: where
         }
       }).then(

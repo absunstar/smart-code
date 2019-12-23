@@ -39,7 +39,6 @@ module.exports = function init(site) {
     })
   })
 
-
   site.post("/api/order_management/update", (req, res) => {
     let response = {
       done: false
@@ -69,7 +68,9 @@ module.exports = function init(site) {
       }, (err, result) => {
         if (!err, result) {
           response.done = true
-          if (result.doc.reset_items && result.doc.status.id == 2 && result.doc.post) {
+          response.doc = result.doc
+
+        /*   if (result.doc.reset_items && result.doc.status.id == 2 && result.doc.post) {
             $order_invoice.update(result.doc)
             result.doc.book_list.forEach(itm => {
               itm.company = result.doc.company
@@ -87,7 +88,7 @@ module.exports = function init(site) {
               itm.transaction_type = 'out'
               site.call('please out item', Object.assign({}, itm))
             })
-          };
+          }; */
 
           if (result.doc.transaction_type && result.doc.transaction_type.id == 1 && result.doc.table.id) {
 

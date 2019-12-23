@@ -49,6 +49,35 @@ app.controller("order_management", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           site.hideModal('#employeeDeliveryModal');
+
+          if ($scope.defaultSettings.general_Settings && $scope.defaultSettings.general_Settings.discount_method && $scope.defaultSettings.general_Settings.discount_method.id == 1 && $scope.order_invoice.status.id == 2) {
+            let store_out = {
+              image_url: '/images/store_out.png',
+              supply_date: new Date(),
+              date: order.date,
+              order_id: order.id,
+              customer: order.customer,
+              shift: order.shift,
+              net_value: order.net_value,
+              paid_up: order.net_value,
+              payment_method: order.payment_method,
+              store: order.store,
+              order_code: order.code,
+              items: $scope.order_invoice.book_list,
+              total_discount: order.total_discount,
+              total_tax: order.total_tax,
+              total_value: order.total_value,
+              net_value: order.net_value,
+              type: {
+                id: 4,
+                en: "Orders Screen",
+                ar: "شاشة الطلبات"
+              },
+              active: true
+            };
+            $scope.addStoresOut(store_out)
+          }
+
           $scope.getOrderManagementList();
         } else {
           $scope.error = 'Please Login First';
@@ -58,6 +87,30 @@ app.controller("order_management", function ($scope, $http, $timeout) {
         console.log(err);
       }
     )
+  };
+
+  $scope.addStoresOut = function (store_out) {
+
+    if (store_out.items.length > 0) {
+      $scope.busy = true;
+      $http({
+        method: "POST",
+        url: "/api/stores_out/add",
+        data: store_out
+      }).then(
+        function (response) {
+          if (response.data.done) {
+            $scope.busy = false;
+          } else $scope.error = response.data.error;
+        },
+        function (err) {
+          $scope.error = err.message;
+        }
+      )
+    } else {
+      $scope.error = "##word.must_enter_quantity##";
+      return;
+    }
   };
 
   $scope.getDeliveryEmployeesList = function () {
@@ -286,7 +339,6 @@ app.controller("order_management", function ($scope, $http, $timeout) {
     $scope.get_open_shift((shift) => {
       if (shift) {
         order.post = true;
-        order.reset_items = true;
         $scope.updateOrderManagement(order);
       } else $scope.error = '##word.open_shift_not_found##';
     });

@@ -32,7 +32,7 @@
     {
         "name": "order_invoices_type",
         "en": "Order Invoices Type",
-        "ar": "نوع طلب الفاتورة"
+        "ar": "نوع الطلب "
     },
     {
         "name": "err_order_type",

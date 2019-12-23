@@ -29,14 +29,17 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
               };
 
               if ($scope.defaultSettings.general_Settings) {
-                if ($scope.defaultSettings.general_Settings.source_type)
-                  $scope.create_invoices.source_type = $scope.defaultSettings.general_Settings.source_type;
 
                 if ($scope.defaultSettings.general_Settings.payment_method)
                   $scope.create_invoices.payment_method = $scope.defaultSettings.general_Settings.payment_method;
 
-                if ($scope.defaultSettings.accounting && $scope.defaultSettings.accounting.safe)
-                  $scope.create_invoices.safe = $scope.defaultSettings.accounting.safe;
+                if ($scope.defaultSettings.accounting) {
+                  if ($scope.defaultSettings.accounting.safe)
+                    $scope.create_invoices.safe = $scope.defaultSettings.accounting.safe;
+                  if ($scope.defaultSettings.accounting.source_type)
+                    $scope.create_invoices.source_type = $scope.defaultSettings.accounting.source_type;
+
+                }
 
                 if ($scope.defaultSettings.general_Settings.order_type && $scope.create_invoices.source_type.id == 3)
                   $scope.create_invoices.order_invoices_type = $scope.defaultSettings.general_Settings.order_type;
@@ -321,14 +324,18 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
       let url = "/api/stores_in/all";
 
       if ($scope.create_invoices.source_type) {
+
         if ($scope.create_invoices.source_type.id == 1) {
           url = "/api/stores_in/all";
-          where = { 'type.id': 1 };
+          where = { 'type.id': 1, invoice: false || undefined };
         }
-        else if ($scope.create_invoices.source_type.id == 2)
-          url = "/api/stores_out/all";
 
-          else if ($scope.create_invoices.source_type.id == 3)
+        else if ($scope.create_invoices.source_type.id == 2) {
+          url = "/api/stores_out/all";
+          where = { 'type.id': { $ne: 4 }, invoice: false || undefined };
+        }
+
+        else if ($scope.create_invoices.source_type.id == 3)
           url = "/api/order_invoice/invoices";
       }
 
@@ -338,7 +345,7 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
         data: {
           search: $scope.search_order,
           order_invoices_type: $scope.create_invoices.order_invoices_type,
-          where : where
+          where: where
         }
       }).then(
         function (response) {
@@ -362,24 +369,35 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
     $scope.create_invoices.customer = item.customer;
     $scope.create_invoices.delivery_employee = item.delivery_employee;
     $scope.create_invoices.table = item.table;
-    $scope.create_invoices.total_tax = item.under_paid.total_tax;
-    $scope.create_invoices.total_discount = item.under_paid.total_discount;
-    $scope.create_invoices.price_delivery_service = item.under_paid.price_delivery_service;
-    $scope.create_invoices.service = item.under_paid.service;
-    $scope.create_invoices.net_value = item.under_paid.net_value;
+    if (item.under_paid) {
+      $scope.create_invoices.total_tax = item.under_paid.total_tax;
+      $scope.create_invoices.total_discount = item.under_paid.total_discount;
+      $scope.create_invoices.price_delivery_service = item.under_paid.price_delivery_service;
+      $scope.create_invoices.service = item.under_paid.service;
+      $scope.create_invoices.net_value = item.under_paid.net_value;
+    } else {
+
+      $scope.create_invoices.total_tax = item.total_tax;
+      $scope.create_invoices.total_discount = item.total_discount;
+      $scope.create_invoices.net_value = item.net_value;
+    }
+    $scope.create_invoices.invoice_id = item.id;
     $scope.create_invoices.paid_up = 0;
-    $scope.create_invoices.order_invoices_id = item.under_paid.order_invoice_id;
-
-    item.under_paid.book_list.forEach(item => {
-      if (item.count > 0) {
-        $scope.create_invoices.current_book_list.push(item);
-      }
-    });
-
     $scope.total_tax = $scope.create_invoices.total_tax;
     $scope.total_discount = $scope.create_invoices.total_discount;
     $scope.price_delivery_service = $scope.create_invoices.price_delivery_service;
     $scope.service = $scope.create_invoices.service;
+
+    if ($scope.create_invoices.source_type && $scope.create_invoices.source_type.id == 3) {
+
+      item.under_paid.book_list.forEach(_item => {
+        if (_item.count > 0) {
+          $scope.create_invoices.current_book_list.push(_item);
+        }
+      });
+
+    } else $scope.create_invoices.current_book_list = item.items;
+
     $scope.orderInvoicesTypeList = [];
   };
 
@@ -695,6 +713,12 @@ app.controller("create_invoices", function ($scope, $http, $timeout) {
         console.log(err);
       }
     );
+  };
+
+  $scope.getOrderTypeSetting = function () {
+    $scope.create_invoices.order_invoices_type = {};
+    if ($scope.defaultSettings.general_Settings.order_type && $scope.create_invoices.source_type.id == 3)
+      $scope.create_invoices.order_invoices_type = $scope.defaultSettings.general_Settings.order_type;
   };
 
   $scope.getDefaultSetting = function () {

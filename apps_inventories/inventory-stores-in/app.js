@@ -426,9 +426,6 @@ module.exports = function init(site) {
 
     where['company.id'] = site.get_company(req).id
     where['branch.code'] = site.get_branch(req).code
-
-    if(req.body.invoice)
-    where['invoice'] = false
     
     if (where['shift_code']) {
       where['shift.code'] = new RegExp(where['shift_code'], 'i')

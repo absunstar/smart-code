@@ -104,7 +104,10 @@
                                     <td class="center">{{c.price}}</td>
                                     <td class="center green">{{c.total_price}}</td>
                                     <td class="center">{{c.kitchen.name}}</td>
-                                    <td class="center red">{{c.discount}}</td>
+                                    <td class="center red">{{c.discount.value}}
+                                        <b class="red" ng-show="c.discount.type =='number'">##word.le##</b>
+                                        <b class="red" ng-show="c.discount.type =='percent'">%</b>
+                                    </td>
                                     <td class="center">{{c.notes}}</td>
                                     <td class="center">
                                         <i-button type="add" ng-show="c.done_kitchen"

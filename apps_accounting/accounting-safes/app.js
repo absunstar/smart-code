@@ -45,9 +45,10 @@ module.exports = function init(site) {
               obj.company = doc.company
               obj.branch = doc.branch
               obj.notes = doc.notes
-
+              if (obj.type == 'Batch')
+                obj.operation = 'دفعة حساب طلبات'
+              else obj.operation = 'فاتورة حساب طلبات'
               obj.balance = doc.balance
-              obj.operation = 'حساب فاتورة'
               obj.sourceName = obj.code
               obj.transition_type = 'in';
               site.call('[safes][safes_payments][+]', obj)

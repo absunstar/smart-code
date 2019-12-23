@@ -62,14 +62,12 @@
                         <th>##word.stores_out_total_value##</th>
                         <th>##word.stores_out_net_value##</th>
                         <th> ##word.transaction_type##</th>
-
                         <th class="not-print">##word.actions##</th>
                     </tr>
                     <tr ng-repeat="c in list">
                         <td class="not-print">
                             <img class="logo" ng-src="{{c.image_url}}">
                         </td>
-
                         <td>
                             <p class="text-center brown"> <br> {{c.date | date : 'yyyy - MM - dd'}} </p>
                         </td>
@@ -85,7 +83,6 @@
                         <td>
                             <p class="text-center blue"> <br> {{c.safe.name}} </p>
                             <p ng-show="!c.safe" class="text-center red bold"> ##word.stores_out_no_safe## </p>
-
                         </td>
                         <td>
                             <p class="bold text-center"> <br> {{c.total_value}} </p>
@@ -93,17 +90,16 @@
                         <td>
                             <p class="bold text-center green"> <br> {{c.net_value}} </p>
                         </td>
-
                         <td>
                             <p class="bold text-center blue"> <br> {{c.type.ar}} </p>
                         </td>
-
                         <td class="center not-print">
 
                             <i-button x-permissions="stores_out_view || stores_out_manage" type="details"
                                 label="##word.details##" ng-click="details(c)"></i-button>
 
-                            <i-button ng-show="!c.invoice && !defaultSettings.accounting.create_invoice_auto"
+                            <i-button
+                                ng-show="!c.invoice && !defaultSettings.accounting.create_invoice_auto && c.type.id != 4"
                                 type="save" label="##word.create_an_invoice##" ng-click="displayAccountInvoice(c)">
                             </i-button>
 

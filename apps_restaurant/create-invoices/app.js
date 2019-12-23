@@ -78,7 +78,7 @@ module.exports = function init(site) {
         paid_up: create_invoices_doc.paid_up
       })
     };
-
+    
     create_invoices_doc.total_paid_up = 0
     create_invoices_doc.total_remain = 0
 
@@ -86,41 +86,56 @@ module.exports = function init(site) {
       create_invoices_doc.total_paid_up = create_invoices_doc.paid_up
       create_invoices_doc.total_remain = create_invoices_doc.net_value - create_invoices_doc.total_paid_up
     };
-
-    create_invoices_doc.items_price = 0
-
+    /*   console.log(create_invoices_doc);
+      
+    create_invoices_doc.items_price = 0    
     create_invoices_doc.current_book_list.forEach(current_book_list => {
-      create_invoices_doc.items_price += current_book_list.total_price
+      create_invoices_doc.items_price += (current_book_list.total_price || current_book_list.total)
     });
-
+ */
     $create_invoices.add(create_invoices_doc, (err, doc) => {
 
       if (!err) {
         response.done = true;
         response.doc = doc;
 
-        if (doc.safe) {
-          let paid_value = {
-            value: doc.paid_up,
-            company: doc.company,
-            branch: doc.branch,
-            date: doc.date,
-            image_url: doc.image_url,
-            safe: doc.safe
-          }
-          site.call('[create_invoices][safes][+]', paid_value)
-        };
-        let under_paid = {
-          book_list: doc.current_book_list,
-          net_value: doc.net_value,
-          total_tax: doc.total_tax,
-          remain_amount: doc.remain_amount,
-          total_discount: doc.total_discount,
-          price_delivery_service: doc.price_delivery_service,
-          service: doc.service,
-          order_invoices_id: doc.order_invoices_id
+
+        let paid_value = {
+          value: doc.paid_up,
+          company: doc.company,
+          branch: doc.branch,
+          date: doc.date,
+          image_url: doc.image_url,
+          payment_method: doc.payment_method,
+          safe: doc.safe
         }
-        site.call('[create_invoices][order_invoice][+]', under_paid)
+        
+        if (doc.source_type.id == 1) {
+          site.call('[store_in][account_invoice][invoice]', doc.invoice_id)
+          if (doc.safe) site.call('[account_invoices][safes][-]', paid_value)
+        }
+
+        else if (doc.source_type.id == 2) {
+          site.call('[store_out][account_invoice][invoice]', doc.invoice_id)
+          if (doc.safe) site.call('[account_invoices][safes][+]', paid_value)
+        }
+
+        else if (doc.source_type.id == 3) {
+
+          let under_paid = {
+            book_list: doc.current_book_list,
+            net_value: doc.net_value,
+            total_tax: doc.total_tax,
+            remain_amount: doc.remain_amount,
+            total_discount: doc.total_discount,
+            price_delivery_service: doc.price_delivery_service,
+            service: doc.service,
+            invoice_id: doc.invoice_id
+          }
+          site.call('[create_invoices][order_invoice][+]', under_paid)
+          if (doc.safe) site.call('[order_invoice][safes][+]', paid_value)
+
+        }
 
       } else {
         response.error = err.message
@@ -167,8 +182,8 @@ module.exports = function init(site) {
         if (!err) {
           response.done = true
           response.doc = result.doc
-          if (response.doc.remain_amount == 0)
-            site.call('[create_invoices][order_invoice][paid]', response.doc.order_invoices_id)
+          if (response.doc.remain_amount <= 0 && response.doc.source_type.id == 3)
+            site.call('[create_invoices][order_invoice][paid]', response.doc.invoice_id)
 
           if (response.doc.payment_safe) {
             let paid_value = {
@@ -177,10 +192,18 @@ module.exports = function init(site) {
               branch: response.doc.branch,
               date: response.doc.payment_date,
               image_url: response.doc.image_url,
-              safe: response.doc.payment_safe
+              safe: response.doc.payment_safe,
+              payment_method: response.doc.payment_method,
+              type: 'Batch'
             }
-            site.call('[create_invoices][safes][+]', paid_value)
+            if (response.doc.source_type.id == 1)
+              site.call('[account_invoices][safes][-]', paid_value)
+            else if (response.doc.source_type.id == 2)
+              site.call('[account_invoices][safes][+]', paid_value)
+            else if (response.doc.source_type.id == 3)
+              site.call('[order_invoice][safes][+]', paid_value)
           }
+
         } else {
           response.error = err.message
         }
