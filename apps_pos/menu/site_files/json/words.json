@@ -145,16 +145,6 @@
         "ar": "إدارة الفواتير"
     },
     {
-        "name": "account_invoices_menu",
-        "en": "Account Invoices Menu",
-        "ar": "قائمة فواتير الحسابات"
-    },
-    {
-        "name": "account_invoices_management",
-        "en": "Account Invoices Management",
-        "ar": "إدارة فواتير الحسابات"
-    },
-    {
         "name": "order_kitchen_menus",
         "en": "Order Kitchen Menu",
         "ar": "قائمة طلبات المطبخ"

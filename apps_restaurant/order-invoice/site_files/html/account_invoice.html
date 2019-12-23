@@ -1,4 +1,4 @@
-<div id="createInvoiceModal" class="modal">
+<div id="accountInvoiceModal" class="modal">
     <div class="col2"></div>
     <div class="modal-content col8">
         <div class="modal-header">
@@ -13,44 +13,44 @@
                 <div class="row">
 
                     <div class="row">
-                        <i-date2 class="col5" ng-model="create_invoices.date" label="##word.date##"></i-date2>
+                        <i-date2 class="col5" ng-model="account_invoices.date" label="##word.date##"></i-date2>
 
                         <i-list help-id="" ng-search="_search.$payment_method_search" class="col2"
-                            label="##word.payment_method##" ng-model="create_invoices.payment_method"
-                            ng-change="getSafeByType(create_invoices)" items="paymentMethodList"
+                            label="##word.payment_method##" ng-model="account_invoices.payment_method"
+                            ng-change="getSafeByType(account_invoices)" items="paymentMethodList"
                             display="##session.lang##">
                         </i-list>
                         <!--   <i-list help-id="" ng-search="_search.$source_type_search" class="col3"
-                            label="##word.source_type##" ng-model="create_invoices.source_type" items="sourceTypeList"
+                            label="##word.source_type##" ng-model="account_invoices.source_type" items="sourceTypeList"
                             display="##session.lang##"></i-list> -->
                     </div>
 
                     <div class="row">
-                        <i-control class="col2" ng-show="create_invoices.total_discount"
-                            ng-model="create_invoices.total_discount" disabled label="##word.total_discount##"
+                        <i-control class="col2" ng-show="account_invoices.total_discount"
+                            ng-model="account_invoices.total_discount" disabled label="##word.total_discount##"
                             type="number">
                         </i-control>
 
-                        <i-control class="col2" ng-show="create_invoices.total_tax"
-                            ng-model="create_invoices.total_tax" disabled label="##word.total_tax##" type="number">
+                        <i-control class="col2" ng-show="account_invoices.total_tax"
+                            ng-model="account_invoices.total_tax" disabled label="##word.total_tax##" type="number">
                         </i-control>
 
-                        <i-control class="col2" ng-show="create_invoices.net_value" disabled
-                            ng-model="create_invoices.net_value" label="##word.paid_require##" type="number">
+                        <i-control class="col2" ng-show="account_invoices.net_value" disabled
+                            ng-model="account_invoices.net_value" label="##word.paid_require##" type="number">
                         </i-control>
 
-                        <i-control class="col2" ng-show="create_invoices.net_value" ng-model="create_invoices.paid_up"
+                        <i-control class="col2" ng-show="account_invoices.net_value" ng-model="account_invoices.paid_up"
                             label="##word.paid_up##" type="number">
                         </i-control>
 
-                        <i-list ng-search="_search.$order_invoice.$safes_search" ng-show="create_invoices.paid_up > 0"
-                            class="col4" ng-model="create_invoices.safe" label="##word.safe##" items="safesList">
+                        <i-list ng-search="_search.$order_invoice.$safes_search" ng-show="account_invoices.paid_up > 0"
+                            class="col4" ng-model="account_invoices.safe" label="##word.safe##" items="safesList">
                         </i-list>
                     </div>
 
                     <div class="row">
                         <div class="col6">
-                            <i-textarea class="col" label="##word.notes##" ng-model="create_invoices.notes">
+                            <i-textarea class="col" label="##word.notes##" ng-model="account_invoices.notes">
                             </i-textarea>
 
                         </div>
@@ -67,7 +67,7 @@
             <i-button class="not-print" label="##word.print_invoice##" type="print " ng-click="printAccountInvoive()">
             </i-button>
 
-            <i-button type="close" label="##word.close##" onclick="site.hideModal('#createInvoiceModal')"> </i-button>
+            <i-button type="close" label="##word.close##" onclick="site.hideModal('#accountInvoiceModal')"> </i-button>
         </div>
     </div>
     <div class="col2"></div>

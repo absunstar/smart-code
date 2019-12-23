@@ -7,22 +7,22 @@
     {
         "name": "account_invoices_informations",
         "en": "Account Invoices Informations",
-        "ar": "بيانات فاتورة حساب"
+        "ar": "بيانات فواتير الحسابات"
     },
     {
         "name": "account_invoices_name",
         "en": "Account Invoices",
-        "ar": "فواتير الحسابات"
+        "ar": " فواتير الحسابات"
     },
     {
         "name": "account_invoices_menus",
         "en": "Account Invoices Menu",
-        "ar": "قائمة فاتورة حساب"
+        "ar": "قائمة فواتير الحسابات"
     },
     {
         "name": "account_invoices_name",
         "en": "Account Invoices Name",
-        "ar": "اسم فاتورة حساب"
+        "ar": "اسم فواتير الحسابات"
     },
     {
         "name": "source_type",
@@ -35,9 +35,9 @@
         "ar": "نوع الطلب "
     },
     {
-        "name": "err_source_type",
-        "en": "Must Select Source Type",
-        "ar": "يجب إختيار نوع المصدر"
+        "name": "err_order_type",
+        "en": "Must Select Order Type",
+        "ar": "يجب إختيار نوع الطلب"
     },
     {
         "name": "order_sale",
@@ -121,27 +121,27 @@
     },
     {
         "name": "account_invoices_new",
-        "en": "New Account Invoices",
-        "ar": "فاتورة حساب جديدة"
+        "en": "NewAccount Invoices",
+        "ar": "فواتير الحسابات جديدة"
     },
     {
         "name": "account_invoices_details",
         "en": "Account Invoices Details",
-        "ar": "تفاصيل فاتورة حساب"
+        "ar": "تفاصيل فواتير الحسابات"
     },
     {
         "name": "account_invoices_update",
-        "en": "Edit Account Invoices",
-        "ar": "تعديل فاتورة حساب"
+        "en": "EditAccount Invoices",
+        "ar": "تعديل فواتير الحسابات"
     },
     {
         "name": "account_invoices_delete",
-        "en": "Delte Account Invoices",
-        "ar": "حذف فاتورة حساب"
+        "en": "DelteAccount Invoices",
+        "ar": "حذف فواتير الحسابات"
     },
     {
         "name": "account_invoices_add_name",
-        "en": "Add Account Invoices",
-        "ar": "إضافة فاتورة حساب"
+        "en": "AddAccount Invoices",
+        "ar": "إضافة فواتير الحسابات"
     }
 ]

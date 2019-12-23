@@ -185,6 +185,16 @@
         "ar": "لا يوجد إعدادات"
     },
     {
+        "name": "account_invoices_menu",
+        "en": "Account Invoices Menu",
+        "ar": "قائمة فواتير الحسابات"
+    },
+    {
+        "name": "account_invoices_management",
+        "en": "Account Invoices Management",
+        "ar": "إدارة فواتير الحسابات"
+    },
+    {
         "name": "create_invoice_from_order",
         "en": "Create Invoice From Order",
         "ar": "إنشاء فاتورة من الطلبات"

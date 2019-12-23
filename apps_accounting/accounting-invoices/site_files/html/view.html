@@ -22,16 +22,40 @@
                                     <td class="center blue"> {{account_invoices.code}} </td>
                                 </tr>
                                 <tr>
+                                    <td class="title"> ##word.payment_method## </td>
+                                    <td class="center blue"> {{account_invoices.payment_method.ar}} </td>
+                                </tr>
+                                <tr>
                                     <td class="title"> ##word.source_type## </td>
                                     <td class="center"> {{account_invoices.source_type.ar}} </td>
+                                </tr>
+                                <tr>
+                                    <td class="title"> ##word.order_invoices_type## </td>
+                                    <td class="center"> {{account_invoices.order_invoices_type.ar}} </td>
                                 </tr>
                                 <tr ng-show="account_invoices.customer.name_ar">
                                     <td class="title"> ##word.customer## </td>
                                     <td class="center blue"> {{account_invoices.customer.name_ar}} </td>
                                 </tr>
-                                <tr ng-show="account_invoices.vendor.name_ar">
-                                    <td class="title"> ##word.vendor## </td>
-                                    <td class="center blue"> {{account_invoices.vendor.name_ar}} </td>
+                                <tr ng-show="account_invoices.delivery_employee.name">
+                                    <td class="title"> ##word.delivery_employee## </td>
+                                    <td class="center blue"> {{account_invoices.delivery_employee.name}} </td>
+                                </tr>
+                                <tr ng-show="account_invoices.table.name">
+                                    <td class="title"> ##word.tables_group## </td>
+                                    <td class="center blue"> {{account_invoices.table.tables_group.name}} </td>
+                                </tr>
+                                <tr ng-show="account_invoices.table.name">
+                                    <td class="title"> ##word.table## </td>
+                                    <td class="center blue"> {{account_invoices.table.name}} </td>
+                                </tr>
+                                <tr ng-show="account_invoices.service > 0">
+                                    <td class="title"> ##word.service## </td>
+                                    <td class="center"> {{account_invoices.service}} </td>
+                                </tr>
+                                <tr ng-show="account_invoices.price_delivery_service > 0">
+                                    <td class="title"> ##word.price_delivery_service## </td>
+                                    <td class="center"> {{account_invoices.price_delivery_service}} </td>
                                 </tr>
                                 <tr ng-show="account_invoices.total_discount > 0">
                                     <td class="title"> ##word.stores_out_total_discount## </td>
@@ -42,7 +66,7 @@
                                     <td class="center"> {{account_invoices.total_tax}} </td>
                                 </tr>
                                 <tr>
-                                    <td class="title"> ##word.paid_require## </td>
+                                    <td class="title"> ##word.net_value## </td>
                                     <td class="center blue"> {{account_invoices.net_value}} </td>
                                 </tr>
 
@@ -61,36 +85,29 @@
                             </table>
                         </div>
 
-                        <br>
-                        <br>
-                        <hr>
-                        <br>
-
-                        <h1 class="blue center">##word.invoices_code## : {{account_invoices.invoice_code}}</h1>
                         <div class="row">
                             <table x-permissions="login" class="table bold hover loaded" id="t1">
                                 <tr>
                                     <th>##word.stores_items_name##</th>
-                                    <th>##word.barcode##</th>
-                                    <th>##word.stores_in_item_size##</th>
                                     <th>##word.items_count##</th>
-                                    <th>##word.price##</th>
+                                    <th>##word.items_price##</th>
                                     <th>##word.discount##</th>
                                     <th>##word.items_price_total##</th>
+                                    </th>
                                 </tr>
 
                                 <tr ng-repeat="c in account_invoices.current_book_list">
-                                    <td class="center title">{{c.name}}</td>
-                                    <td class="center title">{{c.barcode}}</td>
                                     <td class="center title">{{c.size}}</td>
                                     <td class="center blue">{{c.count}}</td>
-                                    <td class="center blue">{{c.cost}}</td>
                                     <td class="center">
-                                        {{c.discount.value}}
+                                        <p ng-hide="account_invoices.source_type.id ==1">{{c.price}}</p>
+                                        <p ng-show="account_invoices.source_type.id ==1">{{c.cost}}</p>
+                                    </td>
+                                    <td class="center red">{{c.discount.value}}
                                         <b class="red" ng-show="c.discount.type =='number'">##word.le##</b>
                                         <b class="red" ng-show="c.discount.type =='percent'">%</b>
                                     </td>
-                                    <td class="center green">{{c.total}}</td>
+                                    <td class="center green">{{c.total_price || c.total}}</td>
 
                                 </tr>
                             </table>
@@ -102,7 +119,7 @@
 
                                 <legend>##word.detailes_amounts_paid##</legend>
                                 <i-control disabled class="col2" ng-model="account_invoices.net_value"
-                                    label="##word.paid_require##" type="number"></i-control>
+                                    label="##word.net_value##" type="number"></i-control>
                                 <i-control disabled class="col2" ng-model="account_invoices.total_paid_up"
                                     label="##word.total_paid_up##" type="number"></i-control>
                                 <i-control disabled class="col2" ng-model="account_invoices.total_remain"

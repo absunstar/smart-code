@@ -1,7 +1,7 @@
 [{
     "module_name" : "accounting" ,
     "name": "account_invoices_admin",
-    "en": "Account Invoices  Admin",
+    "en": "Acount Invoices  Admin",
     "ar": "إدارة فواتير الحسابات",
     "permissions": ["account_invoices_manage"]
 }]
