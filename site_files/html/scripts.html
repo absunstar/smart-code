@@ -2,6 +2,9 @@
 <script src="/x-js/angular.js"></script>
 <script src="/x-js/site.js"></script>
 <script>
+    site.features = '##req.features##';
+    site.feature = (f)=> site.features.indexOf(f) !== -1;
+
     setTimeout(() => {
         document.querySelectorAll('.loaded').forEach(el => {
             el.style.visibility = 'visible';
