@@ -93,18 +93,23 @@ app.controller("item_transaction", function ($scope, $http, $timeout) {
 
   $scope.searchAll = function () {
     let where = {};
+
     if ($scope.search.current_status) {
       where['current_status'] = $scope.search.current_status.value;
     }
+
     if ($scope.search.ticket_code) {
       where['ticket_code'] = $scope.search.ticket_code;
     }
+
     if ($scope.search.number) {
       where['number'] = $scope.search.number;
     }
+
     if ($scope.search.store) {
       where['store.id'] = $scope.search.store.id;
     }
+
     if ($scope.search.eng) {
       where['eng.id'] = $scope.search.eng.id;
     }
@@ -112,7 +117,6 @@ app.controller("item_transaction", function ($scope, $http, $timeout) {
     if ($scope.search.name) {
       where['name'] = $scope.search.name;
     }
-
 
     if ($scope.search.size) {
       where['size'] = $scope.search.size;
@@ -234,10 +238,47 @@ app.controller("item_transaction", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.loadStoresOutTypes = function () {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: '/api/stores_out/types/all',
+      data: {}
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.storesOutTypes = response.data;
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
 
+  $scope.loadStoresInTypes = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: '/api/stores_in/types/all',
+      data: {}
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.storesInTypes = response.data;
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
 
   $scope.loadvendors();
   $scope.loadStores();
+  $scope.loadStoresInTypes();
+  $scope.loadStoresOutTypes();
   $scope.loadEng();
   $scope.loadAll({ date: new Date() });
 

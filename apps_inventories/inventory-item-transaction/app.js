@@ -221,6 +221,23 @@ module.exports = function init(site) {
     if (where && where.ticket_code) {
       where['ticket_code'] = new RegExp(where['ticket_code'], 'i')
     }
+
+    if (where['type_in']) {
+      console.log("aaaaaaaaaaaaaaaaaa");
+      
+      where['transaction_type'] = 'in'
+      where['source_type.id'] = where['type_in'].id;
+      delete where['type_in']
+    }
+
+    if (where['type_out']) {
+      
+      where['transaction_type'] = 'out'
+      where['source_type.id'] = where['type_out'].id;
+      delete where['type_out']
+    }
+    
+
     where['company.id'] = site.get_company(req).id
     where['branch.code'] = site.get_branch(req).code
     response.done = false
