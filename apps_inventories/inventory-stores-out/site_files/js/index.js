@@ -915,7 +915,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
             }
           }
         }
-        site.showModal('#createInvoiceModal');
+        site.showModal('#accountInvoiceModal');
       } else $scope.error = '##word.open_shift_not_found##';
     });
   };
@@ -927,7 +927,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
     if (account_invoices.paid_up > 0 && !account_invoices.safe) {
       $scope.error = "##word.should_select_safe##";
       return;
-    } else if (account_invoices.paid_up > account_invoices.paid_require) {
+    } else if (account_invoices.paid_up > account_invoices.net_value) {
       $scope.error = "##word.err_paid_require##";
       return;
     }
@@ -941,7 +941,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response) {
-          site.hideModal('#createInvoiceModal');
+          site.hideModal('#accountInvoiceModal');
           $scope.printAccountInvoive();
           $scope.loadAll();
         } else $scope.error = response.data.error;
@@ -964,7 +964,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
       port = $scope.defaultSettings.printer_program.port || '11111';
     };
 
-    $scope.account_invoices.total_remain = $scope.account_invoices.paid_require - $scope.account_invoices.paid_up;
+    $scope.account_invoices.total_remain = $scope.account_invoices.net_value - $scope.account_invoices.paid_up;
 
     let obj_print = { data: [] };
 
@@ -1024,11 +1024,11 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
       $scope.account_invoices.total_paid_up = $scope.account_invoices.total_paid_up + $scope.account_invoices.payment_paid_up;
     }
 
-    if ($scope.account_invoices.paid_require)
+    if ($scope.account_invoices.net_value)
       obj_print.data.push(
         {
           type: 'text2',
-          value2: $scope.account_invoices.paid_require,
+          value2: $scope.account_invoices.net_value,
           value: "Total Value"
         });
 

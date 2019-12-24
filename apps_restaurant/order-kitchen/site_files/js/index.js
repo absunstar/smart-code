@@ -31,8 +31,9 @@ app.controller("order_kitchen", function ($scope, $http, $interval) {
         }).then(
           function (response) {
             $scope.busy = false;
-            if (response.data.done) {
-              $scope.orderKitchensList();
+            if (response.data.done) {   
+              $scope.book_list_report.splice($scope.book_list_report.indexOf(i), 1)
+              $scope.book_list_report = $scope.book_list_report
             } else {
               $scope.error = response.data.error;
             }
@@ -87,7 +88,10 @@ app.controller("order_kitchen", function ($scope, $http, $interval) {
           $scope.defaultSettings = response.data.doc;
           $scope.error = '';
           $scope.order_kitchen = {};
-          $scope.order_kitchen.kitchen = $scope.defaultSettings.general_Settings ? $scope.defaultSettings.general_Settings.kitchen : null
+
+          if ($scope.defaultSettings.general_Settings && $scope.defaultSettings.general_Settings.kitchen)
+            $scope.order_kitchen.kitchen = $scope.defaultSettings.general_Settings.kitchen;
+
           if ($scope.order_kitchen.kitchen && $scope.order_kitchen.kitchen.id) {
             $scope.orderKitchensList();
           }
@@ -99,6 +103,7 @@ app.controller("order_kitchen", function ($scope, $http, $interval) {
       }
     )
   };
+
 
   $scope.orderKitchensList = function () {
     $scope.error = "";
@@ -115,6 +120,7 @@ app.controller("order_kitchen", function ($scope, $http, $interval) {
         if (response.data.done) {
           $scope.count = response.data.count;
           $scope.book_list_report = response.data.list
+
         }
       },
       function (err) {

@@ -13,5 +13,10 @@
         "id" : 3,
         "en": "Orders Screen",
         "ar": "شاشة الطلبات"
+    },
+    {
+        "id" : 4,
+        "en": "Orders Service",
+        "ar": "طلب خدمة"
     }
 ]

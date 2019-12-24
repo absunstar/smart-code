@@ -9,17 +9,23 @@ module.exports = function init(site) {
   })
 
   site.post("/api/order_kitchen/update", (req, res) => {
+    let response = {
+      done: false
+    }
     let item = req.body
     $order_invoice.findOne({
       id: item.order.id,
     }, (err, doc) => {
       if (!err && doc) {
+        response.done = true
         doc.book_list.forEach(book_list => {
           if (book_list.size == item.size && book_list.barcode == item.barcode)
             book_list.done_kitchen = true;
         });
         $order_invoice.update(doc)
       }
+      res.json(response)
+
     })
   })
 

@@ -135,6 +135,9 @@ module.exports = function init(site) {
           site.call('[account_invoices][order_invoice][+]', under_paid)
           if (doc.safe) site.call('[order_invoice][safes][+]', paid_value)
 
+        } else if (doc.source_type.id == 4) {
+          site.call('[account_invoices][request_service][+]', doc.invoice_id)
+          if (doc.safe) site.call('[order_invoice][safes][+]', paid_value)
         }
 
       } else {

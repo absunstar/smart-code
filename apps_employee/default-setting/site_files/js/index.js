@@ -130,7 +130,10 @@ app.controller("default_setting", function ($scope, $http) {
     }).then(
       function (response) {
         $scope.busy = false;
-        $scope.sourceTypeList = response.data;
+        if (site.feature('gym')) $scope.sourceTypeList = response.data.filter(i => i.id != 3);
+        else if (site.feature('restaurant')) $scope.sourceTypeList = response.data.filter(i => i.id != 4);
+        else if (site.feature('pos')) $scope.sourceTypeList = response.data.filter(i => i.id != 4 && i.id != 3);
+
       },
       function (err) {
         $scope.busy = false;

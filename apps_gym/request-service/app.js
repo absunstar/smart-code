@@ -57,7 +57,7 @@ module.exports = function init(site) {
     })
   })
 
-  site.on('[create_invoices][request_service][+]', function (obj) {
+  site.on('[account_invoices][request_service][+]', function (obj) {
     $request_service.findOne({ id: obj }, (err, doc) => {
       doc.invoice = true
       $request_service.update(doc);

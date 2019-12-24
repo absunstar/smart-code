@@ -29,13 +29,34 @@
                                     <td class="title"> ##word.source_type## </td>
                                     <td class="center"> {{account_invoices.source_type.ar}} </td>
                                 </tr>
-                                <tr>
+                                <tr x-feature="restaurant">
                                     <td class="title"> ##word.order_invoices_type## </td>
                                     <td class="center"> {{account_invoices.order_invoices_type.ar}} </td>
                                 </tr>
                                 <tr ng-show="account_invoices.customer.name_ar">
                                     <td class="title"> ##word.customer## </td>
                                     <td class="center blue"> {{account_invoices.customer.name_ar}} </td>
+                                </tr>
+                                <tr ng-show="account_invoices.vendor.name_ar">
+                                    <td class="title"> ##word.vendor## </td>
+                                    <td class="center blue"> {{account_invoices.vendor.name_ar}} </td>
+                                </tr>
+                                <tr ng-show="account_invoices.trainer.name">
+                                    <td class="title"> ##word.trainer## </td>
+                                    <td class="center blue"> {{account_invoices.trainer.name}} </td>
+                                </tr>
+                                <tr ng-show="account_invoices.hall.name">
+                                    <td class="title"> ##word.hall## </td>
+                                    <td class="center blue"> {{account_invoices.hall.name}} </td>
+                                </tr>
+
+                                <tr ng-show="account_invoices.service_name">
+                                    <td class="title"> ##word.service## </td>
+                                    <td class="center blue"> {{account_invoices.service_name}} </td>
+                                </tr>
+                                <tr ng-show="account_invoices.service_name">
+                                    <td class="title"> ##word.service## </td>
+                                    <td class="center blue"> {{account_invoices.service_name}} </td>
                                 </tr>
                                 <tr ng-show="account_invoices.delivery_employee.name">
                                     <td class="title"> ##word.delivery_employee## </td>
@@ -57,6 +78,11 @@
                                     <td class="title"> ##word.price_delivery_service## </td>
                                     <td class="center"> {{account_invoices.price_delivery_service}} </td>
                                 </tr>
+                                <tr ng-show="account_invoices.services_price">
+                                    <td class="title">##word.services_price##</td>
+                                    <td class="center">{{account_invoices.services_price}}</td>
+                                </tr>
+
                                 <tr ng-show="account_invoices.total_discount > 0">
                                     <td class="title"> ##word.stores_out_total_discount## </td>
                                     <td class="center"> {{account_invoices.total_discount}} </td>
@@ -65,6 +91,8 @@
                                     <td class="title"> ##word.stores_out_total_tax## </td>
                                     <td class="center"> {{account_invoices.total_tax}} </td>
                                 </tr>
+
+                              
                                 <tr>
                                     <td class="title"> ##word.net_value## </td>
                                     <td class="center blue"> {{account_invoices.net_value}} </td>
@@ -73,6 +101,16 @@
                                 <tr ng-show="account_invoices.safe">
                                     <td class="title"> ##word.safe## </td>
                                     <td class="center"> {{account_invoices.safe.name}} </td>
+                                </tr>
+                                <tr ng-show="account_invoices.date_from"></tr>
+                                <td class="title">##word.start_date##</td>
+                                <td class="center green">{{account_invoices.date_from | date : 'yyyy - MM - dd'}}
+                                </td>
+                                </tr>
+                                <tr ng-show="account_invoices.date_to"></tr>
+                                <td class="title">##word.expired_date##</td>
+                                <td class="center red">{{account_invoices.date_to | date : 'yyyy - MM - dd'}}
+                                </td>
                                 </tr>
                                 <tr>
                                     <td class="title"> ##word.active## </td>
@@ -84,8 +122,13 @@
                                 </tr>
                             </table>
                         </div>
-
+                        <br>
+                        <br>
                         <div class="row">
+                            <h1 class="blue"> {{account_invoices.invoice_code}}</h1>
+                        </div>
+
+                        <div class="row" ng-show="account_invoices.current_book_list.length > 0">
                             <table x-permissions="login" class="table bold hover loaded" id="t1">
                                 <tr>
                                     <th>##word.stores_items_name##</th>

@@ -183,15 +183,15 @@ app.controller("default_setting", function ($scope, $http) {
     }).then(
       function (response) {
         $scope.busy = false;
-        $scope.sourceTypeList = response.data;
-      },
+        if (site.feature('gym')) $scope.sourceTypeList = response.data.filter(i => i.id != 3);
+        else if (site.feature('restaurant')) $scope.sourceTypeList = response.data.filter(i => i.id != 4);
+        else if (site.feature('pos')) $scope.sourceTypeList = response.data.filter(i => i.id != 4 && i.id != 3);      },
       function (err) {
         $scope.busy = false;
         $scope.error = err;
       }
     )
   };
-
 
   $scope.getPrintersPath = function () {
     $scope.busy = true;
@@ -370,26 +370,6 @@ app.controller("default_setting", function ($scope, $http) {
     )
   };
 
-  $scope.getShiftsList = function () {
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/shifts/all",
-      data: {}
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.shiftsList = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
-  };
-
   $scope.loadDelegates = function () {
     $scope.busy = true;
     $scope.delegatesList = [];
@@ -517,6 +497,5 @@ app.controller("default_setting", function ($scope, $http) {
   $scope.getSourceType();
   $scope.getPlaceProgramList();
   $scope.getPrintersPath();
-  $scope.getShiftsList();
   $scope.loadSetting();
 });

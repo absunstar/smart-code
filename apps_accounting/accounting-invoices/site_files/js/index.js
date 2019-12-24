@@ -17,7 +17,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
             if (response.data.done && response.data.doc) {
               $scope.defaultSettings = response.data.doc;
               $scope._search = {};
-              $scope.search_order = "";
+              $scope.search_order = '';
               $scope.error = '';
               $scope.orderInvoicesTypeList = [];
 
@@ -28,20 +28,24 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
                 active: true,
               };
 
-              if ($scope.defaultSettings.general_Settings) {
-
-                if ($scope.defaultSettings.general_Settings.payment_method)
-                  $scope.account_invoices.payment_method = $scope.defaultSettings.general_Settings.payment_method;
-
-                if ($scope.defaultSettings.accounting) {
-                  if ($scope.defaultSettings.accounting.safe)
-                    $scope.account_invoices.safe = $scope.defaultSettings.accounting.safe;
-                  if ($scope.defaultSettings.accounting.source_type)
-                    $scope.account_invoices.source_type = $scope.defaultSettings.accounting.source_type;
-
+              if ($scope.defaultSettings.accounting) {
+                if ($scope.defaultSettings.accounting.source_type)
+                  $scope.account_invoices.source_type = $scope.defaultSettings.accounting.source_type;
+                if ($scope.defaultSettings.accounting.payment_method) {
+                  $scope.account_invoices.payment_method = $scope.defaultSettings.accounting.payment_method;
+                  $scope.loadSafes($scope.account_invoices.payment_method);
+                  if ($scope.account_invoices.payment_method.id == 1) {
+                    if ($scope.defaultSettings.accounting.safe_box)
+                      $scope.account_invoices.safe = $scope.defaultSettings.accounting.safe_box;
+                  } else {
+                    if ($scope.defaultSettings.accounting.safe_bank)
+                      $scope.account_invoices.safe = $scope.defaultSettings.accounting.safe_bank;
+                  }
                 }
+              };
 
-                if ($scope.defaultSettings.general_Settings.order_type && $scope.account_invoices.source_type.id == 3)
+              if ($scope.defaultSettings.general_Settings) {
+                if ($scope.defaultSettings.general_Settings.order_type && $scope.account_invoices.source_type && $scope.account_invoices.source_type.id == 3)
                   $scope.account_invoices.order_invoices_type = $scope.defaultSettings.general_Settings.order_type;
               }
 
@@ -337,6 +341,9 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
 
         else if ($scope.account_invoices.source_type.id == 3)
           url = "/api/order_invoice/invoices";
+
+        else if ($scope.account_invoices.source_type.id == 4)
+          url = "/api/request_service/all";
       }
 
       $http({
@@ -363,12 +370,31 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
     };
   };
 
+  $scope.getSafeByType = function (obj) {
+    $scope.error = '';
+    if ($scope.defaultSettings.accounting) {
+      $scope.loadSafes(obj.payment_method);
+      if (obj.payment_method.id == 1) {
+        if ($scope.defaultSettings.accounting.safe_box)
+          obj.safe = $scope.defaultSettings.accounting.safe_box;
+      } else {
+        if ($scope.defaultSettings.accounting.safe_bank)
+          obj.safe = $scope.defaultSettings.accounting.safe_bank;
+      }
+    }
+  };
+
   $scope.selectOrderInvoices = function (item) {
     $scope.error = '';
     $scope.account_invoices.current_book_list = [];
     $scope.account_invoices.customer = item.customer;
+    $scope.account_invoices.vendor = item.vendor;
     $scope.account_invoices.delivery_employee = item.delivery_employee;
     $scope.account_invoices.table = item.table;
+    $scope.account_invoices.services_price = item.services_price;
+    $scope.account_invoices.service_name = item.service_name;
+    $scope.account_invoices.date_from = item.date_from;
+    $scope.account_invoices.date_to = item.date_to;
     if (item.under_paid) {
       $scope.account_invoices.total_tax = item.under_paid.total_tax;
       $scope.account_invoices.total_discount = item.under_paid.total_discount;
@@ -376,12 +402,13 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
       $scope.account_invoices.service = item.under_paid.service;
       $scope.account_invoices.net_value = item.under_paid.net_value;
     } else {
-
       $scope.account_invoices.total_tax = item.total_tax;
       $scope.account_invoices.total_discount = item.total_discount;
-      $scope.account_invoices.net_value = item.net_value;
+      $scope.account_invoices.net_value = item.net_value || item.paid_require;
     }
+
     $scope.account_invoices.invoice_id = item.id;
+    $scope.account_invoices.invoice_code = item.code || item.number;
     $scope.account_invoices.paid_up = 0;
     $scope.total_tax = $scope.account_invoices.total_tax;
     $scope.total_discount = $scope.account_invoices.total_discount;
@@ -490,7 +517,11 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
-        $scope.sourceTypeList = response.data;
+
+        if (site.feature('gym')) $scope.sourceTypeList = response.data.filter(i => i.id != 3);
+        else if (site.feature('restaurant')) $scope.sourceTypeList = response.data.filter(i => i.id != 4);
+        else if (site.feature('pos')) $scope.sourceTypeList = response.data.filter(i => i.id != 4 && i.id != 3);
+
       },
       function (err) {
         $scope.busy = false;
@@ -499,8 +530,15 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.getSafesList = function () {
+  $scope.loadSafes = function (method) {
+    $scope.error = '';
     $scope.busy = true;
+    let where = {};
+
+    if (method.id == 1)
+      where = { 'type.id': 1 };
+    else where = { 'type.id': 2 };
+
     $http({
       method: "POST",
       url: "/api/safes/all",
@@ -510,14 +548,14 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
           name: 1,
           number: 1,
           type: 1
-        }
+        },
+        where: where
       }
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.safesList = response.data.list;
-        }
+        if (response.data.done) $scope.safesList = response.data.list;
+
       },
       function (err) {
         $scope.busy = false;
@@ -578,6 +616,21 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
         type: 'text2',
         value2: $scope.account_invoices.customer.name_ar,
         value: 'Cutomer'
+      });
+
+    if ($scope.account_invoices.vendor)
+      obj_print.data.push({
+        type: 'text2',
+        value2: $scope.account_invoices.vendor.name_ar,
+        value: 'Vendor'
+      });
+
+
+    if ($scope.account_invoices.service_name)
+      obj_print.data.push({
+        type: 'text2',
+        value2: $scope.account_invoices.service_name,
+        value: 'Service'
       });
 
     if ($scope.account_invoices.table)
@@ -717,7 +770,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
 
   $scope.getOrderTypeSetting = function () {
     $scope.account_invoices.order_invoices_type = {};
-    if ($scope.defaultSettings.general_Settings.order_type && $scope.account_invoices.source_type.id == 3)
+    if ($scope.account_invoices.source_type && $scope.account_invoices.source_type.id == 3 && $scope.defaultSettings.general_Settings && $scope.defaultSettings.general_Settings.order_type)
       $scope.account_invoices.order_invoices_type = $scope.defaultSettings.general_Settings.order_type;
   };
 
@@ -772,7 +825,5 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
   $scope.getDefaultSetting();
   $scope.getAccountInvoicesList({ date: new Date() });
   $scope.getSourceType();
-  $scope.getTransactionTypeList();
-  $scope.getSafesList();
   $scope.getPaymentMethodList();
 });
