@@ -684,11 +684,7 @@
         "en": "Report Invoices Menu",
         "ar": "قائمة تقارير الفواتير "
     },
-    {
-        "name": "report_sales_menus",
-        "en": "Report Sales Menu",
-        "ar": "قائمة تقارير مبيعات الأصناف "
-    },
+   
     {
         "name": "report_employee_delivery_menus",
         "en": "Report Employees Delivery Menu",
