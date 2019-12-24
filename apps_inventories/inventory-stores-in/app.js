@@ -224,6 +224,7 @@ module.exports = function init(site) {
           itm.number = stores_in_doc.number
           itm.vendor = stores_in_doc.vendor
           itm.date = stores_in_doc.date
+          itm.source_type = stores_in_doc.type
           itm.company = doc.company
           itm.branch = doc.branch
           itm.transaction_type = 'in'

@@ -35,7 +35,7 @@ module.exports = function init(site) {
         '$lt': d2
       }
     } else if (where && where.date_from) {
-      let d1 = site.toDate( where.date_from)
+      let d1 = site.toDate(where.date_from)
       let d2 = site.toDate(where.date_to)
       d2.setDate(d2.getDate() + 1);
       where.date = {
@@ -44,6 +44,18 @@ module.exports = function init(site) {
       }
       delete where.date_from
       delete where.date_to
+    }
+
+    if (where['name']) {
+      where['name'] = new RegExp(where['name'], 'i')
+    }
+
+    if (where['size']) {
+      where['size'] = new RegExp(where['size'], 'i')
+    }
+
+    if (where['barcode']) {
+      where['barcode'] = new RegExp(where['barcode'], 'i')
     }
 
     where['transaction_type'] = 'out'

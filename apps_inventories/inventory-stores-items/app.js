@@ -150,14 +150,14 @@ module.exports = function init(site) {
     balance_list.push(Object.assign({}, obj))
   })
 
-  function balance_handle(obj){
-   // console.log(site.toDateXF(new Date()) +  '   balance_handle ( ' + balance_list.length + ' ) ')
-    if(obj == null){
-      if(balance_list.length > 0){
+  function balance_handle(obj) {
+    // console.log(site.toDateXF(new Date()) +  '   balance_handle ( ' + balance_list.length + ' ) ')
+    if (obj == null) {
+      if (balance_list.length > 0) {
         obj = balance_list[0]
         balance_handle(obj)
-        balance_list.splice(0 , 1)
-      }else{
+        balance_list.splice(0, 1)
+      } else {
         setTimeout(() => {
           balance_handle(null)
         }, 1000);
@@ -327,7 +327,7 @@ module.exports = function init(site) {
 
 
                 } else _branch.stores_list = [obj_store]
-                
+
                 _size.branches_list[indxBranch] = _branch
 
               } else _size.branches_list.push(obj_branch)
@@ -843,6 +843,7 @@ module.exports = function init(site) {
       res.json(response)
     })
   })
+
   site.post("/api/stores_items/all", (req, res) => {
 
     let response = {}
@@ -1066,13 +1067,14 @@ module.exports = function init(site) {
       if (!err) {
         response.done = true
         let arr = [];
-        if(docs){
+        if (docs && docs.length > 0) {
           docs.forEach(item => {
-            item.sizes.forEach(size => {
-              size.itm_id = item.id
-              size.stores_item_name = item.name
-              arr.unshift(size)
-            })
+            if (item.sizes && item.sizes.length > 0)
+              item.sizes.forEach(size => {
+                size.itm_id = item.id
+                size.stores_item_name = item.name
+                arr.unshift(size)
+              })
           })
         }
         response.count = count

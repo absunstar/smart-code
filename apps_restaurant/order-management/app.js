@@ -70,26 +70,6 @@ module.exports = function init(site) {
           response.done = true
           response.doc = result.doc
 
-        /*   if (result.doc.reset_items && result.doc.status.id == 2 && result.doc.post) {
-            $order_invoice.update(result.doc)
-            result.doc.book_list.forEach(itm => {
-              itm.company = result.doc.company
-              itm.branch = result.doc.branch
-              itm.store = doc.store
-
-              let _item = itm
-
-              _itm.type = 'minus'
-              site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _item))
-
-              itm.number = result.doc.code
-              itm.current_status = 'order'
-              itm.date = result.doc.date
-              itm.transaction_type = 'out'
-              site.call('please out item', Object.assign({}, itm))
-            })
-          }; */
-
           if (result.doc.transaction_type && result.doc.transaction_type.id == 1 && result.doc.table.id) {
 
             if (result.doc.status.id == 1) {

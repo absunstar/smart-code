@@ -91,6 +91,7 @@
                                         ##word.item_transaction_current_status_4##
                                         <br>
                                         <span>{{c.ticket_code}}</span>
+                                        <p>{{c.source_type.ar}}</p>
                                         <br>
                                         <span class="blue">{{c.number}}</span>
                                 </p>
@@ -118,6 +119,7 @@
                                 <p class="text-center red bold" ng-show="c.current_status == 'storein'">
                                     ##word.item_transaction_current_status_6##
                                     <br>
+                                    <p>{{c.source_type.ar}}</p>
                                     <span class="blue">{{c.number}}</span>
                             </p>
                             </td>

@@ -43,6 +43,7 @@ module.exports = function init(site) {
 
         delete itm._id
         delete itm.id
+        delete itm.type
 
         itm.transaction_type = 'in'
 
@@ -103,6 +104,7 @@ module.exports = function init(site) {
 
     delete itm.id
     delete itm._id
+    delete itm.type
 
     $item_transaction.findMany({ sort: { id: -1 }, where: { 'barcode': itm.barcode, name: itm.name, 'branch.code': itm.branch.code, 'company.id': itm.company.id, 'store.id': itm.store.id }, limit: 1 }, (err, docs) => {
 

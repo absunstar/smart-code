@@ -143,30 +143,7 @@ module.exports = function init(site) {
       if (!err) {
         response.done = true
         response.doc = doc
-     /*    if (doc.status && doc.status.id == 2 && doc.reset_items) {
-          doc.book_list.forEach(itm => {
-            itm.company = result.doc.company
-            itm.branch = result.doc.branch
-            itm.store = doc.store
-
-            let _item = itm
-
-            _itm.type = 'minus'
-            site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _item))
-
-            itm.number = result.doc.code
-            itm.current_status = 'order'
-            itm.date = result.doc.date
-            itm.transaction_type = 'out'
-            site.call('please out item', Object.assign({}, itm))
-          })
-        } */
-     /*    if (doc.under_paid && doc.under_paid.order_invoice_id == null) {
-
-          doc.under_paid.order_invoice_id = doc.id
-          $order_invoice.update(doc)
-
-        } */
+    
       } else {
         response.error = err.message
       }
@@ -230,25 +207,7 @@ module.exports = function init(site) {
         if (!err, result) {
           response.done = true
           response.doc = result.doc
-         /*  if (result.doc.reset_items && result.doc.status && result.doc.status.id == 2) {
-            $order_invoice.update(result.doc)
-            result.doc.book_list.forEach(itm => {
-              itm.company = result.doc.company
-              itm.branch = result.doc.branch
-              itm.store = doc.store
-
-              let _item = itm
-
-              _itm.type = 'minus'
-              site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _item))
-
-              itm.number = result.doc.code
-              itm.current_status = 'order'
-              itm.date = result.doc.date
-              itm.transaction_type = 'out'
-              site.call('please out item', Object.assign({}, itm))
-            })
-          }; */
+    
         } else {
           response.error = 'Code Already Exist'
         };

@@ -1327,7 +1327,6 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
     )
   };
 
-
   $scope.loadItemSize = function () {
     $scope.error = '';
     $scope.busy = true;

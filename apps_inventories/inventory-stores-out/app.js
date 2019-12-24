@@ -228,6 +228,7 @@ module.exports = function init(site) {
           itm.branch = stores_out_doc.branch
           itm.number = stores_out_doc.number
           itm.current_status = 'sold'
+          itm.source_type = stores_out_doc.type
           itm.date = stores_out_doc.date
           itm.transaction_type = 'out'
           itm.store = stores_out_doc.store
