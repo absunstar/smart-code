@@ -89,18 +89,16 @@ app.controller("request_service", function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done && response.data.doc) {
+        if (response.data.done && response.data.doc) 
           $scope.defaultSettings = response.data.doc;
-
-        };
       },
       function (err) {
         $scope.busy = false;
         $scope.error = err;
       }
     )
-
   };
+
   $scope.addRequestService = function () {
     $scope.error = '';
     const v = site.validated('#requestServiceAddModal');
@@ -119,7 +117,7 @@ app.controller("request_service", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           if ($scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto) {
-            let request_doc = response.data.doc
+            let request_doc = response.data.doc;
             $scope.account_invoices = {
               image_url: '/images/account_invoices.png',
               date: new Date(),
@@ -127,12 +125,12 @@ app.controller("request_service", function ($scope, $http, $timeout) {
               customer: request_doc.customer,
               trainer: request_doc.trainer,
               hall: request_doc.hall,
-              shift: shift,
+              shift: request_doc.shift,
               service_name: request_doc.service_name,
               date_from: request_doc.date_from,
               date_to: request_doc.date_to,
               net_value: request_doc.paid_require,
-              paid_up: 0,
+              paid_up: request_doc.paid_require,
               invoice_code: request_doc.code,
               total_discount: request_doc.total_discount,
               source_type: {
@@ -142,7 +140,7 @@ app.controller("request_service", function ($scope, $http, $timeout) {
               },
               active: true
             };
-    
+
             if ($scope.defaultSettings.accounting) {
               if ($scope.defaultSettings.accounting.payment_method) {
                 $scope.account_invoices.payment_method = $scope.defaultSettings.accounting.payment_method;
@@ -155,8 +153,8 @@ app.controller("request_service", function ($scope, $http, $timeout) {
                     $scope.account_invoices.safe = $scope.defaultSettings.accounting.safe_bank;
                 }
               }
-            }
-            $scope.addAccountInvoice($scope.account_invoices)
+            };
+            $scope.addAccountInvoice($scope.account_invoices);
           }
           site.hideModal('#requestServiceAddModal');
           $scope.getRequestServiceList();
@@ -310,7 +308,6 @@ app.controller("request_service", function ($scope, $http, $timeout) {
         value2: $scope.account_invoices.total_discount,
         value: 'Total Discount'
       });
-
 
     obj_print.data.push({ type: 'space' });
 
