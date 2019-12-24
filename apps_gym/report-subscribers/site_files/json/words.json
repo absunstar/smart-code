@@ -1,0 +1,114 @@
+[
+    {
+        "name": "report_subscribers_add",
+        "en": "Add Customer",
+        "ar": "إضافة عميل"
+    },
+    {
+        "name": "report_subscribers_informations",
+        "en": "Report Invoices Informations",
+        "ar": "بيانات تقرير فاتورة"
+    },
+    {
+        "name": "report_subscribers_name",
+        "en": "Account statement Subscribers",
+        "ar": "كشف حساب المشتركين"
+    },
+    {
+        "name": "report_subscribers_menus",
+        "en": "Report Invoices Menu",
+        "ar": "قائمة تقرير فاتورة"
+    },
+    {
+        "name": "report_subscribers_name",
+        "en": "Report Invoices Name",
+        "ar": "اسم تقرير فاتورة"
+    },
+    {
+        "name": "source_type",
+        "en": "Source Type",
+        "ar": "نوع المصدر"
+    },
+    {
+        "name": "order_subscribers_type",
+        "en": "Order Invoices Type",
+        "ar": "نوع أمر الفاتورة"
+    },
+    {
+        "name": "order_sale",
+        "en": "Order Sale",
+        "ar": "أمر بيع"
+    },
+    {
+        "name": "payable",
+        "en": "Payable",
+        "ar": "مستحق الدفع"
+    },
+    {
+        "name": "request_type",
+        "en": "Invoice Type",
+        "ar": "نوع الفاتورة"
+    },
+
+    {
+        "name": "payment",
+        "en": "Payment",
+        "ar": "تسديد"
+    },
+    {
+        "name": "remain_amount",
+        "en": "Remain Amount",
+        "ar": "المبلغ المتبقي"
+    },
+    {
+        "name": "detailes_amounts_paid",
+        "en": "Detailes Amounts Paid",
+        "ar": "تفاصيل المدفوعات"
+    },
+    {
+        "name": "accept",
+        "en": "Accept",
+        "ar": "تأكيد"
+    },
+    {
+        "name": "subscribers",
+        "en": "Services",
+        "ar": "الخدمات"
+    },
+    {
+        "name": "date_from",
+        "en": "Date From",
+        "ar": "تاريخ من"
+    },
+    {
+        "name": "date_to",
+        "en": "Date To",
+        "ar": "تاريخ إلى"
+    },
+    {
+        "name": "report_subscribers_details",
+        "en": "Report Invoices Details",
+        "ar": "تفاصيل تقرير فاتورة"
+    },
+    {
+        "name": "report_subscribers_update",
+        "en": "Edit Report Invoices",
+        "ar": "تعديل تقرير فاتورة"
+    },
+    {
+        "name": "report_subscribers_total_required",
+        "en": "Total Required",
+        "ar": "إجمالي المطلوب"
+    },
+    {
+        "name": "total_paid_up",
+        "en": "Total Rest",
+        "ar": "إجمالي المدفوع"
+    },
+  
+    {
+        "name": "total_remain",
+        "en": "Total Remain",
+        "ar": "إجمالي الباقي"
+    }
+]

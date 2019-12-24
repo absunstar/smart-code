@@ -706,6 +706,11 @@
         "ar": "قائمة تقارير طلبات المدربين "
     },
     {
+        "name": "report_subscribers_menus",
+        "en": "Account statement Subscribers Menu",
+        "ar": "قائمة كشف حساب المشتركين "
+    },
+    {
         "name": "report_sales_menus",
         "en": "Report Sales Menu",
         "ar": "قائمة تقارير مبيعات الأصناف "
