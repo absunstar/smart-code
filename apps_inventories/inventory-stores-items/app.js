@@ -1,6 +1,5 @@
 module.exports = function init(site) {
   const $stores_items = site.connectCollection("stores_items")
-  const $complex_items = site.connectCollection("complex_items")
 
   $stores_items.busy1 = false
   site.on('[stores_in][stores_items][add_balance]', obj => {
@@ -602,37 +601,6 @@ module.exports = function init(site) {
     })
   })
 
-
-
-  /*   site.on('[order_invoice][stores_items][+]', obj => {
-      if ($stores_items.busy23) {
-        setTimeout(() => {
-          site.call('[order_invoice][stores_items][+]', Object.assign({}, obj))
-        }, 200);
-        return
-      }
-      $stores_items.busy23 = true
-      $stores_items.find({
-        'sizes.barcode': obj.barcode,
-      }, (err, doc) => {
-        if (!err && doc) {
-          doc.sizes.forEach(s => {
-            if (s.barcode == obj.barcode) {
-              s.current_count = site.toNumber(s.current_count) + site.toNumber(obj.count)
-              if (s.item_complex) {
-                s.complex_items.forEach(s2 => {
-                  s2.count = s2.count * obj.count
-                  site.call('[order_invoice][stores_items][+]', Object.assign({}, s2))
-                })
-              }
-            }
-          });
-          $stores_items.update(doc)
-          $stores_items.busy23 = false
-        }
-      })
-    }) */
-
   site.on('[stores_transfer][stores_items][+]', obj => {
     if ($stores_items.busy5) {
       setTimeout(() => {
@@ -713,23 +681,23 @@ module.exports = function init(site) {
 
     $stores_items.add(stores_items_doc, (err, doc) => {
       if (!err) {
-        let stores_items_doc = doc
-        /*   stores_items_doc.sizes.forEach(itm => {
-            itm.name = stores_items_doc.name
-            itm.cost = site.toNumber(itm.cost)
-            itm.total = site.toNumber(itm.total)
-            itm.price = site.toNumber(itm.price)
-            itm.count = site.toNumber(itm.current_count)
-            itm.current_count = site.toNumber(itm.current_count)
-            itm.barcode = itm.barcode
-            itm.date = stores_items_doc.date
-            itm.company = site.get_company(req)
-            itm.branch = site.get_branch(req)
-            itm.transaction_type = 'in'
-            itm.current_status = 'newitem'
-            site.call('please track item', itm)
-            site.call('[stores_items][store_in]', itm)
-          }) */
+        /* let stores_items_doc = doc
+            stores_items_doc.sizes.forEach(itm => {
+             itm.name = stores_items_doc.name
+             itm.cost = site.toNumber(itm.cost)
+             itm.total = site.toNumber(itm.total)
+             itm.price = site.toNumber(itm.price)
+             itm.count = site.toNumber(itm.current_count)
+             itm.current_count = site.toNumber(itm.current_count)
+             itm.barcode = itm.barcode
+             itm.date = stores_items_doc.date
+             itm.company = site.get_company(req)
+             itm.branch = site.get_branch(req)
+             itm.transaction_type = 'in'
+             itm.current_status = 'newitem'
+             site.call('please track item', itm)
+             site.call('[stores_items][store_in]', itm)
+           }) */
         response.done = true
       } else response.error = err.message
 
@@ -765,8 +733,26 @@ module.exports = function init(site) {
         $req: req,
         $req: req,
         $res: res
-      }, err => {
-        if (!err) response.done = true
+      }, (err, item_doc) => {
+        if (!err) {
+          response.done = true
+          let obj = { sizes_list: [] }
+          let exist = false
+
+          obj.company = item_doc.doc.company
+
+          item_doc.doc.sizes.forEach(size => {
+
+            let found = item_doc.old_doc.sizes.some(old_size => size.size == old_size.size)
+
+            if (!found) {
+              obj.sizes_list.push({ size: size.size, barcode: size.barcode })
+              exist = true
+            }
+          });
+          
+          if (exist) site.call('[stores_items][item_name][change]', obj)
+        }
         else response.error = err.message
         res.json(response)
       });
@@ -800,21 +786,21 @@ module.exports = function init(site) {
           }, (err, result) => {
             if (!err) {
 
-              let stores_items_doc = result.doc
-              /*  stores_items_doc.sizes.forEach(itm => {
-                 itm.name = stores_items_doc.name
-                 itm.cost = site.toNumber(itm.cost)
-                 itm.price = site.toNumber(itm.price)
-                 itm.count = site.toNumber(itm.current_count)
-                 itm.barcode = itm.barcode
-                 itm.date = stores_items_doc.date
-                 itm.transaction_type = 'out'
-                 itm.company = site.get_company(req)
-                 itm.branch = site.get_branch(req)
-                 site.call('please out item', itm)
-                 site.call('[stores_items][store_out]', itm)
- 
-               }) */
+              /*       let stores_items_doc = result.doc
+                     stores_items_doc.sizes.forEach(itm => {
+                       itm.name = stores_items_doc.name
+                       itm.cost = site.toNumber(itm.cost)
+                       itm.price = site.toNumber(itm.price)
+                       itm.count = site.toNumber(itm.current_count)
+                       itm.barcode = itm.barcode
+                       itm.date = stores_items_doc.date
+                       itm.transaction_type = 'out'
+                       itm.company = site.get_company(req)
+                       itm.branch = site.get_branch(req)
+                       site.call('please out item', itm)
+                       site.call('[stores_items][store_out]', itm)
+       
+                     }) */
               response.done = true
             }
             res.json(response)
@@ -905,7 +891,6 @@ module.exports = function init(site) {
     if (where && where.current_count) {
       data.current_count = site.toNumber(where.current_count)
       where['sizes.current_count'] = where.current_count
-
       delete where.current_count
     }
 
@@ -914,7 +899,6 @@ module.exports = function init(site) {
       where['sizes.current_count'] = {
         $lte: where.current_countLt
       }
-
       delete where.current_countLt
     }
 

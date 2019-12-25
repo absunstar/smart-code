@@ -2,6 +2,24 @@ module.exports = function init(site) {
   const $order_invoice = site.connectCollection("order_invoice")
   const $stores_items = site.connectCollection("stores_items")
 
+  site.on('[stores_items][item_name][change]', obj => {
+    let barcode = obj.sizes_list.map(_obj => _obj.barcode)
+    let size = obj.sizes_list.map(_obj => _obj.size)
+
+    $order_invoice.findMany({ 'company.id': obj.company.id, 'book_list.size': size, 'book_list.barcode': barcode }, (err, doc) => {
+      doc.forEach(_doc => {
+        _doc.book_list.forEach(_items => {
+          obj.sizes_list.forEach(_size => {
+            if (_items.barcode == _size.barcode)
+              _items.size = _size.size
+          })
+        });
+        $order_invoice.update(_doc);
+      });
+    });
+  });
+
+
   site.on('[account_invoices][order_invoice][+]', function (obj) {
 
     $order_invoice.findOne({ id: obj.invoice_id }, (err, doc) => {

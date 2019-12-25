@@ -92,8 +92,8 @@
                                     <td class="center"> {{account_invoices.total_tax}} </td>
                                 </tr>
 
-                              
-                                <tr>
+
+                                <tr ng-show="account_invoices.net_value">
                                     <td class="title"> ##word.net_value## </td>
                                     <td class="center blue"> {{account_invoices.net_value}} </td>
                                 </tr>
@@ -102,15 +102,15 @@
                                     <td class="title"> ##word.safe## </td>
                                     <td class="center"> {{account_invoices.safe.name}} </td>
                                 </tr>
-                                <tr ng-show="account_invoices.date_from"></tr>
-                                <td class="title">##word.start_date##</td>
-                                <td class="center green">{{account_invoices.date_from | date : 'yyyy - MM - dd'}}
-                                </td>
+                                <tr ng-show="account_invoices.date_from">
+                                    <td class="title">##word.start_date##</td>
+                                    <td class="center green">{{account_invoices.date_from | date : 'yyyy - MM - dd'}}
+                                    </td>
                                 </tr>
-                                <tr ng-show="account_invoices.date_to"></tr>
-                                <td class="title">##word.expired_date##</td>
-                                <td class="center red">{{account_invoices.date_to | date : 'yyyy - MM - dd'}}
-                                </td>
+                                <tr ng-show="account_invoices.date_to">
+                                    <td class="title">##word.expired_date##</td>
+                                    <td class="center red">{{account_invoices.date_to | date : 'yyyy - MM - dd'}}
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td class="title"> ##word.active## </td>

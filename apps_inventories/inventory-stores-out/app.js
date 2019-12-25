@@ -7,6 +7,24 @@ module.exports = function init(site) {
     })
   })
 
+  site.on('[stores_items][item_name][change]', obj => {
+    let barcode = obj.sizes_list.map(_obj => _obj.barcode)
+    let size = obj.sizes_list.map(_obj => _obj.size)
+
+    $stores_out.findMany({ 'company.id': obj.company.id, 'items.size': size, 'items.barcode': barcode }, (err, doc) => {
+      doc.forEach(_doc => {
+        _doc.items.forEach(_items => {
+          obj.sizes_list.forEach(_size => {
+            if (_items.barcode == _size.barcode)
+              _items.size = _size.size
+          })
+        });
+        $stores_out.update(_doc);
+      });
+    });
+  });
+
+
   site.on('[store_out][account_invoice][invoice]', function (obj) {
     $stores_out.findOne({ id: obj }, (err, doc) => {
       doc.invoice = true

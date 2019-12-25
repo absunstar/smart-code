@@ -2,6 +2,23 @@ module.exports = function init(site) {
 
   const $item_transaction = site.connectCollection("item_transaction")
 
+
+  site.on('[stores_items][item_name][change]', obj => {
+    let barcode = obj.sizes_list.map(_obj => _obj.barcode)
+    let size = obj.sizes_list.map(_obj => _obj.size)
+
+    $item_transaction.findMany({ 'company.id': obj.company.id, 'size': size, 'barcode': barcode }, (err, doc) => {
+      doc.forEach(_items => {
+        obj.sizes_list.forEach(_size => {
+          if (_items.barcode == _size.barcode)
+            _items.size = _size.size
+        })
+        $item_transaction.update(_items);
+      });
+    });
+  });
+
+
   $item_transaction.busy_status = false
   site.on('change item status', itm => {
     if ($item_transaction.busy_status == true) {
@@ -224,19 +241,19 @@ module.exports = function init(site) {
 
     if (where['type_in']) {
       console.log("aaaaaaaaaaaaaaaaaa");
-      
+
       where['transaction_type'] = 'in'
       where['source_type.id'] = where['type_in'].id;
       delete where['type_in']
     }
 
     if (where['type_out']) {
-      
+
       where['transaction_type'] = 'out'
       where['source_type.id'] = where['type_out'].id;
       delete where['type_out']
     }
-    
+
 
     where['company.id'] = site.get_company(req).id
     where['branch.code'] = site.get_branch(req).code
@@ -278,12 +295,12 @@ module.exports = function init(site) {
   })
 
   site.getItemToDelete = function (data, callback) {
-    let where = {};    
+    let where = {};
     where['company.id'] = data.company_id
     where['barcode'] = { $in: data.barcodes }
     $item_transaction.findOne({
       where: where,
-    }, (err, docs, count) => {      
+    }, (err, docs, count) => {
       if (!err) {
         if (docs) callback(true)
         else callback(false)
