@@ -304,6 +304,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
       if (shift) {
         $scope.error = '';
         $scope.item = {}
+        $scope.edit_price = false;
         $scope.store_in = {
           image_url: '/images/store_in.png',
           shift: $scope.shift,
@@ -752,56 +753,13 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
     }
   };
 
-  /*  $scope.getItem = function () {
-     if ($scope.item.item_name) {
-       console.log("Aaaaaaaaaaaaaaaaaaaaaaaaaaa");
-       
-       $http({
-         method: "POST",
-         url: "/api/stores_items/all",
-         data: {
-           where: {
-             name: $scope.item.item_name.name
-           }
-         }
-       }).then(
-         function (response) {
-           $scope.busy = false;
-           if (response.data.done) {
-             if (response.data.list.length > 0) {
-               $('#public_count').focus();
-               response.data.list[0].sizes.forEach(itm => {
-                 itm.count = 0;
-               });
-               $scope.item = response.data.list[0];
-             } else {
-               $scope.item = {
-                 sizes: [],
-                 name: $scope.item.item_name.name
-               };
-               $('#item_name').focus();
-             }
-           } else {
-             $scope.error = response.data.error;
-             $scope.item = {
-               sizes: []
-             };
-           }
-         },
-         function (err) {
-           console.log(err);
-         }
-       );
-   
-     }
-   }; */
-
   $scope.edit = function (store_in) {
     $scope.error = '';
     $scope.get_open_shift((shift) => {
       if (shift) {
         $scope.view(store_in);
         $scope.store_in = {};
+        $scope.edit_price = false;
         site.showModal('#updateStoreInModal');
       } else $scope.error = '##word.open_shift_not_found##';
     });

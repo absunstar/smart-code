@@ -17,6 +17,7 @@
     {"name" : "stores_out_supply_number_date" , "en" : "supply number date" , "ar" : " تاريخ أذن التوريد"},
 
     {"name" : "err_maximum_discount" , "en" : "The item I discount must be less than or equal to the maximum discount" , "ar" : "يجب أن يكون الخصم على الصنف أقل من أو يساوي أقصى خصم"},
+    {"name" : "edit_sale_price" , "en" : "Edit Sale Price" , "ar" : "تعديل سعر البيع"},
 
     {"name" : "stores_out_store_name" , "en" : "Store Out" , "ar" : "إسم المخزن"},
     {"name" : "err_barcode_exist" , "en" : "The barcode is exist" , "ar" : "الباركود مسجل من قبل"},

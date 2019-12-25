@@ -3,11 +3,9 @@
         <div class="col9">
             <div class="row">
                 <div class="row">
-
                     <i-control class="col3 shift" disabled label="##word.shift##" ng-model="shift.code">
                     </i-control>
                     <i-date2 class="col4" ng-model="store_in.date" label="##word.stores_in_date##" v="r"></i-date2>
-
                 </div>
 
                 <div class="row">
@@ -50,6 +48,9 @@
                 <div class="col1"></div>
                 <i-button type="search" label=" ##word.select_items##" onclick="site.showModal('#selectItemsModal')">
                 </i-button>
+                <div class="col1"></div>
+                <i-button type="edit" x-permissions="stores_in_price || stores_in_manage" ng-hide="edit_price" label="##word.edit_purchase_price##" ng-click="edit_price = true"></i-button>
+
             </div>
             <br>
             <br>
@@ -80,7 +81,10 @@
                             </td>
 
                             <td>
-                                <i-control ng-change="calcSize(itm)" type="number" ng-model="itm.cost"></i-control>
+                                <br ng-hide='edit_price'>
+                                <p ng-hide='edit_price'> {{itm.cost}} </p>
+                                <i-control ng-show='edit_price' ng-change="calcSize(itm)" type="number"
+                                    ng-model="itm.cost"></i-control>
                             </td>
 
                             <td>

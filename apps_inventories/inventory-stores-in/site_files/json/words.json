@@ -17,7 +17,9 @@
     {"name" : "stores_in_supply_number_date" , "en" : "supply number date" , "ar" : " تاريخ أذن التوريد"},
 
     {"name" : "stores_in_store_name" , "en" : "Store In" , "ar" : "  إسم المخزن "},
+
     {"name" : "err_barcode_exist" , "en" : "The barcode is exist" , "ar" : "الباركود مسجل من قبل"},
+    {"name" : "edit_purchase_price" , "en" : "Edit Purchase Price" , "ar" : "تعديل سعر الشراء"},
 
     {"name" : "permission_detailes" , "en" : "Permission Detailes" , "ar" : "تفاصيل الإذن"},
     {"name" : "must_enter_quantity" , "en" : "Must Enter Quantity" , "ar" : "يجب إدخال الكمية"},

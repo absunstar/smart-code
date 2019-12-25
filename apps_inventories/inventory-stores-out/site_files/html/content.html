@@ -28,8 +28,8 @@
 
                     <i-list help-id="" ng-search="_search.$payment_method_search" class="col2"
                         label="##word.payment_method##" ng-model="store_out.payment_method" items="paymentMethodList"
-                        ng-change="getSafeByType(store_out)"
-                        ng-show="defaultSettings.accounting.create_invoice_auto" display="##session.lang##">
+                        ng-change="getSafeByType(store_out)" ng-show="defaultSettings.accounting.create_invoice_auto"
+                        display="##session.lang##">
                     </i-list>
 
                     <i-list display="##session.lang##" ng-search="_search.$search_in_out" class="col3"
@@ -52,6 +52,10 @@
                 <div class="col1"></div>
                 <i-button type="search" label=" ##word.select_items##" onclick="site.showModal('#selectItemsModal')">
                 </i-button>
+                <div class="col1"></div>
+                <i-button type="edit" x-permissions="stores_out_price || stores_out_manage" ng-hide="edit_price"
+                    label="##word.edit_purchase_price##" ng-click="edit_price = true"></i-button>
+
             </div>
             <br>
             <br>
@@ -80,9 +84,14 @@
                             <td>
                                 <i-control ng-change="calcSize(itm)" type="number" ng-model="itm.count"></i-control>
                             </td>
+
                             <td>
-                                <i-control ng-change="calcSize(itm)" type="number" ng-model="itm.price"></i-control>
+                                <br ng-hide='edit_price'>
+                                <p ng-hide='edit_price'> {{itm.price}} </p>
+                                <i-control ng-show='edit_price' ng-change="calcSize(itm)" type="number"
+                                    ng-model="itm.price"></i-control>
                             </td>
+
                             <td>
                                 <i-control ng-change="calcSize(itm)" type="number" ng-model="itm.discount.value">
                                 </i-control>

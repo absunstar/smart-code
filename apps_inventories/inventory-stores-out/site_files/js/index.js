@@ -106,6 +106,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
       if (shift) {
         $scope.error = '';
         $scope.item = {}
+        $scope.edit_price = false;
         $scope.store_out = {
           image_url: '/images/store_out.png',
           shift: $scope.shift,
@@ -594,6 +595,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
     $scope.get_open_shift((shift) => {
       if (shift) {
         $scope.view(store_out);
+        $scope.edit_price = false;
         $scope.store_out = {};
         site.showModal('#updateStoreOutModal');
       } else $scope.error = '##word.open_shift_not_found##';
