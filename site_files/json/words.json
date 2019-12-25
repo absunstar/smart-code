@@ -15,6 +15,11 @@
         "ar": "المورد"
     },
     {
+        "name": "add_currencies",
+        "en": "Add Currencies",
+        "ar": "إضافة عملات"
+    },
+    {
         "name": "work_posting",
         "en": "Work Posting",
         "ar": "العمل بالترحيل"

@@ -1,0 +1,29 @@
+<div class="form">
+    <div id="basicInformation" class=" ">
+        <fieldset>
+            <legend> ##word.basic_information## </legend>
+            <div class="row">
+                <div class="col9">
+
+                    <div class="row">
+                        <i-control help-id="currency_name" v="r ll2" class="col4" label="##word.currency_name##"
+                            ng-model="currency.name"></i-control>
+
+                        <i-control help-id="ex_rate" class="col2" label="##word.ex_rate##" type="number"
+                            ng-model="currency.ex_rate"></i-control>
+                        <div class="col3"></div>
+                        <i-checkbox help-id="currency_active" class="col3" label="##word.active##"
+                            ng-model="currency.active"></i-checkbox>
+
+                    </div>
+
+                </div>
+
+                <div class="col3">
+                    <i-image help-id="currency_logo" ng-model="currency.image_url"></i-image>
+                </div>
+            </div>
+        </fieldset>
+
+    </div>
+</div>

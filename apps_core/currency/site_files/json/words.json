@@ -1,0 +1,47 @@
+[
+    {
+        "name": "currencies",
+        "en": "Currencies",
+        "ar": "العملات"
+    },
+    {
+        "name": "currency",
+        "en": "Currency",
+        "ar": "العملة"
+    },
+    {
+        "name": "currency_name",
+        "en": "Currency Name",
+        "ar": "إسم العملة"
+    },
+    {
+        "name": "ex_rate",
+        "en": "Exchange rate",
+        "ar": "سعر الصرف"
+    },
+    {
+        "name": "currency_new",
+        "en": "New Currency",
+        "ar": "عملة  جديد"
+    },
+    {
+        "name": "currency_add",
+        "en": "Add Currency",
+        "ar": "اضافة عملة "
+    },
+    {
+        "name": "currency_edit",
+        "en": "Edit Currency",
+        "ar": "تعديل عملة "
+    },
+    {
+        "name": "currency_details",
+        "en": "Currency Details",
+        "ar": "تفاصيل العملة "
+    },
+    {
+        "name": "currency_delete",
+        "en": "Delete Currency",
+        "ar": "حذف عملة "
+    }
+]

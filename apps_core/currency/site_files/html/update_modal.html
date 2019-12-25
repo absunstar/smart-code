@@ -1,0 +1,25 @@
+<div id="currencyUpdateModal" class="modal" fixed>
+        
+    <div class="modal-content ">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.currency_edit##
+                <i class="fa fa-pencil"></i>
+            </h2>
+        </div>
+
+        <div class="modal-body">
+
+            <div x-import="currency/content.html"></div>
+            <div x-import="currency/action_info.html"></div>
+        </div>
+
+        <div class="modal-footer center">
+            <h2 class="error"> {{error}} </h2>
+            <i-button type="edit" label="##word.edit##" ng-click="updateCurrency(currency)"></i-button>
+            <i-button type="close" label="##word.close##" onclick="site.hideModal( '#currencyUpdateModal')"></i-button>
+        </div>
+    </div>
+    
+</div>

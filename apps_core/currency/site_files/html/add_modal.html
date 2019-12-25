@@ -1,0 +1,27 @@
+<div id="currencyAddModal" class="modal" fixed>
+    
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.currency_add##
+                <i class="fa fa-plus "></i>
+            </h2>
+
+        </div>
+
+        <div class="modal-body">
+            <div x-import="currency/content.html"></div>
+        </div>
+
+
+
+        <div class="modal-footer center">
+            <h2 class="error"> {{error}} </h2>
+            <i-button type="add" label="##word.add##" ng-click="addCurrency()"></i-button>
+
+            <i-button type="close" label="##word.close##" onclick="site.hideModal( '#currencyAddModal')"></i-button>
+        </div>
+    </div>
+    
+</div>
