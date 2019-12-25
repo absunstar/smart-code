@@ -308,8 +308,8 @@ app.controller("notifications", function ($scope, $http, $interval) {
     } else if (n.link.collection == 'order_slides') {
       $scope.order_slides = n.add;
       site.showModal('#viewOrderlidesModal');
-    } else if (n.link.collection == 'create_invoices') {
-      $scope.create_invoices = n.add;
+    } else if (n.link.collection == 'account_invoices') {
+      $scope.account_invoices = n.add;
       site.showModal('#creatInvoicesDetailsModal');
     } else {
       site.showModal('#displayModal');
@@ -497,8 +497,8 @@ app.controller("notifications", function ($scope, $http, $interval) {
     } else if (n.link.collection == 'order_slides') {
       $scope.order_slides = n.update;
       site.showModal('#viewOrderlidesModal');
-    } else if (n.link.collection == 'create_invoices') {
-      $scope.create_invoices = n.update;
+    } else if (n.link.collection == 'account_invoices') {
+      $scope.account_invoices = n.update;
       site.showModal('#creatInvoicesDetailsModal');
     } else {
       site.showModal('#displayModal')
@@ -685,8 +685,8 @@ app.controller("notifications", function ($scope, $http, $interval) {
     } else if (n.link.collection == 'order_slides') {
       $scope.order_slides = n.delete;
       site.showModal('#viewOrderlidesModal');
-    } else if (n.link.collection == 'create_invoices') {
-      $scope.create_invoices = n.delete;
+    } else if (n.link.collection == 'account_invoices') {
+      $scope.account_invoices = n.delete;
       site.showModal('#creatInvoicesDetailsModal');
     } else {
       site.showModal('#displayModal')

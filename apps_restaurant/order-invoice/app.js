@@ -2,7 +2,7 @@ module.exports = function init(site) {
   const $order_invoice = site.connectCollection("order_invoice")
   const $stores_items = site.connectCollection("stores_items")
 
-  site.on('[create_invoices][order_invoice][+]', function (obj) {
+  site.on('[account_invoices][order_invoice][+]', function (obj) {
 
     $order_invoice.findOne({ id: obj.invoice_id }, (err, doc) => {
       doc.under_paid.net_value = doc.under_paid.net_value - obj.net_value;
@@ -29,7 +29,7 @@ module.exports = function init(site) {
     });
   });
 
-  site.on('[create_invoices][order_invoice][paid]', function (obj) {
+  site.on('[account_invoices][order_invoice][paid]', function (obj) {
     $order_invoice.findOne({ id: obj }, (err, doc) => {
       doc.status = { id: 5, en: "Closed & paid", ar: "مغلق و تم الدفع" }
       $order_invoice.update(doc);

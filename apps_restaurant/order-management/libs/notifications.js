@@ -1,13 +1,13 @@
 module.exports = function init(site) {
 
-  let collection_name = 'create_invoices'
+  let collection_name = 'account_invoices'
 
   let source = {
     name: 'Order MAnagement System',
     ar: ' نظام إدارة الطلبات'
   }
 
-  let image_url = '/images/create_invoices.png'
+  let image_url = '/images/account_invoices.png'
   let add_message = {
     name: 'New Order MAnagement Added',
     ar: 'تم إضافة فاتورة جديدة'

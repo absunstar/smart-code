@@ -15,6 +15,11 @@
         "ar": "المورد"
     },
     {
+        "name": "work_posting",
+        "en": "Work Posting",
+        "ar": "العمل بالترحيل"
+    },
+    {
         "name": "report_sales_menus",
         "en": "Report Sales Menu",
         "ar": "قائمة تقارير مبيعات الأصناف "

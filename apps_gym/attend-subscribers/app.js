@@ -1,7 +1,7 @@
 module.exports = function init(site) {
   const $attend_subscribers = site.connectCollection("attend_subscribers")
   const $request_service = site.connectCollection("request_service")
-  const $create_invoices = site.connectCollection("create_invoices")
+  const $account_invoices = site.connectCollection("account_invoices")
 
   site.on('zk attend', attend => {
     finger_id = attend.finger_id || 0
@@ -35,7 +35,7 @@ module.exports = function init(site) {
         if (attend.check_status == "check_in" && can_check_in) {
 
           $request_service.findMany({ where: { 'customer.id': customerCb.id } }, (err, request_service_doc) => {
-            $create_invoices.findMany({ where: { 'customer.id': customerCb.id } }, (err, create_invoices_doc) => {
+            $account_invoices.findMany({ where: { 'customer.id': customerCb.id } }, (err, account_invoices_doc) => {
 
 
               let request_services_list = [];
@@ -61,9 +61,9 @@ module.exports = function init(site) {
                   _request_services.remain = total_remain
                 }
 
-                create_invoices_doc.forEach(_create_invoices => {
-                  if (_request_services.request_service_id == _create_invoices.request_service_id)
-                    _request_services.invoice_remain = _create_invoices.total_remain
+                account_invoices_doc.forEach(_account_invoices => {
+                  if (_request_services.request_service_id == _account_invoices.request_service_id)
+                    _request_services.invoice_remain = _account_invoices.total_remain
                 });
               });
 

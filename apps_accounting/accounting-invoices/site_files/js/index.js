@@ -29,8 +29,11 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
               };
 
               if ($scope.defaultSettings.accounting) {
-                if ($scope.defaultSettings.accounting.source_type)
+                if ($scope.defaultSettings.accounting.source_type) {
                   $scope.account_invoices.source_type = $scope.defaultSettings.accounting.source_type;
+                  if ($scope.defaultSettings.accounting.source_type.id == 3)
+                    $scope.getTransactionTypeList();
+                }
                 if ($scope.defaultSettings.accounting.payment_method) {
                   $scope.account_invoices.payment_method = $scope.defaultSettings.accounting.payment_method;
                   $scope.loadSafes($scope.account_invoices.payment_method);
@@ -486,7 +489,6 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
       }
     )
   };
-
   $scope.getPaymentMethodList = function () {
     $scope.error = '';
     $scope.busy = true;
@@ -770,8 +772,10 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
 
   $scope.getOrderTypeSetting = function () {
     $scope.account_invoices.order_invoices_type = {};
-    if ($scope.account_invoices.source_type && $scope.account_invoices.source_type.id == 3 && $scope.defaultSettings.general_Settings && $scope.defaultSettings.general_Settings.order_type)
+    if ($scope.account_invoices.source_type && $scope.account_invoices.source_type.id == 3 && $scope.defaultSettings.general_Settings && $scope.defaultSettings.general_Settings.order_type) {
+      $scope.getTransactionTypeList();
       $scope.account_invoices.order_invoices_type = $scope.defaultSettings.general_Settings.order_type;
+    }
   };
 
   $scope.getDefaultSetting = function () {

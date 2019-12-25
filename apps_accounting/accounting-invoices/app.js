@@ -78,7 +78,7 @@ module.exports = function init(site) {
         paid_up: account_invoices_doc.paid_up
       })
     };
-    
+
     account_invoices_doc.total_paid_up = 0
     account_invoices_doc.total_remain = 0
 
@@ -109,7 +109,7 @@ module.exports = function init(site) {
           payment_method: doc.payment_method,
           safe: doc.safe
         }
-        
+
         if (doc.source_type.id == 1) {
           site.call('[store_in][account_invoice][invoice]', doc.invoice_id)
           if (doc.safe) site.call('[account_invoices][safes][-]', paid_value)

@@ -317,8 +317,8 @@ app.controller("notifications", function ($scope, $http, $interval) {
     } else if (n.link.collection == 'request_service') {
       $scope.request_service = n.add;
       site.showModal('#requestServiceViewModal');
-    } else if (n.link.collection == 'create_invoices') {
-      $scope.create_invoices = n.add;
+    } else if (n.link.collection == 'account_invoices') {
+      $scope.account_invoices = n.add;
       site.showModal('#creatInvoicesDetailsModal');
     } else if (n.link.collection == 'attend_subscribers') {
       $scope.attend_subscribers = n.add;
@@ -519,8 +519,8 @@ app.controller("notifications", function ($scope, $http, $interval) {
     } else if (n.link.collection == 'request_service') {
       $scope.request_service = n.update;
       site.showModal('#requestServiceViewModal');
-    } else if (n.link.collection == 'create_invoices') {
-      $scope.create_invoices = n.update;
+    } else if (n.link.collection == 'account_invoices') {
+      $scope.account_invoices = n.update;
       site.showModal('#creatInvoicesDetailsModal');
     } else if (n.link.collection == 'attend_subscribers') {
       $scope.attend_subscribers = n.update;
@@ -721,8 +721,8 @@ app.controller("notifications", function ($scope, $http, $interval) {
     } else if (n.link.collection == 'request_service') {
       $scope.request_service = n.delete;
       site.showModal('#requestServiceViewModal');
-    } else if (n.link.collection == 'create_invoices') {
-      $scope.create_invoices = n.delete;
+    } else if (n.link.collection == 'account_invoices') {
+      $scope.account_invoices = n.delete;
       site.showModal('#creatInvoicesDetailsModal');
     } else if (n.link.collection == 'attend_subscribers') {
       $scope.attend_subscribers = n.delete;

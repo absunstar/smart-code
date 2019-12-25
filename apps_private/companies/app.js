@@ -48,6 +48,11 @@ module.exports = function init(site) {
     return site.fromJson(branch)
   }
 
+  site.post({
+    name: "/api/posting/all",
+    path: __dirname + "/site_files/json/posting.json"
+  })
+
   site.get({
     name: 'images',
     path: __dirname + '/site_files/images/'

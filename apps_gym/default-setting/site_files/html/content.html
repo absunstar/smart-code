@@ -19,10 +19,7 @@
             <div id="general_Settings" class="tab-content">
                 <fieldset>
                     <legend> ##word.general_Settings## </legend>
-                    <div class="row">
-                        <i-checkbox label="##word.create_invoice_from_order##"
-                            ng-model="default_setting.general_Settings.create_invoice"></i-checkbox>
-                    </div>
+
                     <div class="row">
 
                         <i-list help-id="" ng-search="_search.$trainer_search" class="col3" label="##word.trainer##"
@@ -33,9 +30,11 @@
                             ng-model="default_setting.general_Settings.hall" label="##word.hall##" items="hallList">
                         </i-list>
 
-
                     </div>
-
+                    <div class="row">
+                        <i-checkbox label="##word.work_posting##"
+                            ng-model="default_setting.general_Settings.work_posting"></i-checkbox>
+                    </div>
 
                 </fieldset>
 
