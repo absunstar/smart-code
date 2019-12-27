@@ -10,6 +10,31 @@ module.exports = function init(site) {
     compress: true
   })
 
+  function addZero(code, number) {
+    let c = number - code.toString().length
+    for (let i = 0; i < c; i++) {
+      code = '0' + code.toString()
+    }
+    return code
+  }
+
+  $amounts_out.newCode = function () {
+
+    let y = new Date().getFullYear().toString().substr(2, 2)
+    let m = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L'][new Date().getMonth()].toString()
+    let d = new Date().getDate()
+    let lastCode = site.storage('ticket_last_code') || 0
+    let lastMonth = site.storage('ticket_last_month') || m
+    if (lastMonth != m) {
+      lastMonth = m
+      lastCode = 0
+    }
+    lastCode++
+    site.storage('ticket_last_code', lastCode)
+    site.storage('ticket_last_month', lastMonth)
+    return y + lastMonth + addZero(d, 2) + addZero(lastCode, 4)
+  }
+
   site.post("/api/amounts_out/add", (req, res) => {
     let response = {}
     response.done = false
@@ -22,6 +47,7 @@ module.exports = function init(site) {
 
     amounts_out_doc.company = site.get_company(req)
     amounts_out_doc.branch = site.get_branch(req)
+    amounts_out_doc.code = $amounts_out.newCode();
 
     amounts_out_doc.date = new Date(amounts_out_doc.date)
     amounts_out_doc.add_user_info = site.security.getUserFinger({
@@ -31,19 +57,23 @@ module.exports = function init(site) {
 
     $amounts_out.add(amounts_out_doc, (err, doc) => {
       if (!err) {
-
-        let Obj = {
-          value: doc.value,
-          safe: doc.safe,
-          company: doc.company,
-          branch: doc.branch,
-          date: doc.date,
-          sourceName: doc.source.name,
-          payment_method: doc.payment_method,
-          description: doc.description
-        }
-        if (Obj.value && Obj.safe && Obj.date && Obj.sourceName) {
-          site.call('[amount out][safes][-]', Obj)
+        if (doc.posting) {
+          let Obj = {
+            value: doc.value,
+            safe: doc.safe,
+            company: doc.company,
+            branch: doc.branch,
+            date: doc.date,
+            sourceName: doc.source.name,
+            payment_method: doc.payment_method,
+            description: doc.description,
+            code: doc.code,
+            operation: 'منصرف',
+            transition_type: 'out'
+          }
+          if (Obj.value && Obj.safe && Obj.date && Obj.sourceName) {
+            site.call('[amounts][safes][+]', Obj)
+          }
         }
         response.done = true
       } else {
@@ -64,7 +94,7 @@ module.exports = function init(site) {
     if (amounts_out_doc._id) {
       $amounts_out.edit({
         where: {
-          _id: amounts_out_doc._id
+          id: amounts_out_doc.id
         },
         set: amounts_out_doc,
         $req: req,
@@ -82,34 +112,98 @@ module.exports = function init(site) {
     }
   })
 
-  site.post("/api/amounts_out/delete", (req, res) => {
+  site.post("/api/amounts_out/posting", (req, res) => {
+    if (req.session.user === undefined)
+      res.json(response)
+
     let response = {}
     response.done = false
-    if (req.session.user === undefined) {
-      res.json(response)
-    }
-    let _id = req.body._id
-    if (_id) {
-      $amounts_out.delete({
-        _id: $amounts_out.ObjectID(_id),
+
+    let amounts_out_doc = req.body
+
+    amounts_out_doc.edit_user_info = site.security.getUserFinger({ $req: req, $res: res })
+
+    if (amounts_out_doc._id) {
+      $amounts_out.edit({
+        where: {
+          _id: amounts_out_doc._id
+        },
+        set: amounts_out_doc,
         $req: req,
         $res: res
       }, (err, result) => {
+        if (!err) {
+          response.done = true
+          response.doc = result.doc
 
-        if (!err && result.ok) {
-          let Obj = {
+          let obj = {
             value: result.doc.value,
             safe: result.doc.safe,
             date: result.doc.date,
             company: result.doc.company,
             branch: result.doc.branch,
             sourceName: result.doc.source.name,
-            description: result.doc.description,
+            code: result.doc.code,
             payment_method: result.doc.payment_method,
-
+            description: result.doc.description,
           }
-          if (Obj.value && Obj.safe && Obj.date && Obj.sourceName) {
-            site.call('[amount out][safes][+]', Obj)
+
+          if (result.doc.posting) {
+            obj.operation = 'منصرف'
+            obj.transition_type = 'out'
+          }
+          else {
+            obj.operation = 'فك حجز منصرف'
+            obj.transition_type = 'in'
+          }
+
+          if (obj.value && obj.safe && obj.date)
+            site.call('[amounts][safes][+]', obj)
+
+        } else {
+          response.error = err.message
+        }
+        res.json(response)
+      })
+    } else {
+      res.json(response)
+    }
+  })
+
+
+  site.post("/api/amounts_out/delete", (req, res) => {
+    let response = {}
+    response.done = false
+    if (req.session.user === undefined) {
+      res.json(response)
+    }
+    let id = req.body.id
+    if (id) {
+      $amounts_out.delete({
+
+        id: id,
+        $req: req,
+        $res: res
+      }, (err, result) => {
+
+        if (!err && result) {
+          if (result.doc.posting) {
+            let Obj = {
+              value: result.doc.value,
+              safe: result.doc.safe,
+              company: result.doc.company,
+              branch: result.doc.branch,
+              date: result.doc.date,
+              sourceName: result.doc.source.name,
+              payment_method: result.doc.payment_method,
+              description: result.doc.description,
+              code: result.doc.code,
+              operation: 'حذف منصرف',
+              transition_type: 'in'
+            }
+            if (Obj.value && Obj.safe && Obj.date && Obj.sourceName) {
+              site.call('[amounts][safes][+]', Obj)
+            }
           }
           response.done = true
         }

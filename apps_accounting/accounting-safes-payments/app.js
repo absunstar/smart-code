@@ -4,7 +4,6 @@ module.exports = function init(site) {
 
   site.on('[safes][safes_payments][+]', info => {
     let obj = {
-      number: info.number || '',
       safe: info.safe,
       payment_method: info.payment_method,
       value: info.value || '',
@@ -18,7 +17,8 @@ module.exports = function init(site) {
       pre_balance: info.pre_balance,
       sourceName: info.sourceName || '',
       description: info.description || '',
-      notes: info.notes || ''
+      notes: info.notes || '',
+      code: info.code || ''
     }
     $safes_payments.add(obj)
   })
@@ -26,7 +26,6 @@ module.exports = function init(site) {
   site.on('[safes][safes_payments][-]', info => {
 
     let obj = {
-      number: info.number || '',
       safe: info.safe,
       payment_method: info.payment_method,
       value: info.value,
@@ -40,7 +39,8 @@ module.exports = function init(site) {
       pre_balance: info.pre_balance,
       sourceName: info.sourceName || '',
       description: info.description || '',
-      notes: info.notes || ''
+      notes: info.notes || '',
+      code: info.code || ''
     }
     $safes_payments.add(obj)
   })

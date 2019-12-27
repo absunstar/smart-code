@@ -215,7 +215,7 @@ module.exports = function init(site) {
             if (obj._status == 3) {
               if (obj.type == 'sum')
                 _size.start_count = site.toNumber(_size.start_count) + site.toNumber(obj.count)
-              else if (obj.type == 'sum')
+              else if (obj.type == 'minus')
                 _size.start_count = site.toNumber(_size.start_count) - site.toNumber(obj.count)
             }
 

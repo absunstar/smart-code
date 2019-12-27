@@ -73,7 +73,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response) {
           site.hideModal('#accountInvoiceModal');
-          $scope.printAccountInvoive();
+          $scope.printAccountInvoive();          
           $scope.loadAll();
         } else $scope.error = response.data.error;
       },

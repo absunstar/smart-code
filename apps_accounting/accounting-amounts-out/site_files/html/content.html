@@ -16,10 +16,9 @@
 
             <div class="row">
                 <i-list help-id="" ng-search="_search.$payment_method_search" class="col2"
-                label="##word.payment_method##" ng-model="amount_out.payment_method" items="paymentMethodList"
-                ng-change="getSafeByType(amount_out)" ng-show="defaultSettings.accounting.create_invoice_auto"
-                display="##session.lang##">
-            </i-list>
+                    label="##word.payment_method##" ng-model="amount_out.payment_method" items="paymentMethodList"
+                    ng-change="getSafeByType(amount_out)" display="##session.lang##">
+                </i-list>
                 <i-list class="col3 padding" ng-search="_search.$safe_amountsOut" v='r' class="col12"
                     ng-model="amount_out.safe" items="safesList" label="##word.amounts_in_safe##"></i-list>
                 <i-control class="col2" v="r" ng-model="amount_out.value" type="number"

@@ -81,6 +81,17 @@
 
                             <i-button x-permissions="amounts_in_view || amounts_in_manage" type="details"
                                 label="##word.details##" ng-click="details(c)"></i-button>
+
+                            <i-button x-permissions="amounts_in_update || amounts_in_manage" type="update"
+                                ng-show="!c.posting" label="##word.edit##" ng-click="edit(c)"></i-button>
+                            <i-button x-permissions="amounts_in_post || amounts_in_manage" label="##word.posting##"
+                                ng-show="defaultSettings.general_Settings.work_posting && !c.posting"
+                                ng-click="c.posting = true ; posting(c)"></i-button>
+
+                            <i-button x-permissions="amounts_in_post || amounts_in_manage" label="##word.unposting##"
+                                ng-show="defaultSettings.general_Settings.work_unposting && c.posting"
+                                ng-click="c.posting = false ; posting(c)"></i-button>
+
                             <i-button x-permissions="amounts_in_delete || amounts_in_manage" type="delete"
                                 label="##word.delete##" ng-click="remove(c)"></i-button>
                         </td>

@@ -13,8 +13,8 @@ module.exports = function init(site) {
 
     $stores_out.findMany({ 'company.id': obj.company.id, 'items.size': size, 'items.barcode': barcode }, (err, doc) => {
       doc.forEach(_doc => {
-        _doc.items.forEach(_items => {
-          obj.sizes_list.forEach(_size => {
+        if (_doc.items) _doc.items.forEach(_items => {
+          if (obj.sizes_list) obj.sizes_list.forEach(_size => {
             if (_items.barcode == _size.barcode)
               _items.size = _size.size
           })
@@ -219,7 +219,7 @@ module.exports = function init(site) {
         response.done = true
         response.doc = doc
 
-        
+
         doc.items.forEach(_itm => {
           _itm.type = 'minus'
           _itm.store = doc.store
@@ -241,7 +241,7 @@ module.exports = function init(site) {
         })
 
 
-        
+
         /*  let obj = {
            value: doc.net_value,
            safe: doc.safe,

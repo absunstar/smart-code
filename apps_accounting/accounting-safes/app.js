@@ -125,72 +125,36 @@ module.exports = function init(site) {
     })
   })
 
-  site.on('[account_invoices][safes][+]', function (obj) {
-
-    $safes.find({
-      id: obj.safe.id
-    }, (err, doc) => {
-      if (!err && doc) {
-        doc.pre_balance = doc.balance || 0
-        doc.balance = parseFloat(doc.balance) + parseFloat(obj.value)
-        $safes.update(doc, (err, result) => {
-          if (!err && result) {
-            $safes.find({
-              id: result.doc.id
-
-            }, (err, doc) => {
-
-              if (!err) {
-
+  /*   site.on('[order_delivery][safes][+]', function (obj) {
+  
+      $safes.find({
+        id: obj.safe.id
+      }, (err, doc) => {
+        if (!err && doc) {
+          doc.pre_balance = doc.balance || 0
+          doc.balance = parseFloat(doc.balance) + parseFloat(obj.value)
+          $safes.update(doc, (err, result) => {
+            if (!err && result) {
+              $safes.find({
+                id: result.doc.id
+  
+              }, (err, doc) => {
                 obj.pre_balance = doc.pre_balance
-                obj.image_url = obj.image_url
+                obj.image_url = doc.image_url
                 obj.company = doc.company
+                obj.notes = doc.notes
                 obj.branch = doc.branch
                 obj.balance = doc.balance
-                obj.notes = doc.notes
-                obj.operation = 'حساب فاتورة'
-                obj.sourceName = obj.code
+                obj.operation = 'دفعة كورس لطالب'
                 obj.transition_type = 'in';
                 site.call('[safes][safes_payments][+]', obj)
-              }
-
-            })
-          }
-        })
-      }
+              })
+            }
+          })
+        }
+      })
     })
-  })
-
-  site.on('[order_delivery][safes][+]', function (obj) {
-
-    $safes.find({
-      id: obj.safe.id
-    }, (err, doc) => {
-      if (!err && doc) {
-        doc.pre_balance = doc.balance || 0
-        doc.balance = parseFloat(doc.balance) + parseFloat(obj.value)
-        $safes.update(doc, (err, result) => {
-          if (!err && result) {
-            $safes.find({
-              id: result.doc.id
-
-            }, (err, doc) => {
-              obj.pre_balance = doc.pre_balance
-              obj.image_url = doc.image_url
-              obj.company = doc.company
-              obj.notes = doc.notes
-              obj.branch = doc.branch
-              obj.balance = doc.balance
-              obj.operation = 'دفعة كورس لطالب'
-              obj.transition_type = 'in';
-              site.call('[safes][safes_payments][+]', obj)
-            })
-          }
-        })
-      }
-    })
-  })
-
+   */
   site.on('[book_hall][safes][+]', function (obj) {
 
     $safes.find({
@@ -275,132 +239,135 @@ module.exports = function init(site) {
     })
   })
 
-  site.on('[stores_in][safes][-]', function (obj) {
+  /*  site.on('[stores_in][safes][-]', function (obj) {
+ 
+     $safes.find({
+       id: obj.safe.id
+     }, (err, doc) => {
+       if (!err && doc) {
+         doc.pre_balance = doc.balance || 0
+         doc.balance = parseFloat(doc.balance) - parseFloat(obj.value)
+         $safes.update(doc, (err, result) => {
+           if (!err && result.ok) {
+             $safes.find({
+               id: result.doc.id
+             }, (err, doc) => {
+               obj.pre_balance = doc.pre_balance
+               obj.image_url = doc.image_url
+               obj.company = doc.company
+               obj.branch = doc.branch
+               obj.balance = doc.balance
+               obj.operation = 'أذن توريد'
+               obj.transition_type = 'out';
+               site.call('[safes][safes_payments][-]', obj)
+             })
+           }
+         })
+       }
+     })
+   })
+  */
+  /*  site.on('[stores_in][safes][+]', function (obj) {
+ 
+     $safes.find({
+       id: obj.safe.id
+     }, (err, doc) => {
+       if (!err && doc) {
+         doc.pre_balance = doc.balance || 0
+         doc.balance = parseFloat(doc.balance) + parseFloat(obj.value)
+         $safes.update(doc, (err, result) => {
+           if (!err && result.ok) {
+             $safes.find({
+               id: result.doc.id
+             }, (err, doc) => {
+               obj.pre_balance = doc.pre_balance
+               obj.image_url = doc.image_url
+               obj.company = doc.company
+               obj.branch = doc.branch
+               obj.balance = doc.balance
+               obj.operation = 'أذن توريد'
+               obj.transition_type = 'in';
+               site.call('[safes][safes_payments][+]', obj)
+             })
+           }
+         })
+       }
+ 
+     })
+ 
+   }) */
 
-    $safes.find({
-      id: obj.safe.id
-    }, (err, doc) => {
-      if (!err && doc) {
-        doc.pre_balance = doc.balance || 0
-        doc.balance = parseFloat(doc.balance) - parseFloat(obj.value)
-        $safes.update(doc, (err, result) => {
-          if (!err && result.ok) {
-            $safes.find({
-              id: result.doc.id
-            }, (err, doc) => {
-              obj.pre_balance = doc.pre_balance
-              obj.image_url = doc.image_url
-              obj.company = doc.company
-              obj.branch = doc.branch
-              obj.balance = doc.balance
-              obj.operation = 'أذن توريد'
-              obj.transition_type = 'out';
-              site.call('[safes][safes_payments][-]', obj)
-            })
-          }
-        })
-      }
-    })
-  })
+  /*   site.on('[stores_out][safes][+]', function (obj) {
+  
+      $safes.find({
+        id: obj.safe.id,
+      }, (err, doc) => {
+        if (!err && doc) {
+          doc.pre_balance = doc.balance || 0
+          doc.balance = parseFloat(doc.balance) + parseFloat(obj.value)
+          $safes.update(doc, (err, result) => {
+            if (!err && result.ok) {
+              $safes.find({
+                id: result.doc.id
+              }, (err, doc) => {
+                obj.pre_balance = doc.pre_balance
+                obj.image_url = doc.image_url
+                obj.company = doc.company
+                obj.branch = doc.branch
+                obj.balance = doc.balance
+                obj.operation = 'أذن صرف'
+                obj.transition_type = 'in';
+                site.call('[safes][safes_payments][+]', obj)
+              })
+            }
+          })
+        }
+  
+      })
+  
+    }) */
 
-  site.on('[stores_in][safes][+]', function (obj) {
+  /*  site.on('[stores_out][safes][-]', function (obj) {
+ 
+     $safes.find({
+       id: obj.safe.id,
+     }, (err, doc) => {
+       if (!err && doc) {
+         doc.pre_balance = doc.balance
+         doc.balance = parseFloat(doc.balance) - parseFloat(obj.value)
+         $safes.update(doc, (err, result) => {
+           if (!err && result.ok) {
+             $safes.find({
+               id: result.doc.id
+             }, (err, doc) => {
+               obj.pre_balance = doc.pre_balance
+               obj.image_url = doc.image_url
+               obj.company = doc.company
+               obj.branch = doc.branch
+               obj.balance = doc.balance
+               obj.operation = 'أذن صرف'
+               obj.transition_type = 'out';
+               site.call('[safes][safes_payments][-]', obj)
+             })
+           }
+         })
+       }
+ 
+     })
+ 
+   }) */
 
-    $safes.find({
-      id: obj.safe.id
-    }, (err, doc) => {
-      if (!err && doc) {
-        doc.pre_balance = doc.balance || 0
-        doc.balance = parseFloat(doc.balance) + parseFloat(obj.value)
-        $safes.update(doc, (err, result) => {
-          if (!err && result.ok) {
-            $safes.find({
-              id: result.doc.id
-            }, (err, doc) => {
-              obj.pre_balance = doc.pre_balance
-              obj.image_url = doc.image_url
-              obj.company = doc.company
-              obj.branch = doc.branch
-              obj.balance = doc.balance
-              obj.operation = 'أذن توريد'
-              obj.transition_type = 'in';
-              site.call('[safes][safes_payments][+]', obj)
-            })
-          }
-        })
-      }
-
-    })
-
-  })
-
-  site.on('[stores_out][safes][+]', function (obj) {
-
-    $safes.find({
-      id: obj.safe.id,
-    }, (err, doc) => {
-      if (!err && doc) {
-        doc.pre_balance = doc.balance || 0
-        doc.balance = parseFloat(doc.balance) + parseFloat(obj.value)
-        $safes.update(doc, (err, result) => {
-          if (!err && result.ok) {
-            $safes.find({
-              id: result.doc.id
-            }, (err, doc) => {
-              obj.pre_balance = doc.pre_balance
-              obj.image_url = doc.image_url
-              obj.company = doc.company
-              obj.branch = doc.branch
-              obj.balance = doc.balance
-              obj.operation = 'أذن صرف'
-              obj.transition_type = 'in';
-              site.call('[safes][safes_payments][+]', obj)
-            })
-          }
-        })
-      }
-
-    })
-
-  })
-
-  site.on('[stores_out][safes][-]', function (obj) {
+  site.on('[amounts][safes][+]', function (obj) {
 
     $safes.find({
       id: obj.safe.id,
     }, (err, doc) => {
       if (!err && doc) {
         doc.pre_balance = doc.balance
-        doc.balance = parseFloat(doc.balance) - parseFloat(obj.value)
-        $safes.update(doc, (err, result) => {
-          if (!err && result.ok) {
-            $safes.find({
-              id: result.doc.id
-            }, (err, doc) => {
-              obj.pre_balance = doc.pre_balance
-              obj.image_url = doc.image_url
-              obj.company = doc.company
-              obj.branch = doc.branch
-              obj.balance = doc.balance
-              obj.operation = 'أذن صرف'
-              obj.transition_type = 'out';
-              site.call('[safes][safes_payments][-]', obj)
-            })
-          }
-        })
-      }
-
-    })
-
-  })
-
-  site.on('[amount in][safes][+]', function (obj) {
-
-    $safes.find({
-      id: obj.safe.id,
-    }, (err, doc) => {
-      if (!err && doc) {
-        doc.pre_balance = doc.balance
-        doc.balance = parseFloat(doc.balance) + parseFloat(obj.value)
+        if (obj.transition_type == 'in')
+          doc.balance = parseFloat(doc.balance) + parseFloat(obj.value)
+        if (obj.transition_type == 'out')
+          doc.balance = parseFloat(doc.balance) - parseFloat(obj.value)
         doc.description = obj.description
         $safes.update(doc, (err, result) => {
           if (!err && result.ok) {
@@ -412,112 +379,17 @@ module.exports = function init(site) {
               obj.company = doc.company
               obj.branch = doc.branch
               obj.balance = doc.balance
-              obj.operation = 'وارد'
-              obj.transition_type = 'in';
+              obj.code = doc.code
 
-              site.call('[safes][safes_payments][+]', obj)
-
+              if (obj.transition_type == 'in')
+                site.call('[safes][safes_payments][+]', obj)
+              if (obj.transition_type == 'out')
+                site.call('[safes][safes_payments][-]', obj)
             })
           }
         })
       }
     })
-  })
-
-  site.on('[amount in][safes][-]', function (obj) {
-
-    $safes.find({
-      id: obj.safe.id,
-    }, (err, doc) => {
-      if (!err && doc) {
-        doc.pre_balance = doc.balance
-        doc.description = obj.description
-        doc.balance = parseFloat(doc.balance) - parseFloat(obj.value)
-        $safes.update(doc, (err, result) => {
-          if (!err && result.ok) {
-            $safes.find({
-              id: result.doc.id
-            }, (err, doc) => {
-              obj.pre_balance = doc.pre_balance
-              obj.image_url = doc.image_url
-              obj.balance = doc.balance
-              obj.company = doc.company
-              obj.branch = doc.branch
-              obj.operation = 'وارد'
-              obj.transition_type = 'out';
-              site.call('[safes][safes_payments][-]', obj)
-
-            })
-          }
-        })
-      }
-
-    })
-
-  })
-
-  site.on('[amount out][safes][+]', function (obj) {
-
-    $safes.find({
-      id: obj.safe.id,
-    }, (err, doc) => {
-      if (!err && doc) {
-        doc.pre_balance = doc.balance
-        doc.description = obj.description
-        doc.balance = parseFloat(doc.balance) + parseFloat(obj.value)
-        $safes.update(doc, (err, result) => {
-          if (!err && result.ok) {
-            $safes.find({
-              id: result.doc.id
-            }, (err, doc) => {
-              obj.pre_balance = doc.pre_balance
-              obj.image_url = doc.image_url
-              obj.company = doc.company
-              obj.branch = doc.branch
-              obj.balance = doc.balance
-              obj.operation = 'منصرف'
-              obj.transition_type = 'in';
-              site.call('[safes][safes_payments][-]', obj)
-
-            })
-          }
-        })
-      }
-
-    })
-
-  })
-
-  site.on('[amount out][safes][-]', function (obj) {
-
-    $safes.find({
-      id: obj.safe.id,
-    }, (err, doc) => {
-      if (!err && doc) {
-        doc.pre_balance = doc.balance
-        doc.description = obj.description
-        doc.balance = parseFloat(doc.balance) - parseFloat(obj.value)
-        $safes.update(doc, (err, result) => {
-          if (!err && result.ok) {
-            $safes.find({
-              id: result.doc.id
-            }, (err, doc) => {
-              obj.pre_balance = doc.pre_balance
-              obj.image_url = doc.image_url
-              obj.company = doc.company
-              obj.branch = doc.branch
-              obj.balance = doc.balance
-              obj.operation = 'منصرف'
-              obj.transition_type = 'out';
-              site.call('[safes][safes_payments][+]', obj)
-
-            })
-          }
-        })
-      }
-
-    })
-
   })
 
   site.on('[employee_discount][safes][+]', function (obj) {

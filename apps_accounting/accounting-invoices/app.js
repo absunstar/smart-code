@@ -127,6 +127,7 @@ module.exports = function init(site) {
           company: doc.company,
           branch: doc.branch,
           date: doc.date,
+          code: doc.code,
           image_url: doc.image_url,
           payment_method: doc.payment_method,
           safe: doc.safe

@@ -42,6 +42,8 @@ app.controller("amounts_out", function ($scope, $http) {
           date: new Date(),
         };
         if ($scope.defaultSettings) {
+          if ($scope.defaultSettings.general_Settings && !$scope.defaultSettings.general_Settings.work_posting)
+            $scope.amount_out.posting = true;
 
           if ($scope.defaultSettings.accounting) {
             if ($scope.defaultSettings.accounting.payment_method) {
@@ -202,7 +204,7 @@ app.controller("amounts_out", function ($scope, $http) {
     $http({
       method: "POST",
       url: "/api/amounts_out/delete",
-      data: { _id: $scope.amount_out._id, name: $scope.amount_out.name }
+      data: { id: $scope.amount_out.id, name: $scope.amount_out.name }
     }).then(
       function (response) {
         $scope.busy = false;
@@ -211,6 +213,29 @@ app.controller("amounts_out", function ($scope, $http) {
           $scope.loadAll();
         } else {
           $scope.error = response.data.error;
+        }
+      },
+      function (err) {
+        console.log(err);
+      }
+    )
+  };
+
+  $scope.posting = function (amount_out) {
+    $scope.error = '';
+
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/amounts_out/posting",
+      data: amount_out
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.loadAll();
+        } else {
+          $scope.error = '##word.error##';
         }
       },
       function (err) {

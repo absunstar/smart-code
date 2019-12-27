@@ -7,8 +7,8 @@ module.exports = function init(site) {
     let size = obj.sizes_list.map(_obj => _obj.size)
 
     $item_transaction.findMany({ 'company.id': obj.company.id, 'size': size, 'barcode': barcode }, (err, doc) => {
-      doc.forEach(_items => {
-        obj.sizes_list.forEach(_size => {
+      if (doc) doc.forEach(_items => {
+        if (obj.sizes_list) obj.sizes_list.forEach(_size => {
           if (_items.barcode == _size.barcode)
             _items.size = _size.size
         })
@@ -55,7 +55,7 @@ module.exports = function init(site) {
 
       $item_transaction.trackBusy = true
 
-      $item_transaction.findMany({ sort:{id:-1},where: { 'barcode': itm.barcode, name: itm.name, 'branch.code': itm.branch.code, 'company.id': itm.company.id, 'store.id': itm.store.id } }, (err, docs) => {
+      $item_transaction.findMany({ sort: { id: -1 }, where: { 'barcode': itm.barcode, name: itm.name, 'branch.code': itm.branch.code, 'company.id': itm.company.id, 'store.id': itm.store.id } }, (err, docs) => {
 
         delete itm._id
         delete itm.id
@@ -118,7 +118,7 @@ module.exports = function init(site) {
     delete itm._id
     delete itm.type
 
-    $item_transaction.findMany({sort:{id:-1}, where: { 'barcode': itm.barcode, name: itm.name, 'branch.code': itm.branch.code, 'company.id': itm.company.id, 'store.id': itm.store.id } }, (err, docs) => {
+    $item_transaction.findMany({ sort: { id: -1 }, where: { 'barcode': itm.barcode, name: itm.name, 'branch.code': itm.branch.code, 'company.id': itm.company.id, 'store.id': itm.store.id } }, (err, docs) => {
 
       if (docs && docs.length > 0) {
 

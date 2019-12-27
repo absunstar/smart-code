@@ -8,8 +8,8 @@ module.exports = function init(site) {
 
     $order_invoice.findMany({ 'company.id': obj.company.id, 'book_list.size': size, 'book_list.barcode': barcode }, (err, doc) => {
       doc.forEach(_doc => {
-        _doc.book_list.forEach(_items => {
-          obj.sizes_list.forEach(_size => {
+        if (_doc.book_list) _doc.book_list.forEach(_items => {
+          if (obj.sizes_list) obj.sizes_list.forEach(_size => {
             if (_items.barcode == _size.barcode)
               _items.size = _size.size
           })
@@ -161,7 +161,7 @@ module.exports = function init(site) {
       if (!err) {
         response.done = true
         response.doc = doc
-    
+
       } else {
         response.error = err.message
       }
@@ -225,7 +225,7 @@ module.exports = function init(site) {
         if (!err, result) {
           response.done = true
           response.doc = result.doc
-    
+
         } else {
           response.error = 'Code Already Exist'
         };

@@ -13,8 +13,8 @@ module.exports = function init(site) {
 
     $stores_in.findMany({ 'company.id': obj.company.id, 'items.size': size, 'items.barcode': barcode }, (err, doc) => {
       doc.forEach(_doc => {
-        _doc.items.forEach(_items => {
-          obj.sizes_list.forEach(_size => {
+        if (_doc.items) _doc.items.forEach(_items => {
+          if (obj.sizes_list) obj.sizes_list.forEach(_size => {
             if (_items.barcode == _size.barcode)
               _items.size = _size.size
           })
@@ -383,7 +383,7 @@ module.exports = function init(site) {
         if (!err) {
           response.done = true
           if (stores_in_doc.posting) {
-    
+
             stores_in_doc.items.forEach(_itm => {
               _itm._status = stores_in_doc.type.id
               _itm.store = stores_in_doc.store
@@ -401,7 +401,7 @@ module.exports = function init(site) {
               _itm.date = stores_in_doc.date
               _itm.source_type = stores_in_doc.type
 
-              
+
               site.call('please out item', Object.assign({}, _itm))
 
             });
