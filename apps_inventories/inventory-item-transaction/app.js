@@ -2,7 +2,6 @@ module.exports = function init(site) {
 
   const $item_transaction = site.connectCollection("item_transaction")
 
-
   site.on('[stores_items][item_name][change]', obj => {
     let barcode = obj.sizes_list.map(_obj => _obj.barcode)
     let size = obj.sizes_list.map(_obj => _obj.size)
@@ -19,28 +18,28 @@ module.exports = function init(site) {
   });
 
 
-  $item_transaction.busy_status = false
-  site.on('change item status', itm => {
-    if ($item_transaction.busy_status == true) {
-      setTimeout(() => {
-        site.call('change item status', Object.assign(itm));
-      }, 200);
-      return
-    };
-
-    $item_transaction.busy_status = true
-    $item_transaction.findOne({ sort: { id: 1 }, where: { size: itm.size, 'store.id': itm.store.id, name: itm.name, 'vendor.id': itm.vendor.id, current_status: 'debt', 'eng.id': itm.eng.id }, limit: 1 }, (err, docs) => {
-      if (itm.current_status == "replaced" || itm.current_status == "sold") {
-        docs.current_status = itm.current_status
-        docs.ticket_code = itm.ticket_code
-        $item_transaction.update(docs, (err, result) => {
-          if (!err) {
-            $item_transaction.busy_status = false
-          };
-        })
-      };
-    })
-  })
+  /*  $item_transaction.busy_status = false
+   site.on('change item status', itm => {
+     if ($item_transaction.busy_status == true) {
+       setTimeout(() => {
+         site.call('change item status', Object.assign(itm));
+       }, 200);
+       return
+     };
+ 
+     $item_transaction.busy_status = true
+     $item_transaction.findOne({ sort: { id: 1 }, where: { size: itm.size, 'store.id': itm.store.id, name: itm.name, 'vendor.id': itm.vendor.id, current_status: 'debt', 'eng.id': itm.eng.id }, limit: 1 }, (err, docs) => {
+       if (itm.current_status == "replaced" || itm.current_status == "sold") {
+         docs.current_status = itm.current_status
+         docs.ticket_code = itm.ticket_code
+         $item_transaction.update(docs, (err, result) => {
+           if (!err) {
+             $item_transaction.busy_status = false
+           };
+         })
+       };
+     })
+   }) */
 
   $item_transaction.trackBusy = false
   site.on('please track item', itm => {
@@ -56,13 +55,11 @@ module.exports = function init(site) {
 
       $item_transaction.trackBusy = true
 
-      $item_transaction.findMany({ sort: { id: -1 }, where: { 'barcode': itm.barcode, name: itm.name, 'branch.code': itm.branch.code, 'company.id': itm.company.id, 'store.id': itm.store.id }, limit: 1 }, (err, docs) => {
+      $item_transaction.findMany({ sort:{id:-1},where: { 'barcode': itm.barcode, name: itm.name, 'branch.code': itm.branch.code, 'company.id': itm.company.id, 'store.id': itm.store.id } }, (err, docs) => {
 
         delete itm._id
         delete itm.id
         delete itm.type
-
-        itm.transaction_type = 'in'
 
         if (itm.current_status == 'damaged') {
           $item_transaction.update(itm, () => {
@@ -82,13 +79,11 @@ module.exports = function init(site) {
           })
         }
 
-        if (docs && docs.length === 1) {
-
+        if (docs && docs.length > 0) {
           itm.last_count = docs[0].current_count
           itm.current_count = itm.last_count + itm.count
 
           itm.last_price = docs[0].price
-          itm.transaction_type = 'in'
           itm.current_status = itm.current_status || 'damaged'
           $item_transaction.add(itm, () => {
             $item_transaction.trackBusy = false
@@ -123,13 +118,13 @@ module.exports = function init(site) {
     delete itm._id
     delete itm.type
 
-    $item_transaction.findMany({ sort: { id: -1 }, where: { 'barcode': itm.barcode, name: itm.name, 'branch.code': itm.branch.code, 'company.id': itm.company.id, 'store.id': itm.store.id }, limit: 1 }, (err, docs) => {
+    $item_transaction.findMany({sort:{id:-1}, where: { 'barcode': itm.barcode, name: itm.name, 'branch.code': itm.branch.code, 'company.id': itm.company.id, 'store.id': itm.store.id } }, (err, docs) => {
 
-      if (docs && docs.length === 1) {
+      if (docs && docs.length > 0) {
+
         itm.last_count = docs[0].current_count
         itm.current_count = itm.last_count - itm.count
         itm.last_price = docs[0].price
-        itm.transaction_type = 'out'
 
         $item_transaction.add(itm, (err, doc) => {
 
@@ -139,7 +134,7 @@ module.exports = function init(site) {
         })
       } else {
         itm.last_count = 0
-        itm.current_count = itm.last_count - itm.count
+        itm.current_count = itm.count
         itm.last_price = itm.price
         $item_transaction.add(itm, () => {
           setTimeout(() => {
@@ -148,7 +143,6 @@ module.exports = function init(site) {
         })
       }
     })
-
   })
 
   site.get({
@@ -178,6 +172,8 @@ module.exports = function init(site) {
       res.json(response)
     }
   })
+
+
   site.post("/api/item_transaction/view", (req, res) => {
     let response = {}
     response.done = false
@@ -189,7 +185,6 @@ module.exports = function init(site) {
       if (!err) {
         response.done = true
         response.doc = doc
-        console.log(doc)
       } else {
         response.error = err.message
       }
@@ -240,7 +235,6 @@ module.exports = function init(site) {
     }
 
     if (where['type_in']) {
-      console.log("aaaaaaaaaaaaaaaaaa");
 
       where['transaction_type'] = 'in'
       where['source_type.id'] = where['type_in'].id;

@@ -1,64 +1,317 @@
 [
-    {"name" : "item_transaction_date" , "en" : "Date" , "ar" : " التاريخ"},
-    {"name" : "item_transaction_add" , "en" : "Add Item Transaction" , "ar" : "إضافة صنف"},
-    {"name" : "item_transaction_new" , "en" : "New Item Transaction" , "ar" : "صنف جديدة"},
-    {"name" : "item_transaction_delete" , "en" : "Delete Item Transaction" , "ar" : "حذف صنف"},
-    {"name" : "item_transaction_edit" , "en" : "Edit Item Transaction" , "ar" : "تعديل صنف"},
-    {"name" : "item_transaction_details" , "en" : "Item Transaction Details" , "ar" : "تفاصيل صنف"},
-    {"name" : "item_transaction_name" , "en" : "Item Transaction Name" , "ar" : "إسم الصنف"},
-    {"name" : "item_transaction_img" , "en" : "Item Transaction Image" , "ar" : "ملفات الصنف"},   
-    {"name" : "item_transaction_factory_code" , "en" : "Factory Code" , "ar" : "كود المصنع"},      
-    {"name" : "item_transaction_factory_name" , "en" : "Factory Name" , "ar" : "إسم المصنع"},        
-    {"name" : "item_transaction_vendor_code" , "en" : "vendor Code" , "ar" : "كود المورد"},      
-    {"name" : "item_transaction_vendor_name" , "en" : "vendor Name" , "ar" : "إسم المورد"},      
-    {"name" : "item_transaction_store" , "en" : "Store" , "ar" : "المخزن"},      
-    {"name" : "item_transaction_section" , "en" : "Section" , "ar" : "القسم"},         
-    {"name" : "item_transaction_size" , "en" : "Size" , "ar" : "رقم القطعة"},     
-    {"name" : "item_transaction_sizes" , "en" : "Sizes" , "ar" : "ارقام قطع الغيار"},      
-    {"name" : "item_transaction_add_size" , "en" : "Add Size" , "ar" : "إضافة قطعة"},          
-    {"name" : "item_transaction_cost" , "en" : "Cost" , "ar" : "التكلفة"},      
-    {"name" : "item_transaction_price" , "en" : "Price" , "ar" : "السعر"},      
-    {"name" : "item_transaction_last_price" , "en" : "Last Price" , "ar" : "السعر السابق"},      
-    {"name" : "item_transaction_with_discount" , "en" : "With Discount" , "ar" : "بخصم"},  
-    {"name" : "item_transaction_category" , "en" : "Item Transaction" , "ar" : "مجموعة الصنف"},  
-    {"name" : "item_transaction_Category_code" , "en" : "Item Transaction Code" , "ar" : "كود المجموعة"},  
-    {"name" : "item_transaction_code" , "en" : "Item Code" , "ar" : "كود الصنف"},  
-    {"name" : "categories_size" , "en" : "Sizes" , "ar" : "رقم القطعة"},   
-    {"name" : "categories_cost" , "en" : "Cost" , "ar" : "التكلفة"},   
-    {"name" : "categories_price" , "en" : "Price" , "ar" : "السعر"},   
-    {"name" : "no_items" , "en" : "No Items" , "ar" : "لاتوجد مقاسات"},   
-    {"name" : "item_transaction" , "en" : "Items Transaction" , "ar" : "كارتة الاصناف"},   
-    {"name" : "item_transaction_with_discount_yes" , "en" : "Yes" , "ar" : "نعم"},   
-    {"name" : "item_transaction_with_discount_no" , "en" : "No" , "ar" : "لا"},   
-    {"name" : "categories_search" , "en" : "Search" , "ar" : "بحث"},   
-    {"name" : "categories_empty_search" , "en" : "Empty Search" , "ar" : "تفريغ الحقول"},   
-    {"name" : "item_transaction_search_all" , "en" : "Search All" , "ar" : "بحث شامل"},   
-    {"name" : "item_transaction_count" , "en" : "Result Count" , "ar" : "العدد"},   
-    {"name" : "item_transaction_in" , "en" : "IN" , "ar" : "الوارد"},   
-    {"name" : "item_transaction_out" , "en" : "OUT" , "ar" : "المنصرف"},   
-    {"name" : "balance" , "en" : "Balance" , "ar" : "الرصيد"},   
-    {"name" : "item_transaction_last_count" , "en" : "Last Count" , "ar" : "العدد السابق"},   
-    {"name" : "item_transaction_balance_Gt" , "en" : "Balance Greater Thans" , "ar" : "الرصيد اكبر من "},   
-    {"name" : "item_transaction_balance_Lt" , "en" : "Balance Lower Thans" , "ar" : "الرصيد اقل من "},   
-    {"name" : "item_transaction_current_status_1" , "ar" : "عهدة مع الفنى" , "en" : "Debt "},   
-    {"name" : "item_transaction_current_status_2" , "ar" : "مستبدلة" , "en" : "Replaced "},   
-    {"name" : "item_transaction_current_status_3" , "ar" : "تالف" , "en" : "Damaged "},   
-    {"name" : "item_transaction_current_status_4" , "ar" : "اذن صرف / بيع " , "en" : "storeout "},   
-    {"name" : "item_transaction_current_status_5" , "ar" : "محولة " , "en" : "transferred "},
-    {"name" : "item_transaction_current_status_6" , "ar" : "اذن وارد  " , "en" : "storein"},
-    {"name" : "item_transaction_previous_count" , "ar" : "  الرصيد السابق " , "en" : "Previous Count"},
-
-    {"name" : "item_transaction_status" , "ar" : "الحالة  " , "en" : "status "},   
-    {"name" : "order_screen" , "ar" : "شاشة الطلبات" , "en" : "Order Screen"},   
-
-    {"name" : "item_transaction_store_out_number" , "ar" : "رقم الأذن  " , "en" : "store number "},   
-    {"name" : "item_transaction_ticket_code" , "ar" : "رقم الطلب  " , "en" : "ticket number "},   
-   
-    {"name" : "item_transaction_type" , "en" : "transactions Type" , "ar" : "نوع العمليةٍ"},
-    {"name" : "item_transaction_type_in" , "en" : "Items transactions In" , "ar" : "اذن إضافة"},
-    {"name" : "item_transaction_type_out" , "en" : "Items transactions Out" , "ar" : "إذن صرف / فاتورة بيع"},
-    {"name" : "item_transaction_eng" , "en" : "Eng " , "ar" : "  الفنى "},
-    {"name" : "item_transaction_total" , "en" : "Total" , "ar" : "الاجمالي"},
-    {"name" : "item_transaction_logo" , "en" : "Logo" , "ar" : "الشعار"},
-    {"name" : "item_transaction_img" , "en" : "Category Image" , "ar" : "الملفات"}
+    {
+        "name": "item_transaction_date",
+        "en": "Date",
+        "ar": " التاريخ"
+    },
+    {
+        "name": "item_transaction_add",
+        "en": "Add Item Transaction",
+        "ar": "إضافة صنف"
+    },
+    {
+        "name": "item_transaction_new",
+        "en": "New Item Transaction",
+        "ar": "صنف جديدة"
+    },
+    {
+        "name": "item_transaction_delete",
+        "en": "Delete Item Transaction",
+        "ar": "حذف صنف"
+    },
+    {
+        "name": "item_transaction_edit",
+        "en": "Edit Item Transaction",
+        "ar": "تعديل صنف"
+    },
+    {
+        "name": "item_transaction_details",
+        "en": "Item Transaction Details",
+        "ar": "تفاصيل صنف"
+    },
+    {
+        "name": "item_transaction_name",
+        "en": "Item Transaction Name",
+        "ar": "إسم الصنف"
+    },
+    {
+        "name": "item_transaction_img",
+        "en": "Item Transaction Image",
+        "ar": "ملفات الصنف"
+    },
+    {
+        "name": "item_transaction_factory_code",
+        "en": "Factory Code",
+        "ar": "كود المصنع"
+    },
+    {
+        "name": "item_transaction_factory_name",
+        "en": "Factory Name",
+        "ar": "إسم المصنع"
+    },
+    {
+        "name": "item_transaction_vendor_code",
+        "en": "vendor Code",
+        "ar": "كود المورد"
+    },
+    {
+        "name": "item_transaction_vendor_name",
+        "en": "vendor Name",
+        "ar": "إسم المورد"
+    },
+    {
+        "name": "item_transaction_store",
+        "en": "Store",
+        "ar": "المخزن"
+    },
+    {
+        "name": "item_transaction_section",
+        "en": "Section",
+        "ar": "القسم"
+    },
+    {
+        "name": "return_purchase_invoice",
+        "en": "UnPost Purchase Invoice",
+        "ar": "فك ترحيل فاتورة مشتريات"
+    },
+    {
+        "name": "return_sales_invoice",
+        "en": "UnPost Sales Invoice",
+        "ar": "فك ترحيل فاتورة مبيعات"
+    },
+    {
+        "name": "delete_purchase_invoice",
+        "en": "Delete Purchase Invoice",
+        "ar": "حذف فاتورة مشتريات"
+    },
+    {
+        "name": "delete_sales_invoice",
+        "en": "Delete Sales Invoice",
+        "ar": "حذف فاتورة مبيعات"
+    },
+    {
+        "name": "item_transaction_size",
+        "en": "Size",
+        "ar": "رقم القطعة"
+    },
+    {
+        "name": "item_transaction_sizes",
+        "en": "Sizes",
+        "ar": "ارقام قطع الغيار"
+    },
+    {
+        "name": "item_transaction_add_size",
+        "en": "Add Size",
+        "ar": "إضافة قطعة"
+    },
+    {
+        "name": "item_transaction_cost",
+        "en": "Cost",
+        "ar": "التكلفة"
+    },
+    {
+        "name": "item_transaction_price",
+        "en": "Price",
+        "ar": "السعر"
+    },
+    {
+        "name": "item_transaction_last_price",
+        "en": "Last Price",
+        "ar": "السعر السابق"
+    },
+    {
+        "name": "item_transaction_with_discount",
+        "en": "With Discount",
+        "ar": "بخصم"
+    },
+    {
+        "name": "item_transaction_category",
+        "en": "Item Transaction",
+        "ar": "مجموعة الصنف"
+    },
+    {
+        "name": "item_transaction_Category_code",
+        "en": "Item Transaction Code",
+        "ar": "كود المجموعة"
+    },
+    {
+        "name": "item_transaction_code",
+        "en": "Item Code",
+        "ar": "كود الصنف"
+    },
+    {
+        "name": "categories_size",
+        "en": "Sizes",
+        "ar": "رقم القطعة"
+    },
+    {
+        "name": "categories_cost",
+        "en": "Cost",
+        "ar": "التكلفة"
+    },
+    {
+        "name": "categories_price",
+        "en": "Price",
+        "ar": "السعر"
+    },
+    {
+        "name": "no_items",
+        "en": "No Items",
+        "ar": "لاتوجد مقاسات"
+    },
+    {
+        "name": "item_transaction",
+        "en": "Items Transaction",
+        "ar": "كارتة الاصناف"
+    },
+    {
+        "name": "item_transaction_with_discount_yes",
+        "en": "Yes",
+        "ar": "نعم"
+    },
+    {
+        "name": "item_transaction_with_discount_no",
+        "en": "No",
+        "ar": "لا"
+    },
+    {
+        "name": "categories_search",
+        "en": "Search",
+        "ar": "بحث"
+    },
+    {
+        "name": "categories_empty_search",
+        "en": "Empty Search",
+        "ar": "تفريغ الحقول"
+    },
+    {
+        "name": "item_transaction_search_all",
+        "en": "Search All",
+        "ar": "بحث شامل"
+    },
+    {
+        "name": "item_transaction_count",
+        "en": "Result Count",
+        "ar": "العدد"
+    },
+    {
+        "name": "item_transaction_in",
+        "en": "IN",
+        "ar": "الوارد"
+    },
+    {
+        "name": "item_transaction_out",
+        "en": "OUT",
+        "ar": "المنصرف"
+    },
+    {
+        "name": "balance",
+        "en": "Balance",
+        "ar": "الرصيد"
+    },
+    {
+        "name": "item_transaction_last_count",
+        "en": "Last Count",
+        "ar": "العدد السابق"
+    },
+    {
+        "name": "item_transaction_balance_Gt",
+        "en": "Balance Greater Thans",
+        "ar": "الرصيد اكبر من "
+    },
+    {
+        "name": "item_transaction_balance_Lt",
+        "en": "Balance Lower Thans",
+        "ar": "الرصيد اقل من "
+    },
+    {
+        "name": "item_transaction_current_status_1",
+        "ar": "عهدة مع الفنى",
+        "en": "Debt "
+    },
+    {
+        "name": "item_transaction_current_status_2",
+        "ar": "مستبدلة",
+        "en": "Replaced "
+    },
+    {
+        "name": "item_transaction_current_status_3",
+        "ar": "تالف",
+        "en": "Damaged "
+    },
+    {
+        "name": "item_transaction_current_status_4",
+        "ar": "اذن صرف / بيع ",
+        "en": "storeout "
+    },
+    {
+        "name": "item_transaction_current_status_5",
+        "ar": "محولة ",
+        "en": "transferred "
+    },
+    {
+        "name": "item_transaction_current_status_6",
+        "ar": "اذن وارد  ",
+        "en": "storein"
+    },
+    {
+        "name": "item_transaction_previous_count",
+        "ar": "  الرصيد السابق ",
+        "en": "Previous Count"
+    },
+    {
+        "name": "item_transaction_status",
+        "ar": "الحالة  ",
+        "en": "status "
+    },
+    {
+        "name": "order_screen",
+        "ar": "شاشة الطلبات",
+        "en": "Order Screen"
+    },
+    {
+        "name": "item_transaction_store_out_number",
+        "ar": "رقم الأذن  ",
+        "en": "store number "
+    },
+    {
+        "name": "item_transaction_ticket_code",
+        "ar": "رقم الطلب  ",
+        "en": "ticket number "
+    },
+    {
+        "name": "item_transaction_type",
+        "en": "transactions Type",
+        "ar": "نوع العمليةٍ"
+    },
+    {
+        "name": "item_transaction_type_in",
+        "en": "Items transactions In",
+        "ar": "اذن إضافة"
+    },
+    {
+        "name": "item_transaction_type_out",
+        "en": "Items transactions Out",
+        "ar": "إذن صرف / فاتورة بيع"
+    },
+    {
+        "name": "item_transaction_eng",
+        "en": "Eng ",
+        "ar": "  الفنى "
+    },
+    {
+        "name": "item_transaction_total",
+        "en": "Total",
+        "ar": "الاجمالي"
+    },
+    {
+        "name": "item_transaction_logo",
+        "en": "Logo",
+        "ar": "الشعار"
+    },
+    {
+        "name": "item_transaction_img",
+        "en": "Category Image",
+        "ar": "الملفات"
+    }
 ]

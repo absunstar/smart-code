@@ -23,9 +23,7 @@
 
                     <div class="row">
 
-                        <i-list class="col3" ng-model="default_setting.general_Settings.kitchen" items="kitchensList"
-                            display="name" ng-search="_search.$search_kitchen" label="##word.kitchen_name##">
-                        </i-list>
+
 
                     </div>
                     <div class="row">
@@ -40,10 +38,18 @@
                             ng-model="default_setting.general_Settings.delivery_employee"
                             label="##word.delivery_employee##" items="deliveryEmployeesList"></i-list>
 
-                        <i-control class="col2" ng-model="default_setting.general_Settings.service"
+                        <i-control class="col1" ng-model="default_setting.general_Settings.service"
                             label="##word.service##" type="number"></i-control>
-                    </div>
 
+                        <div class="col1">
+                            <br>
+                            <br>
+
+                            <h2 class="bold red">%</h2>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
                     <div class="row">
 
                         <i-list help-id="" ng-search="_search.$discount_method_search" class="col2"
@@ -56,11 +62,19 @@
                             items="transactionTypeList">
                         </i-list>
 
+                        <i-list class="col3" ng-model="default_setting.general_Settings.kitchen" items="kitchensList"
+                            display="name" ng-search="_search.$search_kitchen" label="##word.kitchen_name##">
+                        </i-list>
+
                     </div>
+                    <br>
+                    <br>
 
                     <div class="row">
                         <i-checkbox label="##word.work_posting##"
-                            ng-model="default_setting.general_Settings.work_posting"></i-checkbox>
+                        ng-model="default_setting.general_Settings.work_posting"></i-checkbox>
+                        <i-checkbox label="##word.work_unposting##"
+                        ng-model="default_setting.general_Settings.work_unposting"></i-checkbox>
                     </div>
 
                 </fieldset>

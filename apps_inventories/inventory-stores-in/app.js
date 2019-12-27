@@ -224,52 +224,31 @@ module.exports = function init(site) {
     $stores_in.add(stores_in_doc, (err, doc) => {
 
       if (!err) {
-        doc.items.forEach(_itm => {
-          _itm.type = 'sum'
-          _itm._status = doc.type.id
-          _itm.store = doc.store
-          _itm.company = doc.company
-          _itm.branch = doc.branch
-          site.call('[transfer_branch][stores_items][add_balance]', _itm)
-        });
 
         response.done = true
         response.doc = doc
-        stores_in_doc.items.forEach(itm => {
-          itm.company = stores_in_doc.company
-          itm.branch = stores_in_doc.branch
-          itm.number = stores_in_doc.number
-          itm.vendor = stores_in_doc.vendor
-          itm.date = stores_in_doc.date
-          itm.source_type = stores_in_doc.type
-          itm.company = doc.company
-          itm.branch = doc.branch
-          itm.transaction_type = 'in'
-          itm.current_status = 'storein'
-          itm.store = stores_in_doc.store
-          site.call('please track item', Object.assign({}, itm))
 
-        })
+        if (doc.posting) {
 
-        /* site.getDefaultSetting(req, callback => {
-          if (callback.inventory.create_invoice_direct) {
+          doc.items.forEach(_itm => {
+            _itm.type = 'sum'
+            _itm._status = doc.type.id
+            _itm.store = doc.store
+            _itm.company = doc.company
+            _itm.branch = doc.branch
 
-            let Obj = {
-              value: doc.net_value,
-              safe: doc.safe,
-              date: doc.date,
-              company: doc.company,
-              branch: doc.branch,
-              number: doc.number,
-              notes: doc.notes
-            }
+            site.call('[transfer_branch][stores_items][add_balance]', _itm)
 
-            if (Obj.value && Obj.safe && Obj.date && Obj.number)
-              site.call('[stores_in][safes][-]', Obj)
-          }
-        }) */
+            _itm.number = doc.number
+            _itm.vendor = doc.vendor
+            _itm.date = doc.date
+            _itm.source_type = doc.type
+            _itm.transaction_type = 'in'
+            _itm.current_status = 'storein'
+            site.call('please track item', Object.assign({}, _itm))
 
-
+          })
+        }
 
       } else {
         response.error = err.message
@@ -322,58 +301,116 @@ module.exports = function init(site) {
     }
   })
 
-  site.post("/api/stores_in/delete", (req, res) => {
+  site.post("/api/stores_in/posting", (req, res) => {
+    if (req.session.user === undefined)
+      res.json(response)
+
     let response = {}
     response.done = false
-    if (req.session.user === undefined) {
-      res.json(response)
-    }
-    let _id = req.body._id
-    if (_id) {
-      $stores_in.delete({ _id: $stores_in.ObjectID(_id), $req: req, $res: res }, (err, result) => {
+
+    let stores_in_doc = req.body
+
+    stores_in_doc.edit_user_info = site.security.getUserFinger({ $req: req, $res: res })
+
+    if (stores_in_doc._id) {
+      $stores_in.edit({
+        where: {
+          _id: stores_in_doc._id
+        },
+        set: stores_in_doc,
+        $req: req,
+        $res: res
+      }, (err, result) => {
         if (!err) {
           response.done = true
-          let Obj = {
-            value: result.doc.net_value,
-            safe: result.doc.safe,
-            date: result.doc.date,
-            number: result.doc.number,
-            company: result.doc.company,
-            branch: result.doc.branch,
-            notes: result.doc.notes
-          }
-          if (Obj.value && Obj.safe && Obj.date && Obj.number) {
-            site.call('[stores_in][safes][+]', Obj)
-          }
+          response.doc = result.doc
 
-          result.doc.items.forEach(itm => {
+          result.doc.items.forEach(_itm => {
+            _itm._status = result.doc.type.id
+            _itm.store = result.doc.store
+            _itm.company = result.doc.company
+            _itm.branch = result.doc.branch
 
-            itm.number = result.doc.number
-            itm.vendor = result.doc.vendor
-            itm.date = result.doc.date
-            itm.transaction_type = 'out'
-            itm.current_status = 'storeout'
-            itm.store = result.doc.store
-
-            let delObj = {
-              name: itm.name,
-              size: itm.size,
-              store: result.doc.store,
-              vendor: result.doc.vendor,
-              item: itm
+            if (result.doc.posting) {
+              _itm.type = 'sum'
+              _itm.transaction_type = 'in'
+              _itm.current_status = 'storein'
+            } else {
+              _itm.type = 'minus'
+              _itm.transaction_type = 'out'
+              _itm.current_status = 'r_storein'
             }
 
-            site.call('[stores_in][stores_items][-]', delObj)
-            site.call('please out item', Object.assign({ date: new Date() }, itm))
+            site.call('[transfer_branch][stores_items][add_balance]', _itm)
+            delete _itm._status
+            _itm.number = result.doc.number
+            _itm.vendor = result.doc.vendor
+            _itm.date = result.doc.date
+            _itm.source_type = result.doc.type
 
-          });
+            if (result.doc.posting)
+              site.call('please track item', Object.assign({}, _itm))
+            else site.call('please out item', Object.assign({}, _itm))
 
+          })
+
+        } else {
+          response.error = err.message
         }
         res.json(response)
       })
     } else {
       res.json(response)
     }
+  })
+
+
+  site.post("/api/stores_in/delete", (req, res) => {
+    let response = {}
+    response.done = false
+    if (req.session.user === undefined) {
+      res.json(response)
+    }
+    let stores_in_doc = req.body
+    if (stores_in_doc._id) {
+      $stores_in.delete({
+        where: {
+          _id: stores_in_doc._id
+        },
+        $req: req,
+        $res: res
+      }, (err, result) => {
+        if (!err) {
+          response.done = true
+          if (stores_in_doc.posting) {
+    
+            stores_in_doc.items.forEach(_itm => {
+              _itm._status = stores_in_doc.type.id
+              _itm.store = stores_in_doc.store
+              _itm.company = stores_in_doc.company
+              _itm.branch = stores_in_doc.branch
+
+              _itm.type = 'minus'
+              _itm.transaction_type = 'out'
+              _itm.current_status = 'd_storein'
+
+              site.call('[transfer_branch][stores_items][add_balance]', _itm)
+              delete _itm._status
+              _itm.number = stores_in_doc.number
+              _itm.vendor = stores_in_doc.vendor
+              _itm.date = stores_in_doc.date
+              _itm.source_type = stores_in_doc.type
+
+              
+              site.call('please out item', Object.assign({}, _itm))
+
+            });
+
+          }
+          res.json(response)
+        }
+      })
+    } else res.json(response)
   })
 
   site.post("/api/stores_in/view", (req, res) => {

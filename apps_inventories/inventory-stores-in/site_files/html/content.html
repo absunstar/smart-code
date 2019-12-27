@@ -49,7 +49,8 @@
                 <i-button type="search" label=" ##word.select_items##" onclick="site.showModal('#selectItemsModal')">
                 </i-button>
                 <div class="col1"></div>
-                <i-button type="edit" x-permissions="stores_in_price || stores_in_manage" ng-hide="edit_price" label="##word.edit_purchase_price##" ng-click="edit_price = true"></i-button>
+                <i-button type="edit" x-permissions="stores_in_price || stores_in_manage" ng-hide="edit_price"
+                    label="##word.edit_purchase_price##" ng-click="edit_price = true"></i-button>
 
             </div>
             <br>
@@ -192,13 +193,12 @@
                                 <span>{{tx.value}} %</span>
                                 <i-button type="delete" ng-click="deleteTax(tx)"></i-button>
                             </td>
-
                         </tr>
                     </table>
-
                 </div>
 
             </div>
+
             <div class="row">
                 <i-control class="col2" ng-model="store_in.total_discount" type="number" disabled
                     label="##word.stores_in_total_discount##"></i-control>
@@ -208,6 +208,9 @@
                     label="##word.stores_in_total_value##"></i-control>
                 <i-control class="col2" ng-model="store_in.net_value" type="number" disabled
                     label="##word.stores_in_net_value##"></i-control>
+                <i-control class="col2" ng-show="store_in.net_value && store_in.safe" ng-model="store_in.paid_up"
+                    label="##word.paid_up##" type="number">
+                </i-control>
             </div>
 
             <div class="row">

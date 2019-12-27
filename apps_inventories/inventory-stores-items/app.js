@@ -197,7 +197,6 @@ module.exports = function init(site) {
       average_cost: site.toNumber(totalCost) / site.toNumber(obj.count)
     }
 
-
     $stores_items.findOne({
       name: obj.name,
       'company.id': obj.company.id,
@@ -213,17 +212,20 @@ module.exports = function init(site) {
 
 
           if (_size.barcode == obj.barcode) {
-            if (obj._status == 3) _size.start_count = site.toNumber(_size.start_count) + site.toNumber(obj.count)
+            if (obj._status == 3) {
+              if (obj.type == 'sum')
+                _size.start_count = site.toNumber(_size.start_count) + site.toNumber(obj.count)
+              else if (obj.type == 'sum')
+                _size.start_count = site.toNumber(_size.start_count) - site.toNumber(obj.count)
+            }
 
             if (obj.type == 'sum')
               _size.current_count = site.toNumber(_size.current_count) + site.toNumber(obj.count)
 
             else if (obj.type == 'minus')
               _size.current_count = site.toNumber(_size.current_count) - site.toNumber(obj.count)
-
             _size.cost = site.toNumber(obj.cost)
             _size.price = site.toNumber(obj.price)
-
             exist = false
           };
 
@@ -234,7 +236,6 @@ module.exports = function init(site) {
           obj.current_count = site.toNumber(obj.count)
           doc.sizes.push(obj)
         };
-
 
         doc.sizes.forEach(_size => {
           if (_size.barcode == obj.barcode) {
@@ -280,16 +281,18 @@ module.exports = function init(site) {
 
               if (foundBranch) {
 
-
-                if (obj._status == 3) _branch.start_count = (_branch.start_count || 0) + site.toNumber(obj.count)
-
+                if (obj._status == 3) {
+                  if (obj.type == 'sum')
+                    _branch.start_count = (_branch.start_count || 0) + site.toNumber(obj.count)
+                  else if (obj.type == 'minus')
+                    _branch.start_count = (_branch.start_count || 0) - site.toNumber(obj.count)
+                }
 
                 if (obj.type == 'sum') {
                   _branch.current_count = _branch.current_count + site.toNumber(obj.count)
                   _branch.total_buy_price = (_branch.total_buy_price || 0) + totalCost
                   _branch.total_buy_count = (_branch.total_buy_count || 0) + site.toNumber(obj.count)
                 }
-
 
                 if (obj.type == 'minus') {
                   _branch.current_count = _branch.current_count - site.toNumber(obj.count)
@@ -303,7 +306,12 @@ module.exports = function init(site) {
 
                   if (foundStore) {
 
-                    if (obj._status == 3) _branch._store.start_count = site.toNumber(_branch._store.start_count || 0) + site.toNumber(obj.count)
+                    if (obj._status == 3) {
+                      if (obj.type == 'sum')
+                        _branch._store.start_count = site.toNumber(_branch._store.start_count || 0) + site.toNumber(obj.count)
+                      if (obj.type == 'minus')
+                        _branch._store.start_count = site.toNumber(_branch._store.start_count || 0) - site.toNumber(obj.count)
+                    }
 
                     if (obj.type == 'sum') {
                       _branch._store.current_count = site.toNumber(_branch._store.current_count || 0) + site.toNumber(obj.count)
@@ -750,7 +758,7 @@ module.exports = function init(site) {
               exist = true
             }
           });
-          
+
           if (exist) site.call('[stores_items][item_name][change]', obj)
         }
         else response.error = err.message

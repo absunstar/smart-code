@@ -216,7 +216,10 @@ module.exports = function init(site) {
 
     $stores_out.add(stores_out_doc, (err, doc) => {
       if (!err) {
+        response.done = true
+        response.doc = doc
 
+        
         doc.items.forEach(_itm => {
           _itm.type = 'minus'
           _itm.store = doc.store
@@ -225,9 +228,20 @@ module.exports = function init(site) {
           site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _itm))
         });
 
-        response.done = true
-        response.doc = doc
+        stores_out_doc.items.forEach(itm => {
+          itm.company = stores_out_doc.company
+          itm.branch = stores_out_doc.branch
+          itm.number = stores_out_doc.number
+          itm.current_status = 'sold'
+          itm.source_type = stores_out_doc.type
+          itm.date = stores_out_doc.date
+          itm.transaction_type = 'out'
+          itm.store = stores_out_doc.store
+          site.call('please out item', Object.assign({}, itm))
+        })
 
+
+        
         /*  let obj = {
            value: doc.net_value,
            safe: doc.safe,
@@ -241,17 +255,6 @@ module.exports = function init(site) {
          if (obj.value && obj.safe && obj.date && obj.number) 
            site.call('[stores_out][safes][+]', obj)
   */
-        stores_out_doc.items.forEach(itm => {
-          itm.company = stores_out_doc.company
-          itm.branch = stores_out_doc.branch
-          itm.number = stores_out_doc.number
-          itm.current_status = 'sold'
-          itm.source_type = stores_out_doc.type
-          itm.date = stores_out_doc.date
-          itm.transaction_type = 'out'
-          itm.store = stores_out_doc.store
-          site.call('please out item', Object.assign({}, itm))
-        })
       } else {
         response.error = err.message
       }

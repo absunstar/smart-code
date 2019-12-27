@@ -25,6 +25,21 @@
         "ar": "العمل بالترحيل"
     },
     {
+        "name": "work_unposting",
+        "en": "Work Un Posting",
+        "ar": "العمل بفك الترحيل"
+    },
+    {
+        "name": "posting",
+        "en": "Posting",
+        "ar": "ترحيل"
+    },
+    {
+        "name": "unposting",
+        "en": "Un Posting",
+        "ar": "فك ترحيل"
+    },
+    {
         "name": "report_sales_menus",
         "en": "Report Sales Menu",
         "ar": "قائمة تقارير مبيعات الأصناف "
@@ -81,7 +96,7 @@
     },
     {
         "name": "create_invoice_auto",
-        "en":  "Auto Create Invoice",
+        "en": "Auto Create Invoice",
         "ar": "إنشاء ألي للفاتورة"
     },
     {

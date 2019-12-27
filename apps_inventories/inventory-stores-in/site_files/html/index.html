@@ -103,10 +103,20 @@
 
                             <i-button x-permissions="stores_in_view || stores_in_manage" type="details"
                                 label="##word.details##" ng-click="details(c)"></i-button>
+
                             <i-button
-                                ng-show="!c.invoice && !defaultSettings.accounting.create_invoice_auto && c.type.id == 1"
+                                ng-show="c.posting && !c.invoice && !defaultSettings.accounting.create_invoice_auto && c.type.id == 1"
                                 type="save" label="##word.create_an_invoice##" ng-click="displayAccountInvoice(c)">
                             </i-button>
+
+                            <i-button x-permissions="stores_in_post || stores_in_manage" label="##word.posting##"
+                                ng-show="defaultSettings.general_Settings.work_posting && !c.posting"
+                                ng-click="c.posting = true ; posting(c)"></i-button>
+
+                            <i-button x-permissions="stores_in_post || stores_in_manage" label="##word.unposting##"
+                                ng-show="defaultSettings.general_Settings.work_unposting && c.posting"
+                                ng-click="c.posting = false ; posting(c)"></i-button>
+
                             <i-button x-permissions="stores_in_update || stores_in_manage" type="update"
                                 label="##word.edit##" ng-click="edit(c)"></i-button>
 
