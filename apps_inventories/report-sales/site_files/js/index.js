@@ -11,7 +11,7 @@ app.controller("report_sales", function ($scope, $http, $timeout) {
     $scope.count = 0;
     $http({
       method: "POST",
-      url: "/api/report_sales/all",
+      url: "/api/report_sales2/all",
       data: {
         where: where
       }

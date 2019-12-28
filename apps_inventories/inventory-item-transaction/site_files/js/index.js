@@ -190,7 +190,8 @@ app.controller("item_transaction", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/item_transaction/all",
       data: {
-        where: where
+        where: where,
+        limit : 100
       }
     }).then(
       function (response) {

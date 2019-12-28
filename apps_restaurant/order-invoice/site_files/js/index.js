@@ -360,8 +360,8 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     $scope.busy = true;
 
     if ($scope.defaultSettings.general_Settings && $scope.defaultSettings.general_Settings.work_posting)
-      account_invoices.posting = false;
-    else account_invoices.posting = true;
+    $scope.account_invoices.posting = false;
+    else $scope.account_invoices.posting = true;
 
 
     $http({
