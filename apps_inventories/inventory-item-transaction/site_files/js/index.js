@@ -79,7 +79,6 @@ app.controller("item_transaction", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.Engs = response.data.list;
-          console.log($scope.Engs);
         }
       },
       function (err) {

@@ -278,7 +278,6 @@ module.exports = function init(site) {
               });
               _branch._store = _branch.stores_list[indxStore]
 
-
               if (foundBranch) {
 
                 if (obj._status == 3) {
@@ -1078,22 +1077,12 @@ module.exports = function init(site) {
     })
   })
 
-  site.post("/api/stores_items/name_all", (req, res) => {
+  site.post("/api/stores_items/handel", (req, res) => {
     let response = {
       done: false
     }
     let where = req.body.where || {}
-    let search = req.body.search
 
-    if (search) {
-      where.$or = []
-      where.$or.push({
-        'name': new RegExp(search, "i")
-      })
-      where.$or.push({
-        'sizes.barcode': new RegExp(search, "i")
-      })
-    }
     where['company.id'] = site.get_company(req).id
 
     $stores_items.findMany({
@@ -1102,12 +1091,18 @@ module.exports = function init(site) {
       sort: req.body.sort || {
         id: -1
       },
-      limit: req.body.limit
-    }, (err, docs, count) => {
+    }, (err, docs) => {
       if (!err) {
         response.done = true
-        response.count = count
-        response.list = docs
+        docs.forEach(_docs => {
+          _docs.sizes.forEach(_sizes => {
+            if (typeof (_sizes.discount) != 'object')
+              _sizes.discount = { max: 0, value: 0, type: number }
+
+            
+          });
+        });
+
       } else {
         response.error = err.message
       }
