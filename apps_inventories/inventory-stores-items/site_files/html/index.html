@@ -45,7 +45,8 @@
                         label="##word.stores_items_new##" ng-click="newCategoryItem()"></i-button>
                     <i-button x-permissions="stores_items_search || stores_items_manage" type="search"
                         label="##word.search_all##" onclick="site.showModal('#CategoryItemSearchModal')"></i-button>
-
+                    <i-button class="left" label="##word.handel_items##" ng-click="handelItems()">
+                    </i-button>
                     <h3 class="bold text-center"> ##word.count## : {{count}}</h3>
 
                 </div>

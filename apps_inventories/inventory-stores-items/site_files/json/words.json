@@ -10,6 +10,11 @@
         "ar": "صنف جديد"
     },
     {
+        "name": "handel_items",
+        "en": "Handel Items",
+        "ar": "هندلة الأصناف"
+    },
+    {
         "name": "err_size",
         "en": "Cant Delete Size Its Exist In Other Transaction" ,
         "ar": "لا يمكن حذف المقاس لإستخدامه في معاملات أخرى"

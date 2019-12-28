@@ -1077,7 +1077,7 @@ module.exports = function init(site) {
     })
   })
 
-  site.post("/api/stores_items/handel", (req, res) => {
+  site.post("/api/stores_items/handel_items", (req, res) => {
     let response = {
       done: false
     }
@@ -1094,14 +1094,48 @@ module.exports = function init(site) {
     }, (err, docs) => {
       if (!err) {
         response.done = true
-        docs.forEach(_docs => {
-          _docs.sizes.forEach(_sizes => {
-            if (typeof (_sizes.discount) != 'object')
-              _sizes.discount = { max: 0, value: 0, type: number }
 
-            
+        site.getDefaultSetting(req, callback => {
+          let store = {}
+          if (callback.inventory && callback.inventory.store)
+            store = callback.inventory.store
+
+          docs.forEach(_docs => {
+            _docs.sizes.forEach(_sizes => {
+              if (_sizes.discount == null || undefined)
+                _sizes.discount = { max: 0, value: 0, type: 'number' }
+              
+              if (_sizes.branches_list == null || undefined && _sizes.current_count != 0) {
+
+                let totalCost = site.toNumber(_sizes.cost) * site.toNumber(_sizes.current_count);
+
+                let obj_branch = {
+                  name_ar: _docs.branch.name_ar,
+                  code: _docs.branch.code,
+                  start_count: 0,
+                  current_count: site.toNumber(_sizes.current_count),
+                  total_buy_price: totalCost,
+                  total_buy_count: site.toNumber(_sizes.current_count),
+                  average_cost: site.toNumber(totalCost) / site.toNumber(_sizes.current_count),
+                  stores_list: [{
+                    store: store,
+                    start_count: 0,
+                    current_count: site.toNumber(_sizes.current_count),
+                    cost: site.toNumber(_sizes.cost),
+                    price: site.toNumber(_sizes.price),
+                    total_buy_price: totalCost,
+                    total_buy_count: site.toNumber(_sizes.current_count),
+                    average_cost: site.toNumber(totalCost) / site.toNumber(_sizes.current_count)
+                  }]
+                }
+                _sizes.branches_list = [obj_branch]
+              }
+
+
+            });
+            $stores_items.update(_docs)
           });
-        });
+        })
 
       } else {
         response.error = err.message

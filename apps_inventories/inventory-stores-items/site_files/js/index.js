@@ -421,6 +421,26 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.handelItems = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/stores_items/handel_items"
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.loadAll();
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
   $scope.showComplexItems = function () {
     $scope.error = '';
     $scope.item.complex_items = $scope.item.complex_items || [];

@@ -69,21 +69,19 @@ module.exports = function init(site) {
   })
 
   site.getDefaultSetting = function (req, callback) {
-    callback = callback || {}
-    $default_setting.get({
+    callback = callback || {};
+
+    let where = req.data.where || {};
+    where['company.id'] = site.get_company(req).id
+    where['branch.code'] = site.get_branch(req).code
+
+    $default_setting.findOne({
+      where: where
     }, (err, doc) => {
-      if (!err && doc) {
-        callback(err, doc)
-      } else {
-        $default_setting.add({
-          company: site.get_company(req),
-          branch: site.get_branch(req)
-        }, (err2, doc2) => {
-          callback(err2, doc2)
-        })
-      }
+      if (!err && doc)
+        callback(doc)
+      else callback(false)
     })
-    return true;
   }
 
   /*  site.getDefaultSetting = function (callback) {
