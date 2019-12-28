@@ -85,7 +85,7 @@ module.exports = function init(site) {
           itm.transaction_type ='out'
           itm.supply_number = stores_transfer_doc.number
           itm.store = stores_transfer_doc.store
-          site.call('please out item', Object.assign( {} , itm))
+          site.call('item_transaction - items', Object.assign( {} , itm))
           
         })
         setTimeout(() => {
@@ -164,7 +164,7 @@ module.exports = function init(site) {
               item : itm     
             }
             site.call('[stores_transfer][stores_items][-]' , delObj)
-            site.call('please track item', Object.assign({date:new Date()}, delObj))
+            site.call('item_transaction + items', Object.assign({date:new Date()}, delObj))
         })
 
 

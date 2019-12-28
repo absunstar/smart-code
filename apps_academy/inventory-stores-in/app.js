@@ -89,7 +89,7 @@ module.exports = function init(site) {
             }
 
             site.call('[stores_transfer][stores_items]', obj)
-            site.call('please track item', Object.assign({}, itm))
+            site.call('item_transaction + items', Object.assign({}, itm))
 
           });
         }
@@ -225,7 +225,7 @@ module.exports = function init(site) {
           itm.transaction_type = 'in'
           itm.current_status = 'storein'
           itm.store = stores_in_doc.store
-          site.call('please track item', Object.assign({}, itm))
+          site.call('item_transaction + items', Object.assign({}, itm))
 
         })
       } else {
@@ -324,7 +324,7 @@ module.exports = function init(site) {
             }
 
             site.call('[stores_in][stores_items][-]', delObj)
-            site.call('please out item', Object.assign({ date: new Date() }, itm))
+            site.call('item_transaction - items', Object.assign({ date: new Date() }, itm))
 
           });
 

@@ -702,7 +702,7 @@ module.exports = function init(site) {
              itm.branch = site.get_branch(req)
              itm.transaction_type = 'in'
              itm.current_status = 'newitem'
-             site.call('please track item', itm)
+             site.call('item_transaction + items', itm)
              site.call('[stores_items][store_in]', itm)
            }) */
         response.done = true
@@ -804,7 +804,7 @@ module.exports = function init(site) {
                        itm.transaction_type = 'out'
                        itm.company = site.get_company(req)
                        itm.branch = site.get_branch(req)
-                       site.call('please out item', itm)
+                       site.call('item_transaction - items', itm)
                        site.call('[stores_items][store_out]', itm)
        
                      }) */
@@ -837,7 +837,7 @@ module.exports = function init(site) {
     })
   })
 
-  site.post("/api/stores_items/all", (req, res) => {
+  site.post(["/api/stores_items/all" , "/api/stores_items/name_all"], (req, res) => {
 
     let response = {}
     let where = req.body.where || {}

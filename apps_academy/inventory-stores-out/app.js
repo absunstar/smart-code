@@ -131,8 +131,8 @@ module.exports = function init(site) {
           itm.date = stores_out_doc.date
           itm.transaction_type = 'out'
           itm.store = stores_out_doc.store
-          site.call('please out item', Object.assign({}, itm))
-          //      site.call('please out item [categories items]', Object.assign( {} , itm))
+          site.call('item_transaction - items', Object.assign({}, itm))
+          //      site.call('item_transaction - items [categories items]', Object.assign( {} , itm))
 
         })
       } else {
@@ -219,7 +219,7 @@ module.exports = function init(site) {
               item: itm
             }
             site.call('[stores_out][stores_items][-]', delObj)
-            site.call('please track item', Object.assign({ date: new Date() }, itm))
+            site.call('item_transaction + items', Object.assign({ date: new Date() }, itm))
           })
 
 
@@ -242,7 +242,7 @@ module.exports = function init(site) {
             itm.store = result.doc.store
 
 
-            //   site.call('please track item', Object.assign({date:new Date()}, itm))
+            //   site.call('item_transaction + items', Object.assign({date:new Date()}, itm))
             //  site.call('[store out] [categories items]' , itm)
 
           })

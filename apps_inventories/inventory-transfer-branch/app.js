@@ -114,7 +114,7 @@ module.exports = function init(site) {
             item.date = doc.date
             item.transaction_type = 'out'
             item.store = doc.store_from
-            site.call('please out item', Object.assign({}, item))
+            site.call('item_transaction - items', Object.assign({}, item))
           })
 
           doc.items.forEach(_itm => {
@@ -126,7 +126,7 @@ module.exports = function init(site) {
             item.date = doc.date
             item.transaction_type = 'in'
             item.store = doc.store_to
-            site.call('please track item', Object.assign({}, item))
+            site.call('item_transaction + items', Object.assign({}, item))
           })
 
           doc.items.forEach(_itm => {
@@ -240,7 +240,7 @@ module.exports = function init(site) {
             }
 
             site.call('[transfer_branch][stores_items][-]', delObj)
-            site.call('please out item', Object.assign({ date: new Date() }, itm))
+            site.call('item_transaction - items', Object.assign({ date: new Date() }, itm))
 
           });
 

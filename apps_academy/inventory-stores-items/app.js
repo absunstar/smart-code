@@ -345,7 +345,7 @@ module.exports = function init(site) {
           itm.date = stores_items_doc.date
           itm.transaction_type = 'in'
           itm.current_status = 'newitem'
-          site.call('please track item', itm)
+          site.call('item_transaction + items', itm)
           site.call('[stores_items][store_in]', itm)
         })
         response.done = true
@@ -423,7 +423,7 @@ module.exports = function init(site) {
             itm.vendor = itm.vendor
             itm.date = stores_items_doc.date
             itm.transaction_type = 'out'
-            site.call('please out item', itm)
+            site.call('item_transaction - items', itm)
             site.call('[stores_items][store_out]', itm)
 
           })

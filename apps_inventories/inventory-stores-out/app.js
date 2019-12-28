@@ -111,7 +111,7 @@ module.exports = function init(site) {
              }
  
              site.call('[stores_transfer][stores_items]', obj)
-             site.call('please track item', Object.assign({}, itm))
+             site.call('item_transaction + items', Object.assign({}, itm))
  
            });
          }
@@ -241,7 +241,7 @@ module.exports = function init(site) {
               code: doc.shift.code,
               name: doc.shift.name
             }
-            site.call('please out item', Object.assign({}, _itm))
+            site.call('item_transaction - items', Object.assign({}, _itm))
           })
         }
 
@@ -346,8 +346,8 @@ module.exports = function init(site) {
             }
 
             if (result.doc.posting)
-              site.call('please track item', Object.assign({}, _itm))
-            else site.call('please out item', Object.assign({}, _itm))
+              site.call('item_transaction - items', Object.assign({}, _itm))
+            else site.call('item_transaction + items', Object.assign({}, _itm))
 
           })
 
@@ -402,7 +402,7 @@ module.exports = function init(site) {
                 name: stores_out_doc.shift.name
               }
 
-              site.call('please out item', Object.assign({}, _itm))
+              site.call('item_transaction - items', Object.assign({}, _itm))
 
             });
 

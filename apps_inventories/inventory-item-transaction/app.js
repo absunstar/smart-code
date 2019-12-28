@@ -42,11 +42,11 @@ module.exports = function init(site) {
    }) */
 
   $item_transaction.trackBusy = false
-  site.on('please track item', itm => {
+  site.on('item_transaction + items', itm => {
 
     if ($item_transaction.trackBusy) {
       setTimeout(() => {
-        site.call('please track item', itm)
+        site.call('item_transaction + items', itm)
       }, 400);
       return
     }
@@ -90,7 +90,9 @@ module.exports = function init(site) {
           })
 
         } else {
-          itm.last_count = 0
+         
+         // itm.last_count = (itm.current_count || 0)  -  itm.count 
+          itm.last_count = itm.current_count
           itm.current_count = itm.last_count + itm.count
           itm.last_price = itm.price
           itm.current_status = itm.current_status || 'damaged'
@@ -104,11 +106,11 @@ module.exports = function init(site) {
   })
 
   $item_transaction.outBusy = false
-  site.on('please out item', itm => {
+  site.on('item_transaction - items', itm => {
 
     if ($item_transaction.outBusy) {
       setTimeout(() => {
-        site.call('please out item', Object.assign({}, itm))
+        site.call('item_transaction - items', Object.assign({}, itm))
       }, 400);
       return;
     }
@@ -133,8 +135,9 @@ module.exports = function init(site) {
           }, 200);
         })
       } else {
-        itm.last_count = 0
-        itm.current_count = itm.count
+       
+        itm.last_count = itm.current_count || 0
+        itm.current_count = itm.last_count - itm.count
         itm.last_price = itm.price
         $item_transaction.add(itm, () => {
           setTimeout(() => {
