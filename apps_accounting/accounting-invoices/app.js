@@ -10,12 +10,12 @@ module.exports = function init(site) {
       if (doc)
         doc.forEach(_doc => {
           if (_doc.current_book_list)
-          _doc.current_book_list.forEach(_items => {
-            obj.sizes_list.forEach(_size => {
-              if (_items.barcode == _size.barcode)
-                _items.size = _size.size
-            })
-          });
+            _doc.current_book_list.forEach(_items => {
+              obj.sizes_list.forEach(_size => {
+                if (_items.barcode == _size.barcode)
+                  _items.size = _size.size
+              })
+            });
           $account_invoices.update(_doc);
         });
     });
@@ -115,52 +115,66 @@ module.exports = function init(site) {
       account_invoices_doc.items_price += (current_book_list.total_price || current_book_list.total)
     });
  */
+
     $account_invoices.add(account_invoices_doc, (err, doc) => {
 
       if (!err) {
         response.done = true;
         response.doc = doc;
+        if (doc.posting) {
 
-
-        let paid_value = {
-          value: doc.paid_up,
-          company: doc.company,
-          branch: doc.branch,
-          date: doc.date,
-          code: doc.code,
-          image_url: doc.image_url,
-          payment_method: doc.payment_method,
-          safe: doc.safe
-        }
-
-        if (doc.source_type.id == 1) {
-          site.call('[store_in][account_invoice][invoice]', doc.invoice_id)
-          if (doc.safe) site.call('[account_invoices][safes][-]', paid_value)
-        }
-
-        else if (doc.source_type.id == 2) {
-          site.call('[store_out][account_invoice][invoice]', doc.invoice_id)
-          if (doc.safe) site.call('[account_invoices][safes][+]', paid_value)
-        }
-
-        else if (doc.source_type.id == 3) {
-
-          let under_paid = {
-            book_list: doc.current_book_list,
-            net_value: doc.net_value,
-            total_tax: doc.total_tax,
-            remain_amount: doc.remain_amount,
-            total_discount: doc.total_discount,
-            price_delivery_service: doc.price_delivery_service,
-            service: doc.service,
-            invoice_id: doc.invoice_id
+          let paid_value = {
+            value: doc.paid_up,
+            company: doc.company,
+            branch: doc.branch,
+            date: doc.date,
+            code: doc.code,
+            image_url: doc.image_url,
+            payment_method: doc.payment_method,
+            safe: doc.safe,
+            shift: {
+              id: doc.shift.id,
+              code: doc.shift.code,
+              name: doc.shift.name
+            }
           }
-          site.call('[account_invoices][order_invoice][+]', under_paid)
-          if (doc.safe) site.call('[order_invoice][safes][+]', paid_value)
 
-        } else if (doc.source_type.id == 4) {
-          site.call('[account_invoices][request_service][+]', doc.invoice_id)
-          if (doc.safe) site.call('[order_invoice][safes][+]', paid_value)
+          if (doc.source_type.id == 1) {
+            paid_value.operation = 'فاتورة مشتريات'
+            paid_value.transition_type = 'out'
+            site.call('[store_in][account_invoice][invoice]', doc.invoice_id)
+
+          }
+
+          else if (doc.source_type.id == 2) {
+            paid_value.operation = 'فاتورة مبيعات'
+            paid_value.transition_type = 'in'
+            site.call('[store_out][account_invoice][invoice]', doc.invoice_id)
+          }
+
+          else if (doc.source_type.id == 3) {
+            paid_value.operation = 'فاتورة شاشة الطلبات'
+            paid_value.transition_type = 'in'
+            let under_paid = {
+              book_list: doc.current_book_list,
+              net_value: doc.net_value,
+              total_tax: doc.total_tax,
+              remain_amount: doc.remain_amount,
+              total_discount: doc.total_discount,
+              price_delivery_service: doc.price_delivery_service,
+              service: doc.service,
+              invoice_id: doc.invoice_id
+
+            }
+            site.call('[account_invoices][order_invoice][+]', under_paid)
+
+          } else if (doc.source_type.id == 4) {
+            paid_value.operation = 'فاتورة طلب خدمة'
+            paid_value.transition_type = 'in'
+            site.call('[account_invoices][request_service][+]', doc.invoice_id)
+          }
+
+          if (doc.safe) site.call('[amounts][safes][+]', paid_value)
         }
 
       } else {
@@ -170,7 +184,7 @@ module.exports = function init(site) {
     })
   })
 
-  site.post("/api/account_invoices/update", (req, res) => {
+  site.post("/api/account_invoices/update_payment", (req, res) => {
     let response = {
       done: false
     }
@@ -188,7 +202,6 @@ module.exports = function init(site) {
     })
 
     account_invoices_doc.total_paid_up = 0
-
     account_invoices_doc.total_remain = 0
     account_invoices_doc.payment_list.forEach(payment_list => {
       account_invoices_doc.total_paid_up += payment_list.paid_up
@@ -216,18 +229,38 @@ module.exports = function init(site) {
               value: response.doc.payment_paid_up,
               company: response.doc.company,
               branch: response.doc.branch,
+              code: response.doc.code,
               date: response.doc.payment_date,
               image_url: response.doc.image_url,
               safe: response.doc.payment_safe,
               payment_method: response.doc.payment_method,
-              type: 'Batch'
+              shift: {
+                id: response.doc.shift.id,
+                code: response.doc.shift.code,
+                name: response.doc.shift.name
+              }
             }
-            if (response.doc.source_type.id == 1)
-              site.call('[account_invoices][safes][-]', paid_value)
-            else if (response.doc.source_type.id == 2)
-              site.call('[account_invoices][safes][+]', paid_value)
-            else if (response.doc.source_type.id == 3)
-              site.call('[order_invoice][safes][+]', paid_value)
+            if (response.doc.source_type.id == 1) {
+              paid_value.operation = 'دفعة فاتورة مشتريات'
+              paid_value.transition_type = 'out'
+
+            }
+            else if (response.doc.source_type.id == 2) {
+              paid_value.operation = 'دفعة فاتورة مبيعات'
+              paid_value.transition_type = 'in'
+
+            }
+            else if (response.doc.source_type.id == 3) {
+              paid_value.operation = 'دفعة حساب طلبات'
+              paid_value.transition_type = 'in'
+
+            }
+            else if (response.doc.source_type.id == 4) {
+              paid_value.operation = 'دفعة طلب خدمة'
+              paid_value.transition_type = 'in'
+
+            }
+            site.call('[amounts][safes][+]', paid_value)
           }
 
         } else {
@@ -237,6 +270,268 @@ module.exports = function init(site) {
       })
     } else {
       response.error = 'no id'
+      res.json(response)
+    }
+  })
+
+
+
+  site.post("/api/account_invoices/posting", (req, res) => {
+    if (req.session.user === undefined)
+      res.json(response)
+
+    let response = {}
+    response.done = false
+
+    let account_invoices_doc = req.body
+
+    account_invoices_doc.edit_user_info = site.security.getUserFinger({ $req: req, $res: res })
+
+    if (account_invoices_doc._id) {
+      $account_invoices.edit({
+        where: {
+          _id: account_invoices_doc._id
+        },
+        set: account_invoices_doc,
+        $req: req,
+        $res: res
+      }, (err, result) => {
+        if (!err) {
+          response.done = true
+          response.doc = result.doc
+          let value = 0
+          if (result.doc.payment_list)
+            result.doc.payment_list.map(_payment => value += _payment.paid_up);
+
+          if (result.doc.posting) {
+            let paid_value = {
+              value: value,
+              company: result.doc.company,
+              branch: result.doc.branch,
+              date: result.doc.date,
+              code: result.doc.code,
+              image_url: result.doc.image_url,
+              payment_method: result.doc.payment_method,
+              safe: result.doc.safe,
+              shift: {
+                id: result.doc.shift.id,
+                code: result.doc.shift.code,
+                name: result.doc.shift.name
+              }
+            }
+
+            if (result.doc.source_type.id == 1) {
+              paid_value.operation = 'فاتورة مشتريات'
+              paid_value.transition_type = 'out'
+              site.call('[store_in][account_invoice][invoice]', result.doc.invoice_id)
+
+            }
+
+            else if (result.doc.source_type.id == 2) {
+              paid_value.operation = 'فاتورة مبيعات'
+              paid_value.transition_type = 'in'
+              site.call('[store_out][account_invoice][invoice]', result.doc.invoice_id)
+
+            }
+
+            else if (result.doc.source_type.id == 3) {
+              paid_value.operation = ' فاتورة شاشة الطلبات'
+              paid_value.transition_type = 'in'
+              let under_paid = {
+                book_list: result.doc.current_book_list,
+                net_value: result.doc.net_value,
+                total_tax: result.doc.total_tax,
+                remain_amount: result.doc.remain_amount,
+                total_discount: result.doc.total_discount,
+                price_delivery_service: result.doc.price_delivery_service,
+                service: result.doc.service,
+                invoice_id: result.doc.invoice_id
+              }
+              site.call('[account_invoices][order_invoice][+]', under_paid)
+
+
+            } else if (result.doc.source_type.id == 4) {
+              paid_value.operation = 'فاتورة طلب خدمة'
+              paid_value.transition_type = 'in'
+              site.call('[account_invoices][request_service][+]', result.doc.invoice_id)
+
+            }
+
+            if (result.doc.safe) site.call('[amounts][safes][+]', paid_value)
+          } else {
+
+            let obj = {
+              value: value,
+              safe: result.doc.safe,
+              date: result.doc.date,
+              company: result.doc.company,
+              branch: result.doc.branch,
+              code: result.doc.code,
+              description: result.doc.description,
+              payment_method: result.doc.payment_method,
+              shift: {
+                id: result.doc.shift.id,
+                code: result.doc.shift.code,
+                name: result.doc.shift.name
+              }
+            }
+            if (result.doc.source_type.id == 1) {
+              obj.transition_type = 'in'
+              obj.operation = 'فك ترحيل فاتورة مشتريات'
+            }
+            else if (result.doc.source_type.id == 2) {
+              obj.transition_type = 'out'
+              obj.operation = 'فك ترحيل فاتورة مبيعات'
+            }
+            else if (result.doc.source_type.id == 3) {
+              obj.transition_type = 'out'
+              obj.operation = 'فك ترحيل فاتورة شاشة الطلبات'
+              let under_paid = {
+                book_list: result.doc.current_book_list,
+                net_value: result.doc.net_value,
+                total_tax: result.doc.total_tax,
+                remain_amount: result.doc.remain_amount,
+                total_discount: result.doc.total_discount,
+                price_delivery_service: result.doc.price_delivery_service,
+                service: result.doc.service,
+                invoice_id: result.doc.invoice_id,
+                return : true
+              }
+              site.call('[account_invoices][order_invoice][+]', under_paid)
+            }
+            else if (result.doc.source_type.id == 4) {
+              obj.transition_type = 'out'
+              obj.operation = 'فك ترحيل فاتورة طلب خدمة'
+            }
+
+
+            if (obj.value && obj.safe) site.call('[amounts][safes][+]', obj)
+          }
+
+        } else {
+          response.error = err.message
+        }
+        res.json(response)
+      })
+    } else {
+      res.json(response)
+    }
+  })
+
+
+  site.post("/api/account_invoices/delete", (req, res) => {
+    let response = {
+      done: false
+    }
+
+    if (!req.session.user) {
+      response.error = 'Please Login First'
+      res.json(response)
+      return
+    }
+
+    let id = req.body.id
+
+    if (id) {
+      $account_invoices.delete({
+        id: id,
+        $req: req,
+        $res: res
+      }, (err, result) => {
+        if (!err) {
+          response.done = true
+          response.doc = result.doc
+
+          if (result.doc.posting) {
+            let value = 0
+            result.doc.payment_list.map(_payment => value += _payment.paid_up);
+
+            let obj = {
+              value: value,
+              safe: result.doc.safe,
+              date: result.doc.date,
+              company: result.doc.company,
+              branch: result.doc.branch,
+              code: result.doc.code,
+              description: result.doc.description,
+              payment_method: result.doc.payment_method,
+              shift: {
+                id: result.doc.shift.id,
+                code: result.doc.shift.code,
+                name: result.doc.shift.name
+              }
+            }
+            if (result.doc.source_type.id == 1) {
+              obj.transition_type = 'in'
+              obj.operation = 'حذف فاتورة مشتريات'
+            }
+            else if (result.doc.source_type.id == 2) {
+              obj.transition_type = 'out'
+              obj.operation = 'حذف فاتورة مبيعات'
+            }
+            else if (result.doc.source_type.id == 3) {
+              obj.transition_type = 'out'
+              obj.operation = 'حذف فاتورة شاشة الطلبات'
+              let under_paid = {
+                book_list: result.doc.current_book_list,
+                net_value: result.doc.net_value,
+                total_tax: result.doc.total_tax,
+                remain_amount: result.doc.remain_amount,
+                total_discount: result.doc.total_discount,
+                price_delivery_service: result.doc.price_delivery_service,
+                service: result.doc.service,
+                invoice_id: result.doc.invoice_id,
+                return : true
+              }
+              site.call('[account_invoices][order_invoice][+]', under_paid)
+            }
+            else if (result.doc.source_type.id == 4) {
+              obj.transition_type = 'out'
+              obj.operation = 'حذف فاتورة طلب خدمة'
+            }
+
+            if (obj.value && obj.safe) site.call('[amounts][safes][+]', obj)
+
+          }
+
+        } else {
+          response.error = err.message
+        }
+        res.json(response)
+      })
+    } else {
+      response.error = 'no id'
+      res.json(response)
+    }
+  })
+
+  site.post("/api/account_invoices/update", (req, res) => {
+    let response = {}
+    response.done = false
+    if (req.session.user === undefined) {
+      res.json(response)
+    }
+    let account_invoices_doc = req.body
+
+    account_invoices_doc.edit_user_info = site.security.getUserFinger({ $req: req, $res: res })
+
+    if (account_invoices_doc._id) {
+      $account_invoices.edit({
+        where: {
+          _id: account_invoices_doc._id
+        },
+        set: account_invoices_doc,
+        $req: req,
+        $res: res
+      }, err => {
+        if (!err) {
+          response.done = true
+        } else {
+          response.error = err.message
+        }
+        res.json(response)
+      })
+    } else {
       res.json(response)
     }
   })
@@ -267,38 +562,6 @@ module.exports = function init(site) {
     })
   })
 
-  site.post("/api/account_invoices/delete", (req, res) => {
-    let response = {
-      done: false
-    }
-
-    if (!req.session.user) {
-      response.error = 'Please Login First'
-      res.json(response)
-      return
-    }
-
-    let id = req.body.id
-
-    if (id) {
-      $account_invoices.delete({
-        id: id,
-        $req: req,
-        $res: res
-      }, (err, result) => {
-        if (!err) {
-          response.done = true
-          response.doc = result.doc
-        } else {
-          response.error = err.message
-        }
-        res.json(response)
-      })
-    } else {
-      response.error = 'no id'
-      res.json(response)
-    }
-  })
 
   site.post("/api/account_invoices/all", (req, res) => {
     let response = {

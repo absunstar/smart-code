@@ -99,14 +99,24 @@
                                 label="##word.details##" ng-click="details(c)"></i-button>
 
                             <i-button
-                                ng-show="!c.invoice && !defaultSettings.accounting.create_invoice_auto && c.type.id != 4"
+                                ng-show="c.posting && !c.invoice && !defaultSettings.accounting.create_invoice_auto && c.type.id != 4"
                                 type="save" label="##word.create_an_invoice##" ng-click="displayAccountInvoice(c)">
                             </i-button>
 
+                            <i-button x-permissions="stores_out_post || stores_out_manage" label="##word.posting##"
+                                ng-show="defaultSettings.general_Settings.work_posting && !c.posting"
+                                ng-click="c.posting = true ; posting(c)"></i-button>
+
+                            <i-button x-permissions="stores_out_post || stores_out_manage" label="##word.unposting##"
+                                ng-show="defaultSettings.general_Settings.work_unposting && c.posting"
+                                ng-click="c.posting = false ; posting(c)"></i-button>
+
+
                             <i-button x-permissions="stores_out_update || stores_out_manage" type="update"
-                                label="##word.edit##" ng-click="edit(c)"></i-button>
+                                ng-show="!c.posting" label="##word.edit##" ng-click="edit(c)"></i-button>
 
                             <i-button x-permissions="stores_out_delete || stores_out_manage" type="delete"
+                                ng-hide="c.posting && defaultSettings.general_Settings.work_unposting"
                                 label="##word.delete##" ng-click="remove(c)"></i-button>
                         </td>
 

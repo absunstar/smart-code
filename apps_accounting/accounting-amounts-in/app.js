@@ -160,7 +160,7 @@ module.exports = function init(site) {
             obj.transition_type = 'in'
           }
           else {
-            obj.operation = 'فك حجز وارد'
+            obj.operation = 'فك ترحيل وارد'
             obj.transition_type = 'out'
           }
 

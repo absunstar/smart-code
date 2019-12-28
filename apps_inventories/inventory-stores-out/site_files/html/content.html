@@ -212,6 +212,9 @@
                     label="##word.stores_out_total_value##"></i-control>
                 <i-control class="col2" ng-model="store_out.net_value" type="number" disabled
                     label="##word.stores_out_net_value##"></i-control>
+                <i-control class="col2" ng-show="store_out.net_value && store_out.safe" ng-model="store_out.paid_up"
+                    label="##word.paid_up##" type="number">
+                </i-control>
             </div>
 
             <div class="row">

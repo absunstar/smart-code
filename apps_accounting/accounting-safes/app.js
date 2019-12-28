@@ -370,7 +370,7 @@ module.exports = function init(site) {
           doc.balance = parseFloat(doc.balance) - parseFloat(obj.value)
         doc.description = obj.description
         $safes.update(doc, (err, result) => {
-          if (!err && result.ok) {
+          if (!err) {
             $safes.find({
               id: result.doc.id
             }, (err, doc) => {
@@ -379,8 +379,7 @@ module.exports = function init(site) {
               obj.company = doc.company
               obj.branch = doc.branch
               obj.balance = doc.balance
-              obj.code = doc.code
-
+          
               if (obj.transition_type == 'in')
                 site.call('[safes][safes_payments][+]', obj)
               if (obj.transition_type == 'out')

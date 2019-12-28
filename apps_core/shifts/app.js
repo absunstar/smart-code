@@ -45,7 +45,7 @@ module.exports = function init(site) {
     $shifts.add({
       name: "شيفت إفتراضي",
       image_url: '/images/shift.png',
-      code : $shifts.newCode(),
+      code: $shifts.newCode(),
       company: {
         id: doc.id,
         name_ar: doc.name_ar
@@ -264,12 +264,13 @@ module.exports = function init(site) {
     where['active'] = true
 
     $shifts.findOne({
-      select: req.body.select || {},
+      select: { id: 1, name: 1, code: 1, from_date: 1, from_time: 1, to_date: 1, to_time: 1 },
       where: where,
     }, (err, doc) => {
       if (!err && doc) {
         response.done = true
-        response.doc = doc
+        let obj = { id: doc.id, name: doc.name, code: doc.code, from_date: doc.from_date, from_time: doc.from_time, to_date: doc.to_date, to_time: doc.to_time }
+        response.doc = obj
       }
       res.json(response)
     })

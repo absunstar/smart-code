@@ -153,7 +153,7 @@ module.exports = function init(site) {
             obj.transition_type = 'out'
           }
           else {
-            obj.operation = 'فك حجز منصرف'
+            obj.operation = 'فك ترحيل منصرف'
             obj.transition_type = 'in'
           }
 

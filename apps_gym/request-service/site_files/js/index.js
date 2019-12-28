@@ -89,7 +89,7 @@ app.controller("request_service", function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done && response.data.doc) 
+        if (response.data.done && response.data.doc)
           $scope.defaultSettings = response.data.doc;
       },
       function (err) {
@@ -224,6 +224,10 @@ app.controller("request_service", function ($scope, $http, $timeout) {
       $scope.error = "##word.err_paid_require##";
       return;
     }
+
+    if ($scope.defaultSettings.general_Settings && $scope.defaultSettings.general_Settings.work_posting)
+      account_invoices.posting = false;
+    else account_invoices.posting = true;
 
     if (account_invoices.paid_up <= 0) account_invoices.safe = null;
     $http({

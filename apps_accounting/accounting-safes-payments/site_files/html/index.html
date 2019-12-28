@@ -37,6 +37,7 @@
                     <tr>
                         <th class="not-print center">##word.safes_payments_logo##</th>
                         <th class="center">##word.safes_payments_date##</th>
+                        <th class="center">##word.shift##</th>
                         <th class="center">##word.safes_payments_safe_name##</th>
                         <th class="center">##word.safes_payments_pre_safe_balance##</th>
                         <th class="center">##word.safes_payments_safe_balance##</th>
@@ -58,6 +59,10 @@
 
                         <td class="brown bold center">{{c.date | date : 'dd - MM - yyyy'}}</td>
 
+                        <td class="center bold blue">
+                            <p>{{c.shift.name}}</p>
+                            <p>{{c.shift.code}}</p>
+                        </td>
                         <td class="center bold blue">{{c.safe.name}}</td>
 
                         <td class="center bold red">{{c.pre_balance}}</td>

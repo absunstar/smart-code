@@ -72,22 +72,22 @@
     {
         "name": "return_purchase_invoice",
         "en": "UnPost Purchase Invoice",
-        "ar": "فك ترحيل فاتورة مشتريات"
+        "ar": "فك ترحيل إذن وارد"
     },
     {
         "name": "return_sales_invoice",
         "en": "UnPost Sales Invoice",
-        "ar": "فك ترحيل فاتورة مبيعات"
+        "ar": "فك ترحيل إذن منصرف"
     },
     {
         "name": "delete_purchase_invoice",
         "en": "Delete Purchase Invoice",
-        "ar": "حذف فاتورة مشتريات"
+        "ar": "حذف إذن وارد"
     },
     {
         "name": "delete_sales_invoice",
         "en": "Delete Sales Invoice",
-        "ar": "حذف فاتورة مبيعات"
+        "ar": "حذف إذن منصرف"
     },
     {
         "name": "item_transaction_size",

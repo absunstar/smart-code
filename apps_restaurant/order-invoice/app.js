@@ -23,11 +23,20 @@ module.exports = function init(site) {
   site.on('[account_invoices][order_invoice][+]', function (obj) {
 
     $order_invoice.findOne({ id: obj.invoice_id }, (err, doc) => {
-      doc.under_paid.net_value = doc.under_paid.net_value - obj.net_value;
-      doc.under_paid.total_tax = doc.under_paid.total_tax - obj.total_tax;
-      doc.under_paid.total_discount = doc.under_paid.total_discount - obj.total_discount;
-      doc.under_paid.price_delivery_service = doc.under_paid.price_delivery_service - obj.price_delivery_service;
-      doc.under_paid.service = doc.under_paid.service - obj.service;
+
+      if (obj.return) {
+        doc.under_paid.net_value = doc.under_paid.net_value + obj.net_value;
+        doc.under_paid.total_tax = doc.under_paid.total_tax + obj.total_tax;
+        doc.under_paid.total_discount = doc.under_paid.total_discount + obj.total_discount;
+        doc.under_paid.price_delivery_service = doc.under_paid.price_delivery_service + obj.price_delivery_service;
+        doc.under_paid.service = doc.under_paid.service - obj.service;
+      } else {
+        doc.under_paid.net_value = doc.under_paid.net_value - obj.net_value;
+        doc.under_paid.total_tax = doc.under_paid.total_tax - obj.total_tax;
+        doc.under_paid.total_discount = doc.under_paid.total_discount - obj.total_discount;
+        doc.under_paid.price_delivery_service = doc.under_paid.price_delivery_service - obj.price_delivery_service;
+        doc.under_paid.service = doc.under_paid.service - obj.service;
+      }
 
       if (doc.under_paid) {
         if (doc.remain_amount <= 0)
@@ -37,11 +46,13 @@ module.exports = function init(site) {
         doc.under_paid.book_list.forEach(book_list_basic => {
           obj.book_list.forEach(book_list_cb => {
             if (book_list_basic.barcode == book_list_cb.barcode) {
-              book_list_basic.count = book_list_basic.count - book_list_cb.count;
+              if (obj.return) book_list_basic.count = book_list_basic.count + book_list_cb.count;
+              else book_list_basic.count = book_list_basic.count - book_list_cb.count;
+
               book_list_basic.total_price = book_list_basic.count * book_list_basic.price;
             };
           });
-        });
+        });        
         $order_invoice.update(doc);
       };
     });

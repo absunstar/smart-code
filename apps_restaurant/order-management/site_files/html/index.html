@@ -79,11 +79,11 @@
                                 x-permissions="order_management_edit || order_management_manage"
                                 label="##word.set_employee_delivery##" ng-click="showDeliveryEmployee(c)"></i-button>
 
-                            <i-button type="save"
+                          <!--   <i-button type="save"
                                 ng-show="!c.post && defaultSettings.general_Settings.discount_method.id == 2 && c.status.id == 2"
                                 x-permissions="order_management_edit || order_management_manage" label="##word.post##"
                                 ng-click="postOrder(c)"></i-button>
-
+ -->
                             <i-button type="exit" ng-show="!c.reset_items && (c.status.id == 2)"
                                 x-permissions="order_management_edit || order_management_manage"
                                 label="##word.return_to_order##" ng-click="returnToOrders(c)"></i-button>

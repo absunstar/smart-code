@@ -6,61 +6,48 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
   $scope.displayaddAccountInvoice = function () {
     $scope.get_open_shift((shift) => {
       if (shift) {
-        $scope.busy = true;
-        $http({
-          method: "POST",
-          url: "/api/default_setting/get",
-          data: {}
-        }).then(
-          function (response) {
-            $scope.busy = false;
-            if (response.data.done && response.data.doc) {
-              $scope.defaultSettings = response.data.doc;
-              $scope._search = {};
-              $scope.search_order = '';
-              $scope.error = '';
-              $scope.orderInvoicesTypeList = [];
 
-              $scope.account_invoices = {
-                image_url: '/images/account_invoices.png',
-                date: new Date(),
-                shift: shift,
-                active: true,
-              };
 
-              if ($scope.defaultSettings.accounting) {
-                if ($scope.defaultSettings.accounting.source_type) {
-                  $scope.account_invoices.source_type = $scope.defaultSettings.accounting.source_type;
-                  if ($scope.defaultSettings.accounting.source_type.id == 3)
-                    $scope.getTransactionTypeList();
-                }
-                if ($scope.defaultSettings.accounting.payment_method) {
-                  $scope.account_invoices.payment_method = $scope.defaultSettings.accounting.payment_method;
-                  $scope.loadSafes($scope.account_invoices.payment_method);
-                  if ($scope.account_invoices.payment_method.id == 1) {
-                    if ($scope.defaultSettings.accounting.safe_box)
-                      $scope.account_invoices.safe = $scope.defaultSettings.accounting.safe_box;
-                  } else {
-                    if ($scope.defaultSettings.accounting.safe_bank)
-                      $scope.account_invoices.safe = $scope.defaultSettings.accounting.safe_bank;
-                  }
-                }
-              };
+        $scope._search = {};
+        $scope.search_order = '';
+        $scope.error = '';
+        $scope.orderInvoicesTypeList = [];
 
-              if ($scope.defaultSettings.general_Settings) {
-                if ($scope.defaultSettings.general_Settings.order_type && $scope.account_invoices.source_type && $scope.account_invoices.source_type.id == 3)
-                  $scope.account_invoices.order_invoices_type = $scope.defaultSettings.general_Settings.order_type;
-              }
+        $scope.account_invoices = {
+          image_url: '/images/account_invoices.png',
+          date: new Date(),
+          shift: shift,
+          active: true,
+        };
 
-              site.showModal('#accountInvoicesAddModal');
-
-            };
-          },
-          function (err) {
-            $scope.busy = false;
-            $scope.error = err;
+        if ($scope.defaultSettings.accounting) {
+          if ($scope.defaultSettings.accounting.source_type) {
+            $scope.account_invoices.source_type = $scope.defaultSettings.accounting.source_type;
+            if ($scope.defaultSettings.accounting.source_type.id == 3)
+              $scope.getTransactionTypeList();
           }
-        )
+          if ($scope.defaultSettings.accounting.payment_method) {
+            $scope.account_invoices.payment_method = $scope.defaultSettings.accounting.payment_method;
+            $scope.loadSafes($scope.account_invoices.payment_method);
+            if ($scope.account_invoices.payment_method.id == 1) {
+              if ($scope.defaultSettings.accounting.safe_box)
+                $scope.account_invoices.safe = $scope.defaultSettings.accounting.safe_box;
+            } else {
+              if ($scope.defaultSettings.accounting.safe_bank)
+                $scope.account_invoices.safe = $scope.defaultSettings.accounting.safe_bank;
+            }
+          }
+        };
+
+        if ($scope.defaultSettings.general_Settings) {
+          if ($scope.defaultSettings.general_Settings && !$scope.defaultSettings.general_Settings.work_posting)
+            $scope.account_invoices.posting = true;
+          if ($scope.defaultSettings.general_Settings.order_type && $scope.account_invoices.source_type && $scope.account_invoices.source_type.id == 3)
+            $scope.account_invoices.order_invoices_type = $scope.defaultSettings.general_Settings.order_type;
+        }
+
+        site.showModal('#accountInvoicesAddModal');
+
       } else $scope.error = '##word.open_shift_not_found##';
     });
   };
@@ -122,10 +109,33 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.posting = function (account_invoices) {
+    $scope.error = '';
+
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/account_invoices/posting",
+      data: account_invoices
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.loadAll();
+        } else {
+          $scope.error = '##word.error##';
+        }
+      },
+      function (err) {
+        console.log(err);
+      }
+    )
+  };
+
   $scope.displayUpdateAccountInvoices = function (account_invoices) {
+    $scope.error = '';
     $scope._search = {};
 
-    $scope.error = '';
     $scope.detailsAccountInvoices(account_invoices);
     $scope.account_invoices = {
       image_url: '/images/vendor_logo.png',
@@ -298,7 +308,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
     $scope.busy = true;
     $http({
       method: "POST",
-      url: "/api/account_invoices/update",
+      url: "/api/account_invoices/update_payment",
       data: $scope.account_invoices
     }).then(
       function (response) {

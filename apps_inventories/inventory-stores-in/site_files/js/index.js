@@ -62,6 +62,9 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
       $scope.error = "##word.err_paid_require##";
       return;
     }
+    if ($scope.defaultSettings.general_Settings && $scope.defaultSettings.general_Settings.work_posting)
+      account_invoices.posting = false;
+    else account_invoices.posting = true;
 
     if (account_invoices.paid_up <= 0) account_invoices.safe = null;
     $http({
@@ -73,7 +76,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response) {
           site.hideModal('#accountInvoiceModal');
-          $scope.printAccountInvoive();          
+          $scope.printAccountInvoive();
           $scope.loadAll();
         } else $scope.error = response.data.error;
       },

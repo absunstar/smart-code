@@ -121,6 +121,8 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         if ($scope.defaultSettings.general_Settings) {
           if ($scope.defaultSettings.general_Settings.customer)
             $scope.store_out.customer = $scope.defaultSettings.general_Settings.customer;
+          if (!$scope.defaultSettings.general_Settings.work_posting)
+            $scope.store_out.posting = true
         };
 
         if ($scope.defaultSettings.inventory) {
@@ -191,12 +193,17 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         if (_itemSize.discount.value > _itemSize.discount.max)
           max_discount = true;
       });
+      
 
       if (max_discount) {
         $scope.error = "##word.err_maximum_discount##";
         return;
       }
     }
+
+    if ($scope.store_out.safe && !$scope.store_out.paid_up)
+    $scope.store_out.paid_up = 0
+
 
     if ($scope.store_out.items.length > 0) {
       $scope.busy = true;
@@ -208,30 +215,34 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         function (response) {
           $scope.busy = false;
           if (response.data.done) {
-            if ($scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto) {
-              let store_out_doc = response.data.doc
-              $scope.account_invoices = {
-                image_url: '/images/account_invoices.png',
-                date: store_out_doc.date,
-                invoice_id: store_out_doc.id,
-                customer: store_out_doc.customer,
-                shift: store_out_doc.shift,
-                net_value: store_out_doc.net_value,
-                paid_up: store_out_doc.net_value,
-                payment_method: store_out_doc.payment_method,
-                safe: store_out_doc.safe,
-                invoice_code: store_out_doc.number,
-                total_discount: store_out_doc.total_discount,
-                total_tax: store_out_doc.total_tax,
-                current_book_list: store_out_doc.items,
-                source_type: {
-                  id: 2,
-                  en: "Stores Out / Sales Invoice",
-                  ar: "إذن صرف / فاتورة مبيعات"
-                },
-                active: true
-              };
-              $scope.addAccountInvoice($scope.account_invoices)
+            if ($scope.store_out.posting) {
+              if ($scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto) {
+
+                let account_invoices = {
+                  image_url: '/images/account_invoices.png',
+                  date: response.data.doc.date,
+                  invoice_id: response.data.doc.id,
+                  customer: response.data.doc.customer,
+
+                  shift: response.data.doc.shift,
+                  net_value: response.data.doc.net_value,
+                  paid_up: response.data.doc.paid_up,
+
+                  payment_method: response.data.doc.payment_method,
+                  safe: response.data.doc.safe,
+                  invoice_code: response.data.doc.number,
+                  total_discount: response.data.doc.total_discount,
+                  total_tax: response.data.doc.total_tax,
+                  current_book_list: response.data.doc.items,
+                  source_type: {
+                    id: 2,
+                    en: "Stores Out / Sales Invoice",
+                    ar: "إذن صرف / فاتورة مبيعات"
+                  },
+                  active: true
+                };
+                $scope.addAccountInvoice(account_invoices)
+              }
             }
 
             site.hideModal('#addStoreOutModal');
@@ -291,16 +302,13 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
     site.showModal('#viewStoreOutModal');
   };
 
-  $scope.delete = function () {
+  $scope.delete = function (store_out) {
     $scope.error = '';
     $scope.busy = true;
     $http({
       method: "POST",
       url: "/api/stores_out/delete",
-      data: {
-        _id: $scope.store_out._id,
-        name: $scope.store_out.name
-      }
+      data: store_out
     }).then(
       function (response) {
         $scope.busy = false;
@@ -934,6 +942,10 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
       return;
     }
 
+    if ($scope.defaultSettings.general_Settings && $scope.defaultSettings.general_Settings.work_posting)
+      account_invoices.posting = false;
+    else account_invoices.posting = true;
+
     if (account_invoices.paid_up <= 0) account_invoices.safe = null;
     $http({
       method: "POST",
@@ -1105,7 +1117,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
       $scope.loadSafes(obj.payment_method);
       if (obj.payment_method.id == 1) {
         if ($scope.defaultSettings.accounting.safe_box)
-        obj.safe = $scope.defaultSettings.accounting.safe_box
+          obj.safe = $scope.defaultSettings.accounting.safe_box
       } else {
         if ($scope.defaultSettings.accounting.safe_bank)
           obj.safe = $scope.defaultSettings.accounting.safe_bank
@@ -1369,6 +1381,57 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
       function (err) {
         $scope.busy = false;
         $scope.error = err;
+      }
+    )
+  };
+
+  $scope.posting = function (store_out) {
+    $scope.error = '';
+
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/stores_out/posting",
+      data: store_out
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          if (store_out.posting) {
+            if ($scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto) {
+
+              let account_invoices = {
+                image_url: '/images/account_invoices.png',
+                date: store_out.date,
+                invoice_id: store_out.id,
+                vendor: store_out.vendor,
+                shift: store_out.shift,
+                net_value: store_out.net_value,
+                paid_up: store_out.paid_up,
+                payment_method: store_out.payment_method,
+                safe: store_out.safe,
+                invoice_code: store_out.number,
+                total_discount: store_out.total_discount,
+                total_tax: store_out.total_tax,
+                current_book_list: store_out.items,
+                source_type: {
+                  id: 1,
+                  en: "Stores In / Purchase Invoice",
+                  ar: "إذن وارد / فاتورة شراء"
+                },
+                active: true
+              };
+
+              $scope.addAccountInvoice(account_invoices)
+            }
+          }
+          $scope.loadAll();
+        } else {
+          $scope.error = '##word.error##';
+        }
+      },
+      function (err) {
+        console.log(err);
       }
     )
   };

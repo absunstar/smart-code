@@ -219,42 +219,32 @@ module.exports = function init(site) {
         response.done = true
         response.doc = doc
 
+        if (doc.posting) {
 
-        doc.items.forEach(_itm => {
-          _itm.type = 'minus'
-          _itm.store = doc.store
-          _itm.company = doc.company
-          _itm.branch = doc.branch
-          site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _itm))
-        });
+          doc.items.forEach(_itm => {
+            _itm.type = 'minus'
+            _itm.store = doc.store
+            _itm.company = doc.company
+            _itm.branch = doc.branch
 
-        stores_out_doc.items.forEach(itm => {
-          itm.company = stores_out_doc.company
-          itm.branch = stores_out_doc.branch
-          itm.number = stores_out_doc.number
-          itm.current_status = 'sold'
-          itm.source_type = stores_out_doc.type
-          itm.date = stores_out_doc.date
-          itm.transaction_type = 'out'
-          itm.store = stores_out_doc.store
-          site.call('please out item', Object.assign({}, itm))
-        })
+            site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _itm))
 
+            _itm.number = doc.number
+            _itm.current_status = 'sold'
+            _itm.source_type = doc.type
+            _itm.date = doc.date
+            _itm.customer = doc.customer
+            _itm.transaction_type = 'out'
+            _itm.store = doc.store
+            _itm.shift = {
+              id: doc.shift.id,
+              code: doc.shift.code,
+              name: doc.shift.name
+            }
+            site.call('please out item', Object.assign({}, _itm))
+          })
+        }
 
-
-        /*  let obj = {
-           value: doc.net_value,
-           safe: doc.safe,
-           date: doc.date,
-           number: doc.number,
-           company: doc.company,
-           branch: doc.branch,
-           notes: doc.notes
-         }
- 
-         if (obj.value && obj.safe && obj.date && obj.number) 
-           site.call('[stores_out][safes][+]', obj)
-  */
       } else {
         response.error = err.message
       }
@@ -304,49 +294,119 @@ module.exports = function init(site) {
     }
   })
 
+  site.post("/api/stores_out/posting", (req, res) => {
+    if (req.session.user === undefined)
+      res.json(response)
+
+    let response = {}
+    response.done = false
+
+    let stores_out_doc = req.body
+
+    stores_out_doc.edit_user_info = site.security.getUserFinger({ $req: req, $res: res })
+
+    if (stores_out_doc._id) {
+      $stores_out.edit({
+        where: {
+          _id: stores_out_doc._id
+        },
+        set: stores_out_doc,
+        $req: req,
+        $res: res
+      }, (err, result) => {
+        if (!err) {
+          response.done = true
+          response.doc = result.doc
+
+          result.doc.items.forEach(_itm => {
+            _itm.store = result.doc.store
+            _itm.company = result.doc.company
+            _itm.branch = result.doc.branch
+
+            if (result.doc.posting) {
+              _itm.type = 'minus'
+              _itm.transaction_type = 'out'
+              _itm.current_status = 'sold'
+            } else {
+              _itm.type = 'sum'
+              _itm.transaction_type = 'in'
+              _itm.current_status = 'r_sold'
+            }
+
+            site.call('[transfer_branch][stores_items][add_balance]', _itm)
+
+            _itm.number = result.doc.number
+            _itm.customer = result.doc.customer
+            _itm.date = result.doc.date
+            _itm.source_type = result.doc.type
+            _itm.shift = {
+              id: result.doc.shift.id,
+              code: result.doc.shift.code,
+              name: result.doc.shift.name
+            }
+
+            if (result.doc.posting)
+              site.call('please track item', Object.assign({}, _itm))
+            else site.call('please out item', Object.assign({}, _itm))
+
+          })
+
+        } else {
+          response.error = err.message
+        }
+        res.json(response)
+      })
+    } else {
+      res.json(response)
+    }
+  })
+
   site.post("/api/stores_out/delete", (req, res) => {
     let response = {}
     response.done = false
     if (req.session.user === undefined) {
       res.json(response)
     }
-    let _id = req.body._id
-    if (_id) {
-      $stores_out.delete({ _id: $stores_out.ObjectID(_id), $req: req, $res: res }, (err, result) => {
+    let stores_out_doc = req.body
+    if (stores_out_doc._id) {
+      $stores_out.delete({
+        where: {
+          _id: stores_out_doc._id
+        },
+        $req: req,
+        $res: res
+      }, (err, result) => {
         if (!err) {
           response.done = true
-          let Obj = {
-            value: result.doc.net_value,
-            safe: result.doc.safe,
-            date: result.doc.date,
-            number: result.doc.number,
-            company: result.doc.company,
-            branch: result.doc.branch,
-            notes: result.doc.notes
+          if (stores_out_doc.posting) {
+
+            stores_out_doc.items.forEach(_itm => {
+              _itm._status = stores_out_doc.type.id
+              _itm.store = stores_out_doc.store
+              _itm.company = stores_out_doc.company
+              _itm.branch = stores_out_doc.branch
+
+              _itm.type = 'sum'
+              _itm.transaction_type = 'in'
+              _itm.current_status = 'd_sold'
+
+              site.call('[transfer_branch][stores_items][add_balance]', _itm)
+              delete _itm._status
+              _itm.number = stores_out_doc.number
+              _itm.customer = stores_out_doc.customer
+              _itm.date = stores_out_doc.date
+              _itm.source_type = stores_out_doc.type
+              _itm.shift = {
+                id: stores_out_doc.shift.id,
+                code: stores_out_doc.shift.code,
+                name: stores_out_doc.shift.name
+              }
+
+              site.call('please out item', Object.assign({}, _itm))
+
+            });
+
           }
-          if (Obj.value && Obj.safe && Obj.date && Obj.number) {
-            site.call('[stores_out][safes][+]', Obj)
-          }
-
-          result.doc.items.forEach(itm => {
-
-            itm.number = result.doc.number
-            itm.date = result.doc.date
-            itm.transaction_type = 'out'
-            itm.current_status = 'storeout'
-            itm.store = result.doc.store
-
-            let delObj = {
-              name: itm.name,
-              size: itm.size,
-              store: result.doc.store,
-              item: itm
-            }
-
-            site.call('[stores_out][stores_items][-]', delObj)
-            site.call('please out item', Object.assign({ date: new Date() }, itm))
-
-          });
 
         }
         res.json(response)

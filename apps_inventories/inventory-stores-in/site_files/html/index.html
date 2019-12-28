@@ -121,6 +121,7 @@
                                 ng-show="!c.posting" label="##word.edit##" ng-click="edit(c)"></i-button>
 
                             <i-button x-permissions="stores_in_delete || stores_in_manage" type="delete"
+                                ng-hide="c.posting && defaultSettings.general_Settings.work_unposting"
                                 label="##word.delete##" ng-click="remove(c)"></i-button>
                         </td>
 

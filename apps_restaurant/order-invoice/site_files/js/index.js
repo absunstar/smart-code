@@ -157,7 +157,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
             $scope.sendToKitchens(Object.assign({}, response.data.doc));
             $scope.order_invoice = response.data.doc;
 
-            if ($scope.defaultSettings.general_Settings && $scope.defaultSettings.general_Settings.discount_method && $scope.defaultSettings.general_Settings.discount_method.id == 1 && $scope.order_invoice.status.id == 2) {
+            if ($scope.order_invoice.status.id == 2) {
 
               let store_out = {
                 image_url: '/images/store_out.png',
@@ -183,6 +183,10 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
                 },
                 active: true
               };
+
+              if ($scope.defaultSettings.general_Settings && !$scope.defaultSettings.general_Settings.work_posting)
+                store_out.posting = true;
+
               $scope.addStoresOut(store_out)
             }
 
@@ -354,6 +358,11 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
       return;
     }
     $scope.busy = true;
+
+    if ($scope.defaultSettings.general_Settings && $scope.defaultSettings.general_Settings.work_posting)
+      account_invoices.posting = false;
+    else account_invoices.posting = true;
+
 
     $http({
       method: "POST",
@@ -1363,8 +1372,8 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
       return;
     }
 
-    if ($scope.defaultSettings.general_Settings && $scope.defaultSettings.general_Settings.discount_method && $scope.defaultSettings.general_Settings.discount_method.id == 2)
-      $scope.order_invoice.post = false;
+    /*  if ($scope.defaultSettings.general_Settings && $scope.defaultSettings.general_Settings.discount_method && $scope.defaultSettings.general_Settings.discount_method.id == 2)
+       $scope.order_invoice.post = false; */
 
     $scope.order_invoice.status = {
       id: 2,

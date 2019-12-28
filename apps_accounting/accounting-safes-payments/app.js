@@ -20,6 +20,7 @@ module.exports = function init(site) {
       notes: info.notes || '',
       code: info.code || ''
     }
+    
     $safes_payments.add(obj)
   })
 

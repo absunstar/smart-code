@@ -245,6 +245,11 @@ module.exports = function init(site) {
             _itm.source_type = doc.type
             _itm.transaction_type = 'in'
             _itm.current_status = 'storein'
+            _itm.shift = {
+              id: doc.shift.id,
+              code: doc.shift.code,
+              name: doc.shift.name
+            }
             site.call('please track item', Object.assign({}, _itm))
 
           })
@@ -347,7 +352,11 @@ module.exports = function init(site) {
             _itm.vendor = result.doc.vendor
             _itm.date = result.doc.date
             _itm.source_type = result.doc.type
-
+            _itm.shift = {
+              id: result.doc.shift.id,
+              code: result.doc.shift.code,
+              name: result.doc.shift.name
+            }
             if (result.doc.posting)
               site.call('please track item', Object.assign({}, _itm))
             else site.call('please out item', Object.assign({}, _itm))
@@ -363,7 +372,6 @@ module.exports = function init(site) {
       res.json(response)
     }
   })
-
 
   site.post("/api/stores_in/delete", (req, res) => {
     let response = {}
@@ -400,7 +408,11 @@ module.exports = function init(site) {
               _itm.vendor = stores_in_doc.vendor
               _itm.date = stores_in_doc.date
               _itm.source_type = stores_in_doc.type
-
+              _itm.shift = {
+                id: stores_in_doc.shift.id,
+                code: stores_in_doc.shift.code,
+                name: stores_in_doc.shift.name
+              }
 
               site.call('please out item', Object.assign({}, _itm))
 
