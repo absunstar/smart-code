@@ -700,16 +700,6 @@
         "ar": "قائمة تقارير مبيعات الأصناف "
     },
     {
-        "name": "report_employee_delegate_menus",
-        "en": "Report Delegate Menu",
-        "ar": "قائمة تقارير عمولات المناديب "
-    },
-    {
-        "name": "report_employee_delegate_name",
-        "en": "Report Delegate",
-        "ar": "تقارير عمولات المناديب "
-    },
-    {
         "name": "report_employee_user_menus",
         "en": "Report Employees Order Menu",
         "ar": "قائمة تقارير طلبات موظفين "

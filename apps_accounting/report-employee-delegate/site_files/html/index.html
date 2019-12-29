@@ -27,6 +27,32 @@
                         label="##word.search_all##" onclick="site.showModal('#reportEmployeeDelegateSearchModal')">
                     </i-button>
 
+
+                    <div ng-show="delegate.id" class="row margin padding dashed">
+                        <div class="col6 padding">
+
+                            <table class="table bold" id="t1">
+
+                                <tr>
+                                    <td class="title">##word.delegate##</td>
+                                    <td>
+                                        <p class="center">{{delegate.name}}</p>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title">##word.requests_count##</td>
+                                    <td>
+                                        <p class="center blue">{{count}}</p>
+                                    </td>
+
+                                </tr>
+
+                            </table>
+                        </div>
+
+                    </div>
+
                     <span ng-show="busy">
                         <span class="sr-only">Loading...</span>
                     </span>
@@ -37,17 +63,17 @@
                 <div class="row">
                     <i-control id="item_name" class="col2" ng-model="total_value"
                         label="##word.stores_out_total_value##" type="number" disabled></i-control>
-                    <i-control id="item_name" class="col2" ng-model="net_value"
-                        label="##word.stores_out_net_value##" type="number" disabled></i-control>
+                    <i-control id="item_name" class="col2" ng-model="net_value" label="##word.stores_out_net_value##"
+                        type="number" disabled></i-control>
                 </div>
 
                 <div class="row">
-                        <i-control id="item_name" class="col2" ng-model="total_tax"
-                            label="##word.total_tax##" type="number" disabled></i-control>
-                        <i-control id="item_name" class="col2" ng-model="total_discount"
-                            label="##word.total_discount##" type="number" disabled></i-control>
-                    </div>
-    
+                    <i-control id="item_name" class="col2" ng-model="total_tax" label="##word.total_tax##" type="number"
+                        disabled></i-control>
+                    <i-control id="item_name" class="col2" ng-model="total_discount" label="##word.total_discount##"
+                        type="number" disabled></i-control>
+                </div>
+
 
                 <table class="table loaded center hover bold" id="t1">
                     <tr>
@@ -55,7 +81,7 @@
                         <th> ##word.date## </th>
                         <th> ##word.shift## </th>
                         <th> ##word.stores_out_id## </th>
-                        <th> ##word.delegate## </th>
+                        <th ng-hide="delegate.id"> ##word.delegate## </th>
                         <th> ##word.stores_out_total_tax## </th>
                         <th> ##word.stores_out_total_discount## </th>
                         <th> ##word.stores_out_total_value## </th>
@@ -69,7 +95,7 @@
                         <td class="brown"> {{c.date | date : 'dd - MM - yyyy'}} </td>
                         <td class="blue"> {{c.shift.code}} </td>
                         <td class="blue"> {{c.number}} </td>
-                        <td > {{c.delegate.name}} </td>
+                        <td ng-hide="delegate.id"> {{c.delegate.name}} </td>
                         <td class="red"> {{c.total_tax ||0}} </td>
                         <td> {{c.total_discount ||0}} </td>
                         <td>{{c.total_value}}</td>

@@ -63,6 +63,7 @@ app.controller("report_employee_delegate", function ($scope, $http, $timeout) {
 
   $scope.searchAll = function () {
     $scope._search = {};
+    $scope.delegate = $scope.search.delegate;
     $scope.getReportEmployeeDelegateList($scope.search);
     site.hideModal('#reportEmployeeDelegateSearchModal');
     $scope.search = {}

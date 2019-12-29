@@ -20,6 +20,16 @@
         "ar": "إضافة عملات"
     },
     {
+        "name": "report_employee_delegate_menus",
+        "en": "Report Delegate Menu",
+        "ar": "قائمة تقارير عمولات المناديب "
+    },
+    {
+        "name": "report_employee_delegate_name",
+        "en": "Report Delegate",
+        "ar": "تقرير عمولات المناديب "
+    },
+    {
         "name": "work_posting",
         "en": "Work Posting",
         "ar": "العمل بالترحيل"
