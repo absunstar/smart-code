@@ -4,9 +4,9 @@ const site = require('isite')({
     saving_time: 0.2,
     name: 'gym',
     theme: 'theme_paper',
-    https:{
-        enabled : true,
-        port : 5050
+    https: {
+        enabled: true,
+        port: 5050
     },
     mongodb: {
         db: 'smart_code_gyms',
@@ -48,17 +48,18 @@ site.importApp(__dirname + '/apps_private/ui-print')
 site.importApp(__dirname + '/apps_private/ui-help')
 site.importApps(__dirname + '/apps_accounting')
 site.importApps(__dirname + '/apps_inventories')
+site.importApps(__dirname + '/apps_reports')
 site.importApps(__dirname + '/apps_hr')
 site.importApps(__dirname + '/apps_gym')
 site.importApps(__dirname + '/apps_medic')
 site.addFeature('gym')
 setTimeout(() => {
-site.importApps(__dirname + '/apps_core')
-    
+    site.importApps(__dirname + '/apps_core')
+
     site.importApp(__dirname + '/apps_private/companies')
     site.importApp(__dirname + '/apps_private/zk-reader')
 
-       // site.zk.load_attendance( {
+    // site.zk.load_attendance( {
     //     ip: '192.168.100.201',
     //     port: 4370,
     //     inport: 5200,
@@ -70,7 +71,7 @@ site.importApps(__dirname + '/apps_core')
     // }, (err, attendance_array) => {
     //     console.log(attendance_array || err)
     // })
-    
+
 }, 1000)
 setTimeout(() => {
     site.ready = true
@@ -80,7 +81,7 @@ setTimeout(() => {
 site.exe(process.cwd() + '/applications/PrinterManager.exe')
 site.run()
 
-site.on('zk attend', attend=>{
+site.on('zk attend', attend => {
     console.log(attend)
 })
 

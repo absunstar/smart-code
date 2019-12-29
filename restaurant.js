@@ -46,6 +46,7 @@ site.importApp(__dirname + '/apps_private/ui-help')
 site.importApps(__dirname + '/apps_core')
 site.importApps(__dirname + '/apps_accounting')
 site.importApps(__dirname + '/apps_inventories')
+site.importApps(__dirname + '/apps_reports')
 site.importApps(__dirname + '/apps_hr')
 site.importApps(__dirname + '/apps_restaurant')
 site.addFeature('restaurant')
@@ -59,6 +60,6 @@ setTimeout(() => {
     site.ready = true
 }, 1000 * 2);
 
- site.exe(process.cwd() + '/applications/PrinterManager.exe')
+site.exe(process.cwd() + '/applications/PrinterManager.exe')
 
 site.run()
