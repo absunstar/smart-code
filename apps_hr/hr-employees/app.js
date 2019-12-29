@@ -29,19 +29,19 @@ module.exports = function init(site) {
   })
 
   site.on('[job][employee_trainer][+]', job_doc => {
-    $employee_list.add({
-      name: "مدرب إفتراضي",
-      image_url: '/images/employee_list.png',
-      job: {
-        id: job_doc.id,
-        name: job_doc.name,
-        code: job_doc.code,
-        trainer: job_doc.trainer,
-      },
-      company: job_doc.company,
-      branch: job_doc.branch,
-      active: true
-    }, (err, doc) => { })
+      $employee_list.add({
+        name: "مدرب إفتراضي",
+        image_url: '/images/employee_list.png',
+        job: {
+          id: job_doc.id,
+          name: job_doc.name,
+          code: job_doc.code,
+          trainer: job_doc.trainer,
+        },
+        company: job_doc.company,
+        branch: job_doc.branch,
+        active: true
+      }, (err, doc) => { })
   })
 
 
@@ -435,8 +435,8 @@ module.exports = function init(site) {
     }
 
     where['company.id'] = site.get_company(req).id
-/*     where['branch.code'] = site.get_branch(req).code
- */
+    /*     where['branch.code'] = site.get_branch(req).code
+     */
     $employee_list.findMany({
       select: req.body.select || {},
       where: where,

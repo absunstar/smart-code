@@ -2,12 +2,10 @@ module.exports = function init(site) {
   const $jobs = site.connectCollection("jobs")
 
   site.on('[company][created]', doc => {
-
     $jobs.add({
-      code: "1" ,
-      name: "مدرب",
+      code: "1",
+      name: "موظف إفتراضي",
       image_url: '/images/jobs.png',
-      trainer : true,
       company: {
         id: doc.id,
         name_ar: doc.name_ar
@@ -17,10 +15,28 @@ module.exports = function init(site) {
         name_ar: doc.branch_list[0].name_ar
       },
       active: true
-    }, (err, job_doc) => {
-      site.call('[job][employee_trainer][+]', job_doc)
+    }, (err, doc) => { })
+  })
 
-    })
+  site.on('[company][created]', doc => {
+    if (site.feature('gym'))
+      $jobs.add({
+        code: "2",
+        name: "مدرب إفتراضي",
+        image_url: '/images/jobs.png',
+        trainer: true,
+        company: {
+          id: doc.id,
+          name_ar: doc.name_ar
+        },
+        branch: {
+          code: doc.branch_list[0].code,
+          name_ar: doc.branch_list[0].name_ar
+        },
+        active: true
+      }, (err, job_doc) => {
+        site.call('[job][employee_trainer][+]', job_doc)
+      })
   })
 
   site.get({
@@ -201,8 +217,8 @@ module.exports = function init(site) {
     delete where.search
 
     where['company.id'] = site.get_company(req).id
-/*     where['branch.code'] = site.get_branch(req).code
- */
+    /*     where['branch.code'] = site.get_branch(req).code
+     */
     $jobs.findMany({
       select: req.body.select || {},
       where: where,
