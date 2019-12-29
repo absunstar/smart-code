@@ -88,8 +88,6 @@ module.exports = function init(site) {
       where['branch.code'] = site.get_branch(req).code
     }
 
-    console.log(where)
-
     site.security.getUsers({
       where: where,
       limit: 1000

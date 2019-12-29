@@ -38,7 +38,6 @@ app.controller("employees_salary_report", function ($scope, $http) {
           } else {
             $scope.searchAll(); /* re calc */
           }
-
           site.hideModal('#searchModal');
         }
       },
@@ -49,33 +48,7 @@ app.controller("employees_salary_report", function ($scope, $http) {
     )
   };
 
-  $scope.approved = function () {
-
-    $scope.busy = true;
-
-    $scope.employee_salary_report.done = true;
-    $scope.employee_salary_report.date = new Date();
-    $http({
-      method: "POST",
-      url: "/api/employees_salary_report/add",
-      data: $scope.employee_salary_report
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          $scope.employee_salary_report = response.data.doc;
-          $scope.employee_salary_report.dateFrom = new Date($scope.employee_salary_report.dateFrom);
-          $scope.employee_salary_report.dateTo = new Date($scope.employee_salary_report.dateTo);
-          site.hideModal('#approvedEmployees_reportModal')
-        } else {
-          $scope.error = '##word.error##';
-        }
-      },
-      function (err) {
-        console.log(err);
-      }
-    )
-  };
+ 
 
   $scope.searchEmployeeReport = function () {
 

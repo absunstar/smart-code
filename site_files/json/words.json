@@ -10,6 +10,11 @@
         "ar": "الكمية"
     },
     {
+        "name": "employee_salary_screen",
+        "en": "Employee Salary Screen",
+        "ar": "شاشة مرتبات الموظفين"
+    },
+    {
         "name": "vendor",
         "en": "Vendor",
         "ar": "المورد"

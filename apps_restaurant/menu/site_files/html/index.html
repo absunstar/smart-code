@@ -352,15 +352,23 @@
 
                 <fieldset>
                     <legend></legend>
+
+                    <a class="item" href="/employees_report"
+                        x-permissions="employees_report_ui || employees_report_manage">
+                        <img src="images/employees_salary.png">
+                        <h2>##word.employees_report##</h2>
+                        <p> ##word.employee_salary_screen## </p>
+                    </a>
+
                     <a class="item" href="/employees_salary_report"
                         x-permissions="employees_salary_report_ui || employees_salary_report_manage">
                         <img src="images/pic_reportEmployee1.png">
-                        <h2>##word.system_employees_salary_report_menus##</h2>
+                        <h2>##word.employees_salary_report##</h2>
                         <p> ##word.system_employees_salary_report## </p>
                     </a>
 
-                </fieldset>
 
+                </fieldset>
                 <a class="item" href="/item_transaction" x-permissions="item_transaction_ui || item_transaction_manage">
                     <img src="/images/item_transaction.png">
                     <h2>##word.system_item_transaction_menus##</h2>

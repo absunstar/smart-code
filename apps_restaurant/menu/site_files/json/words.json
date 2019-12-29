@@ -780,11 +780,7 @@
         "en": "Full Amounts Report",
         "ar": "تقرير مالي شامل"
     },
-    {
-        "name": "system_employees_salary_report_menus",
-        "en": "Employees Report",
-        "ar": " مرتبات الموظفين"
-    },
+  
     {
         "name": "system_employees_salary_report",
         "en": "Full Employee Report",

@@ -310,6 +310,27 @@
 
             <div id="reportingTab" class="tab-content">
 
+                <fieldset>
+                    <legend></legend>
+
+                    <a class="item" href="/employees_report"
+                        x-permissions="employees_report_ui || employees_report_manage">
+                        <img src="images/employees_salary.png">
+                        <h2>##word.employees_report##</h2>
+                        <p> ##word.employee_salary_screen## </p>
+                    </a>
+
+                    <a class="item" href="/employees_salary_report"
+                        x-permissions="employees_salary_report_ui || employees_salary_report_manage">
+                        <img src="images/pic_reportEmployee1.png">
+                        <h2>##word.employees_salary_report##</h2>
+                        <p> ##word.system_employees_salary_report## </p>
+                    </a>
+
+
+                </fieldset>
+
+
                 <a class="item" href="/item_transaction" x-permissions="item_transaction_ui || item_transaction_manage">
                     <img src="/images/item_transaction.png">
                     <h2>##word.system_item_transaction_menus##</h2>
@@ -327,6 +348,13 @@
                     <h2>##word.report_sales_menus##</h2>
                     <p>##word.report_sales_name##</p>
                 </a>
+
+                <a class="item" href="/report_invoices" x-permissions="report_invoices_ui || report_invoices_manage">
+                    <img src="/images/report_invoices.png">
+                    <h2>##word.report_invoices_menus##</h2>
+                    <p>##word.report_invoices_name##</p>
+                </a>
+
 
                 <a class="item" href="/report_employee_delegate"
                     x-permissions="report_employee_delegate_ui || report_employee_delegate_manage">

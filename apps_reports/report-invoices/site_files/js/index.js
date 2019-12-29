@@ -55,7 +55,7 @@ app.controller("report_invoices", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (site.feature('gym')) $scope.sourceTypeList = response.data.filter(i => i.id != 3);
         else if (site.feature('restaurant')) $scope.sourceTypeList = response.data.filter(i => i.id != 4);
-        else if (site.feature('pos')) $scope.sourceTypeList = response.data.filter(i => i.id != 4 && i.id != 3);      
+        else if (site.feature('pos')) $scope.sourceTypeList = response.data.filter(i => i.id != 4 && i.id != 3);
       },
       function (err) {
         $scope.busy = false;
@@ -78,7 +78,7 @@ app.controller("report_invoices", function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done && response.data.list.length > 0) {
-          $scope.list = response.data.list;          
+          $scope.list = response.data.list;
           $scope.count = response.data.count;
           $scope.remain_amount = 0;
           $scope.net_value = 0;
@@ -90,7 +90,7 @@ app.controller("report_invoices", function ($scope, $http, $timeout) {
             $scope.net_value += invoice.net_value;
             $scope.total_tax += invoice.total_tax;
             $scope.total_discount += invoice.total_discount;
-            
+
           });
           $scope.paid_up = $scope.net_value - $scope.remain_amount
         }
@@ -108,9 +108,10 @@ app.controller("report_invoices", function ($scope, $http, $timeout) {
     site.hideModal('#reportInvoicesSearchModal');
     $scope.search = {}
   };
- 
-  $scope.getReportInvoicesList({date : new Date()});
-  $scope.getTransactionTypeList();
+
+  $scope.getReportInvoicesList({ date: new Date() });
+  if (site.feature('restaurant'))
+    $scope.getTransactionTypeList();
   $scope.getPaymentMethodList();
   $scope.getSourceType();
 

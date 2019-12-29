@@ -35,11 +35,13 @@ module.exports = function init(site) {
           date: doc.date,
           sourceName: doc.employee.name,
           description: doc.description,
+          operation: 'مرتب موظف',
+          transition_type: 'out',
           company: doc.company,
           branch: doc.branch
         }
 
-        site.call('[employee_salary_report][safes]', obj)
+        site.call('[amounts][safes][+]', obj)
 
         response.done = true
         response.doc = doc2
@@ -55,7 +57,7 @@ module.exports = function init(site) {
     let response = {}
     response.done = false
 
-   
+
 
     $employees_salary_report.findMany({
       select: req.body.select || {},

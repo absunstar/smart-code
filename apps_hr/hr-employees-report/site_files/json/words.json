@@ -2,8 +2,8 @@
     { "name": "employees_report_search","en": "Search", "ar": "بحث"},
     { "name": "employees_report_date_from","en": "Date From", "ar": "من تاريخ"},
     { "name": "employees_report_date_to","en": "Date To", "ar": "الى تاريخ"},
-    { "name": "employees_report_Employee_Name","en": "Employee Name", "ar": "أسم الموظف"},
-    { "name": "employees_report","en": "Employees Salary", "ar": "مرتبات الموظفين"},
+    { "name": "employees_report_Employee_Name","en": "Employee Name", "ar": "إسم الموظف"},
+    { "name": "employees_report","en": "Report Employees Salary", "ar": "مرتبات الموظفين"},
 
     { "name": "employees_report_Employee_Details","en": "Employee Details", "ar": "بيانات الموظف"},
     { "name": "employees_report_Division","en": " Division", "ar": " القسم"},
@@ -22,7 +22,7 @@
     { "name": "salary_approved","en": "Salary Approved ", "ar": " اعتماد المرتب "},
     { "name": "le","en": " le ", "ar": "  جنيه "},
     { "name": "employee_report_description","en": " Description ", "ar": "  التفاصيل "},
-    { "name": "employees_report_total_advances","en": " Total Advances ", "ar": "  اجمالي السلف "},
+    { "name": "employees_report_total_advances","en": " Total Advances ", "ar": "  إجمالي السلف "},
 
     
     
