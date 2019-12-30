@@ -5,7 +5,7 @@ module.exports = function init(site) {
 
   site.on('[employees_advances][employees_advances_fin][+]', function (obj) {
 
-    let money = parseFloat((obj.value / obj.period))
+    let money = site.toNumber((obj.value / obj.period))
 
     for (let i = 0; i < obj.period; i++) {
       $employees_advances_fin.add({

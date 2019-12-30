@@ -60,7 +60,7 @@ app.controller("amounts_report", function ($scope, $http) {
         if (response.data.done) {
           $scope.total_in = 0;
           response.data.list.forEach(v => {
-            $scope.total_in += parseFloat(v.value);
+            $scope.total_in += site.toNumber(v.value);
           });
           $scope.amountsInList = response.data.list;
         }
@@ -86,7 +86,7 @@ app.controller("amounts_report", function ($scope, $http) {
         if (response.data.done) {
           $scope.total_out = 0;
           response.data.list.forEach(v => {
-            $scope.total_out += parseFloat(v.value);
+            $scope.total_out += site.toNumber(v.value);
           });
           $scope.amountsOutList = response.data.list;
         }

@@ -53,20 +53,20 @@ app.controller("stores_transfer", function ($scope, $http, $timeout) {
 
 
     $scope.stores_transfer.items.forEach(itm => {
-      $scope.stores_transfer.total_value += parseFloat(itm.total);
+      $scope.stores_transfer.total_value += site.toNumber(itm.total);
     });
 
     $scope.stores_transfer.total_tax = 0;
     $scope.stores_transfer.taxes.forEach(tx => {
-      $scope.stores_transfer.total_tax += $scope.stores_transfer.total_value * parseFloat(tx.value) / 100;
+      $scope.stores_transfer.total_tax += $scope.stores_transfer.total_value * site.toNumber(tx.value) / 100;
     });
 
     $scope.stores_transfer.total_discount = 0;
     $scope.stores_transfer.discountes.forEach(ds => {
       if (ds.type == '%') {
-        $scope.stores_transfer.total_discount += $scope.stores_transfer.total_value * parseFloat(ds.value) / 100;
+        $scope.stores_transfer.total_discount += $scope.stores_transfer.total_value * site.toNumber(ds.value) / 100;
       } else {
-        $scope.stores_transfer.total_discount += parseFloat(ds.value);
+        $scope.stores_transfer.total_discount += site.toNumber(ds.value);
       }
     });
 
@@ -291,20 +291,20 @@ app.controller("stores_transfer", function ($scope, $http, $timeout) {
 
     if ($scope.search.total_valueGt) {
       where['total_value'] = {
-        $gte: parseFloat($scope.search.total_valueGt)
+        $gte: site.toNumber($scope.search.total_valueGt)
       };
     }
 
     if ($scope.search.total_valueLt) {
       where['total_value'] = {
-        $lte: parseFloat($scope.search.total_valueLt)
+        $lte: site.toNumber($scope.search.total_valueLt)
       };
     }
 
     if ($scope.search.total_valueGt && $scope.search.total_valueLt) {
       where['total_value'] = {
-        $gte: parseFloat($scope.search.total_valueGt),
-        $lte: parseFloat($scope.search.total_valueLt)
+        $gte: site.toNumber($scope.search.total_valueGt),
+        $lte: site.toNumber($scope.search.total_valueLt)
       };
     }
     if ($scope.search.store) {

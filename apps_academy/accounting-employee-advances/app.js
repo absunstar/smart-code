@@ -9,7 +9,7 @@ module.exports = function init(site) {
     }, (err, doc) => {
       if (!err && doc) {
         doc.value = doc.value || 0
-        doc.value = parseFloat(doc.value) - parseFloat(obj.value)
+        doc.value = site.toNumber(doc.value) - site.toNumber(obj.value)
         $employees_advances.update(doc)
       }
     })

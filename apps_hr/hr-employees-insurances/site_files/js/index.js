@@ -4,7 +4,7 @@ app.controller("employees_insurances", function ($scope, $http) {
   function toFloat(num){
     num = num || 0;
     num = num.toString().trim();
-    return parseFloat(num);
+    return site.toNumber(num);
   };
 
   $scope.calc = function () {

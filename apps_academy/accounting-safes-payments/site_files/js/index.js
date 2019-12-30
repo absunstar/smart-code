@@ -110,7 +110,7 @@ app.controller("safes_payments", function ($scope, $http) {
         if (response.data.done) {
           $scope.total_in = 0;
           response.data.list.forEach(v => {
-            $scope.total_in += parseFloat(v.value);
+            $scope.total_in += site.toNumber(v.value);
           });
           $scope.amountsInList = response.data.list;
         }

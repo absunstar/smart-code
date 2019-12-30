@@ -125,16 +125,16 @@ app.controller("item_transaction", function ($scope, $http, $timeout) {
     }
 
     if ($scope.search.cost) {
-      where['cost'] = parseFloat($scope.search.cost);
+      where['cost'] = site.toNumber($scope.search.cost);
     }
 
 
     if ($scope.search.count) {
-      where['count'] = parseFloat($scope.search.count);
+      where['count'] = site.toNumber($scope.search.count);
     }
 
     if ($scope.search.price) {
-      where['price'] = parseFloat($scope.search.price);
+      where['price'] = site.toNumber($scope.search.price);
     }
 
     if ($scope.search.transaction_type) {
@@ -147,19 +147,19 @@ app.controller("item_transaction", function ($scope, $http, $timeout) {
     }
 
     if ($scope.search.current_count) {
-      where['current_count'] = parseFloat($scope.search.current_count);
+      where['current_count'] = site.toNumber($scope.search.current_count);
     }
 
     if ($scope.search.current_countGt) {
       where['current_count'] = {
-        $gte: parseFloat($scope.search.current_countGt)
+        $gte: site.toNumber($scope.search.current_countGt)
       };
     }
 
 
     if ($scope.search.current_countLt) {
       where['current_count'] = {
-        $lte: parseFloat($scope.search.current_countLt)
+        $lte: site.toNumber($scope.search.current_countLt)
       };
     }
 
@@ -169,8 +169,8 @@ app.controller("item_transaction", function ($scope, $http, $timeout) {
 
     if ($scope.search.current_countGt && $scope.search.current_countLt) {
       where['current_count'] = {
-        $gte: parseFloat($scope.search.current_countGt),
-        $lte: parseFloat($scope.search.current_countLt)
+        $gte: site.toNumber($scope.search.current_countGt),
+        $lte: site.toNumber($scope.search.current_countLt)
       };
     }
 

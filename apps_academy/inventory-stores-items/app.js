@@ -475,14 +475,14 @@ module.exports = function init(site) {
 
     if (where && where.price) {
       data.price = where.price
-      where['sizes.price'] = parseFloat(where.price)
+      where['sizes.price'] = site.toNumber(where.price)
 
       delete where.price
     }
 
     if (where && where.cost) {
       data.cost = where.cost
-      where['sizes.cost'] = parseFloat(where.cost)
+      where['sizes.cost'] = site.toNumber(where.cost)
 
       delete where.cost
     }

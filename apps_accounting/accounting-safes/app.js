@@ -32,7 +32,7 @@ module.exports = function init(site) {
     }, (err, doc) => {
       if (!err && doc) {
         doc.pre_balance = doc.balance || 0
-        doc.balance = parseFloat(doc.balance) + parseFloat(obj.value)
+        doc.balance = site.toNumber(doc.balance) + site.toNumber(obj.value)
         $safes.update(doc, (err, result) => {
           if (!err && result) {
             $safes.find({
@@ -65,7 +65,7 @@ module.exports = function init(site) {
     }, (err, doc) => {
       if (!err && doc) {
         doc.pre_balance = doc.balance || 0
-        doc.balance = parseFloat(doc.balance) + parseFloat(obj.value)
+        doc.balance = site.toNumber(doc.balance) + site.toNumber(obj.value)
         $safes.update(doc, (err, result) => {
           if (!err && result) {
             $safes.find({
@@ -97,7 +97,7 @@ module.exports = function init(site) {
     }, (err, doc) => {
       if (!err && doc) {
         doc.pre_balance = doc.balance || 0
-        doc.balance = parseFloat(doc.balance) - parseFloat(obj.value)
+        doc.balance = site.toNumber(doc.balance) - site.toNumber(obj.value)
         $safes.update(doc, (err, result) => {
           if (!err && result) {
             $safes.find({
@@ -132,7 +132,7 @@ module.exports = function init(site) {
       }, (err, doc) => {
         if (!err && doc) {
           doc.pre_balance = doc.balance || 0
-          doc.balance = parseFloat(doc.balance) + parseFloat(obj.value)
+          doc.balance = site.toNumber(doc.balance) + site.toNumber(obj.value)
           $safes.update(doc, (err, result) => {
             if (!err && result) {
               $safes.find({
@@ -162,7 +162,7 @@ module.exports = function init(site) {
     }, (err, doc) => {
       if (!err && doc) {
         doc.pre_balance = doc.balance || 0
-        doc.balance = parseFloat(doc.balance) + parseFloat(obj.value)
+        doc.balance = site.toNumber(doc.balance) + site.toNumber(obj.value)
         $safes.update(doc, (err, result) => {
           if (!err && result) {
             $safes.find({
@@ -190,7 +190,7 @@ module.exports = function init(site) {
     }, (err, doc) => {
       if (!err && doc) {
         doc.pre_balance = doc.balance || 0
-        doc.balance = parseFloat(doc.balance) - parseFloat(obj.value)
+        doc.balance = site.toNumber(doc.balance) - site.toNumber(obj.value)
         $safes.update(doc, (err, result) => {
           if (!err && result) {
             $safes.find({
@@ -218,7 +218,7 @@ module.exports = function init(site) {
     }, (err, doc) => {
       if (!err && doc) {
         doc.pre_balance = doc.balance || 0
-        doc.balance = parseFloat(doc.balance) + parseFloat(obj.value)
+        doc.balance = site.toNumber(doc.balance) + site.toNumber(obj.value)
         $safes.update(doc, (err, result) => {
           if (!err && result) {
             $safes.find({
@@ -246,7 +246,7 @@ module.exports = function init(site) {
      }, (err, doc) => {
        if (!err && doc) {
          doc.pre_balance = doc.balance || 0
-         doc.balance = parseFloat(doc.balance) - parseFloat(obj.value)
+         doc.balance = site.toNumber(doc.balance) - site.toNumber(obj.value)
          $safes.update(doc, (err, result) => {
            if (!err && result.ok) {
              $safes.find({
@@ -274,7 +274,7 @@ module.exports = function init(site) {
      }, (err, doc) => {
        if (!err && doc) {
          doc.pre_balance = doc.balance || 0
-         doc.balance = parseFloat(doc.balance) + parseFloat(obj.value)
+         doc.balance = site.toNumber(doc.balance) + site.toNumber(obj.value)
          $safes.update(doc, (err, result) => {
            if (!err && result.ok) {
              $safes.find({
@@ -304,7 +304,7 @@ module.exports = function init(site) {
       }, (err, doc) => {
         if (!err && doc) {
           doc.pre_balance = doc.balance || 0
-          doc.balance = parseFloat(doc.balance) + parseFloat(obj.value)
+          doc.balance = site.toNumber(doc.balance) + site.toNumber(obj.value)
           $safes.update(doc, (err, result) => {
             if (!err && result.ok) {
               $safes.find({
@@ -334,7 +334,7 @@ module.exports = function init(site) {
      }, (err, doc) => {
        if (!err && doc) {
          doc.pre_balance = doc.balance
-         doc.balance = parseFloat(doc.balance) - parseFloat(obj.value)
+         doc.balance = site.toNumber(doc.balance) - site.toNumber(obj.value)
          $safes.update(doc, (err, result) => {
            if (!err && result.ok) {
              $safes.find({
@@ -365,9 +365,9 @@ module.exports = function init(site) {
       if (!err && doc) {
         doc.pre_balance = doc.balance
         if (obj.transition_type == 'in')
-          doc.balance = parseFloat(doc.balance) + parseFloat(obj.value)
+          doc.balance = site.toNumber(doc.balance) + site.toNumber(obj.value)
         if (obj.transition_type == 'out')
-          doc.balance = parseFloat(doc.balance) - parseFloat(obj.value)
+          doc.balance = site.toNumber(doc.balance) - site.toNumber(obj.value)
         doc.description = obj.description
         $safes.update(doc, (err, result) => {
           if (!err) {
@@ -399,7 +399,7 @@ module.exports = function init(site) {
       if (!err && doc) {
         doc.pre_balance = doc.balance
         doc.description = obj.description
-        doc.balance = parseFloat(doc.balance) + parseFloat(obj.value)
+        doc.balance = site.toNumber(doc.balance) + site.toNumber(obj.value)
         $safes.update(doc, (err, result) => {
           if (!err && result.ok) {
             $safes.find({
@@ -431,7 +431,7 @@ module.exports = function init(site) {
       if (!err && doc) {
         doc.pre_balance = doc.balance
         doc.description = obj.description
-        doc.balance = parseFloat(doc.balance) - parseFloat(obj.value)
+        doc.balance = site.toNumber(doc.balance) - site.toNumber(obj.value)
         $safes.update(doc, (err, result) => {
           if (!err && result.ok) {
             $safes.find({
@@ -463,7 +463,7 @@ module.exports = function init(site) {
       if (!err && doc) {
         doc.pre_balance = doc.balance
         doc.description = obj.description
-        doc.balance = parseFloat(doc.balance) + parseFloat(obj.value)
+        doc.balance = site.toNumber(doc.balance) + site.toNumber(obj.value)
         $safes.update(doc, (err, result) => {
           if (!err && result.ok) {
             $safes.find({
@@ -495,7 +495,7 @@ module.exports = function init(site) {
       if (!err && doc) {
         doc.pre_balance = doc.balance
         doc.description = obj.description
-        doc.balance = parseFloat(doc.balance) - parseFloat(obj.value)
+        doc.balance = site.toNumber(doc.balance) - site.toNumber(obj.value)
         $safes.update(doc, (err, result) => {
           if (!err && result.ok) {
             $safes.find({
@@ -528,7 +528,7 @@ module.exports = function init(site) {
 
         doc.pre_balance = doc.balance
         doc.description = obj.description
-        doc.balance = parseFloat(doc.balance) - parseFloat(obj.value)
+        doc.balance = site.toNumber(doc.balance) - site.toNumber(obj.value)
         $safes.update(doc, (err, result) => {
           if (!err && result.ok) {
             $safes.find({
@@ -562,7 +562,7 @@ module.exports = function init(site) {
 
         doc.pre_balance = doc.balance
         doc.description = obj.description
-        doc.balance = parseFloat(doc.balance) + parseFloat(obj.value)
+        doc.balance = site.toNumber(doc.balance) + site.toNumber(obj.value)
         $safes.update(doc, (err, result) => {
           if (!err && result.ok) {
             $safes.find({
@@ -592,7 +592,7 @@ module.exports = function init(site) {
       if (!err && doc) {
         doc.pre_balance = doc.balance
         doc.description = obj.description
-        doc.balance = parseFloat(doc.balance) + parseFloat(obj.value)
+        doc.balance = site.toNumber(doc.balance) + site.toNumber(obj.value)
         $safes.update(doc, (err, result) => {
           if (!err && result.ok) {
             $safes.find({
@@ -624,7 +624,7 @@ module.exports = function init(site) {
       if (!err && doc) {
         doc.pre_balance = doc.balance
         doc.description = obj.description
-        doc.balance = parseFloat(doc.balance) + parseFloat(obj.value)
+        doc.balance = site.toNumber(doc.balance) + site.toNumber(obj.value)
         $safes.update(doc, (err, result) => {
           if (!err && result.ok) {
             $safes.find({
@@ -653,7 +653,7 @@ module.exports = function init(site) {
       if (!err && doc) {
         doc.pre_balance = doc.balance
         doc.description = obj.description
-        doc.balance = parseFloat(doc.balance) - parseFloat(obj.value)
+        doc.balance = site.toNumber(doc.balance) - site.toNumber(obj.value)
         $safes.update(doc, (err, result) => {
           if (!err && result.ok) {
             $safes.find({
@@ -682,7 +682,7 @@ module.exports = function init(site) {
       if (!err && doc) {
         doc.pre_balance = doc.balance
         doc.description = obj.description
-        doc.balance = parseFloat(doc.balance) - parseFloat(obj.value)
+        doc.balance = site.toNumber(doc.balance) - site.toNumber(obj.value)
         $safes.update(doc, (err, result) => {
           if (!err && result.ok) {
             $safes.find({

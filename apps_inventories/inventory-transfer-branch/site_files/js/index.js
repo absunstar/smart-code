@@ -668,20 +668,20 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
 
     if ($scope.search.total_valueGt) {
       where['total_value'] = {
-        $gte: parseFloat($scope.search.total_valueGt)
+        $gte: site.toNumber($scope.search.total_valueGt)
       };
     }
 
     if ($scope.search.total_valueLt) {
       where['total_value'] = {
-        $lte: parseFloat($scope.search.total_valueLt)
+        $lte: site.toNumber($scope.search.total_valueLt)
       };
     }
 
     if ($scope.search.total_valueGt && $scope.search.total_valueLt) {
       where['total_value'] = {
-        $gte: parseFloat($scope.search.total_valueGt),
-        $lte: parseFloat($scope.search.total_valueLt)
+        $gte: site.toNumber($scope.search.total_valueGt),
+        $lte: site.toNumber($scope.search.total_valueLt)
       };
     }
 

@@ -1,149 +1,6 @@
 module.exports = function init(site) {
   const $stores_items = site.connectCollection("stores_items")
 
-  $stores_items.busy1 = false
-  site.on('[stores_in][stores_items][add_balance]', obj => {
-    if ($stores_items.busy1) {
-      setTimeout(() => {
-        site.call('[stores_in][stores_items][add_balance]', Object.assign({}, obj))
-      }, 200);
-      return
-    };
-    $stores_items.busy1 = true
-    $stores_items.findOne({
-      name: obj.name,
-      'company.id': obj.company.id,
-      'branch.code': obj.branch.code
-    }, (err, doc) => {
-      if (!err && doc) {
-        let exist = true
-        doc.sizes.forEach(_size => {
-          if (_size.barcode == obj.barcode) {
-            if (obj.status_store_in.id == 3) _size.start_count = site.toNumber(_size.start_count) + site.toNumber(obj.count)
-            _size.current_count = site.toNumber(_size.current_count) + site.toNumber(obj.count)
-            _size.cost = site.toNumber(obj.cost)
-            _size.price = site.toNumber(obj.price)
-            exist = false
-          };
-        });
-
-        if (exist) {
-          obj.current_count = site.toNumber(obj.count)
-          doc.sizes.push(obj)
-        };
-
-        doc.sizes.forEach(_size => {
-          if (_size.barcode == obj.barcode) {
-
-            let totalCost = obj.cost * site.toNumber(obj.count);
-            _size.total_purchase_price = (_size.total_purchase_price || 0) + totalCost
-            _size.total_purchase_count = (_size.total_purchase_count || 0) + site.toNumber(obj.count)
-            _size.average_cost = site.toNumber(_size.total_purchase_price) / site.toNumber(_size.total_purchase_count)
-            if (_size.stores_list && _size.stores_list.length > 0) {
-              _size.stores_list.forEach(_store => {
-                if (_store.store.id == obj.store.id) {
-                  if (obj.status_store_in == 3) _store.start_count = site.toNumber(_store.start_count || 0) + site.toNumber(obj.count)
-                  _store.current_count = site.toNumber(_store.current_count || 0) + site.toNumber(obj.count)
-                  _store.cost = site.toNumber(obj.cost)
-                  _store.price = site.toNumber(obj.price)
-                  _store.total_purchase_price = (_store.total_purchase_price || 0) + totalCost
-                  _store.total_purchase_count = (_store.total_purchase_count || 0) + site.toNumber(obj.count)
-                  _store.average_cost = site.toNumber(_store.total_purchase_price) / site.toNumber(_store.total_purchase_count)
-                }
-              });
-
-              let foundStore = _size.stores_list.some(_store => _store.store.id == obj.store.id)
-              if (!foundStore)
-                _size.stores_list.push({
-                  store: obj.store,
-                  start_count: obj.status_store_in == 3 ? site.toNumber(obj.count) : 0,
-                  current_count: site.toNumber(obj.count),
-                  cost: site.toNumber(obj.cost),
-                  price: site.toNumber(obj.price),
-                  total_purchase_price: totalCost,
-                  total_purchase_count: site.toNumber(obj.count),
-                  average_cost: site.toNumber(totalCost) / site.toNumber(obj.count)
-                })
-            } else {
-              _size.stores_list = _size.stores_list || [];
-              _size.stores_list.push({
-                store: obj.store,
-                start_count: obj.status_store_in == 3 ? site.toNumber(obj.count) : 0,
-                current_count: site.toNumber(obj.count),
-                cost: site.toNumber(obj.cost),
-                price: site.toNumber(obj.price),
-                total_purchase_price: totalCost,
-                total_purchase_count: site.toNumber(obj.count),
-                average_cost: site.toNumber(totalCost) / site.toNumber(obj.count)
-              })
-            }
-          }
-          if (_size.item_complex) {
-            _size.complex_items.forEach(_complex_item => {
-              _complex_item.count = _complex_item.count * obj.count
-              site.call('[store_out][stores_items][-]', Object.assign({}, _complex_item))
-            })
-          }
-        });
-        $stores_items.update(doc, () => {
-          $stores_items.busy1 = false
-        });
-      } else {
-        let item = {
-          name: obj.name,
-          company: obj.company,
-          sizes: [obj]
-        };
-
-        $stores_items.add(item, () => {
-          $stores_items.busy1 = false
-
-        });
-      };
-    });
-  });
-
-  $stores_items.busy23 = false
-  site.on('[store_out][stores_items][-]', obj => {
-    if ($stores_items.busy23) {
-      setTimeout(() => {
-        site.call('[store_out][stores_items][-]', Object.assign({}, obj))
-      }, 200);
-      return
-    }
-    $stores_items.busy23 = true
-    $stores_items.find({
-      'sizes.barcode': obj.barcode,
-    }, (err, doc) => {
-      if (!err && doc) {
-        doc.sizes.forEach(_size => {
-          if (_size.barcode == obj.barcode) {
-            let totalCost = obj.price * site.toNumber(obj.count);
-            _size.current_count = site.toNumber(_size.current_count) - site.toNumber(obj.count)
-            _size.total_sell_price = (_size.total_sell_price || 0) + totalCost
-            _size.total_sell_count = (_size.total_sell_count || 0) + site.toNumber(obj.count)
-            _size.stores_list.forEach(_store => {
-              if (_store.store.id == obj.store.id) {
-                _store.current_count = site.toNumber(_store.current_count || 0) - site.toNumber(obj.count)
-                _store.cost = site.toNumber(obj.cost)
-                _store.price = site.toNumber(obj.price)
-              }
-            });
-            if (_size.item_complex) {
-              _size.complex_items.forEach(s2 => {
-                s2.count = s2.count * obj.count
-                site.call('[store_out][stores_items][-]', Object.assign({}, s2))
-              })
-            }
-          }
-        });
-        $stores_items.update(doc)
-        $stores_items.busy23 = false
-      }
-    })
-  })
-
-
   balance_list = []
   site.on('[transfer_branch][stores_items][add_balance]', obj => {
     balance_list.push(Object.assign({}, obj))
@@ -345,7 +202,7 @@ module.exports = function init(site) {
           if (_size.item_complex) {
             _size.complex_items.forEach(_complex_item => {
               _complex_item.count = _complex_item.count * obj.count
-              site.call('[store_out][stores_items][-]', Object.assign({}, _complex_item))
+              site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _complex_item))
             })
           }
         });
@@ -688,23 +545,6 @@ module.exports = function init(site) {
 
     $stores_items.add(stores_items_doc, (err, doc) => {
       if (!err) {
-        /* let stores_items_doc = doc
-            stores_items_doc.sizes.forEach(itm => {
-             itm.name = stores_items_doc.name
-             itm.cost = site.toNumber(itm.cost)
-             itm.total = site.toNumber(itm.total)
-             itm.price = site.toNumber(itm.price)
-             itm.count = site.toNumber(itm.current_count)
-             itm.current_count = site.toNumber(itm.current_count)
-             itm.barcode = itm.barcode
-             itm.date = stores_items_doc.date
-             itm.company = site.get_company(req)
-             itm.branch = site.get_branch(req)
-             itm.transaction_type = 'in'
-             itm.current_status = 'newitem'
-             site.call('item_transaction + items', itm)
-             site.call('[stores_items][store_in]', itm)
-           }) */
         response.done = true
       } else response.error = err.message
 
@@ -792,22 +632,6 @@ module.exports = function init(site) {
             $res: res
           }, (err, result) => {
             if (!err) {
-
-              /*       let stores_items_doc = result.doc
-                     stores_items_doc.sizes.forEach(itm => {
-                       itm.name = stores_items_doc.name
-                       itm.cost = site.toNumber(itm.cost)
-                       itm.price = site.toNumber(itm.price)
-                       itm.count = site.toNumber(itm.current_count)
-                       itm.barcode = itm.barcode
-                       itm.date = stores_items_doc.date
-                       itm.transaction_type = 'out'
-                       itm.company = site.get_company(req)
-                       itm.branch = site.get_branch(req)
-                       site.call('item_transaction - items', itm)
-                       site.call('[stores_items][store_out]', itm)
-       
-                     }) */
               response.done = true
             }
             res.json(response)
@@ -837,7 +661,7 @@ module.exports = function init(site) {
     })
   })
 
-  site.post(["/api/stores_items/all" , "/api/stores_items/name_all"], (req, res) => {
+  site.post(["/api/stores_items/all", "/api/stores_items/name_all"], (req, res) => {
 
     let response = {}
     let where = req.body.where || {}
@@ -847,6 +671,15 @@ module.exports = function init(site) {
 
     if (where && where['name']) {
       where['name'] = new RegExp(where['name'], 'i')
+    }
+
+    if (req.body.search) {
+      where = {
+        $or: [
+          { 'sizes.size': req.body.search },
+          { 'sizes.barcode': req.body.search }
+        ]
+      }
     }
 
     if (where && where['size']) {
@@ -865,12 +698,12 @@ module.exports = function init(site) {
     }
 
     if (where && where.price) {
-      where['sizes.price'] = parseFloat(where.price)
+      where['sizes.price'] = site.toNumber(where.price)
       delete where.price
     }
 
     if (where && where.cost) {
-      where['sizes.cost'] = parseFloat(where.cost)
+      where['sizes.cost'] = site.toNumber(where.cost)
       delete where.cost
     }
 
@@ -1104,7 +937,7 @@ module.exports = function init(site) {
             _docs.sizes.forEach(_sizes => {
               if (_sizes.discount == null || undefined)
                 _sizes.discount = { max: 0, value: 0, type: 'number' }
-              
+
               if (_sizes.branches_list == null || undefined && _sizes.current_count != 0) {
 
                 let totalCost = site.toNumber(_sizes.cost) * site.toNumber(_sizes.current_count);

@@ -167,13 +167,13 @@ app.controller("employees_report", function ($scope, $http) {
 
     if ($scope.employee_report.employeeOfferList) {
       $scope.employee_report.employeeOfferList.forEach(offer => {
-        $scope.employee_report.total_offers = parseFloat($scope.employee_report.total_offers) + offer.value;
+        $scope.employee_report.total_offers = site.toNumber($scope.employee_report.total_offers) + offer.value;
       });
     }
 
     if ($scope.employee_report.employeeAdvancesList) {
       $scope.employee_report.employeeAdvancesList.forEach(advance => {
-        $scope.employee_report.total_advances = parseFloat($scope.employee_report.total_advances) + advance.value;
+        $scope.employee_report.total_advances = site.toNumber($scope.employee_report.total_advances) + advance.value;
       });
     }
 
@@ -181,7 +181,7 @@ app.controller("employees_report", function ($scope, $http) {
 
     if ($scope.employee_report.employeeinsuranceList) {
       $scope.employee_report.employeeinsuranceList.forEach(insurance => {
-        $scope.employee_report.total_insurance = parseFloat($scope.employee_report.total_insurance) + parseFloat(insurance.salary_discount);
+        $scope.employee_report.total_insurance = site.toNumber($scope.employee_report.total_insurance) + site.toNumber(insurance.salary_discount);
       });
     }
 
@@ -192,13 +192,13 @@ app.controller("employees_report", function ($scope, $http) {
     }
     if ($scope.employee_report.employee.degree) {
 
-      $scope.employee_report.employee.total_salary0 = parseFloat($scope.employee_report.employee.degree.salary) + (parseFloat($scope.employee_report.employee.extra_salary || 0) || 0);
+      $scope.employee_report.employee.total_salary0 = site.toNumber($scope.employee_report.employee.degree.salary) + (site.toNumber($scope.employee_report.employee.extra_salary || 0) || 0);
     }
 
-    $scope.employee_report.total_salary1 = parseFloat($scope.employee_report.total_offers) - (parseFloat($scope.employee_report.total_discounts)) - (parseFloat($scope.employee_report.total_insurance));
+    $scope.employee_report.total_salary1 = site.toNumber($scope.employee_report.total_offers) - (site.toNumber($scope.employee_report.total_discounts)) - (site.toNumber($scope.employee_report.total_insurance));
 
     if ($scope.employee_report.employee.total_salary0 > 0) {
-      $scope.employee_report.total_salary = parseFloat($scope.employee_report.total_salary1) + (parseFloat($scope.employee_report.employee.total_salary0));
+      $scope.employee_report.total_salary = site.toNumber($scope.employee_report.total_salary1) + (site.toNumber($scope.employee_report.employee.total_salary0));
     } else {
       $scope.employee_report.total_salary = 0;
     }

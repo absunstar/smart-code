@@ -419,20 +419,20 @@ app.controller("items_menu", function ($scope, $http, $timeout) {
     $scope.items_menu.net_value = 0;
 
     $scope.items_menu.book_list.forEach(itm => {
-      $scope.items_menu.total_value += parseFloat(itm.total_price);
+      $scope.items_menu.total_value += site.toNumber(itm.total_price);
     });
 
     $scope.items_menu.total_tax = 0;
     $scope.items_menu.taxes.forEach(tx => {
-      $scope.items_menu.total_tax += $scope.items_menu.total_value * parseFloat(tx.value) / 100;
+      $scope.items_menu.total_tax += $scope.items_menu.total_value * site.toNumber(tx.value) / 100;
     });
 
     $scope.items_menu.total_discount = 0;
     $scope.items_menu.discountes.forEach(ds => {
       if (ds.type == '1') {
-        $scope.items_menu.total_discount += $scope.items_menu.total_value * parseFloat(ds.value) / 100;
+        $scope.items_menu.total_discount += $scope.items_menu.total_value * site.toNumber(ds.value) / 100;
       } else {
-        $scope.items_menu.total_discount += parseFloat(ds.value);
+        $scope.items_menu.total_discount += site.toNumber(ds.value);
       }
     });
 

@@ -829,8 +829,8 @@ app.controller("request_service", function ($scope, $http, $timeout) {
       $scope.request_service.paid_require = Number($scope.request_service.services_price);
       if ($scope.request_service.discountes && $scope.request_service.discountes.length > 0) {
         $scope.request_service.discountes.forEach(ds => {
-          if (ds.type === "percent") $scope.request_service.total_discount += total_attend_count * parseFloat(ds.value) / 100;
-          else $scope.request_service.total_discount += parseFloat(ds.value);
+          if (ds.type === "percent") $scope.request_service.total_discount += total_attend_count * site.toNumber(ds.value) / 100;
+          else $scope.request_service.total_discount += site.toNumber(ds.value);
         });
       };
       $scope.request_service.paid_require = (Number($scope.request_service.services_price) * Number($scope.request_service.service_count || 1)) - $scope.request_service.total_discount;

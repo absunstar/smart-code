@@ -66,20 +66,20 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
 
 
     $scope.store_out.items.forEach(itm => {
-      $scope.store_out.total_value += parseFloat(itm.total);
+      $scope.store_out.total_value += site.toNumber(itm.total);
     });
 
     $scope.store_out.total_tax = 0;
     $scope.store_out.taxes.forEach(tx => {
-      $scope.store_out.total_tax += $scope.store_out.total_value * parseFloat(tx.value) / 100;
+      $scope.store_out.total_tax += $scope.store_out.total_value * site.toNumber(tx.value) / 100;
     });
 
     $scope.store_out.total_discount = 0;
     $scope.store_out.discountes.forEach(ds => {
       if (ds.type == '%') {
-        $scope.store_out.total_discount += $scope.store_out.total_value * parseFloat(ds.value) / 100;
+        $scope.store_out.total_discount += $scope.store_out.total_value * site.toNumber(ds.value) / 100;
       } else {
-        $scope.store_out.total_discount += parseFloat(ds.value);
+        $scope.store_out.total_discount += site.toNumber(ds.value);
       }
     });
 
@@ -303,20 +303,20 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
 
     if ($scope.search.total_valueGt) {
       where['total_value'] = {
-        $gte: parseFloat($scope.search.total_valueGt)
+        $gte: site.toNumber($scope.search.total_valueGt)
       };
     }
 
     if ($scope.search.total_valueLt) {
       where['total_value'] = {
-        $lte: parseFloat($scope.search.total_valueLt)
+        $lte: site.toNumber($scope.search.total_valueLt)
       };
     }
 
     if ($scope.search.total_valueGt && $scope.search.total_valueLt) {
       where['total_value'] = {
-        $gte: parseFloat($scope.search.total_valueGt),
-        $lte: parseFloat($scope.search.total_valueLt)
+        $gte: site.toNumber($scope.search.total_valueGt),
+        $lte: site.toNumber($scope.search.total_valueLt)
       };
     }
 

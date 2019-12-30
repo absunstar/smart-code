@@ -125,11 +125,11 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
     }
 
     if ($scope.search.cost) {
-      where['cost'] = parseFloat($scope.search.cost);
+      where['cost'] = site.toNumber($scope.search.cost);
     }
 
     if ($scope.search.price) {
-      where['price'] = parseFloat($scope.search.price);
+      where['price'] = site.toNumber($scope.search.price);
     }
 
     if ($scope.search.current_count) {
