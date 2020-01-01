@@ -42,13 +42,13 @@ module.exports = function init(site) {
       class_rooms_doc.active = true
     }
 
-    class_rooms_doc.academy = site.get_company(req)
+    class_rooms_doc.company = site.get_company(req)
     class_rooms_doc.branch = site.get_branch(req)
 
     $class_rooms.find({
       where: {
         
-        'academy.id': site.get_company(req).id,
+        'company.id': site.get_company(req).id,
         'branch.code': site.get_branch(req).code,
         'name': class_rooms_doc.name
       }
@@ -190,7 +190,7 @@ module.exports = function init(site) {
     }
     delete where.search
 
-    where['academy.id'] = site.get_company(req).id
+    where['company.id'] = site.get_company(req).id
     where['branch.code'] = site.get_branch(req).code
 
     $class_rooms.findMany({

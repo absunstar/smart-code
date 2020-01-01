@@ -42,7 +42,7 @@ module.exports = function init(site) {
       lecture_doc.active = true
     }
 
-    lecture_doc.academy = site.get_company(req)
+    lecture_doc.company = site.get_company(req)
     lecture_doc.branch = site.get_branch(req)
 
     $lecture.add(lecture_doc, (err, doc) => {
@@ -166,7 +166,7 @@ module.exports = function init(site) {
       where['name'] = new RegExp(where['name'], "i");
     }
 
-    where['academy.id'] = site.get_company(req).id
+    where['company.id'] = site.get_company(req).id
     where['branch.code'] = site.get_branch(req).code
 
 

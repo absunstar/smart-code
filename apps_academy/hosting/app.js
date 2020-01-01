@@ -48,7 +48,7 @@ module.exports = function init(site) {
       hosting_doc.active = true
     }
 
-    hosting_doc.academy = site.get_company(req)
+    hosting_doc.company = site.get_company(req)
     hosting_doc.branch = site.get_branch(req)
 
     hosting_doc.total_required = 0
@@ -147,12 +147,14 @@ module.exports = function init(site) {
             let paid_value = {
               value: response.doc.baid_go,
               sourceName: response.doc.student_paid.name,
-              academy : response.doc.academy,
+              company : response.doc.company,
               branch : response.doc.branch,
               date: response.doc.date_paid,
+              transition_type: 'in',
+              operation: 'دفعة إستضافة',
               safe: response.doc.safe
             }
-            site.call('[hosting][safes][+]', paid_value)
+            site.call('[amounts][safes][+]', paid_value)
           }
 
         } else {
@@ -235,7 +237,7 @@ module.exports = function init(site) {
       where['name'] = new RegExp(where['name'], "i");
     }
 
-    where['academy.id'] = site.get_company(req).id
+    where['company.id'] = site.get_company(req).id
     where['branch.code'] = site.get_branch(req).code
 
 

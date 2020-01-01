@@ -61,14 +61,14 @@ module.exports = function init(site) {
       students_doc.active = true
     }
 
-    students_doc.academy = site.get_company(req)
+    students_doc.company = site.get_company(req)
     students_doc.branch = site.get_branch(req)
 
     $students.find({
 
       where: {
         
-        'academy.id': site.get_company(req).id,
+        'company.id': site.get_company(req).id,
         'branch.code': site.get_branch(req).code,
 
         $or: [{
@@ -316,7 +316,7 @@ module.exports = function init(site) {
       where['id'] = req.session.user.students_id;
     }
 
-    where['academy.id'] = site.get_company(req).id
+    where['company.id'] = site.get_company(req).id
     where['branch.code'] = site.get_branch(req).code
 
     $students.findMany({

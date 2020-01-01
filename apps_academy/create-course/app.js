@@ -71,7 +71,7 @@ module.exports = function init(site) {
       create_course_doc.active = true
     }
 
-    create_course_doc.academy = site.get_company(req)
+    create_course_doc.company = site.get_company(req)
     create_course_doc.branch = site.get_branch(req)
 
     $create_course.add(create_course_doc, (err, doc) => {
@@ -87,7 +87,7 @@ module.exports = function init(site) {
             number_lecture: doc.number_lecture,
             dates_list: doc.dates_list,
             image_url: doc.image_url,
-            academy: doc.academy,
+            company: doc.company,
             branch: doc.branch
           }
           site.call('[create_course][account_course][add]', course)
@@ -176,7 +176,7 @@ module.exports = function init(site) {
             id: response.doc.id,
             trainer: response.doc.trainer,
             dates_list: response.doc.dates_list,
-            academy: response.doc.academy,
+            company: response.doc.company,
             branch: response.doc.branch
           }
           site.call('[create_course][account_course][edit_trainer]', course)
@@ -286,7 +286,7 @@ module.exports = function init(site) {
       delete where.active
     }
 
-    where['academy.id'] = site.get_company(req).id
+    where['company.id'] = site.get_company(req).id
     where['branch.code'] = site.get_branch(req).code
 
     $create_course.findMany({

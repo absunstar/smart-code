@@ -21,7 +21,7 @@ module.exports = function init(site) {
       dates_list: doc.dates_list,
       total_rest: 0,
       rest: 0,
-      academy: doc.academy,
+      company: doc.company,
       branch: doc.branch
     })
   })
@@ -39,7 +39,7 @@ module.exports = function init(site) {
           doc.trainer_account += d.account_lectures
 
         });
-        $account_course.update(doc, (err, result) => {})
+        $account_course.update(doc, (err, result) => { })
 
       }
     })
@@ -86,7 +86,7 @@ module.exports = function init(site) {
       account_course_doc.active = true
     }
 
-    account_course_doc.academy = site.get_company(req)
+    account_course_doc.company = site.get_company(req)
     account_course_doc.branch = site.get_branch(req)
 
     $account_course.add(account_course_doc, (err, doc) => {
@@ -135,12 +135,14 @@ module.exports = function init(site) {
             let paid_value = {
               value: response.doc.baid_go,
               sourceName: response.doc.trainer_paid.name,
-              academy: response.doc.academy,
+              company: response.doc.company,
               branch: response.doc.branch,
               date: response.doc.date_paid,
+              transition_type: 'out',
+              operation: 'دفعة حساب مدرب',
               safe: response.doc.safe
             }
-            site.call('[account_course][safes][-]', paid_value)
+            site.call('[amounts][safes][+]', paid_value)
           }
 
         } else {
@@ -234,7 +236,7 @@ module.exports = function init(site) {
 
     delete where.search
 
-    where['academy.id'] = site.get_company(req).id
+    where['company.id'] = site.get_company(req).id
     where['branch.code'] = site.get_branch(req).code
 
     $account_course.findMany({

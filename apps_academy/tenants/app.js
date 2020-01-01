@@ -72,13 +72,13 @@ module.exports = function init(site) {
       tenant_doc.active = true
     }
 
-    tenant_doc.academy = site.get_company(req)
+    tenant_doc.company = site.get_company(req)
     tenant_doc.branch = site.get_branch(req)
 
     $tenant.find({
 
       where: {
-        'academy.id': site.get_company(req).id,
+        'company.id': site.get_company(req).id,
         'branch.code': site.get_branch(req).code,
 
         $or: [{
@@ -320,7 +320,7 @@ module.exports = function init(site) {
       where['id'] = req.session.user.tenant_id;
     }
 
-    where['academy.id'] = site.get_company(req).id
+    where['company.id'] = site.get_company(req).id
     where['branch.code'] = site.get_branch(req).code
 
     $tenant.findMany({

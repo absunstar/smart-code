@@ -21,6 +21,9 @@ module.exports = function init(site) {
 
     let doc = req.body
 
+    doc.company = site.get_company(req)
+    doc.branch = site.get_branch(req)
+
     doc.$req = req
     doc.$res = res
 
@@ -34,7 +37,11 @@ module.exports = function init(site) {
           value: doc.total_salary || 0,
           safe: doc.safe,
           date: doc.date,
+          company: doc.company,
+          branch: doc.branch,
           sourceName: doc.name,
+          operation: 'مرتب موظف',
+          transition_type: 'out',
           description: doc.description
         }
 
@@ -54,7 +61,7 @@ module.exports = function init(site) {
     let response = {}
     response.done = false
 
-   
+
 
     $employees_report.findMany({
       select: req.body.select || {},

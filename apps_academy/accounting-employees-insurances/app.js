@@ -24,7 +24,7 @@ module.exports = function init(site) {
     employees_insurances_doc.$res = res
     employees_insurances_doc.add_user_info = site.security.getUserFinger({$req : req , $res : res})
 
-    employees_insurances_doc.academy = site.get_company(req)
+    employees_insurances_doc.company = site.get_company(req)
     employees_insurances_doc.branch = site.get_branch(req)
 
     $employees_insurances.add(employees_insurances_doc, (err, _id) => {
@@ -118,7 +118,7 @@ module.exports = function init(site) {
     }
     
     
-    where['academy.id'] = site.get_company(req).id
+    where['company.id'] = site.get_company(req).id
     where['branch.code'] = site.get_branch(req).code
 
     $employees_insurances.findMany({

@@ -32,10 +32,6 @@ module.exports = function init(site) {
         id: doc.company.id,
         name_ar: doc.company.name_ar
       },
-      /* branch: {
-        code: doc.branch.code,
-        name_ar: doc.branch.name_ar
-      }, */
       active: true
     }, (err, doc) => { })
   })

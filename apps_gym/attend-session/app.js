@@ -1,26 +1,6 @@
 module.exports = function init(site) {
   const $attend_session = site.connectCollection("attend_session")
 
-  /* site.on('[company][created]', doc => {
-
-    $attend_session.add({
-      code: "1",
-      name: "قاعة إفتراضية",
-      image_url: '/images/attend_session.png',
-      company: {
-        id: doc.id,
-        name_ar: doc.name_ar
-      },
-      branch: {
-        code: doc.branch_list[0].code,
-        name_ar: doc.branch_list[0].name_ar
-      },
-      active: true
-    }, (err, doc) => { })
-  }) */
-
-
-
   site.get({
     name: 'images',
     path: __dirname + '/site_files/images/'

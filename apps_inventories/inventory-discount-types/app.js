@@ -45,26 +45,6 @@ module.exports = function init(site) {
     compress: false
   })
 
-/* 
-  site.on('[company][created]', doc => {
-
-    $discount_types.add({
-      name: "خصم إفتراضي",
-      value : 0,
-      image_url: '/images/discount_type.png',
-      company: {
-        id: doc.id,
-        name_ar: doc.name_ar
-      },
-      branch: {
-        code: doc.branch_list[0].code,
-        name_ar: doc.branch_list[0].name_ar
-      },
-      active: true
-    }, (err, doc) => {})
-  })
- */
-
   site.post("/api/discount_types/add", (req, res) => {
     let response = {}
     response.done = false

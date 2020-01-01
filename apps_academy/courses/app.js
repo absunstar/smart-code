@@ -33,7 +33,7 @@ module.exports = function init(site) {
     courses_doc.$req = req
     courses_doc.$res = res
 
-    courses_doc.academy = site.get_company(req)
+    courses_doc.company = site.get_company(req)
     courses_doc.branch = site.get_branch(req)
 
     courses_doc.add_user_info = site.security.getUserFinger({
@@ -48,7 +48,7 @@ module.exports = function init(site) {
     $courses.find({
       where: {
         
-        'academy.id': site.get_company(req).id,
+        'company.id': site.get_company(req).id,
         'branch.code': site.get_branch(req).code,
         'name': courses_doc.name
       }
@@ -191,7 +191,7 @@ module.exports = function init(site) {
     
     delete where.search
 
-    where['academy.id'] = site.get_company(req).id
+    where['company.id'] = site.get_company(req).id
     where['branch.code'] = site.get_branch(req).code
     
     $courses.findMany({

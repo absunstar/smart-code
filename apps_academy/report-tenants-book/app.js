@@ -15,7 +15,7 @@ module.exports = function init(site) {
 
     let where = req.body.where || {}
 
-    where['academy.id'] = site.get_company(req).id
+    where['company.id'] = site.get_company(req).id
     where['branch.code'] = site.get_branch(req).code
 
     $book_hall.findMany({

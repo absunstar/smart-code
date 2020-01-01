@@ -52,10 +52,12 @@ module.exports = function init(site) {
           sourceName: doc.employee.name,
           description: doc.description,
           company: doc.company,
+          transition_type: 'out',
+          operation: ' سلفة موظف',
           branch: doc.branch
         }
         if (Obj.value && Obj.safe && Obj.date && Obj.sourceName) {
-          site.call('[employees_advances][safes][+]', Obj)
+          site.call('[amounts][safes][+]', Obj)
         }
 
         site.call('[employees_advances][employees_advances_fin][+]', doc)
@@ -120,11 +122,12 @@ module.exports = function init(site) {
             company: result.doc.company,
             branch: result.doc.branch,
             sourceName: result.doc.employee.name,
-            description: result.doc.description
-
+            description: result.doc.description,
+            operation = 'حذف سلفة موظف',
+            transition_type = 'in'
           }
           if (Obj.value && Obj.safe && Obj.date && Obj.sourceName) {
-            site.call('[employees_advances][safes][-]', Obj)
+            site.call('[amounts][safes][+]', Obj)
           }
 
           response.done = true
@@ -201,7 +204,7 @@ module.exports = function init(site) {
     }
 
 
-    if (where.search && where.search.employee) {      
+    if (where.search && where.search.employee) {
       where['employee.id'] = where.search.employee.id
     }
 
@@ -229,7 +232,7 @@ module.exports = function init(site) {
       limit: req.body.limit,
 
     }, (err, docs) => {
-      
+
       if (!err) {
         response.done = true
         response.list = docs

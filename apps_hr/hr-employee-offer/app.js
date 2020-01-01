@@ -85,17 +85,18 @@ module.exports = function init(site) {
       }, (err, result) => {
         if (!err && result.ok) {
 
-
           let Obj = {
             value: result.doc.value,
             safe: result.doc.safe,
             company: result.doc.company,
             branch: result.doc.branch,
             date: result.doc.date,
+            transition_type: 'in',
+            operation: 'حذف مكافأة موظف',
             sourceName: result.doc.employee.name
           }
           if (Obj.value && Obj.safe && Obj.date && Obj.sourceName) {
-            site.call('[employee_offer][safes][-]', Obj)
+            site.call('[amounts][safes][-]', Obj)
           }
 
 

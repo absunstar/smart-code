@@ -108,13 +108,6 @@ module.exports = function init(site) {
       account_invoices_doc.total_paid_up = account_invoices_doc.paid_up
       account_invoices_doc.total_remain = account_invoices_doc.net_value - account_invoices_doc.total_paid_up
     };
-    /*   console.log(account_invoices_doc);
-      
-    account_invoices_doc.items_price = 0    
-    account_invoices_doc.current_book_list.forEach(current_book_list => {
-      account_invoices_doc.items_price += (current_book_list.total_price || current_book_list.total)
-    });
- */
 
     $account_invoices.add(account_invoices_doc, (err, doc) => {
 

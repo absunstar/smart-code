@@ -54,7 +54,7 @@ module.exports = function init(site) {
       book_hall_doc.active = true
     }
 
-    book_hall_doc.academy = site.get_company(req)
+    book_hall_doc.company = site.get_company(req)
     book_hall_doc.branch = site.get_branch(req)
 
     $book_hall.add(book_hall_doc, (err, doc) => {
@@ -145,14 +145,16 @@ module.exports = function init(site) {
           response.doc = result.doc
 
           let paid_value = {
-            value : response.doc.baid_go,
+            value: response.doc.baid_go,
             sourceName: response.doc.tenant.name,
-            academy : response.doc.academy,
-            branch : response.doc.branch,
+            company: response.doc.company,
+            branch: response.doc.branch,
             date: response.doc.date_paid,
-            safe : response.doc.safe
+            transition_type: 'in',
+            operation: 'دفعة حجز قاعة',
+            safe: response.doc.safe
           }
-          site.call('[book_hall][safes][+]', paid_value)
+          site.call('[amounts][safes][+]', paid_value)
 
         } else {
           response.error = 'Code Already Exist'
@@ -246,18 +248,18 @@ module.exports = function init(site) {
     }
 
     if (where.search && where.search.total_period) {
-    
+
       where['total_period'] = where.search.total_period
     }
-    
+
     if (where.search && where.search.number_lecture) {
-    
+
       where['number_lecture'] = where.search.number_lecture
     }
 
     delete where.search
 
-    where['academy.id'] = site.get_company(req).id
+    where['company.id'] = site.get_company(req).id
     where['branch.code'] = site.get_branch(req).code
 
     $book_hall.findMany({

@@ -163,13 +163,15 @@ module.exports = function init(site) {
         $res: res
       }, err => {
         if (!err) {
-          site.call('[employees_advances_fin][safes][+]', {
+          site.call('[amounts][safes][+]', {
             value: doc.value,
             safe: doc.safe,
             sourceName: doc.employee.name,
             company: doc.company,
             branch: doc.branch,
             date: doc.date,
+            operation: 'سداد سلفة لموظف',
+            transition_type: 'in',
             description: doc.description
           })
           site.call('[employees_advances_fin][employees_advances][-]', doc)
