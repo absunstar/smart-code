@@ -1,120 +1,29 @@
-[{
+[
+    {
         "name": "brand_title",
-        "en": "Incubation SOftWare",
-        "ar": "برنامج الحضانة"
+        "en": "Smart Code",
+        "ar": "سمـارت كـود"
     },
     {
         "name": "brand_tag",
-        "en": "Mangement And Follow",
-        "ar": "إدارة ومتابعة"
+        "en": "Enterprise Resources Planing",
+        "ar": "نظام إدارة الأكاديمية"
     },
     {
-        "name": "print",
-        "en": "Print",
-        "ar": "طباعة"
+        "name": "menu_customers",
+        "en": "Students Menu",
+        "ar": "قائمة الطلاب"
     },
     {
-        "name": "vendor_name",
-        "en": "Vendor",
-        "ar": "المورد"
+        "name": "menu_customers_tag",
+        "en": "Add Students",
+        "ar": "إضافة مشتركين"
     },
     {
-        "name": "error",
-        "en": "Error",
-        "ar": "الكود مكرر"
+        "name": "customers_groups",
+        "en": "Students Group",
+        "ar": "مجموعة الطلاب"
     },
-    {
-        "name": "salary",
-        "en": "Salary",
-        "ar": "المرتب"
-    },
-    {
-        "name": "paid_payback",
-        "en": "Paid payback",
-        "ar": "تسديد الدفعات"
-    },
-    {
-        "name": "of",
-        "en": "Of",
-        "ar": "من"
-    },
-    {
-        "name": "to",
-        "en": "To",
-        "ar": "إلى"
-    },
-    {
-        "name": "register_academy",
-        "en": "Register Academy",
-        "ar": "تسجيل حضانة"
-    },
-    {
-        "name": "pound",
-        "en": "Pound",
-        "ar": "جنيه"
-    },
-    {
-        "name": "accounts",
-        "en": "Accounts",
-        "ar": "الحسابات"
-    },
-    {
-        "name": "hall",
-        "en": "Hall",
-        "ar": "القاعة"
-    },
-    {
-        "name": "indentfy",
-        "en": "Indentfy",
-        "ar": "النوع"
-    },
-    {
-        "name": "accounting",
-        "en": "Accounting",
-        "ar": "الحسابات"
-    },
-    {
-        "name": "trainer",
-        "en": "Trainer",
-        "ar": "المدرب"
-    },
-    {
-        "name": "trainer_name",
-        "en": "Trainer Name",
-        "ar": "إسم المدرب"
-    },
-    {
-        "name": "actions",
-        "en": "Actions",
-        "ar": "الإجراءات"
-    },
-    {
-        "name": "clear",
-        "en": "Clear Data",
-        "ar": "تفريغ الحقول"
-    },
-    {
-        "name": "time",
-        "en": "Time",
-        "ar": "الوقت"
-    },
-    {
-        "name": "files",
-        "en": "Files",
-        "ar": "الملفات"
-    },
-    {
-        "name": "images",
-        "en": "Image",
-        "ar": "الصور"
-    },
-    {
-        "name": "date",
-        "en": "Date",
-        "ar": "التاريخ"
-    },
-
-
     {
         "name": "yes",
         "en": "Yes",
@@ -125,517 +34,354 @@
         "en": "No",
         "ar": "لا"
     },
-
-
     {
-        "name": "add",
-        "en": "Add",
-        "ar": "اضافة"
+        "name": "customers_indentfy",
+        "en": "Subscriber indentfy",
+        "ar": "نوع المشترك"
     },
     {
-        "name": "save",
-        "en": "Save",
-        "ar": "حفظ"
+        "name": "child",
+        "en": "Child",
+        "ar": "طفل"
     },
     {
-        "name": "delete",
-        "en": "Delete",
-        "ar": "حذف"
+        "name": "customers",
+        "en": "Students",
+        "ar": "الطلاب"
     },
     {
-        "name": "update",
-        "en": "update",
-        "ar": "تعديل"
+        "name": "customers_new",
+        "en": "New Subscriber",
+        "ar": "مشترك جديد"
     },
     {
-        "name": "details",
-        "en": "Details",
-        "ar": "تفاصيل"
+        "name": "customers_add",
+        "en": "Add Subscriber",
+        "ar": "إضافة مشترك"
     },
     {
-        "name": "notes",
-        "en": "Notes",
-        "ar": "ملاحظات"
+        "name": "customers_edit",
+        "en": "Subscriber Edit",
+        "ar": "تعديل بيانات مشترك"
     },
     {
-        "name": "count",
-        "en": "Count",
-        "ar": "عدد النتائج"
+        "name": "customers_details",
+        "en": "Subscriber Details",
+        "ar": "تفاصيل مشترك"
     },
     {
-        "name": "search",
-        "en": "Search",
-        "ar": "بحث"
+        "name": "customers_delete",
+        "en": "Delete Subscriber",
+        "ar": "حذف مشترك"
     },
     {
-        "name": "search_all",
-        "en": "Search All",
-        "ar": "بحث شامل"
+        "name": "customers_code",
+        "en": "Subscriber Code",
+        "ar": "كود المشترك"
     },
     {
-        "name": "empty_search",
-        "en": "E mpty Search",
-        "ar": "تفريغ الحقول"
+        "name": "customers_name_ar",
+        "en": "Subscriber Name Arabic",
+        "ar": "إسم المشترك بالعربي"
     },
     {
-        "name": "address",
-        "en": "Address",
-        "ar": "العنوان"
+        "name": "customers_name_en",
+        "en": "Subscriber Name English",
+        "ar": "إسم المشترك بالانجليزية"
     },
     {
-        "name": "addresses",
-        "en": "Addresses",
-        "ar": "العناوين"
+        "name": "customer_name",
+        "en": "Subscriber Name",
+        "ar": "إسم المشترك"
     },
     {
-        "name": "basic_information",
-        "en": "Basic Information",
+        "name": "customer",
+        "en": "Subscriber ",
+        "ar": " المشترك"
+    },
+    {
+        "name": "order_slides_add",
+        "en": "Add Orders Slide",
+        "ar": "إضافة حساب شريحة جلسات"
+    },
+    {
+        "name": "order_slides",
+        "en": "Orders Slide",
+        "ar": "حساب شريحة جلسات"
+    },
+    {
+        "name": "order_slides_name",
+        "en": "Slide Name",
+        "ar": "اسم حساب الشريحة"
+    },
+    {
+        "name": "order_slides_from",
+        "en": "Slide From",
+        "ar": "بداية حساب الشريحة"
+    },
+    {
+        "name": "order_slides_to",
+        "en": "Slide To",
+        "ar": "نهاية حساب شريحة"
+    },
+    {
+        "name": "order_slides_value",
+        "en": "Session Value",
+        "ar": "قيمة الجلسة"
+    },
+    {
+        "name": "order_slides_new",
+        "en": "New Slide",
+        "ar": "حساب شريحة جلسات جديدة "
+    },
+    {
+        "name": "order_slides_logo",
+        "en": "Slides Logo",
+        "ar": "صورة شريحة الجلسات"
+    },
+    {
+        "name": "order_slides_edit",
+        "en": "Edit Slide",
+        "ar": "تعديل بيانات شريحة الجلسات"
+    },
+    {
+        "name": "order_slides_details",
+        "en": "Slide Details",
+        "ar": " تفاصيل شريحة الجلسات"
+    },
+    {
+        "name": "order_slides_delete",
+        "en": "Delete Slide",
+        "ar": "حذف حساب شريحة الجلسات"
+    },
+    {
+        "name": "order_slides_img",
+        "en": "Sessions Slides Image",
+        "ar": "ملفات شريحة الجلسات"
+    },
+    {
+        "name": "companies",
+        "en": "Academy",
+        "ar": "الأكاديمية"
+    },
+    {
+        "name": "companies_add",
+        "en": "Add ِAcademy",
+        "ar": "إضافة جيم"
+    },
+    {
+        "name": "companies_edit",
+        "en": "Edit ِAcademy",
+        "ar": "تعديل جيم"
+    },
+    {
+        "name": "companies_informations",
+        "en": "ِAcademy Informations",
+        "ar": "بيانات الأكاديمية"
+    },
+    {
+        "name": "companies_basic_information",
+        "en": "Basic Informations",
         "ar": "البيانات الاساسية"
     },
-
     {
-        "name": "branches",
-        "en": "Branches",
-        "ar": "الفروع"
+        "name": "companies_contact_information",
+        "en": "Contact Informations",
+        "ar": "بيانات الاتصال"
     },
     {
-        "name": "branches_informations",
-        "en": "Branches Informations",
-        "ar": "بيانات الفروع"
+        "name": "companies_details",
+        "en": "ِAcademy Details",
+        "ar": "تفاصيل الأكاديمية"
     },
     {
-        "name": "branche_information",
-        "en": "Branche Information",
-        "ar": "بيانات فرع"
+        "name": "companies_delete",
+        "en": "Delete ِAcademy",
+        "ar": "حذف جيم"
     },
     {
-        "name": "clinics_informations",
-        "en": "Clinics Informations",
-        "ar": "بيانات العيادات"
+        "name": "companies_code",
+        "en": "ِAcademy Code",
+        "ar": "كود الأكاديمية"
     },
     {
-        "name": "clinic_information",
-        "en": "Clinic Information",
-        "ar": "بيانات عيادة"
-    },
-    {
-        "name": "id",
-        "en": "ID",
-        "ar": "الكود"
-    },
-    {
-        "name": "code",
-        "en": "Code",
-        "ar": "الكود"
-    },
-    {
-        "name": "name",
-        "en": "Name",
-        "ar": "الاسم"
-    },
-
-    {
-        "name": "result",
-        "en": "Result",
-        "ar": "النتيجة"
-    },
-    {
-        "name": "owner",
-        "en": "Owner",
-        "ar": "صاحب المعمل"
-    },
-    {
-        "name": "edit",
-        "en": "Edit",
-        "ar": "تعديل"
-    },
-    {
-        "name": "phone",
+        "name": "companies_phone",
         "en": "Phone",
         "ar": "التليفون"
     },
     {
-        "name": "mobile",
+        "name": "companies_mobile",
         "en": "Mobile",
         "ar": "المحمول"
     },
     {
-        "name": "hour",
-        "en": "Hour",
-        "ar": "الساعة"
+        "name": "companies_activity",
+        "en": "Activity",
+        "ar": "النشاط"
     },
     {
-        "name": "email",
-        "en": "Email",
-        "ar": "الايميل"
+        "name": "companies_branches_informations",
+        "en": "Branches Informations",
+        "ar": "بيانات الفروع"
     },
     {
-        "name": "hotline",
-        "en": "Hotline",
-        "ar": "الرقم الساخن"
-    },
-
-    {
-        "name": "times_of_work",
-        "en": "TImes Of Work",
-        "ar": "مواعيد العمل"
+        "name": "companies_branch",
+        "en": "Branch",
+        "ar": "الفرع"
     },
     {
-        "name": "day",
-        "en": "Day",
-        "ar": "اليوم"
+        "name": "companies_branch_information",
+        "en": "Branch Information",
+        "ar": "بيانات الفرع"
     },
     {
-        "name": "from",
-        "en": "From",
-        "ar": "من"
+        "name": "companies_contact_charge",
+        "en": "Charge Information",
+        "ar": "بيانات المسئول"
     },
     {
-        "name": "to",
-        "en": "To",
-        "ar": "الي"
+        "name": "companies_branch_code",
+        "en": "Branch Code",
+        "ar": "كود الفرع"
     },
     {
-        "name": "vacation",
-        "en": "Vacation",
-        "ar": "اجازة "
+        "name": "companies_branch_name",
+        "en": "Branch Name",
+        "ar": "إسم الفرع"
     },
     {
-        "name": "maneger",
-        "en": "Maneger",
-        "ar": "المدير"
+        "name": "companies_branch_name_ar",
+        "en": "Branch Name Arabic",
+        "ar": "إسم الفرع بالعربى"
     },
-
     {
-        "name": "internal_number",
+        "name": "companies_branch_name_en",
+        "en": "Branch Name English",
+        "ar": "إسم الفرع بالانجليزى"
+    },
+    {
+        "name": "companies_branch_notes",
+        "en": "Branch Notes",
+        "ar": "ملاحظات الفرع"
+    },
+    {
+        "name": "companies_charge_name",
+        "en": "Charge Name",
+        "ar": "إسم المسئول"
+    },
+    {
+        "name": "companies_charge_job",
+        "en": "Charge Job",
+        "ar": "الوظيفة"
+    },
+    {
+        "name": "companies_internal_number",
         "en": "Internal Number",
         "ar": "الرقم الداخلي"
     },
     {
-        "name": "slides_informations",
-        "en": "Slides Informations",
-        "ar": "بيانات الشرائح"
+        "name": "companies_banking_informations",
+        "en": "Banking Informations",
+        "ar": "البنوك"
     },
     {
-        "name": "slide_information",
-        "en": "Slide Information",
-        "ar": "بيانات شريحة"
-    },
-
-    {
-        "name": "departments_informations",
-        "en": "Departments Informations",
-        "ar": "بيانات الاقسام"
+        "name": "companies_bank_information",
+        "en": "Bank Information",
+        "ar": "بيانات البنك"
     },
     {
-        "name": "department_information",
-        "en": "Department Information",
-        "ar": "بيانات قسم"
-    },
-
-    {
-        "name": "departments",
-        "en": "Departments",
-        "ar": "الاقسام"
+        "name": "companies_bank_name",
+        "en": "Bank Name",
+        "ar": "إسم البنك"
     },
     {
-        "name": "wahtsapp",
-        "en": "Wahts App",
-        "ar": "الواتس اب"
+        "name": "companies_bank_account_number",
+        "en": "Bank Account Number",
+        "ar": "رقم الحساب"
     },
     {
-        "name": "age",
-        "en": "Age",
-        "ar": "السن"
+        "name": "companies_filter_with_date",
+        "en": "Filter With Date",
+        "ar": "تصفية البيانات بالتاريخ"
     },
     {
-        "name": "birth_date",
-        "en": "Birth Date",
-        "ar": "تاريخ الميلاد"
-    },
-
-    {
-        "name": "marriage_date",
-        "en": "Marriage Date",
-        "ar": "تاريخ الزواج"
-    },
-
-    {
-        "name": "files",
-        "en": "Files",
-        "ar": "ملفات"
+        "name": "companies_calender_type",
+        "en": "Calender Type",
+        "ar": "نوع التقويم"
     },
     {
-        "name": "close",
-        "en": "Close",
-        "ar": "اغلاق"
+        "name": "companies_gegorian",
+        "en": "Gregorian",
+        "ar": "ميلادي"
     },
-
     {
-        "name": "gov",
+        "name": "companies_hijri",
+        "en": "Hijri",
+        "ar": "هجري"
+    },
+    {
+        "name": "companies_date",
+        "en": "Date",
+        "ar": "التاريخ"
+    },
+    {
+        "name": "companies_gov",
         "en": "Gov",
         "ar": "المحافظة"
     },
     {
-        "name": "neighborhoods",
-        "en": "Neighborhoods",
-        "ar": "الأحياء"
+        "name": "companies_city",
+        "en": "City",
+        "ar": "المدينة"
     },
     {
-        "name": "neighborhood",
-        "en": "Neighborhood",
-        "ar": "الحي"
+        "name": "companies_email",
+        "en": "Email",
+        "ar": "البريد الالكتروني"
     },
     {
-        "name": "regions",
-        "en": "Regions",
-        "ar": "المناطق"
-    },
-    {
-        "name": "region",
-        "en": "Region",
-        "ar": "منطقة"
-    },
-    {
-        "name": "logo",
-        "en": "Logo",
-        "ar": "الشعار"
-    },
-
-    {
-        "name": "status",
-        "en": "Status",
-        "ar": "الحالة"
-    },
-
-    {
-        "name": "active",
-        "en": "Active",
-        "ar": "نشط"
-    },
-    {
-        "name": "not_active",
-        "en": "Not Active",
-        "ar": "غير نشط"
-    },
-
-    {
-        "name": "menu_here",
-        "en": "Side Menu Here",
-        "ar": "القائمة الجانبيةهنا"
-    },
-    {
-        "name": "content_here",
-        "en": "Site Content Here",
-        "ar": "محتوى الصفحة هنا"
-    },
-    {
-        "name": "facebook",
-        "en": "FaceBook",
-        "ar": "حساب الفيس بوك"
-    },
-    {
-        "name": "twitter",
-        "en": "Twitter",
-        "ar": "حساب تويتر"
-    },
-    {
-        "name": "job",
-        "en": "Job",
-        "ar": "الوظيفة"
-    },
-    {
-        "name": "whatsapp",
-        "en": "Whatsapp",
-        "ar": "حساب الواتس اب"
-    },
-    {
-        "name": "fax",
+        "name": "companies_fax",
         "en": "Fax",
         "ar": "الفاكس"
     },
     {
-        "name": "website",
-        "en": "Website",
-        "ar": "الموقع الالكروني"
+        "name": "companies_name_ar",
+        "en": "ِAcademy Name Arabic",
+        "ar": "إسم الأكاديمية"
     },
     {
-        "name": "hospital",
-        "en": "Hospital",
-        "ar": "المستشفي"
+        "name": "companies_name_en",
+        "en": "ِAcademy Name English",
+        "ar": "إسم الأكاديمية بالانجليزية"
     },
     {
-        "name": "clinic",
-        "en": "Clinic",
-        "ar": "العيادة"
+        "name": "companies_excahange_price",
+        "en": "Exchange Price",
+        "ar": "سعر الصرف"
     },
     {
-        "name": "specialty",
-        "en": "Specialty",
-        "ar": "التخصص"
+        "name": "companies_ِAcademy_swift_code",
+        "en": "Swift Code",
+        "ar": "رقم السويفت"
     },
     {
-        "name": "shifts",
-        "en": "shifts",
-        "ar": "نوبات العمل"
+        "name": "companies_new",
+        "en": "New ِAcademy",
+        "ar": "جيم جديد"
     },
     {
-        "name": "shifts_information",
-        "en": "Shifts Information",
-        "ar": "مواعيد العمل"
+        "name": "companies_country",
+        "en": "Coutntry",
+        "ar": "الدولة"
     },
     {
-        "name": "contact_information",
-        "en": "Contact Information",
-        "ar": "بيانات الاتصال"
+        "name": "companies_address",
+        "en": "Address",
+        "ar": "العنوان"
     },
     {
-        "name": "social_information",
-        "en": "Social Information",
-        "ar": "بيانات التواصل الاجتماعي"
-    }, {
-        "name": "national_id",
-        "en": "Nathional Id",
-        "ar": "الرقم القومي"
-    },
-    {
-        "name": "login_information",
-        "en": "Login_ Information",
-        "ar": "بيانات الدخول"
-    },
-    {
-        "name": "role",
-        "en": "Role",
-        "ar": "الصلاحية"
-    },
-    {
-        "name": "time_period",
-        "en": "Task Period",
-        "ar": "المدة "
-    },
-    {
-        "name": "delivery_time",
-        "en": "Delivery Time",
-        "ar": "مدة التسليم "
-    },
-    {
-        "name": "immediate",
-        "en": "Immediate",
-        "ar": "فوري"
-    },
-    {
-        "name": "period",
-        "en": "Period",
-        "ar": "مدة"
-    },
-    {
-        "name": "startup_date",
-        "en": "StartuP Date",
-        "ar": "تاريخ البداية "
-    },
-    {
-        "name": "deadline_date",
-        "en": "Deadline Date",
-        "ar": "تاريخ النهاية "
-    },
-    {
-        "name": "courses",
-        "en": "Courses",
-        "ar": "الكورسات"
-    },
-    {
-        "name": "courses_name",
-        "en": "Courses Names",
-        "ar": "أسماء الكورسات"
-    },
-    {
-        "name": "class_rooms",
-        "en": "Classes Rooms",
-        "ar": "القاعات"
-    },
-    {
-        "name": "class_rooms_name",
-        "en": "Classes Rooms Names",
-        "ar": " أسماء القاعات"
-    },
-    {
-        "name": "cm",
-        "en": "C.M",
-        "ar": "ســم"
-    },
-    {
-        "name": "kg",
-        "en": "KG.",
-        "ar": "كيلو"
-    },
-    {
-        "name": "password",
-        "en": "Password",
-        "ar": "كلمة المرور"
-    },
-    {
-        "name": "useradd_user_info",
-        "en": "Add Info",
-        "ar": "معلومات الإضافة"
-    },
-    {
-        "name": "useredit_user_info",
-        "en": "Edit Info",
-        "ar": "معلومات التعديل"
+        "name": "companies_customer_service",
+        "en": "Customer Services",
+        "ar": "خدمة العملاء"
     }
-,
-        {"name" : "companies" , "en" : "Academies" , "ar" : "الحضانات"},
-        {"name" : "companies_add" , "en" : "Add company" , "ar" : "إضافة حضانة"},
-        {"name" : "companies_edit" , "en" : "Edit company" , "ar" : "تعديل حضانة"},
-        {"name" : "companies_informations" , "en" : "company Informations" , "ar" : "بيانات الحضانة"},
-        {"name" : "companies_basic_information" , "en" : "Basic Informations" , "ar" : "البيانات الاساسية"},
-        {"name" : "companies_contact_information" , "en" : "Contact Informations" , "ar" : "بيانات الاتصال"},
-        {"name" : "companies_details" , "en" : "company Details" , "ar" : "تفاصيل الحضانة"},
-        {"name" : "companies_delete" , "en" : "Delete company" , "ar" : "حذف حضانة"},
-        {"name" : "companies_code" , "en" : "company Code" , "ar" : "كود الحضانة"},
-        {"name" : "companies_phone" , "en" : "Phone" , "ar" : "التليفون"},
-        {"name" : "companies_mobile" , "en" : "Mobile" , "ar" : "المحمول"},
-        {"name" : "companies_activity" , "en" : "Activity" , "ar" : "النشاط"},
-        {"name" : "companies_branches_informations" , "en" : "Branches Informations" , "ar" : "بيانات الفروع"},
-        {"name" : "companies_branch" , "en" : "Branch" , "ar" : "الفرع"},
-        {"name" : "companies_branch_information" , "en" : "Branch Information" , "ar" : "بيانات الفرع"},
-        {"name" : "companies_contact_charge" , "en" : "Charge Information" , "ar" : "بيانات المسئول"},
-    
-        {"name" : "companies_branch_code" , "en" : "Branch Code" , "ar" : "كود الفرع"},
-        {"name" : "companies_branch_name" , "en" : "Branch Name" , "ar" : "إسم الفرع"},
-        {"name" : "companies_branch_name_ar" , "en" : "Branch Name Arabic" , "ar" : "إسم الفرع بالعربى"},
-        {"name" : "companies_branch_name_en" , "en" : "Branch Name English" , "ar" : "إسم الفرع بالانجليزى"},
-        {"name" : "companies_branch_notes" , "en" : "Branch Notes" , "ar" : "ملاحظات الفرع"},
-    
-        {"name" : "companies_charge_name" , "en" : "Charge Name" , "ar" : "إسم المسئول"},
-        {"name" : "companies_charge_job" , "en" : "Charge Job" , "ar" : "الوظيفة"},
-        {"name" : "companies_internal_number" , "en" : "Internal Number" , "ar" : "الرقم الداخلي"},
-    
-    
-        {"name" : "companies_banking_informations" , "en" : "Banking Informations" , "ar" : "البنوك"},
-        {"name" : "companies_bank_information" , "en" : "Bank Information" , "ar" : "بيانات البنك"},
-        {"name" : "companies_bank_name" , "en" : "Bank Name" , "ar" : "إسم البنك"},
-        {"name" : "companies_bank_account_number" , "en" : "Bank Account Number" , "ar" : "رقم الحساب"},
-        {"name" : "companies_filter_with_date" , "en" : "Filter With Date" , "ar" : "تصفية البيانات بالتاريخ"},
-        {"name" : "companies_calender_type" , "en" : "Calender Type" , "ar" : "نوع التقويم"},
-        {"name" : "companies_gegorian" , "en" : "Gregorian" , "ar" : "ميلادي"},
-        {"name" : "companies_hijri" , "en" : "Hijri" , "ar" : "هجري"},
-        {"name" : "companies_date" , "en" : "Date" , "ar" : "التاريخ"},
-    
-    
-        {"name" : "companies_gov" , "en" : "Gov" , "ar" : "المحافظة"},
-        {"name" : "companies_city" , "en" : "City" , "ar" : "المدينة"},
-        {"name" : "companies_email" , "en" : "Email" , "ar" : "البريد الالكتروني"},
-        {"name" : "companies_fax" , "en" : "Fax" , "ar" : "الفاكس"},
-        {"name" : "companies_name_ar" , "en" : "company Name Arabic" , "ar" : "إسم الحضانة"},
-        {"name" : "companies_name_en" , "en" : "company Name English" , "ar" : "إسم الحضانة بالانجليزية"},
-        {"name" : "companies_excahange_price" , "en" : "Exchange Price" , "ar" : "سعر الصرف"},
-        {"name" : "companies_company_swift_code" , "en" : "Swift Code" , "ar" : "رقم السويفت"},
-        {"name" : "companies_new" , "en" : "New company" , "ar" : "حضانة جديد"},
-    
-        {"name" : "companies_country" , "en" : "Coutntry" , "ar" : "الدولة"},
-        {"name" : "companies_address" , "en" : "Address" , "ar" : "العنوان"},
-        {"name" : "companies_customer_service" , "en" : "Customer Services" , "ar" : "خدمة العملاء"}  
-     
-        
 ]

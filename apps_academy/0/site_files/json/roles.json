@@ -1,10 +1,11 @@
-[{
-        "name": "admin",
-        "ar": "المدير العام",
-        "en": "admin",
+[
+    {
+        "module_name": "public",
+        "name": "companies_admin",
+        "en": "Academy Add Admin",
+        "ar": "إدارة الأكاديمية",
         "permissions": [
             "*"
         ]
     }
-    
 ]
