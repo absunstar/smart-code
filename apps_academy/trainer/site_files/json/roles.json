@@ -1,7 +1,0 @@
-[{
-    "module_name" : "public" ,
-    "name": "trainer_admin",
-    "en": "Trainer Admin",
-    "ar": "إدارة المدربين",
-    "permissions": ["trainer_manage"]
-}]

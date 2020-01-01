@@ -1,7 +1,0 @@
-[{
-    "module_name" : "public" ,
-    "name": "employee_admin",
-    "en": "Employee Admin",
-    "ar": "إدارة الموظفين",
-    "permissions": ["employee_manage"]
-}]

@@ -1,7 +1,0 @@
-[{
-    "module_name" : "accounting" ,
-    "name": "amounts_in_admin",
-    "en": "Amounts In Admin",
-    "ar": "إدارة الوارد",
-    "permissions": ["amounts_in_manage"]
-}]

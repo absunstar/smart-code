@@ -1,7 +1,0 @@
-[{
-    "module_name" : "public" ,
-    "name": "disease_admin",
-    "en": "Disease Admin",
-    "ar": "إدارة الأمراض",
-    "permissions": ["disease_manage"]
-}]

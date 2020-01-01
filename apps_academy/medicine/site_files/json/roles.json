@@ -1,7 +1,0 @@
-[{
-    "module_name" : "public" ,
-    "name": "medicine_admin",
-    "en": "Medicine Admin",
-    "ar": "إدارة الأدوية",
-    "permissions": ["medicine_manage"]
-}]
