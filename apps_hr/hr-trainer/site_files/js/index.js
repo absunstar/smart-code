@@ -415,6 +415,26 @@ app.controller("trainer", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.handelTrainers = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/trainer/handel"
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {          
+          $scope.getTrainerList();
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
   $scope.displaySearchModal = function () {
     $scope.error = '';
     site.showModal('#trainerSearchModal');

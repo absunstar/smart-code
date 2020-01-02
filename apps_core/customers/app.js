@@ -24,7 +24,7 @@ module.exports = function init(site) {
       where: { id: obj.customerId }
     }, (err, doc) => {
       if (obj.busy) doc.busy = true;
-      else if (!obj.busy) doc.busy = false;
+      else doc.busy = false;
       if (!err && doc) $customers.edit(doc)
     })
   })

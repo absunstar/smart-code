@@ -11,7 +11,7 @@ app.controller("attend_session", function ($scope, $http, $timeout) {
       /* capaneighborhood : " - طالب",       immediate : false
  */    };
     site.showModal('#attendSessionAddModal');
-
+    $scope.getTrainerList();
   };
 
   $scope.addAttendSession = function () {
@@ -321,7 +321,6 @@ app.controller("attend_session", function ($scope, $http, $timeout) {
         console.log(err);
       }
     )
-
   };
 
   $scope.searchAll = function () {
@@ -333,5 +332,4 @@ app.controller("attend_session", function ($scope, $http, $timeout) {
 
   $scope.getAttendSessionList();
   $scope.getHallList();
-  $scope.getTrainerList();
 });

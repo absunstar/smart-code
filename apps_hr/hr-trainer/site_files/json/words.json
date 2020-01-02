@@ -8,7 +8,11 @@
         "en": "New Trainer",
         "ar": "مدرب جديد"
     },
-
+    {
+        "name": "handel_trainers",
+        "en": "Handel Trainers",
+        "ar": "هندلة المدربين"
+    },
     {
         "name": "trainer_add",
         "en": "Add Trainer",

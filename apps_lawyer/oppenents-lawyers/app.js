@@ -13,15 +13,6 @@ module.exports = function init(site) {
     path: __dirname + '/site_files/images/'
   })
 
-  site.on('[attend_session][busy][+]', obj => {
-    $oppenents_lawyers.findOne({
-      where: { id: obj.oppenentId }
-    }, (err, doc) => {
-      if (obj.busy) doc.busy = true;
-      else if (!obj.busy) doc.busy = false;
-      if (!err && doc) $oppenents_lawyers.edit(doc)
-    })
-  })
 
   site.on('[company][created]', doc => {
 
@@ -32,21 +23,6 @@ module.exports = function init(site) {
       },
       code: "1",
       name_ar: "محامي خصم إفتراضي",
-      // branch_list: [
-      //   {
-      //     charge: [{}]
-      //   }
-      // ],
-      // currency_list: [],
-      // opening_balance: [
-      //   {
-      //     initial_balance: 0
-      //   }
-      // ],
-      // bank_list: [{}],
-      // dealing_company: [{}],
-      // employee_delegate: [{}],
-      // accounts_debt: [{}],
       image_url: '/images/oppenent.png',
       company: {
         id: doc.id,

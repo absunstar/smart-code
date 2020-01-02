@@ -25,7 +25,7 @@ module.exports = function init(site) {
       where: { id: obj.trainerId }
     }, (err, doc) => {
       if (obj.busy) doc.busy = true;
-      else if (!obj.busy) doc.busy = false;
+      else doc.busy = false;
       if (!err && doc) $trainer.edit(doc)
     })
   })
@@ -74,12 +74,12 @@ module.exports = function init(site) {
     }
 
     trainer_doc.trainer = true
-    trainer_doc.academy = site.get_company(req)
+    trainer_doc.company = site.get_company(req)
     trainer_doc.branch = site.get_branch(req)
 
     $trainer.find({
       where: {
-        'academy.id': site.get_company(req).id,
+        'company.id': site.get_company(req).id,
         'branch.code': site.get_branch(req).code,
 
         $or: [{
@@ -208,6 +208,27 @@ module.exports = function init(site) {
     }
   })
 
+
+  site.post('/api/trainer/handel', (req, res) => {
+    let response = {
+      done: false
+    }
+
+    $trainer.findMany({
+      where: { 'job.trainer': true }
+    }, (err, docs) => {
+
+      response.done = true
+
+      docs.forEach(_doc => {
+        _doc.trainer = true;
+        $trainer.edit(_doc)
+      });
+
+      res.json(response)
+    })
+  })
+
   site.post("/api/trainer/all", (req, res) => {
     let response = {
       done: false
@@ -302,7 +323,7 @@ module.exports = function init(site) {
         } */
 
     where['trainer'] = true
-    where['academy.id'] = site.get_company(req).id
+    where['company.id'] = site.get_company(req).id
     where['branch.code'] = site.get_branch(req).code
 
     $trainer.findMany({

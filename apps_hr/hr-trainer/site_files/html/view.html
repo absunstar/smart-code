@@ -48,27 +48,43 @@
                         <br>
                         <div>
                             <fieldset>
-                                <legend>##word.trainer_info##</legend>
+                                <legend>##word.employee_info##</legend>
                                 <table class="table hover bold">
                                     <tr>
                                         <td class="title">##word.trainer_indentfy##</td>
                                         <td class="center">{{trainer.indentfy.ar}}</td>
                                     </tr>
                                     <tr>
-                                        <td class="title">##word.qualification##</td>
-                                        <td class="center">{{trainer.qualification}}</td>
+                                        <td class="title">##word.birth_date##</td>
+                                        <td class="center brown">{{trainer.birth_date | date : 'dd / MM / yyyy'}}
+                                        </td>
                                     </tr>
                                     <tr>
-                                        <td class="title">##word.birth_date##</td>
-                                        <td class="center brown">{{trainer.birth_date | date : 'dd
-                                            - MM -
-                                            yyyy'}}</td>
+                                        <td class="title">##word.employment_date##</td>
+                                        <td class="center brown">
+                                            {{trainer.employment_date | date : 'dd / MM / yyyy'}}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="title">##word.marital_status##</td>
+                                        <td class="center">{{trainer.marital_status.name}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="title">##word.military_status##</td>
+                                        <td class="center">{{trainer.military_status.name}}</td>
                                     </tr>
                                     <tr>
                                         <td class="title">##word.job##</td>
                                         <td class="center">{{trainer.job.name}}</td>
                                     </tr>
-
+                                    <tr>
+                                        <td class="title">##word.qualification##</td>
+                                        <td class="center">{{trainer.qualification}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="title">##word.employees_insurances_insurance_number##</td>
+                                        <td class="center">{{trainer.insurance_number}}</td>
+                                    </tr>
                                 </table>
 
                             </fieldset>
