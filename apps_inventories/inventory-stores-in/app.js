@@ -7,7 +7,26 @@ module.exports = function init(site) {
     })
   })
 
+
+  in_itemName_list = []
   site.on('[stores_items][item_name][change]', obj => {
+    in_itemName_list.push(Object.assign({}, obj))
+  })
+
+  function in_itemName_handle(obj) {
+    if (obj == null) {
+      if (in_itemName_list.length > 0) {
+        obj = in_itemName_list[0]
+        in_itemName_handle(obj)
+        in_itemName_list.splice(0, 1)
+      } else {
+        setTimeout(() => {
+          in_itemName_handle(null)
+        }, 1000);
+      }
+      return
+    }
+
     let barcode = obj.sizes_list.map(_obj => _obj.barcode)
     let size = obj.sizes_list.map(_obj => _obj.size)
 
@@ -21,8 +40,10 @@ module.exports = function init(site) {
         });
         $stores_in.update(_doc);
       });
+      in_itemName_handle(null)
     });
-  });
+  };
+  in_itemName_handle(null)
 
 
   site.on('[store_in][account_invoice][invoice]', function (obj) {
@@ -434,7 +455,7 @@ module.exports = function init(site) {
 
   /* site.getStoresIn = function (req, callback) {
     callback = callback || {};
-
+ 
     let where = req.data.where || {};
     where['company.id'] = site.get_company(req).id
     where['branch.code'] = site.get_branch(req).code

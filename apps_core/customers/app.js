@@ -19,15 +19,41 @@ module.exports = function init(site) {
     path: __dirname + '/site_files/images/'
   })
 
+  customer_busy_list = []
   site.on('[attend_session][busy][+]', obj => {
+    customer_busy_list.push(Object.assign({}, obj))
+  })
+
+  function customer_busy_handle(obj) {
+    if (obj == null) {
+      if (customer_busy_list.length > 0) {
+        obj = customer_busy_list[0]
+        customer_busy_handle(obj)
+        customer_busy_list.splice(0, 1)
+      } else {
+        setTimeout(() => {
+          customer_busy_handle(null)
+        }, 1000);
+      }
+      return
+    }
+
     $customers.findOne({
       where: { id: obj.customerId }
     }, (err, doc) => {
+
       if (obj.busy) doc.busy = true;
       else doc.busy = false;
-      if (!err && doc) $customers.edit(doc)
+
+      if (!err && doc) $customers.edit(doc, () => {
+        customer_busy_handle(null)
+      });
+
     })
-  })
+  }
+  customer_busy_handle(null)
+
+
 
   site.on('[register][customer][add]', doc => {
 
@@ -254,8 +280,8 @@ module.exports = function init(site) {
     }
 
     where['company.id'] = site.get_company(req).id
-/*     where['branch.code'] = site.get_branch(req).code
- */
+    /*     where['branch.code'] = site.get_branch(req).code
+     */
     $customers.findMany({
       select: req.body.select || {},
       where: where,
@@ -274,7 +300,7 @@ module.exports = function init(site) {
   })
 
   site.getCustomerAttend = function (data, callback) {
-    
+
     let select = {
       id: 1, name_ar: 1,
       active: 1, finger_code: 1,
@@ -287,7 +313,7 @@ module.exports = function init(site) {
       medicine_notes: 1
     }
 
-    let where = { finger_code : data }
+    let where = { finger_code: data }
 
     $customers.findOne({
       select: select,

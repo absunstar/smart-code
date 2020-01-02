@@ -2,12 +2,31 @@ module.exports = function init(site) {
   const $account_invoices = site.connectCollection("account_invoices")
 
 
+  A_itemName_list = []
   site.on('[stores_items][item_name][change]', obj => {
+    A_itemName_list.push(Object.assign({}, obj))
+  })
+
+  function A_itemName_handle(obj) {
+    if (obj == null) {
+      if (A_itemName_list.length > 0) {
+        obj = A_itemName_list[0]
+        A_itemName_handle(obj)
+        A_itemName_list.splice(0, 1)
+      } else {
+        setTimeout(() => {
+          A_itemName_handle(null)
+        }, 1000);
+      }
+      return
+    }
+
     let barcode = obj.sizes_list.map(_obj => _obj.barcode)
     let size = obj.sizes_list.map(_obj => _obj.size)
 
     $account_invoices.findMany({ 'company.id': obj.company.id, 'current_book_list.size': size, 'current_book_list.barcode': barcode }, (err, doc) => {
-      if (doc)
+      if (doc) {
+
         doc.forEach(_doc => {
           if (_doc.current_book_list)
             _doc.current_book_list.forEach(_items => {
@@ -18,8 +37,11 @@ module.exports = function init(site) {
             });
           $account_invoices.update(_doc);
         });
+        A_itemName_handle(null)
+      }
     });
-  });
+  }
+  A_itemName_handle(null)
 
 
 
@@ -388,7 +410,7 @@ module.exports = function init(site) {
                 price_delivery_service: result.doc.price_delivery_service,
                 service: result.doc.service,
                 invoice_id: result.doc.invoice_id,
-                return : true
+                return: true
               }
               site.call('[account_invoices][order_invoice][+]', under_paid)
             }
@@ -474,7 +496,7 @@ module.exports = function init(site) {
                 price_delivery_service: result.doc.price_delivery_service,
                 service: result.doc.service,
                 invoice_id: result.doc.invoice_id,
-                return : true
+                return: true
               }
               site.call('[account_invoices][order_invoice][+]', under_paid)
             }

@@ -9,6 +9,23 @@ module.exports = function init(site) {
     compress: true
   })
 
+  site.on('[company][created]', doc => {
+
+    $insurances_slides.add({
+      name: "شريحة تأمين إفتراضية",
+      image_url: '/images/insurance_slides.png',
+      value: 1,
+      company: {
+        id: doc.id,
+        name_ar: doc.name_ar
+      },
+      branch: {
+        code: doc.branch_list[0].code,
+        name_ar: doc.branch_list[0].name_ar
+      },
+      active: true
+    }, (err, in_out_doc) => { })
+  })
 
   site.post("/api/insurances_slides/add", (req, res) => {
     let response = {}
@@ -122,8 +139,8 @@ module.exports = function init(site) {
     }
 
     where['company.id'] = site.get_company(req).id
-/*     where['branch.code'] = site.get_branch(req).code
- */
+    /*     where['branch.code'] = site.get_branch(req).code
+     */
     $insurances_slides.findMany({
       select: req.body.select || {},
       where: where,

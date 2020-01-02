@@ -1,11 +1,30 @@
 module.exports = function init(site) {
   const $attend_leave = site.connectCollection("attend_leave")
 
+
+  attend_employees_list = []
   site.on('zk attend', attend => {
+    attend_employees_list.push(Object.assign({}, attend))
+  })
+
+  function attend_employees_handle(attend) {
+    if (attend == null) {
+      if (attend_employees_list.length > 0) {
+        attend = attend_employees_list[0]
+        attend_employees_handle(attend)
+        attend_employees_list.splice(0, 1)
+      } else {
+        setTimeout(() => {
+          attend_employees_handle(null)
+        }, 1000);
+      }
+      return
+    }
+
+
     finger_id = attend.finger_id || 0
 
     site.getEmployeeAttend(finger_id.toString(), employeeCb => {
-      // get employee by finger_id
       if (!employeeCb) return;
 
       $attend_leave.findMany({
@@ -51,13 +70,15 @@ module.exports = function init(site) {
 
           employeeDoc.leave_date = new Date(attend.date)
           employeeDoc.leave = leave_time
-          $attend_leave.update(employeeDoc)
+          $attend_leave.update(employeeDoc, () => {
+            attend_employees_handle(null)
+          });
         }
-
       })
     })
+  }
+  attend_employees_handle(null)
 
-  })
 
   site.get({
     name: 'images',

@@ -2,25 +2,69 @@ module.exports = function init(site) {
   const $order_invoice = site.connectCollection("order_invoice")
   const $stores_items = site.connectCollection("stores_items")
 
-  site.on('[stores_items][item_name][change]', obj => {
-    let barcode = obj.sizes_list.map(_obj => _obj.barcode)
-    let size = obj.sizes_list.map(_obj => _obj.size)
 
-    $order_invoice.findMany({ 'company.id': obj.company.id, 'book_list.size': size, 'book_list.barcode': barcode }, (err, doc) => {
+  order_itemName_list = []
+  site.on('[stores_items][item_name][change]', object => {
+    order_itemName_list.push(Object.assign({}, object))
+  })
+
+  function order_itemName_handle(object) {
+    if (object == null) {
+      if (order_itemName_list.length > 0) {
+        object = order_itemName_list[0]
+        order_itemName_handle(object)
+        order_itemName_list.splice(0, 1)
+      } else {
+        setTimeout(() => {
+          order_itemName_handle(null)
+        }, 1000);
+      }
+      return
+    }
+
+    let barcode = object.sizes_list.map(_object => _object.barcode)
+    let size = object.sizes_list.map(_object => _object.size)
+
+    $order_invoice.findMany({ 'company.id': object.company.id, 'book_list.size': size, 'book_list.barcode': barcode }, (err, doc) => {
       doc.forEach(_doc => {
         if (_doc.book_list) _doc.book_list.forEach(_items => {
-          if (obj.sizes_list) obj.sizes_list.forEach(_size => {
+          if (object.sizes_list) object.sizes_list.forEach(_size => {
             if (_items.barcode == _size.barcode)
               _items.size = _size.size
           })
         });
         $order_invoice.update(_doc);
       });
+      order_itemName_handle(null)
+
     });
-  });
+  };
+  order_itemName_handle(null)
 
 
-  site.on('[account_invoices][order_invoice][+]', function (obj) {
+
+  
+
+
+
+  order_paid_list = []
+  site.on('[account_invoices][order_invoice][+]', obj => {
+    order_paid_list.push(Object.assign({}, obj))
+  })
+
+  function order_paid_handle(obj) {
+    if (obj == null) {
+      if (order_paid_list.length > 0) {
+        obj = order_paid_list[0]
+        order_paid_handle(obj)
+        order_paid_list.splice(0, 1)
+      } else {
+        setTimeout(() => {
+          order_paid_handle(null)
+        }, 1000);
+      }
+      return
+    }
 
     $order_invoice.findOne({ id: obj.invoice_id }, (err, doc) => {
 
@@ -52,18 +96,67 @@ module.exports = function init(site) {
               book_list_basic.total_price = book_list_basic.count * book_list_basic.price;
             };
           });
-        });        
-        $order_invoice.update(doc);
+        });
+        $order_invoice.update(doc, () => {
+          order_paid_handle(null)
+        });
       };
     });
-  });
+  };
+  order_paid_handle(null)
 
-  site.on('[account_invoices][order_invoice][paid]', function (obj) {
+
+
+
+
+
+
+  order_done_list = []
+  site.on('[account_invoices][order_invoice][paid]', obj => {
+    order_done_list.push(Object.assign({}, obj))
+  })
+
+  function order_done_handle(obj) {
+    if (obj == null) {
+      if (order_done_list.length > 0) {
+        obj = order_done_list[0]
+        order_done_handle(obj)
+        order_done_list.splice(0, 1)
+      } else {
+        setTimeout(() => {
+          order_done_handle(null)
+        }, 1000);
+      }
+      return
+    }
+
     $order_invoice.findOne({ id: obj }, (err, doc) => {
       doc.status = { id: 5, en: "Closed & paid", ar: "مغلق و تم الدفع" }
-      $order_invoice.update(doc);
+      $order_invoice.update(doc, () => {
+        order_done_handle(null)
+      });
     });
-  });
+  };
+  order_done_handle(null)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   function addZero(code, number) {
     let c = number - code.toString().length

@@ -21,7 +21,6 @@ module.exports = function init(site) {
     ar: 'تم حذف حجز قاعة '
   }
 
-
   site.on('mongodb after insert', function (result) {
     if (result.collection === collection_name) {
       site.call('please monitor action', {
@@ -59,7 +58,6 @@ module.exports = function init(site) {
       })
     }
   })
-
 
   site.on('mongodb after delete', function (result) {
     if (result.collection === collection_name) {

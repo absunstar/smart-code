@@ -3,7 +3,28 @@ module.exports = function init(site) {
   const $request_service = site.connectCollection("request_service")
   const $account_invoices = site.connectCollection("account_invoices")
 
+
+
+  attend_subscribers_list = []
   site.on('zk attend', attend => {
+    attend_subscribers_list.push(Object.assign({}, attend))
+  })
+
+  function attend_subscribers_handle(attend) {
+    if (attend == null) {
+      if (attend_subscribers_list.length > 0) {
+        attend = attend_subscribers_list[0]
+        attend_subscribers_handle(attend)
+        attend_subscribers_list.splice(0, 1)
+      } else {
+        setTimeout(() => {
+          attend_subscribers_handle(null)
+        }, 1000);
+      }
+      return
+    }
+
+
     finger_id = attend.finger_id || 0
 
     site.getCustomerAttend(finger_id.toString(), customerCb => {
@@ -48,7 +69,7 @@ module.exports = function init(site) {
                     date_to: _request_service.date_to,
                     time_from: _request_service.time_from,
                     time_to: _request_service.time_to,
-                    remain : _request_service.remain,
+                    remain: _request_service.remain,
                     request_service_id: _request_service.id
                   });
                 }
@@ -76,7 +97,7 @@ module.exports = function init(site) {
                 company: customerCb.company,
                 branch: customerCb.branch,
                 service_list: request_services_list,
-                modifiy : new Date().getTime()
+                modifiy: new Date().getTime()
               });
             });
           });
@@ -90,16 +111,33 @@ module.exports = function init(site) {
           customerDoc.leave_date = new Date(attend.date)
           customerDoc.leave = leave_time
           customerDoc.modifiy = new Date().getTime()
-          $attend_subscribers.update(customerDoc)
-        }else if (customerDoc){
+          $attend_subscribers.update(customerDoc, () => {
+            attend_subscribers_handle(null)
+          });
+
+
+        } else if (customerDoc) {
           customerDoc.modifiy = new Date().getTime()
-          $attend_subscribers.update(customerDoc)
+          $attend_subscribers.update(customerDoc, () => {
+            attend_subscribers_handle(null)
+          });
         }
 
       })
     })
+  }
+  attend_subscribers_handle(null)
 
-  })
+
+
+
+
+
+
+
+
+
+
 
   site.get({
     name: 'images',
@@ -318,7 +356,7 @@ module.exports = function init(site) {
       select: req.body.select || {},
       where: where,
       sort: req.body.sort || {
-        modifiy : -1
+        modifiy: -1
       },
       limit: req.body.limit
     }, (err, docs, count) => {

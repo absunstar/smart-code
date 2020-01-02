@@ -13,9 +13,34 @@ module.exports = function init(site) {
     compress: true
   })
 
-  site.on('[order_invoice][tables][busy]', doc => {
-    $tables.edit(doc)
+
+  table_busy_list = []
+  site.on('[order_invoice][tables][busy]', obj => {
+    table_busy_list.push(Object.assign({}, obj))
   })
+
+  function table_busy_handle(obj) {
+    if (obj == null) {
+      if (table_busy_list.length > 0) {
+        obj = table_busy_list[0]
+        table_busy_handle(obj)
+        table_busy_list.splice(0, 1)
+      } else {
+        setTimeout(() => {
+          table_busy_handle(null)
+        }, 1000);
+      }
+      return
+    }
+
+    $tables.edit(doc, () => {
+      table_busy_handle(null)
+    });
+  }
+  table_busy_handle(null)
+
+
+
 
   site.on('[register][tables][add]', doc => {
 
@@ -224,8 +249,8 @@ module.exports = function init(site) {
        delete where.search
     */
     where['company.id'] = site.get_company(req).id
-/*     where['branch.code'] = site.get_branch(req).code
- */
+    /*     where['branch.code'] = site.get_branch(req).code
+     */
     $tables.findMany({
       select: req.body.select || {},
       where: where,
@@ -234,7 +259,7 @@ module.exports = function init(site) {
       },
       limit: req.body.limit
     }, (err, docs, count) => {
-      
+
       if (!err) {
         response.done = true
         response.list = docs

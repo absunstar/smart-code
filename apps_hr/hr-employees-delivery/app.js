@@ -1,27 +1,23 @@
 module.exports = function init(site) {
-  const $delivery_employee_list = site.connectCollection("hr_delivery_employee_list")
+  const $delivery_employee_list = site.connectCollection("hr_employee_list")
 
   site.on('[company][created]', doc => {
 
-    $delivery_employee_list.add({
-      name: "موظف توصيل إفتراضي",
-      image_url: '/images/delivery_employee_list.png',
-      company: {
-        id: doc.id,
-        name_ar: doc.name_ar
-      },
-      branch: {
-        code: doc.branch_list[0].code,
-        name_ar: doc.branch_list[0].name_ar
-      },
-      active: true
-    }, (err, doc) => { })
-  })
-
-  site.post({
-    name: "/api/indentfy_delivery_employee/all",
-    path: __dirname + "/site_files/json/indentfy_delivery_employee.json"
-
+    if (site.feature('restaurant'))
+      $delivery_employee_list.add({
+        name: "موظف توصيل إفتراضي",
+        image_url: '/images/delivery_employee_list.png',
+        delivery : true,
+        company: {
+          id: doc.id,
+          name_ar: doc.name_ar
+        },
+        branch: {
+          code: doc.branch_list[0].code,
+          name_ar: doc.branch_list[0].name_ar
+        },
+        active: true
+      }, (err, doc) => { })
   })
 
   site.get({
@@ -60,8 +56,10 @@ module.exports = function init(site) {
       delivery_employee_doc.active = true
     }
 
-    delivery_employee_doc.company = site.get_company(req)
-    delivery_employee_doc.branch = site.get_branch(req)
+    delivery_employee_doc.delivery = true;
+
+    delivery_employee_doc.company = site.get_company(req);
+    delivery_employee_doc.branch = site.get_branch(req);
 
     $delivery_employee_list.find({
 
@@ -322,6 +320,7 @@ module.exports = function init(site) {
     let where = req.body.where || {}
     let search = req.body.search
 
+
     if (search) {
       where.$or = []
       where.$or.push({
@@ -403,9 +402,11 @@ module.exports = function init(site) {
       where['id'] = req.session.user.delivery_employee_id;
     }
 
+
+    where['delivery'] = true;
     where['company.id'] = site.get_company(req).id
-/*     where['branch.code'] = site.get_branch(req).code
- */
+    /*     where['branch.code'] = site.get_branch(req).code
+     */
     $delivery_employee_list.findMany({
       select: req.body.select || {},
       where: where,

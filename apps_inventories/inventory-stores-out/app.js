@@ -7,7 +7,25 @@ module.exports = function init(site) {
     })
   })
 
+  out_itemName_list = []
   site.on('[stores_items][item_name][change]', obj => {
+    out_itemName_list.push(Object.assign({}, obj))
+  })
+
+  function out_itemName_handle(obj) {
+    if (obj == null) {
+      if (out_itemName_list.length > 0) {
+        obj = out_itemName_list[0]
+        out_itemName_handle(obj)
+        out_itemName_list.splice(0, 1)
+      } else {
+        setTimeout(() => {
+          out_itemName_handle(null)
+        }, 1000);
+      }
+      return
+    }
+
     let barcode = obj.sizes_list.map(_obj => _obj.barcode)
     let size = obj.sizes_list.map(_obj => _obj.size)
 
@@ -21,8 +39,11 @@ module.exports = function init(site) {
         });
         $stores_out.update(_doc);
       });
+      out_itemName_handle(null)
+
     });
-  });
+  };
+  out_itemName_handle(null)
 
 
   site.on('[store_out][account_invoice][invoice]', function (obj) {

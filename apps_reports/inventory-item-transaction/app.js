@@ -2,7 +2,26 @@ module.exports = function init(site) {
 
   const $item_transaction = site.connectCollection("item_transaction")
 
+
+  transaction_itemName_list = []
   site.on('[stores_items][item_name][change]', obj => {
+    transaction_itemName_list.push(Object.assign({}, obj))
+  })
+
+  function transaction_itemName_handle(obj) {
+    if (obj == null) {
+      if (transaction_itemName_list.length > 0) {
+        obj = transaction_itemName_list[0]
+        transaction_itemName_handle(obj)
+        transaction_itemName_list.splice(0, 1)
+      } else {
+        setTimeout(() => {
+          transaction_itemName_handle(null)
+        }, 1000);
+      }
+      return
+    }
+
     let barcode = obj.sizes_list.map(_obj => _obj.barcode)
     let size = obj.sizes_list.map(_obj => _obj.size)
 
@@ -14,32 +33,11 @@ module.exports = function init(site) {
         })
         $item_transaction.update(_items);
       });
+      transaction_itemName_handle(null)
     });
-  });
+  };
+  transaction_itemName_handle(null)
 
-
-  /*  $item_transaction.busy_status = false
-   site.on('change item status', itm => {
-     if ($item_transaction.busy_status == true) {
-       setTimeout(() => {
-         site.call('change item status', Object.assign(itm));
-       }, 200);
-       return
-     };
- 
-     $item_transaction.busy_status = true
-     $item_transaction.findOne({ sort: { id: 1 }, where: { size: itm.size, 'store.id': itm.store.id, name: itm.name, 'vendor.id': itm.vendor.id, current_status: 'debt', 'eng.id': itm.eng.id }, limit: 1 }, (err, docs) => {
-       if (itm.current_status == "replaced" || itm.current_status == "sold") {
-         docs.current_status = itm.current_status
-         docs.ticket_code = itm.ticket_code
-         $item_transaction.update(docs, (err, result) => {
-           if (!err) {
-             $item_transaction.busy_status = false
-           };
-         })
-       };
-     })
-   }) */
 
   $item_transaction.trackBusy = false
   site.on('item_transaction + items', itm => {
@@ -90,8 +88,8 @@ module.exports = function init(site) {
           })
 
         } else {
-         
-         // itm.last_count = (itm.current_count || 0)  -  itm.count 
+
+          // itm.last_count = (itm.current_count || 0)  -  itm.count 
           itm.last_count = itm.current_count
           itm.current_count = itm.last_count + itm.count
           itm.last_price = itm.price
@@ -135,7 +133,7 @@ module.exports = function init(site) {
           }, 200);
         })
       } else {
-       
+
         itm.last_count = itm.current_count || 0
         itm.current_count = itm.last_count - itm.count
         itm.last_price = itm.price

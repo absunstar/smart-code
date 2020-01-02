@@ -262,7 +262,7 @@ app.controller("delivery_employee_list", function ($scope, $http, $timeout) {
     $scope.indentfyList = [];
     $http({
       method: "POST",
-      url: "/api/indentfy_delivery_employee/all"
+      url: "/api/indentfy_employee/all"
 
     }).then(
       function (response) {
