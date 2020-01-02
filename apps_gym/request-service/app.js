@@ -433,7 +433,7 @@ module.exports = function init(site) {
           });
 
           response.done = true
-          response.list = services
+          response.list = services_list
           response.count = count
         } else {
           response.error = err.message

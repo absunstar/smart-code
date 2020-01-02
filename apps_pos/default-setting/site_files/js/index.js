@@ -174,32 +174,6 @@ app.controller("default_setting", function ($scope, $http) {
     )
   }; 
 
-  $scope.getTrainerList = function () {
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/employees/all",
-      data: {
-        where: {
-          'job.trainer': true
-        }
-      }
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.trainerList = response.data.list;
-          console.log($scope.trainerList);
-
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
-  };
-
 
   $scope.getDiscountMethodList = function () {
     $scope.error = '';
@@ -445,7 +419,6 @@ app.controller("default_setting", function ($scope, $http) {
 
   $scope.loadStores();
   $scope.loadVendors();
-  $scope.getTrainerList();
   $scope.getPaymentMethodList();
   $scope.getDiscountMethodList();
   $scope.getPlaceProgramList();

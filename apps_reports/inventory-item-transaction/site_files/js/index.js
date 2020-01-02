@@ -67,7 +67,7 @@ app.controller("item_transaction", function ($scope, $http, $timeout) {
       url: "/api/employees/all",
       data: {
         where: {
-          'job.trainer': { $ne: true }
+          'trainer': { $ne: true }
         },
         select: {
           name: 1,

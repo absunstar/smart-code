@@ -20,10 +20,9 @@ app.controller("report_trainer_attend", function ($scope, $http) {
     $scope.busy = true;
     $http({
       method: "POST",
-      url: "/api/employees/all",
+      url: "/api/trainer/all",
       data: {
         where: {
-          'job.trainer': true,
           busy: { $ne: true }
         }
       }

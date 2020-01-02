@@ -195,7 +195,8 @@ app.controller("attend_leave", function ($scope, $http, $timeout, $interval) {
         method: "POST",
         url: "/api/employees/all",
         data: {
-          search: $scope.search_employee
+          search: $scope.search_employee,
+          
           /*  select: {
             id: 1,
             name_ar: 1,

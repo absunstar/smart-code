@@ -123,8 +123,8 @@ module.exports = function init(site) {
             branch: result.doc.branch,
             sourceName: result.doc.employee.name,
             description: result.doc.description,
-            operation = 'حذف سلفة موظف',
-            transition_type = 'in'
+            operation: 'حذف سلفة موظف',
+            transition_type: 'in'
           }
           if (Obj.value && Obj.safe && Obj.date && Obj.sourceName) {
             site.call('[amounts][safes][+]', Obj)

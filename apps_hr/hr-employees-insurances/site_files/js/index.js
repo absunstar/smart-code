@@ -35,9 +35,7 @@ app.controller("employees_insurances", function ($scope, $http) {
     $http({
       method: "POST",
       url: "/api/employees/all",
-      data: {
-        select: { id: 1, name: 1, insurance_number: 1 ,'salary':1}
-      }
+      data: {}
     }).then(
       function (response) {
         $scope.busy = false;

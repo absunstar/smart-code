@@ -22,7 +22,7 @@ app.controller("safes_payments", function ($scope, $http) {
       url: "/api/employees/all",
       data: {
         where: {
-          'job.trainer': { $ne: true }
+          'trainer': { $ne: true }
         },
         select: {
           id: 1,

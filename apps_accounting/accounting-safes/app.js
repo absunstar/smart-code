@@ -26,7 +26,25 @@ module.exports = function init(site) {
   })
 
 
-  site.on('[amounts][safes][+]', function (obj) {
+
+  s_balance_list = []
+  site.on('[amounts][safes][+]', obj => {
+    s_balance_list.push(Object.assign({}, obj))
+  })
+
+  function s_balance_handle(obj) {
+    if (obj == null) {
+      if (s_balance_list.length > 0) {
+        obj = s_balance_list[0]
+        s_balance_handle(obj)
+        s_balance_list.splice(0, 1)
+      } else {
+        setTimeout(() => {
+          s_balance_handle(null)
+        }, 1000);
+      }
+      return
+    }
 
     $safes.find({
       id: obj.safe.id,
@@ -39,6 +57,7 @@ module.exports = function init(site) {
           doc.balance = site.toNumber(doc.balance) - site.toNumber(obj.value)
         doc.description = obj.description
         $safes.update(doc, (err, result) => {
+
           if (!err) {
             $safes.find({
               id: result.doc.id
@@ -48,17 +67,19 @@ module.exports = function init(site) {
               obj.company = doc.company
               obj.branch = doc.branch
               obj.balance = doc.balance
-
-              if (obj.transition_type == 'in')
+              
                 site.call('[safes][safes_payments][+]', obj)
-              if (obj.transition_type == 'out')
-                site.call('[safes][safes_payments][-]', obj)
             })
           }
+          s_balance_handle(null)
         })
       }
     })
-  })
+  }
+
+  s_balance_handle(null)
+
+
 
   $safes.deleteDuplicate({
     name: 1,

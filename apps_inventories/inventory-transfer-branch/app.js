@@ -239,7 +239,7 @@ module.exports = function init(site) {
               item: itm
             }
 
-            site.call('[transfer_branch][stores_items][-]', delObj)
+            site.call('[transfer_branch][stores_items][+]', delObj)
             site.call('item_transaction - items', Object.assign({ date: new Date() }, itm))
 
           });

@@ -18,26 +18,6 @@ module.exports = function init(site) {
     }, (err, doc) => { })
   })
 
-  site.on('[company][created]', doc => {
-    if (site.feature('gym'))
-      $jobs.add({
-        code: "2",
-        name: "مدرب إفتراضي",
-        image_url: '/images/jobs.png',
-        trainer: true,
-        company: {
-          id: doc.id,
-          name_ar: doc.name_ar
-        },
-        branch: {
-          code: doc.branch_list[0].code,
-          name_ar: doc.branch_list[0].name_ar
-        },
-        active: true
-      }, (err, job_doc) => {
-        site.call('[job][employee_trainer][+]', job_doc)
-      })
-  })
 
   site.get({
     name: 'images',

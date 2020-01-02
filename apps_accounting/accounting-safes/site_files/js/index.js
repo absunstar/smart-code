@@ -11,7 +11,7 @@ app.controller("safes", function ($scope, $http) {
       url: "/api/employees/all",
       data: {
         where: {
-          'job.trainer': { $ne: true }
+          'trainer': { $ne: true }
         },
         select: { id: 1, name: 1 },
 

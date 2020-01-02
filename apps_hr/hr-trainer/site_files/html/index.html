@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="trainer_ui || trainer_manage" data-ng-app="myApp">
+
+<head x-import="head.html">
+
+</head>
+
+<body class="##session.lang##">
+
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+
+    </nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+
+    </nav>
+
+    <div id="main-layout" class="container">
+        <div class="row">
+            <div class="row" ng-controller="trainer">
+                <div x-permissions="trainer_add || trainer_manage" x-import="hr-trainer/add_modal.html"></div>
+                <div x-permissions="trainer_update || trainer_manage" x-import="hr-trainer/update_modal.html"></div>
+                <div x-permissions="trainer_delete || trainer_manage" x-import="hr-trainer/delete_modal.html"></div>
+                <div x-permissions="trainer_view || trainer_manage" x-import="hr-trainer/view_modal.html"></div>
+                <div x-permissions="trainer_search || trainer_manage" x-import="hr-trainer/search_all_modal.html"></div>
+
+                <div class="row">
+                    <h1 class="bold text-center">##word.trainer##</h1>
+                </div>
+
+                <div class="top-actions">
+                    <i-button x-permissions="trainer_add || trainer_manage" type="add" label="##word.trainer_new##" ng-click="displayAddTrainer()"></i-button>
+
+                    <i-button x-permissions="trainer_search || trainer_manage" type="search" label="##word.search_all##" ng-click="displaySearchModal()"></i-button>
+
+                    <h3 class="bold text-center"> ##word.count## : {{count}}</h3>
+                </div>
+
+                <table x-permissions="login" class="table bold hover loaded" id="t1">
+                    <tr>
+                        <th class="not-print">##word.logo##</th>
+                        <th>##word.name##</th>
+                        <th>##word.address##</th>
+                        <th>##word.mobile##</th>
+                        <th>##word.status##</th>
+                        <th class="not-print">##word.actions##</th>
+                    </tr>
+                    <tr ng-repeat="c in list">
+                        <td class="center not-print">
+                            <img class="logo" ng-src="{{c.image_url}}">
+                        </td>
+                        <td class="center title">{{c.name}}</td>
+                        <td class="center">{{c.gov.name + ' - ' + c.neighborhood.name + ' - ' + c.address}}</td>
+                        <td class="center blue">{{c.mobile}} <i class="fa fa-mobile" ng-show="c.mobile" aria-hidden="true"></i></td>
+                        <td class="center">
+                            <p ng-show="c.active ==true" class="green"> ##word.active## </p>
+                            <p ng-show="c.active ==false" class="red"> ##word.not_active## </p>
+                        </td>
+
+                        <td class="center not-print">
+                            <i-button x-permissions="trainer_view || trainer_manage" type="view" label="##word.details##" ng-click="displayDetailsTrainer(c)"></i-button>
+
+                            <i-button x-permissions="trainer_update || trainer_manage" type="edit" label="##word.edit##" ng-click="displayUpdateTrainer(c)"></i-button>
+
+                            <i-button x-permissions="trainer_delete || trainer_manage" type="delete" label="##word.delete##" ng-click="displayDeleteTrainer(c)"></i-button>
+                        </td>
+                    </tr>
+                </table>
+
+                <i-button x-permissions="trainer_print || trainer_manage" type="print" label="##word.print##" onclick="site.print('#t1')"></i-button>
+
+                <i-button x-permissions="trainer_export || trainer_manage" type="export" label="##word.export_to_excel##" onclick="export_to_xlsx('t1' , 'trainer.xlsx')"></i-button>
+            </div>
+        </div>
+    </div>
+
+    <div x-import="scripts.html"></div>
+    <script x-import="hr-trainer/index.js"></script>
+</body>
+
+</html>

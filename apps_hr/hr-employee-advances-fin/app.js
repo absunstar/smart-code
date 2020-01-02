@@ -107,10 +107,12 @@ module.exports = function init(site) {
             company: result.doc.company,
             branch: result.doc.branch,
             date: result.doc.date,
+            transition_type: 'out',
+            operation: 'حذف سلفية موظف',
             sourceName: result.doc.employee.name
           }
           if (Obj.value && Obj.safe && Obj.date && Obj.sourceName) {
-            site.call('[employees_advances_fin][safes][-]', Obj)
+            site.call('[amounts][safes][+]', Obj)
           }
 
           response.done = true

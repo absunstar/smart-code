@@ -18,33 +18,6 @@ module.exports = function init(site) {
     }, (err, doc1) => { })
   })
 
-  site.on('[attend_session][busy][+]', obj => {
-    $employee_list.findOne({
-      where: { id: obj.trainerId }
-    }, (err, doc) => {
-      if (obj.busy) doc.busy = true;
-      else if (!obj.busy) doc.busy = false;
-      if (!err && doc) $employee_list.edit(doc)
-    })
-  })
-
-  site.on('[job][employee_trainer][+]', job_doc => {
-      $employee_list.add({
-        name: "مدرب إفتراضي",
-        image_url: '/images/employee_list.png',
-        job: {
-          id: job_doc.id,
-          name: job_doc.name,
-          code: job_doc.code,
-          trainer: job_doc.trainer,
-        },
-        company: job_doc.company,
-        branch: job_doc.branch,
-        active: true
-      }, (err, doc) => { })
-  })
-
-
   site.post({
     name: "/api/indentfy_employee/all",
     path: __dirname + "/site_files/json/indentfy_employee.json"

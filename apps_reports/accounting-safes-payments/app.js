@@ -2,49 +2,52 @@ module.exports = function init(site) {
 
   const $safes_payments = site.connectCollection("safes_payments")
 
-  site.on('[safes][safes_payments][+]', info => {
-    let obj = {
-      safe: info.safe,
-      payment_method: info.payment_method,
-      value: info.value || '',
-      date: info.date || info.safe.date,
-      source: info.operation,
-      transition_type: info.transition_type,
-      company: info.company,
-      branch: info.branch,
-      balance: info.balance || info.safe.balance,
-      image_url: info.image_url || info.safe.image_url,
-      pre_balance: info.pre_balance,
-      sourceName: info.sourceName || '',
-      description: info.description || '',
-      notes: info.notes || '',
-      code: info.code || ''
+
+  s_p_balance_list = []
+  site.on('[safes][safes_payments][+]', obj => {
+    s_p_balance_list.push(Object.assign({}, obj))
+  })
+
+  function s_p_balance_handle(obj) {
+    if (obj == null) {
+      if (s_p_balance_list.length > 0) {
+        obj = s_p_balance_list[0]
+        s_p_balance_handle(obj)
+        s_p_balance_list.splice(0, 1)
+      } else {
+        setTimeout(() => {
+          s_p_balance_handle(null)
+        }, 1000);
+      }
+      return
+    }
+
+    let info = {
+      safe: obj.safe,
+      payment_method: obj.payment_method,
+      value: obj.value || '',
+      date: obj.date || obj.safe.date,
+      source: obj.operation,
+      transition_type: obj.transition_type,
+      company: obj.company,
+      branch: obj.branch,
+      balance: obj.balance || obj.safe.balance,
+      image_url: obj.image_url || obj.safe.image_url,
+      pre_balance: obj.pre_balance,
+      sourceName: obj.sourceName || '',
+      description: obj.description || '',
+      notes: obj.notes || '',
+      code: obj.code || ''
     }
     
-    $safes_payments.add(obj)
-  })
+    $safes_payments.add(info, () => {
+      s_p_balance_handle(null)
+    });
+  }
+  s_p_balance_handle(null)
 
-  site.on('[safes][safes_payments][-]', info => {
 
-    let obj = {
-      safe: info.safe,
-      payment_method: info.payment_method,
-      value: info.value,
-      date: info.date,
-      source: info.operation,
-      transition_type: info.transition_type,
-      balance: info.balance,
-      image_url: info.image_url,
-      company: info.company,
-      branch: info.branch,
-      pre_balance: info.pre_balance,
-      sourceName: info.sourceName || '',
-      description: info.description || '',
-      notes: info.notes || '',
-      code: info.code || ''
-    }
-    $safes_payments.add(obj)
-  })
+
 
   site.get({
     name: "safes_payments",

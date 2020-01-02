@@ -210,10 +210,9 @@ app.controller("attend_session", function ($scope, $http, $timeout) {
     $scope.busy = true;
     $http({
       method: "POST",
-      url: "/api/employees/all",
+      url: "/api/trainer/all",
       data: {
         where: {
-          'job.trainer': true,
           busy: { $ne: true }
         }
       }

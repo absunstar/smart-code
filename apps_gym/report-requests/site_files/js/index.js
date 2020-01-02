@@ -78,12 +78,8 @@ app.controller("report_requests", function ($scope, $http, $timeout) {
     $scope.busy = true;
     $http({
       method: "POST",
-      url: "/api/employees/all",
-      data: {
-        where: {
-          'job.trainer': true
-        }
-      }
+      url: "/api/trainer/all",
+      data: {}
     }).then(
       function (response) {
         $scope.busy = false;
