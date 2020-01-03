@@ -80,8 +80,9 @@ module.exports = function init(site) {
         response.doc = doc
         if (doc.course) {
           let course = {
-            ids: doc.id,
+            create_course_id: doc.id,
             course: doc.course,
+            shift: doc.shift,
             start_date: doc.start_date,
             end_date: doc.end_date,
             number_lecture: doc.number_lecture,

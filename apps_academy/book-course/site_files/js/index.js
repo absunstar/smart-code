@@ -3,23 +3,27 @@ app.controller("book_course", function ($scope, $http, $timeout) {
   $scope.book_course = {};
 
   $scope.displayAddBookCourse = function () {
+    $scope.get_open_shift((shift) => {
+      if (shift) {
+        $scope.error = '';
+        $scope.book_course = [];
+        $scope.courses = false;
+        $scope.trainer = false;
+        $scope.createCourseList = {};
 
-    $scope.error = '';
-    $scope.book_course = [];
-    $scope.courses = false;
-    $scope.trainer = false;
-    $scope.createCourseList = {};
+        $scope.book_course = {
+          image_url: '/images/book_course.png',
+          active: true,
+          paid_list: [],
+          shift: shift,
+          date: new Date()
 
-    $scope.book_course = {
-      image_url: '/images/book_course.png',
-      active: true,
-      paid_list: [],
-      book_date: new Date()
+        };
 
-    };
-
-    site.showModal('#bookCourseAddModal');
-    document.querySelector('#studentsViewModal .tab-link').click();
+        site.showModal('#bookCourseAddModal');
+        document.querySelector('#studentsViewModal .tab-link').click();
+      } else $scope.error = '##word.open_shift_not_found##';
+    });
   };
 
   $scope.addBookCourse = function () {
@@ -60,10 +64,14 @@ app.controller("book_course", function ($scope, $http, $timeout) {
   };
 
   $scope.displayUpdateBookCourse = function (book_course) {
-    $scope.error = '';
-    $scope.viewBookCourse(book_course);
-    $scope.book_course = {};
-    site.showModal('#bookCourseUpdateModal');
+    $scope.get_open_shift((shift) => {
+      if (shift) {
+        $scope.error = '';
+        $scope.viewBookCourse(book_course);
+        $scope.book_course = {};
+        site.showModal('#bookCourseUpdateModal');
+      } else $scope.error = '##word.open_shift_not_found##';
+    });
   };
 
   $scope.updateBookCourse = function () {
@@ -95,13 +103,16 @@ app.controller("book_course", function ($scope, $http, $timeout) {
   };
 
   $scope.displayDetailsBookCourse = function (book_course) {
-    $scope.error = '';
-    $scope.viewBookCourse(book_course);
-    $scope.book_course = {};
-    site.showModal('#bookCourseViewModal');
-    document.querySelector('#bookCourseViewModal .tab-link').click();
-    document.querySelector('#studentsViewModal .tab-link').click();
-
+    $scope.get_open_shift((shift) => {
+      if (shift) {
+        $scope.error = '';
+        $scope.viewBookCourse(book_course);
+        $scope.book_course = {};
+        site.showModal('#bookCourseViewModal');
+        document.querySelector('#bookCourseViewModal .tab-link').click();
+        document.querySelector('#studentsViewModal .tab-link').click();
+      } else $scope.error = '##word.open_shift_not_found##';
+    });
   };
 
   $scope.viewBookCourse = function (book_course) {
@@ -129,11 +140,14 @@ app.controller("book_course", function ($scope, $http, $timeout) {
   };
 
   $scope.displayDeleteBookCourse = function (book_course) {
-    $scope.error = '';
-    $scope.viewBookCourse(book_course);
-    $scope.book_course = {};
-    site.showModal('#bookCourseDeleteModal');
-
+    $scope.get_open_shift((shift) => {
+      if (shift) {
+        $scope.error = '';
+        $scope.viewBookCourse(book_course);
+        $scope.book_course = {};
+        site.showModal('#bookCourseDeleteModal');
+      } else $scope.error = '##word.open_shift_not_found##';
+    });
   };
 
   $scope.deleteBookCourse = function () {
@@ -367,14 +381,14 @@ app.controller("book_course", function ($scope, $http, $timeout) {
       $scope.error = "##word.safe_err##";
       return;
 
-    }else{
-      site.showModal( '#acceptModal')
+    } else {
+      site.showModal('#acceptModal')
     }
 
   };
 
   $scope.paidUpdate = function () {
-    $scope.error ='';
+    $scope.error = '';
     if ($scope.book_course.safe) {
 
       if (!$scope.book_course.total_rest) {
@@ -418,6 +432,33 @@ app.controller("book_course", function ($scope, $http, $timeout) {
     };
     site.hideModal('#acceptModal')
 
+  };
+
+  $scope.get_open_shift = function (callback) {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/shifts/get_open_shift",
+      data: {
+        where: { active: true },
+        select: { id: 1, name: 1, code: 1, from_date: 1, from_time: 1, to_date: 1, to_time: 1 }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.doc) {
+          $scope.shift = response.data.doc;
+          callback(response.data.doc);
+        } else {
+          callback(null);
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+        callback(null);
+      }
+    )
   };
 
   $scope.displayDetailsBook = function (book_course) {

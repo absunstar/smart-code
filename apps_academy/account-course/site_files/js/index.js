@@ -8,6 +8,7 @@ app.controller("account_course", function ($scope, $http, $timeout) {
       image_url: '/images/account_course.png',
       active: true,
       dates_list: [],
+      shift: shift,
       immediate: false
     };
     site.showModal('#accountCourseAddModal');

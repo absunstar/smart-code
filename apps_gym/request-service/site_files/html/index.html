@@ -58,6 +58,7 @@
                     <tr>
                         <th class="not-print">##word.logo##</th>
                         <th> ##word.code## </th>
+                        <th>##word.shift##</th>
                         <th>##word.customer##</th>
                         <th>##word.trainer##</th>
                         <th>##word.hall##</th>
@@ -74,6 +75,10 @@
                             <img class="logo" ng-src="{{c.image_url}}">
                         </td>
                         <td ng-click="displayDetailsRequestService(c)" class="center blue">{{c.code}}</td>
+                        <td class="center bold" ng-click="displayDetailsRequestService(c)">
+                            <p>{{c.shift.name}}</p>
+                            <p>{{c.shift.code}}</p>
+                        </td>
                         <td ng-click="displayDetailsRequestService(c)" class="center title">{{c.customer.name_ar}}
                         </td>
                         <td ng-click="displayDetailsRequestService(c)" class="center">{{c.trainer.name}}</td>

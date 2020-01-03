@@ -754,26 +754,7 @@ app.controller("request_service", function ($scope, $http, $timeout) {
       minute: new Date().getMinutes()
     };
   };
-  /* 
-    $scope.handleServiceAttend = function (service) {
-  
-      $scope.attend_service.attend_service_list = $scope.attend_service.attend_service_list || [];
-  
-      if ($scope.attend_service.selectedServicesList && $scope.attend_service.selectedServicesList.length > 0) {
-  
-        $scope.attend_service.selectedServicesList.forEach(attend_service => {
-          attend_service.total_real_attend_count = attend_service.total_attend_count * $scope.attend_service.service_count;
-          attend_service.current_attendance = $scope.attend_service.attend_service_list.length;
-          attend_service.remain = attend_service.total_real_attend_count - attend_service.current_attendance || 0;
-        });
-  
-      } else {
-        service.total_real_attend_count = service.attend_count * $scope.attend_service.service_count;
-        service.current_attendance = $scope.attend_service.attend_service_list.length;
-        service.remain = service.total_real_attend_count - service.current_attendance || 0;
-      }
-    };
-   */
+
   $scope.showAttendServices = function (service) {
     $scope.attend_service = service;
 

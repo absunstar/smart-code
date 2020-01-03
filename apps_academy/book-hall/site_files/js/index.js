@@ -3,16 +3,21 @@ app.controller("book_hall", function ($scope, $http, $timeout) {
   $scope.book_hall = {};
 
   $scope.displayAddBookHall = function () {
-    $scope.error = '';
-    $scope.book_hall = {
-      image_url: '/images/book_hall.png',
-      active: true,
-      book_date: new Date(),
-      dates_list: [],
-      paid_list: []
+    $scope.get_open_shift((shift) => {
+      if (shift) {
+        $scope.error = '';
+        $scope.book_hall = {
+          image_url: '/images/book_hall.png',
+          active: true,
+          date: new Date(),
+          shift: shift,
+          dates_list: [],
+          paid_list: []
 
-    };
-    site.showModal('#bookHallAddModal');
+        };
+        site.showModal('#bookHallAddModal');
+      } else $scope.error = '##word.open_shift_not_found##';
+    });
   };
 
   $scope.addBookHall = function () {
@@ -38,7 +43,7 @@ app.controller("book_hall", function ($scope, $http, $timeout) {
       $scope.book_hall.total_value = $scope.book_hall.total_period * $scope.book_hall.price_day;
     };
 
-    if ( $scope.book_hall.period && $scope.book_hall.period.id == 2) {
+    if ($scope.book_hall.period && $scope.book_hall.period.id == 2) {
 
       $scope.book_hall.total_value = $scope.book_hall.total_period * $scope.book_hall.price_hour;
     };
@@ -64,10 +69,14 @@ app.controller("book_hall", function ($scope, $http, $timeout) {
   };
 
   $scope.displayUpdateBookHall = function (book_hall) {
-    $scope.error = '';
-    $scope.viewBookHall(book_hall);
-    $scope.book_hall = {};
-    site.showModal('#bookHallUpdateModal');
+    $scope.get_open_shift((shift) => {
+      if (shift) {
+        $scope.error = '';
+        $scope.viewBookHall(book_hall);
+        $scope.book_hall = {};
+        site.showModal('#bookHallUpdateModal');
+      } else $scope.error = '##word.open_shift_not_found##';
+    });
   };
 
   $scope.updateBookHall = function () {
@@ -111,10 +120,14 @@ app.controller("book_hall", function ($scope, $http, $timeout) {
   };
 
   $scope.displayDetailsBookHall = function (book_hall) {
-    $scope.error = '';
-    $scope.viewBookHall(book_hall);
-    $scope.book_hall = {};
-    site.showModal('#bookHallViewModal');
+    $scope.get_open_shift((shift) => {
+      if (shift) {
+        $scope.error = '';
+        $scope.viewBookHall(book_hall);
+        $scope.book_hall = {};
+        site.showModal('#bookHallViewModal');
+      } else $scope.error = '##word.open_shift_not_found##';
+    });
   };
 
   $scope.viewBookHall = function (book_hall) {
@@ -142,10 +155,14 @@ app.controller("book_hall", function ($scope, $http, $timeout) {
   };
 
   $scope.displayDeleteBookHall = function (book_hall) {
-    $scope.error = '';
-    $scope.viewBookHall(book_hall);
-    $scope.book_hall = {};
-    site.showModal('#bookHallDeleteModal');
+    $scope.get_open_shift((shift) => {
+      if (shift) {
+        $scope.error = '';
+        $scope.viewBookHall(book_hall);
+        $scope.book_hall = {};
+        site.showModal('#bookHallDeleteModal');
+      } else $scope.error = '##word.open_shift_not_found##';
+    });
   };
 
   $scope.deleteBookHall = function () {
@@ -452,6 +469,33 @@ app.controller("book_hall", function ($scope, $http, $timeout) {
     };
     site.hideModal('#acceptModal')
 
+  };
+
+  $scope.get_open_shift = function (callback) {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/shifts/get_open_shift",
+      data: {
+        where: { active: true },
+        select: { id: 1, name: 1, code: 1, from_date: 1, from_time: 1, to_date: 1, to_time: 1 }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.doc) {
+          $scope.shift = response.data.doc;
+          callback(response.data.doc);
+        } else {
+          callback(null);
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+        callback(null);
+      }
+    )
   };
 
   $scope.displaySearchModal = function () {

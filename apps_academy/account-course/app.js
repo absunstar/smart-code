@@ -4,15 +4,15 @@ module.exports = function init(site) {
   site.on('[create_course][account_course][add]', doc => {
 
     $account_course.add({
-
       active: true,
-      ids: doc.ids,
+      create_course_id: doc.create_course_id,
       course: {
         id: doc.course.id,
         name: doc.course.name
       },
       image_url: '/images/account_course.png',
       period: doc.course.period,
+      shift: doc.shift,
       courses_total: doc.course.courses_total,
       number_lecture: doc.dates_list.length,
       price: doc.course.price,
@@ -29,7 +29,7 @@ module.exports = function init(site) {
   site.on('[create_course][account_course][edit_trainer]', function (obj) {
 
     $account_course.find({
-      'ids': obj.id
+      'create_course_id': obj.id
     }, (err, doc) => {
       if (!err && doc) {
         doc.trainer = obj.trainer

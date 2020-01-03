@@ -104,7 +104,7 @@ app.controller("report_student_hosting", function ($scope, $http) {
 
             $scope.report.student_list.push({
               type: b.type.ar,
-              book_date: b.date,
+              date: b.date,
               employee : b.employee.name,
               classroom: b.classroom.name,
               price: price,

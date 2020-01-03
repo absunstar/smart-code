@@ -3,14 +3,25 @@ app.controller("create_course", function ($scope, $http, $timeout) {
   $scope.create_course = {};
 
   $scope.displayAddCreateCourse = function () {
-    $scope.error = '';
-    $scope.create_course = {
-      image_url: '/images/create_course.png',
-      active: true,
-      dates_list: []
-    };
-    site.showModal('#createCourseAddModal');
+    $scope.get_open_shift((shift) => {
+      if (shift) {
+        $scope.error = '';
+        $scope.create_course = {
+          image_url: '/images/create_course.png',
+          date: new Date(),
+          shift: shift,
+          active: true,
+          dates_list: []
+        };
 
+        if ($scope.defaultSettings.general_Settings) {
+          if ($scope.defaultSettings.general_Settings.hall)
+            $scope.create_course.hall = $scope.defaultSettings.general_Settings.hall;
+        }
+
+        site.showModal('#createCourseAddModal');
+      } else $scope.error = '##word.open_shift_not_found##';
+    });
   };
 
   $scope.addCreateCourse = function () {
@@ -22,8 +33,8 @@ app.controller("create_course", function ($scope, $http, $timeout) {
       return;
     };
 
-    if($scope.create_course.dates_list.length < 1){
-      $scope.error ="##word.error_dates##";
+    if ($scope.create_course.dates_list.length < 1) {
+      $scope.error = "##word.error_dates##";
       return;
     };
     $scope.busy = true;
@@ -48,10 +59,14 @@ app.controller("create_course", function ($scope, $http, $timeout) {
   };
 
   $scope.displayUpdateCreateCourse = function (create_course) {
-    $scope.error = '';
-    $scope.viewCreateCourse(create_course);
-    $scope.create_course = {};
-    site.showModal('#createCourseUpdateModal');
+    $scope.get_open_shift((shift) => {
+      if (shift) {
+        $scope.error = '';
+        $scope.viewCreateCourse(create_course);
+        $scope.create_course = {};
+        site.showModal('#createCourseUpdateModal');
+      } else $scope.error = '##word.open_shift_not_found##';
+    });
   };
 
   $scope.updateCreateCourse = function () {
@@ -83,10 +98,14 @@ app.controller("create_course", function ($scope, $http, $timeout) {
   };
 
   $scope.displayDetailsCreateCourse = function (create_course) {
-    $scope.error = '';
-    $scope.viewCreateCourse(create_course);
-    $scope.create_course = {};
-    site.showModal('#createCourseViewModal');
+    $scope.get_open_shift((shift) => {
+      if (shift) {
+        $scope.error = '';
+        $scope.viewCreateCourse(create_course);
+        $scope.create_course = {};
+        site.showModal('#createCourseViewModal');
+      } else $scope.error = '##word.open_shift_not_found##';
+    });
   };
 
   $scope.viewCreateCourse = function (create_course) {
@@ -114,11 +133,14 @@ app.controller("create_course", function ($scope, $http, $timeout) {
   };
 
   $scope.displayDeleteCreateCourse = function (create_course) {
-    $scope.error = '';
-    $scope.viewCreateCourse(create_course);
-    $scope.create_course = {};
-    site.showModal('#createCourseDeleteModal');
-
+    $scope.get_open_shift((shift) => {
+      if (shift) {
+        $scope.error = '';
+        $scope.viewCreateCourse(create_course);
+        $scope.create_course = {};
+        site.showModal('#createCourseDeleteModal');
+      } else $scope.error = '##word.open_shift_not_found##';
+    });
   };
 
   $scope.deleteCreateCourse = function () {
@@ -345,14 +367,21 @@ app.controller("create_course", function ($scope, $http, $timeout) {
   };
 
   $scope.addTrainer = function () {
-    $scope.create_course.dates_list.forEach(t => {
-      t.trainer = $scope.create_course.trainer;
+    $scope.current_course.dates_list.forEach(t => {
+      t.trainer = $scope.current_course.trainer;
     });
   };
 
   $scope.showTrainer = function (create_course) {
     $scope.error = '';
-    $scope.viewCreateCourse(create_course);
+    $scope.current_course = create_course;
+    if ($scope.defaultSettings.general_Settings) {
+      if ($scope.defaultSettings.general_Settings.trainer) {
+        $scope.current_course.trainer = $scope.defaultSettings.general_Settings.trainer;
+      }
+    }
+
+
     site.showModal('#addTrainer');
   };
 
@@ -361,7 +390,7 @@ app.controller("create_course", function ($scope, $http, $timeout) {
     $scope.current_attend = attend;
 
     site.showModal('#showAttendModal');
-  }; 
+  };
 
   $scope.attendTrainer = function (current_attend) {
 
@@ -381,6 +410,52 @@ app.controller("create_course", function ($scope, $http, $timeout) {
     customer.attend = $scope.attendList[1];
   };
 
+  $scope.get_open_shift = function (callback) {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/shifts/get_open_shift",
+      data: {
+        where: { active: true },
+        select: { id: 1, name: 1, code: 1, from_date: 1, from_time: 1, to_date: 1, to_time: 1 }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.doc) {
+          $scope.shift = response.data.doc;
+          callback(response.data.doc);
+        } else {
+          callback(null);
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+        callback(null);
+      }
+    )
+  };
+
+  $scope.getDefaultSettings = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/default_setting/get",
+      data: {}
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.doc)
+          $scope.defaultSettings = response.data.doc;
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
 
   $scope.safeAttend = function () {
     $scope.error = '';
@@ -415,6 +490,7 @@ app.controller("create_course", function ($scope, $http, $timeout) {
   $scope.getCreateCourseList();
   $scope.getPeriod();
   $scope.getCoursesList();
+  $scope.getDefaultSettings();
   $scope.getTimeList();
   $scope.getClassRooms();
   $scope.getTrainerList();

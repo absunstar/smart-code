@@ -77,7 +77,7 @@ app.controller("report_student_courses", function ($scope, $http) {
           $scope.bookList.forEach(b => {
             $scope.report.student_list.push({
               course: b.select_book.course.name,
-              book_date: b.book_date,
+              date: b.date,
               start_date: b.select_book.start_date,
               end_date: b.select_book.end_date,
               price: b.select_book.course.price,
