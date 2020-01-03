@@ -220,7 +220,7 @@ app.controller("create_course", function ($scope, $http, $timeout) {
     $scope.busy = true;
     $http({
       method: "POST",
-      url: "/api/class_rooms/all",
+      url: "/api/hall/all",
       data: {
         where: {
           active: true
@@ -246,7 +246,7 @@ app.controller("create_course", function ($scope, $http, $timeout) {
 
     $http({
       method: "POST",
-      url: "/api/class_rooms/all",
+      url: "/api/hall/all",
       data: {
         where: {
           active: true
@@ -338,7 +338,7 @@ app.controller("create_course", function ($scope, $http, $timeout) {
 
     for (let i = 0; i < $scope.create_course.course.number_lecture; i++) {
       $scope.create_course.dates_list.push({
-        class_room: $scope.create_course.class_room,
+        hall: $scope.create_course.hall,
         number_lecture: $scope.create_course.course.number_lecture_hours || 0
       });
     }

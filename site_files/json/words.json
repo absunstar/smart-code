@@ -10,6 +10,26 @@
         "ar": "الكمية"
     },
     {
+        "name": "indentfy",
+        "en": "Indentfy",
+        "ar": "النوع"
+    },
+    {
+        "name": "period",
+        "en": "Period",
+        "ar": "المدة"
+    },
+    {
+        "name": "from",
+        "en": "From",
+        "ar": "من"
+    },
+    {
+        "name": "to",
+        "en": "To",
+        "ar": "إلى"
+    },
+    {
         "name": "employee_salary_screen",
         "en": "Employee Salary Screen",
         "ar": "شاشة مرتبات الموظفين"

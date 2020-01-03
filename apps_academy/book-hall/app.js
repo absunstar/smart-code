@@ -246,9 +246,9 @@ module.exports = function init(site) {
       delete where['tenant']
       delete where.active
     }
-    if (where['class_room']) {
-      where['class_room.id'] = where['class_room'].id;
-      delete where['class_room']
+    if (where['hall']) {
+      where['hall.id'] = where['hall'].id;
+      delete where['hall']
       delete where.active
     }
 

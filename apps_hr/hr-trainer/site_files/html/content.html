@@ -91,11 +91,11 @@
                         <legend>##word.addresses##</legend>
                         <div class="row">
                             <i-list class="col4" label="##word.gov##" ng-model="trainer.gov" items="govList"
-                                ng-change="getNeighborhoodList(trainer.gov)" display="name"
+                                ng-change="getCitiesList(trainer.gov)" display="name"
                                 ng-search="trainer.$gov_search"></i-list>
 
-                            <i-list class="col4" label="##word.neighborhood##" ng-model="trainer.neighborhood"
-                                items="neighborhoodList" ng-change="getAreaList(trainer.neighborhood)" display="name"
+                            <i-list class="col4" label="##word.city##" ng-model="trainer.city"
+                                items="citiesList" ng-change="getAreaList(trainer.city)" display="name"
                                 ng-search="trainer.$neighborhood_search"></i-list>
 
                             <i-list class="col4" label="##word.area##" ng-model="trainer.area" items="areaList"

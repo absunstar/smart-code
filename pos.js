@@ -32,7 +32,7 @@ site.words.add({
     "en": "Ryal",
     "ar": "ريال"
 }, {
-    "name": "pound",
+    "name": "le",
     "en": "Ryal",
     "ar": "ريال"
 })

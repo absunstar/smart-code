@@ -7,8 +7,7 @@ app.controller("hall", function ($scope, $http, $timeout) {
     $scope.hall = {
       image_url: '/images/hall.png',
       active: true,
-      /* capaneighborhood : " - طالب",       immediate : false
- */    };
+         };
     site.showModal('#hallAddModal');
     
   };

@@ -60,7 +60,7 @@
                     <h2 class="blue bold text-center">##word.dates##</h3>
                     <table class="table bold hover center ">
                         <tr>
-                            <th>##word.class_room##</th>
+                            <th>##word.hall##</th>
                             <th>##word.date##</th>
                             <th>##word.number_lecture_hours##</th>
                             <th>##word.from##</th>
@@ -70,7 +70,7 @@
                         <tr ng-repeat="b in book_course.select_book.dates_list">
 
 
-                            <td>{{b.class_room.name}}</td>
+                            <td>{{b.hall.name}}</td>
                             <td class="brown">{{b.date_count | date : 'dd- MM -yyyy'}}</td>
 
                             <td class="blue">{{b.number_lecture}}</td>

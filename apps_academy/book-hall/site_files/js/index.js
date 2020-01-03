@@ -13,7 +13,6 @@ app.controller("book_hall", function ($scope, $http, $timeout) {
 
     };
     site.showModal('#bookHallAddModal');
-
   };
 
   $scope.addBookHall = function () {
@@ -147,7 +146,6 @@ app.controller("book_hall", function ($scope, $http, $timeout) {
     $scope.viewBookHall(book_hall);
     $scope.book_hall = {};
     site.showModal('#bookHallDeleteModal');
-
   };
 
   $scope.deleteBookHall = function () {
@@ -225,7 +223,7 @@ app.controller("book_hall", function ($scope, $http, $timeout) {
     $scope.busy = true;
     $http({
       method: "POST",
-      url: "/api/class_rooms/all",
+      url: "/api/hall/all",
       data: {
         where: {
           active: true

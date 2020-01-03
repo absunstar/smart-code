@@ -224,8 +224,8 @@ app.controller("notifications", function ($scope, $http, $interval) {
       $scope.book_hall = n.add;
       site.showModal('#bookHallViewModal');
 
-    } else if (n.link.collection == 'class_rooms') {
-      $scope.class_rooms = n.add;
+    } else if (n.link.collection == 'hall') {
+      $scope.hall = n.add;
       site.showModal('#classRoomsViewModal');
 
     } else if (n.link.collection == 'disease') {
@@ -413,8 +413,8 @@ app.controller("notifications", function ($scope, $http, $interval) {
       $scope.book_hall = n.update;
       site.showModal('#bookHallViewModal');
 
-    } else if (n.link.collection == 'class_rooms') {
-      $scope.class_rooms = n.update;
+    } else if (n.link.collection == 'hall') {
+      $scope.hall = n.update;
       site.showModal('#classRoomsViewModal');
 
     } else if (n.link.collection == 'disease') {
@@ -615,8 +615,8 @@ app.controller("notifications", function ($scope, $http, $interval) {
       $scope.book_hall = n.delete;
       site.showModal('#bookHallViewModal');
 
-    } else if (n.link.collection == 'class_rooms') {
-      $scope.class_rooms = n.delete;
+    } else if (n.link.collection == 'hall') {
+      $scope.hall = n.delete;
       site.showModal('#classRoomsViewModal');
 
     } else if (n.link.collection == 'disease') {

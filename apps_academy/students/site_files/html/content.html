@@ -60,11 +60,11 @@
                     <fieldset>
                         <legend>##word.addresses##</legend>
                         <div class="row">
-                            <i-list class="col4" label="##word.gov##" ng-model="students.gov" items="govList" ng-change="getNeighborhoodList(students.gov)"
+                            <i-list class="col4" label="##word.gov##" ng-model="students.gov" items="govList" ng-change="getCitiesList(students.gov)"
                                 display="name" ng-search="students.$gov_search"></i-list>
 
-                            <i-list class="col4" label="##word.neighborhood##" ng-model="students.neighborhood" items="neighborhoodList"
-                                display="name" ng-change="getAreaList(students.neighborhood)" ng-search="students.$neighborhood_search"></i-list>
+                            <i-list class="col4" label="##word.city##" ng-model="students.city" items="citiesList"
+                                display="name" ng-change="getAreaList(students.city)" ng-search="students.$neighborhood_search"></i-list>
 
                             <i-list class="col4" label="##word.area##" ng-model="students.area" items="areaList"
                                 display="name" ng-search="students.$area_search"></i-list>

@@ -24,15 +24,20 @@
 
                         <div class="row">
 
-                            <i-control help-id="" v="r ll2" class="col4" label="##word.name##" ng-model="tenant.name">
+                            <i-control help-id="" v="r ll2" class="col6" label="##word.name##" ng-model="tenant.name">
                             </i-control>
+                            <div class="col4"></div>
+                            <i-checkbox help-id="tenant_active" class="col2" label="##word.active##"
+                                ng-model="tenant.active"></i-checkbox>
+                        </div>
+
+                        <div class="row">
                             <i-control help-id="" class="col4" label="##word.national_id##"
                                 ng-model="tenant.national_id"></i-control>
 
-                            <i-list help-id="" class="col2" label="##word.tenant_indentfy##" ng-model="tenant.indentfy"
-                                items="indentfyList" display="##session.lang##"></i-list>
-                            <i-checkbox help-id="tenant_active" class="col2" label="##word.active##"
-                                ng-model="tenant.active"></i-checkbox>
+                            <i-list help-id="" class="col3" label="##word.tenant_indentfy##" ng-model="tenant.indentfy"
+                                ng-search="tenant.$identfy_search" items="indentfyList" display="##session.lang##">
+                            </i-list>
                         </div>
 
                     </fieldset>
@@ -41,11 +46,11 @@
                         <legend>##word.addresses##</legend>
                         <div class="row">
                             <i-list class="col4" label="##word.gov##" ng-model="tenant.gov" items="govList"
-                                ng-change="getNeighborhoodList(tenant.gov)" display="name"
-                                ng-search="tenant.$gov_search"></i-list>
+                                ng-change="getCitiesList(tenant.gov)" display="name" ng-search="tenant.$gov_search">
+                            </i-list>
 
-                            <i-list class="col4" label="##word.neighborhood##" ng-model="tenant.neighborhood"
-                                items="neighborhoodList" ng-change="getAreaList(tenant.neighborhood)" display="name"
+                            <i-list class="col4" label="##word.city##" ng-model="tenant.city" items="citiesList"
+                                ng-change="getAreaList(tenant.city)" display="name"
                                 ng-search="tenant.$neighborhood_search"></i-list>
 
                             <i-list class="col4" label="##word.area##" ng-model="tenant.area" items="areaList"

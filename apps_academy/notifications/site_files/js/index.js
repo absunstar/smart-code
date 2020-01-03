@@ -226,8 +226,8 @@ app.controller("notifications", function ($scope, $http, $interval) {
       $scope.book_hall = n.add;
       site.showModal('#bookHallViewModal');
 
-    } else if (n.link.collection == 'class_rooms') {
-      $scope.class_rooms = n.add;
+    } else if (n.link.collection == 'hall') {
+      $scope.hall = n.add;
       site.showModal('#classRoomsViewModal');
 
     } else if (n.link.collection == 'disease') {
@@ -250,8 +250,8 @@ app.controller("notifications", function ($scope, $http, $interval) {
       $scope.lecture = n.add;
       site.showModal('#lectureViewModal');
 
-    } else if (n.link.collection == 'neighborhood') {
-      $scope.neighborhood = n.add;
+    } else if (n.link.collection == 'city') {
+      $scope.city = n.add;
       site.showModal('#neighborhoodViewModal');
 
     } else if (n.link.collection == 'area') {
@@ -383,8 +383,8 @@ app.controller("notifications", function ($scope, $http, $interval) {
       $scope.book_hall = n.update;
       site.showModal('#bookHallViewModal');
 
-    } else if (n.link.collection == 'class_rooms') {
-      $scope.class_rooms = n.update;
+    } else if (n.link.collection == 'hall') {
+      $scope.hall = n.update;
       site.showModal('#classRoomsViewModal');
 
     } else if (n.link.collection == 'disease') {
@@ -425,8 +425,8 @@ app.controller("notifications", function ($scope, $http, $interval) {
       $scope.lecture = n.update;
       site.showModal('#lectureViewModal');
 
-    } else if (n.link.collection == 'neighborhood') {
-      $scope.neighborhood = n.update;
+    } else if (n.link.collection == 'city') {
+      $scope.city = n.update;
       site.showModal('#neighborhoodViewModal');
 
     } else if (n.link.collection == 'area') {
@@ -553,8 +553,8 @@ app.controller("notifications", function ($scope, $http, $interval) {
       $scope.book_hall = n.delete;
       site.showModal('#bookHallViewModal');
 
-    } else if (n.link.collection == 'class_rooms') {
-      $scope.class_rooms = n.delete;
+    } else if (n.link.collection == 'hall') {
+      $scope.hall = n.delete;
       site.showModal('#classRoomsViewModal');
 
     } else if (n.link.collection == 'disease') {
@@ -595,8 +595,8 @@ app.controller("notifications", function ($scope, $http, $interval) {
       $scope.lecture = n.delete;
       site.showModal('#lectureViewModal');
 
-    } else if (n.link.collection == 'neighborhood') {
-      $scope.neighborhood = n.delete;
+    } else if (n.link.collection == 'city') {
+      $scope.city = n.delete;
       site.showModal('#neighborhoodViewModal');
 
     } else if (n.link.collection == 'area') {

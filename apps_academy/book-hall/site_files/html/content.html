@@ -45,7 +45,7 @@
                             <tr>
                                 <td class="title">##word.addresses##</td>
                                 <td colspan="5"> {{book_hall.tenant.gov.name}} -
-                                    {{book_hall.tenant.neighborhood.name}} - {{book_hall.tenant.area.name}} -
+                                    {{book_hall.tenant.city.name}} - {{book_hall.tenant.area.name}} -
                                     {{book_hall.tenant.address}}
                                 </td>
 
@@ -56,8 +56,7 @@
                     <div class="row">
                         <i-date2 class="col4" ng-model="book_hall.book_date" label="##word.book_date##"></i-date2>
 
-
-                        <i-list class="col4" label="##word.hall##" ng-model="book_hall.class_room"
+                        <i-list class="col4" label="##word.hall##" ng-model="book_hall.hall"
                             items="classRoomsList" ng-search="book_hall.$class_room_search"></i-list>
                         <div class="col2"></div>
 
@@ -102,7 +101,7 @@
                         <div class="row" ng-repeat="date in book_hall.dates_list">
 
                             <i-date2 class="col5" ng-model="date.date_count" label="##word.date##"></i-date2>
-                            <i-time class="col2" display="##session.lang##" ng-model="date.of" label="##word.of##"></i-time>
+                            <i-time class="col2" display="##session.lang##" ng-model="date.from" label="##word.from##"></i-time>
                             <i-time class="col2" display="##session.lang##" ng-model="date.to" label="##word.to##"></i-time>
                             <i-button type="delete default"
                                 ng-click="book_hall.dates_list.length ===1 ||book_hall.dates_list.splice($index,1)">

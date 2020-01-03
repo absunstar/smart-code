@@ -42,7 +42,7 @@
                     <tr>
                         <th class="not-print">##word.logo##</th>
                         <th>##word.date##</th>
-                        <th>##word.class_room##</th>
+                        <th>##word.hall##</th>
                         <th>##word.trainer##</th>
                         <th>##word.from##</th>
                         <th>##word.to##</th>
@@ -54,7 +54,7 @@
                             <img class="logo" ng-src="{{c.image_url}}">
                         </td>
                         <td class="center brown">{{c.date |date:"dd - MM - yyyy"}}</td>
-                        <td class="center">{{c.class_room.name}}</td>
+                        <td class="center">{{c.hall.name}}</td>
                         <td class="center title">{{c.trainer.name}}</td>
                         <td class="center green">{{c.from.minute}} : {{c.from.hour}}</td>
                         <td class="center red">{{c.to.minute}} : {{c.to.hour}}</td>

@@ -259,9 +259,9 @@ module.exports = function init(site) {
       delete where.active
     }
 
-    if (where['neighborhood']) {
-      where['neighborhood.id'] = where['neighborhood'].id;
-      delete where['neighborhood']
+    if (where['city']) {
+      where['city.id'] = where['city'].id;
+      delete where['city']
       delete where.active
     }
 

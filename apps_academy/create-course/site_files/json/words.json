@@ -109,7 +109,7 @@
         "ar": "إنصراف الساعة"
     },
     {
-        "name": "class_room",
+        "name": "hall",
         "en": "The Hall",
         "ar": "القاعة"
     },
@@ -120,7 +120,7 @@
     },
     {
         "name": "number_lecture",
-        "en": "Number of lectures",
+        "en": "Number from lectures",
         "ar": "عدد المحاضرات"
     },
     {

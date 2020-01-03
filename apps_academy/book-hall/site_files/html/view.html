@@ -1,5 +1,5 @@
 <div ng-hide="busy" class="row">
-    <div id="basicInformation" class="tab-content">
+    <div id="basicInformation" class="">
         <fieldset>
             <legend> ##word.basic_information##</legend>
             <div class="col9">
@@ -10,8 +10,8 @@
                     </tr>
 
                     <tr>
-                        <td class="title">##word.class_room##</td>
-                        <td class="center green">{{book_hall.class_room.name}}</td>
+                        <td class="title">##word.hall##</td>
+                        <td class="center green">{{book_hall.hall.name}}</td>
                     </tr>
 
 
@@ -37,12 +37,12 @@
 
                     <tr ng-show="book_hall.period.id == 2">
                         <td class="title">##word.price_hour##</td>
-                        <td class="center green">{{book_hall.price_hour}} ##word.pound##</td>
+                        <td class="center green">{{book_hall.price_hour}} ##word.le##</td>
                     </tr>
 
                     <tr ng-show="book_hall.period.id == 1">
                         <td class="title">##word.price_day##</td>
-                        <td class="center green">{{book_hall.price_day}} ##word.pound##</td>
+                        <td class="center green">{{book_hall.price_day}} ##word.le##</td>
                     </tr>
 
                     <tr>
@@ -52,7 +52,7 @@
 
                     <tr>
                         <td class="title">##word.total_value##</td>
-                        <td class="center green">{{book_hall.total_value}} ##word.pound##</td>
+                        <td class="center green">{{book_hall.total_value}} ##word.le##</td>
                     </tr>
 
 
@@ -76,7 +76,7 @@
                         <table class="table hover center bold">
                             <tr>
                                 <th>##word.date##</th>
-                                <th>##word.of##</th>
+                                <th>##word.from##</th>
                                 <th>##word.to##</th>
                                 <th>##word.attend##</th>
 
@@ -84,7 +84,7 @@
 
                             <tr ng-repeat="d in book_hall.dates_list">
                                 <td class="brown">{{d.date_count | date : 'dd- MM -yyyy'}}</td>
-                                <td class="green"> {{d.of.minute}} : {{d.of.hour}} </td>
+                                <td class="green"> {{d.from.minute}} : {{d.from.hour}} </td>
                                 <td class="red"> {{d.to.minute}} : {{d.to.hour}} </td>
                                 <td>
                                     <i-list disabled ng-model="d.attend" display="##session.lang##" items="attendList">

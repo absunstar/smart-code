@@ -181,7 +181,7 @@ app.controller("trainer", function ($scope, $http, $timeout) {
     $scope.busy = true;
     $http({
       method: "POST",
-      url: "/api/class_rooms/all",
+      url: "/api/hall/all",
       data: {
         where: {
           active: true
@@ -364,11 +364,11 @@ app.controller("trainer", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.getNeighborhoodList = function (gov) {
+  $scope.getCitiesList = function (gov) {
     $scope.busy = true;
     $http({
       method: "POST",
-      url: "/api/neighborhood/all",
+      url: "/api/city/all",
       data: {
         where: {
           'gov.id': gov.id,
@@ -380,7 +380,7 @@ app.controller("trainer", function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done && response.data.list.length > 0) {
-          $scope.neighborhoodList = response.data.list;
+          $scope.citiesList = response.data.list;
         }
       },
       function (err) {
@@ -390,14 +390,14 @@ app.controller("trainer", function ($scope, $http, $timeout) {
     )
   };
   
-  $scope.getAreaList = function (neighborhood) {
+  $scope.getAreaList = function (city) {
     $scope.busy = true;
     $http({
       method: "POST",
       url: "/api/area/all",
       data: {
         where: {
-          'neighborhood.id': neighborhood.id,
+          'city.id': city.id,
           active: true
         },
       }

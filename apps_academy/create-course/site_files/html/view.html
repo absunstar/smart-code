@@ -12,7 +12,7 @@
 
                     <tr>
                         <td class="title">##word.create_course_price##</td>
-                        <td class="center green">{{create_course.course.price}} ##word.pound##</td>
+                        <td class="center green">{{create_course.course.price}} ##word.le##</td>
                     </tr>
 
                     <tr>
@@ -72,7 +72,7 @@
         
                             <table class="table hover center bold">
                                 <tr>
-                                    <th>##word.class_room##</th>
+                                    <th>##word.hall##</th>
                                     <th>##word.date##</th>
                                     <th>##word.trainer##</th>
                                     <th>##word.number_lecture_hours##</th>
@@ -82,7 +82,7 @@
                                 </tr>
                                 <tr ng-repeat="attend in create_course.dates_list">
         
-                                    <td> <br> {{attend.class_room.name}}</td>
+                                    <td> <br> {{attend.hall.name}}</td>
                                     <td class="brown"> <br> {{attend.date_count | date : 'dd- MM -yyyy'}}</td>
                                     <td class="title"> <br> {{attend.trainer.name}}</td>
                                     <td class="blue"> <br> {{attend.number_lecture}}</td>
