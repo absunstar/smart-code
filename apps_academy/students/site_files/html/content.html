@@ -48,7 +48,7 @@
 
                         <div class="row">
 
-                            <i-list help-id="" class="col4" label="##word.students_indentfy##" ng-model="students.indentfy"
+                            <i-list help-id="" ng-search="_search.$students_indentfy_search" class="col4" label="##word.students_indentfy##" ng-model="students.indentfy"
                                 items="indentfyList" display="##session.lang##"></i-list>
 
                             <i-date2 help-id="" class="col4" label="##word.birth_date##" ng-model="students.birth_date"></i-date2>
@@ -114,7 +114,7 @@
 
             <div id="familyInformation" class="tab-content">
                 <fieldset class="row">
-                    <i-list class="col3" items="hostList" label="##word.host##" display="##session.lang##" ng-model="students.host"></i-list>
+                    <i-list class="col3" items="hostList" ng-search="_search.$host_search" label="##word.host##" display="##session.lang##" ng-model="students.host"></i-list>
                 </fieldset>
 
                 <fieldset ng-show="students.host.id == 2 || students.host.id == 1">
@@ -197,7 +197,7 @@
                         <i-control help-id="" class="col3" type="number" label="##word.weight##" ng-model="students.weight"></i-control>
                         <i-control help-id="" class="col3" type="number" label="##word.tall##" ng-model="students.tall"></i-control>
                         <i-list help-id="" class="col3" label="##word.blood_type##" ng-model="students.blood_type"
-                            items="bloodTypeList" display="name"></i-list>
+                        ng-search="_search.$blood_search"  items="bloodTypeList" display="name"></i-list>
                     </div>
 
                     <div class="row">
@@ -250,10 +250,10 @@
                     </legend>
 
                     <div ng-repeat="medicine in students.medicine_list" class="row">
-                        <i-list class="col4" items="medicineList" label="##word.medicine##" ng-search="medicine.$medicines"
+                        <i-list class="col4" items="medicineList" label="##word.medicine##" ng-search="medicine.$medicines_search"
                             ng-model="medicine.name"></i-list>
                         <i-control class="col2" type="number" label="##word.count_dosage##" ng-model="medicine.count_dosage"></i-control>
-                        <i-list class="col2" items="timeList" display="##session.lang##" label="##word.beginning_dosage##" ng-model="medicine.time"></i-list>
+                        <i-list class="col2"  ng-search="_search.$time_search" items="timeList" display="##session.lang##" label="##word.beginning_dosage##" ng-model="medicine.time"></i-list>
                         <i-button class="col1" type="delete default" ng-click="students.medicine_list.length ==1 || students.medicine_list.splice($index,1)"></i-button>
 
                     </div>
@@ -266,7 +266,7 @@
                     </legend>
 
                     <div ng-repeat="disease in students.disease_list" class="row">
-                        <i-list class="col5" items="diseaseList" display2="number" space="/-/" ng-search="disease.$diseases" ng-model="disease.name"></i-list>
+                        <i-list class="col5"  ng-search="_search.$disease_search" items="diseaseList" display2="number" space="/-/" ng-search="disease.$diseases" ng-model="disease.name"></i-list>
                         <i-button class="col2" type="delete default" ng-click="students.disease_list.length ==1 || students.disease_list.splice($index,1)"></i-button>
 
                     </div>
