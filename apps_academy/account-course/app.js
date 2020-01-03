@@ -35,6 +35,8 @@ module.exports = function init(site) {
         doc.trainer = obj.trainer
         doc.dates_list = obj.dates_list
         doc.trainer_account = 0
+        console.log("Aaaaaaaaaaaaaaaaaaaa");
+        
         obj.dates_list.forEach(d => {
           doc.trainer_account += d.account_lectures
 

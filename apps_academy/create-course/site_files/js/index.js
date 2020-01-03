@@ -102,7 +102,7 @@ app.controller("create_course", function ($scope, $http, $timeout) {
       if (shift) {
         $scope.error = '';
         $scope.viewCreateCourse(create_course);
-        $scope.create_course = {};
+
         site.showModal('#createCourseViewModal');
       } else $scope.error = '##word.open_shift_not_found##';
     });
@@ -367,17 +367,17 @@ app.controller("create_course", function ($scope, $http, $timeout) {
   };
 
   $scope.addTrainer = function () {
-    $scope.current_course.dates_list.forEach(t => {
-      t.trainer = $scope.current_course.trainer;
+    $scope.create_course.dates_list.forEach(t => {
+      t.trainer = $scope.create_course.trainer;
     });
   };
 
   $scope.showTrainer = function (create_course) {
     $scope.error = '';
-    $scope.current_course = create_course;
+    $scope.create_course = create_course;
     if ($scope.defaultSettings.general_Settings) {
       if ($scope.defaultSettings.general_Settings.trainer) {
-        $scope.current_course.trainer = $scope.defaultSettings.general_Settings.trainer;
+        $scope.create_course.trainer = $scope.defaultSettings.general_Settings.trainer;
       }
     }
 
@@ -390,24 +390,6 @@ app.controller("create_course", function ($scope, $http, $timeout) {
     $scope.current_attend = attend;
 
     site.showModal('#showAttendModal');
-  };
-
-  $scope.attendTrainer = function (current_attend) {
-
-    current_attend.attend = $scope.attendList[0];
-  };
-
-  $scope.absenceTrainer = function (current_attend) {
-
-    current_attend.attend = $scope.attendList[1];
-  };
-
-  $scope.attend = function (customer) {
-    customer.attend = $scope.attendList[0];
-  };
-
-  $scope.absence = function (customer) {
-    customer.attend = $scope.attendList[1];
   };
 
   $scope.get_open_shift = function (callback) {

@@ -142,6 +142,7 @@ module.exports = function init(site) {
     }
   })
 
+
   site.post("/api/create_course/edit_trainer", (req, res) => {
     let response = {
       done: false

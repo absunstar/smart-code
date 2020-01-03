@@ -14,8 +14,8 @@
 
             <div class="row">
 
-                <i-list class="col4" items="trainerList" ng-model="current_course.trainer"
-                    ng-search="current_course.$trainer_search" label="##word.trainer##"></i-list>
+                <i-list class="col4" items="trainerList" ng-model="create_course.trainer"
+                    ng-search="create_course.$trainer_search" label="##word.trainer##"></i-list>
 
                 <i-button type="add" label="##word.create_trainer##" ng-click="addTrainer()"></i-button>
 
@@ -38,11 +38,11 @@
                         <th>##word.account_lectures##</th>
                     </tr>
 
-                    <tr ng-repeat="attend in current_course.dates_list">
+                    <tr ng-repeat="attend in create_course.dates_list">
 
                         <td>
                             <i-list ng-model="attend.trainer" items="trainerList"
-                                ng-search="current_course.$class_room_search"></i-list>
+                                ng-search="create_course.$class_room_search"></i-list>
                         </td>
 
                         <td> <br> {{attend.hall.name}}</td>
