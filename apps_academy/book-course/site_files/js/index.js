@@ -31,7 +31,7 @@ app.controller("book_course", function ($scope, $http, $timeout) {
       return;
     };
 
-    if (!$scope.book_course.student) {
+    if (!$scope.book_course.customer) {
 
       $scope.error = "##word.should_student##";
       return;

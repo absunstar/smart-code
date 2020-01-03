@@ -359,6 +359,7 @@ module.exports = function init(site) {
                 remain_amount: result.doc.remain_amount,
                 total_discount: result.doc.total_discount,
                 price_delivery_service: result.doc.price_delivery_service,
+                
                 service: result.doc.service,
                 invoice_id: result.doc.invoice_id
               }
@@ -494,6 +495,7 @@ module.exports = function init(site) {
                 remain_amount: result.doc.remain_amount,
                 total_discount: result.doc.total_discount,
                 price_delivery_service: result.doc.price_delivery_service,
+               
                 service: result.doc.service,
                 invoice_id: result.doc.invoice_id,
                 return: true

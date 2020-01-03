@@ -10,7 +10,7 @@ module.exports = function init(site) {
 
         doc.dates_list.forEach(d => {
           d.student_list = d.student_list || []
-          d.student_list.push(obj.student)
+          d.student_list.push(obj.customer)
         })
 
         $create_course.update(doc, (err, result) => { })

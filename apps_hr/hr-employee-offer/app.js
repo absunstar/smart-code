@@ -91,6 +91,11 @@ module.exports = function init(site) {
             company: result.doc.company,
             branch: result.doc.branch,
             date: result.doc.date,
+            shift: {
+              id: result.doc.shift.id,
+              code: result.doc.shift.code,
+              name: result.doc.shift.name
+            },
             transition_type: 'in',
             operation: 'حذف مكافأة موظف',
             sourceName: result.doc.employee.name

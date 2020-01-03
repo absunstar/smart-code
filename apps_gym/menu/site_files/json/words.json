@@ -371,6 +371,11 @@
         "ar": "قائمة مجموعة العملاء"
     },
     {
+        "name": "menu_customers_groups_tag",
+        "en": "Add Customer Groups",
+        "ar": "إضافة مجموعة عملاء"
+    },
+    {
         "name": "attend_subscribers_registration",
         "en": "Attendance Subscribers Registration",
         "ar": "تسجيل حضور المشتركين للجيم"
@@ -380,11 +385,7 @@
         "en": "Attendance Sessions Registration",
         "ar": "تسجيل حضور الجلسات"
     },
-    {
-        "name": "menu_customers_groups_tag",
-        "en": "Add Customer Groups",
-        "ar": "إضافة مجموعة عملاء"
-    },
+   
     {
         "name": "menu_book_course",
         "en": "Book Courses",
@@ -1240,7 +1241,8 @@
         "name": "kitchen_management",
         "en": "Kitchen Management",
         "ar": "إدارة المطابخ"
-    },{
+    },
+    {
         "name": "menu_shift",
         "en": "Shifts Menu",
         "ar": "قائمة الشيفتات"

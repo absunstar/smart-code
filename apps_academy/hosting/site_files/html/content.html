@@ -36,7 +36,7 @@
 
                             <div ng-repeat="s in hosting.student_list" class="row">
                                 <i-list class="col4" items="studentList" label="##word.student##"
-                                    ng-search="student.$student_search" ng-model="s.student"></i-list>
+                                    ng-search="customer.$student_search" ng-model="s.customer"></i-list>
                                 <i-list class="col2" label="##word.from##" ng-model="s.from" items="timeList"></i-list>
                                 <i-list class="col2" label="##word.to##" ng-model="s.to" items="timeList"></i-list>
                                 <i-control label="##word.hosting_price##" class="col2" type="number" ng-model="s.price">

@@ -138,6 +138,11 @@ module.exports = function init(site) {
               company: response.doc.company,
               branch: response.doc.branch,
               date: response.doc.date_paid,
+              shift: {
+                id: result.doc.shift.id,
+                code: result.doc.shift.code,
+                name: result.doc.shift.name
+              },
               transition_type: 'out',
               operation: 'دفعة حساب مدرب',
               safe: response.doc.safe

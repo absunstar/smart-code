@@ -118,7 +118,7 @@ module.exports = function init(site) {
 
           let paid_value = {
             value : response.doc.baid_go,
-            sourceName: response.doc.student.name,
+            sourceName: response.doc.customer.name,
             academy : response.doc.academy,
             branch : response.doc.branch,
             date: response.doc.date_paid,
@@ -206,9 +206,9 @@ module.exports = function init(site) {
       where['name'] = new RegExp(where['name'], "i");
     }
 
-    if (where['student']) {
-      where['student.id'] = where['student'].id;
-      delete where['student']
+    if (where['customer']) {
+      where['customer.id'] = where['customer'].id;
+      delete where['customer']
       delete where.active
     }
 

@@ -68,6 +68,11 @@ module.exports = function init(site) {
             payment_method: doc.payment_method,
             description: doc.description,
             code: doc.code,
+            shift: {
+              id: doc.shift.id,
+              code: doc.shift.code,
+              name: doc.shift.name
+            },
             operation: 'منصرف',
             transition_type: 'out'
           }
@@ -144,6 +149,11 @@ module.exports = function init(site) {
             branch: result.doc.branch,
             sourceName: result.doc.source.name,
             code: result.doc.code,
+            shift: {
+              id: result.doc.shift.id,
+              code: result.doc.shift.code,
+              name: result.doc.shift.name
+            },
             payment_method: result.doc.payment_method,
             description: result.doc.description,
           }
@@ -197,6 +207,11 @@ module.exports = function init(site) {
               sourceName: result.doc.source.name,
               payment_method: result.doc.payment_method,
               description: result.doc.description,
+              shift: {
+                id: result.doc.shift.id,
+                code: result.doc.shift.code,
+                name: result.doc.shift.name
+              },
               code: result.doc.code,
               operation: 'حذف منصرف',
               transition_type: 'in'

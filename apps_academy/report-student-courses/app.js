@@ -19,9 +19,9 @@ module.exports = function init(site) {
       where['name'] = new RegExp(where['name'], "i");
     }
 
-    if (where['student']) {
-      where['student.id'] = where['student'].id;
-      delete where['student']
+    if (where['customer']) {
+      where['customer.id'] = where['customer'].id;
+      delete where['customer']
       delete where.active
     }
 

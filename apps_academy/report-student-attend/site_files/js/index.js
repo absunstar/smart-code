@@ -2,7 +2,7 @@ app.controller("report_student_attend", function ($scope, $http) {
 
   var Search = function () {
     return {
-      student: {},
+      customer: {},
       date: new Date()
     }
   };
@@ -17,8 +17,8 @@ app.controller("report_student_attend", function ($scope, $http) {
 
   $scope.searchAll = function () {
 
-    $scope.student = $scope.search.student;
-    $scope.getAttendList($scope.search.student);
+    $scope.customer = $scope.search.customer;
+    $scope.getAttendList($scope.search.customer);
 
     site.hideModal('#searchModal');
     $scope.clearAll();
@@ -49,7 +49,7 @@ app.controller("report_student_attend", function ($scope, $http) {
     )
   };
 
-  $scope.getAttendList = function (student) {
+  $scope.getAttendList = function (customer) {
 
     $scope.report = {
       date: $scope.search.date,
@@ -63,7 +63,7 @@ app.controller("report_student_attend", function ($scope, $http) {
       data: {
         where: {
 
-          'dates_list.student_list.id': student.id,
+          'dates_list.student_list.id': customer.id,
         }
       }
     }).then(

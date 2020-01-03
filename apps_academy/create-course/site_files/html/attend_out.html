@@ -70,28 +70,28 @@
                             <th>##word.out_hour##</th>
                             <th>##word.notes##</th>
                         </tr>
-                        <tr ng-repeat="student in current_attend.student_list">
+                        <tr ng-repeat="customer in current_attend.student_list">
                             <td>
                                 <br>
-                                {{student.name}}
+                                {{customer.name}}
                             </td>
                             <td>
-                                <i-list disabled ng-model="student.attend" display="##session.lang##" items="attendList"></i-list>
-                                <i-button type="update" ng-hide="student.attend.id" label="##word.attend##"
-                                    ng-click="attend(student)"></i-button>
-                                <i-button type="close" ng-hide="student.attend.id" label="##word.absence##"
-                                    ng-click="absence(student)"></i-button>
+                                <i-list disabled ng-model="customer.attend" display="##session.lang##" items="attendList"></i-list>
+                                <i-button type="update" ng-hide="customer.attend.id" label="##word.attend##"
+                                    ng-click="attend(customer)"></i-button>
+                                <i-button type="close" ng-hide="customer.attend.id" label="##word.absence##"
+                                    ng-click="absence(customer)"></i-button>
                             </td>
                             <td>
-                                <i-time ng-disabled="student.attend.id == 2" ng-model="student.attend_hour" display="##session.lang##"
+                                <i-time ng-disabled="customer.attend.id == 2" ng-model="customer.attend_hour" display="##session.lang##"
                                     items="timeList"></i-time>
                             </td>
                             <td>
-                                <i-time ng-disabled="student.attend.id == 2" ng-model="student.out_hour" display="##session.lang##"
+                                <i-time ng-disabled="customer.attend.id == 2" ng-model="customer.out_hour" display="##session.lang##"
                                     items="timeList"></i-time>
                             </td>
                             <td class="w200">
-                                <i-control ng-model="student.notes_attend"></i-control>
+                                <i-control ng-model="customer.notes_attend"></i-control>
                             </td>
                         </tr>
                     </table>

@@ -1,11 +1,5 @@
 module.exports = function init(site) {
-  const $students = site.connectCollection("students")
-
-  site.post({
-    name: "/api/blood_type/all",
-    path: __dirname + "/site_files/json/blood_type.json"
-
-  })
+  const $students = site.connectCollection("customers")
 
   site.post({
     name: "/api/host/all",
@@ -61,6 +55,7 @@ module.exports = function init(site) {
       students_doc.active = true
     }
 
+    students_doc.student = true
     students_doc.company = site.get_company(req)
     students_doc.branch = site.get_branch(req)
 
@@ -316,6 +311,7 @@ module.exports = function init(site) {
       where['id'] = req.session.user.students_id;
     }
 
+    where['student'] = true
     where['company.id'] = site.get_company(req).id
     where['branch.code'] = site.get_branch(req).code
 

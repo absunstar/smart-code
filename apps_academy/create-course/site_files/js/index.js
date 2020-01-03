@@ -373,12 +373,12 @@ app.controller("create_course", function ($scope, $http, $timeout) {
     current_attend.attend = $scope.attendList[1];
   };
 
-  $scope.attend = function (student) {
-    student.attend = $scope.attendList[0];
+  $scope.attend = function (customer) {
+    customer.attend = $scope.attendList[0];
   };
 
-  $scope.absence = function (student) {
-    student.attend = $scope.attendList[1];
+  $scope.absence = function (customer) {
+    customer.attend = $scope.attendList[1];
   };
 
 

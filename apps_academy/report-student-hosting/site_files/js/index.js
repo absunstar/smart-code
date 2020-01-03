@@ -2,7 +2,7 @@ app.controller("report_student_hosting", function ($scope, $http) {
 
   var Search = function () {
     return {
-      student: {},
+      customer: {},
       date: new Date()
     }
   };
@@ -18,8 +18,8 @@ app.controller("report_student_hosting", function ($scope, $http) {
 
   $scope.searchAll = function () {
 
-    $scope.student = $scope.search.student;
-    $scope.getTicketList($scope.search.student);
+    $scope.customer = $scope.search.customer;
+    $scope.getTicketList($scope.search.customer);
 
     site.hideModal('#searchModal');
     $scope.clearAll();
@@ -49,7 +49,7 @@ app.controller("report_student_hosting", function ($scope, $http) {
     )
   };
 
-  $scope.getTicketList = function (student) {
+  $scope.getTicketList = function (customer) {
 
     $scope.report = {
       date: $scope.search.date,
@@ -62,7 +62,7 @@ app.controller("report_student_hosting", function ($scope, $http) {
       url: "/api/hosting/student_hosting_report",
       data: {
         where: {
-          'student_list.student.id': student.id,
+          'student_list.customer.id': customer.id,
         }
       }
     }).then(
@@ -80,7 +80,7 @@ app.controller("report_student_hosting", function ($scope, $http) {
             let price = 0;
             b.student_list.forEach(s => {
 
-              if (s.student.id == student.id) {
+              if (s.customer.id == customer.id) {
 
                 price = s.price || 0;
               }
@@ -91,7 +91,7 @@ app.controller("report_student_hosting", function ($scope, $http) {
 
             b.paid_list.forEach(p => {
 
-              if (p.student_paid.id == student.id) {
+              if (p.student_paid.id == customer.id) {
 
                 payment += p.payment || 0;
               }

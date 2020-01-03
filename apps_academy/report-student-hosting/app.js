@@ -15,9 +15,9 @@ module.exports = function init(site) {
 
     let where = req.body.where || {}
 
-    if (where['student']) {
-      where['student.id'] = where['student'].id;
-      delete where['student']
+    if (where['customer']) {
+      where['customer.id'] = where['customer'].id;
+      delete where['customer']
       delete where.active
     }
 

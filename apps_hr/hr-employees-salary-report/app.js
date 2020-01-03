@@ -35,6 +35,11 @@ module.exports = function init(site) {
           date: doc.date,
           sourceName: doc.employee.name,
           description: doc.description,
+          shift: {
+            id: doc.shift.id,
+            code: doc.shift.code,
+            name: doc.shift.name
+          },
           operation: 'مرتب موظف',
           transition_type: 'out',
           company: doc.company,

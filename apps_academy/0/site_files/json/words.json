@@ -10,21 +10,6 @@
         "ar": "نظام إدارة الأكاديمية"
     },
     {
-        "name": "menu_customers",
-        "en": "Students Menu",
-        "ar": "قائمة الطلاب"
-    },
-    {
-        "name": "menu_customers_tag",
-        "en": "Add Students",
-        "ar": "إضافة مشتركين"
-    },
-    {
-        "name": "customers_groups",
-        "en": "Students Group",
-        "ar": "مجموعة الطلاب"
-    },
-    {
         "name": "yes",
         "en": "Yes",
         "ar": "نعم"
@@ -34,71 +19,13 @@
         "en": "No",
         "ar": "لا"
     },
-    {
-        "name": "customers_indentfy",
-        "en": "Subscriber indentfy",
-        "ar": "نوع المشترك"
-    },
+  
     {
         "name": "child",
         "en": "Child",
         "ar": "طفل"
     },
-    {
-        "name": "customers",
-        "en": "Students",
-        "ar": "الطلاب"
-    },
-    {
-        "name": "customers_new",
-        "en": "New Subscriber",
-        "ar": "مشترك جديد"
-    },
-    {
-        "name": "customers_add",
-        "en": "Add Subscriber",
-        "ar": "إضافة مشترك"
-    },
-    {
-        "name": "customers_edit",
-        "en": "Subscriber Edit",
-        "ar": "تعديل بيانات مشترك"
-    },
-    {
-        "name": "customers_details",
-        "en": "Subscriber Details",
-        "ar": "تفاصيل مشترك"
-    },
-    {
-        "name": "customers_delete",
-        "en": "Delete Subscriber",
-        "ar": "حذف مشترك"
-    },
-    {
-        "name": "customers_code",
-        "en": "Subscriber Code",
-        "ar": "كود المشترك"
-    },
-    {
-        "name": "customers_name_ar",
-        "en": "Subscriber Name Arabic",
-        "ar": "إسم المشترك بالعربي"
-    },
-    {
-        "name": "customers_name_en",
-        "en": "Subscriber Name English",
-        "ar": "إسم المشترك بالانجليزية"
-    },
-    {
-        "name": "customer_name",
-        "en": "Subscriber Name",
-        "ar": "إسم المشترك"
-    },
-    {
-        "name": "customer",
-        "en": "Subscriber ",
-        "ar": " المشترك"
-    },
+
     {
         "name": "order_slides_add",
         "en": "Add Orders Slide",
@@ -167,12 +94,12 @@
     {
         "name": "companies_add",
         "en": "Add ِAcademy",
-        "ar": "إضافة جيم"
+        "ar": "إضافة أكاديمية"
     },
     {
         "name": "companies_edit",
         "en": "Edit ِAcademy",
-        "ar": "تعديل جيم"
+        "ar": "تعديل أكاديمية"
     },
     {
         "name": "companies_informations",
@@ -197,7 +124,7 @@
     {
         "name": "companies_delete",
         "en": "Delete ِAcademy",
-        "ar": "حذف جيم"
+        "ar": "حذف أكاديمية"
     },
     {
         "name": "companies_code",
@@ -367,7 +294,7 @@
     {
         "name": "companies_new",
         "en": "New ِAcademy",
-        "ar": "جيم جديد"
+        "ar": "أكاديمية جديدة"
     },
     {
         "name": "companies_country",

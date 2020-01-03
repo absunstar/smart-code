@@ -2,7 +2,7 @@ app.controller("report_student_courses", function ($scope, $http) {
 
   var Search = function () {
     return {
-      student: {},
+      customer: {},
       date: new Date()
     }
   };
@@ -18,8 +18,8 @@ app.controller("report_student_courses", function ($scope, $http) {
 
   $scope.searchAll = function () {
 
-    $scope.student = $scope.search.student;
-    $scope.getTicketList($scope.search.student);
+    $scope.customer = $scope.search.customer;
+    $scope.getTicketList($scope.search.customer);
 
     site.hideModal('#searchModal');
     $scope.clearAll();
@@ -49,7 +49,7 @@ app.controller("report_student_courses", function ($scope, $http) {
     )
   };
 
-  $scope.getTicketList = function (student) {
+  $scope.getTicketList = function (customer) {
 
     $scope.report = {
       date: $scope.search.date,
@@ -62,7 +62,7 @@ app.controller("report_student_courses", function ($scope, $http) {
       url: "/api/book_course/student_report",
       data: {
         where: {
-          'student.id': student.id,
+          'customer.id': customer.id,
         }
       }
     }).then(

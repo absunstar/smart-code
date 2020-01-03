@@ -89,6 +89,11 @@ module.exports = function init(site) {
             safe: result.doc.safe,
             company: result.doc.company,
             branch: result.doc.branch,
+            shift: {
+              id: result.doc.shift.id,
+              code: result.doc.shift.code,
+              name: result.doc.shift.name
+            },
             date: result.doc.date,
             transition_type: 'out',
             operation: 'حذف خصم موظف',

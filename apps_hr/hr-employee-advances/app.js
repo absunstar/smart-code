@@ -51,6 +51,11 @@ module.exports = function init(site) {
           date: doc.date,
           sourceName: doc.employee.name,
           description: doc.description,
+          shift: {
+            id: doc.shift.id,
+            code: doc.shift.code,
+            name: doc.shift.name
+          },
           company: doc.company,
           transition_type: 'out',
           operation: ' سلفة موظف',
@@ -121,8 +126,14 @@ module.exports = function init(site) {
             date: result.doc.date,
             company: result.doc.company,
             branch: result.doc.branch,
+            shift: result.doc.shift,
             sourceName: result.doc.employee.name,
             description: result.doc.description,
+            shift: {
+              id: result.doc.shift.id,
+              code: result.doc.shift.code,
+              name: result.doc.shift.name
+            },
             operation: 'حذف سلفة موظف',
             transition_type: 'in'
           }

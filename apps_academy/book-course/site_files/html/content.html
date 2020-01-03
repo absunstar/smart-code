@@ -8,50 +8,50 @@
                         <i-control class="col3" label="##word.search_student##" ng-model="student_search"
                             ng-keydown="getStudentsList($event)"></i-control>
 
-                        <i-list class="col4" label="##word.student##" ng-model="book_course.student" display="name"
+                        <i-list class="col4" label="##word.student##" ng-model="book_course.customer" display="name"
                             items="studentList" ng-search="students_searching"></i-list>
 
-                        <i-button class="col2" ng-show="book_course.student.id" type="details"
-                            label="##word.students_details##" ng-click="showStudent(book_course.student.id)"></i-button>
+                        <i-button class="col2" ng-show="book_course.customer.id" type="details"
+                            label="##word.students_details##" ng-click="showStudent(book_course.customer.id)"></i-button>
 
                         <i-checkbox help-id="book_course_active" class="col2" label="##word.active##"
                             ng-model="book_course.active"></i-checkbox>
                     </div>
 
-                    <div ng-show="book_course.student.id" class="col10 dashed">
+                    <div ng-show="book_course.customer.id" class="col10 dashed">
                         <table class="table hover center bold">
                             <tr>
                                 <td class="title">##word.student##</td>
-                                <td colspan="5"> {{book_course.student.name}}</td>
+                                <td colspan="5"> {{book_course.customer.name}}</td>
                             </tr>
 
                             <tr>
                                 <td class="title">##word.mobile##</td>
-                                <td colspan="2" class="blue "> {{book_course.student.mobile}}</td>
+                                <td colspan="2" class="blue "> {{book_course.customer.mobile}}</td>
                                 <td class="title">##word.phone##</td>
-                                <td colspan="2" class="blue "> {{book_course.student.phone}}</td>
+                                <td colspan="2" class="blue "> {{book_course.customer.phone}}</td>
                             </tr>
 
                             <tr>
                                 <td class="title">##word.whatsapp##</td>
-                                <td colspan="2" class="blue "> {{book_course.student.whatsapp}}</td>
+                                <td colspan="2" class="blue "> {{book_course.customer.whatsapp}}</td>
                                 <td class="title">##word.email##</td>
-                                <td colspan="2" class="blue "> {{book_course.student.email}}</td>
+                                <td colspan="2" class="blue "> {{book_course.customer.email}}</td>
                             </tr>
 
                             <tr>
                                 <td class="title">##word.indentfy##</td>
-                                <td class="blue "> {{book_course.student.indentfy.ar}}</td>
+                                <td class="blue "> {{book_course.customer.indentfy.ar}}</td>
                                 <td class="title">##word.birth_date##</td>
-                                <td colspan="3" class="brown "> {{book_course.student.birth_date | date : 'dd - MM -
+                                <td colspan="3" class="brown "> {{book_course.customer.birth_date | date : 'dd - MM -
                                     yyyy'}}</td>
                             </tr>
 
                             <tr>
                                 <td class="title">##word.addresses##</td>
-                                <td colspan="5"> {{book_course.student.gov.name}} -
-                                    {{book_course.student.neighborhood.name}} - {{book_course.student.area.name}} -
-                                    {{book_course.student.address}}
+                                <td colspan="5"> {{book_course.customer.gov.name}} -
+                                    {{book_course.customer.neighborhood.name}} - {{book_course.customer.area.name}} -
+                                    {{book_course.customer.address}}
                                 </td>
 
                             </tr>

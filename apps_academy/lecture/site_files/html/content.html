@@ -37,7 +37,7 @@
 
                             <div ng-repeat="s in lecture.student_list" class="row">
                                 <i-list class="col5" items="studentList" label="##word.student##"
-                                    ng-search="student.$student_search" ng-model="s.student"></i-list>
+                                    ng-search="customer.$student_search" ng-model="s.customer"></i-list>
 
                                 <i-button class="col1" type="delete default"
                                     ng-click="lecture.student_list.length ==1 || lecture.student_list.splice($index,1)">

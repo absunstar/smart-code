@@ -1,5 +1,4 @@
 [
-
     {
         "name": "menu_monitor",
         "en": "Monitor",
@@ -15,7 +14,136 @@
         "en": "Tracking All Systems",
         "ar": "متابعة كل الانظمة"
     },
-
+    {
+        "name": "report_trainer_attend_name",
+        "en": "Report Trainer Attend Session",
+        "ar": "تقرير حضور الجلسات للمدربين"
+    },
+    {
+        "name": "report_trainer_attend_menus",
+        "en": "Trainer Attend Session",
+        "ar": "حضور الجلسات للمدربين"
+    },
+    {
+        "name": "report_trainer_detailed",
+        "en": "Report Trainer Detailed",
+        "ar": "تقرير تفصيلي للمدربين"
+    },
+    {
+        "name": "report_student_attend",
+        "en": "Report Students Attend Course",
+        "ar": "تقرير حضور الكورسات للطلاب"
+    },
+    {
+        "name": "report_student_detailed",
+        "en": "Report Student Detailed",
+        "ar": "تقرير تفصيلي للطلاب"
+    },
+    {
+        "name": "detailed_reports",
+        "en": "Detailed Reports",
+        "ar": "تقارير تفصيلية"
+    },
+    {
+        "name": "menu_workflow_tag",
+        "en": "Tracking Workflow",
+        "ar": "تحرير ومتابعة اﻻجراءات"
+    },
+    {
+        "name": "menu_settings",
+        "en": "Setting",
+        "ar": "الاعدادت"
+    },
+    {
+        "name": "menu_setting_tag",
+        "en": "System Setting",
+        "ar": "اعدادات النظام"
+    },
+    {
+        "name": "menus_users",
+        "en": "Users",
+        "ar": "المستخدمين"
+    },
+    {
+        "name": "menus_users_permissions",
+        "en": "Users Permissions",
+        "ar": "صلاحيات المستخدمين"
+    },
+    {
+        "name": "general_menus",
+        "en": "General Menus",
+        "ar": "قائمة الاعدادات العامة"
+    },
+    {
+        "name": "address_menus",
+        "en": "Address Menu",
+        "ar": "قائمة العناوين"
+    },
+    {
+        "name": "address_menus_manegment",
+        "en": "Address Menu Manegment",
+        "ar": "إدارة العناوين"
+    },
+    {
+        "name": "menu_goves",
+        "en": "Goves Menu",
+        "ar": "قائمة المحافظات"
+    },
+    {
+        "name": "menu_goves_tag",
+        "en": " Goves Manegment",
+        "ar": "إدارة المحافظات"
+    },
+    {
+        "name": "invoices_menus",
+        "en": "invoices Menu",
+        "ar": "قائمة الفواتير"
+    },
+    {
+        "name": "invoices_management",
+        "en": "invoices Management",
+        "ar": "إدارة الفواتير"
+    },
+    {
+        "name": "academy_setting",
+        "en": "Academy Setting",
+        "ar": "إعدادات الأكاديمي"
+    },
+    {
+        "name": "security_system",
+        "en": "Security System",
+        "ar": "نظام الحماية"
+    },
+    {
+        "name": "general_setting",
+        "en": "General Setting",
+        "ar": "إعدادات عامة"
+    },
+    {
+        "name": "inventories",
+        "en": "Inventories",
+        "ar": "المخازن"
+    },
+    {
+        "name": "accounting",
+        "en": "Accounting",
+        "ar": "الحسابات"
+    },
+    {
+        "name": "employees",
+        "en": "Employees",
+        "ar": "الموظفين"
+    },
+    {
+        "name": "reports",
+        "en": "Reports",
+        "ar": "التقارير"
+    },
+    {
+        "name": "safes_payments_menus",
+        "en": "Safes Payments Menu",
+        "ar": "قائمة معاملات الخزينة"
+    },
     {
         "name": "menu_workflow",
         "en": "Workflow",
@@ -45,23 +173,17 @@
         "name": "detailed_reports",
         "en": "Detailed Reports",
         "ar": "تقارير تفصيلية"
-    }, 
+    },
     {
         "name": "menu_workflow_tag",
         "en": "Tracking Workflow",
         "ar": "تحرير ومتابعة اﻻجراءات"
     },
     {
-        "name": "menu_settings",
-        "en": "Setting",
-        "ar": "الاعدادت"
-    },
-    {
         "name": "menu_setting_tag",
         "en": "System Setting",
         "ar": "اعدادات النظام"
     },
-
     {
         "name": "menus_users",
         "en": "Users",
@@ -347,7 +469,6 @@
         "en": "Add Jobs Manegment",
         "ar": "إدارة نظام الوظائف"
     },
-    
     {
         "name": "stores_menus",
         "en": "Stores Menu",
@@ -448,7 +569,6 @@
         "en": "Accounts Management",
         "ar": " إدارة الحسابات"
     },
-
     {
         "name": "system_menus",
         "en": "System Menus",
@@ -514,8 +634,6 @@
         "en": "Distributed Tickets Reports",
         "ar": "تقارير البلاغات الموزعة"
     },
-
-
     {
         "name": "system_stores_menus",
         "en": "Stores",
@@ -601,8 +719,6 @@
         "en": "Eng Item Dept",
         "ar": " مديونية الفنيين"
     },
-
-
     {
         "name": "system_safe_menus",
         "en": "Safe",
@@ -693,8 +809,6 @@
         "en": "General Monthly Employees Report",
         "ar": "   تقرير إجمالي للمستخدمين "
     },
-
-
     {
         "name": "system_employees_insurance",
         "en": "Employee Insurance System",
@@ -710,8 +824,6 @@
         "en": "Add Facility ",
         "ar": " اضافة منشأة في التامينات"
     },
-
-
     {
         "name": "system_insurance_slides",
         "en": "Insurance Slides ",
@@ -731,6 +843,121 @@
         "name": "system_accounting_tree",
         "en": " Accounting Tree ",
         "ar": "  شجرة الحسابات "
+    },
+    {
+        "name": "service_management",
+        "en": "Service Management",
+        "ar": "إدارة الخدمات"
+    },
+    {
+        "name": "service_menus",
+        "en": "Service Menu",
+        "ar": "قائمة الخدمات"
+    },
+    {
+        "name": "menu_shift",
+        "en": "Shifts Menu",
+        "ar": "قائمة الشيفتات"
+    },
+    {
+        "name": "menu_shift_tag",
+        "en": "Shifts Manegment",
+        "ar": "إدارة الشيفتات"
+    },
+    {
+        "name": "order_slides_menus",
+        "en": "Order Slides Menu",
+        "ar": "حساب شريحة جلسات"
+    },
+    {
+        "name": "system_employees_salary_report",
+        "en": "Full Employee Report",
+        "ar": "تقرير مالي للموظفين"
+    },
+    {
+        "name": "default_setting_menus",
+        "en": "Settings Default Menu",
+        "ar": " قائمة الإعدادات الإفتراضية"
+    },
+    {
+        "name": "default_setting_management",
+        "en": "Settings Default Management",
+        "ar": "نظام الإعدادات"
+    },
+    {
+        "name": "menu_city",
+        "en": "City Menu",
+        "ar": "قائمة المدن"
+    },
+    {
+        "name": "menu_city_tag",
+        "en": "City Manegment",
+        "ar": "إدارة المدن"
+    },
+    {
+        "name": "menu_customers_groups",
+        "en": "Customer Groups Menu",
+        "ar": "قائمة مجموعة العملاء"
+    },
+    {
+        "name": "menu_customers_groups_tag",
+        "en": "Add Customer Groups",
+        "ar": "إضافة مجموعة عملاء"
+    },
+    {
+        "name": "menu_customers",
+        "en": "Customer Menu",
+        "ar": "قائمة العملاء"
+    },
+    {
+        "name": "menu_customers_tag",
+        "en": "Add Customer",
+        "ar": "إضافة عملاء"
+    },
+    {
+        "name": "menu_users",
+        "en": " Users",
+        "ar": "المستخدمين"
+    },
+    {
+        "name": "menu_company",
+        "en": "Academy",
+        "ar": "الأكاديمية"
+    },
+    {
+        "name": "menu_company_tag",
+        "en": "Add Academy Manegment",
+        "ar": "إدارة نظام الأكاديمية"
+    },
+    {
+        "name": "menu_security_and_permissions",
+        "en": "Users privileges",
+        "ar": "الحماية والصلاحيات"
+    },
+    {
+        "name": "order_slides_management",
+        "en": "Order Slides Management",
+        "ar": "إدارة شرائح الجلسات"
+    },
+    {
+        "name": "request_service_management",
+        "en": "Request Service / Subscriptions Management",
+        "ar": "إدارة طلبات الخدمات / الإشتراكات"
+    },
+    {
+        "name": "request_service_menus",
+        "en": "Request Service / Subscriptions Menu",
+        "ar": "قائمة طلبات الخدمات / الإشتراكات"
+    },
+    {
+        "name": "hall_management",
+        "en": "Halls Management",
+        "ar": "إدارة القاعات"
+    },
+    {
+        "name": "hall_menus",
+        "en": "Halls Menu",
+        "ar": "قائمة القاعات"
     },
     {
         "name": "system_employee_advance",
@@ -777,7 +1004,6 @@
         "en": "Item Details",
         "ar": "تفاصيل الصنف"
     },
-
     {
         "name": "system_address_menus",
         "en": " Address Menu",
@@ -838,7 +1064,6 @@
         "en": " Add Regions",
         "ar": "إضافة منطقة"
     },
-
     {
         "name": "system_companies_menus",
         "en": " Companies",
@@ -929,7 +1154,6 @@
         "en": " Stores Transfer",
         "ar": "تحويلات المخازن"
     },
-
     {
         "name": "system_social_status_menus",
         "en": "Social Status Menu",
@@ -960,7 +1184,6 @@
         "en": "import & export DB",
         "ar": "  استيراد وتصدير قواعد البيانات "
     },
-
     {
         "name": "companies_menus",
         "en": "Companies Menus",
@@ -986,5 +1209,4 @@
         "en": "General Menus",
         "ar": "قائمة الاعدادات العامة"
     }
-
 ]
