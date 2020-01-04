@@ -66,7 +66,9 @@
                     <fieldset>
                         <legend>
                             ##word.security_public_roles##
+                            <i-button ng-click="allRolesTrue()"></i-button>
                         </legend>
+                        
                         <i-checklist primary="name" label="" items="public_roles" display="##session.lang##" ng-model="user.roles"></i-checklist>
                     </fieldset>
                 </div>

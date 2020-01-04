@@ -635,16 +635,6 @@
         "ar": "تسجيل إذن وارد / فاتورة شراء"
     },
     {
-        "name": "system_transfer_items_menus",
-        "en": "Transfer Items Between Branches",
-        "ar": "تحويل أصناف بين الفروع"
-    },
-    {
-        "name": "system_register_transfer_items",
-        "en": "Add Transfer Items Between Branches",
-        "ar": " إضافة تحويل أصناف بين الفروع"
-    },
-    {
         "name": "system_stores_out_menus",
         "en": "Store Out",
         "ar": "إذن صرف / فاتورة بيع"

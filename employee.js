@@ -45,7 +45,7 @@ site.importApps(__dirname + '/apps_accounting')
 site.importApps(__dirname + '/apps_hr')
 site.importApps(__dirname + '/apps_employee')
 site.importApps(__dirname + '/apps_core')
-site.features.push('employee')
+site.addFeature('employee')
 setTimeout(() => {
 
     site.importApp(__dirname + '/apps_private/companies')

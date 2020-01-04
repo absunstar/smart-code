@@ -12,6 +12,14 @@
             </a>
             <a class="tab-link" onclick="site.showTabContent(event, '#customersFiles')">
                 ##word.customers_files## </a>
+            <a class="tab-link" onclick="site.showTabContent(event,'#familyInformation')">
+                ##word.family_info##
+            </a>
+
+            <a class="tab-link" onclick="site.showTabContent(event,'#accountingInformation')">
+                ##word.accounting##
+            </a>
+
             <a class="tab-link hide" onclick="site.showTabContent(event, '#officialDocuments')">
                 ##word.customers_official_documents## </a>
             <a class="tab-link hide" onclick="site.showTabContent(event, '#openingBalance')">
@@ -791,6 +799,128 @@
 
                 </fieldset>
             </div>
+
+            <div id="familyInformation" class="tab-content">
+                <fieldset class="row">
+                    <i-list class="col3" disabled items="hostList" label="##word.host##" display="##session.lang##"
+                        ng-model="customer.host"></i-list>
+                </fieldset>
+
+                <fieldset ng-show="customer.host.id == 2 || customer.host.id == 1">
+
+                    <legend>
+
+                        ##word.dad_data##
+                    </legend>
+
+                    <table class="table hover bold">
+
+                        <tr>
+                            <td class="title">##word.dad_name##</td>
+                            <td class="center">{{customer.dad_name}}</td>
+                        </tr>
+                        <tr>
+                            <td class="title">##word.dad_mobile##</td>
+                            <td class="center">{{customer.dad_mobile}}</td>
+                        </tr>
+                        <tr>
+                            <td class="title">##word.dad_job##</td>
+                            <td class="center">{{customer.dad_job}}</td>
+                        </tr>
+                        <tr>
+                            <td class="title">##word.dad_job_address##</td>
+                            <td class="center">{{customer.dad_job_address}}</td>
+                        </tr>
+                        <tr>
+                            <td class="title">##word.dad_job_phone##</td>
+                            <td class="center">{{customer.dad_job_phone}}</td>
+                        </tr>
+                    </table>
+
+                </fieldset>
+
+                <fieldset ng-show="customer.host.id == 3 || customer.host.id == 1">
+
+                    <legend>
+                        ##word.mom_data##
+                    </legend>
+
+                    <table class="table hover bold">
+
+                        <tr>
+                            <td class="title">##word.mom_name##</td>
+                            <td class="center">{{customer.mom_name}}</td>
+                        </tr>
+                        <tr>
+                            <td class="title">##word.mom_mobile##</td>
+                            <td class="center">{{customer.mom_mobile}}</td>
+                        </tr>
+                        <tr>
+                            <td class="title">##word.mom_job##</td>
+                            <td class="center">{{customer.mom_job}}</td>
+                        </tr>
+                        <tr>
+                            <td class="title">##word.mom_job_address##</td>
+                            <td class="center">{{customer.mom_job_address}}</td>
+                        </tr>
+                        <tr>
+                            <td class="title">##word.mom_job_phone##</td>
+                            <td class="center">{{customer.mom_job_phone}}</td>
+                        </tr>
+
+                    </table>
+
+                </fieldset>
+
+                <fieldset ng-show="customer.host.id == 4">
+                    <legend>##word.host_data##</legend>
+
+                    <table class="table hover bold">
+
+                        <tr>
+                            <td class="title">##word.relation_parents##</td>
+                            <td class="center">{{customer.relation_parents}}</td>
+                        </tr>
+                        <tr>
+                            <td class="title">##word.host_name##</td>
+                            <td class="center">{{customer.host_name}}</td>
+                        </tr>
+                        <tr>
+                            <td class="title">##word.host_mobile##</td>
+                            <td class="center">{{customer.host_mobile}}</td>
+                        </tr>
+                        <tr>
+                            <td class="title">##word.host_job##</td>
+                            <td class="center">{{customer.host_job}}</td>
+                        </tr>
+                        <tr>
+                            <td class="title">##word.host_job_address##</td>
+                            <td class="center">{{customer.host_job_address}}</td>
+                        </tr>
+                        <tr>
+                            <td class="title">##word.host_job_phone##</td>
+                            <td class="center">{{customer.host_job_phone}}</td>
+                        </tr>
+
+                    </table>
+
+                </fieldset>
+            </div>
+
+            <div id="accountingInformation" class="tab-content">
+                <fieldset>
+                    <legend>
+                        ##word.accounting##
+                    </legend>
+                    <div class="row">
+                        <i-control class="col4" disabled label="##word.file_open_fee##" type="number"
+                            ng-model="customer.file_open_fee"></i-control>
+                        <i-control class="col4" disabled label="##word.other_fee##" type="number"
+                            ng-model="customer.other_fee"></i-control>
+                    </div>
+                </fieldset>
+            </div>
+
 
             <div id="customersFiles" class="tab-content">
                 <i-files view ng-model="customer.files"></i-files>

@@ -3,6 +3,10 @@ app.controller("customers", function ($scope, $http, $timeout) {
 
   $scope.customer = {};
 
+  if (site.feature('gym') || site.feature('academy')) 
+  $scope.showThis = true;
+
+
   $scope.displayAddCustomer = function () {
     $scope.error = '';
     $scope.customer = {
@@ -205,11 +209,6 @@ app.controller("customers", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.displaySendEmail = function () {
-    $scope.error = '';
-    site.showModal('#customerSendEmailModal');
-  };
-
   $scope.getCustomerList = function (where) {
     $scope.error = '';
     if ($scope.busy) {
@@ -231,6 +230,9 @@ app.controller("customers", function ($scope, $http, $timeout) {
           $scope.list = response.data.list;
           $scope.count = response.data.count;
         }
+
+
+
       },
       function (err) {
         $scope.busy = false;
@@ -448,6 +450,26 @@ app.controller("customers", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.getHost = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $scope.hostList = [];
+    $http({
+      method: "POST",
+      url: "/api/host/all"
+
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.hostList = response.data;
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
   $scope.loadMilitariesStatus = function () {
     $scope.busy = true;
     $http({
@@ -515,7 +537,7 @@ app.controller("customers", function ($scope, $http, $timeout) {
 
   };
 
-
+  $scope.getHost();
   $scope.getCustomerList();
   $scope.getCustomerGroupList();
   $scope.getIndentfy();

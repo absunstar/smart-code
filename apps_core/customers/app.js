@@ -9,6 +9,12 @@ module.exports = function init(site) {
   })
 
   site.post({
+    name: "/api/host/all",
+    path: __dirname + "/site_files/json/host.json"
+
+  })
+
+  site.post({
     name: "/api/blood_type/all",
     path: __dirname + "/site_files/json/blood_type.json"
 

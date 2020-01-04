@@ -33,7 +33,7 @@ app.controller("report_student_hosting", function ($scope, $http) {
     $scope.busy = true;
     $http({
       method: "POST",
-      url: "/api/students/all",
+      url: "/api/customers/all",
       data: {}
     }).then(
       function (response) {

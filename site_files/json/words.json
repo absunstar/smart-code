@@ -115,6 +115,16 @@
         "ar": "خصم إفتراضي"
     },
     {
+        "name": "system_transfer_items_menus",
+        "en": "Transfer Items Between Branches",
+        "ar": "تحويل أصناف بين الفروع"
+    },
+    {
+        "name": "system_register_transfer_items",
+        "en": "Add Transfer Items Between Branches",
+        "ar": " إضافة تحويل أصناف بين الفروع"
+    },
+    {
         "name": "transaction_type",
         "en": "Transaction Type",
         "ar": "نوع المعاملة"

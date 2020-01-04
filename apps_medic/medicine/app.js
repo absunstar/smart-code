@@ -1,6 +1,27 @@
 module.exports = function init(site) {
   const $medicine = site.connectCollection("medicine")
 
+
+
+  site.on('[company][created]', doc => {
+    if (site.feature('gym') || site.feature('academy'))
+      $medicine.add({
+        code: "1",
+        name: "دواء إفتراضي",
+        image_url: '/images/medicine.png',
+        company: {
+          id: doc.id,
+          name_ar: doc.name_ar
+        },
+        branch: {
+          code: doc.branch_list[0].code,
+          name_ar: doc.branch_list[0].name_ar
+        },
+        active: true
+      }, (err, doc) => { })
+  })
+
+
   site.get({
     name: 'images',
     path: __dirname + '/site_files/images/'
@@ -37,12 +58,12 @@ module.exports = function init(site) {
     }
 
     medicine_doc.company = site.get_company(req)
-/*     medicine_doc.branch = site.get_branch(req)
- */  
+    /*     medicine_doc.branch = site.get_branch(req)
+     */
 
     $medicine.find({
       where: {
-        
+
         'company.id': site.get_company(req).id,
 /*         'branch.code': site.get_branch(req).code,
  */        'name': medicine_doc.name
@@ -176,8 +197,8 @@ module.exports = function init(site) {
     }
 
     where['company.id'] = site.get_company(req).id
-/*     where['branch.code'] = site.get_branch(req).code
- */    
+    /*     where['branch.code'] = site.get_branch(req).code
+     */     
 
     $medicine.findMany({
       select: req.body.select || {},

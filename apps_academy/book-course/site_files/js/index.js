@@ -212,7 +212,7 @@ app.controller("book_course", function ($scope, $http, $timeout) {
     $scope.studentList = [];
     $http({
       method: "POST",
-      url: "/api/students/all",
+      url: "/api/customers/all",
       data: {
         search: $scope.student_search
       }

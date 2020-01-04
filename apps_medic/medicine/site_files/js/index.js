@@ -9,6 +9,7 @@ app.controller("medicine", function ($scope, $http, $timeout) {
       active: true
 
     };
+    
     site.showModal('#medicineAddModal');
 
   };

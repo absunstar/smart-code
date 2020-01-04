@@ -91,17 +91,17 @@ app.controller("security", function ($scope, $http, $interval) {
           }).then(
             function (response) {
               let data = response.data.doc
-              if(data){
+              if (data) {
                 $scope.trans = data;
                 $scope.screens.forEach(s => {
                   let newname = data.find(el => el.name == s.name.replace(/-/g, '_'));
                   if (newname) {
                     s.name = newname.ar;
                   }
-  
+
                 })
               }
-             
+
             }, function (err) {
 
 
@@ -153,6 +153,16 @@ app.controller("security", function ($scope, $http, $interval) {
     }
     $scope.user.permissions.push($scope.permission);
     $scope.permission = '';
+  };
+
+  $scope.allRolesTrue = function () {
+    for (let i = 0; i < $scope.roles.length; i++) {
+      $scope.user.roles.push({
+        name: $scope.roles[i].name,
+        en: $scope.roles[i].en,
+        ar: $scope.roles[i].ar
+      })
+    }
   };
 
   $scope.addRole = function () {
@@ -289,7 +299,7 @@ app.controller("security", function ($scope, $http, $interval) {
               $scope.onepermission[x.screen_name] = element;
             }
           });
-          
+
         } else {
           $scope.error = response.data.error;
         }

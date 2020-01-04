@@ -45,6 +45,116 @@
         "ar": "الطول"
     },
     {
+        "name": "dad_job",
+        "en": "Dad Job",
+        "ar": "وظيفة الأب"
+    },
+    {
+        "name": "dad_name",
+        "en": "Full Name Dad",
+        "ar": "إسم الأب بالكامل"
+    },
+    {
+        "name": "dad_mobile",
+        "en": "Dad Mobile",
+        "ar": "موبايل الأب"
+    },
+    {
+        "name": "dad_job_address",
+        "en": "Dad job Address",
+        "ar": "عنوان عمل الأب"
+    },
+    {
+        "name": "dad_job_phone",
+        "en": "Dad job Phone",
+        "ar": "هاتف عمل الأب"
+    },
+    {
+        "name": "dad_data",
+        "en": "Dad Data",
+        "ar": "بيانات الأب"
+    },
+    {
+        "name": "mom_job",
+        "en": "Mom Job",
+        "ar": "وظيفة الأم"
+    },
+    {
+        "name": "mom_name",
+        "en": "Full Name Mom",
+        "ar": "إسم الأم بالكامل"
+    },
+    {
+        "name": "mom_mobile",
+        "en": "Mom Mobile",
+        "ar": "موبايل الأم"
+    },
+    {
+        "name": "mom_job_address",
+        "en": "Mom job Address",
+        "ar": "عنوان عمل الأم"
+    },
+    {
+        "name": "mom_job_phone",
+        "en": "Mom job Phone",
+        "ar": "هاتف عمل الأم"
+    },
+    {
+        "name": "mom_data",
+        "en": "Mom Data",
+        "ar": "بيانات الأم"
+    },
+    {
+        "name": "host_job",
+        "en": "Host Job",
+        "ar": "وظيفة المستضيف"
+    },
+    {
+        "name": "host_name",
+        "en": "Full Name Host",
+        "ar": "إسم المستضيف بالكامل"
+    },
+    {
+        "name": "host_mobile",
+        "en": "Host Mobile",
+        "ar": "موبايل المستضيف"
+    },
+    {
+        "name": "host_job_address",
+        "en": "Host job Address",
+        "ar": "عنوان عمل المستضيف"
+    },
+    {
+        "name": "host_job_phone",
+        "en": "Host job Phone",
+        "ar": "هاتف عمل المستضيف"
+    },
+    {
+        "name": "host_data",
+        "en": "Host Data",
+        "ar": "بيانات المستضيف"
+    },
+    {
+        "name": "host",
+        "en": "Host",
+        "ar": " المستضيف"
+    },
+    {
+        "name": "relation_parents",
+        "en": "Relation Of Parents Degree",
+        "ar": "درجة الصلة بالأهل"
+    },
+    {
+        "name": "hall",
+        "en": "Class Room",
+        "ar": "الفصل الدراسي"
+    },
+    {
+        "name": "file_open_fee",
+        "en": "File Opening Fee",
+        "ar": "رسوم فتح ملف"
+    },
+    {
         "name": "disease_name",
         "en": "Disease Name",
         "ar": "إسم المرض"

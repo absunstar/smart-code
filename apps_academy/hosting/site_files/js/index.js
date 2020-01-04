@@ -198,7 +198,7 @@ app.controller("hosting", function ($scope, $http, $timeout) {
     $scope.busy = true;
     $http({
       method: "POST",
-      url: "/api/students/all",
+      url: "/api/customers/all",
       data: {
         where: {
           active: true

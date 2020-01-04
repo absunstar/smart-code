@@ -52,7 +52,7 @@ site.importApps(__dirname + '/apps_reports')
 site.importApps(__dirname + '/apps_hr')
 site.importApps(__dirname + '/apps_academy')
 site.importApps(__dirname + '/apps_medic')
-site.features.push('academy')
+site.addFeature('academy')
 
 setTimeout(() => {
     site.importApps(__dirname + '/apps_core')

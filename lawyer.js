@@ -43,7 +43,7 @@ site.importApp(__dirname + '/apps_private/ui-print')
 site.importApp(__dirname + '/apps_private/ui-help')
 site.importApps(__dirname + '/apps_hr')
 site.importApps(__dirname + '/apps_lawyer')
-site.features.push('lawyer')
+site.addFeature('lawyer')
 setTimeout(() => {
     site.importApps(__dirname + '/apps_core')
     site.importApp(__dirname + '/apps_private/companies')

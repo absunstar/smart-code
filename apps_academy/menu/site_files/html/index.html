@@ -155,19 +155,15 @@
                     <h2> ##word.menu_vendors## </h2>
                     <p> ##word.menu_vendors_tag##</p>
                 </a>
-
+<!-- 
                 <a class="item" href="/customers_group"
                     x-permissions="sales_customers_group_ui || sales_customers_group_manage">
                     <img src="/images/vendor_group.png">
                     <h2> ##word.menu_customers_groups## </h2>
                     <p> ##word.menu_customers_groups_tag##</p>
                 </a>
-
-                <a class="item" href="/customers" x-permissions="customers_ui || customers_manage">
-                    <img src="/images/vendor.png">
-                    <h2> ##word.menu_customers## </h2>
-                    <p> ##word.menu_customers_tag##</p>
-                </a>
+ -->
+            
 
                 <br>
                 <br>
@@ -221,13 +217,14 @@
                     <h2>##word.items_group##</h2>
                     <p>##word.items_group_add##</p>
                 </a>
-                <br>
-                <br>
                 <a class="item" href="/stores" x-permissions="stores_ui || stores_manage">
                     <img src="/images/pic_store2.png">
                     <h2>##word.system_stores_menus##</h2>
                     <p>##word.system_stores##</p>
                 </a>
+                <br>
+                <br>
+
 
                 <a class="item" href="/stores_in" x-permissions="stores_in_ui || stores_in_manage">
                     <img src="/images/pic_money_in.png">
@@ -240,11 +237,11 @@
                     <h2>##word.system_stores_out_menus##</h2>
                     <p>##word.system_register_stores_out##</p>
                 </a>
-                <!--  <a class="item" href="/stores_transfer" x-permissions="stores_transfer_ui || stores_transfer_manage">
-                    <img src="/images/stores_transfer.png">
-                    <h2>##word.system_stores_transfer_menu##</h2>
-                    <p>##word.system_stores_transfer_management##</p>
-                </a> -->
+                <a class="item" href="/transfer_branch" x-permissions="transfer_branch_ui || transfer_branch_manage">
+                    <img src="/images/transfer_branch.png">
+                    <h2>##word.system_transfer_items_menus##</h2>
+                    <p>##word.system_register_transfer_items##</p>
+                </a>
 
                 <a class="item" href="/tax_types" x-permissions="tax_types_ui || tax_types_manage">
                     <img src="/images/tax_type.png">
@@ -461,17 +458,6 @@
             <div id="companyTab" class="tab-content">
 
 
-                <a class="item" href="/students" x-permissions="students_ui || students_manage">
-                    <img src="images/students.png">
-                    <h2> ##word.menu_students## </h2>
-                    <p> ##word.menu_students_tag##</p>
-                </a>
-
-                <a class="item" href="/tenant" x-permissions="tenant_ui || tenant_manage">
-                    <img src="images/tenant.png">
-                    <h2> ##word.menu_tenant## </h2>
-                    <p> ##word.menu_tenant_tag##</p>
-                </a>
 
                 <a class="item" href="/book_hall" x-permissions="book_hall_ui || book_hall_manage">
                     <img src="images/book_hall.png">
@@ -479,17 +465,6 @@
                     <p> ##word.menu_book_hall_tag##</p>
                 </a>
 
-            <!--     <a class="item" href="/hall" x-permissions="class_rooms_ui || class_rooms_manage">
-                    <img src="images/hall.png">
-                    <h2> ##word.hall## </h2>
-                    <p> ##word.class_rooms_add##</p>
-                </a>
- -->
-                <a class="item" href="/courses" x-permissions="courses_ui || courses_manage">
-                    <img src="images/courses.png">
-                    <h2> ##word.menu_courses## </h2>
-                    <p> ##word.add_course_tag##</p>
-                </a>
 
                 <a class="item" href="/create_course" x-permissions="create_course_ui || create_course_manage">
                     <img src="images/create_course.png">
@@ -509,15 +484,31 @@
                     <p> ##word.menu_book_course_tag##</p>
                 </a>
 
+
+                <br>
+                <br>
+                <br>
+                <a class="item" href="/customers" x-permissions="customers_ui || customers_manage">
+                    <img src="/images/students.png">
+                    <h2> ##word.menu_students## </h2>
+                    <p> ##word.menu_students_tag##</p>
+                </a>
+
+                <a class="item" href="/tenant" x-permissions="tenant_ui || tenant_manage">
+                    <img src="images/tenant.png">
+                    <h2> ##word.menu_tenant## </h2>
+                    <p> ##word.menu_tenant_tag##</p>
+                </a>
+                <a class="item" href="/courses" x-permissions="courses_ui || courses_manage">
+                    <img src="images/courses.png">
+                    <h2> ##word.menu_courses## </h2>
+                    <p> ##word.add_course_tag##</p>
+                </a>
+
                 <a class="item" href="/hall" x-permissions="hall_ui || hall_manage">
                     <img src="/images/hall.png">
                     <h2> ##word.hall_menus## </h2>
                     <p> ##word.hall_management##</p>
-                </a>
-                <a class="item" href="/order_slides" x-permissions="order_slides_ui || order_slides_manage">
-                    <img src="/images/slides.png">
-                    <h2> ##word.order_slides_menus## </h2>
-                    <p> ##word.order_slides_management##</p>
                 </a>
 
                 <br>
@@ -529,7 +520,11 @@
                     <h2>##word.account_invoices_menu## </h2>
                     <p>##word.account_invoices_management##</p>
                 </a>
-
+                <a class="item" href="/order_slides" x-permissions="order_slides_ui || order_slides_manage">
+                    <img src="/images/slides.png">
+                    <h2> ##word.order_slides_menus## </h2>
+                    <p> ##word.order_slides_management##</p>
+                </a>
             </div>
 
         </div>
