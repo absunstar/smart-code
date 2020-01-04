@@ -3,5 +3,5 @@
     "name": "safe_admin",
     "en": "Safes Admin",
     "ar": "إدارة الخزائن",
-    "permissions": ["safe_manage"]
+    "permissions": ["safes_manage"]
 }]

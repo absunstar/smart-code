@@ -1,0 +1,7 @@
+[{
+    "module_name" : "accounting" ,
+    "name": "report_orders_admin",
+    "en": "Report Orders Admin",
+    "ar": "تقرير مبيعات الطلبات",
+    "permissions": ["report_orders_manage"]
+}]

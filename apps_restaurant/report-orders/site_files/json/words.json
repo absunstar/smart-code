@@ -10,9 +10,9 @@
         "ar": "بيانات تقرير موظفين التوصيل"
     },
     {
-        "name": "report_sales_name",
-        "en": "Report Items Sales",
-        "ar": "تقرير مبيعات الأصناف"
+        "name": "report_orders_name",
+        "en": "Report Orders Sales",
+        "ar": "تقرير مبيعات الطلبات"
     },
     {
         "name": "report_sales_menus",

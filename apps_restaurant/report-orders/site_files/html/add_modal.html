@@ -1,0 +1,23 @@
+<div id="reportInvoicesAddModal" class="modal" fixed>
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.report_sales_add_name##
+                <i class="fa fa-plus"></i>
+            </h2>
+        </div>
+
+        <div class="modal-body">
+            <div x-import="report-sales/content.html"></div>
+        </div>
+
+        <div class="modal-footer center">
+            <h2 class="error"> {{error}} </h2>
+            <h2 class="green center"> {{success}} </h2>
+            <i-button type="add" label="##word.add##" ng-click="addReportInvoices()"></i-button>
+            
+            <i-button type="close" label="##word.close##" onclick="site.hideModal('#reportInvoicesAddModal')"></i-button>
+        </div>
+    </div>
+</div>

@@ -390,6 +390,11 @@
         "ar": "إدارة إستمارات حجز الكورسات"
     },
     {
+        "name": "report_orders_menus",
+        "en": "Report Orders Menu",
+        "ar": "قائمة تقارير مبيعات الطلبات "
+    },
+    {
         "name": "menu_medicine",
         "en": "Medicines",
         "ar": "الأدوية"

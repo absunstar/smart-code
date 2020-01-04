@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" x-permissions="report_sales_ui || report_sales_manage" data-ng-app="myApp">
+<html lang="en" x-permissions="report_orders_ui || report_orders_manage" data-ng-app="myApp">
 
 <head x-import="head.html">
 
@@ -14,18 +14,18 @@
 
     <div id="main-layout" class="container">
         <div class="row">
-            <div class="row" ng-controller="report_sales" x-permissions="login">
+            <div class="row" ng-controller="report_orders" x-permissions="login">
                
-                <div x-import="report-sales/search_all_modal.html"></div>
+                <div x-import="report-orders/search_all_modal.html"></div>
 
                 <div class="row">
-                    <h1 class="bold text-center"> ##word.report_sales_name## </h1>
+                    <h1 class="bold text-center"> ##word.report_orders_name## </h1>
                 </div>
 
                 <div class="top-actions">
                   
                     <i-button type="search"
-                        x-permissions="report_sales_search || report_sales_manage"
+                        x-permissions="report_orders_search || report_orders_manage"
                         label="##word.search_all##" onclick="site.showModal('#reportSalesSearchModal')">
                     </i-button>
 
@@ -52,11 +52,11 @@
                 </table>
 
                 <div class="row">
-                    <i-button x-permissions="report_sales_print || report_sales_manage"
+                    <i-button x-permissions="report_orders_print || report_orders_manage"
                         type="print" label="##word.print##" onclick="site.print('#t1')"></i-button>
-                    <i-button x-permissions="report_sales_export || report_sales_manage"
+                    <i-button x-permissions="report_orders_export || report_orders_manage"
                         type="export" label="##word.export_to_excel##"
-                        onclick="export_to_xlsx('t1' , 'report_sales.xlsx')">
+                        onclick="export_to_xlsx('t1' , 'report_orders.xlsx')">
                     </i-button>
                 </div>
 
@@ -65,7 +65,7 @@
     </div>
     <div x-import="scripts.html"></div>
 
-    <script x-permissions="login" x-import="report-sales/index.js"></script>
+    <script x-permissions="login" x-import="report-orders/index.js"></script>
 </body>
 
 </html>
