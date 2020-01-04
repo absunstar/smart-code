@@ -22,7 +22,27 @@ module.exports = function init(site) {
         name_ar: doc.branch_list[0].name_ar
       },
       active: true
-    }, (err, doc) => { })
+    }, (err, _doc) => { 
+      $safes.add({
+        name: "خزينة بنك إفتراضية",
+        balance: 0,
+        type: {
+          id: 2,
+          en: "Bank",
+          ar: "بنك"
+        },
+        image_url: '/images/safe.png',
+        company: {
+          id: doc.id,
+          name_ar: doc.name_ar
+        },
+        branch: {
+          code: doc.branch_list[0].code,
+          name_ar: doc.branch_list[0].name_ar
+        },
+        active: true
+      })
+    })
   })
 
 

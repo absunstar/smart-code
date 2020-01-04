@@ -1,22 +1,37 @@
 [
     {
-        "id" : 1,
+        "id": 1,
         "en": "Store In / Purchase Invoice",
         "ar": "إذن وارد / فاتورة شراء"
     },
     {
-        "id" : 2,
+        "id": 2,
         "en": "Store In / Sales Invoice",
         "ar": "إذن صرف / فاتورة مبيعات"
     },
     {
-        "id" : 3,
+        "id": 3,
         "en": "Orders Screen",
         "ar": "شاشة الطلبات"
     },
     {
-        "id" : 4,
+        "id": 4,
         "en": "Orders Service",
         "ar": "طلب خدمة"
+    },
+    {
+        "id": 5,
+        "en": "Booking A Hall",
+        "ar": "حجز قاعة"
+    },
+    {
+        "id": 6,
+        "en": "Trainer Account",
+        "ar": "حساب مدرب"
+    },
+    {
+        "id": 7,
+        "en": "Form Course Booking",
+        "ar": "إستمارة حجز كورس"
     }
 ]

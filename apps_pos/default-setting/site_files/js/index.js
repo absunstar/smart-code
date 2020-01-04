@@ -153,7 +153,7 @@ app.controller("default_setting", function ($scope, $http) {
     )
   };
 
-   $scope.getSourceType = function () {
+  $scope.getSourceType = function () {
     $scope.error = '';
     $scope.busy = true;
     $scope.sourceTypeList = [];
@@ -163,16 +163,18 @@ app.controller("default_setting", function ($scope, $http) {
     }).then(
       function (response) {
         $scope.busy = false;
-        if (site.feature('gym')) $scope.sourceTypeList = response.data.filter(i => i.id != 3);
-        else if (site.feature('restaurant')) $scope.sourceTypeList = response.data.filter(i => i.id != 4);
-        else if (site.feature('pos')) $scope.sourceTypeList = response.data.filter(i => i.id != 4 && i.id != 3);      
+        if (site.feature('gym')) $scope.sourceTypeList = response.data.filter(i => i.id != 3 && i.id != 5 && i.id != 6 && i.id != 7);
+        else if (site.feature('restaurant')) $scope.sourceTypeList = response.data.filter(i => i.id != 4 && i.id != 5 && i.id != 6 && i.id != 7);
+        else if (site.feature('pos')) $scope.sourceTypeList = response.data.filter(i => i.id != 4 && i.id != 3 && i.id != 5 && i.id != 6 && i.id != 7);
+        else if (site.feature('academy')) $scope.sourceTypeList = response.data.filter(i => i.id != 4 && i.id != 3);
+        else $scope.sourceTypeList = response.data;
       },
       function (err) {
         $scope.busy = false;
         $scope.error = err;
       }
     )
-  }; 
+  };
 
 
   $scope.getDiscountMethodList = function () {
@@ -223,7 +225,7 @@ app.controller("default_setting", function ($scope, $http) {
       url: "/api/delegates/all",
       data: {
         where: {
-          active : true
+          active: true
         }
       }
     }).then(
@@ -303,7 +305,7 @@ app.controller("default_setting", function ($scope, $http) {
     )
   };
 
- 
+
   $scope.getPaymentMethodList = function () {
     $scope.error = '';
     $scope.busy = true;
@@ -371,25 +373,25 @@ app.controller("default_setting", function ($scope, $http) {
     )
   };
 
-/*   $scope.getSourceType = function () {
-    $scope.error = '';
-    $scope.busy = true;
-    $scope.sourceTypeList = [];
-    $http({
-      method: "POST",
-      url: "/api/invoice_source_type/all"
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        $scope.sourceTypeList = response.data;
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
-  };
- */
+  /*   $scope.getSourceType = function () {
+      $scope.error = '';
+      $scope.busy = true;
+      $scope.sourceTypeList = [];
+      $http({
+        method: "POST",
+        url: "/api/invoice_source_type/all"
+      }).then(
+        function (response) {
+          $scope.busy = false;
+          $scope.sourceTypeList = response.data;
+        },
+        function (err) {
+          $scope.busy = false;
+          $scope.error = err;
+        }
+      )
+    };
+   */
   $scope.getPrintersPath = function () {
     $scope.busy = true;
     $http({
