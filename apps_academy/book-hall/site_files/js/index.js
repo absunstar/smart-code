@@ -15,6 +15,13 @@ app.controller("book_hall", function ($scope, $http, $timeout) {
           paid_list: []
 
         };
+
+        if ($scope.defaultSettings.general_Settings) {
+          if ($scope.defaultSettings.general_Settings.hall)
+            $scope.book_hall.hall = $scope.defaultSettings.general_Settings.hall;
+          if ($scope.defaultSettings.general_Settings.tenant)
+            $scope.book_hall.tenant = $scope.defaultSettings.general_Settings.tenant;
+        };
         site.showModal('#bookHallAddModal');
       } else $scope.error = '##word.open_shift_not_found##';
     });
@@ -309,11 +316,7 @@ app.controller("book_hall", function ($scope, $http, $timeout) {
       url: "/api/tenant/all",
       data: {
         search: $scope.tenant_search,
-
-        where: {
-          active: true
-        },
-
+        where: { active: true },
       }
     }).then(
       function (response) {
@@ -434,6 +437,27 @@ app.controller("book_hall", function ($scope, $http, $timeout) {
     })
   };
 
+
+  $scope.getDefaultSettings = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/default_setting/get",
+      data: {}
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.doc)
+          $scope.defaultSettings = response.data.doc;
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
   $scope.paidUpdate = function () {
     $scope.error = '';
     if ($scope.book_hall.safe) {
@@ -514,6 +538,7 @@ app.controller("book_hall", function ($scope, $http, $timeout) {
   $scope.getBookHallList();
   $scope.getPeriod();
   $scope.getTimeList();
+  $scope.getDefaultSettings();
   $scope.getAttend();
   $scope.getClassRooms();
   $scope.getSafesList();

@@ -391,6 +391,34 @@ app.controller("default_setting", function ($scope, $http) {
     )
   };
 
+  $scope.getTenantList = function (ev) {
+    $scope.busy = true;
+
+    if (ev.which !== 13) {
+      return;
+    }
+    $scope.tenantList = [];
+    $http({
+      method: "POST",
+      url: "/api/tenant/all",
+      data: {
+        search: $scope.tenant_search,
+        where: {active: true},
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.tenantList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
   $scope.loadItemsGroups = function () {
     $scope.busy = true;
     $scope.itemsGroupList = [];

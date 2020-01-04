@@ -127,10 +127,10 @@ app.controller("notifications", function ($scope, $http, $interval) {
   };
 
   $scope.showAdd = (n) => {
-    if (n.link.collection == 'students') {
-      $scope.students = n.add;
-      site.showModal('#studentsViewModal');
-      document.querySelector('#studentsViewModal .tab-link').click();
+    if (n.link.collection == 'customer') {
+      $scope.customer = n.add;
+      site.showModal('#customerViewModal');
+      document.querySelector('#customerViewModal .tab-link').click();
 
 
     } else if (n.link.collection == 'academies') {
@@ -303,10 +303,10 @@ app.controller("notifications", function ($scope, $http, $interval) {
 
 
   $scope.showUpdate = (n) => {
-    if (n.link.collection == 'students') {
-      $scope.students = n.update;
-      site.showModal('#studentsViewModal');
-      document.querySelector('#studentsViewModal .tab-link').click();
+    if (n.link.collection == 'customer') {
+      $scope.customer = n.update;
+      site.showModal('#customerViewModal');
+      document.querySelector('#customerViewModal .tab-link').click();
 
     } else if (n.link.collection == 'academies') {
       $scope.academy = n.update;
@@ -473,10 +473,10 @@ app.controller("notifications", function ($scope, $http, $interval) {
   };
 
   $scope.showDelete = (n) => {
-    if (n.link.collection == 'students') {
-      $scope.students = n.delete;
-      site.showModal('#studentsViewModal');
-      document.querySelector('#studentsViewModal .tab-link').click();
+    if (n.link.collection == 'customer') {
+      $scope.customer = n.delete;
+      site.showModal('#customerViewModal');
+      document.querySelector('#customerViewModal .tab-link').click();
 
     } else if (n.link.collection == 'courses') {
       $scope.courses = n.delete;
