@@ -353,6 +353,7 @@
 
                                 <tr>
                                     <th>##word.stores_items_name##</th>
+                                    <th>##word.stores_size##</th>
                                     <th>##word.items_count##</th>
                                     <th>##word.items_price##</th>
                                     <th>##word.discount##</th>
@@ -362,6 +363,7 @@
                                 </tr>
 
                                 <tr ng-repeat="size in order_invoice.book_list">
+                                    <td class="center title">{{size.name}}</td>
                                     <td class="center title">{{size.size}}</td>
                                     <td class="center">
                                         <i-control ng-change="calcSize(size)" ng-model="size.count" type="number">
