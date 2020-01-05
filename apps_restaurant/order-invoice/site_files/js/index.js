@@ -505,7 +505,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
           type: 'item',
           value: _current_book_list.count,
           value2: _current_book_list.size,
-          value3: _current_book_list.total_price
+          value3: _current_book_list.total
         })
       });
     };
@@ -1328,7 +1328,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
 
           el.count = el.count + item.count;
 
-          el.total_price += el.price;
+          el.total += el.price;
         };
       });
       if (!exist) {
@@ -1391,7 +1391,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     };
 
     /*   $scope.order_invoice.book_list.forEach(book_list => {
-        $scope.order_invoice.under_paid.items_price += book_list.total_price;
+        $scope.order_invoice.under_paid.items_price += book_list.total;
       }); */
 
     $scope.addOrderInvoice();
@@ -1450,7 +1450,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     $scope.order_invoice.book_list.forEach(el => {
       if (item.size == el.size && !el.printed) {
         exist = true;
-        el.total_price += (item.price - item.discount.value);
+        el.total += (item.price - item.discount.value);
         el.count += 1;
       };
     });
@@ -1463,7 +1463,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         store: item.store,
         barcode: item.barcode,
         size: item.size,
-        total_price: (item.price - item.discount.value),
+        total: (item.price - item.discount.value),
         vendor: item.vendor,
         store: item.store,
         price: item.price,
@@ -1482,7 +1482,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
 
     } else if (item.count > 1) {
       item.count -= 1;
-      item.total_price -= item.price;
+      item.total -= item.price;
       return item
     };
   };
@@ -1546,9 +1546,9 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         if (size.discount.type == 'number')
           discount = size.discount.value * size.count;
         else if (size.discount.type == 'percent')
-          discount = size.discount.value * (size.cost * size.count) / 100;
+          discount = size.discount.value * (size.price * size.count) / 100;
 
-        size.total_price = (site.toNumber(size.price) * site.toNumber(size.count)) - discount;
+        size.total = (site.toNumber(size.price) * site.toNumber(size.count)) - discount;
       }
       $scope.calc();
     }, 100);
@@ -1565,7 +1565,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
 
       if ($scope.order_invoice.book_list && $scope.order_invoice.book_list.length > 0) {
         $scope.order_invoice.book_list.forEach(itm => {
-          $scope.order_invoice.total_value += site.toNumber(itm.total_price);
+          $scope.order_invoice.total_value += site.toNumber(itm.total);
         });
       };
 

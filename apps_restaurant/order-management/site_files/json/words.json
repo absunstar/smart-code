@@ -10,6 +10,11 @@
         "ar": "ترحيل"
     },
     {
+        "name": "handel_orders",
+        "en": "Handel Orders",
+        "ar": "هندلة الطلبات"
+    },
+    {
         "name": "order_status",
         "en": "Order Status",
         "ar": "حالة الطلب"

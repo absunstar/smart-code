@@ -269,6 +269,27 @@ app.controller("order_management", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.handelOrders = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/order_management/handel_orders",
+      data: {}
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.doc) {
+          $scope.handelorders = response.data.doc;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
   $scope.getDefaultSettingsList = function () {
     $scope.error = '';
     $scope.busy = true;

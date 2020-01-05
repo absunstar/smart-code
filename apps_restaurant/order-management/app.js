@@ -39,6 +39,61 @@ module.exports = function init(site) {
     })
   })
 
+  site.post("/api/order_management/handel_orders", (req, res) => {
+
+    let response = {
+      done: false
+    }
+    let item = req.body
+
+    $order_invoice.findMany({
+      where: {
+        'company.id': site.get_company(req).id
+      },
+    }, (err, docs) => {
+
+      if (!err && docs) {
+        docs.forEach(_doc => {
+
+          _doc.book_list.forEach(_book_list => {
+
+            let discount = 0
+
+            if (_book_list.discount && _book_list.discount.type == 'number')
+              discount = _book_list.discount.value * _book_list.count;
+            else if (_book_list.discount && _book_list.discount.type == 'percent')
+              discount = _book_list.discount.value * (_book_list.price * _book_list.count) / 100;
+
+            _book_list.total = (site.toNumber(_book_list.price) * site.toNumber(_book_list.count)) - discount;
+            delete _book_list.total_price
+
+          });
+
+          if (_doc.under_paid)
+            _doc.under_paid.book_list.forEach(_book_list => {
+              let discount = 0
+
+              if (_book_list.discount && _book_list.discount.type == 'number')
+                discount = _book_list.discount.value * _book_list.count;
+              else if (_book_list.discount && _book_list.discount.type == 'percent')
+                discount = _book_list.discount.value * (_book_list.price * _book_list.count) / 100;
+
+              _book_list.total = (site.toNumber(_book_list.price) * site.toNumber(_book_list.count)) - discount;
+              
+              delete _book_list.total_price
+
+            });
+
+          $order_invoice.update(_doc, (err, result) => {
+            response.done = true
+            res.json(response)
+          })
+        });
+
+      }
+    })
+  })
+
   site.post("/api/order_management/update", (req, res) => {
     let response = {
       done: false

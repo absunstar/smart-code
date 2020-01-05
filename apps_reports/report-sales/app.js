@@ -66,25 +66,27 @@ module.exports = function init(site) {
       where: where,
       sort: req.body.sort || { id: -1 },
       limit: req.body.limit
-    }, (err, docs, count) => {
+    }, (err, docs) => {
       if (!err) {
         response.done = true
-
-
-        let total_size_list = []
-        let detailed_size_list = []
+        let obj = {
+          total_size_list: [],
+          detailed_size_list: []
+        }
+     
 
         for (let i = 0; i < docs.length; i++) {
+
           let exist = false
 
           docs[i].items.forEach(_item => {
-            _item.type = docs[i].type
+         /*    _item.type = docs[i].type
             _item.code = docs[i].number
-            detailed_size_list.push(_item)
 
-            if (total_size_list.length > 0) {
+            obj.detailed_size_list.push(_item) */
+            if (obj.total_size_list.length > 0) {
 
-              total_size_list.forEach(_size => {
+              obj.total_size_list.forEach(_size => {
                 if (_size.barcode == _item.barcode) {
                   _size.total = _size.total + _item.total
                   _size.count = _size.count + _item.count
@@ -92,13 +94,14 @@ module.exports = function init(site) {
                 }
               })
             }
-            if (!exist) total_size_list.push(_item)
+            if (!exist) obj.total_size_list.push(_item)
           })
         }
 
-        response.list = total_size_list
-        response.docs = detailed_size_list
-        response.count = count
+ 
+
+
+        response.doc = obj
 
       } else {
         response.error = err.message

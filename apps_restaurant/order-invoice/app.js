@@ -93,7 +93,7 @@ module.exports = function init(site) {
               if (obj.return) book_list_basic.count = book_list_basic.count + book_list_cb.count;
               else book_list_basic.count = book_list_basic.count - book_list_cb.count;
 
-              book_list_basic.total_price = book_list_basic.count * book_list_basic.price;
+              book_list_basic.total = book_list_basic.count * book_list_basic.price;
             };
           });
         });
@@ -258,7 +258,7 @@ module.exports = function init(site) {
 
     order_invoice_doc.total_book_list = 0
     order_invoice_doc.book_list.forEach(book_list => {
-      order_invoice_doc.total_book_list += book_list.total_price
+      order_invoice_doc.total_book_list += book_list.total
     });
 
     $order_invoice.add(order_invoice_doc, (err, doc) => {
@@ -293,7 +293,7 @@ module.exports = function init(site) {
 
     order_invoice_doc.total_book_list = 0
     order_invoice_doc.book_list.forEach(book_list => {
-      order_invoice_doc.total_book_list += book_list.total_price
+      order_invoice_doc.total_book_list += book_list.total
     })
 
     if (order_invoice_doc.transaction_type && order_invoice_doc.transaction_type.id == 2) {

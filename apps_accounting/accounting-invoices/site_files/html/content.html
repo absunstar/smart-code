@@ -123,7 +123,7 @@
                                         <b class="red" ng-show="c.discount.type =='number'">##word.le##</b>
                                         <b class="red" ng-show="c.discount.type =='percent'">%</b>
                                     </td>
-                                    <td class="center green">{{c.total_price || c.total}}</td>
+                                    <td class="center green">{{c.total || c.total}}</td>
                                     <td class="center not-print" ng-show="account_invoices.source_type.id == 3">
                                         <i-button type="delete" label="##word.delete##"
                                             ng-click="deleteItemsList(c) ; calc()">

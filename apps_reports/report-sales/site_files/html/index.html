@@ -35,7 +35,7 @@
                     <h3 class="bold text-center"> ##word.count## : {{count}} </h3>
                     <br>
                 </div>
-                <h1 ng-show="total == true" class="center blue">##word.report_total##</h1 ng-show="total == true">
+                <h1 ng-show="total == true" class="center blue">##word.report_total##</h1>
                 <table class="table loaded center hover bold" id="t1" ng-show="total == true">
                     <tr>
                         <th> ##word.stores_items_name## </th>
@@ -45,7 +45,7 @@
                         <th> ##word.total_selling_price## </th>
                     </tr>
 
-                    <tr ng-repeat="c in list | orderBy : '-id'">
+                    <tr ng-repeat="c in doc.total_size_list | orderBy : '-id'">
                         <td> {{c.name}} </td>
                         <td class="blue"> {{c.barcode}} </td>
                         <td> {{c.size}} </td>
@@ -53,9 +53,6 @@
                         <td> {{c.total}} </td>
                     </tr>
                 </table>
-
-
-
                 <br>
                 <br>
                 <br>
@@ -64,8 +61,7 @@
                 <hr>
                 <br>
                 <br>
-                <h1 ng-show="detailed == true" class="center blue">##word.report_detailed##</h1
-                    ng-show="detailed == true">
+                <h1 ng-show="detailed == true" class="center blue">##word.report_detailed##</h1>
 
                 <table class="table center bold hover" ng-show="detailed == true">
                     <tr>
@@ -81,7 +77,7 @@
                         <th>##word.stores_out_item_total##</th>
                     </tr>
 
-                    <tr ng-repeat="itm in docs| orderBy : '-id'">
+                    <tr ng-repeat="itm in doc.detailed_size_list| orderBy : '-id'">
                         <td> <br> {{$index + 1}}</td>
                         <td class="blue"> <br> {{itm.code}}</td>
                         <td> <br> {{itm.type.ar}}</td>
@@ -93,7 +89,6 @@
                         <td>
                             <br>
                             <p> {{itm.price}} </p>
-
                         </td>
 
                         <td>

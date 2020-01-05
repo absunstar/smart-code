@@ -18,10 +18,8 @@ app.controller("report_sales", function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.list = response.data.list;
-          $scope.docs = response.data.docs;
-          $scope.count = response.data.list.length;
+        if (response.data.done) {
+          $scope.doc = response.data.doc;
         }
       },
       function (err) {

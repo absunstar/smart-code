@@ -461,7 +461,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
       let total_price_item = 0;
       $scope.account_invoices.current_book_list.forEach(item => {
 
-        total_price_item += item.total_price;
+        total_price_item += item.total;
       });
       $scope.account_invoices.net_value = total_price_item + ($scope.account_invoices.service || 0) + ($scope.account_invoices.price_delivery_service || 0) + ($scope.account_invoices.total_tax || 0) - ($scope.account_invoices.total_discount || 0)
     }, 250);
@@ -474,10 +474,10 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
 
     } else if (item.count > 1) {
       item.count -= 1;
-      item.total_price -= item.price;
+      item.total -= item.price;
       return item
     }
-    item.total_price = item.count * item.price;
+    item.total = item.count * item.price;
   };
 
   $scope.getTransactionTypeList = function () {
@@ -683,7 +683,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
           type: 'text3',
           value: _current_book_list.size,
           value2: _current_book_list.count,
-          value3: _current_book_list.total_price
+          value3: _current_book_list.total
         })
       });
     };
