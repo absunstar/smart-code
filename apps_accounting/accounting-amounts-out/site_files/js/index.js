@@ -342,7 +342,8 @@ app.controller("amounts_out", function ($scope, $http) {
       url: "/api/employees/all",
       data: {
         where: {
-          'trainer': { $ne: true }
+          'trainer': { $ne: true },
+          'delivery': { $ne: true }
         }
       }
     }).then(

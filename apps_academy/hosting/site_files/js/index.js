@@ -177,7 +177,8 @@ app.controller("hosting", function ($scope, $http, $timeout) {
       url: "/api/employees/all",
       data: {
         where: {
-          active: true
+          'trainer': { $ne: true },
+          'delivery': { $ne: true }
         },
       }
     }).then(

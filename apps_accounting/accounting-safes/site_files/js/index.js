@@ -11,10 +11,10 @@ app.controller("safes", function ($scope, $http) {
       url: "/api/employees/all",
       data: {
         where: {
-          'trainer': { $ne: true }
+          'trainer': { $ne: true },
+          'delivery': { $ne: true }
         },
-        select: { id: 1, name: 1 },
-
+        select: { id: 1, name: 1 }
       }
     }).then(
       function (response) {

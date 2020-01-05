@@ -67,7 +67,8 @@ app.controller("item_transaction", function ($scope, $http, $timeout) {
       url: "/api/employees/all",
       data: {
         where: {
-          'trainer': { $ne: true }
+          'trainer': { $ne: true },
+          'delivery': { $ne: true }
         },
         select: {
           name: 1,
@@ -191,7 +192,7 @@ app.controller("item_transaction", function ($scope, $http, $timeout) {
       url: "/api/item_transaction/all",
       data: {
         where: where,
-        limit : 100
+        limit: 100
       }
     }).then(
       function (response) {

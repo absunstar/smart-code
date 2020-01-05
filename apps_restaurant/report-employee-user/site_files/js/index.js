@@ -8,7 +8,12 @@ app.controller("report_employee_user", function ($scope, $http, $timeout) {
     $http({
       method: "POST",
       url: "/api/employees/all",
-      data: {}
+      data: {
+        where: {
+          'trainer': { $ne: true },
+          'delivery': { $ne: true }
+        }
+      }
     }).then(
       function (response) {
         $scope.busy = false;
