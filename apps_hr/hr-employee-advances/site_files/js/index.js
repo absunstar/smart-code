@@ -41,7 +41,7 @@ app.controller("employees_advances", function ($scope, $http) {
           id: 1,
           name: 1,
           number: 1,
-          type : 1
+          type: 1
         }
       }
     }).then(
@@ -80,13 +80,18 @@ app.controller("employees_advances", function ($scope, $http) {
 
   $scope.newemployees_advances = function () {
     $scope.error = '';
-    $scope.employees_advances = {
-      image_url: '/images/discount.png',
-      date: new Date(),
-      from_eng: false,
-      from_company: false
-    };
-    site.showModal('#addEmployeesAdvancesModal');
+    $scope.get_open_shift((shift) => {
+      if (shift) {
+        $scope.employees_advances = {
+          image_url: '/images/discount.png',
+          date: new Date(),
+          shift: shift,
+          from_eng: false,
+          from_company: false
+        };
+        site.showModal('#addEmployeesAdvancesModal');
+      } else $scope.error = '##word.open_shift_not_found##';
+    });
   };
 
 
@@ -172,10 +177,16 @@ app.controller("employees_advances", function ($scope, $http) {
 
   $scope.edit = function (employees_advances) {
     $scope.error = '';
-    $scope.view(employees_advances);
-    $scope.employees_advances = {};
-    site.showModal('#updateEmployeesAdvancesModal');
+    $scope.get_open_shift((shift) => {
+      if (shift) {
+        $scope.view(employees_advances);
+        $scope.employees_advances = {};
+        site.showModal('#updateEmployeesAdvancesModal');
+      } else $scope.error = '##word.open_shift_not_found##';
+    });
   };
+
+
   $scope.update = function () {
     $scope.busy = true;
     $http({
@@ -198,11 +209,17 @@ app.controller("employees_advances", function ($scope, $http) {
     )
   };
 
+
   $scope.remove = function (employees_advances) {
-    $scope.view(employees_advances);
-    $scope.employees_advances = {};
-    site.showModal('#deleteEmployeesAdvancesModal');
+    $scope.get_open_shift((shift) => {
+      if (shift) {
+        $scope.view(employees_advances);
+        $scope.employees_advances = {};
+        site.showModal('#deleteEmployeesAdvancesModal');
+      } else $scope.error = '##word.open_shift_not_found##';
+    });
   };
+
 
   $scope.view = function (employees_advances) {
     $scope.busy = true;
@@ -227,11 +244,15 @@ app.controller("employees_advances", function ($scope, $http) {
       }
     )
   };
+
+
   $scope.details = function (employees_advances) {
     $scope.view(employees_advances);
     $scope.employees_advances = {};
     site.showModal('#viewEmployeesAdvancesModal');
   };
+
+
   $scope.delete = function () {
     $scope.busy = true;
     $http({
@@ -257,8 +278,36 @@ app.controller("employees_advances", function ($scope, $http) {
     )
   };
 
+  $scope.get_open_shift = function (callback) {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/shifts/get_open_shift",
+      data: {
+        where: { active: true },
+        select: { id: 1, name: 1, code: 1, from_date: 1, from_time: 1, to_date: 1, to_time: 1 }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.doc) {
+          $scope.shift = response.data.doc;
+          callback(response.data.doc);
+        } else {
+          callback(null);
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+        callback(null);
+      }
+    )
+  };
+
 
   $scope.loadSafes();
   $scope.loadEmployees();
-  $scope.loadAll({date : new Date()});
+  $scope.loadAll({ date: new Date() });
 });

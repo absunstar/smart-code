@@ -25,6 +25,7 @@ module.exports = function init(site) {
     let info = {
       safe: obj.safe,
       payment_method: obj.payment_method,
+      shift: obj.shift,
       value: obj.value || '',
       date: obj.date || obj.safe.date,
       source: obj.operation,

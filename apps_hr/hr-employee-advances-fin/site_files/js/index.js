@@ -91,8 +91,12 @@ app.controller("employees_advances_fin", function ($scope, $http) {
 
   $scope.newemployees_advances_fin = function () {
     $scope.error = '';
-    $scope.employees_advances_fin = { image_url: '/images/discount.png', date: new Date(), from_eng: false, from_company: false };
-    site.showModal('#addEmployeesAdvancesFinModal');
+    $scope.get_open_shift((shift) => {
+      if (shift) {
+        $scope.employees_advances_fin = { image_url: '/images/discount.png', date: new Date(), from_eng: false, from_company: false };
+        site.showModal('#addEmployeesAdvancesFinModal');
+      } else $scope.error = '##word.open_shift_not_found##';
+    });
   };
 
 
@@ -135,7 +139,6 @@ app.controller("employees_advances_fin", function ($scope, $http) {
       return;
     }
 
-
     $scope.busy = true;
     $http({
       method: "POST",
@@ -160,9 +163,13 @@ app.controller("employees_advances_fin", function ($scope, $http) {
 
   $scope.edit = function (employees_advances_fin) {
     $scope.error = '';
-    $scope.view(employees_advances_fin);
-    $scope.employees_advances_fin = {};
-    site.showModal('#updateEmployeesAdvancesFinModal');
+    $scope.get_open_shift((shift) => {
+      if (shift) {
+        $scope.view(employees_advances_fin);
+        $scope.employees_advances_fin = {};
+        site.showModal('#updateEmployeesAdvancesFinModal');
+      } else $scope.error = '##word.open_shift_not_found##';
+    });
   };
 
 
@@ -189,31 +196,40 @@ app.controller("employees_advances_fin", function ($scope, $http) {
   };
 
   $scope.remove = function (employees_advances_fin) {
-    $scope.view(employees_advances_fin);
-    $scope.employees_advances_fin = {};
-    site.showModal('#deleteEmployeesAdvancesFinModal');
+    $scope.get_open_shift((shift) => {
+      if (shift) {
+        $scope.view(employees_advances_fin);
+        $scope.employees_advances_fin = {};
+        site.showModal('#deleteEmployeesAdvancesFinModal');
+      } else $scope.error = '##word.open_shift_not_found##';
+    });
   };
 
   $scope.view = function (employees_advances_fin) {
     $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/employees_advances_fin/view",
-      data: { _id: employees_advances_fin._id }
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          $scope.employees_advances_fin = response.data.doc;
-          $scope.employees_advances_fin.date = new Date($scope.employees_advances_fin.date);
-        } else {
-          $scope.error = response.data.error;
-        }
-      },
-      function (err) {
-        console.log(err);
-      }
-    )
+    $scope.get_open_shift((shift) => {
+      if (shift) {
+        $http({
+          method: "POST",
+          url: "/api/employees_advances_fin/view",
+          data: { _id: employees_advances_fin._id }
+        }).then(
+          function (response) {
+            $scope.busy = false;
+            if (response.data.done) {
+              $scope.employees_advances_fin = response.data.doc;
+              $scope.employees_advances_fin.date = new Date($scope.employees_advances_fin.date);
+              $scope.employees_advances_fin.shift = shift;
+            } else {
+              $scope.error = response.data.error;
+            }
+          },
+          function (err) {
+            console.log(err);
+          }
+        )
+      } else $scope.error = '##word.open_shift_not_found##';
+    });
   };
   $scope.details = function (employees_advances_fin) {
     $scope.view(employees_advances_fin);
@@ -238,6 +254,34 @@ app.controller("employees_advances_fin", function ($scope, $http) {
       },
       function (err) {
         console.log(err);
+      }
+    )
+  };
+
+  $scope.get_open_shift = function (callback) {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/shifts/get_open_shift",
+      data: {
+        where: { active: true },
+        select: { id: 1, name: 1, code: 1, from_date: 1, from_time: 1, to_date: 1, to_time: 1 }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.doc) {
+          $scope.shift = response.data.doc;
+          callback(response.data.doc);
+        } else {
+          callback(null);
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+        callback(null);
       }
     )
   };
