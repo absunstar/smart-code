@@ -20,14 +20,18 @@
                 <div x-permissions="safes_update || safes_manage" x-import="accounting-safes/update_modal.html"></div>
                 <div x-permissions="safes_delete || safes_manage" x-import="accounting-safes/delete_modal.html"></div>
                 <div x-permissions="safes_view || safes_manage" x-import="accounting-safes/view_modal.html"></div>
-                <div x-permissions="safes_search || safes_manage" x-import="accounting-safes/search_all_modal.html"></div>
+                <div x-permissions="safes_search || safes_manage" x-import="accounting-safes/search_all_modal.html">
+                </div>
                 <div class="row">
                     <h1 class="text-center bold">##word.safes##</h1>
+                    <h2 class="red center bold">{{error}}</h2>
                 </div>
                 <div class="top-actions">
 
-                    <i-button x-permissions="safes_add || safes_manage" type="add" label="##word.safes_new##" ng-click="newSafe()"></i-button>
-                    <i-button x-permissions="safes_search || safes_manage" type="search" label="##word.search_all##" onclick="site.showModal('#SafesSearchModal')"></i-button>
+                    <i-button x-permissions="safes_add || safes_manage" type="add" label="##word.safes_new##"
+                        ng-click="newSafe()"></i-button>
+                    <i-button x-permissions="safes_search || safes_manage" type="search" label="##word.search_all##"
+                        onclick="site.showModal('#SafesSearchModal')"></i-button>
 
 
 
@@ -53,11 +57,15 @@
 
                         <td class="center">{{c.employee.name}}</td>
 
-                        <td class="green center">{{c.balance }} <p class="green" ng-show = "c.balance">##word.le##</p> </td>
+                        <td class="green center">{{c.balance }} <p class="green" ng-show="c.balance">##word.le##</p>
+                        </td>
                         <td class="center not-print">
-                            <i-button x-permissions="safes_view || safes_manage" type="details" label="##word.details##" ng-click="details(c)"></i-button>
-                            <i-button x-permissions="safes_update || safes_manage" type="update" label="##word.update##" ng-click="edit(c)"></i-button>
-                            <i-button x-permissions="safes_delete || safes_manage" type="delete" label="##word.delete##" ng-click="remove(c)"></i-button>
+                            <i-button x-permissions="safes_view || safes_manage" type="details" label="##word.details##"
+                                ng-click="details(c)"></i-button>
+                            <i-button x-permissions="safes_update || safes_manage" type="update" label="##word.update##"
+                                ng-click="edit(c)"></i-button>
+                            <i-button x-permissions="safes_delete || safes_manage" type="delete" label="##word.delete##"
+                                ng-click="remove(c)"></i-button>
 
                         </td>
 
@@ -65,7 +73,8 @@
 
                 </table>
 
-                <i-button x-permissions="safes_print || safes_manage" type="print" label="##word.print##" onclick="site.print('#t1')"></i-button>
+                <i-button x-permissions="safes_print || safes_manage" type="print" label="##word.print##"
+                    onclick="site.print('#t1')"></i-button>
             </div>
         </div>
     </div>

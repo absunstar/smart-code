@@ -191,7 +191,7 @@ app.controller("tenant", function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done && response.data.list.length > 0) {
-          $scope.classRoomsList = response.data.list;
+          $scope.hallsList = response.data.list;
         }
       },
       function (err) {

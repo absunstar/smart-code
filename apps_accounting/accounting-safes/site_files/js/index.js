@@ -3,7 +3,6 @@ app.controller("safes", function ($scope, $http) {
 
   $scope.safe = {};
 
-
   $scope.loadEmployees = function () {
     $scope.busy = true;
     $http({
@@ -60,10 +59,13 @@ app.controller("safes", function ($scope, $http) {
 
   $scope.newSafe = function () {
     $scope.error = '';
-    $scope.safe = { image_url: '/images/safe.png', balance: 0 };
-
-    site.showModal('#addSafeModal');
-    $('#safe_name').focus();
+    $scope.get_open_shift((shift) => {
+      if (shift) {
+        $scope.safe = { image_url: '/images/safe.png', balance: 0, shift: shift };
+        site.showModal('#addSafeModal');
+        $('#safe_name').focus();
+      } else $scope.error = '##word.open_shift_not_found##';
+    });
   };
 
   $scope.add = function () {
@@ -102,11 +104,16 @@ app.controller("safes", function ($scope, $http) {
 
   $scope.edit = function (safe) {
     $scope.error = '';
-    $scope.view(safe);
-    $scope.safe = {};
-    site.showModal('#updateSafeModal');
-    $('#safe_name').focus();
+    $scope.get_open_shift((shift) => {
+      if (shift) {
+        $scope.view(safe);
+        $scope.safe = {};
+        site.showModal('#updateSafeModal');
+        $('#safe_name').focus();
+      } else $scope.error = '##word.open_shift_not_found##';
+    });
   };
+
   $scope.update = function () {
     $scope.error = '';
     const v = site.validated();
@@ -137,9 +144,13 @@ app.controller("safes", function ($scope, $http) {
 
   $scope.remove = function (safe) {
     $scope.error = '';
-    $scope.view(safe);
-    $scope.safe = {};
-    site.showModal('#deleteSafeModal');
+    $scope.get_open_shift((shift) => {
+      if (shift) {
+        $scope.view(safe);
+        $scope.safe = {};
+        site.showModal('#deleteSafeModal');
+      } else $scope.error = '##word.open_shift_not_found##';
+    });
   };
 
   $scope.view = function (safe) {
@@ -162,6 +173,7 @@ app.controller("safes", function ($scope, $http) {
       }
     )
   };
+
   $scope.details = function (safe) {
     $scope.error = '';
     $scope.view(safe);
@@ -169,12 +181,13 @@ app.controller("safes", function ($scope, $http) {
     site.showModal('#viewSafeModal');
   };
 
-  $scope.delete = function () {
+  $scope.delete = function (safe) {
     $scope.busy = true;
+    
     $http({
       method: "POST",
       url: "/api/safes/delete",
-      data: { _id: $scope.safe._id, name: $scope.safe.name }
+      data: { id: safe.id, name: safe.name }
     }).then(
       function (response) {
         $scope.busy = false;
@@ -232,6 +245,34 @@ app.controller("safes", function ($scope, $http) {
     $scope.loadAll(where, $scope.search.limit);
     site.hideModal('#SafesSearchModal');
 
+  };
+
+
+  $scope.get_open_shift = function (callback) {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/shifts/get_open_shift",
+      data: {
+        where: { active: true },
+        select: { id: 1, name: 1, code: 1, from_date: 1, from_time: 1, to_date: 1, to_time: 1 }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.doc) {
+          $scope.shift = response.data.doc;
+          callback(response.data.doc);
+        } else {
+          callback(null);
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+        callback(null);
+      }
+    )
   };
 
   $scope.loadAll();

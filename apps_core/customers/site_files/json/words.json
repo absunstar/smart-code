@@ -20,6 +20,11 @@
         "ar": "بداية الجرعة"
     },
     {
+        "name": "other_fee",
+        "en": "Other Fee",
+        "ar": "رسوم أخرى"
+    },
+    {
         "name": "count_dosage",
         "en": "Count Of Dosage",
         "ar": " عدد الجرعات اليومية"

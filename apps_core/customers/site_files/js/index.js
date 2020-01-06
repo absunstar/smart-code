@@ -3,10 +3,6 @@ app.controller("customers", function ($scope, $http, $timeout) {
 
   $scope.customer = {};
 
-  if (site.feature('gym') || site.feature('academy')) 
-  $scope.showThis = true;
-
-
   $scope.displayAddCustomer = function () {
     $scope.error = '';
     $scope.customer = {

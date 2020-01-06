@@ -22,7 +22,7 @@ module.exports = function init(site) {
         name_ar: doc.branch_list[0].name_ar
       },
       active: true
-    }, (err, _doc) => { 
+    }, (err, _doc) => {
       $safes.add({
         name: "خزينة بنك إفتراضية",
         balance: 0,
@@ -87,8 +87,8 @@ module.exports = function init(site) {
               obj.company = doc.company
               obj.branch = doc.branch
               obj.balance = doc.balance
-              
-                site.call('[safes][safes_payments][+]', obj)
+
+              site.call('[safes][safes_payments][+]', obj)
             })
           }
           s_balance_handle(null)
@@ -154,14 +154,24 @@ module.exports = function init(site) {
       if (!err) {
 
         let obj = {
-          safe: doc,
+          image_url: doc.image_url,
           operation: 'خزينة جديدة',
-          transition_type: 'in',
           pre_balance: 0,
+          balance: doc.balance,
+          company: doc.company,
+          branch: doc.branch,
           value: doc.balance,
+          safe: {
+            name: doc.name,
+            id: doc.id
+          },
           date: new Date(),
-          sourceName: doc.employee.name,
-          description: doc.description
+          transition_type: 'in',
+          shift: {
+            id: doc.shift.id,
+            code: doc.shift.code,
+            name: doc.shift.name
+          }
         }
         site.call('[safes][safes_payments][+]', obj)
         response.done = true
@@ -212,15 +222,20 @@ module.exports = function init(site) {
     if (req.session.user === undefined) {
       res.json(response)
     }
-    let _id = req.body._id
-    if (_id) {
+   
+    
+    let id = req.body.id
+    if (id) {
       $safes.delete({
-        _id: $safes.ObjectID(_id),
+        id: id,
         $req: req,
         $res: res
       }, (err, result) => {
         if (!err) {
           response.done = true
+          
+          site.call('delete safe payment', id)
+
         }
         res.json(response)
       })

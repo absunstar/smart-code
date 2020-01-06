@@ -7,16 +7,16 @@
 
             <a class="tab-link" onclick="site.showTabContent(event, '#contactAndAddress')">
                 ##word.customers_contact_and_addresses## </a>
-            <a class="tab-link" onclick="site.showTabContent(event,'#medicalConditionInformation')">
+            <a class="tab-link" x-features="gym || academy" onclick="site.showTabContent(event,'#medicalConditionInformation')">
                 ##word.medical_condition##
             </a>
             <a class="tab-link" onclick="site.showTabContent(event, '#customersFiles')">
                 ##word.customers_files## </a>
-            <a class="tab-link" onclick="site.showTabContent(event,'#familyInformation')">
+            <a class="tab-link" x-features="academy" onclick="site.showTabContent(event,'#familyInformation')">
                 ##word.family_info##
             </a>
 
-            <a class="tab-link" onclick="site.showTabContent(event,'#accountingInformation')">
+            <a class="tab-link" x-features="academy" onclick="site.showTabContent(event,'#accountingInformation')">
                 ##word.accounting##
             </a>
 
@@ -158,7 +158,7 @@
                 </fieldset>
             </div>
 
-            <div id="medicalConditionInformation" class="tab-content">
+            <div id="medicalConditionInformation" x-features="gym || academy" class="tab-content">
                 <fieldset>
 
                     <legend>
@@ -800,7 +800,7 @@
                 </fieldset>
             </div>
 
-            <div id="familyInformation" class="tab-content">
+            <div id="familyInformation" x-features="academy" class="tab-content">
                 <fieldset class="row">
                     <i-list class="col3" disabled items="hostList" label="##word.host##" display="##session.lang##"
                         ng-model="customer.host"></i-list>
@@ -907,7 +907,7 @@
                 </fieldset>
             </div>
 
-            <div id="accountingInformation" class="tab-content">
+            <div id="accountingInformation" x-features="academy" class="tab-content">
                 <fieldset>
                     <legend>
                         ##word.accounting##

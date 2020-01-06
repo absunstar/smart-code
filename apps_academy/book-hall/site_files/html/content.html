@@ -13,7 +13,7 @@
                         <div class="col3"></div>
 
                         <i-checkbox help-id="book_hall_active" class="col2" label="##word.active##"
-                        ng-model="book_hall.active"></i-checkbox>
+                            ng-model="book_hall.active"></i-checkbox>
                     </div>
                     <div class="row">
 
@@ -65,16 +65,16 @@
                     </div>
                     <div class="row">
 
-                        <i-list class="col4" label="##word.hall##" ng-model="book_hall.hall" items="classRoomsList"
+                        <i-list class="col3" label="##word.hall##" ng-model="book_hall.hall" items="hallsList"
                             ng-search="book_hall.$class_room_search"></i-list>
-                        <div class="col2"></div>
 
-                    </div>
-
-                    <div class="row">
                         <i-date2 v="r" class="col4" ng-model="book_hall.start_date" label="##word.start_book##">
                         </i-date2>
                         <i-date2 class="col4" ng-model="book_hall.end_date" label="##word.end_book##"></i-date2>
+                    </div>
+
+                    <div class="row">
+
                     </div>
                     <div class="row">
                         <i-control v="r" v="r" class="col2" type="number" label="##word.total_period##"
@@ -90,12 +90,7 @@
                         <i-control ng-show="book_hall.period.id == 1" class="col2" label="##word.price_day##"
                             ng-model="book_hall.price_day" type="number"></i-control>
 
-
-                    </div>
-
-
-                    <div class="row">
-
+                        <div class="col1"></div>
 
                         <i-control v="r" class="col2" type="number" ng-model="book_hall.number_lecture"
                             label="##word.number_lecture##"></i-control>
@@ -103,6 +98,7 @@
                         <i-button class="col2" type="update" ng-click="createDates()" label="##word.create_booking##">
                         </i-button>
                     </div>
+
 
                     <fieldset ng-show="book_hall.dates_list.length > 0" class="col10">
                         <legend>

@@ -255,26 +255,27 @@ module.exports = function init(site) {
                 name: response.doc.shift.name
               }
             }
+
             if (response.doc.source_type.id == 1) {
               paid_value.operation = 'دفعة فاتورة مشتريات'
               paid_value.transition_type = 'out'
-
             }
+
             else if (response.doc.source_type.id == 2) {
               paid_value.operation = 'دفعة فاتورة مبيعات'
               paid_value.transition_type = 'in'
-
             }
+
             else if (response.doc.source_type.id == 3) {
               paid_value.operation = 'دفعة حساب طلبات'
               paid_value.transition_type = 'in'
-
             }
+
             else if (response.doc.source_type.id == 4) {
               paid_value.operation = 'دفعة طلب خدمة'
               paid_value.transition_type = 'in'
-
             }
+
             site.call('[amounts][safes][+]', paid_value)
           }
 

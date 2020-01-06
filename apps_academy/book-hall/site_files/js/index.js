@@ -10,6 +10,7 @@ app.controller("book_hall", function ($scope, $http, $timeout) {
           image_url: '/images/book_hall.png',
           active: true,
           date: new Date(),
+          start_date: new Date(),
           shift: shift,
           dates_list: [],
           paid_list: []
@@ -257,7 +258,7 @@ app.controller("book_hall", function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done && response.data.list.length > 0) {
-          $scope.classRoomsList = response.data.list;
+          $scope.hallsList = response.data.list;
         }
       },
       function (err) {

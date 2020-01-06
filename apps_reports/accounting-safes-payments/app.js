@@ -3,6 +3,16 @@ module.exports = function init(site) {
   const $safes_payments = site.connectCollection("safes_payments")
 
 
+  site.on('delete safe payment', function (id) {
+
+    $safes_payments.findMany({ 'safe.id': id }, (err, docs) => {
+
+      if (docs.length === 1)
+        $safes_payments.delete(docs[0]);
+    });
+  });
+
+
   s_p_balance_list = []
   site.on('[safes][safes_payments][+]', obj => {
     s_p_balance_list.push(Object.assign({}, obj))
@@ -40,7 +50,7 @@ module.exports = function init(site) {
       notes: obj.notes || '',
       code: obj.code || ''
     }
-    
+
     $safes_payments.add(info, () => {
       s_p_balance_handle(null)
     });

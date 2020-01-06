@@ -7,7 +7,6 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
     $scope.get_open_shift((shift) => {
       if (shift) {
 
-
         $scope._search = {};
         $scope.search_order = '';
         $scope.error = '';

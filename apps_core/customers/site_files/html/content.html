@@ -10,12 +10,13 @@
             <a class="tab-link " onclick="site.showTabContent(event, '#customersFiles')">
                 ##word.customers_files## </a>
 
-            <a class="tab-link" ng-show="showThis == true" onclick="site.showTabContent(event,'#medicalConditionInformation')">
+            <a class="tab-link" x-features="gym || academy"
+                onclick="site.showTabContent(event,'#medicalConditionInformation')">
                 ##word.medical_condition##</a>
-            <a class="tab-link" ng-show="showThis == true" onclick="site.showTabContent(event,'#familyInformation')">
+            <a class="tab-link" x-features="academy" onclick="site.showTabContent(event,'#familyInformation')">
                 ##word.family_info##
             </a>
-            <a class="tab-link" ng-show="showThis == true" onclick="site.showTabContent(event,'#accountingInformation')">
+            <a class="tab-link" x-features="academy" onclick="site.showTabContent(event,'#accountingInformation')">
                 ##word.accounting##
             </a>
             <a class="tab-link hide" onclick="site.showTabContent(event, '#customersBranches')">
@@ -59,22 +60,18 @@
                                 </i-checkbox>
                             </div>
 
-                            <div class="row" x-feature="lawyer">
+                            <div class="row">
 
-                                <i-control help-id="" v="r ll2" class="col4" label="##word.national_id##"
-                                    ng-model="customer.national_id"></i-control>
+                                <i-control x-features="lawyer" help-id="" v="r ll2" class="col4"
+                                    label="##word.national_id##" ng-model="customer.national_id"></i-control>
 
-                                <i-date ng-model="customer.birth_date" class="col4" label="##word.birth_date##">
+                                <i-date x-features="lawyer || academy" ng-model="customer.birth_date" class="col4"
+                                    label="##word.birth_date##">
                                 </i-date>
 
                             </div>
 
-                            <div class="row" x-feature="lawyer">
-
-                                <i-list help-id="" ng-search="_search.$indentfy_search" class="col2"
-                                    label="##word.customers_indentfy##" ng-model="customer.indentfy"
-                                    items="indentfyList" display="##session.lang##">
-                                </i-list>
+                            <div class="row" x-features="lawyer">
 
                                 <i-list ng-search="marital_status" class="col3" items="maritals_status"
                                     ng-model="customer.marital_status" label="##word.marital_status##">
@@ -97,7 +94,8 @@
 
                                 <div class="col1"></div>
 
-                                <i-checkbox x-feature="gym" class="col2" label="##word.child##" ng-model="customer.child"></i-checkbox>
+                                <i-checkbox x-features="gym" class="col2" label="##word.child##"
+                                    ng-model="customer.child"></i-checkbox>
 
                             </div>
 
@@ -141,7 +139,7 @@
             </div>
 
 
-            <div id="familyInformation" ng-show="showThis == true" class="tab-content">
+            <div id="familyInformation" x-features="academy" class="tab-content">
                 <fieldset class="row">
                     <i-list class="col3" items="hostList" ng-search="_search.$host_search" label="##word.host##"
                         display="##session.lang##" ng-model="customer.host"></i-list>
@@ -219,7 +217,7 @@
 
                 </fieldset>
             </div>
-            <div id="accountingInformation" ng-show="showThis == true" class="tab-content">
+            <div id="accountingInformation" x-features="academy" class="tab-content">
                 <fieldset>
                     <legend>
                         ##word.accounting##
@@ -235,7 +233,7 @@
                 </fieldset>
             </div>
 
-            <div id="medicalConditionInformation" ng-show="showThis == true" class="tab-content">
+            <div id="medicalConditionInformation" x-features="gym || academy" class="tab-content">
                 <fieldset>
 
                     <legend>
