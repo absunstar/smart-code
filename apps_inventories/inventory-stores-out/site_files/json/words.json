@@ -40,7 +40,7 @@
     {"name" : "stores_out_item_code" , "en" : "Item Code" , "ar" : "كود الصنف"},   
     {"name" : "stores_out_item_name" , "en" : "Item Name" , "ar" : "إسم الصنف"},   
     {"name" : "stores_out_item_Company" , "en" : "Item vendor" , "ar" : "إسم المصنع"},   
-    {"name" : "stores_out_item_size" , "en" : "Item Size" , "ar" : "رقم القطعة"},   
+    {"name" : "stores_out_item_size" , "en" : "Item Size" , "ar" : "المقاس"},   
     {"name" : "stores_out_item_count" , "en" : "Count" , "ar" : "العدد"},   
     {"name" : "stores_out_item_store_balance" , "en" : "Store Balance" , "ar" : "رصيد المخزن"},   
     {"name" : "stores_out_section" , "en" : "Section" , "ar" : "القسم"},   

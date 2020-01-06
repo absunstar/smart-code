@@ -41,7 +41,7 @@
     {"name" : "transfer_branch_item_code" , "en" : "Item Code" , "ar" : "كود الصنف"},   
     {"name" : "transfer_branch_item_name" , "en" : "Item Name" , "ar" : "إسم الصنف"},   
     {"name" : "transfer_branch_item_Company" , "en" : "Item vendor" , "ar" : "إسم المصنع"},   
-    {"name" : "transfer_branch_item_size" , "en" : "Item Size" , "ar" : "رقم القطعة"},   
+    {"name" : "transfer_branch_item_size" , "en" : "Item Size" , "ar" : "المقاس"},   
     {"name" : "transfer_branch_item_count" , "en" : "Count" , "ar" : "العدد"},   
     {"name" : "transfer_branch_item_store_balance" , "en" : "Store Balance" , "ar" : "رصيد المخزن"},   
     {"name" : "transfer_branch_section" , "en" : "Section" , "ar" : "القسم"},   

@@ -92,7 +92,7 @@
     {
         "name": "item_transaction_size",
         "en": "Size",
-        "ar": "رقم القطعة"
+        "ar": "المقاس"
     },
     {
         "name": "item_transaction_sizes",
@@ -142,7 +142,7 @@
     {
         "name": "categories_size",
         "en": "Sizes",
-        "ar": "رقم القطعة"
+        "ar": "المقاس"
     },
     {
         "name": "categories_cost",
