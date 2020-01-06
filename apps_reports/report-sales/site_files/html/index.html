@@ -27,8 +27,13 @@
                     <i-button type="search" x-permissions="report_sales_search || report_sales_manage"
                         label="##word.search_all##" onclick="site.showModal('#reportSalesSearchModal')">
                     </i-button>
-                    <i-checkbox ng-model="total" label="##word.report_total##"></i-checkbox>
-                    <i-checkbox ng-model="detailed" label="##word.report_detailed##"></i-checkbox>
+
+                    <i-checkbox x-permissions="report_sales_total || report_sales_manage" ng-model="total"
+                        label="##word.report_total##"></i-checkbox>
+
+                    <i-checkbox x-permissions="report_sales_detailed || report_sales_manage" ng-model="detailed"
+                        label="##word.report_detailed##"></i-checkbox>
+
                     <span ng-show="busy">
                         <span class="sr-only">Loading...</span>
                     </span>

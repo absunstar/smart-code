@@ -80,10 +80,10 @@ module.exports = function init(site) {
           let exist = false
 
           docs[i].items.forEach(_item => {
-         /*    _item.type = docs[i].type
+             _item.type = docs[i].type
             _item.code = docs[i].number
-
-            obj.detailed_size_list.push(_item) */
+          
+            obj.detailed_size_list.push(Object.assign({}, _item)) 
             if (obj.total_size_list.length > 0) {
 
               obj.total_size_list.forEach(_size => {
@@ -94,7 +94,7 @@ module.exports = function init(site) {
                 }
               })
             }
-            if (!exist) obj.total_size_list.push(_item)
+            if (!exist) obj.total_size_list.push(Object.assign({}, _item))
           })
         }
 
