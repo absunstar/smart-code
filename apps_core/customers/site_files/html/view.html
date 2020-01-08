@@ -83,12 +83,12 @@
                                     <td class="center">{{customer.military_status.name}}</td>
                                 </tr>
 
-                                <tr x-feature="gym">
+                                <tr x-features="gym || academy">
                                     <td class="title"> ##word.finger_code## </td>
                                     <td class="center"> {{customer.finger_code}} </td>
                                 </tr>
 
-                                <tr x-feature="gym">
+                                <tr>
                                     <td class="title"> ##word.customers_indentfy## </td>
                                     <td class="center"> {{customer.indentfy.ar}}</td>
                                 </tr>
@@ -99,7 +99,7 @@
                                     <td ng-show="!customer.child" class="center red"> ##word.no## </td>
                                 </tr>
 
-                                <tr x-feature="gym">
+                                <tr x-features="gym || academy">
                                     <td class="title">##word.birth_date##</td>
                                     <td class="center brown">{{customer.birth_date | date : 'dd / MM / yyyy'}}
                                     </td>

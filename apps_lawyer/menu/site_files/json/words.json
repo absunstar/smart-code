@@ -481,13 +481,13 @@
     },
     {
         "name": "menu_company",
-        "en": "company",
-        "ar": "المطاعم"
+        "en": "Lawyer Office",
+        "ar": "مكتب المحاماه"
     },
     {
         "name": "menu_company_tag",
         "en": "Add company Manegment",
-        "ar": "إدارة نظام المطاعم"
+        "ar": "إدارة نظام المحاماه"
     },
     {
         "name": "menu_jobs",

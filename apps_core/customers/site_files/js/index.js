@@ -5,6 +5,7 @@ app.controller("customers", function ($scope, $http, $timeout) {
 
   $scope.displayAddCustomer = function () {
     $scope.error = '';
+
     $scope.customer = {
       image_url: '/images/customer.png',
       active: true,
@@ -40,7 +41,9 @@ app.controller("customers", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           site.hideModal('#customerAddModal');
+          $scope.list = $scope.list || [];
           $scope.list.push(response.data.doc);
+          $scope.getCustomersList();
           $scope.count = $scope.list.length;
         } else {
           $scope.error = 'Please Login First';
@@ -70,25 +73,16 @@ app.controller("customers", function ($scope, $http, $timeout) {
 
     for (let i = 0; i < ln.length; i++) {
       if (ln[i].initial_balance > 0) {
-
         if (ln[i].balance_type == "credit") {
           num = num - parseInt(ln[i].initial_balance);
-
         } else {
           num = num + parseInt(ln[i].initial_balance);
         }
-
       }
-
     }
-
     if ($scope.showOpeningBalance) {
-
       $scope.customer.balance = parseInt(num);
     }
-
-
-
   };
 
 
@@ -120,6 +114,7 @@ app.controller("customers", function ($scope, $http, $timeout) {
               $scope.list[i] = response.data.doc;
             }
           });
+          $scope.getCustomersList();
         } else {
           $scope.error = response.data.error;
         }
@@ -163,6 +158,7 @@ app.controller("customers", function ($scope, $http, $timeout) {
               $scope.count = $scope.list.length;
             }
           });
+          $scope.getCustomersList();
         } else {
           $scope.error = response.data.error;
         }
@@ -205,13 +201,10 @@ app.controller("customers", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.getCustomerList = function (where) {
+  $scope.getCustomersList = function (where) {
     $scope.error = '';
-    if ($scope.busy) {
-      return;
-    }
-
     $scope.busy = true;
+
     $scope.list = [];
     $http({
       method: "POST",
@@ -226,8 +219,6 @@ app.controller("customers", function ($scope, $http, $timeout) {
           $scope.list = response.data.list;
           $scope.count = response.data.count;
         }
-
-
 
       },
       function (err) {
@@ -320,9 +311,7 @@ app.controller("customers", function ($scope, $http, $timeout) {
         $scope.busy = false;
         $scope.error = err;
       }
-
     )
-
   };
 
   $scope.getCityList = function (gov) {
@@ -400,16 +389,12 @@ app.controller("customers", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.getMedicineList = function (where) {
+  $scope.getMedicineList = function () {
     $scope.busy = true;
     $http({
       method: "POST",
       url: "/api/medicine/all",
-      data: {
-        where: {
-          active: true
-        },
-      }
+      data: { where: { active: true } }
     }).then(
       function (response) {
         $scope.busy = false;
@@ -489,58 +474,21 @@ app.controller("customers", function ($scope, $http, $timeout) {
   };
 
   $scope.searchAll = function () {
-
-    let where = {};
-
-    if ($scope.search.code) {
-
-      where['code'] = $scope.search.code;
-    }
-    if ($scope.search.name_ar) {
-
-      where['name_ar'] = $scope.search.name_ar;
-    }
-    if ($scope.search.name_en) {
-
-      where['name_en'] = $scope.search.name_en;
-    }
-    if ($scope.search.nationality) {
-
-      where['nationality'] = $scope.search.nationality;
-    }
-    if ($scope.search.gov) {
-
-      where['gov'] = $scope.search.gov;
-    }
-    if ($scope.search.city) {
-
-      where['city'] = $scope.search.city;
-    }
-    if ($scope.search.phone) {
-
-      where['phone'] = $scope.search.phone;
-    }
-    if ($scope.search.mobile) {
-
-      where['mobile'] = $scope.search.mobile;
-    }
-    where['active'] = 'all';
-
-    $scope.getCustomerList(where);
-
+    $scope.getCustomersList($scope.search);
     site.hideModal('#customerSearchModal');
-    $scope.search = {}
-
+    $scope.search = {};
   };
 
+  $scope.getCustomersList();
   $scope.getHost();
-  $scope.getCustomerList();
   $scope.getCustomerGroupList();
   $scope.getIndentfy();
   $scope.getGovList();
   $scope.getBloodType();
-  $scope.getDiseaseList();
   $scope.loadMaritalsStatus();
   $scope.loadMilitariesStatus();
-  $scope.getMedicineList();
+  if (site.feature('gym') || site.feature('academy')) {
+    $scope.getDiseaseList();
+    $scope.getMedicineList();
+  }
 });

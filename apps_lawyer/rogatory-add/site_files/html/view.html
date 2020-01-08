@@ -5,18 +5,41 @@
                 <legend> ##word.rogatory_add_informations## </legend>
                 <div class="row">
                     <div class="col9">
-                        <table class="table bold">
+                        <table class="table hover bold">
+                            <tr>
+                                <td class="title"> ##word.rogatory_start_date## </td>
+                                <td class="center"> {{rogatory_add.date |date:'dd - MM - yyyy'}} </td>
+                            </tr>
 
                             <tr>
-                                <td class="title"> ##word.rogatory_add_name## </td>
-                                <td class="center"> {{rogatory_add.name}} </td>
+                                <td class="title"> ##word.rogatory_character## </td>
+                                <td class="center"> {{rogatory_add.character}} </td>
+                            </tr>
+
+                            <tr>
+                                <td class="title"> ##word.rogatory_number## </td>
+                                <td class="center"> {{rogatory_add.number}} </td>
+                            </tr>
+                            
+                            <tr>
+                                <td class="title"> ##word.rogatory_year## </td>
+                                <td class="center"> {{rogatory_add.year}} </td>
+                            </tr>
+
+                            <tr>
+                                <td class="title"> ##word.rogatory_place## </td>
+                                <td class="center"> {{rogatory_add.rogatory_place.name}} </td>
+                            </tr>
+
+                            <tr>
+                                <td class="title"> ##word.rogatory_type## </td>
+                                <td class="center"> {{rogatory_add.rogatory_type.name}} </td>
                             </tr>
 
                             <tr>
                                 <td class="title">##word.description##</td>
                                 <td class="center">{{rogatory_add.description}}</td>
                             </tr>
-
 
                             <tr>
                                 <td class="title"> ##word.active## </td>

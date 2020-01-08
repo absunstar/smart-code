@@ -40,7 +40,10 @@
                 <table class="table loaded center hover bold" id="t1">
                     <tr>
                         <th class="not-print"> ##word.logo## </th>
-                        <th> ##word.rogatory_add_name## </th>
+                        <th> ##word.rogatory_start_date## </th>
+                        <th> ##word.rogatory_character## </th>
+                        <th> ##word.rogatory_number## </th>
+                        <th> ##word.rogatory_year## </th>
                         <th> ##word.status## </th>
 
                         <th class="not-print"> ##word.actions## </th>
@@ -50,7 +53,10 @@
                             <img class="logo" ng-src="{{c.image_url}}">
                         </td>
 
-                        <td> {{c.name}} </td>
+                        <td> {{c.date |date:'dd - MM - yyyy'}} </td>
+                        <td class="center"> {{c.character}} </td>
+                        <td class="center"> {{c.number}} </td>
+                        <td class="center"> {{c.year}} </td>
 
                         <td>
                             <p ng-show="c.active == true" class="green"> ##word.active## </p>

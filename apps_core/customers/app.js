@@ -61,7 +61,7 @@ module.exports = function init(site) {
 
 
 
-  site.on('[register][customer][add]', doc => {
+  site.on('[company][created]', doc => {
 
     $customers.add({
       group: {
@@ -279,21 +279,39 @@ module.exports = function init(site) {
     if (where['name_en']) {
       where['name_en'] = new RegExp(where['name_en'], 'i')
     }
-    if (where['active'] !== 'all') {
-      where['active'] = true
-    } else {
-      delete where['active']
+    
+    if (where.code) {
+
+      where['code'] = where.code;
+    }
+    if (where.name_ar) {
+
+      where['name_ar'] = new RegExp(where['name_ar'], 'i')
+    }
+    if (where.name_en) {
+
+      where['name_en'] = new RegExp(where['name_en'], 'i')
+    }
+    if (where.nationality) {
+
+      where['nationality'] = where.nationality;
     }
 
-    where['company.id'] = site.get_company(req).id
-    /*     where['branch.code'] = site.get_branch(req).code
-     */
+    if (where.phone) {
+
+      where['phone'] = where.phone;
+    }
+    if (where.mobile) {
+
+      where['mobile'] = where.mobile;
+    }
+    
     $customers.findMany({
       select: req.body.select || {},
       where: where,
       sort: req.body.sort || { id: -1 },
-      limit: req.body.limit
     }, (err, docs, count) => {
+      
       if (!err) {
         response.done = true
         response.list = docs
