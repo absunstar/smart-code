@@ -1,24 +1,24 @@
 module.exports = function init(site) {
 
-  let collection_name = 'circles'
+  let collection_name = 'Adjectivess'
 
   let source = {
-    name: 'Circles System',
-    ar: 'نظام الدوائر'
+    name: 'Adjectives System',
+    ar: 'نظام الصفات'
   }
 
-  let image_url = '/images/circle.png'
+  let image_url = '/images/adjectives.png'
   let add_message = {
-    name: 'New circle Added',
-    ar: 'تم إضافة دائرة جديدة'
+    name: 'New Adjectives Added',
+    ar: 'تم إضافة صفة جديدة'
   }
   let update_message = {
-    name: ' circle Updated',
-    ar: 'تم تعديل دائرة'
+    name: ' Adjectives Updated',
+    ar: 'تم تعديل صفة'
   }
   let delete_message = {
-    name: ' circle Deleted',
-    ar: 'تم حذف دائرة '
+    name: ' Adjectives Deleted',
+    ar: 'تم حذف صفة '
   }
 
   site.on('mongodb after insert', function (result) {

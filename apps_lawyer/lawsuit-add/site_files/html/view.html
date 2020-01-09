@@ -33,15 +33,68 @@
                                     </td>
                                 </tr>
 
+                                <tr>
+                                    <td class="title">##word.lawsuit_number##</td>
+                                    <td class="center">{{lawsuit_add.number}}</td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title">##word.lawsuit_year##</td>
+                                    <td class="center">{{lawsuit_add.year}}</td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title">##word.lawsuit_place##</td>
+                                    <td class="center">{{lawsuit_add.courts.name}}</td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title">##word.circle##</td>
+                                    <td class="center">{{lawsuit_add.circle.name}}</td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title">##word.lawsuit_topic##</td>
+                                    <td class="center">{{lawsuit_add.lawsuit_topic}}</td>
+                                </tr>
 
                                 <tr>
                                     <td class="title">##word.description##</td>
                                     <td class="center">{{lawsuit_add.description}}</td>
                                 </tr>
 
-
-
                             </table>
+
+                            <div class="row">
+                                <fieldset>
+                                    <legend> ##word.lawsuit_properties## </legend>
+                                    <tr>
+                                        <td class="title">##word.lawsuit_degree##</td>
+                                        <td class="center">{{lawsuit_add.lawsuit_degree.name}}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="title">##word.lawsuit_type##</td>
+                                        <td class="center">{{lawsuit_add.lawsuit_type.name}}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="title">##word.lawsuit_status##</td>
+                                        <td class="center">{{lawsuit_add.lawsuit_status.name}}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="title">##word.lawsuit_basic##</td>
+                                        <td class="center">{{lawsuit_add.lawsuit_basic.name}}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="title">##word.notes##</td>
+                                        <td class="center">{{lawsuit_add.notes}}</td>
+                                    </tr>
+
+                                </fieldset>
+                            </div>
                         </div>
 
                         <div class="col3">
@@ -56,13 +109,93 @@
 
                 <fieldset>
                     <legend> ##word.oppenents## </legend>
+
+                    <div class="row">
+                        <div class="col10">
+                            <table class="table  center hover bold">
+
+                                <tr>
+                                    <th> ##word.oppenents_name## </th>
+                                    <th> ##word.adjective## </th>
+                                </tr>
+                                <tr ng-repeat="c in lawsuit_add.oppenents_list ">
+                                    <td> {{c.oppenents.name_ar}} </td>
+                                    <td> {{c.adjective}} </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                </fieldset>
+
+                <br>
+                <br>
+
+                <fieldset>
+                    <legend> ##word.oppenents_lawyers## </legend>
+
+                    <div class="col10">
+
+                        <table class="table  center hover bold">
+                            <tr>
+                                <th> ##word.oppenents_lawyers## </th>
+                                <th> ##word.adjective## </th>
+
+                            </tr>
+                            <tr ng-repeat="c in lawsuit_add.oppenents_lawyers_list ">
+
+                                <td> {{c.oppenents_lawyer.name_ar}} </td>
+                                <td> {{c.adjective}} </td>
+
+                            </tr>
+                        </table>
+                    </div>
                 </fieldset>
             </div>
 
             <div id="clients" class="tab-content">
 
+
                 <fieldset>
                     <legend> ##word.clients## </legend>
+
+                    <div class="col10">
+
+                        <table class="table  center hover bold">
+                            <tr>
+                                <th> ##word.client_name## </th>
+                                <th> ##word.adjective## </th>
+
+                            </tr>
+                            <tr ng-repeat="c in lawsuit_add.clients_list ">
+
+                                <td> {{c.customer.name_ar}} </td>
+                                <td> {{c.adjective}} </td>
+                            </tr>
+                        </table>
+                    </div>
+                </fieldset>
+
+                <br>
+                <br>
+
+                <fieldset>
+                    <legend> ##word.clients_lawyers## </legend>
+
+                    <div class="col10">
+
+                        <table class="table  center hover bold">
+                            <tr>
+                                <th> ##word.clients_lawyers## </th>
+                                <th> ##word.adjective## </th>
+                            </tr>
+
+                            <tr ng-repeat="c in lawsuit_add.office_lawyers_list ">
+                                <td> {{c.office_lawyer.name_ar}} </td>
+                                <td> {{c.adjective}} </td>
+                            </tr>
+                        </table>
+                    </div>
                 </fieldset>
             </div>
 

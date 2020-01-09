@@ -1,0 +1,28 @@
+<div class="form">
+    <div id="lawsuitStatusAddModal">
+        <fieldset>
+            <legend> ##word.lawsuit_status_informations## </legend>
+            <div class="row">
+                <div class="col9">
+                    <div class="row">
+
+                        <i-control v="r" class="col5" label="##word.lawsuit_status_name##" ng-model="lawsuit_status.name">
+                        </i-control>
+                        <div class="col4"></div>
+                        <i-checkbox class="col2" label="##word.active##" ng-model="lawsuit_status.active"></i-checkbox>
+                    </div>
+
+                    <div class="row">
+                        <i-textarea ng-model="lawsuit_status.description" class="col6" label="##word.description##">
+                        </i-textarea>
+                    </div>
+
+                </div>
+
+                <div class="col3">
+                    <i-image category="lawsuit_status" ng-model="lawsuit_status.image_url"> </i-image>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+</div>

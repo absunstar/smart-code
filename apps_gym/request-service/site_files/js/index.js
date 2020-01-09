@@ -575,11 +575,7 @@ app.controller("request_service", function ($scope, $http, $timeout) {
         url: "/api/customers/all",
         data: {
           search: $scope.search_customer
-          /*  select: {
-            id: 1,
-            name_ar: 1,
-            name_en: 1,
-          } */
+       
         }
       }).then(
         function (response) {

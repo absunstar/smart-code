@@ -1,0 +1,7 @@
+[{
+    "module_name" : "public" ,
+    "name": "adjectives_admin",
+    "en": "Adjectives Admin",
+    "ar": "إدارة الصفات",
+    "permissions": ["adjectives_manage"]
+}]

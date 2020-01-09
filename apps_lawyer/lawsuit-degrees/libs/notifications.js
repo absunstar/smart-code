@@ -1,25 +1,27 @@
 module.exports = function init(site) {
 
-  let collection_name = 'circles'
+  let collection_name = 'lawsuit_degrees'
 
   let source = {
-    name: 'Circles System',
-    ar: 'نظام الدوائر'
+    name: 'LawSuit Degrees System',
+    ar: ' نظام درجات الدعاوي'
   }
 
-  let image_url = '/images/circle.png'
+  let image_url = '/images/lawsuit_degrees.png'
+
   let add_message = {
-    name: 'New circle Added',
-    ar: 'تم إضافة دائرة جديدة'
+    name: 'New LawSuit Degrees Added',
+    ar: 'تم إضافة درجة دعوى جديدة'
   }
   let update_message = {
-    name: ' circle Updated',
-    ar: 'تم تعديل دائرة'
+    name: ' LawSuit Degrees Updated',
+    ar: 'تم تعديل درجة دعوى'
   }
   let delete_message = {
-    name: ' circle Deleted',
-    ar: 'تم حذف دائرة '
+    name: ' LawSuit Degrees Deleted',
+    ar: 'تم حذف درجة دعوى '
   }
+
 
   site.on('mongodb after insert', function (result) {
     if (result.collection === collection_name) {

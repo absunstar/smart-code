@@ -1225,6 +1225,16 @@
         "ar": "إضافة دوائر جديدة"
     },
     {
+        "name": "system_adjectives_menus",
+        "en":  "Adjectives Menu",
+        "ar": "قائمة صفات"
+    },
+    {
+        "name": "system_adjectives",
+        "en": "Add Adjectives",
+        "ar": "إضافة صفات جديدة"
+    },
+    {
         "name": "system_rogatory_places_menus",
         "en": "Rogatory Places Menu",
         "ar": "قائمة أماكن التوكيلات"
@@ -1235,8 +1245,38 @@
         "ar": "إضافة أماكن توكيلات جديدة"
     },
     {
+        "name": "system_lawsuit_status_menus",
+        "en": "Lawsuit Status Menu",
+        "ar": "قائمة حالات الدعاوي"
+    },
+    {
+        "name": "system_lawsuit_status",
+        "en": "Add Lawsuit Status",
+        "ar": "إضافة حالات دعاوي جديدة"
+    },
+    {
+        "name": "system_lawsuit_types_menus",
+        "en": "Lawsuit Types Menu",
+        "ar": "قائمة أنواع الدعاوي"
+    },
+    {
+        "name": "system_lawsuit_types",
+        "en": "Add Lawsuit Types",
+        "ar": "إضافة أنواع دعاوي جديدة"
+    },
+    {
+        "name": "system_lawsuit_degrees_menus",
+        "en": "Lawsuit Types Menu",
+        "ar": "قائمة درجات الدعاوي"
+    },
+    {
+        "name": "system_lawsuit_degrees",
+        "en": "Add Lawsuit Degrees",
+        "ar": "إضافة درجات دعاوي جديدة"
+    },
+    {
         "name": "system_request_types_menus",
-        "en": "Request Types Menu",
+        "en": "Request Degrees Menu",
         "ar": "قائمة أنواع الطلبات"
     },
     {
@@ -1244,6 +1284,7 @@
         "en": "Add Request Types",
         "ar": "إضافة أنواع طلبات جديدة"
     },
+  
     {
         "name": "system_military_menus",
         "en": " Military Menu",

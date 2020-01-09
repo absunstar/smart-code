@@ -5,8 +5,8 @@
                 ##word.lawsuit_data## </a>
             <a class="tab-link" onclick="site.showTabContent(event, '#oppenents')">
                 ##word.oppenents## </a>
-                <a class="tab-link" onclick="site.showTabContent(event, '#clients')">
-                        ##word.clients## </a>
+            <a class="tab-link" onclick="site.showTabContent(event, '#clients')">
+                ##word.clients## </a>
             <a class="tab-link " onclick="site.showTabContent(event, '#lawsuitFiles')">
                 ##word.lawsuit_files## </a>
         </div>
@@ -57,13 +57,14 @@
                                     <legend> ##word.lawsuit_properties## </legend>
 
                                     <div class="row">
-                                        <i-list ng-search="lawsuit_degree" class="col4" items="lawsuitDegreeList"
+                                        <i-list ng-search="lawsuit_degree" class="col4" items="lawsuitDegreesList"
                                             ng-model="lawsuit_add.lawsuit_degree" label="##word.lawsuit_degree##">
                                         </i-list>
-                                        <i-list ng-search="lawsuit_type" class="col4" items="lawsuitTypeList"
+                                        <i-list ng-search="lawsuit_type" class="col4" items="lawsuitTypesList"
                                             ng-model="lawsuit_add.lawsuit_type" label="##word.lawsuit_type##">
                                         </i-list>
                                     </div>
+
                                     <div class="row">
                                         <i-list ng-search="lawsuit_status" class="col4" items="lawsuitStatusList"
                                             ng-model="lawsuit_add.lawsuit_status" label="##word.lawsuit_status##">
@@ -72,6 +73,7 @@
                                             ng-model="lawsuit_add.lawsuit_basic" label="##word.lawsuit_basic##">
                                         </i-list>
                                     </div>
+
                                 </fieldset>
                             </div>
 
@@ -97,6 +99,82 @@
                 <fieldset>
                     <legend> ##word.oppenents## </legend>
                     <div class="row">
+                        <i-control ng-keydown="getOppenentsList($event)" id="service" class="col2"
+                            ng-model="search_oppenents" label="##word.search##" type="text"></i-control>
+                        <i-list ng-search="_search.$oppenents" class="col4" display="name_ar" ng-model="oppenents"
+                            label="##word.oppenents_name##" items="oppenentsList">
+                        </i-list>
+
+                        <i-list ng-search="_search.$oppenentss_adjective" class="col3" display="name"
+                            ng-model="oppenents_adjective" label="##word.adjective##" items="adjectivesList">
+                        </i-list>
+                        <i-button label="##word.add##" type="add" ng-click="addOppenents()"></i-button>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="row">
+                        <div class="col10">
+                            <table class="table  center hover bold">
+
+                                <tr>
+                                    <th> ##word.oppenents_name## </th>
+                                    <th> ##word.adjective## </th>
+                                    <th> ##word.actions## </th>
+                                </tr>
+
+                                <tr ng-repeat="c in lawsuit_add.oppenents_list ">
+                                    <td> {{c.oppenents.name_ar}} </td>
+                                    <td> {{c.adjective}} </td>
+                                    <td class="center">
+                                        <i-button type="delete"
+                                            ng-click="lawsuit_add.oppenents_list.splice($index,1)">
+                                        </i-button>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </fieldset>
+                <br>
+                <br>
+                <fieldset>
+                    <legend> ##word.oppenents_lawyers## </legend>
+                    <div class="row">
+                        <i-control ng-keydown="getOppenentsLawyersList($event)" id="service" class="col2"
+                            ng-model="search_oppenents_lawyers" label="##word.search##" type="text"></i-control>
+                        <i-list ng-search="_search.$oppenents_lawyer" class="col4" display="name_ar"
+                            ng-model="oppenents_lawyer" label="##word.oppenents_lawyers##" items="oppenentsLawyersList">
+                        </i-list>
+
+                        <i-list ng-search="_search.$oppenents_lawyers_adjective" class="col3" display="name"
+                            ng-model="oppenents_lawyer_adjective" label="##word.adjective##" items="adjectivesList">
+                        </i-list>
+                        <i-button label="##word.add##" type="add" ng-click="addOppenentsLawyers()"></i-button>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="row">
+                        <div class="col10">
+
+                            <table class="table  center hover bold">
+                                <tr>
+                                    <th> ##word.oppenents_lawyers## </th>
+                                    <th> ##word.adjective## </th>
+                                    <th> ##word.actions## </th>
+
+                                </tr>
+                                <tr ng-repeat="c in lawsuit_add.oppenents_lawyers_list ">
+
+                                    <td> {{c.oppenents_lawyer.name_ar}} </td>
+                                    <td> {{c.adjective}} </td>
+                                    <td class="center">
+                                        <i-button type="delete"
+                                            ng-click="lawsuit_add.oppenents_lawyers_list.splice($index,1)">
+                                        </i-button>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
 
                     </div>
                 </fieldset>
@@ -110,7 +188,82 @@
                 <fieldset>
                     <legend> ##word.clients## </legend>
                     <div class="row">
-                      
+                        <i-control ng-keydown="getCustomerList($event)" id="service" class="col2"
+                            ng-model="search_customer" label="##word.search##" type="text"></i-control>
+                        <i-list ng-search="_search.$customer" class="col4" display="name_ar" ng-model="customer"
+                            label="##word.client_name##" items="customersList">
+                        </i-list>
+
+                        <i-list ng-search="_search.$customers_adjective" class="col3" display="name"
+                            ng-model="customer_adjective" label="##word.adjective##" items="adjectivesList">
+                        </i-list>
+                        <i-button label="##word.add##" type="add" ng-click="addClients()"></i-button>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="row">
+                        <div class="col10">
+
+                            <table class="table  center hover bold">
+                                <tr>
+                                    <th> ##word.client_name## </th>
+                                    <th> ##word.adjective## </th>
+                                    <th> ##word.actions## </th>
+
+                                </tr>
+                                <tr ng-repeat="c in lawsuit_add.clients_list ">
+
+                                    <td> {{c.customer.name_ar}} </td>
+                                    <td> {{c.adjective}} </td>
+                                    <td class="center">
+                                        <i-button type="delete"
+                                            ng-click="lawsuit_add.clients_list.splice($index,1)">
+                                        </i-button>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                </fieldset>
+                <br>
+                <br>
+                <fieldset>
+                    <legend> ##word.clients_lawyers## </legend>
+                    <div class="row">
+                        <i-control ng-keydown="getOfficeLawyersList($event)" id="service" class="col2"
+                            ng-model="search_office_lawyers" label="##word.search##" type="text"></i-control>
+                        <i-list ng-search="_search.$office_lawyer" class="col4" display="name_ar"
+                            ng-model="office_lawyer" label="##word.clients_lawyers##" items="officeLawyersList">
+                        </i-list>
+
+                        <i-list ng-search="_search.$office_lawyers_adjective" class="col3" display="name"
+                            ng-model="office_lawyer_adjective" label="##word.adjective##" items="adjectivesList">
+                        </i-list>
+                        <i-button label="##word.add##" type="add" ng-click="addOfficeLawyers()"></i-button>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="row">
+                        <div class="col10">
+
+                            <table class="table  center hover bold">
+                                <tr>
+                                    <th> ##word.clients_lawyers## </th>
+                                    <th> ##word.adjective## </th>
+                                    <th> ##word.actions## </th>
+
+                                </tr>
+                                <tr ng-repeat="c in lawsuit_add.office_lawyers_list ">
+
+                                    <td> {{c.office_lawyer.name_ar}} </td>
+                                    <td> {{c.adjective}} </td>
+                                    <td class="center">
+                                        <i-button type="delete"
+                                            ng-click="lawsuit_add.office_lawyers_list.splice($index,1)">
+                                        </i-button>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
                     </div>
                 </fieldset>
 

@@ -1,0 +1,37 @@
+[
+    {
+        "name": "adjectives",
+        "en":  "Djectives",
+        "ar": "الصفات"
+    },
+    {
+        "name": "adjectives_new",
+        "en": "New djectives",
+        "ar": "صفة جديد"
+    },
+    {
+        "name": "adjectives_add",
+        "en": "Add djectives",
+        "ar": "إضافة صفة "
+    },
+    {
+        "name": "adjectives_edit",
+        "en": "Edit djectives",
+        "ar": "تعديل صفة "
+    },
+    {
+        "name": "adjectives_details",
+        "en":  "Djectives Details",
+        "ar": "تفاصيل الصفة "
+    },
+    {
+        "name": "adjectives_delete",
+        "en": "Deleted djectives",
+        "ar": "حذف صفة "
+    },
+    {
+        "name": "adjectives_name",
+        "en":  "Djectives Name",
+        "ar": "إسم الصفة "
+    }
+]

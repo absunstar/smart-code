@@ -1,13 +1,13 @@
 module.exports = function init(site) {
 
-  let collection_name = 'rogatory_places'
+  let collection_name = 'rogatory_types'
 
   let source = {
     name: 'Rogatory Types System',
     ar: ' نظام أنواع التوكيلات'
   }
 
-  let image_url = '/images/rogatory-places.png'
+  let image_url = '/images/rogatory-types.png'
   let add_message = {
     name: 'New Rogatory Types Added',
     ar: 'تم إضافة نوع توكيل جديد'

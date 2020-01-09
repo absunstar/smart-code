@@ -1,0 +1,40 @@
+<div ng-hide="busy" id="v1">
+    <div class="form">
+        <div id="customersGroupViewModal">
+            <fieldset>
+                <legend> ##word.lawsuit_degrees_informations## </legend>
+                <div class="row">
+                    <div class="col9">
+                        <table class="table bold">
+
+                            <tr>
+                                <td class="title"> ##word.lawsuit_degrees_name## </td>
+                                <td class="center"> {{lawsuit_degrees.name}} </td>
+                            </tr>
+
+                            <tr>
+                                <td class="title">##word.description##</td>
+                                <td class="center">{{lawsuit_degrees.description}}</td>
+                            </tr>
+
+
+                            <tr>
+                                <td class="title"> ##word.active## </td>
+                                <td ng-show="lawsuit_degrees.active == true" class="center green"> ##word.active## </td>
+                                <td ng-show="lawsuit_degrees.active == false" class="center red"> ##word.not_active##
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="col3">
+                        <i-image class="not-print" view ng-model="lawsuit_degrees.image_url"> </i-image>
+                    </div>
+
+
+                </div>
+            </fieldset>
+        </div>
+    </div>
+</div>
+<div x-import="lawsuit-degrees/action_info.html"></div>

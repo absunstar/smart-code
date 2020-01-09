@@ -1,0 +1,30 @@
+<div class="form">
+    <div id="basicInformation" class="">
+        <fieldset>
+            <legend> ##word.basic_information## </legend>
+            <div class="row">
+                <div class="col9">
+                    <div class="row">
+
+                        <i-control help-id="adjectives_name" v="r ll2" class="col5" label="##word.adjectives_name##"
+                            ng-model="adjectives.name"></i-control>
+                        <div class="col4"></div>
+                        <i-checkbox help-id="adjectives_active" class="col3" label="##word.active##"
+                            ng-model="adjectives.active"></i-checkbox>
+                    </div>
+
+                    <div class="row">
+                        <i-textarea ng-model="adjectives.description" class="col6" label="##word.description##">
+                        </i-textarea>
+                    </div>
+
+                </div>
+
+                <div class="col3">
+                    <i-image help-id="adjectives_logo" ng-model="adjectives.image_url"></i-image>
+                </div>
+            </div>
+        </fieldset>
+
+    </div>
+</div>

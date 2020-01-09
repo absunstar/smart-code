@@ -1,25 +1,27 @@
 module.exports = function init(site) {
 
-  let collection_name = 'circles'
+  let collection_name = 'lawsuit_status'
 
   let source = {
-    name: 'Circles System',
-    ar: 'نظام الدوائر'
+    name: 'LawSuit Status System',
+    ar: ' نظام حالات الدعاوي'
   }
 
-  let image_url = '/images/circle.png'
+  let image_url = '/images/lawsuit_status.png'
+
   let add_message = {
-    name: 'New circle Added',
-    ar: 'تم إضافة دائرة جديدة'
+    name: 'New LawSuit Status Added',
+    ar: 'تم إضافة حالة دعوى جديدة'
   }
   let update_message = {
-    name: ' circle Updated',
-    ar: 'تم تعديل دائرة'
+    name: ' LawSuit Status Updated',
+    ar: 'تم تعديل حالة دعوى'
   }
   let delete_message = {
-    name: ' circle Deleted',
-    ar: 'تم حذف دائرة '
+    name: ' LawSuit Status Deleted',
+    ar: 'تم حذف حالة دعوى '
   }
+
 
   site.on('mongodb after insert', function (result) {
     if (result.collection === collection_name) {
