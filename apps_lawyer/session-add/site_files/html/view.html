@@ -5,18 +5,12 @@
                 <legend> ##word.session_add_informations## </legend>
                 <div class="row">
                     <div class="col9">
-                        <table class="table bold">
+                        <table class="table hover bold">
 
                             <tr>
-                                <td class="title"> ##word.session_add_name## </td>
-                                <td class="center"> {{session_add.name}} </td>
+                                <td class="title"> ##word.session_start_date## </td>
+                                <td class="center"> {{session_add.date  | date : 'yyyy - MM - dd'}} </td>
                             </tr>
-
-                            <tr>
-                                <td class="title">##word.description##</td>
-                                <td class="center">{{session_add.description}}</td>
-                            </tr>
-
 
                             <tr>
                                 <td class="title"> ##word.active## </td>
@@ -24,6 +18,37 @@
                                 <td ng-show="session_add.active == false" class="center red"> ##word.not_active##
                                 </td>
                             </tr>
+
+                            <tr>
+                                <td class="title">##word.lawsuit_number##</td>
+                                <td class="center">{{session_add.lawsuit.number}} - {{session_add.lawsuit.year}}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="title">##word.roll_number##</td>
+                                <td class="center">{{session_add.roll_number}}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="title">##word.reason##</td>
+                                <td class="center">{{session_add.reason.name}}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="title">##word.requests##</td>
+                                <td class="center">{{session_add.requests}}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="title">##word.description##</td>
+                                <td class="center">{{session_add.description}}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="title">##word.decision##</td>
+                                <td class="center">{{session_add.decision}}</td>
+                            </tr>
+
                         </table>
                     </div>
 

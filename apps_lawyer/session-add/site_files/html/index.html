@@ -27,8 +27,10 @@
                 </div>
 
                 <div class="top-actions">
-                    <i-button type="add" x-permissions="session_add_add || session_add_manage" label="##word.session_add_new##" ng-click="displayAddSessionAdd()"></i-button>
-                    <i-button type="search" x-permissions="session_add_search || session_add_manage" label="##word.search_all##" onclick="site.showModal('#sessionAddSearchModal')"></i-button>
+                    <i-button type="add" x-permissions="session_add_add || session_add_manage"
+                        label="##word.session_add_new##" ng-click="displayAddSessionAdd()"></i-button>
+                    <i-button type="search" x-permissions="session_add_search || session_add_manage"
+                        label="##word.search_all##" onclick="site.showModal('#sessionAddSearchModal')"></i-button>
 
                     <span ng-show="busy">
                         <span class="sr-only">Loading...</span>
@@ -40,7 +42,10 @@
                 <table class="table loaded center hover bold" id="t1">
                     <tr>
                         <th class="not-print"> ##word.logo## </th>
-                        <th> ##word.session_add_name## </th>
+                        <th> ##word.session_start_date## </th>
+                        <th> ##word.lawsuit_number## </th>
+                        <th> ##word.roll_number## </th>
+                        <th> ##word.reason## </th>
                         <th> ##word.status## </th>
 
                         <th class="not-print"> ##word.actions## </th>
@@ -50,7 +55,14 @@
                             <img class="logo" ng-src="{{c.image_url}}">
                         </td>
 
-                        <td> {{c.name}} </td>
+                        <td> {{c.date  | date : 'yyyy - MM - dd'}} </td>
+
+                        <td>
+                            {{c.lawsuit.number}} - {{c.lawsuit.year}}
+                        </td>
+
+                        <td>{{c.roll_number}} </td>
+                        <td>{{c.reason.name}} </td>
 
                         <td>
                             <p ng-show="c.active == true" class="green"> ##word.active## </p>
@@ -58,17 +70,21 @@
                         </td>
 
                         <td class="center not-print">
-                            <i-button type="details" x-permissions="session_add_view || session_add_manage" label="##word.details##" ng-click="displayDetailsSessionAdd(c)"></i-button>
+                            <i-button type="details" x-permissions="session_add_view || session_add_manage"
+                                label="##word.details##" ng-click="displayDetailsSessionAdd(c)"></i-button>
 
-                            <i-button type="update" x-permissions="session_add_edit || session_add_manage" label="##word.update##" ng-click="displayUpdateSessionAdd(c)"></i-button>
+                            <i-button type="update" x-permissions="session_add_edit || session_add_manage"
+                                label="##word.update##" ng-click="displayUpdateSessionAdd(c)"></i-button>
 
-                            <i-button type="delete" x-permissions="session_add_delete || session_add_manage" label="##word.delete##" ng-click="displayDeleteSessionAdd(c)"></i-button>
+                            <i-button type="delete" x-permissions="session_add_delete || session_add_manage"
+                                label="##word.delete##" ng-click="displayDeleteSessionAdd(c)"></i-button>
                         </td>
                     </tr>
                 </table>
 
                 <div class="row">
-                    <i-button x-permissions="session_add_print || session_add_manage" type="print" label="##word.print##" onclick="site.print('#t1')"></i-button>
+                    <i-button x-permissions="session_add_print || session_add_manage" type="print"
+                        label="##word.print##" onclick="site.print('#t1')"></i-button>
 
 
                 </div>

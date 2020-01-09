@@ -20,15 +20,18 @@
                 <div x-import="lawsuit-add/update_modal.html"></div>
                 <div x-import="lawsuit-add/delete_modal.html"></div>
                 <div x-import="lawsuit-add/view_modal.html"></div>
-                <div x-permissions="lawsuit_add_search || lawsuit_add_manage" x-import="lawsuit-add/search_all_modal.html"></div>
+                <div x-permissions="lawsuit_add_search || lawsuit_add_manage"
+                    x-import="lawsuit-add/search_all_modal.html"></div>
 
                 <div class="row">
                     <h1 class="bold text-center"> ##word.lawsuit_add## </h1>
                 </div>
 
                 <div class="top-actions">
-                    <i-button type="add" x-permissions="lawsuit_add_add || lawsuit_add_manage" label="##word.lawsuit_add_new##" ng-click="displayAddLawsuitAdd()"></i-button>
-                    <i-button type="search" x-permissions="lawsuit_add_search || lawsuit_add_manage" label="##word.search_all##" onclick="site.showModal('#lawsuitAddSearchModal')"></i-button>
+                    <i-button type="add" x-permissions="lawsuit_add_add || lawsuit_add_manage"
+                        label="##word.lawsuit_add_new##" ng-click="displayAddLawsuitAdd()"></i-button>
+                    <i-button type="search" x-permissions="lawsuit_add_search || lawsuit_add_manage"
+                        label="##word.search_all##" onclick="site.showModal('#lawsuitAddSearchModal')"></i-button>
 
                     <span ng-show="busy">
                         <span class="sr-only">Loading...</span>
@@ -40,7 +43,11 @@
                 <table class="table loaded center hover bold" id="t1">
                     <tr>
                         <th class="not-print"> ##word.logo## </th>
-                        <th> ##word.lawsuit_add_name## </th>
+                        <th> ##word.lawsuit_start_date## </th>
+                        <th> ##word.lawsuit_number## </th>
+                        <th> ##word.lawsuit_year## </th>
+                        <th> ##word.lawsuit_place## </th>
+                        <th> ##word.circle## </th>
                         <th> ##word.status## </th>
 
                         <th class="not-print"> ##word.actions## </th>
@@ -50,7 +57,11 @@
                             <img class="logo" ng-src="{{c.image_url}}">
                         </td>
 
-                        <td> {{c.name}} </td>
+                        <td> {{c.date  | date : 'yyyy - MM - dd'}} </td>
+                        <td> {{c.number}} </td>
+                        <td> {{c.year}} </td>
+                        <td> {{c.courts.name}} </td>
+                        <td> {{c.circle.name}} </td>
 
                         <td>
                             <p ng-show="c.active == true" class="green"> ##word.active## </p>
@@ -58,17 +69,21 @@
                         </td>
 
                         <td class="center not-print">
-                            <i-button type="details" x-permissions="lawsuit_add_view || lawsuit_add_manage" label="##word.details##" ng-click="displayDetailsLawsuitAdd(c)"></i-button>
+                            <i-button type="details" x-permissions="lawsuit_add_view || lawsuit_add_manage"
+                                label="##word.details##" ng-click="displayDetailsLawsuitAdd(c)"></i-button>
 
-                            <i-button type="update" x-permissions="lawsuit_add_edit || lawsuit_add_manage" label="##word.update##" ng-click="displayUpdateLawsuitAdd(c)"></i-button>
+                            <i-button type="update" x-permissions="lawsuit_add_edit || lawsuit_add_manage"
+                                label="##word.update##" ng-click="displayUpdateLawsuitAdd(c)"></i-button>
 
-                            <i-button type="delete" x-permissions="lawsuit_add_delete || lawsuit_add_manage" label="##word.delete##" ng-click="displayDeleteLawsuitAdd(c)"></i-button>
+                            <i-button type="delete" x-permissions="lawsuit_add_delete || lawsuit_add_manage"
+                                label="##word.delete##" ng-click="displayDeleteLawsuitAdd(c)"></i-button>
                         </td>
                     </tr>
                 </table>
 
                 <div class="row">
-                    <i-button x-permissions="lawsuit_add_print || lawsuit_add_manage" type="print" label="##word.print##" onclick="site.print('#t1')"></i-button>
+                    <i-button x-permissions="lawsuit_add_print || lawsuit_add_manage" type="print"
+                        label="##word.print##" onclick="site.print('#t1')"></i-button>
 
 
                 </div>

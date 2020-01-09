@@ -224,7 +224,7 @@ app.controller("session_add", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.getLawsuitList = function (ev) {
+  $scope.getLawsuitsList = function (ev) {
     $scope.error = '';
     $scope.busy = true;
     if (ev.which === 13) {
@@ -244,7 +244,7 @@ app.controller("session_add", function ($scope, $http, $timeout) {
         function (response) {
           $scope.busy = false;
           if (response.data.done && response.data.list.length > 0) {
-            $scope.lawsuitList = response.data.list;
+            $scope.lawsuitsList = response.data.list;
           }
         },
         function (err) {

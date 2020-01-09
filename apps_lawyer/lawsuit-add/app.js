@@ -165,6 +165,18 @@ module.exports = function init(site) {
     }
 
     let where = req.data.where || {}
+    let search = req.body.search
+    
+    if (search) {
+      where.$or = []
+      where.$or.push({
+        'number': search
+      })
+      where.$or.push({
+        'year': search
+      })
+    }
+
 
     if (where['code']) {
       where['code'] = new RegExp(where['code'], 'i')
