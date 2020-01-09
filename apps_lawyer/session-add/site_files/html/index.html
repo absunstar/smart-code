@@ -16,11 +16,17 @@
     <div id="main-layout" class="container">
         <div class="row">
             <div class="row" ng-controller="session_add" x-permissions="login">
-                <div x-import="session-add/add_modal.html"></div>
-                <div x-import="session-add/update_modal.html"></div>
-                <div x-import="session-add/delete_modal.html"></div>
-                <div x-import="session-add/view_modal.html"></div>
-                <div x-import="session-add/search_all_modal.html"></div>
+                <div x-permissions="session_add_add || session_add_manage" x-import="session-add/add_modal.html"></div>
+                <div x-permissions="session_add_edit || session_add_manage" x-import="session-add/status_judgment.html">
+                </div>
+                <div x-permissions="session_add_edit || session_add_manage" x-import="session-add/update_modal.html">
+                </div>
+                <div x-permissions="session_add_delete || session_add_manage" x-import="session-add/delete_modal.html">
+                </div>
+                <div x-permissions="session_add_view || session_add_manage" x-import="session-add/view_modal.html">
+                </div>
+                <div x-permissions="session_add_search || session_add_manage"
+                    x-import="session-add/search_all_modal.html"></div>
 
                 <div class="row">
                     <h1 class="bold text-center"> ##word.session_add## </h1>
@@ -46,8 +52,9 @@
                         <th> ##word.lawsuit_number## </th>
                         <th> ##word.roll_number## </th>
                         <th> ##word.reason## </th>
+                        <th> ##word.status_session## </th>
                         <th> ##word.status## </th>
-
+                        
                         <th class="not-print"> ##word.actions## </th>
                     </tr>
                     <tr ng-repeat="c in list | orderBy : '-id'">
@@ -63,6 +70,7 @@
 
                         <td>{{c.roll_number}} </td>
                         <td>{{c.reason.name}} </td>
+                        <td>{{c.judgment_status.ar}} </td>
 
                         <td>
                             <p ng-show="c.active == true" class="green"> ##word.active## </p>
@@ -72,6 +80,9 @@
                         <td class="center not-print">
                             <i-button type="details" x-permissions="session_add_view || session_add_manage"
                                 label="##word.details##" ng-click="displayDetailsSessionAdd(c)"></i-button>
+
+                            <i-button type="save" x-permissions="session_add_edit || session_add_manage"
+                                label="##word.status_judgment##" ng-click="changeStatusudgment(c)"></i-button>
 
                             <i-button type="update" x-permissions="session_add_edit || session_add_manage"
                                 label="##word.update##" ng-click="displayUpdateSessionAdd(c)"></i-button>
@@ -85,8 +96,6 @@
                 <div class="row">
                     <i-button x-permissions="session_add_print || session_add_manage" type="print"
                         label="##word.print##" onclick="site.print('#t1')"></i-button>
-
-
                 </div>
 
             </div>

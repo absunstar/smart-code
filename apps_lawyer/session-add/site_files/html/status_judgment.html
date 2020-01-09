@@ -1,0 +1,61 @@
+<div id="statusJudgmentModal" class="modal">
+    <div class="col2"></div>
+    <div class="modal-content col8">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.status_judgment## <i class="fa fa-search"></i>
+            </h2>
+        </div>
+
+        <div class="modal-body">
+            <form class="form">
+                <div class="row">
+
+                    <div class="row">
+                        <i-list ng-search="_search.$status_judgment" class="col4" display="##session.lang##" v="r"
+                            ng-model="change_judgment.judgment_status" label="##word.status_judgment##"
+                            items="sessionJudgmentList">
+                        </i-list>
+
+                    </div>
+
+                    <div class="row" ng-show="change_judgment.judgment_status.id == 2">
+
+                        <i-date2 ng-model="change_judgment.date" class="col4" label="##word.session_start_date##">
+                        </i-date2>
+
+                        <i-control class="col2" label="##word.roll_number##" ng-model="change_judgment.roll_number">
+                        </i-control>
+
+                        <i-list ng-search="reason" class="col4" items="reasonSessionList"
+                            ng-model="change_judgment.reason" label="##word.reason##">
+                        </i-list>
+
+                    </div>
+
+                    <div class="row" ng-show="change_judgment.judgment_status.id == 2">
+                        <i-textarea ng-model="change_judgment.requests" class="col6" label="##word.requests##">
+                        </i-textarea>
+
+                        <i-textarea ng-model="change_judgment.decision" class="col6" label="##word.decision##">
+                        </i-textarea>
+                    </div>
+
+                    <div class="row" ng-show="change_judgment.judgment_status.id == 2">
+                        <i-textarea ng-model="change_judgment.description" class="col6" label="##word.description##">
+                        </i-textarea>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <h2 class="error">{{error}}</h2>
+
+        <div class="modal-footer center">
+            <i-button type="save" label="##word.save##" ng-click="acceptChangeStatusudgment(change_judgment)"></i-button>
+            <i-button type="close" label="##word.close##" onclick="site.hideModal('#statusJudgmentModal')"> </i-button>
+        </div>
+    </div>
+    <div class="col2"></div>
+</div>

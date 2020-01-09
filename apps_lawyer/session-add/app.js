@@ -23,6 +23,12 @@ module.exports = function init(site) {
     path: __dirname + '/site_files/images/'
   })
 
+  site.post({
+    name: '/api/session_judgment/all',
+    path: __dirname + '/site_files/json/session_judgment.json'
+  });
+
+
   site.post("/api/session_add/add", (req, res) => {
     let response = {}
     response.done = false

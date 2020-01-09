@@ -1,0 +1,27 @@
+[
+    {
+        "id": 1,
+        "en": "New Session",
+        "ar": "جلسة جديدة"
+    },
+    {
+        "id": 2,
+        "en": "Postpone For Session",
+        "ar": "تأجيل لجلسة"
+    },
+    {
+        "id": 3,
+        "en": "Postpone For Judgment",
+        "ar": "تأجيل لحكم"
+    },
+    {
+        "id": 4,
+        "en": "Cancellation",
+        "ar": "إلغاء"
+    },
+    {
+        "id": 5,
+        "en": "Cross Off",
+        "ar": "شطب"
+    }
+]

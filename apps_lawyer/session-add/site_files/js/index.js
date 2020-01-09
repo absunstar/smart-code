@@ -22,10 +22,13 @@ app.controller("session_add", function ($scope, $http, $timeout) {
     $scope.busy = true;
 
     const v = site.validated('#sessionAddAddModal');
+
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
     };
+
+    $scope.session_add.judgment_status = $scope.sessionJudgmentList[0];
 
     $http({
       method: "POST",
@@ -202,28 +205,6 @@ app.controller("session_add", function ($scope, $http, $timeout) {
 
   };
 
-  $scope.loadSessionPlace = function () {
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/session_places/all",
-      data: {
-        select: { id: 1, name: 1, description: 1 }
-      }
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          $scope.sessionPlaceList = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
-  };
-
   $scope.getLawsuitsList = function (ev) {
     $scope.error = '';
     $scope.busy = true;
@@ -277,20 +258,17 @@ app.controller("session_add", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.loadSessionTypeList = function () {
+  $scope.getSessionJudgmentList = function () {
+    $scope.error = '';
     $scope.busy = true;
+    $scope.sessionJudgmentList = [];
     $http({
       method: "POST",
-      url: "/api/session_types/all",
-      data: {
-        select: { id: 1, name: 1, description: 1 }
-      }
+      url: "/api/session_judgment/all"
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done) {
-          $scope.sessionTypeList = response.data.list;
-        }
+        $scope.sessionJudgmentList = response.data;
       },
       function (err) {
         $scope.busy = false;
@@ -299,8 +277,62 @@ app.controller("session_add", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.changeStatusudgment = function (session_add) {
+    $scope.change_judgment = {};
+    $scope.session_add = session_add;
+    $scope.change_judgment.lawsuit = session_add.lawsuit;
+    $scope.change_judgment.judgment_status = session_add.judgment_status;
+    site.showModal('#statusJudgmentModal');
+  };
+
+  $scope.acceptChangeStatusudgment = function (change_judgment) {
+    $scope.session_add.judgment_status = change_judgment.judgment_status;
+
+    $http({
+      method: "POST",
+      url: "/api/session_add/update",
+      data: $scope.session_add
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          if (change_judgment.judgment_status.id == 2) {
+
+            $scope.change_judgment.judgment_status = $scope.sessionJudgmentList[0];
+            $scope.change_judgment.active = true;
+            $scope.change_judgment.image_url = '/images/session_add.png';
+
+            $http({
+              method: "POST",
+              url: "/api/session_add/add",
+              data: $scope.change_judgment
+            }).then(
+              function (response) {
+                $scope.busy = false;
+                if (response.data.done) {
+                } else {
+                  $scope.error = response.data.error;
+                }
+              },
+              function (err) {
+                console.log(err);
+              }
+            )
+          }
+          $scope.getSessionAddList();
+          site.hideModal('#statusJudgmentModal');
+        } else {
+          $scope.error = response.data.error;
+        }
+      },
+      function (err) {
+        console.log(err);
+      }
+    )
+  };
+
+
   $scope.getSessionAddList();
-  $scope.loadSessionPlace();
-  $scope.loadSessionTypeList();
+  $scope.getSessionJudgmentList();
   $scope.loaReasonSessionList();
 });
