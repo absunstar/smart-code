@@ -120,7 +120,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          $scope.loadAll();
+          $scope.getAccountInvoicesList();
         } else {
           $scope.error = '##word.error##';
         }

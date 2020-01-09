@@ -230,6 +230,24 @@
                         </i-control>
                     </div>
 
+                    <div class="row">
+                        <i-list help-id="" ng-search="_search.$payment_method_search" class="col2"
+                            label="##word.payment_method##" ng-model="request_service.payment_method"
+                            items="paymentMethodList" ng-change="getSafeByType(request_service)"
+                            ng-show="defaultSettings.accounting.create_invoice_auto" display="##session.lang##">
+                        </i-list>
+
+                        <i-list class="col3" ng-model="request_service.safe" items="safesList"
+                            ng-search="_search.$serach_safes" ng-show="defaultSettings.accounting.create_invoice_auto"
+                            label="##word.stores_out_safe##">
+                        </i-list>
+
+                        <i-control class="col2" ng-show="request_service.paid_require && request_service.safe"
+                            ng-model="request_service.paid_up" label="##word.paid_up##" type="number">
+                        </i-control>
+
+                    </div>
+
                     <div class="row" ng-show="request_service.service_name">
                         <i-date2 class="col4" v="r" ng-model="request_service.date_from" label="##word.start_date##">
                         </i-date2>
@@ -243,6 +261,8 @@
                         <i-time help-id="request_service_to" class="col3" label="##word.time##"
                             ng-model="request_service.time_to"></i-time>
                     </div>
+
+
 
                 </div>
 

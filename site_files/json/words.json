@@ -105,6 +105,11 @@
         "ar": "السعر"
     },
     {
+        "name": "safe",
+        "en": "Safe",
+        "ar": "الخزينة"
+    },
+    {
         "name": "auto_barcode_generation",
         "en": "Automatic Barcode Generation",
         "ar": "توليد ألي للباركود"

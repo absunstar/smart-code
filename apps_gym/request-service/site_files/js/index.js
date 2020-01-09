@@ -1,6 +1,7 @@
 app.controller("request_service", function ($scope, $http, $timeout) {
 
   $scope.request_service = {};
+
   $scope.displayAddRequestService = function () {
     $scope.error = '';
     $scope.get_open_shift((shift) => {
@@ -28,6 +29,24 @@ app.controller("request_service", function ($scope, $http, $timeout) {
           if ($scope.defaultSettings.general_Settings.trainer)
             $scope.request_service.trainer = $scope.defaultSettings.general_Settings.trainer;
         };
+
+        if ($scope.defaultSettings.accounting) {
+          if ($scope.defaultSettings.accounting.create_invoice_auto) {
+            if ($scope.defaultSettings.accounting.payment_method) {
+              $scope.request_service.payment_method = $scope.defaultSettings.accounting.payment_method;
+              $scope.loadSafes($scope.request_service.payment_method);
+              if ($scope.request_service.payment_method.id == 1) {
+                if ($scope.defaultSettings.accounting.safe_box)
+                  $scope.request_service.safe = $scope.defaultSettings.accounting.safe_box;
+              } else {
+                if ($scope.defaultSettings.accounting.safe_bank)
+                  $scope.request_service.safe = $scope.defaultSettings.accounting.safe_bank;
+              }
+            }
+          }
+        };
+
+
         site.showModal('#requestServiceAddModal');
       } else $scope.error = '##word.open_shift_not_found##';
     });
@@ -130,7 +149,7 @@ app.controller("request_service", function ($scope, $http, $timeout) {
               date_from: request_doc.date_from,
               date_to: request_doc.date_to,
               net_value: request_doc.paid_require,
-              paid_up: request_doc.paid_require,
+              paid_up: request_doc.paid_up,
               invoice_code: request_doc.code,
               total_discount: request_doc.total_discount,
               source_type: {
@@ -575,7 +594,7 @@ app.controller("request_service", function ($scope, $http, $timeout) {
         url: "/api/customers/all",
         data: {
           search: $scope.search_customer
-       
+
         }
       }).then(
         function (response) {
@@ -903,6 +922,21 @@ app.controller("request_service", function ($scope, $http, $timeout) {
       }
     )
   };
+
+  $scope.getSafeByType = function (obj) {
+    $scope.error = '';
+    if ($scope.defaultSettings.accounting) {
+      $scope.loadSafes(obj.payment_method);
+      if (obj.payment_method.id == 1) {
+        if ($scope.defaultSettings.accounting.safe_box)
+          obj.safe = $scope.defaultSettings.accounting.safe_box
+      } else {
+        if ($scope.defaultSettings.accounting.safe_bank)
+          obj.safe = $scope.defaultSettings.accounting.safe_bank
+      }
+    }
+  };
+
 
   $scope.get_open_shift = function (callback) {
     $scope.busy = true;
