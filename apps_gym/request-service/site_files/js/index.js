@@ -826,6 +826,9 @@ app.controller("request_service", function ($scope, $http, $timeout) {
         });
       };
       $scope.request_service.paid_require = (Number($scope.request_service.services_price) * Number($scope.request_service.service_count || 1)) - $scope.request_service.total_discount;
+      $scope.discount = {
+        type: 'number'
+      };
     }, 250);
   };
 

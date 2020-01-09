@@ -12,6 +12,7 @@ app.controller("book_hall", function ($scope, $http, $timeout) {
           date: new Date(),
           start_date: new Date(),
           shift: shift,
+          total_value: 0,
           dates_list: [],
           paid_list: []
 
@@ -23,6 +24,24 @@ app.controller("book_hall", function ($scope, $http, $timeout) {
           if ($scope.defaultSettings.general_Settings.tenant)
             $scope.book_hall.tenant = $scope.defaultSettings.general_Settings.tenant;
         };
+
+        if ($scope.defaultSettings.accounting) {
+          if ($scope.defaultSettings.accounting.create_invoice_auto) {
+            if ($scope.defaultSettings.accounting.payment_method) {
+              $scope.book_hall.payment_method = $scope.defaultSettings.accounting.payment_method;
+              $scope.loadSafes($scope.book_hall.payment_method);
+              if ($scope.book_hall.payment_method.id == 1) {
+                if ($scope.defaultSettings.accounting.safe_box)
+                  $scope.book_hall.safe = $scope.defaultSettings.accounting.safe_box;
+              } else {
+                if ($scope.defaultSettings.accounting.safe_bank)
+                  $scope.book_hall.safe = $scope.defaultSettings.accounting.safe_bank;
+              }
+            }
+          }
+        };
+
+
         site.showModal('#bookHallAddModal');
       } else $scope.error = '##word.open_shift_not_found##';
     });
@@ -44,17 +63,6 @@ app.controller("book_hall", function ($scope, $http, $timeout) {
     };
 
     $scope.busy = true;
-
-    $scope.book_hall.total_value = 0;
-    if ($scope.book_hall.period && $scope.book_hall.period.id == 1) {
-
-      $scope.book_hall.total_value = $scope.book_hall.total_period * $scope.book_hall.price_day;
-    };
-
-    if ($scope.book_hall.period && $scope.book_hall.period.id == 2) {
-
-      $scope.book_hall.total_value = $scope.book_hall.total_period * $scope.book_hall.price_hour;
-    };
 
     $http({
       method: "POST",
@@ -95,17 +103,6 @@ app.controller("book_hall", function ($scope, $http, $timeout) {
       return;
     }
     $scope.busy = true;
-
-    $scope.book_hall.total_value = 0;
-    if ($scope.book_hall.period.id == 1) {
-
-      $scope.book_hall.total_value = $scope.book_hall.total_period * $scope.book_hall.price_day;
-    };
-
-    if ($scope.book_hall.period.id == 2) {
-
-      $scope.book_hall.total_value = $scope.book_hall.total_period * $scope.book_hall.price_hour;
-    };
 
     $http({
       method: "POST",
@@ -333,25 +330,6 @@ app.controller("book_hall", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.getSafesList = function () {
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/safes/all",
-      data: {}
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.safesList = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
-  };
 
   $scope.showTenant = function (id) {
     $scope.busy = true;
@@ -523,6 +501,148 @@ app.controller("book_hall", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.loadDiscountTypes = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/discount_types/all",
+      data: {
+        select: {
+          id: 1,
+          name: 1,
+          value: 1,
+          type: 1
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.discount_types = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.addDiscount = function () {
+    $scope.error = '';
+    if (!$scope.discount.value) {
+      $scope.error = '##word.error_discount##';
+      return;
+    } else {
+      $scope.book_hall.discountes = $scope.book_hall.discountes || [];
+      $scope.book_hall.discountes.push({
+        name: $scope.discount.name,
+        value: $scope.discount.value,
+        type: $scope.discount.type
+      });
+    };
+  };
+
+  $scope.deleteDiscount = function (_ds) {
+    $scope.book_hall.discountes.splice($scope.book_hall.discountes.indexOf(_ds), 1);
+  };
+
+  $scope.loadSafes = function (method) {
+    $scope.error = '';
+    $scope.busy = true;
+    let where = {};
+
+    if (method.id == 1)
+      where = { 'type.id': 1 };
+    else where = { 'type.id': 2 };
+
+    $http({
+      method: "POST",
+      url: "/api/safes/all",
+      data: {
+        select: {
+          id: 1,
+          name: 1,
+          number: 1,
+          type: 1
+        },
+        where: where
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) $scope.safesList = response.data.list;
+
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.getPaymentMethodList = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $scope.paymentMethodList = [];
+    $http({
+      method: "POST",
+      url: "/api/payment_method/all"
+
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.paymentMethodList = response.data;
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.getSafeByType = function (obj) {
+    $scope.error = '';
+    if ($scope.defaultSettings.accounting) {
+      $scope.loadSafes(obj.payment_method);
+      if (obj.payment_method.id == 1) {
+        if ($scope.defaultSettings.accounting.safe_box)
+          obj.safe = $scope.defaultSettings.accounting.safe_box
+      } else {
+        if ($scope.defaultSettings.accounting.safe_bank)
+          obj.safe = $scope.defaultSettings.accounting.safe_bank
+      }
+    }
+  };
+
+  $scope.calc = function () {
+    $scope.error = '';
+    $timeout(() => {
+      $scope.book_hall.total_discount = 0;
+
+      if ($scope.book_hall.discountes && $scope.book_hall.discountes.length > 0)
+        $scope.book_hall.discountes.forEach(ds => {
+          if (ds.type == 'percent')
+            $scope.book_hall.total_discount += $scope.book_hall.total_value * site.toNumber(ds.value) / 100;
+          else $scope.book_hall.total_discount += site.toNumber(ds.value);
+        });
+
+      if ($scope.book_hall.period && $scope.book_hall.period.id == 1) {
+
+        $scope.book_hall.total_value = $scope.book_hall.total_period * $scope.book_hall.price_day - $scope.book_hall.total_discount;
+      };
+
+      if ($scope.book_hall.period && $scope.book_hall.period.id == 2) {
+
+        $scope.book_hall.total_value = $scope.book_hall.total_period * $scope.book_hall.price_hour - $scope.book_hall.total_discount;
+      };
+      $scope.discount = {
+        type: 'number'
+      };
+    }, 250);
+  };
+
   $scope.displaySearchModal = function () {
     $scope.error = '';
     site.showModal('#bookHallSearchModal');
@@ -538,9 +658,10 @@ app.controller("book_hall", function ($scope, $http, $timeout) {
 
   $scope.getBookHallList();
   $scope.getPeriod();
+  $scope.getPaymentMethodList();
+  $scope.loadDiscountTypes();
   $scope.getTimeList();
   $scope.getDefaultSettings();
   $scope.getAttend();
   $scope.getClassRooms();
-  $scope.getSafesList();
 });
