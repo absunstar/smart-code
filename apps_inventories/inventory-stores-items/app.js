@@ -230,6 +230,19 @@ module.exports = function init(site) {
   balance_handle(null)
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
   site.get({
     name: "stores_items",
     path: __dirname + "/site_files/html/index.html",
@@ -260,11 +273,25 @@ module.exports = function init(site) {
     $stores_items.add(stores_items_doc, (err, doc) => {
       if (!err) {
         response.done = true
-      } else response.error = err.message
 
+        let foundBarcode = doc.sizes.every(_size => !_size.barcode)
+        if (foundBarcode) {
+          let y = new Date().getFullYear().toString()
+          stores_items_doc.sizes.forEach((_size, i) => {
+            if (!_size.barcode) {
+
+              _size.barcode = doc.id + '0' + y + '0' + i
+            }
+          });
+          $stores_items.update(doc)
+        }
+      } else response.error = err.message
       res.json(response)
     })
   })
+
+
+
 
   site.post("/api/stores_items/update", (req, res) => {
     let response = {};

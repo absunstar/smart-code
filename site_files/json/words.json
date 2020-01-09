@@ -105,6 +105,11 @@
         "ar": "السعر"
     },
     {
+        "name": "auto_barcode_generation",
+        "en": "Automatic Barcode Generation",
+        "ar": "توليد ألي للباركود"
+    },
+    {
         "name": "paid_require",
         "en": "Paid Require",
         "ar": "المطلوب دفعه"

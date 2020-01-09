@@ -17,6 +17,20 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
 
     $scope.error = '';
 
+    if ($scope.defaultSettings && $scope.defaultSettings.inventory && !$scope.defaultSettings.inventory.auto_barcode_generation) {
+
+      let err_barcode1 = $scope.itemSizeList.some(_itemSize => _itemSize.barcode === $scope.item.barcode);
+      let err_barcode2 = $scope.category_item.sizes.some(_itemSize => _itemSize.barcode === $scope.item.barcode);
+
+      if (err_barcode1 || err_barcode2) {
+        $scope.error = "##word.err_barcode_exist##";
+        return;
+      } else if (!$scope.item.barcode) {
+        $scope.error = "##word.err_barcode##";
+        return
+      };
+    }
+
     if (!$scope.category_item.sizes) {
       $scope.category_item.sizes = [];
     };
@@ -25,22 +39,7 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
       $scope.error = "##word.no_size_error##";
       return
     };
-    if (!$scope.item.barcode) {
-      $scope.error = "##word.err_barcode##";
-      return
-    };
 
-    let err_barcode = false;
-    $scope.itemSizeList.forEach(_itemSize => {
-      if (_itemSize.barcode === $scope.item.barcode) {
-        err_barcode = true;
-      };
-    });
-
-    if (err_barcode) {
-      $scope.error = "##word.err_barcode_exist##";
-      return;
-    };
 
     if ($scope.complex && $scope.complex.length > 0)
       $scope.complex = $scope.complex;
@@ -54,6 +53,7 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
       $scope.com_item = { complex_items: $scope.complex_items };
       $scope.complex.push($scope.com_item);
     };
+
     $scope.item.start_count = 0;
     $scope.item.current_count = 0;
     $scope.item.total_purchase_price = 0;

@@ -30,7 +30,7 @@
                 <span> ##word.security_system##</span>
             </a>
 
-  
+
             <a class="tab-link" onclick="site.showTabContent(event, '#generalTab')">
                 <img src="/images/gov.png">
                 <span>##word.general_setting##</span>
@@ -72,8 +72,8 @@
 
             </div>
 
-            <div id="generalTab" class="tab-content">
 
+            <div id="generalTab" class="tab-content">
 
                 <a class="item" href="/goves" x-permissions="goves_ui || goves_manage">
                     <img src="/images/gov.png">
@@ -93,7 +93,8 @@
                     <p> ##word.menu_area_tag##</p>
                 </a>
 
-                <a class="item" href="/militaries_status" x-permissions="militaries_status_ui || militaries_status_manage">
+                <a class="item" href="/militaries_status"
+                    x-permissions="militaries_status_ui || militaries_status_manage">
                     <img src="images/military.png">
                     <h2>##word.system_military_menus## </h2>
                     <p>##word.system_military## </p>
@@ -104,6 +105,9 @@
                     <h2>##word.system_social_status_menus## </h2>
                     <p>##word.system_social_status## </p>
                 </a>
+
+                <br>
+                <br>
 
                 <a class="item" href="/courts" x-permissions="courts_ui || courts_manage">
                     <img src="images/court.png">
@@ -129,6 +133,9 @@
                     <p>##word.system_reasons_sessions## </p>
                 </a>
 
+                <br>
+                <br>
+
                 <a class="item" href="/request_types" x-permissions="request_types_ui || request_types_manage">
                     <img src="images/request_types.png">
                     <h2>##word.system_request_types_menus## </h2>
@@ -146,6 +153,9 @@
                     <h2>##word.system_rogatory_places_menus## </h2>
                     <p>##word.system_rogatory_places## </p>
                 </a>
+
+                <br>
+                <br>
 
                 <a class="item" href="/lawsuit_status" x-permissions="lawsuit_status_ui || lawsuit_status_manage">
                     <img src="images/lawsuit_status.png">
@@ -165,8 +175,8 @@
                     <p>##word.system_lawsuit_degrees## </p>
                 </a>
 
-
             </div>
+
 
             <div id="employeesTab" class="tab-content">
 
@@ -176,7 +186,7 @@
                     <p> ##word.menu_employee_tag##</p>
                 </a>
 
-            
+
                 <a class="item" href="/jobs" x-permissions="jobs_ui || jobs_manage">
                     <img src="/images/jobs.png">
                     <h2> ##word.jobs## </h2>
@@ -249,9 +259,11 @@
                 </a>
             </div>
 
+
             <div id="reportingTab" class="tab-content">
 
             </div>
+
 
             <div id="companyTab" class="tab-content">
 
@@ -280,6 +292,9 @@
                     <p> ##word.menu_office_lawyers_tag##</p>
                 </a>
 
+                <br>
+                <br>
+
                 <a class="item" href="/administrative_business"
                     x-permissions="administrative_business_ui || administrative_business_manage">
                     <img src="/images/administrative_business.png">
@@ -293,17 +308,19 @@
                     <p> ##word.menu_rogatory_add_tag##</p>
                 </a>
 
-                <a class="item" href="/session_add" x-permissions="session_add_ui || session_add_manage">
-                    <img src="/images/session_add.png">
-                    <h2> ##word.menu_session_add## </h2>
-                    <p> ##word.menu_session_add_tag##</p>
-                </a>
-
                 <a class="item" href="/lawsuit_add" x-permissions="lawsuit_add_ui || lawsuit_add_manage">
                     <img src="/images/lawsuit_add.png">
                     <h2> ##word.menu_lawsuit_add## </h2>
                     <p> ##word.menu_lawsuit_add_tag##</p>
                 </a>
 
+                <a class="item" href="/session_add" x-permissions="session_add_ui || session_add_manage">
+                    <img src="/images/session_add.png">
+                    <h2> ##word.menu_session_add## </h2>
+                    <p> ##word.menu_session_add_tag##</p>
+                </a>
+
             </div>
         </div>
+    </div>
+</div>

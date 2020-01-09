@@ -24,7 +24,8 @@
                             ng-keydown="getTenantList($event)"></i-control>
 
                         <i-list v="r" class="col4" items="tenantList" ng-model="default_setting.general_Settings.tenant"
-                            ng-search="default_setting.general_Settings.$tenant_search" label="##word.tenant##"></i-list>
+                            ng-search="default_setting.general_Settings.$tenant_search" label="##word.tenant##">
+                        </i-list>
                     </div>
                     <div class="row">
 
@@ -154,6 +155,8 @@
                     <div class="row">
                         <i-checkbox label="##word.dont_exceed_maximum_discount_item##"
                             ng-model="default_setting.inventory.dont_max_discount_items"></i-checkbox>
+                        <i-checkbox label="##word.auto_barcode_generation##"
+                            ng-model="default_setting.inventory.auto_barcode_generation"></i-checkbox>
                     </div>
                 </fieldset>
 
