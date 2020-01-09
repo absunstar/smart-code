@@ -1323,7 +1323,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     order.book_list.forEach(item => {
       $scope.order_invoice.book_list.forEach(el => {
 
-        if (item.size == el.size) {
+        if (item.size == el.size && item.barcode == el.barcode) {
           exist = true;
 
           el.count = el.count + item.count;
@@ -1448,7 +1448,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     let exist = false;
 
     $scope.order_invoice.book_list.forEach(el => {
-      if (item.size == el.size && !el.printed) {
+      if (item.size == el.size && item.barcode == el.barcode && !el.printed) {
         exist = true;
         el.total += (item.price - item.discount.value);
         el.count += 1;
