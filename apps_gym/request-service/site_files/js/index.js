@@ -146,6 +146,8 @@ app.controller("request_service", function ($scope, $http, $timeout) {
               hall: request_doc.hall,
               shift: request_doc.shift,
               service_name: request_doc.service_name,
+              payment_method: request_doc.payment_method,
+              safe: request_doc.safe,
               date_from: request_doc.date_from,
               date_to: request_doc.date_to,
               net_value: request_doc.paid_require,
@@ -159,20 +161,7 @@ app.controller("request_service", function ($scope, $http, $timeout) {
               },
               active: true
             };
-
-            if ($scope.defaultSettings.accounting) {
-              if ($scope.defaultSettings.accounting.payment_method) {
-                $scope.account_invoices.payment_method = $scope.defaultSettings.accounting.payment_method;
-                $scope.loadSafes($scope.account_invoices.payment_method);
-                if ($scope.account_invoices.payment_method.id == 1) {
-                  if ($scope.defaultSettings.accounting.safe_box)
-                    $scope.account_invoices.safe = $scope.defaultSettings.accounting.safe_box;
-                } else {
-                  if ($scope.defaultSettings.accounting.safe_bank)
-                    $scope.account_invoices.safe = $scope.defaultSettings.accounting.safe_bank;
-                }
-              }
-            };
+            
             $scope.addAccountInvoice($scope.account_invoices);
           }
           site.hideModal('#requestServiceAddModal');
@@ -932,10 +921,10 @@ app.controller("request_service", function ($scope, $http, $timeout) {
       $scope.loadSafes(obj.payment_method);
       if (obj.payment_method.id == 1) {
         if ($scope.defaultSettings.accounting.safe_box)
-          obj.safe = $scope.defaultSettings.accounting.safe_box
+          obj.payment_safe = $scope.defaultSettings.accounting.safe_box
       } else {
         if ($scope.defaultSettings.accounting.safe_bank)
-          obj.safe = $scope.defaultSettings.accounting.safe_bank
+          obj.payment_safe = $scope.defaultSettings.accounting.safe_bank
       }
     }
   };

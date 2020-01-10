@@ -388,10 +388,10 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
       $scope.loadSafes(obj.payment_method);
       if (obj.payment_method.id == 1) {
         if ($scope.defaultSettings.accounting.safe_box)
-          obj.safe = $scope.defaultSettings.accounting.safe_box;
+          obj.safe = $scope.defaultSettings.accounting.safe_box
       } else {
         if ($scope.defaultSettings.accounting.safe_bank)
-          obj.safe = $scope.defaultSettings.accounting.safe_bank;
+          obj.safe = $scope.defaultSettings.accounting.safe_bank
       }
     }
   };

@@ -236,8 +236,8 @@
     },
     {
         "name": "add_hosting_tag",
-        "en": "Add Hosting",
-        "ar": " إضافة إستضافة"
+        "en": "Add New Hosting",
+        "ar": " إضافة إستضافة جديدة"
     },
     {
         "name": "menu_report_hosting",
