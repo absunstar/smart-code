@@ -280,24 +280,24 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
 
   $scope.paymentInvoice = function () {
     $scope.error = '';
-    if (!$scope.account_invoices.payment_safe.id) {
+    if (!$scope.paid_invoice.payment_safe.id) {
       $scope.error = "##word.should_select_safe##";
       return;
     };
-    if (!$scope.account_invoices.payment_paid_up) {
+    if (!$scope.paid_invoice.payment_paid_up) {
       $scope.error = "##word.err_paid_up##";
       return;
     };
-    if ($scope.account_invoices.payment_paid_up > $scope.account_invoices.remain_amount) {
+    if ($scope.paid_invoice.payment_paid_up > $scope.paid_invoice.remain_amount) {
       $scope.error = "##word.err_paid_up_payment##";
       return;
     };
-    $scope.account_invoices.payment_list = $scope.account_invoices.payment_list || [];
-    $scope.account_invoices.remain_amount = $scope.account_invoices.remain_amount - $scope.account_invoices.payment_paid_up;
-    $scope.account_invoices.payment_list.push({
-      paid_up: $scope.account_invoices.payment_paid_up,
-      safe: $scope.account_invoices.payment_safe,
-      date: $scope.account_invoices.payment_date,
+    $scope.paid_invoice.payment_list = $scope.paid_invoice.payment_list || [];
+    $scope.paid_invoice.remain_amount = $scope.paid_invoice.remain_amount - $scope.paid_invoice.payment_paid_up;
+    $scope.paid_invoice.payment_list.push({
+      paid_up: $scope.paid_invoice.payment_paid_up,
+      safe: $scope.paid_invoice.payment_safe,
+      date: $scope.paid_invoice.payment_date,
     });
   };
 
@@ -308,7 +308,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
     $http({
       method: "POST",
       url: "/api/account_invoices/update_payment",
-      data: $scope.account_invoices
+      data: $scope.paid_invoice
     }).then(
       function (response) {
         $scope.busy = false;
@@ -343,12 +343,12 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
 
         if ($scope.account_invoices.source_type.id == 1) {
           url = "/api/stores_in/all";
-          where = { 'type.id': 1, invoice: false || undefined };
+          where = { 'type.id': 1 };
         }
 
         else if ($scope.account_invoices.source_type.id == 2) {
           url = "/api/stores_out/all";
-          where = { 'type.id': { $ne: 4 }, invoice: false || undefined };
+          where = { 'type.id': { $ne: 4 } };
         }
 
         else if ($scope.account_invoices.source_type.id == 3)
@@ -356,7 +356,12 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
 
         else if ($scope.account_invoices.source_type.id == 4)
           url = "/api/request_service/all";
+
+        else if ($scope.account_invoices.source_type.id == 5)
+          url = "/api/book_hall/all";
       }
+
+      where.invoice = false || undefined;
 
       $http({
         method: "POST",
@@ -388,10 +393,10 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
       $scope.loadSafes(obj.payment_method);
       if (obj.payment_method.id == 1) {
         if ($scope.defaultSettings.accounting.safe_box)
-          obj.safe = $scope.defaultSettings.accounting.safe_box
+          obj.payment_safe = $scope.defaultSettings.accounting.safe_box
       } else {
         if ($scope.defaultSettings.accounting.safe_bank)
-          obj.safe = $scope.defaultSettings.accounting.safe_bank
+          obj.payment_safe = $scope.defaultSettings.accounting.safe_bank
       }
     }
   };
@@ -400,6 +405,8 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.account_invoices.current_book_list = [];
     $scope.account_invoices.customer = item.customer;
+    $scope.account_invoices.tenant = item.tenant;
+    
     $scope.account_invoices.vendor = item.vendor;
     $scope.account_invoices.delivery_employee = item.delivery_employee;
     $scope.account_invoices.table = item.table;
@@ -407,6 +414,12 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
     $scope.account_invoices.service_name = item.service_name;
     $scope.account_invoices.date_from = item.date_from;
     $scope.account_invoices.date_to = item.date_to;
+    $scope.account_invoices.service = item.service;
+    $scope.account_invoices.total_period = item.total_period;
+    $scope.account_invoices.period = item.period;
+    $scope.account_invoices.price_hour = item.price_hour;
+    $scope.account_invoices.price_day = item.price_day;
+
     if (item.under_paid) {
       $scope.account_invoices.total_tax = item.under_paid.total_tax;
       $scope.account_invoices.total_discount = item.under_paid.total_discount;
@@ -445,11 +458,23 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
 
     $scope.get_open_shift((shift) => {
       if (shift) {
-        $scope.account_invoices = invoices;
-        $scope.account_invoices.payment_date = new Date();
-        $scope.account_invoices.payment_paid_up = 0;
-        $scope.account_invoices.payment_safe = $scope.defaultSettings.accounting ? $scope.defaultSettings.accounting.safe : null;
-        site.showModal('#invoicesPaymentModal');
+        $scope.paid_invoice = invoices;
+        $scope.paid_invoice.payment_date = new Date();
+        $scope.paid_invoice.payment_paid_up = 0;
+
+        if ($scope.defaultSettings.accounting) {
+          if ($scope.defaultSettings.accounting.payment_method) {
+            $scope.paid_invoice.payment_method = $scope.defaultSettings.accounting.payment_method;
+            $scope.loadSafes($scope.paid_invoice.payment_method);
+            if ($scope.paid_invoice.payment_method.id == 1) {
+              if ($scope.defaultSettings.accounting.safe_box)
+                $scope.paid_invoice.payment_safe = $scope.defaultSettings.accounting.safe_box;
+            } else {
+              if ($scope.defaultSettings.accounting.safe_bank)
+                $scope.paid_invoice.payment_safe = $scope.defaultSettings.accounting.safe_bank;
+            }
+          }
+        }        site.showModal('#invoicesPaymentModal');
       } else $scope.error = '##word.open_shift_not_found##';
     });
   };

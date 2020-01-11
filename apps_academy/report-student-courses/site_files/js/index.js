@@ -78,8 +78,8 @@ app.controller("report_student_courses", function ($scope, $http) {
             $scope.report.student_list.push({
               course: b.select_book.course.name,
               date: b.date,
-              start_date: b.select_book.start_date,
-              end_date: b.select_book.end_date,
+              date_from: b.select_book.date_from,
+              date_to: b.select_book.date_to,
               price: b.select_book.course.price,
               paid: b.total_rest,
               rest: b.rest,

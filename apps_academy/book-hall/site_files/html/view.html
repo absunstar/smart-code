@@ -5,6 +5,14 @@
             <div class="col9">
                 <table id="basicInformationTable" class="table hover bold">
                     <tr>
+                        <td class="title">##word.date##</td>
+                        <td class="center brown">{{book_hall.date | date : 'dd- MM -yyyy'}}</td>
+                    </tr>
+                    <tr>
+                        <td class="title">##word.code##</td>
+                        <td class="center blue">{{book_hall.code}}</td>
+                    </tr>
+                    <tr>
                         <td class="title">##word.tenant##</td>
                         <td class="center">{{book_hall.tenant.name}}</td>
                     </tr>
@@ -17,12 +25,12 @@
 
                     <tr>
                         <td class="title">##word.start_book##</td>
-                        <td class="center brown">{{book_hall.start_date | date : 'dd- MM -yyyy'}}</td>
+                        <td class="center green">{{book_hall.date_from | date : 'dd- MM -yyyy'}}</td>
                     </tr>
 
                     <tr>
                         <td class="title">##word.end_book##</td>
-                        <td class="center brown">{{book_hall.end_date | date : 'dd- MM -yyyy'}}</td>
+                        <td class="center red">{{book_hall.date_to | date : 'dd- MM -yyyy'}}</td>
                     </tr>
 
                     <tr>

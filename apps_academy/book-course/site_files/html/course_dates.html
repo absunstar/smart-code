@@ -19,8 +19,8 @@
                             <th>##word.book_course_name##</th>
                             <th>##word.trainer##</th>
                             <th>##word.book_course_total##</th>
-                            <th class="w400">##word.start_date##</th>
-                            <th class="w400">##word.end_date##</th>
+                            <th class="w400">##word.date_from##</th>
+                            <th class="w400">##word.date_to##</th>
 
                         </tr>
 
@@ -41,11 +41,11 @@
                             </td>
 
                             <td>
-                                <p class="brown">{{book_course.select_book.start_date | date : 'dd - MM -yyyy'}}</p>
+                                <p class="brown">{{book_course.select_book.date_from | date : 'dd - MM -yyyy'}}</p>
                             </td>
 
                             <td>
-                                <p class="brown">{{book_course.select_book.end_date | date : 'dd - MM -
+                                <p class="brown">{{book_course.select_book.date_to | date : 'dd - MM -
                                     yyyy'}}</p>
 
                             </td>

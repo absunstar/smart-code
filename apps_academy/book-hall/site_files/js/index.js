@@ -10,7 +10,7 @@ app.controller("book_hall", function ($scope, $http, $timeout) {
           image_url: '/images/book_hall.png',
           active: true,
           date: new Date(),
-          start_date: new Date(),
+          date_from: new Date(),
           shift: shift,
           total_value: 0,
           dates_list: [],
@@ -41,8 +41,8 @@ app.controller("book_hall", function ($scope, $http, $timeout) {
           }
         };
 
-
         site.showModal('#bookHallAddModal');
+
       } else $scope.error = '##word.open_shift_not_found##';
     });
   };
@@ -72,6 +72,37 @@ app.controller("book_hall", function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
+
+          if ($scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto) {
+            let request_doc = response.data.doc;
+            $scope.account_invoices = {
+              image_url: '/images/account_invoices.png',
+              date: new Date(),
+              invoice_id: request_doc.id,
+              tenant: request_doc.tenant,
+              hall: request_doc.hall,
+              shift: request_doc.shift,
+              service_name: request_doc.service_name,
+              date_from: request_doc.date_from,
+              date_to: request_doc.date_to,
+              total_period: request_doc.total_period,
+              period: request_doc.period,
+              price_hour: request_doc.price_hour,
+              price_day: request_doc.price_day,
+              total_discount: request_doc.total_discount,
+              net_value: request_doc.total_value,
+              paid_up: 0,
+              invoice_code: request_doc.code,
+              source_type: {
+                id: 5,
+                en: "Booking A Hall",
+                ar: "حجز قاعة"
+              },
+              active: true
+            };
+
+            $scope.addAccountInvoice($scope.account_invoices);
+          }
           site.hideModal('#bookHallAddModal');
           $scope.getBookHallList();
         } else {
@@ -641,6 +672,210 @@ app.controller("book_hall", function ($scope, $http, $timeout) {
         type: 'number'
       };
     }, 250);
+  };
+
+  $scope.displayAccountInvoice = function (book_hall) {
+    $scope.get_open_shift((shift) => {
+      if (shift) {
+        $scope.account_invoices = {
+          image_url: '/images/account_invoices.png',
+          date: new Date(),
+          invoice_id: book_hall.id,
+          tenant: book_hall.tenant,
+          hall: book_hall.hall,
+          shift: shift,
+          service_name: book_hall.service_name,
+          date_from: book_hall.date_from,
+          date_to: book_hall.date_to,
+          total_period: book_hall.total_period,
+          period: book_hall.period,
+          price_hour: book_hall.price_hour,
+          price_day: book_hall.price_day,
+          total_discount: book_hall.total_discount,
+          net_value: book_hall.total_value,
+          paid_up: 0,
+          invoice_code: book_hall.code,
+          source_type: {
+            id: 5,
+            en: "Booking A Hall",
+            ar: "حجز قاعة"
+          },
+          active: true
+        };
+
+        if ($scope.defaultSettings.accounting) {
+          if ($scope.defaultSettings.accounting.payment_method) {
+            $scope.account_invoices.payment_method = $scope.defaultSettings.accounting.payment_method;
+            $scope.loadSafes($scope.account_invoices.payment_method);
+            if ($scope.account_invoices.payment_method.id == 1) {
+              if ($scope.defaultSettings.accounting.safe_box)
+                $scope.account_invoices.safe = $scope.defaultSettings.accounting.safe_box;
+            } else {
+              if ($scope.defaultSettings.accounting.safe_bank)
+                $scope.account_invoices.safe = $scope.defaultSettings.accounting.safe_bank;
+            }
+          }
+        }
+        site.showModal('#accountInvoiceModal');
+      } else $scope.error = '##word.open_shift_not_found##';
+    });
+  };
+
+  $scope.addAccountInvoice = function (account_invoices) {
+    $scope.error = '';
+    $scope.busy = true;
+
+    if (account_invoices.paid_up > 0 && !account_invoices.safe) {
+      $scope.error = "##word.should_select_safe##";
+      return;
+    } else if (account_invoices.paid_up > account_invoices.net_value) {
+      $scope.error = "##word.err_paid_require##";
+      return;
+    }
+
+    if ($scope.defaultSettings.general_Settings && $scope.defaultSettings.general_Settings.work_posting)
+      account_invoices.posting = false;
+    else account_invoices.posting = true;
+
+    if (account_invoices.paid_up <= 0) account_invoices.safe = null;
+    $http({
+      method: "POST",
+      url: "/api/account_invoices/add",
+      data: account_invoices
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response) {
+          site.hideModal('#accountInvoiceModal');
+          $scope.printAccountInvoive();
+          $scope.getBookHallList();
+        } else $scope.error = response.data.error;
+      },
+      function (err) {
+        console.log(err);
+      }
+    )
+  };
+
+  $scope.printAccountInvoive = function () {
+    $scope.error = '';
+    if ($scope.busy) return;
+    $scope.busy = true;
+
+    let ip = '127.0.0.1';
+    let port = '11111';
+    if ($scope.defaultSettings.printer_program) {
+      ip = $scope.defaultSettings.printer_program.ip || '127.0.0.1';
+      port = $scope.defaultSettings.printer_program.port || '11111';
+    };
+
+    $scope.account_invoices.total_remain = $scope.account_invoices.net_value - $scope.account_invoices.paid_up;
+
+    let obj_print = { data: [] };
+
+    if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.printer_path)
+      obj_print.printer = $scope.defaultSettings.printer_program.printer_path.ip.trim();
+
+    if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.invoice_header)
+      obj_print.data.push({
+        type: 'header',
+        value: $scope.defaultSettings.printer_program.invoice_header
+      });
+
+    obj_print.data.push(
+      {
+        type: 'title',
+        value: $scope.account_invoices.payment_paid_up ? 'Bill payment account' : 'Bill account' + ($scope.account_invoices.code || '')
+      },
+      {
+        type: 'space'
+      },
+      {
+        type: 'text2',
+        value2: site.toDateXF($scope.account_invoices.date),
+        value: 'Date'
+      });
+
+    if ($scope.account_invoices.tenant)
+      obj_print.data.push({
+        type: 'text2',
+        value2: $scope.account_invoices.tenant.name_ar,
+        value: 'Cutomer'
+      });
+
+    if ($scope.account_invoices.hall)
+      obj_print.data.push({
+        type: 'text2',
+        value2: $scope.account_invoices.hall.name,
+        value: 'Service'
+      });
+
+    obj_print.data.push({
+      type: 'line'
+    });
+
+    if ($scope.account_invoices.total_discount)
+      obj_print.data.push({
+        type: 'text2',
+        value2: $scope.account_invoices.total_discount,
+        value: 'Total Discount'
+      });
+
+    obj_print.data.push({ type: 'space' });
+
+    if ($scope.account_invoices.payment_paid_up) {
+      $scope.account_invoices.total_remain = $scope.account_invoices.total_remain - $scope.account_invoices.payment_paid_up;
+      $scope.account_invoices.total_paid_up = $scope.account_invoices.total_paid_up + $scope.account_invoices.payment_paid_up;
+    }
+
+    if ($scope.account_invoices.net_value)
+      obj_print.data.push(
+        {
+          type: 'text2',
+          value2: $scope.account_invoices.net_value,
+          value: "Total Value"
+        });
+
+    if ($scope.account_invoices.payment_paid_up || $scope.account_invoices.paid_up) {
+      obj_print.data.push(
+        {
+          type: 'text2',
+          value2: $scope.account_invoices.payment_paid_up || $scope.account_invoices.paid_up,
+          value: "Paid Up"
+        }, {
+        type: 'text2',
+        value2: $scope.account_invoices.total_paid_up || $scope.account_invoices.paid_up,
+        value: "Total Payments"
+      }, { type: 'space' });
+
+    } else obj_print.data.push({ type: 'space' });
+
+    if ($scope.account_invoices.total_remain)
+      obj_print.data.push({
+        type: 'text2b',
+        value2: $scope.account_invoices.total_remain,
+        value: "Required to pay"
+      });
+
+    if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.invoice_footer)
+      obj_print.data.push({
+        type: 'footer',
+        value: $scope.defaultSettings.printer_program.invoice_footer
+      });
+
+    $http({
+      method: "POST",
+      url: `http://${ip}:${port}/print`,
+      data: obj_print
+    }).then(
+      function (response) {
+        if (response)
+          $scope.busy = false;
+      },
+      function (err) {
+        console.log(err);
+      }
+    );
   };
 
   $scope.displaySearchModal = function () {

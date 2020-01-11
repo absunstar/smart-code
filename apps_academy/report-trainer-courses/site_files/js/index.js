@@ -105,8 +105,8 @@ app.controller("report_trainer_courses", function ($scope, $http) {
 
             $scope.report.trainer_list.push({
               course: b.course.name,
-              start_date: b.start_date,
-              end_date: b.end_date,
+              date_from: b.date_from,
+              date_to: b.date_to,
               payment: report_bayment,
               price: report_account,
               rest: rest

@@ -16,27 +16,12 @@ module.exports = function init(site) {
   site.on('[register][vendor][add]', doc => {
 
     $vendors.add({
-      group:{
-        id : doc.id,
-        name : doc.name
-      } ,
+      group: {
+        id: doc.id,
+        name: doc.name
+      },
       code: "1",
       name_ar: "مورد إفتراضي",
-      branch_list: [
-        {
-          charge: [{}]
-        }
-      ],
-      currency_list: [],
-      opening_balance: [
-        {
-          initial_balance: 0
-        }
-      ],
-      bank_list: [{}],
-      dealing_company: [{}],
-      employee_delegate: [{}],
-      accounts_debt: [{}],
       image_url: '/images/vendor.png',
       company: {
         id: doc.company.id,
@@ -46,8 +31,24 @@ module.exports = function init(site) {
         code: doc.branch.code,
         name_ar: doc.branch.name_ar
       },
-      active : true
-    }, (err, doc) => {})
+      active: true
+      /*  branch_list: [
+         {
+           charge: [{}]
+         }
+       ],
+       currency_list: [],
+       opening_balance: [
+         {
+           initial_balance: 0
+         }
+       ],
+         bank_list: [{}],
+       dealing_company: [{}],
+       employee_delegate: [{}],
+       accounts_debt: [{}], */
+
+    }, (err, doc) => { })
   })
 
 
@@ -67,7 +68,7 @@ module.exports = function init(site) {
     let vendors_doc = req.body
     vendors_doc.$req = req
     vendors_doc.$res = res
-    
+
     vendors_doc.company = site.get_company(req)
     vendors_doc.branch = site.get_branch(req)
 
@@ -103,7 +104,7 @@ module.exports = function init(site) {
         set: vendors_doc,
         $req: req,
         $res: res
-      },(err , result) => {
+      }, (err, result) => {
         if (!err) {
           response.done = true
           response.doc = result.doc
@@ -165,7 +166,7 @@ module.exports = function init(site) {
       }, (err, result) => {
         if (!err) {
           response.done = true
-          response.doc=result.doc
+          response.doc = result.doc
         } else {
           response.error = err.message
         }
@@ -193,7 +194,7 @@ module.exports = function init(site) {
     if (where['name_ar']) {
       where['name_ar'] = new RegExp(where['name_ar'], 'i')
     }
-    
+
     if (where['name_en']) {
       where['name_en'] = new RegExp(where['name_en'], 'i')
     }
@@ -204,12 +205,12 @@ module.exports = function init(site) {
     }
 
     where['company.id'] = site.get_company(req).id
-/*     where['branch.code'] = site.get_branch(req).code
- */    
+    /*     where['branch.code'] = site.get_branch(req).code
+     */
     $vendors.findMany({
       select: req.body.select || {},
-      where: where ,
-      sort: req.body.sort || {id:-1},
+      where: where,
+      sort: req.body.sort || { id: -1 },
       limit: req.body.limit
     }, (err, docs, count) => {
       if (!err) {

@@ -52,22 +52,24 @@
                         <th> ##word.total_remain## </th>
                         <th class="not-print"> ##word.actions## </th>
                     </tr>
-                    <tr ng-repeat="c in list | orderBy : '-id'">
-                        <td class="not-print">
+                    <tr ng-repeat="c in list | orderBy : '-id'" class="bold pointer">
+                        <td ng-click="displayDetailsAccountInvoices(c)" class="not-print">
                             <img class="logo" ng-src="{{c.image_url}}">
                         </td>
-                        <td class="brown"> {{c.date | date : 'dd - MM - yyyy'}} </td>
-                        <td class="blue"> {{c.code}} </td>
-                        <td> {{c.source_type.ar}} </td>
-                        <td x-feature="restaurant"> {{c.order_invoices_type.ar}} </td>
-                        <td> {{c.payment_method.ar}} </td>
-                        <td class="bold">
+                        <td ng-click="displayDetailsAccountInvoices(c)" class=" brown"> {{c.date | date : 'dd - MM - yyyy'}}
+                        </td>
+                        <td ng-click="displayDetailsAccountInvoices(c)" class="blue"> {{c.code}} </td>
+                        <td ng-click="displayDetailsAccountInvoices(c)"> {{c.source_type.ar}} </td>
+                        <td ng-click="displayDetailsAccountInvoices(c)" x-feature="restaurant"> {{c.order_invoices_type.ar}}
+                        </td>
+                        <td ng-click="displayDetailsAccountInvoices(c)"> {{c.payment_method.ar}} </td>
+                        <td ng-click="displayDetailsAccountInvoices(c)" class="bold">
                             {{c.net_value}}
                         </td>
-                        <td class="bold green">
+                        <td ng-click="displayDetailsAccountInvoices(c)" class="bold green">
                             {{c.total_paid_up}}
                         </td>
-                        <td class="bold red">
+                        <td ng-click="displayDetailsAccountInvoices(c)" class="bold red">
                             {{c.total_remain}}
                         </td>
                         <td class="center not-print">

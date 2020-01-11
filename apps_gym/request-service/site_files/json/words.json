@@ -65,7 +65,7 @@
         "ar": " بداية الإشتراك اليوم"
     },
     {
-        "name": "start_date",
+        "name": "date_from",
         "en": "Start Date",
         "ar": "تاريخ بداية الإشتراك"
     },

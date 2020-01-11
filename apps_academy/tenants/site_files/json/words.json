@@ -1,5 +1,11 @@
-[{
+[
+    {
         "name": "tenant",
+        "en": "Tenant",
+        "ar": "المستأجر"
+    },
+    {
+        "name": "tenants",
         "en": "Tenants",
         "ar": "المستأجرين"
     },

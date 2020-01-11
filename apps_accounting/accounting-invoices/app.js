@@ -187,6 +187,11 @@ module.exports = function init(site) {
             paid_value.operation = 'فاتورة طلب خدمة'
             paid_value.transition_type = 'in'
             site.call('[account_invoices][request_service][+]', doc.invoice_id)
+
+          } else if (doc.source_type.id == 5) {
+            paid_value.operation = 'فاتورة حجز قاعة'
+            paid_value.transition_type = 'in'
+            site.call('[account_invoices][book_hall][+]', doc.invoice_id)
           }
 
           if (doc.safe) site.call('[amounts][safes][+]', paid_value)
@@ -276,6 +281,11 @@ module.exports = function init(site) {
               paid_value.transition_type = 'in'
             }
 
+            else if (response.doc.source_type.id == 5) {
+              paid_value.operation = 'دفعة حجز قاعة'
+              paid_value.transition_type = 'in'
+            }
+
             site.call('[amounts][safes][+]', paid_value)
           }
 
@@ -360,7 +370,7 @@ module.exports = function init(site) {
                 remain_amount: result.doc.remain_amount,
                 total_discount: result.doc.total_discount,
                 price_delivery_service: result.doc.price_delivery_service,
-                
+
                 service: result.doc.service,
                 invoice_id: result.doc.invoice_id
               }
@@ -372,6 +382,10 @@ module.exports = function init(site) {
               paid_value.transition_type = 'in'
               site.call('[account_invoices][request_service][+]', result.doc.invoice_id)
 
+            } else if (result.doc.source_type.id == 5) {
+              paid_value.operation = 'فاتورة حجز قاعة'
+              paid_value.transition_type = 'in'
+              site.call('[account_invoices][book_hall][+]', result.doc.invoice_id)
             }
 
             if (result.doc.safe) site.call('[amounts][safes][+]', paid_value)
@@ -420,7 +434,10 @@ module.exports = function init(site) {
               obj.transition_type = 'out'
               obj.operation = 'فك ترحيل فاتورة طلب خدمة'
             }
-
+            else if (response.doc.source_type.id == 5) {
+              obj.operation = 'فك ترحيل حجز قاعة'
+              obj.transition_type = 'in'
+            }
 
             if (obj.value && obj.safe) site.call('[amounts][safes][+]', obj)
           }
@@ -496,7 +513,7 @@ module.exports = function init(site) {
                 remain_amount: result.doc.remain_amount,
                 total_discount: result.doc.total_discount,
                 price_delivery_service: result.doc.price_delivery_service,
-               
+
                 service: result.doc.service,
                 invoice_id: result.doc.invoice_id,
                 return: true
@@ -506,6 +523,10 @@ module.exports = function init(site) {
             else if (result.doc.source_type.id == 4) {
               obj.transition_type = 'out'
               obj.operation = 'حذف فاتورة طلب خدمة'
+            }
+            else if (response.doc.source_type.id == 5) {
+              obj.operation = 'حذف حجز قاعة'
+              obj.transition_type = 'out'
             }
 
             if (obj.value && obj.safe) site.call('[amounts][safes][+]', obj)

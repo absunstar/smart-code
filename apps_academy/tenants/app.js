@@ -1,32 +1,23 @@
 module.exports = function init(site) {
   const $tenant = site.connectCollection("tenant")
 
-  site.on('[register][tenant][add]', doc => {
+  site.on('[company][created]', doc => {
     $tenant.add({
       name: doc.name,
       active: true,
-      mobile: doc.mobile,
-      username: doc.username,
-      password: doc.password,
+      code: "1",
+      name_ar: "مورد إفتراضي",
+      company: {
+        id: doc.company.id,
+        name_ar: doc.company.name_ar
+      },
+      branch: {
+        code: doc.branch.code,
+        name_ar: doc.branch.name_ar
+      },
+      active: true,
       image_url: doc.image_url
     }, (err, doc) => {
-      if (!err && doc) {
-        site.call('please add user', {
-          email: doc.username,
-          password: doc.password,
-          roles: [{
-            name: "tenant"
-          }],
-          tenant_id: doc.id,
-          branch_list: [{}],
-          is_tenant: true,
-          profile: {
-            name: doc.name,
-            mobile: doc.mobile,
-            image_url: doc.image_url
-          }
-        })
-      }
     })
   })
 

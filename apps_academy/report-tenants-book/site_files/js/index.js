@@ -79,8 +79,8 @@ app.controller("report_tenants_book", function ($scope, $http) {
             $scope.report.tenants_list.push({
               hall : b.hall.name,
               date : b.date,
-              start_date : b.start_date,
-              end_date : b.end_date,
+              date_from : b.date_from,
+              date_to : b.date_to,
               price : b.total_value,
               paid : b.total_rest,
               rest : b.rest

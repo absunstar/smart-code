@@ -49,12 +49,12 @@
         "ar": "إجمالي المدة "
     },
     {
-        "name": "start_date",
+        "name": "date_from",
         "en": "Start Date Course",
         "ar": "تاريخ بداية الكورس"
     },
     {
-        "name": "end_date",
+        "name": "date_to",
         "en": "End Date Course",
         "ar": "تاريخ نهاية الكورس"
     },

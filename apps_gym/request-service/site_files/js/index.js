@@ -161,7 +161,7 @@ app.controller("request_service", function ($scope, $http, $timeout) {
               },
               active: true
             };
-            
+
             $scope.addAccountInvoice($scope.account_invoices);
           }
           site.hideModal('#requestServiceAddModal');
@@ -336,23 +336,20 @@ app.controller("request_service", function ($scope, $http, $timeout) {
           value: "Total Value"
         });
 
-    if ($scope.account_invoices.payment_paid_up || $scope.account_invoices.paid_up)
+    if ($scope.account_invoices.payment_paid_up || $scope.account_invoices.paid_up) {
       obj_print.data.push(
         {
           type: 'text2',
           value2: $scope.account_invoices.payment_paid_up || $scope.account_invoices.paid_up,
           value: "Paid Up"
-        });
+        }, {
+        type: 'text2',
+        value2: $scope.account_invoices.total_paid_up || $scope.account_invoices.paid_up,
+        value: "Total Payments"
+      }, { type: 'space' });
 
-    if ($scope.account_invoices.payment_paid_up || $scope.account_invoices.paid_up)
-      obj_print.data.push(
-        {
-          type: 'text2',
-          value2: $scope.account_invoices.total_paid_up || $scope.account_invoices.paid_up,
-          value: "Total Payments"
-        });
+    } else obj_print.data.push({ type: 'space' });
 
-    obj_print.data.push({ type: 'space' });
 
     if ($scope.account_invoices.total_remain)
       obj_print.data.push({

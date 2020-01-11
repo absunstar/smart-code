@@ -29,6 +29,12 @@
                                     <td class="title"> ##word.order_invoices_type## </td>
                                     <td class="center"> {{account_invoices.order_invoices_type.ar}} </td>
                                 </tr>
+
+                                <tr ng-show="account_invoices.tenant.name_ar">
+                                    <td class="title"> ##word.tenant## </td>
+                                    <td class="center blue"> {{account_invoices.tenant.name_ar}} </td>
+                                </tr>
+
                                 <tr ng-show="account_invoices.customer.name_ar">
                                     <td class="title"> ##word.customer## </td>
                                     <td class="center blue"> {{account_invoices.customer.name_ar}} </td>
@@ -50,10 +56,7 @@
                                     <td class="title"> ##word.service## </td>
                                     <td class="center blue"> {{account_invoices.service_name}} </td>
                                 </tr>
-                                <tr ng-show="account_invoices.service_name">
-                                    <td class="title"> ##word.service## </td>
-                                    <td class="center blue"> {{account_invoices.service_name}} </td>
-                                </tr>
+
                                 <tr ng-show="account_invoices.delivery_employee.name">
                                     <td class="title"> ##word.delivery_employee## </td>
                                     <td class="center blue"> {{account_invoices.delivery_employee.name}} </td>
@@ -70,6 +73,32 @@
                                     <td class="title"> ##word.service## </td>
                                     <td class="center"> {{account_invoices.service}} </td>
                                 </tr>
+
+                                <tr ng-show="account_invoices.total_period > 0">
+                                    <td class="title"> ##word.total_period## </td>
+                                    <td class="center"> {{account_invoices.total_period}} </td>
+                                </tr>
+
+                                <tr ng-show="account_invoices.period > 0">
+                                    <td class="title"> ##word.period## </td>
+                                    <td class="center"> {{account_invoices.period.ar}} </td>
+                                </tr>
+
+                                <tr ng-show="account_invoices.price_hour > 0">
+                                    <td class="title"> ##word.price_hour## </td>
+                                    <td class="center"> {{account_invoices.price_hour}} </td>
+                                </tr>
+
+                                <tr ng-show="account_invoices.price_day > 0">
+                                    <td class="title"> ##word.price_day## </td>
+                                    <td class="center"> {{account_invoices.price_day}} </td>
+                                </tr>
+
+                                <tr ng-show="account_invoices.price_day > 0">
+                                    <td class="title"> ##word.price_day## </td>
+                                    <td class="center"> {{account_invoices.price_day}} </td>
+                                </tr>
+
                                 <tr ng-show="account_invoices.price_delivery_service > 0">
                                     <td class="title"> ##word.price_delivery_service## </td>
                                     <td class="center"> {{account_invoices.price_delivery_service}} </td>
@@ -93,6 +122,7 @@
                                     <td class="center blue"> {{account_invoices.net_value}} </td>
                                 </tr>
 
+                                
                                 <tr>
                                     <td class="title"> ##word.payment_method## </td>
                                     <td class="center blue"> {{account_invoices.payment_method.ar}} </td>
@@ -104,7 +134,7 @@
                                 </tr>
 
                                 <tr ng-show="account_invoices.date_from">
-                                    <td class="title">##word.start_date##</td>
+                                    <td class="title">##word.date_from##</td>
                                     <td class="center green">{{account_invoices.date_from | date : 'yyyy - MM - dd'}}
                                     </td>
                                 </tr>

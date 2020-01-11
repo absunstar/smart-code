@@ -1,6 +1,14 @@
 module.exports = function init(site) {
   const $book_hall = site.connectCollection("book_hall")
 
+
+  site.on('[account_invoices][book_hall][+]', function (obj) {
+    $book_hall.findOne({ id: obj }, (err, doc) => {
+      doc.invoice = true
+      $book_hall.update(doc);
+    });
+  });
+
   site.post({
     name: "/api/attend_book_hall/all",
     path: __dirname + "/site_files/json/attend_book_hall.json"
@@ -31,6 +39,33 @@ module.exports = function init(site) {
 
   })
 
+
+
+  function addZero(code, number) {
+    let c = number - code.toString().length
+    for (let i = 0; i < c; i++) {
+      code = '0' + code.toString()
+    }
+    return code
+  }
+
+  $book_hall.newCode = function () {
+
+    let y = new Date().getFullYear().toString().substr(2, 2)
+    let m = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L'][new Date().getMonth()].toString()
+    let d = new Date().getDate()
+    let lastCode = site.storage('ticket_last_code') || 0
+    let lastMonth = site.storage('ticket_last_month') || m
+    if (lastMonth != m) {
+      lastMonth = m
+      lastCode = 0
+    }
+    lastCode++
+    site.storage('ticket_last_code', lastCode)
+    site.storage('ticket_last_month', lastMonth)
+    return y + lastMonth + addZero(d, 2) + addZero(lastCode, 4)
+  }
+
   site.post("/api/book_hall/add", (req, res) => {
     let response = {
       done: false
@@ -44,6 +79,8 @@ module.exports = function init(site) {
     let book_hall_doc = req.body
     book_hall_doc.$req = req
     book_hall_doc.$res = res
+
+    book_hall_doc.code = $book_hall.newCode()
 
     book_hall_doc.add_user_info = site.security.getUserFinger({
       $req: req,

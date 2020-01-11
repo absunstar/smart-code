@@ -45,11 +45,16 @@
                             <table x-permissions="login" class="table bold hover loaded" id="t1">
                                 <tr>
                                     <th> ##word.code## </th>
-                                    <th ng-hide="account_invoices.source_type.id == 1"> ##word.customer## </th>
+                                    <th
+                                        ng-show="account_invoices.source_type.id == 2 ||account_invoices.source_type.id == 3 || account_invoices.source_type.id == 4">
+                                        ##word.customer## </th>
                                     <th ng-show="account_invoices.source_type.id == 1"> ##word.vendor## </th>
 
-                                    <th ng-show="account_invoices.source_type.id == 4"> ##word.trainer## </th>
-                                    <th ng-show="account_invoices.source_type.id == 4"> ##word.halls## </th>
+                                    <th ng-show="account_invoices.source_type.id == 4">##word.trainer## </th>
+                                    <th ng-show="account_invoices.source_type.id == 5">##word.tenants## </th>
+                                    <th
+                                        ng-show="account_invoices.source_type.id == 4 || account_invoices.source_type.id == 5">
+                                        ##word.halls## </th>
                                     <th ng-show="account_invoices.source_type.id == 4"> ##word.services## </th>
 
                                     <th ng-show=" account_invoices.order_invoices_type.id==2">
@@ -59,12 +64,14 @@
                                     </th>
                                     <th ng-show="account_invoices.order_invoices_type.id ==1"> ##word.table## </th>
                                     <th> ##word.transaction_type## </th>
-
                                 </tr>
+
+
                                 <tr class="pointer" ng-repeat="item in orderInvoicesTypeList"
                                     ng-click="selectOrderInvoices(item)">
                                     <td class="center blue"> {{item.code || item.number}} </td>
-                                    <td class="center" ng-hide="account_invoices.source_type.id == 1">
+                                    <td class="center"
+                                        ng-show="account_invoices.source_type.id == 2 ||account_invoices.source_type.id == 3 || account_invoices.source_type.id == 4">
                                         {{item.customer.name_ar}} <b ng-show="!item.customer.name_ar">
                                             ##word.not_found##</b> </td>
 
@@ -76,7 +83,13 @@
                                         {{item.trainer.name}} <b ng-show="!item.trainer.name">
                                             ##word.not_found##</b> </td>
 
-                                    <td class="center" ng-show="account_invoices.source_type.id == 4">
+                                    <td class="center" ng-show="account_invoices.source_type.id == 5">
+                                        {{item.tenant.name}} <b ng-show="!item.tenant.name">
+                                            ##word.not_found##</b> </td>
+
+
+                                    <td class="center"
+                                        ng-show="account_invoices.source_type.id == 5 || account_invoices.source_type.id == 4">
                                         {{item.hall.name}} <b ng-show="!item.hall.name">
                                             ##word.not_found##</b> </td>
 
@@ -91,11 +104,21 @@
                                         {{item.table.name}}</td>
                                     <td class="center">
                                         {{item.transaction_type.ar ||item.type.ar}} <b
-                                            ng-show="!item.transaction_type.ar">
+                                            ng-show="!item.transaction_type.ar && !item.type.ar">
                                             ##word.not_found##</b></td>
                                 </tr>
                             </table>
                         </div>
+
+
+
+
+
+
+
+
+
+
 
                         <div class="row" ng-show="account_invoices.current_book_list.length > 0">
 
@@ -136,11 +159,23 @@
                         <br>
                         <br>
 
+
+
+
+
+
+
                         <div class="row" ng-show="account_invoices.invoice_id">
                             <div class="col6">
 
-
                                 <table id="basicInformationTable" class="table hover bold">
+
+                                    <tr ng-show="account_invoices.date">
+                                        <td class="title">##word.date##</td>
+                                        <td class="center brown">
+                                            {{account_invoices.date | date : 'yyyy - MM - dd'}}
+                                        </td>
+                                    </tr>
 
                                     <tr>
                                         <td class="title">##word.code##</td>
@@ -160,6 +195,42 @@
                                     <tr ng-show="account_invoices.trainer.id">
                                         <td class="title">##word.trainer##</td>
                                         <td class="center">{{account_invoices.trainer.name}}</td>
+                                    </tr>
+
+                                    <tr ng-show="account_invoices.tenant.id">
+                                        <td class="title">##word.tenant##</td>
+                                        <td class="center">{{account_invoices.tenant.name}}</td>
+                                    </tr>
+
+                                    <tr ng-show="account_invoices.service > 0">
+                                        <td class="title"> ##word.service## </td>
+                                        <td class="center"> {{account_invoices.service}} </td>
+                                    </tr>
+    
+                                    <tr ng-show="account_invoices.total_period > 0">
+                                        <td class="title"> ##word.total_period## </td>
+                                        <td class="center"> {{account_invoices.total_period}} </td>
+                                    </tr>
+    
+                                    <tr ng-show="account_invoices.period > 0">
+                                        <td class="title"> ##word.period## </td>
+                                        <td class="center"> {{account_invoices.period.ar}} </td>
+                                    </tr>
+    
+                                    <tr ng-show="account_invoices.price_hour > 0">
+                                        <td class="title"> ##word.price_hour## </td>
+                                        <td class="center"> {{account_invoices.price_hour}} </td>
+                                    </tr>
+    
+                                    <tr ng-show="account_invoices.price_day > 0">
+                                        <td class="title"> ##word.price_day## </td>
+                                        <td class="center"> {{account_invoices.price_day}} </td>
+                                    </tr>
+
+    
+                                    <tr ng-show="account_invoices.price_delivery_service > 0">
+                                        <td class="title"> ##word.price_delivery_service## </td>
+                                        <td class="center"> {{account_invoices.price_delivery_service}} </td>
                                     </tr>
 
                                     <tr ng-show="account_invoices.services_price">
@@ -188,13 +259,13 @@
                                     </tr>
 
                                     <tr ng-show="account_invoices.date_from">
-                                        <td class="title">##word.start_date##</td>
+                                        <td class="title">##word.date_from##</td>
                                         <td class="center green">
                                             {{account_invoices.date_from | date : 'yyyy - MM - dd'}}
                                         </td>
                                     </tr>
                                     <tr ng-show="account_invoices.date_to">
-                                        <td class="title">##word.expired_date##</td>
+                                        <td class="title">##word.date_to##</td>
                                         <td class="center red">{{account_invoices.date_to | date : 'yyyy - MM - dd'}}
                                         </td>
                                     </tr>
