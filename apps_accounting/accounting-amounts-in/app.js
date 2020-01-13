@@ -278,59 +278,38 @@ module.exports = function init(site) {
       delete where.date_to
     }
 
-    if (where.search && where.search.date) {
-      let d1 = site.toDate(where.search.date)
-      let d2 = site.toDate(where.search.date)
-      d2.setDate(d2.getDate() + 1)
-      where.date = {
-        '$gte': d1,
-        '$lt': d2
-      }
-    }
-
-    if (where && where.search && where.search.date_from) {
-      let d1 = site.toDate(where.search.date_from)
-      let d2 = site.toDate(where.search.date_to)
-      d2.setDate(d2.getDate() + 1);
-      where.date = {
-        '$gte': d1,
-        '$lt': d2
-      }
-    }
-
     if (where['shift_code']) {
-      where['shift.code'] = new RegExp(where['shift_code'], 'i')
+      where['shift.code'] = where['shift_code']
       delete where['shift_code']
     }
 
-
-    if (where.search && where.search.source) {
-
-      where['source.id'] = where.search.source.id
+    if (where['employee']) {
+      where['employee.id'] = where['employee'].id;
+      delete where['employee']
     }
 
-    if (where.search && where.search.company) {
-
-      where['company.id'] = where.search.company.id
+    if (where['source']) {
+      where['source.id'] = where['source'].id;
+      delete where['source']
     }
 
-    if (where.search && where.search.customer) {
-
-      where['customer.id'] = where.search.customer.id
+    if (where['payment_method']) {
+      where['payment_method.id'] = where['payment_method'].id;
+      delete where['payment_method']
     }
 
-    if (where.search && where.search.employee) {
-
-      where['employee.id'] = where.search.employee.id
+    if (where['safe']) {
+      where['safe.id'] = where['safe'].id;
+      delete where['safe']
     }
+
+    if (where['value']) {
+      where['value'] = where['value'];
+    }
+
 
     if (where['description']) {
       where['description'] = new RegExp(where['description'], 'i')
-    }
-
-    if (where.search && where.search.value) {
-
-      where['value'] = where.search.value
     }
 
     delete where.search

@@ -775,11 +775,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
 
   $scope.update = function () {
     $scope.error = '';
-    const v = site.validated();
-    if (!v.ok) {
-      $scope.error = v.messages[0].ar;
-      return;
-    }
+
     $scope.busy = true;
     $http({
       method: "POST",
@@ -1028,109 +1024,16 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
       }
     )
   };
-  /*  $scope.loadStores_In = function () {
-     $scope.error = '';
-     $scope.busy = true;
-     $http({
-       method: "POST",
-       url: "/api/stores_in/all",
-       data: {
-         select: {
-           id: 1,
-           name: 1,
-           items: 1
-         }
-       }
-     }).then(
-       function (response) {
-         $scope.busy = false;
-         if (response.data.done) {
-           $scope.stores_in = response.data.list;
-         }
-       },
-       function (err) {
-         $scope.busy = false;
-         $scope.error = err;
-       }
-     )
-   }; */
 
-  $scope.searchAll = function () {
+   $scope.searchAll = function () {
     $scope.error = '';
-    let where = {};
-
-    if ($scope.search.number) {
-      where['number'] = $scope.search.number;
-    }
-    if ($scope.search.shift_code) {
-      where['shift.code'] = $scope.search.shift_code;
-    }
-
-    if ($scope.search.category && $scope.search.category.id) {
-      where['category.id'] = $scope.search.category.id;
-    }
-    if ($scope.search.type) {
-      where['type.id'] = $scope.search.type.id;
-    }
-    if ($scope.search.supply_number) {
-      where['supply_number'] = $scope.search.supply_number;
-    }
-
-    if ($scope.search.ticket_code) {
-      where['items.ticket_code'] = $scope.search.ticket_code;
-    }
-
-    if ($scope.search.date) {
-      where['date'] = $scope.search.date;
-    }
-
-    if ($scope.search.dateFrom) {
-      where['date_from'] = $scope.search.dateFrom;
-    }
-
-    if ($scope.search.dateTo) {
-      where['date_to'] = $scope.search.dateTo;
-    }
-
-    if ($scope.search.vendor && $scope.search.vendor.id) {
-      where['vendor.id'] = $scope.search.vendor.id;
-    }
-
-    if ($scope.search.store && $scope.search.store.id) {
-      where['store.id'] = $scope.search.store.id;
-    }
-    if ($scope.search.safe && $scope.search.safe.id) {
-      where['safe.id'] = $scope.search.safe.id;
-    }
-    if ($scope.search.notes) {
-
-      where['notes'] = $scope.search.notes;
-    }
-
-    if ($scope.search.total_valueGt) {
-      where['total_value'] = {
-        $gte: site.toNumber($scope.search.total_valueGt)
-      };
-    }
-
-    if ($scope.search.total_valueLt) {
-      where['total_value'] = {
-        $lte: site.toNumber($scope.search.total_valueLt)
-      };
-    }
-
-    if ($scope.search.total_valueGt && $scope.search.total_valueLt) {
-      where['total_value'] = {
-        $gte: site.toNumber($scope.search.total_valueGt),
-        $lte: site.toNumber($scope.search.total_valueLt)
-      };
-    }
-
-
-    $scope.loadAll(where);
-    site.hideModal('#StoresInSearchModal');
+    $scope.loadAll($scope.search);
     $scope.search = {};
+    
+    site.hideModal('#StoresInSearchModal');
+
   };
+
   $scope.loadAll = function (where) {
     $scope.error = '';
     $scope.list = {};

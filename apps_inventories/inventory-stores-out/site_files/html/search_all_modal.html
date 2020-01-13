@@ -9,61 +9,72 @@
         </div>
         <div class="modal-body">
             <div class="row">
-
                 <form class="form">
 
                     <div class="row">
-                        <i-date2 class="col2" label="##word.stores_out_date##" ng-model="search.date"></i-date2>
+                        <i-date2 class="col3" ng-model="search.date" label="##word.amounts_in_date##"></i-date2>
+                        <i-date2 class="col3" ng-model="search.dateFrom" type="date"
+                            label="##word.amounts_in_date_from##"></i-date2>
+                        <i-date2 class="col3" ng-model="search.dateTo" type="date" label="##word.amounts_in_date_to##">
+                        </i-date2>
+
+                        <i-date2 class="col4" ng-model="search.supply_date" label="##word.stores_in_supply_date##">
+                        </i-date2>
+                    </div>
+
+                    <div class="row">
                         <i-control class="col3 shift" type="text" label="##word.shift##" ng-model="search.shift_code">
                         </i-control>
-                        <i-control class="col2" ng-model="search.number" label="##word.stores_out_id##" type="text">
+                        <i-control class="col3" ng-model="search.value" type="number" label="##word.amounts_in_value##">
                         </i-control>
-                        <i-control class="col2" ng-model="search.supply_number" label="##word.stores_out_supply_number##"
+                        <i-list help-id="" ng-search="_search.$payment_method_search" class="col2"
+                            label="##word.payment_method##" ng-model="search.payment_method" items="paymentMethodList"
+                            ng-change="getSafeByType(search)" display="##session.lang##">
+                        </i-list>
+
+                    </div>
+
+                    <div class="row">
+                        <i-list v="r" ng-search="_search.$storein_type" display="##session.lang##" class="col2"
+                            ng-model="search.type" items="storesInTypes" ng-change="getSafeBySetting()"
+                            label="##word.transaction_type##"></i-list>
+                        <i-list class="col3" ng-search="_search.$safe_search" ng-model="search.safe" items="safes"
+                            label="##word.amounts_in_safe##"></i-list>
+
+                        <i-control class="col2" ng-model="search.supply_number" label="##word.stores_in_supply_number##"
                             type="text"></i-control>
 
                     </div>
+
                     <div class="row">
-                        <i-list ng-search="_search.$Company_name" class="col3" ng-model="search.vendor" items="vendors"
-                            label="##word.stores_out_Company_name##"></i-list>
-                        <i-list ng-search="_search.$store_name" class="col3" ng-model="search.store" items="storesList"
-                            label="##word.store##"></i-list>
-                        <i-list ng-search="_search.$safe_name" class="col3" ng-model="search.safe" items="safes"
-                            label="##word.stores_out_safe##"></i-list>
+
+                        <i-control ng-keydown="getCustomerList($event)" id="service" class="col3"
+                            ng-model="search_customer" label="##word.search##" type="text"></i-control>
+                        <i-list ng-search="_search.$customer" class="col4" display="name_ar" v="r"
+                            ng-model="search.customer" label="##word.customer##" items="customersList">
+                        </i-list>
+
+                        <i-list class="col4" ng-model="search.delegate" ng-search="_search.$$items_group_search"
+                            label="##word.delegate##" items="delegatesList">
+                        </i-list>
                     </div>
                     <div class="row">
-                        <i-control class="col2" ng-model="search.total_valueGt"
-                            label="##word.stores_out_total_value_gt##" type="text"></i-control>
-                        <i-control class="col2" ng-model="search.total_valueLt"
-                            label="##word.stores_out_total_value_lt##" type="text"></i-control>
-                        <i-control class="col2" label="##word.limit##" type="number" ng-model="search.limit">
+                        <i-control class="col2" ng-model="search.total_discount" type="number"
+                            label="##word.stores_in_total_discount##"></i-control>
+                        <i-control class="col2" ng-model="search.total_tax" type="number"
+                            label="##word.stores_in_total_tax##"></i-control>
+                        <i-control class="col2" ng-model="search.total_value" type="number"
+                            label="##word.stores_in_total_value##"></i-control>
+                        <i-control class="col2" ng-model="search.net_value" type="number"
+                            label="##word.stores_in_net_value##"></i-control>
+                        <i-control class="col2" ng-model="search.paid_up" label="##word.paid_up##" type="number">
                         </i-control>
-
-                    </div>
-
-
-                    <div class="row">
-                        <i-control class="col3" ng-model="search.ticket_code" label="##word.stores_out_ticket_code##"
-                            type="text"></i-control>
-
-                        <i-list display="##session.lang##" class="col3" ng-search="_search.$safe_outtype"
-                            ng-model="search.type" items="stores_out_types" label="##word.stores_outtypes##"></i-list>
-
-
-                    </div>
-                    <div class="row">
-                        <i-date2 class="col3" ng-model="search.dateFrom" label="##word.date_from##"></i-date2>
-
-                        <i-date2 class="col3" ng-model="search.dateTo" label="##word.date_to##"></i-date2>
-
                     </div>
 
                     <div class="row">
-
-                        <i-control class="col6" ng-model="search.notes" label="##word.notes##" type="text"></i-control>
+                        <i-textarea ng-model="search.description" class="col6" type="text"
+                            label="##word.amounts_in_description##"></i-textarea>
                     </div>
-
-
-
 
                 </form>
             </div>

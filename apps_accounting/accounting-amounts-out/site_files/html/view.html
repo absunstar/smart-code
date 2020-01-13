@@ -10,7 +10,10 @@
 
             <tr>
                 <td class="title">##word.shift##</td>
-                <td class="center blue">{{amount_out.shift.code}}</td>
+                <td class="center">
+                    <p class="center"> {{c.shift.name}} </p>
+                    <p class="center blue"> {{c.shift.code}} </p>
+                </td>
             </tr>
 
             <tr>
@@ -32,7 +35,7 @@
                 <td class="title">##word.amounts_out_value##</td>
                 <td class="center red">{{amount_out.value}}</td>
             </tr>
-            
+
             <tr>
                 <td class="title">##word.amounts_out_safe##</td>
                 <td class="center red">{{amount_out.safe.name}}</td>

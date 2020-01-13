@@ -350,7 +350,7 @@ app.controller("amounts_out", function ($scope, $http) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          $scope.employeeList = response.data.list;
+          $scope.employeesList = response.data.list;
         }
       },
       function (err) {

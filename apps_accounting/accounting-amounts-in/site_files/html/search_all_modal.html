@@ -24,27 +24,28 @@
                         </i-control>
                         <i-control class="col3" ng-model="search.value" type="number" label="##word.amounts_in_value##">
                         </i-control>
+                        <i-list help-id="" ng-search="_search.$payment_method_search" class="col2"
+                            label="##word.payment_method##" ng-model="search.payment_method"
+                            items="paymentMethodList" ng-change="getSafeByType(search)" display="##session.lang##">
+                        </i-list>
                         <i-list class="col3" ng-search="_search.$safe_search" ng-model="search.safe" items="safes"
                             label="##word.amounts_in_safe##"></i-list>
 
                     </div>
 
                     <div class="row">
+                        <i-list label="##word.amounts_in_employees##"
+                           class="col3" ng-search="_search.$eng_amount_in" ng-model="search.employee" display="name"
+                            items="employeesList">
+                        </i-list>
+
                         <i-list class="col3" ng-search="_search.$source_search" ng-model="search.source"
                             items="namesList" label="##word.amounts_in_source##"></i-list>
+
                         <i-control class="col2" label="##word.limit##" type="number" ng-model="search.limit">
                         </i-control>
-                        <!--    <i-list class="col3" ng-search="_search.$eng_search" ng-model="search.employee" items="employeeList"
-                            label="##word.amounts_in_employees##"></i-list> -->
+                    
                     </div>
-
-                    <!--   <div class="row">
-                        <i-list class="col3" ng-search="_search.$customer_search" ng-model="search.customer"
-                            items="customers" label="##word.amounts_in_customers##"></i-list>
-
-                        <i-list class="col3" ng-search="_search.$customer_search" ng-model="search.unemployee"
-                            items="unemployees" label="##word.amounts_in_unemployee##"></i-list>
-                    </div> -->
 
                     <div class="row">
                         <i-textarea ng-model="search.description" class="col6" type="text"

@@ -64,6 +64,9 @@ app.controller("amounts_in", function ($scope, $http) {
 
     $scope.loadAll($scope.search);
     $scope.search = {};
+    
+    site.hideModal('#amountsInSearchModal');
+
   };
 
   $scope.add = function () {
@@ -233,8 +236,6 @@ app.controller("amounts_in", function ($scope, $http) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.list = response.data.list;
-
-          site.hideModal('#amountsInSearchModal');
         }
       },
       function (err) {
@@ -335,6 +336,7 @@ app.controller("amounts_in", function ($scope, $http) {
       }
     )
   };
+  
 
   $scope.loadEmployees = function () {
     $scope.busy = true;
@@ -351,7 +353,7 @@ app.controller("amounts_in", function ($scope, $http) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          $scope.employeeList = response.data.list;
+          $scope.employeesList = response.data.list;
         }
       },
       function (err) {

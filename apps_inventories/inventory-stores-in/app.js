@@ -394,11 +394,7 @@ module.exports = function init(site) {
     where['company.id'] = site.get_company(req).id
     where['branch.code'] = site.get_branch(req).code
 
-    if (where['shift_code']) {
-      where['shift.code'] = new RegExp(where['shift_code'], 'i')
-      delete where['shift_code']
-    }
-
+  
     if (where && where['notes']) {
       where['notes'] = new RegExp(where['notes'], 'i')
     }
@@ -411,10 +407,7 @@ module.exports = function init(site) {
       where['supply_number'] = new RegExp(where['supply_number'], 'i')
     }
 
-    if (where && where['items.ticket_code']) {
-      where['items.ticket_code'] = new RegExp(where['items.ticket_code'], 'i')
-    }
-
+   
     if (where.date) {
       let d1 = site.toDate(where.date)
       let d2 = site.toDate(where.date)
@@ -435,6 +428,72 @@ module.exports = function init(site) {
       delete where.date_to
     }
 
+
+    if (where['shift_code']) {
+      where['shift.code'] = where['shift_code']
+      delete where['shift_code']
+    }
+
+    if (where['employee']) {
+      where['employee.id'] = where['employee'].id;
+      delete where['employee']
+    }
+
+    if (where['type']) {
+      where['type.id'] = where['type'].id;
+      delete where['type']
+    }
+
+    if (where['source']) {
+      where['source.id'] = where['source'].id;
+      delete where['source']
+    }
+
+    if (where['total_discount']) {
+      where['total_discount'] = where['total_discount'];
+    }
+
+    if (where['total_value']) {
+      where['total_value'] = where['total_value'];
+    }
+
+    if (where['total_tax']) {
+      where['total_tax'] = where['total_tax'];
+    }
+
+    if (where['nat_value']) {
+      where['nat_value'] = where['nat_value'];
+    }
+
+    if (where['paid_up']) {
+      where['paid_up'] = where['paid_up'];
+    }
+
+    if (where['vendor']) {
+      where['vendor.id'] = where['vendor'].id;
+      delete where['vendor']
+    }
+
+    if (where['payment_method']) {
+      where['payment_method.id'] = where['payment_method'].id;
+      delete where['payment_method']
+    }
+
+    if (where['safe']) {
+      where['safe.id'] = where['safe'].id;
+      delete where['safe']
+    }
+
+    if (where['value']) {
+      where['value'] = where['value'];
+    }
+
+
+    if (where['description']) {
+      where['description'] = new RegExp(where['description'], 'i')
+    }
+
+    delete where.search
     $stores_in.findMany({
       select: req.body.select || {},
       limit: req.body.limit,

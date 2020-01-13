@@ -45,6 +45,7 @@
                     <tr>
                         <th class="not-print">##word.amounts_in_logo##</th>
                         <th>##word.amounts_in_date##</th>
+                        <th>##word.shift##</th>
                         <th>##word.payment_method##</th>
                         <th>##word.amounts_in_source##</th>
                         <th>##word.amounts_in_employees##</th>
@@ -60,6 +61,12 @@
                         <td>
                             <p class="center brown"> {{c.date | date : 'dd - MM - yyyy'}} </p>
                         </td>
+
+                        <td>
+                            <p class="center"> {{c.shift.name}} </p>
+                            <p class="center blue"> {{c.shift.code}} </p>
+                        </td>
+
                         <td>
                             <p class="center"> {{c.payment_method.ar}} </p>
                         </td>
