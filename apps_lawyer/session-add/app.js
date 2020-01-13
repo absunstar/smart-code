@@ -171,7 +171,7 @@ module.exports = function init(site) {
     }
 
     let where = req.data.where || {}
-
+    
     if (where['code']) {
       where['code'] = new RegExp(where['code'], 'i')
     }
@@ -197,7 +197,7 @@ module.exports = function init(site) {
     }, (err, docs, count) => {
       if (!err) {
         response.done = true
-        response.list = docs
+        response.list = docs        
         response.count = count
       } else {
         response.error = err.message

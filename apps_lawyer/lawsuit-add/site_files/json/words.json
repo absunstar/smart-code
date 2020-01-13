@@ -25,12 +25,13 @@
     {"name" : "lawsuit_type" , "en" : "Lawsuit Type" , "ar" : "نوع الدعوى"},
     {"name" : "lawsuit_status" , "en" : "Lawsuit Status" , "ar" : "حالة الدعوى"},
     {"name" : "lawsuit_basic" , "en" : "Lawsuit Basic" , "ar" : "الدعوى الرئيسية"},
+    {"name" : "sessions_view" , "en" : "Sessions View" , "ar" : "عرض الجلسات"},
 
 
     {"name" : "lawsuit_add_new" , "en" : "New Lawsuit Add" , "ar" : "إضافة دعوى جديد"},
     {"name" : "lawsuit_add_details" , "en" : "Lawsuit Add Details" , "ar" : "تفاصيل إضافة دعوى"},
     {"name" : "lawsuit_add_update" , "en" : "Edit Lawsuit Add" , "ar" : "تعديل إضافة دعوى"},
     {"name" : "lawsuit_add_delete" , "en" : "Delte Lawsuit Add" , "ar" : "حذف إضافة دعوى"},
-    {"name" : "lawsuit_add_add_name" , "en" : "Add Lawsuit Add" , "ar" : "إضافة إضافة دعوى"}
+    {"name" : "lawsuit_add_add_name" , "en" : "Add Lawsuit" , "ar" : "إضافة دعوى"}
     
 ]

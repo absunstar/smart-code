@@ -47,6 +47,7 @@
 
                 <table class="table loaded center hover bold" id="t1">
                     <tr>
+
                         <th class="not-print"> ##word.logo## </th>
                         <th> ##word.session_start_date## </th>
                         <th> ##word.lawsuit_number## </th>
@@ -54,9 +55,10 @@
                         <th> ##word.reason## </th>
                         <th> ##word.status_session## </th>
                         <th> ##word.status## </th>
-                        
                         <th class="not-print"> ##word.actions## </th>
+
                     </tr>
+
                     <tr ng-repeat="c in list | orderBy : '-id'">
                         <td class="not-print">
                             <img class="logo" ng-src="{{c.image_url}}">

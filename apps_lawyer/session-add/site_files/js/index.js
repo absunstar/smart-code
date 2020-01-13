@@ -214,12 +214,8 @@ app.controller("session_add", function ($scope, $http, $timeout) {
         url: "/api/lawsuit_add/all",
         data: {
           search: $scope.search_lawsuit,
-          where: {}
-          /*  select: {
-            id: 1,
-            name_ar: 1,
-            name_en: 1,
-          } */
+          where: {},
+          select: { id: 1, number: 1, year: 1 }
         }
       }).then(
         function (response) {
@@ -296,7 +292,7 @@ app.controller("session_add", function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          if (change_judgment.judgment_status.id == 2) {
+          if (change_judgment.judgment_status.id == 2 || change_judgment.judgment_status.id == 3) {
 
             $scope.change_judgment.judgment_status = $scope.sessionJudgmentList[0];
             $scope.change_judgment.active = true;

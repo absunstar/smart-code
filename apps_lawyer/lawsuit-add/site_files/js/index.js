@@ -227,6 +227,35 @@ app.controller("lawsuit_add", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.displaySessions = function (lawsuit_add) {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/session_add/all",
+      data: {
+        where: {
+          'lawsuit.id': lawsuit_add.id,
+          'lawsuit.number': lawsuit_add.number
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+
+          $scope.sessionsList = response.data.list;
+          
+          site.showModal('#sessionsModal');
+
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
   $scope.loadLawSuitStatus = function () {
     $scope.busy = true;
     $http({
@@ -488,7 +517,7 @@ app.controller("lawsuit_add", function ($scope, $http, $timeout) {
 
     $scope.lawsuit_add.office_lawyers_list = $scope.lawsuit_add.office_lawyers_list || [];
 
-    if ($scope.office_lawyer &&  $scope.office_lawyer.id && $scope.office_lawyer_adjective) {
+    if ($scope.office_lawyer && $scope.office_lawyer.id && $scope.office_lawyer_adjective) {
 
       $scope.lawsuit_add.office_lawyers_list.push({
         office_lawyer: $scope.office_lawyer,
@@ -519,7 +548,7 @@ app.controller("lawsuit_add", function ($scope, $http, $timeout) {
 
     $scope.lawsuit_add.oppenents_lawyers_list = $scope.lawsuit_add.oppenents_lawyers_list || [];
 
-    if ($scope.oppenents_lawyer &&  $scope.oppenents_lawyer.id && $scope.oppenents_lawyer_adjective) {
+    if ($scope.oppenents_lawyer && $scope.oppenents_lawyer.id && $scope.oppenents_lawyer_adjective) {
 
       $scope.lawsuit_add.oppenents_lawyers_list.push({
         oppenents_lawyer: $scope.oppenents_lawyer,

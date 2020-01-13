@@ -68,31 +68,36 @@
                             <div class="row">
                                 <fieldset>
                                     <legend> ##word.lawsuit_properties## </legend>
-                                    <tr>
-                                        <td class="title">##word.lawsuit_degree##</td>
-                                        <td class="center">{{lawsuit_add.lawsuit_degree.name}}</td>
-                                    </tr>
+                                    <table class="table hover bold">
 
-                                    <tr>
-                                        <td class="title">##word.lawsuit_type##</td>
-                                        <td class="center">{{lawsuit_add.lawsuit_type.name}}</td>
-                                    </tr>
+                                        <tr>
+                                            <td class="title">##word.lawsuit_degree##</td>
+                                            <td class="center">{{lawsuit_add.lawsuit_degree.name}}</td>
+                                        </tr>
 
-                                    <tr>
-                                        <td class="title">##word.lawsuit_status##</td>
-                                        <td class="center">{{lawsuit_add.lawsuit_status.name}}</td>
-                                    </tr>
+                                        <tr>
+                                            <td class="title">##word.lawsuit_type##</td>
+                                            <td class="center">{{lawsuit_add.lawsuit_type.name}}</td>
+                                        </tr>
 
-                                    <tr>
-                                        <td class="title">##word.lawsuit_basic##</td>
-                                        <td class="center">{{lawsuit_add.lawsuit_basic.name}}</td>
-                                    </tr>
+                                        <tr>
+                                            <td class="title">##word.lawsuit_status##</td>
+                                            <td class="center">{{lawsuit_add.lawsuit_status.name}}</td>
+                                        </tr>
 
-                                    <tr>
-                                        <td class="title">##word.notes##</td>
-                                        <td class="center">{{lawsuit_add.notes}}</td>
-                                    </tr>
+                                        <tr>
+                                            <td class="title">##word.lawsuit_basic##</td>
+                                            <td class="center">
+                                                <p class="blue">{{lawsuit_add.lawsuit_basic.number}}</p>
+                                                <p>{{lawsuit_add.lawsuit_basic.year}}</p>
+                                            </td>
+                                        </tr>
 
+                                        <tr>
+                                            <td class="title">##word.notes##</td>
+                                            <td class="center">{{lawsuit_add.notes}}</td>
+                                        </tr>
+                                    </table>
                                 </fieldset>
                             </div>
                         </div>

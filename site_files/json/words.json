@@ -105,6 +105,11 @@
         "ar": "السعر"
     },
     {
+        "name": "sessions",
+        "en": "Sessions",
+        "ar": "الجلسات"
+    },
+    {
         "name": "safe",
         "en": "Safe",
         "ar": "الخزينة"

@@ -166,7 +166,7 @@ module.exports = function init(site) {
 
     let where = req.data.where || {}
     let search = req.body.search
-    
+
     if (search) {
       where.$or = []
       where.$or.push({
@@ -178,13 +178,73 @@ module.exports = function init(site) {
     }
 
 
-    if (where['code']) {
-      where['code'] = new RegExp(where['code'], 'i')
+    if (where.date) {
+      let d1 = site.toDate(where.date)
+      let d2 = site.toDate(where.date)
+      d2.setDate(d2.getDate() + 1)
+      where.date = {
+        '$gte': d1,
+        '$lt': d2
+      }
+    } else if (where && where.date_from) {
+      let d1 = site.toDate(where.date_from)
+      let d2 = site.toDate(where.date_to)
+      d2.setDate(d2.getDate() + 1);
+      where.date = {
+        '$gte': d1,
+        '$lt': d2
+      }
+      delete where.date_from
+      delete where.date_to
     }
 
-    if (where['name']) {
-      where['name'] = new RegExp(where['name'], 'i')
+    if (where['courts']) {
+      where['courts.id'] = where['courts'].id;
+      delete where['courts']
     }
+
+    if (where['circle']) {
+      where['circle.id'] = where['circle'].id;
+      delete where['circle']
+    }
+
+    if (where['lawsuit_degree']) {
+      where['lawsuit_degree.id'] = where['lawsuit_degree'].id;
+      delete where['lawsuit_degree']
+    }
+
+    if (where['lawsuit_type']) {
+      where['lawsuit_type.id'] = where['lawsuit_type'].id;
+      delete where['lawsuit_type']
+    }
+
+    if (where['lawsuit_status']) {
+      where['lawsuit_status.id'] = where['lawsuit_status'].id;
+      delete where['lawsuit_status']
+    }
+
+    if (where['lawsuit_basic']) {
+      where['lawsuit_basic.id'] = where['lawsuit_basic'].id;
+      delete where['lawsuit_basic']
+    }
+
+
+    if (where['number']) {
+      where['number'] = where['number']
+    }
+
+    if (where['year']) {
+      where['year'] = where['year']
+    }
+
+    if (where['lawsuit_topic']) {
+      where['lawsuit_topic'] = new RegExp(where['lawsuit_topic'], 'i')
+    }
+
+    if (where['notes']) {
+      where['notes'] = new RegExp(where['notes'], 'i')
+    }
+
 
     // if (where['active'] !== 'all') {
     //   where['active'] = true

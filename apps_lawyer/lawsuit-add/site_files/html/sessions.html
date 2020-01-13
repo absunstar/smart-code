@@ -1,0 +1,39 @@
+<div id="sessionsModal" class="modal" fixed>
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.sessions_view##
+                <i class="fa fa-plus"></i>
+            </h2>
+        </div>
+
+        <div class="modal-body">
+            <div class="row">
+                <table class="table loaded center hover bold" id="t1">
+                    <tr>
+                        <th> ##word.session_start_date## </th>
+                        <th> ##word.roll_number## </th>
+                        <th> ##word.reason## </th>
+                        <th> ##word.status_session## </th>
+                    </tr>
+
+                    <tr ng-repeat="c in sessionsList | orderBy : '-id'">
+
+                        <td> {{c.date  | date : 'yyyy - MM - dd'}} </td>
+                        <td>{{c.roll_number}} </td>
+                        <td>{{c.reason.name}} </td>
+                        <td>{{c.judgment_status.ar}} </td>
+
+
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="modal-footer center">
+            <h2 class="error"> {{error}} </h2>
+            <i-button type="close" label="##word.close##" onclick="site.hideModal('#sessionsModal')"></i-button>
+        </div>
+    </div>
+</div>

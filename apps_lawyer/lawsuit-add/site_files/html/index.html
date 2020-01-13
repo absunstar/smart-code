@@ -17,9 +17,13 @@
         <div class="row">
             <div class="row" ng-controller="lawsuit_add" x-permissions="login">
                 <div x-permissions="lawsuit_add_add || lawsuit_add_manage" x-import="lawsuit-add/add_modal.html"></div>
-                <div x-import="lawsuit-add/update_modal.html"></div>
-                <div x-import="lawsuit-add/delete_modal.html"></div>
-                <div x-import="lawsuit-add/view_modal.html"></div>
+                <div x-permissions="lawsuit_add_view || lawsuit_add_manage" x-import="lawsuit-add/sessions.html"></div>
+                <div x-permissions="lawsuit_add_update || lawsuit_add_manage" x-import="lawsuit-add/update_modal.html">
+                </div>
+                <div x-permissions="lawsuit_add_delete || lawsuit_add_manage" x-import="lawsuit-add/delete_modal.html">
+                </div>
+                <div x-permissions="lawsuit_add_view || lawsuit_add_manage" x-import="lawsuit-add/view_modal.html">
+                </div>
                 <div x-permissions="lawsuit_add_search || lawsuit_add_manage"
                     x-import="lawsuit-add/search_all_modal.html"></div>
 
@@ -71,6 +75,9 @@
                         <td class="center not-print">
                             <i-button type="details" x-permissions="lawsuit_add_view || lawsuit_add_manage"
                                 label="##word.details##" ng-click="displayDetailsLawsuitAdd(c)"></i-button>
+
+                            <i-button x-permissions="lawsuit_add_view || lawsuit_add_manage" label="##word.sessions_view##"
+                                ng-click="displaySessions(c)"></i-button>
 
                             <i-button type="update" x-permissions="lawsuit_add_edit || lawsuit_add_manage"
                                 label="##word.update##" ng-click="displayUpdateLawsuitAdd(c)"></i-button>
