@@ -110,7 +110,7 @@ app.controller("default_setting", function ($scope, $http) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          $scope.stores = response.data.list;
+          $scope.storesList = response.data.list;
         }
       },
       function (err) {
