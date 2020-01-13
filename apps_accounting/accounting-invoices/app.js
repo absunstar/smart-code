@@ -615,6 +615,7 @@ module.exports = function init(site) {
 
     let where = req.data.where || {}
 
+    
     if (where['code'])
       where['code'] = new RegExp(where['code'], 'i')
 
@@ -635,6 +636,13 @@ module.exports = function init(site) {
       where['payment_method.id'] = where['payment_method'].id;
       delete where['payment_method']
     }
+
+
+    if (where['safe']) {
+      where['safe.id'] = where['safe'].id;
+      delete where['safe']
+    }
+
 
     if (where.date) {
       let d1 = site.toDate(where.date)

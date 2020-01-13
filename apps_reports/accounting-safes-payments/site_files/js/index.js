@@ -81,9 +81,29 @@ app.controller("safes_payments", function ($scope, $http) {
 
   ];
 
-  $scope.loadSafes = function () {
-    $scope.list = {};
+  $scope.getSafeByType = function (obj) {
+    $scope.error = '';
+    if ($scope.defaultSettings.accounting) {
+      $scope.loadSafes(obj.payment_method);
+      if (obj.payment_method.id == 1) {
+        if ($scope.defaultSettings.accounting.safe_box)
+          obj.safe = $scope.defaultSettings.accounting.safe_box
+      } else {
+        if ($scope.defaultSettings.accounting.safe_bank)
+          obj.safe = $scope.defaultSettings.accounting.safe_bank
+      }
+    }
+  };
+
+  $scope.loadSafes = function (method) {
+    $scope.error = '';
     $scope.busy = true;
+    let where = {};
+
+    if (method.id == 1)
+      where = { 'type.id': 1 };
+    else where = { 'type.id': 2 };
+
     $http({
       method: "POST",
       url: "/api/safes/all",
@@ -92,15 +112,36 @@ app.controller("safes_payments", function ($scope, $http) {
           id: 1,
           name: 1,
           number: 1,
-          type : 1
-        }
+          type: 1
+        },
+        where: where
       }
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done) {
-          $scope.safes = response.data.list;
-        }
+        if (response.data.done) $scope.safesList = response.data.list;
+
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.getDefaultSetting = function () {
+
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/default_setting/get",
+      data: {}
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.doc) {
+          $scope.defaultSettings = response.data.doc;
+        };
       },
       function (err) {
         $scope.busy = false;
@@ -161,47 +202,39 @@ app.controller("safes_payments", function ($scope, $http) {
     )
   };
 
+  $scope.getPaymentMethodList = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $scope.paymentMethodList = [];
+    $http({
+      method: "POST",
+      url: "/api/payment_method/all"
+
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.paymentMethodList = response.data;
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
 
   $scope.searchAll = function () {
-    let where = {};
-
-    if ($scope.search) {
-
-      if ($scope.search.date) {
-        where['date'] = $scope.search.date;
-      }
-
-      if ($scope.search.safe && $scope.search.safe.id) {
-        where['safe.id'] = $scope.search.safe.id;
-      }
-
-
-      if ($scope.search.value) {
-        where['value'] = site.toNumber($scope.search.value);
-      }
-
-      if ($scope.search.source) {
-        where['source'] = $scope.search.source.name;
-      }
-      if ($scope.search.transition_type) {
-        where['transition_type'] = $scope.search.transition_type.type;
-      }
-    }
+ 
+    $scope._search = {};
+    $scope.loadAll($scope.search);
     site.hideModal('#Safes_payment_SearchModal');
-
-    $scope.loadAll(where);
-
+    $scope.search = {}
 
   };
 
 
-
-
-
-
   $scope.loadAll({ date: new Date() });
   // $scope.loadEmployees();
-  $scope.loadSafes();
-
-
+  $scope.getPaymentMethodList();
+  $scope.getDefaultSetting();
 });

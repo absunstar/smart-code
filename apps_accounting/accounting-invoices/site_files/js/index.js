@@ -387,7 +387,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
     };
   };
 
-  $scope.getSafeByType = function (obj) {
+  $scope.getSafeByTypePayment = function (obj) {
     $scope.error = '';
     if ($scope.defaultSettings.accounting) {
       $scope.loadSafes(obj.payment_method);
@@ -397,6 +397,20 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
       } else {
         if ($scope.defaultSettings.accounting.safe_bank)
           obj.payment_safe = $scope.defaultSettings.accounting.safe_bank
+      }
+    }
+  };
+
+  $scope.getSafeByType = function (obj) {
+    $scope.error = '';
+    if ($scope.defaultSettings.accounting) {
+      $scope.loadSafes(obj.payment_method);
+      if (obj.payment_method.id == 1) {
+        if ($scope.defaultSettings.accounting.safe_box)
+          obj.safe = $scope.defaultSettings.accounting.safe_box
+      } else {
+        if ($scope.defaultSettings.accounting.safe_bank)
+          obj.safe = $scope.defaultSettings.accounting.safe_bank
       }
     }
   };
@@ -601,13 +615,11 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
     )
   };
 
-
   $scope.searchAll = function () {
     $scope._search = {};
     $scope.getAccountInvoicesList($scope.search);
     site.hideModal('#accountInvoicesSearchModal');
     $scope.search = {}
-
   };
 
   $scope.printAccountInvoive = function () {

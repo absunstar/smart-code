@@ -20,7 +20,7 @@
 
                 <i-list help-id="" ng-search="_search.$payment_method_search" class="col2"
                     label="##word.payment_method##" ng-model="paid_invoice.payment_method"
-                    ng-change="getSafeByType(paid_invoice)" items="paymentMethodList" display="##session.lang##">
+                    ng-change="getSafeByTypePayment(paid_invoice)" items="paymentMethodList" display="##session.lang##">
                 </i-list>
 
                 <i-list ng-search="_search.$paid_invoice.$safes_search" class="col4"

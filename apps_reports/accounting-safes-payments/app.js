@@ -73,6 +73,22 @@ module.exports = function init(site) {
 
     let where = req.body.where || {}
 
+
+    if (where['payment_method']) {
+      where['payment_method.id'] = where['payment_method'].id;
+      delete where['payment_method']
+    }
+
+    if (where['transition_type']) {
+      
+      where['transition_type'] = new RegExp(where['transition_type.type'], 'i');
+    }
+
+    if (where['shift_code']) {
+      where['shift.code'] = new RegExp(where['shift_code'], 'i')
+      delete where['shift_code']
+    }
+
     if (where.date) {
       let d1 = site.toDate(where.date)
       let d2 = site.toDate(where.date)
@@ -91,10 +107,16 @@ module.exports = function init(site) {
       }
       delete where.date_from
       delete where.date_to
+
     }
 
     if (where['source']) {
       where['source'] = new RegExp(where['source'], 'i')
+    }
+
+
+    if (where['value']) {
+      where['value'] = where['value']
     }
 
     where['company.id'] = site.get_company(req).id

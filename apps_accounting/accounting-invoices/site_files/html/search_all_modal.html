@@ -23,10 +23,16 @@
                         <i-list help-id="" ng-search="_search.$source_type_search" class="col3"
                             label="##word.source_type##" ng-model="search.source_type" items="sourceTypeList"
                             display="##session.lang##"></i-list>
+                    </div>
+                    <div class="row">
+
                         <i-list help-id="" ng-search="_search.$payment_method_search" class="col3"
-                            label="##word.payment_method##" ng-model="search.payment_method" items="paymentMethodList"
-                            display="##session.lang##">
+                            ng-change="getSafeByType(search)" label="##word.payment_method##"
+                            ng-model="search.payment_method" items="paymentMethodList" display="##session.lang##">
                         </i-list>
+
+                        <i-list ng-search="_search.$order_invoice.$safes_search" class="col4" ng-model="search.safe"
+                            label="##word.safe##" items="safesList"></i-list>
                     </div>
                 </form>
             </div>
