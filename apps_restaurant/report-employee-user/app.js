@@ -26,7 +26,7 @@ module.exports = function init(site) {
 
     let where = req.data.where || {};
 
-    let employee = where.employee
+    let employee = Object.assign({}, where.employee) || {};
 
     if (where['code']) {
       where['code'] = new RegExp(where['code'], 'i')
@@ -50,7 +50,7 @@ module.exports = function init(site) {
         '$lt': d2
       }
     } else if (where && where.date_from) {
-      let d1 = site.toDate( where.date_from)
+      let d1 = site.toDate(where.date_from)
       let d2 = site.toDate(where.date_to)
       d2.setDate(d2.getDate() + 1);
       where.date = {
@@ -60,14 +60,15 @@ module.exports = function init(site) {
       delete where.date_from
       delete where.date_to
     }
-
-    where = {
-      $or: [
-        { 'add_user_info.id': where['employee'].user_info.id },
-        { 'edit_user_info.id': where['employee'].user_info.id }
-      ]
+    if (where['employee']) {
+      where = {
+        $or: [
+          { 'add_user_info.id': where['employee'].user_info.id },
+          { 'edit_user_info.id': where['employee'].user_info.id }
+        ]
+      }
+      delete where['employee']
     }
-    delete where['employee']
 
     where['status.id'] = {
       '$gte': 4,

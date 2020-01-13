@@ -1,4 +1,4 @@
-<div id="StoresOutSearchModal" class="modal" fixed>
+<div id="transferSearchModal" class="modal" fixed>
 
     <div class="modal-content">
         <div class="modal-header">
@@ -13,52 +13,36 @@
                 <form class="form">
 
                     <div class="row">
-                        <i-date2 class="col2" label="##word.transfer_branch_date##" ng-model="search.date"></i-date2>
+                        <i-date2 class="col3" ng-model="search.date" label="##word.amounts_in_date##"></i-date2>
+                        <i-date2 class="col3" ng-model="search.dateFrom" type="date"
+                            label="##word.amounts_in_date_from##"></i-date2>
+                        <i-date2 class="col3" ng-model="search.dateTo" type="date" label="##word.amounts_in_date_to##">
+                        </i-date2>
+
+                    </div>
+                    <div class="row">
+
+                        <i-list class="col3" ng-model="search.branch_from" display="name_ar" items="branchesList"
+                            ng-search="_search.$branch_from" label="##word.branch_from##"></i-list>
+                        <i-list class="col3" ng-model="search.branch_to" items="branchesList" display="name_ar"
+                            ng-change="loadStoresTo(search.branch_to)" ng-search="_search.$branch_to"
+                            label="##word.branch_to##"></i-list>
+
+                    </div>
+
+                    <div class="row">
+
+                        <i-list class="col3" ng-model="search.store_from" items="storesFromList"
+                            ng-search="_search.$store_from" label="##word.store_from##"></i-list>
+                        <i-list class="col3" ng-model="search.store_to" items="storesToList"
+                            ng-search="_search.$store_to" label="##word.store_to##"></i-list>
+
+                    </div>
+
+
+                    <div class="row">
                         <i-control class="col3 shift" type="text" label="##word.shift##" ng-model="search.shift_code">
                         </i-control>
-                        <i-control class="col2" ng-model="search.number" label="##word.transfer_branch_id##" type="text">
-                        </i-control>
-                        <i-control class="col2" ng-model="search.supply_number" label="##word.transfer_branch_supply_number##"
-                            type="text"></i-control>
-
-                    </div>
-                    <div class="row">
-                        <i-list ng-search="_search.$Company_name" class="col3" ng-model="search.vendor" items="vendors"
-                            label="##word.transfer_branch_Company_name##"></i-list>
-                        <i-list ng-search="_search.$store_name" class="col3" ng-model="search.store" items="storesList"
-                            label="##word.store##"></i-list>
-                        <i-list ng-search="_search.$safe_name" class="col3" ng-model="search.safe" items="safes"
-                            label="##word.transfer_branch_safe##"></i-list>
-                    </div>
-                    <div class="row">
-                        <i-control class="col2" ng-model="search.total_valueGt"
-                            label="##word.transfer_branch_total_value_gt##" type="text"></i-control>
-                        <i-control class="col2" ng-model="search.total_valueLt"
-                            label="##word.transfer_branch_total_value_lt##" type="text"></i-control>
-                        <i-control class="col2" label="##word.limit##" type="number" ng-model="search.limit">
-                        </i-control>
-
-                    </div>
-
-
-                    <div class="row">
-                        <i-control class="col3" ng-model="search.ticket_code" label="##word.transfer_branch_ticket_code##"
-                            type="text"></i-control>
-
-                        <i-list display="##session.lang##" class="col3" ng-search="_search.$safe_outtype"
-                            ng-model="search.type" items="transfer_branch_types" label="##word.transfer_branchtypes##"></i-list>
-
-
-                    </div>
-                    <div class="row">
-                        <i-date2 class="col3" ng-model="search.dateFrom" label="##word.date_from##"></i-date2>
-
-                        <i-date2 class="col3" ng-model="search.dateTo" label="##word.date_to##"></i-date2>
-
-                    </div>
-
-                    <div class="row">
-
                         <i-control class="col6" ng-model="search.notes" label="##word.notes##" type="text"></i-control>
                     </div>
 
@@ -73,7 +57,7 @@
         <div class="modal-footer center">
             <i-button type="search" label="##word.search##" ng-hide="busy" ng-click="searchAll()"></i-button>
             <i-button type="clear" label="##word.clear##" ng-click="search = {}"></i-button>
-            <i-button type="close" label="##word.close##" onclick="site.hideModal('#StoresOutSearchModal')"></i-button>
+            <i-button type="close" label="##word.close##" onclick="site.hideModal('#transferSearchModal')"></i-button>
 
         </div>
     </div>

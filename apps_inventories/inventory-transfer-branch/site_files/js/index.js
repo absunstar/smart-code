@@ -409,50 +409,6 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
     }
   };
 
-  /*  $scope.getItem = function () {
-     if ($scope.item.item_name) {
-       console.log("Aaaaaaaaaaaaaaaaaaaaaaaaaaa");
-       
-       $http({
-         method: "POST",
-         url: "/api/stores_items/all",
-         data: {
-           where: {
-             name: $scope.item.item_name.name
-           }
-         }
-       }).then(
-         function (response) {
-           $scope.busy = false;
-           if (response.data.done) {
-             if (response.data.list.length > 0) {
-               $('#public_count').focus();
-               response.data.list[0].sizes.forEach(itm => {
-                 itm.count = 0;
-               });
-               $scope.item = response.data.list[0];
-             } else {
-               $scope.item = {
-                 sizes: [],
-                 name: $scope.item.item_name.name
-               };
-               $('#item_name').focus();
-             }
-           } else {
-             $scope.error = response.data.error;
-             $scope.item = {
-               sizes: []
-             };
-           }
-         },
-         function (err) {
-           console.log(err);
-         }
-       );
-   
-     }
-   }; */
-
   $scope.edit = function (transfer_branch) {
     $scope.error = '';
     $scope.get_open_shift((shift) => {
@@ -619,77 +575,11 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
 
   $scope.searchAll = function () {
     $scope.error = '';
-    let where = {};
-
-    if ($scope.search.number) {
-      where['number'] = $scope.search.number;
-    }
-    if ($scope.search.shift_code) {
-      where['shift.code'] = $scope.search.shift_code;
-    }
-
-    if ($scope.search.category && $scope.search.category.id) {
-      where['category.id'] = $scope.search.category.id;
-    }
-    if ($scope.search.type) {
-      where['type.id'] = $scope.search.type.id;
-    }
-    if ($scope.search.supply_number) {
-      where['supply_number'] = $scope.search.supply_number;
-    }
-
-    if ($scope.search.ticket_code) {
-      where['items.ticket_code'] = $scope.search.ticket_code;
-    }
-
-    if ($scope.search.date) {
-      where['date'] = $scope.search.date;
-    }
-
-    if ($scope.search.dateFrom) {
-      where['date_from'] = $scope.search.dateFrom;
-    }
-
-    if ($scope.search.dateTo) {
-      where['date_to'] = $scope.search.dateTo;
-    }
-
-    if ($scope.search.store_from && $scope.search.store_from.id) {
-      where['store_from.id'] = $scope.search.store_from.id;
-    }
-
-    if ($scope.search.safe && $scope.search.safe.id) {
-      where['safe.id'] = $scope.search.safe.id;
-    }
-    if ($scope.search.notes) {
-
-      where['notes'] = $scope.search.notes;
-    }
-
-    if ($scope.search.total_valueGt) {
-      where['total_value'] = {
-        $gte: site.toNumber($scope.search.total_valueGt)
-      };
-    }
-
-    if ($scope.search.total_valueLt) {
-      where['total_value'] = {
-        $lte: site.toNumber($scope.search.total_valueLt)
-      };
-    }
-
-    if ($scope.search.total_valueGt && $scope.search.total_valueLt) {
-      where['total_value'] = {
-        $gte: site.toNumber($scope.search.total_valueGt),
-        $lte: site.toNumber($scope.search.total_valueLt)
-      };
-    }
-
-
-    $scope.loadAll(where);
-    site.hideModal('#StoresOutSearchModal');
+    $scope.loadAll($scope.search);
+    site.hideModal('#transferSearchModal');
     $scope.search = {};
   };
+
   $scope.loadAll = function (where) {
     $scope.error = '';
     $scope.list = {};

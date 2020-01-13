@@ -278,6 +278,26 @@ module.exports = function init(site) {
     where['company.id'] = site.get_company(req).id
 
     where['$or'] = [{ 'branch_from.code': site.get_branch(req).code }, { 'branch_to.code': site.get_branch(req).code }]
+    
+    if (where['branch_from']) {
+      where['branch_from.id'] = where['branch_from'].id;
+      delete where['branch_from']
+    }
+
+    if (where['branch_to']) {
+      where['branch_to.id'] = where['branch_to'].id;
+      delete where['branch_to']
+    }
+
+    if (where['store_from']) {
+      where['store_from.id'] = where['store_from'].id;
+      delete where['store_from']
+    }
+
+    if (where['store_to']) {
+      where['store_to.id'] = where['store_to'].id;
+      delete where['store_to']
+    }
 
     if (where['shift_code']) {
       where['shift.code'] = new RegExp(where['shift_code'], 'i')
