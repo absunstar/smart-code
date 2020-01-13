@@ -99,8 +99,11 @@ app.controller("report_requests", function ($scope, $http, $timeout) {
   $scope.searchAll = function () {
     $scope._search = {};
 
+    if ($scope.search)
+      $scope.trainer = $scope.search.trainer;
+
     $scope.getReportServicesList($scope.search);
-    $scope.trainer = $scope.search.trainer;
+
     $scope.search = {};
     site.hideModal('#reportServicesSearchModal');
   };

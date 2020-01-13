@@ -60,6 +60,11 @@ module.exports = function init(site) {
       delete where['shift_code']
     }
 
+    if (where['trainer']) {
+      where['trainer.id'] = where['trainer'].id;
+      delete where['trainer']
+    }
+
     if (where['order_subscribers_type']) {
       where['order_subscribers_type.id'] = where['order_subscribers_type'].id;
       delete where['order_subscribers_type']

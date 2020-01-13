@@ -110,11 +110,37 @@ app.controller("report_subscribers", function ($scope, $http, $timeout) {
     };
   };
 
+  $scope.getTrainerList = function () {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/trainer/all",
+      data: {
+        where: {
+          busy: { $ne: true }
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.trainersList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+
   $scope.searchAll = function () {
     $scope._search = {};
 
     $scope.getReportServicesList($scope.search);
-    $scope.customer = $scope.search.customer;
+    if ($scope.search)
+      $scope.customer = $scope.search.customer;
     $scope.search = {};
     site.hideModal('#reportServicesSearchModal');
   };
@@ -122,4 +148,5 @@ app.controller("report_subscribers", function ($scope, $http, $timeout) {
   $scope.getReportServicesList({ date: new Date() });
   $scope.getPaymentMethodList();
   $scope.getSourceType();
+  $scope.getTrainerList();
 });

@@ -15,17 +15,14 @@
     <div id="main-layout" class="container">
         <div class="row">
             <div class="row" ng-controller="report_requests" x-permissions="login">
-                <div x-import="report-requests/add_modal.html"></div>
-                <div x-import="report-requests/view_modal.html"></div>
+
                 <div x-import="report-requests/search_all_modal.html"></div>
                 <div class="row">
                     <h1 class="bold text-center"> ##word.report_requests_name## </h1>
                 </div>
 
                 <div class="top-actions">
-                    <!--<i-button type="add" x-permissions="report_requests_add || report_requests_manage"
-                        label="##word.report_requests_new##" ng-click="displayAddReportServices()"></i-button>-->
-
+                 
                     <i-button type="search" x-permissions="report_requests_search || report_requests_manage"
                         label="##word.search_all##" onclick="site.showModal('#reportServicesSearchModal')"></i-button>
 
@@ -75,6 +72,7 @@
                         <th class="not-print"> ##word.logo## </th>
                         <th> ##word.date_from## </th>
                         <th> ##word.date_to## </th>
+                        <th> ##word.shift## </th>
                         <th> ##word.request_code## </th>
                         <th ng-hide="trainer.id"> ##word.trainer## </th>
                         <th> ##word.stores_out_total_discount## </th>
@@ -88,6 +86,10 @@
                         </td>
                         <td class="green"> {{c.date_from | date : 'dd - MM - yyyy'}} </td>
                         <td class="red"> {{c.date_to | date : 'dd - MM - yyyy'}} </td>
+                        <td class="blue">
+                             <p>{{c.shift.name}}</p> 
+                             <p class="blue">{{c.shift.code}}</p> 
+                        </td>
                         <td class="blue"> {{c.code}} </td>
                         <td ng-hide="trainer.id">{{c.trainer.name}}</td>
                         <td class="red"> {{c.total_discount ||0}} </td>

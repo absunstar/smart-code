@@ -59,11 +59,16 @@ module.exports = function init(site) {
       delete where['shift_code']
     }
 
+    if (where['code']) {
+
+      where['code'] = new RegExp(where['code'], 'i')
+    }
+
     if (where['order_requests_type']) {
       where['order_requests_type.id'] = where['order_requests_type'].id;
       delete where['order_requests_type']
     }
-    
+
     if (where['trainer']) {
       where['trainer.id'] = where['trainer'].id;
       delete where['trainer']
