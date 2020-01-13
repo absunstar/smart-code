@@ -395,7 +395,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     $scope.error = '';
     if ($scope.busy) return;
     $scope.busy = true;
-
+    $scope.account_invoices = $scope.account_invoices || {};
     $scope.account_invoices.order_invoices_type = $scope.order_invoice.transaction_type;
 
     if ($scope.safe)
