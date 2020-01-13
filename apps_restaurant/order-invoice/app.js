@@ -43,7 +43,7 @@ module.exports = function init(site) {
 
 
 
-  
+
 
 
 
@@ -450,10 +450,6 @@ module.exports = function init(site) {
     })
   })
 
-  /*  site.isItemInOrder = function(params) {
-    
-  }  */
-
 
   site.post("/api/order_invoice/active_all", (req, res) => {
     let response = {
@@ -574,38 +570,6 @@ module.exports = function init(site) {
   })
 
 
-  /*  site.post("/api/order_invoice/get_size", (req, res) => {
-     let response = {
-       done: false
-     }
-     let where = {};
- 
-     where = {
-       $and: [{
-         'book_list.item_id': req.body.item_id
-       },
-       {
-         'book_list.barcode': req.body.barcode
-       }]
-     }
- 
-     $order_invoice.findOne({
-       where: where
-     }, (err, docs, count) => {
- 
-       if (!err) {
-         response.done = true
-         if (docs) response.docs = true
-         else response.docs = false
- 
-       } else {
-         response.error = err.message
-       }
-       res.json(response)
-     })
-   })
-  */
-
   site.getDataToDelete = function (data, callback) {
 
     let where = {};
@@ -622,7 +586,6 @@ module.exports = function init(site) {
 
     else if (data.name == 'customer') where['customer.id'] = data.id
     else if (data.name == 'tables') where['table.id'] = data.id
-    /*else if (data.name == 'stores_item') where['book_list.item_id'] = data.id*/
 
     $order_invoice.findOne({
       where: where,

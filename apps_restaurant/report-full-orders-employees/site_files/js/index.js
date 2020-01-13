@@ -28,6 +28,46 @@ app.controller("report_full_employees", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.getOrderStatusList = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $scope.orderStatusList = [];
+    $http({
+      method: "POST",
+      url: "/api/order_invoice/order_status/all"
+
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.orderStatusList = response.data;
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.getTransactionTypeList = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $scope.transactionTypeList = [];
+    $http({
+      method: "POST",
+      url: "/api/order_invoice/transaction_type/all"
+
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.transactionTypeList = response.data;
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
   $scope.getReportFullOrdersEmployeesList = function (where) {
     $scope.busy = true;
     $scope.list = [];
@@ -70,4 +110,6 @@ app.controller("report_full_employees", function ($scope, $http, $timeout) {
   };
 
   $scope.getFullOrderEmployeesList();
+  $scope.getOrderStatusList();
+  $scope.getTransactionTypeList();
 });

@@ -15,19 +15,13 @@
     <div id="main-layout" class="container">
         <div class="row">
             <div class="row" ng-controller="report_full_employees" x-permissions="login">
-                <!--        <div x-import="report-full-orders-employees/add_modal.html"></div>
-                <div x-import="report-full-orders-employees/payment.html"></div>
-                <div x-import="report-full-orders-employees/update_modal.html"></div>
-                <div x-import="report-full-orders-employees/delete_modal.html"></div>
-                <div x-import="report-full-orders-employees/view_modal.html"></div> -->
+         
                 <div x-import="report-full-orders-employees/search_all_modal.html"></div>
                 <div class="row">
                     <h1 class="bold text-center"> ##word.report_full_employees_name## </h1>
                 </div>
 
                 <div class="top-actions">
-                    <!--<i-button type="add" x-permissions="report_full_employees_add || report_full_employees_manage"
-                        label="##word.report_full_employees_new##" ng-click="displayAddReportInvoices()"></i-button>-->
 
                     <i-button type="search" x-permissions="report_full_employees_search || report_full_employees_manage"
                         label="##word.search_all##" onclick="site.showModal('#reportEmployeeDeliverySearchModal')">

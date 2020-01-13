@@ -40,6 +40,16 @@ module.exports = function init(site) {
       delete where['shift_code']
     }
 
+    if (where['transaction_type']) {
+      where['transaction_type.id'] = where['transaction_type'].id;
+      delete where['transaction_type']
+    }
+
+    if (where['order_status']) {
+      where['status.id'] = where['order_status'].id;
+      delete where['order_status']
+    }
+
     if (where.date) {
       let d1 = site.toDate(where.date)
       let d2 = site.toDate(where.date)
