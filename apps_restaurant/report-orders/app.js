@@ -25,6 +25,7 @@ module.exports = function init(site) {
     };
 
     let where = req.data.where || {};
+    let where2 = Object.assign({}, where);
 
     if (where.date) {
       let d1 = site.toDate(where.date)
@@ -46,23 +47,25 @@ module.exports = function init(site) {
       delete where.date_to
     }
 
-    if (where['name']) {
-      where['name'] = new RegExp(where['name'], 'i')
-    }
-
     if (where['size']) {
-      where['size'] = new RegExp(where['size'], 'i')
+      where['book_list.size'] = where['size']
+      delete where['size']
     }
-
     if (where['barcode']) {
-      where['barcode'] = new RegExp(where['barcode'], 'i')
+      where['book_list.barcode'] = where['barcode']
+      delete where['barcode']
+
     }
 
-    // where['transaction_type'] = 'out'
+    if (where['name']) {
+      where['book_list.name'] = where['name']
+      delete where['name']
+    }
+
     where['company.id'] = site.get_company(req).id
     where['branch.code'] = site.get_branch(req).code
 
-  
+
     $order_invoice.findMany({
       select: req.body.select || {},
       where: where,
@@ -71,22 +74,30 @@ module.exports = function init(site) {
     }, (err, docs, count) => {
       if (!err) {
         response.done = true
-        let size_list = []
-        docs.forEach(doc => {
+        let sizes_list = []
+        docs.forEach(_doc => {
           let exist = false
-          doc.book_list.forEach(itm =>{
-            size_list.forEach(size => {
+          _doc.book_list.forEach(itm => {
+            sizes_list.forEach(size => {
               if (size.barcode == itm.barcode) {
-                size.count = size.count + itm.count
-                exist = true
+                size.count = size.count + itm.count;
+                exist = true;
               }
             })
-            if (!exist) size_list.push(itm)
+
+            if (!exist) {
+              if (where2['size'] || where2['barcode'] || where2['name']) {
+
+                if (where2['size'] == itm.size || where2['name'] == itm.name || where2['barcode'] == itm.barcode)
+                  sizes_list.push(itm);
+
+              } else sizes_list.push(itm);
+            }
           })
-          
         })
-        response.list = size_list
-        response.count = count
+
+        response.list = sizes_list;
+        response.count = count;
       } else {
         response.error = err.message
       }
