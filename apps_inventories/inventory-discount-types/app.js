@@ -22,7 +22,7 @@ module.exports = function init(site) {
 
     $discount_types.add({
       name: "خصم إفتراضي",
-      image_url: '/images/gov.png',
+      image_url: '/images/discount_type.png',
       value : 1,
       type : 'number',
       company: {
