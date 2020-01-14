@@ -283,17 +283,12 @@
                     <h2> ##word.delivery_employee_menus## </h2>
                     <p> ##word.delivery_employee_manage##</p>
                 </a>
-
+                <br>
+                <br>
                 <a class="item" href="/jobs" x-permissions="jobs_ui || jobs_manage">
                     <img src="/images/jobs.png">
                     <h2> ##word.jobs## </h2>
                     <p> ##word.jobs_add##</p>
-                </a>
-
-                <a class="item" href="/order_slides" x-permissions="order_slides_ui || order_slides_manage">
-                    <img src="/images/slides.png">
-                    <h2> ##word.order_slides_menus## </h2>
-                    <p> ##word.order_slides_management##</p>
                 </a>
 
                 <a class="item" href="/employees_degrees"
@@ -303,15 +298,20 @@
                     <p>##word.system_employee_degrees## </p>
                 </a>
 
-                <br>
-                <br>
-
+                <a class="item" href="/order_slides" x-permissions="order_slides_ui || order_slides_manage">
+                    <img src="/images/slides.png">
+                    <h2> ##word.order_slides_menus## </h2>
+                    <p> ##word.order_slides_management##</p>
+                </a>
 
                 <a class="item" href="/attend_leave" x-permissions="attend_leave_ui || attend_leave_manage">
                     <img src="/images/attend_leave.png">
                     <h2> ##word.menu_attend_leave## </h2>
                     <p> ##word.add_attend_leave_tag##</p>
                 </a>
+
+                <br>
+                <br>
 
                 <a class="item" href="/employee_offer" x-permissions="employee_offer_ui || employee_offer_manage">
                     <img src="/images/offer.png">
@@ -401,13 +401,15 @@
                     <p>##word.report_invoices_name##</p>
                 </a>
 
-                <a class="item" href="/report_sales_detailed" x-permissions="report_sales_detailed_ui || report_sales_detailed_manage">
+                <a class="item" href="/report_sales_detailed"
+                    x-permissions="report_sales_detailed_ui || report_sales_detailed_manage">
                     <img src="/images/report_sales_detailed.png">
                     <h2>##word.report_sales_detailed_menus##</h2>
                     <p>##word.report_sales_detailed_name##</p>
                 </a>
 
-                <a class="item" href="/report_sales_total" x-permissions="report_sales_total_ui || report_sales_total_manage">
+                <a class="item" href="/report_sales_total"
+                    x-permissions="report_sales_total_ui || report_sales_total_manage">
                     <img src="/images/report_sales_total.png">
                     <h2>##word.report_sales_total_menus##</h2>
                     <p>##word.report_sales_total_name##</p>
