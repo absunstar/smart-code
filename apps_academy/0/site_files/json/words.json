@@ -26,6 +26,22 @@
         "ar": "طفل"
     },
 
+    {"name" : "customers" , "en" : "Students" , "ar" : "الطلاب"},
+    {"name" : "customers_new" , "en" : "New Student" , "ar" : "طالب جديد"},   
+    {"name" : "customers_add" , "en" : "Add Student" , "ar" : "إضافة طالب"}, 
+    {"name" : "customers_edit" , "en" : "Student Edit" , "ar" : "تعديل بيانات طالب"},
+    {"name" : "customers_details" , "en" : "Student Details" , "ar" : "تفاصيل طالب"}, 
+    {"name" : "customers_delete" , "en" : "Delete Student" , "ar" : "حذف طالب"},
+    {"name" : "customers_indentfy" , "en" : "Student indentfy" , "ar" : "نوع الطالب"},
+
+    {"name" : "customers_personal_information" , "en" : "Personal Information" , "ar" : "البيانات الشخصية"},
+    {"name" : "customers_basic_information" , "en" : "Basic Information" , "ar" : "البيانات الاساسية"},
+    {"name" : "customers_code" , "en" : "Student Code" , "ar" : "كود الطالب"},
+    {"name" : "customers_name_ar" , "en" : "Student Name Arabic" , "ar" : "إسم الطالب بالعربي"},
+    {"name" : "customers_name_en" , "en" : "Student Name English" , "ar" : "إسم الطالب بالانجليزية"},
+    {"name" : "customer_name" , "en" : "Student Name" , "ar" : "إسم الطالب"},
+    {"name" : "customer" , "en" : "Student " , "ar" : " الطالب"},
+
     {
         "name": "order_slides_add",
         "en": "Add Orders Slide",
@@ -308,7 +324,7 @@
     },
     {
         "name": "companies_customer_service",
-        "en": "Customer Services",
+        "en": "Student Services",
         "ar": "خدمة العملاء"
     }
 ]

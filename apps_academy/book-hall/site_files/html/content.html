@@ -20,7 +20,7 @@
                         <i-control class="col2" label="##word.search_tenant##" ng-model="tenant_search"
                             ng-keydown="getTenantList($event)"></i-control>
 
-                        <i-list v="r" class="col5" items="tenantList" ng-model="book_hall.tenant"
+                        <i-list v="r" class="col5" items="tenantList" ng-model="book_hall.tenant" display="name_ar"
                             ng-search="book_hall.$tenant_search" label="##word.tenant##"></i-list>
 
                         <i-button class="col3" ng-show="book_hall.tenant.id" type="details"
@@ -90,7 +90,8 @@
                             label="##word.total_discount##" ng-model="book_hall.total_discount">
                         </i-control>
 
-                        <i-control class="col2" disabled ng-model="book_hall.total_value" label="##word.total_value##" type="number">
+                        <i-control class="col2" disabled ng-model="book_hall.total_value" label="##word.total_value##"
+                            type="number">
                         </i-control>
 
                     </div>

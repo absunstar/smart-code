@@ -62,6 +62,15 @@ app.controller("book_hall", function ($scope, $http, $timeout) {
       return;
     };
 
+    if ($scope.book_hall.paid_up > 0 && !$scope.book_hall.safe) {
+      $scope.error = "##word.should_select_safe##";
+      return;
+
+    } else if ($scope.book_hall.paid_up > $scope.book_hall.total_value) {
+      $scope.error = "##word.err_paid_require##";
+      return;
+    }
+
     $scope.busy = true;
 
     $http({
@@ -71,6 +80,7 @@ app.controller("book_hall", function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
+
         if (response.data.done) {
 
           if ($scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto) {
@@ -80,18 +90,19 @@ app.controller("book_hall", function ($scope, $http, $timeout) {
               date: new Date(),
               invoice_id: request_doc.id,
               tenant: request_doc.tenant,
+              payment_method: request_doc.payment_method,
               hall: request_doc.hall,
               shift: request_doc.shift,
-              service_name: request_doc.service_name,
               date_from: request_doc.date_from,
               date_to: request_doc.date_to,
               total_period: request_doc.total_period,
               period: request_doc.period,
               price_hour: request_doc.price_hour,
+              safe: request_doc.safe,
               price_day: request_doc.price_day,
               total_discount: request_doc.total_discount,
               net_value: request_doc.total_value,
-              paid_up: 0,
+              paid_up: request_doc.paid_up,
               invoice_code: request_doc.code,
               source_type: {
                 id: 5,
@@ -102,7 +113,9 @@ app.controller("book_hall", function ($scope, $http, $timeout) {
             };
 
             $scope.addAccountInvoice($scope.account_invoices);
+
           }
+
           site.hideModal('#bookHallAddModal');
           $scope.getBookHallList();
         } else {
@@ -684,7 +697,6 @@ app.controller("book_hall", function ($scope, $http, $timeout) {
           tenant: book_hall.tenant,
           hall: book_hall.hall,
           shift: shift,
-          service_name: book_hall.service_name,
           date_from: book_hall.date_from,
           date_to: book_hall.date_to,
           total_period: book_hall.total_period,
@@ -725,19 +737,12 @@ app.controller("book_hall", function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.busy = true;
 
-    if (account_invoices.paid_up > 0 && !account_invoices.safe) {
-      $scope.error = "##word.should_select_safe##";
-      return;
-    } else if (account_invoices.paid_up > account_invoices.net_value) {
-      $scope.error = "##word.err_paid_require##";
-      return;
-    }
-
     if ($scope.defaultSettings.general_Settings && $scope.defaultSettings.general_Settings.work_posting)
       account_invoices.posting = false;
     else account_invoices.posting = true;
 
     if (account_invoices.paid_up <= 0) account_invoices.safe = null;
+    
     $http({
       method: "POST",
       url: "/api/account_invoices/add",

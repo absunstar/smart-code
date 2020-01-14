@@ -222,8 +222,8 @@ module.exports = function init(site) {
     if (req.session.user === undefined) {
       res.json(response)
     }
-   
-    
+
+
     let id = req.body.id
     if (id) {
       $safes.delete({
@@ -233,7 +233,7 @@ module.exports = function init(site) {
       }, (err, result) => {
         if (!err) {
           response.done = true
-          
+
           site.call('delete safe payment', id)
 
         }

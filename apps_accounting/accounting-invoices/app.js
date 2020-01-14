@@ -282,6 +282,7 @@ module.exports = function init(site) {
             }
 
             else if (response.doc.source_type.id == 5) {
+              
               paid_value.operation = 'دفعة حجز قاعة'
               paid_value.transition_type = 'in'
             }
@@ -435,8 +436,9 @@ module.exports = function init(site) {
               obj.operation = 'فك ترحيل فاتورة طلب خدمة'
             }
             else if (response.doc.source_type.id == 5) {
+
               obj.operation = 'فك ترحيل حجز قاعة'
-              obj.transition_type = 'in'
+              obj.transition_type = 'out'
             }
 
             if (obj.value && obj.safe) site.call('[amounts][safes][+]', obj)

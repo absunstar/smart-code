@@ -31,7 +31,7 @@ module.exports = function init(site) {
       }
       return
     }
-
+    
     let info = {
       safe: obj.safe,
       payment_method: obj.payment_method,
@@ -52,6 +52,7 @@ module.exports = function init(site) {
     }
 
     $safes_payments.add(info, () => {
+
       s_p_balance_handle(null)
     });
   }

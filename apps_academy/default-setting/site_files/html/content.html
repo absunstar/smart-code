@@ -23,8 +23,8 @@
                         <i-control class="col2" label="##word.search_tenant##" ng-model="tenant_search"
                             ng-keydown="getTenantList($event)"></i-control>
 
-                        <i-list v="r" class="col4" items="tenantList" ng-model="default_setting.general_Settings.tenant"
-                            ng-search="default_setting.general_Settings.$tenant_search" label="##word.tenant##">
+                        <i-list class="col4" items="tenantList" ng-model="default_setting.general_Settings.tenant"
+                           display="name_ar" ng-search="default_setting.general_Settings.$tenant_search" label="##word.tenant##">
                         </i-list>
                     </div>
                     <div class="row">
@@ -138,7 +138,7 @@
                         <i-list class="col3" ng-model="default_setting.inventory.store" items="storesList"
                             ng-search="_search.$_store" label="##word.store##"></i-list>
 
-                        <i-list v="r" ng-search="_search.$storein_type" display="##session.lang##" class="col3"
+                        <i-list ng-search="_search.$storein_type" display="##session.lang##" class="col3"
                             ng-model="default_setting.inventory.type_in" items="storesInTypes"
                             label="##word.purchases_invoice_type##"></i-list>
 
