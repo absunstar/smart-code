@@ -87,12 +87,12 @@ module.exports = function init(site) {
       accounts_debt: [{}],
       image_url: '/images/customer.png',
       company: {
-        id: doc.company.id,
-        name_ar: doc.company.name_ar
+        id: doc.id,
+        name_ar: doc.name_ar
       },
       branch: {
-        code: doc.branch.code,
-        name_ar: doc.branch.name_ar
+        code: doc.branch_list[0].code,
+        name_ar: doc.branch_list[0].name_ar
       },
       active: true
     }, (err, doc1) => { })
@@ -305,6 +305,9 @@ module.exports = function init(site) {
 
       where['mobile'] = where.mobile;
     }
+
+    where['company.id'] = site.get_company(req).id
+
     
     $customers.findMany({
       select: req.body.select || {},

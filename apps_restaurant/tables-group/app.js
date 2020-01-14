@@ -24,10 +24,10 @@ module.exports = function init(site) {
         id: doc.id,
         name_ar: doc.name_ar
       },
-      /* branch: {
+      branch: {
         code: doc.branch_list[0].code,
         name_ar: doc.branch_list[0].name_ar
-      }, */
+      },
       active: true
     }, (err, doc) => {
       site.call('[register][tables][add]', doc)

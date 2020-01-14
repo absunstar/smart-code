@@ -2,23 +2,26 @@ module.exports = function init(site) {
   const $tenant = site.connectCollection("tenant")
 
   site.on('[company][created]', doc => {
-    $tenant.add({
-      name: doc.name,
-      active: true,
-      code: "1",
-      name_ar: "مورد إفتراضي",
-      company: {
-        id: doc.company.id,
-        name_ar: doc.company.name_ar
-      },
-      branch: {
-        code: doc.branch.code,
-        name_ar: doc.branch.name_ar
-      },
-      active: true,
-      image_url: doc.image_url
-    }, (err, doc) => {
-    })
+
+    if (site.feature('academy')) 
+      $tenant.add({
+        name: doc.name,
+        active: true,
+        code: "1",
+        name_ar: "مستأجر إفتراضي",
+        company: {
+          id: doc.id,
+          name_ar: doc.name_ar
+        },
+        branch: {
+          code: doc.branch_list[0].code,
+          name_ar: doc.branch_list[0].name_ar
+        },
+        active: true,
+        image_url: doc.image_url
+      }, (err, doc) => {
+      })
+
   })
 
   site.post({

@@ -35,12 +35,19 @@ module.exports = function init(site) {
       },
       active: true
     }, (err, in_out_doc) => {
+
       $in_out_names.add({
         name: "مسمى منصرف إفتراضي",
         image_url: '/images/in_out_name.png',
         out: true,
-        company: in_out_doc.company,
-        branch: in_out_doc.branch,
+        company: {
+          id: doc.id,
+          name_ar: doc.name_ar
+        },
+        branch: {
+          code: doc.branch_list[0].code,
+          name_ar: doc.branch_list[0].name_ar
+        },
         active: true
       }, (err, doc) => { })
     })
@@ -159,8 +166,8 @@ module.exports = function init(site) {
     }
 
     where['company.id'] = site.get_company(req).id
-/*     where['branch.code'] = site.get_branch(req).code
- */
+    /*     where['branch.code'] = site.get_branch(req).code
+     */
     $in_out_names.findMany({
       select: req.body.select || {},
       sort: { id: -1 },

@@ -13,9 +13,15 @@ module.exports = function init(site) {
           code: doc.code,
           trainer: doc.trainer,
         },
-        company: doc.company,
         trainer: true,
-        branch: doc.branch,
+        company: {
+          id: doc.id,
+          name_ar: doc.name_ar
+        },
+        branch: {
+          code: doc.branch_list[0].code,
+          name_ar: doc.branch_list[0].name_ar
+        },
         active: true
       }, (err, doc) => { })
   })
