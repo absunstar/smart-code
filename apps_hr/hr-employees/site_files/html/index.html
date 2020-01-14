@@ -40,6 +40,7 @@
                     <tr>
                         <th class="not-print">##word.logo##</th>
                         <th>##word.name##</th>
+                        <th>##word.job##</th>
                         <th>##word.address##</th>
                         <th>##word.mobile##</th>
                         <th>##word.status##</th>
@@ -50,6 +51,7 @@
                             <img class="logo" ng-src="{{c.image_url}}">
                         </td>
                         <td class="center title">{{c.name}}</td>
+                        <td class="center title">{{c.job.name}}</td>
                         <td class="center">{{c.gov.name + ' - ' + c.city.name + ' - ' + c.address}}</td>
                         <td class="center blue">{{c.mobile}} <i class="fa fa-mobile" ng-show="c.mobile" aria-hidden="true"></i></td>
                         <td class="center">
