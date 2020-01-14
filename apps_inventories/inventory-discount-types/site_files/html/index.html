@@ -2,30 +2,33 @@
 <html lang="en" x-permissions="discount_types_ui || discount_types_manage" data-ng-app="myApp">
 
 <head x-import="head.html">
-
 </head>
 
 <body class="##session.lang##">
 
     <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
-
     </nav>
 
     <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
-
     </nav>
-    <div  id="main-layout" class="container">
+
+    <div id="main-layout" class="container">
         <div class="row10 center">
             <div class="col10" ng-controller="discount_types">
-                <div x-permissions="discount_types_add || discount_types_manage" x-import="inventory-discount-types/add_modal.html"></div>
-                <div x-permissions="discount_types_update || discount_types_manage" x-import="inventory-discount-types/update_modal.html"></div>
-                <div x-permissions="discount_types_delete || discount_types_manage" x-import="inventory-discount-types/delete_modal.html"></div>
-                <div x-permissions="discount_types_view || discount_types_manage" x-import="inventory-discount-types/view_modal.html"></div>
+                <div x-permissions="discount_types_add || discount_types_manage"
+                    x-import="inventory-discount-types/add_modal.html"></div>
+                <div x-permissions="discount_types_update || discount_types_manage"
+                    x-import="inventory-discount-types/update_modal.html"></div>
+                <div x-permissions="discount_types_delete || discount_types_manage"
+                    x-import="inventory-discount-types/delete_modal.html"></div>
+                <div x-permissions="discount_types_view || discount_types_manage"
+                    x-import="inventory-discount-types/view_modal.html"></div>
                 <h1 class="bold text-center">##word.discount_types##</h1>
                 <div class="top-actions">
-                    <i-button x-permissions="discount_types_add || discount_types_manage" type="add" label="##word.discount_types_new##"
-                        ng-click="newDiscount_Type()"></i-button>
-                        <h3 class="bold text-center"> ##word.count## : {{count}}</h3>
+
+                    <i-button x-permissions="discount_types_add || discount_types_manage" type="add"
+                        label="##word.discount_types_new##" ng-click="newDiscount_Type()"></i-button>
+                    <h3 class="bold text-center"> ##word.count## : {{count}}</h3>
 
                 </div>
 
@@ -36,6 +39,7 @@
                         <th>##word.discount_types_value##</th>
                         <th>##word.actions##</th>
                     </tr>
+
                     <tr ng-repeat="c in list">
                         <td>
                             <img class="logo" ng-src="{{c.image_url}}">
@@ -45,8 +49,8 @@
                         <td class="red" ng-show="c.type !== '%'">{{c.value}} ##word.le##</td>
 
                         <td class="center">
-                            <i-button x-permissions="discount_types_view || discount_types_manage" type="details" label="##word.details##"
-                                ng-click="details(c)"></i-button>
+                            <i-button x-permissions="discount_types_view || discount_types_manage" type="details"
+                                label="##word.details##" ng-click="details(c)"></i-button>
                             <i-button x-permissions="discount_types_update || discount_types_manage" type="update"
                                 label="##word.update##" ng-click="edit(c)"></i-button>
                             <i-button x-permissions="discount_types_delete || discount_types_manage" type="delete"
@@ -57,7 +61,7 @@
                     </tr>
 
                 </table>
-               
+
 
             </div>
 
