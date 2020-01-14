@@ -15,7 +15,7 @@ app.controller("employees_report", function ($scope, $http) {
 
   $scope.loadEmployeeReport = function (where, callback) {
 
-    callback = callback || function () {};
+    callback = callback || function () { };
 
     $scope.busy = true;
 
@@ -83,13 +83,13 @@ app.controller("employees_report", function ($scope, $http) {
 
     $scope.employee_report = {};
 
-    if ($scope.search.date) {
+    if ($scope.search && $scope.search.date) {
       where['year'] = $scope.search.date.getFullYear();
       where['month'] = $scope.search.date.getMonth();
       $scope.employee_report.date = $scope.search.date;
     }
 
-    if ($scope.search.employee) {
+    if ($scope.search && $scope.search.employee) {
       where['employee.id'] = $scope.search.employee.id;
       $scope.employee_report.employee = $scope.search.employee;
     }
@@ -103,14 +103,16 @@ app.controller("employees_report", function ($scope, $http) {
     $scope.employee_report = $scope.employee_report || {};
     $scope.employee_report.employee = $scope.search.employee;
     $scope.employee_report.date = $scope.search.date;
-    $scope.employee_report.year = $scope.search.date.getFullYear();
-    $scope.employee_report.month = $scope.search.date.getMonth();
+    if ($scope.search && $scope.search.date) {
+      $scope.employee_report.year = $scope.search.date.getFullYear();
+      $scope.employee_report.month = $scope.search.date.getMonth();
+    }
 
     $scope.employee_report.dateFrom = $scope.search.dateFrom = new Date($scope.employee_report.year, $scope.employee_report.month, 1);
     $scope.employee_report.dateTo = $scope.search.dateTo = new Date($scope.employee_report.year, $scope.employee_report.month + 1, 0);
 
 
-    if ($scope.search.employee && $scope.userList && $scope.userList.length > 0) {
+    if ($scope.search && $scope.search.employee && $scope.userList && $scope.userList.length > 0) {
 
       $scope.userList.forEach(user => {
         if (user.employee_id == $scope.search.employee.id) {
@@ -122,7 +124,7 @@ app.controller("employees_report", function ($scope, $http) {
       return;
     }
 
-   
+
     $scope.getEmployeeAdvancesList()
     $scope.getEmployeeDiscountList();
     $scope.getEmployeeInsuranceList()
@@ -178,7 +180,7 @@ app.controller("employees_report", function ($scope, $http) {
       });
     }
 
-   
+
 
     if ($scope.employee_report.employeeinsuranceList) {
       $scope.employee_report.employeeinsuranceList.forEach(insurance => {
@@ -218,7 +220,7 @@ app.controller("employees_report", function ($scope, $http) {
           id: 1,
           name: 1,
           number: 1,
-          type : 1
+          type: 1
         }
       }
     }).then(

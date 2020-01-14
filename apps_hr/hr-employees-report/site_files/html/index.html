@@ -20,7 +20,12 @@
             <div class="row" ng-controller="employees_report">
                 <div x-permissions="employees_report_search || employees_report_manage"
                     x-import="hr-employees-report/search_modal.html"></div>
-               
+
+                <div x-permissions="employees_report_search || employees_report_manage"
+                    x-import="hr-employees-report/done.html"></div>
+
+
+
                 <div class="row">
                     <h1 class="bold text-center">##word.employees_report##</h1>
                 </div>
@@ -160,8 +165,8 @@
                                 </tr>
 
                             </table>
-                           
-                            
+
+
                             <i-button x-permissions="employees_report_print || employees_report_manage" type="print"
                                 label="##word.print##" onclick="site.print('#t1')"></i-button>
 
