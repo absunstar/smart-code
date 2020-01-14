@@ -23,14 +23,14 @@ app.controller("item_transaction", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name: 1
+          name_ar: 1
         }
       }
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          $scope.vendors = response.data.list;
+          $scope.vendorsList = response.data.list;
         }
       },
       function (err) {
@@ -92,94 +92,8 @@ app.controller("item_transaction", function ($scope, $http, $timeout) {
 
 
   $scope.searchAll = function () {
-    let where = {};
 
-    if ($scope.search.current_status) {
-      where['current_status'] = $scope.search.current_status.value;
-    }
-
-    if ($scope.search.ticket_code) {
-      where['ticket_code'] = $scope.search.ticket_code;
-    }
-
-    if ($scope.search.number) {
-      where['number'] = $scope.search.number;
-    }
-
-    if ($scope.search.store) {
-      where['store.id'] = $scope.search.store.id;
-    }
-
-    if ($scope.search.eng) {
-      where['eng.id'] = $scope.search.eng.id;
-    }
-
-    if ($scope.search.name) {
-      where['name'] = $scope.search.name;
-    }
-
-    if ($scope.search.size) {
-      where['size'] = $scope.search.size;
-    }
-
-    if ($scope.search.cost) {
-      where['cost'] = site.toNumber($scope.search.cost);
-    }
-
-
-    if ($scope.search.count) {
-      where['count'] = site.toNumber($scope.search.count);
-    }
-
-    if ($scope.search.price) {
-      where['price'] = site.toNumber($scope.search.price);
-    }
-
-    if ($scope.search.transaction_type) {
-      where['transaction_type'] = $scope.search.transaction_type.type;
-    }
-
-    if ($scope.search.vendor) {
-      where['vendor.id'] = $scope.search.vendor.id;
-    }
-
-    if ($scope.search.current_count) {
-      where['current_count'] = site.toNumber($scope.search.current_count);
-    }
-
-    if ($scope.search.current_countGt) {
-      where['current_count'] = {
-        $gte: site.toNumber($scope.search.current_countGt)
-      };
-    }
-
-
-    if ($scope.search.current_countLt) {
-      where['current_count'] = {
-        $lte: site.toNumber($scope.search.current_countLt)
-      };
-    }
-
-    if ($scope.search.date) {
-      where['date'] = $scope.search.date;
-    }
-
-    if ($scope.search.current_countGt && $scope.search.current_countLt) {
-      where['current_count'] = {
-        $gte: site.toNumber($scope.search.current_countGt),
-        $lte: site.toNumber($scope.search.current_countLt)
-      };
-    }
-
-    if ($scope.search.dateFrom) {
-      where['date_from'] = $scope.search.dateFrom;
-    }
-
-    if ($scope.search.dateTo) {
-      where['date_to'] = $scope.search.dateTo;
-    }
-
-    $scope.loadAll(where);
+    $scope.loadAll($scope.search);
     site.hideModal('#itemTransactionSearchModal');
     $scope.search = {};
   };

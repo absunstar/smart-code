@@ -218,22 +218,33 @@ module.exports = function init(site) {
       delete where.date_to
     }
 
-
-    if (where && where.number) {
-      where['number'] = new RegExp(where['number'], 'i')
-    }
-
-    if (where && where.size) {
-      where['size'] = new RegExp(where['size'], 'i')
-    }
-
-    if (where && where.name) {
+    if (where['name']) {
       where['name'] = new RegExp(where['name'], 'i')
     }
 
-    if (where && where.ticket_code) {
-      where['ticket_code'] = new RegExp(where['ticket_code'], 'i')
+    if (where['barcode']) {
+      where['barcode'] = new RegExp(where['barcode'], 'i')
     }
+
+    if (where['size']) {
+      where['size'] = new RegExp(where['size'], 'i')
+    }
+
+    if (where['vendor']) {
+      where['vendor.id'] = where['vendor'].id;
+      delete where['vendor']
+    }
+
+    if (where['store']) {
+      where['store.id'] = where['store'].id;
+      delete where['store']
+    }
+
+    if (where['shift_code']) {
+      where['shift.code'] = new RegExp(where['shift_code'], 'i')
+      delete where['shift_code']
+    }
+
 
     if (where['type_in']) {
 
