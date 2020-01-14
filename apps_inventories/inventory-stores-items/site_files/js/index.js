@@ -160,7 +160,7 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
   $scope.add = function () {
 
     $scope.error = '';
-    const v = site.validated();
+    const v = site.validated('#addCategoryItemModal');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
@@ -214,7 +214,7 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
 
   $scope.update = function () {
     $scope.error = '';
-    const v = site.validated();
+    const v = site.validated('#updateCategoryItemModal');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;

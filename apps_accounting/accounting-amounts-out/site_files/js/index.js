@@ -97,7 +97,7 @@ app.controller("amounts_out", function ($scope, $http) {
   $scope.add = function () {
 
     $scope.error = '';
-    let v = site.validated();
+    let v = site.validated('#addAmountOutModal');
 
     if (!v.ok) {
       $scope.error = v.messages[0].ar;

@@ -93,9 +93,11 @@ app.controller("stores", function ($scope, $http) {
     site.showModal('#addStoreModal');
     $('#store_name').focus();
   };
+
+
   $scope.add = function () {
     $scope.error = '';
-    const v = site.validated();
+    const v = site.validated('#addStoreModal');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
@@ -131,7 +133,7 @@ app.controller("stores", function ($scope, $http) {
   };
   $scope.update = function () {
     $scope.error = '';
-    const v = site.validated();
+    const v = site.validated('#updateStoreModal');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;

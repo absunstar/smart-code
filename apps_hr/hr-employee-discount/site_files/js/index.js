@@ -155,7 +155,7 @@ app.controller("employee_discount", function ($scope, $http) {
   $scope.add = function () {
 
      $scope.error = '';
-    let v = site.validated();
+    let v = site.validated('#addEmployeeDiscountModal');
 
     if (!v.ok) {
       $scope.error = v.messages[0].ar;

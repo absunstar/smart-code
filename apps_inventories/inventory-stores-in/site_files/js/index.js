@@ -379,7 +379,8 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
 
   $scope.add = function () {
     $scope.error = '';
-    const v = site.validated();
+
+    const v = site.validated('#addStoreInModal');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;

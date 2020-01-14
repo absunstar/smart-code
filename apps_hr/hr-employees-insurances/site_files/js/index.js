@@ -129,7 +129,7 @@ app.controller("employees_insurances", function ($scope, $http) {
   $scope.add = function () {
 
     
-    let v = site.validated();
+    let v = site.validated('#addEmployeeInsuranceModal');
 
     if (!v.ok) {
       $scope.error = v.messages[0].ar;

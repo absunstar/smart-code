@@ -72,7 +72,7 @@ app.controller("amounts_in", function ($scope, $http) {
   $scope.add = function () {
 
     $scope.error = '';
-    let v = site.validated();
+    let v = site.validated('#addAmountInModal');
 
     if (!v.ok) {
       $scope.error = v.messages[0].ar;

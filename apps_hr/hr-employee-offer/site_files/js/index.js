@@ -119,7 +119,7 @@ app.controller("employee_offer", function ($scope, $http) {
 
   $scope.add = function () {
     $scope.error = '';
-    let v = site.validated();
+    let v = site.validated('#addemployeeOfferModal');
 
     if (!v.ok) {
       $scope.error = v.messages[0].ar;

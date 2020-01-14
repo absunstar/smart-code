@@ -56,7 +56,7 @@ app.controller("maritals_status", function ($scope, $http) {
   
   $scope.add = function () {
     $scope.error = '';
-    const v = site.validated();
+    const v = site.validated('#addMaritalStateModal');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;

@@ -30,7 +30,7 @@ app.controller("employees_degrees", function ($scope, $http) {
   };
   $scope.add = function () {
     $scope.error = '';
-    const v = site.validated();
+    const v = site.validated('#addEmployeeDegreeModal');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;

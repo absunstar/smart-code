@@ -74,7 +74,7 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
 
   $scope.add = function () {
     $scope.error = '';
-    const v = site.validated();
+    const v = site.validated('#addTransferBranchModal');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
@@ -422,7 +422,7 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
 
   $scope.update = function () {
     $scope.error = '';
-    const v = site.validated();
+    const v = site.validated('#updateTransferBranchModal');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
@@ -450,12 +450,7 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
 
   $scope.confirmTransfer = function (transfer_branch) {
     $scope.error = '';
-    const v = site.validated();
 
-    if (!v.ok) {
-      $scope.error = v.messages[0].ar;
-      return;
-    }
     transfer_branch.transfer = true;
     $scope.busy = true;
     $http({

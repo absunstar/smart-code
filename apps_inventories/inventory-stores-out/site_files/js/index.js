@@ -180,7 +180,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
 
   $scope.add = function () {
     $scope.error = '';
-    const v = site.validated();
+    const v = site.validated('#addStoreOutModal');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
@@ -612,7 +612,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
 
   $scope.update = function () {
     $scope.error = '';
-    const v = site.validated();
+    const v = site.validated('#updateStoreOutModal');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;

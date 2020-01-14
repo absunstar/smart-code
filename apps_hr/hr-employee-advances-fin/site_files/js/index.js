@@ -132,7 +132,7 @@ app.controller("employees_advances_fin", function ($scope, $http) {
   $scope.add = function () {
 
     $scope.error = '';
-    let v = site.validated();
+    let v = site.validated('#addEmployeesAdvancesModal');
 
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
