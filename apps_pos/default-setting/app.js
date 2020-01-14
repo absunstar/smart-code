@@ -14,11 +14,6 @@ module.exports = function init(site) {
   })
 
   site.post({
-    name: "/api/payment_method/all",
-    path: __dirname + "/site_files/json/payment_method.json"
-  })
-
-  site.post({
     name: "/api/place_program/all",
     path: __dirname + "/site_files/json/place_program.json"
   })
