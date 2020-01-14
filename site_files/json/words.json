@@ -75,9 +75,14 @@
         "ar": "فك ترحيل"
     },
     {
-        "name": "report_sales_menus",
-        "en": "Report Sales Menu",
-        "ar": "قائمة تقارير مبيعات الأصناف "
+        "name": "report_sales_detailed_menus",
+        "en": "Report Sales Detailed Menu",
+        "ar": "قائمة تفصيلية لمبيعات الأصناف "
+    },
+    {
+        "name": "report_sales_total_menus",
+        "en": "Report Sales Total Menu",
+        "ar": "قائمة إجمالي لمبيعات الأصناف "
     },
     {
         "name": "branches",

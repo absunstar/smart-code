@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" x-permissions="report_sales_ui || report_sales_manage" data-ng-app="myApp">
+<html lang="en" x-permissions="report_sales_detailed_ui || report_sales_detailed_manage" data-ng-app="myApp">
 
 <head x-import="head.html">
 
@@ -14,25 +14,19 @@
 
     <div id="main-layout" class="container">
         <div class="row">
-            <div class="row" ng-controller="report_sales" x-permissions="login">
+            <div class="row" ng-controller="report_sales_detailed" x-permissions="login">
 
-                <div x-import="report-sales/search_all_modal.html"></div>
+                <div x-import="report-sales-detailed/search_all_modal.html"></div>
 
                 <div class="row">
-                    <h1 class="bold text-center"> ##word.report_sales_name## </h1>
+                    <h1 class="bold text-center"> ##word.report_sales_detailed_name## </h1>
                 </div>
 
                 <div class="top-actions">
 
-                    <i-button type="search" x-permissions="report_sales_search || report_sales_manage"
+                    <i-button type="search" x-permissions="report_sales_detailed_search || report_sales_detailed_manage"
                         label="##word.search_all##" onclick="site.showModal('#reportSalesSearchModal')">
                     </i-button>
-
-                    <i-checkbox x-permissions="report_sales_total || report_sales_manage" ng-model="total"
-                        label="##word.report_total##"></i-checkbox>
-
-                    <i-checkbox x-permissions="report_sales_detailed || report_sales_manage" ng-model="detailed"
-                        label="##word.report_detailed##"></i-checkbox>
 
                     <span ng-show="busy">
                         <span class="sr-only">Loading...</span>
@@ -40,35 +34,8 @@
                     <h3 class="bold text-center"> ##word.count## : {{count}} </h3>
                     <br>
                 </div>
-                <h1 ng-show="total == true" class="center blue">##word.report_total##</h1>
-                <table class="table loaded center hover bold" id="t1" ng-show="total == true">
-                    <tr>
-                        <th> ##word.stores_items_name## </th>
-                        <th> ##word.barcode## </th>
-                        <th> ##word.stores_size## </th>
-                        <th> ##word.total_selling_count## </th>
-                        <th> ##word.total_selling_price## </th>
-                    </tr>
-
-                    <tr ng-repeat="c in doc.total_size_list | orderBy : '-id'">
-                        <td> {{c.name}} </td>
-                        <td class="blue"> {{c.barcode}} </td>
-                        <td> {{c.size}} </td>
-                        <td> {{c.count}} </td>
-                        <td> {{c.total}} </td>
-                    </tr>
-                </table>
-                <br>
-                <br>
-                <br>
-                <br>
-                <hr>
-                <hr>
-                <br>
-                <br>
-                <h1 ng-show="detailed == true" class="center blue">##word.report_detailed##</h1>
-
-                <table class="table center bold hover" ng-show="detailed == true">
+               
+                <table class="table center bold hover">
                     <tr>
                         <th>##word.serial##</th>
                         <th>##word.code##</th>
@@ -82,7 +49,7 @@
                         <th>##word.stores_out_item_total##</th>
                     </tr>
 
-                    <tr ng-repeat="itm in doc.detailed_size_list| orderBy : '-id'">
+                    <tr ng-repeat="itm in list | orderBy : '-id'">
                         <td> <br> {{$index + 1}}</td>
                         <td class="blue"> <br> {{itm.code}}</td>
                         <td> <br> {{itm.type.ar}}</td>
@@ -107,10 +74,10 @@
                 </table>
 
                 <div class="row">
-                    <i-button x-permissions="report_sales_print || report_sales_manage" type="print"
+                    <i-button x-permissions="report_sales_detailed_print || report_sales_detailed_manage" type="print"
                         label="##word.print##" onclick="site.print('#t1')"></i-button>
-                    <i-button x-permissions="report_sales_export || report_sales_manage" type="export"
-                        label="##word.export_to_excel##" onclick="export_to_xlsx('t1' , 'report_sales.xlsx')">
+                    <i-button x-permissions="report_sales_detailed_export || report_sales_detailed_manage" type="export"
+                        label="##word.export_to_excel##" onclick="export_to_xlsx('t1' , 'report_sales_detailed.xlsx')">
                     </i-button>
                 </div>
 
@@ -119,7 +86,7 @@
     </div>
     <div x-import="scripts.html"></div>
 
-    <script x-permissions="login" x-import="report-sales/index.js"></script>
+    <script x-permissions="login" x-import="report-sales-detailed/index.js"></script>
 </body>
 
 </html>

@@ -1,18 +1,8 @@
 [
     {
-        "name": "report_invoices_add",
-        "en": "Add Customer",
-        "ar": "إضافة عميل"
-    },
-    {
-        "name": "report_sales_informations",
-        "en": "Report Employees Delivery Informations",
-        "ar": "بيانات تقرير موظفين التوصيل"
-    },
-    {
-        "name": "report_sales_name",
-        "en": "Report Items Sales",
-        "ar": "تقرير مبيعات الأصناف"
+        "name": "report_sales_detailed_name",
+        "en": "Report Items Sales Detailed",
+        "ar": "تقرير مبيعات تفصيلي الأصناف"
     },
     {
         "name": "report_total",
@@ -25,9 +15,9 @@
         "ar": "تقرير تفصيلي"
     },
     {
-        "name": "report_sales_menus",
-        "en": "Report Invoices Menu",
-        "ar": "قائمة تقرير فاتورة"
+        "name": "report_sales_detailed_menus",
+        "en": "Report Sales Detailed Menu",
+        "ar": "قائمة تقرير تفصيلي للمبيعات"
     },
     {
         "name": "invoices_code",

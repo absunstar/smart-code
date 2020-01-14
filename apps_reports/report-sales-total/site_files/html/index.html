@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="report_sales_total_ui || report_sales_total_manage" data-ng-app="myApp">
+
+<head x-import="head.html">
+
+</head>
+
+<body class="##session.lang##">
+
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+    </nav>
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+    </nav>
+
+    <div id="main-layout" class="container">
+        <div class="row">
+            <div class="row" ng-controller="report_sales_total" x-permissions="login">
+
+                <div x-import="report-sales-total/search_all_modal.html"></div>
+
+                <div class="row">
+                    <h1 class="bold text-center"> ##word.report_sales_total_name## </h1>
+                </div>
+
+                <div class="top-actions">
+
+                    <i-button type="search" x-permissions="report_sales_total_search || report_sales_total_manage"
+                        label="##word.search_all##" onclick="site.showModal('#reportSalesSearchModal')">
+                    </i-button>
+
+                    <span ng-show="busy">
+                        <span class="sr-only">Loading...</span>
+                    </span>
+                    <h3 class="bold text-center"> ##word.count## : {{count}} </h3>
+                    <br>
+                </div>
+                <table class="table loaded center hover bold" id="t1">
+                    <tr>
+                        <th> ##word.stores_items_name## </th>
+                        <th> ##word.barcode## </th>
+                        <th> ##word.stores_size## </th>
+                        <th>##word.average_cost##</th>
+                        <th> ##word.total_selling_count## </th>
+                        <th> ##word.total_selling_price## </th>
+                    </tr>
+
+                    <tr ng-repeat="c in list | orderBy : '-id'">
+                        <td> {{c.name}} </td>
+                        <td class="blue"> {{c.barcode}} </td>
+                        <td> {{c.size}} </td>
+                        <td> {{c.average_cost}} </td>
+                        <td> {{c.count}} </td>
+                        <td> {{c.total}} </td>
+                    </tr>
+                </table>
+
+                <div class="row">
+                    <i-button x-permissions="report_sales_total_print || report_sales_total_manage" type="print"
+                        label="##word.print##" onclick="site.print('#t1')"></i-button>
+                    <i-button x-permissions="report_sales_total_export || report_sales_total_manage" type="export"
+                        label="##word.export_to_excel##" onclick="export_to_xlsx('t1' , 'report_sales_total.xlsx')">
+                    </i-button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div x-import="scripts.html"></div>
+
+    <script x-permissions="login" x-import="report-sales-total/index.js"></script>
+</body>
+
+</html>

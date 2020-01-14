@@ -2,7 +2,7 @@ module.exports = function init(site) {
   const $stores_out = site.connectCollection("stores_out")
 
   site.get({
-    name: "report_sales",
+    name: "report_sales_detailed",
     path: __dirname + "/site_files/html/index.html",
     parser: "html",
     compress: true
@@ -13,7 +13,7 @@ module.exports = function init(site) {
     path: __dirname + '/site_files/images/'
   })
 
-  site.post("/api/report_sales/all", (req, res) => {
+  site.post("/api/report_sales_detailed/all", (req, res) => {
     let response = {
       done: false
     };
@@ -69,39 +69,18 @@ module.exports = function init(site) {
     }, (err, docs) => {
       if (!err) {
         response.done = true
-        let obj = {
-          total_size_list: [],
-          detailed_size_list: []
-        }
-     
+
+        let detailed_size_list = []
 
         for (let i = 0; i < docs.length; i++) {
-
-          let exist = false
-
           docs[i].items.forEach(_item => {
-             _item.type = docs[i].type
+            _item.type = docs[i].type
             _item.code = docs[i].number
-          
-            obj.detailed_size_list.push(Object.assign({}, _item)) 
-            if (obj.total_size_list.length > 0) {
-
-              obj.total_size_list.forEach(_size => {
-                if (_size.barcode == _item.barcode) {
-                  _size.total = _size.total + _item.total
-                  _size.count = _size.count + _item.count
-                  exist = true
-                }
-              })
-            }
-            if (!exist) obj.total_size_list.push(Object.assign({}, _item))
+            detailed_size_list.push(Object.assign({}, _item))
           })
         }
 
- 
-
-
-        response.doc = obj
+        response.doc = detailed_size_list
 
       } else {
         response.error = err.message

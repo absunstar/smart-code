@@ -1,0 +1,7 @@
+[{
+    "module_name" : "accounting" ,
+    "name": "report_sales_total_admin",
+    "en": "Report Sales Total Admin",
+    "ar": "تقرير إجمالي للمبيعات",
+    "permissions": ["report_sales_total_manage"]
+}]

@@ -1,9 +1,7 @@
-app.controller("report_sales", function ($scope, $http, $timeout) {
+app.controller("report_sales_total", function ($scope, $http, $timeout) {
   $scope._search = {};
 
-  $scope.report_sales = {};
-
- 
+  $scope.report_sales_total = {};
 
   $scope.getReportSalesList = function (where) {
     $scope.busy = true;
@@ -11,15 +9,17 @@ app.controller("report_sales", function ($scope, $http, $timeout) {
     $scope.count = 0;
     $http({
       method: "POST",
-      url: "/api/report_sales/all",
+      url: "/api/report_sales_total/all",
       data: {
         where: where
       }
     }).then(
       function (response) {
         $scope.busy = false;
+
         if (response.data.done) {
-          $scope.doc = response.data.doc;
+          $scope.count = response.data.doc.length;
+          $scope.list = response.data.doc;          
         }
       },
       function (err) {
@@ -36,5 +36,5 @@ app.controller("report_sales", function ($scope, $http, $timeout) {
     $scope.search = {}
   };
 
-  $scope.getReportSalesList({date : new Date()});
+  $scope.getReportSalesList();
 });
