@@ -198,12 +198,12 @@ module.exports = function init(site) {
             } else _size.branches_list = [obj_branch]
           }
 
-         /*  if (_size.item_complex) {
-            _size.complex_items.forEach(_complex_item => {
-              _complex_item.count = _complex_item.count * obj.count
-              site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _complex_item))
-            })
-          } */
+          // if (_size.item_complex) {
+          //   _size.complex_items.forEach(_complex_item => {
+          //     _complex_item.count = _complex_item.count * obj.count
+          //     site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _complex_item))
+          //   })
+          // }
         });
 
         $stores_items.update(doc, () => {
