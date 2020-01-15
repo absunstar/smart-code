@@ -40,7 +40,7 @@
                         <tr>
                             <th>##word.item_name##</th>
                             <th>##word.stores_items_sizes##</th>
-                            <th>##word.items_price##</th>
+                            <th>##word.price##</th>
                             <th>##word.item_count##</th>
                             <th ng-hide="complexView.view">##word.actions##</th>
                         </tr>
@@ -48,7 +48,7 @@
                         <tr class="bold" ng-repeat="i in complexView.complex_items">
                             <td>
                                 <br>
-                                <p class="center bold blue">{{i.item_name}}</p>
+                                <p class="center bold blue">{{i.name}}</p>
                             </td>
                             <td>
                                 <br>
@@ -82,80 +82,5 @@
         </div>
     </div>
 
-
-
-
-
-    <!--  <div class="col4"></div>
-    <div class="modal-content col5">
-        <div class="modal-header">
-            <span class="close">&times;</span>
-            <h2>
-                ##word.stores_items_edit## <i class="fa fa-pencil"></i>
-            </h2>
-        </div>
-        <div class="modal-body">
-            <form class="form">
-
-                <div class="row">
-                    <i-list ng-search="_search.$order_customers" class="col6" display="size" ng-model="items_size"
-                        label="##word.stores_items_name##" items="itemSizeList">
-                    </i-list>
-
-                    <i-button type="add" class="col2" label="##word.add##" ng-click="incertComplexView()"> </i-button>
-                </div>
-
-                <div class="row" ng-show="complexItemsList.complex_items.length > 0">
-                    <div class="row">
-
-                        <table class="table">
-                            <tr>
-                                <th>##word.item_name##</th>
-                                <th>##word.stores_items_sizes##</th>
-                                <th>##word.items_price##</th>
-                                <th>##word.item_count##</th>
-                                <th>##word.actions##</th>
-                            </tr>
-
-                            <tr class="bold" ng-repeat="i in complexItemsList.complex_items">
-
-                                <td>
-                                    <br>
-                                    <p class="center bold blue">{{i.stores_item_name}}</p>
-                                </td>
-
-                                <td>
-                                    <br>
-                                    <p class="center bold blue">{{i.size}}</p>
-                                </td>
-
-                                <td>
-                                    <br>
-                                    <p class="center bold green">{{i.price}}</p>
-
-                                </td>
-
-                                <td>
-                                    <i-control ng-model="i.count" type="number">
-                                    </i-control>
-                                </td>
-
-                                <td class="center">
-                                    <i-button type="delete" ng-click="deleteViewComplex(i)"></i-button>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-            </form>
-        </div>
-        <h2 class="error">{{error}}</h2>
-        <div class="modal-footer center">
-            <i-button type="close" ng-click="complexItemsPushUpdate()" label="##word.close##">
-            </i-button>
-
-        </div>
-    </div>
- -->
 
 </div>

@@ -541,7 +541,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
         if (_size.count > 0 && !foundSize) {
           $scope.store_in.items.unshift({
             image_url: $scope.item.image_url,
-            name: _size.item_name,
+            name: _size.name,
             size: _size.size,
             barcode: _size.barcode,
             average_cost: _size.average_cost,
@@ -611,7 +611,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
               response.data.list.forEach(_item => {
                 _item.sizes.forEach(_size => {
                   if (_size.barcode == $scope.item.search_item_name) {
-                    _size.item_name = _item.name
+                    _size.name = _item.name
                     _size.store = $scope.store_in.store
                     _size.count = 1
                     _size.total = _size.count * _size.cost
@@ -674,8 +674,8 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
     $scope.item.sizes = $scope.item.sizes || [];
     let foundSize = false;
 
-    $scope.item.item_name.sizes.forEach(_item => {
-      _item.item_name = $scope.item.item_name.name
+    $scope.item.name.sizes.forEach(_item => {
+      _item.name = $scope.item.name.name
       _item.store = $scope.store_in.store
       _item.count = 1;
       _item.total = _item.count * _item.cost

@@ -1,0 +1,21 @@
+
+
+<div id="addStoreAssembleModal" class="modal" fixed>
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                 ##word.stores_assemble##  <i class="fa fa-plus"></i>
+            </h2>
+        </div>
+        <div class="modal-body">
+            <div x-import="inventory-stores-assemble/content.html"></div>
+
+        </div>
+        <h2 class="error center bold">{{error}}</h2>
+        <div class="modal-footer center">
+            <i-button ng-hide="busy" type="add" label="##word.add##" ng-click="add()" ></i-button>
+            <i-button  type="close" label=" ##word.close##" onclick="site.hideModal('#addStoreAssembleModal')" ></i-button>
+        </div>
+    </div>
+</div>

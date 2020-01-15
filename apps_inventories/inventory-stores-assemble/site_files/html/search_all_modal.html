@@ -1,0 +1,81 @@
+<div id="StoresAssembleSearchModal" class="modal" fixed>
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.stores_in_search_all## <i class="fa fa-search"></i>
+            </h2>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <form class="form">
+
+                    <div class="row">
+                        <i-date2 class="col3" ng-model="search.date" label="##word.amounts_in_date##"></i-date2>
+                        <i-date2 class="col3" ng-model="search.dateFrom" type="date"
+                            label="##word.amounts_in_date_from##"></i-date2>
+                        <i-date2 class="col3" ng-model="search.dateTo" type="date" label="##word.amounts_in_date_to##">
+                        </i-date2>
+
+                        <i-date2 class="col4" ng-model="search.supply_date" label="##word.stores_in_supply_date##">
+                        </i-date2>
+                    </div>
+
+                    <div class="row">
+                        <i-control class="col3 shift" type="text" label="##word.shift##" ng-model="search.shift_code">
+                        </i-control>
+                        <i-control class="col3" ng-model="search.value" type="number" label="##word.amounts_in_value##">
+                        </i-control>
+                        <i-list help-id="" ng-search="_search.$payment_method_search" class="col2"
+                            label="##word.payment_method##" ng-model="search.payment_method" items="paymentMethodList"
+                            ng-change="getSafeByType(search)" display="##session.lang##">
+                        </i-list>
+                        <i-list class="col3" ng-search="_search.$safe_search" ng-model="search.safe" items="safes"
+                            label="##word.amounts_in_safe##"></i-list>
+
+                    </div>
+
+                    <div class="row">
+
+                        <i-list v="r" ng-search="_search.$storein_type" display="##session.lang##" class="col2"
+                            ng-model="search.type" items="storesAssembleTypes" ng-change="getSafeBySetting()"
+                            label="##word.transaction_type##"></i-list>
+
+                        <i-control class="col2" ng-model="search.supply_number" label="##word.stores_in_supply_number##"
+                            type="text"></i-control>
+
+                        <i-list class="col3" ng-model="search.vendor" items="vendorsList" display="name_ar"
+                            ng-search="_search.$search_vendor" label="##word.stores_in_Company_name##" v="r"></i-list>
+
+                    </div>
+                    <div class="row">
+                        <i-control class="col2" ng-model="search.total_discount" type="number"
+                            label="##word.stores_in_total_discount##"></i-control>
+                        <i-control class="col2" ng-model="search.total_tax" type="number"
+                            label="##word.stores_in_total_tax##"></i-control>
+                        <i-control class="col2" ng-model="search.total_value" type="number"
+                            label="##word.stores_in_total_value##"></i-control>
+                        <i-control class="col2" ng-model="search.net_value" type="number"
+                            label="##word.stores_in_net_value##"></i-control>
+                        <i-control class="col2" ng-model="search.paid_up" label="##word.paid_up##" type="number">
+                        </i-control>
+                    </div>
+
+                    <div class="row">
+                        <i-textarea ng-model="search.description" class="col6" type="text"
+                            label="##word.amounts_in_description##"></i-textarea>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+        <h2 class="error">{{error}}</h2>
+        <div class="modal-footer center">
+            <i-button type="search" label="##word.search##" ng-hide="busy" ng-click="searchAll()"></i-button>
+            <i-button type="clear" label="##word.clear##" ng-click="search = {}"></i-button>
+            <i-button type="close" label="##word.close##" onclick="site.hideModal('#StoresAssembleSearchModal')"></i-button>
+
+        </div>
+    </div>
+</div>

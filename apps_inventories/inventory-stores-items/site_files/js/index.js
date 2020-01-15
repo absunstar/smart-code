@@ -518,7 +518,7 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
             if (response.data.list.length > 0) {
               response.data.list.forEach(item => {
                 item.sizes.forEach(size => {
-                  size.item_name = item.name;
+                  size.name = item.name;
                   size.item_id = item.id;
                 });
 

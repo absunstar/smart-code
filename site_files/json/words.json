@@ -75,6 +75,11 @@
         "ar": "فك ترحيل"
     },
     {
+        "name": "system_register_stores_assemble",
+        "en": "Add Assimbling Items",
+        "ar": "إضافة تجميعات الأصناف"
+    },
+    {
         "name": "report_sales_detailed_menus",
         "en": "Report Sales Detailed Menu",
         "ar": "قائمة تفصيلية لمبيعات الأصناف "

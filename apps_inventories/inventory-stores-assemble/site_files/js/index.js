@@ -1,19 +1,21 @@
-app.controller("transfer_branch", function ($scope, $http, $timeout) {
+app.controller("stores_assemble", function ($scope, $http, $timeout) {
   $scope._search = {};
 
-  $scope.transfer_branch = {
+  $scope.store_assemble = {
     discountes: [],
-    taxes: [],
-    details: []
+    taxes: []
   };
   $scope.search = {};
   $scope.item = {
     sizes: []
   };
 
+
+
+
   $scope.deleteRow = function (itm) {
     $scope.error = '';
-    $scope.transfer_branch.items.splice($scope.transfer_branch.items.indexOf(itm), 1);
+    $scope.store_assemble.items.splice($scope.store_assemble.items.indexOf(itm), 1);
 
   };
 
@@ -22,12 +24,25 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
     $scope.item.sizes.splice($scope.item.sizes.indexOf(itm), 1);
 
   };
-  $scope.newTransferBranch = function () {
+
+  $scope.newStoreAssemble = function () {
     $scope.error = '';
     $scope.get_open_shift((shift) => {
       if (shift) {
-        $scope.getDefaultSettings();
-        site.showModal('#addTransferBranchModal');
+        $scope.error = '';
+        $scope.item = {}
+        $scope.store_assemble = {
+          image_url: '/images/store_assemble.png',
+          shift: $scope.shift,
+          items: [],
+          date: new Date(),
+        };
+
+        if ($scope.defaultSettings.inventory) {
+          if ($scope.defaultSettings.inventory.store)
+            $scope.store_assemble.store = $scope.defaultSettings.inventory.store
+        }
+        site.showModal('#addStoreAssembleModal');
       } else $scope.error = '##word.open_shift_not_found##';
     });
   };
@@ -44,24 +59,7 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done && response.data.doc) {
           $scope.defaultSettings = response.data.doc;
-          $scope.error = '';
-          $scope.item = {}
-          $scope.transfer_branch = {
-            image_url: '/images/transfer_branch.png',
-            shift: $scope.shift,
-            items: [],
-            discountes: [],
-            taxes: [],
-            details: [],
-            date: new Date(),
-            supply_date: new Date(),
-            branch_from: $scope.branchCode
-          };
 
-          if ($scope.defaultSettings.inventory) {
-            if ($scope.defaultSettings.inventory.store)
-              $scope.transfer_branch.store_from = $scope.defaultSettings.inventory.store
-          }
         };
       },
       function (err) {
@@ -74,23 +72,25 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
 
   $scope.add = function () {
     $scope.error = '';
-    const v = site.validated('#addTransferBranchModal');
+
+    const v = site.validated('#addStoreAssembleModal');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
     }
 
-    if ($scope.transfer_branch.items.length > 0) {
+    if ($scope.store_assemble.items.length > 0) {
       $scope.busy = true;
       $http({
         method: "POST",
-        url: "/api/transfer_branch/add",
-        data: $scope.transfer_branch
+        url: "/api/stores_assemble/add",
+        data: $scope.store_assemble
       }).then(
         function (response) {
           $scope.busy = false;
           if (response.data.done) {
-            site.hideModal('#addTransferBranchModal');
+            site.hideModal('#addStoreAssembleModal');
+
             $scope.loadAll();
 
           } else $scope.error = response.data.error;
@@ -106,32 +106,33 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
     }
   };
 
-  $scope.remove = function (transfer_branch) {
+  $scope.remove = function (store_assemble) {
     $scope.error = '';
     $scope.get_open_shift((shift) => {
       if (shift) {
-        $scope.view(transfer_branch);
-        $scope.transfer_branch = {};
-        site.showModal('#deleteTransferBranchModal');
+        $scope.view(store_assemble);
+        $scope.store_assemble = {};
+        site.showModal('#deleteStoreAssembleModal');
       } else $scope.error = '##word.open_shift_not_found##';
     });
   };
 
-  $scope.view = function (transfer_branch) {
+  $scope.view = function (store_assemble) {
     $scope.error = '';
     $scope.busy = true;
     $http({
       method: "POST",
-      url: "/api/transfer_branch/view",
+      url: "/api/stores_assemble/view",
       data: {
-        _id: transfer_branch._id
+        _id: store_assemble._id
       }
     }).then(
       function (response) {
+        شيي
         $scope.busy = false;
         if (response.data.done) {
           response.data.doc.date = new Date(response.data.doc.date);
-          $scope.transfer_branch = response.data.doc;
+          $scope.store_assemble = response.data.doc;
         } else $scope.error = response.data.error;
       },
       function (err) {
@@ -140,28 +141,25 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.details = function (transfer_branch) {
+  $scope.details = function (store_assemble) {
     $scope.error = '';
-    $scope.view(transfer_branch);
-    $scope.transfer_branch = {};
-    site.showModal('#viewTransferBranchModal');
+    $scope.view(store_assemble);
+    $scope.store_assemble = {};
+    site.showModal('#viewStoreAssembleModal');
   };
 
-  $scope.delete = function () {
+  $scope.delete = function (store_assemble) {
     $scope.error = '';
     $scope.busy = true;
     $http({
       method: "POST",
-      url: "/api/transfer_branch/delete",
-      data: {
-        _id: $scope.transfer_branch._id,
-        name: $scope.transfer_branch.name
-      }
+      url: "/api/stores_assemble/delete",
+      data: store_assemble
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#deleteTransferBranchModal');
+          site.hideModal('#deleteStoreAssembleModal');
           $scope.loadAll();
         } else $scope.error = response.data.error;
 
@@ -176,24 +174,24 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
     $scope.error = '';
     let foundSize = false;
     $scope.item.sizes.forEach(_size => {
-      foundSize = $scope.transfer_branch.items.some(_itemSize => _itemSize.barcode == _size.barcode);
+      foundSize = $scope.store_assemble.items.some(_itemSize => _itemSize.barcode == _size.barcode);
       if (_size.count > 0 && !foundSize) {
-        $scope.transfer_branch.items.push({
+        $scope.store_assemble.items.unshift({
           image_url: $scope.item.image_url,
           name: _size.name,
           size: _size.size,
           barcode: _size.barcode,
+          complex_items: _size.complex_items,
           average_cost: _size.average_cost,
           count: _size.count,
           cost: _size.cost,
           price: _size.price,
-          store_count: _size.store_count,
-          total: _size.total,
           current_count: _size.current_count,
           ticket_code: _size.ticket_code,
         });
       }
     });
+
     $scope.item.sizes = [];
   };
 
@@ -201,10 +199,10 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
   $scope.addToSizes = function () {
     $scope.error = '';
     $scope.item.sizes = $scope.item.sizes || [];
-    $scope.item.sizes.push({
+    $scope.item.sizes.unshift({
       $new: true,
-      customer: $scope.transfer_branch.customer,
-      store_from: $scope.transfer_branch.store_from,
+      vendor: $scope.store_assemble.vendor,
+      store: $scope.store_assemble.store,
       count: 1,
       cost: 0,
       price: 0,
@@ -234,7 +232,7 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
                 _item.sizes.forEach(_size => {
                   if (_size.barcode == $scope.item.search_item_name) {
                     _size.name = _item.name
-                    _size.store_from = $scope.transfer_branch.store_from
+                    _size.store = $scope.store_assemble.store
                     _size.count = 1
                     _size.total = _size.count * _size.cost
                     if (_size.branches_list && _size.branches_list.length > 0) {
@@ -246,14 +244,14 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
                           indxBranch = i
                         }
                       });
-                      if (foundBranch) {
 
+                      if (foundBranch) {
                         if (_size.branches_list[indxBranch].code == '##session.branch.code##') {
                           if (_size.branches_list[indxBranch].stores_list && _size.branches_list[indxBranch].stores_list.length > 0) {
                             let foundStore = false
                             let indxStore = 0
                             _size.branches_list[indxBranch].stores_list.map((_store, i) => {
-                              if (_store.store.id == $scope.transfer_branch.store_from.id) {
+                              if (_store.store.id == $scope.store_assemble.store.id) {
                                 foundStore = true
                                 indxStore = i
                               }
@@ -266,9 +264,10 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
                       } else _size.store_count = 0
 
                     } else _size.store_count = 0
+
                     foundSize = $scope.item.sizes.some(_itemSize => _itemSize.barcode == _size.barcode);
 
-                    if (!foundSize) $scope.item.sizes.push(_size);
+                    if (!foundSize) $scope.item.sizes.unshift(_size);
                   };
                 });
               });
@@ -290,14 +289,14 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
     }
   };
 
-  $scope.itemsTransferBranch = function () {
+  $scope.itemsStoresAssemble = function () {
     $scope.error = '';
     $scope.item.sizes = $scope.item.sizes || [];
     let foundSize = false;
 
     $scope.item.name.sizes.forEach(_item => {
       _item.name = $scope.item.name.name
-      _item.store_from = $scope.transfer_branch.store_from
+      _item.store = $scope.store_assemble.store
       _item.count = 1;
       _item.total = _item.count * _item.cost
       if (_item.branches_list && _item.branches_list.length > 0) {
@@ -317,7 +316,7 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
               let foundStore = false
               let indxStore = 0
               _item.branches_list[indxBranch].stores_list.map((_store, i) => {
-                if (_store.store.id == $scope.transfer_branch.store_from.id) {
+                if (_store.store.id == $scope.store_assemble.store.id) {
                   foundStore = true
                   indxStore = i
                 }
@@ -332,7 +331,7 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
       } else _item.store_count = 0
       foundSize = $scope.item.sizes.some(_itemSize => _itemSize.barcode == _item.barcode);
       if (!foundSize)
-        $scope.item.sizes.push(_item);
+        $scope.item.sizes.unshift(_item);
     });
   };
 
@@ -354,40 +353,13 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
               response.data.list[0].sizes.forEach(_size => {
                 if (_size.barcode == $scope.search_barcode) {
                   _size.name = response.data.list[0].name;
-                  _size.store_from = $scope.transfer_branch.store_from;
+                  _size.store = $scope.store_assemble.store;
                   _size.count = 1;
+                  _size.discount = _size.discount;
                   _size.total = _size.count * _size.cost;
-                  if (_size.branches_list && _size.branches_list.length > 0) {
-                    let foundBranch = false
-                    let indxBranch = 0
-                    _size.branches_list.map((_branch, i) => {
-                      if (_branch.code == '##session.branch.code##') {
-                        foundBranch = true
-                        indxBranch = i
-                      }
-                    });
-                    if (foundBranch) {
-                      if (_size.branches_list[indxBranch].code == '##session.branch.code##') {
-                        if (_size.branches_list[indxBranch].stores_list && _size.branches_list[indxBranch].stores_list.length > 0) {
-                          let foundStore = false
-                          let indxStore = 0
-                          _size.branches_list[indxBranch].stores_list.map((_store, i) => {
-                            if (_store.store.id == $scope.transfer_branch.store_from.id) {
-                              foundStore = true
-                              indxStore = i
-                            }
-                          });
-                          if (foundStore)
-                            _size.store_count = _size.branches_list[indxBranch].stores_list[indxStore].current_count
-                        } else _size.store_count = 0
-
-                      } else _size.store_count = 0
-                    } else _size.store_count = 0
-
-                  } else _size.store_count = 0
-                  foundSize = $scope.transfer_branch.items.some(_itemSize => _itemSize.barcode == _size.barcode);
+                  foundSize = $scope.store_assemble.items.some(_itemSize => _itemSize.barcode == _size.barcode);
                   if (!foundSize)
-                    $scope.transfer_branch.items.unshift(_size);
+                    $scope.store_assemble.items.unshift(_size);
                 }
               });
               if (foundSize) $scope.error = '##word.dublicate_item##';
@@ -409,34 +381,31 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
     }
   };
 
-  $scope.edit = function (transfer_branch) {
+  $scope.edit = function (store_assemble) {
     $scope.error = '';
     $scope.get_open_shift((shift) => {
       if (shift) {
-        $scope.view(transfer_branch);
-        $scope.transfer_branch = {};
-        site.showModal('#updateTransferBranchModal');
+        $scope.view(store_assemble);
+        $scope.store_assemble = {};
+        $scope.edit_price = false;
+        site.showModal('#updateStoreAssembleModal');
       } else $scope.error = '##word.open_shift_not_found##';
     });
   };
 
   $scope.update = function () {
     $scope.error = '';
-    const v = site.validated('#updateTransferBranchModal');
-    if (!v.ok) {
-      $scope.error = v.messages[0].ar;
-      return;
-    }
+
     $scope.busy = true;
     $http({
       method: "POST",
-      url: "/api/transfer_branch/update",
-      data: $scope.transfer_branch
+      url: "/api/stores_assemble/update",
+      data: $scope.store_assemble
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#updateTransferBranchModal');
+          site.hideModal('#updateStoreAssembleModal');
           $scope.loadAll();
         } else {
           $scope.error = '##word.error##';
@@ -448,19 +417,22 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.confirmTransfer = function (transfer_branch) {
+  $scope.posting = function (store_assemble) {
     $scope.error = '';
 
-    transfer_branch.transfer = true;
     $scope.busy = true;
     $http({
       method: "POST",
-      url: "/api/transfer_branch/confirm",
-      data: transfer_branch
+      url: "/api/stores_assemble/posting",
+      data: store_assemble
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
+          if (store_assemble.posting) {
+
+
+          }
           $scope.loadAll();
         } else {
           $scope.error = '##word.error##';
@@ -472,29 +444,7 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.loadBranches = function () {
-    $scope.error = '';
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/branches/all"
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          $scope.branchesList = response.data.list;
-          $scope.branchCode = response.data.branch;
-        }
-
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
-  };
-
-  $scope.loadStoresFrom = function () {
+  $scope.loadStores = function () {
     $scope.error = '';
     $scope.busy = true;
     $http({
@@ -504,9 +454,7 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done) {
-          $scope.storesFromList = response.data.list;
-        }
+        if (response.data.done) $scope.storesList = response.data.list;
 
       },
       function (err) {
@@ -516,31 +464,8 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.loadStoresTo = function (branchTo) {
-    $scope.error = '';
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/stores/all",
-      data: {
-        select: { id: 1, name: 1, type: 1 },
-        branchTo: branchTo
-      }
 
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          $scope.storesToList = response.data.list;
-        }
 
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
-  };
 
   $scope.loadCategories = function () {
     $scope.error = '';
@@ -568,11 +493,16 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
     )
   };
 
+
+
+
   $scope.searchAll = function () {
     $scope.error = '';
     $scope.loadAll($scope.search);
-    site.hideModal('#transferSearchModal');
     $scope.search = {};
+
+    site.hideModal('#StoresAssembleSearchModal');
+
   };
 
   $scope.loadAll = function (where) {
@@ -581,7 +511,7 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
     $scope.busy = true;
     $http({
       method: "POST",
-      url: "/api/transfer_branch/all",
+      url: "/api/stores_assemble/all",
       data: {
         where: where
       }
@@ -600,16 +530,29 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
     )
   };
 
-  /*   $scope.loadStores_Out();
-   */
 
-  $scope.getSafeBySetting = function () {
+  $scope.loadItemSize = function () {
     $scope.error = '';
-    if ($scope.defaultSettings.accounting) {
-      if ($scope.defaultSettings.accounting.safe) {
-        $scope.transfer_branch.safe = $scope.defaultSettings.accounting.safe
+    $scope.busy = true;
+    $scope.itemSizeList = [];
+    $http({
+      method: "POST",
+      url: "/api/stores_items/sizes_all",
+      data: {
+        select: { discount: 1, barcode: 1, size: 1, id: 1 }
       }
-    }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.itemSizeList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
   };
 
   $scope.get_open_shift = function (callback) {
@@ -640,8 +583,9 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.loadStores();
   $scope.loadCategories();
-  $scope.loadBranches();
-  $scope.loadStoresFrom();
+  $scope.loadItemSize();
+  $scope.getDefaultSettings();
   $scope.loadAll({ date: new Date() });
 });

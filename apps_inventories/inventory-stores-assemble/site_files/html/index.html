@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="stores_assemble_ui || stores_assemble_manage" data-ng-app="myApp">
+
+<head x-import="head.html">
+
+</head>
+
+<body class="##session.lang##">
+
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+
+    </nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+
+    </nav>
+    <div id="main-layout" class="container">
+        <div class="row ">
+            <div class="row" ng-controller="stores_assemble">
+                <div x-permissions="stores_assemble_add || stores_assemble_manage" x-import="inventory-stores-assemble/add_modal.html">
+                </div>
+                <div x-permissions="stores_assemble_delete || stores_assemble_manage"
+                    x-import="inventory-stores-assemble/delete_modal.html"></div>
+                <div x-permissions="stores_assemble_view || stores_assemble_manage" x-import="inventory-stores-assemble/view_modal.html">
+                </div>
+                <div x-permissions="stores_assemble_search || stores_assemble_manage"
+                    x-import="inventory-stores-assemble/search_all_modal.html"></div>
+                <div x-permissions="stores_assemble_update || stores_assemble_manage"
+                    x-import="inventory-stores-assemble/update_modal.html"></div>
+                <div x-permissions="stores_assemble_add || stores_assemble_manage"
+                    x-import="inventory-stores-assemble/select_items_modal.html"></div>
+
+                <div class="row">
+                    <h1 class="bold text-center"> ##word.stores_assemble## </h1>
+                </div>
+                <div class="top-actions">
+
+                    <i-button x-permissions="stores_assemble_add || stores_assemble_manage" type="add"
+                        label="##word.stores_assemble_new##" ng-click="newStoreAssemble()"></i-button>
+                    <i-button x-permissions="stores_assemble_search || stores_assemble_manage" type="search"
+                        label="##word.search_all##" onclick="site.showModal('#StoresassembleSearchModal')"></i-button>
+
+                    <h2 class="bold red text-center"> {{error}}</h2>
+                    <h3 class="bold text-center"> ##word.count## : {{count}}</h3>
+                </div>
+                <table id="t1" class="table loaded center bold hover">
+                    <tr>
+                        <th class="not-print"> ##word.logo## </th>
+                        <th>##word.stores_assemble_date##</th>
+                        <th>##word.stores_assemble_id##</th>
+                        <th>##word.store##</th>
+                        <th class="not-print">##word.actions##</th>
+                    </tr>
+                    <tr ng-repeat="c in list">
+                        <td class="not-print">
+                            <img class="logo" ng-src="{{c.image_url}}">
+                        </td>
+
+                        <td>
+                            <p class="text-center brown"> <br> {{c.date | date : 'yyyy - MM - dd'}} </p>
+                        </td>
+                        <td>
+                            <p class="bold blue text-center"> <br> {{c.code}} </p>
+                        </td>
+                    
+                     
+                        <td>
+                            <p class="text-center blue"> <br> {{c.store.name}} </p>
+                        </td>
+
+                        <td class="center not-print">
+
+                            <i-button x-permissions="stores_assemble_view || stores_assemble_manage" type="details"
+                                label="##word.details##" ng-click="details(c)"></i-button>
+
+                            <i-button x-permissions="stores_assemble_post || stores_assemble_manage" label="##word.posting##"
+                                ng-show="defaultSettings.general_Settings.work_posting && !c.posting"
+                                ng-click="c.posting = true ; posting(c)"></i-button>
+
+                            <i-button x-permissions="stores_assemble_post || stores_assemble_manage" label="##word.unposting##"
+                                ng-show="defaultSettings.general_Settings.work_unposting && c.posting"
+                                ng-click="c.posting = false ; posting(c)"></i-button>
+
+                            <i-button x-permissions="stores_assemble_update || stores_assemble_manage" type="update"
+                                ng-show="!c.posting" label="##word.edit##" ng-click="edit(c)"></i-button>
+
+                            <i-button x-permissions="stores_assemble_delete || stores_assemble_manage" type="delete"
+                                ng-hide="c.posting && defaultSettings.general_Settings.work_unposting"
+                                label="##word.delete##" ng-click="remove(c)"></i-button>
+                        </td>
+
+                    </tr>
+
+                </table>
+
+                <i-button x-permissions="stores_assemble_print || stores_assemble_manage" type="print" label="##word.print##"
+                    onclick="site.print('#t1')"></i-button>
+
+            </div>
+        </div>
+    </div>
+
+    <div x-import="scripts.html"></div>
+    <script x-import="inventory-stores-assemble/index.js"></script>
+
+</body>
+
+</html>

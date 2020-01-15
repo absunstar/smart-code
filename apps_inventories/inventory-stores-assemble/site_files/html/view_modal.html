@@ -1,0 +1,22 @@
+<div id="viewStoreAssembleModal" class="modal">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.stores_assemble_details## <i class="fa fa-file"></i>
+            </h2>
+        </div>
+        <div class="modal-body">
+
+            <div id="v1" x-import="inventory-stores-assemble/view.html"></div>
+
+
+        </div>
+        <h2 class="center">{{error}}</h2>
+        <div class="modal-footer center">
+            <i-button type="print" x-permissions="companies_export || companies_manage" label="##word.print##" onclick="site.print('#v1')"></i-button>
+            <i-button type="close" label="##word.close##" onclick="site.hideModal('#viewStoreAssembleModal')"></i-button>
+        </div>
+    </div>
+</div>

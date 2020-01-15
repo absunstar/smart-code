@@ -333,7 +333,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         if (_size.count > 0 && !foundSize) {
           $scope.store_out.items.push({
             image_url: $scope.item.image_url,
-            name: _size.item_name,
+            name: _size.name,
             size: _size.size,
             barcode: _size.barcode,
             average_cost: _size.average_cost,
@@ -403,7 +403,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
               response.data.list.forEach(_item => {
                 _item.sizes.forEach(_size => {
                   if (_size.barcode == $scope.item.search_item_name) {
-                    _size.item_name = _item.name
+                    _size.name = _item.name
                     _size.store = $scope.store_out.store
                     _size.count = 1
                     _size.total = _size.count * _size.price
@@ -466,8 +466,8 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
     $scope.item.sizes = $scope.item.sizes || [];
     let foundSize = false;
 
-    $scope.item.item_name.sizes.forEach(_item => {
-      _item.item_name = $scope.item.item_name.name
+    $scope.item.name.sizes.forEach(_item => {
+      _item.name = $scope.item.name.name
       _item.store = $scope.store_out.store
       _item.count = 1
       _item.total = _item.count * _item.price
@@ -553,50 +553,6 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
       );
     }
   };
-
-  /*  $scope.getItem = function () {
-     if ($scope.item.item_name) {
-       console.log("Aaaaaaaaaaaaaaaaaaaaaaaaaaa");
-       
-       $http({
-         method: "POST",
-         url: "/api/stores_items/all",
-         data: {
-           where: {
-             name: $scope.item.item_name.name
-           }
-         }
-       }).then(
-         function (response) {
-           $scope.busy = false;
-           if (response.data.done) {
-             if (response.data.list.length > 0) {
-               $('#public_count').focus();
-               response.data.list[0].sizes.forEach(itm => {
-                 itm.count = 0;
-               });
-               $scope.item = response.data.list[0];
-             } else {
-               $scope.item = {
-                 sizes: [],
-                 name: $scope.item.item_name.name
-               };
-               $('#item_name').focus();
-             }
-           } else {
-             $scope.error = response.data.error;
-             $scope.item = {
-               sizes: []
-             };
-           }
-         },
-         function (err) {
-           console.log(err);
-         }
-       );
-   
-     }
-   }; */
 
   $scope.edit = function (store_out) {
     $scope.error = '';
