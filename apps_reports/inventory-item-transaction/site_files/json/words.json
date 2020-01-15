@@ -255,6 +255,16 @@
         "en": "storein"
     },
     {
+        "name": "item_transaction_current_status_assemble",
+        "ar": "تجميع صنف",
+        "en": "Assimble Item"
+    },
+    {
+        "name": "item_transaction_current_status_dismantle",
+        "ar": "تفكيك صنف",
+        "en": "Dismantle Item"
+    },
+    {
         "name": "item_transaction_previous_count",
         "ar": "  الرصيد السابق ",
         "en": "Previous Count"

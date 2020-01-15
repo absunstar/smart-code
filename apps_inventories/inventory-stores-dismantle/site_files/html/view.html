@@ -4,37 +4,37 @@
         <table class="table hover bold">
 
             <tr>
-                <td class="title">##word.stores_assemble_date##</td>
-                <td class="center brown">{{store_assemble.date |date:"dd - MM - yyyy" }}</td>
+                <td class="title">##word.stores_dismantle_date##</td>
+                <td class="center brown">{{store_dismantle.date |date:"dd - MM - yyyy" }}</td>
             </tr>
      
             <tr>
-                <td class="title">##word.stores_assemble_id##</td>
-                <td class="center">{{store_assemble.number}}</td>
+                <td class="title">##word.stores_dismantle_id##</td>
+                <td class="center">{{store_dismantle.number}}</td>
             </tr>
 
             <tr>
                 <td class="title">##word.store##</td>
-                <td class="center">{{store_assemble.store.name}}</td>
+                <td class="center">{{store_dismantle.store.name}}</td>
             </tr>
 
             <tr>
                 <td class="title">##word.transaction_type##</td>
-                <td class="center">{{store_assemble.type.ar}}</td>
+                <td class="center">{{store_dismantle.type.ar}}</td>
             </tr>
 
             <tr>
-                <td class="title">##word.stores_assemble_items##</td>
+                <td class="title">##word.stores_dismantle_items##</td>
                 <td>
                     <table class="table bold hover">
                         <tr>
                             <th>##word.serial##</th>
-                            <th>##word.stores_assemble_item_name##</th>
-                            <th>##word.stores_assemble_item_size##</th>
+                            <th>##word.stores_dismantle_item_name##</th>
+                            <th>##word.stores_dismantle_item_size##</th>
                             <th>##word.barcode##</th>
-                            <th>##word.stores_assemble_item_count##</th>
+                            <th>##word.stores_dismantle_item_count##</th>
                         </tr>
-                        <tr ng-repeat="itm in store_assemble.items">
+                        <tr ng-repeat="itm in store_dismantle.items">
                             <td class="center blue">{{$index + 1}}</td>
                             <td class="center">{{itm.name}}</td>
                             <td class="center">{{itm.size}}</td>
@@ -53,10 +53,10 @@
     </div>
     <div class="col3">
         <br>
-        <i-image view category="stores_images" class="not-print" ng-model="store_assemble.image_url"></i-image>
+        <i-image view category="stores_images" class="not-print" ng-model="store_dismantle.image_url"></i-image>
         <br>
-        <i-files view ng-model="store_assemble.files"></i-files>
+        <i-files view ng-model="store_dismantle.files"></i-files>
     </div>
 
 </div>
-<div class="not-print" x-import="inventory-stores-assemble/action_info.html"></div>
+<div class="not-print" x-import="inventory-stores-dismantle/action_info.html"></div>

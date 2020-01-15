@@ -80,6 +80,11 @@
         "ar": "إضافة تجميعات الأصناف"
     },
     {
+        "name": "system_register_stores_dismantle",
+        "en": "Add Dismantle Items",
+        "ar": "إضافة تفكيك الأصناف"
+    },
+    {
         "name": "report_sales_detailed_menus",
         "en": "Report Sales Detailed Menu",
         "ar": "قائمة تفصيلية لمبيعات الأصناف "

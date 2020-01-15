@@ -164,6 +164,22 @@
                                     <span ng-show="c.current_status == 'storein'" class="blue center">{{c.number}}</span>
                                 </p>
 
+                                <p class="center red bold" ng-show="c.current_status == 'Dismantling'">
+                                    <p ng-show="c.current_status == 'Dismantling'" class="center">
+                                        ##word.item_transaction_current_status_dismantle##
+                                    </p>
+                                    <br ng-show="c.current_status == 'Dismantling'">
+                                    <span ng-show="c.current_status == 'Dismantling'" class="blue center">{{c.code}}</span>
+                                </p>
+
+                                <p class="center red bold" ng-show="c.current_status == 'Assembling'">
+                                    <p ng-show="c.current_status == 'Assembling'" class="center">
+                                        ##word.item_transaction_current_status_assemble##
+                                    </p>
+                                    <br ng-show="c.current_status == 'Assembling'">
+                                    <span ng-show="c.current_status == 'Assembling'" class="blue center">{{c.code}}</span>
+                                </p>
+
 
                                 <p class="center red bold" ng-show="c.current_status == 'r_storein'">
                                     <p ng-show="c.current_status == 'r_storein'" class="center">
