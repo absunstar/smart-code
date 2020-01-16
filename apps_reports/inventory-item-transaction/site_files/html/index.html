@@ -22,11 +22,14 @@
                 <div class="row">
                     <h1 class="bold center">##word.item_transaction##</h1>
                 </div>
+
                 <div class="top-actions">
                     <i-button type="search" x-permissions="item_transaction_search || item_transaction_manage"
                         label="##word.search_all##" onclick="site.showModal('#itemTransactionSearchModal')"></i-button>
-                        <i-button class="left" ng-click="handeItemTransactions()">
-                        </i-button>
+
+                    <!-- <i-button class="left" ng-click="handeItemTransactions()">
+                        </i-button> -->
+
                     <h3 class="bold center"> ##word.item_transaction_count## : {{count}}</h3>
 
                 </div>
@@ -133,14 +136,16 @@
                                     <br ng-show="c.current_status == 'damaged'">
                                     <span class="center">{{c.ticket_code}}</span>
                                     <br ng-show="c.current_status == 'damaged'">
-                                    <span class="blue center" ng-show="c.current_status == 'damaged'">{{c.number}}</span>
+                                    <span class="blue center"
+                                        ng-show="c.current_status == 'damaged'">{{c.number}}</span>
                                 </p>
 
 
                                 <p class="center red bold" ng-show="c.current_status == 'replaced'">
                                     ##word.item_transaction_current_status_2##
                                     <br ng-show="c.current_status == 'replaced'">
-                                    <span ng-show="c.current_status == 'replaced'" class="blue center">{{c.number}}</span>
+                                    <span ng-show="c.current_status == 'replaced'"
+                                        class="blue center">{{c.number}}</span>
                                 </p>
 
 
@@ -150,9 +155,11 @@
                                         ##word.item_transaction_current_status_5##
                                     </p>
                                     <br ng-show="c.current_status == 'transferred'">
-                                    <span ng-show="c.current_status == 'transferred'" class="center">{{c.ticket_code}}</span>
+                                    <span ng-show="c.current_status == 'transferred'"
+                                        class="center">{{c.ticket_code}}</span>
                                     <br ng-show="c.current_status == 'transferred'">
-                                    <span ng-show="c.current_status == 'transferred'" class="blue center">{{c.number}}</span>
+                                    <span ng-show="c.current_status == 'transferred'"
+                                        class="blue center">{{c.number}}</span>
                                 </p>
 
 
@@ -162,7 +169,8 @@
                                     </p>
                                     <br ng-show="c.current_status == 'storein'">
                                     <p class="center" ng-show="c.current_status == 'storein'"> {{c.source_type.ar}}</p>
-                                    <span ng-show="c.current_status == 'storein'" class="blue center">{{c.number}}</span>
+                                    <span ng-show="c.current_status == 'storein'"
+                                        class="blue center">{{c.number}}</span>
                                 </p>
 
                                 <p class="center red bold" ng-show="c.current_status == 'Dismantling'">
@@ -170,7 +178,8 @@
                                         ##word.item_transaction_current_status_dismantle##
                                     </p>
                                     <br ng-show="c.current_status == 'Dismantling'">
-                                    <span ng-show="c.current_status == 'Dismantling'" class="blue center">{{c.code}}</span>
+                                    <span ng-show="c.current_status == 'Dismantling'"
+                                        class="blue center">{{c.code}}</span>
                                 </p>
 
                                 <p class="center red bold" ng-show="c.current_status == 'Assembling'">
@@ -178,7 +187,8 @@
                                         ##word.item_transaction_current_status_assemble##
                                     </p>
                                     <br ng-show="c.current_status == 'Assembling'">
-                                    <span ng-show="c.current_status == 'Assembling'" class="blue center">{{c.code}}</span>
+                                    <span ng-show="c.current_status == 'Assembling'"
+                                        class="blue center">{{c.code}}</span>
                                 </p>
 
 
@@ -188,7 +198,8 @@
                                     </p>
                                     <br ng-show="c.current_status == 'r_storein'">
                                     <p class="center" ng-show="c.current_status == 'r_storein'">{{c.source_type.ar}}</p>
-                                    <span ng-show="c.current_status == 'r_storein'" class="blue center">{{c.number}}</span>
+                                    <span ng-show="c.current_status == 'r_storein'"
+                                        class="blue center">{{c.number}}</span>
                                 </p>
 
                                 <p class="center red bold" ng-show="c.current_status == 'd_storein'">
@@ -197,7 +208,8 @@
                                     </p>
                                     <br ng-show="c.current_status == 'd_storein'">
                                     <p class="center" ng-show="c.current_status == 'd_storein'">{{c.source_type.ar}}</p>
-                                    <span ng-show="c.current_status == 'd_storein'" class="blue center">{{c.number}}</span>
+                                    <span ng-show="c.current_status == 'd_storein'"
+                                        class="blue center">{{c.number}}</span>
                                 </p>
                             </td>
 
