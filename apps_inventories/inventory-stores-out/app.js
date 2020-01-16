@@ -409,7 +409,7 @@ module.exports = function init(site) {
       where['supply_number'] = new RegExp(where['supply_number'], 'i')
     }
 
-   
+
     if (where.date) {
       let d1 = site.toDate(where.date)
       let d2 = site.toDate(where.date)
@@ -506,6 +506,38 @@ module.exports = function init(site) {
         response.done = true
         response.list = docs
         response.count = count
+
+      } else {
+        response.error = err.message
+      }
+      res.json(response)
+    })
+  })
+
+
+
+  site.post("/api/stores_out/handel_store_out", (req, res) => {
+    let response = {
+      done: false
+    }
+    let where = req.body.where || {}
+
+    where['company.id'] = site.get_company(req).id
+
+    $stores_out.findMany({
+      select: req.body.select || {},
+      where: where,
+      sort: req.body.sort || {
+        id: -1
+      },
+    }, (err, docs) => {
+      if (!err) {
+        response.done = true
+
+        docs.forEach(_doc => {
+          _doc.posting = false
+          $stores_out.update(_doc)
+        });
 
       } else {
         response.error = err.message

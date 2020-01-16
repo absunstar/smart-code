@@ -7,6 +7,7 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
     allow_buy: true,
     is_pos: true,
     sizes: [],
+    units_list: [],
     with_discount: false
   };
 
@@ -379,6 +380,32 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.loadUnits = function () {
+    $scope.busy = true;
+    $scope.unitsList = [];
+    $http({
+      method: "POST",
+      url: "/api/units/all",
+      data: {
+        select: {
+          id: 1,
+          name: 1
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.unitsList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
   $scope.loadStores = function () {
     $scope.error = '';
     $scope.busy = true;
@@ -556,6 +583,14 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
     }
   };
 
+  $scope.addUnitsList = function (category_item) {
+    $scope.error = '';
+    category_item.units_list = category_item.units_list || [];
+    if ($scope.unit.name)
+      category_item.units_list.push({ name: $scope.unit.name });
+    $scope.unit = {};
+  };
+
   $scope.storesBalances = function (storesBalance) {
     $scope.error = '';
     $scope.storesBalance = storesBalance;
@@ -592,6 +627,7 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
   $scope.getDefaultSetting();
   $scope.loadStores();
   $scope.loadItemsGroups();
+  $scope.loadUnits();
   $scope.loadAll();
   $scope.loadItems();
   $scope.loadItemSize();

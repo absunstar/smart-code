@@ -75,6 +75,11 @@
         "ar": "فك ترحيل"
     },
     {
+        "name": "system_units_menus",
+        "en": "Units Menu",
+        "ar": "قائمة الوحدات"
+    },
+    {
         "name": "system_register_stores_assemble",
         "en": "Add Assimbling Items",
         "ar": "إضافة تجميعات الأصناف"

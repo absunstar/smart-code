@@ -16,17 +16,17 @@
     },
     {
         "name": "err_size",
-        "en": "Cant Delete Size Its Exist In Other Transaction" ,
+        "en": "Cant Delete Size Its Exist In Other Transaction",
         "ar": "لا يمكن حذف المقاس لإستخدامه في معاملات أخرى"
     },
     {
         "name": "err_item",
-        "en": "Cant Delete Item Its Exist In Other Transaction" ,
+        "en": "Cant Delete Item Its Exist In Other Transaction",
         "ar": "لا يمكن حذف الصنف لإستخدامه في معاملات أخرى"
     },
     {
         "name": "err_Item_must_correctly",
-        "en": "Item Must Be Entered Correctly" ,
+        "en": "Item Must Be Entered Correctly",
         "ar": "يجب ادخال الكمية و الصنف بشكل صحيح"
     },
     {
@@ -43,6 +43,21 @@
         "name": "barcode",
         "en": "Barcode",
         "ar": "كود / باركود"
+    },
+    {
+        "name": "main_unit",
+        "en": "Main Unit",
+        "ar": "الوحدة الرئيسية"
+    },
+    {
+        "name": "add_unit",
+        "en": "Add Unit",
+        "ar": "إضافة وحدة"
+    },
+    {
+        "name": "unit_convert",
+        "en": "Unit Conversion",
+        "ar": "تحويل الوحدة"
     },
     {
         "name": "err_barcode",

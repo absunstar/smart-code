@@ -12,7 +12,14 @@
                             <i-list class="col6" ng-model="category_item.item_group" v="r"
                                 ng-search="_search.$category_item.$items_group_search" label="##word.item_group##"
                                 items="itemsGroupList"></i-list>
+
                         </div>
+
+                      <!--   <div class="row">
+                            <i-list class="col6" ng-model="category_item.main_unit" v="r"
+                                ng-search="_search.$category_item.$main_unit_search" label="##word.main_unit##"
+                                items="unitsList"></i-list>
+                        </div> -->
                     </div>
                     <div class="col1"></div>
 
@@ -39,6 +46,45 @@
                         </div>
                     </div>
                 </div>
+
+                <br>
+                <br>
+
+            <!--     <div class="row">
+                    <i-list class="col4" ng-model="unit" ng-search="_search.$category_item.$unit_search"
+                        label="##word.unit##" items="unitsList"></i-list>
+
+                    <i-button class="col2" type="add" label="##word.add_unit##" ng-click="addUnitsList(category_item)">
+                    </i-button>
+
+                    <div class="col1"></div>
+
+                    <div class="col4" ng-show="category_item.units_list.length > 0">
+
+                        <table class="table hover loaded" id="t1">
+
+                            <tr>
+
+                                <th>##word.unit##</th>
+                                <th>##word.unit_convert##</th>
+                            </tr>
+
+                            <tr ng-repeat="c in category_item.units_list">
+
+                                <td>
+                                    <p class="bold text-center"> <br> {{c.name}} </p>
+                                </td>
+
+                                <td>
+                                    <i-control ng-model="c.convert" type="number">
+                                    </i-control>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                </div> -->
+
             </div>
         </div>
 
@@ -64,7 +110,8 @@
 
                         <i-control class="col2" ng-model="item.size" label="##word.stores_items_size##" type="text">
                         </i-control>
-                        <i-control class="col2" ng-hide="defaultSettings.inventory.auto_barcode_generation" ng-model="item.barcode" label="##word.barcode##" type="text">
+                        <i-control class="col2" ng-hide="defaultSettings.inventory.auto_barcode_generation"
+                            ng-model="item.barcode" label="##word.barcode##" type="text">
                         </i-control>
                         <i-control class="col2" ng-model="item.cost" label="##word.stores_items_cost##" type="number">
                         </i-control>
@@ -168,8 +215,10 @@
 
                     <td>
                         <div class="row ">
-                            <i-control type="number" label="##word.maximum_discount##" class="col6" ng-model="itm.discount.max"></i-control>
-                            <i-control type="number" label="##word.discount##" class="col6" ng-model="itm.discount.value"></i-control>
+                            <i-control type="number" label="##word.maximum_discount##" class="col6"
+                                ng-model="itm.discount.max"></i-control>
+                            <i-control type="number" label="##word.discount##" class="col6"
+                                ng-model="itm.discount.value"></i-control>
                         </div>
                         <div class="row center">
                             <i-radio ng-model="itm.discount.type" label="##word.discount_types_number##"

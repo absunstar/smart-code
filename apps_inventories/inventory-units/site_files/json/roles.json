@@ -1,0 +1,7 @@
+[{
+    "module_name" : "public" ,
+    "name": "units_admin",
+    "en": "Units Admin",
+    "ar": "إدارة الوحدات",
+    "permissions": ["units_manage"]
+}]

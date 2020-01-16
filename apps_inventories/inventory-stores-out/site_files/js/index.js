@@ -1392,6 +1392,26 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.handeStoreOut = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/stores_out/handel_store_out"
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.loadAll();
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
 
   $scope.get_open_shift = function (callback) {
     $scope.error = '';

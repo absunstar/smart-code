@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="units_ui || units_manage" data-ng-app="myApp">
+
+<head x-import="head.html">
+
+</head>
+
+<body class="##session.lang##">
+
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+
+    </nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+
+    </nav>
+    <div id="main-layout" class="container">
+        <div class="row">
+            <div class="row" ng-controller="units">
+                <div x-permissions="units_add || units_manage" x-import="inventory-units/add_modal.html"></div>
+                <div x-permissions="units_update || units_manage" x-import="inventory-units/update_modal.html"></div>
+                <div x-permissions="units_delete || units_manage" x-import="inventory-units/delete_modal.html"></div>
+                <div x-permissions="units_view || units_manage" x-import="inventory-units/view_modal.html"></div>
+                <div x-permissions="units_search || units_manage" x-import="inventory-units/search_all_modal.html"></div>
+
+                <div class="row">
+                    <h1 class="bold text-center">##word.units##</h1>
+                </div>
+
+                <div class="top-actions">
+                    <i-button x-permissions="units_add || units_manage" type="add" label="##word.units_new##" ng-click="displayAddUnit()"></i-button>
+
+                    <i-button x-permissions="units_search || units_manage" type="search" label="##word.search_all##"
+                        ng-click="displaySearchModal()"></i-button>
+
+                    <h3 class="bold text-center"> ##word.count## : {{count}}</h3>
+
+                </div>
+
+                <table x-permissions="login" class="table hover bold loaded" id="t1">
+                    <tr>
+                        <th class="not-print">##word.logo##</th>
+                        <th>##word.units_name##</th>
+
+                        <th>##word.status##</th>
+                        <th class="not-print">##word.actions##</th>
+                    </tr>
+                    <tr ng-repeat="c in list">
+                        <td class="center not-print">
+                            <img class="logo" ng-src="{{c.image_url}}">
+                        </td>
+                        <td class="center title">{{c.name}}</td>
+                        <td class="center">
+                            <p ng-show="c.active == true" class="green"> ##word.active## </p>
+                            <p ng-show="c.active == false" class="red"> ##word.not_active## </p>
+                        </td>
+
+                        <td class="center not-print">
+                            <i-button x-permissions="units_view || units_manage" type="view" label="##word.details##"
+                                ng-click="displayDetailsUnit(c)"></i-button>
+
+                            <i-button x-permissions="units_update || units_manage" type="edit" label="##word.edit##"
+                                ng-click="displayUpdateUnit(c)"></i-button>
+
+                            <i-button x-permissions="units_delete || units_manage" type="delete" label="##word.delete##"
+                                ng-click="displayDeleteUnit(c)"></i-button>
+                        </td>
+                    </tr>
+                </table>
+
+                <i-button x-permissions="units_print || units_manage" type="print" label="##word.print##" onclick="site.print('#t1')"></i-button>
+
+                
+            </div>
+        </div>
+    </div>
+
+    <div x-import="scripts.html"></div>
+    <script x-import="inventory-units/index.js"></script>
+</body>
+
+</html>

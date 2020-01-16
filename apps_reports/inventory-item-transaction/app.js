@@ -331,4 +331,31 @@ module.exports = function init(site) {
     })
   }
 
+
+  site.post("/api/item_transaction/handel_item_transaction", (req, res) => {
+    let response = {
+      done: false
+    }
+    let where = req.body.where || {}
+
+    where['company.id'] = site.get_company(req).id
+
+    $item_transaction.deleteMany({
+      select: req.body.select || {},
+      where: where,
+      sort: req.body.sort || {
+        id: -1
+      },
+    }, (err, docs) => {
+      if (!err) {
+        response.done = true
+
+      } else {
+        response.error = err.message
+      }
+      res.json(response)
+    })
+  })
+
+
 }

@@ -394,7 +394,7 @@ module.exports = function init(site) {
     where['company.id'] = site.get_company(req).id
     where['branch.code'] = site.get_branch(req).code
 
-  
+
     if (where && where['notes']) {
       where['notes'] = new RegExp(where['notes'], 'i')
     }
@@ -407,7 +407,7 @@ module.exports = function init(site) {
       where['supply_number'] = new RegExp(where['supply_number'], 'i')
     }
 
-   
+
     if (where.date) {
       let d1 = site.toDate(where.date)
       let d2 = site.toDate(where.date)
@@ -511,6 +511,38 @@ module.exports = function init(site) {
       res.json(response)
     })
   })
+
+
+  site.post("/api/stores_in/handel_store_in", (req, res) => {
+    let response = {
+      done: false
+    }
+    let where = req.body.where || {}
+
+    where['company.id'] = site.get_company(req).id
+
+    $stores_in.findMany({
+      select: req.body.select || {},
+      where: where,
+      sort: req.body.sort || {
+        id: -1
+      },
+    }, (err, docs) => {
+      if (!err) {
+        response.done = true
+
+        docs.forEach(_doc => {
+          _doc.posting = false
+          $stores_in.update(_doc)
+        });
+
+      } else {
+        response.error = err.message
+      }
+      res.json(response)
+    })
+  })
+
 
   /* site.getStoresIn = function (req, callback) {
     callback = callback || {};

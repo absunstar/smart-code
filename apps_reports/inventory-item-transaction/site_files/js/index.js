@@ -190,6 +190,26 @@ app.controller("item_transaction", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.handeItemTransactions = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/item_transaction/handel_item_transaction"
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.loadAll();
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
   $scope.loadvendors();
   $scope.loadStores();
   $scope.loadStoresInTypes();
