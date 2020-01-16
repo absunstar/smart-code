@@ -357,4 +357,35 @@ module.exports = function init(site) {
     })
   })
 
+  site.post("/api/transfer_branch/handel_transfer_branch", (req, res) => {
+    let response = {
+      done: false
+    }
+    let where = req.body.where || {}
+
+    where['company.id'] = site.get_company(req).id
+
+    $transfer_branch.findMany({
+      select: req.body.select || {},
+      where: where,
+      sort: req.body.sort || {
+        id: -1
+      },
+    }, (err, docs) => {
+      if (!err) {
+        response.done = true
+
+        docs.forEach(_doc => {
+          _doc.transfer = false
+          $transfer_branch.update(_doc)
+        });
+
+      } else {
+        response.error = err.message
+      }
+      res.json(response)
+    })
+  })
+
+
 }

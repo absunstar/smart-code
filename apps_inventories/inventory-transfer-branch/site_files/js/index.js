@@ -640,6 +640,26 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.handelTransfer = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/transfer_branch/handel_transfer_branch"
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.loadAll();
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
   $scope.loadCategories();
   $scope.loadBranches();
   $scope.loadStoresFrom();
