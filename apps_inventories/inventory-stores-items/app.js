@@ -651,6 +651,51 @@ module.exports = function init(site) {
     })
   })
 
+
+  site.post("/api/stores_items/handel_items2", (req, res) => {
+    let response = {
+      done: false
+    }
+    let where = req.body.where || {}
+
+    where['company.id'] = site.get_company(req).id
+
+    $stores_items.findMany({
+      select: req.body.select || {},
+      where: where,
+      sort: req.body.sort || {
+        id: -1
+      },
+    }, (err, docs) => {
+      if (!err) {
+        response.done = true
+
+
+        docs.forEach(_docs => {
+          _docs.sizes.forEach(_sizes => {
+            _sizes.count = 0
+            _sizes.start_count = 0
+            _sizes.current_count = 0
+            _sizes.total_purchase_price = 0
+            _sizes.total_purchase_count = 0
+            _sizes.total_buy_price = 0
+            _sizes.total_buy_count = 0
+            _sizes.total_sell_price = 0
+            _sizes.total_sell_count = 0
+            _sizes.branches_list = []
+
+          });
+          $stores_items.update(_docs)
+        });
+
+      } else {
+        response.error = err.message
+      }
+      res.json(response)
+    })
+  })
+
+
   site.post("/api/stores_items/handel_items", (req, res) => {
     let response = {
       done: false
