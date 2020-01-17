@@ -155,14 +155,31 @@ app.controller("security", function ($scope, $http, $interval) {
     $scope.permission = '';
   };
 
-  $scope.allRolesTrue = function () {
-    for (let i = 0; i < $scope.roles.length; i++) {
-      $scope.user.roles.push({
-        name: $scope.roles[i].name,
-        en: $scope.roles[i].en,
-        ar: $scope.roles[i].ar
-      })
-    }
+  $scope.checkAll = function (name) {
+    $scope[name].forEach(r=>{
+      r.$selected = $scope['$' + name];
+      if(r.$selected){
+        let exists = false;
+        $scope.user.roles.forEach(r2=>{
+          if(r.name == r2.name){
+            exists = true
+            r2.$selected = true;
+          }
+        });
+        if(!exists){
+          $scope.user.roles.push(r);
+        }
+      }else if(!r.$selected){
+        let exists = false;
+        $scope.user.roles.forEach(( r2 , i)=>{
+          if(r.name == r2.name){
+            r2.$selected = false;
+            $scope.user.roles.splice(i , 1);
+          }
+        });
+       
+      }
+    });
   };
 
   $scope.addRole = function () {

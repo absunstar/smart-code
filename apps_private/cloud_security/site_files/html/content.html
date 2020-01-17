@@ -66,7 +66,7 @@
                     <fieldset>
                         <legend>
                             ##word.security_public_roles##
-                            <i-button ng-click="allRolesTrue()"></i-button>
+                            <i-checkbox ng-model="$public_roles" ng-click="checkAll('public_roles')"></i-checkbox>
                         </legend>
                         
                         <i-checklist primary="name" label="" items="public_roles" display="##session.lang##" ng-model="user.roles"></i-checklist>
@@ -77,6 +77,8 @@
                         <fieldset>
                             <legend>
                                 ##word.security_custom_roles##
+                                <i-checkbox ng-model="$custom_roles" ng-click="checkAll('custom_roles')"></i-checkbox>
+
                             </legend>
                             <i-checklist primary="name" label="" items="custom_roles" display="##session.lang##" ng-model="user.roles"></i-checklist>
                         </fieldset>
@@ -86,6 +88,7 @@
                     <fieldset>
                         <legend>
                             ##word.security_accounting_roles##
+                            <i-checkbox ng-model="$accounting_roles" ng-click="checkAll('accounting_roles')"></i-checkbox>
                         </legend>
                         <i-checklist primary="name" label="" items="accounting_roles" display="##session.lang##" ng-model="user.roles"></i-checklist>
                     </fieldset>
@@ -96,6 +99,7 @@
                         <fieldset>
                             <legend>
                                 ##word.security_hr_roles##
+                                <i-checkbox ng-model="$hr_roles" ng-click="checkAll('hr_roles')"></i-checkbox>
                             </legend>
                             <i-checklist primary="name" label="" items="hr_roles" display="##session.lang##" ng-model="user.roles"></i-checklist>
                         </fieldset>
@@ -105,6 +109,7 @@
                         <fieldset>
                             <legend>
                                 ##word.security_inventory_roles##
+                                <i-checkbox ng-model="$inventory_roles" ng-click="checkAll('inventory_roles')"></i-checkbox>
                             </legend>
                             <i-checklist primary="name" label="" items="inventory_roles" display="##session.lang##" ng-model="user.roles"></i-checklist>
                         </fieldset>
