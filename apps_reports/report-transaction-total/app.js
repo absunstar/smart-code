@@ -92,9 +92,9 @@ module.exports = function init(site) {
                   _size.average_cost = (site.toNumber(_size.average_cost) + (site.toNumber(docs[i].average_cost)) * site.toNumber(docs[i].count))
 
                 }
-
                 exist = true
               }
+              _size.current_count = (_size.count_in || 0) - (_size.count_out || 0)
             })
           }
           if (!exist) {
@@ -102,20 +102,20 @@ module.exports = function init(site) {
 
             if (obj.transaction_type == 'in') {
 
-              obj.total_in = obj.total
+              // obj.total_in = obj.total
               obj.count_in = obj.count
 
             } else if (obj.transaction_type == 'out') {
 
-              obj.total_out = obj.total
+              // obj.total_out = obj.total
               obj.count_out = obj.count
               obj.average_cost = (site.toNumber(obj.average_cost) * site.toNumber(obj.count))
 
             }
+
             total_size_list.push(obj)
           }
         }
-
 
         response.done = true
         response.doc = total_size_list

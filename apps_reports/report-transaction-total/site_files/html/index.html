@@ -40,14 +40,11 @@
                         <th> ##word.barcode## </th>
                         <th> ##word.stores_size## </th>
                         <th>##word.average_cost##</th>
-
-                        <th>##word.total_in##</th>
                         <th>##word.count_in##</th>
-                        <th>##word.total_out##</th>
+                        <!-- <th>##word.total_in##</th> -->
+                        <!-- <th>##word.total_out##</th> -->
                         <th>##word.count_out##</th>
-
-
-               
+                        <th>##word.safes_payments_safe_balance##</th>
                     </tr>
 
                     <tr ng-repeat="c in list | orderBy : '-id'">
@@ -55,10 +52,11 @@
                         <td class="blue"> {{c.barcode}} </td>
                         <td> {{c.size}} </td>
                         <td> {{c.average_cost}} </td>
-                        <td> {{c.total_in}} </td>
+                        <!-- <td> {{c.total_in}} </td> -->
                         <td> {{c.count_in}} </td>
-                        <td> {{c.total_out}} </td>
+                        <!-- <td> {{c.total_out}} </td> -->
                         <td> {{c.count_out}} </td>
+                        <td> {{c.current_count}} </td>
                      
                     </tr>
                 </table>

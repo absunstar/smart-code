@@ -19,7 +19,7 @@
     {"name" : "safes_payments_sources" , "en" : "Source Name" , "ar" : " إسم المعاملة   "}, 
     {"name" : "safes_payments_store_in" , "en" : "IN " , "ar" : " الوارد"}, 
     {"name" : "safes_payments_store_out" , "en" : " OUT" , "ar" : "المنصرف"}, 
-    {"name" : "safes_payments_safe_balance" , "en" : " Safe Balance" , "ar" : " الرصيد الحالية"}, 
+    {"name" : "safes_payments_safe_balance" , "en" : " Safe Balance" , "ar" : " الرصيد الحالي"}, 
     {"name" : "safes_payments_pre_safe_balance" , "en" : " Pre Safe Balance" , "ar" : " الرصيد السابقة"},
     {"name" : "safes_payments_description" , "en" : " Descroiption" , "ar" : "البيان"},
 

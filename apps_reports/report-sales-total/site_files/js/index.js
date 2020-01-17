@@ -19,7 +19,15 @@ app.controller("report_sales_total", function ($scope, $http, $timeout) {
 
         if (response.data.done) {
           $scope.count = response.data.doc.length;
-          $scope.list = response.data.doc;          
+          $scope.list = response.data.doc;
+          $scope.average_cost = 0;
+          $scope.count = 0;
+          $scope.total = 0;
+          $scope.list.forEach(_list => {
+            $scope.average_cost += (_list.average_cost || 0);
+            $scope.count += _list.count;
+            $scope.total += _list.total;
+          });
         }
       },
       function (err) {
