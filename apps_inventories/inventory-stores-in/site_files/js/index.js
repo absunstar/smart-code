@@ -777,6 +777,20 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
   $scope.update = function () {
     $scope.error = '';
 
+    if ($scope.defaultSettings.inventory && $scope.defaultSettings.inventory.dont_max_discount_items) {
+      let max_discount = false;
+      $scope.store_in.items.forEach(_itemSize => {
+        if (_itemSize.discount.value > _itemSize.discount.max)
+          max_discount = true;
+      });
+
+      if (max_discount) {
+        $scope.error = "##word.err_maximum_discount##";
+        return;
+      }
+    }
+
+
     $scope.busy = true;
     $http({
       method: "POST",
