@@ -87,8 +87,8 @@ module.exports = function init(site) {
 
                 } else if (docs[i].transaction_type == 'out') {
 
-                  _size.total_out = size.total_out + (docs[i].total || 0)
-                  _size.count_out = size.count_out + (docs[i].count || 0)
+                  _size.total_out = _size.total_out + (docs[i].total || 0)
+                  _size.count_out = _size.count_out + (docs[i].count || 0)
                   _size.average_cost = (site.toNumber(_size.average_cost || 0) + (site.toNumber(docs[i].average_cost || 0)) * site.toNumber((docs[i].count || 0)))
 
                 }
