@@ -1,0 +1,7 @@
+[{
+    "module_name" : "accounting" ,
+    "name": "report_transaction_total_admin",
+    "en": "Report Transaction Total Admin",
+    "ar": "تقرير إجمالي كارتة الصنف",
+    "permissions": ["report_transaction_total_manage"]
+}]

@@ -65,6 +65,11 @@
         "ar": "العمل بفك الترحيل"
     },
     {
+        "name": "system_total_transaction_menus",
+        "en": "Total Item Transaction Menu",
+        "ar": "قائمة إجمالي كارتة الصنف"
+    },
+    {
         "name": "posting",
         "en": "Posting",
         "ar": "ترحيل"
