@@ -35,11 +35,12 @@
                 <br>
                 <br>
                 <br>
-                <div class="row">
+                <div class="row" ng-show="complexView.complex_items.length > 0">
                     <table class="table hover">
                         <tr>
                             <th>##word.item_name##</th>
                             <th>##word.stores_items_sizes##</th>
+                            <th>##word.barcode##</th>
                             <th>##word.price##</th>
                             <th>##word.item_count##</th>
                             <th ng-hide="complexView.view">##word.actions##</th>
@@ -52,7 +53,11 @@
                             </td>
                             <td>
                                 <br>
-                                <p class="center bold blue">{{i.size}}</p>
+                                <p class="center bold">{{i.size}}</p>
+                            </td>
+                            <td>
+                                <br>
+                                <p class="center bold blue">{{i.barcode}}</p>
                             </td>
                             <td>
                                 <br>

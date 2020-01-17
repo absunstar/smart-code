@@ -156,6 +156,8 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
 
     }
     site.showModal('#addCategoryItemModal');
+    document.querySelector('#addCategoryItemModal .tab-link').click();
+
   };
 
   $scope.add = function () {
@@ -211,6 +213,7 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
     $scope.view(category_item);
 
     site.showModal('#updateCategoryItemModal');
+    document.querySelector('#updateCategoryItemModal .tab-link').click();
   };
 
   $scope.update = function () {
@@ -246,6 +249,8 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
     $scope.view(category_item);
     $scope.category_item = {};
     site.showModal('#deleteCategoryItemModal');
+    document.querySelector('#deleteCategoryItemModal .tab-link').click();
+
     $scope.error = "##word.warning_message##"
   };
 
@@ -277,6 +282,8 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
     $scope.view(category_item);
     $scope.category_item = {};
     site.showModal('#viewCategoryItemModal');
+    document.querySelector('#viewCategoryItemModal .tab-link').click();
+
   };
 
   $scope.delete = function () {

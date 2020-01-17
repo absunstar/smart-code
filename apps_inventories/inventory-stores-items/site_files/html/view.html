@@ -1,21 +1,122 @@
 <div ng-hide="busy" class="row" id="v1">
-    <div class="col9">
-        <br>
-        <table class="table hover">
 
-            <tr>
-                <td class="title bold">##word.stores_items_name##</td>
-                <td class="center bold">{{category_item.name}}</td>
-            </tr>
+    <div class="tabs col">
+        <div class="tabs-header full">
+            <a class="tab-link" onclick="site.showTabContent(event, '#basic_information')">
+                ##word.basic_information## </a>
 
-            <tr>
-                <td class="title bold">##word.item_group##</td>
-                <td class="center bold">{{category_item.item_group.name}}</td>
-            </tr>
+            <a class="tab-link" onclick="site.showTabContent(event, '#stores_items_sizes')">
+                ##word.stores_items_sizes## </a>
+        </div>
 
-            <tr>
-                <td class="title bold">##word.stores_items_sizes##</td>
-                <td>
+
+
+
+        <div class="tabs-content full bold">
+
+            <div id="basic_information" class="tab-content">
+
+                <fieldset>
+                    <legend>##word.basic_information##</legend>
+
+                    <div class="col9">
+                        <div class="row">
+
+
+                            <table class="table hover">
+
+                                <tr>
+                                    <td class="title bold">##word.stores_items_name##</td>
+                                    <td class="center bold">{{category_item.name}}</td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title bold">##word.item_group##</td>
+                                    <td class="center bold">{{category_item.item_group.name}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="title bold">##word.main_unit##</td>
+                                    <td class="center bold">{{category_item.main_unit.name}}</td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title">##word.stores_items_allow_sell##</td>
+                                    <td ng-show="category_item.allow_sell == true" class="green center"> ##word.yes##
+                                    </td>
+                                    <td ng-show="category_item.allow_sell == false" class="red center"> ##word.not##
+                                    </td>
+                                </tr>
+
+                                <td class="title">##word.stores_items_allow_buy##</td>
+                                <td ng-show="category_item.allow_buy == true" class="green center"> ##word.yes##
+                                </td>
+                                <td ng-show="category_item.allow_buy == false" class="red center"> ##word.not##
+                                </td>
+                                </tr>
+
+                                <td class="title">##word.stores_items_is_pos##</td>
+                                <td ng-show="category_item.is_pos == true" class="green center"> ##word.yes##
+                                </td>
+                                <td ng-show="category_item.is_pos == false" class="red center"> ##word.not##
+                                </td>
+                                </tr>
+
+
+                            </table>
+                        </div>
+
+                        <br>
+                        <br>
+                        <hr>
+                        <br>
+
+                        <div class="col5" ng-show="category_item.units_list.length > 0">
+
+                            <br>
+                            <h2 class="blue bold center">##word.units##</h2>
+
+                            <br>
+                            <table class="table hover loaded" id="t1">
+
+                                <tr>
+                                    <th>##word.unit##</th>
+                                    <th>##word.unit_convert##</th>
+                                </tr>
+
+                                <tr ng-repeat="c in category_item.units_list">
+
+                                    <td>
+                                        <p class="bold center"> {{c.name}} </p>
+                                    </td>
+                                    <td>
+                                        <p class="bold blue center"> {{c.convert}} </p>
+                                    </td>
+
+                                </tr>
+                            </table>
+                        </div>
+
+                    </div>
+
+                    <div class="col3 not-print">
+                        <br>
+                        <i-image view category="stores_images" ng-model="category_item.image_url"></i-image>
+                        <br>
+
+                        <i-files view ng-model="category_item.files"></i-files>
+
+                    </div>
+                </fieldset>
+            </div>
+
+
+            <div id="stores_items_sizes" class="tab-content">
+                <br>
+                <br>
+                <fieldset>
+                    <legend>##word.stores_items_sizes##</legend>
+                    <br>
+                    <br>
                     <table class="table center hover">
                         <tr>
                             <th>##word.logo##</th>
@@ -36,12 +137,13 @@
                                 <i-image view class="logo" ng-model="item.image_url"></i-image>
                             </td>
                             <td class="center bold"> <br>{{item.size}}</td>
-                            <td class="center bold"> <br>{{item.barcode}}</td>
-                            <td class="center bold blue"><br>{{item.cost}}</td>
-                            <td class="center bold blue"><br>{{item.price}}</td>
-                            <td class="center bold red"><br>{{item.average_cost}}</td>
-                            <td class="center bold blue"><br>{{item.current_count}}</td>
-                            <td class="center bold blue"><br>{{item.start_count}}</td>
+                            <td class="center bold blue"> <br>{{item.barcode}}</td>
+                            <td class="center bold red"><br>{{item.cost}}</td>
+                            <td class="center bold green"><br>{{item.price}}</td>
+                            <td class="center bold blue"><br>{{item.average_cost}}</td>
+                            <td class="center bold"><br>{{item.current_count}}</td>
+                            <td class="center bold"><br>{{item.start_count}}</td>
+
                             <td class="center bold blue"><br>
                                 <p>##word.maximum_discount## : <b class="red">{{item.discount.max}}</b></p>
                                 <p>##word.discount## : <b class="red">{{item.discount.value}} </b></p>
@@ -49,39 +151,33 @@
                                     ##word.le##</b>
                                 <b class="red" ng-show="item.discount.type == 'percent'"> % </b>
                             </td>
-                </td>
 
-                <td>
-                    <div class="row center">
-                        <i-checkbox label="##word.stores_items_complex##" ng-model="item.item_complex">
-                        </i-checkbox>
-                        <i-button ng-show="item.item_complex == true" type="view" label="##word.complex_items##"
-                            ng-click="item.view = true ;showComplexItemsView(item)">
-                        </i-button>
-                    </div>
+                            <td>
+                                <div class="row center">
+                                    <p>
+                                        <i-checkbox label="##word.stores_items_complex##" ng-model="item.item_complex">
+                                        </i-checkbox>
+                                    </p>
+                                    <p>
+                                        <i-button ng-show="item.item_complex == true" type="view"
+                                            label="##word.complex_items##"
+                                            ng-click="item.view = true ;showComplexItemsView(item)">
+                                        </i-button>
+                                    </p>
+                                </div>
 
-                    <div class="row center">
-                        <i-button type="view" label="##word.branches_balances##" ng-click="branchesBalances(item)">
-                        </i-button>
-                    </div>
+                                <div class="row center">
+                                    <i-button type="view" label="##word.branches_balances##"
+                                        ng-click="branchesBalances(item)">
+                                    </i-button>
+                                </div>
 
-                </td>
-            </tr>
-        </table>
-        </td>
-        </tr>
-
-        </table>
-
-    </div>
-
-    <div class="col3 center not-print">
-        <br>
-        <i-image view category="stores_images" ng-model="category_item.image_url"></i-image>
-        <br>
-
-        <i-files view ng-model="category_item.files"></i-files>
-
+                            </td>
+                        </tr>
+                    </table>
+                </fieldset>
+            </div>
+        </div>
     </div>
 </div>
 <div x-import="inventory-stores-items/action_info.html"></div>

@@ -9,11 +9,7 @@
         "en": "New Employee",
         "ar": "موظف جديد"
     },
-    {
-        "name": "basic_information",
-        "en": "Basic Information",
-        "ar": "البيانات الأساسية"
-    },
+  
     {
         "name": "employment_date",
         "en": "Employment Date",
