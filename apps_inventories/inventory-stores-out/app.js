@@ -524,6 +524,8 @@ module.exports = function init(site) {
 
     where['company.id'] = site.get_company(req).id
 
+    where['items.unit'] = null || undefined
+
     $stores_out.findMany({
       select: req.body.select || {},
       where: where,
@@ -534,10 +536,24 @@ module.exports = function init(site) {
       if (!err) {
         response.done = true
 
-        docs.forEach(_doc => {
-          _doc.posting = false
-          $stores_out.update(_doc)
-        });
+        site.getDefaultSetting(req, callback => {
+
+          let unit = {}
+          if (callback.inventory.unit)
+            unit = callback.inventory.unit
+
+          if (unit.id)
+            docs.forEach(_doc => {
+              _doc.items.forEach(_item => {
+                _item.unit = {
+                  id: unit.id,
+                  name: unit.name,
+                  convert: 1
+                }
+              });
+              $stores_out.update(_doc)
+            });
+        })
 
       } else {
         response.error = err.message

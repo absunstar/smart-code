@@ -28,7 +28,31 @@ app.controller("default_setting", function ($scope, $http) {
     $scope.search = new Search();
   };
 
-
+  $scope.loadUnits = function () {
+    $scope.busy = true;
+    $scope.unitsList = [];
+    $http({
+      method: "POST",
+      url: "/api/units/all",
+      data: {
+        select: {
+          id: 1,
+          name: 1
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.unitsList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
 
   $scope.loadVendors = function () {
     $scope.error = '';
@@ -482,6 +506,7 @@ app.controller("default_setting", function ($scope, $http) {
     )
   };
 
+  $scope.loadUnits();
   $scope.loadStores();
   $scope.loadSafesBox();
   $scope.loadSafesBank();

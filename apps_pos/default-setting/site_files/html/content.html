@@ -148,6 +148,9 @@
                         </i-list>
                     </div>
                     <div class="row">
+                        <i-list class="col4" ng-model="default_setting.inventory.unit" ng-search="_search.$search_unit"
+                            label="##word.unit##" items="unitsList">
+                        </i-list>
                         <i-list class="col3" ng-model="default_setting.inventory.delegate"
                             ng-search="_search.$$items_group_search" label="##word.delegate##" items="delegatesList">
                         </i-list>

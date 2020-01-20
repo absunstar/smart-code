@@ -65,8 +65,6 @@
                                 </div>
                             </div>
 
-
-
                             <br>
                             <br>
                             <hr>
@@ -100,14 +98,18 @@
                                             </td>
 
                                             <td>
-                                                <i-control ng-model="c.convert" type="number">
+                                                <i-control ng-disabled="category_item.main_unit.id == c.id"
+                                                    ng-model="c.convert" type="number">
                                                 </i-control>
                                             </td>
+
                                             <td>
                                                 <i-button type="delete center"
+                                                    ng-hide="category_item.main_unit.id == c.id"
                                                     ng-click="deleteUnit(c)">
                                                 </i-button>
                                             </td>
+
                                         </tr>
                                     </table>
                                 </div>
@@ -125,7 +127,8 @@
                 <div id="stores_items_sizes" class="tab-content">
                     <fieldset>
                         <legend> ##word.stores_items_sizes## </legend>
-                        <i-button id="add_category_item_btn" onclick="site.showModal('#addSizesModal')" type="add" label="##word.add_items_sizes##">
+                        <i-button id="add_category_item_btn" onclick="site.showModal('#addSizesModal')" type="add"
+                            label="##word.add_items_sizes##">
                         </i-button>
 
                         <br>

@@ -24,7 +24,8 @@
                             ng-keydown="getTenantList($event)"></i-control>
 
                         <i-list class="col4" items="tenantList" ng-model="default_setting.general_Settings.tenant"
-                           display="name_ar" ng-search="default_setting.general_Settings.$tenant_search" label="##word.tenant##">
+                            display="name_ar" ng-search="default_setting.general_Settings.$tenant_search"
+                            label="##word.tenant##">
                         </i-list>
                     </div>
                     <div class="row">
@@ -148,6 +149,9 @@
                         </i-list>
                     </div>
                     <div class="row">
+                        <i-list class="col4" ng-model="default_setting.inventory.unit" ng-search="_search.$search_unit"
+                            label="##word.unit##" items="unitsList">
+                        </i-list>
                         <i-list class="col3" ng-model="default_setting.inventory.delegate"
                             ng-search="_search.$$items_group_search" label="##word.delegate##" items="delegatesList">
                         </i-list>

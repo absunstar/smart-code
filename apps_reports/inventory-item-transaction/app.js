@@ -350,7 +350,9 @@ module.exports = function init(site) {
 
     where['company.id'] = site.get_company(req).id
 
-    $item_transaction.deleteMany({
+    where['unit'] = null || undefined
+
+    $item_transaction.findMany({
       select: req.body.select || {},
       where: where,
       sort: req.body.sort || {
@@ -359,6 +361,26 @@ module.exports = function init(site) {
     }, (err, docs) => {
       if (!err) {
         response.done = true
+
+        site.getDefaultSetting(req, callback => {
+
+          let unit = {}
+          if (callback.inventory.unit)
+            unit = callback.inventory.unit
+
+          if (unit.id)
+            docs.forEach(_doc => {
+              _doc.unit = {
+                id: unit.id,
+                name: unit.name,
+                convert: 1
+              }
+
+              _doc.unit_count = _doc.count
+
+              $item_transaction.update(_doc)
+            });
+        })
 
       } else {
         response.error = err.message

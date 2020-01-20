@@ -446,7 +446,31 @@ app.controller("default_setting", function ($scope, $http) {
     )
   };
 
-
+  $scope.loadUnits = function () {
+    $scope.busy = true;
+    $scope.unitsList = [];
+    $http({
+      method: "POST",
+      url: "/api/units/all",
+      data: {
+        select: {
+          id: 1,
+          name: 1
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.unitsList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
 
   $scope.saveSetting = function (where) {
     $scope.busy = true;
@@ -477,6 +501,7 @@ app.controller("default_setting", function ($scope, $http) {
   $scope.getTrainerList();
   $scope.getPaymentMethodList();
   $scope.getDiscountMethodList();
+  $scope.loadUnits();
   $scope.loadStoresOutTypes();
   $scope.loadStoresInTypes();
   $scope.loadItemsGroups();

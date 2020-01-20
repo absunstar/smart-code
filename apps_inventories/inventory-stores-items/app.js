@@ -20,8 +20,9 @@ module.exports = function init(site) {
       return
     }
 
-    let totalCost = obj.cost * site.toNumber(obj.count);
     let total_unit = obj.count * obj.unit.convert;
+
+    let totalCost = obj.cost * site.toNumber(total_unit);
 
     let obj_branch = {
       name_ar: obj.branch.name_ar,
@@ -778,11 +779,60 @@ module.exports = function init(site) {
 
         site.getDefaultSetting(req, callback => {
           let store = {}
-          if (callback.inventory && callback.inventory.store)
-            store = callback.inventory.store
+          let unit = {}
+
+          if (callback.inventory) {
+            if (callback.inventory.store)
+              store = callback.inventory.store
+            if (callback.inventory.unit)
+              unit = callback.inventory.unit
+          }
 
           docs.forEach(_docs => {
+
+            if (!_docs.main_unit) {
+              _docs.main_unit = unit
+
+              _docs.units_list = [{
+                id: unit.id,
+                name: unit.name,
+                convert: 1
+              }]
+            }
+
             _docs.sizes.forEach(_sizes => {
+
+              if (unit.id)
+                if (_sizes.size_units_list == null || undefined) {
+
+                  _sizes.size_units_list = [{
+                    id: unit.id,
+                    name: unit.name,
+                    count: _sizes.current_count,
+                  }]
+
+                  _sizes.branches_list.forEach(_branch => {
+                    _branch.size_units_list = [{
+                      id: unit.id,
+                      name: unit.name,
+                      count: _branch.current_count
+                    }]
+
+                    _branch.stores_list.forEach(_store => {
+                      _store.size_units_list = [{
+                        id: unit.id,
+                        name: unit.name,
+                        count: _store.current_count
+                      }]
+
+                    });
+                  });
+
+                }
+
+
+
+
               if (_sizes.discount == null || undefined)
                 _sizes.discount = { max: 0, value: 0, type: 'number' }
 
@@ -844,7 +894,7 @@ module.exports = function init(site) {
 
 
 
-    // site.post("/api/stores_items/sizes_all", (req, res) => {
+  // site.post("/api/stores_items/sizes_all", (req, res) => {
   //   let response = {
   //     done: false
   //   }
