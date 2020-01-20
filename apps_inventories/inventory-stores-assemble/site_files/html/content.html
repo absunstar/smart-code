@@ -38,6 +38,7 @@
                             <th>##word.stores_assemble_item_name##</th>
                             <th>##word.barcode##</th>
                             <th>##word.stores_assemble_item_size##</th>
+                            <th>##word.unit##</th>
                             <th>##word.quantity##</th>
                             <th>##word.actions##</th>
                         </tr>
@@ -48,7 +49,11 @@
                             <td> <br> {{itm.barcode}}</td>
                             <td> <br> {{itm.size}}</td>
                             <td>
-                                <i-control ng-change="calcSize(itm)" type="number" ng-model="itm.count"></i-control>
+                                <i-list ng-model="itm.unit" ng-search="_search.$category_item.$unit_search"
+                                 items="itm.units_list"></i-list>
+                            </td>
+                            <td>
+                                <i-control type="number" ng-model="itm.count"></i-control>
                             </td>
 
 

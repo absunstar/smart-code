@@ -75,6 +75,7 @@ module.exports = function init(site) {
         delete itm._id
         delete itm.id
         delete itm.type
+        delete itm.units_list
 
         if (itm.current_status == 'damaged') {
           $item_transaction.update(itm, () => {
@@ -96,10 +97,11 @@ module.exports = function init(site) {
 
         if (docs && docs.length > 0) {
           itm.last_count = docs[0].current_count
-          itm.current_count = itm.last_count + itm.count
-
+          itm.current_count = itm.last_count + (itm.count * itm.unit.convert)
+          itm.unit_count = itm.count
           itm.last_price = docs[0].price
-          itm.current_status = itm.current_status || 'damaged'
+          itm.count = itm.count * itm.unit.convert
+          itm.current_status = itm.current_status
           $item_transaction.add(itm, () => {
             $item_transaction.trackBusy = false
           })
@@ -108,16 +110,17 @@ module.exports = function init(site) {
 
           // itm.last_count = (itm.current_count || 0)  -  itm.count 
           itm.last_count = itm.current_count
-          itm.current_count = itm.last_count + itm.count
+          itm.current_count = itm.last_count + (itm.count * itm.unit.convert)
+          itm.unit_count = itm.count
           itm.last_price = itm.price
-          itm.current_status = itm.current_status || 'damaged'
+          itm.count = itm.count * itm.unit.convert
+          itm.current_status = itm.current_status
           $item_transaction.add(itm, () => {
             $item_transaction.trackBusy = false
           })
         }
       })
     }
-
   })
 
   $item_transaction.outBusy = false
@@ -134,15 +137,17 @@ module.exports = function init(site) {
     delete itm.id
     delete itm._id
     delete itm.type
+    delete itm.units_list
 
     $item_transaction.findMany({ sort: { id: -1 }, where: { 'barcode': itm.barcode, name: itm.name, 'branch.code': itm.branch.code, 'company.id': itm.company.id, 'store.id': itm.store.id } }, (err, docs) => {
 
       if (docs && docs.length > 0) {
 
         itm.last_count = docs[0].current_count
-        itm.current_count = itm.last_count - itm.count
+        itm.unit_count = itm.count
+        itm.current_count = itm.last_count - (itm.count * itm.unit.convert)
         itm.last_price = docs[0].price
-
+        itm.count = itm.count * itm.unit.convert
         $item_transaction.add(itm, (err, doc) => {
 
           setTimeout(() => {
@@ -152,7 +157,9 @@ module.exports = function init(site) {
       } else {
 
         itm.last_count = itm.current_count || 0
-        itm.current_count = itm.last_count - itm.count
+        itm.current_count = itm.last_count - (itm.count * itm.unit.convert)
+        itm.unit_count = itm.count
+        itm.count = itm.count * itm.unit.convert
         itm.last_price = itm.price
         $item_transaction.add(itm, () => {
           setTimeout(() => {
@@ -209,6 +216,8 @@ module.exports = function init(site) {
       res.json(response)
     })
   })
+
+
 
   site.post("/api/item_transaction/all", (req, res) => {
 
@@ -277,7 +286,6 @@ module.exports = function init(site) {
       delete where['type_out']
     }
 
-
     where['company.id'] = site.get_company(req).id
     where['branch.code'] = site.get_branch(req).code
     response.done = false
@@ -298,6 +306,7 @@ module.exports = function init(site) {
       res.json(response)
     })
   })
+
 
   site.post("/api/item_transaction/get_size", (req, res) => {
     let response = {

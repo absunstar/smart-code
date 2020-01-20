@@ -5,7 +5,7 @@
             <span class="close">&times;</span>
             <h2>
                 ##word.stores_items_add## <i class="fa fa-plus"></i>
-                 
+
             </h2>
         </div>
         <div class="modal-body">
@@ -13,8 +13,112 @@
         </div>
         <h2 class="error">{{error}}</h2>
         <div class="modal-footer center">
-            <i-button id="add_category_item_btn" ng-click="add() ; addComplexItems()" type="add" label="##word.add##"></i-button>
+            <i-button id="add_category_item_btn" ng-click="add() ; addComplexItems()" type="add" label="##word.add##">
+            </i-button>
             <i-button onclick="site.hideModal('#addCategoryItemModal');" type="close" label="##word.close##"></i-button>
+        </div>
+    </div>
+
+
+</div>
+
+
+
+<div id="addSizesModal" class="modal" fixed>
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.add_items_sizes## <i class="fa fa-plus"></i>
+
+            </h2>
+        </div>
+        <div class="modal-body">
+
+            <div class="row">
+
+                <div class="col7">
+
+                    <div class="row">
+
+                        <div class="row center">
+
+                            <i-control class="col3" ng-model="item.size" label="##word.stores_items_size##" type="text">
+                            </i-control>
+                            <i-control class="col3" ng-hide="defaultSettings.inventory.auto_barcode_generation"
+                                ng-model="item.barcode" label="##word.barcode##" type="text">
+                            </i-control>
+
+
+                        </div>
+
+                        <div class="row">
+                            <i-control class="col3" ng-model="item.cost" label="##word.stores_items_cost##"
+                                type="number">
+                            </i-control>
+                            <i-control class="col3" ng-model="item.price" label="##word.stores_items_price##"
+                                type="number">
+                            </i-control>
+                            <i-control class="col3" ng-model="item.average_cost" label="##word.average_cost##"
+                                type="number">
+                            </i-control>
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col4">
+
+                                <div class="row ">
+                                    <i-control type="number" class="col7" label="##word.maximum_discount##"
+                                        ng-model="item.discount.max">
+                                    </i-control>
+                                    <i-control type="number" class="col5" label="##word.discount##"
+                                        ng-model="item.discount.value"></i-control>
+                                </div>
+                                <div class="row center">
+                                    <i-radio ng-model="item.discount.type" label="##word.discount_types_number##"
+                                        ng-value="number" group="type" type="radio"></i-radio>
+                                    <i-radio ng-model="item.discount.type" label="##word.discount_types_percent##"
+                                        ng-value="percent" group="type" type="radio"></i-radio>
+                                </div>
+                            </div>
+
+                            <div class="col1"></div>
+                            <i-list x-feature="restaurant" class="col4" ng-model="item.kitchen"
+                                ng-search="_search.$kitchen_search" label="##word.kitchen_name##"
+                                items="itemsKitchenList">
+                            </i-list>
+
+                            <div class="col2"></div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="col3">
+
+                    <i-checkbox label="##word.stores_items_complex##" ng-model="item.item_complex">
+                    </i-checkbox>
+
+                    <br>
+                    <i-button ng-hide="!item.item_complex" type="view" label="##word.complex_items##"
+                        ng-click="showComplexItems()"> </i-button>
+                    <br>
+
+                </div>
+
+                <div class="col2">
+                    <i-image category="stores_images" ng-model="item.image_url"></i-image>
+                </div>
+
+            </div>
+        </div>
+        <h2 class="error">{{error}}</h2>
+        <div class="modal-footer center">
+            <i-button id="add_category_item_btn" ng-click="addSize()" type="add" label="##word.stores_items_add_size##">
+            </i-button>
+            <i-button onclick="site.hideModal('#addSizesModal')" type="close" label="##word.close##"></i-button>
         </div>
     </div>
 

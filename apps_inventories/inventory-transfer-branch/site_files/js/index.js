@@ -182,6 +182,8 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
           image_url: $scope.item.image_url,
           name: _size.name,
           size: _size.size,
+          units_list: _size.units_list,
+          unit: _size.unit,
           barcode: _size.barcode,
           average_cost: _size.average_cost,
           count: _size.count,
@@ -235,6 +237,8 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
                   if (_size.barcode == $scope.item.search_item_name) {
                     _size.name = _item.name
                     _size.store_from = $scope.transfer_branch.store_from
+                    _size.units_list = _item.units_list;
+                    _size.unit = _item.units_list[0];
                     _size.count = 1
                     _size.total = _size.count * _size.cost
                     if (_size.branches_list && _size.branches_list.length > 0) {
@@ -300,6 +304,10 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
       _item.store_from = $scope.transfer_branch.store_from
       _item.count = 1;
       _item.total = _item.count * _item.cost
+
+      _item.units_list = $scope.item.name.units_list
+      _item.unit = $scope.item.name.units_list[0];
+
       if (_item.branches_list && _item.branches_list.length > 0) {
         let foundBranch = false
         let indxBranch = 0
@@ -355,6 +363,8 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
                 if (_size.barcode == $scope.search_barcode) {
                   _size.name = response.data.list[0].name;
                   _size.store_from = $scope.transfer_branch.store_from;
+                  _size.units_list = response.data.list[0].units_list;
+                  _size.unit = response.data.list[0].units_list[0];
                   _size.count = 1;
                   _size.total = _size.count * _size.cost;
                   if (_size.branches_list && _size.branches_list.length > 0) {

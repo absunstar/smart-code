@@ -37,6 +37,34 @@
                     </table>
                 </div>
 
+                <div class="row">
+                    <div class="col6" ng-show="branchesBalance.size_units_list.length > 0">
+
+                        <br>
+                        <h2 class="blue bold center">##word.units##</h2>
+
+                        <br>
+                        <table class="table hover loaded" id="t1">
+
+                            <tr>
+                                <th>##word.unit##</th>
+                                <th>##word.item_transaction_count##</th>
+                            </tr>
+
+                            <tr ng-repeat="c in branchesBalance.size_units_list">
+
+                                <td>
+                                    <p class="bold center"> {{c.name}} </p>
+                                </td>
+                                <td>
+                                    <p class="bold blue center"> {{c.count}} </p>
+                                </td>
+
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
             </form>
         </div>
 

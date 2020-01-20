@@ -70,32 +70,36 @@
                         <hr>
                         <br>
 
-                        <div class="col5" ng-show="category_item.units_list.length > 0">
+                        <div class="row">
+                            <div class="col5" ng-show="category_item.units_list.length > 0">
 
-                            <br>
-                            <h2 class="blue bold center">##word.units##</h2>
+                                <br>
+                                <h2 class="blue bold center">##word.units##</h2>
 
-                            <br>
-                            <table class="table hover loaded" id="t1">
+                                <br>
+                                <table class="table hover loaded" id="t1">
 
-                                <tr>
-                                    <th>##word.unit##</th>
-                                    <th>##word.unit_convert##</th>
-                                </tr>
+                                    <tr>
+                                        <th>##word.unit##</th>
+                                        <th>##word.unit_convert##</th>
+                                    </tr>
 
-                                <tr ng-repeat="c in category_item.units_list">
+                                    <tr ng-repeat="c in category_item.units_list">
 
-                                    <td>
-                                        <p class="bold center"> {{c.name}} </p>
-                                    </td>
-                                    <td>
-                                        <p class="bold blue center"> {{c.convert}} </p>
-                                    </td>
+                                        <td>
+                                            <p class="bold center"> {{c.name}} </p>
+                                        </td>
+                                        <td>
+                                            <p class="bold blue center"> {{c.convert}} </p>
+                                        </td>
 
-                                </tr>
-                            </table>
+                                    </tr>
+                                </table>
+                            </div>
+
+
+
                         </div>
-
                     </div>
 
                     <div class="col3 not-print">
@@ -172,6 +176,11 @@
                                     </i-button>
                                 </div>
 
+                                <div class="row center">
+                                    <i-button type="view" label="##word.units##" ng-click="companyUnits(item)">
+                                    </i-button>
+                                </div>
+
                             </td>
                         </tr>
                     </table>
@@ -180,4 +189,6 @@
         </div>
     </div>
 </div>
+
+
 <div x-import="inventory-stores-items/action_info.html"></div>

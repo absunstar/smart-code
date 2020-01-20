@@ -13,9 +13,63 @@
 
         <h2>{{error}}</h2>
         <div class="modal-footer center">
-            <i-button type="print" onclick="site.print('#viewCategoryItemModal #v1')" label=" ##word.print##"></i-button>
+            <i-button type="print" onclick="site.print('#viewCategoryItemModal #v1')" label=" ##word.print##">
+            </i-button>
 
             <i-button type="close" onclick="site.hideModal('#viewCategoryItemModal')" label="##word.close##"></i-button>
         </div>
     </div>
+</div>
+
+
+<div id="companyUnitsModal" class="modal">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                <i class="fa fa-plus"></i> ##word.units## </h2>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+
+                <div class="col2"></div>
+                <div class="col8" ng-show="company_unit.size_units_list.length > 0">
+
+                    <br>
+                    <h2 class="blue bold center">##word.units##</h2>
+
+                    <br>
+                    <table class="table hover loaded" id="t1">
+
+                        <tr>
+                            <th>##word.unit##</th>
+                            <th>##word.item_transaction_count##</th>
+                        </tr>
+
+                        <tr ng-repeat="c in company_unit.size_units_list">
+
+                            <td>
+                                <p class="bold center"> {{c.name}} </p>
+                            </td>
+                            <td>
+                                <p class="bold blue center"> {{c.count}} </p>
+                            </td>
+
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+        <h2 class="error">{{error}}</h2>
+        <div class="modal-footer center">
+        
+            </i-button>
+            <i-button type="close" onclick="site.hideModal('#companyUnitsModal')" label="##word.close##"></i-button>
+
+        </div>
+    </div>
+
+
 </div>

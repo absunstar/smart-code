@@ -1,18 +1,6 @@
 app.controller("stores_items", function ($scope, $http, $timeout) {
   $scope._search = {};
 
-  $scope.category_item = {
-    image_url: '/images/category_item.png',
-    allow_sell: true,
-    allow_buy: true,
-    is_pos: true,
-    sizes: [],
-    units_list: [],
-    with_discount: false
-  };
-
-  $scope.search = {};
-
 
   $scope.addSize = function () {
 
@@ -128,13 +116,13 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
     $scope.category_code = '';
     $scope.item = {};
     $scope.items_size = {};
-
     $scope.category_item = {
       image_url: '/images/category_item.png',
       allow_sell: true,
       allow_buy: true,
       is_pos: true,
       sizes: [],
+      units_list: [],
       with_discount: false
     };
 
@@ -251,8 +239,8 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
     site.showModal('#deleteCategoryItemModal');
     document.querySelector('#deleteCategoryItemModal .tab-link').click();
 
-    $scope.error = "##word.warning_message##"
-  };
+/*     $scope.error = "##word.warning_message##"
+ */  };
 
   $scope.view = function (category_item) {
     $scope.busy = true;
@@ -434,26 +422,6 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.loadItemSize = function () {
-    $scope.error = '';
-    $scope.busy = true;
-    $scope.itemSizeList = [];
-    $http({
-      method: "POST",
-      url: "/api/stores_items/sizes_all"
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          $scope.itemSizeList = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
-  };
 
   $scope.handelItems = function () {
     $scope.error = '';
@@ -517,20 +485,35 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.item.complex_items = $scope.item.complex_items || [];
 
+
+    foundSize = $scope.item.complex_items.some(_itemSize => _itemSize.barcode == $scope.items_size.barcode);
+
     if ($scope.items_size && $scope.items_size.size) {
-      $scope.item.complex_items.unshift($scope.items_size);
+
+      if (!foundSize)
+        $scope.item.complex_items.unshift($scope.items_size);
+
+      else $scope.error = "##word.dublicate_item##"
 
     } else $scope.error = "##word.Err_should_select_item##";
 
     $scope.items_size = {};
   };
+
   $scope.incertComplexItemView = function (item) {
     $scope.error = '';
     item.complex_items = item.complex_items || [];
 
-    if ($scope.items_size && $scope.items_size.size)
-      item.complex_items.unshift($scope.items_size);
-    else $scope.error = "##word.Err_should_select_item##";
+    foundSize = item.complex_items.some(_itemSize => _itemSize.barcode == $scope.items_size.barcode);
+
+    if (!foundSize && $scope.items_size && $scope.items_size.size) {
+
+      if (!foundSize)
+        item.complex_items.unshift($scope.items_size);
+
+      else $scope.error = "##word.dublicate_item##"
+
+    } else $scope.error = "##word.Err_should_select_item##";
 
     $scope.items_size = {};
   };
@@ -593,10 +576,44 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
   $scope.addUnitsList = function (category_item) {
     $scope.error = '';
     category_item.units_list = category_item.units_list || [];
-    if ($scope.unit.name)
-      category_item.units_list.push({ name: $scope.unit.name });
+    if ($scope.unit) {
+
+      if (category_item.units_list.length > 0) {
+        let found = category_item.units_list.some(_unit => _unit.id == $scope.unit.id);
+        if (!found && $scope.unit.name) category_item.units_list.push({ name: $scope.unit.name, id: $scope.unit.id, convert: 1 });
+      }
+
+      else if ($scope.unit.name)
+        category_item.units_list.push({ name: $scope.unit.name, id: $scope.unit.id, convert: 1 });
+    }
     $scope.unit = {};
   };
+
+  $scope.deleteUnit = function (category_item) {
+    $scope.error = '';
+    $scope.category_item.units_list.splice($scope.category_item.units_list.indexOf(category_item), 1);
+
+  };
+
+  $scope.addMAinUnit = function (category_item) {
+    $scope.error = '';
+    category_item.units_list = category_item.units_list || [];
+    if (category_item.main_unit)
+      if (category_item.units_list.length > 0) {
+        let found = category_item.units_list.some(_unit => _unit.id == category_item.main_unit.id);
+        if (!found) category_item.units_list.unshift({ name: category_item.main_unit.name, id: category_item.main_unit.id, convert: 1 });
+      }
+
+      else if (category_item.main_unit.name)
+        category_item.units_list.unshift({ name: category_item.main_unit.name, id: category_item.main_unit.id, convert: 1 });
+  };
+
+  $scope.companyUnits = function (company_unit) {
+    $scope.error = '';
+    $scope.company_unit = company_unit;
+    site.showModal('#companyUnitsModal');
+  };
+
 
   $scope.storesBalances = function (storesBalance) {
     $scope.error = '';
@@ -637,6 +654,5 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
   $scope.loadUnits();
   $scope.loadAll();
   $scope.loadItems();
-  $scope.loadItemSize();
   $scope.loadKitchens();
 });

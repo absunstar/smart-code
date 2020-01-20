@@ -7,7 +7,7 @@
                 <td class="title">##word.stores_dismantle_date##</td>
                 <td class="center brown">{{store_dismantle.date |date:"dd - MM - yyyy" }}</td>
             </tr>
-     
+
             <tr>
                 <td class="title">##word.stores_dismantle_id##</td>
                 <td class="center">{{store_dismantle.number}}</td>
@@ -32,6 +32,7 @@
                             <th>##word.stores_dismantle_item_name##</th>
                             <th>##word.stores_dismantle_item_size##</th>
                             <th>##word.barcode##</th>
+                            <th>##word.unit##</th>
                             <th>##word.stores_dismantle_item_count##</th>
                         </tr>
                         <tr ng-repeat="itm in store_dismantle.items">
@@ -39,8 +40,9 @@
                             <td class="center">{{itm.name}}</td>
                             <td class="center">{{itm.size}}</td>
                             <td class="center">{{itm.barcode}}</td>
+                            <td class="center">{{itm.unit.name}}</td>
                             <td class="center">{{itm.count}}</td>
-                           
+
 
                         </tr>
                     </table>
@@ -48,7 +50,7 @@
             </tr>
 
 
-    
+
         </table>
     </div>
     <div class="col3">

@@ -52,6 +52,7 @@
                                 <th>##word.transfer_branch_item_name##</th>
                                 <th>##word.barcode##</th>
                                 <th>##word.transfer_branch_item_size##</th>
+                                <th>##word.unit##</th>
                                 <th>##word.transfer_branch_item_store_balance##</th>
                                 <th>##word.quantity##</th>
                                 <th>##word.actions##</th>
@@ -62,6 +63,10 @@
                                 <td> <br> {{itm.name}}</td>
                                 <td> <br> {{itm.barcode}}</td>
                                 <td> <br> {{itm.size}}</td>
+                                <td>
+                                    <i-list ng-model="itm.unit" ng-search="_search.$category_item.$unit_search"
+                                        ng-change="calcSize(itm)" items="itm.units_list"></i-list>
+                                </td>
                                 <td class="blue"> <br> {{itm.store_count}}</td>
                                 <td>
                                     <i-control type="number" ng-model="itm.count"></i-control>

@@ -10,9 +10,6 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
     sizes: []
   };
 
-
-
-
   $scope.deleteRow = function (itm) {
     $scope.error = '';
     $scope.store_assemble.items.splice($scope.store_assemble.items.indexOf(itm), 1);
@@ -180,6 +177,8 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
           image_url: $scope.item.image_url,
           name: _size.name,
           size: _size.size,
+          units_list: _size.units_list,
+          unit: _size.unit,
           barcode: _size.barcode,
           complex_items: _size.complex_items,
           average_cost: _size.average_cost,
@@ -219,7 +218,8 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
         method: "POST",
         url: "/api/stores_items/name_all",
         data: {
-          search: $scope.item.search_item_name
+          search: $scope.item.search_item_name,
+          where: { 'sizes.item_complex': true }
         }
       }).then(
         function (response) {
@@ -233,6 +233,8 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
                   if (_size.barcode == $scope.item.search_item_name) {
                     _size.name = _item.name
                     _size.store = $scope.store_assemble.store
+                    _size.units_list = _item.units_list;
+                    _size.unit = _item.units_list[0];
                     _size.count = 1
                     _size.total = _size.count * _size.cost
                     if (_size.branches_list && _size.branches_list.length > 0) {
@@ -267,7 +269,7 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
 
                     foundSize = $scope.item.sizes.some(_itemSize => _itemSize.barcode == _size.barcode);
 
-                    if (!foundSize) $scope.item.sizes.unshift(_size);
+                    if (!foundSize && _size.item_complex) $scope.item.sizes.unshift(_size);
                   };
                 });
               });
@@ -297,6 +299,8 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
     $scope.item.name.sizes.forEach(_item => {
       _item.name = $scope.item.name.name
       _item.store = $scope.store_assemble.store
+      _item.units_list = $scope.item.name.units_list
+      _item.unit = $scope.item.name.units_list[0];
       _item.count = 1;
       _item.total = _item.count * _item.cost
       if (_item.branches_list && _item.branches_list.length > 0) {
@@ -330,7 +334,7 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
 
       } else _item.store_count = 0
       foundSize = $scope.item.sizes.some(_itemSize => _itemSize.barcode == _item.barcode);
-      if (!foundSize)
+      if (!foundSize && _item.item_complex)
         $scope.item.sizes.unshift(_item);
     });
   };
@@ -342,7 +346,8 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
         method: "POST",
         url: "/api/stores_items/name_all",
         data: {
-          search: $scope.search_barcode
+          search: $scope.search_barcode,
+          where: { 'sizes.item_complex': true }
         }
       }).then(
         function (response) {
@@ -354,11 +359,13 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
                 if (_size.barcode == $scope.search_barcode) {
                   _size.name = response.data.list[0].name;
                   _size.store = $scope.store_assemble.store;
+                  _size.units_list = response.data.list[0].units_list;
+                  _size.unit = response.data.list[0].units_list[0];
                   _size.count = 1;
                   _size.discount = _size.discount;
                   _size.total = _size.count * _size.cost;
                   foundSize = $scope.store_assemble.items.some(_itemSize => _itemSize.barcode == _size.barcode);
-                  if (!foundSize)
+                  if (!foundSize && _size.item_complex)
                     $scope.store_assemble.items.unshift(_size);
                 }
               });
@@ -531,29 +538,6 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
   };
 
 
-  $scope.loadItemSize = function () {
-    $scope.error = '';
-    $scope.busy = true;
-    $scope.itemSizeList = [];
-    $http({
-      method: "POST",
-      url: "/api/stores_items/sizes_all",
-      data: {
-        select: { discount: 1, barcode: 1, size: 1, id: 1 }
-      }
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          $scope.itemSizeList = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
-  };
 
   $scope.get_open_shift = function (callback) {
     $scope.error = '';
@@ -585,7 +569,6 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
 
   $scope.loadStores();
   $scope.loadCategories();
-  $scope.loadItemSize();
   $scope.getDefaultSettings();
   $scope.loadAll({ date: new Date() });
 });

@@ -193,7 +193,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         if (_itemSize.discount.value > _itemSize.discount.max)
           max_discount = true;
       });
-      
+
 
       if (max_discount) {
         $scope.error = "##word.err_maximum_discount##";
@@ -202,7 +202,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
     }
 
     if ($scope.store_out.safe && !$scope.store_out.paid_up)
-    $scope.store_out.paid_up = 0
+      $scope.store_out.paid_up = 0
 
 
     if ($scope.store_out.items.length > 0) {
@@ -335,6 +335,8 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
             image_url: $scope.item.image_url,
             name: _size.name,
             size: _size.size,
+            units_list: _size.units_list,
+            unit: _size.unit,
             barcode: _size.barcode,
             average_cost: _size.average_cost,
             count: _size.count,
@@ -362,7 +364,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         else if (size.discount.type == 'percent')
           discount = size.discount.value * (size.price * size.count) / 100;
 
-        size.total = (site.toNumber(size.price) * site.toNumber(size.count)) - discount;
+        size.total = ((site.toNumber(size.price) * site.toNumber(size.count)) - discount) * size.unit.convert;
       }
       $scope.calc();
     }, 100);
@@ -405,6 +407,8 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
                   if (_size.barcode == $scope.item.search_item_name) {
                     _size.name = _item.name
                     _size.store = $scope.store_out.store
+                    _size.units_list = _item.units_list;
+                    _size.unit = _item.units_list[0];
                     _size.count = 1
                     _size.total = _size.count * _size.price
                     if (_size.branches_list && _size.branches_list.length > 0) {
@@ -471,6 +475,9 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
       _item.store = $scope.store_out.store
       _item.count = 1
       _item.total = _item.count * _item.price
+      _item.units_list = $scope.item.name.units_list
+      _item.unit = $scope.item.name.units_list[0];
+
       if (_item.branches_list && _item.branches_list.length > 0) {
         let foundBranch = false
         let indxBranch = 0
@@ -526,6 +533,8 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
                 if (_size.barcode == $scope.search_barcode) {
                   _size.name = response.data.list[0].name;
                   _size.store = $scope.store_out.store;
+                  _size.units_list = response.data.list[0].units_list;
+                  _size.unit = response.data.list[0].units_list[0];
                   _size.count = 1;
                   _size.discount = _size.discount;
                   _size.total = _size.count * _size.price;
@@ -571,7 +580,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
 
     if ($scope.defaultSettings.inventory && $scope.defaultSettings.inventory.dont_max_discount_items) {
       let max_discount = false;
-      $scope.store_in.items.forEach(_itemSize => {
+      $scope.store_out.items.forEach(_itemSize => {
         if (_itemSize.discount.value > _itemSize.discount.max)
           max_discount = true;
       });
@@ -581,13 +590,6 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         return;
       }
     }
-
-
-  /*   const v = site.validated('#updateStoreOutModal');
-    if (!v.ok) {
-      $scope.error = v.messages[0].ar;
-      return;
-    } */
 
     $scope.busy = true;
     $http({
@@ -1313,30 +1315,6 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.loadItemSize = function () {
-    $scope.error = '';
-    $scope.busy = true;
-    $scope.itemSizeList = [];
-    $http({
-      method: "POST",
-      url: "/api/stores_items/sizes_all",
-      data: {
-        select: { discount: 1, barcode: 1, size: 1, id: 1 }
-      }
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          $scope.itemSizeList = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
-  };
-
   $scope.getPaymentMethodList = function () {
     $scope.error = '';
     $scope.busy = true;
@@ -1467,7 +1445,6 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
   $scope.getCustomerGroupList();
   $scope.loadDelegates();
   $scope.getDefaultSettings();
-  $scope.loadItemSize();
   $scope.loadDiscountTypes();
   $scope.loadAll({ date: new Date() });
 

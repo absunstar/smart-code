@@ -7,17 +7,14 @@
 <body style="background : white" class=" ##session.lang##">
 
     <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
-
     </nav>
 
     <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
-
     </nav>
+
     <div id="main-layout" class="container">
         <div class="row">
             <div class="row" ng-controller="item_transaction">
-                <div x-import="inventory-item-transaction/delete_modal.html"></div>
-                <div x-import="inventory-item-transaction/view_modal.html"></div>
                 <div x-import="inventory-item-transaction/search_all_modal.html"></div>
                 <div class="row">
                     <h1 class="bold center">##word.item_transaction##</h1>
@@ -43,6 +40,8 @@
                             <th>##word.item_transaction_name##</th>
                             <th>##word.item_transaction_size##</th>
                             <th>##word.barcode##</th>
+                            <th>##word.unit##</th>
+                            <th>##word.discount##</th>
                             <th>##word.item_transaction_in##</th>
                             <th>##word.item_transaction_out##</th>
                             <th>##word.balance##</th>
@@ -51,43 +50,61 @@
                             <th>##word.item_transaction_last_price##</th>
                             <th>##word.item_transaction_status##</th>
 
-
-
                         </tr>
+
                         <tr ng-repeat="c in list">
 
                             <td>
+                                <br>
                                 <p class=" center brown"> {{c.date | date:'yyyy - MM - dd'}} </p>
                             </td>
                             <td>
+                                <br>
                                 <p class=" center"> {{c.vendor.name_ar}} </p>
                             </td>
-
                             <td>
+                                <br>
                                 <p class=" blue center"> {{c.store.name}} </p>
                             </td>
                             <td>
+                                <br>
                                 <p class="center"> {{c.name}} </p>
                             </td>
-
                             <td>
+                                <br>
                                 <p class="bold blue center"> {{c.size}} </p>
                             </td>
                             <td>
-                                <p class="bold center"> {{c.barcode}} </p>
+                                <br>
+                                <h3 class="bold center"> {{c.barcode}} </h3>
+                            </td>
+                            <td>
+                                <p class="bold center"> {{c.unit.name}} </p>
+                                <br>
+                                <p class="bold green center"> ##word.qty## : {{c.unit_count}} </p>
+                                <p class="bold blue center"> ##word.cvt## : {{c.unit.convert}} </p>
+                            </td>
+                            <td>
+                                <br>
+                                <b class="bold center"> {{c.discount.value}} </b>
+                                <b class="red" ng-show="c.discount.type =='number'">##word.le##</b>
+                                <b class="red" ng-show="c.discount.type =='percent'">%</b>
                             </td>
                             <td class="bold">
+                                <br>
                                 <p class="green center" ng-show="c.transaction_type == 'in'"> {{c.count}} </p>
+                                <p class="green center" ng-show="c.transaction_type == 'out'"> 0 </p>
                             </td>
                             <td class="bold">
-
+                                <br>
                                 <p class="red center" ng-show="c.transaction_type == 'out'"> {{c.count}} </p>
+                                <p class="red center" ng-show="c.transaction_type == 'in'"> 0 </p>
 
                             </td>
-                            <td class="green center">{{c.current_count}}</td>
-                            <td class="red center">{{c.last_count}}</td>
-                            <td class="blue bold center">{{c.price}}</td>
-                            <td class="red center">{{c.last_price}}</td>
+                            <td class="green center"><br>{{c.current_count}}</td>
+                            <td class="red center"><br>{{c.last_count}}</td>
+                            <td class="blue bold center"><br>{{c.price}}</td>
+                            <td class="red center"><br>{{c.last_price}}</td>
 
                             <td class="red center">
                                 <p class="center red bold" ng-show="c.current_status == 'debt'">

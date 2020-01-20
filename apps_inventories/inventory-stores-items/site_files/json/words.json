@@ -160,6 +160,11 @@
         "ar": "مقاسات الصنف"
     },
     {
+        "name": "add_items_sizes",
+        "en": "Add Sizes",
+        "ar": "إضافة مقاسات للصنف"
+    },
+    {
         "name": "stores_items_size",
         "en": "Sizes",
         "ar": "حجم / مقاس"
