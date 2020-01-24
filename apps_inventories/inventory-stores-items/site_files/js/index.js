@@ -39,7 +39,9 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
       $scope.complex_items.forEach(item => {
         item.barcode = $scope.item.barcode
       });
-      $scope.com_item = { complex_items: $scope.complex_items };
+      $scope.com_item = {
+        complex_items: $scope.complex_items
+      };
       $scope.complex.push($scope.com_item);
     };
 
@@ -53,14 +55,21 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
     if (!$scope.item.average_cost)
       $scope.item.average_cost = site.toNumber($scope.item.cost);
 
-    $scope.item.size_units_list = $scope.category_item.units_list;
-    $scope.item.size_units_list.forEach(_size_unit => {
-      _size_unit.price = $scope.item.price;
-      _size_unit.cost = $scope.item.cost;
-      _size_unit.current_count = 0;
-      _size_unit.start_count = 0;
-      _size_unit.average_cost = $scope.item.average_cost;
-      _size_unit.discount = $scope.item.discount;
+    /* error logic */
+
+    $scope.item.size_units_list = [];
+    $scope.category_item.units_list.forEach(_size_unit => {
+      $scope.item.size_units_list.push({
+        id: _size_unit.id,
+        name: _size_unit.name,
+        convert: _size_unit.convert,
+        price: $scope.item.price,
+        cost: $scope.item.cost,
+        current_count: 0,
+        start_count: 0,
+        average_cost: $scope.item.average_cost,
+        discount: $scope.item.discount
+      });
     });
     $scope.category_item.sizes.unshift(Object.assign({}, $scope.item));
     $scope.complex_items = [];
@@ -70,7 +79,11 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
       price: 0,
       average_cost: 0,
       image_url: '/images/sizes_img.png',
-      discount: { value: 0, max: 0, type: 'number' }
+      discount: {
+        value: 0,
+        max: 0,
+        type: 'number'
+      }
     };
 
     if ($scope.defaultSettings.general_Settings) {
@@ -144,7 +157,11 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
       cost: 0,
       price: 0,
       average_cost: 0,
-      discount: { value: 0, max: 0, type: 'number' },
+      discount: {
+        value: 0,
+        max: 0,
+        type: 'number'
+      },
       image_url: '/images/sizes_img.png',
     };
 
@@ -159,7 +176,12 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
 
       if ($scope.defaultSettings.inventory.unit) {
         $scope.category_item.main_unit = $scope.defaultSettings.inventory.unit;
-        $scope.category_item.units_list = [{ name: $scope.category_item.main_unit.name, barcode: $scope.category_item.main_unit.barcode, id: $scope.category_item.main_unit.id, convert: 1 }];
+        $scope.category_item.units_list = [{
+          name: $scope.category_item.main_unit.name,
+          barcode: $scope.category_item.main_unit.barcode,
+          id: $scope.category_item.main_unit.id,
+          convert: 1
+        }];
       }
 
     }
@@ -261,8 +283,9 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
     site.showModal('#deleteCategoryItemModal');
     document.querySelector('#deleteCategoryItemModal .tab-link').click();
 
-/*     $scope.error = "##word.warning_message##"
- */  };
+    /*     $scope.error = "##word.warning_message##"
+     */
+  };
 
   $scope.view = function (category_item) {
     $scope.busy = true;
@@ -452,7 +475,13 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
     $http({
       method: "POST",
       url: "/api/stores/all",
-      data: { select: { id: 1, name: 1, type: 1 } }
+      data: {
+        select: {
+          id: 1,
+          name: 1,
+          type: 1
+        }
+      }
     }).then(
       function (response) {
         $scope.busy = false;
@@ -618,45 +647,51 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
     }
   };
 
-  $scope.addUnitsList = function (u) {
+  $scope.addUnitsList = function (_u) {
     $scope.error = '';
 
+    let u = Object.assign({}, _u);
+
     $scope.category_item.units_list = $scope.category_item.units_list || [];
-    if (u) {
 
-      let found1 = $scope.category_item.units_list.some(_unit => _unit.id == u.id);
+    let found1 = $scope.category_item.units_list.some(_unit => _unit.id == u.id);
 
-      if (!found1 && u.id) {
+    if (!found1 && u.id) {
 
-        $scope.category_item.units_list.push({ name: u.name, barcode: u.barcode, id: u.id, convert: 1 });
-      }
-
-      $scope.category_item.sizes.forEach(_size => {
-        _size.size_units_list = _size.size_units_list || [];
-        console.log(u);
-        console.log(_size.size_units_list);
-
-        let found = _size.size_units_list.some(_unit => _unit.id == u.id);
-
-        if (!found) {
-
-          _size.size_units_list.push({
-            name: u.name,
-            barcode: u.barcode,
-            id: u.id,
-            current_count: 0,
-            start_count: 0,
-            cost: _size.cost,
-            price: _size.price,
-            average_cost: _size.average_cost,
-            discount: _size.discount
-          });
-          console.log(_size);
-          console.log("dddddddddddddddd");
-        }
+      $scope.category_item.units_list.push({
+        name: u.name,
+        barcode: u.barcode,
+        id: u.id,
+        convert: 1
       });
-
     }
+
+    $scope.category_item.sizes.forEach(_size => {
+      _size.size_units_list = _size.size_units_list || [];
+      console.log("this size");
+      console.log(_size);
+      let found = _size.size_units_list.some(_unit => _unit.id == u.id);
+
+      if (!found) {
+        console.log("add unit to this size");
+        _size.size_units_list.push({
+          name: u.name,
+          barcode: u.barcode,
+          id: u.id,
+          current_count: 0,
+          start_count: 0,
+          cost: _size.cost,
+          price: _size.price,
+          average_cost: _size.average_cost,
+          discount: _size.discount
+        });
+
+
+        console.log(_size);
+      }
+    });
+
+
     $scope.unit = {};
   };
 
@@ -668,33 +703,33 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
     $scope.category_item.units_list.splice($scope.category_item.units_list.indexOf(unit), 1);
 
 
- /*    let found = false;
-    $scope.category_item.sizes.forEach(_size => {
-      let indxUnit = 0;
-      let foundCount = false;
-      _size.size_units_list.forEach((_unit, i) => {
-        if (_unit.id == unit.id) {
-          indxUnit = i;
-          if (_unit.current_count != 0)
-            foundCount = true;
-        }
+    /*    let found = false;
+       $scope.category_item.sizes.forEach(_size => {
+         let indxUnit = 0;
+         let foundCount = false;
+         _size.size_units_list.forEach((_unit, i) => {
+           if (_unit.id == unit.id) {
+             indxUnit = i;
+             if (_unit.current_count != 0)
+               foundCount = true;
+           }
 
-      });
+         });
 
-      if (foundCount) {
-        $scope.error = '##word.err_delete_unit##';
-        found = true;
+         if (foundCount) {
+           $scope.error = '##word.err_delete_unit##';
+           found = true;
 
-      } else _size.size_units_list.splice(indxUnit, 1);
+         } else _size.size_units_list.splice(indxUnit, 1);
 
-      console.log();
-    });
+         console.log();
+       });
 
-    if (!found) */ 
+       if (!found) */
 
   };
 
-  $scope.addMAinUnit = function (category_item) {
+  $scope.addMainUnit = function (category_item) {
     $scope.error = '';
     category_item.units_list = category_item.units_list || [];
     if (category_item.main_unit) {
@@ -753,6 +788,7 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
 
 
   $scope.viewUnits = function (size) {
+    console.log(size);
     $scope.error = '';
     $scope.size = size;
     site.showModal('#unitsModal');
