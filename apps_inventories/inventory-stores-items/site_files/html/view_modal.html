@@ -22,7 +22,7 @@
 </div>
 
 
-<div id="companyUnitsModal" class="modal">
+<div id="unitsModal" class="modal">
 
     <div class="modal-content">
         <div class="modal-header">
@@ -34,7 +34,7 @@
             <div class="row">
 
                 <div class="col2"></div>
-                <div class="col8" ng-show="company_unit.size_units_list.length > 0">
+                <div class="col8" ng-show="size.size_units_list.length > 0">
 
                     <br>
                     <h2 class="blue bold center">##word.units##</h2>
@@ -44,16 +44,81 @@
 
                         <tr>
                             <th>##word.unit##</th>
-                            <th>##word.item_transaction_count##</th>
+                            <th>##word.barcode##</th>
+                            <th>##word.stores_start_balance##</th>
+                            <th>##word.stores_current_balance##</th>
+                            <th>##word.stores_items_cost##</th>
+                            <th>##word.stores_items_price##</th>
+                            <th>##word.average_cost##</th>
+                            <th>##word.stores_in_discountes##</th>
                         </tr>
 
-                        <tr ng-repeat="c in company_unit.size_units_list">
+                        <tr ng-repeat="c in size.size_units_list">
 
                             <td>
+                                <br>
                                 <p class="bold center"> {{c.name}} </p>
                             </td>
                             <td>
-                                <p class="bold blue center"> {{c.count}} </p>
+                                <br>
+                                <p class="bold center"> {{c.barcode}} </p>
+                            </td>
+                            <td>
+                                <br>
+                                <p class="bold center"> {{c.start_count}} </p>
+                            </td>
+                            <td>
+                                <br>
+                                <p class="bold blue center"> {{c.current_count}} </p>
+                            </td>
+
+
+                            <td ng-show="_view">
+                                <br>
+                                <p class="bold red center"> {{c.cost}} </p>
+                            </td>
+                            <td ng-show="_view">
+                                <br>
+                                <p class="bold green center"> {{c.price}} </p>
+                            </td>
+                            <td ng-show="_view">
+                                <br>
+                                <p class="bold  center"> {{c.average_cost}} </p>
+                            </td>
+
+                            <td class="center bold" ng-show="_view">
+                                <p>##word.maximum_discount## : <b class="red">{{c.discount.max}}</b></p>
+                                <p>##word.discount## : <b class="red">{{c.discount.value}} </b></p>
+                                </p> <b class="red" ng-show="c.discount.type == 'number'">
+                                    ##word.le##</b>
+                                <b class="red" ng-show="c.discount.type == 'percent'"> % </b>
+                            </td>
+
+                            <td ng-show="!_view">
+                                <i-control ng-model="c.cost" type="number"></i-control>
+                            </td>
+                            <td ng-show="!_view">
+                                <i-control ng-model="c.price" type="number"></i-control>
+                            </td>
+                            <td ng-show="!_view">
+                                <i-control ng-model="c.average_cost" type="number"></i-control>
+                            </td>
+                            <td ng-show="!_view">
+                                <div class="row ">
+                                    <i-control class="col6" type="number" label="##word.maximum_discount##"
+                                        ng-model="c.discount.max"></i-control>
+
+                                    <i-control type="number" class="col6" label="##word.discount##"
+                                        ng-model="c.discount.value">
+                                    </i-control>
+                                    </i-control>
+                                </div>
+                                <div class="row center">
+                                    <i-radio ng-model="c.discount.type" label="##word.discount_types_number##"
+                                        ng-value="number" group="type" type="radio"></i-radio>
+                                    <i-radio ng-model="c.discount.type" label="##word.discount_types_percent##"
+                                        ng-value="percent" group="type" type="radio"></i-radio>
+                                </div>
                             </td>
 
                         </tr>
@@ -64,9 +129,9 @@
         </div>
         <h2 class="error">{{error}}</h2>
         <div class="modal-footer center">
-        
+
             </i-button>
-            <i-button type="close" onclick="site.hideModal('#companyUnitsModal')" label="##word.close##"></i-button>
+            <i-button type="close" onclick="site.hideModal('#unitsModal')" label="##word.close##"></i-button>
 
         </div>
     </div>

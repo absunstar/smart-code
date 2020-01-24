@@ -15,6 +15,7 @@ module.exports = function init(site) {
 
 
   site.on('[company][created]', doc => {
+    let y = new Date().getFullYear().toString()
     $units.add({
       name: "وحدة إفتراضية",
       image_url: '/images/unit.png',
@@ -26,6 +27,7 @@ module.exports = function init(site) {
         code: doc.branch_list[0].code,
         name_ar: doc.branch_list[0].name_ar
       },
+      barcode: '0' + '0' + doc.id + doc.branch_list[0].code + y,
       active: true
     }, (err, doc) => { })
   })
@@ -57,13 +59,15 @@ module.exports = function init(site) {
     units_doc.company = site.get_company(req)
     units_doc.branch = site.get_branch(req)
 
+
     $units.find({
 
       where: {
 
         'company.id': site.get_company(req).id,
         'branch.code': site.get_branch(req).code,
-        'name': units_doc.name
+        'barcode': units_doc.barcode,
+        'name': units_doc.name,
       }
     }, (err, doc) => {
       if (!err && doc) {
@@ -75,6 +79,13 @@ module.exports = function init(site) {
           if (!err) {
             response.done = true
             response.doc = doc
+
+            if (!doc.barcode) {
+              let y = new Date().getFullYear().toString()
+              doc.barcode = doc.id + doc.company.id + doc.branch.code + y
+              $units.update(doc)
+            }
+
           } else {
             response.error = err.message
           }
@@ -163,23 +174,32 @@ module.exports = function init(site) {
 
     let id = req.body.id
 
-    if (id) {
-      $units.delete({
-        id: id,
-        $req: req,
-        $res: res
-      }, (err, result) => {
-        if (!err) {
-          response.done = true
-        } else {
-          response.error = err.message
-        }
+    site.getUnitToDelete(id, callback => {
+
+      if (callback == true) {
+        response.error = 'Cant Delete Its Exist In Other Transaction'
         res.json(response)
-      })
-    } else {
-      response.error = 'no id'
-      res.json(response)
-    }
+
+      } else {
+        if (id) {
+          $units.delete({
+            id: id,
+            $req: req,
+            $res: res
+          }, (err, result) => {
+            if (!err) {
+              response.done = true
+            } else {
+              response.error = err.message
+            }
+            res.json(response)
+          })
+        } else {
+          response.error = 'no id'
+          res.json(response)
+        }
+      }
+    })
   })
 
 

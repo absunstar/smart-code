@@ -19,6 +19,12 @@ app.controller("units", function ($scope, $http, $timeout) {
       $scope.error = v.messages[0].ar;
       return;
     }
+
+    if (!$scope.generate && !$scope.unit.barcode) {
+      $scope.error = '##word.err_barcode##';
+      return;
+    }
+
     $scope.busy = true;
     $http({
       method: "POST",
@@ -108,6 +114,8 @@ app.controller("units", function ($scope, $http, $timeout) {
 
   $scope.displayDeleteUnit = function (unit) {
     $scope.error = '';
+    console.log("ssssssssssssssssss");
+    
     $scope.viewUnit(unit);
     $scope.unit = {};
     site.showModal('#unitDeleteModal');
@@ -137,6 +145,32 @@ app.controller("units", function ($scope, $http, $timeout) {
         console.log(err);
       }
     )
+  };
+
+  $scope.getDefaultSetting = function () {
+
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/default_setting/get",
+      data: {}
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.doc) {
+          $scope.defaultSettings = response.data.doc;
+
+          if ($scope.defaultSettings && $scope.defaultSettings.inventory && $scope.defaultSettings.inventory.auto_barcode_generation) {
+            $scope.generate = true;
+          } else $scope.generate = false;
+        };
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+
   };
 
   $scope.getUnitList = function (where) {
@@ -175,12 +209,12 @@ app.controller("units", function ($scope, $http, $timeout) {
   };
 
   $scope.searchAll = function () {
-  
+
     $scope.getUnitList($scope.search);
     site.hideModal('#unitSearchModal');
     $scope.search = {};
   };
 
   $scope.getUnitList();
-
+  $scope.getDefaultSetting();
 });

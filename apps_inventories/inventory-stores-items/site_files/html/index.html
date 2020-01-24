@@ -17,8 +17,7 @@
     <div id="main-layout" class="container">
         <div class="row">
             <div class="row" ng-controller="stores_items">
-                <div x-permissions="stores_items_add || stores_items_manage"
-                    x-import="inventory-stores-items/add_modal.html"></div>
+                <div x-import="inventory-stores-items/add_modal.html"></div>
                 <div x-permissions="stores_items_add || stores_items_manage"
                     x-import="inventory-stores-items/complex_view.html"></div>
                 <div x-permissions="stores_items_view || stores_items_manage"
@@ -48,11 +47,11 @@
                     <i-button x-permissions="stores_items_search || stores_items_manage" type="search"
                         label="##word.search_all##" onclick="site.showModal('#CategoryItemSearchModal')"></i-button>
 
-                        
+
                     <i-button class="left" label="##word.handel_items##" ng-click="handelItems()">
                     </i-button>
 
-                <!--     <i-button class="left" ng-click="handelItems2()">
+                    <!--     <i-button class="left" ng-click="handelItems2()">
                     </i-button> -->
 
                     <h3 class="bold text-center"> ##word.count## : {{count}}</h3>
@@ -93,7 +92,7 @@
                                         <th>##word.average_cost##</th>
                                         <th>##word.stores_current_balance##</th>
                                         <th>##word.stores_start_balance##</th>
-                                        <th>##word.maximum_discount##</th>
+                                        <!-- <th>##word.maximum_discount##</th> -->
                                     </tr>
 
                                     <tr ng-repeat="_size in c.sizes">
@@ -105,13 +104,13 @@
                                         <td class="center red"><br>{{_size.average_cost}}</td>
                                         <td class="center blue"><br>{{_size.current_count}}</td>
                                         <td class="center blue"><br>{{_size.start_count}}</td>
-                                        <td class="center red">
+                                        <!-- <td class="center red">
                                             <p>##word.maximum_discount## : <b class="red">{{_size.discount.max}}</b></p>
                                             <p>##word.discount## : <b class="red">{{_size.discount.value}} </b>
                                             </p> <b class="red" ng-show="_size.discount.type == 'number'">
                                                 ##word.le##</b>
                                             <b class="red" ng-show="_size.discount.type == 'percent'"> % </b>
-                                        </td>
+                                        </td> -->
                                     </tr>
                                 </table>
                             </td>

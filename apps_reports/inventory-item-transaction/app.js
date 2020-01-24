@@ -51,11 +51,6 @@ module.exports = function init(site) {
 
 
 
-
-
-
-
-
   $item_transaction.trackBusy = false
   site.on('item_transaction + items', itm => {
 
@@ -70,7 +65,7 @@ module.exports = function init(site) {
 
       $item_transaction.trackBusy = true
 
-      $item_transaction.findMany({ sort: { id: -1 }, where: { 'barcode': itm.barcode, name: itm.name, 'branch.code': itm.branch.code, 'company.id': itm.company.id, 'store.id': itm.store.id } }, (err, docs) => {
+      $item_transaction.findMany({ sort: { id: -1 }, where: { 'barcode': itm.barcode, name: itm.name, 'branch.code': itm.branch.code, 'company.id': itm.company.id, 'store.id': itm.store.id, 'unit.id': itm.unit.id } }, (err, docs) => {
 
         delete itm._id
         delete itm.id
@@ -97,10 +92,9 @@ module.exports = function init(site) {
 
         if (docs && docs.length > 0) {
           itm.last_count = docs[0].current_count
-          itm.current_count = itm.last_count + (itm.count * itm.unit.convert)
-          itm.unit_count = itm.count
+          itm.current_count = itm.last_count + itm.count
           itm.last_price = docs[0].price
-          itm.count = itm.count * itm.unit.convert
+          itm.count = itm.count
           itm.current_status = itm.current_status
           $item_transaction.add(itm, () => {
             $item_transaction.trackBusy = false
@@ -110,10 +104,9 @@ module.exports = function init(site) {
 
           // itm.last_count = (itm.current_count || 0)  -  itm.count 
           itm.last_count = itm.current_count
-          itm.current_count = itm.last_count + (itm.count * itm.unit.convert)
-          itm.unit_count = itm.count
+          itm.current_count = itm.last_count + itm.count
           itm.last_price = itm.price
-          itm.count = itm.count * itm.unit.convert
+          itm.count = itm.count
           itm.current_status = itm.current_status
           $item_transaction.add(itm, () => {
             $item_transaction.trackBusy = false
@@ -139,15 +132,14 @@ module.exports = function init(site) {
     delete itm.type
     delete itm.units_list
 
-    $item_transaction.findMany({ sort: { id: -1 }, where: { 'barcode': itm.barcode, name: itm.name, 'branch.code': itm.branch.code, 'company.id': itm.company.id, 'store.id': itm.store.id } }, (err, docs) => {
+    $item_transaction.findMany({ sort: { id: -1 }, where: { 'barcode': itm.barcode, name: itm.name, 'branch.code': itm.branch.code, 'company.id': itm.company.id, 'store.id': itm.store.id, 'unit.id': itm.unit.id } }, (err, docs) => {
 
       if (docs && docs.length > 0) {
 
         itm.last_count = docs[0].current_count
-        itm.unit_count = itm.count
-        itm.current_count = itm.last_count - (itm.count * itm.unit.convert)
+        itm.current_count = itm.last_count - itm.count
         itm.last_price = docs[0].price
-        itm.count = itm.count * itm.unit.convert
+        itm.count = itm.count
         $item_transaction.add(itm, (err, doc) => {
 
           setTimeout(() => {
@@ -157,9 +149,8 @@ module.exports = function init(site) {
       } else {
 
         itm.last_count = itm.current_count || 0
-        itm.current_count = itm.last_count - (itm.count * itm.unit.convert)
-        itm.unit_count = itm.count
-        itm.count = itm.count * itm.unit.convert
+        itm.current_count = itm.last_count - itm.count
+        itm.count = itm.count
         itm.last_price = itm.price
         $item_transaction.add(itm, () => {
           setTimeout(() => {
@@ -373,10 +364,8 @@ module.exports = function init(site) {
               _doc.unit = {
                 id: unit.id,
                 name: unit.name,
-                convert: 1
+                barcode: unit.barcode
               }
-
-              _doc.unit_count = _doc.count
 
               $item_transaction.update(_doc)
             });

@@ -185,13 +185,24 @@
                     </div>
 
                     <div class="row">
-                        <i-list class="col4" ng-model="default_setting.inventory.unit"
-                            ng-search="_search.$search_unit" label="##word.unit##" items="unitsList">
+                        <i-list class="col4" ng-model="default_setting.inventory.unit" ng-search="_search.$search_unit"
+                            label="##word.unit##" items="unitsList">
                         </i-list>
 
                         <i-list class="col3" ng-model="default_setting.inventory.delegate"
                             ng-search="_search.$$items_group_search" label="##word.delegate##" items="delegatesList">
                         </i-list>
+
+                        <!-- 
+                        <i-list class="col2" display="##session.lang##" ng-model="default_setting.inventory.buy_price"
+                            ng-search="_search.$buy_price_search" label="##word.buy_price##" items="priceMethod">
+                        </i-list>
+
+                        <i-list class="col2" display="##session.lang##" ng-model="default_setting.inventory.selling_price"
+                            ng-search="_search.$selling_price_search" label="##word.selling_price##"
+                            items="priceMethod">
+                        </i-list> -->
+
                     </div>
 
                     <div class="row">

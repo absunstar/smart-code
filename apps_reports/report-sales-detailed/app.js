@@ -76,6 +76,7 @@ module.exports = function init(site) {
           docs[i].items.forEach(_item => {
             _item.type = docs[i].type
             _item.code = docs[i].number
+            _item.date = docs[i].date
             detailed_size_list.push(Object.assign({}, _item))
           })
         }

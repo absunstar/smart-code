@@ -75,6 +75,16 @@
         "ar": "قائمة إجمالي كارتة الصنف"
     },
     {
+        "name": "buy_price",
+        "en": "Buy At Price",
+        "ar": "الشراء بسعر"
+    },
+    {
+        "name": "selling_price",
+        "en": "Selling At Price",
+        "ar": "البيع بسعر"
+    },
+    {
         "name": "qty",
         "en": "Qty",
         "ar": "كمية"

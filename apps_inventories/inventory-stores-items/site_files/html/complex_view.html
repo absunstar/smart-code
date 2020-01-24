@@ -63,8 +63,13 @@
                                 <br>
                                 <p class="center bold green">{{i.price}}</p>
                             </td>
-                            <td>
-                                <i-control ng-disabled="complexView.view" ng-model="i.count" type="number"></i-control>
+
+                            <td ng-show="complexView.view">
+                                <br>
+                                <p class="center bold">{{i.count}}</p>
+                            </td>
+                            <td ng-hide="complexView.view">
+                                <i-control  ng-model="i.count" type="number"></i-control>
                             </td>
 
                             <td class="center" ng-hide="complexView.view">

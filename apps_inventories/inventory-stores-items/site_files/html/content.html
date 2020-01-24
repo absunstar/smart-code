@@ -76,7 +76,7 @@
                                     label="##word.unit##" items="unitsList"></i-list>
 
                                 <i-button class="col2" type="add" label="##word.add_unit##"
-                                    ng-click="addUnitsList(category_item)">
+                                    ng-click="addUnitsList(unit)">
                                 </i-button>
 
                                 <div class="col1"></div>
@@ -91,7 +91,7 @@
                                             <th>##word.actions##</th>
                                         </tr>
 
-                                        <tr ng-repeat="c in category_item.units_list">
+                                        <tr ng-repeat="c in category_item.units_list track by $index">
 
                                             <td>
                                                 <p class="bold text-center"> <br> {{c.name}} </p>
@@ -149,11 +149,11 @@
                                     <th>##word.average_cost##</th>
                                     <th>##word.stores_current_balance##</th>
                                     <th>##word.stores_items_start_count##</th>
-                                    <th>##word.stores_in_discountes##</th>
+                                    <!-- <th>##word.stores_in_discountes##</th> -->
                                     <th>##word.actions##</th>
                                 </tr>
 
-                                <tr class="bold" ng-repeat="itm in category_item.sizes">
+                                <tr class="bold" ng-repeat="itm in category_item.sizes track by $index">
                                     <td class="not-print center">
                                         <i-image class="logo" ng-model="itm.image_url"></i-image>
                                     </td>
@@ -194,11 +194,10 @@
                                         <p class="center blue">{{itm.start_count}}</p>
                                     </td>
 
-                                    <td>
+                                    <!-- <td>
                                         <div class="row ">
                                             <i-control type="number" label="##word.maximum_discount##"
                                                 ng-model="itm.discount.max"></i-control>
-
 
                                             <i-control type="number" label="##word.discount##"
                                                 ng-model="itm.discount.value"></i-control>
@@ -210,7 +209,7 @@
                                                 label="##word.discount_types_percent##" ng-value="percent" group="type"
                                                 type="radio"></i-radio>
                                         </div>
-                                    </td>
+                                    </td> -->
 
                                     <td>
                                         <div class="row center">
@@ -222,6 +221,12 @@
                                         <div class="row center">
                                             <i-button ng-show="itm.item_complex == true" type="view"
                                                 label="##word.complex_items##" ng-click="showComplexItemsView(itm)">
+                                            </i-button>
+                                        </div>
+
+                                        <div class="row center">
+                                            <i-button type="view" label="##word.units##" ng-click="viewUnits(itm)">
+                                            </i-button>
                                             </i-button>
                                         </div>
 

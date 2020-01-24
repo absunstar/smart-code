@@ -221,7 +221,7 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
     if (ev.which === 13) {
       $http({
         method: "POST",
-        url: "/api/stores_items/name_all",
+        url: "/api/stores_items/all",
         data: {
           search: $scope.item.search_item_name
         }
@@ -349,7 +349,7 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
     if (ev.which === 13) {
       $http({
         method: "POST",
-        url: "/api/stores_items/name_all",
+        url: "/api/stores_items/all",
         data: {
           search: $scope.search_barcode
         }

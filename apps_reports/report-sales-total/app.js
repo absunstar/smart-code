@@ -75,23 +75,21 @@ module.exports = function init(site) {
 
         for (let i = 0; i < docs.length; i++) {
 
-          let exist = false
 
           docs[i].items.forEach(_item => {
+            let exist = false
 
             if (total_size_list.length > 0) {
               total_size_list.forEach(_size => {
                 if (_size.barcode == _item.barcode) {
                   _size.total = _size.total + _item.total
                   _size.count = _size.count + _item.count
-                  _size.average_cost = (site.toNumber(_size.average_cost) + (site.toNumber(_item.average_cost)) *site.toNumber( _item.count) )
+                  _size.average_cost = (site.toNumber(_size.average_cost) + (site.toNumber(_item.average_cost)) * site.toNumber(_item.count))
                   exist = true
                 }
               })
             }
-            if (!exist) {
-              total_size_list.push(Object.assign({}, _item))
-            }
+            if (!exist) total_size_list.push(Object.assign({}, _item))
           })
         }
 

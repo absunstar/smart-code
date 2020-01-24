@@ -80,7 +80,8 @@
                             <td> <br> {{itm.size}}</td>
                             <td>
                                 <i-list ng-model="itm.unit" ng-search="_search.$category_item.$unit_search"
-                                    ng-change="calcSize(itm)" items="itm.units_list"></i-list>
+                                    ng-change="itm.discount = itm.unit.discount ; itm.cost = itm.unit.cost ;calcSize(itm)"
+                                    display2="barcode" items="itm.size_units_list"></i-list>
                             </td>
                             <td>
                                 <i-control ng-change="calcSize(itm)" type="number" ng-model="itm.count"></i-control>

@@ -7,10 +7,18 @@ if (btn1) {
 app.controller("default_setting", function ($scope, $http) {
   $scope._search = {};
 
-  $scope.default_setting = {
-
-  };
-
+  $scope.priceMethod = [
+    {
+      id: 1,
+      ar: 'الفرع',
+      en: 'Branch'
+    },
+    {
+      id: 2,
+      ar: 'المخزن',
+      en: 'Store'
+    }
+  ];
 
   $scope.showSearch = function () {
     site.showModal('#searchModal');
@@ -455,7 +463,8 @@ app.controller("default_setting", function ($scope, $http) {
       data: {
         select: {
           id: 1,
-          name: 1
+          name: 1,
+          barcode: 1
         }
       }
     }).then(

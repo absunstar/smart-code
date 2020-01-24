@@ -21,14 +21,16 @@
                 <div x-permissions="units_update || units_manage" x-import="inventory-units/update_modal.html"></div>
                 <div x-permissions="units_delete || units_manage" x-import="inventory-units/delete_modal.html"></div>
                 <div x-permissions="units_view || units_manage" x-import="inventory-units/view_modal.html"></div>
-                <div x-permissions="units_search || units_manage" x-import="inventory-units/search_all_modal.html"></div>
+                <div x-permissions="units_search || units_manage" x-import="inventory-units/search_all_modal.html">
+                </div>
 
                 <div class="row">
                     <h1 class="bold text-center">##word.units##</h1>
                 </div>
 
                 <div class="top-actions">
-                    <i-button x-permissions="units_add || units_manage" type="add" label="##word.units_new##" ng-click="displayAddUnit()"></i-button>
+                    <i-button x-permissions="units_add || units_manage" type="add" label="##word.units_new##"
+                        ng-click="displayAddUnit()"></i-button>
 
                     <i-button x-permissions="units_search || units_manage" type="search" label="##word.search_all##"
                         ng-click="displaySearchModal()"></i-button>
@@ -41,7 +43,7 @@
                     <tr>
                         <th class="not-print">##word.logo##</th>
                         <th>##word.units_name##</th>
-
+                        <th>##word.barcode##</th>
                         <th>##word.status##</th>
                         <th class="not-print">##word.actions##</th>
                     </tr>
@@ -50,6 +52,7 @@
                             <img class="logo" ng-src="{{c.image_url}}">
                         </td>
                         <td class="center title">{{c.name}}</td>
+                        <td class="center blue">{{c.barcode}}</td>
                         <td class="center">
                             <p ng-show="c.active == true" class="green"> ##word.active## </p>
                             <p ng-show="c.active == false" class="red"> ##word.not_active## </p>
@@ -68,9 +71,10 @@
                     </tr>
                 </table>
 
-                <i-button x-permissions="units_print || units_manage" type="print" label="##word.print##" onclick="site.print('#t1')"></i-button>
+                <i-button x-permissions="units_print || units_manage" type="print" label="##word.print##"
+                    onclick="site.print('#t1')"></i-button>
 
-                
+
             </div>
         </div>
     </div>

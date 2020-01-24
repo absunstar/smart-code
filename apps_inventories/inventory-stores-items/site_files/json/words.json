@@ -105,9 +105,19 @@
         "ar": "الصنف مكرر"
     },
     {
+        "name": "err_delete_unit",
+        "en": "Cant Delete Because Found Items Related With Unit",
+        "ar": "لا يمكن الحذف لوجود أصناف مرتبطة بالوحدة"
+    },
+    {
         "name": "maximum_discount",
         "en": "Maximum Discount",
         "ar": "أقصى خصم"
+    },
+    {
+        "name": "units_price",
+        "en": "Units Price",
+        "ar": "أسعار الوحدات"
     },
     {
         "name": "complex_items",

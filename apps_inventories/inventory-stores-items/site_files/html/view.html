@@ -131,7 +131,7 @@
                             <th>##word.average_cost##</th>
                             <th>##word.stores_current_balance##</th>
                             <th>##word.stores_start_balance##</th>
-                            <th>##word.stores_in_discountes##</th>
+                            <!-- <th>##word.stores_in_discountes##</th> -->
                             <th>##word.actions##</th>
                         </tr>
 
@@ -148,14 +148,14 @@
                             <td class="center bold"><br>{{item.current_count}}</td>
                             <td class="center bold"><br>{{item.start_count}}</td>
 
-                            <td class="center bold blue"><br>
+                           <!--  <td class="center bold blue"><br>
                                 <p>##word.maximum_discount## : <b class="red">{{item.discount.max}}</b></p>
                                 <p>##word.discount## : <b class="red">{{item.discount.value}} </b></p>
                                 </p> <b class="red" ng-show="item.discount.type == 'number'">
                                     ##word.le##</b>
                                 <b class="red" ng-show="item.discount.type == 'percent'"> % </b>
                             </td>
-
+ -->
                             <td>
                                 <div class="row center">
                                     <p>
@@ -177,7 +177,7 @@
                                 </div>
 
                                 <div class="row center">
-                                    <i-button type="view" label="##word.units##" ng-click="companyUnits(item)">
+                                    <i-button type="view" label="##word.units##" ng-click="viewUnits(item)">
                                     </i-button>
                                 </div>
 
