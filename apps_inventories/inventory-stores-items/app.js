@@ -357,12 +357,12 @@ module.exports = function init(site) {
           let y = new Date().getFullYear().toString()
           stores_items_doc.sizes.forEach((_size, i) => {
             if (!_size.barcode || _size.barcode == '')
-              _size.barcode = doc.id + doc.company.id + doc.branch.code + y + i
+              _size.barcode = doc.id + doc.company.id + doc.branch.code + y + (Math.floor(Math.random() * 100) + i)
 
             _size.size_units_list.forEach(_unit => {
               if (!_unit.barcode || _unit.barcode == '') {
 
-                _unit.barcode = y + doc.id + _unit.id + doc.company.id + doc.branch.code + i
+                _unit.barcode = stores_items_doc.id + stores_items_doc.company.id + stores_items_doc.branch.code + _unit.id + i + (Math.floor(Math.random() * 100) + i)
               }
             });
 
@@ -390,12 +390,10 @@ module.exports = function init(site) {
       $res: res
     });
 
-
-
     let y = new Date().getFullYear().toString()
     stores_items_doc.sizes.forEach((_size, i) => {
       if (!_size.barcode || _size.barcode == '')
-        _size.barcode = stores_items_doc.id + stores_items_doc.company.id + stores_items_doc.branch.code + y + i
+        _size.barcode = stores_items_doc.id + stores_items_doc.company.id + stores_items_doc.branch.code + y + (Math.floor(Math.random() * 100) + i)
 
       _size.size_units_list.forEach((_unit, _i) => {
         let indx = stores_items_doc.units_list.findIndex(_unit => _unit.id == _size_unit.id);
@@ -405,7 +403,7 @@ module.exports = function init(site) {
           _size_unit.average_cost = _size_unit.cost
 
         if (!_unit.barcode || _unit.barcode == '')
-          _unit.barcode = _size.barcode + _unit.id + i
+          _unit.barcode = stores_items_doc.id + stores_items_doc.company.id + stores_items_doc.branch.code + _unit.id + i + (Math.floor(Math.random() * 100) + i)
       });
 
     });
