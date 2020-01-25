@@ -65,6 +65,11 @@
         "ar": "يجب إدخال كود / باركود"
     },
     {
+        "name": "err_barcode_units",
+        "en": "Must Enter Units Barcode",
+        "ar": "يجب إدخال كود / باركود للوحدات"
+    },
+    {
         "name": "err_barcode_exist",
         "en": "Barcode Exists",
         "ar": "كود / باركود مسجل من قبل"

@@ -37,6 +37,7 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
 
     if ($scope.complex && $scope.complex.length > 0)
       $scope.complex = $scope.complex;
+
     else $scope.complex = [];
 
     if ($scope.complex_items && $scope.complex_items.length > 0) {
@@ -67,7 +68,6 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
       $scope.item.size_units_list.push({
         id: _size_unit.id,
         name: _size_unit.name,
-        barcode: _size_unit.barcode,
         convert: _size_unit.convert,
         price: $scope.item.price,
         cost: $scope.item.cost,
@@ -184,7 +184,6 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
         $scope.category_item.main_unit = $scope.defaultSettings.inventory.unit;
         $scope.category_item.units_list = [{
           name: $scope.category_item.main_unit.name,
-          barcode: $scope.category_item.main_unit.barcode,
           id: $scope.category_item.main_unit.id,
           convert: 1
         }];
@@ -211,8 +210,31 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
     };
 
     if ($scope.category_item.sizes && $scope.category_item.sizes.length > 0) {
-      $scope.category_item.date = new Date();
 
+      if ($scope.defaultSettings && $scope.defaultSettings.inventory && !$scope.defaultSettings.inventory.auto_barcode_generation) {
+
+        let foundBarcodeUnit = false;
+        let notBarcodeUnit = false;
+        $scope.category_item.sizes.forEach(_size => {
+
+          _size.size_units_list.forEach(_unit => {
+            if (_unit.barcode == (undefined || null)) notBarcodeUnit = true;
+
+            foundBarcodeUnit = $scope.unitsBarcodesList.some(_unit1 => _unit1.barcode == _unit.barcode);
+          });
+        });
+
+        if (notBarcodeUnit) {
+          $scope.error = `##word.err_barcode_units##`;
+          return;
+        };
+
+        if (foundBarcodeUnit) {
+          $scope.error = `##word.err_barcode_exist##`;
+          return;
+        };
+
+      };
 
       $scope.busy = true;
       $http({
@@ -436,8 +458,7 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name: 1,
-          barcode: 1
+          name: 1
         }
       }
     }).then(
@@ -466,6 +487,27 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.itemSizeList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.loadUnitsBarcodesList = function () {
+    $scope.busy = true;
+    $scope.itemSizeList = [];
+    $http({
+      method: "POST",
+      url: "/api/stores_items/barcode_unit",
+      data: {}
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.unitsBarcodesList = response.data.list;
         }
       },
       function (err) {
@@ -666,7 +708,6 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
 
       $scope.category_item.units_list.push({
         name: u.name,
-        barcode: u.barcode,
         id: u.id,
         convert: 1
       });
@@ -680,7 +721,6 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
       if (!found) {
         _size.size_units_list.push({
           name: u.name,
-          barcode: u.barcode,
           id: u.id,
           current_count: 0,
           start_count: 0,
@@ -734,7 +774,6 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
       let found = category_item.units_list.some(_unit => _unit.id == category_item.main_unit.id);
       if (!found) category_item.units_list.unshift({
         name: category_item.main_unit.name,
-        barcode: category_item.main_unit.barcode,
         id: category_item.main_unit.id,
         convert: 1
       });
@@ -746,7 +785,6 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
 
         if (!found) _size.size_units_list.unshift({
           name: category_item.main_unit.name,
-          barcode: category_item.main_unit.barcode,
           id: category_item.main_unit.id,
           current_count: 0,
           start_count: 0,
@@ -762,7 +800,6 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
 
 
   $scope.viewUnits = function (size) {
-    console.log(size);
     $scope.error = '';
     $scope.size = size;
     site.showModal('#unitsModal');

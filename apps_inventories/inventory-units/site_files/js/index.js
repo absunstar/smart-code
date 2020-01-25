@@ -20,11 +20,6 @@ app.controller("units", function ($scope, $http, $timeout) {
       return;
     }
 
-    if (!$scope.generate && !$scope.unit.barcode) {
-      $scope.error = '##word.err_barcode##';
-      return;
-    }
-
     $scope.busy = true;
     $http({
       method: "POST",
@@ -114,7 +109,6 @@ app.controller("units", function ($scope, $http, $timeout) {
 
   $scope.displayDeleteUnit = function (unit) {
     $scope.error = '';
-    console.log("ssssssssssssssssss");
     
     $scope.viewUnit(unit);
     $scope.unit = {};
@@ -160,9 +154,6 @@ app.controller("units", function ($scope, $http, $timeout) {
         if (response.data.done && response.data.doc) {
           $scope.defaultSettings = response.data.doc;
 
-          if ($scope.defaultSettings && $scope.defaultSettings.inventory && $scope.defaultSettings.inventory.auto_barcode_generation) {
-            $scope.generate = true;
-          } else $scope.generate = false;
         };
       },
       function (err) {

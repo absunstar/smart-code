@@ -27,7 +27,6 @@ module.exports = function init(site) {
         code: doc.branch_list[0].code,
         name_ar: doc.branch_list[0].name_ar
       },
-      barcode: '0' + '0' + doc.id + doc.branch_list[0].code + y,
       active: true
     }, (err, doc) => { })
   })
@@ -66,7 +65,6 @@ module.exports = function init(site) {
 
         'company.id': site.get_company(req).id,
         'branch.code': site.get_branch(req).code,
-        'barcode': units_doc.barcode,
         'name': units_doc.name,
       }
     }, (err, doc) => {
@@ -79,12 +77,6 @@ module.exports = function init(site) {
           if (!err) {
             response.done = true
             response.doc = doc
-
-            if (!doc.barcode) {
-              let y = new Date().getFullYear().toString()
-              doc.barcode = doc.id + doc.company.id + doc.branch.code + y
-              $units.update(doc)
-            }
 
           } else {
             response.error = err.message

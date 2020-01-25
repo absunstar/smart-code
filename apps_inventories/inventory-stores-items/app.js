@@ -356,9 +356,18 @@ module.exports = function init(site) {
         if (foundBarcode) {
           let y = new Date().getFullYear().toString()
           stores_items_doc.sizes.forEach((_size, i) => {
-            if (!_size.barcode)
-              _size.barcode = doc.id + i + doc.company.id + doc.branch.code + y
+            if (!_size.barcode || _size.barcode == '')
+              _size.barcode = doc.id + doc.company.id + doc.branch.code + y + i
+
+            _size.size_units_list.forEach(_unit => {
+              if (!_unit.barcode || _unit.barcode == '') {
+
+                _unit.barcode = y + doc.id + _unit.id + doc.company.id + doc.branch.code + i
+              }
+            });
+
           });
+
           $stores_items.update(doc)
         }
       } else response.error = err.message
@@ -381,14 +390,24 @@ module.exports = function init(site) {
       $res: res
     });
 
-    stores_items_doc.sizes.forEach(_size => {
-      _size.size_units_list.forEach(_size_unit => {
+
+
+    let y = new Date().getFullYear().toString()
+    stores_items_doc.sizes.forEach((_size, i) => {
+      if (!_size.barcode || _size.barcode == '')
+        _size.barcode = stores_items_doc.id + stores_items_doc.company.id + stores_items_doc.branch.code + y + i
+
+      _size.size_units_list.forEach((_unit, _i) => {
         let indx = stores_items_doc.units_list.findIndex(_unit => _unit.id == _size_unit.id);
         _size_unit.convert = stores_items_doc.units_list[indx].convert
 
         if (!_size_unit.average_cost)
           _size_unit.average_cost = _size_unit.cost
+
+        if (!_unit.barcode || _unit.barcode == '')
+          _unit.barcode = _size.barcode + _unit.id + i
       });
+
     });
 
 
@@ -784,7 +803,7 @@ module.exports = function init(site) {
               if (unit.id)
                 if (_sizes.size_units_list == null || undefined) {
                   _sizes.discount = {
-                    max : 5, type :'number' , value : 2
+                    max: 5, type: 'number', value: 2
                   }
                   _sizes.size_units_list = [{
                     id: unit.id,
@@ -811,7 +830,6 @@ module.exports = function init(site) {
                     _branch.size_units_list = [{
                       id: unit.id,
                       name: unit.name,
-                      barcode: unit.barcode,
                       current_count: _branch.current_count,
                       start_count: _branch.start_count,
                       total_buy_price: _branch.total_buy_price,
@@ -821,11 +839,10 @@ module.exports = function init(site) {
                       average_cost: _branch.average_cost
                     }]
 
-                    _branch.stores_list.forEach(_store => {                      
+                    _branch.stores_list.forEach(_store => {
                       _store.size_units_list = [{
                         id: unit.id,
                         name: unit.name,
-                        barcode: unit.barcode,
                         current_count: _store.current_count,
                         start_count: _store.start_count,
                         total_buy_price: _store.total_buy_price,
@@ -963,5 +980,44 @@ module.exports = function init(site) {
     })
   })
 
+
+  site.post("/api/stores_items/barcode_unit", (req, res) => {
+    let response = {
+      done: false
+    }
+    let where = req.body.where || {}
+
+    where['company.id'] = site.get_company(req).id
+
+    $stores_items.findMany({
+      select: req.body.select || {},
+      where: where,
+      sort: req.body.sort || {
+        id: -1
+      },
+      limit: req.body.limit
+    }, (err, docs, count) => {
+      if (!err) {
+        response.done = true
+        let arr = [];
+        if (docs && docs.length > 0) {
+          docs.forEach(item => {
+            if (item.sizes && item.sizes.length > 0)
+              item.sizes.forEach(size => {
+                size.size_units_list.forEach(_unit => {
+
+                  arr.push(_unit.barcode)
+                });
+              })
+          })
+        }
+        response.count = count
+        response.list = arr
+      } else {
+        response.error = err.message
+      }
+      res.json(response)
+    })
+  })
 
 }

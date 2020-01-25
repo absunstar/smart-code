@@ -72,6 +72,7 @@
                             <td class="not-print center">
                                 <i-image view class="logo" ng-model="c.image_url"></i-image>
                             </td>
+
                             <td>
                                 <p class="bold text-center"> <br> {{c.name}} </p>
                             </td>
@@ -87,9 +88,9 @@
                                         <th>##word.stores_size##</th>
                                         <th>##word.barcode##</th>
                                         <th x-feature="restaurant">##word.kitchen_name##</th>
-                                        <th>##word.stores_cost##</th>
+                                      <!--   <th>##word.stores_cost##</th>
                                         <th>##word.stores_price##</th>
-                                        <th>##word.average_cost##</th>
+                                        <th>##word.average_cost##</th> -->
                                         <th>##word.stores_current_balance##</th>
                                         <th>##word.stores_start_balance##</th>
                                         <!-- <th>##word.maximum_discount##</th> -->
@@ -99,9 +100,9 @@
                                         <td class="center"><br>{{_size.size}}</td>
                                         <td class="center blue"><br>{{_size.barcode}}</td>
                                         <td class="center" x-feature="restaurant"><br>{{_size.kitchen.name}}</td>
-                                        <td class="center red"><br>{{_size.cost}}</td>
+                                        <!-- <td class="center red"><br>{{_size.cost}}</td>
                                         <td class="center green"><br>{{_size.price}}</td>
-                                        <td class="center red"><br>{{_size.average_cost}}</td>
+                                        <td class="center red"><br>{{_size.average_cost}}</td> -->
                                         <td class="center blue"><br>{{_size.current_count}}</td>
                                         <td class="center blue"><br>{{_size.start_count}}</td>
                                         <!-- <td class="center red">
@@ -114,6 +115,7 @@
                                     </tr>
                                 </table>
                             </td>
+
                             <td class="center not-print">
                                 <i-button x-permissions="stores_items_view || stores_items_manage" type="details"
                                     x-permissions="stores_items_view || stores_items_manage" label="##word.details##"
@@ -125,9 +127,12 @@
                                     x-permissions="stores_items_delete || stores_items_manage" label="##word.delete##"
                                     ng-click="remove(c)"></i-button>
                             </td>
+
                         </tr>
                     </table>
+
                 </form>
+
                 <i-button x-permissions="stores_items_print || stores_items_manage" type="print"
                     x-permissions="stores_items_print || stores_items_manage" label="##word.print##"
                     onclick="site.print('#t1')"></i-button>

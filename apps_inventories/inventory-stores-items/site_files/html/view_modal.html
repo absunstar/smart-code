@@ -33,8 +33,8 @@
         <div class="modal-body">
             <div class="row">
 
-                <div class="col2"></div>
-                <div class="col8" ng-show="size.size_units_list.length > 0">
+                <div class="col1"></div>
+                <div class="col10" ng-show="size.size_units_list.length > 0">
 
                     <br>
                     <h2 class="blue bold center">##word.units##</h2>
@@ -59,9 +59,13 @@
                                 <br>
                                 <p class="bold center"> {{s.name}} </p>
                             </td>
-                            <td>
+                            <td ng-show="_view">
                                 <br>
                                 <p class="bold center"> {{s.barcode}} </p>
+                            </td>
+                            <td ng-show="!_view">
+                                <i-control ng-disabled="defaultSettings.inventory.auto_barcode_generation"
+                                    ng-model="s.barcode"></i-control>
                             </td>
                             <td>
                                 <br>
