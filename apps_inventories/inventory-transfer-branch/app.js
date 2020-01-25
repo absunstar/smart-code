@@ -278,7 +278,7 @@ module.exports = function init(site) {
     where['company.id'] = site.get_company(req).id
 
     where['$or'] = [{ 'branch_from.code': site.get_branch(req).code }, { 'branch_to.code': site.get_branch(req).code }]
-    
+
     if (where['branch_from']) {
       where['branch_from.id'] = where['branch_from'].id;
       delete where['branch_from']
@@ -375,11 +375,24 @@ module.exports = function init(site) {
       if (!err) {
         response.done = true
 
-        docs.forEach(_doc => {
-          _doc.transfer = false
-          $transfer_branch.update(_doc)
-        });
+        site.getDefaultSetting(req, callback => {
 
+          let unit = {}
+          if (callback.inventory.unit)
+            unit = callback.inventory.unit
+
+          if (unit.id)
+            docs.forEach(_doc => {
+              _doc.items.forEach(_item => {
+                _item.unit = {
+                  id: unit.id,
+                  name: unit.name,
+                  convert: 1
+                }
+              });
+              $transfer_branch.update(_doc)
+            });
+        })
       } else {
         response.error = err.message
       }
