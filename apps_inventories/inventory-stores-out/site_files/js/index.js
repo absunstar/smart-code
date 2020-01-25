@@ -495,7 +495,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
       _item.unit = _item.size_units_list[indxUnit];
       _item.discount = _item.size_units_list[indxUnit].discount;
       _item.price = _item.size_units_list[indxUnit].price;
-      _item.total = _item.count * _item.price
+      _item.total = _item.count * _item.price;
 
       if (_item.branches_list && _item.branches_list.length > 0) {
         let foundBranch = false

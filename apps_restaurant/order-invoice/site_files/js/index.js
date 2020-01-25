@@ -19,8 +19,6 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         site.showModal('#OrderInvoiceAddModal');
       }
     })
-
-
   };
 
   $scope.newOrderInvoice = function () {
@@ -360,7 +358,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     $scope.busy = true;
 
     if ($scope.defaultSettings.general_Settings && $scope.defaultSettings.general_Settings.work_posting)
-    $scope.account_invoices.posting = false;
+      $scope.account_invoices.posting = false;
     else $scope.account_invoices.posting = true;
 
 
@@ -1433,6 +1431,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     if ($scope.current_items.sizes) $scope.current_items.sizes.forEach(size => {
       size.item_id = $scope.current_items.id;
       size.name = $scope.current_items.name;
+      size.main_unit = $scope.current_items.main_unit;
     });
     site.showModal('#sizesModal');
   };
@@ -1456,6 +1455,13 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     });
 
     if (!exist) {
+
+      let indxUnit = item.size_units_list.findIndex(_unit => _unit.id == item.main_unit.id);
+
+      item.unit = item.size_units_list[indxUnit];
+      item.discount = item.size_units_list[indxUnit].discount;
+      item.price = item.size_units_list[indxUnit].price;
+
       $scope.order_invoice.book_list.push({
         item_id: item.item_id,
         kitchen: item.kitchen,
@@ -1463,6 +1469,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         store: item.store,
         barcode: item.barcode,
         size: item.size,
+        unit: item.unit,
         total: (item.price - item.discount.value),
         vendor: item.vendor,
         store: item.store,
