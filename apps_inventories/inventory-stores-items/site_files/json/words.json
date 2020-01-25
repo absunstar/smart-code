@@ -315,6 +315,11 @@
         "ar": "لا"
     },
     {
+        "name": "err_discount_value",
+        "en": "The Discount Must Be Less Than maximum Discount",
+        "ar": "يجب أن يكون الخصم أقل من أقصى خصم"
+    },
+    {
         "name": "stores_search",
         "en": "Search",
         "ar": "بحث"

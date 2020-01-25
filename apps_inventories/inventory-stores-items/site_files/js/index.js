@@ -29,6 +29,11 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
       return
     };
 
+    if ($scope.item.discount.value > $scope.item.discount.max) {
+      $scope.error = "##word.err_discount_value##";
+      return
+    };
+
 
     if ($scope.complex && $scope.complex.length > 0)
       $scope.complex = $scope.complex;
@@ -62,6 +67,7 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
       $scope.item.size_units_list.push({
         id: _size_unit.id,
         name: _size_unit.name,
+        barcode: _size_unit.barcode,
         convert: _size_unit.convert,
         price: $scope.item.price,
         cost: $scope.item.cost,
@@ -668,12 +674,10 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
 
     $scope.category_item.sizes.forEach(_size => {
       _size.size_units_list = _size.size_units_list || [];
-      console.log("this size");
-      console.log(_size);
+
       let found = _size.size_units_list.some(_unit => _unit.id == u.id);
 
       if (!found) {
-        console.log("add unit to this size");
         _size.size_units_list.push({
           name: u.name,
           barcode: u.barcode,
@@ -685,9 +689,6 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
           average_cost: _size.average_cost,
           discount: _size.discount
         });
-
-
-        console.log(_size);
       }
     });
 
@@ -700,32 +701,28 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
   $scope.deleteUnit = function (unit) {
     $scope.error = '';
 
-    $scope.category_item.units_list.splice($scope.category_item.units_list.indexOf(unit), 1);
+    let found = false;
+    $scope.category_item.sizes.forEach(_size => {
+      let indxUnit = 0;
+      let foundCount = false;
+      _size.size_units_list.forEach((_unit, i) => {
+        if (_unit.id == unit.id) {
+          indxUnit = i;
+          if (_unit.current_count != 0)
+            foundCount = true;
+        }
 
+      });
 
-    /*    let found = false;
-       $scope.category_item.sizes.forEach(_size => {
-         let indxUnit = 0;
-         let foundCount = false;
-         _size.size_units_list.forEach((_unit, i) => {
-           if (_unit.id == unit.id) {
-             indxUnit = i;
-             if (_unit.current_count != 0)
-               foundCount = true;
-           }
+      if (foundCount) {
+        $scope.error = '##word.err_delete_unit##';
+        found = true;
 
-         });
+      } else _size.size_units_list.splice(indxUnit, 1);
 
-         if (foundCount) {
-           $scope.error = '##word.err_delete_unit##';
-           found = true;
+    });
 
-         } else _size.size_units_list.splice(indxUnit, 1);
-
-         console.log();
-       });
-
-       if (!found) */
+    if (!found) $scope.category_item.units_list.splice($scope.category_item.units_list.indexOf(unit), 1);
 
   };
 
@@ -734,44 +731,21 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
     category_item.units_list = category_item.units_list || [];
     if (category_item.main_unit) {
 
-      if (category_item.units_list.length > 0) {
-        let found = category_item.units_list.some(_unit => _unit.id == category_item.main_unit.id);
-        if (!found) category_item.units_list.unshift({
-          name: category_item.main_unit.name,
-          barcode: category_item.main_unit.barcode,
-          id: category_item.main_unit.id,
-          convert: 1
-        });
-
-      } else if (category_item.main_unit.name)
-        category_item.units_list.unshift({
-          name: category_item.main_unit.name,
-          barcode: category_item.main_unit.barcode,
-          id: category_item.main_unit.id,
-          convert: 1
-        });
+      let found = category_item.units_list.some(_unit => _unit.id == category_item.main_unit.id);
+      if (!found) category_item.units_list.unshift({
+        name: category_item.main_unit.name,
+        barcode: category_item.main_unit.barcode,
+        id: category_item.main_unit.id,
+        convert: 1
+      });
 
       category_item.sizes.forEach(_size => {
         _size.size_units_list = _size.size_units_list || [];
-        if (_size.size_units_list.length > 0) {
 
-          let found = _size.size_units_list.some(_unit => _unit.id == category_item.main_unit.id);
-          if (!found) _size.size_units_list.unshift({
-            name: category_item.main_unit.name,
-            barcode: category_item.main_unit.barcode,
-            barcode: category_item.main_unit.barcode,
-            id: category_item.main_unit.id,
-            current_count: 0,
-            start_count: 0,
-            cost: _size.cost,
-            price: _size.price,
-            average_cost: _size.average_cost,
-            discount: _size.discount
-          });
+        let found = _size.size_units_list.some(_unit => _unit.id == category_item.main_unit.id);
 
-        } else _size.size_units_list.unshift({
+        if (!found) _size.size_units_list.unshift({
           name: category_item.main_unit.name,
-          barcode: category_item.main_unit.barcode,
           barcode: category_item.main_unit.barcode,
           id: category_item.main_unit.id,
           current_count: 0,
