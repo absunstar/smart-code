@@ -35,6 +35,7 @@ module.exports = function init(site) {
       size_units_list: [{
         id: obj.unit.id,
         name: obj.unit.name,
+        barcode: obj.unit.barcode,
         current_count: obj.count,
         start_count: obj._status == 3 ? site.toNumber(obj.count) : 0,
         total_buy_price: totalCost,
@@ -49,6 +50,7 @@ module.exports = function init(site) {
         size_units_list: [{
           id: obj.unit.id,
           name: obj.unit.name,
+          barcode: obj.unit.barcode,
           current_count: obj.count,
           start_count: obj._status == 3 ? site.toNumber(obj.count) : 0,
           total_buy_price: totalCost,
@@ -68,6 +70,7 @@ module.exports = function init(site) {
       size_units_list: [{
         id: obj.unit.id,
         name: obj.unit.name,
+        barcode: obj.unit.barcode,
         current_count: obj.count,
         start_count: obj._status == 3 ? site.toNumber(obj.count) : 0,
         total_buy_price: totalCost,
@@ -192,6 +195,7 @@ module.exports = function init(site) {
                   _branch.size_units_list.push({
                     id: obj.unit.id,
                     name: obj.unit.name,
+                    barcode: obj.unit.barcode,
                     current_count: obj.count,
                     start_count: obj._status == 3 ? site.toNumber(obj.count) : 0,
                     total_buy_price: totalCost,
@@ -249,6 +253,7 @@ module.exports = function init(site) {
                       _branch._store.size_units_list.push({
                         id: obj.unit.id,
                         name: obj.unit.name,
+                        barcode: obj.unit.barcode,
                         current_count: obj.count,
                         start_count: obj._status == 3 ? site.toNumber(obj.count) : 0,
                         total_buy_price: totalCost,
