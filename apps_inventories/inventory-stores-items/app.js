@@ -87,7 +87,7 @@ module.exports = function init(site) {
       if (!err && doc) {
 
 
-        doc.sizes.map(_size => { if (_size.barcode != obj.barcode) doc.sizes.push(obj) });
+        // doc.sizes.map(_size => { if (_size.barcode != obj.barcode) doc.sizes.push(obj) });
 
         doc.sizes.forEach(_size => {
           if (_size.barcode == obj.barcode) {
@@ -161,6 +161,7 @@ module.exports = function init(site) {
               _branch._store = _branch.stores_list[indxStore]
 
               if (foundBranch) {
+                let unit_branch = false;
 
                 _branch.size_units_list.forEach(_units => {
                   if (obj.unit && _units.id == obj.unit.id) {
@@ -182,9 +183,23 @@ module.exports = function init(site) {
 
                     if (obj._status == 1)
                       _units.average_cost = site.toNumber(_units.total_buy_price) / site.toNumber(_units.total_buy_count)
+
+                    unit_branch = true
                   }
                 });
+                if (!unit_branch) {
 
+                  _branch.size_units_list.push({
+                    id: obj.unit.id,
+                    name: obj.unit.name,
+                    current_count: obj.count,
+                    start_count: obj._status == 3 ? site.toNumber(obj.count) : 0,
+                    total_buy_price: totalCost,
+                    total_buy_count: site.toNumber(obj.count),
+                    average_cost: site.toNumber(totalCost) / site.toNumber(obj.count)
+                  })
+
+                }
 
                 if (obj.type == 'sum') {
                   if (obj._status == 3) _branch.start_count = (_branch.start_count || 0) + site.toNumber(total_unit)
@@ -206,7 +221,7 @@ module.exports = function init(site) {
                 if (_branch.stores_list && _branch.stores_list.length > 0) {
 
                   if (foundStore) {
-
+                    let unit_store = false
                     _branch._store.size_units_list.forEach(_units => {
                       if (obj.unit && _units.id == obj.unit.id) {
                         if (obj.type == 'sum') {
@@ -224,8 +239,24 @@ module.exports = function init(site) {
 
                         if (obj._status == 1)
                           _units.average_cost = site.toNumber(_units.total_buy_price) / site.toNumber(_units.total_buy_count)
+
+                        unit_store = true
                       }
                     });
+
+                    if (!unit_store) {
+
+                      _branch._store.size_units_list.push({
+                        id: obj.unit.id,
+                        name: obj.unit.name,
+                        current_count: obj.count,
+                        start_count: obj._status == 3 ? site.toNumber(obj.count) : 0,
+                        total_buy_price: totalCost,
+                        total_buy_count: site.toNumber(obj.count),
+                        average_cost: site.toNumber(totalCost) / site.toNumber(obj.count)
+                      })
+
+                    }
 
 
                     if (obj.type == 'sum') {
@@ -403,7 +434,7 @@ module.exports = function init(site) {
           _size_unit.average_cost = _size_unit.cost
 
         if (!_size_unit.barcode || _size_unit.barcode == '')
-          _size_unit.barcode = stores_items_doc.id + stores_items_doc.company.id + stores_items_doc.branch.code + _size_unit.id + i + (Math.floor(Math.random() * 100) + i)
+          _size_unit.barcode = stores_items_doc.id + stores_items_doc.company.id + stores_items_doc.branch.code + _size_unit.id + (Math.floor(Math.random() * 100) + _i)
       });
 
     });
