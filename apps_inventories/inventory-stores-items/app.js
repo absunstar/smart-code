@@ -337,7 +337,7 @@ module.exports = function init(site) {
 
     stores_items_doc.sizes.forEach(_size => {
       _size.size_units_list.forEach(_size_unit => {
-        let indx = stores_items_doc.units_list.findIndex(_unit => _unit.id == _size_unit.id);
+        let indx = stores_items_doc.units_list.findIndex(_unit1 => _unit1.id == _size_unit.id);
         _size_unit.convert = stores_items_doc.units_list[indx].convert
 
         if (!_size_unit.average_cost)
@@ -396,7 +396,7 @@ module.exports = function init(site) {
         _size.barcode = stores_items_doc.id + stores_items_doc.company.id + stores_items_doc.branch.code + y + (Math.floor(Math.random() * 100) + i)
 
       _size.size_units_list.forEach((_unit, _i) => {
-        let indx = stores_items_doc.units_list.findIndex(_unit => _unit.id == _size_unit.id);
+        let indx = stores_items_doc.units_list.findIndex(_unit1 => _unit1.id == _size_unit.id);
         _size_unit.convert = stores_items_doc.units_list[indx].convert
 
         if (!_size_unit.average_cost)
