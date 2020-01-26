@@ -784,29 +784,28 @@ module.exports = function init(site) {
               unit = callback.inventory.unit
           }
 
-          docs.forEach(_docs => {
+          docs.forEach(_doc => {
 
-            if (!_docs.main_unit) {
-              _docs.main_unit = unit
+            _doc.main_unit = unit
 
-              _docs.units_list = [{
-                id: unit.id,
-                name: unit.name,
-                convert: 1
-              }]
-            }
+            _doc.units_list = [{
+              id: unit.id,
+              name: unit.name,
+              convert: 1
+            }]
 
-            _docs.sizes.forEach(_sizes => {
-
+            let y = new Date().getFullYear().toString()
+            let _barcode = _doc.id + _doc.company.id + _doc.branch.code + y + (Math.floor(Math.random() * 100))
+            _doc.sizes.forEach(_sizes => {
               if (unit.id)
-                if (_sizes.size_units_list == null || undefined) {
+                if (true) {
                   _sizes.discount = {
                     max: 5, type: 'number', value: 2
                   }
                   _sizes.size_units_list = [{
                     id: unit.id,
                     name: unit.name,
-                    barcode: unit.barcode,
+                    barcode: _barcode,
                     current_count: _sizes.current_count,
                     start_count: _sizes.start_count,
                     price: _sizes.price,
@@ -828,6 +827,7 @@ module.exports = function init(site) {
                     _branch.size_units_list = [{
                       id: unit.id,
                       name: unit.name,
+                      barcode: _barcode,
                       current_count: _branch.current_count,
                       start_count: _branch.start_count,
                       total_buy_price: _branch.total_buy_price,
@@ -841,6 +841,7 @@ module.exports = function init(site) {
                       _store.size_units_list = [{
                         id: unit.id,
                         name: unit.name,
+                        barcode: _barcode,
                         current_count: _store.current_count,
                         start_count: _store.start_count,
                         total_buy_price: _store.total_buy_price,
