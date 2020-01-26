@@ -38,15 +38,15 @@
                 <table class="table loaded center hover bold" id="t1">
                     <tr>
                         <th> ##word.stores_items_name## </th>
-                        <th> ##word.barcode## </th>
                         <th> ##word.stores_size## </th>
+                        <th> ##word.barcode## </th>
                         <th> ##word.total_sales## </th>
                     </tr>
 
                     <tr ng-repeat="c in list | orderBy : '-id'">
                         <td > {{c.name}} </td>
-                        <td class="blue"> {{c.barcode}} </td>
                         <td> {{c.size}} </td>
+                        <td class="blue"> {{c.barcode}} </td>
                         <td> {{c.count}} </td>
                     </tr>
                 </table>

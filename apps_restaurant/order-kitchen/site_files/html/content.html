@@ -14,6 +14,8 @@
         <tr>
             <th>##word.code##</th>
             <th>##word.stores_items_name##</th>
+            <th>##word.stores_size##</th>
+            <th>##word.barcode##</th>
             <th>##word.items_count##</th>
             <th>##word.items_notes##</th>
             <th>##word.actions##</th>
@@ -24,13 +26,15 @@
                 <p class="code">{{i.order.code}}</p>
                 <p class="bold"> {{i.table.name}} / {{i.table.tables_group.name}} </p>
             </td>
+            <td class="center title">{{i.name}}</td>
             <td class="center title">{{i.size}}</td>
+            <td class="center title">{{i.barcode}}</td>
             <td class="center code">{{i.count}}</td>
             <td class="center">{{i.notes}}</td>
 
-            <td class="center"> <i-button type="bg-green"
-                x-permissions="order_kitchen_edit || order_kitchen_manage"
-                label="##word.done_deliver##" ng-click="doneDelivery(i)"></i-button>
+            <td class="center">
+                <i-button type="bg-green" x-permissions="order_kitchen_edit || order_kitchen_manage"
+                    label="##word.done_deliver##" ng-click="doneDelivery(i)"></i-button>
             </td>
         </tr>
 

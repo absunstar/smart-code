@@ -795,8 +795,8 @@ module.exports = function init(site) {
             }]
 
             let y = new Date().getFullYear().toString()
-            let _barcode = _doc.id + _doc.company.id + _doc.branch.code + y + (Math.floor(Math.random() * 100))
             _doc.sizes.forEach(_sizes => {
+              let _barcode = _doc.id + _doc.company.id + _doc.branch.code + y + (Math.floor(Math.random() * 100))
               if (unit.id)
                 if (true) {
                   _sizes.discount = {
@@ -895,7 +895,7 @@ module.exports = function init(site) {
 
 
             });
-            $stores_items.update(_docs)
+            $stores_items.update(_doc)
           });
         })
 
