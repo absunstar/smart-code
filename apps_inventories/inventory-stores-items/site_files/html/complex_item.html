@@ -1,6 +1,6 @@
 <div id="complexItemModal" class="modal">
-    <div class="col4"></div>
-    <div class="modal-content col5">
+    <div class="col2"></div>
+    <div class="modal-content col8">
         <div class="modal-header">
             <span class="close">&times;</span>
             <h2>
@@ -15,15 +15,16 @@
                             ng-model="search_item_name" label="##word.search##" type="text"></i-control>
 
                         <i-list class="col4" label="##word.stores_in_item_name##" ng-model="selectedItem" display="name"
-                            items="itemsNameList" ng-change="itemsStoresIn()" ng-search="_search.$item_searching">
+                            items="itemsNameList" ng-search="_search.$item_searching">
                         </i-list>
 
                         <i-list ng-search="_search.$items_size" class="col4" display="size" ng-model="items_size"
                             label="##word.barcode##" items="selectedItem.sizes">
                         </i-list>
+
                     </div>
                     <div class="row">
-                        <i-button type="add" class="col2" label="##word.add##" ng-click="incertComplexItem()">
+                        <i-button type="add" class="col2" label="##word.add##" ng-click="incertComplexItem(item)">
                         </i-button>
                     </div>
 
@@ -43,6 +44,7 @@
                             <th>##word.item_name##</th>
                             <th>##word.stores_items_sizes##</th>
                             <th>##word.barcode##</th>
+                            <th>##word.unit##</th>
                             <th>##word.price##</th>
                             <th>##word.item_count##</th>
                             <th>##word.actions##</th>
@@ -60,6 +62,11 @@
                             <td>
                                 <br>
                                 <p class="center bold blue">{{i.barcode}}</p>
+                            </td>
+                            <td>
+                                <i-list ng-model="i.unit" ng-search="_search.$category_item.$unit_search"
+                                    ng-change=" i.price = i.unit.price ;calcSize(i)" display2="barcode"
+                                    items="i.size_units_list"></i-list>
                             </td>
                             <td>
                                 <br>

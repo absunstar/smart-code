@@ -995,19 +995,19 @@ module.exports = function init(site) {
     }, (err, docs, count) => {
       if (!err) {
         response.done = true
-        let arr = [];
+        let arr_sizes = [];
         if (docs && docs.length > 0) {
           docs.forEach(item => {
             if (item.sizes && item.sizes.length > 0)
               item.sizes.forEach(size => {
                 size.itm_id = item.id
                 size.stores_item_name = item.name
-                arr.unshift(size)
+                arr_sizes.unshift(size)
               })
           })
         }
         response.count = count
-        response.list = arr
+        response.list = arr_sizes
       } else {
         response.error = err.message
       }
@@ -1054,5 +1054,38 @@ module.exports = function init(site) {
       res.json(response)
     })
   })
+
+  site.getItemsSizes = function (req, callback) {
+
+    let where = req.body.where || {}
+
+    where['company.id'] = site.get_company(req).id
+
+    $stores_items.findMany({
+      select: req.body.select || {},
+      where: where,
+      sort: req.body.sort || {
+        id: -1
+      },
+      limit: req.body.limit
+    }, (err, docs) => {
+      if (!err) {
+        let arr_sizes = [];
+        if (docs && docs.length > 0) {
+          docs.forEach(item => {
+            if (item.sizes && item.sizes.length > 0)
+              item.sizes.forEach(size => {
+                size.itm_id = item.id
+                size.stores_item_name = item.name
+                arr_sizes.unshift(size)
+              })
+          })
+          callback(arr_sizes)
+        }
+      } else {
+
+      }
+    })
+  }
 
 }

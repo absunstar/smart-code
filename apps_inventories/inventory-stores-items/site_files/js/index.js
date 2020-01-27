@@ -29,7 +29,7 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
       return
     };
 
-    if ($scope.item.discount.value > $scope.item.discount.max) {
+    if ($scope.item.discount && $scope.item.discount.value > $scope.item.discount.max) {
       $scope.error = "##word.err_discount_value##";
       return
     };
@@ -233,7 +233,6 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
           $scope.error = `##word.err_barcode_exist##`;
           return;
         };
-
       };
 
       $scope.busy = true;
@@ -265,12 +264,21 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
     $scope._view = false;
     $scope.category_item = {};
     $scope.item = {
-      /* discount: { value: 0, max: 0, type: 'number' }, */
+      cost: 0,
+      price: 0,
+      average_cost: 0,
+      discount: {
+        value: 0,
+        max: 0,
+        type: 'number'
+      },
       image_url: '/images/sizes_img.png',
     };
     $scope.items_size = {};
     $scope.view(category_item);
-
+    if ($scope.defaultSettings.general_Settings) {
+      if ($scope.defaultSettings.general_Settings.kitchen) $scope.item.kitchen = $scope.defaultSettings.general_Settings.kitchen
+    }
     site.showModal('#updateCategoryItemModal');
     document.querySelector('#updateCategoryItemModal .tab-link').click();
   };
@@ -603,35 +611,24 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
     site.showModal('#complexViewModal');
   };
 
-  $scope.incertComplexItem = function () {
-    $scope.error = '';
-    $scope.item.complex_items = $scope.item.complex_items || [];
-
-
-    foundSize = $scope.item.complex_items.some(_itemSize => _itemSize.barcode == $scope.items_size.barcode);
-
-    if ($scope.items_size && $scope.items_size.size) {
-
-      if (!foundSize)
-        $scope.item.complex_items.unshift($scope.items_size);
-
-      else $scope.error = "##word.dublicate_item##"
-
-    } else $scope.error = "##word.Err_should_select_item##";
-
-    $scope.items_size = {};
-  };
-
-  $scope.incertComplexItemView = function (item) {
+  $scope.incertComplexItem = function (item) {
     $scope.error = '';
     item.complex_items = item.complex_items || [];
 
     foundSize = item.complex_items.some(_itemSize => _itemSize.barcode == $scope.items_size.barcode);
 
-    if (!foundSize && $scope.items_size && $scope.items_size.size) {
+    if ($scope.items_size && $scope.items_size.size) {
 
       if (!foundSize)
-        item.complex_items.unshift($scope.items_size);
+        item.complex_items.unshift({
+          name: $scope.items_size.name,
+          size: $scope.items_size.size,
+          barcode: $scope.items_size.barcode,
+          unit: $scope.items_size.unit,
+          size_units_list: $scope.items_size.size_units_list,
+          price: $scope.items_size.price,
+          count: 0
+        });
 
       else $scope.error = "##word.dublicate_item##"
 
@@ -639,6 +636,25 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
 
     $scope.items_size = {};
   };
+
+  /*  $scope.incertComplexItemView = function (item) {
+     $scope.error = '';
+     item.complex_items = item.complex_items || [];
+ 
+     foundSize = item.complex_items.some(_itemSize => _itemSize.barcode == $scope.items_size.barcode);
+ 
+     if (!foundSize && $scope.items_size && $scope.items_size.size) {
+ 
+       if (!foundSize)
+         item.complex_items.unshift($scope.items_size);
+ 
+       else $scope.error = "##word.dublicate_item##"
+ 
+     } else $scope.error = "##word.Err_should_select_item##";
+ 
+     $scope.items_size = {};
+   };
+  */
 
   $scope.deleteItemComplex = function (complex_items, i) {
     complex_items.splice(complex_items.indexOf(i), 1);
@@ -676,12 +692,18 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
           $scope.busy = false;
           if (response.data.done) {
             if (response.data.list.length > 0) {
-              response.data.list.forEach(item => {
-                item.sizes.forEach(size => {
-                  size.name = item.name;
-                  size.item_id = item.id;
+              response.data.list.forEach(_item => {
+                _item.sizes.forEach(_size => {
+                  _size.name = _item.name;
+                  _size.item_id = _item.id;
+                  let indxUnit = 0;
+                  _size.size_units_list.forEach((_unit, i) => {
+                    if (_unit.id == _item.main_unit.id)
+                      indxUnit = i;
+                  });
+                  _size.unit = _size.size_units_list[indxUnit];
+                  _size.price = _size.size_units_list[indxUnit].price
                 });
-
               });
 
               $scope.itemsNameList = response.data.list;

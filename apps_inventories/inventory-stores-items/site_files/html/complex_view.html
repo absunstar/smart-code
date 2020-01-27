@@ -1,7 +1,7 @@
 <div id="complexViewModal" class="modal" fixed>
 
-    <div class="col3"></div>
-    <div class="modal-content col6">
+    <div class="col2"></div>
+    <div class="modal-content col8">
         <div class="modal-header">
             <span class="close">&times;</span>
             <h2>
@@ -18,7 +18,7 @@
                             ng-model="search_item_name" label="##word.search##" type="text"></i-control>
 
                         <i-list class="col4" label="##word.stores_in_item_name##" ng-model="selectedItem" display="name"
-                            items="itemsNameList" ng-change="itemsStoresIn()" ng-search="_search.$item_searching">
+                            items="itemsNameList" ng-search="_search.$item_searching">
                         </i-list>
 
                         <i-list ng-search="_search.$items_size" class="col4" display="size" ng-model="items_size"
@@ -28,7 +28,7 @@
                     <div class="row">
 
                         <i-button type="add" class="col2" label="##word.add##"
-                            ng-click="incertComplexItemView(complexView)"> </i-button>
+                            ng-click="incertComplexItem(complexView)"> </i-button>
                     </div>
                 </div>
 
@@ -41,6 +41,7 @@
                             <th>##word.item_name##</th>
                             <th>##word.stores_items_sizes##</th>
                             <th>##word.barcode##</th>
+                            <th>##word.unit##</th>
                             <th>##word.price##</th>
                             <th>##word.item_count##</th>
                             <th ng-hide="complexView.view">##word.actions##</th>
@@ -60,6 +61,11 @@
                                 <p class="center bold blue">{{i.barcode}}</p>
                             </td>
                             <td>
+                                <i-list ng-model="i.unit" ng-search="_search.$category_item.$unit_search"
+                                    ng-change=" i.price = i.unit.price ;calcSize(i)" display2="barcode"
+                                    items="i.size_units_list"></i-list>
+                            </td>
+                            <td>
                                 <br>
                                 <p class="center bold green">{{i.price}}</p>
                             </td>
@@ -69,7 +75,7 @@
                                 <p class="center bold">{{i.count}}</p>
                             </td>
                             <td ng-hide="complexView.view">
-                                <i-control  ng-model="i.count" type="number"></i-control>
+                                <i-control ng-model="i.count" type="number"></i-control>
                             </td>
 
                             <td class="center" ng-hide="complexView.view">
