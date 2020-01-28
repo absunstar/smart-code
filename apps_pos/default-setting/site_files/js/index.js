@@ -413,6 +413,35 @@ app.controller("default_setting", function ($scope, $http) {
     )
   };
 
+  $scope.loadCurrencies = function () {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/currency/all",
+      data: {
+        select: {
+          id: 1,
+          name: 1,
+          ex_rate: 1
+        },
+        where: {
+          active: true
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.currenciesList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
   /*   $scope.getSourceType = function () {
       $scope.error = '';
       $scope.busy = true;
@@ -470,6 +499,7 @@ app.controller("default_setting", function ($scope, $http) {
   $scope.getSourceType();
   $scope.loadSafesBank();
   $scope.loadUnits();
+  $scope.loadCurrencies();
   $scope.loadSafesBox();
   $scope.loadStoresInTypes();
   $scope.loadSetting();

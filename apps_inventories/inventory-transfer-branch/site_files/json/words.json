@@ -23,6 +23,7 @@
     {"name" : "err_barcode_exist" , "en" : "The barcode is exist" , "ar" : "الباركود مسجل من قبل"},
 
     {"name" : "permission_detailes" , "en" : "Permission Detailes" , "ar" : "تفاصيل الإذن"},
+    {"name" : "cant_transfer_to_same_store" , "en" : "Cannot Transfer To The Same Store" , "ar" : "لا يمكن التحويل لنفس المخزن"},
     {"name" : "must_enter_quantity" , "en" : "Must Enter Quantity" , "ar" : "يجب إدخال الكمية"},
     {"name" : "confirm_transfer" , "en" : "Confirm Transfer" , "ar" : "إعتماد التحويل"},
 

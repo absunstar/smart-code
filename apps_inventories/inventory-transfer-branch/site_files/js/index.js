@@ -26,8 +26,24 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.get_open_shift((shift) => {
       if (shift) {
-        $scope.getDefaultSettings();
-        site.showModal('#addTransferBranchModal');
+        $scope.error = '';
+        $scope.item = {}
+        $scope.transfer_branch = {
+          image_url: '/images/transfer_branch.png',
+          shift: $scope.shift,
+          items: [],
+          discountes: [],
+          taxes: [],
+          details: [],
+          date: new Date(),
+          supply_date: new Date(),
+          branch_from: $scope.branchCode
+        };
+
+        if ($scope.defaultSettings.inventory) {
+          if ($scope.defaultSettings.inventory.store)
+            $scope.transfer_branch.store_from = $scope.defaultSettings.inventory.store
+        } site.showModal('#addTransferBranchModal');
       } else $scope.error = '##word.open_shift_not_found##';
     });
   };
@@ -44,24 +60,6 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done && response.data.doc) {
           $scope.defaultSettings = response.data.doc;
-          $scope.error = '';
-          $scope.item = {}
-          $scope.transfer_branch = {
-            image_url: '/images/transfer_branch.png',
-            shift: $scope.shift,
-            items: [],
-            discountes: [],
-            taxes: [],
-            details: [],
-            date: new Date(),
-            supply_date: new Date(),
-            branch_from: $scope.branchCode
-          };
-
-          if ($scope.defaultSettings.inventory) {
-            if ($scope.defaultSettings.inventory.store)
-              $scope.transfer_branch.store_from = $scope.defaultSettings.inventory.store
-          }
         };
       },
       function (err) {
@@ -80,6 +78,11 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
       return;
     }
 
+    if ($scope.transfer_branch.branch_from.id === $scope.transfer_branch.branch_to.id) {
+      $scope.error = "##word.cant_transfer_to_same_store##";
+      return;
+    }
+    
     if ($scope.transfer_branch.items.length > 0) {
       $scope.busy = true;
       $http({
@@ -698,6 +701,7 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
   };
 
   $scope.loadCategories();
+  $scope.getDefaultSettings();
   $scope.loadBranches();
   $scope.loadStoresFrom();
   $scope.loadAll({ date: new Date() });

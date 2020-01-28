@@ -101,11 +101,10 @@
                                 ng-click="c.posting = false ; posting(c)"></i-button>
 
                             <i-button x-permissions="amounts_in_delete || amounts_in_manage" type="delete"
-                                ng-hide="c.posting && defaultSettings.general_Settings.work_unposting"
                                 label="##word.delete##" ng-click="remove(c)"></i-button>
                         </td>
                     </tr>
-
+                    <!-- ng-hide="c.posting && defaultSettings.general_Settings.work_unposting" -->
                 </table>
 
 

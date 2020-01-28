@@ -1,4 +1,4 @@
-app.controller("amounts_out", function ($scope, $http) {
+app.controller("amounts_out", function ($scope, $http, $timeout) {
   $scope._search = {};
 
   $scope.amount_out = {};
@@ -40,6 +40,7 @@ app.controller("amounts_out", function ($scope, $http) {
           image_url: '/images/amount_out.png',
           shift: $scope.shift,
           date: new Date(),
+          value: 0
         };
         if ($scope.defaultSettings) {
           if ($scope.defaultSettings.general_Settings && !$scope.defaultSettings.general_Settings.work_posting)
@@ -335,6 +336,41 @@ app.controller("amounts_out", function ($scope, $http) {
     )
   };
 
+  $scope.loadCurrencies = function () {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/currency/all",
+      data: {
+        select: {
+          id: 1,
+          name: 1,
+          ex_rate: 1
+        },
+        where: {
+          active: true
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.currenciesList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.calc = function () {
+    $timeout(() => {
+      $scope.amount_out.value = $scope.amount_out.currency_value * $scope.amount_out.currency.ex_rate
+    }, 250)
+  };
+
   $scope.loadEmployees = function () {
     $scope.busy = true;
     $http({
@@ -389,6 +425,7 @@ app.controller("amounts_out", function ($scope, $http) {
   };
   $scope.getDefaultSettings();
   $scope.loadInOutNames();
+  $scope.loadCurrencies();
   $scope.getPaymentMethodList();
   $scope.loadEmployees();
   $scope.loadAll({ date: new Date() });

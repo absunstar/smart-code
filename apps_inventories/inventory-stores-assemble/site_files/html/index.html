@@ -17,11 +17,13 @@
     <div id="main-layout" class="container">
         <div class="row ">
             <div class="row" ng-controller="stores_assemble">
-                <div x-permissions="stores_assemble_add || stores_assemble_manage" x-import="inventory-stores-assemble/add_modal.html">
+                <div x-permissions="stores_assemble_add || stores_assemble_manage"
+                    x-import="inventory-stores-assemble/add_modal.html">
                 </div>
                 <div x-permissions="stores_assemble_delete || stores_assemble_manage"
                     x-import="inventory-stores-assemble/delete_modal.html"></div>
-                <div x-permissions="stores_assemble_view || stores_assemble_manage" x-import="inventory-stores-assemble/view_modal.html">
+                <div x-permissions="stores_assemble_view || stores_assemble_manage"
+                    x-import="inventory-stores-assemble/view_modal.html">
                 </div>
                 <div x-permissions="stores_assemble_search || stores_assemble_manage"
                     x-import="inventory-stores-assemble/search_all_modal.html"></div>
@@ -62,8 +64,8 @@
                         <td>
                             <p class="bold blue text-center"> <br> {{c.code}} </p>
                         </td>
-                    
-                     
+
+
                         <td>
                             <p class="text-center blue"> <br> {{c.store.name}} </p>
                         </td>
@@ -73,11 +75,13 @@
                             <i-button x-permissions="stores_assemble_view || stores_assemble_manage" type="details"
                                 label="##word.details##" ng-click="details(c)"></i-button>
 
-                            <i-button x-permissions="stores_assemble_post || stores_assemble_manage" label="##word.posting##"
+                            <i-button x-permissions="stores_assemble_post || stores_assemble_manage"
+                                label="##word.posting##"
                                 ng-show="defaultSettings.general_Settings.work_posting && !c.posting"
                                 ng-click="c.posting = true ; posting(c)"></i-button>
 
-                            <i-button x-permissions="stores_assemble_post || stores_assemble_manage" label="##word.unposting##"
+                            <i-button x-permissions="stores_assemble_post || stores_assemble_manage"
+                                label="##word.unposting##"
                                 ng-show="defaultSettings.general_Settings.work_unposting && c.posting"
                                 ng-click="c.posting = false ; posting(c)"></i-button>
 
@@ -85,16 +89,15 @@
                                 ng-show="!c.posting" label="##word.edit##" ng-click="edit(c)"></i-button>
 
                             <i-button x-permissions="stores_assemble_delete || stores_assemble_manage" type="delete"
-                                ng-hide="c.posting && defaultSettings.general_Settings.work_unposting"
                                 label="##word.delete##" ng-click="remove(c)"></i-button>
                         </td>
-
+                        <!-- ng-hide="c.posting && defaultSettings.general_Settings.work_unposting" -->
                     </tr>
 
                 </table>
 
-                <i-button x-permissions="stores_assemble_print || stores_assemble_manage" type="print" label="##word.print##"
-                    onclick="site.print('#t1')"></i-button>
+                <i-button x-permissions="stores_assemble_print || stores_assemble_manage" type="print"
+                    label="##word.print##" onclick="site.print('#t1')"></i-button>
 
             </div>
         </div>

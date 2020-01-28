@@ -1,4 +1,4 @@
-app.controller("amounts_in", function ($scope, $http) {
+app.controller("amounts_in", function ($scope, $http, $timeout) {
   $scope._search = {};
 
   $scope.amount_in = {};
@@ -12,6 +12,7 @@ app.controller("amounts_in", function ($scope, $http) {
           image_url: '/images/amount_in.png',
           shift: $scope.shift,
           date: new Date(),
+          value: 0
         };
         if ($scope.defaultSettings) {
           if ($scope.defaultSettings.general_Settings && !$scope.defaultSettings.general_Settings.work_posting)
@@ -64,7 +65,7 @@ app.controller("amounts_in", function ($scope, $http) {
 
     $scope.loadAll($scope.search);
     $scope.search = {};
-    
+
     site.hideModal('#amountsInSearchModal');
 
   };
@@ -336,7 +337,43 @@ app.controller("amounts_in", function ($scope, $http) {
       }
     )
   };
-  
+
+
+  $scope.loadCurrencies = function () {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/currency/all",
+      data: {
+        select: {
+          id: 1,
+          name: 1,
+          ex_rate: 1
+        },
+        where: {
+          active: true
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.currenciesList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.calc = function () {
+    $timeout(() => {
+      $scope.amount_in.value = $scope.amount_in.currency_value * $scope.amount_in.currency.ex_rate
+    }, 250)
+  };
+
 
   $scope.loadEmployees = function () {
     $scope.busy = true;
@@ -346,7 +383,8 @@ app.controller("amounts_in", function ($scope, $http) {
       data: {
         where: {
           'trainer': { $ne: true },
-          'delivery': { $ne: true }
+          'delivery': { $ne: true },
+          active: true
         }
       }
     }).then(
@@ -393,6 +431,7 @@ app.controller("amounts_in", function ($scope, $http) {
   $scope.getDefaultSettings();
   $scope.getPaymentMethodList();
   $scope.loadInOutNames();
+  $scope.loadCurrencies();
   $scope.loadEmployees();
   $scope.loadAll({ date: new Date() });
 });

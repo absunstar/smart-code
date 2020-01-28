@@ -81,7 +81,8 @@
                                 label="##word.edit##" ng-click="edit(c)"></i-button>
 
                             <i-button x-permissions="transfer_branch_delete || transfer_branch_manage" type="delete"
-                                label="##word.delete##" ng-click="remove(c)"></i-button>
+                                ng-show="c.branch.code == ##session.branch.code##" label="##word.delete##"
+                                ng-click="remove(c)"></i-button>
                         </td>
 
                     </tr>

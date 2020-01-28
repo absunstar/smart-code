@@ -454,6 +454,35 @@ app.controller("default_setting", function ($scope, $http) {
     )
   };
 
+  $scope.loadCurrencies = function () {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/currency/all",
+      data: {
+        select: {
+          id: 1,
+          name: 1,
+          ex_rate: 1
+        },
+        where: {
+          active: true
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.currenciesList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
   $scope.saveSetting = function (where) {
     $scope.busy = true;
     $http({
@@ -483,6 +512,7 @@ app.controller("default_setting", function ($scope, $http) {
   $scope.getTrainerList();
   $scope.getPaymentMethodList();
   $scope.getDiscountMethodList();
+  $scope.loadCurrencies();
   $scope.loadUnits();
   $scope.loadStoresOutTypes();
   $scope.loadStoresInTypes();

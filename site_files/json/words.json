@@ -90,6 +90,21 @@
         "ar": "كمية"
     },
     {
+        "name": "currency_value",
+        "en": "Currency Amount",
+        "ar": "مبلغ العملة"
+    },
+    {
+        "name": "exchange_rate",
+        "en": "Exchange Rate",
+        "ar": "سعر الصرف"
+    },
+    {
+        "name": "pay_another_currency",
+        "en": "Pay Another Currency",
+        "ar": "الدفع بعملة أخرى"
+    },
+    {
         "name": "cvt",
         "en": "Cvt",
         "ar": "تحويل"

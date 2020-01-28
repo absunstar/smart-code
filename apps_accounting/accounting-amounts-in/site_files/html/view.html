@@ -39,10 +39,22 @@
                 <td class="green center">{{amount_in.safe.name}}</td>
             </tr>
 
+            <tr ng-show="amount_in.pay_currency">
+                <td class="title">##word.currency##</td>
+                <td class="center"><b>{{amount_in.currency.name}} </b> /
+                    <b class="blue">{{amount_in.currency.ex_rate}}</b>
+                </td>
+            </tr>
+
+            <tr ng-show="amount_in.pay_currency">
+                <td class="title">##word.currency_value##</td>
+                <td class="center green">{{amount_in.currency_value}}</td>
+            </tr>
+
             <tr>
                 <td class="title">##word.amounts_in_description##</td>
                 <td class="center">{{amount_in.description}}</td>
-            </tr class="center">
+            </tr>
 
 
         </table>

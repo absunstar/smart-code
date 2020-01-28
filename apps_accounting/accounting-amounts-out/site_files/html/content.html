@@ -21,9 +21,23 @@
                 </i-list>
                 <i-list class="col3 padding" ng-search="_search.$safe_amountsOut" v='r' class="col12"
                     ng-model="amount_out.safe" items="safesList" label="##word.amounts_in_safe##"></i-list>
-                <i-control class="col2" v="r" ng-model="amount_out.value" type="number"
-                    label="##word.amounts_out_value##"></i-control>
+                <i-control ng-disabled="amount_out.pay_currency" class="col2" v="r" ng-model="amount_out.value"
+                    type="number" label="##word.amounts_out_value##"></i-control>
+                <i-checkbox ng-model="amount_out.pay_currency"
+                    ng-click="amount_out.pay_currency ? amount_out.currency = defaultSettings.accounting.currency : {} ; amount_out.currency_value = 0"
+                    label="##word.pay_another_currency##"></i-checkbox>
+            </div>
 
+            <div class="row" ng-show="amount_out.pay_currency">
+
+                <i-list class="col3 control padding" ng-search="_search.$currency_search" ng-model="amount_out.currency"
+                    items="currenciesList" label="##word.currency##"></i-list>
+
+                <i-control class="col2" ng-model="amount_out.currency.ex_rate" type="number"
+                    label="##word.exchange_rate##"></i-control>
+
+                <i-control class="col2" ng-change="calc()" ng-model="amount_out.currency_value" type="number"
+                    label="##word.currency_value##"></i-control>
             </div>
 
             <div class="col4">
