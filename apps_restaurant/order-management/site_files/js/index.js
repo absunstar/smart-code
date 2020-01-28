@@ -49,35 +49,37 @@ app.controller("order_management", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           site.hideModal('#employeeDeliveryModal');
-
-          if ($scope.defaultSettings.general_Settings && $scope.defaultSettings.general_Settings.discount_method && $scope.defaultSettings.general_Settings.discount_method.id == 1 && $scope.order_invoice.status.id == 2) {
-            let store_out = {
-              image_url: '/images/store_out.png',
-              supply_date: new Date(),
-              date: order.date,
-              order_id: order.id,
-              customer: order.customer,
-              shift: order.shift,
-              net_value: order.net_value,
-              paid_up: order.net_value,
-              payment_method: order.payment_method,
-              store: order.store,
-              order_code: order.code,
-              items: $scope.order_invoice.book_list,
-              total_discount: order.total_discount,
-              total_tax: order.total_tax,
-              total_value: order.total_value,
-              net_value: order.net_value,
-              type: {
-                id: 4,
-                en: "Orders Screen",
-                ar: "شاشة الطلبات"
-              },
-              active: true
-            };
-            $scope.addStoresOut(store_out)
-          }
-
+          if (order.post && $scope.post)
+            if ($scope.defaultSettings.general_Settings && $scope.defaultSettings.general_Settings.discount_method && $scope.defaultSettings.general_Settings.discount_method.id == 2 && $scope.order_invoice.status.id == 2) {
+              let store_out = {
+                image_url: '/images/store_out.png',
+                supply_date: new Date(),
+                date: order.date,
+                order_id: order.id,
+                customer: order.customer,
+                shift: order.shift,
+                net_value: order.net_value,
+                paid_up: order.net_value,
+                payment_method: order.payment_method,
+                store: order.store,
+                order_code: order.code,
+                items: $scope.order_invoice.book_list,
+                total_discount: order.total_discount,
+                total_tax: order.total_tax,
+                total_value: order.total_value,
+                net_value: order.net_value,
+                type: {
+                  id: 4,
+                  en: "Orders Screen",
+                  ar: "شاشة الطلبات"
+                },
+                active: true
+              };
+              if ($scope.defaultSettings.general_Settings && !$scope.defaultSettings.general_Settings.work_posting)
+                store_out.posting = true;
+              $scope.addStoresOut(store_out)
+            }
+          $scope.post = false;
           $scope.getOrderManagementList();
         } else {
           $scope.error = 'Please Login First';
@@ -88,6 +90,117 @@ app.controller("order_management", function ($scope, $http, $timeout) {
       }
     )
   };
+
+  $scope.displayAccountInvoice = function (order_invoice) {
+    $scope.get_open_shift((shift) => {
+      if (shift) {
+        $scope.account_invoices = {
+          image_url: '/images/account_invoices.png',
+          date: new Date(),
+          invoice_id: order_invoice.id,
+          customer: order_invoice.customer,
+          shift: shift,
+          order_invoices_type: order_invoice.transaction_type,
+          net_value: order_invoice.net_value,
+          paid_up: 0,
+          invoice_code: order_invoice.number,
+          total_discount: order_invoice.total_discount,
+          total_tax: order_invoice.total_tax,
+          current_book_list: order_invoice.under_paid.book_list,
+          source_type: {
+            id: 3,
+            en: "Orders Screen",
+            ar: "شاشة الطلبات"
+          },
+          active: true
+        };
+
+        if ($scope.defaultSettings.accounting) {
+          if ($scope.defaultSettings.accounting.payment_method) {
+            $scope.account_invoices.payment_method = $scope.defaultSettings.accounting.payment_method;
+            $scope.loadSafes($scope.account_invoices.payment_method);
+            if ($scope.account_invoices.payment_method.id == 1) {
+              if ($scope.defaultSettings.accounting.safe_box)
+                $scope.account_invoices.safe = $scope.defaultSettings.accounting.safe_box;
+            } else {
+              if ($scope.defaultSettings.accounting.safe_bank)
+                $scope.account_invoices.safe = $scope.defaultSettings.accounting.safe_bank;
+            }
+          }
+        }
+        site.showModal('#accountInvoiceModal');
+      } else $scope.error = '##word.open_shift_not_found##';
+    });
+  };
+
+  $scope.getPaymentMethodList = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $scope.paymentMethodList = [];
+    $http({
+      method: "POST",
+      url: "/api/payment_method/all"
+
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.paymentMethodList = response.data;
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.getSafeByType = function (account_invoices) {
+    $scope.error = '';
+    if ($scope.defaultSettings.accounting) {
+      $scope.loadSafes(account_invoices.payment_method);
+      if (account_invoices.payment_method.id == 1) {
+        if ($scope.defaultSettings.accounting.safe_box)
+          account_invoices.safe = $scope.defaultSettings.accounting.safe_box
+      } else {
+        if ($scope.defaultSettings.accounting.safe_bank)
+          account_invoices.safe = $scope.defaultSettings.accounting.safe_bank
+      }
+    }
+  };
+
+  $scope.loadSafes = function (method) {
+    $scope.error = '';
+    $scope.busy = true;
+    let where = {};
+
+    if (method.id == 1)
+      where = { 'type.id': 1 };
+    else where = { 'type.id': 2 };
+
+    $http({
+      method: "POST",
+      url: "/api/safes/all",
+      data: {
+        select: {
+          id: 1,
+          name: 1,
+          number: 1,
+          type: 1
+        },
+        where: where
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) $scope.safesList = response.data.list;
+
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
 
   $scope.addStoresOut = function (store_out) {
 
@@ -112,6 +225,8 @@ app.controller("order_management", function ($scope, $http, $timeout) {
       return;
     }
   };
+
+
 
   $scope.getDeliveryEmployeesList = function () {
     $scope.error = '';
@@ -325,6 +440,7 @@ app.controller("order_management", function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
+        $scope.post = false;
         if (response.data.done && response.data.list.length > 0) {
           $scope.list = response.data.list;
           $scope.count = response.data.count;
@@ -360,24 +476,25 @@ app.controller("order_management", function ($scope, $http, $timeout) {
     $scope.get_open_shift((shift) => {
       if (shift) {
         order.post = true;
+        $scope.post = true;
         $scope.updateOrderManagement(order);
       } else $scope.error = '##word.open_shift_not_found##';
     });
   };
 
-  $scope.returnToOrders = function (order) {
-    $scope.error = '';
-    $scope.get_open_shift((shift) => {
-      if (shift) {
-        order.status = {
-          id: 1,
-          en: "Opened",
-          ar: "مفتوحة"
-        };
-        $scope.updateOrderManagement(order);
-      } else $scope.error = '##word.open_shift_not_found##';
-    });
-  };
+  /*   $scope.returnToOrders = function (order) {
+      $scope.error = '';
+      $scope.get_open_shift((shift) => {
+        if (shift) {
+          order.status = {
+            id: 1,
+            en: "Opened",
+            ar: "مفتوحة"
+          };
+          $scope.updateOrderManagement(order);
+        } else $scope.error = '##word.open_shift_not_found##';
+      });
+    }; */
 
   $scope.searchAll = function () {
     $scope.error = '';
@@ -417,6 +534,7 @@ app.controller("order_management", function ($scope, $http, $timeout) {
   $scope.getOrderManagementList({ date: new Date() });
   $scope.getDeliveryEmployeesList();
   $scope.getTransactionTypeList();
+  $scope.getPaymentMethodList();
   $scope.getCustomerList();
   $scope.getTablesGroupList();
   $scope.getOrderStatusList();

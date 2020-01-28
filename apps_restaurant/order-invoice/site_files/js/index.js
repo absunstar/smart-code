@@ -155,7 +155,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
             $scope.sendToKitchens(Object.assign({}, response.data.doc));
             $scope.order_invoice = response.data.doc;
 
-            if ($scope.order_invoice.status.id == 2) {
+            if ($scope.order_invoice.status.id == 2 && $scope.order_invoice.posting) {
 
               let store_out = {
                 image_url: '/images/store_out.png',
@@ -1370,8 +1370,8 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
       return;
     }
 
-    /*  if ($scope.defaultSettings.general_Settings && $scope.defaultSettings.general_Settings.discount_method && $scope.defaultSettings.general_Settings.discount_method.id == 2)
-       $scope.order_invoice.post = false; */
+    if ($scope.defaultSettings.general_Settings && $scope.defaultSettings.general_Settings.discount_method && $scope.defaultSettings.general_Settings.discount_method.id == 1)
+      $scope.order_invoice.posting = false;
 
     $scope.order_invoice.status = {
       id: 2,

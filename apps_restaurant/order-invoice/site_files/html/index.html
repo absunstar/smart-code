@@ -152,8 +152,8 @@
                     x-import="order-invoice/change_item_count.html">
                 </div> -->
                 <div x-permissions="order_invoice_add || order_invoice_manage"
-                x-import="order-invoice/account_invoice.html">
-            </div>
+                    x-import="order-invoice/account_invoice.html">
+                </div>
 
                 <div x-permissions="order_invoice_update || order_invoice_manage"
                     x-import="order-invoice/update_modal.html"></div>
@@ -531,10 +531,12 @@
                         </div>
 
                         <i-button
-                            ng-show="defaultSettings.accounting.create_invoice_auto && order_invoice.status.id == 2"
-                            type="save" label="##word.create_an_invoice##" ng-click="displayAccountInvoice(order_invoice)">
+                            ng-show="defaultSettings.accounting.create_invoice_auto && order_invoice.status.id == 2 && order_invoice.posting"
+                            type="save" label="##word.create_an_invoice##"
+                            ng-click="displayAccountInvoice(order_invoice)">
                         </i-button>
-                        <i-button class="not-print" label="##word.print_invoice##" type="print " ng-click="printAccountInvoive()">
+                        <i-button class="not-print" label="##word.print_invoice##" type="print "
+                            ng-click="printAccountInvoive()">
 
                     </div>
 

@@ -16,6 +16,7 @@
         <div class="row">
             <div class="row" ng-controller="order_management" x-permissions="login">
                 <div x-import="order-management/add_modal.html"></div>
+                <div x-import="order-management/account_invoice.html"></div>
                 <div x-import="order-management/delivery_emplyee.html"></div>
                 <div x-import="order-management/update_modal.html"></div>
                 <div x-import="order-management/delete_modal.html"></div>
@@ -81,14 +82,18 @@
                                 x-permissions="order_management_edit || order_management_manage"
                                 label="##word.set_employee_delivery##" ng-click="showDeliveryEmployee(c)"></i-button>
 
-                            <!--   <i-button type="save"
-                                ng-show="!c.post && defaultSettings.general_Settings.discount_method.id == 2 && c.status.id == 2"
-                                x-permissions="order_management_edit || order_management_manage" label="##word.post##"
-                                ng-click="postOrder(c)"></i-button>
- -->
-                            <i-button type="exit" ng-show="!c.reset_items && (c.status.id == 2)"
+                            <i-button type="save"
+                                ng-show="!c.posting && defaultSettings.general_Settings.discount_method.id == 2 && c.status.id == 2"
                                 x-permissions="order_management_edit || order_management_manage"
-                                label="##word.return_to_order##" ng-click="returnToOrders(c)"></i-button>
+                                label="##word.posting##" ng-click="postOrder(c)"></i-button>
+
+                            <i-button
+                                ng-show="c.posting && c.status.id == 2 && defaultSettings.accounting.create_invoice_auto"
+                                type="save" label="##word.create_an_invoice##" ng-click="displayAccountInvoice(c)">
+                            </i-button>
+                            <!--  <i-button type="exit" ng-show="!c.reset_items && (c.status.id == 2)"
+                                x-permissions="order_management_edit || order_management_manage"
+                                label="##word.return_to_order##" ng-click="returnToOrders(c)"></i-button> -->
                         </td>
                     </tr>
                 </table>
