@@ -66,6 +66,7 @@ module.exports = function init(site) {
             branch: doc.branch,
             sourceName: doc.source.name,
             payment_method: doc.payment_method,
+            currency: doc.currency,
             description: doc.description,
             code: doc.code,
             shift: {
@@ -153,6 +154,7 @@ module.exports = function init(site) {
             safe: result.doc.safe,
             date: result.doc.date,
             company: result.doc.company,
+            currency: result.doc.currency,
             branch: result.doc.branch,
             sourceName: result.doc.source.name,
             code: result.doc.code,
@@ -209,6 +211,7 @@ module.exports = function init(site) {
               safe: result.doc.safe,
               date: result.doc.date,
               company: result.doc.company,
+              currency: result.doc.currency,
               branch: result.doc.branch,
               sourceName: result.doc.source.name,
               code: result.doc.code,

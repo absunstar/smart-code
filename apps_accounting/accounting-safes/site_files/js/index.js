@@ -183,25 +183,30 @@ app.controller("safes", function ($scope, $http) {
 
   $scope.delete = function (safe) {
     $scope.busy = true;
-    
-    $http({
-      method: "POST",
-      url: "/api/safes/delete",
-      data: { id: safe.id, name: safe.name }
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          site.hideModal('#deleteSafeModal');
-          $scope.loadAll();
-        } else {
-          $scope.error = response.data.error;
+    if (safe.balance == 0) {
+
+      $http({
+        method: "POST",
+        url: "/api/safes/delete",
+        data: { id: safe.id, name: safe.name }
+      }).then(
+        function (response) {
+          $scope.busy = false;
+          if (response.data.done) {
+            site.hideModal('#deleteSafeModal');
+            $scope.loadAll();
+          } else {
+            $scope.error = response.data.error;
+          }
+        },
+        function (err) {
+          console.log(err);
         }
-      },
-      function (err) {
-        console.log(err);
-      }
-    )
+      )
+    } else {
+      $scope.busy = false;
+      $scope.error = '##word.cannt_delete_safe##';
+    }
   };
 
   $scope.getSafeTypeList = function () {
@@ -223,6 +228,37 @@ app.controller("safes", function ($scope, $http) {
       }
     )
   };
+
+
+  $scope.loadCurrencies = function () {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/currency/all",
+      data: {
+        select: {
+          id: 1,
+          name: 1,
+          ex_rate: 1
+        },
+        where: {
+          active: true
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.currenciesList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
 
   $scope.searchAll = function () {
     $scope.error = '';
@@ -278,6 +314,7 @@ app.controller("safes", function ($scope, $http) {
   $scope.loadAll();
   $scope.getSafeTypeList();
   $scope.loadEmployees();
+  $scope.loadCurrencies();
   // $scope.loadSafes();
 
 

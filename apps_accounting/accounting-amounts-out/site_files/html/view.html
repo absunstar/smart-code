@@ -20,6 +20,23 @@
                 <td class="title">##word.payment_method##</td>
                 <td class="green center">{{amount_out.payment_method.ar}}</td>
             </tr>
+            
+            <tr>
+                <td class="title">##word.amounts_out_safe##</td>
+                <td class="center red">{{amount_out.safe.name}}</td>
+            </tr>
+
+            <tr ng-show="amount_out.currency.id">
+                <td class="title">##word.currency##</td>
+                <td class="center"><b>{{amount_out.currency.name}} </b> /
+                    <b class="blue">{{amount_out.currency.ex_rate}}</b>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="title">##word.amounts_out_value##</td>
+                <td class="center red">{{amount_out.value}}</td>
+            </tr>
 
             <tr>
                 <td class="title">##word.amounts_out_source##</td>
@@ -31,27 +48,6 @@
                 <td class="center">{{amount_out.employee.name}}</td>
             </tr>
 
-            <tr>
-                <td class="title">##word.amounts_out_value##</td>
-                <td class="center red">{{amount_out.value}}</td>
-            </tr>
-
-            <tr>
-                <td class="title">##word.amounts_out_safe##</td>
-                <td class="center red">{{amount_out.safe.name}}</td>
-            </tr>
-
-            <tr ng-show="amount_out.pay_currency">
-                <td class="title">##word.currency##</td>
-                <td class="center"><b>{{amount_out.currency.name}} </b> /
-                    <b class="blue">{{amount_out.currency.ex_rate}}</b>
-                </td>
-            </tr>
-
-            <tr ng-show="amount_out.pay_currency">
-                <td class="title">##word.currency_value##</td>
-                <td class="center green">{{amount_out.currency_value}}</td>
-            </tr>
 
             <tr>
                 <td class="title">##word.amounts_out_description##</td>

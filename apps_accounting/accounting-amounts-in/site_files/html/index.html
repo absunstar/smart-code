@@ -47,6 +47,7 @@
                         <th>##word.amounts_in_date##</th>
                         <th>##word.shift##</th>
                         <th>##word.payment_method##</th>
+                        <th>##word.currency##</th>
                         <th>##word.amounts_in_source##</th>
                         <th>##word.amounts_in_employees##</th>
                         <th>##word.amounts_in_value##</th>
@@ -70,15 +71,20 @@
                         <td>
                             <p class="center"> {{c.payment_method.ar}} </p>
                         </td>
+                        <td class="center">
+                            <b>{{c.currency.name}} </b> /
+                            <b class="blue">{{c.currency.ex_rate}}</b>
+                        </td>
+                        <td>
+                            <p class="center green"> {{c.value}} </p>
+                        </td>
                         <td>
                             <p class="center"> {{c.source.name}} </p>
                         </td>
                         <td>
                             <p class="center"> {{c.employee.name}} </p>
                         </td>
-                        <td>
-                            <p class="center green"> {{c.value + ' ##word.le## '}} </p>
-                        </td>
+
 
                         <td class="center">
                             {{c.safe.name}}

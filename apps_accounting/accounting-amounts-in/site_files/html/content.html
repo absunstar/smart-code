@@ -16,29 +16,34 @@
                     label="##word.payment_method##" ng-model="amount_in.payment_method" items="paymentMethodList"
                     ng-change="getSafeByType(amount_in)" display="##session.lang##">
                 </i-list>
+                <i-list class="col3 control padding" ng-search="_search.$currency_search" ng-model="amount_in.currency"
+                ng-change="getSafeByType(amount_in)"  items="currenciesList" label="##word.currency##"></i-list>
 
+                <i-control class="col2" disabled ng-model="amount_in.currency.ex_rate" type="number"
+                    label="##word.exchange_rate##"></i-control>
                 <i-list v="r" class="col4 control padding" ng-search="_search.$safe_amount_in" ng-model="amount_in.safe"
                     items="safesList" label="##word.amounts_in_safe##"></i-list>
-                <i-control ng-disabled="amount_in.pay_currency" class="col2" v="r" ng-model="amount_in.value" type="number"
-                    label="##word.amounts_in_value##"></i-control>
 
-                <i-checkbox ng-model="amount_in.pay_currency"
+                <i-control ng-disabled="amount_in.pay_currency" class="col2" v="r" ng-model="amount_in.value"
+                    type="number" label="##word.amounts_in_value##"></i-control>
+
+
+                <!--   <i-checkbox ng-model="amount_in.pay_currency"
                     ng-click="amount_in.pay_currency ? amount_in.currency = defaultSettings.accounting.currency : {} ; amount_in.currency_value = 0"
-                    label="##word.pay_another_currency##"></i-checkbox>
+                    label="##word.pay_another_currency##"></i-checkbox> -->
             </div>
 
-            <div class="row" ng-show="amount_in.pay_currency">
+            <!--   <div class="row">
 
                 <i-list class="col3 control padding" ng-search="_search.$currency_search" ng-model="amount_in.currency"
                     items="currenciesList" label="##word.currency##"></i-list>
 
-                <i-control class="col2" ng-model="amount_in.currency.ex_rate" type="number"
+                <i-control class="col2" disabled ng-model="amount_in.currency.ex_rate" type="number"
                     label="##word.exchange_rate##"></i-control>
 
-                <i-control class="col2"
-                    ng-change="calc()"
-                    ng-model="amount_in.currency_value" type="number" label="##word.currency_value##"></i-control>
-            </div>
+                <i-control class="col2" ng-change="calc()" ng-model="amount_in.currency_value" type="number"
+                    label="##word.currency_value##"></i-control>
+            </div> -->
 
             <div class="row">
                 <div class="col4 control">

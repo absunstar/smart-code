@@ -66,6 +66,7 @@ module.exports = function init(site) {
             date: doc.date,
             sourceName: doc.source.name,
             payment_method: doc.payment_method,
+            currency: doc.currency,
             description: doc.description,
             code: doc.code,
             shift: {
@@ -148,6 +149,7 @@ module.exports = function init(site) {
             company: result.doc.company,
             branch: result.doc.branch,
             sourceName: result.doc.source.name,
+            currency: result.doc.currency,
             code: result.doc.code,
             shift: {
               id: result.doc.shift.id,
@@ -206,6 +208,7 @@ module.exports = function init(site) {
               date: result.doc.date,
               sourceName: result.doc.source.name,
               payment_method: result.doc.payment_method,
+              currency: result.doc.currency,
               description: result.doc.description,
               shift: {
                 id: result.doc.shift.id,
@@ -303,7 +306,7 @@ module.exports = function init(site) {
       where['value'] = where['value'];
     }
 
-   
+
     if (where['description']) {
       where['description'] = new RegExp(where['description'], 'i')
     }

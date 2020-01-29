@@ -18,9 +18,10 @@ app.controller("amounts_in", function ($scope, $http, $timeout) {
           if ($scope.defaultSettings.general_Settings && !$scope.defaultSettings.general_Settings.work_posting)
             $scope.amount_in.posting = true;
           if ($scope.defaultSettings.accounting) {
+            $scope.amount_in.currency = $scope.defaultSettings.accounting.currency;
             if ($scope.defaultSettings.accounting.payment_method) {
               $scope.amount_in.payment_method = $scope.defaultSettings.accounting.payment_method;
-              $scope.loadSafes($scope.amount_in.payment_method);
+              $scope.loadSafes($scope.amount_in.payment_method, $scope.amount_in.currency);
               if ($scope.amount_in.payment_method.id == 1) {
                 if ($scope.defaultSettings.accounting.safe_box)
                   $scope.amount_in.safe = $scope.defaultSettings.accounting.safe_box;
@@ -269,7 +270,7 @@ app.controller("amounts_in", function ($scope, $http, $timeout) {
   $scope.getSafeByType = function (obj) {
     $scope.error = '';
     if ($scope.defaultSettings.accounting) {
-      $scope.loadSafes(obj.payment_method);
+      $scope.loadSafes(obj.payment_method, obj.currency);
       if (obj.payment_method.id == 1) {
         if ($scope.defaultSettings.accounting.safe_box)
           obj.safe = $scope.defaultSettings.accounting.safe_box
@@ -280,14 +281,15 @@ app.controller("amounts_in", function ($scope, $http, $timeout) {
     }
   };
 
-  $scope.loadSafes = function (method) {
+  $scope.loadSafes = function (method, currency) {
     $scope.error = '';
     $scope.busy = true;
-    let where = {};
+
+    let where = { 'currency.id': currency.id };
 
     if (method.id == 1)
-      where = { 'type.id': 1 };
-    else where = { 'type.id': 2 };
+      where['type.id'] = 1;
+    else where['type.id'] = 2;
 
     $http({
       method: "POST",
@@ -297,6 +299,7 @@ app.controller("amounts_in", function ($scope, $http, $timeout) {
           id: 1,
           name: 1,
           number: 1,
+          currency: 1,
           type: 1
         },
         where: where

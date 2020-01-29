@@ -31,7 +31,7 @@ module.exports = function init(site) {
       }
       return
     }
-    
+
     let info = {
       safe: obj.safe,
       payment_method: obj.payment_method,
@@ -40,6 +40,7 @@ module.exports = function init(site) {
       date: obj.date || obj.safe.date,
       source: obj.operation,
       transition_type: obj.transition_type,
+      currency: obj.currency,
       company: obj.company,
       branch: obj.branch,
       balance: obj.balance || obj.safe.balance,
@@ -81,7 +82,7 @@ module.exports = function init(site) {
     }
 
     if (where['transition_type']) {
-      
+
       where['transition_type'] = new RegExp(where['transition_type.type'], 'i');
     }
 

@@ -41,23 +41,23 @@
                     <tr>
                         <th class="not-print center">##word.safes_logo##</th>
                         <th class="center">##word.safes_name##</th>
+                        <th class="center">##word.currency##</th>
                         <th class="center">##word.safe_type##</th>
                         <th class="center">##word.safes_employee##</th>
-
                         <th class="center">##word.safes_balance##</th>
                         <th class="center not-print">##word.actions##</th>
                     </tr>
                     <tr ng-repeat="c in list">
                         <td class="not-print">
                             <i-image view class="logo" ng-model="c.image_url"></i-image>
-
                         </td>
                         <td class="center title">{{c.name}}</td>
+                        <td class="center title">{{c.currency.name}}</td>
                         <td class="center blue">{{c.type.ar}}</td>
 
                         <td class="center">{{c.employee.name}}</td>
 
-                        <td class="green center">{{c.balance }} <p class="green" ng-show="c.balance">##word.le##</p>
+                        <td class="green center">{{c.balance }} <!-- <p class="green" ng-show="c.balance">##word.le##</p> -->
                         </td>
                         <td class="center not-print">
                             <i-button x-permissions="safes_view || safes_manage" type="details" label="##word.details##"
