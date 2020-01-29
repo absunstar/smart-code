@@ -90,6 +90,16 @@
         "ar": "كمية"
     },
     {
+        "name": "system_amounts_in_menus",
+        "en": "Amount in Invoice",
+        "ar": "فاتورة الوارد"
+    },
+    {
+        "name": "system_amounts_out_menus",
+        "en": "Amount out Invoice",
+        "ar": "فاتورة المنصرف"
+    },
+    {
         "name": "currency_value",
         "en": "Currency Amount",
         "ar": "مبلغ العملة"

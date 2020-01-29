@@ -809,16 +809,7 @@
         "en": "Add Amount in",
         "ar": "إضافة بنود الوارد "
     },
-    {
-        "name": "system_amounts_in_menus",
-        "en": "Amount in",
-        "ar": "الوارد"
-    },
-    {
-        "name": "system_amounts_out_menus",
-        "en": "Amount out",
-        "ar": "المنصرف"
-    },
+  
     {
         "name": "system_add_amounts_out",
         "en": "Add Amount out",
