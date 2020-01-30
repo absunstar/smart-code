@@ -78,7 +78,7 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
       return;
     }
 
-    if ($scope.transfer_branch.branch_from.id === $scope.transfer_branch.branch_to.id) {
+    if ($scope.transfer_branch.store_from.id === $scope.transfer_branch.store_to.id) {
       $scope.error = "##word.cant_transfer_to_same_store##";
       return;
     }
