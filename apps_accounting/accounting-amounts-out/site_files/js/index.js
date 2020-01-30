@@ -47,16 +47,16 @@ app.controller("amounts_out", function ($scope, $http, $timeout) {
             $scope.amount_out.posting = true;
 
           if ($scope.defaultSettings.accounting) {
+            $scope.amount_in.currency = $scope.defaultSettings.accounting.currency;
             if ($scope.defaultSettings.accounting.payment_method) {
+
               $scope.amount_out.payment_method = $scope.defaultSettings.accounting.payment_method;
-              $scope.loadSafes($scope.amount_out.payment_method);
-              if ($scope.amount_out.payment_method.id == 1) {
-                if ($scope.defaultSettings.accounting.safe_box)
-                  $scope.amount_out.safe = $scope.defaultSettings.accounting.safe_box;
-              } else {
-                if ($scope.defaultSettings.accounting.safe_bank)
-                  $scope.amount_out.safe = $scope.defaultSettings.accounting.safe_bank;
-              }
+              $scope.loadSafes($scope.amount_out.payment_method, $scope.amount_out.currency);
+
+              if ($scope.amount_out.payment_method.id == 1)
+                $scope.amount_out.safe = $scope.defaultSettings.accounting.safe_box;
+              else $scope.amount_out.safe = $scope.defaultSettings.accounting.safe_bank;
+
             }
           };
         }
@@ -268,25 +268,26 @@ app.controller("amounts_out", function ($scope, $http, $timeout) {
   $scope.getSafeByType = function (obj) {
     $scope.error = '';
     if ($scope.defaultSettings.accounting) {
-      $scope.loadSafes(obj.payment_method);
+      $scope.loadSafes(obj.payment_method, obj.currency);
       if (obj.payment_method.id == 1) {
         if ($scope.defaultSettings.accounting.safe_box)
-          obj.safe = $scope.defaultSettings.accounting.safe_box;
+          obj.safe = $scope.defaultSettings.accounting.safe_box
       } else {
         if ($scope.defaultSettings.accounting.safe_bank)
-          obj.safe = $scope.defaultSettings.accounting.safe_bank;
+          obj.safe = $scope.defaultSettings.accounting.safe_bank
       }
     }
   };
 
-  $scope.loadSafes = function (method) {
+  $scope.loadSafes = function (method, currency) {
     $scope.error = '';
     $scope.busy = true;
-    let where = {};
+
+    let where = { 'currency.id': currency.id };
 
     if (method.id == 1)
-      where = { 'type.id': 1 };
-    else where = { 'type.id': 2 };
+      where['type.id'] = 1;
+    else where['type.id'] = 2;
 
     $http({
       method: "POST",
@@ -296,6 +297,7 @@ app.controller("amounts_out", function ($scope, $http, $timeout) {
           id: 1,
           name: 1,
           number: 1,
+          currency: 1,
           type: 1
         },
         where: where

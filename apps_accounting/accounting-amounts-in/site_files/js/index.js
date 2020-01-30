@@ -20,15 +20,14 @@ app.controller("amounts_in", function ($scope, $http, $timeout) {
           if ($scope.defaultSettings.accounting) {
             $scope.amount_in.currency = $scope.defaultSettings.accounting.currency;
             if ($scope.defaultSettings.accounting.payment_method) {
+
               $scope.amount_in.payment_method = $scope.defaultSettings.accounting.payment_method;
               $scope.loadSafes($scope.amount_in.payment_method, $scope.amount_in.currency);
-              if ($scope.amount_in.payment_method.id == 1) {
-                if ($scope.defaultSettings.accounting.safe_box)
-                  $scope.amount_in.safe = $scope.defaultSettings.accounting.safe_box;
-              } else {
-                if ($scope.defaultSettings.accounting.safe_bank)
-                  $scope.amount_in.safe = $scope.defaultSettings.accounting.safe_bank;
-              }
+
+              if ($scope.amount_in.payment_method.id == 1)
+                $scope.amount_in.safe = $scope.defaultSettings.accounting.safe_box;
+              else $scope.amount_in.safe = $scope.defaultSettings.accounting.safe_bank;
+
             }
           }
         }

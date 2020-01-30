@@ -156,11 +156,41 @@ app.controller("default_setting", function ($scope, $http) {
       }
     )
   };
+
+  $scope.loadCurrencies = function () {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/currency/all",
+      data: {
+        select: {
+          id: 1,
+          name: 1,
+          ex_rate: 1
+        },
+        where: {
+          active: true
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.currenciesList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
   $scope.loadSafesBox = function () {
     $scope.error = '';
     $scope.busy = true;
     let where = { 'type.id': 1 }
-    if ($scope.default_setting.accounting && $scope.default_setting.accounting.currency) {
+    if ($scope.default_setting && $scope.default_setting.accounting && $scope.default_setting.accounting.currency) {
       where['currency.id'] = $scope.default_setting.accounting.currency.id
     }
     $http({
@@ -193,7 +223,7 @@ app.controller("default_setting", function ($scope, $http) {
     $scope.error = '';
     $scope.busy = true;
     let where = { 'type.id': 2 }
-    if ($scope.default_setting.accounting && $scope.default_setting.accounting.currency) {
+    if ($scope.default_setting && $scope.default_setting.accounting && $scope.default_setting.accounting.currency) {
       where['currency.id'] = $scope.default_setting.accounting.currency.id
     }
     $http({
@@ -221,6 +251,7 @@ app.controller("default_setting", function ($scope, $http) {
       }
     )
   };
+
   $scope.getSourceType = function () {
     $scope.error = '';
     $scope.busy = true;
@@ -500,36 +531,6 @@ app.controller("default_setting", function ($scope, $http) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.itemsGroupList = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
-  };
-
-
-  $scope.loadCurrencies = function () {
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/currency/all",
-      data: {
-        select: {
-          id: 1,
-          name: 1,
-          ex_rate: 1
-        },
-        where: {
-          active: true
-        }
-      }
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          $scope.currenciesList = response.data.list;
         }
       },
       function (err) {
