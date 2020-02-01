@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" x-permissions="employees_advances_fin_ui || employees_advances_fin_manage"  data-ng-app="myApp">
+<html lang="en" x-permissions="employees_advances_fin_ui || employees_advances_fin_manage" data-ng-app="myApp">
 
 <head x-import="head.html">
 
@@ -16,23 +16,30 @@
     </nav>
 
 
-    <div  id="main-layout" class="container">
+    <div id="main-layout" class="container">
         <div class="row">
             <div class="row" ng-controller="employees_advances_fin">
-                <div x-permissions="employees_advances_fin_add || employees_advances_fin_manage" x-import="hr-employee-advances-fin/add_modal.html"></div>
-                <div x-permissions="employees_advances_fin_update || employees_advances_fin_manage" x-import="hr-employee-advances-fin/update_modal.html"></div>
-                <div x-permissions="employees_advances_fin_delete || employees_advances_fin_manage" x-import="hr-employee-advances-fin/delete_modal.html"></div>
-                <div x-permissions="employees_advances_fin_view || employees_advances_fin_manage" x-import="hr-employee-advances-fin/view_modal.html"></div>
-                <div x-permissions="employees_advances_fin_search || employees_advances_fin_manage" x-import="hr-employee-advances-fin/search_all_modal.html"></div>
+                <div x-permissions="employees_advances_fin_add || employees_advances_fin_manage"
+                    x-import="hr-employee-advances-fin/add_modal.html"></div>
+                <div x-permissions="employees_advances_fin_update || employees_advances_fin_manage"
+                    x-import="hr-employee-advances-fin/update_modal.html"></div>
+                <div x-permissions="employees_advances_fin_delete || employees_advances_fin_manage"
+                    x-import="hr-employee-advances-fin/delete_modal.html"></div>
+                <div x-permissions="employees_advances_fin_view || employees_advances_fin_manage"
+                    x-import="hr-employee-advances-fin/view_modal.html"></div>
+                <div x-permissions="employees_advances_fin_search || employees_advances_fin_manage"
+                    x-import="hr-employee-advances-fin/search_all_modal.html"></div>
                 <div x-import="hr-employee-advances-fin/done.html"></div>
 
                 <div class="row">
-                        <h1 class="bold text-center">##word.employee_Delivered##</h1>
-                    </div>
-    
+                    <h1 class="bold text-center">##word.employee_Delivered##</h1>
+                </div>
+
                 <div class="top-actions">
 
-                    <i-button x-permissions="employees_advances_fin_search || employees_advances_fin_manage"  type="search" label="##word.search_all##" onclick="site.showModal('#Employee_Discount_SearchModal')"></i-button>
+                    <i-button x-permissions="employees_advances_fin_search || employees_advances_fin_manage"
+                        type="search" label="##word.search_all##"
+                        onclick="site.showModal('#Employee_Discount_SearchModal')"></i-button>
 
                 </div>
 
@@ -41,8 +48,9 @@
                         <th class="not-print">##word.employees_advances_fin_logo##</th>
                         <th>##word.employees_advances_fin_date##</th>
                         <th>##word.employees_advances_fin_employees##</th>
+                        <th>##word.payment_method##</th>
+                        <th>##word.currency##</th>
                         <th>##word.employees_advances_fin_value##</th>
-
                         <th class="not-print">##word.actions##</th>
                     </tr>
                     <tr ng-repeat="c in list">
@@ -52,18 +60,25 @@
                         </td>
 
                         <td>
-                            <p class="center bold"> {{c.date | date : 'dd - MM - yyyy'}} </p>
+                            <p class="center brown bold"> {{c.date | date : 'dd - MM - yyyy'}} </p>
                         </td>
                         <td>
                             <p class="center bold"> {{c.employee.name}} </p>
-
                         </td>
                         <td>
-                            <p class="center bold green"> {{c.value + ' ##word.le## '}} </p>
+                            <p class="center bold"> {{c.payment_method.ar}} </p>
+                        </td>
+                        <td>
+                            <p class="center bold"> {{c.currency.name}} / <b class="blue">{{c.currency.ex_rate}}</b>
+                            </p>
+                        </td>
+                        <td>
+                            <p class="center bold green"> {{c.value}} </p>
                         </td>
 
                         <td class="not-print center">
-                            <i-button x-permissions="employees_advances_fin_update || employees_advances_fin_manage"  ng-hide="c.done == true " type="update" label="##word.employees_advances_fin_done##"
+                            <i-button x-permissions="employees_advances_fin_update || employees_advances_fin_manage"
+                                ng-hide="c.done == true " type="update" label="##word.employees_advances_fin_done##"
                                 ng-click="edit(c)"></i-button>
                             <h4 ng-show="c.done == true" class="green bold center">##word.noDelivered##
                             </h4>
@@ -73,7 +88,8 @@
 
                 </table>
 
-                <i-button x-permissions="employees_advances_fin_print || employees_advances_fin_manage"  type="print" label="##word.print##" onclick="site.print('#t1')"></i-button>
+                <i-button x-permissions="employees_advances_fin_print || employees_advances_fin_manage" type="print"
+                    label="##word.print##" onclick="site.print('#t1')"></i-button>
 
             </div>
         </div>
@@ -84,7 +100,7 @@
 
     <div x-import="scripts.html"></div>
 
-    <script  x-import="hr-employee-advances-fin/index.js"></script>
+    <script x-import="hr-employee-advances-fin/index.js"></script>
 
 
 </body>

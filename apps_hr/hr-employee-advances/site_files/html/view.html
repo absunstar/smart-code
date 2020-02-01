@@ -1,6 +1,6 @@
 <div ng-hide="busy" class="row">
     <div class="col8">
-        <table class="table bold">
+        <table class="table hover bold">
             <tr>
                 <td class="title">##word.employees_advances_value##</td>
                 <td class="center red">{{employees_advances.value}}</td>
@@ -17,10 +17,22 @@
                 <td class="title">##word.employees_advances_date##</td>
                 <td class="center brown">{{employees_advances.date | date : 'dd - MM - yyyy'}}</td>
             </tr>
-
+            
             <tr>
-                <td class="title">##word.employee_offer_safe##</td>
-                <td class="center">{{employees_advances.safe.name}}</td>
+                <td class="title">##word.payment_method##</td>
+                <td class="green center">{{employees_advances.payment_method.ar}}</td>
+            </tr>
+            
+            <tr>
+                <td class="title">##word.amounts_out_safe##</td>
+                <td class="center red">{{employees_advances.safe.name}}</td>
+            </tr>
+
+            <tr ng-show="employees_advances.currency.id">
+                <td class="title">##word.currency##</td>
+                <td class="center"><b>{{employees_advances.currency.name}} </b> /
+                    <b class="blue">{{employees_advances.currency.ex_rate}}</b>
+                </td>
             </tr>
 
             <tr>

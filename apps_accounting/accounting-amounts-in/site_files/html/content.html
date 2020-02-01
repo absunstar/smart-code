@@ -21,10 +21,10 @@
 
                 <i-control class="col2" disabled ng-model="amount_in.currency.ex_rate" type="number"
                     label="##word.exchange_rate##"></i-control>
-                <i-list v="r" class="col4 control padding" ng-search="_search.$safe_amount_in" ng-model="amount_in.safe"
+                <i-list v="r" class="col3 control padding" ng-search="_search.$safe_amount_in" ng-model="amount_in.safe"
                     items="safesList" label="##word.amounts_in_safe##"></i-list>
 
-                <i-control ng-disabled="amount_in.pay_currency" class="col2" v="r" ng-model="amount_in.value"
+                <i-control  class="col2" v="r" ng-model="amount_in.value"
                     type="number" label="##word.amounts_in_value##"></i-control>
              
             </div>

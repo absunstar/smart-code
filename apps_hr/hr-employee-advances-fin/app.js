@@ -10,6 +10,8 @@ module.exports = function init(site) {
     for (let i = 0; i < obj.period; i++) {
       $employees_advances_fin.add({
         total: obj.period,
+        payment_method: obj.payment_method,
+        currency: obj.currency,
         employee: obj.employee,
         value: money,
         image_url: obj.image_url,
@@ -103,6 +105,8 @@ module.exports = function init(site) {
 
           let Obj = {
             value: result.doc.value,
+            payment_method: result.doc.payment_method,
+            currency: result.doc.currency,
             safe: result.doc.safe,
             company: result.doc.company,
             branch: result.doc.branch,
@@ -176,6 +180,8 @@ module.exports = function init(site) {
             sourceName: doc.employee.name,
             company: doc.company,
             branch: doc.branch,
+            currency: doc.currency,
+            payment_method: doc.payment_method,
             shift: doc.shift,
             date: doc.date,
             shift: {

@@ -11,19 +11,36 @@
 
             </div>
             <div class="row ">
-                <i-control class="col2" v="r" ng-model="employees_advances.value" type="number"
-                    label="##word.employees_advances_value##"></i-control>
 
                 <i-list class="col3" label="##word.employees_advances_employees##" ng-search="_search.$eng_search"
                     ng-model="employees_advances.employee" items="employeeList"></i-list>
-                <i-list class="col3" ng-search="_search.$safe_search" v='r' ng-model="employees_advances.safe"
-                    items="safes" label="##word.employees_advances_safe##"></i-list>
 
-            </div>
-            <div>
                 <i-control class="col2" v="r" ng-model="employees_advances.period" type="text"
                     label="##word.employees_advances_time##"></i-control>
             </div>
+
+            <div class="row">
+
+                <i-list help-id="" ng-search="_search.$payment_method_search" class="col2"
+                    label="##word.payment_method##" ng-model="employees_advances.payment_method"
+                    items="paymentMethodList" ng-change="getSafeByType(employees_advances)" display="##session.lang##">
+                </i-list>
+
+                <i-list class="col3 control padding" ng-search="_search.$currency_search"
+                    ng-model="employees_advances.currency" ng-change="getSafeByType(employees_advances)"
+                    items="currenciesList" label="##word.currency##"></i-list>
+
+                <i-control class="col2" disabled ng-model="employees_advances.currency.ex_rate" type="number"
+                    label="##word.exchange_rate##"></i-control>
+
+                <i-list v="r" class="col3 control padding" ng-search="_search.$safe_amount_in"
+                    ng-model="employees_advances.safe" items="safesList" label="##word.amounts_in_safe##"></i-list>
+
+                <i-control class="col2" v="r" ng-model="employees_advances.value" type="number"
+                    label="##word.employees_advances_value##"></i-control>
+
+            </div>
+
             <div class="row">
                 <i-textarea ng-model="employees_advances.description" label="##word.employees_advances_description##">
                 </i-textarea>

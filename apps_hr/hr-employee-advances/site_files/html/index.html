@@ -49,6 +49,8 @@
                         <th class="not-print">##word.employees_advances_logo##</th>
                         <th>##word.employees_advances_date##</th>
                         <th>##word.employees_advances_employees##</th>
+                        <th>##word.payment_method##</th>
+                        <th>##word.currency##</th>
                         <th>##word.employees_advances_value##</th>
                         <th>##word.employees_advances_safe##</th>
                         <th class="not-print">##word.actions##</th>
@@ -65,7 +67,13 @@
                             <p class="center bold"> {{c.employee.name}} </p>
                         </td>
                         <td>
-                            <p class="center bold green"> {{c.value + ' ##word.le## '}} </p>
+                            <p class="center bold"> {{c.payment_method.ar}} </p>
+                        </td>
+                        <td>
+                            <p class="center bold"> {{c.currency.name}} / <b class="blue">{{c.currency.ex_rate}}</b> </p>
+                        </td>
+                        <td>
+                            <p class="center bold green"> {{c.value}} </p>
                         </td>
 
 

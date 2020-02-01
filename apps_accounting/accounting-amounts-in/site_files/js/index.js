@@ -266,6 +266,35 @@ app.controller("amounts_in", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.loadCurrencies = function () {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/currency/all",
+      data: {
+        select: {
+          id: 1,
+          name: 1,
+          ex_rate: 1
+        },
+        where: {
+          active: true
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.currenciesList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
   $scope.getSafeByType = function (obj) {
     $scope.error = '';
     if ($scope.defaultSettings.accounting) {
@@ -331,36 +360,6 @@ app.controller("amounts_in", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.namesList = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
-  };
-
-
-  $scope.loadCurrencies = function () {
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/currency/all",
-      data: {
-        select: {
-          id: 1,
-          name: 1,
-          ex_rate: 1
-        },
-        where: {
-          active: true
-        }
-      }
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          $scope.currenciesList = response.data.list;
         }
       },
       function (err) {

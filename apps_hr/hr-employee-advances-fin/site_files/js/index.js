@@ -1,4 +1,4 @@
-app.controller("employees_advances_fin", function ($scope, $http) {
+app.controller("employees_advances_fin", function ($scope, $http, $timeout) {
   $scope._search = {};
 
   $scope.employees_advances_fin = {};
@@ -56,37 +56,6 @@ app.controller("employees_advances_fin", function ($scope, $http) {
       }
     )
   };
-
-
-  $scope.loadSafes = function () {
-    $scope.list = {};
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/safes/all",
-      data: {
-        select: {
-          id: 1,
-          name: 1,
-          number: 1,
-          type: 1
-        }
-      }
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.safes = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
-  };
-
-
 
 
   $scope.newemployees_advances_fin = function () {
@@ -167,6 +136,9 @@ app.controller("employees_advances_fin", function ($scope, $http) {
       if (shift) {
         $scope.view(employees_advances_fin);
         $scope.employees_advances_fin = {};
+        $scope.loadSafes(employees_advances_fin.payment_method, employees_advances_fin.currency);
+        $scope.currency = employees_advances_fin.currency;
+        $scope.value = employees_advances_fin.value;
         site.showModal('#updateEmployeesAdvancesFinModal');
       } else $scope.error = '##word.open_shift_not_found##';
     });
@@ -218,7 +190,7 @@ app.controller("employees_advances_fin", function ($scope, $http) {
             $scope.busy = false;
             if (response.data.done) {
               $scope.employees_advances_fin = response.data.doc;
-              $scope.employees_advances_fin.date = new Date($scope.employees_advances_fin.date);
+              $scope.employees_advances_fin.date = new Date();
               $scope.employees_advances_fin.shift = shift;
             } else {
               $scope.error = response.data.error;
@@ -258,6 +230,139 @@ app.controller("employees_advances_fin", function ($scope, $http) {
     )
   };
 
+  $scope.loadCurrencies = function () {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/currency/all",
+      data: {
+        select: {
+          id: 1,
+          name: 1,
+          ex_rate: 1
+        },
+        where: {
+          active: true
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.currenciesList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.getSafeByType = function (obj) {
+    $scope.error = '';
+    if ($scope.defaultSettings.accounting) {
+      $scope.loadSafes(obj.payment_method, obj.currency);
+      if (obj.payment_method.id == 1) {
+        if ($scope.defaultSettings.accounting.safe_box)
+          obj.safe = $scope.defaultSettings.accounting.safe_box
+      } else {
+        if ($scope.defaultSettings.accounting.safe_bank)
+          obj.safe = $scope.defaultSettings.accounting.safe_bank
+      }
+    }
+    $scope.calc();
+  };
+
+  $scope.loadSafes = function (method, currency) {
+    $scope.error = '';
+    $scope.busy = true;
+
+    let where = { 'currency.id': currency.id };
+
+    if (method.id == 1)
+      where['type.id'] = 1;
+    else where['type.id'] = 2;
+
+    $http({
+      method: "POST",
+      url: "/api/safes/all",
+      data: {
+        select: {
+          id: 1,
+          name: 1,
+          number: 1,
+          currency: 1,
+          type: 1
+        },
+        where: where
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) $scope.safesList = response.data.list;
+
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.getPaymentMethodList = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $scope.paymentMethodList = [];
+    $http({
+      method: "POST",
+      url: "/api/payment_method/all"
+
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.paymentMethodList = response.data;
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.calc = function () {
+    $timeout(() => {
+      if ($scope.currency.id === $scope.employees_advances_fin.currency.id) {
+        $scope.employees_advances_fin.value = $scope.value;
+      } else {
+        $scope.employees_advances_fin.value = ($scope.value * $scope.currency.ex_rate) / $scope.employees_advances_fin.currency.ex_rate;
+      }
+    }, 250)
+  };
+
+  $scope.getDefaultSettings = function () {
+
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/default_setting/get",
+      data: {}
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.doc) {
+          $scope.defaultSettings = response.data.doc;
+
+        };
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+
+  };
+
   $scope.get_open_shift = function (callback) {
     $scope.error = '';
     $scope.busy = true;
@@ -287,6 +392,8 @@ app.controller("employees_advances_fin", function ($scope, $http) {
   };
 
 
-  $scope.loadSafes();
-  $scope.loadAll({ date: new Date() });
+  $scope.loadAll();
+  $scope.loadCurrencies();
+  $scope.getPaymentMethodList();
+  $scope.getDefaultSettings();
 });

@@ -48,6 +48,8 @@ module.exports = function init(site) {
         let Obj = {
           value: doc.value,
           safe: doc.safe,
+          currency: doc.currency,
+          payment_method: doc.payment_method,
           date: doc.date,
           sourceName: doc.employee.name,
           description: doc.description,
@@ -123,6 +125,8 @@ module.exports = function init(site) {
           let Obj = {
             value: result.doc.value,
             safe: result.doc.safe,
+            currency: result.doc.currency,
+            payment_method: result.doc.payment_method,
             date: result.doc.date,
             company: result.doc.company,
             branch: result.doc.branch,

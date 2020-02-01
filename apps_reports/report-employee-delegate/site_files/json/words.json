@@ -109,11 +109,7 @@
         "en": "Must Enter Paid",
         "ar": "يجب إدخال مبلغ "
     },
-    {
-        "name": "err_paid_up_payment",
-        "en": "Paid Up Greater Than Required Vaiue",
-        "ar": "المبلغ المسدد أكبر من الباقي"
-    },
+    
     {
         "name": "paid_up",
         "en": "Paid Up",
