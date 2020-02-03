@@ -881,5 +881,6 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
   $scope.loadUnits();
   $scope.loadAll();
   $scope.loadItems();
+  $scope.loadUnitsBarcodesList();
   $scope.loadKitchens();
 });

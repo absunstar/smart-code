@@ -49,7 +49,7 @@
                         <th> ##word.payment_method## </th>
                         <th> ##word.order_value## </th>
                         <th> ##word.total_paid_up## </th>
-                        <th> ##word.total_remain## </th>
+                        <th> ##word.remain_amount## </th>
                         <th class="not-print"> ##word.actions## </th>
                     </tr>
                     <tr ng-repeat="c in list | orderBy : '-id'" class="bold pointer">
@@ -70,7 +70,7 @@
                             {{c.total_paid_up}}
                         </td>
                         <td ng-click="displayDetailsAccountInvoices(c)" class="bold red">
-                            {{c.total_remain}}
+                            {{c.remain_amount}}
                         </td>
                         <td class="center not-print">
                             <i-button type="details" x-permissions="account_invoices_view || account_invoices_manage"

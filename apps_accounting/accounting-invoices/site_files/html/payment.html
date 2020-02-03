@@ -12,31 +12,39 @@
         <div class="modal-body">
 
             <div class="row">
-                <i-date2 class="col7" ng-model="paid_invoice.payment_date" label="##word.date##"></i-date2>
-
+                <i-date2 class="col7" ng-model="payment_date" label="##word.date##"></i-date2>
             </div>
 
             <div class="row">
 
-                <i-list help-id="" ng-search="_search.$payment_method_search" class="col2"
-                    label="##word.payment_method##" ng-model="paid_invoice.payment_method"
-                    ng-change="getSafeByTypePayment(paid_invoice)" items="paymentMethodList" display="##session.lang##">
+                <i-list help-id="" ng-search="_search.$payment_method_search" class="col3"
+                    label="##word.payment_method##" ng-model="paid_invoice.payment_method" items="paymentMethodList"
+                    ng-change="getSafeByType(paid_invoice)" display="##session.lang##">
                 </i-list>
 
-                <i-list ng-search="_search.$paid_invoice.$safes_search" class="col4"
-                    ng-model="paid_invoice.payment_safe" label="##word.safe##" items="safesList"></i-list>
+                <i-list class="col3 control padding" ng-search="_search.$currency_search"
+                    ng-model="paid_invoice.currency" ng-change="getSafeByType(paid_invoice) ; calc(paid_invoice)"
+                    items="currenciesList" label="##word.currency##">
+                </i-list>
+
+                <i-control class="col2" disabled ng-model="paid_invoice.currency.ex_rate" type="number"
+                    label="##word.exchange_rate##"></i-control>
+
+                <i-list v="r" class="col3 control padding" ng-search="_search.$safe_paid_invoice"
+                    ng-model="paid_invoice.safe" items="safesList" label="##word.amounts_in_safe##">
+                </i-list>
             </div>
 
             <div class="row">
-                <i-control disabled class="col4" ng-model="paid_invoice.remain_amount"
-                    label="##word.remain_amount##" type="number">
+                <i-control disabled class="col3" ng-model="paid_invoice.remain_amount" label="##word.remain_amount##"
+                    type="number"></i-control>
+                <i-control class="col3" disabled ng-model="amount_currency" label="##word.amount_currency##"
+                    type="number"></i-control>
+                <i-control class="col3" ng-model="paid_invoice.payment_paid_up" label="##word.paid_up##" type="number">
                 </i-control>
-                <i-control class="col4" ng-model="paid_invoice.payment_paid_up" label="##word.paid_up##"
-                    type="number">
-                </i-control>
-                <div class="col1"></div>
-                <i-button type="add" label="##word.payment##" ng-click="paymentInvoice()" class="col2">
-                </i-button>
+                <!--  <div class="col1"></div>
+                <i-button type="add" label="##word.payment##" ng-click="paymentInvoice()">
+                </i-button> -->
 
             </div>
 
@@ -52,14 +60,17 @@
 
                         <tr>
                             <th>##word.date##</th>
+                            <th>##word.payment_method##</th>
+                            <th>##word.currency##</th>
                             <th>##word.safe##</th>
                             <th>##word.paid_up##</th>
                         </tr>
 
                         <tr ng-repeat="c in paid_invoice.payment_list">
                             <td class="center brown">{{c.date | date : 'dd / MM / yyyy'}}</td>
-                            <td class="center blue">{{c.safe.name}}
-                            </td>
+                            <td class="center">{{c.payment_method.ar}}</td>
+                            <td class="center">{{c.currency.name}} <b class="blue">{{c.currency.ex_rate}}</b></td>
+                            <td class="center">{{c.safe.name}}</td>
                             <td class="center green">{{c.paid_up}}</td>
                         </tr>
                     </table>

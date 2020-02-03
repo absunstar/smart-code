@@ -55,14 +55,14 @@ module.exports = function init(site) {
         response.done = true
 
         let book_list_report = [];
-        docs.forEach(order => {
-          order.book_list.forEach(itm => {
+        docs.forEach(_order => {
+          _order.book_list.forEach(itm => {
             if (itm.kitchen && itm.kitchen.id === kitchen.id && !itm.done_kitchen) {
               itm.order = {
-                code: order.code,
-                id: order.id,
+                code: _order.code,
+                id: _order.id,
               }
-              itm.table = order.table
+              itm.table = _order.table
               book_list_report.push(itm);
             }
           });

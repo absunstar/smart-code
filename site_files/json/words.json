@@ -85,6 +85,11 @@
         "ar": "البيع بسعر"
     },
     {
+        "name": "amount_currency",
+        "en": "The Amount In Currency",
+        "ar": "المبلغ بالعملة"
+    },
+    {
         "name": "qty",
         "en": "Qty",
         "ar": "كمية"

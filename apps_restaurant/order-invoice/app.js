@@ -43,10 +43,6 @@ module.exports = function init(site) {
 
 
 
-
-
-
-
   order_paid_list = []
   site.on('[account_invoices][order_invoice][+]', obj => {
     order_paid_list.push(Object.assign({}, obj))
@@ -83,13 +79,16 @@ module.exports = function init(site) {
       }
 
       if (doc.under_paid) {
-        if (doc.remain_amount <= 0)
-          doc.status = { id: 5, en: "Closed & paid", ar: "مغلق و تم الدفع" }
+        if (doc.under_paid.net_value <= 0) doc.status = { id: 5, en: "Closed & paid", ar: "مغلق و تم الدفع" }
+
+        else if (obj.return && doc.under_paid.net_value == doc.net_value) doc.status = { id: 2, en: "Closed Of Orders Screen", ar: "مغلق من شاشة الأوردرات" }
+
         else doc.status = { id: 4, en: "Closed & Invoiced", ar: "مغلق و تم عمل فواتير" }
 
         doc.under_paid.book_list.forEach(book_list_basic => {
           obj.book_list.forEach(book_list_cb => {
             if (book_list_basic.barcode == book_list_cb.barcode) {
+
               if (obj.return) book_list_basic.count = book_list_basic.count + book_list_cb.count;
               else book_list_basic.count = book_list_basic.count - book_list_cb.count;
 
@@ -131,16 +130,13 @@ module.exports = function init(site) {
     }
 
     $order_invoice.findOne({ id: obj }, (err, doc) => {
-      doc.status = { id: 5, en: "Closed & paid", ar: "مغلق و تم الدفع" }
+      if (doc.under_paid.net_value <= 0) doc.status = { id: 5, en: "Closed & paid", ar: "مغلق و تم الدفع" }
       $order_invoice.update(doc, () => {
         order_done_handle(null)
       });
     });
   };
   order_done_handle(null)
-
-
-
 
 
 
