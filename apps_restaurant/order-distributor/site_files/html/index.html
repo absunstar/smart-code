@@ -35,9 +35,9 @@
                 </div>
 
                 <div class="row">
-                    <i-control id="item_name" class="col2" ng-model="total_net_value" label="##word.total_net_values##"
+                    <i-control id="item_name" class="col2 r_black" ng-model="total_net_value" label="##word.total_net_values##"
                         type="number" disabled></i-control>
-                    <i-control id="item_name" class="col2" ng-model="total_delivery_service_price"
+                    <i-control id="item_name" class="col2 r_green" ng-model="total_delivery_service_price"
                         label="##word.total_delivery_service_price##" type="number" disabled></i-control>
                 </div>
 
@@ -62,8 +62,14 @@
                         <td ng-click="showDetailes(c)" class="not-print">
                             <img class="logo" ng-src="{{c.image_url}}">
                         </td>
-                        <td ng-click="showDetailes(c)" class="brown"> {{c.date | date : 'dd - MM - yyyy'}} </td>
-                        <td ng-click="showDetailes(c)" class="blue"> {{c.code}} </td>
+                        <td ng-click="showDetailes(c)" class="brown"> 
+                            {{c.date | date : 'dd - MM - yyyy'}}
+                            <h3 class="blue">{{c.code}}</h3>
+                             </td>
+                        <td ng-click="showDetailes(c)" class="blue"> 
+                            {{c.shift.name}}
+                            <h3>{{c.shift.code}}</h3>
+                             </td>
                         <td ng-click="showDetailes(c)"> {{c.delivery_employee.name}} </td>
                         <td ng-click="showDetailes(c)"> {{c.customer.name_ar}} </td>
                         <td ng-click="showDetailes(c)">

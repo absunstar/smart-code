@@ -13,9 +13,15 @@
                                     <td class="title"> ##word.shift## </td>
                                     <td class="center"> {{order_management.shift.code}} </td>
                                 </tr>
+
                                 <tr>
                                     <td class="title"> ##word.code## </td>
                                     <td class="center blue"> {{order_management.code}} </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title"> ##word.date## </td>
+                                    <td class="center brown"> {{order_management.date | date : 'dd - MM - yyyy'}} </td>
                                 </tr>
 
                                 <tr>
@@ -29,11 +35,6 @@
                                         <b ng-show="order_management.transaction_type.id ==2" class="blue">
                                             ( {{order_management.status_delivery.ar}} )</b>
                                     </td>
-                                </tr>
-
-                                <tr>
-                                    <td class="title"> ##word.date## </td>
-                                    <td class="center brown"> {{order_management.date | date : 'dd - MM - yyyy'}} </td>
                                 </tr>
 
                                 <tr ng-show="order_management.service > 0">
@@ -75,6 +76,7 @@
                                     <td class="title"> ##word.delivery_employee## </td>
                                     <td class="center"> {{order_management.delivery_employee.name}} </td>
                                 </tr>
+
                                 <tr>
                                     <td class="title"> ##word.active## </td>
                                     <td ng-show="order_management.active == true" class="center green"> ##word.active##
@@ -83,6 +85,7 @@
                                         ##word.not_active##
                                     </td>
                                 </tr>
+
                             </table>
                         </div>
 
@@ -106,7 +109,7 @@
                                     <td class="center green">{{c.total}}</td>
                                     <td class="center">{{c.kitchen.name}}</td>
                                     <td class="center red">{{c.discount.value}}
-                                        <b class="red" ng-show="c.discount.type =='number'">##word.le##</b>
+                                        <b class="red" ng-show="c.discount.type =='number'">$</b>
                                         <b class="red" ng-show="c.discount.type =='percent'">%</b>
                                     </td>
                                     <td class="center">{{c.notes}}</td>

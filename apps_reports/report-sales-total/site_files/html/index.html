@@ -35,9 +35,9 @@
                 </div>
                 <div class="row">
 
-                    <i-control class="col2" label="##word.average_cost##" ng-model="average_cost" disabled></i-control>
-                    <i-control class="col2" label="##word.total_selling_count##" ng-model="count" disabled></i-control>
-                    <i-control class="col2" label="##word.total_selling_price##" ng-model="total" disabled></i-control>
+                    <i-control class="col2 r_blue" label="##word.total_selling_count##" ng-model="count" disabled></i-control>
+                    <i-control class="col2 r_green" label="##word.total_selling_price##" ng-model="total" disabled></i-control>
+                    <i-control class="col2 r_darkRed" label="##word.average_cost##" ng-model="average_cost" disabled></i-control>
                 </div>
 
                 <br>
@@ -52,20 +52,20 @@
                     <table class="table loaded center hover bold" id="t1">
                         <tr>
                             <th> ##word.stores_items_name## </th>
-                            <th> ##word.barcode## </th>
                             <th> ##word.stores_size## </th>
-                            <th>##word.average_cost##</th>
+                            <th> ##word.barcode## </th>
                             <th> ##word.total_selling_count## </th>
                             <th> ##word.total_selling_price## </th>
+                            <th>##word.average_cost##</th>
                         </tr>
 
                         <tr ng-repeat="c in list | orderBy : '-id'">
                             <td> {{c.name}} </td>
-                            <td class="blue"> {{c.barcode}} </td>
                             <td> {{c.size}} </td>
-                            <td> {{c.average_cost}} </td>
+                            <td class="blue"> {{c.barcode}} </td>
                             <td> {{c.count}} </td>
-                            <td> {{c.total}} </td>
+                            <td class="green"> {{c.total}} </td>
+                            <td class="red"> {{c.average_cost}} </td>
                         </tr>
                     </table>
                 </div>

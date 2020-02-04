@@ -10,7 +10,7 @@
 
                         <div class="col3"></div>
 
-                        <i-control class="col3 shift" disabled label="##word.shift##" ng-model="shift.code">
+                        <i-control class="col3 r_indigo" disabled label="##word.shift##" ng-model="shift.code">
                         </i-control>
 
                         <i-checkbox class="col2" label="##word.active##" ng-model="account_invoices.active">
@@ -138,7 +138,7 @@
                                         <p ng-show="account_invoices.source_type.id ==1">{{c.cost}}</p>
                                     </td>
                                     <td class="center red">{{c.discount.value}}
-                                        <b class="red" ng-show="c.discount.type =='number'">##word.le##</b>
+                                        <b class="red" ng-show="c.discount.type =='number'">$</b>
                                         <b class="red" ng-show="c.discount.type =='percent'">%</b>
                                     </td>
                                     <td class="center green">{{c.total}}</td>

@@ -15,11 +15,7 @@
     <div id="main-layout" class="container">
         <div class="row">
             <div class="row" ng-controller="report_invoices" x-permissions="login">
-                <div x-import="report-invoices/add_modal.html"></div>
-                <div x-import="report-invoices/payment.html"></div>
-                <div x-import="report-invoices/update_modal.html"></div>
-                <div x-import="report-invoices/delete_modal.html"></div>
-                <div x-import="report-invoices/view_modal.html"></div>
+            
                 <div x-import="report-invoices/search_all_modal.html"></div>
                 <div class="row">
                     <h1 class="bold text-center"> ##word.report_invoices_name## </h1>
@@ -40,17 +36,17 @@
                 </div>
 
                 <div class="row">
-                    <i-control id="item_name" class="col3" ng-model="net_value"
+                    <i-control id="item_name" class="col3 r_black" ng-model="net_value"
                         label="##word.report_invoices_total_required##" type="number" disabled></i-control>
-                    <i-control id="item_name" class="col3" ng-model="paid_up" label="##word.total_paid_up##"
+                    <i-control id="item_name" class="col3 r_green" ng-model="paid_up" label="##word.total_paid_up##"
                         type="number" disabled></i-control>
-                    <i-control id="item_name" class="col3" ng-model="remain_amount" label="##word.total_remain##"
+                    <i-control id="item_name" class="col3 r_blue" ng-model="remain_amount" label="##word.total_remain##"
                         type="number" disabled></i-control>
                 </div>
                 <div class="row">
-                    <i-control id="item_name" class="col3" ng-model="total_tax" label="##word.stores_out_total_tax##"
+                    <i-control id="item_name" class="col3 r_darkRed" ng-model="total_tax" label="##word.stores_out_total_tax##"
                         type="number" disabled></i-control>
-                    <i-control id="item_name" class="col3" ng-model="total_discount"
+                    <i-control id="item_name" class="col3 r_darkRed" ng-model="total_discount"
                         label="##word.stores_out_total_discount##" type="number" disabled></i-control>
                 </div>
 
@@ -81,9 +77,9 @@
                         <td> {{c.source_type.ar}} </td>
                         <td x-feature="restaurant"> {{c.order_invoices_type.ar}} </td>
                         <td> {{c.payment_method.ar}} </td>
-                        <td class="blue"> {{c.items_price ||0}} </td>
-                        <td> {{c.total_tax ||0}} </td>
-                        <td> {{c.total_discount ||0}} </td>
+                        <td> {{c.items_price ||0}} </td>
+                        <td class="red"> {{c.total_tax ||0}} </td>
+                        <td class="red"> {{c.total_discount ||0}} </td>
                         <td x-feature="restaurant">
                             <p ng-show="c.service"> ##word.service## </p>
                             <p ng-show="c.service">{{c.service}}</p>
@@ -91,8 +87,8 @@
                             <p ng-show="c.price_delivery_service">{{c.price_delivery_service}}</p>
                         </td>
                         <td> {{c.net_value}} </td>
-                        <td> {{c.paid_up ||0}} </td>
-                        <td> {{c.remain_amount ||0}} </td>
+                        <td class="green"> {{c.paid_up ||0}} </td>
+                        <td class="blue"> {{c.remain_amount ||0}} </td>
                         <td>
                             <p ng-show="c.active == true" class="green"> ##word.active## </p>
                             <p ng-show="c.active == false" class="red"> ##word.not_active## </p>

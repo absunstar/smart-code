@@ -51,26 +51,22 @@
                     </tr>
 
                     <tr ng-repeat="itm in list | orderBy : '-id'">
-                        <td> <br> {{$index + 1}}</td>
+                        <td> {{$index + 1}}</td>
                         <td class="brown"> {{itm.date | date : 'dd - MM - yyyy'}} </td>
-                        <td class="blue"> <br> {{itm.code}}</td>
-                        <td> <br> {{itm.type.ar}}</td>
-                        <td> <br> {{itm.name}}</td>
-                        <td> <br> {{itm.barcode}}</td>
-                        <td> <br> {{itm.size}}</td>
-                        <td> <br> {{itm.count}}</td>
-
-                        <td>
-                            <br>
-                            <p> {{itm.price}} </p>
-                        </td>
+                        <td class="blue"> {{itm.code}}</td>
+                        <td> {{itm.type.ar}}</td>
+                        <td> {{itm.name}}</td>
+                        <td class="blue"> {{itm.barcode}}</td>
+                        <td> {{itm.size}}</td>
+                        <td> {{itm.count}}</td>
+                        <td><p> {{itm.price}} </p></td>
 
                         <td>
                             <p> {{itm.discount.value}} </p>
-                            <b class="red" ng-show="itm.discount.type =='number'">##word.le##</b>
+                            <b class="red" ng-show="itm.discount.type =='number'">$</b>
                             <b class="red" ng-show="itm.discount.type =='percent'">%</b>
                         </td>
-                        <td class="green"> <br> {{itm.total}}</td>
+                        <td class="green"> {{itm.total}}</td>
 
                     </tr>
                 </table>

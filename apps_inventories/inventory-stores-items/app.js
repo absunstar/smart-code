@@ -398,7 +398,7 @@ module.exports = function init(site) {
             _size.size_units_list.forEach(_unit => {
               if (!_unit.barcode || _unit.barcode == '') {
 
-                _unit.barcode = stores_items_doc.id + stores_items_doc.company.id + stores_items_doc.branch.code + _unit.id + i + (Math.floor(Math.random() * 100) + i)
+                _unit.barcode = doc.id + doc.company.id + doc.branch.code + _unit.id + i + (Math.floor(Math.random() * 100) + i)
               }
             });
 

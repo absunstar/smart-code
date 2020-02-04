@@ -107,7 +107,7 @@
                                 <td>{{discount.name}}</td>
                                 <td>
                                     <p class="text-center" ng-show="discount.type == '%'"> {{discount.value}} % </p>
-                                    <p class="text-center" ng-show="discount.type == '0'"> {{discount.value}} ##word.le## </p>
+                                    <p class="text-center" ng-show="discount.type == '0'"> {{discount.value}} $ </p>
                                 </td>
                             </tr>
                         </table>
@@ -116,12 +116,12 @@
     
                 <tr>
                     <td class="title">##word.stores_in_total_value##</td>
-                    <td>{{store_in.total_value}} ##word.le##</td>
+                    <td>{{store_in.total_value}} $</td>
                 </tr>
     
                 <tr>
                     <td class="title">##word.stores_in_net_value##</td>
-                    <td>{{store_in.net_value}} ##word.le##</td>
+                    <td>{{store_in.net_value}} $</td>
                 </tr>
     
                 <tr>

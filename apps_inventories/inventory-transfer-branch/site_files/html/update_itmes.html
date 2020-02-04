@@ -107,7 +107,7 @@
                                 <td>{{discount.name}}</td>
                                 <td>
                                     <p class="text-center" ng-show="discount.type == '%'"> {{discount.value}} % </p>
-                                    <p class="text-center" ng-show="discount.type == '0'"> {{discount.value}} ##word.le## </p>
+                                    <p class="text-center" ng-show="discount.type == '0'"> {{discount.value}} $ </p>
                                 </td>
                             </tr>
                         </table>
@@ -116,12 +116,12 @@
     
                 <tr>
                     <td class="title">##word.transfer_branch_total_value##</td>
-                    <td>{{transfer_branch.total_value}} ##word.le##</td>
+                    <td>{{transfer_branch.total_value}} $</td>
                 </tr>
     
                 <tr>
                     <td class="title">##word.transfer_branch_net_value##</td>
-                    <td>{{transfer_branch.net_value}} ##word.le##</td>
+                    <td>{{transfer_branch.net_value}} $</td>
                 </tr>
     
                 <tr>

@@ -10,6 +10,11 @@
                             <table class="table bold hover">
 
                                 <tr>
+                                    <td class="title"> ##word.date## </td>
+                                    <td class="center brown"> {{order_distributor.date | date : 'dd - MM - yyyy'}} </td>
+                                </tr>
+
+                                <tr>
                                     <td class="title"> ##word.status## </td>
                                     <td class="center"> {{order_distributor.status.ar}} </td>
                                 </tr>
@@ -22,14 +27,20 @@
                                     </td>
                                 </tr>
 
-                                <tr>
-                                    <td class="title"> ##word.code## </td>
-                                    <td class="center blue"> {{order_distributor.code}} </td>
+                                <tr ng-show="order_distributor.delivery_employee.id">
+                                    <td class="title"> ##word.delivery_employee## </td>
+                                    <td class="center"> {{order_distributor.delivery_employee.name}} </td>
                                 </tr>
 
                                 <tr>
-                                    <td class="title"> ##word.date## </td>
-                                    <td class="center brown"> {{order_distributor.date | date : 'dd - MM - yyyy'}} </td>
+                                    <td class="title"> ##word.code## </td>
+                                    <td class="center  blue"> {{order_distributor.code}} </td>
+                                </tr>
+                                <tr>
+                                    <td class="title"> ##word.shift## </td>
+                                    <td class="center "> {{order_distributor.shift.name}}
+                                        <h3 class="center bold blue">{{order_distributor.shift.code}}</h3>
+                                    </td>
                                 </tr>
 
                                 <tr ng-show="order_distributor.service > 0">
@@ -67,10 +78,6 @@
                                     <td class="center"> {{order_distributor.table.name}} </td>
                                 </tr>
 
-                                <tr ng-show="order_distributor.delivery_employee.id">
-                                    <td class="title"> ##word.delivery_employee## </td>
-                                    <td class="center"> {{order_distributor.delivery_employee.name}} </td>
-                                </tr>
                                 <tr>
                                     <td class="title"> ##word.active## </td>
                                     <td ng-show="order_distributor.active == true" class="center green"> ##word.active##
@@ -86,15 +93,17 @@
                             <table x-permissions="login" class="table bold hover loaded" id="t1">
                                 <tr>
                                     <th>##word.stores_items_name##</th>
+                                    <th>##word.barcode##</th>
                                     <th>##word.items_count##</th>
                                     <th>##word.items_price##</th>
                                     <th>##word.items_price_total##</th>
                                 </tr>
                                 <tr ng-repeat="c in order_distributor.book_list">
                                     <td class="center title">{{c.size}}</td>
+                                    <td class="center ">{{c.barcode}}</td>
                                     <td class="center blue">{{c.count}}</td>
-                                    <td class="center blue">{{c.price}}</td>
-                                    <td class="center green">{{c.total}}</td>
+                                    <td class="center green">{{c.price}}</td>
+                                    <td class="center">{{c.total}}</td>
                                 </tr>
                             </table>
                         </div>

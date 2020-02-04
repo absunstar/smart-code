@@ -179,7 +179,7 @@
                                         <p ng-show="account_invoices.source_type.id ==1">{{c.cost}}</p>
                                     </td>
                                     <td class="center red">{{c.discount.value}}
-                                        <b class="red" ng-show="c.discount.type =='number'">##word.le##</b>
+                                        <b class="red" ng-show="c.discount.type =='number'">$</b>
                                         <b class="red" ng-show="c.discount.type =='percent'">%</b>
                                     </td>
                                     <td class="center green">{{c.total || c.total}}</td>

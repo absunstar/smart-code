@@ -5,7 +5,7 @@
             <div class="row">
                 <div class="col9">
                     <div class="row">
-                        <i-control class="col3 shift" type="text" disabled label="##word.shift##" ng-model="shift.code">
+                        <i-control class="col3 r_indigo" type="text" disabled label="##word.shift##" ng-model="shift.code">
                         </i-control>
                         <i-button type="add" label="##word.customers_new##" ng-click="displayAddCustomer()">
                         </i-button>
@@ -145,7 +145,7 @@
                                             <span class="bold red">{{d1.name}} -</span>
                                             <span class="bold red" ng-show="d1.type === 'percent'">{{d1.value}} %</span>
                                             <span class="bold red"
-                                                ng-show="d1.type === 'number'">{{d1.value}}##word.le##</span>
+                                                ng-show="d1.type === 'number'">{{d1.value}}$</span>
                                             <i-button type="delete" ng-click="deleteDiscount(d1) ; calc()"> </i-button>
                                         </td>
 

@@ -1,0 +1,54 @@
+.r_red,
+.r_red input {
+    color: red;
+    font-weight: bold;
+    font-size: 20px;
+}
+.r_green,
+.r_green input {
+    color: green;
+    font-weight :bold;
+    font-size: 20px;
+}
+
+.r_indigo,
+.r_indigo input {
+    color:Indigo;
+    font-weight :bold;
+    font-size: 20px;
+}
+
+.r_blue,
+.r_blue input {
+    color: blue;
+    font-weight :bold;
+    font-size: 20px;
+}
+
+.r_black,
+.r_black input {
+    color: black;
+    font-weight :bold;
+    font-size: 20px;
+}
+
+.r_brown,
+.r_brown input {
+    color: brown;
+    font-weight :bold;
+    font-size: 20px;
+}
+
+.r_orange,
+.r_orange input {
+    color: OrangeRed;
+    font-weight :bold;
+    font-size: 20px;
+}
+
+.r_darkRed,
+.r_darkRed input {
+    color: DarkRed;
+    font-weight :bold;
+    font-size: 20px;
+}

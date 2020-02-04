@@ -31,19 +31,19 @@
                     <div ng-show="delegate.id" class="row margin padding dashed">
                         <div class="col6 padding">
 
-                            <table class="table bold" id="t1">
+                            <table class="table hover bold" id="t1">
 
                                 <tr>
                                     <td class="title">##word.delegate##</td>
                                     <td>
-                                        <p class="center">{{delegate.name}}</p>
+                                        <h3 class="center bold">{{delegate.name}}</h3>
                                     </td>
                                 </tr>
 
                                 <tr>
                                     <td class="title">##word.requests_count##</td>
                                     <td>
-                                        <p class="center blue">{{count}}</p>
+                                        <h3 class="center bold blue">{{count}}</h3>
                                     </td>
 
                                 </tr>
@@ -56,25 +56,25 @@
                     <span ng-show="busy">
                         <span class="sr-only">Loading...</span>
                     </span>
-                    <h3 class="bold text-center"> ##word.count## : {{count}} </h3>
+                    <h3 class="bold text-center" ng-hide="delegate.id"> ##word.count## : {{count}} </h3>
                     <br>
                 </div>
 
                 <div class="row">
-                    <i-control id="item_name" class="col2" ng-model="total_value"
+                    <i-control id="item_name" class="col2 r_black" ng-model="total_value"
                         label="##word.stores_out_total_value##" type="number" disabled></i-control>
-                    <i-control id="item_name" class="col2" ng-model="net_value" label="##word.stores_out_net_value##"
+                    <i-control id="item_name" class="col2 r_green" ng-model="net_value" label="##word.stores_out_net_value##"
                         type="number" disabled></i-control>
                 </div>
 
-                <div class="row">
-                    <i-control id="item_name" class="col2" ng-model="total_tax" label="##word.total_tax##" type="number"
+            <!--     <div class="row">
+                    <i-control id="item_name" class="col2 r_darkRed" ng-model="total_tax" label="##word.total_tax##" type="number"
                         disabled></i-control>
-                    <i-control id="item_name" class="col2" ng-model="total_discount" label="##word.total_discount##"
+                    <i-control id="item_name" class="col2 r_darkRed" ng-model="total_discount" label="##word.total_discount##"
                         type="number" disabled></i-control>
                 </div>
 
-
+ -->
                 <table class="table loaded center hover bold" id="t1">
                     <tr>
                         <th class="not-print"> ##word.logo## </th>

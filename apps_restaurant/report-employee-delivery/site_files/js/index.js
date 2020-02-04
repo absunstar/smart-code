@@ -59,11 +59,14 @@ app.controller("report_employee_delivery", function ($scope, $http, $timeout) {
 
   $scope.searchAll = function () {
     $scope._search = {};
+    if ($scope.search)
+      $scope.delivery_employee = $scope.search.delivery_employee;
+      
     $scope.getReportEmployeeDeliveryList($scope.search);
     site.hideModal('#reportEmployeeDeliverySearchModal');
     $scope.search = {}
   };
 
-  $scope.getReportEmployeeDeliveryList({date : new Date()});
+  $scope.getReportEmployeeDeliveryList({ date: new Date() });
   $scope.getDeliveryEmployeesList();
 });

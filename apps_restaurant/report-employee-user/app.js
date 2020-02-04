@@ -60,7 +60,7 @@ module.exports = function init(site) {
       delete where.date_from
       delete where.date_to
     }
-    if (where['employee']) {
+    if (where['employee'] && where['employee'].user_info) {
       where = {
         $or: [
           { 'add_user_info.id': where['employee'].user_info.id },
