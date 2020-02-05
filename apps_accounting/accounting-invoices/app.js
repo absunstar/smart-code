@@ -597,6 +597,52 @@ module.exports = function init(site) {
   })
 
 
+
+
+  site.post("/api/account_invoices/handel_invoice", (req, res) => {
+    let response = {
+      done: false
+    }
+    let where = req.body.where || {}
+
+    where['company.id'] = site.get_company(req).id
+
+    where['payment_list.currency'] = null || undefined
+
+    $account_invoices.findMany({
+      select: req.body.select || {},
+      where: where,
+      sort: req.body.sort || {
+        id: -1
+      },
+    }, (err, docs) => {
+      if (!err) {
+        response.done = true
+        site.getDefaultSetting(req, callback => {
+
+          let currency = {}
+          if (callback.accounting.currency)
+            currency = callback.accounting.currency
+
+          if (currency.id)
+            docs.forEach(_doc => {
+              _doc.payment_list.forEach(_payment => {
+                _payment.currency = currency
+                _payment.payment_method = _doc.payment_method
+                _payment.posting = true
+              });
+              $account_invoices.update(_doc)
+            });
+        })
+
+      } else {
+        response.error = err.message
+      }
+      res.json(response)
+    })
+  })
+
+
   site.post("/api/account_invoices/all", (req, res) => {
     let response = {
       done: false

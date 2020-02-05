@@ -35,6 +35,8 @@
                         <span class="sr-only">Loading...</span>
                     </span>
                     <h2 class="bold red text-center">{{error}} </h2>
+                    <i-button class="left" ng-click="handelInvoice()">
+                    </i-button>
                     <h3 class="bold text-center"> ##word.count## : {{count}} </h3>
                     <br>
                 </div>
@@ -46,7 +48,7 @@
                         <th> ##word.invoices_code## </th>
                         <th> ##word.source_type## </th>
                         <th x-feature="restaurant"> ##word.order_invoices_type## </th>
-                        <th> ##word.payment_method## </th>
+                        <!-- <th> ##word.payment_method## </th> -->
                         <th> ##word.order_value## </th>
                         <th> ##word.total_paid_up## </th>
                         <th> ##word.remain_amount## </th>
@@ -56,13 +58,15 @@
                         <td ng-click="displayDetailsAccountInvoices(c)" class="not-print">
                             <img class="logo" ng-src="{{c.image_url}}">
                         </td>
-                        <td ng-click="displayDetailsAccountInvoices(c)" class=" brown"> {{c.date | date : 'dd - MM - yyyy'}}
+                        <td ng-click="displayDetailsAccountInvoices(c)" class=" brown">
+                            {{c.date | date : 'dd - MM - yyyy'}}
                         </td>
                         <td ng-click="displayDetailsAccountInvoices(c)" class="blue"> {{c.code}} </td>
                         <td ng-click="displayDetailsAccountInvoices(c)"> {{c.source_type.ar}} </td>
-                        <td ng-click="displayDetailsAccountInvoices(c)" x-feature="restaurant"> {{c.order_invoices_type.ar}}
+                        <td ng-click="displayDetailsAccountInvoices(c)" x-feature="restaurant">
+                            {{c.order_invoices_type.ar}}
                         </td>
-                        <td ng-click="displayDetailsAccountInvoices(c)"> {{c.payment_method.ar}} </td>
+                        <!-- <td ng-click="displayDetailsAccountInvoices(c)"> {{c.payment_method.ar}} </td> -->
                         <td ng-click="displayDetailsAccountInvoices(c)" class="bold">
                             {{c.net_value}}
                         </td>

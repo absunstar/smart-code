@@ -222,6 +222,26 @@ app.controller("safes_payments", function ($scope, $http) {
     )
   };
 
+  $scope.handelSafesPAyments = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/safes_payments/handel_safes_payments"
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.loadAll();
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
 
   $scope.searchAll = function () {
  

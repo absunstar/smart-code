@@ -144,4 +144,46 @@ module.exports = function init(site) {
   })
 
 
+  site.post("/api/safes_payments/handel_safes_payments", (req, res) => {
+    let response = {
+      done: false
+    }
+    let where = req.body.where || {}
+
+    where['company.id'] = site.get_company(req).id
+
+    where['currency'] = null || undefined
+
+    $safes_payments.findMany({
+      select: req.body.select || {},
+      where: where,
+      sort: req.body.sort || {
+        id: -1
+      },
+    }, (err, docs) => {
+      if (!err) {
+        response.done = true
+
+        site.getDefaultSetting(req, callback => {
+
+          let currency = {}
+          if (callback.accounting.currency)
+            currency = callback.accounting.currency
+
+          if (currency.id)
+            docs.forEach(_doc => {
+              _doc.currency = currency
+              $safes_payments.update(_doc)
+            });
+        })
+
+      } else {
+        response.error = err.message
+      }
+      res.json(response)
+    })
+  })
+
+
+
 }

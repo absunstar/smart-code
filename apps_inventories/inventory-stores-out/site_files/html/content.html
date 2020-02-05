@@ -26,21 +26,11 @@
                 </div>
                 <div class="row">
 
-                    <i-list help-id="" ng-search="_search.$payment_method_search" class="col2"
-                        label="##word.payment_method##" ng-model="store_out.payment_method" items="paymentMethodList"
-                        ng-change="getSafeByType(store_out)" ng-show="defaultSettings.accounting.create_invoice_auto"
-                        display="##session.lang##">
-                    </i-list>
-
                     <i-list display="##session.lang##" ng-search="_search.$search_in_out" class="col3"
                         ng-model="store_out.type" items="storesOutTypes" label="##word.transaction_type##"></i-list>
 
                     <i-list class="col3" ng-model="store_out.store" items="storesList"
                         ng-search="_search.$stores_search" label="##word.stores_out_store##"></i-list>
-
-                    <i-list class="col3" ng-model="store_out.safe" items="safesList" ng-search="_search.$serach_safes"
-                        ng-show="defaultSettings.accounting.create_invoice_auto" label="##word.stores_out_safe##">
-                    </i-list>
 
                 </div>
 
@@ -209,6 +199,7 @@
                 </div>
 
             </div>
+
             <div class="row">
                 <i-control class="col2" ng-model="store_out.total_discount" type="number" disabled
                     label="##word.stores_out_total_discount##"></i-control>
@@ -216,8 +207,38 @@
                     label="##word.stores_out_total_tax##"></i-control>
                 <i-control class="col2" ng-model="store_out.total_value" type="number" disabled
                     label="##word.stores_out_total_value##"></i-control>
+
+            </div>
+
+            <div class="row">
+
+                <i-list help-id="" ng-show="defaultSettings.accounting.create_invoice_auto"
+                    ng-search="_search.$payment_method_search" class="col2" label="##word.payment_method##"
+                    ng-model="store_out.payment_method" ng-change="getSafeByType(store_out)" items="paymentMethodList"
+                    display="##session.lang##">
+                </i-list>
+
+                <i-list class="col3 control padding" ng-show="defaultSettings.accounting.create_invoice_auto"
+                    ng-search="_search.$currency_search" ng-model="store_out.currency"
+                    ng-change="getSafeByType(store_out) ; calc(store_out)" items="currenciesList"
+                    label="##word.currency##">
+                </i-list>
+
+                <i-control class="col2" disabled ng-model="store_out.currency.ex_rate" type="number"
+                    label="##word.exchange_rate##"></i-control>
+
+                <i-list ng-search="_search.$order_invoice.$safes_search" ng-show="store_out.paid_up > 0" class="col4"
+                    ng-model="store_out.safe" label="##word.safe##" items="safesList">
+                </i-list>
+            </div>
+
+
+            <div class="row">
+
                 <i-control class="col2" ng-model="store_out.net_value" type="number" disabled
                     label="##word.stores_out_net_value##"></i-control>
+                <i-control class="col3" disabled ng-model="amount_currency" label="##word.amount_currency##"
+                    type="number"></i-control>
                 <i-control class="col2" ng-show="store_out.net_value && store_out.safe" ng-model="store_out.paid_up"
                     label="##word.paid_up##" type="number">
                 </i-control>

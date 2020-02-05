@@ -82,14 +82,21 @@ module.exports = function init(site) {
             if (total_size_list.length > 0) {
               total_size_list.forEach(_size => {
                 if (_size.barcode == _item.barcode) {
-                  _size.total = _size.total + _item.total
-                  _size.count = _size.count + _item.count
+                  _size.total = site.toNumber(_size.total) + site.toNumber(_item.total)
+                  _size.count = site.toNumber(_size.count) + site.toNumber(_item.count)
                   _size.average_cost = (site.toNumber(_size.average_cost) + (site.toNumber(_item.average_cost)) * site.toNumber(_item.count))
                   exist = true
                 }
               })
             }
-            if (!exist) total_size_list.push(Object.assign({}, _item))
+
+            if (!exist) {
+              _item.count = site.toNumber(_item.count)
+              _item.total = site.toNumber(_item.total)
+              _item.average_cost = site.toNumber(_item.average_cost)
+
+              total_size_list.push(Object.assign({}, _item))
+            }
           })
         }
 

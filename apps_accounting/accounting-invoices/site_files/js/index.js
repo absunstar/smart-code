@@ -564,12 +564,12 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
     $scope.error = '';
     $timeout(() => {
       let total_price_item = 0;
+      if (account_invoices.current_book_list) {
+        account_invoices.current_book_list.map(item => total_price_item += item.total);
 
-      account_invoices.current_book_list.forEach(item => {
+        account_invoices.net_value = site.toNumber(total_price_item) + (account_invoices.service || 0) + (account_invoices.price_delivery_service || 0) + (account_invoices.total_tax || 0) - (account_invoices.total_discount || 0);
+      }
 
-        total_price_item += item.total;
-      });
-      account_invoices.net_value = site.toNumber(total_price_item) + (account_invoices.service || 0) + (account_invoices.price_delivery_service || 0) + (account_invoices.total_tax || 0) - (account_invoices.total_discount || 0);
 
       if (account_invoices.currency)
         $scope.amount_currency = site.toNumber(account_invoices.net_value) / site.toNumber(account_invoices.currency.ex_rate);
@@ -876,6 +876,27 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
         if (response.data.done && response.data.doc) {
           $scope.defaultSettings = response.data.doc;
         };
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+
+  $scope.handelInvoice = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/account_invoices/handel_invoice"
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.getAccountInvoicesList();
+        }
       },
       function (err) {
         $scope.busy = false;

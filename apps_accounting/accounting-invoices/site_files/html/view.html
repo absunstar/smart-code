@@ -122,7 +122,7 @@
                                     <td class="center blue"> {{account_invoices.net_value}} </td>
                                 </tr>
 
-                                <tr>
+                                <!-- <tr>
                                     <td class="title"> ##word.payment_method## </td>
                                     <td class="center blue"> {{account_invoices.payment_method.ar}} </td>
                                 </tr>
@@ -130,7 +130,7 @@
                                 <tr ng-show="account_invoices.safe">
                                     <td class="title"> ##word.safe## </td>
                                     <td class="center"> {{account_invoices.safe.name}} </td>
-                                </tr>
+                                </tr> -->
 
                                 <tr ng-show="account_invoices.date_from">
                                     <td class="title">##word.date_from##</td>
@@ -143,7 +143,7 @@
                                     <td class="center red">{{account_invoices.date_to | date : 'yyyy - MM - dd'}}
                                     </td>
                                 </tr>
-                                
+
                                 <tr>
                                     <td class="title"> ##word.active## </td>
                                     <td ng-show="account_invoices.active == true" class="center green"> ##word.active##
@@ -204,14 +204,17 @@
 
                                     <tr>
                                         <th>##word.date##</th>
+                                        <th>##word.payment_method##</th>
+                                        <th>##word.currency##</th>
                                         <th>##word.safe##</th>
                                         <th>##word.paid_up##</th>
                                     </tr>
 
                                     <tr ng-repeat="c in account_invoices.payment_list">
                                         <td class="center brown">{{c.date | date : 'dd / MM / yyyy'}}</td>
-                                        <td class="center blue">{{c.safe.name}}
-                                        </td>
+                                        <td class="center">{{c.payment_method.ar}}</td>
+                                        <td class="center">{{c.currency.name}} <b class="blue">{{c.currency.ex_rate}}</b></td>
+                                        <td class="center blue">{{c.safe.name}}</td>
                                         <td class="center green">{{c.paid_up}}</td>
                                     </tr>
                                 </table>

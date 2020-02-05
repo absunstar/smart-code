@@ -32,19 +32,16 @@ app.controller("request_service", function ($scope, $http, $timeout) {
 
         if ($scope.defaultSettings.accounting) {
           if ($scope.defaultSettings.accounting.create_invoice_auto) {
+            $scope.request_service.currency = $scope.defaultSettings.accounting.currency;
             if ($scope.defaultSettings.accounting.payment_method) {
               $scope.request_service.payment_method = $scope.defaultSettings.accounting.payment_method;
-              $scope.loadSafes($scope.request_service.payment_method);
-              if ($scope.request_service.payment_method.id == 1) {
-                if ($scope.defaultSettings.accounting.safe_box)
-                  $scope.request_service.safe = $scope.defaultSettings.accounting.safe_box;
-              } else {
-                if ($scope.defaultSettings.accounting.safe_bank)
-                  $scope.request_service.safe = $scope.defaultSettings.accounting.safe_bank;
-              }
+              $scope.loadSafes($scope.request_service.payment_method, $scope.request_service.currency);
+              if ($scope.request_service.payment_method.id == 1)
+                $scope.request_service.safe = $scope.defaultSettings.accounting.safe_box;
+              else $scope.request_service.safe = $scope.defaultSettings.accounting.safe_bank;
             }
           }
-        };
+        }
 
 
         site.showModal('#requestServiceAddModal');
@@ -126,6 +123,13 @@ app.controller("request_service", function ($scope, $http, $timeout) {
       $scope.error = v.messages[0].ar;
       return;
     };
+
+    if ($scope.request_service.paid_up > $scope.amount_currency) {
+      $scope.error = "##word.err_net_value##";
+      return;
+    }
+
+
     $scope.busy = true;
     $http({
       method: "POST",
@@ -146,6 +150,7 @@ app.controller("request_service", function ($scope, $http, $timeout) {
               hall: request_doc.hall,
               shift: request_doc.shift,
               service_name: request_doc.service_name,
+              currency: request_doc.currency,
               payment_method: request_doc.payment_method,
               safe: request_doc.safe,
               date_from: request_doc.date_from,
@@ -203,18 +208,18 @@ app.controller("request_service", function ($scope, $http, $timeout) {
         };
 
         if ($scope.defaultSettings.accounting) {
+          $scope.account_invoices.currency = $scope.defaultSettings.accounting.currency;
           if ($scope.defaultSettings.accounting.payment_method) {
             $scope.account_invoices.payment_method = $scope.defaultSettings.accounting.payment_method;
-            $scope.loadSafes($scope.account_invoices.payment_method);
-            if ($scope.account_invoices.payment_method.id == 1) {
-              if ($scope.defaultSettings.accounting.safe_box)
-                $scope.account_invoices.safe = $scope.defaultSettings.accounting.safe_box;
-            } else {
-              if ($scope.defaultSettings.accounting.safe_bank)
-                $scope.account_invoices.safe = $scope.defaultSettings.accounting.safe_bank;
-            }
+            $scope.loadSafes($scope.account_invoices.payment_method, $scope.account_invoices.currency);
+            if ($scope.account_invoices.payment_method.id == 1)
+              $scope.account_invoices.safe = $scope.defaultSettings.accounting.safe_box;
+            else $scope.account_invoices.safe = $scope.defaultSettings.accounting.safe_bank;
           }
         }
+        if ($scope.account_invoices.currency)
+          $scope.amount_currency = site.toNumber($scope.account_invoices.net_value) / site.toNumber($scope.account_invoices.currency.ex_rate);
+        $scope.calc($scope.account_invoices);
 
         site.showModal('#accountInvoiceModal');
       } else $scope.error = '##word.open_shift_not_found##';
@@ -228,8 +233,8 @@ app.controller("request_service", function ($scope, $http, $timeout) {
     if (account_invoices.paid_up > 0 && !account_invoices.safe) {
       $scope.error = "##word.should_select_safe##";
       return;
-    } else if (account_invoices.paid_up > account_invoices.net_value) {
-      $scope.error = "##word.err_paid_require##";
+    } else if (account_invoices.paid_up > $scope.amount_currency) {
+      $scope.error = "##word.err_net_value##";
       return;
     }
 
@@ -397,6 +402,12 @@ app.controller("request_service", function ($scope, $http, $timeout) {
       $scope.error = v.messages[0].ar;
       return;
     }
+
+    if ($scope.request_service.paid_up > $scope.amount_currency) {
+      $scope.error = "##word.err_net_value##";
+      return;
+    }
+
     $scope.busy = true;
     $http({
       method: "POST",
@@ -510,14 +521,58 @@ app.controller("request_service", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.loadSafes = function (method) {
+  $scope.loadCurrencies = function () {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/currency/all",
+      data: {
+        select: {
+          id: 1,
+          name: 1,
+          ex_rate: 1
+        },
+        where: {
+          active: true
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.currenciesList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.getSafeByType = function (obj) {
+    $scope.error = '';
+    if ($scope.defaultSettings.accounting) {
+      $scope.loadSafes(obj.payment_method, obj.currency);
+      if (obj.payment_method.id == 1) {
+        if ($scope.defaultSettings.accounting.safe_box)
+          obj.safe = $scope.defaultSettings.accounting.safe_box
+      } else {
+        if ($scope.defaultSettings.accounting.safe_bank)
+          obj.safe = $scope.defaultSettings.accounting.safe_bank
+      }
+    }
+  };
+
+  $scope.loadSafes = function (method, currency) {
     $scope.error = '';
     $scope.busy = true;
-    let where = {};
+
+    let where = { 'currency.id': currency.id };
 
     if (method.id == 1)
-      where = { 'type.id': 1 };
-    else where = { 'type.id': 2 };
+      where['type.id'] = 1;
+    else where['type.id'] = 2;
 
     $http({
       method: "POST",
@@ -527,6 +582,7 @@ app.controller("request_service", function ($scope, $http, $timeout) {
           id: 1,
           name: 1,
           number: 1,
+          currency: 1,
           type: 1
         },
         where: where
@@ -543,7 +599,6 @@ app.controller("request_service", function ($scope, $http, $timeout) {
       }
     )
   };
-
 
   $scope.getRequestServiceList = function (where) {
     $scope.busy = true;
@@ -799,22 +854,24 @@ app.controller("request_service", function ($scope, $http, $timeout) {
     };
   };
 
-  $scope.calc = function () {
+  $scope.calc = function (obj) {
     $scope.error = '';
     $timeout(() => {
-      $scope.request_service.total_discount = 0;
-      let total_attend_count = Number($scope.request_service.services_price) * $scope.request_service.service_count;
-      $scope.request_service.paid_require = Number($scope.request_service.services_price);
-      if ($scope.request_service.discountes && $scope.request_service.discountes.length > 0) {
-        $scope.request_service.discountes.forEach(ds => {
-          if (ds.type === "percent") $scope.request_service.total_discount += total_attend_count * site.toNumber(ds.value) / 100;
-          else $scope.request_service.total_discount += site.toNumber(ds.value);
+      obj.total_discount = 0;
+      let total_attend_count = site.toNumber(obj.services_price) * obj.service_count;
+      obj.paid_require = site.toNumber(obj.services_price);
+      if (obj.discountes && obj.discountes.length > 0) {
+        obj.discountes.forEach(ds => {
+          if (ds.type === "percent") obj.total_discount += total_attend_count * site.toNumber(ds.value) / 100;
+          else obj.total_discount += site.toNumber(ds.value);
         });
       };
-      $scope.request_service.paid_require = (Number($scope.request_service.services_price) * Number($scope.request_service.service_count || 1)) - $scope.request_service.total_discount;
+      obj.paid_require = (site.toNumber(obj.services_price) * site.toNumber(obj.service_count)) - obj.total_discount;
       $scope.discount = {
         type: 'number'
       };
+      $scope.amount_currency = site.toNumber(obj.paid_require) / site.toNumber(obj.currency.ex_rate);
+
     }, 250);
   };
 
@@ -912,20 +969,6 @@ app.controller("request_service", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.getSafeByType = function (obj) {
-    $scope.error = '';
-    if ($scope.defaultSettings.accounting) {
-      $scope.loadSafes(obj.payment_method);
-      if (obj.payment_method.id == 1) {
-        if ($scope.defaultSettings.accounting.safe_box)
-          obj.payment_safe = $scope.defaultSettings.accounting.safe_box
-      } else {
-        if ($scope.defaultSettings.accounting.safe_bank)
-          obj.payment_safe = $scope.defaultSettings.accounting.safe_bank
-      }
-    }
-  };
-
 
   $scope.get_open_shift = function (callback) {
     $scope.busy = true;
@@ -959,6 +1002,7 @@ app.controller("request_service", function ($scope, $http, $timeout) {
   $scope.getHallList();
   $scope.getTrainerList();
   $scope.getPaymentMethodList();
+  $scope.loadCurrencies();
   $scope.getSourceType();
   $scope.getIndentfy();
   $scope.getCustomerGroupList();
