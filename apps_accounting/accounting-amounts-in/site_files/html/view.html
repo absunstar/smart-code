@@ -10,9 +10,15 @@
             <tr>
                 <td class="title">##word.shift##</td>
                 <td class="center">
-                    <p class="center"> {{c.shift.name}} </p>
-                    <p class="center blue"> {{c.shift.code}} </p>
+                    <p class="center"> {{amount_in.shift.name}} </p>
+                    <p class="center blue"> {{amount_in.shift.code}} </p>
                 </td>
+            </tr>
+
+            <tr>
+                <td class="title">##word.amounts_in_source##</td>
+                <td class="center">{{amount_in.source.name}}</td><br>
+
             </tr>
 
             <tr>
@@ -36,18 +42,11 @@
                 <td class="green center">{{amount_in.value}}</td>
             </tr>
 
-            <tr>
-                <td class="title">##word.amounts_in_source##</td>
-                <td class="center">{{amount_in.source.name}}</td><br>
-
-            </tr>
+          
             <tr ng-show="amount_in.employee">
                 <td class="title">##word.amounts_in_employees##</td>
                 <td class="center">{{amount_in.employee.name}}</td>
             </tr>
-
-
-
 
             <tr>
                 <td class="title">##word.amounts_in_description##</td>

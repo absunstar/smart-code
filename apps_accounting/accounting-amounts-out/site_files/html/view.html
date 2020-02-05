@@ -11,16 +11,21 @@
             <tr>
                 <td class="title">##word.shift##</td>
                 <td class="center">
-                    <p class="center"> {{c.shift.name}} </p>
-                    <p class="center blue"> {{c.shift.code}} </p>
+                    <p class="center"> {{amount_out.shift.name}} </p>
+                    <p class="center blue"> {{amount_out.shift.code}} </p>
                 </td>
+            </tr>
+
+            <tr>
+                <td class="title">##word.amounts_out_source##</td>
+                <td class="center">{{amount_out.source.name}}</td>
             </tr>
 
             <tr>
                 <td class="title">##word.payment_method##</td>
                 <td class="green center">{{amount_out.payment_method.ar}}</td>
             </tr>
-            
+
             <tr>
                 <td class="title">##word.amounts_out_safe##</td>
                 <td class="center red">{{amount_out.safe.name}}</td>
@@ -36,11 +41,6 @@
             <tr>
                 <td class="title">##word.amounts_out_value##</td>
                 <td class="center red">{{amount_out.value}}</td>
-            </tr>
-
-            <tr>
-                <td class="title">##word.amounts_out_source##</td>
-                <td class="center">{{amount_out.source.name}}</td>
             </tr>
 
             <tr ng-show="fromeng">

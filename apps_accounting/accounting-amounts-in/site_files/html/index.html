@@ -46,19 +46,19 @@
                         <th class="not-print">##word.amounts_in_logo##</th>
                         <th>##word.amounts_in_date##</th>
                         <th>##word.shift##</th>
+                        <th>##word.amounts_in_source##</th>
                         <th>##word.payment_method##</th>
                         <th>##word.currency##</th>
-                        <th>##word.amounts_in_source##</th>
-                        <th>##word.amounts_in_employees##</th>
-                        <th>##word.amounts_in_value##</th>
                         <th>##word.amounts_in_safe##</th>
+                        <th>##word.amounts_in_value##</th>
+                        <th>##word.amounts_in_employees##</th>
                         <th class="not-print">##word.actions##</th>
                     </tr>
                     <tr class="bold" ng-repeat="c in list ">
                         <td class="not-print">
                             <i-image view class="logo" ng-model="c.image_url"></i-image>
-
                         </td>
+
                         <td>
                             <p class="center brown"> {{c.date | date : 'dd - MM - yyyy'}} </p>
                         </td>
@@ -69,25 +69,29 @@
                         </td>
 
                         <td>
+                            <p class="center"> {{c.source.name}} </p>
+                        </td>
+
+                        <td>
                             <p class="center"> {{c.payment_method.ar}} </p>
                         </td>
+
                         <td class="center">
                             <b>{{c.currency.name}} </b> /
                             <b class="blue">{{c.currency.ex_rate}}</b>
                         </td>
-                        <td>
-                            <p class="center green"> {{c.value}} </p>
-                        </td>
-                        <td>
-                            <p class="center"> {{c.source.name}} </p>
-                        </td>
-                        <td>
-                            <p class="center"> {{c.employee.name}} </p>
-                        </td>
-
 
                         <td class="center">
                             {{c.safe.name}}
+                        </td>
+
+                        <td>
+                            <p class="center green"> {{c.value}} </p>
+                        </td>
+
+
+                        <td>
+                            <p class="center"> {{c.employee.name}} </p>
                         </td>
 
                         <td class="not-print center">
