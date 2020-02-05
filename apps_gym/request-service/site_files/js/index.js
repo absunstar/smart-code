@@ -274,7 +274,7 @@ app.controller("request_service", function ($scope, $http, $timeout) {
       port = $scope.defaultSettings.printer_program.port || '11111';
     };
 
-    $scope.account_invoices.total_remain = $scope.account_invoices.net_value - $scope.account_invoices.paid_up;
+    $scope.account_invoices.total_remain = $scope.account_invoices.net_value - ($scope.account_invoices.paid_up * $scope.account_invoices.currency.ex_rate);
 
     let obj_print = { data: [] };
 
@@ -327,12 +327,6 @@ app.controller("request_service", function ($scope, $http, $timeout) {
       });
 
     obj_print.data.push({ type: 'space' });
-
-    if ($scope.account_invoices.payment_paid_up) {
-      $scope.account_invoices.total_remain = $scope.account_invoices.total_remain - $scope.account_invoices.payment_paid_up;
-      $scope.account_invoices.total_paid_up = $scope.account_invoices.total_paid_up + $scope.account_invoices.payment_paid_up;
-    }
-
     if ($scope.account_invoices.net_value)
       obj_print.data.push(
         {
@@ -341,20 +335,23 @@ app.controller("request_service", function ($scope, $http, $timeout) {
           value: "Total Value"
         });
 
-    if ($scope.account_invoices.payment_paid_up || $scope.account_invoices.paid_up) {
+    if ($scope.account_invoices.paid_up)
       obj_print.data.push(
         {
           type: 'text2',
-          value2: $scope.account_invoices.payment_paid_up || $scope.account_invoices.paid_up,
+          value2: $scope.account_invoices.paid_up,
           value: "Paid Up"
-        }, {
-        type: 'text2',
-        value2: $scope.account_invoices.total_paid_up || $scope.account_invoices.paid_up,
-        value: "Total Payments"
-      }, { type: 'space' });
+        });
 
-    } else obj_print.data.push({ type: 'space' });
+    if ($scope.account_invoices.currency)
+      obj_print.data.push(
+        {
+          type: 'text2',
+          value2: $scope.account_invoices.currency,
+          value: "Currency"
+        });
 
+    obj_print.data.push({ type: 'space' });
 
     if ($scope.account_invoices.total_remain)
       obj_print.data.push({
