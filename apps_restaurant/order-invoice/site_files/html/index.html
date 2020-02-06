@@ -246,7 +246,8 @@
                                 <div class="row">
                                     <i-date2 class="col6" ng-model="order_invoice.date" label="##word.date##"></i-date2>
 
-                                    <i-control class="col3 r_indigo" disabled label="##word.shift##" ng-model="shift.code">
+                                    <i-control class="col3 r_indigo" disabled label="##word.shift##"
+                                        ng-model="shift.code">
                                     </i-control>
 
                                     <i-control class="col3 code" disabled label="##word.code##"
@@ -322,8 +323,9 @@
 
                                                 <i-control ng-show="order_invoice.transaction_type.id == 2"
                                                     ng-model="order_invoice.price_delivery_service"
-                                                    label="##word.price_delivery_service##" ng-change="calc(order_invoice)"
-                                                    class="col3" type="number"></i-control>
+                                                    label="##word.price_delivery_service##"
+                                                    ng-change="calc(order_invoice)" class="col3" type="number">
+                                                </i-control>
 
                                                 <i-control class="col6" label="##word.customers_address##"
                                                     ng-model="order_invoice.address"></i-control>
@@ -440,8 +442,7 @@
                                             <span class="bold red">{{d1.name}} -</span>
                                             <span class="bold red" ng-show="d1.type === 'percent'">{{d1.value}}
                                                 %</span>
-                                            <span class="bold red"
-                                                ng-show="d1.type === 'number'">{{d1.value}}$</span>
+                                            <span class="bold red" ng-show="d1.type === 'number'">{{d1.value}}$</span>
                                             <i-button type="delete" ng-click="deleteDiscount(d1) ; calc(order_invoice)">
                                             </i-button>
                                         </td>
@@ -487,7 +488,8 @@
                                         <td>
                                             <span class="bold red">{{tx.name}} -</span>
                                             <span class="bold red">{{tx.value}} %</span>
-                                            <i-button type="delete" ng-click="deleteTax(tx) ;calc(order_invoice)"> </i-button>
+                                            <i-button type="delete" ng-click="deleteTax(tx) ;calc(order_invoice)">
+                                            </i-button>
                                         </td>
                                     </tr>
                                 </table>
@@ -524,12 +526,14 @@
                         </div>
 
                         <i-button
-                            ng-show="defaultSettings.accounting.create_invoice_auto && order_invoice.status.id == 2 && order_invoice.posting"
+                            ng-show="defaultSettings.accounting.create_invoice_auto && order_invoice.status.id == 2 && !order_invoice.invoice"
                             type="save" label="##word.create_an_invoice##"
                             ng-click="displayAccountInvoice(order_invoice)">
                         </i-button>
+
                         <i-button class="not-print" label="##word.print_invoice##" type="print "
                             ng-click="printAccountInvoive()">
+                        </i-button>
 
                     </div>
 

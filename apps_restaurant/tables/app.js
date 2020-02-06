@@ -33,7 +33,7 @@ module.exports = function init(site) {
       return
     }
 
-    $tables.edit(doc, () => {
+    $tables.edit(obj, () => {
       table_busy_handle(null)
     });
   }
