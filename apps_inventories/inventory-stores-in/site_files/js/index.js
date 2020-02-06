@@ -266,8 +266,6 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
     obj.total_value = 0;
     obj.net_value = obj.net_value || 0;
 
-    if (obj.items)
-      obj.items.map(itm => obj.total_value += site.toNumber(itm.total));
 
     obj.total_tax = 0;
     if (obj.taxes)
@@ -281,9 +279,11 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
         else obj.total_discount += site.toNumber(ds.value);
       });
 
+    if (obj.items) {
 
-    if (obj.total_value > 0)
+      obj.items.map(itm => obj.total_value += site.toNumber(itm.total));
       obj.net_value = obj.total_value + obj.total_tax - obj.total_discount;
+    }
 
     $scope.discount = {
       type: 'number'

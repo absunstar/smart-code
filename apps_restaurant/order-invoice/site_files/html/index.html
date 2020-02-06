@@ -241,8 +241,8 @@
                                     <i-button class="hidden" type="bg-red" label="##word.cancel_order##"
                                         ng-click="cancelOrderInvoice()">
                                     </i-button>
-
                                 </div>
+
                                 <div class="row">
                                     <i-date2 class="col6" ng-model="order_invoice.date" label="##word.date##"></i-date2>
 
@@ -258,7 +258,7 @@
                                     <i-list ng-search="_search.$transaction_type" class="col4"
                                         display="##session.lang##" ng-model="order_invoice.transaction_type"
                                         label="##word.transaction_type##" items="transactionTypeList"
-                                        ng-change="calc()">
+                                        ng-change="calc(order_invoice)">
                                     </i-list>
 
                                     <i-button ng-show="order_invoice.transaction_type.id == 1 && order_invoice.id"
@@ -278,7 +278,7 @@
                                     <i-control class="col2" ng-model="order_invoice.count_person"
                                         label="##word.count_person##" type="number"></i-control>
                                     <i-control class="col2" ng-model="order_invoice.service" label="##word.service##"
-                                        type="number" ng-change="calc()"></i-control>
+                                        type="number" ng-change="calc(order_invoice)"></i-control>
                                 </div>
                                 <div class="row">
                                     <div class="row">
@@ -322,7 +322,7 @@
 
                                                 <i-control ng-show="order_invoice.transaction_type.id == 2"
                                                     ng-model="order_invoice.price_delivery_service"
-                                                    label="##word.price_delivery_service##" ng-change="calc()"
+                                                    label="##word.price_delivery_service##" ng-change="calc(order_invoice)"
                                                     class="col3" type="number"></i-control>
 
                                                 <i-control class="col6" label="##word.customers_address##"
@@ -415,7 +415,7 @@
                                                         label="##word.stores_out_discount_value##"></i-control>
                                                     <div class="col5 padding">
                                                         <br>
-                                                        <i-button ng-click="addDiscount() ;calc()"
+                                                        <i-button ng-click="addDiscount() ;calc(order_invoice)"
                                                             label="##word.stores_out_add_discount##" type="add default">
                                                         </i-button>
                                                     </div>
@@ -442,7 +442,7 @@
                                                 %</span>
                                             <span class="bold red"
                                                 ng-show="d1.type === 'number'">{{d1.value}}$</span>
-                                            <i-button type="delete" ng-click="deleteDiscount(d1) ; calc()">
+                                            <i-button type="delete" ng-click="deleteDiscount(d1) ; calc(order_invoice)">
                                             </i-button>
                                         </td>
 
@@ -475,7 +475,7 @@
                                                 <div class="col5 padding">
                                                     <br>
                                                     <i-button type="add default" label="##word.stores_out_add_tax##"
-                                                        ng-click="addTax() ;calc()">
+                                                        ng-click="addTax() ;calc(order_invoice)">
                                                     </i-button>
 
                                                 </div>
@@ -487,7 +487,7 @@
                                         <td>
                                             <span class="bold red">{{tx.name}} -</span>
                                             <span class="bold red">{{tx.value}} %</span>
-                                            <i-button type="delete" ng-click="deleteTax(tx) ;calc()"> </i-button>
+                                            <i-button type="delete" ng-click="deleteTax(tx) ;calc(order_invoice)"> </i-button>
                                         </td>
                                     </tr>
                                 </table>
