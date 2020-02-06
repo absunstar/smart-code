@@ -21,28 +21,21 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     })
   };
 
-  $scope.updateTables = function (table) {
-    table.busy = false;
-    $http({
-      method: "POST",
-      url: "/api/tables/update",
-      data: table
-    })
-  };
+ 
 
   $scope.newOrderInvoice = function () {
     $scope.error = '';
     $scope.get_open_shift((shift) => {
       if (shift) {
 
-        if ($scope.order_invoice && $scope.order_invoice.table) {
+       /*  if ($scope.order_invoice && $scope.order_invoice.table) {
           $scope.order_invoic.table.busy = false;
           $http({
             method: "POST",
             url: "/api/tables/update",
-            data: table
+            data: $scope.order_invoic.table
           })
-        }
+        } */
 
         $scope.order_invoice = {
           shift: shift,
