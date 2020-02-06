@@ -21,11 +21,29 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     })
   };
 
+  $scope.updateTables = function (table) {
+    table.busy = false;
+    $http({
+      method: "POST",
+      url: "/api/tables/update",
+      data: table
+    })
+  };
+
   $scope.newOrderInvoice = function () {
     $scope.error = '';
-
     $scope.get_open_shift((shift) => {
       if (shift) {
+
+        if ($scope.order_invoice && $scope.order_invoice.table) {
+          $scope.order_invoic.table.busy = false;
+          $http({
+            method: "POST",
+            url: "/api/tables/update",
+            data: table
+          })
+        }
+
         $scope.order_invoice = {
           shift: shift,
           book_list: [],
@@ -1640,8 +1658,8 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
 
       if (obj.book_list && obj.book_list.length > 0)
         obj.net_value = (site.toNumber(obj.total_value) + (obj.service || 0) + (obj.total_tax || 0) + (obj.price_delivery_service || 0)) - (obj.total_discount || 0);
-
-      $scope.amount_currency = site.toNumber(obj.net_value) / site.toNumber(obj.currency.ex_rate);
+      if (obj.currency)
+        $scope.amount_currency = site.toNumber(obj.net_value) / site.toNumber(obj.currency.ex_rate);
 
       $scope.discount = {
         type: 'number'
