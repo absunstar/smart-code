@@ -21,21 +21,41 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     })
   };
 
- 
+  $scope.cancelOrderInvoice = function () {
+
+    $scope.busy = true;
+
+    if ($scope.order_invoice && $scope.order_invoice.status && $scope.order_invoice.status.id == 1) {
+
+      if ($scope.order_invoice.table) {
+        $scope.order_invoice.table.busy = false;
+        $http({
+          method: "POST",
+          url: "/api/tables/update",
+          data: $scope.order_invoice.table
+        }).then(
+          function (response) {
+            if (response.data.done) {
+              $scope.busy = false;
+            } else $scope.error = response.data.error;
+          }
+        )
+      }
+
+      $scope.deleteOrderInvoice($scope.order_invoice);
+
+
+    }
+
+
+  };
+
+
 
   $scope.newOrderInvoice = function () {
     $scope.error = '';
     $scope.get_open_shift((shift) => {
       if (shift) {
-
-       /*  if ($scope.order_invoice && $scope.order_invoice.table) {
-          $scope.order_invoic.table.busy = false;
-          $http({
-            method: "POST",
-            url: "/api/tables/update",
-            data: $scope.order_invoic.table
-          })
-        } */
 
         $scope.order_invoice = {
           shift: shift,
@@ -741,6 +761,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
+          
           $scope.viewInvoicesActiveList();
         } else {
           $scope.error = response.data.error;
