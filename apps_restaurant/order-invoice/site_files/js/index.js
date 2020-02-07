@@ -43,6 +43,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
       }
 
       $scope.deleteOrderInvoice($scope.order_invoice);
+      $scope.newOrderInvoice();
 
 
     }
