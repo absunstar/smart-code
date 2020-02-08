@@ -762,7 +762,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          
+
           $scope.viewInvoicesActiveList();
         } else {
           $scope.error = response.data.error;
@@ -1673,6 +1673,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
 
       if (obj.book_list && obj.book_list.length > 0)
         obj.net_value = (site.toNumber(obj.total_value) + (obj.service || 0) + (obj.total_tax || 0) + (obj.price_delivery_service || 0)) - (obj.total_discount || 0);
+
       if (obj.currency)
         $scope.amount_currency = site.toNumber(obj.net_value) / site.toNumber(obj.currency.ex_rate);
 

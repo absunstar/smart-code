@@ -205,37 +205,41 @@
                     label="##word.stores_in_total_value##"></i-control>
             </div>
 
-            <div class="row">
+            <div class="row" ng-show="store_in.type.id== 1 && defaultSettings.accounting.create_invoice_auto">
 
-                <i-list help-id="" ng-show="store_in.type.id== 1 && defaultSettings.accounting.create_invoice_auto"
-                    ng-search="_search.$payment_method_search" class="col2" label="##word.payment_method##"
-                    ng-model="store_in.payment_method" ng-change="getSafeByType(store_in)" items="paymentMethodList"
-                    display="##session.lang##">
+                <!-- <i-checkbox label="##word.create_an_invoice##" ng-click="showCreateInvoice()" ng-model="store_in.create_invoice"></i-checkbox> -->
+
+                <i-list help-id="" ng-search="_search.$payment_method_search" class="col2"
+                    label="##word.payment_method##" ng-model="store_in.payment_method"
+                    ng-change="getSafeByType(store_in)" items="paymentMethodList" display="##session.lang##">
                 </i-list>
 
-                <i-list class="col3 control padding"
-                    ng-show="store_in.type.id== 1 && defaultSettings.accounting.create_invoice_auto"
-                    ng-search="_search.$currency_search" ng-model="store_in.currency"
+                <i-list class="col3 control padding" ng-search="_search.$currency_search" ng-model="store_in.currency"
                     ng-change="getSafeByType(store_in) ; calc(store_in)" items="currenciesList"
                     label="##word.currency##">
                 </i-list>
 
                 <i-control class="col2" disabled ng-model="store_in.currency.ex_rate" type="number"
-                    label="##word.exchange_rate##"></i-control>
+                    label="##word.exchange_rate##">
+                </i-control>
 
-                <i-list ng-search="_search.$order_invoice.$safes_search" ng-show="store_in.paid_up > 0" class="col4"
-                    ng-model="store_in.safe" label="##word.safe##" items="safesList">
+                <i-list ng-search="_search.$order_invoice.$safes_search" class="col4" ng-model="store_in.safe"
+                    label="##word.safe##" items="safesList">
                 </i-list>
             </div>
 
             <div class="row">
 
-                <i-control class="col2" ng-model="store_in.net_value" type="number" disabled
-                    label="##word.stores_in_net_value##"></i-control>
-                <i-control class="col3" disabled ng-model="amount_currency" label="##word.amount_currency##"
-                    type="number"></i-control>
-                <i-control class="col2" ng-show="store_in.net_value && store_in.safe" ng-model="store_in.paid_up"
-                    label="##word.paid_up##" type="number">
+                <i-control class="col2" ng-show="store_in.type.id== 1" ng-model="store_in.net_value" type="number"
+                    disabled label="##word.stores_in_net_value##"></i-control>
+
+                <i-control class="col3" disabled
+                    ng-show="store_in.type.id== 1 && defaultSettings.accounting.create_invoice_auto"
+                    ng-model="amount_currency" label="##word.amount_currency##" type="number"></i-control>
+
+                <i-control class="col2"
+                    ng-show="store_in.net_value && store_in.safe && store_in.type.id== 1 && defaultSettings.accounting.create_invoice_auto"
+                    ng-model="store_in.paid_up" label="##word.paid_up##" type="number">
                 </i-control>
             </div>
 

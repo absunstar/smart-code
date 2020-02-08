@@ -51,6 +51,12 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
     });
   };
 
+  /*  $scope.showCreateInvoice = function (){
+     
+ 
+   };
+  */
+
   $scope.addAccountInvoice = function (account_invoices) {
     $scope.error = '';
     $scope.busy = true;
@@ -272,6 +278,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
       obj.taxes.map(tx => obj.total_tax += obj.total_value * site.toNumber(tx.value) / 100);
 
     obj.total_discount = 0;
+
     if (obj.discountes)
       obj.discountes.forEach(ds => {
         if (ds.type == 'percent')
@@ -280,7 +287,6 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
       });
 
     if (obj.items) {
-
       obj.items.map(itm => obj.total_value += site.toNumber(itm.total));
       obj.net_value = obj.total_value + obj.total_tax - obj.total_discount;
     }
@@ -289,6 +295,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
       type: 'number'
     };
 
+    if(obj.currency)
     $scope.amount_currency = site.toNumber(obj.net_value) / site.toNumber(obj.currency.ex_rate);
   };
 
@@ -549,9 +556,9 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
             size: _size.size,
             size_units_list: _size.size_units_list,
             unit: _size.unit,
-            cost: _size.unit.cost,
-            price: _size.unit.price,
-            discount: _size.unit.discount,
+            cost: _size.unit ? _size.unit.cost : 0,
+            price: _size.unit ? _size.unit.price : 0,
+            discount: _size.unit ? _size.unit.discount : 0,
             barcode: _size.barcode,
             average_cost: _size.average_cost,
             count: _size.count,

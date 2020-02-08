@@ -146,7 +146,8 @@
                                             <span class="bold red">{{d1.name}} -</span>
                                             <span class="bold red" ng-show="d1.type === 'percent'">{{d1.value}} %</span>
                                             <span class="bold red" ng-show="d1.type === 'number'">{{d1.value}}$</span>
-                                            <i-button type="delete" ng-click="deleteDiscount(d1) ; calc(request_service)"> </i-button>
+                                            <i-button type="delete"
+                                                ng-click="deleteDiscount(d1) ; calc(request_service)"> </i-button>
                                         </td>
 
                                     </tr>
@@ -237,16 +238,16 @@
                     <br>
                     <br>
 
-                    <div class="row">
+                    <div class="row" ng-show="defaultSettings.accounting.create_invoice_auto">
 
-                        <i-list help-id="" ng-show="defaultSettings.accounting.create_invoice_auto"
-                            ng-search="_search.$payment_method_search" class="col2" label="##word.payment_method##"
-                            ng-model="request_service.payment_method" ng-change="getSafeByType(request_service)"
-                            items="paymentMethodList" display="##session.lang##">
+                        <i-list help-id="" ng-search="_search.$payment_method_search" class="col2"
+                            label="##word.payment_method##" ng-model="request_service.payment_method"
+                            ng-change="getSafeByType(request_service)" items="paymentMethodList"
+                            display="##session.lang##">
                         </i-list>
 
-                        <i-list class="col3 control padding" ng-show="defaultSettings.accounting.create_invoice_auto"
-                            ng-search="_search.$currency_search" ng-model="request_service.currency"
+                        <i-list class="col3 control padding" ng-search="_search.$currency_search"
+                            ng-model="request_service.currency"
                             ng-change="getSafeByType(request_service) ; calc(request_service)" items="currenciesList"
                             label="##word.currency##">
                         </i-list>
@@ -254,8 +255,8 @@
                         <i-control class="col2" disabled ng-model="request_service.currency.ex_rate" type="number"
                             label="##word.exchange_rate##"></i-control>
 
-                        <i-list ng-search="_search.$order_invoice.$safes_search" ng-show="request_service.paid_up > 0"
-                            class="col4" ng-model="request_service.safe" label="##word.safe##" items="safesList">
+                        <i-list ng-search="_search.$order_invoice.$safes_search" class="col4"
+                            ng-model="request_service.safe" label="##word.safe##" items="safesList">
                         </i-list>
                     </div>
 
@@ -266,8 +267,8 @@
                         <i-control help-id="paid_require" type="number" class="col2" disabled
                             label="##word.paid_require##" ng-model="request_service.paid_require"></i-control>
 
-                        <i-control class="col3" disabled ng-model="amount_currency" label="##word.amount_currency##"
-                            type="number"></i-control>
+                        <i-control class="col3" ng-show="defaultSettings.accounting.create_invoice_auto" disabled
+                            ng-model="amount_currency" label="##word.amount_currency##" type="number"></i-control>
 
                         <i-control class="col2" ng-show="request_service.paid_require && request_service.safe"
                             ng-model="request_service.paid_up" label="##word.paid_up##" type="number"></i-control>

@@ -219,6 +219,7 @@ app.controller("request_service", function ($scope, $http, $timeout) {
         }
         if ($scope.account_invoices.currency)
           $scope.amount_currency = site.toNumber($scope.account_invoices.net_value) / site.toNumber($scope.account_invoices.currency.ex_rate);
+
         $scope.calc($scope.account_invoices);
 
         site.showModal('#accountInvoiceModal');
@@ -242,7 +243,7 @@ app.controller("request_service", function ($scope, $http, $timeout) {
       account_invoices.posting = false;
     else account_invoices.posting = true;
 
-    if (account_invoices.paid_up <= 0) account_invoices.safe = null;
+    if (account_invoices.paid_up = 0) account_invoices.safe = null;
     $http({
       method: "POST",
       url: "/api/account_invoices/add",
@@ -867,7 +868,9 @@ app.controller("request_service", function ($scope, $http, $timeout) {
       $scope.discount = {
         type: 'number'
       };
-      $scope.amount_currency = site.toNumber(obj.paid_require) / site.toNumber(obj.currency.ex_rate);
+
+      if (obj.currency)
+        $scope.amount_currency = site.toNumber(obj.paid_require) / site.toNumber(obj.currency.ex_rate);
 
     }, 250);
   };

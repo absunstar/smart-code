@@ -210,16 +210,14 @@
 
             </div>
 
-            <div class="row">
+            <div class="row" ng-show="defaultSettings.accounting.create_invoice_auto">
 
-                <i-list help-id="" ng-show="defaultSettings.accounting.create_invoice_auto"
-                    ng-search="_search.$payment_method_search" class="col2" label="##word.payment_method##"
-                    ng-model="store_out.payment_method" ng-change="getSafeByType(store_out)" items="paymentMethodList"
-                    display="##session.lang##">
+                <i-list help-id="" ng-search="_search.$payment_method_search" class="col2"
+                    label="##word.payment_method##" ng-model="store_out.payment_method"
+                    ng-change="getSafeByType(store_out)" items="paymentMethodList" display="##session.lang##">
                 </i-list>
 
-                <i-list class="col3 control padding" ng-show="defaultSettings.accounting.create_invoice_auto"
-                    ng-search="_search.$currency_search" ng-model="store_out.currency"
+                <i-list class="col3 control padding" ng-search="_search.$currency_search" ng-model="store_out.currency"
                     ng-change="getSafeByType(store_out) ; calc(store_out)" items="currenciesList"
                     label="##word.currency##">
                 </i-list>
@@ -237,10 +235,12 @@
 
                 <i-control class="col2" ng-model="store_out.net_value" type="number" disabled
                     label="##word.stores_out_net_value##"></i-control>
-                <i-control class="col3" disabled ng-model="amount_currency" label="##word.amount_currency##"
-                    type="number"></i-control>
-                <i-control class="col2" ng-show="store_out.net_value && store_out.safe" ng-model="store_out.paid_up"
-                    label="##word.paid_up##" type="number">
+
+                <i-control class="col3" ng-show="defaultSettings.accounting.create_invoice_auto" disabled
+                    ng-model="amount_currency" label="##word.amount_currency##" type="number"></i-control>
+
+                <i-control class="col2" ng-show="defaultSettings.accounting.create_invoice_auto"
+                    ng-model="store_out.paid_up" label="##word.paid_up##" type="number">
                 </i-control>
             </div>
 
