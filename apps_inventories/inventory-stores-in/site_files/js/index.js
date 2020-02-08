@@ -295,8 +295,8 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
       type: 'number'
     };
 
-    if(obj.currency)
-    $scope.amount_currency = site.toNumber(obj.net_value) / site.toNumber(obj.currency.ex_rate);
+    if (obj.currency)
+      $scope.amount_currency = site.toNumber(obj.net_value) / site.toNumber(obj.currency.ex_rate);
   };
 
   $scope.deleteRow = function (itm) {
@@ -709,9 +709,11 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
         _item.count = 1;
 
         let indxUnit = _item.size_units_list.findIndex(_unit => _unit.id == $scope.item.name.main_unit.id);
-        _item.unit = _item.size_units_list[indxUnit];
-        _item.discount = _item.size_units_list[indxUnit].discount;
-        _item.cost = _item.size_units_list[indxUnit].cost;
+        if (_item.size_units_list[indxUnit]) {
+          _item.unit = _item.size_units_list[indxUnit];
+          _item.discount = _item.size_units_list[indxUnit].discount;
+          _item.cost = _item.size_units_list[indxUnit].cost;
+        }
 
         _item.total = _item.count * _item.cost
 

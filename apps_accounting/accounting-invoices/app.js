@@ -129,7 +129,9 @@ module.exports = function init(site) {
 
     if (account_invoices_doc.paid_up) {
       account_invoices_doc.total_paid_up = site.toNumber(account_invoices_doc.paid_up)
-      account_invoices_doc.remain_amount = site.toNumber(account_invoices_doc.net_value) - (account_invoices_doc.total_paid_up * site.toNumber(account_invoices_doc.currency.ex_rate))
+
+      if (account_invoices_doc.currency)
+        account_invoices_doc.remain_amount = site.toNumber(account_invoices_doc.net_value) - (account_invoices_doc.total_paid_up * site.toNumber(account_invoices_doc.currency.ex_rate))
     };
 
     $account_invoices.add(account_invoices_doc, (err, doc) => {
@@ -224,7 +226,8 @@ module.exports = function init(site) {
     account_invoices_doc.total_paid_up = 0
 
     account_invoices_doc.payment_list.forEach(_payment_list => {
-      account_invoices_doc.total_paid_up += (_payment_list.paid_up * _payment_list.currency.ex_rate)
+      if (_payment_list.currency)
+        account_invoices_doc.total_paid_up += (_payment_list.paid_up * _payment_list.currency.ex_rate)
 
       if (!_payment_list.posting) {
         _payment_list.posting = true
@@ -317,7 +320,8 @@ module.exports = function init(site) {
     account_invoices_doc.total_paid_up = 0
 
     account_invoices_doc.payment_list.forEach(_payment_list => {
-      account_invoices_doc.total_paid_up += (_payment_list.paid_up * _payment_list.currency.ex_rate)
+      if (_payment_list.currency)
+        account_invoices_doc.total_paid_up += (_payment_list.paid_up * _payment_list.currency.ex_rate)
 
       let obj = {
         value: _payment_list.paid_up,
@@ -345,9 +349,7 @@ module.exports = function init(site) {
           obj.transition_type = 'out'
           site.call('[store_in][account_invoice][invoice]', account_invoices_doc.invoice_id)
 
-        }
-
-        else if (account_invoices_doc.source_type.id == 2) {
+        } else if (account_invoices_doc.source_type.id == 2) {
           obj.operation = 'فاتورة مبيعات'
           obj.transition_type = 'in'
           site.call('[store_out][account_invoice][invoice]', account_invoices_doc.invoice_id)
@@ -464,7 +466,8 @@ module.exports = function init(site) {
           if (result.doc.posting) {
             result.doc.total_paid_up = 0
             result.doc.payment_list.forEach(_payment_list => {
-              result.doc.total_paid_up += (_payment_list.paid_up * _payment_list.currency.ex_rate)
+              if (_payment_list.currency)
+                result.doc.total_paid_up += (_payment_list.paid_up * _payment_list.currency.ex_rate)
 
               let obj = {
                 value: _payment_list.paid_up,
@@ -621,7 +624,7 @@ module.exports = function init(site) {
         site.getDefaultSetting(req, callback => {
 
           let currency = {}
-          if (callback.accounting.currency)
+          if (callback.accounting && callback.accounting.currency)
             currency = callback.accounting.currency
 
           if (currency.id)

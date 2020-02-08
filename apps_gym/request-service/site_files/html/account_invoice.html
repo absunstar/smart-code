@@ -39,7 +39,7 @@
                         <i-control class="col2" disabled ng-model="account_invoices.currency.ex_rate" type="number"
                             label="##word.exchange_rate##"></i-control>
 
-                        <i-list ng-search="_search.$order_invoice.$safes_search" ng-show="account_invoices.paid_up > 0"
+                        <i-list ng-search="_search.$order_invoice.$safes_search"
                             class="col4" ng-model="account_invoices.safe" label="##word.safe##" items="safesList">
                         </i-list>
                     </div>

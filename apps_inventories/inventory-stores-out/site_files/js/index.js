@@ -71,7 +71,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
     obj.total_tax = 0;
 
     if (obj.taxes)
-    obj.taxes.map(tx => obj.total_tax += obj.total_value * site.toNumber(tx.value) / 100);
+      obj.taxes.map(tx => obj.total_tax += obj.total_value * site.toNumber(tx.value) / 100);
 
     obj.total_discount = 0;
     if (obj.discountes && obj.discountes.length > 0)
@@ -509,10 +509,12 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
       _item.count = 1
 
       let indxUnit = _item.size_units_list.findIndex(_unit => _unit.id == $scope.item.name.main_unit.id);
-      _item.unit = _item.size_units_list[indxUnit];
-      _item.discount = _item.size_units_list[indxUnit].discount;
-      _item.price = _item.size_units_list[indxUnit].price;
-      _item.total = _item.count * _item.price;
+      if (_item.size_units_list[indxUnit]) {
+        _item.unit = _item.size_units_list[indxUnit];
+        _item.discount = _item.size_units_list[indxUnit].discount;
+        _item.price = _item.size_units_list[indxUnit].price;
+        _item.total = _item.count * _item.price;
+      }
 
       if (_item.branches_list && _item.branches_list.length > 0) {
         let foundBranch = false
@@ -1056,7 +1058,8 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
       port = $scope.defaultSettings.printer_program.port || '11111';
     };
 
-    $scope.account_invoices.total_remain = $scope.account_invoices.net_value - ($scope.account_invoices.paid_up * $scope.account_invoices.currency.ex_rate);
+    if ($scope.account_invoices)
+      $scope.account_invoices.total_remain = $scope.account_invoices.net_value - ($scope.account_invoices.paid_up * $scope.account_invoices.currency.ex_rate);
 
     let obj_print = { data: [] };
 
