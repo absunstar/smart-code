@@ -10,5 +10,6 @@
     { "module_name" : "inventory" , "screen_name" : "inventory-stores-in" , "name":"stores_in_post" , "en":"Post" , "ar":"ترحيل"},
     { "module_name" : "inventory" , "screen_name" : "inventory-stores-in" , "name":"stores_in_unpost" , "en":"UnPost" , "ar":"فك ترحيل"},
     { "module_name" : "inventory" , "screen_name" : "inventory-stores-in" , "name":"stores_in_price" , "en":"Edit Purchase Price" , "ar":"تعديل سعر الشراء"},
-    { "module_name" : "inventory" , "screen_name" : "inventory-stores-in" , "name":"stores_in_ui" , "en":"UI" , "ar":"الواجهة الرسومية"}
+    { "module_name" : "inventory" , "screen_name" : "inventory-stores-in" , "name":"stores_in_ui" , "en":"UI" , "ar":"الواجهة الرسومية"},
+    { "module_name" : "inventory" , "screen_name" : "inventory-stores-in" , "name":"stores_in_handle" , "en":"Handler" , "ar":"تهيئة"}
 ]

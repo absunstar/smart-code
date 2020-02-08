@@ -7,5 +7,6 @@
     { "module_name" : "accounting" , "screen_name" : "accounting-safes-payments" , "name":"safes_payments_search" , "en":"Search" , "ar":"بحث"},
     { "module_name" : "accounting" , "screen_name" : "accounting-safes-payments" , "name":"safes_payments_export" , "en":"Export" , "ar":"تصدير"},
     { "module_name" : "accounting" , "screen_name" : "accounting-safes-payments" , "name":"safes_payments_print" , "en":"Print" , "ar":"طباعة"},
-    { "module_name" : "accounting" , "screen_name" : "accounting-safes-payments" , "name":"safes_payments_ui" , "en":"Ui" , "ar":"الواجهة الرسومية"}
+    { "module_name" : "accounting" , "screen_name" : "accounting-safes-payments" , "name":"safes_payments_ui" , "en":"Ui" , "ar":"الواجهة الرسومية"},
+    { "module_name" : "accounting" , "screen_name" : "accounting-safes-payments" , "name":"safes_payments_handle" , "en":"Handler" , "ar":"تهيئة"}
 ]

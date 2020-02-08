@@ -43,12 +43,10 @@
                     <i-button x-permissions="stores_items_add || stores_items_manage" type="add"
                         label="##word.stores_items_new##" ng-click="newCategoryItem()"></i-button>
 
-
                     <i-button x-permissions="stores_items_search || stores_items_manage" type="search"
                         label="##word.search_all##" onclick="site.showModal('#CategoryItemSearchModal')"></i-button>
 
-
-                    <i-button class="left" label="##word.handel_items##" ng-click="handelItems()">
+                    <i-button class="left" x-permissions="stores_items_handle" label="##word.handle##" ng-click="handelItems()">
                     </i-button>
 
                     <!--     <i-button class="left" ng-click="handelItems2()">

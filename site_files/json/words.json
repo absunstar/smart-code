@@ -95,6 +95,11 @@
         "ar": "كمية"
     },
     {
+        "name": "handle",
+        "en": "Handler",
+        "ar": "تهيئة"
+    },
+    {
         "name": "err_paid_up_payment",
         "en": "Paid Up Greater Than Required Value",
         "ar": "المبلغ المسدد أكبر من الباقي"

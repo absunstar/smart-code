@@ -35,7 +35,8 @@
                         <span class="sr-only">Loading...</span>
                     </span>
                     <h2 class="bold red text-center">{{error}} </h2>
-                    <i-button class="left" ng-click="handelInvoice()">
+                    <i-button class="left" ng-click="handelInvoice()" x-permissions="account_invoices_handle"
+                        label="##word.handle##">
                     </i-button>
                     <h3 class="bold text-center"> ##word.count## : {{count}} </h3>
                     <br>

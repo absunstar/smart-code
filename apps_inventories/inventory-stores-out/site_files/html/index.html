@@ -46,12 +46,11 @@
                     <i-button x-permissions="stores_out_add || stores_out_manage" type="add"
                         label="##word.stores_out_new##" ng-click="newStoreOut()"></i-button>
 
-
                     <i-button x-permissions="stores_out_search || stores_out_manage" type="search"
                         label="##word.search_all##" onclick="site.showModal('#StoresOutSearchModal')"></i-button>
 
-                    <i-button class="left" ng-click="handeStoreOut()">
-                    </i-button>
+                    <i-button class="left" x-permissions="stores_out_handle" label="##word.handle##"
+                        ng-click="handeStoreOut()"></i-button>
 
                     <h2 class="bold red text-center"> {{error}}</h2>
                     <h3 class="bold text-center"> ##word.count## : {{count}}</h3>
@@ -121,7 +120,7 @@
                                 ng-show="!c.posting" label="##word.edit##" ng-click="edit(c)"></i-button>
 
                             <i-button x-permissions="stores_out_delete || stores_out_manage" type="delete"
-                            label="##word.delete##" ng-click="remove(c)"></i-button>
+                                label="##word.delete##" ng-click="remove(c)"></i-button>
                         </td>
                         <!-- ng-hide="c.posting && defaultSettings.general_Settings.work_unposting" -->
 

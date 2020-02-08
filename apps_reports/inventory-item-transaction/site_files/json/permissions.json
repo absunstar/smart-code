@@ -1,65 +1,72 @@
-[{
-    "module_name": "inventory",
-    "screen_name": "item_transaction",
-    "name": "item_transaction_manage",
-    "en": "Manage",
-    "ar": "إدارة"
-},
-{
-    "module_name": "inventory",
-    "screen_name": "item_transaction",
-    "name": "item_transaction_add",
-    "en": "Add",
-    "ar": "إضافة"
-},
-{
-    "module_name": "inventory",
-    "screen_name": "item_transaction",
-    "name": "item_transaction_edit",
-    "en": "Edit",
-    "ar": "تعديل"
-},
-{
-    "module_name": "inventory",
-    "screen_name": "item_transaction",
-    "name": "item_transaction_delete",
-    "en": "Delete",
-    "ar": "حذف"
-},
-{
-    "module_name": "inventory",
-    "screen_name": "item_transaction",
-    "name": "item_transaction_view",
-    "en": "View",
-    "ar": "عرض"
-},
-{
-    "module_name": "inventory",
-    "screen_name": "item_transaction",
-    "name": "item_transaction_search",
-    "en": "Search",
-    "ar": "بحث"
-},
-{
-    "module_name": "inventory",
-    "screen_name": "item_transaction",
-    "name": "item_transaction_export",
-    "en": "Export",
-    "ar": "تصدير"
-},
-{
-    "module_name": "inventory",
-    "screen_name": "item_transaction",
-    "name": "item_transaction_print",
-    "en": "Print",
-    "ar": "طباعة"
-},
-{
-    "module_name": "inventory",
-    "screen_name": "item_transaction",
-    "name": "item_transaction_ui",
-    "en": "UI",
-    "ar": "الواجهة الرسومية"
-}
-
+[
+    {
+        "module_name": "inventory",
+        "screen_name": "item_transaction",
+        "name": "item_transaction_manage",
+        "en": "Manage",
+        "ar": "إدارة"
+    },
+    {
+        "module_name": "inventory",
+        "screen_name": "item_transaction",
+        "name": "item_transaction_add",
+        "en": "Add",
+        "ar": "إضافة"
+    },
+    {
+        "module_name": "inventory",
+        "screen_name": "item_transaction",
+        "name": "item_transaction_edit",
+        "en": "Edit",
+        "ar": "تعديل"
+    },
+    {
+        "module_name": "inventory",
+        "screen_name": "item_transaction",
+        "name": "item_transaction_delete",
+        "en": "Delete",
+        "ar": "حذف"
+    },
+    {
+        "module_name": "inventory",
+        "screen_name": "item_transaction",
+        "name": "item_transaction_view",
+        "en": "View",
+        "ar": "عرض"
+    },
+    {
+        "module_name": "inventory",
+        "screen_name": "item_transaction",
+        "name": "item_transaction_search",
+        "en": "Search",
+        "ar": "بحث"
+    },
+    {
+        "module_name": "inventory",
+        "screen_name": "item_transaction",
+        "name": "item_transaction_export",
+        "en": "Export",
+        "ar": "تصدير"
+    },
+    {
+        "module_name": "inventory",
+        "screen_name": "item_transaction",
+        "name": "item_transaction_print",
+        "en": "Print",
+        "ar": "طباعة"
+    },
+    {
+        "module_name": "inventory",
+        "screen_name": "item_transaction",
+        "name": "item_transaction_ui",
+        "en": "UI",
+        "ar": "الواجهة الرسومية"
+    },
+    {
+        "module_name": "inventory",
+        "screen_name": "item_transaction",
+        "name": "item_transaction_handler",
+        "en": "Handler",
+        "ar": "تهيئة"
+    }
 ]

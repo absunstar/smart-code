@@ -7,5 +7,6 @@
     { "module_name" : "inventory" , "screen_name" : "inventory-stores-items" , "name":"stores_items_search" , "en":"Search" , "ar":"بحث"},
     { "module_name" : "inventory" , "screen_name" : "inventory-stores-items" , "name":"stores_items_export" , "en":"Export" , "ar":"تصدير"},
     { "module_name" : "inventory" , "screen_name" : "inventory-stores-items" , "name":"stores_items_print" , "en":"Print" , "ar":"طباعة"},
-    { "module_name" : "inventory" , "screen_name" : "inventory-stores-items" , "name":"stores_items_ui" , "en":"UI" , "ar":"الواجهة الرسومية"}
+    { "module_name" : "inventory" , "screen_name" : "inventory-stores-items" , "name":"stores_items_ui" , "en":"UI" , "ar":"الواجهة الرسومية"},
+    { "module_name" : "inventory" , "screen_name" : "inventory-stores-items" , "name":"stores_items_handle" , "en":"Handler" , "ar":"تهيئة"}
 ]
