@@ -81,27 +81,27 @@ module.exports = function init(site) {
             total_size_list.forEach(_size => {
               if (_size.barcode == docs[i].barcode) {
                 if (docs[i].transaction_type == 'in') {
-                  _size.count_in = (_size.count_in || 0) + (docs[i].count || 0)
+                  _size.count_in = (site.toNumber(_size.count_in) || 0) + (site.toNumber(docs[i].count) || 0)
 
                 } else {
-                  _size.count_out = (_size.count_out || 0) + (docs[i].count || 0)
+                  _size.count_out = (site.toNumber(_size.count_out) || 0) + (site.toNumber(docs[i].count) || 0)
                   _size.average_cost = (site.toNumber(_size.average_cost || 0) + (site.toNumber(docs[i].average_cost || 0)) * site.toNumber((docs[i].count || 0)))
 
                 }
                 exist = true
               }
-              _size.current_count = (_size.count_in || 0) - (_size.count_out || 0)
+              _size.current_count = (site.toNumber(_size.count_in) || 0) - (site.toNumber(_size.count_out) || 0)
             })
           }
           if (!exist) {
             let obj = Object.assign({}, docs[i])
 
             if (obj.transaction_type == 'in') {
-              obj.count_in = (obj.count || 0)
+              obj.count_in = (site.toNumber(obj.count) || 0)
 
             } else if (obj.transaction_type == 'out') {
               obj.count_out = (obj.count || 0)
-              obj.average_cost = (site.toNumber(obj.average_cost || 0) * site.toNumber(obj.count || 0))
+              obj.average_cost = site.toNumber(obj.average_cost || 0) * site.toNumber(obj.count || 0)
 
             }
 
