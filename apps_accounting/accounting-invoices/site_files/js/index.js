@@ -692,8 +692,11 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
       },
       {
         type: 'space'
-      },
-      {
+      }
+    );
+
+    if ($scope.account_invoices.date)
+      obj_print.data.push({
         type: 'text2',
         value2: site.toDateXF($scope.account_invoices.date),
         value: 'Date'

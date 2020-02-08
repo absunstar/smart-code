@@ -1080,8 +1080,10 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
       },
       {
         type: 'space'
-      },
-      {
+      });
+
+    if ($scope.account_invoices.date)
+      obj_print.data.push({
         type: 'text2',
         value2: site.toDateXF($scope.account_invoices.date),
         value: 'Date'
@@ -1434,9 +1436,9 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
                 total_tax: store_out.total_tax,
                 current_book_list: store_out.items,
                 source_type: {
-                  id: 1,
-                  en: "Stores In / Purchase Invoice",
-                  ar: "إذن وارد / فاتورة شراء"
+                  id: 2,
+                  en: "Stores Out / Sales Invoice",
+                  ar: "إذن صرف / فاتورة بيع"
                 },
                 active: true
               };

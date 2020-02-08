@@ -225,8 +225,8 @@
                 <i-control class="col2" disabled ng-model="store_out.currency.ex_rate" type="number"
                     label="##word.exchange_rate##"></i-control>
 
-                <i-list ng-search="_search.$order_invoice.$safes_search" ng-show="store_out.paid_up > 0" class="col4"
-                    ng-model="store_out.safe" label="##word.safe##" items="safesList">
+                <i-list ng-search="_search.$order_invoice.$safes_search" class="col4" ng-model="store_out.safe"
+                    label="##word.safe##" items="safesList">
                 </i-list>
             </div>
 

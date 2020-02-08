@@ -345,11 +345,15 @@ module.exports = function init(site) {
         _payment_list.posting = true
 
         if (account_invoices_doc.source_type.id == 1) {
+          console.log("wwwwwwwwwwwwwwwwwwwwwwwwwwwwww");
+
           obj.operation = 'فاتورة مشتريات'
           obj.transition_type = 'out'
           site.call('[store_in][account_invoice][invoice]', account_invoices_doc.invoice_id)
 
         } else if (account_invoices_doc.source_type.id == 2) {
+          console.log("ssssssssssssssssss");
+
           obj.operation = 'فاتورة مبيعات'
           obj.transition_type = 'in'
           site.call('[store_out][account_invoice][invoice]', account_invoices_doc.invoice_id)
