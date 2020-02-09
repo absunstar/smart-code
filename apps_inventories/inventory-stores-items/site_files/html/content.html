@@ -144,12 +144,8 @@
                                     <th ng-hide="defaultSettings.inventory.auto_barcode_generation">##word.barcode##
                                     </th>
                                     <th x-feature="restaurant">##word.kitchen_name##</th>
-                                    <!--  <th>##word.stores_items_cost##</th>
-                                    <th>##word.stores_items_price##</th> 
-                                    <th>##word.average_cost##</th>-->
                                     <th>##word.stores_current_balance##</th>
                                     <th>##word.stores_items_start_count##</th>
-                                    <!-- <th>##word.stores_in_discountes##</th> -->
                                     <th>##word.actions##</th>
                                 </tr>
 
@@ -172,18 +168,6 @@
                                             items="itemsKitchenList"></i-list>
                                     </td>
 
-                                    <!--     <td>
-                                        <i-control type="number" ng-model="itm.cost"></i-control>
-                                    </td>
-
-                                    <td>
-                                        <i-control type="number" ng-model="itm.price"></i-control>
-                                    </td>
-
-                                    <td>
-                                        <i-control type="number" ng-model="itm.average_cost"></i-control>
-                                    </td>
- -->
                                     <td>
                                         <br>
                                         <p class="center green">{{itm.current_count}}</p>
@@ -193,23 +177,6 @@
                                         <br>
                                         <p class="center blue">{{itm.start_count}}</p>
                                     </td>
-
-                                    <!-- <td>
-                                        <div class="row ">
-                                            <i-control type="number" label="##word.maximum_discount##"
-                                                ng-model="itm.discount.max"></i-control>
-
-                                            <i-control type="number" label="##word.discount##"
-                                                ng-model="itm.discount.value"></i-control>
-                                        </div>
-                                        <div class="row center">
-                                            <i-radio ng-model="itm.discount.type" label="##word.discount_types_number##"
-                                                ng-value="number" group="type" type="radio"></i-radio>
-                                            <i-radio ng-model="itm.discount.type"
-                                                label="##word.discount_types_percent##" ng-value="percent" group="type"
-                                                type="radio"></i-radio>
-                                        </div>
-                                    </td> -->
 
                                     <td>
                                         <div class="row center">

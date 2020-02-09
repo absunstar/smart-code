@@ -211,26 +211,36 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
 
     if ($scope.category_item.sizes && $scope.category_item.sizes.length > 0) {
 
+      let unitDiscount = false;
+      let foundBarcodeUnit = false;
+      let notBarcodeUnit = false;
+
+
+      $scope.category_item.sizes.forEach(_size => {
+        _size.size_units_list.forEach(_unit => {
+          if (_unit.barcode == (undefined || null)) notBarcodeUnit = true;
+          if (_unit.discount && _unit.discount.value > _unit.discount.max) unitDiscount = true;
+          foundBarcodeUnit = $scope.unitsBarcodesList.some(_unit1 => _unit1.barcode == _unit.barcode);
+        });
+      });
+
+      if (unitDiscount) {
+        $scope.error = '##word.unit_discount_err##';
+        return;
+      };
+
+
+
       if ($scope.defaultSettings && $scope.defaultSettings.inventory && !$scope.defaultSettings.inventory.auto_barcode_generation) {
 
-        let foundBarcodeUnit = false;
-        let notBarcodeUnit = false;
-        $scope.category_item.sizes.forEach(_size => {
-
-          _size.size_units_list.forEach(_unit => {
-            if (_unit.barcode == (undefined || null)) notBarcodeUnit = true;
-
-            foundBarcodeUnit = $scope.unitsBarcodesList.some(_unit1 => _unit1.barcode == _unit.barcode);
-          });
-        });
 
         if (notBarcodeUnit) {
-          $scope.error = `##word.err_barcode_units##`;
+          $scope.error = '##word.err_barcode_units##';
           return;
         };
 
         if (foundBarcodeUnit) {
-          $scope.error = `##word.err_barcode_exist##`;
+          $scope.error = '##word.err_barcode_exist##';
           return;
         };
       };
@@ -290,6 +300,42 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
       $scope.error = v.messages[0].ar;
       return;
     }
+
+    if ($scope.category_item.sizes && $scope.category_item.sizes.length > 0) {
+
+      let unitDiscount = false;
+      let foundBarcodeUnit = false;
+      let notBarcodeUnit = false;
+
+
+      $scope.category_item.sizes.forEach(_size => {
+        _size.size_units_list.forEach(_unit => {
+          if (_unit.barcode == (undefined || null)) notBarcodeUnit = true;
+          if (_unit.discount && _unit.discount.value > _unit.discount.max) unitDiscount = true;
+          foundBarcodeUnit = $scope.unitsBarcodesList.some(_unit1 => _unit1.barcode == _unit.barcode);
+        });
+      });
+
+      if (unitDiscount) {
+        $scope.error = '##word.unit_discount_err##';
+        return;
+      };
+
+      if ($scope.defaultSettings && $scope.defaultSettings.inventory && !$scope.defaultSettings.inventory.auto_barcode_generation) {
+
+
+        if (notBarcodeUnit) {
+          $scope.error = '##word.err_barcode_units##';
+          return;
+        };
+
+        if (foundBarcodeUnit) {
+          $scope.error = '##word.err_barcode_exist##';
+          return;
+        };
+      };
+    };
+
     $scope.busy = true;
     $http({
       method: "POST",
@@ -637,29 +683,9 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
     $scope.items_size = {};
   };
 
-  /*  $scope.incertComplexItemView = function (item) {
-     $scope.error = '';
-     item.complex_items = item.complex_items || [];
- 
-     foundSize = item.complex_items.some(_itemSize => _itemSize.barcode == $scope.items_size.barcode);
- 
-     if (!foundSize && $scope.items_size && $scope.items_size.size) {
- 
-       if (!foundSize)
-         item.complex_items.unshift($scope.items_size);
- 
-       else $scope.error = "##word.dublicate_item##"
- 
-     } else $scope.error = "##word.Err_should_select_item##";
- 
-     $scope.items_size = {};
-   };
-  */
-
   $scope.deleteItemComplex = function (complex_items, i) {
     complex_items.splice(complex_items.indexOf(i), 1);
   };
-
 
   $scope.complexItemsPushUpdate = function () {
     if ($scope.complexItemsUpdate && $scope.complexItemsUpdate && $scope.complexItemsUpdate.length > 0)
@@ -754,7 +780,6 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
       }
     });
 
-
     $scope.unit = {};
   };
 
@@ -773,7 +798,6 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
           if (_unit.current_count != 0)
             foundCount = true;
         }
-
       });
 
       if (foundCount) {
