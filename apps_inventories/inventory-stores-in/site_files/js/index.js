@@ -269,20 +269,22 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
   $scope.calc = function (obj) {
     $scope.error = '';
 
-    obj.total_value = obj.total_value || 0;
+    obj.total_value = 0;
     obj.net_value = obj.net_value || 0;
 
+    if (obj.items)
+      obj.items.map(itm => obj.total_value += site.toNumber(itm.total));
 
     obj.total_tax = 0;
     if (obj.taxes)
       obj.taxes.map(tx => obj.total_tax += (obj.total_value * site.toNumber(tx.value) / 100));
-    
+
     obj.total_discount = 0;
 
     if (obj.discountes)
       obj.discountes.forEach(ds => {
         if (ds.type == 'percent')
-          obj.total_discount += obj.total_value * site.toNumber(ds.value) / 100;
+          obj.total_discount += (obj.total_value * site.toNumber(ds.value)) / 100;
         else obj.total_discount += site.toNumber(ds.value);
       });
 

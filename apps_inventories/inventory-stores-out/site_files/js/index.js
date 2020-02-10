@@ -61,7 +61,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
 
   $scope.calc = function (obj) {
     $scope.error = '';
-    obj.total_value = obj.total_value || 0;
+    obj.total_value = 0;
     obj.net_value = obj.net_value || 0;
 
 
