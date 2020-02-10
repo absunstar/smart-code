@@ -1,6 +1,5 @@
 app.controller("stores_out", function ($scope, $http, $timeout) {
   $scope._search = {};
-  $scope.post = false;
   $scope.store_out = {
     discountes: [],
     taxes: []
@@ -62,8 +61,9 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
 
   $scope.calc = function (obj) {
     $scope.error = '';
-    obj.total_value = 0;
+    obj.total_value = obj.total_value || 0;
     obj.net_value = obj.net_value || 0;
+
 
     if (obj.items)
       obj.items.map(itm => obj.total_value += site.toNumber(itm.total));
@@ -1413,9 +1413,6 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
 
   $scope.posting = function (store_out) {
     $scope.error = '';
-
-    if ($scope.post) store_out.posting = true;
-    else store_out.posting = false;
 
     if (!store_out.posting) {
       if (store_out.net_value != store_out.return_paid.net_value)

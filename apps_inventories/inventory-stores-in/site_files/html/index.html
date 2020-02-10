@@ -110,11 +110,11 @@
 
                             <i-button x-permissions="stores_in_post || stores_in_manage" label="##word.posting##"
                                 ng-show="defaultSettings.general_Settings.work_posting && !c.posting"
-                                ng-click="post = true ; posting(c)"></i-button>
+                                ng-click="c.posting = true ; posting(c)"></i-button>
 
                             <i-button x-permissions="stores_in_post || stores_in_manage" label="##word.unposting##"
                                 ng-show="defaultSettings.general_Settings.work_unposting && c.posting"
-                                ng-click="post = false ; posting(c)"></i-button>
+                                ng-click="c.posting = false ; posting(c)"></i-button>
 
                             <i-button x-permissions="stores_in_update || stores_in_manage" type="update"
                                 ng-show="!c.posting" label="##word.edit##" ng-click="edit(c)"></i-button>

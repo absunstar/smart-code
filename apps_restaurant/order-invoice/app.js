@@ -92,15 +92,15 @@ module.exports = function init(site) {
               if (obj.return) book_list_basic.count = book_list_basic.count + book_list_cb.count;
               else book_list_basic.count = book_list_basic.count - book_list_cb.count;
 
-              let discount = 0;
-              if (book_list_basic.discount) {
-                if (book_list_basic.discount.type == 'number')
-                  discount = book_list_basic.discount.value * book_list_basic.count;
-                else if (book_list_basic.discount.type == 'percent')
-                  discount = book_list_basic.discount.value * (book_list_basic.price * book_list_basic.count) / 100;
-              }
+              //  let discount = 0;
+              // if (book_list_basic.discount) {
+              //   if (book_list_basic.discount.type == 'number')
+              //     discount = book_list_basic.discount.value * book_list_basic.count;
+              //   else if (book_list_basic.discount.type == 'percent')
+              //     discount = book_list_basic.discount.value * (book_list_basic.price * book_list_basic.count) / 100;
+              // }
 
-              book_list_basic.total = (book_list_basic.count * book_list_basic.price) - discount;
+              book_list_basic.total = (book_list_basic.count * book_list_basic.price);
             };
           });
         });

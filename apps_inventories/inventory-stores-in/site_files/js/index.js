@@ -1,8 +1,6 @@
 app.controller("stores_in", function ($scope, $http, $timeout) {
   $scope._search = {};
 
-  $scope.post = false;
-
   $scope.store_in = {
     discountes: [],
     taxes: []
@@ -271,14 +269,14 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
   $scope.calc = function (obj) {
     $scope.error = '';
 
-    obj.total_value = 0;
+    obj.total_value = obj.total_value || 0;
     obj.net_value = obj.net_value || 0;
 
 
     obj.total_tax = 0;
     if (obj.taxes)
-      obj.taxes.map(tx => obj.total_tax += obj.total_value * site.toNumber(tx.value) / 100);
-
+      obj.taxes.map(tx => obj.total_tax += (obj.total_value * site.toNumber(tx.value) / 100));
+    
     obj.total_discount = 0;
 
     if (obj.discountes)
@@ -892,8 +890,11 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
   $scope.posting = function (store_in) {
     $scope.error = '';
 
-    if ($scope.post) store_in.posting = true;
-    else store_in.posting = false;
+    if (!store_in.posting) {
+      if (store_in.net_value != store_in.return_paid.net_value)
+        $scope.error = '##word.err_unpost_return##';
+      return;
+    };
 
     $scope.busy = true;
     $http({
@@ -1208,7 +1209,6 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
       $scope.store_in.total_tax = i.return_paid.total_tax;
       $scope.store_in.total_value = i.return_paid.total_value;
       $scope.store_in.net_value = i.return_paid.net_value;
-      $scope.store_in.paid_up = i.return_paid.paid_up;
 
       $scope.store_in.items = [];
       i.return_paid.items.forEach(_item => {
