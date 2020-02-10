@@ -76,8 +76,6 @@
                         </td>
                         <td>
                             <p class="bold text-center blue"> <br> {{c.supply_number}} </p>
-
-
                         </td>
                         <td>
                             <p class="text-center blue"> <br> {{c.vendor.name_ar}} </p>
@@ -94,7 +92,9 @@
                         </td>
 
                         <td>
-                            <p class="bold text-center blue"> <br> {{c.type.ar}} </p>
+                            <p class="bold text-center"> <br> {{c.type.ar}} </p>
+                            <h3 class="blue bold center">{{c.retured_number}}</h3>
+
                         </td>
 
 
@@ -110,11 +110,11 @@
 
                             <i-button x-permissions="stores_in_post || stores_in_manage" label="##word.posting##"
                                 ng-show="defaultSettings.general_Settings.work_posting && !c.posting"
-                                ng-click="c.posting = true ; posting(c)"></i-button>
+                                ng-click="post = true ; posting(c)"></i-button>
 
                             <i-button x-permissions="stores_in_post || stores_in_manage" label="##word.unposting##"
                                 ng-show="defaultSettings.general_Settings.work_unposting && c.posting"
-                                ng-click="c.posting = false ; posting(c)"></i-button>
+                                ng-click="post = false ; posting(c)"></i-button>
 
                             <i-button x-permissions="stores_in_update || stores_in_manage" type="update"
                                 ng-show="!c.posting" label="##word.edit##" ng-click="edit(c)"></i-button>

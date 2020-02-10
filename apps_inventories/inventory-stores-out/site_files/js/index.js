@@ -1414,6 +1414,9 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
   $scope.posting = function (store_out) {
     $scope.error = '';
 
+    if ($scope.post) store_out.posting = true;
+    else store_out.posting = false;
+
     if (!store_out.posting) {
       if (store_out.net_value != store_out.return_paid.net_value)
         $scope.error = '##word.err_unpost_return##';

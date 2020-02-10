@@ -890,6 +890,9 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
   $scope.posting = function (store_in) {
     $scope.error = '';
 
+    if ($scope.post) store_in.posting = true;
+    else store_in.posting = false;
+
     $scope.busy = true;
     $http({
       method: "POST",
