@@ -32,7 +32,12 @@
 
             </div>
 
-            <div class="row">
+            <div class="row" ng-show="store_in.type.id == 4">
+                <i-button type="view" label="##word.stores_outs##" onclick="site.showModal('#returnedViewModal')">
+                </i-button>
+            </div>
+
+            <div class="row" ng-hide="store_in.type.id == 4">
                 <i-control id="search_barcode" class="col4" ng-keydown="getBarcode($event)" class="col3"
                     ng-model="search_barcode" label="##word.search##" type="text"></i-control>
                 <div class="col1"></div>
@@ -44,6 +49,10 @@
 
             </div>
             <br>
+            <br>
+            <h2 ng-show="store_in.retured_number" class="blue bold center">##word.stores_out## :
+                {{store_in.retured_number}}</h2>
+
             <br>
             <div class="row margin padding">
                 <fieldset>
@@ -205,9 +214,8 @@
                     label="##word.stores_in_total_value##"></i-control>
             </div>
 
-            <div class="row" ng-show="store_in.type.id== 1 && defaultSettings.accounting.create_invoice_auto">
-
-                <!-- <i-checkbox label="##word.create_an_invoice##" ng-click="showCreateInvoice()" ng-model="store_in.create_invoice"></i-checkbox> -->
+            <div class="row"
+                ng-show="(store_in.type.id== 1 || store_in.type.id== 4) && defaultSettings.accounting.create_invoice_auto">
 
                 <i-list help-id="" ng-search="_search.$payment_method_search" class="col2"
                     label="##word.payment_method##" ng-model="store_in.payment_method"
@@ -230,15 +238,17 @@
 
             <div class="row">
 
-                <i-control class="col2" ng-show="store_in.type.id== 1" ng-model="store_in.net_value" type="number"
-                    disabled label="##word.stores_in_net_value##"></i-control>
+                <i-control class="col2"
+                    ng-show="(store_in.type.id== 1 || store_in.type.id== 4) && defaultSettings.accounting.create_invoice_auto "
+                    ng-model="store_in.net_value" type="number" disabled label="##word.stores_in_net_value##">
+                </i-control>
 
                 <i-control class="col3" disabled
-                    ng-show="store_in.type.id== 1 && defaultSettings.accounting.create_invoice_auto"
+                    ng-show="(store_in.type.id== 1 || store_in.type.id== 4)  && defaultSettings.accounting.create_invoice_auto"
                     ng-model="amount_currency" label="##word.amount_currency##" type="number"></i-control>
 
                 <i-control class="col2"
-                    ng-show="store_in.net_value && store_in.safe && store_in.type.id== 1 && defaultSettings.accounting.create_invoice_auto"
+                    ng-show="store_in.safe && (store_in.type.id== 1 || store_in.type.id== 4)  && defaultSettings.accounting.create_invoice_auto"
                     ng-model="store_in.paid_up" label="##word.paid_up##" type="number">
                 </i-control>
             </div>

@@ -17,6 +17,7 @@
     {"name" : "stores_in_supply_number_date" , "en" : "supply number date" , "ar" : " تاريخ أذن التوريد"},
 
     {"name" : "stores_in_store_name" , "en" : "Store In" , "ar" : "  إسم المخزن "},
+    {"name" : "return_item_err" , "en" : "Store In" , "ar" : "لا يمكن أن يكون عدد الأصناف أكبر من الموجود في مرتجع المبيعات"},
 
     {"name" : "err_barcode_exist" , "en" : "The barcode is exist" , "ar" : "الباركود مسجل من قبل"},
     {"name" : "edit_purchase_price" , "en" : "Edit Purchase Price" , "ar" : "تعديل سعر الشراء"},

@@ -1,0 +1,65 @@
+<div id="returnedViewModal" class="modal" fixed>
+
+    <div class="col2"></div>
+    <div class="modal-content col8">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                <i class="fa fa-pencil"></i>
+            </h2>
+        </div>
+        <div class="modal-body">
+            <form class="form">
+
+                <div class="row">
+                    <div class="row">
+                        <i-control ng-keydown="showReturnedStoreOut($event)" id="item_name" class="col3"
+                            ng-model="storesOutSearch" label="##word.search##" type="text"></i-control>
+                    </div>
+                </div>
+
+                <br>
+                <br>
+                <br>
+                <div class="row" ng-show="storesOutlist.length > 0">
+                    <table class="table pointer hover">
+                        <tr>
+                            <th>##word.stores_in_date##</th>
+                            <th>##word.stores_in_id##</th>
+                            <th>##word.store##</th>
+                            <th>##word.net_value##</th>
+                        </tr>
+
+                        <tr class="bold" ng-repeat="i in storesOutlist">
+                            <td ng-click="selectReturnedStoreOut(i)">
+                                <p class="center bold brown">{{i.date | date : 'yyyy - MM - dd'}}</p>
+                            </td>
+
+                            <td ng-click="selectReturnedStoreOut(i)">
+                                <p class="center blue bold">{{i.number}}</p>
+                            </td>
+
+                            <td ng-click="selectReturnedStoreOut(i)">
+                                <p class="center bold">{{i.store.name}}</p>
+                            </td>
+
+                            <td ng-click="selectReturnedStoreOut(i)">
+                                <p class="center green bold">{{i.net_value}}</p>
+                            </td>
+                        </tr>
+
+                    </table>
+                </div>
+
+            </form>
+        </div>
+        <h2 class="error">{{error}}</h2>
+        <div class="modal-footer center">
+            <i-button type="close" onclick="site.hideModal('#returnedViewModal')" label="##word.close##">
+            </i-button>
+
+        </div>
+    </div>
+
+
+</div>

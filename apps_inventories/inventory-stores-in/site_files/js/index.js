@@ -342,7 +342,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
             $scope.store_in.type = $scope.defaultSettings.inventory.type_in
 
             if ($scope.defaultSettings.accounting) {
-              if ($scope.store_in.type.id == 1 && $scope.defaultSettings.accounting.create_invoice_auto) {
+              if (($scope.store_in.type.id == 1 || $scope.store_in.type.id == 4) && $scope.defaultSettings.accounting.create_invoice_auto) {
                 $scope.store_in.currency = $scope.defaultSettings.accounting.currency;
                 if ($scope.defaultSettings.accounting.payment_method) {
                   $scope.store_in.payment_method = $scope.defaultSettings.accounting.payment_method;
@@ -397,7 +397,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
       return;
     }
 
-    if ($scope.store_in.type && $scope.store_in.type.id == 1 && $scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto) {
+    if ($scope.store_in.type && ($scope.store_in.type.id == 1 || $scope.store_in.type.id == 4) && $scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto) {
       if (!$scope.store_in.safe) {
         $scope.error = "##word.nosafe_warning##";
         return;
@@ -411,18 +411,30 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
 
     }
 
-    if ($scope.defaultSettings.inventory && $scope.defaultSettings.inventory.dont_max_discount_items) {
-      let max_discount = false;
-      $scope.store_in.items.forEach(_itemSize => {
-        if (_itemSize.discount.value > _itemSize.discount.max)
-          max_discount = true;
-      });
 
+    let max_discount = false;
+    let returned_count = false;
+
+
+    $scope.store_in.items.forEach(_itemSize => {
+      if (_itemSize.discount.value > _itemSize.discount.max)
+        max_discount = true;
+      if (_itemSize.count > _itemSize.r_count) returned_count = true;
+    });
+
+    if ($scope.defaultSettings.inventory && $scope.defaultSettings.inventory.dont_max_discount_items) {
       if (max_discount) {
         $scope.error = "##word.err_maximum_discount##";
         return;
       }
-    }
+    };
+
+    if ($scope.store_in.type.id == 4) {
+      if (returned_count) {
+        $scope.error = "##word.return_item_err##";
+        return;
+      }
+    };
 
     if ($scope.store_in.items.length > 0) {
       $scope.busy = true;
@@ -436,7 +448,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
           if (response.data.done) {
             site.hideModal('#addStoreInModal');
             if ($scope.store_in.posting) {
-              if ($scope.store_in.type.id == 1 && $scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto) {
+              if (($scope.store_in.type.id == 1 || $scope.store_in.type.id == 4) && $scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto) {
 
                 let account_invoices = {
                   image_url: '/images/account_invoices.png',
@@ -888,7 +900,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           if (store_in.posting) {
-            if (store_in.type.id == 1 && $scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto) {
+            if (store_in.type.id == 1 && store_in.type.id == 4 && $scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto) {
 
               let account_invoices = {
                 image_url: '/images/account_invoices.png',
@@ -1156,6 +1168,58 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
 
   };
 
+  $scope.showReturnedStoreOut = function (ev) {
+    $scope.error = '';
+    $scope.list = {};
+    if (ev.which === 13) {
+      $scope.busy = true;
+      $http({
+        method: "POST",
+        url: "/api/stores_out/all",
+        data: {
+          search: $scope.storesOutSearch,
+          where: { 'posting': true }
+        }
+      }).then(
+        function (response) {
+          $scope.busy = false;
+          if (response.data.done && response.data.list.length > 0) {
+            $scope.storesOutlist = response.data.list;
+          }
+        },
+        function (err) {
+          $scope.busy = false;
+          $scope.error = err;
+        }
+      )
+    }
+  };
+
+  $scope.selectReturnedStoreOut = function (i) {
+
+    if ($scope.store_in) {
+
+      $scope.store_in.retured_number = i.number;
+      $scope.store_in.items = i.items;
+      $scope.store_in.discountes = i.discountes;
+      $scope.store_in.taxes = i.taxes;
+      $scope.store_in.total_discount = i.total_discount;
+      $scope.store_in.total_tax = i.total_tax;
+      $scope.store_in.total_value = i.total_value;
+      $scope.store_in.net_value = i.net_value;
+      $scope.store_in.paid_up = i.paid_up;
+
+      $scope.store_in.items.map(i => i.r_count = i.count);
+
+      if ($scope.store_in.currency)
+        $scope.amount_currency = site.toNumber($scope.store_in.net_value) / site.toNumber($scope.store_in.currency.ex_rate);
+
+      site.hideModal('#returnedViewModal');
+    };
+
+  };
+
+
   $scope.loadAll = function (where) {
     $scope.error = '';
     $scope.list = {};
@@ -1181,13 +1245,10 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
     )
   };
 
-  /*   $scope.loadStores_In();
-   */
-
   $scope.getSafeBySetting = function () {
     $scope.error = '';
     if ($scope.defaultSettings.accounting) {
-      if ($scope.store_in.type.id == 1 && $scope.defaultSettings.accounting.create_invoice_auto) {
+      if (($scope.store_in.type.id == 1 || $scope.store_in.type.id == 4) && $scope.defaultSettings.accounting.create_invoice_auto) {
         if ($scope.defaultSettings.accounting.payment_method) {
           $scope.store_in.payment_method = $scope.defaultSettings.accounting.payment_method
           $scope.loadSafes($scope.store_in.payment_method, $scope.store_in.currency)

@@ -128,7 +128,6 @@ app.controller("stores_dismantle", function ($scope, $http, $timeout) {
       }
     }).then(
       function (response) {
-        شيي
         $scope.busy = false;
         if (response.data.done) {
           response.data.doc.date = new Date(response.data.doc.date);

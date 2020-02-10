@@ -62,7 +62,6 @@
                         <th>##word.stores_out_id##</th>
                         <th>##word.customer##</th>
                         <th>##word.store##</th>
-                        <th>##word.stores_out_safe##</th>
                         <th>##word.stores_out_total_value##</th>
                         <th>##word.stores_out_net_value##</th>
                         <th> ##word.transaction_type##</th>
@@ -83,10 +82,6 @@
                         </td>
                         <td>
                             <p class="text-center blue"> <br> {{c.store.name}} </p>
-                        </td>
-                        <td>
-                            <p class="text-center blue"> <br> {{c.safe.name}} </p>
-                            <p ng-show="!c.safe" class="text-center red bold"> ##word.stores_out_no_safe## </p>
                         </td>
                         <td>
                             <p class="bold text-center"> <br> {{c.total_value}} </p>

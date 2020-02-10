@@ -31,6 +31,7 @@
                     x-import="inventory-stores-in/update_modal.html"></div>
                 <div x-permissions="stores_in_add || stores_in_manage"
                     x-import="inventory-stores-in/select_items_modal.html"></div>
+                <div x-import="inventory-stores-in/returned.html"></div>
 
                 <div class="row">
                     <h1 class="bold text-center"> ##word.stores_in## </h1>
@@ -40,13 +41,12 @@
                     <i-button x-permissions="stores_in_add || stores_in_manage" type="add"
                         label="##word.stores_in_new##" ng-click="newStoreIn()"></i-button>
                     <i-button x-permissions="stores_in_search || stores_in_manage" type="search"
-                        x-permissions="stores_in_handle" label="##word.handle##" label="##word.search_all##"
-                        onclick="site.showModal('#StoresInSearchModal')"></i-button>
+                        label="##word.search_all##" onclick="site.showModal('#StoresInSearchModal')"></i-button>
 
                     <h2 class="bold red text-center"> {{error}}</h2>
 
-                    <!-- <i-button class="left" ng-click="handelStoreIn()">
-                    </i-button> -->
+                    <i-button class="left" x-permissions="stores_in_handle" label="##word.handle##"
+                        ng-click="handelStoreIn()"></i-button>
 
                     <h3 class="bold text-center"> ##word.count## : {{count}}</h3>
                 </div>
@@ -58,7 +58,6 @@
                         <th> ##word.stores_in_supply_number##</th>
                         <th>##word.stores_in_Company_name##</th>
                         <th>##word.store##</th>
-                        <th>##word.stores_in_safe##</th>
                         <th>##word.stores_in_total_value##</th>
                         <th>##word.stores_in_net_value##</th>
                         <th> ##word.transaction_type##</th>
@@ -86,11 +85,7 @@
                         <td>
                             <p class="text-center blue"> <br> {{c.store.name}} </p>
                         </td>
-                        <td>
-                            <p class="text-center blue"> <br> {{c.safe.name}} </p>
-                            <p ng-show="!c.safe" class="text-center red bold"> ##word.stores_in_no_safe## </p>
 
-                        </td>
                         <td>
                             <p class="bold text-center"> <br> {{c.total_value}} </p>
                         </td>
@@ -109,7 +104,7 @@
                                 label="##word.details##" ng-click="details(c)"></i-button>
 
                             <i-button
-                                ng-show="c.posting && !c.invoice && !defaultSettings.accounting.create_invoice_auto && c.type.id == 1"
+                                ng-show="c.posting && !c.invoice && !defaultSettings.accounting.create_invoice_auto && (c.type.id == 1 || c.type.id == 4)"
                                 type="save" label="##word.create_an_invoice##" ng-click="displayAccountInvoice(c)">
                             </i-button>
 
