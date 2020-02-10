@@ -354,6 +354,16 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
       $scope.item.sizes.forEach(_size => {
         foundSize = $scope.store_out.items.some(_itemSize => _itemSize.barcode == _size.barcode);
         if (_size.count > 0 && !foundSize) {
+
+          let discount = 0;
+          if (_size.cost && _size.count) {
+            if (_size.discount.type == 'number')
+              discount = (_size.discount.value || 0) * _size.count;
+            else if (_size.discount.type == 'percent')
+
+              discount = (_size.discount.value || 0) * (_size.cost * _size.count) / 100;
+            _size.total = ((site.toNumber(_size.cost) * site.toNumber(_size.count)) - discount);
+          }
           $scope.store_out.items.push({
             image_url: $scope.item.image_url,
             name: _size.name,

@@ -288,8 +288,11 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
         else obj.total_discount += site.toNumber(ds.value);
       });
 
+    obj.total_discount = site.toNumber(obj.total_discount);
+    obj.total_tax = site.toNumber(obj.total_tax);
+    obj.total_value = site.toNumber(obj.total_value);
+
     if (obj.items) {
-      obj.items.map(itm => obj.total_value += site.toNumber(itm.total));
       obj.net_value = obj.total_value + obj.total_tax - obj.total_discount;
     }
 
@@ -564,6 +567,16 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
       $scope.item.sizes.forEach(_size => {
         foundSize = $scope.store_in.items.some(_itemSize => _itemSize.barcode == _size.barcode);
         if (_size.count > 0 && !foundSize) {
+          let discount = 0;
+          if (_size.cost && _size.count) {
+            if (_size.discount.type == 'number')
+              discount = (_size.discount.value || 0) * _size.count;
+            else if (_size.discount.type == 'percent')
+
+              discount = (_size.discount.value || 0) * (_size.cost * _size.count) / 100;
+            _size.total = ((site.toNumber(_size.cost) * site.toNumber(_size.count)) - discount);
+          }
+
           $scope.store_in.items.unshift({
             image_url: $scope.item.image_url,
             name: _size.name,
