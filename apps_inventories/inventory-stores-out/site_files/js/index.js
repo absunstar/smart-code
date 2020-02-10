@@ -1,6 +1,6 @@
 app.controller("stores_out", function ($scope, $http, $timeout) {
   $scope._search = {};
-
+  $scope.post = false;
   $scope.store_out = {
     discountes: [],
     taxes: []

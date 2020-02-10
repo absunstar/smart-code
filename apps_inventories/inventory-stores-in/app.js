@@ -121,6 +121,14 @@ module.exports = function init(site) {
     stores_in_doc.total_value = site.toNumber(stores_in_doc.total_value)
     stores_in_doc.net_value = site.toNumber(stores_in_doc.net_value)
 
+    if (stores_in_doc.type.id == 1)
+      stores_in_doc.return_paid = {
+        items: stores_in_doc.items,
+        total_discount: stores_in_doc.total_discount,
+        total_tax: stores_in_doc.total_tax,
+        total_value: stores_in_doc.total_value,
+        net_value: stores_in_doc.net_value,
+      }
     $stores_in.add(stores_in_doc, (err, doc) => {
 
       if (!err) {
@@ -131,7 +139,10 @@ module.exports = function init(site) {
         if (doc.posting) {
 
           doc.items.forEach(_itm => {
-            _itm.type = 'sum'
+            if (doc.type.id == 4)
+              _itm.type = 'minus'
+            else _itm.type = 'sum'
+
             _itm._status = doc.type.id
             _itm.store = doc.store
             _itm.company = doc.company
@@ -143,7 +154,9 @@ module.exports = function init(site) {
             _itm.vendor = doc.vendor
             _itm.date = doc.date
             _itm.source_type = doc.type
-            _itm.transaction_type = 'in'
+            if (doc.type.id == 4)
+              _itm.transaction_type = 'out'
+            else _itm.transaction_type = 'in'
             _itm.current_status = 'storein'
             _itm.shift = {
               id: doc.shift.id,
@@ -155,8 +168,7 @@ module.exports = function init(site) {
           })
 
           if (doc.type && doc.type.id == 4)
-            site.call('return stores out', doc)
-
+            site.returnStoresIn(doc, res => { })
         }
 
       } else {
@@ -188,6 +200,15 @@ module.exports = function init(site) {
     })
 
     stores_in_doc.total_value = site.toNumber(stores_in_doc.total_value)
+
+    if (stores_in_doc.type.id == 1)
+      stores_in_doc.return_paid = {
+        items: stores_in_doc.items,
+        total_discount: stores_in_doc.total_discount,
+        total_tax: stores_in_doc.total_tax,
+        total_value: stores_in_doc.total_value,
+        net_value: stores_in_doc.net_value,
+      }
 
     if (stores_in_doc._id) {
       $stores_in.edit({
@@ -241,12 +262,24 @@ module.exports = function init(site) {
             _itm.branch = result.doc.branch
 
             if (result.doc.posting) {
-              _itm.type = 'sum'
-              _itm.transaction_type = 'in'
+              if (result.doc.type.id == 4) {
+                _itm.type = 'minus'
+                _itm.transaction_type = 'out'
+              } else {
+                _itm.type = 'sum'
+                _itm.transaction_type = 'in'
+              }
               _itm.current_status = 'storein'
             } else {
-              _itm.type = 'minus'
-              _itm.transaction_type = 'out'
+              if (result.doc.type.id == 4) {
+
+                _itm.type = 'sum'
+                _itm.transaction_type = 'in'
+              } else {
+
+                _itm.type = 'minus'
+                _itm.transaction_type = 'out'
+              }
               _itm.current_status = 'r_storein'
             }
 
@@ -264,16 +297,13 @@ module.exports = function init(site) {
             if (result.doc.posting)
               site.call('item_transaction + items', Object.assign({}, _itm))
             else site.call('item_transaction - items', Object.assign({}, _itm))
-
           })
 
           if (result.doc.type && result.doc.type.id == 4) {
             if (!result.doc.posting)
               result.doc.return = true
-
-            site.call('return stores out', result.doc)
+            site.returnStoresIn(result.doc, res => { })
           }
-
 
         } else {
           response.error = err.message
@@ -310,8 +340,14 @@ module.exports = function init(site) {
               _itm.company = stores_in_doc.company
               _itm.branch = stores_in_doc.branch
 
-              _itm.type = 'minus'
-              _itm.transaction_type = 'out'
+              if (result.doc.type.id == 4) {
+                _itm.type = 'sum'
+                _itm.transaction_type = 'in'
+              } else {
+
+                _itm.type = 'minus'
+                _itm.transaction_type = 'out'
+              }
               _itm.current_status = 'd_storein'
 
               site.call('[transfer_branch][stores_items][add_balance]', _itm)
@@ -330,7 +366,8 @@ module.exports = function init(site) {
 
             if (stores_in_doc.type && stores_in_doc.type.id == 4) {
               result.doc.return = true
-              site.call('return stores out', stores_in_doc)
+              site.returnStoresIn(stores_in_doc, res => { })
+
             }
 
           }
@@ -536,7 +573,6 @@ module.exports = function init(site) {
 
     where['company.id'] = site.get_company(req).id
 
-
     $stores_in.findMany({
       select: req.body.select || {},
       where: where,
@@ -555,6 +591,7 @@ module.exports = function init(site) {
           if (unit.id) {
 
             docs.forEach(_doc => {
+
               _doc.items.forEach(_item => {
                 if (_item.unit == null || undefined)
                   _item.unit = {
@@ -563,6 +600,16 @@ module.exports = function init(site) {
                     convert: 1
                   }
               });
+
+              if (_doc.type.id == 1)
+                _doc.return_paid = {
+                  items: _doc.items,
+                  total_discount: _doc.total_discount,
+                  total_tax: _doc.total_tax,
+                  total_value: _doc.total_value,
+                  net_value: _doc.net_value,
+                }
+
               $stores_in.update(_doc)
             });
           }
@@ -576,20 +623,60 @@ module.exports = function init(site) {
   })
 
 
-  /* site.getStoresIn = function (req, callback) {
-    callback = callback || {};
- 
-    let where = req.data.where || {};
-    where['company.id'] = site.get_company(req).id
-    where['branch.code'] = site.get_branch(req).code
-    where['invoice'] = false
-    $stores_in.findOne({
-      where: where
-    }, (err, doc) => {
-      if (!err && doc)
-        callback(doc)
-      else callback(false)
-    })
-  } */
+  site.returnStoresIn = function (obj, res) {
+    $stores_in.findOne({ number: obj.retured_number }, (err, doc) => {
+
+      obj.items.forEach(_itemsObj => {
+        doc.return_paid.items.forEach(_itemsDoc => {
+
+          if (_itemsObj.barcode == _itemsDoc.barcode && _itemsObj.size == _itemsDoc.size) {
+            if (obj.return) _itemsDoc.count = _itemsDoc.count + _itemsObj.count
+
+            else _itemsDoc.count = _itemsDoc.count - _itemsObj.count
+
+            let discount = 0;
+            if (_itemsDoc.discount) {
+              if (_itemsDoc.discount.type == 'number')
+                discount = _itemsDoc.discount.value * _itemsDoc.count;
+              else if (_itemsDoc.discount.type == 'percent')
+                discount = _itemsDoc.discount.value * (_itemsDoc.price * _itemsDoc.count) / 100;
+            }
+
+            _itemsDoc.total = (_itemsDoc.count * _itemsDoc.price) - discount;
+
+          }
+        });
+      });
+      if (obj.return) {
+        doc.return_paid.total_discount = doc.return_paid.total_discount + obj.total_discount
+        doc.return_paid.total_tax = doc.return_paid.total_tax + obj.total_tax
+        doc.return_paid.total_value = doc.return_paid.total_value + obj.total_value
+        doc.return_paid.net_value = doc.return_paid.net_value + obj.net_value
+      } else {
+        doc.return_paid.total_discount = doc.return_paid.total_discount - obj.total_discount
+        doc.return_paid.total_tax = doc.return_paid.total_tax - obj.total_tax
+        doc.return_paid.total_value = doc.return_paid.total_value - obj.total_value
+        doc.return_paid.net_value = doc.return_paid.net_value - obj.net_value
+      }
+
+      $stores_in.update(doc);
+    });
+  };
+
+  //  site.getStoresIn = function (req, callback) {
+  //   callback = callback || {};
+
+  //   let where = req.data.where || {};
+  //   where['company.id'] = site.get_company(req).id
+  //   where['branch.code'] = site.get_branch(req).code
+  //   where['invoice'] = false
+  //   $stores_in.findOne({
+  //     where: where
+  //   }, (err, doc) => {
+  //     if (!err && doc)
+  //       callback(doc)
+  //     else callback(false)
+  //   })
+  // } 
 
 }

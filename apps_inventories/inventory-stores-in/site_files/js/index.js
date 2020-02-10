@@ -1,6 +1,8 @@
 app.controller("stores_in", function ($scope, $http, $timeout) {
   $scope._search = {};
 
+  $scope.post = false;
+
   $scope.store_in = {
     discountes: [],
     taxes: []
@@ -1168,7 +1170,6 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
     $scope.loadAll($scope.search);
     $scope.search = {};
     site.hideModal('#StoresInSearchModal');
-
   };
 
   $scope.showReturnedStoreOut = function (ev) {
@@ -1178,10 +1179,10 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
       $scope.busy = true;
       $http({
         method: "POST",
-        url: "/api/stores_out/all",
+        url: "/api/stores_in/all",
         data: {
           search: $scope.storesOutSearch,
-          where: { 'posting': true }
+          where: { 'posting': true, 'type.id': 1 }
         }
       }).then(
         function (response) {
