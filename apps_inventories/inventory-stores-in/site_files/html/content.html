@@ -66,7 +66,7 @@
                             <th>##word.stores_in_item_size##</th>
                             <th>##word.unit##</th>
                             <th>##word.quantity##</th>
-                            <th>##word.stores_in_item_cost##</th>
+                            <th>##word.items_price##</th>
                             <th>##word.discount##</th>
                             <th>##word.stores_in_item_total##</th>
                             <th>##word.actions##</th>
@@ -205,10 +205,12 @@
             </div>
 
             <div class="row">
-                <i-control class="col2" ng-model="store_in.total_discount" type="number" disabled
+                <i-control class="col2" ng-model="store_in.total_discount" type="number"
+                    ng-disabled="store_in.type.id !== 4" ng-change="calc(store_in)"
                     label="##word.stores_in_total_discount##"></i-control>
-                <i-control class="col2" ng-model="store_in.total_tax" type="number" disabled
-                    label="##word.stores_in_total_tax##"></i-control>
+
+                <i-control class="col2" ng-model="store_in.total_tax" type="number" ng-disabled="store_in.type.id !== 4"
+                    ng-change="calc(store_in)" label="##word.stores_in_total_tax##"></i-control>
 
                 <i-control class="col2" ng-model="store_in.total_value" type="number" disabled
                     label="##word.stores_in_total_value##"></i-control>

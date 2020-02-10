@@ -46,6 +46,44 @@ module.exports = function init(site) {
   out_itemName_handle(null)
 
 
+
+  site.on('return stores out', function (obj) {
+    $stores_out.findOne({ number: obj.retured_number }, (err, doc) => {
+
+      obj.items.forEach(_itemsObj => {
+        doc.return_paid.items.forEach(_itemsDoc => {
+
+          if (_itemsObj.barcode == _itemsDoc.barcode && _itemsObj.size == _itemsDoc.size) {
+            if (obj.return) _itemsDoc.count = _itemsDoc.count + _itemsObj.count
+
+            else _itemsDoc.count = _itemsDoc.count - _itemsObj.count
+
+            _itemsDoc.total = _itemsDoc.count * _itemsDoc.price;
+
+          }
+        });
+      });
+
+      if (obj.return) {
+
+        doc.return_paid.total_discount = doc.return_paid.total_discount + obj.total_discount
+        doc.return_paid.total_tax = doc.return_paid.total_tax + obj.total_tax
+        doc.return_paid.total_value = doc.return_paid.total_value + obj.total_value
+        doc.return_paid.net_value = doc.return_paid.net_value + obj.net_value
+
+      } else {
+
+        doc.return_paid.total_discount = doc.return_paid.total_discount - obj.total_discount
+        doc.return_paid.total_tax = doc.return_paid.total_tax - obj.total_tax
+        doc.return_paid.total_value = doc.return_paid.total_value - obj.total_value
+        doc.return_paid.net_value = doc.return_paid.net_value - obj.net_value
+      }
+
+      $stores_out.update(doc);
+    });
+  });
+
+
   site.on('[store_out][account_invoice][invoice]', function (obj) {
     $stores_out.findOne({ id: obj }, (err, doc) => {
       doc.invoice = true
@@ -119,6 +157,14 @@ module.exports = function init(site) {
     stores_out_doc.total_value = site.toNumber(stores_out_doc.total_value)
     stores_out_doc.net_value = site.toNumber(stores_out_doc.net_value)
 
+    stores_out_doc.return_paid = {
+      items: stores_out_doc.items,
+      total_discount: stores_out_doc.total_discount,
+      total_tax: stores_out_doc.total_tax,
+      total_value: stores_out_doc.total_value,
+      net_value: stores_out_doc.net_value,
+    }
+
     $stores_out.add(stores_out_doc, (err, doc) => {
       if (!err) {
         response.done = true
@@ -175,6 +221,14 @@ module.exports = function init(site) {
       itm.price = site.toNumber(itm.price)
       itm.total = site.toNumber(itm.total)
     })
+
+    stores_out_doc.return_paid = {
+      items: stores_out_doc.items,
+      total_discount: stores_out_doc.total_discount,
+      total_tax: stores_out_doc.total_tax,
+      total_value: stores_out_doc.total_value,
+      net_value: stores_out_doc.net_value,
+    }
 
     stores_out_doc.total_value = site.toNumber(stores_out_doc.total_value)
 
@@ -524,8 +578,6 @@ module.exports = function init(site) {
 
     where['company.id'] = site.get_company(req).id
 
-    where['items.unit'] = null || undefined
-
     $stores_out.findMany({
       select: req.body.select || {},
       where: where,
@@ -542,17 +594,28 @@ module.exports = function init(site) {
           if (callback.inventory.unit)
             unit = callback.inventory.unit
 
-          if (unit.id)
+          if (unit.id) {
+
             docs.forEach(_doc => {
               _doc.items.forEach(_item => {
-                _item.unit = {
-                  id: unit.id,
-                  name: unit.name,
-                  convert: 1
-                }
+                if (_item.unit == null || undefined)
+                  _item.unit = {
+                    id: unit.id,
+                    name: unit.name,
+                    convert: 1
+                  }
               });
+
+              _doc.return_paid = {
+                items: _doc.items,
+                total_discount: _doc.total_discount,
+                total_tax: _doc.total_tax,
+                total_value: _doc.total_value,
+                net_value: _doc.net_value,
+              }
               $stores_out.update(_doc)
             });
+          }
         })
 
       } else {

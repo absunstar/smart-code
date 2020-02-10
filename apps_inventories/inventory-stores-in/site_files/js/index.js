@@ -302,13 +302,13 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
   $scope.deleteRow = function (itm) {
     $scope.error = '';
     $scope.store_in.items.splice($scope.store_in.items.indexOf(itm), 1);
+    $scope.calcSize(itm);
 
   };
 
   $scope.deleteitem = function (itm) {
     $scope.error = '';
     $scope.item.sizes.splice($scope.item.sizes.indexOf(itm), 1);
-
   };
   $scope.newStoreIn = function () {
     $scope.error = '';
@@ -1197,19 +1197,20 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
 
   $scope.selectReturnedStoreOut = function (i) {
 
-    if ($scope.store_in) {
+    if ($scope.store_in && i.return_paid) {
 
       $scope.store_in.retured_number = i.number;
-      $scope.store_in.items = i.items;
-      $scope.store_in.discountes = i.discountes;
-      $scope.store_in.taxes = i.taxes;
-      $scope.store_in.total_discount = i.total_discount;
-      $scope.store_in.total_tax = i.total_tax;
-      $scope.store_in.total_value = i.total_value;
-      $scope.store_in.net_value = i.net_value;
-      $scope.store_in.paid_up = i.paid_up;
+      $scope.store_in.total_discount = i.return_paid.total_discount;
+      $scope.store_in.total_tax = i.return_paid.total_tax;
+      $scope.store_in.total_value = i.return_paid.total_value;
+      $scope.store_in.net_value = i.return_paid.net_value;
+      $scope.store_in.paid_up = i.return_paid.paid_up;
 
-      $scope.store_in.items.map(i => i.r_count = i.count);
+      $scope.store_in.items = [];
+      i.return_paid.items.forEach(_item => {
+        _item.r_count = _item.count;
+        if (_item.count > 0) $scope.store_in.items.push(_item);
+      });
 
       if ($scope.store_in.currency)
         $scope.amount_currency = site.toNumber($scope.store_in.net_value) / site.toNumber($scope.store_in.currency.ex_rate);

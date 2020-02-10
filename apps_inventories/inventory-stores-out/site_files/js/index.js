@@ -92,13 +92,12 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
       type: 'number'
     };
 
-
   };
 
   $scope.deleteRow = function (itm) {
     $scope.error = '';
     $scope.store_out.items.splice($scope.store_out.items.indexOf(itm), 1);
-
+    $scope.calcSize(itm);
   };
 
   $scope.deleteitem = function (itm) {
@@ -321,6 +320,13 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
 
   $scope.delete = function (store_out) {
     $scope.error = '';
+
+    if (!store_out.posting) {
+      if (store_out.net_value != store_out.return_paid.net_value)
+        $scope.error = '##word.err_unpost_return##';
+      return;
+    };
+
     $scope.busy = true;
     $http({
       method: "POST",
@@ -1407,6 +1413,12 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
 
   $scope.posting = function (store_out) {
     $scope.error = '';
+
+    if (!store_out.posting) {
+      if (store_out.net_value != store_out.return_paid.net_value)
+        $scope.error = '##word.err_unpost_return##';
+      return;
+    };
 
     $scope.busy = true;
     $http({

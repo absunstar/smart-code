@@ -153,6 +153,10 @@ module.exports = function init(site) {
             site.call('item_transaction + items', Object.assign({}, _itm))
 
           })
+
+          if (doc.type && doc.type.id == 4)
+            site.call('return stores out', doc)
+
         }
 
       } else {
@@ -263,6 +267,14 @@ module.exports = function init(site) {
 
           })
 
+          if (result.doc.type && result.doc.type.id == 4) {
+            if (!result.doc.posting)
+              result.doc.return = true
+
+            site.call('return stores out', result.doc)
+          }
+
+
         } else {
           response.error = err.message
         }
@@ -313,10 +325,13 @@ module.exports = function init(site) {
                 code: stores_in_doc.shift.code,
                 name: stores_in_doc.shift.name
               }
-
               site.call('item_transaction - items', Object.assign({}, _itm))
-
             });
+
+            if (stores_in_doc.type && stores_in_doc.type.id == 4) {
+              result.doc.return = true
+              site.call('return stores out', stores_in_doc)
+            }
 
           }
           res.json(response)
@@ -521,7 +536,6 @@ module.exports = function init(site) {
 
     where['company.id'] = site.get_company(req).id
 
-    where['items.unit'] = null || undefined
 
     $stores_in.findMany({
       select: req.body.select || {},
@@ -538,17 +552,20 @@ module.exports = function init(site) {
           if (callback.inventory.unit)
             unit = callback.inventory.unit
 
-          if (unit.id)
+          if (unit.id) {
+
             docs.forEach(_doc => {
               _doc.items.forEach(_item => {
-                _item.unit = {
-                  id: unit.id,
-                  name: unit.name,
-                  convert: 1
-                }
+                if (_item.unit == null || undefined)
+                  _item.unit = {
+                    id: unit.id,
+                    name: unit.name,
+                    convert: 1
+                  }
               });
               $stores_in.update(_doc)
             });
+          }
         })
 
       } else {

@@ -52,8 +52,7 @@
                             <th>##word.barcode##</th>
                             <th>##word.unit##</th>
                             <th>##word.stores_in_item_count##</th>
-                            <th class="not-print">##word.stores_in_item_cost##</th>
-                            <th class="not-print">##word.stores_in_item_price##</th>
+                            <th class="not-print">##word.items_price##</th>
                             <th>##word.discount##</th>
                             <th>##word.stores_in_item_total##</th>
 
@@ -66,7 +65,6 @@
                             <td class="center">{{itm.unit.name}}</td>
                             <td class="center">{{itm.count}}</td>
                             <td class="not-print center">{{itm.cost}}</td>
-                            <td class="not-print center">{{itm.price}}</td>
                             <td class="center">
                                 {{itm.discount.value}}
                                 <b class="red" ng-show="itm.discount.type =='number'">$</b>
