@@ -488,7 +488,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
     $scope.account_invoices.current_book_list = [];
     $scope.account_invoices.customer = item.customer;
     $scope.account_invoices.tenant = item.tenant;
-
+    $scope.account_invoices.invoice_type = item.type;
     $scope.account_invoices.vendor = item.vendor;
     $scope.account_invoices.delivery_employee = item.delivery_employee;
     $scope.account_invoices.table = item.table;

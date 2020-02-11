@@ -159,19 +159,31 @@ module.exports = function init(site) {
           }
 
           if (doc.source_type.id == 1) {
-            paid_value.operation = 'فاتورة مشتريات'
-            paid_value.transition_type = 'out'
+
+
+            if (doc.invoice_type && doc.invoice_type.id == 4) {
+
+              paid_value.operation = ' مرتجع فاتورة مشتريات'
+              paid_value.transition_type = 'in'
+
+            } else {
+              paid_value.operation = 'فاتورة مشتريات'
+              paid_value.transition_type = 'out'
+            }
+
             site.call('[store_in][account_invoice][invoice]', doc.invoice_id)
 
-          }
+          } else if (doc.source_type.id == 2) {
+            if (doc.invoice_type && doc.invoice_type.id == 6) {
+              paid_value.operation = 'مرتجع فاتورة مبيعات'
+              paid_value.transition_type = 'out'
+            } else {
 
-          else if (doc.source_type.id == 2) {
-            paid_value.operation = 'فاتورة مبيعات'
-            paid_value.transition_type = 'in'
+              paid_value.operation = 'فاتورة مبيعات'
+              paid_value.transition_type = 'in'
+            }
             site.call('[store_out][account_invoice][invoice]', doc.invoice_id)
-          }
-
-          else if (doc.source_type.id == 3) {
+          } else if (doc.source_type.id == 3) {
             paid_value.operation = 'فاتورة شاشة الطلبات'
             paid_value.transition_type = 'in'
             let under_paid = {
@@ -250,26 +262,34 @@ module.exports = function init(site) {
         }
 
         if (account_invoices_doc.source_type.id == 1) {
-          paid_value.operation = 'دفعة فاتورة مشتريات'
-          paid_value.transition_type = 'out'
+
+
+          if (account_invoices_doc.invoice_type && account_invoices_doc.invoice_type.id == 4) {
+            paid_value.operation = 'دفعة مرتجع فاتورة مشتريات'
+            paid_value.transition_type = 'in'
+          } else {
+            paid_value.operation = 'دفعة فاتورة مشتريات'
+            paid_value.transition_type = 'out'
+          }
+
         }
 
         else if (account_invoices_doc.source_type.id == 2) {
-          paid_value.operation = 'دفعة فاتورة مبيعات'
-          paid_value.transition_type = 'in'
-        }
+          if (account_invoices_doc.invoice_type && account_invoices_doc.invoice_type.id == 6) {
+            paid_value.operation = 'دفعة مرتجع فاتورة مبيعات'
+            paid_value.transition_type = 'out'
+          } else {
 
-        else if (account_invoices_doc.source_type.id == 3) {
+            paid_value.operation = 'دفعة فاتورة مبيعات'
+            paid_value.transition_type = 'in'
+          }
+        } else if (account_invoices_doc.source_type.id == 3) {
           paid_value.operation = 'دفعة حساب طلبات'
           paid_value.transition_type = 'in'
-        }
-
-        else if (account_invoices_doc.source_type.id == 4) {
+        } else if (account_invoices_doc.source_type.id == 4) {
           paid_value.operation = 'دفعة طلب خدمة'
           paid_value.transition_type = 'in'
-        }
-
-        else if (account_invoices_doc.source_type.id == 5) {
+        } else if (account_invoices_doc.source_type.id == 5) {
           paid_value.operation = 'دفعة حجز قاعة'
           paid_value.transition_type = 'in'
         }
@@ -345,17 +365,26 @@ module.exports = function init(site) {
         _payment_list.posting = true
 
         if (account_invoices_doc.source_type.id == 1) {
-          console.log("wwwwwwwwwwwwwwwwwwwwwwwwwwwwww");
 
-          obj.operation = 'فاتورة مشتريات'
-          obj.transition_type = 'out'
+          if (account_invoices_doc.invoice_type && account_invoices_doc.invoice_type.id == 4) {
+            obj.operation = 'مرتجع فاتورة مشتريات'
+            obj.transition_type = 'in'
+          } else {
+            obj.operation = 'فاتورة مشتريات'
+            obj.transition_type = 'out'
+          }
+
           site.call('[store_in][account_invoice][invoice]', account_invoices_doc.invoice_id)
 
         } else if (account_invoices_doc.source_type.id == 2) {
-          console.log("ssssssssssssssssss");
+          if (account_invoices_doc.invoice_type && account_invoices_doc.invoice_type.id == 6) {
+            obj.operation = 'مرتجع فاتورة مبيعات'
+            obj.transition_type = 'out'
+          } else {
 
-          obj.operation = 'فاتورة مبيعات'
-          obj.transition_type = 'in'
+            obj.operation = 'فاتورة مبيعات'
+            obj.transition_type = 'in'
+          }
           site.call('[store_out][account_invoice][invoice]', account_invoices_doc.invoice_id)
 
         } else if (account_invoices_doc.source_type.id == 3) {
@@ -376,22 +405,31 @@ module.exports = function init(site) {
         _payment_list.posting = false
 
         if (account_invoices_doc.source_type.id == 1) {
-          obj.transition_type = 'in'
-          obj.operation = 'فك ترحيل فاتورة مشتريات'
+
+          if (account_invoices_doc.invoice_type && account_invoices_doc.invoice_type.id == 4) {
+            obj.transition_type = 'out'
+            obj.operation = 'فك ترحيل مرتجع فاتورة مشتريات'
+          } else {
+            obj.transition_type = 'in'
+            obj.operation = 'فك ترحيل فاتورة مشتريات'
+          }
         }
         else if (account_invoices_doc.source_type.id == 2) {
-          obj.transition_type = 'out'
-          obj.operation = 'فك ترحيل فاتورة مبيعات'
-        }
-        else if (account_invoices_doc.source_type.id == 3) {
+          if (account_invoices_doc.invoice_type && account_invoices_doc.invoice_type.id == 6) {
+            obj.transition_type = 'in'
+            obj.operation = 'فك ترحيل مرتجع فاتورة مبيعات'
+          } else {
+
+            obj.transition_type = 'out'
+            obj.operation = 'فك ترحيل فاتورة مبيعات'
+          }
+        } else if (account_invoices_doc.source_type.id == 3) {
           obj.transition_type = 'out'
           obj.operation = 'فك ترحيل فاتورة شاشة الطلبات'
-        }
-        else if (account_invoices_doc.source_type.id == 4) {
+        } else if (account_invoices_doc.source_type.id == 4) {
           obj.transition_type = 'out'
           obj.operation = 'فك ترحيل فاتورة طلب خدمة'
-        }
-        else if (_payment_list.source_type.id == 5) {
+        } else if (_payment_list.source_type.id == 5) {
           obj.operation = 'فك ترحيل حجز قاعة'
           obj.transition_type = 'out'
         }
@@ -490,23 +528,34 @@ module.exports = function init(site) {
                 }
               }
               if (result.doc.source_type.id == 1) {
-                obj.transition_type = 'in'
-                obj.operation = 'حذف فاتورة مشتريات'
-              }
-              else if (result.doc.source_type.id == 2) {
-                obj.transition_type = 'out'
-                obj.operation = 'حذف فاتورة مبيعات'
-              }
-              else if (result.doc.source_type.id == 3) {
+
+
+                if (result.doc.invoice_type && result.doc.invoice_type.id == 4) {
+
+                  obj.transition_type = 'out'
+                  obj.operation = 'حذف مرتجع فاتورة مشتريات'
+
+                } else {
+                  obj.transition_type = 'in'
+                  obj.operation = 'حذف فاتورة مشتريات'
+                }
+              } else if (result.doc.source_type.id == 2) {
+                if (account_invoices_doc.invoice_type && account_invoices_doc.invoice_type.id == 6) {
+                  obj.transition_type = 'in'
+                  obj.operation = 'حذف مرتجع فاتورة مبيعات'
+                } else {
+
+                  obj.transition_type = 'out'
+                  obj.operation = 'حذف فاتورة مبيعات'
+                }
+              } else if (result.doc.source_type.id == 3) {
                 obj.transition_type = 'out'
                 obj.operation = 'حذف فاتورة شاشة الطلبات'
 
-              }
-              else if (result.doc.source_type.id == 4) {
+              } else if (result.doc.source_type.id == 4) {
                 obj.transition_type = 'out'
                 obj.operation = 'حذف فاتورة طلب خدمة'
-              }
-              else if (response.doc.source_type.id == 5) {
+              } else if (response.doc.source_type.id == 5) {
                 obj.operation = 'حذف حجز قاعة'
                 obj.transition_type = 'out'
               }

@@ -140,7 +140,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         };
 
         if ($scope.defaultSettings.accounting) {
-          if ($scope.defaultSettings.accounting.create_invoice_auto) {
+          if ($scope.defaultSettings.accounting.create_invoice_auto && $scope.store_out.type && $scope.store_out.type.id != 5) {
             $scope.store_out.currency = $scope.defaultSettings.accounting.currency;
             if ($scope.defaultSettings.accounting.payment_method) {
               $scope.store_out.payment_method = $scope.defaultSettings.accounting.payment_method;
@@ -208,7 +208,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
       }
     }
 
-    if ($scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto) {
+    if ($scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto && $scope.store_out.type && $scope.store_out.type.id != 5) {
       if (!$scope.store_out.safe) {
         $scope.error = "##word.nosafe_warning##";
         return;
@@ -233,13 +233,14 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
           $scope.busy = false;
           if (response.data.done) {
             if ($scope.store_out.posting) {
-              if ($scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto) {
+              if ($scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto && $scope.store_out.type && $scope.store_out.type.id != 5) {
 
                 let account_invoices = {
                   image_url: '/images/account_invoices.png',
                   date: response.data.doc.date,
                   invoice_id: response.data.doc.id,
                   customer: response.data.doc.customer,
+                  invoice_type: response.data.doc.type,
                   currency: response.data.doc.currency,
                   shift: response.data.doc.shift,
                   net_value: response.data.doc.net_value,
@@ -321,11 +322,11 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
   $scope.delete = function (store_out) {
     $scope.error = '';
 
-    if (!store_out.posting) {
-      if (store_out.net_value != store_out.return_paid.net_value)
-        $scope.error = '##word.err_unpost_return##';
+    if (store_out.net_value != store_out.return_paid.net_value) {
+      $scope.error = '##word.err_delete_return##';
       return;
     };
+
 
     $scope.busy = true;
     $http({
@@ -990,6 +991,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
           image_url: '/images/account_invoices.png',
           date: new Date(),
           invoice_id: store_out.id,
+          invoice_type: store_out.type,
           customer: store_out.customer,
           shift: shift,
           net_value: store_out.net_value,
@@ -1425,9 +1427,10 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
     $scope.error = '';
 
     if (!store_out.posting) {
-      if (store_out.net_value != store_out.return_paid.net_value)
+      if (store_out.net_value != store_out.return_paid.net_value) {
         $scope.error = '##word.err_unpost_return##';
-      return;
+        return;
+      }
     };
 
     $scope.busy = true;
@@ -1440,12 +1443,13 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           if (store_out.posting) {
-            if ($scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto) {
+            if ($scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto && store_out.type && store_out.type.id != 5) {
 
               let account_invoices = {
                 image_url: '/images/account_invoices.png',
                 date: store_out.date,
                 invoice_id: store_out.id,
+                invoice_type: store_out.type,
                 vendor: store_out.vendor,
                 shift: store_out.shift,
                 net_value: store_out.net_value,
@@ -1498,6 +1502,61 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
       }
     )
   };
+
+  $scope.showReturnedStoreOut = function (ev) {
+    $scope.error = '';
+    $scope.list = {};
+    if (ev.which === 13) {
+      $scope.busy = true;
+      $http({
+        method: "POST",
+        url: "/api/stores_out/all",
+        data: {
+          search: $scope.storesOutSearch,
+          where: {
+            'posting': true,
+            $or: [{ 'type.id': { $ne: 5 } }, { 'type.id': { $ne: 6 } }]
+          }
+        }
+      }).then(
+        function (response) {
+          $scope.busy = false;
+          if (response.data.done && response.data.list.length > 0) {
+            $scope.storesOutlist = response.data.list;
+          }
+        },
+        function (err) {
+          $scope.busy = false;
+          $scope.error = err;
+        }
+      )
+    }
+  };
+
+  $scope.selectReturnedStoreOut = function (i) {
+
+    if ($scope.store_out && i.return_paid) {
+
+      $scope.store_out.retured_number = i.number;
+      $scope.store_out.total_discount = i.return_paid.total_discount;
+      $scope.store_out.total_tax = i.return_paid.total_tax;
+      $scope.store_out.total_value = i.return_paid.total_value;
+      $scope.store_out.net_value = i.return_paid.net_value;
+
+      $scope.store_out.items = [];
+      i.return_paid.items.forEach(_item => {
+        _item.r_count = _item.count;
+        if (_item.count > 0) $scope.store_out.items.push(_item);
+      });
+
+      if ($scope.store_out.currency)
+        $scope.amount_currency = site.toNumber($scope.store_out.net_value) / site.toNumber($scope.store_out.currency.ex_rate);
+
+      site.hideModal('#returnedViewModal');
+    };
+
+  };
+
 
 
   $scope.get_open_shift = function (callback) {

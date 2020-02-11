@@ -13,15 +13,15 @@
 
                 <div class="row">
                     <div class="row">
-                        <i-control ng-keydown="showReturnedStoreIn($event)" id="item_name" class="col3"
-                            ng-model="storesInSearch" label="##word.search##" type="text"></i-control>
+                        <i-control ng-keydown="showReturnedStoreOut($event)" id="item_name" class="col3"
+                            ng-model="storesOutSearch" label="##word.search##" type="text"></i-control>
                     </div>
                 </div>
 
                 <br>
                 <br>
                 <br>
-                <div class="row" ng-show="storesInlist.length > 0">
+                <div class="row" ng-show="storesOutlist.length > 0">
                     <table class="table pointer hover">
                         <tr>
                             <th>##word.stores_in_date##</th>
@@ -30,20 +30,20 @@
                             <th>##word.net_value##</th>
                         </tr>
 
-                        <tr class="bold" ng-repeat="i in storesInlist">
-                            <td ng-click="selectReturnedStoreIn(i)">
+                        <tr class="bold" ng-repeat="i in storesOutlist">
+                            <td ng-click="selectReturnedStoreOut(i)">
                                 <p class="center bold brown">{{i.date | date : 'yyyy - MM - dd'}}</p>
                             </td>
 
-                            <td ng-click="selectReturnedStoreIn(i)">
+                            <td ng-click="selectReturnedStoreOut(i)">
                                 <p class="center blue bold">{{i.number}}</p>
                             </td>
 
-                            <td ng-click="selectReturnedStoreIn(i)">
+                            <td ng-click="selectReturnedStoreOut(i)">
                                 <p class="center bold">{{i.store.name}}</p>
                             </td>
 
-                            <td ng-click="selectReturnedStoreIn(i)">
+                            <td ng-click="selectReturnedStoreOut(i)">
                                 <p class="center green bold">{{i.net_value}}</p>
                             </td>
                         </tr>

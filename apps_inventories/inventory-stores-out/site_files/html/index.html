@@ -37,7 +37,7 @@
                     x-import="inventory-stores-out/update_modal.html"></div>
                 <div x-permissions="stores_out_add || stores_out_manage"
                     x-import="inventory-stores-out/select_items_modal.html"></div>
-
+                <div x-import="inventory-stores-out/returned.html"></div>
                 <div class="row">
                     <h1 class="bold text-center"> ##word.stores_out## </h1>
                 </div>
@@ -98,7 +98,7 @@
                                 label="##word.details##" ng-click="details(c)"></i-button>
 
                             <i-button
-                                ng-show="c.posting && !c.invoice && !defaultSettings.accounting.create_invoice_auto && c.type.id != 4"
+                                ng-show="c.posting && !c.invoice && !defaultSettings.accounting.create_invoice_auto && (c.type.id != 4 || c.type.id != 5)"
                                 type="save" label="##word.create_an_invoice##" ng-click="displayAccountInvoice(c)">
                             </i-button>
 
@@ -109,7 +109,6 @@
                             <i-button x-permissions="stores_out_post || stores_out_manage" label="##word.unposting##"
                                 ng-show="defaultSettings.general_Settings.work_unposting && c.posting"
                                 ng-click="c.posting = false ; posting(c)"></i-button>
-
 
                             <i-button x-permissions="stores_out_update || stores_out_manage" type="update"
                                 ng-show="!c.posting" label="##word.edit##" ng-click="edit(c)"></i-button>

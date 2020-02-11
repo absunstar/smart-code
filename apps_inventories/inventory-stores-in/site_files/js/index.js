@@ -18,6 +18,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
           date: new Date(),
           invoice_id: store_in.id,
           vendor: store_in.vendor,
+          invoice_type: store_in.type,
           shift: shift,
           net_value: store_in.net_value,
           paid_up: 0,
@@ -35,9 +36,11 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
 
         if ($scope.defaultSettings.accounting) {
           $scope.account_invoices.currency = $scope.defaultSettings.accounting.currency;
+
           if ($scope.defaultSettings.accounting.payment_method) {
             $scope.account_invoices.payment_method = $scope.defaultSettings.accounting.payment_method;
             $scope.loadSafes($scope.account_invoices.payment_method, $scope.account_invoices.currency);
+
             if ($scope.account_invoices.payment_method.id == 1)
               $scope.account_invoices.safe = $scope.defaultSettings.accounting.safe_box;
             else $scope.account_invoices.safe = $scope.defaultSettings.accounting.safe_bank;
@@ -45,7 +48,9 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
         }
         if ($scope.account_invoices.currency)
           $scope.amount_currency = site.toNumber($scope.account_invoices.net_value) / site.toNumber($scope.account_invoices.currency.ex_rate);
+
         $scope.calc($scope.account_invoices);
+
         site.showModal('#accountInvoiceModal');
       } else $scope.error = '##word.open_shift_not_found##';
     });
@@ -459,6 +464,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
                   image_url: '/images/account_invoices.png',
                   date: response.data.doc.date,
                   invoice_id: response.data.doc.id,
+                  invoice_type: response.data.doc.type,
                   vendor: response.data.doc.vendor,
                   shift: response.data.doc.shift,
                   net_value: response.data.doc.net_value,
@@ -540,6 +546,11 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
 
   $scope.delete = function (store_in) {
     $scope.error = '';
+
+    if (store_in.net_value != store_in.return_paid.net_value) {
+      $scope.error = '##word.err_delete_return##';
+      return;
+    };
     $scope.busy = true;
     $http({
       method: "POST",
@@ -906,9 +917,11 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
     $scope.error = '';
 
     if (!store_in.posting) {
-      if (store_in.net_value != store_in.return_paid.net_value)
+      if (store_in.net_value != store_in.return_paid.net_value) {
+
         $scope.error = '##word.err_unpost_return##';
-      return;
+        return;
+      }
     };
 
     $scope.busy = true;
@@ -927,6 +940,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
                 image_url: '/images/account_invoices.png',
                 date: store_in.date,
                 invoice_id: store_in.id,
+                invoice_type: store_in.type,
                 vendor: store_in.vendor,
                 shift: store_in.shift,
                 net_value: store_in.net_value,
@@ -1188,7 +1202,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
     site.hideModal('#StoresInSearchModal');
   };
 
-  $scope.showReturnedStoreOut = function (ev) {
+  $scope.showReturnedStoreIn = function (ev) {
     $scope.error = '';
     $scope.list = {};
     if (ev.which === 13) {
@@ -1197,14 +1211,14 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
         method: "POST",
         url: "/api/stores_in/all",
         data: {
-          search: $scope.storesOutSearch,
+          search: $scope.storesInSearch,
           where: { 'posting': true, 'type.id': 1 }
         }
       }).then(
         function (response) {
           $scope.busy = false;
           if (response.data.done && response.data.list.length > 0) {
-            $scope.storesOutlist = response.data.list;
+            $scope.storesInlist = response.data.list;
           }
         },
         function (err) {
@@ -1215,7 +1229,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
     }
   };
 
-  $scope.selectReturnedStoreOut = function (i) {
+  $scope.selectReturnedStoreIn = function (i) {
 
     if ($scope.store_in && i.return_paid) {
 

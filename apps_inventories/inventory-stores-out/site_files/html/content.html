@@ -36,7 +36,13 @@
 
             </div>
 
-            <div class="row">
+            <div class="row" ng-show="store_out.type.id == 6">
+                <i-button type="view" label="##word.stores_outs##" onclick="site.showModal('#returnedViewModal')">
+                </i-button>
+            </div>
+
+
+            <div class="row" ng-hide="store_out.type.id == 6">
                 <i-control id="search_barcode" class="col4" ng-keydown="getBarcode($event)" class="col3"
                     ng-model="search_barcode" label="##word.search##" type="text"></i-control>
                 <div class="col1"></div>
@@ -48,6 +54,9 @@
 
             </div>
             <br>
+            <br>
+            <h2 ng-show="stores_out.retured_number" class="blue bold center">##word.stores_out## :
+                {{stores_out.retured_number}}</h2>
             <br>
             <div class="row margin padding">
                 <fieldset>
@@ -202,15 +211,15 @@
 
             <div class="row">
                 <i-control class="col2" ng-model="store_out.total_discount" type="number" disabled
-                    label="##word.stores_out_total_discount##"></i-control>
+                    ng-disabled="store_out.type.id !== 4" label="##word.stores_out_total_discount##"></i-control>
                 <i-control class="col2" ng-model="store_out.total_tax" type="number" disabled
-                    label="##word.stores_out_total_tax##"></i-control>
+                    ng-disabled="store_out.type.id !== 4" label="##word.stores_out_total_tax##"></i-control>
                 <i-control class="col2" ng-model="store_out.total_value" type="number" disabled
                     label="##word.stores_out_total_value##"></i-control>
 
             </div>
 
-            <div class="row" ng-show="defaultSettings.accounting.create_invoice_auto">
+            <div class="row" ng-show="store_out.type.id != 5 && defaultSettings.accounting.create_invoice_auto">
 
                 <i-list help-id="" ng-search="_search.$payment_method_search" class="col2"
                     label="##word.payment_method##" ng-model="store_out.payment_method"
@@ -236,10 +245,12 @@
                 <i-control class="col2" ng-model="store_out.net_value" type="number" disabled
                     label="##word.stores_out_net_value##"></i-control>
 
-                <i-control class="col3" ng-show="defaultSettings.accounting.create_invoice_auto" disabled
+                <i-control class="col3"
+                    ng-show="store_out.type.id != 5 && defaultSettings.accounting.create_invoice_auto" disabled
                     ng-model="amount_currency" label="##word.amount_currency##" type="number"></i-control>
 
-                <i-control class="col2" ng-show="defaultSettings.accounting.create_invoice_auto"
+                <i-control class="col2"
+                    ng-show="store_out.type.id != 5 && defaultSettings.accounting.create_invoice_auto"
                     ng-model="store_out.paid_up" label="##word.paid_up##" type="number">
                 </i-control>
             </div>

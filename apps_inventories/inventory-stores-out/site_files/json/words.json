@@ -335,6 +335,11 @@
         "ar": " لا يمكن فك الترحيل لوجود مرتجع من نفس الفاتورة"
     },
     {
+        "name": "err_delete_return",
+        "en": "Cant Delete To Exist Return Of This Invoice",
+        "ar": " لا يمكن الحذف لوجود مرتجع من نفس الفاتورة"
+    },
+    {
         "name": "stores_out_net_value",
         "en": "Net Value",
         "ar": "القيمة المطلوبة"

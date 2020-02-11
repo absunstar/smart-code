@@ -371,8 +371,8 @@ module.exports = function init(site) {
             }
 
           }
-          res.json(response)
         }
+        res.json(response)
       })
     } else res.json(response)
   })
