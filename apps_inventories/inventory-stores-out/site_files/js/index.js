@@ -82,11 +82,18 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         else obj.total_discount += site.toNumber(ds.value);
       });
 
+    obj.total_discount = site.toNumber(obj.total_discount);
+    obj.total_tax = site.toNumber(obj.total_tax);
+    obj.total_value = site.toNumber(obj.total_value);
+
     if (obj.total_value > 0)
       obj.net_value = obj.total_value + obj.total_tax - obj.total_discount;
 
+    obj.net_value = site.toNumber(obj.net_value);
+
     if (obj.currency)
       $scope.amount_currency = site.toNumber(obj.net_value) / site.toNumber(obj.currency.ex_rate);
+    $scope.amount_currency = site.toNumber($scope.amount_currency);
 
     $scope.discount = {
       type: 'number'

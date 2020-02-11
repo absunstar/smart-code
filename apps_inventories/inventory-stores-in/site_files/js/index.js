@@ -307,9 +307,10 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
     $scope.discount = {
       type: 'number'
     };
-
+    obj.net_value = site.toNumber(obj.net_value);
     if (obj.currency)
-      $scope.amount_currency = site.toNumber(obj.net_value) / site.toNumber(obj.currency.ex_rate);
+      $scope.amount_currency = obj.net_value / site.toNumber(obj.currency.ex_rate);
+    $scope.amount_currency = site.toNumber($scope.amount_currency);
   };
 
   $scope.deleteRow = function (itm) {
