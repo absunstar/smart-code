@@ -112,100 +112,103 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
       port = $scope.defaultSettings.printer_program.port || '11111';
     };
 
-    $scope.account_invoices.total_remain = $scope.account_invoices.net_value - ($scope.account_invoices.paid_up * $scope.account_invoices.currency.ex_rate);
+    if ($scope.account_invoices) {
 
-    let obj_print = { data: [] };
+      $scope.account_invoices.total_remain = $scope.account_invoices.net_value - ($scope.account_invoices.paid_up * $scope.account_invoices.currency.ex_rate);
 
-    if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.printer_path)
-      obj_print.printer = $scope.defaultSettings.printer_program.printer_path.ip.trim();
+      let obj_print = { data: [] };
 
-    if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.invoice_header)
-      obj_print.data.push({
-        type: 'header',
-        value: $scope.defaultSettings.printer_program.invoice_header
-      });
+      if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.printer_path)
+        obj_print.printer = $scope.defaultSettings.printer_program.printer_path.ip.trim();
 
-    obj_print.data.push(
-      {
-        type: 'title',
-        value: 'Purchase Invoice'
-      },
-      {
-        type: 'space'
-      },
-      {
-        type: 'text2',
-        value2: site.toDateXF($scope.account_invoices.date),
-        value: 'Date'
-      });
-
-
-    if ($scope.account_invoices.vendor)
-      obj_print.data.push({
-        type: 'text2',
-        value2: $scope.account_invoices.vendor.name_ar,
-        value: 'Vendor'
-      });
-
-    obj_print.data.push({
-      type: 'line'
-    });
-
-    if ($scope.account_invoices.total_discount)
-      obj_print.data.push({
-        type: 'text2',
-        value2: $scope.account_invoices.total_discount,
-        value: 'Total Discount'
-      });
-
-    if ($scope.account_invoices.total_tax)
-      obj_print.data.push({
-        type: 'text2',
-        value2: $scope.account_invoices.total_tax,
-        value: 'Total Tax'
-      });
-
-    obj_print.data.push({ type: 'space' });
-
-    if ($scope.account_invoices.net_value)
-      obj_print.data.push(
-        {
-          type: 'text2',
-          value2: $scope.account_invoices.net_value,
-          value: "Total Value"
+      if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.invoice_header)
+        obj_print.data.push({
+          type: 'header',
+          value: $scope.defaultSettings.printer_program.invoice_header
         });
 
-    if ($scope.account_invoices.paid_up)
       obj_print.data.push(
         {
-          type: 'text2',
-          value2: $scope.account_invoices.paid_up,
-          value: "Paid Up"
-        });
-
-    if ($scope.account_invoices.currency)
-      obj_print.data.push(
+          type: 'title',
+          value: 'Purchase Invoice'
+        },
+        {
+          type: 'space'
+        },
         {
           type: 'text2',
-          value2: $scope.account_invoices.currency,
-          value: "Currency"
+          value2: site.toDateXF($scope.account_invoices.date),
+          value: 'Date'
         });
 
 
-    obj_print.data.push({ type: 'space' });
+      if ($scope.account_invoices.vendor)
+        obj_print.data.push({
+          type: 'text2',
+          value2: $scope.account_invoices.vendor.name_ar,
+          value: 'Vendor'
+        });
 
-    if ($scope.account_invoices.total_remain)
       obj_print.data.push({
-        type: 'text2b',
-        value2: $scope.account_invoices.total_remain,
-        value: "Required to pay"
+        type: 'line'
       });
 
-    if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.invoice_footer)
-      obj_print.data.push({
-        type: 'footer',
-        value: $scope.defaultSettings.printer_program.invoice_footer
-      });
+      if ($scope.account_invoices.total_discount)
+        obj_print.data.push({
+          type: 'text2',
+          value2: $scope.account_invoices.total_discount,
+          value: 'Total Discount'
+        });
+
+      if ($scope.account_invoices.total_tax)
+        obj_print.data.push({
+          type: 'text2',
+          value2: $scope.account_invoices.total_tax,
+          value: 'Total Tax'
+        });
+
+      obj_print.data.push({ type: 'space' });
+
+      if ($scope.account_invoices.net_value)
+        obj_print.data.push(
+          {
+            type: 'text2',
+            value2: $scope.account_invoices.net_value,
+            value: "Total Value"
+          });
+
+      if ($scope.account_invoices.paid_up)
+        obj_print.data.push(
+          {
+            type: 'text2',
+            value2: $scope.account_invoices.paid_up,
+            value: "Paid Up"
+          });
+
+      if ($scope.account_invoices.currency)
+        obj_print.data.push(
+          {
+            type: 'text2',
+            value2: $scope.account_invoices.currency,
+            value: "Currency"
+          });
+
+
+      obj_print.data.push({ type: 'space' });
+
+      if ($scope.account_invoices.total_remain)
+        obj_print.data.push({
+          type: 'text2b',
+          value2: $scope.account_invoices.total_remain,
+          value: "Required to pay"
+        });
+
+      if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.invoice_footer)
+        obj_print.data.push({
+          type: 'footer',
+          value: $scope.defaultSettings.printer_program.invoice_footer
+        });
+    };
 
     $http({
       method: "POST",
@@ -934,7 +937,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           if (store_in.posting) {
-            if (store_in.type.id == 1 && store_in.type.id == 4 && $scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto) {
+            if ((store_in.type.id == 1 || store_in.type.id == 4) && $scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto) {
 
               let account_invoices = {
                 image_url: '/images/account_invoices.png',

@@ -1076,102 +1076,104 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
       port = $scope.defaultSettings.printer_program.port || '11111';
     };
 
-    if ($scope.account_invoices)
+    if ($scope.account_invoices) {
+
       $scope.account_invoices.total_remain = $scope.account_invoices.net_value - ($scope.account_invoices.paid_up * $scope.account_invoices.currency.ex_rate);
 
-    let obj_print = { data: [] };
+      let obj_print = { data: [] };
 
-    if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.printer_path)
-      obj_print.printer = $scope.defaultSettings.printer_program.printer_path.ip.trim();
+      if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.printer_path)
+        obj_print.printer = $scope.defaultSettings.printer_program.printer_path.ip.trim();
 
-    if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.invoice_header)
-      obj_print.data.push({
-        type: 'header',
-        value: $scope.defaultSettings.printer_program.invoice_header
-      });
-
-
-    obj_print.data.push(
-      {
-        type: 'title',
-        value: 'Sales Invoice'
-      },
-      {
-        type: 'space'
-      });
-
-    if ($scope.account_invoices.date)
-      obj_print.data.push({
-        type: 'text2',
-        value2: site.toDateXF($scope.account_invoices.date),
-        value: 'Date'
-      });
-
-    if ($scope.account_invoices.customer)
-      obj_print.data.push({
-        type: 'text2',
-        value2: $scope.account_invoices.customer.name_ar,
-        value: 'Cutomer'
-      });
-
-    obj_print.data.push({
-      type: 'line'
-    });
-
-    if ($scope.account_invoices.total_discount)
-      obj_print.data.push({
-        type: 'text2',
-        value2: $scope.account_invoices.total_discount,
-        value: 'Total Discount'
-      });
-
-    if ($scope.account_invoices.total_Tax)
-      obj_print.data.push({
-        type: 'text2',
-        value2: $scope.account_invoices.total_Tax,
-        value: 'Total Tax'
-      });
-
-    obj_print.data.push({ type: 'space' });
-
-    if ($scope.account_invoices.net_value)
-      obj_print.data.push(
-        {
-          type: 'text2',
-          value2: $scope.account_invoices.net_value,
-          value: "Total Value"
+      if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.invoice_header)
+        obj_print.data.push({
+          type: 'header',
+          value: $scope.defaultSettings.printer_program.invoice_header
         });
 
-    if ($scope.account_invoices.paid_up)
+
       obj_print.data.push(
         {
-          type: 'text2',
-          value2: $scope.account_invoices.paid_up,
-          value: "Paid Up"
-        });
-
-    if ($scope.account_invoices.currency)
-      obj_print.data.push(
+          type: 'title',
+          value: 'Sales Invoice'
+        },
         {
-          type: 'text2',
-          value2: $scope.account_invoices.currency,
-          value: "Currency"
+          type: 'space'
         });
 
-    obj_print.data.push({ type: 'space' });
+      if ($scope.account_invoices.date)
+        obj_print.data.push({
+          type: 'text2',
+          value2: site.toDateXF($scope.account_invoices.date),
+          value: 'Date'
+        });
 
-    if ($scope.account_invoices.total_remain)
+      if ($scope.account_invoices.customer)
+        obj_print.data.push({
+          type: 'text2',
+          value2: $scope.account_invoices.customer.name_ar,
+          value: 'Cutomer'
+        });
+
       obj_print.data.push({
-        type: 'text2b',
-        value2: $scope.account_invoices.total_remain,
-        value: "Required to pay"
+        type: 'line'
       });
 
-    if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.invoice_footer)
-      obj_print.data.push({
-        type: 'footer',
-        value: $scope.defaultSettings.printer_program.invoice_footer
-      });
+      if ($scope.account_invoices.total_discount)
+        obj_print.data.push({
+          type: 'text2',
+          value2: $scope.account_invoices.total_discount,
+          value: 'Total Discount'
+        });
+
+      if ($scope.account_invoices.total_Tax)
+        obj_print.data.push({
+          type: 'text2',
+          value2: $scope.account_invoices.total_Tax,
+          value: 'Total Tax'
+        });
+
+      obj_print.data.push({ type: 'space' });
+
+      if ($scope.account_invoices.net_value)
+        obj_print.data.push(
+          {
+            type: 'text2',
+            value2: $scope.account_invoices.net_value,
+            value: "Total Value"
+          });
+
+      if ($scope.account_invoices.paid_up)
+        obj_print.data.push(
+          {
+            type: 'text2',
+            value2: $scope.account_invoices.paid_up,
+            value: "Paid Up"
+          });
+
+      if ($scope.account_invoices.currency)
+        obj_print.data.push(
+          {
+            type: 'text2',
+            value2: $scope.account_invoices.currency,
+            value: "Currency"
+          });
+
+      obj_print.data.push({ type: 'space' });
+
+      if ($scope.account_invoices.total_remain)
+        obj_print.data.push({
+          type: 'text2b',
+          value2: $scope.account_invoices.total_remain,
+          value: "Required to pay"
+        });
+
+      if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.invoice_footer)
+        obj_print.data.push({
+          type: 'footer',
+          value: $scope.defaultSettings.printer_program.invoice_footer
+        });
+    };
 
     $http({
       method: "POST",
