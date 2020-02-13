@@ -1063,6 +1063,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response) {
           site.hideModal('#accountInvoiceModal');
+          $scope.account_invoices = account_invoices;
           $scope.printAccountInvoive();
           $scope.loadAll();
         } else $scope.error = response.data.error;
@@ -1182,21 +1183,22 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
           type: 'footer',
           value: $scope.defaultSettings.printer_program.invoice_footer
         });
+
+      $http({
+        method: "POST",
+        url: `http://${ip}:${port}/print`,
+        data: obj_print
+      }).then(
+        function (response) {
+          if (response)
+            $scope.busy = false;
+        },
+        function (err) {
+          console.log(err);
+        }
+      );
     };
 
-    $http({
-      method: "POST",
-      url: `http://${ip}:${port}/print`,
-      data: obj_print
-    }).then(
-      function (response) {
-        if (response)
-          $scope.busy = false;
-      },
-      function (err) {
-        console.log(err);
-      }
-    );
   };
 
   $scope.getCustomerGroupList = function () {
@@ -1438,8 +1440,9 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
     $scope.error = '';
 
     if (!store_out.posting && store_out.return_paid && store_out.net_value != store_out.return_paid.net_value) {
-        $scope.error = '##word.err_unpost_return##';
-        return;
+      store_out.posting = true;
+      $scope.error = '##word.err_unpost_return##';
+      return;
     };
 
     $scope.busy = true;

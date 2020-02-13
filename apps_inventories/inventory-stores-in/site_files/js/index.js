@@ -89,6 +89,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response) {
+          $scope.account_invoices = account_invoices;
           site.hideModal('#accountInvoiceModal');
           $scope.printAccountInvoive();
           $scope.loadAll();
@@ -208,21 +209,21 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
           type: 'footer',
           value: $scope.defaultSettings.printer_program.invoice_footer
         });
-    };
 
-    $http({
-      method: "POST",
-      url: `http://${ip}:${port}/print`,
-      data: obj_print
-    }).then(
-      function (response) {
-        if (response)
-          $scope.busy = false;
-      },
-      function (err) {
-        console.log(err);
-      }
-    );
+      $http({
+        method: "POST",
+        url: `http://${ip}:${port}/print`,
+        data: obj_print
+      }).then(
+        function (response) {
+          if (response)
+            $scope.busy = false;
+        },
+        function (err) {
+          console.log(err);
+        }
+      );
+    };
   };
 
   $scope.addTax = function () {
@@ -934,7 +935,9 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
     $scope.error = '';
 
     if (!store_in.posting && store_in.return_paid && store_in.net_value != store_in.return_paid.net_value) {
+      store_in.posting = true;
       $scope.error = '##word.err_unpost_return##';
+
       return;
     };
 

@@ -658,6 +658,10 @@ module.exports = function init(site) {
         doc.return_paid.total_value = doc.return_paid.total_value - obj.total_value
         doc.return_paid.net_value = doc.return_paid.net_value - obj.net_value
       }
+      doc.return_paid.total_discount = site.toNumber(doc.return_paid.total_discount)
+      doc.return_paid.total_tax = site.toNumber(doc.return_paid.total_tax)
+      doc.return_paid.total_value = site.toNumber(doc.return_paid.total_value)
+      doc.return_paid.net_value = site.toNumber(doc.return_paid.net_value)
 
       $stores_in.update(doc);
     });

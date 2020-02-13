@@ -25,7 +25,7 @@
                         label="##word.search_all##" onclick="site.showModal('#itemTransactionSearchModal')"></i-button>
 
                     <i-button class="left" ng-click="handeItemTransactions()" x-permissions="item_transaction_handle"
-                    label="##word.handle##">
+                        label="##word.handle##">
                     </i-button>
 
                     <h3 class="bold center"> ##word.item_transaction_count## : {{count}}</h3>
@@ -42,13 +42,13 @@
                             <th>##word.item_transaction_size##</th>
                             <th>##word.barcode##</th>
                             <th>##word.unit##</th>
-                            <th>##word.discount##</th>
                             <th>##word.item_transaction_in##</th>
                             <th>##word.item_transaction_out##</th>
                             <th>##word.balance##</th>
                             <th>##word.item_transaction_previous_count##</th>
                             <th>##word.item_transaction_price##</th>
                             <th>##word.item_transaction_last_price##</th>
+                            <th>##word.discount##</th>
                             <th>##word.item_transaction_status##</th>
 
                         </tr>
@@ -84,12 +84,7 @@
                                 <br>
                                 <p class="bold blue center"> {{c.unit.barcode}} </p>
                             </td>
-                            <td>
-                                <br>
-                                <b class="bold center"> {{c.discount.value}} </b>
-                                <b class="red" ng-show="c.discount.type =='number'">$</b>
-                                <b class="red" ng-show="c.discount.type =='percent'">%</b>
-                            </td>
+
                             <td class="bold">
                                 <br>
                                 <p class="green center" ng-show="c.transaction_type == 'in'"> {{c.count}} </p>
@@ -105,7 +100,12 @@
                             <td class="red center"><br>{{c.last_count}}</td>
                             <td class="blue bold center"><br>{{c.price}}</td>
                             <td class="red center"><br>{{c.last_price}}</td>
-
+                            <td>
+                                <br>
+                                <b class="bold center"> {{c.discount.value}} </b>
+                                <b class="red" ng-show="c.discount.type =='number'">$</b>
+                                <b class="red" ng-show="c.discount.type =='percent'">%</b>
+                            </td>
                             <td class="red center">
                                 <p class="center red bold" ng-show="c.current_status == 'debt'">
                                     ##word.item_transaction_current_status_1##
