@@ -307,7 +307,6 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
       let foundBarcodeUnit = false;
       let notBarcodeUnit = false;
 
-
       $scope.category_item.sizes.forEach(_size => {
         _size.size_units_list.forEach(_unit => {
           if (_unit.barcode == (undefined || null)) notBarcodeUnit = true;

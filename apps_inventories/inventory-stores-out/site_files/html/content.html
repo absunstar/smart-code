@@ -210,10 +210,15 @@
             </div>
 
             <div class="row">
-                <i-control class="col2" ng-model="store_out.total_discount" type="number" disabled
-                    ng-disabled="store_out.type.id !== 4" label="##word.stores_out_total_discount##"></i-control>
-                <i-control class="col2" ng-model="store_out.total_tax" type="number" disabled
-                    ng-disabled="store_out.type.id !== 4" label="##word.stores_out_total_tax##"></i-control>
+
+                <i-control class="col2" ng-model="store_out.total_discount" type="number"
+                    ng-disabled="store_out.type.id !== 6" ng-change="calcReturn(store_out)"
+                    label="##word.stores_out_total_discount##"></i-control>
+
+                <i-control class="col2" ng-model="store_out.total_tax" type="number"
+                    ng-disabled="store_out.type.id !== 6" ng-change="calcReturn(store_out)"
+                    label="##word.stores_out_total_tax##"></i-control>
+
                 <i-control class="col2" ng-model="store_out.total_value" type="number" disabled
                     label="##word.stores_out_total_value##"></i-control>
 
