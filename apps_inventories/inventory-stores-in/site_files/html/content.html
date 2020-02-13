@@ -77,11 +77,13 @@
                             <td> <br> {{itm.name}}</td>
                             <td> <br> {{itm.barcode}}</td>
                             <td> <br> {{itm.size}}</td>
+
                             <td>
-                                <i-list ng-model="itm.unit" ng-search="_search.$category_item.$unit_search"
+                                <i-list ng-disabled="store_in.type.id == 4" ng-model="itm.unit" ng-search="_search.$category_item.$unit_search"
                                     ng-change="itm.discount = itm.unit.discount ; itm.cost = itm.unit.cost ;calcSize(itm)"
                                     display2="barcode" items="itm.size_units_list"></i-list>
                             </td>
+
                             <td>
                                 <i-control ng-change="calcSize(itm)" type="number" ng-model="itm.count"></i-control>
                             </td>
@@ -89,17 +91,19 @@
                             <td>
                                 <br ng-hide='edit_price'>
                                 <p ng-hide='edit_price'> {{itm.cost}} </p>
-                                <i-control ng-show='edit_price' ng-change="calcSize(itm)" type="number"
+                                <i-control ng-disabled="store_in.type.id == 4" ng-show='edit_price' ng-change="calcSize(itm)" type="number"
                                     ng-model="itm.cost"></i-control>
                             </td>
 
                             <td>
-                                <i-control ng-change="calcSize(itm)" type="number" ng-model="itm.discount.value">
+                                <i-control ng-disabled="store_in.type.id == 4" ng-change="calcSize(itm)" type="number" ng-model="itm.discount.value">
                                 </i-control>
                                 <b class="red" ng-show="itm.discount.type =='number'">$</b>
                                 <b class="red" ng-show="itm.discount.type =='percent'">%</b>
                             </td>
+
                             <td class="green"> <br> {{itm.total}}</td>
+                            
                             <td>
                                 <i-button type="delete" ng-click="deleteRow(itm)"></i-button>
                             </td>
@@ -206,11 +210,11 @@
 
             <div class="row">
                 <i-control class="col2" ng-model="store_in.total_discount" type="number"
-                    ng-disabled="store_in.type.id !== 4" ng-change="calc(store_in)"
+                    ng-disabled="store_in.type.id !== 4" ng-change="calcReturn(store_in)"
                     label="##word.stores_in_total_discount##"></i-control>
 
                 <i-control class="col2" ng-model="store_in.total_tax" type="number" ng-disabled="store_in.type.id !== 4"
-                    ng-change="calc(store_in)" label="##word.stores_in_total_tax##"></i-control>
+                    ng-change="calcReturn(store_in)" label="##word.stores_in_total_tax##"></i-control>
 
                 <i-control class="col2" ng-model="store_in.total_value" type="number" disabled
                     label="##word.stores_in_total_value##"></i-control>

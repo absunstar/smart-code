@@ -264,6 +264,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
     };
 
   };
+
   $scope.deleteDiscount = function (_ds) {
     $scope.error = '';
     for (let i = 0; i < $scope.store_in.discountes.length; i++) {
@@ -276,41 +277,53 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
 
   $scope.calc = function (obj) {
     $scope.error = '';
+    $timeout(() => {
+      obj.total_value = 0;
+      obj.net_value = obj.net_value || 0;
 
-    obj.total_value = 0;
-    obj.net_value = obj.net_value || 0;
+      if (obj.items)
+        obj.items.map(itm => obj.total_value += site.toNumber(itm.total));
 
-    if (obj.items)
-      obj.items.map(itm => obj.total_value += site.toNumber(itm.total));
+      if (obj.type.id !== 4) {
+        obj.total_tax = 0;
+        obj.total_discount = 0;
+      }
 
-    obj.total_tax = 0;
-    if (obj.taxes)
-      obj.taxes.map(tx => obj.total_tax += (obj.total_value * site.toNumber(tx.value) / 100));
+      if (obj.taxes)
+        obj.taxes.map(tx => obj.total_tax += (obj.total_value * site.toNumber(tx.value) / 100));
 
-    obj.total_discount = 0;
 
-    if (obj.discountes)
-      obj.discountes.forEach(ds => {
-        if (ds.type == 'percent')
-          obj.total_discount += (obj.total_value * site.toNumber(ds.value)) / 100;
-        else obj.total_discount += site.toNumber(ds.value);
-      });
+      if (obj.discountes)
+        obj.discountes.forEach(ds => {
+          if (ds.type == 'percent')
+            obj.total_discount += (obj.total_value * site.toNumber(ds.value)) / 100;
+          else obj.total_discount += site.toNumber(ds.value);
+        });
 
-    obj.total_discount = site.toNumber(obj.total_discount);
-    obj.total_tax = site.toNumber(obj.total_tax);
-    obj.total_value = site.toNumber(obj.total_value);
+      obj.total_discount = site.toNumber(obj.total_discount);
+      obj.total_tax = site.toNumber(obj.total_tax);
+      obj.total_value = site.toNumber(obj.total_value);
 
-    if (obj.items) {
-      obj.net_value = obj.total_value + obj.total_tax - obj.total_discount;
-    }
+      if (obj.items) {
+        obj.net_value = obj.total_value + obj.total_tax - obj.total_discount;
+      }
 
-    $scope.discount = {
-      type: 'number'
-    };
-    obj.net_value = site.toNumber(obj.net_value);
-    if (obj.currency)
-      $scope.amount_currency = obj.net_value / site.toNumber(obj.currency.ex_rate);
-    $scope.amount_currency = site.toNumber($scope.amount_currency);
+      $scope.discount = {
+        type: 'number'
+      };
+      obj.net_value = site.toNumber(obj.net_value);
+      if (obj.currency)
+        $scope.amount_currency = obj.net_value / site.toNumber(obj.currency.ex_rate);
+      $scope.amount_currency = site.toNumber($scope.amount_currency);
+
+    }, 250);
+  };
+
+  $scope.calcReturn = function (obj) {
+    $timeout(() => {
+      obj.net_value = ((obj.total_value || 0) - (obj.total_discount || 0)) + (obj.total_tax || 0);
+      obj.net_value = site.toNumber(obj.net_value);
+    }, 250);
   };
 
   $scope.deleteRow = function (itm) {
@@ -551,7 +564,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
   $scope.delete = function (store_in) {
     $scope.error = '';
 
-    if (store_in.net_value != store_in.return_paid.net_value) {
+    if (store_in.return_paid && store_in.net_value != store_in.return_paid.net_value) {
       $scope.error = '##word.err_delete_return##';
       return;
     };
@@ -920,12 +933,9 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
   $scope.posting = function (store_in) {
     $scope.error = '';
 
-    if (!store_in.posting) {
-      if (store_in.net_value != store_in.return_paid.net_value) {
-
-        $scope.error = '##word.err_unpost_return##';
-        return;
-      }
+    if (!store_in.posting && store_in.return_paid && store_in.net_value != store_in.return_paid.net_value) {
+      $scope.error = '##word.err_unpost_return##';
+      return;
     };
 
     $scope.busy = true;
