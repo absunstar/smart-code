@@ -47,7 +47,7 @@ app.controller("amounts_out", function ($scope, $http, $timeout) {
             $scope.amount_out.posting = true;
 
           if ($scope.defaultSettings.accounting) {
-            $scope.amount_in.currency = $scope.defaultSettings.accounting.currency;
+            $scope.amount_out.currency = $scope.defaultSettings.accounting.currency;
             if ($scope.defaultSettings.accounting.payment_method) {
 
               $scope.amount_out.payment_method = $scope.defaultSettings.accounting.payment_method;
