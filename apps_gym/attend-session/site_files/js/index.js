@@ -8,8 +8,14 @@ app.controller("attend_session", function ($scope, $http, $timeout) {
       image_url: '/images/attend_session.png',
       active: true,
       date: new Date()
-      /* capaneighborhood : " - طالب",       immediate : false
- */    };
+    };
+
+    if ($scope.defaultSettings.general_Settings) {
+      if ($scope.defaultSettings.general_Settings.hall)
+        $scope.attend_session.hall = $scope.defaultSettings.general_Settings.hall;
+      if ($scope.defaultSettings.general_Settings.trainer)
+        $scope.attend_session.trainer = $scope.defaultSettings.general_Settings.trainer;
+    };
     site.showModal('#attendSessionAddModal');
     $scope.getTrainerList();
   };
@@ -323,6 +329,26 @@ app.controller("attend_session", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.getDefaultSettings = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/default_setting/get",
+      data: {}
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.doc)
+          $scope.defaultSettings = response.data.doc;
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
   $scope.searchAll = function () {
     $scope.getAttendSessionList($scope.search);
     site.hideModal('#attendSessionSearchModal');
@@ -332,4 +358,5 @@ app.controller("attend_session", function ($scope, $http, $timeout) {
 
   $scope.getAttendSessionList();
   $scope.getHallList();
+  $scope.getDefaultSettings();
 });

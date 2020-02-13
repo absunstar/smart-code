@@ -339,104 +339,105 @@ module.exports = function init(site) {
     account_invoices_doc.edit_user_info = site.security.getUserFinger({ $req: req, $res: res })
     account_invoices_doc.total_paid_up = 0
 
-    account_invoices_doc.payment_list.forEach(_payment_list => {
-      if (_payment_list.currency)
-        account_invoices_doc.total_paid_up += (_payment_list.paid_up * _payment_list.currency.ex_rate)
+    if (account_invoices_doc.payment_list && account_invoices_doc.payment_list.length > 0)
+      account_invoices_doc.payment_list.forEach(_payment_list => {
+        if (_payment_list.currency)
+          account_invoices_doc.total_paid_up += (_payment_list.paid_up * _payment_list.currency.ex_rate)
 
-      let obj = {
-        value: _payment_list.paid_up,
-        safe: _payment_list.safe,
-        date: _payment_list.date,
-        company: account_invoices_doc.company,
-        branch: account_invoices_doc.branch,
-        code: account_invoices_doc.code,
-        description: account_invoices_doc.description,
-        payment_method: _payment_list.payment_method,
-        currency: _payment_list.currency,
-        shift: {
-          id: account_invoices_doc.shift.id,
-          code: account_invoices_doc.shift.code,
-          name: account_invoices_doc.shift.name
+        let obj = {
+          value: _payment_list.paid_up,
+          safe: _payment_list.safe,
+          date: _payment_list.date,
+          company: account_invoices_doc.company,
+          branch: account_invoices_doc.branch,
+          code: account_invoices_doc.code,
+          description: account_invoices_doc.description,
+          payment_method: _payment_list.payment_method,
+          currency: _payment_list.currency,
+          shift: {
+            id: account_invoices_doc.shift.id,
+            code: account_invoices_doc.shift.code,
+            name: account_invoices_doc.shift.name
+          }
         }
-      }
 
-      if (account_invoices_doc.posting) {
+        if (account_invoices_doc.posting) {
 
-        _payment_list.posting = true
+          _payment_list.posting = true
 
-        if (account_invoices_doc.source_type.id == 1) {
+          if (account_invoices_doc.source_type.id == 1) {
 
-          if (account_invoices_doc.invoice_type && account_invoices_doc.invoice_type.id == 4) {
-            obj.operation = 'مرتجع فاتورة مشتريات'
+            if (account_invoices_doc.invoice_type && account_invoices_doc.invoice_type.id == 4) {
+              obj.operation = 'مرتجع فاتورة مشتريات'
+              obj.transition_type = 'in'
+            } else {
+              obj.operation = 'فاتورة مشتريات'
+              obj.transition_type = 'out'
+            }
+
+            site.call('[store_in][account_invoice][invoice]', account_invoices_doc.invoice_id)
+
+          } else if (account_invoices_doc.source_type.id == 2) {
+            if (account_invoices_doc.invoice_type && account_invoices_doc.invoice_type.id == 6) {
+              obj.operation = 'مرتجع فاتورة مبيعات'
+              obj.transition_type = 'out'
+            } else {
+
+              obj.operation = 'فاتورة مبيعات'
+              obj.transition_type = 'in'
+            }
+            site.call('[store_out][account_invoice][invoice]', account_invoices_doc.invoice_id)
+
+          } else if (account_invoices_doc.source_type.id == 3) {
+            obj.operation = ' فاتورة شاشة الطلبات'
             obj.transition_type = 'in'
-          } else {
-            obj.operation = 'فاتورة مشتريات'
+
+          } else if (account_invoices_doc.source_type.id == 4) {
+            obj.operation = 'فاتورة طلب خدمة'
+            obj.transition_type = 'in'
+            site.call('[account_invoices][request_service][+]', account_invoices_doc.invoice_id)
+
+          } else if (account_invoices_doc.source_type.id == 5) {
+            obj.operation = 'فاتورة حجز قاعة'
+            obj.transition_type = 'in'
+            site.call('[account_invoices][book_hall][+]', account_invoices_doc.invoice_id)
+          }
+        } else {
+          _payment_list.posting = false
+
+          if (account_invoices_doc.source_type.id == 1) {
+
+            if (account_invoices_doc.invoice_type && account_invoices_doc.invoice_type.id == 4) {
+              obj.transition_type = 'out'
+              obj.operation = 'فك ترحيل مرتجع فاتورة مشتريات'
+            } else {
+              obj.transition_type = 'in'
+              obj.operation = 'فك ترحيل فاتورة مشتريات'
+            }
+          }
+          else if (account_invoices_doc.source_type.id == 2) {
+            if (account_invoices_doc.invoice_type && account_invoices_doc.invoice_type.id == 6) {
+              obj.transition_type = 'in'
+              obj.operation = 'فك ترحيل مرتجع فاتورة مبيعات'
+            } else {
+
+              obj.transition_type = 'out'
+              obj.operation = 'فك ترحيل فاتورة مبيعات'
+            }
+          } else if (account_invoices_doc.source_type.id == 3) {
+            obj.transition_type = 'out'
+            obj.operation = 'فك ترحيل فاتورة شاشة الطلبات'
+          } else if (account_invoices_doc.source_type.id == 4) {
+            obj.transition_type = 'out'
+            obj.operation = 'فك ترحيل فاتورة طلب خدمة'
+          } else if (_payment_list.source_type.id == 5) {
+            obj.operation = 'فك ترحيل حجز قاعة'
             obj.transition_type = 'out'
           }
 
-          site.call('[store_in][account_invoice][invoice]', account_invoices_doc.invoice_id)
-
-        } else if (account_invoices_doc.source_type.id == 2) {
-          if (account_invoices_doc.invoice_type && account_invoices_doc.invoice_type.id == 6) {
-            obj.operation = 'مرتجع فاتورة مبيعات'
-            obj.transition_type = 'out'
-          } else {
-
-            obj.operation = 'فاتورة مبيعات'
-            obj.transition_type = 'in'
-          }
-          site.call('[store_out][account_invoice][invoice]', account_invoices_doc.invoice_id)
-
-        } else if (account_invoices_doc.source_type.id == 3) {
-          obj.operation = ' فاتورة شاشة الطلبات'
-          obj.transition_type = 'in'
-
-        } else if (account_invoices_doc.source_type.id == 4) {
-          obj.operation = 'فاتورة طلب خدمة'
-          obj.transition_type = 'in'
-          site.call('[account_invoices][request_service][+]', account_invoices_doc.invoice_id)
-
-        } else if (account_invoices_doc.source_type.id == 5) {
-          obj.operation = 'فاتورة حجز قاعة'
-          obj.transition_type = 'in'
-          site.call('[account_invoices][book_hall][+]', account_invoices_doc.invoice_id)
         }
-      } else {
-        _payment_list.posting = false
-
-        if (account_invoices_doc.source_type.id == 1) {
-
-          if (account_invoices_doc.invoice_type && account_invoices_doc.invoice_type.id == 4) {
-            obj.transition_type = 'out'
-            obj.operation = 'فك ترحيل مرتجع فاتورة مشتريات'
-          } else {
-            obj.transition_type = 'in'
-            obj.operation = 'فك ترحيل فاتورة مشتريات'
-          }
-        }
-        else if (account_invoices_doc.source_type.id == 2) {
-          if (account_invoices_doc.invoice_type && account_invoices_doc.invoice_type.id == 6) {
-            obj.transition_type = 'in'
-            obj.operation = 'فك ترحيل مرتجع فاتورة مبيعات'
-          } else {
-
-            obj.transition_type = 'out'
-            obj.operation = 'فك ترحيل فاتورة مبيعات'
-          }
-        } else if (account_invoices_doc.source_type.id == 3) {
-          obj.transition_type = 'out'
-          obj.operation = 'فك ترحيل فاتورة شاشة الطلبات'
-        } else if (account_invoices_doc.source_type.id == 4) {
-          obj.transition_type = 'out'
-          obj.operation = 'فك ترحيل فاتورة طلب خدمة'
-        } else if (_payment_list.source_type.id == 5) {
-          obj.operation = 'فك ترحيل حجز قاعة'
-          obj.transition_type = 'out'
-        }
-
-      }
-      if (obj.safe) site.call('[amounts][safes][+]', obj)
-    })
+        if (obj.safe) site.call('[amounts][safes][+]', obj)
+      })
 
     account_invoices_doc.remain_amount = site.toNumber(account_invoices_doc.net_value) - site.toNumber(account_invoices_doc.total_paid_up)
     if (account_invoices_doc.source_type.id == 3) {

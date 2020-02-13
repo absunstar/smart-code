@@ -43,7 +43,6 @@ app.controller("request_service", function ($scope, $http, $timeout) {
           }
         }
 
-
         site.showModal('#requestServiceAddModal');
       } else $scope.error = '##word.open_shift_not_found##';
     });

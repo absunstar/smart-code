@@ -740,6 +740,11 @@
         "ar": "عرض المزيـد"
     },
     {
+        "name": "date_from_subscribe",
+        "en": "Start Date",
+        "ar": "تاريخ بداية الإشتراك"
+    },
+    {
         "name": "date_from",
         "en": "From Date",
         "ar": "من تاريخ"
