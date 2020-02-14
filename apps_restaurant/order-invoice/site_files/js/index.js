@@ -399,6 +399,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
       $scope.account_invoices.posting = false;
     else $scope.account_invoices.posting = true;
 
+    $scope.order_invoice.invoice = true;
 
     $http({
       method: "POST",

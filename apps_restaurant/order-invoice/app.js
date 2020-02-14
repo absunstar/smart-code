@@ -64,21 +64,25 @@ module.exports = function init(site) {
 
     $order_invoice.findOne({ id: obj.invoice_id }, (err, doc) => {
 
-      if (obj.return) {
-        doc.under_paid.net_value = doc.under_paid.net_value + obj.net_value;
-        doc.under_paid.total_tax = doc.under_paid.total_tax + obj.total_tax;
-        doc.under_paid.total_discount = doc.under_paid.total_discount + obj.total_discount;
-        doc.under_paid.price_delivery_service = doc.under_paid.price_delivery_service + obj.price_delivery_service;
-        doc.under_paid.service = doc.under_paid.service - obj.service;
-      } else {
-        doc.under_paid.net_value = doc.under_paid.net_value - obj.net_value;
-        doc.under_paid.total_tax = doc.under_paid.total_tax - obj.total_tax;
-        doc.under_paid.total_discount = doc.under_paid.total_discount - obj.total_discount;
-        doc.under_paid.price_delivery_service = doc.under_paid.price_delivery_service - obj.price_delivery_service;
-        doc.under_paid.service = doc.under_paid.service - obj.service;
-      }
-
       if (doc.under_paid) {
+
+        
+
+        if (obj.return) {
+          doc.under_paid.net_value = doc.under_paid.net_value + obj.net_value;
+          doc.under_paid.total_tax = doc.under_paid.total_tax + obj.total_tax;
+          doc.under_paid.total_discount = doc.under_paid.total_discount + obj.total_discount;
+          doc.under_paid.price_delivery_service = doc.under_paid.price_delivery_service + obj.price_delivery_service;
+          doc.under_paid.service = doc.under_paid.service - obj.service;
+        } else {
+          doc.invoice = true;
+          doc.under_paid.net_value = doc.under_paid.net_value - obj.net_value;
+          doc.under_paid.total_tax = doc.under_paid.total_tax - obj.total_tax;
+          doc.under_paid.total_discount = doc.under_paid.total_discount - obj.total_discount;
+          doc.under_paid.price_delivery_service = doc.under_paid.price_delivery_service - obj.price_delivery_service;
+          doc.under_paid.service = doc.under_paid.service - obj.service;
+        }
+
         if (doc.under_paid.net_value <= 0) doc.status = { id: 5, en: "Closed & paid", ar: "مغلق و تم الدفع" }
 
         else if (obj.return && doc.under_paid.net_value == doc.net_value) doc.status = { id: 2, en: "Closed Of Orders Screen", ar: "مغلق من شاشة الأوردرات" }
