@@ -139,10 +139,13 @@ module.exports = function init(site) {
         if (doc.posting) {
 
           doc.items.forEach(_itm => {
-            if (doc.type.id == 4)
+            if (doc.type.id == 4) {
               _itm.type = 'minus'
-            else _itm.type = 'sum'
-
+              _itm.transaction_type = 'out'
+            } else {
+              _itm.type = 'sum'
+              _itm.transaction_type = 'in'
+            }
             _itm._status = doc.type.id
             _itm.store = doc.store
             _itm.company = doc.company
@@ -154,9 +157,6 @@ module.exports = function init(site) {
             _itm.vendor = doc.vendor
             _itm.date = doc.date
             _itm.source_type = doc.type
-            if (doc.type.id == 4)
-              _itm.transaction_type = 'out'
-            else _itm.transaction_type = 'in'
             _itm.current_status = 'storein'
             _itm.shift = {
               id: doc.shift.id,
@@ -272,11 +272,9 @@ module.exports = function init(site) {
               _itm.current_status = 'storein'
             } else {
               if (result.doc.type.id == 4) {
-
                 _itm.type = 'sum'
                 _itm.transaction_type = 'in'
               } else {
-
                 _itm.type = 'minus'
                 _itm.transaction_type = 'out'
               }
@@ -344,7 +342,6 @@ module.exports = function init(site) {
                 _itm.type = 'sum'
                 _itm.transaction_type = 'in'
               } else {
-
                 _itm.type = 'minus'
                 _itm.transaction_type = 'out'
               }

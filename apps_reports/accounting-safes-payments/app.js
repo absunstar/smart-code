@@ -46,6 +46,7 @@ module.exports = function init(site) {
       balance: obj.balance || obj.safe.balance,
       image_url: obj.image_url || obj.safe.image_url,
       pre_balance: obj.pre_balance,
+      invoice_type: obj.invoice_type,
       sourceName: obj.sourceName || '',
       description: obj.description || '',
       notes: obj.notes || '',

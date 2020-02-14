@@ -2,7 +2,7 @@
     <div class="form">
         <div id="customersGroupViewModal">
             <fieldset>
-                <legend> ##word.customers_group_informations## </legend>
+                <legend> ##word.account_invoices_informations## </legend>
                 <div class="row">
                     <div class="col9">
                         <div class="row">
@@ -23,7 +23,8 @@
                                 </tr>
                                 <tr>
                                     <td class="title"> ##word.source_type## </td>
-                                    <td class="center"> {{account_invoices.source_type.ar}} </td>
+                                    <td class="center"> {{account_invoices.source_type.ar}}
+                                        <p class="blue">{{account_invoices.invoice_type.ar}} </td>
                                 </tr>
                                 <tr x-feature="restaurant">
                                     <td class="title"> ##word.order_invoices_type## </td>

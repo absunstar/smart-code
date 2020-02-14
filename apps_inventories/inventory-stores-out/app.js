@@ -47,7 +47,7 @@ module.exports = function init(site) {
 
 
 
- 
+
 
   site.on('[store_out][account_invoice][invoice]', function (obj) {
     $stores_out.findOne({ id: obj }, (err, doc) => {
@@ -122,13 +122,14 @@ module.exports = function init(site) {
     stores_out_doc.total_value = site.toNumber(stores_out_doc.total_value)
     stores_out_doc.net_value = site.toNumber(stores_out_doc.net_value)
 
-    stores_out_doc.return_paid = {
-      items: stores_out_doc.items,
-      total_discount: stores_out_doc.total_discount,
-      total_tax: stores_out_doc.total_tax,
-      total_value: stores_out_doc.total_value,
-      net_value: stores_out_doc.net_value,
-    }
+    if (stores_out_doc.type.id !== 5 || stores_out_doc.type.id !== 6)
+      stores_out_doc.return_paid = {
+        items: stores_out_doc.items,
+        total_discount: stores_out_doc.total_discount,
+        total_tax: stores_out_doc.total_tax,
+        total_value: stores_out_doc.total_value,
+        net_value: stores_out_doc.net_value,
+      }
 
     $stores_out.add(stores_out_doc, (err, doc) => {
       if (!err) {
@@ -138,7 +139,13 @@ module.exports = function init(site) {
         if (doc.posting) {
 
           doc.items.forEach(_itm => {
-            _itm.type = 'minus'
+            if (doc.type.id == 6) {
+              _itm.type = 'sum'
+              _itm.transaction_type = 'in'
+            } else {
+              _itm.type = 'minus'
+              _itm.transaction_type = 'out'
+            }
             _itm.store = doc.store
             _itm.company = doc.company
             _itm.branch = doc.branch
@@ -150,7 +157,6 @@ module.exports = function init(site) {
             _itm.source_type = doc.type
             _itm.date = doc.date
             _itm.customer = doc.customer
-            _itm.transaction_type = 'out'
             _itm.store = doc.store
             _itm.shift = {
               id: doc.shift.id,
@@ -190,13 +196,14 @@ module.exports = function init(site) {
       itm.total = site.toNumber(itm.total)
     })
 
-    stores_out_doc.return_paid = {
-      items: stores_out_doc.items,
-      total_discount: stores_out_doc.total_discount,
-      total_tax: stores_out_doc.total_tax,
-      total_value: stores_out_doc.total_value,
-      net_value: stores_out_doc.net_value,
-    }
+    if (stores_out_doc.type.id !== 5 || stores_out_doc.type.id !== 6)
+      stores_out_doc.return_paid = {
+        items: stores_out_doc.items,
+        total_discount: stores_out_doc.total_discount,
+        total_tax: stores_out_doc.total_tax,
+        total_value: stores_out_doc.total_value,
+        net_value: stores_out_doc.net_value,
+      }
 
     stores_out_doc.total_value = site.toNumber(stores_out_doc.total_value)
 
@@ -251,12 +258,22 @@ module.exports = function init(site) {
             _itm.branch = result.doc.branch
 
             if (result.doc.posting) {
-              _itm.type = 'minus'
-              _itm.transaction_type = 'out'
+              if (result.doc.type.id == 6) {
+                _itm.type = 'sum'
+                _itm.transaction_type = 'in'
+              } else {
+                _itm.type = 'minus'
+                _itm.transaction_type = 'out'
+              }
               _itm.current_status = 'sold'
             } else {
-              _itm.type = 'sum'
-              _itm.transaction_type = 'in'
+              if (result.doc.type.id == 6) {
+                _itm.type = 'minus'
+                _itm.transaction_type = 'out'
+              } else {
+                _itm.type = 'sum'
+                _itm.transaction_type = 'in'
+              }
               _itm.current_status = 'r_sold'
             }
 
@@ -318,9 +335,13 @@ module.exports = function init(site) {
               _itm.store = stores_out_doc.store
               _itm.company = stores_out_doc.company
               _itm.branch = stores_out_doc.branch
-
-              _itm.type = 'sum'
-              _itm.transaction_type = 'in'
+              if (result.doc.type.id == 6) {
+                _itm.type = 'minus'
+                _itm.transaction_type = 'out'
+              } else {
+                _itm.type = 'sum'
+                _itm.transaction_type = 'in'
+              }
               _itm.current_status = 'd_sold'
 
               site.call('[transfer_branch][stores_items][add_balance]', _itm)
@@ -638,6 +659,10 @@ module.exports = function init(site) {
         doc.return_paid.total_value = doc.return_paid.total_value - obj.total_value
         doc.return_paid.net_value = doc.return_paid.net_value - obj.net_value
       }
+      doc.return_paid.total_discount = site.toNumber(doc.return_paid.total_discount)
+      doc.return_paid.total_tax = site.toNumber(doc.return_paid.total_tax)
+      doc.return_paid.total_value = site.toNumber(doc.return_paid.total_value)
+      doc.return_paid.net_value = site.toNumber(doc.return_paid.net_value)
 
       $stores_out.update(doc);
     });

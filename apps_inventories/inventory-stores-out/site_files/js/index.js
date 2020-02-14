@@ -69,7 +69,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
       if (obj.items)
         obj.items.map(itm => obj.total_value += site.toNumber(itm.total));
 
-      if (obj.type.id !== 4) {
+      if (obj.type.id !== 6) {
         obj.total_tax = 0;
         obj.total_discount = 0;
       };
@@ -375,13 +375,17 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         if (_size.count > 0 && !foundSize) {
 
           let discount = 0;
-          if (_size.cost && _size.count) {
+
+          if ($scope.store_out.type && $scope.store_out.type.id == 5)
+            _size.price = _size.cost
+
+          if (_size.price && _size.count) {
             if (_size.discount.type == 'number')
               discount = (_size.discount.value || 0) * _size.count;
             else if (_size.discount.type == 'percent')
 
-              discount = (_size.discount.value || 0) * (_size.cost * _size.count) / 100;
-            _size.total = ((site.toNumber(_size.cost) * site.toNumber(_size.count)) - discount);
+              discount = (_size.discount.value || 0) * (_size.price * _size.count) / 100;
+            _size.total = ((site.toNumber(_size.price) * site.toNumber(_size.count)) - discount);
           }
           $scope.store_out.items.push({
             image_url: $scope.item.image_url,
@@ -395,9 +399,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
             barcode: _size.barcode,
             average_cost: _size.average_cost,
             count: _size.count,
-            cost: _size.cost,
             discount: _size.discount,
-            price: _size.price,
             total: _size.total,
             current_count: _size.current_count,
             ticket_code: _size.ticket_code,
@@ -460,6 +462,9 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
               response.data.list.forEach(_item => {
                 _item.sizes.forEach(_size => {
 
+                  if ($scope.store_out.type && $scope.store_out.type.id == 5)
+                    _size.price = _size.cost
+
                   let foundUnit = false;
                   let indxUnit = 0;
                   _size.size_units_list.forEach((_unit, i) => {
@@ -469,6 +474,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
                     if (_unit.id == _item.main_unit.id)
                       indxUnit = i;
                   });
+
 
 
                   if ((_size.barcode == $scope.item.search_item_name) || foundUnit) {
@@ -543,6 +549,9 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
       _item.store = $scope.store_out.store
       _item.count = 1
 
+      if ($scope.store_out.type && $scope.store_out.type.id == 5)
+        _item.price = _item.cost
+
       let indxUnit = _item.size_units_list.findIndex(_unit => _unit.id == $scope.item.name.main_unit.id);
       if (_item.size_units_list[indxUnit]) {
         _item.unit = _item.size_units_list[indxUnit];
@@ -616,6 +625,9 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
 
                 });
 
+                if ($scope.store_out.type && $scope.store_out.type.id == 5)
+                _size.price = _size.cost
+        
 
                 if ((_size.barcode == $scope.search_barcode) || foundUnit) {
                   _size.name = response.data.list[0].name;

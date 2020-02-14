@@ -63,7 +63,7 @@
                             {{c.date | date : 'dd - MM - yyyy'}}
                         </td>
                         <td ng-click="displayDetailsAccountInvoices(c)" class="blue"> {{c.code}} </td>
-                        <td ng-click="displayDetailsAccountInvoices(c)"> {{c.source_type.ar}} </td>
+                        <td ng-click="displayDetailsAccountInvoices(c)"> {{c.source_type.ar}} <p class="blue">{{c.invoice_type.ar}}</p> </td>
                         <td ng-click="displayDetailsAccountInvoices(c)" x-feature="restaurant">
                             {{c.order_invoices_type.ar}}
                         </td>
