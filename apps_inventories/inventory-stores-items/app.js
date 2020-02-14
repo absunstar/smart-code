@@ -89,7 +89,6 @@ module.exports = function init(site) {
 
       if (!err && doc) {
 
-
         // doc.sizes.map(_size => { if (_size.barcode != obj.barcode) doc.sizes.push(obj) });
 
         doc.sizes.forEach(_size => {
@@ -110,7 +109,6 @@ module.exports = function init(site) {
 
             } else if (obj.type == 'minus') {
               _size.current_count = site.toNumber(_size.current_count) - site.toNumber(total_unit)
-
               _size.total_sell_price = (_size.total_sell_price || 0) + totalPrice
               _size.total_sell_count = (_size.total_sell_count || 0) + site.toNumber(total_unit)
             }
@@ -134,7 +132,6 @@ module.exports = function init(site) {
                 }
                 if (obj._status == 1)
                   _units.average_cost = site.toNumber(_units.total_buy_price) / site.toNumber(_units.total_buy_count)
-
                 _units.cost = site.toNumber(obj.cost)
                 _units.price = site.toNumber(obj.price)
               }
@@ -151,7 +148,6 @@ module.exports = function init(site) {
                 }
               });
               let _branch = _size.branches_list[indxBranch]
-
 
               let foundStore = false
               let indxStore = 0
@@ -329,15 +325,6 @@ module.exports = function init(site) {
   }
 
   balance_handle(null)
-
-
-
-
-
-
-
-
-
 
 
 
