@@ -26,6 +26,7 @@
                         <tr>
                             <th>##word.stores_in_date##</th>
                             <th>##word.stores_in_id##</th>
+                            <th>##word.transaction_type##</th>
                             <th>##word.store##</th>
                             <th>##word.net_value##</th>
                         </tr>
@@ -37,6 +38,10 @@
 
                             <td ng-click="selectReturnedStoreOut(i)">
                                 <p class="center blue bold">{{i.number}}</p>
+                            </td>
+
+                            <td ng-click="selectReturnedStoreOut(i)">
+                                <p class="bold text-center blue"> {{i.type.ar}} </p>
                             </td>
 
                             <td ng-click="selectReturnedStoreOut(i)">

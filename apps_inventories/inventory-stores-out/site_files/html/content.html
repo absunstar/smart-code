@@ -20,8 +20,8 @@
                         ng-model="store_out.customer" label="##word.customer##" items="customersList">
                     </i-list>
 
-                    <i-list class="col4" ng-model="store_out.delegate" ng-search="_search.$$items_group_search"
-                        label="##word.delegate##" items="delegatesList">
+                    <i-list class="col4" ng-model="store_out.delegate" ng-search="_search.$items_group_search"
+                        label="##word.delegate##" ng-disabled="store_out.retured_number" items="delegatesList">
                     </i-list>
                 </div>
                 <div class="row">
@@ -55,8 +55,8 @@
             </div>
             <br>
             <br>
-            <h2 ng-show="stores_out.retured_number" class="blue bold center">##word.stores_out## :
-                {{stores_out.retured_number}}</h2>
+            <h2 ng-show="store_out.retured_number" class="blue bold center">##word.stores_in## :
+                {{store_out.retured_number}}</h2>
             <br>
             <div class="row margin padding">
                 <fieldset>
@@ -72,6 +72,7 @@
                             <th>##word.quantity##</th>
                             <th>##word.price##</th>
                             <th>##word.discount##</th>
+                            <th>##word.maximum_discount##</th>
                             <th>##word.stores_out_item_total##</th>
                             <th>##word.actions##</th>
                         </tr>
@@ -100,8 +101,13 @@
                             <td>
                                 <i-control ng-change="calcSize(itm)" type="number" ng-model="itm.discount.value">
                                 </i-control>
-                                <b class="red" ng-show="itm.discount.type =='number'">$</b>
-                                <b class="red" ng-show="itm.discount.type =='percent'">%</b>
+                                <b class="" ng-show="itm.discount.type =='number'">$</b>
+                                <b class="" ng-show="itm.discount.type =='percent'">%</b>
+                            </td>
+                            <td> <br>
+                                <p class="red">{{itm.discount.max}}</p>
+                                <b class="" ng-show="itm.discount.type =='number'">$</b>
+                                <b class="" ng-show="itm.discount.type =='percent'">%</b>
                             </td>
                             <td class="green"> <br> {{itm.total}}</td>
 

@@ -626,8 +626,8 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
                 });
 
                 if ($scope.store_out.type && $scope.store_out.type.id == 5)
-                _size.price = _size.cost
-        
+                  _size.price = _size.cost
+
 
                 if ((_size.barcode == $scope.search_barcode) || foundUnit) {
                   _size.name = response.data.list[0].name;
@@ -1547,7 +1547,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
           search: $scope.storesOutSearch,
           where: {
             'posting': true,
-            $or: [{ 'type.id': { $ne: 5 } }, { 'type.id': { $ne: 6 } }]
+            'return_paid.net_value': { $gt: 0 }
           }
         }
       }).then(
@@ -1568,8 +1568,8 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
   $scope.selectReturnedStoreOut = function (i) {
 
     if ($scope.store_out && i.return_paid) {
-
       $scope.store_out.retured_number = i.number;
+      $scope.store_out.delegate = i.delegate || {};
       $scope.store_out.total_discount = i.return_paid.total_discount;
       $scope.store_out.total_tax = i.return_paid.total_tax;
       $scope.store_out.total_value = i.return_paid.total_value;

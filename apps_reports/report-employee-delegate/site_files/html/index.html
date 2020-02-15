@@ -63,11 +63,14 @@
                 <div class="row">
                     <i-control id="item_name" class="col2 r_black" ng-model="total_value"
                         label="##word.stores_out_total_value##" type="number" disabled></i-control>
-                    <i-control id="item_name" class="col2 r_green" ng-model="net_value" label="##word.stores_out_net_value##"
-                        type="number" disabled></i-control>
+                    <i-control id="item_name" class="col2 r_green" ng-model="net_value"
+                        label="##word.stores_out_net_value##" type="number" disabled></i-control>
+
+                    <i-control id="item_name" class="col2 r_darkRed" ng-model="net_total_return"
+                        label="##word.net_total_return##" type="number" disabled></i-control>
                 </div>
 
-            <!--     <div class="row">
+                <!--     <div class="row">
                     <i-control id="item_name" class="col2 r_darkRed" ng-model="total_tax" label="##word.total_tax##" type="number"
                         disabled></i-control>
                     <i-control id="item_name" class="col2 r_darkRed" ng-model="total_discount" label="##word.total_discount##"
@@ -81,6 +84,7 @@
                         <th> ##word.date## </th>
                         <th> ##word.shift## </th>
                         <th> ##word.stores_out_id## </th>
+                        <th> ##word.transaction_type## </th>
                         <th ng-hide="delegate.id"> ##word.delegate## </th>
                         <th> ##word.stores_out_total_tax## </th>
                         <th> ##word.stores_out_total_discount## </th>
@@ -95,6 +99,7 @@
                         <td class="brown"> {{c.date | date : 'dd - MM - yyyy'}} </td>
                         <td class="blue"> {{c.shift.code}} </td>
                         <td class="blue"> {{c.number}} </td>
+                        <td> {{c.type.ar}} </td>
                         <td ng-hide="delegate.id"> {{c.delegate.name}} </td>
                         <td class="red"> {{c.total_tax ||0}} </td>
                         <td> {{c.total_discount ||0}} </td>

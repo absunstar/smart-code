@@ -642,6 +642,10 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
   $scope.showComplexItems = function () {
     $scope.error = '';
     $scope.item.complex_items = $scope.item.complex_items || [];
+    $scope.item.value_add = {
+      value: 0,
+      type: 'number'
+    };
     $scope.selectedItem = {};
     $scope.items_size = {};
     site.showModal('#complexItemModal');
@@ -651,6 +655,7 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.complexView = item;
     $scope.complexView.complex_items = $scope.complexView.complex_items || [];
+    $scope.complexView.value_add = $scope.complexView.value_add || { value: 0, type: 'number' };
     $scope.selectedItem = {};
     $scope.items_size = {};
     site.showModal('#complexViewModal');

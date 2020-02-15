@@ -15,6 +15,11 @@
         "ar": "هندلة الأصناف"
     },
     {
+        "name": "value_added",
+        "en": "Value Added",
+        "ar": "القيمة المضافة"
+    },
+    {
         "name": "unit_discount_err",
         "en": "The Discount Is Greater Than The Maximum Discount",
         "ar": "الخصم أكبر من الحد الأقصى للخصم"

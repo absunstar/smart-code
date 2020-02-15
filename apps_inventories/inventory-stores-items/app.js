@@ -21,7 +21,6 @@ module.exports = function init(site) {
     }
 
     let total_unit = obj.count * obj.unit.convert;
-
     let totalCost = obj.cost * site.toNumber(obj.count);
 
     let obj_branch = {
@@ -88,9 +87,26 @@ module.exports = function init(site) {
     }, (err, doc) => {
 
       if (!err && doc) {
-
+        // site.getItemsAverageCost(obj.company.id, complexItems, callback => {
         doc.sizes.forEach(_size => {
           if (_size.barcode == obj.barcode) {
+
+            //  let total_assemble = 0
+            //   if (_size.item_complex) {
+            //     complexItems(_size.complex_items)
+
+
+            //     if (_size.value_add && _size.value_add.type == 'percent') {
+            //       _size.size_units_list.forEach(_units => {
+            //         if (obj.unit && _units.id == obj.unit.id) {
+
+            //           total_assemble = (_size.value_add.value * _units.price) / 100
+            //         }
+            //       })
+            //     }
+            //     else total_assemble = site.toNumber(_size.value_add.value);
+
+            //   } else complexItems(null)
 
             let totalPrice = obj.price * site.toNumber(obj.count);
             if (obj.source_type.id == 3) {
@@ -119,6 +135,8 @@ module.exports = function init(site) {
             if ((obj.source_type.id == 1 || obj.source_type.id == 4) && obj.store_in)
               _size.average_cost = site.toNumber(_size.total_buy_price) / site.toNumber(_size.total_buy_count)
 
+            _size.average_cost = site.toNumber(_size.average_cost)
+
             _size.size_units_list.forEach(_units => {
               if (obj.unit && _units.id == obj.unit.id) {
                 if (obj.type == 'sum') {
@@ -141,6 +159,9 @@ module.exports = function init(site) {
 
                 if ((obj.source_type.id == 1 || obj.source_type.id == 4) && obj.store_in)
                   _units.average_cost = site.toNumber(_units.total_buy_price) / site.toNumber(_units.total_buy_count)
+
+                _units.average_cost = site.toNumber(_units.average_cost)
+
                 _units.cost = site.toNumber(obj.cost)
                 _units.price = site.toNumber(obj.price)
               }
@@ -197,6 +218,7 @@ module.exports = function init(site) {
 
                     if ((obj.source_type.id == 1 || obj.source_type.id == 4) && obj.store_in)
                       _units.average_cost = site.toNumber(_units.total_buy_price) / site.toNumber(_units.total_buy_count)
+                    _units.average_cost = site.toNumber(_units.average_cost)
 
                     unit_branch = true
                   }
@@ -237,6 +259,7 @@ module.exports = function init(site) {
                 }
 
                 if ((obj.source_type.id == 1 || obj.source_type.id == 4) && obj.store_in) _branch.average_cost = site.toNumber(_branch.total_buy_price) / site.toNumber(_branch.total_buy_count)
+                _branch.average_cost = site.toNumber(_branch.average_cost)
 
                 if (_branch.stores_list && _branch.stores_list.length > 0) {
 
@@ -265,6 +288,7 @@ module.exports = function init(site) {
 
                         if ((obj.source_type.id == 1 || obj.source_type.id == 4) && obj.store_in)
                           _units.average_cost = site.toNumber(_units.total_buy_price) / site.toNumber(_units.total_buy_count)
+                        _units.average_cost = site.toNumber(_units.average_cost)
 
                         unit_store = true
                       }
@@ -306,6 +330,7 @@ module.exports = function init(site) {
                     }
 
                     if ((obj.source_type.id == 1 || obj.source_type.id == 4) && obj.store_in) _branch._store.average_cost = site.toNumber(_branch._store.total_buy_price) / site.toNumber(_branch._store.total_buy_count)
+                    _branch._store.average_cost = site.toNumber(_branch._store.average_cost)
 
                   } else _branch.stores_list.push(obj_store)
 
@@ -331,6 +356,7 @@ module.exports = function init(site) {
         $stores_items.update(doc, () => {
           balance_handle(null)
         });
+        // });
 
       } else {
 
@@ -916,9 +942,7 @@ module.exports = function init(site) {
                   delete _sizes.total_purchase_count
                   delete _sizes.discount
 
-
                 }
-
 
 
 
@@ -1106,6 +1130,44 @@ module.exports = function init(site) {
         }
       } else {
 
+      }
+    })
+  }
+
+  site.getItemsAverageCost = function (companyId, complexItems, callback) {
+    let barcodes = complexItems.map(_complex => _complex.barcode)
+
+    $stores_items.findMany({
+      select: req.body.select || {},
+      where: {
+        'company.id': companyId,
+        'sizes.barcode': barcodes
+      },
+      sort: req.body.sort || {
+        id: -1
+      },
+      limit: req.body.limit
+    }, (err, docs) => {
+      if (!err) {
+        if (docs && docs.length > 0) {
+          let total_average = 0
+          docs.forEach(_item => {
+            if (complexItems && complexItems.length > 0)
+              complexItems.forEach(_complex => {
+                if (_item.sizes && _item.sizes.length > 0)
+                  _item.sizes.forEach(_size => {
+                    if (_size.barcode == _complex.barcode) {
+                      _size.size_units_list.forEach(_unit => {
+                        if (_unit.id == _complex.unit.id)
+                          total_average += _unit.average_cost
+                      });
+                    }
+                  });
+              })
+          })
+
+          callback(total_average)
+        }
       }
     })
   }

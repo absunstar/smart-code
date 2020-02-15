@@ -42,6 +42,7 @@ app.controller("report_employee_delegate", function ($scope, $http, $timeout) {
         if (response.data.done && response.data.list.length > 0) {
           $scope.list = response.data.list;
           $scope.count = response.data.count;
+          $scope.net_total_return = 0;
           $scope.total_value = 0;
           $scope.net_value = 0;
           $scope.total_tax = 0;
@@ -51,7 +52,13 @@ app.controller("report_employee_delegate", function ($scope, $http, $timeout) {
             $scope.total_discount += _invoice.total_discount;
             $scope.total_value += _invoice.total_value;
             $scope.net_value += _invoice.net_value;
+
+            if (_invoice.type.id == 6)
+              $scope.net_total_return += _invoice.net_value;
+
           });
+          $scope.total_value = site.toNumber($scope.total_value);
+          $scope.net_value = site.toNumber($scope.net_value);
         }
       },
       function (err) {

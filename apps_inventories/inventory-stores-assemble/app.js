@@ -116,6 +116,7 @@ module.exports = function init(site) {
 
           doc.items.forEach(_itm => {
             _itm.type = 'sum'
+            _itm.assemble = true
             _itm.store = doc.store
             _itm.company = doc.company
             _itm.branch = doc.branch
@@ -246,6 +247,7 @@ module.exports = function init(site) {
             if (result.doc.posting)
               _itm.type = 'sum'
             else _itm.type = 'minus'
+            _itm.assemble = true
 
             _itm.store = result.doc.store
             _itm.company = result.doc.company
@@ -342,6 +344,7 @@ module.exports = function init(site) {
               _itm.store = result.doc.store
               _itm.company = result.doc.company
               _itm.branch = result.doc.branch
+              _itm.assemble = true
 
               site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _itm))
 

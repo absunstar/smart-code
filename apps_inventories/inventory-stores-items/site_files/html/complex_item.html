@@ -11,6 +11,15 @@
             <form class="form">
                 <div class="row">
                     <div class="row">
+                        <i-control class="col2" ng-model="item.value_add.value" label="##word.value_added##"
+                            type="number">
+                        </i-control>
+                        <i-radio ng-model="item.value_add.type" label="##word.discount_types_number##" ng-value="number"
+                            group="type" type="radio"></i-radio>
+                        <i-radio ng-model="item.value_add.type" label="##word.discount_types_percent##"
+                            ng-value="percent" group="type" type="radio"></i-radio>
+                    </div>
+                    <div class="row">
                         <i-control ng-keydown="getItemsName($event)" id="item_name" class="col3"
                             ng-model="search_item_name" label="##word.search##" type="text"></i-control>
 

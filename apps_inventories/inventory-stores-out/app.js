@@ -122,7 +122,7 @@ module.exports = function init(site) {
     stores_out_doc.total_value = site.toNumber(stores_out_doc.total_value)
     stores_out_doc.net_value = site.toNumber(stores_out_doc.net_value)
 
-    if (stores_out_doc.type.id !== 5 || stores_out_doc.type.id !== 6)
+    if (stores_out_doc.type.id !== 5 && stores_out_doc.type.id !== 6)
       stores_out_doc.return_paid = {
         items: stores_out_doc.items,
         total_discount: stores_out_doc.total_discount,
@@ -195,7 +195,7 @@ module.exports = function init(site) {
       itm.total = site.toNumber(itm.total)
     })
 
-    if (stores_out_doc.type.id !== 5 || stores_out_doc.type.id !== 6)
+    if (stores_out_doc.type.id !== 5 && stores_out_doc.type.id !== 6)
       stores_out_doc.return_paid = {
         items: stores_out_doc.items,
         total_discount: stores_out_doc.total_discount,
@@ -601,13 +601,14 @@ module.exports = function init(site) {
                   }
               });
 
-              _doc.return_paid = {
-                items: _doc.items,
-                total_discount: _doc.total_discount,
-                total_tax: _doc.total_tax,
-                total_value: _doc.total_value,
-                net_value: _doc.net_value,
-              }
+              if (_doc.type.id !== 5 && _doc.type.id !== 6)
+                _doc.return_paid = {
+                  items: _doc.items,
+                  total_discount: _doc.total_discount,
+                  total_tax: _doc.total_tax,
+                  total_value: _doc.total_value,
+                  net_value: _doc.net_value,
+                }
               $stores_out.update(_doc)
             });
           }

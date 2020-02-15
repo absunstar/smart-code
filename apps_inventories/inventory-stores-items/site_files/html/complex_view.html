@@ -10,8 +10,19 @@
         </div>
         <div class="modal-body">
             <form class="form">
-
+                <div class="row">
+                    <i-control class="col2" ng-disabled="complexView.view" ng-model="complexView.value_add.value"
+                        label="##word.value_added##" type="number">
+                    </i-control>
+                    <i-radio ng-hide="complexView.view" ng-model="complexView.value_add.type"
+                        label="##word.discount_types_number##" ng-value="number" group="type" type="radio"></i-radio>
+                    <i-radio ng-hide="complexView.view" ng-model="complexView.value_add.type"
+                        label="##word.discount_types_percent##" ng-value="percent" group="type" type="radio"></i-radio>
+                </div>
                 <div class="row" ng-hide="complexView.view">
+
+
+
                     <div class="row">
 
                         <i-control ng-keydown="getItemsName($event)" id="item_name" class="col3"
@@ -49,33 +60,30 @@
 
                         <tr class="bold" ng-repeat="i in complexView.complex_items">
                             <td>
-                                <br>
                                 <p class="center bold blue">{{i.name}}</p>
                             </td>
                             <td>
-                                <br>
                                 <p class="center bold">{{i.size}}</p>
                             </td>
                             <td>
-                                <br>
                                 <p class="center bold blue">{{i.barcode}}</p>
                             </td>
                             <td>
-                                <i-list ng-model="i.unit" ng-search="_search.$category_item.$unit_search"
+                                <p ng-show="complexView.view" class="center bold">{{i.unit.name}} -
+                                    {{i.unit.barcode}}</p>
+                                <i-list ng-hide="complexView.view" ng-model="i.unit"
+                                    ng-search="_search.$category_item.$unit_search"
                                     ng-change=" i.price = i.unit.price ;calcSize(i)" display2="barcode"
                                     items="i.size_units_list"></i-list>
                             </td>
                             <td>
-                                <br>
-                                <p class="center bold green">{{i.price}}</p>
+                                <p ng-show="complexView.view" class="center bold green">{{i.price}}</p>
+                                <i-control ng-hide="complexView.view" ng-model="i.price" type="number"></i-control>
                             </td>
 
-                            <td ng-show="complexView.view">
-                                <br>
-                                <p class="center bold">{{i.count}}</p>
-                            </td>
-                            <td ng-hide="complexView.view">
-                                <i-control ng-model="i.count" type="number"></i-control>
+                            <td>
+                                <p ng-show="complexView.view" class="center bold">{{i.count}}</p>
+                                <i-control ng-hide="complexView.view" ng-model="i.count" type="number"></i-control>
                             </td>
 
                             <td class="center" ng-hide="complexView.view">

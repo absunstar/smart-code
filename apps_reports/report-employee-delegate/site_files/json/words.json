@@ -25,6 +25,11 @@
         "ar": "كود الفاتورة"
     },
     {
+        "name": "net_total_return",
+        "en": "Net Total Return",
+        "ar": "صافي إجمالي المرتجعات"
+    },
+    {
         "name": "total_net_values",
         "en": "Total Net Values",
         "ar": "إجمالي القيم المطلوبة"

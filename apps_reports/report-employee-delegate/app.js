@@ -48,7 +48,7 @@ module.exports = function init(site) {
         '$lt': d2
       }
     } else if (where && where.date_from) {
-      let d1 = site.toDate( where.date_from)
+      let d1 = site.toDate(where.date_from)
       let d2 = site.toDate(where.date_to)
       d2.setDate(d2.getDate() + 1);
       where.date = {
@@ -63,6 +63,8 @@ module.exports = function init(site) {
       where['delegate.id'] = where['delegate'].id;
       delete where['delegate']
     };
+
+    where['$or'] = [{ 'type.id': 3 }, { 'type.id': 6 }, { 'type.id': 7 }]
 
     where['company.id'] = site.get_company(req).id
     where['branch.code'] = site.get_branch(req).code
