@@ -740,6 +740,21 @@
         "ar": "عرض المزيـد"
     },
     {
+        "name": "items_count",
+        "en": "Items Count",
+        "ar": "العدد"
+    },
+    {
+        "name": "items_price",
+        "en": "Items Price",
+        "ar": "السعر"
+    },
+    {
+        "name": "items_price_total",
+        "en": "Items Price Total",
+        "ar": "إجمالي السعر"
+    },
+    {
         "name": "date_from_subscribe",
         "en": "Start Date",
         "ar": "تاريخ بداية الإشتراك"

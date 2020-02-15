@@ -116,7 +116,7 @@ module.exports = function init(site) {
     if (account_invoices_doc.paid_up && account_invoices_doc.safe) {
       account_invoices_doc.payment_list = [{
         date: account_invoices_doc.date,
-        posting: true,
+        posting: account_invoices_doc.posting ? true : false,
         safe: account_invoices_doc.safe,
         payment_method: account_invoices_doc.payment_method,
         currency: account_invoices_doc.currency,
@@ -664,8 +664,6 @@ module.exports = function init(site) {
 
     where['company.id'] = site.get_company(req).id
 
-    where['payment_list.currency'] = null || undefined
-
     $account_invoices.findMany({
       select: req.body.select || {},
       where: where,
@@ -682,14 +680,38 @@ module.exports = function init(site) {
             currency = callback.accounting.currency
 
           if (currency.id)
-            docs.forEach(_doc => {
+          docs.forEach(_doc => {
+            if (_doc.payment_list && _doc.payment_list.length > 0) {
+
               _doc.payment_list.forEach(_payment => {
                 _payment.currency = currency
                 _payment.payment_method = _doc.payment_method
-                _payment.posting = true
+                if (_doc.posting)
+                  _payment.posting = true
+                else _payment.posting = false
               });
-              $account_invoices.update(_doc)
-            });
+
+            } else {
+              if (_doc.paid_up > 0)
+                _doc.payment_list = [{
+                  date: _doc.date,
+                  currency: currency,
+                  safe: _doc.safe,
+                  paid_up: _doc.paid_up,
+                  payment_method: _doc.payment_method,
+                  posting: _doc.posting ? true : false
+                }]
+            }
+            if (!_doc.total_paid_up) {
+              _doc.remain_amount = _doc.net_value
+              _doc.payment_list = [];
+            }
+
+            $account_invoices.update(_doc)
+          });
+
+
+
         })
 
       } else {

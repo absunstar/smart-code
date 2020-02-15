@@ -172,27 +172,28 @@ app.controller("stores_dismantle", function ($scope, $http, $timeout) {
   $scope.addToItems = function () {
     $scope.error = '';
     let foundSize = false;
-    $scope.item.sizes.forEach(_size => {
-      foundSize = $scope.store_dismantle.items.some(_itemSize => _itemSize.barcode == _size.barcode);
-      if (_size.count > 0 && !foundSize) {
-        $scope.store_dismantle.items.unshift({
-          image_url: $scope.item.image_url,
-          name: _size.name,
-          size: _size.size,
-          barcode: _size.barcode,
-          size_units_list: _size.size_units_list,
-          unit: _size.unit,
-          complex_items: _size.complex_items,
-          average_cost: _size.average_cost,
-          count: _size.count,
-          store_count: _size.store_count,
-          cost: _size.cost,
-          price: _size.price,
-          current_count: _size.current_count,
-          ticket_code: _size.ticket_code,
-        });
-      }
-    });
+    if ($scope.item.sizes && $scope.item.sizes.length > 0)
+      $scope.item.sizes.forEach(_size => {
+        foundSize = $scope.store_dismantle.items.some(_itemSize => _itemSize.barcode == _size.barcode);
+        if (_size.count > 0 && !foundSize) {
+          $scope.store_dismantle.items.unshift({
+            image_url: $scope.item.image_url,
+            name: _size.name,
+            size: _size.size,
+            barcode: _size.barcode,
+            size_units_list: _size.size_units_list,
+            unit: _size.unit,
+            complex_items: _size.complex_items,
+            average_cost: _size.average_cost,
+            count: _size.count,
+            store_count: _size.store_count,
+            cost: _size.cost,
+            price: _size.price,
+            current_count: _size.current_count,
+            ticket_code: _size.ticket_code,
+          });
+        }
+      });
 
     $scope.item.sizes = [];
   };
@@ -231,62 +232,65 @@ app.controller("stores_dismantle", function ($scope, $http, $timeout) {
             if (response.data.list.length > 0) {
               let foundSize = false;
               $scope.item.sizes = $scope.item.sizes || [];
-              response.data.list.forEach(_item => {
-                _item.sizes.forEach(_size => {
-                  let foundUnit = false;
-                  let indxUnit = 0;
-                  _size.size_units_list.forEach((_unit, i) => {
-                    if ((_unit.barcode == $scope.search_item_name) && typeof _unit.barcode == 'string') {
-                      foundUnit = true;
-                    }
-                    if (_unit.id == _item.main_unit.id)
-                      indxUnit = i;
-                  });
-                  if ((_size.barcode == $scope.item.search_item_name) || foundUnit) {
-                    _size.name = _item.name
-                    _size.store = $scope.store_dismantle.store
-                    _size.unit = _size.size_units_list[indxUnit];
-                    _size.count = 1
-                    _size.total = _size.count * _size.cost
-                    if (_size.branches_list && _size.branches_list.length > 0) {
-                      let foundBranch = false
-                      let indxBranch = 0
-                      _size.branches_list.map((_branch, i) => {
-                        if (_branch.code == '##session.branch.code##') {
-                          foundBranch = true
-                          indxBranch = i
-                        }
-                      });
+              if (response.data.list && response.data.list.length > 0)
+                response.data.list.forEach(_item => {
+                  if (_item.sizes && _item.sizes.length > 0)
+                    _item.sizes.forEach(_size => {
+                      let foundUnit = false;
+                      let indxUnit = 0;
+                      if (_size.size_units_list && _size.size_units_list.length > 0)
+                        _size.size_units_list.forEach((_unit, i) => {
+                          if ((_unit.barcode == $scope.search_item_name) && typeof _unit.barcode == 'string') {
+                            foundUnit = true;
+                          }
+                          if (_unit.id == _item.main_unit.id)
+                            indxUnit = i;
+                        });
+                      if ((_size.barcode == $scope.item.search_item_name) || foundUnit) {
+                        _size.name = _item.name
+                        _size.store = $scope.store_dismantle.store
+                        _size.unit = _size.size_units_list[indxUnit];
+                        _size.count = 1
+                        _size.total = _size.count * _size.cost
+                        if (_size.branches_list && _size.branches_list.length > 0) {
+                          let foundBranch = false
+                          let indxBranch = 0
+                          _size.branches_list.map((_branch, i) => {
+                            if (_branch.code == '##session.branch.code##') {
+                              foundBranch = true
+                              indxBranch = i
+                            }
+                          });
 
-                      if (foundBranch) {
-                        if (_size.branches_list[indxBranch].code == '##session.branch.code##') {
-                          if (_size.branches_list[indxBranch].stores_list && _size.branches_list[indxBranch].stores_list.length > 0) {
-                            let foundStore = false
-                            let indxStore = 0
-                            _size.branches_list[indxBranch].stores_list.map((_store, i) => {
-                              if (_store.store.id == $scope.store_dismantle.store.id) {
-                                foundStore = true
-                                indxStore = i
-                              }
-                            });
-                            if (foundStore)
-                              _size.branches_list[indxBranch].stores_list[indxStore].size_units_list.forEach(_unit => {
-                                if (_unit.id == _item.main_unit.id)
-                                  _size.store_count = _unit.current_count
-                              });
+                          if (foundBranch) {
+                            if (_size.branches_list[indxBranch].code == '##session.branch.code##') {
+                              if (_size.branches_list[indxBranch].stores_list && _size.branches_list[indxBranch].stores_list.length > 0) {
+                                let foundStore = false
+                                let indxStore = 0
+                                _size.branches_list[indxBranch].stores_list.map((_store, i) => {
+                                  if (_store.store.id == $scope.store_dismantle.store.id) {
+                                    foundStore = true
+                                    indxStore = i
+                                  }
+                                });
+                                if (foundStore)
+                                  _size.branches_list[indxBranch].stores_list[indxStore].size_units_list.forEach(_unit => {
+                                    if (_unit.id == _item.main_unit.id)
+                                      _size.store_count = _unit.current_count
+                                  });
+                              } else _size.store_count = 0
+
+                            } else _size.store_count = 0
                           } else _size.store_count = 0
 
                         } else _size.store_count = 0
-                      } else _size.store_count = 0
 
-                    } else _size.store_count = 0
+                        foundSize = $scope.item.sizes.some(_itemSize => _itemSize.barcode == _size.barcode);
 
-                    foundSize = $scope.item.sizes.some(_itemSize => _itemSize.barcode == _size.barcode);
-
-                    if (!foundSize && _size.item_complex) $scope.item.sizes.unshift(_size);
-                  };
+                        if (!foundSize && _size.item_complex) $scope.item.sizes.unshift(_size);
+                      };
+                    });
                 });
-              });
 
               if (!foundSize)
                 $scope.itemsNameList = response.data.list;
@@ -310,50 +314,51 @@ app.controller("stores_dismantle", function ($scope, $http, $timeout) {
     $scope.item.sizes = $scope.item.sizes || [];
     let foundSize = false;
 
-    $scope.item.name.sizes.forEach(_item => {
-      _item.name = $scope.item.name.name
-      _item.store = $scope.store_dismantle.store
-      let indxUnit = _item.size_units_list.findIndex(_unit => _unit.id == $scope.item.name.main_unit.id);
-      _item.unit = _item.size_units_list[indxUnit];
-      _item.count = 1;
+    if ($scope.item.name && $scope.item.name.sizes && $scope.item.name.sizes.length > 0)
+      $scope.item.name.sizes.forEach(_item => {
+        _item.name = $scope.item.name.name
+        _item.store = $scope.store_dismantle.store
+        let indxUnit = _item.size_units_list.findIndex(_unit => _unit.id == $scope.item.name.main_unit.id);
+        _item.unit = _item.size_units_list[indxUnit];
+        _item.count = 1;
 
-      if (_item.branches_list && _item.branches_list.length > 0) {
-        let foundBranch = false
-        let indxBranch = 0
-        _item.branches_list.map((_branch, i) => {
-          if (_branch.code == '##session.branch.code##') {
-            foundBranch = true
-            indxBranch = i
-          }
-        });
-        if (foundBranch) {
+        if (_item.branches_list && _item.branches_list.length > 0) {
+          let foundBranch = false
+          let indxBranch = 0
+          _item.branches_list.map((_branch, i) => {
+            if (_branch.code == '##session.branch.code##') {
+              foundBranch = true
+              indxBranch = i
+            }
+          });
+          if (foundBranch) {
 
-          if (_item.branches_list[indxBranch].code == '##session.branch.code##') {
-            if (_item.branches_list[indxBranch].stores_list && _item.branches_list[indxBranch].stores_list.length > 0) {
+            if (_item.branches_list[indxBranch].code == '##session.branch.code##') {
+              if (_item.branches_list[indxBranch].stores_list && _item.branches_list[indxBranch].stores_list.length > 0) {
 
-              let foundStore = false
-              let indxStore = 0
-              _item.branches_list[indxBranch].stores_list.map((_store, i) => {
-                if (_store.store.id == $scope.store_dismantle.store.id) {
-                  foundStore = true
-                  indxStore = i
-                }
-              });
-              if (foundStore)
-                _item.branches_list[indxBranch].stores_list[indxStore].size_units_list.forEach(_unit => {
-                  if (_unit.id == $scope.item.name.main_unit.id)
-                    _item.store_count = _unit.current_count
+                let foundStore = false
+                let indxStore = 0
+                _item.branches_list[indxBranch].stores_list.map((_store, i) => {
+                  if (_store.store.id == $scope.store_dismantle.store.id) {
+                    foundStore = true
+                    indxStore = i
+                  }
                 });
+                if (foundStore)
+                  _item.branches_list[indxBranch].stores_list[indxStore].size_units_list.forEach(_unit => {
+                    if (_unit.id == $scope.item.name.main_unit.id)
+                      _item.store_count = _unit.current_count
+                  });
+              } else _item.store_count = 0
+
             } else _item.store_count = 0
-
           } else _item.store_count = 0
-        } else _item.store_count = 0
 
-      } else _item.store_count = 0
-      foundSize = $scope.item.sizes.some(_itemSize => _itemSize.barcode == _item.barcode);
-      if (!foundSize && _item.item_complex)
-        $scope.item.sizes.unshift(_item);
-    });
+        } else _item.store_count = 0
+        foundSize = $scope.item.sizes.some(_itemSize => _itemSize.barcode == _item.barcode);
+        if (!foundSize && _item.item_complex)
+          $scope.item.sizes.unshift(_item);
+      });
   };
 
   $scope.getBarcode = function (ev) {
@@ -372,62 +377,64 @@ app.controller("stores_dismantle", function ($scope, $http, $timeout) {
           if (response.data.done) {
             if (response.data.list.length > 0) {
               let foundSize = false;
-              response.data.list[0].sizes.forEach(_size => {
+              if (response.data.list[0].sizes && response.data.list[0].sizes.length > 0)
+                response.data.list[0].sizes.forEach(_size => {
 
-                let foundUnit = false;
-                let indxUnit = 0;
-                _size.size_units_list.forEach((_unit, i) => {
-                  if ((_unit.barcode == $scope.search_barcode) && typeof _unit.barcode == 'string') {
-                    foundUnit = true;
-                  }
-                  if (_unit.id == response.data.list[0].main_unit.id)
-                    indxUnit = i;
-
-
-                });
-                if ((_size.barcode == $scope.search_barcode) || foundUnit) {
-                  _size.name = response.data.list[0].name;
-                  _size.store = $scope.store_dismantle.store;
-                  _size.unit = _size.size_units_list[indxUnit];
-                  _size.count = 1;
-                  _size.discount = _size.discount;
-                  _size.total = _size.count * _size.cost;
-                  if (_size.branches_list && _size.branches_list.length > 0) {
-                    let foundBranch = false
-                    let indxBranch = 0
-                    _size.branches_list.map((_branch, i) => {
-                      if (_branch.code == '##session.branch.code##') {
-                        foundBranch = true
-                        indxBranch = i
+                  let foundUnit = false;
+                  let indxUnit = 0;
+                  if (_size.size_units_list && _size.size_units_list.length > 0)
+                    _size.size_units_list.forEach((_unit, i) => {
+                      if ((_unit.barcode == $scope.search_barcode) && typeof _unit.barcode == 'string') {
+                        foundUnit = true;
                       }
+                      if (_unit.id == response.data.list[0].main_unit.id)
+                        indxUnit = i;
+
+
                     });
-                    if (foundBranch) {
-                      if (_size.branches_list[indxBranch].code == '##session.branch.code##') {
-                        if (_size.branches_list[indxBranch].stores_list && _size.branches_list[indxBranch].stores_list.length > 0) {
-                          let foundStore = false
-                          let indxStore = 0
-                          _size.branches_list[indxBranch].stores_list.map((_store, i) => {
-                            if (_store.store.id == $scope.store_dismantle.store.id) {
-                              foundStore = true
-                              indxStore = i
-                            }
-                          });
-                          if (foundStore)
-                            _size.branches_list[indxBranch].stores_list[indxStore].size_units_list.forEach(_unit => {
-                              if (_unit.id == response.data.list[0].main_unit.id)
-                                _size.store_count = _unit.current_count
+                  if ((_size.barcode == $scope.search_barcode) || foundUnit) {
+                    _size.name = response.data.list[0].name;
+                    _size.store = $scope.store_dismantle.store;
+                    _size.unit = _size.size_units_list[indxUnit];
+                    _size.count = 1;
+                    _size.discount = _size.discount;
+                    _size.total = _size.count * _size.cost;
+                    if (_size.branches_list && _size.branches_list.length > 0) {
+                      let foundBranch = false
+                      let indxBranch = 0
+                      _size.branches_list.map((_branch, i) => {
+                        if (_branch.code == '##session.branch.code##') {
+                          foundBranch = true
+                          indxBranch = i
+                        }
+                      });
+                      if (foundBranch) {
+                        if (_size.branches_list[indxBranch].code == '##session.branch.code##') {
+                          if (_size.branches_list[indxBranch].stores_list && _size.branches_list[indxBranch].stores_list.length > 0) {
+                            let foundStore = false
+                            let indxStore = 0
+                            _size.branches_list[indxBranch].stores_list.map((_store, i) => {
+                              if (_store.store.id == $scope.store_dismantle.store.id) {
+                                foundStore = true
+                                indxStore = i
+                              }
                             });
+                            if (foundStore)
+                              _size.branches_list[indxBranch].stores_list[indxStore].size_units_list.forEach(_unit => {
+                                if (_unit.id == response.data.list[0].main_unit.id)
+                                  _size.store_count = _unit.current_count
+                              });
+                          } else _size.store_count = 0
+
                         } else _size.store_count = 0
-
                       } else _size.store_count = 0
-                    } else _size.store_count = 0
 
-                  } else _size.store_count = 0
-                  foundSize = $scope.store_dismantle.items.some(_itemSize => _itemSize.barcode == _size.barcode);
-                  if (!foundSize && _size.item_complex)
-                    $scope.store_dismantle.items.unshift(_size);
-                }
-              });
+                    } else _size.store_count = 0
+                    foundSize = $scope.store_dismantle.items.some(_itemSize => _itemSize.barcode == _size.barcode);
+                    if (!foundSize && _size.item_complex)
+                      $scope.store_dismantle.items.unshift(_size);
+                  }
+                });
               if (foundSize) $scope.error = '##word.dublicate_item##';
 
               $scope.search_barcode = '';

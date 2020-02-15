@@ -90,16 +90,6 @@
         "ar": "إسم القائمة"
     },
     {
-        "name": "items_price",
-        "en": "Items Price",
-        "ar": "السعر"
-    },
-    {
-        "name": "items_price_total",
-        "en": "Items Price Total",
-        "ar": "إجمالي السعر"
-    },
-    {
         "name": "error_discount",
         "en": "Should Write Discount Value",
         "ar": "يجب تحديد قيمة للخصم"
@@ -109,11 +99,7 @@
         "en": "Should Write Tax Value",
         "ar": "يجب تحديد قيمة للضريبة"
     },
-    {
-        "name": "items_count",
-        "en": "Items Count",
-        "ar": "العدد"
-    },
+   
     {
         "name": "err_customer",
         "en": "Must Select Customer",

@@ -445,12 +445,12 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
     let max_discount = false;
     let returned_count = false;
 
-
-    $scope.store_in.items.forEach(_itemSize => {
-      if (_itemSize.discount.value > _itemSize.discount.max)
-        max_discount = true;
-      if (_itemSize.count > _itemSize.r_count) returned_count = true;
-    });
+    if ($scope.store_in.items && $scope.store_in.items.length > 0)
+      $scope.store_in.items.forEach(_itemSize => {
+        if (_itemSize.discount.value > _itemSize.discount.max)
+          max_discount = true;
+        if (_itemSize.count > _itemSize.r_count) returned_count = true;
+      });
 
     if ($scope.defaultSettings.inventory && $scope.defaultSettings.inventory.dont_max_discount_items) {
       if (max_discount) {
@@ -595,37 +595,40 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
     $scope.error = '';
     if ($scope.store_in.type) {
       let foundSize = false;
-      $scope.item.sizes.forEach(_size => {
-        foundSize = $scope.store_in.items.some(_itemSize => _itemSize.barcode == _size.barcode);
-        if (_size.count > 0 && !foundSize) {
-          let discount = 0;
-          if (_size.cost && _size.count) {
-            if (_size.discount.type == 'number')
-              discount = (_size.discount.value || 0) * _size.count;
-            else if (_size.discount.type == 'percent')
 
-              discount = (_size.discount.value || 0) * (_size.cost * _size.count) / 100;
-            _size.total = ((site.toNumber(_size.cost) * site.toNumber(_size.count)) - discount);
+      if ($scope.item.sizes && $scope.item.sizes.length > 0)
+        $scope.item.sizes.forEach(_size => {
+          foundSize = $scope.store_in.items.some(_itemSize => _itemSize.barcode == _size.barcode);
+          if (_size.count > 0 && !foundSize) {
+            let discount = 0;
+            if (_size.cost && _size.count) {
+              if (_size.discount.type == 'number')
+                discount = (_size.discount.value || 0) * _size.count;
+              else if (_size.discount.type == 'percent')
+
+                discount = (_size.discount.value || 0) * (_size.cost * _size.count) / 100;
+              _size.total = ((site.toNumber(_size.cost) * site.toNumber(_size.count)) - discount);
+            }
+
+            if ($scope.store_in.items && $scope.store_in.items.length > 0)
+              $scope.store_in.items.unshift({
+                image_url: $scope.item.image_url,
+                name: _size.name,
+                size: _size.size,
+                size_units_list: _size.size_units_list,
+                unit: _size.unit,
+                cost: _size.unit ? _size.unit.cost : 0,
+                price: _size.unit ? _size.unit.price : 0,
+                discount: _size.unit ? _size.unit.discount : 0,
+                barcode: _size.barcode,
+                average_cost: _size.average_cost,
+                count: _size.count,
+                total: _size.total,
+                current_count: _size.current_count,
+                ticket_code: _size.ticket_code,
+              });
           }
-
-          $scope.store_in.items.unshift({
-            image_url: $scope.item.image_url,
-            name: _size.name,
-            size: _size.size,
-            size_units_list: _size.size_units_list,
-            unit: _size.unit,
-            cost: _size.unit ? _size.unit.cost : 0,
-            price: _size.unit ? _size.unit.price : 0,
-            discount: _size.unit ? _size.unit.discount : 0,
-            barcode: _size.barcode,
-            average_cost: _size.average_cost,
-            count: _size.count,
-            total: _size.total,
-            current_count: _size.current_count,
-            ticket_code: _size.ticket_code,
-          });
-        }
-      });
+        });
 
       $scope.calc($scope.store_in);
       $scope.item.sizes = [];
@@ -679,65 +682,70 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
             if (response.data.list.length > 0) {
               let foundSize = false;
               $scope.item.sizes = $scope.item.sizes || [];
-              response.data.list.forEach(_item => {
-                _item.sizes.forEach(_size => {
-                  let foundUnit = false;
-                  let indxUnit = 0;
-                  _size.size_units_list.forEach((_unit, i) => {
-                    if ((_unit.barcode == $scope.search_item_name) && typeof _unit.barcode == 'string') {
-                      foundUnit = true;
-                    }
-                    if (_unit.id == _item.main_unit.id)
-                      indxUnit = i;
-                  });
+              if (response.data.list && response.data.list.length > 0)
+                response.data.list.forEach(_item => {
 
-                  if ((_size.barcode == $scope.search_item_name) || foundUnit) {
-                    _size.name = _item.name;
-                    _size.store = $scope.store_in.store;
-                    _size.count = 1;
+                  if (_item.sizes && _item.sizes.length > 0)
+                    _item.sizes.forEach(_size => {
+                      let foundUnit = false;
+                      let indxUnit = 0;
 
-                    _size.unit = _size.size_units_list[indxUnit];
-                    _size.discount = _size.size_units_list[indxUnit].discount;
-                    _size.cost = _size.size_units_list[indxUnit].cost
-                    _size.total = _size.count * _size.cost;
+                      if (_size.size_units_list && _size.size_units_list.length > 0)
+                        _size.size_units_list.forEach((_unit, i) => {
+                          if ((_unit.barcode == $scope.search_item_name) && typeof _unit.barcode == 'string') {
+                            foundUnit = true;
+                          }
+                          if (_unit.id == _item.main_unit.id)
+                            indxUnit = i;
+                        });
 
-                    if (_size.branches_list && _size.branches_list.length > 0) {
-                      let foundBranch = false
-                      let indxBranch = 0
-                      _size.branches_list.map((_branch, i) => {
-                        if (_branch.code == '##session.branch.code##') {
-                          foundBranch = true
-                          indxBranch = i
-                        }
-                      });
+                      if ((_size.barcode == $scope.search_item_name) || foundUnit) {
+                        _size.name = _item.name;
+                        _size.store = $scope.store_in.store;
+                        _size.count = 1;
 
-                      if (foundBranch) {
-                        if (_size.branches_list[indxBranch].code == '##session.branch.code##') {
-                          if (_size.branches_list[indxBranch].stores_list && _size.branches_list[indxBranch].stores_list.length > 0) {
-                            let foundStore = false
-                            let indxStore = 0
-                            _size.branches_list[indxBranch].stores_list.map((_store, i) => {
-                              if (_store.store.id == $scope.store_in.store.id) {
-                                foundStore = true
-                                indxStore = i
-                              }
-                            });
-                            if (foundStore)
-                              _size.store_count = _size.branches_list[indxBranch].stores_list[indxStore].current_count
+                        _size.unit = _size.size_units_list[indxUnit];
+                        _size.discount = _size.size_units_list[indxUnit].discount;
+                        _size.cost = _size.size_units_list[indxUnit].cost
+                        _size.total = _size.count * _size.cost;
+
+                        if (_size.branches_list && _size.branches_list.length > 0) {
+                          let foundBranch = false
+                          let indxBranch = 0
+                          _size.branches_list.map((_branch, i) => {
+                            if (_branch.code == '##session.branch.code##') {
+                              foundBranch = true
+                              indxBranch = i
+                            }
+                          });
+
+                          if (foundBranch) {
+                            if (_size.branches_list[indxBranch].code == '##session.branch.code##') {
+                              if (_size.branches_list[indxBranch].stores_list && _size.branches_list[indxBranch].stores_list.length > 0) {
+                                let foundStore = false
+                                let indxStore = 0
+                                _size.branches_list[indxBranch].stores_list.map((_store, i) => {
+                                  if (_store.store.id == $scope.store_in.store.id) {
+                                    foundStore = true
+                                    indxStore = i
+                                  }
+                                });
+                                if (foundStore)
+                                  _size.store_count = _size.branches_list[indxBranch].stores_list[indxStore].current_count
+                              } else _size.store_count = 0
+
+                            } else _size.store_count = 0
                           } else _size.store_count = 0
 
                         } else _size.store_count = 0
-                      } else _size.store_count = 0
 
-                    } else _size.store_count = 0
+                        foundSize = $scope.item.sizes.some(_itemSize => _itemSize.barcode == _size.barcode);
 
-                    foundSize = $scope.item.sizes.some(_itemSize => _itemSize.barcode == _size.barcode);
-
-                    if (!foundSize) $scope.item.sizes.unshift(_size);
-                    $scope.calcSize(_size)
-                  };
+                        if (!foundSize) $scope.item.sizes.unshift(_size);
+                        $scope.calcSize(_size)
+                      };
+                    });
                 });
-              });
 
               if (!foundSize)
                 $scope.itemsNameList = response.data.list;
@@ -827,37 +835,40 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
             if (response.data.list.length > 0) {
               let foundSize = false;
 
-              response.data.list[0].sizes.forEach(_size => {
+              if (response.data.list[0].sizes && response.data.list[0].sizes.length > 0)
+                response.data.list[0].sizes.forEach(_size => {
 
-                let foundUnit = false;
-                let indxUnit = 0;
-                _size.size_units_list.forEach((_unit, i) => {
-                  if ((_unit.barcode == $scope.search_barcode) && typeof _unit.barcode == 'string') {
-                    foundUnit = true;
+                  let foundUnit = false;
+                  let indxUnit = 0;
+
+                  if (_size.size_units_list && _size.size_units_list.length > 0)
+                    _size.size_units_list.forEach((_unit, i) => {
+                      if ((_unit.barcode == $scope.search_barcode) && typeof _unit.barcode == 'string') {
+                        foundUnit = true;
+                      }
+
+                      if (_unit.id == response.data.list[0].main_unit.id)
+                        indxUnit = i;
+                    });
+
+                  if ((_size.barcode == $scope.search_barcode) || foundUnit) {
+
+                    _size.name = response.data.list[0].name;
+                    _size.store = $scope.store_in.store;
+                    _size.count = 1;
+                    _size.unit = _size.size_units_list[indxUnit];
+                    _size.discount = _size.size_units_list[indxUnit].discount;
+                    _size.cost = _size.size_units_list[indxUnit].cost;
+                    _size.total = _size.count * _size.cost;
+
+                    foundSize = $scope.store_in.items.some(_itemSize => _itemSize.barcode == _size.barcode);
+
+                    if (!foundSize)
+                      $scope.store_in.items.unshift(_size);
                   }
+                  $scope.calcSize(_size);
 
-                  if (_unit.id == response.data.list[0].main_unit.id)
-                    indxUnit = i;
                 });
-
-                if ((_size.barcode == $scope.search_barcode) || foundUnit) {
-
-                  _size.name = response.data.list[0].name;
-                  _size.store = $scope.store_in.store;
-                  _size.count = 1;
-                  _size.unit = _size.size_units_list[indxUnit];
-                  _size.discount = _size.size_units_list[indxUnit].discount;
-                  _size.cost = _size.size_units_list[indxUnit].cost;
-                  _size.total = _size.count * _size.cost;
-
-                  foundSize = $scope.store_in.items.some(_itemSize => _itemSize.barcode == _size.barcode);
-
-                  if (!foundSize)
-                    $scope.store_in.items.unshift(_size);
-                }
-                $scope.calcSize(_size);
-
-              });
               if (foundSize) $scope.error = '##word.dublicate_item##';
 
               $scope.search_barcode = '';
@@ -899,10 +910,12 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
 
     if ($scope.defaultSettings.inventory && $scope.defaultSettings.inventory.dont_max_discount_items) {
       let max_discount = false;
-      $scope.store_in.items.forEach(_itemSize => {
-        if (_itemSize.discount.value > _itemSize.discount.max)
-          max_discount = true;
-      });
+
+      if ($scope.store_in.items && $scope.store_in.items.length > 0)
+        $scope.store_in.items.forEach(_itemSize => {
+          if (_itemSize.discount.value > _itemSize.discount.max)
+            max_discount = true;
+        });
 
       if (max_discount) {
         $scope.error = "##word.err_maximum_discount##";
@@ -1057,6 +1070,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
   $scope.loadSafes = function (method, currency) {
     $scope.error = '';
     $scope.busy = true;
+
 
     let where = { 'currency.id': currency.id };
 
@@ -1258,10 +1272,11 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
       $scope.store_in.net_value = i.return_paid.net_value;
 
       $scope.store_in.items = [];
-      i.return_paid.items.forEach(_item => {
-        _item.r_count = _item.count;
-        if (_item.count > 0) $scope.store_in.items.push(_item);
-      });
+      if (i.return_paid.items && i.return_paid.items.length > 0)
+        i.return_paid.items.forEach(_item => {
+          _item.r_count = _item.count;
+          if (_item.count > 0) $scope.store_in.items.push(_item);
+        });
 
       if ($scope.store_in.currency)
         $scope.amount_currency = site.toNumber($scope.store_in.net_value) / site.toNumber($scope.store_in.currency.ex_rate);

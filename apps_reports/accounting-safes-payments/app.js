@@ -53,6 +53,9 @@ module.exports = function init(site) {
       code: obj.code || ''
     }
 
+    info.pre_balance = site.toNumber(info.pre_balance)
+    info.balance = site.toNumber(info.balance)
+
     $safes_payments.add(info, () => {
 
       s_p_balance_handle(null)
@@ -174,6 +177,8 @@ module.exports = function init(site) {
           if (currency.id)
             docs.forEach(_doc => {
               _doc.currency = currency
+              _doc.pre_balance = site.toNumber(_doc.pre_balance)
+              _doc.balance = site.toNumber(_doc.balance)
               $safes_payments.update(_doc)
             });
         })

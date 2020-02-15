@@ -83,32 +83,28 @@ module.exports = function init(site) {
 
     $stores_items.findOne({
       name: obj.name,
-      'company.id': obj.company.id,
+      'sizes.barcode': obj.barcode,
+      'company.id': obj.company.id
     }, (err, doc) => {
 
       if (!err && doc) {
-        // site.getItemsAverageCost(obj.company.id, complexItems, callback => {
         doc.sizes.forEach(_size => {
           if (_size.barcode == obj.barcode) {
 
-            //  let total_assemble = 0
-            //   if (_size.item_complex) {
-            //     complexItems(_size.complex_items)
-
-
-            //     if (_size.value_add && _size.value_add.type == 'percent') {
-            //       _size.size_units_list.forEach(_units => {
-            //         if (obj.unit && _units.id == obj.unit.id) {
-
-            //           total_assemble = (_size.value_add.value * _units.price) / 100
-            //         }
-            //       })
-            //     }
-            //     else total_assemble = site.toNumber(_size.value_add.value);
-
-            //   } else complexItems(null)
-
             let totalPrice = obj.price * site.toNumber(obj.count);
+            let total_complex_av = 0
+
+            if (_size.item_complex) {
+              _size.complex_items.map(_complex => total_complex_av += _complex.unit.average_cost);
+
+              if (_size.value_add) {
+                if (_size.value_add.type == 'percent')
+                  total_complex_av = total_complex_av + ((site.toNumber(_size.value_add.value) * total_complex_av) / 100)
+                else total_complex_av = total_complex_av + site.toNumber(_size.value_add.value)
+              }
+            }
+
+
             if (obj.source_type.id == 3) {
               if (obj.type == 'sum')
                 _size.start_count = site.toNumber(_size.start_count || 0) + site.toNumber(total_unit)
@@ -134,6 +130,7 @@ module.exports = function init(site) {
 
             if ((obj.source_type.id == 1 || obj.source_type.id == 4) && obj.store_in)
               _size.average_cost = site.toNumber(_size.total_buy_price) / site.toNumber(_size.total_buy_count)
+            else if (obj.assemble) _size.average_cost = total_complex_av
 
             _size.average_cost = site.toNumber(_size.average_cost)
 
@@ -159,12 +156,42 @@ module.exports = function init(site) {
 
                 if ((obj.source_type.id == 1 || obj.source_type.id == 4) && obj.store_in)
                   _units.average_cost = site.toNumber(_units.total_buy_price) / site.toNumber(_units.total_buy_count)
+                else if (obj.assemble) _units.average_cost = total_complex_av
 
                 _units.average_cost = site.toNumber(_units.average_cost)
 
                 _units.cost = site.toNumber(obj.cost)
                 _units.price = site.toNumber(obj.price)
+
+
+                $stores_items.findMany({
+                  select: req.body.select || {},
+                  where: {
+                    'sizes.complex_items.barcode': obj.barcode,
+                    'sizes.complex_items.name': obj.name,
+                    'company.id': obj.company.id
+                  },
+                  sort: req.body.sort || {
+                    id: -1
+                  },
+                  limit: req.body.limit
+                }, (err, comolex_docs) => {
+                  if (comolex_docs && comolex_docs.length > 0)
+                    comolex_docs.forEach(_complexDoc => {
+                      _complexDoc.sizes.forEach(_complexSize => {
+                        _complexSize.complex_items.forEach(_complexItem => {
+                          if (_complexItem.barcode == obj.barcode)
+                            _complexItem.unit.average_cost = _units.average_cost
+                        });
+                      });
+                      $stores_items.update(_complexDoc, () => { });
+
+                    });
+                })
+
+                
               }
+
 
             });
 
@@ -218,6 +245,8 @@ module.exports = function init(site) {
 
                     if ((obj.source_type.id == 1 || obj.source_type.id == 4) && obj.store_in)
                       _units.average_cost = site.toNumber(_units.total_buy_price) / site.toNumber(_units.total_buy_count)
+                    else if (obj.assemble) _units.average_cost = total_complex_av
+
                     _units.average_cost = site.toNumber(_units.average_cost)
 
                     unit_branch = true
@@ -259,6 +288,8 @@ module.exports = function init(site) {
                 }
 
                 if ((obj.source_type.id == 1 || obj.source_type.id == 4) && obj.store_in) _branch.average_cost = site.toNumber(_branch.total_buy_price) / site.toNumber(_branch.total_buy_count)
+                else if (obj.assemble) _branch.average_cost = total_complex_av
+
                 _branch.average_cost = site.toNumber(_branch.average_cost)
 
                 if (_branch.stores_list && _branch.stores_list.length > 0) {
@@ -288,6 +319,8 @@ module.exports = function init(site) {
 
                         if ((obj.source_type.id == 1 || obj.source_type.id == 4) && obj.store_in)
                           _units.average_cost = site.toNumber(_units.total_buy_price) / site.toNumber(_units.total_buy_count)
+                        else if (obj.assemble) _units.average_cost = total_complex_av
+
                         _units.average_cost = site.toNumber(_units.average_cost)
 
                         unit_store = true
@@ -330,6 +363,8 @@ module.exports = function init(site) {
                     }
 
                     if ((obj.source_type.id == 1 || obj.source_type.id == 4) && obj.store_in) _branch._store.average_cost = site.toNumber(_branch._store.total_buy_price) / site.toNumber(_branch._store.total_buy_count)
+                    else if (obj.assemble) _branch._store.average_cost = total_complex_av
+
                     _branch._store.average_cost = site.toNumber(_branch._store.average_cost)
 
                   } else _branch.stores_list.push(obj_store)
@@ -356,7 +391,6 @@ module.exports = function init(site) {
         $stores_items.update(doc, () => {
           balance_handle(null)
         });
-        // });
 
       } else {
 
@@ -879,104 +913,108 @@ module.exports = function init(site) {
             }]
 
             let y = new Date().getFullYear().toString()
-            _doc.sizes.forEach(_sizes => {
-              let _barcode = _doc.id + _doc.company.id + _doc.branch.code + y + (Math.floor(Math.random() * 100))
-              if (unit.id)
-                if (true) {
-                  _sizes.discount = {
-                    max: 5, type: 'number', value: 2
-                  }
-                  _sizes.size_units_list = [{
-                    id: unit.id,
-                    name: unit.name,
-                    barcode: _barcode,
-                    current_count: _sizes.current_count,
-                    start_count: _sizes.start_count,
-                    price: _sizes.price,
-                    cost: _sizes.cost,
-                    discount: {
-                      max: _sizes.discount.max,
-                      value: _sizes.discount.value,
-                      type: _sizes.discount.type
-                    },
-                    total_buy_price: _sizes.total_buy_price,
-                    total_buy_count: _sizes.total_buy_count,
-                    total_sell_price: _sizes.total_sell_price,
-                    total_sell_count: _sizes.total_sell_count,
-                    average_cost: _sizes.average_cost,
-                    convert: 1
-                  }]
 
-                  _sizes.branches_list.forEach(_branch => {
-                    _branch.size_units_list = [{
+            if (_doc.sizes && _doc.sizes.length > 0)
+              _doc.sizes.forEach(_sizes => {
+                let _barcode = _doc.id + _doc.company.id + _doc.branch.code + y + (Math.floor(Math.random() * 100))
+                if (unit.id)
+                  if (true) {
+                    _sizes.discount = {
+                      max: 5, type: 'number', value: 2
+                    }
+                    _sizes.size_units_list = [{
                       id: unit.id,
                       name: unit.name,
                       barcode: _barcode,
-                      current_count: _branch.current_count,
-                      start_count: _branch.start_count,
-                      total_buy_price: _branch.total_buy_price,
-                      total_buy_count: _branch.total_buy_count,
-                      total_sell_price: _branch.total_sell_price,
-                      total_sell_count: _branch.total_sell_count,
-                      average_cost: _branch.average_cost
+                      current_count: _sizes.current_count,
+                      start_count: _sizes.start_count,
+                      price: _sizes.price,
+                      cost: _sizes.cost,
+                      discount: {
+                        max: _sizes.discount.max,
+                        value: _sizes.discount.value,
+                        type: _sizes.discount.type
+                      },
+                      total_buy_price: _sizes.total_buy_price,
+                      total_buy_count: _sizes.total_buy_count,
+                      total_sell_price: _sizes.total_sell_price,
+                      total_sell_count: _sizes.total_sell_count,
+                      average_cost: _sizes.average_cost,
+                      convert: 1
                     }]
 
-                    _branch.stores_list.forEach(_store => {
-                      _store.size_units_list = [{
-                        id: unit.id,
-                        name: unit.name,
-                        barcode: _barcode,
-                        current_count: _store.current_count,
-                        start_count: _store.start_count,
-                        total_buy_price: _store.total_buy_price,
-                        total_buy_count: _store.total_buy_count,
-                        total_sell_price: _store.total_sell_price,
-                        total_sell_count: _store.total_sell_count,
-                        average_cost: _store.average_cost
-                      }]
+                    if (_sizes.branches_list && _sizes.branches_list.length > 0)
+                      _sizes.branches_list.forEach(_branch => {
+                        _branch.size_units_list = [{
+                          id: unit.id,
+                          name: unit.name,
+                          barcode: _barcode,
+                          current_count: _branch.current_count,
+                          start_count: _branch.start_count,
+                          total_buy_price: _branch.total_buy_price,
+                          total_buy_count: _branch.total_buy_count,
+                          total_sell_price: _branch.total_sell_price,
+                          total_sell_count: _branch.total_sell_count,
+                          average_cost: _branch.average_cost
+                        }]
 
-                    });
-                  });
+                        if (_branch.stores_list && _branch.stores_list.length > 0)
+                          _branch.stores_list.forEach(_store => {
+                            _store.size_units_list = [{
+                              id: unit.id,
+                              name: unit.name,
+                              barcode: _barcode,
+                              current_count: _store.current_count,
+                              start_count: _store.start_count,
+                              total_buy_price: _store.total_buy_price,
+                              total_buy_count: _store.total_buy_count,
+                              total_sell_price: _store.total_sell_price,
+                              total_sell_count: _store.total_sell_count,
+                              average_cost: _store.average_cost
+                            }]
 
-                  delete _sizes.total_purchase_price
-                  delete _sizes.total_purchase_count
-                  delete _sizes.discount
+                          });
+                      });
 
-                }
+                    delete _sizes.total_purchase_price
+                    delete _sizes.total_purchase_count
+                    delete _sizes.discount
 
-
-
-              // if (_sizes.discount == (null || undefined))
-              //   _sizes.discount = { max: 0, value: 0, type: 'number' }
-
-              // if (_sizes.branches_list == (null || undefined) && _sizes.current_count != 0) {
-
-              //   let totalCost = site.toNumber(_sizes.cost) * site.toNumber(_sizes.current_count);
-
-              //   let obj_branch = {
-              //     name_ar: _docs.branch.name_ar,
-              //     code: _docs.branch.code,
-              //     start_count: 0,
-              //     current_count: site.toNumber(_sizes.current_count),
-              //     total_buy_price: totalCost,
-              //     total_buy_count: site.toNumber(_sizes.current_count),
-              //     average_cost: site.toNumber(totalCost) / site.toNumber(_sizes.current_count),
-              //     stores_list: [{
-              //       store: store,
-              //       start_count: 0,
-              //       current_count: site.toNumber(_sizes.current_count),
-              //       cost: site.toNumber(_sizes.cost),
-              //       price: site.toNumber(_sizes.price),
-              //       total_buy_price: totalCost,
-              //       total_buy_count: site.toNumber(_sizes.current_count),
-              //       average_cost: site.toNumber(totalCost) / site.toNumber(_sizes.current_count)
-              //     }]
-              //   }
-              //   _sizes.branches_list = [obj_branch]
-              // }
+                  }
 
 
-            });
+
+                // if (_sizes.discount == (null || undefined))
+                //   _sizes.discount = { max: 0, value: 0, type: 'number' }
+
+                // if (_sizes.branches_list == (null || undefined) && _sizes.current_count != 0) {
+
+                //   let totalCost = site.toNumber(_sizes.cost) * site.toNumber(_sizes.current_count);
+
+                //   let obj_branch = {
+                //     name_ar: _docs.branch.name_ar,
+                //     code: _docs.branch.code,
+                //     start_count: 0,
+                //     current_count: site.toNumber(_sizes.current_count),
+                //     total_buy_price: totalCost,
+                //     total_buy_count: site.toNumber(_sizes.current_count),
+                //     average_cost: site.toNumber(totalCost) / site.toNumber(_sizes.current_count),
+                //     stores_list: [{
+                //       store: store,
+                //       start_count: 0,
+                //       current_count: site.toNumber(_sizes.current_count),
+                //       cost: site.toNumber(_sizes.cost),
+                //       price: site.toNumber(_sizes.price),
+                //       total_buy_price: totalCost,
+                //       total_buy_count: site.toNumber(_sizes.current_count),
+                //       average_cost: site.toNumber(totalCost) / site.toNumber(_sizes.current_count)
+                //     }]
+                //   }
+                //   _sizes.branches_list = [obj_branch]
+                // }
+
+
+              });
             $stores_items.update(_doc)
           });
         })
@@ -1085,10 +1123,12 @@ module.exports = function init(site) {
           docs.forEach(item => {
             if (item.sizes && item.sizes.length > 0)
               item.sizes.forEach(size => {
-                size.size_units_list.forEach(_unit => {
 
-                  arr.push(_unit.barcode)
-                });
+                if (size.size_units_list && size.size_units_list.length > 0)
+                  size.size_units_list.forEach(_unit => {
+
+                    arr.push(_unit.barcode)
+                  });
               })
           })
         }
