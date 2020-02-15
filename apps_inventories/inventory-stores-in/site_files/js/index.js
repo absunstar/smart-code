@@ -835,10 +835,9 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
                   if ((_unit.barcode == $scope.search_barcode) && typeof _unit.barcode == 'string') {
                     foundUnit = true;
                   }
+
                   if (_unit.id == response.data.list[0].main_unit.id)
                     indxUnit = i;
-
-
                 });
 
                 if ((_size.barcode == $scope.search_barcode) || foundUnit) {
@@ -865,7 +864,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
             }
             $timeout(() => {
               document.querySelector('#search_barcode input').focus();
-            }, 100);
+            }, 200);
 
           } else {
             $scope.error = response.data.error;

@@ -149,12 +149,11 @@ module.exports = function init(site) {
             _itm.store = doc.store
             _itm.company = doc.company
             _itm.branch = doc.branch
-
+            _itm.source_type = doc.type
             site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _itm))
 
             _itm.number = doc.number
             _itm.current_status = 'sold'
-            _itm.source_type = doc.type
             _itm.date = doc.date
             _itm.customer = doc.customer
             _itm.store = doc.store
@@ -256,6 +255,7 @@ module.exports = function init(site) {
             _itm.store = result.doc.store
             _itm.company = result.doc.company
             _itm.branch = result.doc.branch
+            _itm.source_type = result.doc.type
 
             if (result.doc.posting) {
               if (result.doc.type.id == 6) {
@@ -282,7 +282,6 @@ module.exports = function init(site) {
             _itm.number = result.doc.number
             _itm.customer = result.doc.customer
             _itm.date = result.doc.date
-            _itm.source_type = result.doc.type
             _itm.shift = {
               id: result.doc.shift.id,
               code: result.doc.shift.code,

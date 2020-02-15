@@ -150,13 +150,14 @@ module.exports = function init(site) {
             _itm.store = doc.store
             _itm.company = doc.company
             _itm.branch = doc.branch
+            _itm.source_type = doc.type
+            _itm.store_in = true
 
             site.call('[transfer_branch][stores_items][add_balance]', _itm)
 
             _itm.number = doc.number
             _itm.vendor = doc.vendor
             _itm.date = doc.date
-            _itm.source_type = doc.type
             _itm.current_status = 'storein'
             _itm.shift = {
               id: doc.shift.id,
@@ -260,6 +261,8 @@ module.exports = function init(site) {
             _itm.store = result.doc.store
             _itm.company = result.doc.company
             _itm.branch = result.doc.branch
+            _itm.source_type = result.doc.type
+            _itm.store_in = true
 
             if (result.doc.posting) {
               if (result.doc.type.id == 4) {
@@ -286,7 +289,6 @@ module.exports = function init(site) {
             _itm.number = result.doc.number
             _itm.vendor = result.doc.vendor
             _itm.date = result.doc.date
-            _itm.source_type = result.doc.type
             _itm.shift = {
               id: result.doc.shift.id,
               code: result.doc.shift.code,
@@ -337,7 +339,8 @@ module.exports = function init(site) {
               _itm.store = stores_in_doc.store
               _itm.company = stores_in_doc.company
               _itm.branch = stores_in_doc.branch
-
+              _itm.source_type = stores_in_doc.type
+              _itm.store_in = true
               if (result.doc.type.id == 4) {
                 _itm.type = 'sum'
                 _itm.transaction_type = 'in'
@@ -352,7 +355,6 @@ module.exports = function init(site) {
               _itm.number = stores_in_doc.number
               _itm.vendor = stores_in_doc.vendor
               _itm.date = stores_in_doc.date
-              _itm.source_type = stores_in_doc.type
               _itm.shift = {
                 id: stores_in_doc.shift.id,
                 code: stores_in_doc.shift.code,
