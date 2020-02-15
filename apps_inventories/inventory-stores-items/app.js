@@ -27,7 +27,7 @@ module.exports = function init(site) {
     let obj_branch = {
       name_ar: obj.branch.name_ar,
       code: obj.branch.code,
-      start_count: obj._status == 3 ? site.toNumber(total_unit) : 0,
+      start_count: obj.source_type.id == 3 ? site.toNumber(total_unit) : 0,
       current_count: site.toNumber(total_unit),
       total_buy_price: totalCost,
       total_buy_count: site.toNumber(total_unit),
@@ -37,14 +37,14 @@ module.exports = function init(site) {
         name: obj.unit.name,
         barcode: obj.unit.barcode,
         current_count: obj.count,
-        start_count: obj._status == 3 ? site.toNumber(obj.count) : 0,
+        start_count: obj.source_type.id == 3 ? site.toNumber(obj.count) : 0,
         total_buy_price: totalCost,
         total_buy_count: site.toNumber(obj.count),
         average_cost: site.toNumber(totalCost) / site.toNumber(obj.count)
       }],
       stores_list: [{
         store: obj.store,
-        start_count: obj._status == 3 ? site.toNumber(total_unit) : 0,
+        start_count: obj.source_type.id == 3 ? site.toNumber(total_unit) : 0,
         current_count: site.toNumber(total_unit),
         total_buy_price: totalCost,
         size_units_list: [{
@@ -52,7 +52,7 @@ module.exports = function init(site) {
           name: obj.unit.name,
           barcode: obj.unit.barcode,
           current_count: obj.count,
-          start_count: obj._status == 3 ? site.toNumber(obj.count) : 0,
+          start_count: obj.source_type.id == 3 ? site.toNumber(obj.count) : 0,
           total_buy_price: totalCost,
           total_buy_count: site.toNumber(obj.count),
           average_cost: site.toNumber(totalCost) / site.toNumber(obj.count)
@@ -64,7 +64,7 @@ module.exports = function init(site) {
 
     let obj_store = {
       store: obj.store,
-      start_count: obj._status == 3 ? site.toNumber(total_unit) : 0,
+      start_count: obj.source_type.id == 3 ? site.toNumber(total_unit) : 0,
       current_count: site.toNumber(total_unit),
 
       size_units_list: [{
@@ -72,7 +72,7 @@ module.exports = function init(site) {
         name: obj.unit.name,
         barcode: obj.unit.barcode,
         current_count: obj.count,
-        start_count: obj._status == 3 ? site.toNumber(obj.count) : 0,
+        start_count: obj.source_type.id == 3 ? site.toNumber(obj.count) : 0,
         total_buy_price: totalCost,
         total_buy_count: site.toNumber(obj.count),
         average_cost: site.toNumber(totalCost) / site.toNumber(obj.count)
@@ -93,7 +93,7 @@ module.exports = function init(site) {
           if (_size.barcode == obj.barcode) {
 
             let totalPrice = obj.price * site.toNumber(obj.count);
-            if (obj._status == 3) {
+            if (obj.source_type.id == 3) {
               if (obj.type == 'sum')
                 _size.start_count = site.toNumber(_size.start_count || 0) + site.toNumber(total_unit)
               else if (obj.type == 'minus')
@@ -109,35 +109,37 @@ module.exports = function init(site) {
               _size.current_count = site.toNumber(_size.current_count) - site.toNumber(total_unit)
               _size.total_sell_price = (_size.total_sell_price || 0) + totalPrice
               _size.total_sell_count = (_size.total_sell_count || 0) + site.toNumber(total_unit)
-              if (obj.source_type && obj.source_type.id == 4 && obj.store_in) {
+
+              if (obj.source_type && (obj.source_type.id == 4 || obj.source_type.id == 1) && obj.store_in) {
                 _size.total_buy_price = (_size.total_buy_price || 0) - totalCost
                 _size.total_buy_count = (_size.total_buy_count || 0) - site.toNumber(total_unit)
               }
             }
 
-            if (obj._status == 1 || obj.store_in)
+            if ((obj.source_type.id == 1 || obj.source_type.id == 4) && obj.store_in)
               _size.average_cost = site.toNumber(_size.total_buy_price) / site.toNumber(_size.total_buy_count)
 
             _size.size_units_list.forEach(_units => {
               if (obj.unit && _units.id == obj.unit.id) {
                 if (obj.type == 'sum') {
                   _units.current_count = (_units.current_count || 0) + obj.count
-                  if (obj._status == 3) _units.start_count = site.toNumber(_units.start_count || 0) + site.toNumber(obj.count)
+                  if (obj.source_type.id == 3) _units.start_count = site.toNumber(_units.start_count || 0) + site.toNumber(obj.count)
                   _units.total_buy_price = (_units.total_buy_price || 0) + totalCost
                   _units.total_buy_count = (_units.total_buy_count || 0) + site.toNumber(obj.count)
 
                 } else if (obj.type == 'minus') {
                   _units.current_count = (_units.current_count || 0) - obj.count
-                  if (obj._status == 3) _units.start_count = site.toNumber(_units.start_count || 0) - site.toNumber(obj.count)
+                  if (obj.source_type.id == 3) _units.start_count = site.toNumber(_units.start_count || 0) - site.toNumber(obj.count)
                   _units.total_sell_price = (_units.total_sell_price || 0) + totalPrice
                   _units.total_sell_count = (_units.total_sell_count || 0) + site.toNumber(obj.count)
 
-                  if (obj.source_type && obj.source_type.id == 4 && obj.store_in) {
+                  if (obj.source_type && (obj.source_type.id == 4 || obj.source_type.id == 1) && obj.store_in) {
                     _units.total_buy_price = (_units.total_buy_price || 0) - totalCost
                     _units.total_buy_count = (_units.total_buy_count || 0) - site.toNumber(obj.count)
                   }
                 }
-                if (obj._status == 1 || obj.store_in)
+
+                if ((obj.source_type.id == 1 || obj.source_type.id == 4) && obj.store_in)
                   _units.average_cost = site.toNumber(_units.total_buy_price) / site.toNumber(_units.total_buy_count)
                 _units.cost = site.toNumber(obj.cost)
                 _units.price = site.toNumber(obj.price)
@@ -174,25 +176,26 @@ module.exports = function init(site) {
                   if (obj.unit && _units.id == obj.unit.id) {
                     if (obj.type == 'sum') {
 
-                      if (obj._status == 3) _units.start_count = site.toNumber(_units.start_count || 0) + site.toNumber(obj.count)
+                      if (obj.source_type.id == 3) _units.start_count = site.toNumber(_units.start_count || 0) + site.toNumber(obj.count)
 
                       _units.current_count = (_units.current_count || 0) + obj.count
                       _units.total_buy_price = (_units.total_buy_price || 0) + totalCost
                       _units.total_buy_count = (_units.total_buy_count || 0) + site.toNumber(obj.count)
 
                     } else if (obj.type == 'minus') {
-                      if (obj._status == 3) _units.start_count = site.toNumber(_units.start_count || 0) - site.toNumber(obj.count)
+                      if (obj.source_type.id == 3) _units.start_count = site.toNumber(_units.start_count || 0) - site.toNumber(obj.count)
 
                       _units.current_count = (_units.current_count || 0) - obj.count
                       _units.total_sell_price = (_units.total_sell_price || 0) + totalPrice
                       _units.total_sell_count = (_units.total_sell_count || 0) + site.toNumber(obj.count)
-                      if (obj.source_type && obj.source_type.id == 4 && obj.store_in) {
+
+                      if (obj.source_type && (obj.source_type.id == 4 || obj.source_type.id == 1) && obj.store_in) {
                         _units.total_buy_price = (_units.total_buy_price || 0) - totalCost
                         _units.total_buy_count = (_units.total_buy_count || 0) - site.toNumber(obj.count)
                       }
                     }
 
-                    if (obj._status == 1 || obj.store_in)
+                    if ((obj.source_type.id == 1 || obj.source_type.id == 4) && obj.store_in)
                       _units.average_cost = site.toNumber(_units.total_buy_price) / site.toNumber(_units.total_buy_count)
 
                     unit_branch = true
@@ -205,7 +208,7 @@ module.exports = function init(site) {
                     name: obj.unit.name,
                     barcode: obj.unit.barcode,
                     current_count: obj.count,
-                    start_count: obj._status == 3 ? site.toNumber(obj.count) : 0,
+                    start_count: obj.source_type.id == 3 ? site.toNumber(obj.count) : 0,
                     total_buy_price: totalCost,
                     total_buy_count: site.toNumber(obj.count),
                     average_cost: site.toNumber(totalCost) / site.toNumber(obj.count)
@@ -214,26 +217,26 @@ module.exports = function init(site) {
                 }
 
                 if (obj.type == 'sum') {
-                  if (obj._status == 3) _branch.start_count = (_branch.start_count || 0) + site.toNumber(total_unit)
+                  if (obj.source_type.id == 3) _branch.start_count = (_branch.start_count || 0) + site.toNumber(total_unit)
                   _branch.current_count = _branch.current_count + site.toNumber(total_unit)
                   _branch.total_buy_price = (_branch.total_buy_price || 0) + totalCost
                   _branch.total_buy_count = (_branch.total_buy_count || 0) + site.toNumber(total_unit)
                 }
 
                 if (obj.type == 'minus') {
-                  if (obj._status == 3) _branch.start_count = (_branch.start_count || 0) - site.toNumber(total_unit)
+                  if (obj.source_type.id == 3) _branch.start_count = (_branch.start_count || 0) - site.toNumber(total_unit)
 
                   _branch.current_count = _branch.current_count - site.toNumber(total_unit)
                   _branch.total_sell_price = (_branch.total_sell_price || 0) + totalPrice
                   _branch.total_sell_count = (_branch.total_sell_count || 0) + site.toNumber(total_unit)
 
-                  if (obj.source_type && obj.source_type.id == 4 && obj.store_in) {
+                  if (obj.source_type && (obj.source_type.id == 4 || obj.source_type.id == 1) && obj.store_in) {
                     _branch.total_buy_price = (_branch.total_buy_price || 0) - totalCost
                     _branch.total_buy_count = (_branch.total_buy_count || 0) - site.toNumber(total_unit)
                   }
                 }
 
-                if (obj._status == 1 || obj.store_in) _branch.average_cost = site.toNumber(_branch.total_buy_price) / site.toNumber(_branch.total_buy_count)
+                if ((obj.source_type.id == 1 || obj.source_type.id == 4) && obj.store_in) _branch.average_cost = site.toNumber(_branch.total_buy_price) / site.toNumber(_branch.total_buy_count)
 
                 if (_branch.stores_list && _branch.stores_list.length > 0) {
 
@@ -243,24 +246,24 @@ module.exports = function init(site) {
                       if (obj.unit && _units.id == obj.unit.id) {
                         if (obj.type == 'sum') {
                           _units.current_count = (_units.current_count || 0) + obj.count
-                          if (obj._status == 3) _units.start_count = site.toNumber(_units.start_count || 0) + site.toNumber(obj.count)
+                          if (obj.source_type.id == 3) _units.start_count = site.toNumber(_units.start_count || 0) + site.toNumber(obj.count)
                           _units.total_buy_price = (_units.total_buy_price || 0) + totalCost
                           _units.total_buy_count = (_units.total_buy_count || 0) + site.toNumber(obj.count)
 
                         } else if (obj.type == 'minus') {
 
                           _units.current_count = (_units.current_count || 0) - obj.count
-                          if (obj._status == 3) _units.start_count = site.toNumber(_units.start_count || 0) - site.toNumber(obj.count)
+                          if (obj.source_type.id == 3) _units.start_count = site.toNumber(_units.start_count || 0) - site.toNumber(obj.count)
                           _units.total_sell_price = (_units.total_sell_price || 0) + totalPrice
                           _units.total_sell_count = (_units.total_sell_count || 0) + site.toNumber(obj.count)
 
-                          if (obj.source_type && obj.source_type.id == 4 && obj.store_in) {
+                          if (obj.source_type && (obj.source_type.id == 4 || obj.source_type.id == 1) && obj.store_in) {
                             _units.total_buy_price = (_units.total_buy_price || 0) - totalCost
                             _units.total_buy_count = (_units.total_buy_count || 0) - site.toNumber(obj.count)
                           }
                         }
 
-                        if (obj._status == 1 || obj.store_in)
+                        if ((obj.source_type.id == 1 || obj.source_type.id == 4) && obj.store_in)
                           _units.average_cost = site.toNumber(_units.total_buy_price) / site.toNumber(_units.total_buy_count)
 
                         unit_store = true
@@ -274,7 +277,7 @@ module.exports = function init(site) {
                         name: obj.unit.name,
                         barcode: obj.unit.barcode,
                         current_count: obj.count,
-                        start_count: obj._status == 3 ? site.toNumber(obj.count) : 0,
+                        start_count: obj.source_type.id == 3 ? site.toNumber(obj.count) : 0,
                         total_buy_price: totalCost,
                         total_buy_count: site.toNumber(obj.count),
                         average_cost: site.toNumber(totalCost) / site.toNumber(obj.count)
@@ -284,25 +287,25 @@ module.exports = function init(site) {
 
 
                     if (obj.type == 'sum') {
-                      if (obj._status == 3) _branch._store.start_count = site.toNumber(_branch._store.start_count || 0) + site.toNumber(total_unit)
+                      if (obj.source_type.id == 3) _branch._store.start_count = site.toNumber(_branch._store.start_count || 0) + site.toNumber(total_unit)
                       _branch._store.current_count = site.toNumber(_branch._store.current_count || 0) + site.toNumber(total_unit)
                       _branch._store.total_buy_price = (_branch._store.total_buy_price || 0) + totalCost
                       _branch._store.total_buy_count = (_branch._store.total_buy_count || 0) + site.toNumber(total_unit)
                     }
 
                     if (obj.type == 'minus') {
-                      if (obj._status == 3) _branch._store.start_count = site.toNumber(_branch._store.start_count || 0) - site.toNumber(total_unit)
+                      if (obj.source_type.id == 3) _branch._store.start_count = site.toNumber(_branch._store.start_count || 0) - site.toNumber(total_unit)
                       _branch._store.current_count = site.toNumber(_branch._store.current_count || 0) - site.toNumber(total_unit)
                       _branch._store.total_sell_price = (_branch._store.total_sell_price || 0) + totalCost
                       _branch._store.total_sell_count = (_branch._store.total_sell_count || 0) + site.toNumber(total_unit)
 
-                      if (obj.source_type && obj.source_type.id == 4 && obj.store_in) {
+                      if (obj.source_type && (obj.source_type.id == 4 || obj.source_type.id == 1) && obj.store_in) {
                         _branch._store.total_buy_price = (_branch._store.total_buy_price || 0) - totalCost
                         _branch._store.total_buy_count = (_branch._store.total_buy_count || 0) - site.toNumber(total_unit)
                       }
                     }
 
-                    if (obj._status == 1 || obj.store_in) _branch._store.average_cost = site.toNumber(_branch._store.total_buy_price) / site.toNumber(_branch._store.total_buy_count)
+                    if ((obj.source_type.id == 1 || obj.source_type.id == 4) && obj.store_in) _branch._store.average_cost = site.toNumber(_branch._store.total_buy_price) / site.toNumber(_branch._store.total_buy_count)
 
                   } else _branch.stores_list.push(obj_store)
 
@@ -331,7 +334,7 @@ module.exports = function init(site) {
 
       } else {
 
-        delete obj._status
+        delete obj.source_type.id
         let item = {
           name: obj.name,
           main_unit: obj.unit,
@@ -645,117 +648,117 @@ module.exports = function init(site) {
       if (!err) {
         response.done = true
 
-/*         if (data.size) {
-          docs.forEach(doc => {
-            doc.sizes.forEach((s, i) => {
-              if (s.size !== data.size) {
-                doc.sizes.splice(i, 1)
-              }
-            })
-            doc.sizes.forEach((s, i) => {
-              if (s.size !== data.size) {
-                doc.sizes.splice(i, 1)
-              }
-            })
-          })
-        }
-
-        if (data.price) {
-          docs.forEach(doc => {
-            doc.sizes.forEach((p, i) => {
-              if (p.price !== data.price) {
-                doc.sizes.splice(i, 1)
-              }
-            })
-            doc.sizes.forEach((p, i) => {
-              if (p.price !== data.price) {
-                doc.sizes.splice(i, 1)
-              }
-            })
-          })
-        }
-
-        if (data.cost) {
-          docs.forEach(doc => {
-            doc.sizes.forEach((c, i) => {
-              if (c.cost !== data.cost) {
-                doc.sizes.splice(i, 1)
-              }
-            })
-            doc.sizes.forEach((c, i) => {
-              if (c.cost !== data.cost) {
-                doc.sizes.splice(i, 1)
-              }
-            })
-          })
-        }
-
-        if (data.current_count) {
-          docs.forEach(doc => {
-            doc.sizes.forEach((c, i) => {
-              if (c.current_count < data.current_count) {
-                doc.sizes.splice(i, 1)
-              }
-            })
-            doc.sizes.forEach((c, i) => {
-              if (c.current_count !== data.current_count) {
-                doc.sizes.splice(i, 1)
-              }
-            })
-          })
-        }
-
-        if (data.current_countGt && !data.current_countLt) {
-          docs.forEach(doc => {
-            doc.sizes.forEach((c, i) => {
-              if (c.current_count < data.current_countGt) {
-                doc.sizes.splice(i, 1)
-              }
-            })
-            doc.sizes.forEach((c, i) => {
-              if (c.current_count < data.current_countGt) {
-                doc.sizes.splice(i, 1)
-              }
-            })
-          })
-        }
-
-        if (data.current_countLt && !data.current_countGt) {
-          docs.forEach(doc => {
-            doc.sizes.forEach((c, i) => {
-              if (c.current_count > data.current_countLt) {
-                doc.sizes.splice(i, 1)
-              }
-            })
-            doc.sizes.forEach((c, i) => {
-              if (c.current_count > data.current_countLt) {
-                doc.sizes.splice(i, 1)
-              }
-            })
-          })
-        }
-
-        if (data.current_countLt && data.current_countGt) {
-          docs.forEach((doc, index) => {
-            doc.sizes.forEach((c, i) => {
-              if (c.current_count > data.current_countLt || c.current_count < data.current_countGt) {
-                doc.sizes.splice(i, 1)
-              }
-            })
-            doc.sizes.forEach((c, i) => {
-              if (c.current_count > data.current_countLt || c.current_count < data.current_countGt) {
-                doc.sizes.splice(i, 1)
-              }
-            })
-            if (doc.sizes.length === 0) {
-              docs.splice(index, 1)
-            }
-          })
-        } */
-
-
+        /*         if (data.size) {
+                  docs.forEach(doc => {
+                    doc.sizes.forEach((s, i) => {
+                      if (s.size !== data.size) {
+                        doc.sizes.splice(i, 1)
+                      }
+                    })
+                    doc.sizes.forEach((s, i) => {
+                      if (s.size !== data.size) {
+                        doc.sizes.splice(i, 1)
+                      }
+                    })
+                  })
+                }
         
+                if (data.price) {
+                  docs.forEach(doc => {
+                    doc.sizes.forEach((p, i) => {
+                      if (p.price !== data.price) {
+                        doc.sizes.splice(i, 1)
+                      }
+                    })
+                    doc.sizes.forEach((p, i) => {
+                      if (p.price !== data.price) {
+                        doc.sizes.splice(i, 1)
+                      }
+                    })
+                  })
+                }
         
+                if (data.cost) {
+                  docs.forEach(doc => {
+                    doc.sizes.forEach((c, i) => {
+                      if (c.cost !== data.cost) {
+                        doc.sizes.splice(i, 1)
+                      }
+                    })
+                    doc.sizes.forEach((c, i) => {
+                      if (c.cost !== data.cost) {
+                        doc.sizes.splice(i, 1)
+                      }
+                    })
+                  })
+                }
+        
+                if (data.current_count) {
+                  docs.forEach(doc => {
+                    doc.sizes.forEach((c, i) => {
+                      if (c.current_count < data.current_count) {
+                        doc.sizes.splice(i, 1)
+                      }
+                    })
+                    doc.sizes.forEach((c, i) => {
+                      if (c.current_count !== data.current_count) {
+                        doc.sizes.splice(i, 1)
+                      }
+                    })
+                  })
+                }
+        
+                if (data.current_countGt && !data.current_countLt) {
+                  docs.forEach(doc => {
+                    doc.sizes.forEach((c, i) => {
+                      if (c.current_count < data.current_countGt) {
+                        doc.sizes.splice(i, 1)
+                      }
+                    })
+                    doc.sizes.forEach((c, i) => {
+                      if (c.current_count < data.current_countGt) {
+                        doc.sizes.splice(i, 1)
+                      }
+                    })
+                  })
+                }
+        
+                if (data.current_countLt && !data.current_countGt) {
+                  docs.forEach(doc => {
+                    doc.sizes.forEach((c, i) => {
+                      if (c.current_count > data.current_countLt) {
+                        doc.sizes.splice(i, 1)
+                      }
+                    })
+                    doc.sizes.forEach((c, i) => {
+                      if (c.current_count > data.current_countLt) {
+                        doc.sizes.splice(i, 1)
+                      }
+                    })
+                  })
+                }
+        
+                if (data.current_countLt && data.current_countGt) {
+                  docs.forEach((doc, index) => {
+                    doc.sizes.forEach((c, i) => {
+                      if (c.current_count > data.current_countLt || c.current_count < data.current_countGt) {
+                        doc.sizes.splice(i, 1)
+                      }
+                    })
+                    doc.sizes.forEach((c, i) => {
+                      if (c.current_count > data.current_countLt || c.current_count < data.current_countGt) {
+                        doc.sizes.splice(i, 1)
+                      }
+                    })
+                    if (doc.sizes.length === 0) {
+                      docs.splice(index, 1)
+                    }
+                  })
+                } */
+
+
+
+
 
         response.list = docs
         response.count = count

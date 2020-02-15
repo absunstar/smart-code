@@ -146,7 +146,6 @@ module.exports = function init(site) {
               _itm.type = 'sum'
               _itm.transaction_type = 'in'
             }
-            _itm._status = doc.type.id
             _itm.store = doc.store
             _itm.company = doc.company
             _itm.branch = doc.branch
@@ -257,7 +256,6 @@ module.exports = function init(site) {
           response.doc = result.doc
 
           result.doc.items.forEach(_itm => {
-            _itm._status = result.doc.type.id
             _itm.store = result.doc.store
             _itm.company = result.doc.company
             _itm.branch = result.doc.branch
@@ -285,7 +283,6 @@ module.exports = function init(site) {
             }
 
             site.call('[transfer_branch][stores_items][add_balance]', _itm)
-            delete _itm._status
             _itm.number = result.doc.number
             _itm.vendor = result.doc.vendor
             _itm.date = result.doc.date
@@ -335,7 +332,6 @@ module.exports = function init(site) {
           if (stores_in_doc.posting) {
 
             stores_in_doc.items.forEach(_itm => {
-              _itm._status = stores_in_doc.type.id
               _itm.store = stores_in_doc.store
               _itm.company = stores_in_doc.company
               _itm.branch = stores_in_doc.branch
@@ -351,7 +347,6 @@ module.exports = function init(site) {
               _itm.current_status = 'd_storein'
 
               site.call('[transfer_branch][stores_items][add_balance]', _itm)
-              delete _itm._status
               _itm.number = stores_in_doc.number
               _itm.vendor = stores_in_doc.vendor
               _itm.date = stores_in_doc.date

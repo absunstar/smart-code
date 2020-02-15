@@ -330,7 +330,7 @@ module.exports = function init(site) {
           if (stores_out_doc.posting) {
 
             stores_out_doc.items.forEach(_itm => {
-              _itm._status = stores_out_doc.type.id
+              _itm.source_type = stores_out_doc.type
               _itm.store = stores_out_doc.store
               _itm.company = stores_out_doc.company
               _itm.branch = stores_out_doc.branch
@@ -344,11 +344,9 @@ module.exports = function init(site) {
               _itm.current_status = 'd_sold'
 
               site.call('[transfer_branch][stores_items][add_balance]', _itm)
-              delete _itm._status
               _itm.number = stores_out_doc.number
               _itm.customer = stores_out_doc.customer
               _itm.date = stores_out_doc.date
-              _itm.source_type = stores_out_doc.type
               _itm.shift = {
                 id: stores_out_doc.shift.id,
                 code: stores_out_doc.shift.code,
