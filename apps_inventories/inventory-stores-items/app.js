@@ -166,7 +166,6 @@ module.exports = function init(site) {
 
 
                 $stores_items.findMany({
-                  select: req.body.select || {},
                   where: {
                     'sizes.complex_items.barcode': obj.barcode,
                     'sizes.complex_items.name': obj.name,
