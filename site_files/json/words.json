@@ -385,6 +385,16 @@
         "ar": "إدارة فواتير الحسابات"
     },
     {
+        "name": "store_stock_menu",
+        "en": "Stores Stocktaking Menu",
+        "ar": "قائمة الجرد المخزني"
+    },
+    {
+        "name": "store_stock_management",
+        "en": "Stores Stocktaking Management",
+        "ar": "إدارة الجرد المخزني"
+    },
+    {
         "name": "create_invoice_from_order",
         "en": "Create Invoice From Order",
         "ar": "إنشاء فاتورة من الطلبات"

@@ -1,0 +1,21 @@
+
+
+<div id="addStoreStockModal" class="modal" fixed>
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                 ##word.stores_stock##  <i class="fa fa-plus"></i>
+            </h2>
+        </div>
+        <div class="modal-body">
+            <div x-import="inventory-stores-stock/content.html"></div>
+
+        </div>
+        <h2 class="error center bold">{{error}}</h2>
+        <div class="modal-footer center">
+            <i-button ng-hide="busy" type="add" label="##word.add##" ng-click="add()" ></i-button>
+            <i-button  type="close" label=" ##word.close##" onclick="site.hideModal('#addStoreStockModal')" ></i-button>
+        </div>
+    </div>
+</div>

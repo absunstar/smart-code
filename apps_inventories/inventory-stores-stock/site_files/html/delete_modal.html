@@ -1,0 +1,25 @@
+<div id="deleteStoreStockModal" class="modal">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.stores_stock_delete## <i class="fa fa-trash"></i>  
+            </h2>
+        </div>
+        <div class="modal-body">
+            
+            <div x-import="inventory-stores-stock/view.html"></div>
+
+        </div>
+        <h2>{{error}}</h2>
+
+        <div class="modal-footer center">
+            <i-button type="delete" label= "##word.delete##" ng-hide="busy" id="delete_store_stock_btn" ng-click="delete(store_stock)" ></i-button>
+            <i-button type="close" label= "##word.close##"  onclick="site.hideModal('#deleteStoreStockModal')" ></i-button>
+
+        </div>
+    </div>
+
+
+</div>
