@@ -600,36 +600,39 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
         $scope.item.sizes.forEach(_size => {
           foundSize = $scope.store_in.items.some(_itemSize => _itemSize.barcode == _size.barcode);
           if (_size.count > 0 && !foundSize) {
+
             let discount = 0;
-            if (_size.cost && _size.count) {
+
+            if ($scope.store_in.type && $scope.store_in.type.id == 5)
+              _size.price = _size.cost
+
+            if (_size.price && _size.count) {
               if (_size.discount.type == 'number')
                 discount = (_size.discount.value || 0) * _size.count;
               else if (_size.discount.type == 'percent')
 
-                discount = (_size.discount.value || 0) * (_size.cost * _size.count) / 100;
-              _size.total = ((site.toNumber(_size.cost) * site.toNumber(_size.count)) - discount);
+                discount = (_size.discount.value || 0) * (_size.price * _size.count) / 100;
+              _size.total = ((site.toNumber(_size.price) * site.toNumber(_size.count)) - discount);
             }
-
-            if ($scope.store_in.items && $scope.store_in.items.length > 0)
-              $scope.store_in.items.unshift({
-                image_url: $scope.item.image_url,
-                name: _size.name,
-                size: _size.size,
-                size_units_list: _size.size_units_list,
-                unit: _size.unit,
-                cost: _size.unit ? _size.unit.cost : 0,
-                price: _size.unit ? _size.unit.price : 0,
-                discount: _size.unit ? _size.unit.discount : 0,
-                barcode: _size.barcode,
-                average_cost: _size.average_cost,
-                count: _size.count,
-                total: _size.total,
-                current_count: _size.current_count,
-                ticket_code: _size.ticket_code,
-              });
+            $scope.store_in.items.push({
+              image_url: $scope.item.image_url,
+              name: _size.name,
+              size: _size.size,
+              size_units_list: _size.size_units_list,
+              unit: _size.unit,
+              cost: _size.unit.cost,
+              price: _size.unit.price,
+              discount: _size.unit.discount,
+              barcode: _size.barcode,
+              average_cost: _size.average_cost,
+              count: _size.count,
+              discount: _size.discount,
+              total: _size.total,
+              current_count: _size.current_count,
+              ticket_code: _size.ticket_code,
+            });
           }
         });
-
       $scope.calc($scope.store_in);
       $scope.item.sizes = [];
     } else $scope.error = "##word.err_transaction_type##";
