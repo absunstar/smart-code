@@ -158,6 +158,7 @@ module.exports = function init(site) {
 
                 if (obj.source_type && (obj.source_type.id == 1 || obj.source_type.id == 4) && obj.store_in)
                   _units.average_cost = site.toNumber(_units.total_buy_price) / site.toNumber(_units.total_buy_count)
+
                 else if (obj.assemble) _units.average_cost = total_complex_av
 
                 _units.average_cost = site.toNumber(_units.average_cost)
