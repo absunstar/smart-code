@@ -101,6 +101,7 @@ module.exports = function init(site) {
               if (_size.value_add) {
                 if (_size.value_add.type == 'percent')
                   total_complex_av = total_complex_av + ((site.toNumber(_size.value_add.value) * total_complex_av) / 100)
+
                 else total_complex_av = total_complex_av + site.toNumber(_size.value_add.value)
               }
             }

@@ -53,6 +53,7 @@
                             <th>##word.item_name##</th>
                             <th>##word.stores_items_sizes##</th>
                             <th>##word.barcode##</th>
+                            <th>##word.average_cost##</th>
                             <th>##word.unit##</th>
                             <th>##word.price##</th>
                             <th>##word.item_count##</th>
@@ -71,6 +72,10 @@
                             <td>
                                 <br>
                                 <p class="center bold blue">{{i.barcode}}</p>
+                            </td>
+                            <td>
+                                <br>
+                                <p class="center bold ">{{i.unit.average_cost}}</p>
                             </td>
                             <td>
                                 <i-list ng-model="i.unit" ng-search="_search.$category_item.$unit_search"
