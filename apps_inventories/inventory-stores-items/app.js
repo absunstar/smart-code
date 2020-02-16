@@ -11,6 +11,7 @@ module.exports = function init(site) {
       if (balance_list.length > 0) {
         obj = balance_list[0]
         balance_handle(obj)
+        
         balance_list.splice(0, 1)
       } else {
         setTimeout(() => {
