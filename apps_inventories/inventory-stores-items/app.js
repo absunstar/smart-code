@@ -178,7 +178,7 @@ module.exports = function init(site) {
                           _complexDoc.sizes.forEach(_complexSize => {
                             if (_complexSize.complex_items && _complexSize.complex_items.length > 0)
                               _complexSize.complex_items.forEach(_complexItem => {
-                                if (_complexItem.barcode == obj.barcode)
+                                if (_complexItem.barcode == obj.barcode && _complexItem.unit.id == obj.unit.id)
                                   _complexItem.unit.average_cost = _units.average_cost
                               });
                           });
