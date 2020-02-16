@@ -171,10 +171,6 @@ module.exports = function init(site) {
                     'sizes.complex_items.name': obj.name,
                     'company.id': obj.company.id
                   },
-                  sort: req.body.sort || {
-                    id: -1
-                  },
-                  limit: req.body.limit
                 }, (err, comolex_docs) => {
                   if (comolex_docs && comolex_docs.length > 0)
                     comolex_docs.forEach(_complexDoc => {
