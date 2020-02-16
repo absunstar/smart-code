@@ -60,6 +60,7 @@ module.exports = function init(site) {
 
     where['company.id'] = site.get_company(req).id
     where['branch.code'] = site.get_branch(req).code
+    where['$or'] = [{ 'type.id': 1 }, { 'type.id': 3 }, { 'type.id': 4 }, { 'type.id': 7 }]
 
     $stores_out.findMany({
       select: req.body.select || {},

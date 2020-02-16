@@ -62,9 +62,10 @@ module.exports = function init(site) {
     if (where['delegate']) {
       where['delegate.id'] = where['delegate'].id;
       delete where['delegate']
-    };
+      
+    } else where['delegate.id'] = { $gte: 1 }
 
-    where['$or'] = [{ 'type.id': 3 }, { 'type.id': 6 }, { 'type.id': 7 }]
+    where['$or'] = [{ 'type.id': 1 }, { 'type.id': 3 }, { 'type.id': 7 }]
 
     where['company.id'] = site.get_company(req).id
     where['branch.code'] = site.get_branch(req).code
