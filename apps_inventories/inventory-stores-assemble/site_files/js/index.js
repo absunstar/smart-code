@@ -230,8 +230,6 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
             if (response.data.list.length > 0) {
               let foundSize = false;
               $scope.item.sizes = $scope.item.sizes || [];
-
-              if (response.data.list && response.data.list.length > 0)
                 response.data.list.forEach(_item => {
                   if (_item.sizes && _item.sizes.length > 0)
                     _item.sizes.forEach(_size => {

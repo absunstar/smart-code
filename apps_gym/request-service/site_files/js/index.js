@@ -237,12 +237,12 @@ app.controller("request_service", function ($scope, $http, $timeout) {
       $scope.error = "##word.err_net_value##";
       return;
     }
-
+    
     if ($scope.defaultSettings.general_Settings && $scope.defaultSettings.general_Settings.work_posting)
       account_invoices.posting = false;
     else account_invoices.posting = true;
 
-    if (account_invoices.paid_up = 0) account_invoices.safe = null;
+    if (account_invoices.paid_up == 0) account_invoices.safe = null;
     $http({
       method: "POST",
       url: "/api/account_invoices/add",

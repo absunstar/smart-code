@@ -112,7 +112,7 @@ module.exports = function init(site) {
       $req: req,
       $res: res
     })
-
+    
     if (account_invoices_doc.paid_up && account_invoices_doc.safe) {
       account_invoices_doc.payment_list = [{
         date: account_invoices_doc.date,
