@@ -159,6 +159,7 @@ module.exports = function init(site) {
 
                 if (obj.source_type && (obj.source_type.id == 1 || obj.source_type.id == 4) && obj.store_in)
                   _units.average_cost = site.toNumber(_units.total_buy_price) / site.toNumber(_units.total_buy_count)
+
                 else if (obj.assemble) _units.average_cost = total_complex_av
 
                 _units.average_cost = site.toNumber(_units.average_cost)
@@ -180,7 +181,7 @@ module.exports = function init(site) {
                           _complexDoc.sizes.forEach(_complexSize => {
                             if (_complexSize.complex_items && _complexSize.complex_items.length > 0)
                               _complexSize.complex_items.forEach(_complexItem => {
-                                if (_complexItem.barcode == obj.barcode)
+                                if (_complexItem.barcode == obj.barcode && _complexItem.unit.id == obj.unit.id)
                                   _complexItem.unit.average_cost = _units.average_cost
                               });
                           });

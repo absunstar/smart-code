@@ -52,6 +52,7 @@
                             <th>##word.item_name##</th>
                             <th>##word.stores_items_sizes##</th>
                             <th>##word.barcode##</th>
+                            <th>##word.average_cost##</th>
                             <th>##word.unit##</th>
                             <th>##word.price##</th>
                             <th>##word.item_count##</th>
@@ -60,15 +61,23 @@
 
                         <tr class="bold" ng-repeat="i in complexView.complex_items">
                             <td>
+                                <br ng-show="complexView.view">
                                 <p class="center bold blue">{{i.name}}</p>
                             </td>
                             <td>
+                                <br ng-show="complexView.view">
                                 <p class="center bold">{{i.size}}</p>
                             </td>
                             <td>
+                                <br ng-show="complexView.view">
                                 <p class="center bold blue">{{i.barcode}}</p>
                             </td>
                             <td>
+                                <br ng-show="complexView.view">
+                                <p class="center bold ">{{i.unit.average_cost}}</p>
+                            </td>
+                            <td>
+                                <br ng-show="complexView.view">
                                 <p ng-show="complexView.view" class="center bold">{{i.unit.name}} -
                                     {{i.unit.barcode}}</p>
                                 <i-list ng-hide="complexView.view" ng-model="i.unit"
@@ -77,11 +86,13 @@
                                     items="i.size_units_list"></i-list>
                             </td>
                             <td>
+                                <br ng-show="complexView.view">
                                 <p ng-show="complexView.view" class="center bold green">{{i.price}}</p>
                                 <i-control ng-hide="complexView.view" ng-model="i.price" type="number"></i-control>
                             </td>
 
                             <td>
+                                <br ng-show="complexView.view">
                                 <p ng-show="complexView.view" class="center bold">{{i.count}}</p>
                                 <i-control ng-hide="complexView.view" ng-model="i.count" type="number"></i-control>
                             </td>
