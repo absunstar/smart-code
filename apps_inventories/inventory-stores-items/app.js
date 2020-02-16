@@ -164,28 +164,28 @@ module.exports = function init(site) {
                 _units.cost = site.toNumber(obj.cost)
                 _units.price = site.toNumber(obj.price)
 
-                $stores_items.findMany({
-                  where: {
-                    'sizes.complex_items.barcode': obj.barcode,
-                    'sizes.complex_items.name': obj.name,
-                    'company.id': obj.company.id
-                  },
-                }, (err, comolex_docs) => {
-                  if (comolex_docs && comolex_docs.length > 0)
-                    comolex_docs.forEach(_complexDoc => {
-                      if (_complexDoc.sizes && _complexDoc.sizes.length > 0)
-                        _complexDoc.sizes.forEach(_complexSize => {
-                          if (_complexSize.complex_items && _complexSize.complex_items.length > 0)
-                            _complexSize.complex_items.forEach(_complexItem => {
-                              if (_complexItem.barcode == obj.barcode)
-                                _complexItem.unit.average_cost = _units.average_cost
-                            });
-                        });
-                      $stores_items.update(_complexDoc, () => { });
+                if (obj.source_type && (obj.source_type.id == 1 || obj.source_type.id == 4) && obj.store_in)
+                  $stores_items.findMany({
+                    where: {
+                      'sizes.complex_items.barcode': obj.barcode,
+                      'sizes.complex_items.name': obj.name,
+                      'company.id': obj.company.id
+                    },
+                  }, (err, comolex_docs) => {
+                    if (comolex_docs && comolex_docs.length > 0)
+                      comolex_docs.forEach(_complexDoc => {
+                        if (_complexDoc.sizes && _complexDoc.sizes.length > 0)
+                          _complexDoc.sizes.forEach(_complexSize => {
+                            if (_complexSize.complex_items && _complexSize.complex_items.length > 0)
+                              _complexSize.complex_items.forEach(_complexItem => {
+                                if (_complexItem.barcode == obj.barcode)
+                                  _complexItem.unit.average_cost = _units.average_cost
+                              });
+                          });
+                        $stores_items.update(_complexDoc, () => { });
 
-                    });
-                })
-
+                      });
+                  })
 
               }
 
