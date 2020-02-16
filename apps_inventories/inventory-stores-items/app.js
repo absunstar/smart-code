@@ -11,7 +11,7 @@ module.exports = function init(site) {
       if (balance_list.length > 0) {
         obj = balance_list[0]
         balance_handle(obj)
-        
+
         balance_list.splice(0, 1)
       } else {
         setTimeout(() => {
@@ -52,7 +52,7 @@ module.exports = function init(site) {
           name: obj.unit.name,
           barcode: obj.unit.barcode,
           current_count: obj.count,
-          start_count: obj.source_type.id == 3 ? site.toNumber(obj.count) : 0,
+          start_count: obj.source_type && obj.source_type.id == 3 ? site.toNumber(obj.count) : 0,
           total_buy_price: totalCost,
           total_buy_count: site.toNumber(obj.count),
           average_cost: site.toNumber(totalCost) / site.toNumber(obj.count)
@@ -164,7 +164,6 @@ module.exports = function init(site) {
                 _units.cost = site.toNumber(obj.cost)
                 _units.price = site.toNumber(obj.price)
 
-
                 $stores_items.findMany({
                   where: {
                     'sizes.complex_items.barcode': obj.barcode,
@@ -174,12 +173,14 @@ module.exports = function init(site) {
                 }, (err, comolex_docs) => {
                   if (comolex_docs && comolex_docs.length > 0)
                     comolex_docs.forEach(_complexDoc => {
-                      _complexDoc.sizes.forEach(_complexSize => {
-                        _complexSize.complex_items.forEach(_complexItem => {
-                          if (_complexItem.barcode == obj.barcode)
-                            _complexItem.unit.average_cost = _units.average_cost
+                      if (_complexDoc.sizes && _complexDoc.sizes.length > 0)
+                        _complexDoc.sizes.forEach(_complexSize => {
+                          if (_complexSize.complex_items && _complexSize.complex_items.length > 0)
+                            _complexSize.complex_items.forEach(_complexItem => {
+                              if (_complexItem.barcode == obj.barcode)
+                                _complexItem.unit.average_cost = _units.average_cost
+                            });
                         });
-                      });
                       $stores_items.update(_complexDoc, () => { });
 
                     });
