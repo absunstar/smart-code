@@ -109,13 +109,13 @@
                             </td>
                             <td ng-show="!_view">
                                 <div class="row ">
-                                    <i-control class="col6" type="number" label="##word.maximum_discount##"
-                                        ng-model="s.discount.max"></i-control>
-
                                     <i-control type="number" class="col6" label="##word.discount##"
                                         ng-model="s.discount.value">
                                     </i-control>
-                                    </i-control>
+
+                                    <i-control class="col6" type="number" label="##word.maximum_discount##"
+                                        ng-model="s.discount.max"></i-control>
+
                                 </div>
                                 <div class="row center">
                                     <i-radio ng-model="s.discount.type" label="##word.discount_types_number##"

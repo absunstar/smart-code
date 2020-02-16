@@ -41,7 +41,6 @@
                 </i-button>
             </div>
 
-
             <div class="row" ng-hide="store_out.type.id == 6">
                 <i-control id="search_barcode" class="col4" ng-keydown="getBarcode($event)" class="col3"
                     ng-model="search_barcode" label="##word.search##" type="text"></i-control>
@@ -52,6 +51,8 @@
                 <i-button type="edit" x-permissions="stores_out_price || stores_out_manage" ng-hide="edit_price"
                     label="##word.edit_sale_price##" ng-click="edit_price = true"></i-button>
 
+                <i-button type="view" x-permissions="stores_out_price || stores_out_manage" ng-hide="showMaxDis"
+                    label="##word.view_maximum_discount##" ng-click="showMaxDis = true"></i-button>
             </div>
             <br>
             <br>
@@ -72,7 +73,7 @@
                             <th>##word.quantity##</th>
                             <th>##word.price##</th>
                             <th>##word.discount##</th>
-                            <th>##word.maximum_discount##</th>
+                            <th ng-show="showMaxDis">##word.maximum_discount##</th>
                             <th>##word.stores_out_item_total##</th>
                             <th>##word.actions##</th>
                         </tr>
@@ -104,7 +105,7 @@
                                 <b class="" ng-show="itm.discount.type =='number'">$</b>
                                 <b class="" ng-show="itm.discount.type =='percent'">%</b>
                             </td>
-                            <td> <br>
+                            <td ng-show="showMaxDis"> <br>
                                 <p class="red">{{itm.discount.max}}</p>
                                 <b class="" ng-show="itm.discount.type =='number'">$</b>
                                 <b class="" ng-show="itm.discount.type =='percent'">%</b>

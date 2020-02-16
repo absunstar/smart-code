@@ -15,6 +15,11 @@
         "ar": "المخزن"
     },
     {
+        "name": "view_maximum_discount",
+        "en": "View Maximum Discount",
+        "ar": "عرض أقصى خصم"
+    },
+    {
         "name": "stores_out_empty_search",
         "en": "Empty Search",
         "ar": "تفريغ الحقول"
