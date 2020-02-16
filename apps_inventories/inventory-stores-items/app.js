@@ -96,7 +96,7 @@ module.exports = function init(site) {
             let total_complex_av = 0
 
             if (_size.item_complex) {
-              _size.complex_items.map(_complex => total_complex_av += _complex.unit.average_cost);
+              _size.complex_items.map(_complex => total_complex_av += (_complex.unit.average_cost * _complex.count));
 
               if (_size.value_add) {
                 if (_size.value_add.type == 'percent')
@@ -104,7 +104,7 @@ module.exports = function init(site) {
                 else total_complex_av = total_complex_av + site.toNumber(_size.value_add.value)
               }
             }
-
+            total_complex_av = site.toNumber(total_complex_av)
 
             if (obj.source_type && obj.source_type.id == 3) {
               if (obj.type == 'sum')
@@ -183,13 +183,9 @@ module.exports = function init(site) {
                               });
                           });
                         $stores_items.update(_complexDoc, () => { });
-
                       });
                   })
-
               }
-
-
             });
 
             if (_size.branches_list && _size.branches_list.length > 0) {
