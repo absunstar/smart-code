@@ -609,10 +609,32 @@ module.exports = function init(site) {
   })
 
   site.post("/api/stores_items/all", (req, res) => {
+    /*     let data = {};
+     */
 
     let response = {}
     let where = req.body.where || {}
-    let data = {};
+    let search = req.body.search
+
+    if (search) {
+      where.$or = []
+      where.$or.push({
+        'sizes.size': new RegExp(search, "i")
+      })
+
+      where.$or.push({
+        'sizes.barcode': new RegExp(search, "i")
+      })
+
+      where.$or.push({
+        'name': new RegExp(search, "i")
+      })
+
+      where.$or.push({
+        'item_group.name': new RegExp(search, "i")
+      })
+
+    }
 
     where['company.id'] = site.get_company(req).id
 
@@ -620,15 +642,17 @@ module.exports = function init(site) {
       where['name'] = new RegExp(where['name'], 'i')
     }
 
-    if (req.body.search) {
-      where = {
-        $or: [
-          { 'sizes.size': req.body.search },
-          { 'sizes.size_units_list.barcode': req.body.search },
-          { 'sizes.barcode': req.body.search }
-        ]
-      }
-    }
+    /*   if (req.body.search) {
+        where = {
+          $or: [
+            { 'sizes.size': req.body.search },
+            { 'sizes.size_units_list.barcode': req.body.search },
+            { 'sizes.barcode': req.body.search }
+          ]
+        }
+      } */
+
+
 
     if (where && where['size']) {
       where['sizes.size'] = new RegExp(where['size'], 'i')
@@ -655,40 +679,40 @@ module.exports = function init(site) {
       delete where.cost
     }
 
-    if (where && where.current_countLt && where.current_countGt) {
-      data.current_countLt = site.toNumber(where.current_countLt)
-      data.current_countGt = site.toNumber(where.current_countGt)
-      where['sizes.current_count'] = {
-        $lte: where.current_countLt,
-        $gte: where.current_countGt
-      }
-      delete where.current_countLt
-      delete where.current_countGt
-    }
-
-
-    if (where && where.current_countGt && !where.current_countLt) {
-      data.current_countGt = site.toNumber(where.current_countGt)
-      where['sizes.current_count'] = {
-        $gte: where.current_countGt
-      }
-
-      delete where.current_countGt
-    }
-
-    if (where && where.current_count) {
-      data.current_count = site.toNumber(where.current_count)
-      where['sizes.current_count'] = where.current_count
-      delete where.current_count
-    }
-
-    if (where && where.current_countLt && !where.current_countGt) {
-      data.current_countLt = site.toNumber(where.current_countLt)
-      where['sizes.current_count'] = {
-        $lte: where.current_countLt
-      }
-      delete where.current_countLt
-    }
+    /*  if (where && where.current_countLt && where.current_countGt) {
+       data.current_countLt = site.toNumber(where.current_countLt)
+       data.current_countGt = site.toNumber(where.current_countGt)
+       where['sizes.current_count'] = {
+         $lte: where.current_countLt,
+         $gte: where.current_countGt
+       }
+       delete where.current_countLt
+       delete where.current_countGt
+     }
+ 
+ 
+     if (where && where.current_countGt && !where.current_countLt) {
+       data.current_countGt = site.toNumber(where.current_countGt)
+       where['sizes.current_count'] = {
+         $gte: where.current_countGt
+       }
+ 
+       delete where.current_countGt
+     }
+ 
+     if (where && where.current_count) {
+       data.current_count = site.toNumber(where.current_count)
+       where['sizes.current_count'] = where.current_count
+       delete where.current_count
+     }
+ 
+     if (where && where.current_countLt && !where.current_countGt) {
+       data.current_countLt = site.toNumber(where.current_countLt)
+       where['sizes.current_count'] = {
+         $lte: where.current_countLt
+       }
+       delete where.current_countLt
+     } */
 
     response.done = false
     $stores_items.findMany({
