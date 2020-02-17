@@ -281,9 +281,8 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
               }
             }
 
-            site.hideModal('#addStoreOutModal');
             $scope.loadAll();
-
+            $scope.newStoreOut();
           } else $scope.error = response.data.error;
 
         },

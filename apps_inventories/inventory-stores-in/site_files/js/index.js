@@ -476,7 +476,6 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
         function (response) {
           $scope.busy = false;
           if (response.data.done) {
-            site.hideModal('#addStoreInModal');
             if ($scope.store_in.posting) {
               if (($scope.store_in.type.id == 1 || $scope.store_in.type.id == 4) && $scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto) {
 
@@ -507,8 +506,8 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
                 $scope.addAccountInvoice(account_invoices)
               }
             }
-
             $scope.loadAll();
+            $scope.newStoreIn();
 
           } else $scope.error = response.data.error;
 
