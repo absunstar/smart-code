@@ -92,7 +92,7 @@
                                 ng-click="c.posting = false ; posting(c)"></i-button>
 
                             <i-button x-permissions="account_invoices_update || account_invoices_manage" type="update"
-                                ng-show="!c.posting" label="##word.edit##" ng-click="edit(c)"></i-button>
+                                ng-show="!c.posting" label="##word.edit##" ng-click="displayUpdateAccountInvoices(c)"></i-button>
 
                             <i-button ng-show="c.remain_amount > 0 && c.posting "
                                 x-permissions="account_invoices_edit || account_invoices_manage" type="edit"
