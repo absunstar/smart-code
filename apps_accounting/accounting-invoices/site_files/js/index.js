@@ -316,6 +316,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
       return;
     }
 
+    $scope.paid_invoice.payment_list = $scope.paid_invoice.payment_list || [];
     $scope.paid_invoice.payment_list.push({
       paid_up: $scope.paid_invoice.payment_paid_up,
       payment_method: $scope.paid_invoice.payment_method,
