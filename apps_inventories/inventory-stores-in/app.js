@@ -139,21 +139,12 @@ module.exports = function init(site) {
         if (doc.posting) {
 
           doc.items.forEach(_itm => {
-            if (doc.type.id == 4) {
-              _itm.type = 'minus'
-              _itm.transaction_type = 'out'
-            } else {
-              _itm.type = 'sum'
-              _itm.transaction_type = 'in'
-            }
+
             _itm.store = doc.store
             _itm.company = doc.company
             _itm.branch = doc.branch
             _itm.source_type = doc.type
             _itm.store_in = true
-
-            site.call('[transfer_branch][stores_items][add_balance]', _itm)
-
             _itm.number = doc.number
             _itm.vendor = doc.vendor
             _itm.date = doc.date
@@ -163,12 +154,22 @@ module.exports = function init(site) {
               code: doc.shift.code,
               name: doc.shift.name
             }
-            site.call('item_transaction + items', Object.assign({}, _itm))
+
+            if (doc.type.id == 4) {
+              _itm.type = 'minus'
+              _itm.transaction_type = 'out'
+              site.returnStoresIn(doc, res => { })
+              site.call('item_transaction - items', Object.assign({}, _itm))
+            } else {
+              _itm.type = 'sum'
+              _itm.transaction_type = 'in'
+              site.call('item_transaction + items', Object.assign({}, _itm))
+            }
+            site.call('[transfer_branch][stores_items][add_balance]', _itm)
+
 
           })
 
-          if (doc.type && doc.type.id == 4)
-            site.returnStoresIn(doc, res => { })
         }
 
       } else {
@@ -261,28 +262,6 @@ module.exports = function init(site) {
             _itm.branch = result.doc.branch
             _itm.source_type = result.doc.type
             _itm.store_in = true
-
-            if (result.doc.posting) {
-              if (result.doc.type.id == 4) {
-                _itm.type = 'minus'
-                _itm.transaction_type = 'out'
-              } else {
-                _itm.type = 'sum'
-                _itm.transaction_type = 'in'
-              }
-              _itm.current_status = 'storein'
-            } else {
-              if (result.doc.type.id == 4) {
-                _itm.type = 'sum'
-                _itm.transaction_type = 'in'
-              } else {
-                _itm.type = 'minus'
-                _itm.transaction_type = 'out'
-              }
-              _itm.current_status = 'r_storein'
-            }
-
-            site.call('[transfer_branch][stores_items][add_balance]', _itm)
             _itm.number = result.doc.number
             _itm.vendor = result.doc.vendor
             _itm.date = result.doc.date
@@ -291,9 +270,33 @@ module.exports = function init(site) {
               code: result.doc.shift.code,
               name: result.doc.shift.name
             }
-            if (result.doc.posting)
-              site.call('item_transaction + items', Object.assign({}, _itm))
-            else site.call('item_transaction - items', Object.assign({}, _itm))
+
+
+            if (result.doc.posting) {
+              if (result.doc.type.id == 4) {
+                _itm.type = 'minus'
+                _itm.transaction_type = 'out'
+                site.call('item_transaction - items', Object.assign({}, _itm))
+              } else {
+                _itm.type = 'sum'
+                _itm.transaction_type = 'in'
+                site.call('item_transaction + items', Object.assign({}, _itm))
+              }
+              _itm.current_status = 'storein'
+
+            } else {
+              if (result.doc.type.id == 4) {
+                _itm.type = 'sum'
+                _itm.transaction_type = 'in'
+                site.call('item_transaction + items', Object.assign({}, _itm))
+              } else {
+                _itm.type = 'minus'
+                _itm.transaction_type = 'out'
+                site.call('item_transaction - items', Object.assign({}, _itm))
+              }
+              _itm.current_status = 'r_storein'
+            }
+            site.call('[transfer_branch][stores_items][add_balance]', _itm)
           })
 
           if (result.doc.type && result.doc.type.id == 4) {
@@ -337,16 +340,6 @@ module.exports = function init(site) {
               _itm.branch = stores_in_doc.branch
               _itm.source_type = stores_in_doc.type
               _itm.store_in = true
-              if (result.doc.type.id == 4) {
-                _itm.type = 'sum'
-                _itm.transaction_type = 'in'
-              } else {
-                _itm.type = 'minus'
-                _itm.transaction_type = 'out'
-              }
-              _itm.current_status = 'd_storein'
-
-              site.call('[transfer_branch][stores_items][add_balance]', _itm)
               _itm.number = stores_in_doc.number
               _itm.vendor = stores_in_doc.vendor
               _itm.date = stores_in_doc.date
@@ -355,7 +348,19 @@ module.exports = function init(site) {
                 code: stores_in_doc.shift.code,
                 name: stores_in_doc.shift.name
               }
-              site.call('item_transaction - items', Object.assign({}, _itm))
+              if (result.doc.type.id == 4) {
+                _itm.type = 'sum'
+                _itm.transaction_type = 'in'
+                site.call('item_transaction + items', Object.assign({}, _itm))
+              } else {
+                _itm.type = 'minus'
+                _itm.transaction_type = 'out'
+                site.call('item_transaction - items', Object.assign({}, _itm))
+              }
+              _itm.current_status = 'd_storein'
+
+              site.call('[transfer_branch][stores_items][add_balance]', _itm)
+
             });
 
             if (stores_in_doc.type && stores_in_doc.type.id == 4) {

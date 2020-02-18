@@ -618,12 +618,17 @@ module.exports = function init(site) {
 
     if (search) {
       where.$or = []
+
       where.$or.push({
         'sizes.size': new RegExp(search, "i")
       })
 
       where.$or.push({
         'sizes.barcode': new RegExp(search, "i")
+      })
+
+      where.$or.push({
+        'sizes.size_units_list.barcode': new RegExp(search, "i")
       })
 
       where.$or.push({

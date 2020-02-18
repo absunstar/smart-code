@@ -432,14 +432,14 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
         $scope.error = "##word.nosafe_warning##";
         return;
       }
-    } else {
+    }/*  else {
       if ($scope.store_in.payment_method)
         $scope.store_in.payment_method = null;
       if ($scope.store_in.safe)
         $scope.store_in.safe = null;
       $scope.store_in.paid_up = 0
 
-    }
+    } */
 
 
     let max_discount = false;

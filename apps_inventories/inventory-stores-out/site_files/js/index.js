@@ -232,14 +232,14 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         $scope.error = "##word.nosafe_warning##";
         return;
       }
-    } else {
+    } /* else {
       if ($scope.store_out.payment_method)
         $scope.store_out.payment_method = null;
       if ($scope.store_out.safe)
         $scope.store_out.safe = null;
       $scope.store_out.paid_up = 0
 
-    }
+    } */
 
     if ($scope.store_out.items.length > 0) {
       $scope.busy = true;
