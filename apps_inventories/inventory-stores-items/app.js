@@ -416,6 +416,29 @@ module.exports = function init(site) {
 
 
 
+  site.on('holding items', function (obj) {
+    $stores_items.findMany({ 'company.id': obj.company.id }, (err, docs) => {
+      docs.forEach(_doc => {
+        _doc.sizes.forEach(_size => {
+          obj.items.forEach(_item => {
+            if (_size.barcode == _item.barcode) {
+              _size.branches_list.forEach(_branch => {
+                if (_branch.code == obj.branch.code) {
+                  _branch.stores_list.forEach(_store => {
+                    if (_store.store && _store.store.id == obj.store.id) {
+                      _store.hold = true
+                    }
+                  });
+                }
+              });
+            }
+          });
+        });
+      });
+    });
+  });
+
+
 
   site.get({
     name: "stores_items",

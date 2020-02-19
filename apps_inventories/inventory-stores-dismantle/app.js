@@ -537,20 +537,4 @@ module.exports = function init(site) {
     })
   })
 
-  /* site.getStoresIn = function (req, callback) {
-    callback = callback || {};
- 
-    let where = req.data.where || {};
-    where['company.id'] = site.get_company(req).id
-    where['branch.code'] = site.get_branch(req).code
-    where['invoice'] = false
-    $stores_dismantle.findOne({
-      where: where
-    }, (err, doc) => {
-      if (!err && doc)
-        callback(doc)
-      else callback(false)
-    })
-  } */
-
 }

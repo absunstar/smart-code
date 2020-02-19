@@ -17,6 +17,8 @@
     {"name" : "stores_stock_supply_number_date" , "en" : "supply number date" , "ar" : " تاريخ جرد الصنف"},
 
     {"name" : "stores_stock_store_name" , "en" : "Store Stock" , "ar" : "  إسم المخزن "},
+    {"name" : "stores_stock_general" , "en" : "General Stock" , "ar" : "جرد شامل"},
+    {"name" : "stores_stock_holding" , "en" : "Holding Items" , "ar" : "تعليق الأصناف"},
 
     {"name" : "err_barcode_exist" , "en" : "The barcode is exist" , "ar" : "الباركود مسجل من قبل"},
     {"name" : "edit_purchase_price" , "en" : "Edit Purchase Price" , "ar" : "تعديل سعر الشراء"},
