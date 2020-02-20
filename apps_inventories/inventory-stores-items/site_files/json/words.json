@@ -10,6 +10,11 @@
         "ar": "صنف جديد"
     },
     {
+        "name": "under_stock",
+        "en": "Under Stock",
+        "ar": "تحت الجرد"
+    },
+    {
         "name": "handel_items",
         "en": "Handel Items",
         "ar": "هندلة الأصناف"

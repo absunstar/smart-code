@@ -24,7 +24,9 @@
                         </tr>
 
                         <tr ng-repeat="item in storesBalance.stores_list">
-                            <td class="center">{{item.store.name}}</td>
+                            <td class="center">{{item.store.name}} <p ng-show="item.hold" class="red">
+                                    ##word.under_stock##</p>
+                            </td>
                             <td class="center red">{{item.average_cost}}</td>
                             <td class="center blue">{{item.current_count}}</td>
                             <td class="center blue">{{item.start_count}}</td>

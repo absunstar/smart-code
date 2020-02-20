@@ -160,9 +160,9 @@ module.exports = function init(site) {
         if (!err) {
           response.done = true
           stock_doc = result.doc
-          if (stock_doc.status == 1)
+          if (stock_doc.status == 2)
             site.call('holding items', Object.assign({}, stock_doc))
-
+          
         } else {
           response.error = err.message
         }

@@ -76,7 +76,7 @@
                                 label="##word.details##" ng-click="details(c)"></i-button>
 
                             <i-button x-permissions="stores_stock_hold || stores_stock_manage" ng-show="c.status == 1"
-                                type="edit" label="##word.stores_stock_holding##" ng-click="edit(c)"></i-button>
+                                type="edit" label="##word.update##" ng-click="edit(c)"></i-button>
 
                             <i-button x-permissions="stores_stock_update || stores_stock_manage" ng-show="c.status == 1"
                                 label="##word.stores_stock_holding##" ng-click="c.status = 2 ; update(c)"></i-button>

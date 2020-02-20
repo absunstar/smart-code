@@ -433,6 +433,7 @@ module.exports = function init(site) {
             }
           });
         });
+        $stores_items.update(_doc)
       });
     });
   });
@@ -469,8 +470,8 @@ module.exports = function init(site) {
     stores_items_doc.sizes.forEach(_size => {
       _size.size_units_list.forEach(_size_unit => {
         let indx = stores_items_doc.units_list.findIndex(_unit1 => _unit1.id == _size_unit.id);
-        if(stores_items_doc.units_list[indx].convert)
-        _size_unit.convert = stores_items_doc.units_list[indx].convert
+        if (stores_items_doc.units_list[indx].convert)
+          _size_unit.convert = stores_items_doc.units_list[indx].convert
 
         if (!_size_unit.average_cost)
           _size_unit.average_cost = _size_unit.cost

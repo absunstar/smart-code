@@ -9,8 +9,8 @@
             </tr>
 
             <tr>
-                <td class="title">##word.stores_stock_id##</td>
-                <td class="center">{{store_stock.number}}</td>
+                <td class="title">##word.shift##</td>
+                <td class="center">{{store_stock.shift.code}} - {{store_stock.shift.name}}</td>
             </tr>
 
             <tr>
@@ -19,29 +19,39 @@
             </tr>
 
             <tr>
-                <td class="title">##word.transaction_type##</td>
-                <td class="center">{{store_stock.type.ar}}</td>
-            </tr>
-
-            <tr>
                 <td class="title">##word.stores_stock_items##</td>
                 <td>
-                    <table class="table bold hover">
+                    <table class="table center bold hover">
                         <tr>
                             <th>##word.serial##</th>
                             <th>##word.stores_stock_item_name##</th>
-                            <th>##word.stores_stock_item_size##</th>
                             <th>##word.barcode##</th>
-                            <th>##word.unit##</th>
-                            <th>##word.stores_stock_item_count##</th>
+                            <th>##word.stores_stock_item_size##</th>
+                            <th>##word.units##</th>
                         </tr>
+
                         <tr ng-repeat="itm in store_stock.items">
-                            <td class="center blue">{{$index + 1}}</td>
-                            <td class="center">{{itm.name}}</td>
-                            <td class="center">{{itm.size}}</td>
-                            <td class="center">{{itm.barcode}}</td>
-                            <td class="center">{{itm.unit.name}}</td>
-                            <td class="center">{{itm.count}}</td>
+                            <td> <br> {{$index + 1}}</td>
+                            <td> <br> {{itm.name}}</td>
+                            <td> <br> {{itm.barcode}}</td>
+                            <td> <br> {{itm.size}}</td>
+
+                            <td>
+                                <table class="table center bold hover">
+                                    <tr>
+                                        <th>##word.unit##</th>
+                                        <th>##word.transfer_branch_item_store_balance##</th>
+                                    </tr>
+
+                                    <tr ng-repeat="i in itm.size_units_list">
+                                        <td> {{i.name}} <b ng-show="i.barcode"> - </b> <b class="blue">{{i.barcode}}</b>
+                                        </td>
+                                        <td> {{i.store_count}}</td>
+
+                                    </tr>
+                                </table>
+
+                            </td>
 
                         </tr>
                     </table>
