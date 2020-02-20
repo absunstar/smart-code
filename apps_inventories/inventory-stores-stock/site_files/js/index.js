@@ -210,6 +210,7 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
 
                 if (_item.sizes && _item.sizes.length > 0)
                   _item.sizes.forEach(_size => {
+                    let foundHold = false;
                     let foundUnit = false;
 
                     if (_size.size_units_list && _size.size_units_list.length > 0)
@@ -219,30 +220,31 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
                         }
 
                         if (_size.branches_list && _size.branches_list.length > 0) {
-                          let foundBranch = false
-                          let indxBranch = 0
+                          let foundBranch = false;
+                          let indxBranch = 0;
                           _size.branches_list.map((_branch, i) => {
                             if (_branch.code == '##session.branch.code##') {
-                              foundBranch = true
-                              indxBranch = i
+                              foundBranch = true;
+                              indxBranch = i;
                             }
                           });
 
                           if (foundBranch) {
                             if (_size.branches_list[indxBranch].code == '##session.branch.code##') {
                               if (_size.branches_list[indxBranch].stores_list && _size.branches_list[indxBranch].stores_list.length > 0) {
-                                let foundStore = false
-                                let indxStore = 0
+                                let foundStore = false;
+                                let indxStore = 0;
                                 _size.branches_list[indxBranch].stores_list.map((_store, i) => {
                                   if (_store.store.id == $scope.store_stock.store.id) {
-                                    foundStore = true
-                                    indxStore = i
+                                    foundStore = true;
+                                    indxStore = i;
+                                    if (_store.hold) foundHold = true;
                                   }
                                 });
                                 _size.branches_list[indxBranch].stores_list[indxStore].size_units_list.forEach(_unitStore => {
 
                                   if (foundStore && _unitStore.id == _unit.id)
-                                    _unit.store_count = _unitStore.current_count || 0
+                                    _unit.store_count = _unitStore.current_count || 0;
                                 });
                               }
                             }
@@ -252,7 +254,7 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
                     if ((_size.barcode == $scope.search_item_name) || foundUnit) {
                       _size.name = _item.name;
                       foundSize = $scope.item.sizes.some(_itemSize => _itemSize.barcode == _size.barcode);
-                      if (!foundSize) $scope.item.sizes.unshift(_size);
+                      if (!foundSize && !foundHold) $scope.item.sizes.unshift(_size);
                     };
                   });
               });
@@ -280,19 +282,19 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
     let foundSize = false;
     if ($scope.item.name && $scope.item.name.sizes && $scope.item.name.sizes.length > 0)
       $scope.item.name.sizes.forEach(_item => {
+        let foundHold = false;
         _item.name = $scope.item.name.name
-
 
         if (_item.size_units_list && _item.size_units_list.length > 0)
           _item.size_units_list.forEach(_unit => {
 
             if (_item.branches_list && _item.branches_list.length > 0) {
-              let foundBranch = false
-              let indxBranch = 0
+              let foundBranch = false;
+              let indxBranch = 0;
               _item.branches_list.map((_branch, i) => {
                 if (_branch.code == '##session.branch.code##') {
-                  foundBranch = true
-                  indxBranch = i
+                  foundBranch = true;
+                  indxBranch = i;
                 }
               });
               if (foundBranch) {
@@ -300,18 +302,19 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
                 if (_item.branches_list[indxBranch].code == '##session.branch.code##') {
                   if (_item.branches_list[indxBranch].stores_list && _item.branches_list[indxBranch].stores_list.length > 0) {
 
-                    let foundStore = false
-                    let indxStore = 0
+                    let foundStore = false;
+                    let indxStore = 0;
                     _item.branches_list[indxBranch].stores_list.map((_store, i) => {
                       if (_store.store.id == $scope.store_stock.store.id) {
-                        foundStore = true
-                        indxStore = i
+                        foundStore = true;
+                        indxStore = i;
+                        if (_store.hold) foundHold = true;
                       }
                     });
                     _item.branches_list[indxBranch].stores_list[indxStore].size_units_list.forEach(_unitStore => {
 
                       if (foundStore && _unitStore.id == _unit.id)
-                        _unit.store_count = _unitStore.current_count || 0
+                        _unit.store_count = _unitStore.current_count || 0;
                     });
                   }
                 }
@@ -320,8 +323,7 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
           });
 
         foundSize = $scope.item.sizes.some(_itemSize => _itemSize.barcode == _item.barcode);
-        if (!foundSize)
-          $scope.item.sizes.unshift(_item);
+        if (!foundSize && !foundHold) $scope.item.sizes.unshift(_item);
       });
   };
 
@@ -342,17 +344,18 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
 
               if (_list.sizes && _list.sizes.length > 0)
                 _list.sizes.forEach(_size => {
+                  let foundHold = false;
 
                   if (_size.size_units_list && _size.size_units_list.length > 0)
                     _size.size_units_list.forEach(_unit => {
 
                       if (_size.branches_list && _size.branches_list.length > 0) {
-                        let foundBranch = false
-                        let indxBranch = 0
+                        let foundBranch = false;
+                        let indxBranch = 0;
                         _size.branches_list.map((_branch, i) => {
                           if (_branch.code == '##session.branch.code##') {
-                            foundBranch = true
-                            indxBranch = i
+                            foundBranch = true;
+                            indxBranch = i;
                           }
                         });
                         if (foundBranch) {
@@ -360,12 +363,13 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
                           if (_size.branches_list[indxBranch].code == '##session.branch.code##') {
                             if (_size.branches_list[indxBranch].stores_list && _size.branches_list[indxBranch].stores_list.length > 0) {
 
-                              let foundStore = false
-                              let indxStore = 0
+                              let foundStore = false;
+                              let indxStore = 0;
                               _size.branches_list[indxBranch].stores_list.map((_store, i) => {
                                 if (_store.store.id == $scope.store_stock.store.id) {
-                                  foundStore = true
-                                  indxStore = i
+                                  foundStore = true;
+                                  indxStore = i;
+                                  if (_store.hold) foundHold = true;
                                 }
                               });
                               _size.branches_list[indxBranch].stores_list[indxStore].size_units_list.forEach(_unitStore => {
@@ -381,8 +385,7 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
 
                   _size.name = _list.name;
                   foundSize = $scope.store_stock.items.some(_itemSize => _itemSize.barcode == _size.barcode);
-                  if (!foundSize)
-                    $scope.store_stock.items.unshift(_size);
+                  if (!foundSize && !foundHold) $scope.store_stock.items.unshift(_size);
 
                 });
             });
@@ -418,7 +421,7 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
 
               if (response.data.list[0].sizes && response.data.list[0].sizes.length > 0)
                 response.data.list[0].sizes.forEach(_size => {
-
+                  let foundHold = false;
                   let foundUnit = false;
 
                   if (_size.size_units_list && _size.size_units_list.length > 0)
@@ -428,12 +431,12 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
                       }
 
                       if (_size.branches_list && _size.branches_list.length > 0) {
-                        let foundBranch = false
-                        let indxBranch = 0
+                        let foundBranch = false;
+                        let indxBranch = 0;
                         _size.branches_list.map((_branch, i) => {
                           if (_branch.code == '##session.branch.code##') {
-                            foundBranch = true
-                            indxBranch = i
+                            foundBranch = true;
+                            indxBranch = i;
                           }
                         });
                         if (foundBranch) {
@@ -441,12 +444,13 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
                           if (_size.branches_list[indxBranch].code == '##session.branch.code##') {
                             if (_size.branches_list[indxBranch].stores_list && _size.branches_list[indxBranch].stores_list.length > 0) {
 
-                              let foundStore = false
-                              let indxStore = 0
+                              let foundStore = false;
+                              let indxStore = 0;
                               _size.branches_list[indxBranch].stores_list.map((_store, i) => {
                                 if (_store.store.id == $scope.store_stock.store.id) {
-                                  foundStore = true
-                                  indxStore = i
+                                  foundStore = true;
+                                  indxStore = i;
+                                  if (_store.hold) foundHold = true;
                                 }
                               });
                               _size.branches_list[indxBranch].stores_list[indxStore].size_units_list.forEach(_unitStore => {
@@ -455,24 +459,18 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
                                   _unit.store_count = _unitStore.current_count || 0
                               });
                             }
-
                           }
                         }
-
                       }
-
                     });
-
 
                   if ((_size.barcode == $scope.search_barcode) || foundUnit) {
 
                     _size.name = response.data.list[0].name;
 
-
                     foundSize = $scope.store_stock.items.some(_itemSize => _itemSize.barcode == _size.barcode);
 
-                    if (!foundSize)
-                      $scope.store_stock.items.unshift(_size);
+                    if (!foundSize && !foundHold)$scope.store_stock.items.unshift(_size);
                   }
 
                 });

@@ -238,69 +238,68 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
               let foundSize = false;
               $scope.item.sizes = $scope.item.sizes || [];
 
-                response.data.list.forEach(_item => {
+              response.data.list.forEach(_item => {
 
-                  if (_item.sizes && _item.sizes.length > 0)
-                    _item.sizes.forEach(_size => {
-                      let foundUnit = false;
-                      let indxUnit = 0;
+                if (_item.sizes && _item.sizes.length > 0)
+                  _item.sizes.forEach(_size => {
+                    let foundHold = false;
+                    let foundUnit = false;
+                    let indxUnit = 0;
 
-                      if (_size.size_units_list && _size.size_units_list.length > 0)
-                        _size.size_units_list.forEach((_unit, i) => {
-                          if ((_unit.barcode == $scope.search_item_name) && typeof _unit.barcode == 'string') {
-                            foundUnit = true;
+                    if (_size.size_units_list && _size.size_units_list.length > 0)
+                      _size.size_units_list.forEach((_unit, i) => {
+                        if ((_unit.barcode == $scope.search_item_name) && typeof _unit.barcode == 'string') {
+                          foundUnit = true;
+                        }
+                        if (_unit.id == _item.main_unit.id)
+                          indxUnit = i;
+                      });
+                    if ((_size.barcode == $scope.item.search_item_name) || foundUnit) {
+                      _size.name = _item.name;
+                      _size.store_from = $scope.transfer_branch.store_from;
+                      _size.unit = _size.size_units_list[indxUnit];
+                      _size.count = 1;
+                      _size.total = _size.count * _size.cost;
+                      if (_size.branches_list && _size.branches_list.length > 0) {
+                        let foundBranch = false;
+                        let indxBranch = 0;
+                        _size.branches_list.map((_branch, i) => {
+                          if (_branch.code == '##session.branch.code##') {
+                            foundBranch = true;
+                            indxBranch = i;
                           }
-                          if (_unit.id == _item.main_unit.id)
-                            indxUnit = i;
                         });
-                      if ((_size.barcode == $scope.item.search_item_name) || foundUnit) {
-                        _size.name = _item.name
-                        _size.store_from = $scope.transfer_branch.store_from
-                        _size.unit = _size.size_units_list[indxUnit];
-                        _size.count = 1
-                        _size.total = _size.count * _size.cost
-                        if (_size.branches_list && _size.branches_list.length > 0) {
-                          let foundBranch = false
-                          let indxBranch = 0
-                          _size.branches_list.map((_branch, i) => {
-                            if (_branch.code == '##session.branch.code##') {
-                              foundBranch = true
-                              indxBranch = i
-                            }
-                          });
-                          if (foundBranch) {
+                        if (foundBranch) {
 
-                            if (_size.branches_list[indxBranch].code == '##session.branch.code##') {
-                              if (_size.branches_list[indxBranch].stores_list && _size.branches_list[indxBranch].stores_list.length > 0) {
-                                let foundStore = false
-                                let indxStore = 0
-                                _size.branches_list[indxBranch].stores_list.map((_store, i) => {
-                                  if (_store.store.id == $scope.transfer_branch.store_from.id) {
-                                    foundStore = true
-                                    indxStore = i
-                                  }
-                                });
-                                if (foundStore) {
-
-                                  if (_size.branches_list[indxBranch].stores_list[indxStore].size_units_list && _size.branches_list[indxBranch].stores_list[indxStore].size_units_list.length > 0)
-                                    _size.branches_list[indxBranch].stores_list[indxStore].size_units_list.forEach(_unit => {
-                                      if (_unit.id == _item.main_unit.id)
-                                        _size.store_count = _unit.current_count
-                                    });
-
+                          if (_size.branches_list[indxBranch].code == '##session.branch.code##') {
+                            if (_size.branches_list[indxBranch].stores_list && _size.branches_list[indxBranch].stores_list.length > 0) {
+                              let foundStore = false;
+                              let indxStore = 0;
+                              _size.branches_list[indxBranch].stores_list.map((_store, i) => {
+                                if (_store.store.id == $scope.transfer_branch.store_from.id) {
+                                  foundStore = true;
+                                  indxStore = i;
+                                  if (_store.hold) foundHold = true;
                                 }
-                              } else _size.store_count = 0
+                              });
+                              if (foundStore) {
 
-                            } else _size.store_count = 0
-                          } else _size.store_count = 0
+                                if (_size.branches_list[indxBranch].stores_list[indxStore].size_units_list && _size.branches_list[indxBranch].stores_list[indxStore].size_units_list.length > 0)
+                                  _size.branches_list[indxBranch].stores_list[indxStore].size_units_list.forEach(_unit => {
+                                    if (_unit.id == _item.main_unit.id)
+                                      _size.store_count = _unit.current_count
+                                  });
+                              }
+                            } else _size.store_count = 0;
+                          } else _size.store_count = 0;
+                        } else _size.store_count = 0;
+                      } else _size.store_count = 0;
+                      foundSize = $scope.item.sizes.some(_itemSize => _itemSize.barcode == _size.barcode);
 
-                        } else _size.store_count = 0
-                        foundSize = $scope.item.sizes.some(_itemSize => _itemSize.barcode == _size.barcode);
-
-                        if (!foundSize) $scope.item.sizes.push(_size);
-                      };
-                    });
-                });
+                      if (!foundSize && !foundHold) $scope.item.sizes.push(_size);
+                    };
+                  });
+              });
 
               if (!foundSize)
                 $scope.itemsNameList = response.data.list;
@@ -326,6 +325,7 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
 
     if ($scope.item.name && $scope.item.name.sizes && $scope.item.name.sizes.length > 0)
       $scope.item.name.sizes.forEach(_item => {
+        let foundHold = false;
         _item.name = $scope.item.name.name
         _item.store_from = $scope.transfer_branch.store_from
         _item.count = 1;
@@ -353,6 +353,7 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
                   if (_store.store.id == $scope.transfer_branch.store_from.id) {
                     foundStore = true
                     indxStore = i
+                    if (_store.hold) foundHold = true;
                   }
                 });
                 if (foundStore)
@@ -367,8 +368,7 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
 
         } else _item.store_count = 0
         foundSize = $scope.item.sizes.some(_itemSize => _itemSize.barcode == _item.barcode);
-        if (!foundSize)
-          $scope.item.sizes.push(_item);
+        if (!foundSize && !foundHold) $scope.item.sizes.push(_item);
       });
   };
 
@@ -390,6 +390,7 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
 
               if (response.data.list[0].sizes && response.data.list[0].sizes.length > 0)
                 response.data.list[0].sizes.forEach(_size => {
+                  let foundHold = false;
                   let foundUnit = false;
                   let indxUnit = 0;
 
@@ -425,6 +426,7 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
                               if (_store.store.id == $scope.transfer_branch.store_from.id) {
                                 foundStore = true
                                 indxStore = i
+                                if (_store.hold) foundHold = true;
                               }
                             });
                             if (foundStore)
@@ -439,8 +441,7 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
 
                     } else _size.store_count = 0
                     foundSize = $scope.transfer_branch.items.some(_itemSize => _itemSize.barcode == _size.barcode);
-                    if (!foundSize)
-                      $scope.transfer_branch.items.unshift(_size);
+                    if (!foundSize && !foundHold) $scope.transfer_branch.items.unshift(_size);
                   }
                 });
               if (foundSize) $scope.error = '##word.dublicate_item##';
