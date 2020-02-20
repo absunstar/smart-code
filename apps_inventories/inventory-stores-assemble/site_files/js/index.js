@@ -230,66 +230,69 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
             if (response.data.list.length > 0) {
               let foundSize = false;
               $scope.item.sizes = $scope.item.sizes || [];
-                response.data.list.forEach(_item => {
-                  if (_item.sizes && _item.sizes.length > 0)
-                    _item.sizes.forEach(_size => {
+              response.data.list.forEach(_item => {
+                if (_item.sizes && _item.sizes.length > 0)
+                  _item.sizes.forEach(_size => {
+                    let foundHold = false;
+                    let foundUnit = false;
+                    let indxUnit = 0;
 
-                      let foundUnit = false;
-                      let indxUnit = 0;
+                    if (_size.size_units_list && _size.size_units_list.length > 0)
+                      _size.size_units_list.forEach((_unit, i) => {
+                        if ((_unit.barcode == $scope.search_item_name) && typeof _unit.barcode == 'string') {
+                          foundUnit = true;
+                        }
+                        if (_unit.id == _item.main_unit.id)
+                          indxUnit = i;
+                      });
 
-                      if (_size.size_units_list && _size.size_units_list.length > 0)
-                        _size.size_units_list.forEach((_unit, i) => {
-                          if ((_unit.barcode == $scope.search_item_name) && typeof _unit.barcode == 'string') {
-                            foundUnit = true;
+                    if ((_size.barcode == $scope.item.search_item_name) || foundUnit) {
+                      _size.name = _item.name;
+                      _size.store = $scope.store_assemble.store;
+                      _size.unit = _size.size_units_list[indxUnit];
+                      _size.count = 1
+                      if (_size.branches_list && _size.branches_list.length > 0) {
+                        let foundBranch = false;
+                        let indxBranch = 0;
+                        _size.branches_list.map((_branch, i) => {
+                          if (_branch.code == '##session.branch.code##') {
+                            foundBranch = true;
+                            indxBranch = i;
                           }
-                          if (_unit.id == _item.main_unit.id)
-                            indxUnit = i;
                         });
 
-                      if ((_size.barcode == $scope.item.search_item_name) || foundUnit) {
-                        _size.name = _item.name
-                        _size.store = $scope.store_assemble.store
-                        _size.unit = _size.size_units_list[indxUnit];
-                        _size.count = 1
-                        if (_size.branches_list && _size.branches_list.length > 0) {
-                          let foundBranch = false
-                          let indxBranch = 0
-                          _size.branches_list.map((_branch, i) => {
-                            if (_branch.code == '##session.branch.code##') {
-                              foundBranch = true
-                              indxBranch = i
-                            }
-                          });
+                        if (foundBranch) {
+                          if (_size.branches_list[indxBranch].code == '##session.branch.code##') {
+                            if (_size.branches_list[indxBranch].stores_list && _size.branches_list[indxBranch].stores_list.length > 0) {
+                              let foundStore = false;
+                              let indxStore = 0;
 
-                          if (foundBranch) {
-                            if (_size.branches_list[indxBranch].code == '##session.branch.code##') {
-                              if (_size.branches_list[indxBranch].stores_list && _size.branches_list[indxBranch].stores_list.length > 0) {
-                                let foundStore = false
-                                let indxStore = 0
-                                _size.branches_list[indxBranch].stores_list.map((_store, i) => {
-                                  if (_store.store.id == $scope.store_assemble.store.id) {
-                                    foundStore = true
-                                    indxStore = i
-                                  }
+                              _size.branches_list[indxBranch].stores_list.map((_store, i) => {
+                                if (_store.store.id == $scope.store_assemble.store.id) {
+                                  indxStore = i;
+                                  foundStore = true;
+
+                                  if (_store.hold) foundHold = true;
+                                }
+                              });
+                              if (foundStore)
+                                _size.branches_list[indxBranch].stores_list[indxStore].size_units_list.forEach(_unit => {
+                                  if (_unit.id == _item.main_unit.id)
+                                    _size.store_count = _unit.current_count;
                                 });
-                                if (foundStore)
-                                  _size.branches_list[indxBranch].stores_list[indxStore].size_units_list.forEach(_unit => {
-                                    if (_unit.id == _item.main_unit.id)
-                                      _size.store_count = _unit.current_count
-                                  });
-                              } else _size.store_count = 0
+                            } else _size.store_count = 0;
 
-                            } else _size.store_count = 0
-                          } else _size.store_count = 0
+                          } else _size.store_count = 0;
+                        } else _size.store_count = 0;
 
-                        } else _size.store_count = 0
+                      } else _size.store_count = 0;
 
-                        foundSize = $scope.item.sizes.some(_itemSize => _itemSize.barcode == _size.barcode);
+                      foundSize = $scope.item.sizes.some(_itemSize => _itemSize.barcode == _size.barcode);
 
-                        if (!foundSize && _size.item_complex) $scope.item.sizes.unshift(_size);
-                      };
-                    });
-                });
+                      if (!foundSize && _size.item_complex && !foundHold) $scope.item.sizes.unshift(_size);
+                    };
+                  });
+              });
 
               if (!foundSize)
                 $scope.itemsNameList = response.data.list;
@@ -312,11 +315,12 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.item.sizes = $scope.item.sizes || [];
     let foundSize = false;
-
     if ($scope.item.name && $scope.item.name.sizes && $scope.item.name.sizes.length > 0)
       $scope.item.name.sizes.forEach(_item => {
-        _item.name = $scope.item.name.name
-        _item.store = $scope.store_assemble.store
+        let foundHold = false;
+        
+        _item.name = $scope.item.name.name;
+        _item.store = $scope.store_assemble.store;
 
         let indxUnit = _item.size_units_list.findIndex(_unit => _unit.id == $scope.item.name.main_unit.id);
         _item.unit = _item.size_units_list[indxUnit];
@@ -326,8 +330,8 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
           let indxBranch = 0
           _item.branches_list.map((_branch, i) => {
             if (_branch.code == '##session.branch.code##') {
-              foundBranch = true
-              indxBranch = i
+              foundBranch = true;
+              indxBranch = i;
             }
           });
           if (foundBranch) {
@@ -335,27 +339,29 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
             if (_item.branches_list[indxBranch].code == '##session.branch.code##') {
               if (_item.branches_list[indxBranch].stores_list && _item.branches_list[indxBranch].stores_list.length > 0) {
 
-                let foundStore = false
-                let indxStore = 0
+                let foundStore = false;
+                let indxStore = 0;
                 _item.branches_list[indxBranch].stores_list.map((_store, i) => {
                   if (_store.store.id == $scope.store_assemble.store.id) {
-                    foundStore = true
-                    indxStore = i
+                    foundStore = true;
+                    indxStore = i;
+                    if (_store.hold) foundHold = true;
+
                   }
                 });
                 if (foundStore)
                   _item.branches_list[indxBranch].stores_list[indxStore].size_units_list.forEach(_unit => {
                     if (_unit.id == $scope.item.name.main_unit.id)
-                      _item.store_count = _unit.current_count
+                      _item.store_count = _unit.current_count;
                   });
-              } else _item.store_count = 0
+              } else _item.store_count = 0;
 
-            } else _item.store_count = 0
-          } else _item.store_count = 0
+            } else _item.store_count = 0;
+          } else _item.store_count = 0;
 
-        } else _item.store_count = 0
+        } else _item.store_count = 0;
         foundSize = $scope.item.sizes.some(_itemSize => _itemSize.barcode == _item.barcode);
-        if (!foundSize && _item.item_complex)
+        if (!foundSize && _item.item_complex && !foundHold)
           $scope.item.sizes.unshift(_item);
       });
   };
@@ -378,7 +384,7 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
               let foundSize = false;
               if (response.data.list[0].sizes && response.data.list[0].sizes.length > 0)
                 response.data.list[0].sizes.forEach(_size => {
-
+                  let foundHold = false;
                   let foundUnit = false;
                   let indxUnit = 0;
 
@@ -416,6 +422,7 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
                               if (_store.store.id == $scope.store_assemble.store.id) {
                                 foundStore = true
                                 indxStore = i
+                                if (_store.hold) foundHold = true;
                               }
                             });
                             if (foundStore)
@@ -431,7 +438,7 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
                     } else _size.store_count = 0
 
                     foundSize = $scope.store_assemble.items.some(_itemSize => _itemSize.barcode == _size.barcode);
-                    if (!foundSize && _size.item_complex)
+                    if (!foundSize && _size.item_complex && !foundHold)
                       $scope.store_assemble.items.unshift(_size);
                   }
                 });
