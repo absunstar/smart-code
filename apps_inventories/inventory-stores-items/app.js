@@ -22,7 +22,6 @@ module.exports = function init(site) {
     }
     let total_unit = obj.count * obj.unit.convert;
     let totalCost = obj.cost * site.toNumber(obj.count);
-
     let obj_branch = {
       name_ar: obj.branch.name_ar,
       code: obj.branch.code,
@@ -65,7 +64,6 @@ module.exports = function init(site) {
       store: obj.store,
       start_count: obj.source_type && obj.source_type.id == 3 ? site.toNumber(total_unit) : 0,
       current_count: site.toNumber(total_unit),
-
       size_units_list: [{
         id: obj.unit.id,
         name: obj.unit.name,
@@ -131,6 +129,7 @@ module.exports = function init(site) {
 
             if (obj.source_type && (obj.source_type.id == 1 || obj.source_type.id == 4) && obj.store_in)
               _size.average_cost = site.toNumber(_size.total_buy_price) / site.toNumber(_size.total_buy_count)
+
             else if (obj.assemble) _size.average_cost = total_complex_av
 
             _size.average_cost = site.toNumber(_size.average_cost)

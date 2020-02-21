@@ -263,6 +263,7 @@ module.exports = function init(site) {
                 _unit.number = result.doc.code
                 _unit.date = result.doc.date
                 _unit.current_status = 'stock'
+                _unit.stock = true
                 _unit.unit = {
                   id: _unit.id,
                   name: _unit.name,
@@ -274,7 +275,6 @@ module.exports = function init(site) {
                   code: result.doc.shift.code,
                   name: result.doc.shift.name
                 }
-
                 if (_unit.store_count > _unit.stock_count) {
                   _unit.count = _unit.store_count - _unit.stock_count
                   _unit.type = 'minus'
