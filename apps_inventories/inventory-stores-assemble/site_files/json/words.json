@@ -35,7 +35,7 @@
     
     {"name" : "stores_assemble_Company_code" , "en" : "vendor Code" , "ar" : "كود المورد"},   
     {"name" : "stores_assemble_Company_name" , "en" : "vendor Name" , "ar" : "إسم المورد"},   
-    {"name" : "stores_assemble_items" , "en" : "Items" , "ar" : "الاصناف"},   
+    {"name" : "stores_assemble_items" , "en" : "Items" , "ar" : "الأصناف"},   
     {"name" : "stores_assemble_item_code" , "en" : "Item Code" , "ar" : "كود الصنف"},   
     {"name" : "stores_assemble_item_name" , "en" : "Item Name" , "ar" : "إسم الصنف"},   
     {"name" : "stores_assemble_item_Company" , "en" : "Item vendor" , "ar" : "إسم المصنع"},   

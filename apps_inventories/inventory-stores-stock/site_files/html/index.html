@@ -18,20 +18,25 @@
         <div class="row ">
             <div class="row" ng-controller="stores_stock">
                 <div x-permissions="stores_stock_add || stores_stock_manage"
-                    x-import="inventory-stores-stock/add_modal.html">
-                </div>
+                    x-import="inventory-stores-stock/add_modal.html"></div>
+
                 <div x-permissions="stores_stock_delete || stores_stock_manage"
                     x-import="inventory-stores-stock/delete_modal.html"></div>
+
                 <div x-permissions="stores_stock_view || stores_stock_manage"
-                    x-import="inventory-stores-stock/view_modal.html">
-                </div>
+                    x-import="inventory-stores-stock/view_modal.html"></div>
+
                 <div x-permissions="stores_stock_search || stores_stock_manage"
                     x-import="inventory-stores-stock/search_all_modal.html"></div>
+
                 <div x-permissions="stores_stock_update || stores_stock_manage"
                     x-import="inventory-stores-stock/update_modal.html"></div>
-                <div x-permissions="stores_stock_add || stores_stock_manage"
+
+                <div x-permissions="stores_stock_add || stores_stock_update || stores_stock_manage"
                     x-import="inventory-stores-stock/select_items_modal.html"></div>
 
+                <div x-permissions="stores_stock_settlement || stores_stock_manage"
+                    x-import="inventory-stores-stock/settlement_items.html"></div>
                 <div class="row">
                     <h1 class="bold text-center"> ##word.stores_stock## </h1>
                 </div>
@@ -40,7 +45,7 @@
                     <i-button x-permissions="stores_stock_add || stores_stock_manage" type="add"
                         label="##word.stores_stock_new##" ng-click="newStoreStock()"></i-button>
                     <i-button x-permissions="stores_stock_search || stores_stock_manage" type="search"
-                        label="##word.search_all##" onclick="site.showModal('#StoresstockSearchModal')"></i-button>
+                        label="##word.search_all##" onclick="site.showModal('#StoresStockSearchModal')"></i-button>
 
                     <h2 class="bold red text-center"> {{error}}</h2>
                     <h3 class="bold text-center"> ##word.count## : {{count}}</h3>
@@ -61,7 +66,7 @@
                         <td>
                             <p class="text-center brown"> <br> {{c.date | date : 'yyyy - MM - dd'}} </p>
                         </td>
-                        
+
                         <td>
                             <p class="bold blue text-center"> <br> {{c.code}} </p>
                         </td>
@@ -71,18 +76,25 @@
                         </td>
 
                         <td class="center not-print">
-
                             <i-button x-permissions="stores_stock_view || stores_stock_manage" type="details"
                                 label="##word.details##" ng-click="details(c)"></i-button>
 
-                            <i-button x-permissions="stores_stock_hold || stores_stock_manage" ng-show="c.status == 1"
+                            <i-button x-permissions="stores_stock_update || stores_stock_manage" ng-show="c.status == 1"
                                 type="edit" label="##word.update##" ng-click="edit(c)"></i-button>
 
-                            <i-button x-permissions="stores_stock_update || stores_stock_manage" ng-show="c.status == 1"
+                            <i-button x-permissions=" stores_stock_hold || stores_stock_manage" ng-show="c.status == 1"
                                 label="##word.stores_stock_holding##" ng-click="c.status = 2 ; update(c)"></i-button>
 
+                            <i-button x-permissions="stores_stock_settlement || stores_stock_manage"
+                                ng-show="c.status == 2 || c.status == 3" type="edit"
+                                label="##word.stores_stock_settlement##" ng-click="settlement(c)"></i-button>
+
+                            <i-button x-permissions="stores_stock_approve || stores_stock_manage"
+                                ng-show="c.status == 3" label="##word.approve##" ng-click="c.status = 4 ; approve(c)">
+                            </i-button>
+
                             <i-button x-permissions="stores_stock_delete || stores_stock_manage" type="delete"
-                                label="##word.delete##" ng-click="remove(c)"></i-button>
+                                ng-show="c.status != 4" label="##word.delete##" ng-click="remove(c)"></i-button>
                         </td>
                     </tr>
 

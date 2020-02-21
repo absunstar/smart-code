@@ -504,24 +504,57 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
 
   $scope.confirmTransfer = function (transfer_branch) {
     $scope.error = '';
+    $scope.getStockItems(transfer_branch.items, callback => {
 
-    transfer_branch.transfer = true;
+      if (!callback) {
+
+        transfer_branch.transfer = true;
+        $scope.busy = true;
+        $http({
+          method: "POST",
+          url: "/api/transfer_branch/confirm",
+          data: transfer_branch
+        }).then(
+          function (response) {
+            $scope.busy = false;
+            if (response.data.done) {
+              $scope.loadAll();
+            } else {
+              $scope.error = '##word.error##';
+            }
+          },
+          function (err) {
+            console.log(err);
+          }
+        )
+      } else {
+        $scope.error = '##word.err_stock_item##';
+      }
+    })
+  };
+
+  $scope.getStockItems = function (items, callback) {
+    $scope.error = '';
     $scope.busy = true;
+    $scope.categories = [];
     $http({
       method: "POST",
-      url: "/api/transfer_branch/confirm",
-      data: transfer_branch
+      url: "/api/stores_stock/item_stock",
+      data: items
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          $scope.loadAll();
-        } else {
-          $scope.error = '##word.error##';
-        }
+
+          if (response.data.found) callback(true)
+          else callback(false)
+
+        } else callback(null)
+
       },
       function (err) {
-        console.log(err);
+        $scope.busy = false;
+        $scope.error = err;
       }
     )
   };

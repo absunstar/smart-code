@@ -133,44 +133,74 @@ module.exports = function init(site) {
     let stores_stock_doc = req.body
     stores_stock_doc.edit_user_info = site.security.getUserFinger({ $req: req, $res: res })
 
-    if (stores_stock_doc.status)
-      // stores_stock_doc.vendor = site.fromJson(stores_stock_doc.vendor)
-      // stores_stock_doc.seasonName = stores_stock_doc.seasonName
-      // stores_stock_doc.type = site.fromJson(stores_stock_doc.type)
-      // stores_stock_doc.date = new Date(stores_stock_doc.date)
+    // stores_stock_doc.vendor = site.fromJson(stores_stock_doc.vendor)
+    // stores_stock_doc.seasonName = stores_stock_doc.seasonName
+    // stores_stock_doc.type = site.fromJson(stores_stock_doc.type)
+    // stores_stock_doc.date = new Date(stores_stock_doc.date)
 
-      // stores_stock_doc.items.forEach(itm => {
-      //   itm.count = site.toNumber(itm.count)
-      //   itm.cost = site.toNumber(itm.cost)
-      //   itm.price = site.toNumber(itm.price)
-      //   itm.total = site.toNumber(itm.total)
-      // })
+    // stores_stock_doc.items.forEach(itm => {
+    //   itm.count = site.toNumber(itm.count)
+    //   itm.cost = site.toNumber(itm.cost)
+    //   itm.price = site.toNumber(itm.price)
+    //   itm.total = site.toNumber(itm.total)
+    // })
 
-      stores_stock_doc.total_value = site.toNumber(stores_stock_doc.total_value)
+    stores_stock_doc.total_value = site.toNumber(stores_stock_doc.total_value)
+    site.getItemsSizes(req, callback => {
+      if (callback && callback.length > 0)
+        stores_stock_doc.items.forEach(_item => {
+          callback.forEach(_size => {
+            if (_size.barcode == _item.barcode) {
+              if (_size.branches_list && _size.branches_list.length > 0)
+                _size.branches_list.forEach(_branch => {
+                  if (_branch.code == stores_stock_doc.branch.code) {
+                    if (_branch.stores_list && _branch.stores_list.length > 0)
+                      _branch.stores_list.forEach(_store => {
+                        if (_store.store && _store.store.id == stores_stock_doc.store.id) {
+                          if (_store.size_units_list && _store.size_units_list.length > 0)
+                            _store.size_units_list.forEach(_docUnit => {
+                              _item.size_units_list.forEach(_itemUnit => {
 
-    if (stores_stock_doc._id) {
-      $stores_stock.edit({
-        where: {
-          _id: stores_stock_doc._id
-        },
-        set: stores_stock_doc,
-        $req: req,
-        $res: res
-      }, (err, result) => {
-        if (!err) {
-          response.done = true
-          stock_doc = result.doc
-          if (stock_doc.status == 2)
-            site.call('holding items', Object.assign({}, stock_doc))
-          
-        } else {
-          response.error = err.message
-        }
+                                if (_itemUnit.id == _docUnit.id)
+                                  _itemUnit.store_count = _docUnit.current_count
+
+                              });
+                            });
+                        }
+                      });
+                  }
+                });
+            }
+          });
+        });
+
+
+      if (stores_stock_doc._id) {
+        $stores_stock.edit({
+          where: {
+            _id: stores_stock_doc._id
+          },
+          set: stores_stock_doc,
+          $req: req,
+          $res: res
+        }, (err, result) => {
+          if (!err) {
+            response.done = true
+            if (result.doc.status == 2) {
+              result.doc.hold = true
+              site.call('holding items', Object.assign({}, result.doc))
+            }
+
+          } else {
+            response.error = err.message
+          }
+          res.json(response)
+        })
+
+      } else {
         res.json(response)
-      })
-    } else {
-      res.json(response)
-    }
+      }
+    })
   })
 
   site.post("/api/stores_stock/delete", (req, res) => {
@@ -190,11 +220,89 @@ module.exports = function init(site) {
       }, (err, result) => {
         if (!err) {
           response.done = true
+          result.doc.hold = false
+          site.call('holding items', Object.assign({}, result.doc))
 
           res.json(response)
         }
       })
     } else res.json(response)
+  })
+
+  site.post("/api/stores_stock/approve", (req, res) => {
+    let response = {}
+    response.done = false
+    if (req.session.user === undefined) {
+      res.json(response)
+    }
+    let stores_stock_doc = req.body
+
+    if (stores_stock_doc._id) {
+      $stores_stock.edit({
+        where: {
+          _id: stores_stock_doc._id
+        },
+        set: stores_stock_doc,
+        $req: req,
+        $res: res
+      }, (err, result) => {
+        if (!err) {
+          response.done = true
+          result.doc.hold = false
+          site.call('holding items', Object.assign({}, result.doc))
+
+          result.doc.items.forEach(_itm => {
+            if (_itm.size_units_list && _itm.size_units_list.length > 0)
+              _itm.size_units_list.forEach(_unit => {
+                _unit.barcode = _itm.barcode
+                _unit.name = _itm.name
+                _unit.size = _itm.size
+                _unit.store = result.doc.store
+                _unit.company = result.doc.company
+                _unit.branch = result.doc.branch
+                _unit.number = result.doc.code
+                _unit.date = result.doc.date
+                _unit.current_status = 'stock'
+                _unit.unit = {
+                  id: _unit.id,
+                  name: _unit.name,
+                  barcode: _unit.barcode,
+                  convert: _unit.convert,
+                }
+                _unit.shift = {
+                  id: result.doc.shift.id,
+                  code: result.doc.shift.code,
+                  name: result.doc.shift.name
+                }
+
+                if (_unit.store_count > _unit.stock_count) {
+                  _unit.count = _unit.store_count - _unit.stock_count
+                  _unit.type = 'minus'
+                  _unit.transaction_type = 'out'
+                  site.call('item_transaction - items', Object.assign({}, _unit))
+
+                } else if (_unit.stock_count > _unit.store_count) {
+                  _unit.count = _unit.stock_count - _unit.store_count
+                  _unit.type = 'sum'
+                  _unit.transaction_type = 'in'
+                  site.call('item_transaction + items', Object.assign({}, _unit))
+                }
+
+                site.call('[transfer_branch][stores_items][add_balance]', _unit)
+
+              });
+          });
+
+
+        } else {
+          response.error = err.message
+        }
+        res.json(response)
+      })
+
+    } else {
+      res.json(response)
+    }
   })
 
   site.post("/api/stores_stock/view", (req, res) => {
@@ -208,6 +316,46 @@ module.exports = function init(site) {
       if (!err) {
         response.done = true
         response.doc = doc
+      } else {
+        response.error = err.message
+      }
+      res.json(response)
+    })
+  })
+
+  site.post("/api/stores_stock/item_stock", (req, res) => {
+    let response = {}
+    response.done = false
+
+    let where = req.data.where || {};
+    let stock_doc = req.body;
+
+    where['$or'] = [{ 'status': 2 }, { 'status': 3 }]
+    where['company.id'] = site.get_company(req).id
+    where['branch.code'] = site.get_branch(req).code
+
+    $stores_stock.findMany({
+      select: req.body.select || {},
+      limit: req.body.limit,
+      where: where,
+      sort: { id: -1 }
+    }, (err, docs) => {
+      if (!err) {
+        response.done = true
+        response.found = false
+
+        docs.forEach(_doc => {
+          if (_doc.items && _doc.items.length > 0)
+            _doc.items.forEach(_item => {
+              stock_doc.forEach(_stockItem => {
+
+                if (_item.barcode == _stockItem.barcode)
+                  response.found = true
+
+              });
+            });
+        });
+
       } else {
         response.error = err.message
       }

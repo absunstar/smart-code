@@ -370,6 +370,16 @@
         "ar": "الخصم"
     },
     {
+        "name": "err_stock_item",
+        "en": "The Transaction Cannot Be Performed Because Items Are Under Stocking",
+        "ar": "لا يمكن إجراء المعاملة لوجود أصناف تحت الجرد "
+    },
+    {
+        "name": "approve",
+        "en": "Approve",
+        "ar": "إعتماد"
+    },
+    {
         "name": "settings_not_found",
         "en": "Settings Not Found",
         "ar": "لا يوجد إعدادات"

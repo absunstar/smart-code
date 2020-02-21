@@ -51,8 +51,6 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
 
   };
 
-
-
   $scope.newOrderInvoice = function () {
     $scope.error = '';
     $scope.get_open_shift((shift) => {
@@ -1430,34 +1428,42 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
 
   $scope.closeOrder = function () {
 
-    $scope.order_invoice.shift = $scope.order_invoice.shift || $scope.shift;
-    if (!$scope.order_invoice || !$scope.order_invoice.shift) {
-      return;
-    }
+    $scope.getStockItems($scope.order_invoice.book_list, callback => {
 
-    if ($scope.defaultSettings.general_Settings && $scope.defaultSettings.general_Settings.discount_method && $scope.defaultSettings.general_Settings.discount_method.id == 1)
-      $scope.order_invoice.posting = true;
+      if (!callback) {
 
-    $scope.order_invoice.status = {
-      id: 2,
-      en: "Closed Of Orders Screen",
-      ar: "مغلق من شاشة الأوردرات"
-    };
+        $scope.order_invoice.shift = $scope.order_invoice.shift || $scope.shift;
+        if (!$scope.order_invoice || !$scope.order_invoice.shift) {
+          return;
+        }
 
-    $scope.order_invoice.under_paid = {
-      book_list: $scope.order_invoice.book_list,
-      total_tax: $scope.order_invoice.total_tax,
-      total_discount: $scope.order_invoice.total_discount,
-      price_delivery_service: $scope.order_invoice.price_delivery_service,
-      service: $scope.order_invoice.service,
-      net_value: $scope.order_invoice.net_value,
-    };
+        if ($scope.defaultSettings.general_Settings && $scope.defaultSettings.general_Settings.discount_method && $scope.defaultSettings.general_Settings.discount_method.id == 1)
+          $scope.order_invoice.posting = true;
 
-    /*   $scope.order_invoice.book_list.forEach(book_list => {
-        $scope.order_invoice.under_paid.items_price += book_list.total;
-      }); */
+        $scope.order_invoice.status = {
+          id: 2,
+          en: "Closed Of Orders Screen",
+          ar: "مغلق من شاشة الأوردرات"
+        };
 
-    $scope.addOrderInvoice();
+        $scope.order_invoice.under_paid = {
+          book_list: $scope.order_invoice.book_list,
+          total_tax: $scope.order_invoice.total_tax,
+          total_discount: $scope.order_invoice.total_discount,
+          price_delivery_service: $scope.order_invoice.price_delivery_service,
+          service: $scope.order_invoice.service,
+          net_value: $scope.order_invoice.net_value,
+        };
+
+        /*   $scope.order_invoice.book_list.forEach(book_list => {
+            $scope.order_invoice.under_paid.items_price += book_list.total;
+          }); */
+
+        $scope.addOrderInvoice();
+      } else {
+        $scope.error = '##word.err_stock_item##';
+      }
+    })
   };
 
   $scope.loadItems = function (group) {
@@ -1510,7 +1516,16 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.order_invoice.book_list = $scope.order_invoice.book_list || [];
     let exist = false;
-
+    let foundHold = false;
+    if (item.branches_list && item.branches_list.length > 0)
+      item.branches_list.forEach(_branch => {
+        if (_branch.code == '##session.branch.code##')
+          _branch.stores_list.forEach(_store => {
+            if (_store.store && _store.store.id == $scope.order_invoice.store.id) {
+              if (_store.hold) foundHold = true;
+            }
+          });
+      });
     $scope.order_invoice.book_list.forEach(el => {
       if (item.size == el.size && item.barcode == el.barcode && !el.printed) {
         exist = true;
@@ -1526,22 +1541,22 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
       item.unit = item.size_units_list[indxUnit];
       item.discount = item.size_units_list[indxUnit].discount;
       item.price = item.size_units_list[indxUnit].price;
-
-      $scope.order_invoice.book_list.push({
-        item_id: item.item_id,
-        kitchen: item.kitchen,
-        name: item.name,
-        store: item.store,
-        barcode: item.barcode,
-        size: item.size,
-        unit: item.unit,
-        total: (item.price - item.discount.value),
-        vendor: item.vendor,
-        store: item.store,
-        price: item.price,
-        discount: item.discount,
-        count: 1
-      });
+      if (!foundHold)
+        $scope.order_invoice.book_list.push({
+          item_id: item.item_id,
+          kitchen: item.kitchen,
+          name: item.name,
+          store: item.store,
+          barcode: item.barcode,
+          size: item.size,
+          unit: item.unit,
+          total: (item.price - item.discount.value),
+          vendor: item.vendor,
+          store: item.store,
+          price: item.price,
+          discount: item.discount,
+          count: 1
+        });
     };
     $scope.calc($scope.order_invoice);
   };

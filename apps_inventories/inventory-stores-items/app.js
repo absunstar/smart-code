@@ -162,8 +162,8 @@ module.exports = function init(site) {
 
                 _units.average_cost = site.toNumber(_units.average_cost)
 
-                _units.cost = site.toNumber(obj.cost)
-                _units.price = site.toNumber(obj.price)
+                // _units.cost = site.toNumber(obj.cost)
+                // _units.price = site.toNumber(obj.price)
 
                 if (obj.source_type && (obj.source_type.id == 1 || obj.source_type.id == 4) && obj.store_in)
                   $stores_items.findMany({
@@ -209,7 +209,6 @@ module.exports = function init(site) {
                   indxStore = i
                 }
               });
-              _branch._store = _branch.stores_list[indxStore]
 
               if (foundBranch) {
                 let unit_branch = false;
@@ -290,7 +289,7 @@ module.exports = function init(site) {
 
                   if (foundStore) {
                     let unit_store = false
-                    _branch._store.size_units_list.forEach(_units => {
+                    _branch.stores_list[indxStore].size_units_list.forEach(_units => {
                       if (obj.unit && _units.id == obj.unit.id) {
                         if (obj.type == 'sum') {
                           _units.current_count = (_units.current_count || 0) + obj.count
@@ -323,7 +322,7 @@ module.exports = function init(site) {
 
                     if (!unit_store) {
 
-                      _branch._store.size_units_list.push({
+                      _branch.stores_list[indxStore].size_units_list.push({
                         id: obj.unit.id,
                         name: obj.unit.name,
                         barcode: obj.unit.barcode,
@@ -338,28 +337,28 @@ module.exports = function init(site) {
 
 
                     if (obj.type == 'sum') {
-                      if (obj.source_type && obj.source_type.id == 3) _branch._store.start_count = site.toNumber(_branch._store.start_count || 0) + site.toNumber(total_unit)
-                      _branch._store.current_count = site.toNumber(_branch._store.current_count || 0) + site.toNumber(total_unit)
-                      _branch._store.total_buy_price = (_branch._store.total_buy_price || 0) + totalCost
-                      _branch._store.total_buy_count = (_branch._store.total_buy_count || 0) + site.toNumber(total_unit)
+                      if (obj.source_type && obj.source_type.id == 3) _branch.stores_list[indxStore].start_count = site.toNumber(_branch.stores_list[indxStore].start_count || 0) + site.toNumber(total_unit)
+                      _branch.stores_list[indxStore].current_count = site.toNumber(_branch.stores_list[indxStore].current_count || 0) + site.toNumber(total_unit)
+                      _branch.stores_list[indxStore].total_buy_price = (_branch.stores_list[indxStore].total_buy_price || 0) + totalCost
+                      _branch.stores_list[indxStore].total_buy_count = (_branch.stores_list[indxStore].total_buy_count || 0) + site.toNumber(total_unit)
                     }
 
                     if (obj.type == 'minus') {
-                      if (obj.source_type && obj.source_type.id == 3) _branch._store.start_count = site.toNumber(_branch._store.start_count || 0) - site.toNumber(total_unit)
-                      _branch._store.current_count = site.toNumber(_branch._store.current_count || 0) - site.toNumber(total_unit)
-                      _branch._store.total_sell_price = (_branch._store.total_sell_price || 0) + totalCost
-                      _branch._store.total_sell_count = (_branch._store.total_sell_count || 0) + site.toNumber(total_unit)
+                      if (obj.source_type && obj.source_type.id == 3) _branch.stores_list[indxStore].start_count = site.toNumber(_branch.stores_list[indxStore].start_count || 0) - site.toNumber(total_unit)
+                      _branch.stores_list[indxStore].current_count = site.toNumber(_branch.stores_list[indxStore].current_count || 0) - site.toNumber(total_unit)
+                      _branch.stores_list[indxStore].total_sell_price = (_branch.stores_list[indxStore].total_sell_price || 0) + totalCost
+                      _branch.stores_list[indxStore].total_sell_count = (_branch.stores_list[indxStore].total_sell_count || 0) + site.toNumber(total_unit)
 
                       if (obj.source_type && (obj.source_type.id == 4 || obj.source_type.id == 1) && obj.store_in) {
-                        _branch._store.total_buy_price = (_branch._store.total_buy_price || 0) - totalCost
-                        _branch._store.total_buy_count = (_branch._store.total_buy_count || 0) - site.toNumber(total_unit)
+                        _branch.stores_list[indxStore].total_buy_price = (_branch.stores_list[indxStore].total_buy_price || 0) - totalCost
+                        _branch.stores_list[indxStore].total_buy_count = (_branch.stores_list[indxStore].total_buy_count || 0) - site.toNumber(total_unit)
                       }
                     }
 
-                    if (obj.source_type && (obj.source_type.id == 1 || obj.source_type.id == 4) && obj.store_in) _branch._store.average_cost = site.toNumber(_branch._store.total_buy_price) / site.toNumber(_branch._store.total_buy_count)
-                    else if (obj.assemble) _branch._store.average_cost = total_complex_av
+                    if (obj.source_type && (obj.source_type.id == 1 || obj.source_type.id == 4) && obj.store_in) _branch.stores_list[indxStore].average_cost = site.toNumber(_branch.stores_list[indxStore].total_buy_price) / site.toNumber(_branch.stores_list[indxStore].total_buy_count)
+                    else if (obj.assemble) _branch.stores_list[indxStore].average_cost = total_complex_av
 
-                    _branch._store.average_cost = site.toNumber(_branch._store.average_cost)
+                    _branch.stores_list[indxStore].average_cost = site.toNumber(_branch.stores_list[indxStore].average_cost)
 
                   } else _branch.stores_list.push(obj_store)
 
@@ -425,7 +424,10 @@ module.exports = function init(site) {
                 if (_branch.code == obj.branch.code) {
                   _branch.stores_list.forEach(_store => {
                     if (_store.store && _store.store.id == obj.store.id) {
-                      _store.hold = true
+
+                      if (obj.hold) _store.hold = true
+                      else _store.hold = false
+
                     }
                   });
                 }
@@ -978,11 +980,7 @@ module.exports = function init(site) {
                       start_count: _sizes.start_count,
                       price: _sizes.price,
                       cost: _sizes.cost,
-                      discount: {
-                        max: _sizes.discount.max,
-                        value: _sizes.discount.value,
-                        type: _sizes.discount.type
-                      },
+                      discount: _sizes.discount,
                       total_buy_price: _sizes.total_buy_price,
                       total_buy_count: _sizes.total_buy_count,
                       total_sell_price: _sizes.total_sell_price,
@@ -1024,9 +1022,6 @@ module.exports = function init(site) {
                           });
                       });
 
-                    delete _sizes.total_purchase_price
-                    delete _sizes.total_purchase_count
-                    delete _sizes.discount
 
                   }
 
@@ -1174,7 +1169,6 @@ module.exports = function init(site) {
 
                 if (size.size_units_list && size.size_units_list.length > 0)
                   size.size_units_list.forEach(_unit => {
-
                     arr.push(_unit.barcode)
                   });
               })
@@ -1191,9 +1185,14 @@ module.exports = function init(site) {
 
   site.getItemsSizes = function (req, callback) {
 
-    let where = req.body.where || {}
+    let where = {}
+    let barcodes = [];
+
+    if (req.body.items && req.body.items.length > 0)
+      barcodes = req.body.items.map(_item => _item.barcode)
 
     where['company.id'] = site.get_company(req).id
+    where['sizes.barcode'] = { $in: barcodes }
 
     $stores_items.findMany({
       select: req.body.select || {},
@@ -1204,6 +1203,7 @@ module.exports = function init(site) {
       limit: req.body.limit
     }, (err, docs) => {
       if (!err) {
+
         let arr_sizes = [];
         if (docs && docs.length > 0) {
           docs.forEach(item => {
@@ -1215,6 +1215,7 @@ module.exports = function init(site) {
               })
           })
           callback(arr_sizes)
+
         }
       } else {
 

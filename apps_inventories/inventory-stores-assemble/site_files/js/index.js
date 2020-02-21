@@ -146,24 +146,32 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
 
   $scope.delete = function (store_assemble) {
     $scope.error = '';
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/stores_assemble/delete",
-      data: store_assemble
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          site.hideModal('#deleteStoreAssembleModal');
-          $scope.loadAll();
-        } else $scope.error = response.data.error;
+    $scope.getStockItems(store_assemble.items, callback => {
 
-      },
-      function (err) {
-        console.log(err);
+      if (!callback || !store_assemble.posting) {
+
+        $scope.busy = true;
+        $http({
+          method: "POST",
+          url: "/api/stores_assemble/delete",
+          data: store_assemble
+        }).then(
+          function (response) {
+            $scope.busy = false;
+            if (response.data.done) {
+              site.hideModal('#deleteStoreAssembleModal');
+              $scope.loadAll();
+            } else $scope.error = response.data.error;
+
+          },
+          function (err) {
+            console.log(err);
+          }
+        )
+      } else {
+        $scope.error = '##word.err_stock_item##';
       }
-    )
+    })
   };
 
   $scope.addToItems = function () {
@@ -318,7 +326,7 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
     if ($scope.item.name && $scope.item.name.sizes && $scope.item.name.sizes.length > 0)
       $scope.item.name.sizes.forEach(_item => {
         let foundHold = false;
-        
+
         _item.name = $scope.item.name.name;
         _item.store = $scope.store_assemble.store;
 
@@ -499,30 +507,62 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
 
   $scope.posting = function (store_assemble) {
     $scope.error = '';
+    $scope.getStockItems(store_assemble.items, callback => {
 
+      if (!callback) {
+        $scope.busy = true;
+        $http({
+          method: "POST",
+          url: "/api/stores_assemble/posting",
+          data: store_assemble
+        }).then(
+          function (response) {
+            $scope.busy = false;
+            if (response.data.done) {
+              $scope.loadAll();
+            } else {
+              $scope.error = '##word.error##';
+            }
+          },
+          function (err) {
+            console.log(err);
+          }
+        )
+      } else {
+        if (store_assemble.posting)
+          store_assemble.posting = false;
+        else store_assemble.posting = true;
+        $scope.error = '##word.err_stock_item##';
+      }
+    })
+  };
+
+  $scope.getStockItems = function (items, callback) {
+    $scope.error = '';
     $scope.busy = true;
+    $scope.categories = [];
     $http({
       method: "POST",
-      url: "/api/stores_assemble/posting",
-      data: store_assemble
+      url: "/api/stores_stock/item_stock",
+      data: items
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          if (store_assemble.posting) {
 
+          if (response.data.found) callback(true)
+          else callback(false)
 
-          }
-          $scope.loadAll();
-        } else {
-          $scope.error = '##word.error##';
-        }
+        } else callback(null)
+
       },
       function (err) {
-        console.log(err);
+        $scope.busy = false;
+        $scope.error = err;
       }
     )
   };
+
 
   $scope.loadStores = function () {
     $scope.error = '';
@@ -572,8 +612,6 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
       }
     )
   };
-
-
 
 
   $scope.searchAll = function () {

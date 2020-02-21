@@ -5,7 +5,7 @@ module.exports = function init(site) {
         site.call('please monitor action' , { obj : {
           icon: '/images/category_item.png',
           source: "Categories Items System",
-          source_ar: "نظام الاصناف",
+          source_ar: "نظام الأصناف",
           message: "New Category Item Added",
           message_ar: "تم إضافة صنف جديد",
           value: result.doc.name,
@@ -21,7 +21,7 @@ module.exports = function init(site) {
         site.call('please monitor action' , { obj : {
           icon: '/images/category_item.png',
           source: "Categories Items System",
-          source_ar: "نظام الاصناف",
+          source_ar: "نظام الأصناف",
           message: "New Category Item Updated",
           message_ar: "تم تعديل صنف ",
           value: result.doc.name,
@@ -38,7 +38,7 @@ module.exports = function init(site) {
         site.call('please monitor action' , { obj : {
           icon: '/images/category_item.png',
           source: "Categories Items System",
-          source_ar: "نظام الاصناف",
+          source_ar: "نظام الأصناف",
           message: " Category Item Deleted",
           message_ar: "تم حذف صنف ",
           value: result.doc.name,

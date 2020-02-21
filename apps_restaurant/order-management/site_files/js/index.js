@@ -474,12 +474,19 @@ app.controller("order_management", function ($scope, $http, $timeout) {
 
   $scope.postOrder = function (order) {
     $scope.error = '';
-    $scope.get_open_shift((shift) => {
-      if (shift) {
-        order.post = true;
-        $scope.post = true;
-        $scope.updateOrderManagement(order);
-      } else $scope.error = '##word.open_shift_not_found##';
+    $scope.getStockItems(order.book_list, callback => {
+      if (!callback) {
+
+        $scope.get_open_shift((shift) => {
+          if (shift) {
+            order.post = true;
+            $scope.post = true;
+            $scope.updateOrderManagement(order);
+          } else $scope.error = '##word.open_shift_not_found##';
+        });
+      } else {
+        $scope.error = '##word.err_stock_item##';
+      }
     });
   };
 

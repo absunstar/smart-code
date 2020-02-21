@@ -345,25 +345,32 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
       return;
     };
 
+    $scope.getStockItems(store_out.items, callback => {
 
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/stores_out/delete",
-      data: store_out
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          site.hideModal('#deleteStoreOutModal');
-          $scope.loadAll();
-        } else $scope.error = response.data.error;
+      if (!callback || !store_out.posting) {
 
-      },
-      function (err) {
-        console.log(err);
+        $scope.busy = true;
+        $http({
+          method: "POST",
+          url: "/api/stores_out/delete",
+          data: store_out
+        }).then(
+          function (response) {
+            $scope.busy = false;
+            if (response.data.done) {
+              site.hideModal('#deleteStoreOutModal');
+              $scope.loadAll();
+            } else $scope.error = response.data.error;
+
+          },
+          function (err) {
+            console.log(err);
+          }
+        )
+      } else {
+        $scope.error = '##word.err_stock_item##';
       }
-    )
+    })
   };
 
   $scope.addToItems = function () {
@@ -641,7 +648,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
                     _size.branches_list.forEach(_branch => {
                       if (_branch.code == '##session.branch.code##')
                         _branch.stores_list.forEach(_store => {
-                          if (_store.store && _store.store.id == $scope.store_in.store.id) {
+                          if (_store.store && _store.store.id == $scope.store_out.store.id) {
                             if (_store.hold) foundHold = true;
                           }
                         });
@@ -1484,56 +1491,93 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
       $scope.error = '##word.err_unpost_return##';
       return;
     };
+    $scope.getStockItems(store_out.items, callback => {
 
+      if (!callback) {
+
+        $scope.busy = true;
+        $http({
+          method: "POST",
+          url: "/api/stores_out/posting",
+          data: store_out
+        }).then(
+          function (response) {
+            $scope.busy = false;
+            if (response.data.done) {
+              if (store_out.posting) {
+                if ($scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto && store_out.type && store_out.type.id != 5) {
+
+                  let account_invoices = {
+                    image_url: '/images/account_invoices.png',
+                    date: store_out.date,
+                    invoice_id: store_out.id,
+                    invoice_type: store_out.type,
+                    vendor: store_out.vendor,
+                    shift: store_out.shift,
+                    net_value: store_out.net_value,
+                    currency: store_out.currency,
+                    paid_up: store_out.paid_up,
+                    payment_method: store_out.payment_method,
+                    safe: store_out.safe,
+                    invoice_code: store_out.number,
+                    total_discount: store_out.total_discount,
+                    total_tax: store_out.total_tax,
+                    current_book_list: store_out.items,
+                    source_type: {
+                      id: 2,
+                      en: "Stores Out / Sales Invoice",
+                      ar: "إذن صرف / فاتورة بيع"
+                    },
+                    active: true
+                  };
+
+                  $scope.addAccountInvoice(account_invoices)
+                }
+              }
+              $scope.loadAll();
+            } else {
+              $scope.error = '##word.error##';
+            }
+          },
+          function (err) {
+            console.log(err);
+          }
+        )
+      } else {
+        if (store_out.posting)
+          store_out.posting = false;
+        else store_out.posting = true;
+        $scope.error = '##word.err_stock_item##';
+      }
+    })
+  };
+
+  $scope.getStockItems = function (items, callback) {
+    $scope.error = '';
     $scope.busy = true;
+    $scope.categories = [];
     $http({
       method: "POST",
-      url: "/api/stores_out/posting",
-      data: store_out
+      url: "/api/stores_stock/item_stock",
+      data: items
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          if (store_out.posting) {
-            if ($scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto && store_out.type && store_out.type.id != 5) {
 
-              let account_invoices = {
-                image_url: '/images/account_invoices.png',
-                date: store_out.date,
-                invoice_id: store_out.id,
-                invoice_type: store_out.type,
-                vendor: store_out.vendor,
-                shift: store_out.shift,
-                net_value: store_out.net_value,
-                currency: store_out.currency,
-                paid_up: store_out.paid_up,
-                payment_method: store_out.payment_method,
-                safe: store_out.safe,
-                invoice_code: store_out.number,
-                total_discount: store_out.total_discount,
-                total_tax: store_out.total_tax,
-                current_book_list: store_out.items,
-                source_type: {
-                  id: 2,
-                  en: "Stores Out / Sales Invoice",
-                  ar: "إذن صرف / فاتورة بيع"
-                },
-                active: true
-              };
+          if (response.data.found) callback(true)
+          else callback(false)
 
-              $scope.addAccountInvoice(account_invoices)
-            }
-          }
-          $scope.loadAll();
-        } else {
-          $scope.error = '##word.error##';
-        }
+        } else callback(null)
+
       },
       function (err) {
-        console.log(err);
+        $scope.busy = false;
+        $scope.error = err;
       }
     )
   };
+
 
   $scope.handeStoreOut = function () {
     $scope.error = '';

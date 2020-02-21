@@ -149,24 +149,32 @@ app.controller("stores_dismantle", function ($scope, $http, $timeout) {
 
   $scope.delete = function (store_dismantle) {
     $scope.error = '';
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/stores_dismantle/delete",
-      data: store_dismantle
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          site.hideModal('#deleteStoreDismantleModal');
-          $scope.loadAll();
-        } else $scope.error = response.data.error;
+    $scope.getStockItems(store_dismantle.items, callback => {
 
-      },
-      function (err) {
-        console.log(err);
+      if (!callback || !store_dismantle.posting) {
+
+        $scope.busy = true;
+        $http({
+          method: "POST",
+          url: "/api/stores_dismantle/delete",
+          data: store_dismantle
+        }).then(
+          function (response) {
+            $scope.busy = false;
+            if (response.data.done) {
+              site.hideModal('#deleteStoreDismantleModal');
+              $scope.loadAll();
+            } else $scope.error = response.data.error;
+
+          },
+          function (err) {
+            console.log(err);
+          }
+        )
+      } else {
+        $scope.error = '##word.err_stock_item##';
       }
-    )
+    })
   };
 
   $scope.addToItems = function () {
@@ -496,27 +504,60 @@ app.controller("stores_dismantle", function ($scope, $http, $timeout) {
 
   $scope.posting = function (store_dismantle) {
     $scope.error = '';
+    $scope.getStockItems(store_dismantle.items, callback => {
+      if (!callback) {
 
+        $scope.busy = true;
+        $http({
+          method: "POST",
+          url: "/api/stores_dismantle/posting",
+          data: store_dismantle
+        }).then(
+          function (response) {
+            $scope.busy = false;
+            if (response.data.done) {
+
+              $scope.loadAll();
+            } else {
+              $scope.error = '##word.error##';
+            }
+          },
+          function (err) {
+            console.log(err);
+          }
+        )
+
+      } else {
+        if (store_dismantle.posting)
+          store_dismantle.posting = false;
+        else store_dismantle.posting = true;
+        $scope.error = '##word.err_stock_item##';
+      }
+    })
+  };
+
+  $scope.getStockItems = function (items, callback) {
+    $scope.error = '';
     $scope.busy = true;
+    $scope.categories = [];
     $http({
       method: "POST",
-      url: "/api/stores_dismantle/posting",
-      data: store_dismantle
+      url: "/api/stores_stock/item_stock",
+      data: items
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          if (store_dismantle.posting) {
 
+          if (response.data.found) callback(true)
+          else callback(false)
 
-          }
-          $scope.loadAll();
-        } else {
-          $scope.error = '##word.error##';
-        }
+        } else callback(null)
+
       },
       function (err) {
-        console.log(err);
+        $scope.busy = false;
+        $scope.error = err;
       }
     )
   };

@@ -17,7 +17,7 @@ module.exports = function init(site) {
         site.call('please monitor action' , { obj : {
           icon: '/images/category.png',
           source: "Categories System",
-          source_ar: "نظام مجموعات الاصناف",
+          source_ar: "نظام مجموعات الأصناف",
           message: "New Category Added",
           message_ar: "تم إضافة مجموعة صنف جديدة",
           value: result.doc.name,
@@ -33,7 +33,7 @@ module.exports = function init(site) {
         site.call('please monitor action' , { obj : {
           icon: '/images/category.png',
           source: "Categories System",
-          source_ar: "نظام مجموعات الاصناف",
+          source_ar: "نظام مجموعات الأصناف",
           message: "New Category Updated",
           message_ar: "تم تعديل مجموعة صنف ",
           value: result.doc.name,
@@ -50,7 +50,7 @@ module.exports = function init(site) {
         site.call('please monitor action' , { obj : {
           icon: '/images/category.png',
           source: "Categories System",
-          source_ar: "نظام مجموعات الاصناف",
+          source_ar: "نظام مجموعات الأصناف",
           message: " Category Deleted",
           message_ar: "تم حذف مجموعة صنف ",
           value: result.doc.name,

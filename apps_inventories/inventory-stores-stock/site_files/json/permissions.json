@@ -8,5 +8,6 @@
     { "module_name" : "inventory" , "screen_name" : "inventory-stores-stock" , "name":"stores_stock_export" , "en":"Export" , "ar":"تصدير"},
     { "module_name" : "inventory" , "screen_name" : "inventory-stores-stock" , "name":"stores_stock_print" , "en":"Print" , "ar":"طباعة"},
     { "module_name" : "inventory" , "screen_name" : "inventory-stores-stock" , "name":"stores_stock_hold" , "en":"Hold" , "ar":"تعليق"},
+    { "module_name" : "inventory" , "screen_name" : "inventory-stores-stock" , "name":"stores_stock_settlement" , "en":"Settlement Stock" , "ar":"تسوية الجرد"},
     { "module_name" : "inventory" , "screen_name" : "inventory-stores-stock" , "name":"stores_stock_ui" , "en":"UI" , "ar":"الواجهة الرسومية"}
 ]

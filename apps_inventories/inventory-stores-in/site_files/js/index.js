@@ -563,32 +563,6 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
     site.showModal('#viewStoreInModal');
   };
 
-  $scope.delete = function (store_in) {
-    $scope.error = '';
-
-    if (store_in.return_paid && store_in.net_value != store_in.return_paid.net_value) {
-      $scope.error = '##word.err_delete_return##';
-      return;
-    };
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/stores_in/delete",
-      data: store_in
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          site.hideModal('#deleteStoreInModal');
-          $scope.loadAll();
-        } else $scope.error = response.data.error;
-
-      },
-      function (err) {
-        console.log(err);
-      }
-    )
-  };
 
   $scope.addToItems = function () {
     $scope.error = '';
@@ -856,10 +830,10 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
                     _size.branches_list.forEach(_branch => {
                       if (_branch.code == '##session.branch.code##')
                         _branch.stores_list.forEach(_store => {
-                          if (_store.store && _store.store.id == $scope.store_in.store.id){
-                            if(_store.hold) foundHold = true;
+                          if (_store.store && _store.store.id == $scope.store_in.store.id) {
+                            if (_store.hold) foundHold = true;
                           }
-                      });
+                        });
                     });
 
                   if ((_size.barcode == $scope.search_barcode) || foundUnit) {
@@ -956,6 +930,42 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.delete = function (store_in) {
+    $scope.error = '';
+
+    if (store_in.return_paid && store_in.net_value != store_in.return_paid.net_value) {
+      $scope.error = '##word.err_delete_return##';
+      return;
+    };
+    $scope.getStockItems(store_in.items, callback => {
+
+      if (!callback || !store_in.posting) {
+
+        $scope.busy = true;
+        $http({
+          method: "POST",
+          url: "/api/stores_in/delete",
+          data: store_in
+        }).then(
+          function (response) {
+            $scope.busy = false;
+            if (response.data.done) {
+              site.hideModal('#deleteStoreInModal');
+              $scope.loadAll();
+            } else $scope.error = response.data.error;
+
+          },
+          function (err) {
+            console.log(err);
+          }
+        )
+      } else {
+        $scope.error = '##word.err_stock_item##';
+      }
+    })
+  };
+
+
   $scope.posting = function (store_in) {
     $scope.error = '';
 
@@ -966,52 +976,89 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
       return;
     };
 
+    $scope.getStockItems(store_in.items, callback => {
+
+      if (!callback) {
+
+        $scope.busy = true;
+        $http({
+          method: "POST",
+          url: "/api/stores_in/posting",
+          data: store_in
+        }).then(
+          function (response) {
+            $scope.busy = false;
+            if (response.data.done) {
+              if (store_in.posting) {
+                if ((store_in.type.id == 1 || store_in.type.id == 4) && $scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto) {
+
+                  let account_invoices = {
+                    image_url: '/images/account_invoices.png',
+                    date: store_in.date,
+                    invoice_id: store_in.id,
+                    invoice_type: store_in.type,
+                    vendor: store_in.vendor,
+                    shift: store_in.shift,
+                    net_value: store_in.net_value,
+                    paid_up: store_in.paid_up,
+                    currency: store_in.currency,
+                    payment_method: store_in.payment_method,
+                    safe: store_in.safe,
+                    invoice_code: store_in.number,
+                    total_discount: store_in.total_discount,
+                    total_tax: store_in.total_tax,
+                    current_book_list: store_in.items,
+                    source_type: {
+                      id: 1,
+                      en: "Stores In / Purchase Invoice",
+                      ar: "إذن وارد / فاتورة شراء"
+                    },
+                    active: true
+                  };
+
+                  $scope.addAccountInvoice(account_invoices)
+                }
+              }
+              $scope.loadAll();
+            } else {
+              $scope.error = '##word.error##';
+            }
+          },
+          function (err) {
+            console.log(err);
+          }
+        )
+      } else {
+        if (store_in.posting)
+          store_in.posting = false;
+        else store_in.posting = true;
+        $scope.error = '##word.err_stock_item##';
+      }
+    })
+  };
+
+  $scope.getStockItems = function (items, callback) {
+    $scope.error = '';
     $scope.busy = true;
+    $scope.categories = [];
     $http({
       method: "POST",
-      url: "/api/stores_in/posting",
-      data: store_in
+      url: "/api/stores_stock/item_stock",
+      data: items
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          if (store_in.posting) {
-            if ((store_in.type.id == 1 || store_in.type.id == 4) && $scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto) {
 
-              let account_invoices = {
-                image_url: '/images/account_invoices.png',
-                date: store_in.date,
-                invoice_id: store_in.id,
-                invoice_type: store_in.type,
-                vendor: store_in.vendor,
-                shift: store_in.shift,
-                net_value: store_in.net_value,
-                paid_up: store_in.paid_up,
-                currency: store_in.currency,
-                payment_method: store_in.payment_method,
-                safe: store_in.safe,
-                invoice_code: store_in.number,
-                total_discount: store_in.total_discount,
-                total_tax: store_in.total_tax,
-                current_book_list: store_in.items,
-                source_type: {
-                  id: 1,
-                  en: "Stores In / Purchase Invoice",
-                  ar: "إذن وارد / فاتورة شراء"
-                },
-                active: true
-              };
+          if (response.data.found) callback(true)
+          else callback(false)
 
-              $scope.addAccountInvoice(account_invoices)
-            }
-          }
-          $scope.loadAll();
-        } else {
-          $scope.error = '##word.error##';
-        }
+        } else callback(null)
+
       },
       function (err) {
-        console.log(err);
+        $scope.busy = false;
+        $scope.error = err;
       }
     )
   };
@@ -1382,6 +1429,8 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
       }
     )
   };
+
+
 
   $scope.get_open_shift = function (callback) {
     $scope.error = '';

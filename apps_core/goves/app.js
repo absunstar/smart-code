@@ -174,7 +174,7 @@ module.exports = function init(site) {
         $res: res
       }, (err, result) => {
         if (!err) {
-          response.done = true
+          response.done = true          
         } else {
           response.error = err.message
         }

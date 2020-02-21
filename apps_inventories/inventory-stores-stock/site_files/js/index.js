@@ -470,7 +470,7 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
 
                     foundSize = $scope.store_stock.items.some(_itemSize => _itemSize.barcode == _size.barcode);
 
-                    if (!foundSize && !foundHold)$scope.store_stock.items.unshift(_size);
+                    if (!foundSize && !foundHold) $scope.store_stock.items.unshift(_size);
                   }
 
                 });
@@ -493,6 +493,11 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
     }
   };
 
+  $scope.settlement = function (store_stock) {
+    $scope.store_stock = store_stock;
+    site.showModal('#settlementItemsModal');
+  };
+
   $scope.edit = function (store_stock) {
     $scope.error = '';
     $scope.get_open_shift((shift) => {
@@ -507,7 +512,6 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
 
   $scope.update = function (store_stock) {
     $scope.error = '';
-
     $scope.busy = true;
     $http({
       method: "POST",
@@ -517,7 +521,10 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#updateStoreStockModal');
+
+          if (store_stock.status == 1) site.hideModal('#updateStoreStockModal');
+          else site.hideModal('#settlementItemsModal');
+          
           $scope.loadAll();
         } else {
           $scope.error = '##word.error##';
@@ -529,6 +536,24 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.approve = function (store_stock) {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/stores_stock/approve",
+      data: store_stock
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) $scope.loadAll();
+        else $scope.error = '##word.error##';
+      },
+      function (err) {
+        console.log(err);
+      }
+    )
+  };
 
 
   $scope.loadStores = function () {
