@@ -111,6 +111,12 @@ module.exports = function init(site) {
 
     stores_out_doc.date = site.toDateTime(stores_out_doc.date)
 
+
+    if(stores_out_doc.type.id == 5){
+      delete stores_out_doc.customer
+      delete stores_out_doc.delegate
+    }
+
     stores_out_doc.items.forEach(_itm => {
       _itm.current_count = site.toNumber(_itm.current_count)
       _itm.count = site.toNumber(_itm.count)
@@ -186,6 +192,11 @@ module.exports = function init(site) {
 
     stores_out_doc.type = site.fromJson(stores_out_doc.type)
     stores_out_doc.date = new Date(stores_out_doc.date)
+
+    if(stores_out_doc.type.id == 5){
+      delete stores_out_doc.customer
+      delete stores_out_doc.delegate
+    }
 
     stores_out_doc.items.forEach(itm => {
       itm.count = site.toNumber(itm.count)

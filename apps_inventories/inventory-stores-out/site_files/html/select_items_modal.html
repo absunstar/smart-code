@@ -45,7 +45,7 @@
                                 </div>
                             </div>
 
-                            <div class="col1 center">
+                            <div class="col1 center" ng-hide="store_out.type.id ==5">
                                 <div class="control">
                                     <label>##word.stores_out_item_price##</label>
                                 </div>
@@ -91,7 +91,8 @@
                                 <i-control class="col1" ng-model="s.count" type="number" ng-change="calcSize(s)">
                                 </i-control>
 
-                                <i-control disabled class="col1" ng-model="s.price" type="number" ng-change="calcSize(s)">
+                                <i-control ng-hide="store_out.type.id ==5" disabled class="col1" ng-model="s.price"
+                                    type="number" ng-change="calcSize(s)">
                                 </i-control>
 
                                 <i-control disabled class="col1" ng-model="s.total" type="number">

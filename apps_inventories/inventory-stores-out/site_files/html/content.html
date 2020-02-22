@@ -12,7 +12,7 @@
                     </i-button>
                 </div>
 
-                <div class="row">
+                <div class="row" ng-hide="store_out.type.id ==5">
 
                     <i-control ng-keydown="getCustomerList($event)" id="service" class="col3" ng-model="search_customer"
                         label="##word.search##" type="text"></i-control>
@@ -24,6 +24,7 @@
                         label="##word.delegate##" ng-disabled="store_out.retured_number" items="delegatesList">
                     </i-list>
                 </div>
+
                 <div class="row">
 
                     <i-list display="##session.lang##" ng-search="_search.$search_in_out" class="col3"
@@ -52,7 +53,8 @@
                     label="##word.edit_sale_price##" ng-click="edit_price = true"></i-button>
 
                 <i-button type="view" x-permissions="stores_out_price || stores_out_manage" ng-hide="showMaxDis"
-                    label="##word.view_maximum_discount##" ng-click="showMaxDis = true"></i-button>
+                    ng-hide="store_out.type.id ==5" label="##word.view_maximum_discount##" ng-click="showMaxDis = true">
+                </i-button>
             </div>
             <br>
             <br>
@@ -71,8 +73,8 @@
                             <th>##word.stores_out_item_size##</th>
                             <th>##word.unit##</th>
                             <th>##word.quantity##</th>
-                            <th>##word.price##</th>
-                            <th>##word.discount##</th>
+                            <th ng-hide="store_out.type.id ==5">##word.price##</th>
+                            <th ng-hide="store_out.type.id ==5">##word.discount##</th>
                             <th ng-show="showMaxDis">##word.maximum_discount##</th>
                             <th>##word.stores_out_item_total##</th>
                             <th>##word.actions##</th>
@@ -92,14 +94,14 @@
                                 <i-control ng-change="calcSize(itm)" type="number" ng-model="itm.count"></i-control>
                             </td>
 
-                            <td>
+                            <td ng-hide="store_out.type.id ==5">
                                 <br ng-hide='edit_price'>
                                 <p ng-hide='edit_price'> {{itm.price}} </p>
                                 <i-control ng-show='edit_price' ng-change="calcSize(itm)" type="number"
                                     ng-model="itm.price"></i-control>
                             </td>
 
-                            <td>
+                            <td ng-hide="store_out.type.id ==5">
                                 <i-control ng-change="calcSize(itm)" type="number" ng-model="itm.discount.value">
                                 </i-control>
                                 <b class="" ng-show="itm.discount.type =='number'">$</b>
