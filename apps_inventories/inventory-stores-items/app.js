@@ -127,10 +127,8 @@ module.exports = function init(site) {
               }
             }
 
-            if (obj.source_type && (obj.source_type.id == 1 || obj.source_type.id == 4) && obj.store_in)
-              _size.average_cost = site.toNumber(_size.total_buy_price) / site.toNumber(_size.total_buy_count)
-
-            else if (obj.assemble) _size.average_cost = total_complex_av
+            if (obj.assemble) _size.average_cost = total_complex_av
+            else _size.average_cost = site.toNumber(_size.total_buy_price) / site.toNumber(_size.total_buy_count)
 
             _size.average_cost = site.toNumber(_size.average_cost)
 
