@@ -273,6 +273,7 @@ module.exports = function init(site) {
 
 
             if (result.doc.posting) {
+              _itm.current_status = 'storein'
               if (result.doc.type.id == 4) {
                 _itm.type = 'minus'
                 _itm.transaction_type = 'out'
@@ -282,9 +283,9 @@ module.exports = function init(site) {
                 _itm.transaction_type = 'in'
                 site.call('item_transaction + items', Object.assign({}, _itm))
               }
-              _itm.current_status = 'storein'
 
             } else {
+              _itm.current_status = 'r_storein'
               if (result.doc.type.id == 4) {
                 _itm.type = 'sum'
                 _itm.transaction_type = 'in'
@@ -294,7 +295,6 @@ module.exports = function init(site) {
                 _itm.transaction_type = 'out'
                 site.call('item_transaction - items', Object.assign({}, _itm))
               }
-              _itm.current_status = 'r_storein'
             }
             site.call('[transfer_branch][stores_items][add_balance]', _itm)
           })
@@ -343,6 +343,7 @@ module.exports = function init(site) {
               _itm.number = stores_in_doc.number
               _itm.vendor = stores_in_doc.vendor
               _itm.date = stores_in_doc.date
+              _itm.current_status = 'd_storein'
               _itm.shift = {
                 id: stores_in_doc.shift.id,
                 code: stores_in_doc.shift.code,
@@ -357,7 +358,6 @@ module.exports = function init(site) {
                 _itm.transaction_type = 'out'
                 site.call('item_transaction - items', Object.assign({}, _itm))
               }
-              _itm.current_status = 'd_storein'
 
               site.call('[transfer_branch][stores_items][add_balance]', _itm)
 

@@ -264,17 +264,18 @@ module.exports = function init(site) {
               name: result.doc.shift.name
             }
             if (result.doc.posting) {
-              if (result.doc.type.id == 6) {
-                _itm.type = 'sum'
-                _itm.transaction_type = 'in'
-                site.call('item_transaction + items', Object.assign({}, _itm))
-              } else {
-                _itm.type = 'minus'
-                _itm.transaction_type = 'out'
-                site.call('item_transaction - items', Object.assign({}, _itm))
-              }
               _itm.current_status = 'sold'
+              if (result.doc.type.id == 6) {
+                _itm.type = 'sum'
+                _itm.transaction_type = 'in'
+                site.call('item_transaction + items', Object.assign({}, _itm))
+              } else {
+                _itm.type = 'minus'
+                _itm.transaction_type = 'out'
+                site.call('item_transaction - items', Object.assign({}, _itm))
+              }
             } else {
+              _itm.current_status = 'r_sold'
               if (result.doc.type.id == 6) {
                 _itm.type = 'minus'
                 _itm.transaction_type = 'out'
@@ -284,7 +285,6 @@ module.exports = function init(site) {
                 _itm.transaction_type = 'in'
                 site.call('item_transaction + items', Object.assign({}, _itm))
               }
-              _itm.current_status = 'r_sold'
             }
 
             site.call('[transfer_branch][stores_items][add_balance]', _itm)
@@ -334,6 +334,7 @@ module.exports = function init(site) {
               _itm.number = stores_out_doc.number
               _itm.customer = stores_out_doc.customer
               _itm.date = stores_out_doc.date
+              _itm.current_status = 'd_sold'
               _itm.shift = {
                 id: stores_out_doc.shift.id,
                 code: stores_out_doc.shift.code,
@@ -348,7 +349,6 @@ module.exports = function init(site) {
                 _itm.transaction_type = 'in'
                 site.call('item_transaction - items', Object.assign({}, _itm))
               }
-              _itm.current_status = 'd_sold'
 
               site.call('[transfer_branch][stores_items][add_balance]', _itm)
 
