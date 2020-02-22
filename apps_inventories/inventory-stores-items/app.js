@@ -154,10 +154,8 @@ module.exports = function init(site) {
                   }
                 }
 
-                if (obj.source_type && (obj.source_type.id == 1 || obj.source_type.id == 4) && obj.store_in)
-                  _units.average_cost = site.toNumber(_units.total_buy_price) / site.toNumber(_units.total_buy_count)
-
-                else if (obj.assemble) _units.average_cost = total_complex_av
+                if (obj.assemble) _units.average_cost = total_complex_av
+                else _units.average_cost = site.toNumber(_units.total_buy_price) / site.toNumber(_units.total_buy_count)
 
                 _units.average_cost = site.toNumber(_units.average_cost)
 
@@ -234,10 +232,8 @@ module.exports = function init(site) {
                         _units.total_buy_count = (_units.total_buy_count || 0) - site.toNumber(obj.count)
                       }
                     }
-
-                    if (obj.source_type && (obj.source_type.id == 1 || obj.source_type.id == 4) && obj.store_in)
-                      _units.average_cost = site.toNumber(_units.total_buy_price) / site.toNumber(_units.total_buy_count)
-                    else if (obj.assemble) _units.average_cost = total_complex_av
+                    if (obj.assemble) _units.average_cost = total_complex_av
+                    else _units.average_cost = site.toNumber(_units.total_buy_price) / site.toNumber(_units.total_buy_count)
 
                     _units.average_cost = site.toNumber(_units.average_cost)
 
@@ -279,8 +275,8 @@ module.exports = function init(site) {
                   }
                 }
 
-                if (obj.source_type && (obj.source_type.id == 1 || obj.source_type.id == 4) && obj.store_in) _branch.average_cost = site.toNumber(_branch.total_buy_price) / site.toNumber(_branch.total_buy_count)
-                else if (obj.assemble) _branch.average_cost = total_complex_av
+                if (obj.assemble) _branch.average_cost = total_complex_av
+                else _branch.average_cost = site.toNumber(_branch.total_buy_price) / site.toNumber(_branch.total_buy_count)
 
                 _branch.average_cost = site.toNumber(_branch.average_cost)
 
@@ -309,9 +305,8 @@ module.exports = function init(site) {
                           }
                         }
 
-                        if (obj.source_type && (obj.source_type.id == 1 || obj.source_type.id == 4) && obj.store_in)
-                          _units.average_cost = site.toNumber(_units.total_buy_price) / site.toNumber(_units.total_buy_count)
-                        else if (obj.assemble) _units.average_cost = total_complex_av
+                        if (obj.assemble) _units.average_cost = total_complex_av
+                        else _units.average_cost = site.toNumber(_units.total_buy_price) / site.toNumber(_units.total_buy_count)
 
                         _units.average_cost = site.toNumber(_units.average_cost)
 
@@ -354,8 +349,8 @@ module.exports = function init(site) {
                       }
                     }
 
-                    if (obj.source_type && (obj.source_type.id == 1 || obj.source_type.id == 4) && obj.store_in) _branch.stores_list[indxStore].average_cost = site.toNumber(_branch.stores_list[indxStore].total_buy_price) / site.toNumber(_branch.stores_list[indxStore].total_buy_count)
-                    else if (obj.assemble) _branch.stores_list[indxStore].average_cost = total_complex_av
+                    if (obj.assemble) _branch.stores_list[indxStore].average_cost = total_complex_av
+                    else _branch.stores_list[indxStore].average_cost = site.toNumber(_branch.stores_list[indxStore].total_buy_price) / site.toNumber(_branch.stores_list[indxStore].total_buy_count)
 
                     _branch.stores_list[indxStore].average_cost = site.toNumber(_branch.stores_list[indxStore].average_cost)
 
