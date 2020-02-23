@@ -22,7 +22,7 @@
     {
         "name": "transactions_unpost",
         "en": "Transactions Un Post",
-        "ar": " المعاملات الغير مرحلة"
+        "ar": "معاملات فك الترحيل"
     },
     {
         "name": "transactions_delete",

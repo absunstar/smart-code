@@ -282,6 +282,21 @@ module.exports = function init(site) {
       delete where['t_type']
     }
 
+
+    // if (where['delete']) {
+    //   let _d = 'd_'
+    //   where['current_status'] = new RegExp(_d, 'i')
+
+    //   delete where['delete']
+    // }
+
+    // if (where['un_post']) {
+    //   let _r = 'r_'
+    //   where['current_status'] = new RegExp(_r, 'i')
+    //   delete where['un_post']
+    // }
+    
+
     if (where['name']) {
       where['name'] = new RegExp(where['name'], 'i')
     }
