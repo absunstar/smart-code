@@ -107,133 +107,204 @@
                                 <b class="red" ng-show="c.discount.type =='percent'">%</b>
                             </td>
                             <td class="red center">
-                                <p class="center red bold" ng-show="c.current_status == 'debt'">
-                                    ##word.item_transaction_current_status_1##
-                                    <br ng-show="c.current_status == 'debt'">
-                                    <span class="center">{{c.ticket_code}}</span>
-                                    <br ng-show="c.current_status == 'debt'">
-                                    <span ng-show="c.current_status == 'debt'" class="blue center">{{c.number}}</span>
-                                </p>
 
 
-                                <p class="center red bold" ng-show="c.current_status == 'order'">
-                                    ##word.order_screen##
-                                    <br ng-show="c.current_status == 'order'">
-                                    <span ng-show="c.current_status == 'order'" class="blue center">{{c.number}}</span>
-                                </p>
 
+                                <div ng-show="c.current_status == 'order'">
 
-                                <p class="center red bold" ng-show="c.current_status == 'sold'">
-                                    <p ng-show="c.current_status == 'sold'" class="center">
-                                        ##word.item_transaction_current_status_4##
+                                    <p class="center red bold">
+                                        ##word.order_screen##
+                                        <br>
+                                        <span class="blue center">{{c.number}}</span>
                                     </p>
-                                    <br ng-show="c.current_status == 'sold'">
-                                    <span ng-show="c.current_status == 'sold'">{{c.ticket_code}}</span>
-                                    <p ng-show="c.current_status == 'sold'">{{c.source_type.ar}}</p>
-                                    <br ng-show="c.current_status == 'sold'">
-                                    <span ng-show="c.current_status == 'sold'" class="center blue">{{c.number}}</span>
-                                </p>
+                                </div>
 
+                                <div ng-show="c.current_status == 'sold'">
 
-                                <p class="center red bold" ng-show="c.current_status == 'r_sold'">
-                                    <p ng-show="c.current_status == 'r_sold'" class="center">
-
-                                        ##word.return_sales_invoice##
+                                    <p class="center red bold">
+                                        <p class="center">
+                                            ##word.item_transaction_current_status_4##
+                                        </p>
+                                        <br>
+                                        <span>{{c.ticket_code}}</span>
+                                        <p>{{c.source_type.ar}}</p>
+                                        <br>
+                                        <span class="center blue">{{c.number}}</span>
                                     </p>
-                                    <br ng-show="c.current_status == 'r_sold'">
-                                    <span class="center" ng-show="c.current_status == 'r_sold'">{{c.ticket_code}}</span>
-                                    <p ng-show="c.current_status == 'r_sold'" class="center">{{c.source_type.ar}}</p>
-                                    <br ng-show="c.current_status == 'r_sold'">
-                                    <span class="center blue" ng-show="c.current_status == 'r_sold'">{{c.number}}</span>
-                                </p>
+                                </div>
 
+                                <div ng-show="c.current_status == 'r_sold'">
 
-                                <p class="center red bold" ng-show="c.current_status == 'damaged'">
-                                    ##word.item_transaction_current_status_3##
-                                    <br ng-show="c.current_status == 'damaged'">
-                                    <span class="center">{{c.ticket_code}}</span>
-                                    <br ng-show="c.current_status == 'damaged'">
-                                    <span class="blue center"
-                                        ng-show="c.current_status == 'damaged'">{{c.number}}</span>
-                                </p>
+                                    <p class="center red bold">
+                                        <p class="center">
 
-
-                                <p class="center red bold" ng-show="c.current_status == 'stock'">
-                                    ##word.stores_stock##
-                                    <br ng-show="c.current_status == 'stock'">
-                                    <span ng-show="c.current_status == 'stock'"
-                                        class="blue center">{{c.number}}</span>
-                                </p>
-
-                                <p class="center red bold" ng-show="c.current_status == 'replaced'">
-                                    ##word.item_transaction_current_status_2##
-                                    <br ng-show="c.current_status == 'replaced'">
-                                    <span ng-show="c.current_status == 'replaced'"
-                                        class="blue center">{{c.number}}</span>
-                                </p>
-
-                                <p class="center red bold" ng-show="c.current_status == 'transferred'">
-                                    <p ng-show="c.current_status == 'transferred'" class="center">
-
-                                        ##word.item_transaction_current_status_5##
+                                            ##word.return_sales_invoice##
+                                        </p>
+                                        <br>
+                                        <span class="center">{{c.ticket_code}}</span>
+                                        <p class="center">{{c.source_type.ar}}
+                                        </p>
+                                        <br>
+                                        <span class="center blue">{{c.number}}</span>
                                     </p>
-                                    <br ng-show="c.current_status == 'transferred'">
-                                    <span ng-show="c.current_status == 'transferred'"
-                                        class="center">{{c.ticket_code}}</span>
-                                    <br ng-show="c.current_status == 'transferred'">
-                                    <span ng-show="c.current_status == 'transferred'"
-                                        class="blue center">{{c.number}}</span>
-                                </p>
+                                </div>
 
 
-                                <p class="center red bold" ng-show="c.current_status == 'storein'">
-                                    <p ng-show="c.current_status == 'storein'" class="center">
-                                        ##word.item_transaction_current_status_6##
+                                <div ng-show="c.current_status == 'damaged'">
+
+                                    <p class="center red bold">
+                                        ##word.item_transaction_current_status_3##
+                                        <br>
+                                        <span class="center">{{c.ticket_code}}</span>
+                                        <br>
+                                        <span class="blue center">{{c.number}}</span>
                                     </p>
-                                    <br ng-show="c.current_status == 'storein'">
-                                    <p class="center" ng-show="c.current_status == 'storein'"> {{c.source_type.ar}}</p>
-                                    <span ng-show="c.current_status == 'storein'"
-                                        class="blue center">{{c.number}}</span>
-                                </p>
+                                </div>
 
-                                <p class="center red bold" ng-show="c.current_status == 'Dismantling'">
-                                    <p ng-show="c.current_status == 'Dismantling'" class="center">
-                                        ##word.item_transaction_current_status_dismantle##
+
+                                <div ng-show="c.current_status == 'stock'">
+
+                                    <p class="center red bold">
+                                        ##word.stores_stock##
+                                        <br>
+                                        <span class="blue center">{{c.number}}</span>
                                     </p>
-                                    <br ng-show="c.current_status == 'Dismantling'">
-                                    <span ng-show="c.current_status == 'Dismantling'"
-                                        class="blue center">{{c.code}}</span>
-                                </p>
+                                </div>
 
-                                <p class="center red bold" ng-show="c.current_status == 'Assembling'">
-                                    <p ng-show="c.current_status == 'Assembling'" class="center">
-                                        ##word.item_transaction_current_status_assemble##
+                                <div ng-show="c.current_status == 'transferred'">
+
+                                    <p class="center red bold">
+                                        <p class="center">
+
+                                            ##word.item_transaction_current_status_5##
+                                        </p>
+                                        <br>
+                                        <span class="center">{{c.ticket_code}}</span>
+                                        <br>
+                                        <span class="blue center">{{c.number}}</span>
                                     </p>
-                                    <br ng-show="c.current_status == 'Assembling'">
-                                    <span ng-show="c.current_status == 'Assembling'"
-                                        class="blue center">{{c.code}}</span>
-                                </p>
+
+                                </div>
+                                <div ng-show="c.current_status == 'storein'">
 
 
-                                <p class="center red bold" ng-show="c.current_status == 'r_storein'">
-                                    <p ng-show="c.current_status == 'r_storein'" class="center">
-                                        ##word.return_purchase_invoice##
+                                    <p class="center red bold">
+                                        <p class="center">
+                                            ##word.item_transaction_current_status_6##
+                                        </p>
+                                        <br>
+                                        <p class="center"> {{c.source_type.ar}}</p>
+                                        <span class="blue center">{{c.number}}</span>
                                     </p>
-                                    <br ng-show="c.current_status == 'r_storein'">
-                                    <p class="center" ng-show="c.current_status == 'r_storein'">{{c.source_type.ar}}</p>
-                                    <span ng-show="c.current_status == 'r_storein'"
-                                        class="blue center">{{c.number}}</span>
-                                </p>
 
-                                <p class="center red bold" ng-show="c.current_status == 'd_storein'">
-                                    <p ng-show="c.current_status == 'd_storein'" class="center">
-                                        ##word.delete_purchase_invoice##
+                                </div>
+
+                                <div ng-show="c.current_status == 'Dismantling'">
+
+                                    <p class="center red bold">
+                                        <p class="center">
+                                            ##word.item_transaction_current_status_dismantle##
+                                        </p>
+                                        <br>
+                                        <span class="blue center">{{c.code}}</span>
                                     </p>
-                                    <br ng-show="c.current_status == 'd_storein'">
-                                    <p class="center" ng-show="c.current_status == 'd_storein'">{{c.source_type.ar}}</p>
-                                    <span ng-show="c.current_status == 'd_storein'"
-                                        class="blue center">{{c.number}}</span>
-                                </p>
+                                </div>
+
+                                <div ng-show="c.current_status == 'Assembling'">
+
+                                    <p class="center red bold">
+                                        <p class="center">
+                                            ##word.item_transaction_current_status_assemble##
+                                        </p>
+                                        <br>
+                                        <span class="blue center">{{c.code}}</span>
+                                    </p>
+                                </div>
+
+                                <div ng-show="c.current_status == 'r_storein'">
+
+                                    <p class="center red bold">
+                                        <p class="center">
+                                            ##word.return_purchase_invoice##
+                                        </p>
+                                        <br>
+                                        <p class="center">{{c.source_type.ar}}</p>
+                                        <span class="blue center">{{c.number}}</span>
+                                    </p>
+
+                                </div>
+
+                                <div ng-show="c.current_status == 'd_storein'">
+
+                                    <p class="center red bold">
+                                        <p class="center">
+                                            ##word.delete_purchase_invoice##
+                                        </p>
+                                        <br>
+                                        <p class="center">{{c.source_type.ar}}
+                                        </p>
+                                        <span class="blue center">{{c.number}}</span>
+                                    </p>
+
+                                </div>
+
+                                <div ng-show="c.current_status == 'r_Assembling'">
+
+                                    <p class="center red bold">
+                                        <p class="center">
+                                            ##word.r_Assembling##
+                                        </p>
+                                        <br>
+                                        <p class="center">
+                                            {{c.source_type.ar}}
+                                        </p>
+                                        <span class="blue center">{{c.number}}</span>
+                                    </p>
+
+                                </div>
+
+
+                                <div ng-show="c.current_status == 'd_Assembling'">
+
+                                    <p class="center red bold">
+                                        <p class="center">
+                                            ##word.d_Assembling##
+                                        </p>
+                                        <br>
+                                        <p class="center">
+                                            {{c.source_type.ar}}
+                                        </p>
+                                        <span class="blue center">{{c.number}}</span>
+                                    </p>
+                                </div>
+
+                                <div ng-show="c.current_status == 'r_Dismantling'">
+
+                                    <p class="center red bold">
+                                        <p class="center">
+                                            ##word.r_Dismantling##
+                                        </p>
+                                        <br>
+                                        <p class="center">
+                                            {{c.source_type.ar}}
+                                        </p>
+                                        <span
+                                            class="blue center">{{c.number}}</span>
+                                    </p>
+                                </div>
+
+                                <div ng-show="c.current_status == 'd_Dismantling'">
+
+                                    <p class="center red bold">
+                                        <p class="center">
+                                            ##word.d_Dismantling##
+                                        </p>
+                                        <br>
+                                        <p class="center">{{c.source_type.ar}}
+                                        </p>
+                                        <span class="blue center">{{c.number}}</span>
+                                    </p>
+                                </div>
                             </td>
 
                         </tr>

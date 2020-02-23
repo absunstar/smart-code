@@ -40,7 +40,7 @@ module.exports = function init(site) {
   };
   in_itemName_handle(null)
 
- 
+
   site.get({
     name: "stores_assemble",
     path: __dirname + "/site_files/html/index.html",
@@ -258,10 +258,14 @@ module.exports = function init(site) {
             _itm.code = result.doc.code
             _itm.date = result.doc.date
             _itm.source_type = result.doc.type
-            if (result.doc.posting)
+            if (result.doc.posting) {
               _itm.transaction_type = 'in'
-            else _itm.transaction_type = 'out'
-            _itm.current_status = 'Assembling'
+              _itm.current_status = 'Assembling'
+            } else {
+              _itm.transaction_type = 'out'
+              _itm.current_status = 'r_Assembling'
+            }
+
             _itm.shift = {
               id: result.doc.shift.id,
               code: result.doc.shift.code,
@@ -270,9 +274,6 @@ module.exports = function init(site) {
 
             if (_itm.complex_items && _itm.complex_items.length > 0) {
               _itm.complex_items.forEach(_complex => {
-                if (result.doc.posting)
-                  _complex.type = 'minus'
-                else _complex.type = 'sum'
 
                 _complex.code = result.doc.code
                 _complex.date = result.doc.date
@@ -280,10 +281,16 @@ module.exports = function init(site) {
                 _complex.company = result.doc.company
                 _complex.branch = result.doc.branch
                 _complex.count = _complex.count * _itm.count
-                if (result.doc.posting)
+                if (result.doc.posting) {
+                  _complex.type = 'minus'
                   _complex.transaction_type = 'out'
-                else _complex.transaction_type = 'in'
-                _complex.current_status = 'Assembling'
+                  _complex.current_status = 'Assembling'
+                }
+                else {
+                  _complex.transaction_type = 'in'
+                  _complex.current_status = 'r_Assembling'
+                  _complex.type = 'sum'
+                }
                 _complex.shift = {
                   id: result.doc.shift.id,
                   code: result.doc.shift.code,
@@ -352,7 +359,7 @@ module.exports = function init(site) {
               _itm.date = result.doc.date
               _itm.source_type = result.doc.type
               _itm.transaction_type = 'out'
-              _itm.current_status = 'Assembling'
+              _itm.current_status = 'd_Assembling'
               _itm.shift = {
                 id: result.doc.shift.id,
                 code: result.doc.shift.code,
@@ -369,7 +376,7 @@ module.exports = function init(site) {
                   _complex.branch = result.doc.branch
                   _complex.count = _complex.count * _itm.count
                   _complex.transaction_type = 'in'
-                  _complex.current_status = 'Assembling'
+                  _complex.current_status = 'd_Assembling'
                   _complex.shift = {
                     id: result.doc.shift.id,
                     code: result.doc.shift.code,
@@ -541,6 +548,6 @@ module.exports = function init(site) {
     })
   })
 
- 
+
 
 }

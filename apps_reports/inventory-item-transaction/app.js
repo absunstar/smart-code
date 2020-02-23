@@ -3,6 +3,7 @@ module.exports = function init(site) {
   const $item_transaction = site.connectCollection("item_transaction")
 
 
+
   transaction_itemName_list = []
   site.on('[stores_items][item_name][change]', obj => {
     transaction_itemName_list.push(Object.assign({}, obj))
@@ -67,10 +68,10 @@ module.exports = function init(site) {
 
       $item_transaction.findMany({ sort: { id: -1 }, where: { 'barcode': itm.barcode, name: itm.name, 'branch.code': itm.branch.code, 'company.id': itm.company.id, 'store.id': itm.store.id, 'unit.id': itm.unit.id } }, (err, docs) => {
 
-        delete itm._id
-        delete itm.id
-        delete itm.type
-        delete itm.units_list
+        // delete itm._id
+        // delete itm.id
+        // delete itm.type
+        // delete itm.units_list
 
         if (itm.current_status == 'damaged') {
           $item_transaction.update(itm, () => {
@@ -161,6 +162,16 @@ module.exports = function init(site) {
     })
   })
 
+
+
+
+
+  site.post({
+    name: '/api/item_transaction/transaction_type/all',
+    path: __dirname + '/site_files/json/transaction_type.json'
+  })
+
+
   site.get({
     name: "item_transaction",
     path: __dirname + "/site_files/html/index.html",
@@ -235,6 +246,44 @@ module.exports = function init(site) {
       delete where.date_to
     }
 
+
+    if (where['in']) {
+      where['transaction_type'] = 'in'
+      delete where['in']
+    }
+
+    if (where['out']) {
+      where['transaction_type'] = 'out'
+      delete where['out']
+    }
+
+    if (where['t_type']) {
+
+      if (where['t_type'].id == 1) {
+        where['current_status'] = 'storein'
+
+        if (where['t_status']) {
+          where['source_type.id'] = where['t_status'].id;
+          delete where['t_status']
+        }
+      }
+      else if (where['t_type'].id == 2) {
+        where['current_status'] = 'sold'
+        if (where['t_status']) {
+          where['source_type.id'] = where['t_status'].id;
+          delete where['t_status']
+        }
+      }
+      else if (where['t_type'].id == 3) where['current_status'] = 'Assembling'
+      else if (where['t_type'].id == 4) where['current_status'] = 'Dismantling'
+      else if (where['t_type'].id == 5) where['current_status'] = 'transferred'
+      else if (where['t_type'].id == 6) where['current_status'] = 'stock'
+
+      delete where['t_type']
+    }
+
+
+
     if (where['name']) {
       where['name'] = new RegExp(where['name'], 'i')
     }
@@ -257,25 +306,30 @@ module.exports = function init(site) {
       delete where['store']
     }
 
+    if (where['store']) {
+      where['store.id'] = where['store'].id;
+      delete where['store']
+    }
+
     if (where['shift_code']) {
       where['shift.code'] = new RegExp(where['shift_code'], 'i')
       delete where['shift_code']
     }
 
 
-    if (where['type_in']) {
+    // if (where['type_in']) {
 
-      where['transaction_type'] = 'in'
-      where['source_type.id'] = where['type_in'].id;
-      delete where['type_in']
-    }
+    //   where['transaction_type'] = 'in'
+    //   where['source_type.id'] = where['type_in'].id;
+    //   delete where['type_in']
+    // }
 
-    if (where['type_out']) {
+    // if (where['type_out']) {
 
-      where['transaction_type'] = 'out'
-      where['source_type.id'] = where['type_out'].id;
-      delete where['type_out']
-    }
+    //   where['transaction_type'] = 'out'
+    //   where['source_type.id'] = where['type_out'].id;
+    //   delete where['type_out']
+    // }
 
     where['company.id'] = site.get_company(req).id
     where['branch.code'] = site.get_branch(req).code

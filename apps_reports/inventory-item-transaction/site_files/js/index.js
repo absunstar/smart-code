@@ -90,6 +90,27 @@ app.controller("item_transaction", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.loadTransactionTypes = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: '/api/item_transaction/transaction_type/all',
+      data: {}
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.transactionTypes = response.data;
+        console.log($scope.transactionTypes);
+        
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
 
   $scope.searchAll = function () {
 
@@ -153,35 +174,27 @@ app.controller("item_transaction", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.loadStoresOutTypes = function () {
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: '/api/stores_out/types/all',
-      data: {}
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        $scope.storesOutTypes = response.data;
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
-  };
-
-  $scope.loadStoresInTypes = function () {
+ 
+  $scope.loadStoresStatusTypes = function () {
     $scope.error = '';
+
+    let url = '/api/stores_in/types/all';
+
+    if($scope.search.t_type){
+      if( $scope.search.t_type.id == 1 ) url = '/api/stores_in/types/all';
+     else if( $scope.search.t_type.id == 2 ) url = '/api/stores_out/types/all';
+
+    }
+
     $scope.busy = true;
     $http({
       method: "POST",
-      url: '/api/stores_in/types/all',
+      url: url,
       data: {}
     }).then(
       function (response) {
         $scope.busy = false;
-        $scope.storesInTypes = response.data;
+        $scope.transactionStatus = response.data;
       },
       function (err) {
         $scope.busy = false;
@@ -212,8 +225,8 @@ app.controller("item_transaction", function ($scope, $http, $timeout) {
 
   $scope.loadvendors();
   $scope.loadStores();
-  $scope.loadStoresInTypes();
-  $scope.loadStoresOutTypes();
+ 
+  $scope.loadTransactionTypes();
   $scope.loadEng();
   $scope.loadAll({ date: new Date() });
 

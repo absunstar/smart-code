@@ -274,6 +274,7 @@ module.exports = function init(site) {
 
             if (result.doc.posting) {
               _itm.current_status = 'storein'
+
               if (result.doc.type.id == 4) {
                 _itm.type = 'minus'
                 _itm.transaction_type = 'out'

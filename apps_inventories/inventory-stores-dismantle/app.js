@@ -255,10 +255,14 @@ module.exports = function init(site) {
             _itm.code = result.doc.code
             _itm.date = result.doc.date
             _itm.source_type = result.doc.type
-            if (result.doc.posting)
+            if (result.doc.posting){
               _itm.transaction_type = 'out'
-            else _itm.transaction_type = 'in'
-            _itm.current_status = 'Dismantling'
+              _itm.current_status = 'Dismantling'
+            }
+            else {
+              _itm.transaction_type = 'in'
+              _itm.current_status = 'r_Dismantling'
+            } 
             _itm.shift = {
               id: result.doc.shift.id,
               code: result.doc.shift.code,
@@ -267,20 +271,24 @@ module.exports = function init(site) {
 
             if (_itm.complex_items && _itm.complex_items.length > 0) {
               _itm.complex_items.forEach(_complex => {
-                if (result.doc.posting)
-                  _complex.type = 'sum'
-                else _complex.type = 'minus'
-
                 _complex.code = result.doc.code
                 _complex.date = result.doc.date
                 _complex.store = result.doc.store
                 _complex.company = result.doc.company
                 _complex.branch = result.doc.branch
                 _complex.count = _complex.count * _itm.count
-                if (result.doc.posting)
+
+                if (result.doc.posting){
+                  _complex.type = 'sum'
+                  _complex.transaction_type = 'out'
+                  _complex.current_status = 'Dismantling'
+                }
+                else {
                   _complex.transaction_type = 'in'
-                else _complex.transaction_type = 'out'
-                _complex.current_status = 'Dismantling'
+                  _complex.current_status = 'r_Dismantling'
+                  _complex.type = 'minus'
+                  } 
+
                 _complex.shift = {
                   id: result.doc.shift.id,
                   code: result.doc.shift.code,
@@ -348,7 +356,7 @@ module.exports = function init(site) {
               _itm.date = result.doc.date
               _itm.source_type = result.doc.type
               _itm.transaction_type = 'in'
-              _itm.current_status = 'Dismantling'
+              _itm.current_status = 'd_Dismantling'
               _itm.shift = {
                 id: result.doc.shift.id,
                 code: result.doc.shift.code,
@@ -365,7 +373,7 @@ module.exports = function init(site) {
                   _complex.branch = result.doc.branch
                   _complex.count = _complex.count * _itm.count
                   _complex.transaction_type = 'out'
-                  _complex.current_status = 'Dismantling'
+                  _complex.current_status = 'd_Dismantling'
                   _complex.shift = {
                     id: result.doc.shift.id,
                     code: result.doc.shift.code,

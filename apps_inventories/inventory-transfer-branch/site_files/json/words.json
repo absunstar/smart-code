@@ -21,7 +21,7 @@
     {"name" : "transfer_branch_store_name" , "en" : "Transfer Branch" , "ar" : "إسم المخزن"},
     {"name" : "transfer_branch_items" , "en" : "Transfer Branch Items" , "ar" : "تحويل أصناف  بين الفروع"},
     {"name" : "err_barcode_exist" , "en" : "The barcode is exist" , "ar" : "الباركود مسجل من قبل"},
-
+    {"name" : "transfer_branch" , "en" : "Transfer Items" , "ar" : "تحويل أصناف"},
     {"name" : "permission_detailes" , "en" : "Permission Detailes" , "ar" : "تفاصيل الإذن"},
     {"name" : "cant_transfer_to_same_store" , "en" : "Cannot Transfer To The Same Store" , "ar" : "لا يمكن التحويل لنفس المخزن"},
     {"name" : "must_enter_quantity" , "en" : "Must Enter Quantity" , "ar" : "يجب إدخال الكمية"},

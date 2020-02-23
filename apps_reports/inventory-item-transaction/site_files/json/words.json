@@ -15,6 +15,31 @@
         "ar": "صنف جديدة"
     },
     {
+        "name": "transaction_status",
+        "en": "Transaction Status",
+        "ar": "حالة المعاملة"
+    },
+    {
+        "name": "r_Assembling",
+        "en": "Un Post Assembling Item",
+        "ar": "فك ترحيل تجميع صنف"
+    },
+    {
+        "name": "d_Assembling",
+        "en": "Delete Assembling Item",
+        "ar": "حذف تجميع صنف"
+    },
+    {
+        "name": "r_Dismantling",
+        "en": "Un Post Dismantling Item",
+        "ar": "فك ترحيل تفكيك صنف"
+    },
+    {
+        "name": "d_Dismantling",
+        "en": "Delete Dismantling Item",
+        "ar": "حذف تفكيك صنف"
+    },
+    {
         "name": "item_transaction_delete",
         "en": "Delete Item Transaction",
         "ar": "حذف صنف"

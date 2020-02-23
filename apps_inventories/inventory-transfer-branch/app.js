@@ -228,7 +228,7 @@ module.exports = function init(site) {
             itm.vendor = result.doc.vendor
             itm.date = result.doc.date
             itm.transaction_type = 'out'
-            itm.current_status = 'storeout'
+            itm.current_status = 'transferred'
             itm.store = result.doc.store
 
             let delObj = {
