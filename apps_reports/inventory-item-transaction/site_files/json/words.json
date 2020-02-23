@@ -20,6 +20,16 @@
         "ar": "حالة المعاملة"
     },
     {
+        "name": "transactions_unpost",
+        "en": "Transactions Un Post",
+        "ar": " المعاملات الغير مرحلة"
+    },
+    {
+        "name": "transactions_delete",
+        "en": "Transactions Delete",
+        "ar": " المعاملات المحذوفة"
+    },
+    {
         "name": "r_Assembling",
         "en": "Un Post Assembling Item",
         "ar": "فك ترحيل تجميع صنف"

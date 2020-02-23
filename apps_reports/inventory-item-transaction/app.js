@@ -282,8 +282,6 @@ module.exports = function init(site) {
       delete where['t_type']
     }
 
-
-
     if (where['name']) {
       where['name'] = new RegExp(where['name'], 'i')
     }
