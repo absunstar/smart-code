@@ -1,7 +1,6 @@
 module.exports = function init(site) {
   const $account_invoices = site.connectCollection("account_invoices")
 
-
   A_itemName_list = []
   site.on('[stores_items][item_name][change]', obj => {
     A_itemName_list.push(Object.assign({}, obj))
@@ -134,6 +133,7 @@ module.exports = function init(site) {
       if (account_invoices_doc.currency)
         account_invoices_doc.remain_amount = site.toNumber(account_invoices_doc.net_value) - (account_invoices_doc.total_paid_up * site.toNumber(account_invoices_doc.currency.ex_rate))
     };
+    account_invoices_doc.remain_amount = site.toNumber(account_invoices_doc.remain_amount)
 
     $account_invoices.add(account_invoices_doc, (err, doc) => {
 
@@ -300,6 +300,7 @@ module.exports = function init(site) {
     })
 
     account_invoices_doc.remain_amount = site.toNumber(account_invoices_doc.net_value) - site.toNumber(account_invoices_doc.total_paid_up)
+    account_invoices_doc.remain_amount = site.toNumber(account_invoices_doc.remain_amount)
 
     if (account_invoices_doc.id) {
       $account_invoices.edit({
@@ -441,6 +442,7 @@ module.exports = function init(site) {
       })
 
     account_invoices_doc.remain_amount = site.toNumber(account_invoices_doc.net_value) - site.toNumber(account_invoices_doc.total_paid_up)
+    account_invoices_doc.remain_amount = site.toNumber(account_invoices_doc.remain_amount)
     if (account_invoices_doc.source_type.id == 3) {
 
       let under_paid = {
@@ -566,6 +568,7 @@ module.exports = function init(site) {
             })
 
             result.doc.remain_amount = site.toNumber(result.doc.net_value) - site.toNumber(result.doc.total_paid_up)
+            result.doc.remain_amount = site.toNumber(result.doc.remain_amount)
 
             if (result.doc.source_type.id == 3) {
 
@@ -704,6 +707,8 @@ module.exports = function init(site) {
                   }]
               }
               if (!_doc.total_paid_up) {
+                _doc.net_value = site.toNumber(_doc.net_value)
+
                 _doc.remain_amount = _doc.net_value
                 _doc.payment_list = [];
               }

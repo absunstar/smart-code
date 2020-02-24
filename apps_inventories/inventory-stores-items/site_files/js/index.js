@@ -551,7 +551,7 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
 
   $scope.loadUnitsBarcodesList = function () {
     $scope.busy = true;
-    $scope.itemSizeList = [];
+    $scope.unitsBarcodesList = [];
     $http({
       method: "POST",
       url: "/api/stores_items/barcode_unit",

@@ -42,20 +42,21 @@ app.controller("report_invoices_vendors", function ($scope, $http, $timeout) {
         if (response.data.done && response.data.list.length > 0) {
           $scope.list = response.data.list;
           $scope.count = response.data.count;
-          /* $scope.net_total_return = 0; */
-          $scope.total_value = 0;
+          $scope.remain_amount = 0;
+          $scope.total_paid_up = 0;
           $scope.net_value = 0;
           $scope.total_tax = 0;
           $scope.total_discount = 0;
           $scope.list.forEach(_invoice => {
+            _invoice.net_value = site.toNumber(_invoice.net_value);
+            _invoice.remain_amount = site.toNumber(_invoice.remain_amount);
             $scope.total_tax += _invoice.total_tax;
             $scope.total_discount += _invoice.total_discount;
-            $scope.total_value += _invoice.total_value;
+            $scope.remain_amount += _invoice.remain_amount;
+            $scope.total_paid_up += _invoice.total_paid_up;
             $scope.net_value += _invoice.net_value;
 
-           /*  if (_invoice.type.id == 6)
-              $scope.net_total_return += _invoice.net_value;
- */
+       
           });
           $scope.total_value = site.toNumber($scope.total_value);
           $scope.net_value = site.toNumber($scope.net_value);

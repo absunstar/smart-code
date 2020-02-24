@@ -1,5 +1,5 @@
 module.exports = function init(site) {
-  const $stores_in = site.connectCollection("stores_in")
+  const $account_invoices = site.connectCollection("account_invoices")
 
   site.get({
     name: "report_invoices_vendors",
@@ -65,11 +65,13 @@ module.exports = function init(site) {
 
     } else where['vendor.id'] = { $gte: 1 }
 
-
+    where['source_type.id'] = 1
+    where['invoice_type.id'] = 1
+    
     where['company.id'] = site.get_company(req).id
     where['branch.code'] = site.get_branch(req).code
 
-    $stores_in.findMany({
+    $account_invoices.findMany({
       select: req.body.select || {},
       where: where,
       sort: req.body.sort || { id: -1 },
