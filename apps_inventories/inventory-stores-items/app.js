@@ -1164,7 +1164,8 @@ module.exports = function init(site) {
 
                 if (size.size_units_list && size.size_units_list.length > 0)
                   size.size_units_list.forEach(_unit => {
-                    arr.push(_unit.barcode)
+                    if (_unit.barcode)
+                      arr.push(_unit.barcode)
                   });
               })
           })
