@@ -1426,6 +1426,32 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.getStockItems = function (items, callback) {
+    $scope.error = '';
+    $scope.busy = true;
+    $scope.categories = [];
+    $http({
+      method: "POST",
+      url: "/api/stores_stock/item_stock",
+      data: items
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+
+          if (response.data.found) callback(true)
+          else callback(false)
+
+        } else callback(false)
+
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
   $scope.closeOrder = function () {
 
     $scope.getStockItems($scope.order_invoice.book_list, callback => {
