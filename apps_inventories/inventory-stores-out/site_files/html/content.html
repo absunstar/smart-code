@@ -49,11 +49,13 @@
                 <i-button type="search" label=" ##word.select_items##" onclick="site.showModal('#selectItemsModal')">
                 </i-button>
                 <div class="col1"></div>
-                <i-button type="edit" x-permissions="stores_out_price || stores_out_manage" ng-hide="edit_price"
-                    label="##word.edit_sale_price##" ng-click="edit_price = true"></i-button>
+                <i-button type="edit" x-permissions="stores_out_price || stores_out_manage"
+                    ng-hide="edit_price || store_out.type.id ==5" label="##word.edit_sale_price##"
+                    ng-click="edit_price = true"></i-button>
 
-                <i-button type="view" x-permissions="stores_out_price || stores_out_manage" ng-hide="showMaxDis"
-                    ng-hide="store_out.type.id ==5" label="##word.view_maximum_discount##" ng-click="showMaxDis = true">
+                <i-button type="view" x-permissions="stores_out_price || stores_out_manage"
+                    ng-hide="showMaxDis || store_out.type.id ==5" label="##word.view_maximum_discount##"
+                    ng-click="showMaxDis = true">
                 </i-button>
             </div>
             <br>
@@ -73,8 +75,8 @@
                             <th>##word.stores_out_item_size##</th>
                             <th>##word.unit##</th>
                             <th>##word.quantity##</th>
-                            <th ng-hide="store_out.type.id ==5">##word.price##</th>
-                            <th ng-hide="store_out.type.id ==5">##word.discount##</th>
+                            <th ng-hide="store_out.type.id == 5">##word.price##</th>
+                            <th ng-hide="store_out.type.id == 5">##word.discount##</th>
                             <th ng-show="showMaxDis">##word.maximum_discount##</th>
                             <th>##word.stores_out_item_total##</th>
                             <th>##word.actions##</th>
@@ -85,11 +87,13 @@
                             <td> <br> {{itm.name}}</td>
                             <td> <br> {{itm.barcode}}</td>
                             <td> <br> {{itm.size}}</td>
+
                             <td>
                                 <i-list ng-model="itm.unit" ng-search="_search.$category_item.$unit_search"
                                     ng-change="itm.discount = itm.unit.discount ; itm.price = itm.unit.price ;calcSize(itm)"
                                     display2="barcode" items="itm.size_units_list"></i-list>
                             </td>
+
                             <td>
                                 <i-control ng-change="calcSize(itm)" type="number" ng-model="itm.count"></i-control>
                             </td>
@@ -107,11 +111,13 @@
                                 <b class="" ng-show="itm.discount.type =='number'">$</b>
                                 <b class="" ng-show="itm.discount.type =='percent'">%</b>
                             </td>
+
                             <td ng-show="showMaxDis"> <br>
                                 <p class="red">{{itm.discount.max}}</p>
                                 <b class="" ng-show="itm.discount.type =='number'">$</b>
                                 <b class="" ng-show="itm.discount.type =='percent'">%</b>
                             </td>
+
                             <td class="green"> <br> {{itm.total}}</td>
 
                             <td>
@@ -218,7 +224,7 @@
 
             </div>
 
-            <div class="row">
+            <div class="row" ng-show="store_out.type.id != 5">
 
                 <i-control class="col2" ng-model="store_out.total_discount" type="number"
                     ng-disabled="store_out.type.id !== 6" ng-change="calcReturn(store_out)"

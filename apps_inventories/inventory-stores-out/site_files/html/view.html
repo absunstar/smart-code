@@ -37,7 +37,7 @@
                 <td class="title">##word.transaction_type##</td>
                 <td class="center">
                     {{store_out.type.ar}}
-                    <h3 class="blue bold center">{{store_in.retured_number}}</h3>
+                    <h3 class="blue bold center">{{store_out.retured_number}}</h3>
                 </td>
 
             </tr>
@@ -120,12 +120,23 @@
                 </td>
             </tr>
 
-            <tr>
+
+            <tr ng-show="store_out.total_discount">
+                <td class="title">##word.total_discount##</td>
+                <td class="center ">{{store_out.total_discount}} $</td>
+            </tr>
+
+            <tr ng-show="store_out.total_tax">
+                <td class="title">##word.total_tax##</td>
+                <td class="center ">{{store_out.total_tax}} $</td>
+            </tr>
+
+            <tr ng-show="store_out.type.id != 5">
                 <td class="title">##word.stores_out_total_value##</td>
                 <td class="center ">{{store_out.total_value}} $</td>
             </tr>
 
-            <tr>
+            <tr ng-show="store_out.type.id != 5">
                 <td class="title">##word.stores_out_net_value##</td>
                 <td class="center green">{{store_out.net_value}} $</td>
             </tr>

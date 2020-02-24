@@ -117,12 +117,12 @@
                 </td>
             </tr>
 
-            <tr>
+            <tr ng-show="store_in.total_discount">
                 <td class="title">##word.total_discount##</td>
                 <td class="center ">{{store_in.total_discount}} $</td>
             </tr>
 
-            <tr>
+            <tr ng-show="store_in.total_tax">
                 <td class="title">##word.total_tax##</td>
                 <td class="center ">{{store_in.total_tax}} $</td>
             </tr>
@@ -132,10 +132,6 @@
                 <td class="center ">{{store_in.total_value}} $</td>
             </tr>
 
-            <tr>
-                <td class="title">##word.stores_in_total_value##</td>
-                <td class="center ">{{store_in.total_value}} $</td>
-            </tr>
 
             <tr>
                 <td class="title">##word.stores_in_net_value##</td>
