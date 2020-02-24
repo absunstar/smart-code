@@ -1426,31 +1426,6 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.getStockItems = function (items, callback) {
-    $scope.error = '';
-    $scope.busy = true;
-    $scope.categories = [];
-    $http({
-      method: "POST",
-      url: "/api/stores_stock/item_stock",
-      data: items
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-
-          if (response.data.found) callback(true)
-          else callback(false)
-
-        } else callback(false)
-
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
-  };
 
   $scope.closeOrder = function () {
 
@@ -1481,9 +1456,6 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
           net_value: $scope.order_invoice.net_value,
         };
 
-        /*   $scope.order_invoice.book_list.forEach(book_list => {
-            $scope.order_invoice.under_paid.items_price += book_list.total;
-          }); */
 
         $scope.addOrderInvoice();
       } else {
@@ -1491,6 +1463,37 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
       }
     })
   };
+
+
+  $scope.getStockItems = function (items, callback) {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/stores_stock/item_stock",
+      data: items
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+
+          if (response.data.found) {
+            callback(true)
+          } else {
+            callback(false)
+          }
+        } else {
+          callback(false)
+        }
+
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
 
   $scope.loadItems = function (group) {
     if (!$scope.openShift) {

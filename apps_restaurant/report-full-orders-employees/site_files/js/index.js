@@ -87,12 +87,22 @@ app.controller("report_full_employees", function ($scope, $http, $timeout) {
           $scope.net_value = 0;
           $scope.total_tax = 0;
           $scope.total_discount = 0;
-          $scope.list.forEach(invoice => {
-            $scope.net_value += invoice.net_value;
-            $scope.remain_amount += invoice.remain_amount;
-            $scope.total_tax += invoice.total_tax;
-            $scope.total_discount += invoice.total_discount;
+          $scope.list.forEach(_invoice => {
+
+            _invoice.remain_amount = site.toNumber(_invoice.remain_amount);
+            _invoice.net_value = site.toNumber(_invoice.net_value);
+            _invoice.total_tax = site.toNumber(_invoice.total_tax);
+            _invoice.total_discount = site.toNumber(_invoice.total_discount);
+
+            $scope.remain_amount += (_invoice.remain_amount || 0);
+            $scope.net_value += (_invoice.net_value || 0);
+            $scope.total_tax += (_invoice.total_tax || 0);
+            $scope.total_discount += (_invoice.total_discount || 0);
           });
+
+          $scope.net_value = site.toNumber($scope.net_value);
+          $scope.total_tax = site.toNumber($scope.total_tax);
+          $scope.total_discount = site.toNumber($scope.total_discount);
         }
       },
       function (err) {

@@ -539,7 +539,6 @@ app.controller("stores_dismantle", function ($scope, $http, $timeout) {
   $scope.getStockItems = function (items, callback) {
     $scope.error = '';
     $scope.busy = true;
-    $scope.categories = [];
     $http({
       method: "POST",
       url: "/api/stores_stock/item_stock",
@@ -549,11 +548,14 @@ app.controller("stores_dismantle", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
 
-          if (response.data.found) callback(true)
-          else callback(false)
-
-        } else callback(false)
-
+          if (response.data.found) {
+            callback(true)
+          } else {
+            callback(false)
+          }
+        } else {
+          callback(false)
+        }
       },
       function (err) {
         $scope.busy = false;
