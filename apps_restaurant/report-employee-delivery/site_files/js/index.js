@@ -42,12 +42,22 @@ app.controller("report_employee_delivery", function ($scope, $http, $timeout) {
           $scope.total_delivery_service_price = 0;
           $scope.net_value = 0;
           $scope.paid_up = 0;
-          $scope.list.forEach(invoice => {
-            $scope.total_delivery_service_price += invoice.price_delivery_service;
-            $scope.remain_amount += invoice.remain_amount;
-            $scope.net_value += invoice.net_value;
-            $scope.paid_up += invoice.paid_up;
+          $scope.list.forEach(_invoice => {
+            _invoice.net_value = site.toNumber(_invoice.net_value);
+            _invoice.total_book_list = site.toNumber(_invoice.total_book_list);
+            
+
+            $scope.total_delivery_service_price += _invoice.price_delivery_service;
+            $scope.remain_amount += _invoice.remain_amount;
+            $scope.net_value += _invoice.net_value;
+            $scope.paid_up += _invoice.paid_up;
           });
+
+          $scope.total_delivery_service_price = site.toNumber($scope.total_delivery_service_price);
+          $scope.remain_amount = site.toNumber($scope.remain_amount);
+          $scope.net_value = site.toNumber($scope.net_value);
+          $scope.paid_up = site.toNumber($scope.paid_up);
+
         }
       },
       function (err) {
@@ -61,7 +71,7 @@ app.controller("report_employee_delivery", function ($scope, $http, $timeout) {
     $scope._search = {};
     if ($scope.search)
       $scope.delivery_employee = $scope.search.delivery_employee;
-      
+
     $scope.getReportEmployeeDeliveryList($scope.search);
     site.hideModal('#reportEmployeeDeliverySearchModal');
     $scope.search = {}

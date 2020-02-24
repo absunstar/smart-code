@@ -30,6 +30,10 @@ app.controller("report_sales_total", function ($scope, $http, $timeout) {
             $scope.count += _list.count;
             $scope.total += _list.total;
           });
+
+          $scope.average_cost = site.toNumber($scope.average_cost);
+          $scope.count = site.toNumber($scope.count);
+          $scope.total = site.toNumber($scope.total);
         }
       },
       function (err) {

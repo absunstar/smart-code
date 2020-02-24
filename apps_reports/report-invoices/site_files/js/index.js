@@ -86,17 +86,29 @@ app.controller("report_invoices", function ($scope, $http, $timeout) {
           $scope.net_value = 0;
           $scope.total_tax = 0;
           $scope.total_discount = 0;
-          $scope.list.forEach(invoice => {
+          $scope.list.forEach(_invoice => {
 
-            $scope.remain_amount += site.toNumber(invoice.remain_amount);
-            $scope.net_value += site.toNumber(invoice.net_value);
-            $scope.total_tax += site.toNumber(invoice.total_tax);
-            $scope.total_discount += site.toNumber(invoice.total_discount);
+            _invoice.total_discount = site.toNumber(_invoice.total_discount);
+            _invoice.total_tax = site.toNumber(_invoice.total_tax);
+
+            _invoice.net_value = site.toNumber(_invoice.net_value);
+            _invoice.paid_up = site.toNumber(_invoice.paid_up);
+            _invoice.remain_amount = site.toNumber(_invoice.remain_amount);
+
+            $scope.remain_amount += site.toNumber(_invoice.remain_amount);
+            $scope.net_value += site.toNumber(_invoice.net_value);
+            $scope.total_tax += site.toNumber(_invoice.total_tax);
+            $scope.total_discount += site.toNumber(_invoice.total_discount);
 
           });
 
+          $scope.remain_amount = site.toNumber($scope.remain_amount);
+          $scope.net_value = site.toNumber($scope.net_value);
+          $scope.total_tax = site.toNumber($scope.total_tax);
+          $scope.total_discount = site.toNumber($scope.total_discount);
 
-          $scope.paid_up = $scope.net_value - $scope.remain_amount
+          $scope.paid_up = $scope.net_value - $scope.remain_amount;
+          $scope.paid_up = site.toNumber($scope.paid_up);
         }
       },
       function (err) {

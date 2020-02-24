@@ -1568,7 +1568,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
           if (response.data.found) callback(true)
           else callback(false)
 
-        } else callback(null)
+        } else callback(false)
 
       },
       function (err) {
