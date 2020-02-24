@@ -46,13 +46,23 @@
     },
     {
         "name": "report_employee_delegate_menus",
-        "en": "Report Delegate Menu",
+        "en": "Report Commissions Delegate Menu",
         "ar": "قائمة تقارير عمولات المناديب "
     },
     {
         "name": "report_employee_delegate_name",
-        "en": "Report Delegate",
+        "en": "Report Commissions Delegate",
         "ar": "تقرير عمولات المناديب "
+    },
+    {
+        "name": "report_invoices_vendors_menus",
+        "en": "Report Invoices Vendors  Menu",
+        "ar": "قائمة تقارير فواتير الموردين "
+    },
+    {
+        "name": "report_invoices_vendors_name",
+        "en": "Report Invoices Vendors",
+        "ar": "تقرير فواتير الموردين "
     },
     {
         "name": "work_posting",
