@@ -482,7 +482,7 @@ module.exports = function init(site) {
         let foundBarcode = doc.sizes.every(_size => !_size.barcode)
         if (foundBarcode) {
           let y = new Date().getFullYear().toString()
-          let c = String(doc.id) + String(doc.company.id) + String(doc.branch.code)
+          let c = String(doc.id) + String(doc.company.id) + (String(doc.branch.code) || 0)
 
           stores_items_doc.sizes.forEach((_size, i) => {
             if (!_size.barcode || _size.barcode == '')
@@ -491,7 +491,7 @@ module.exports = function init(site) {
             _size.size_units_list.forEach(_unit => {
               if (!_unit.barcode || _unit.barcode == '') {
 
-                _unit.barcode = c + _unit.id + (Math.floor(Math.random() * 100) + i)
+                _unit.barcode = c + (_unit.id || 0) + (Math.floor(Math.random() * 100) + i)
               }
             });
 
@@ -520,7 +520,7 @@ module.exports = function init(site) {
     });
 
     let y = new Date().getFullYear().toString()
-    let c = String(stores_items_doc.id) + String(stores_items_doc.company.id) + String(stores_items_doc.branch.code)
+    let c = String(stores_items_doc.id) + String(stores_items_doc.company.id) + (String(stores_items_doc.branch.code) || 0)
 
     stores_items_doc.sizes.forEach((_size, i) => {
       if (!_size.barcode || _size.barcode == '')
@@ -534,7 +534,7 @@ module.exports = function init(site) {
           _size_unit.average_cost = _size_unit.cost
 
         if (!_size_unit.barcode || _size_unit.barcode == '')
-          _size_unit.barcode = c + _size_unit.id + (Math.floor(Math.random() * 100) + _i)
+          _size_unit.barcode = c + (_size_unit.id || 0) + (Math.floor(Math.random() * 100) + _i)
       });
 
     });
