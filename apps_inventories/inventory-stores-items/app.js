@@ -482,7 +482,7 @@ module.exports = function init(site) {
         let foundBarcode = doc.sizes.every(_size => !_size.barcode)
         if (foundBarcode) {
           let y = new Date().getFullYear().toString()
-          let c = String(doc.id) + String(doc.company.id) + (String(doc.branch.code) || 0)
+          let c = String(doc.id) + String(doc.company.id) + (String(doc.branch.codecode || 0))
 
           stores_items_doc.sizes.forEach((_size, i) => {
             if (!_size.barcode || _size.barcode == '')
@@ -520,7 +520,7 @@ module.exports = function init(site) {
     });
 
     let y = new Date().getFullYear().toString()
-    let c = String(stores_items_doc.id) + String(stores_items_doc.company.id) + (String(stores_items_doc.branch.code) || 0)
+    let c = String(stores_items_doc.id) + String(stores_items_doc.company.id) + (String(stores_items_doc.branch.code || 0) )
 
     stores_items_doc.sizes.forEach((_size, i) => {
       if (!_size.barcode || _size.barcode == '')

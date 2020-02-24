@@ -34,7 +34,6 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
       return
     };
 
-
     if ($scope.complex && $scope.complex.length > 0)
       $scope.complex = $scope.complex;
 
