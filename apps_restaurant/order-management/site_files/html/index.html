@@ -78,7 +78,7 @@
                         <td ng-click="showDetailes(c)" class="pointer">{{c.status.ar}}</td>
                         <td>
                             <i-button type="add"
-                                ng-show="c.transaction_type.id == 2 && (c.status.id == 1 || c.status_delivery.id == 1)"
+                                ng-show="c.transaction_type.id == 1 && (c.status.id == 1 || c.status_delivery.id == 1)"
                                 x-permissions="order_management_edit || order_management_manage"
                                 label="##word.set_employee_delivery##" ng-click="showDeliveryEmployee(c)"></i-button>
 

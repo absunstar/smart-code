@@ -675,6 +675,17 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
     };
 
     $scope.account_invoices.total_remain = $scope.account_invoices.net_value - $scope.account_invoices.paid_up;
+
+    $scope.account_invoices.total_remain = site.toNumber($scope.account_invoices.total_remain)
+    $scope.account_invoices.total_paid_up = site.toNumber($scope.account_invoices.total_paid_up)
+    $scope.account_invoices.total_tax = site.toNumber($scope.account_invoices.total_tax)
+    $scope.account_invoices.total_discount = site.toNumber($scope.account_invoices.total_discount)
+    $scope.account_invoices.net_value = site.toNumber($scope.account_invoices.net_value)
+    $scope.account_invoices.paid_up = site.toNumber($scope.account_invoices.paid_up)
+    $scope.account_invoices.payment_paid_up = site.toNumber($scope.account_invoices.payment_paid_up)
+
+
+
     let obj_print = { data: [] };
 
     if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.printer_path)
@@ -804,6 +815,10 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
     if ($scope.account_invoices.payment_paid_up) {
       $scope.account_invoices.total_remain = $scope.account_invoices.total_remain - $scope.account_invoices.payment_paid_up;
       $scope.account_invoices.total_paid_up = $scope.account_invoices.total_paid_up + $scope.account_invoices.payment_paid_up;
+
+      $scope.account_invoices.total_remain = site.toNumber($scope.account_invoices.total_remain)
+      $scope.account_invoices.total_paid_up = site.toNumber($scope.account_invoices.total_paid_up)
+  
     }
 
     if ($scope.account_invoices.net_value)

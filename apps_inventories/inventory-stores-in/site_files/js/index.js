@@ -113,9 +113,19 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
       port = $scope.defaultSettings.printer_program.port || '11111';
     };
 
+
     if ($scope.account_invoices) {
 
       $scope.account_invoices.total_remain = $scope.account_invoices.net_value - ($scope.account_invoices.paid_up * $scope.account_invoices.currency.ex_rate);
+    
+      $scope.account_invoices.total_remain = site.toNumber($scope.account_invoices.total_remain)
+      $scope.account_invoices.total_paid_up = site.toNumber($scope.account_invoices.total_paid_up)
+      $scope.account_invoices.total_tax = site.toNumber($scope.account_invoices.total_tax)
+      $scope.account_invoices.total_discount = site.toNumber($scope.account_invoices.total_discount)
+      $scope.account_invoices.net_value = site.toNumber($scope.account_invoices.net_value)
+      $scope.account_invoices.paid_up = site.toNumber($scope.account_invoices.paid_up)
+      $scope.account_invoices.payment_paid_up = site.toNumber($scope.account_invoices.payment_paid_up)
+
 
       let obj_print = { data: [] };
 
@@ -197,12 +207,13 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
 
       obj_print.data.push({ type: 'space' });
 
-      if ($scope.account_invoices.total_remain)
+      if ($scope.account_invoices.total_remain) {
         obj_print.data.push({
           type: 'text2b',
           value2: $scope.account_invoices.total_remain,
           value: "Required to pay"
         });
+      }
 
       if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.invoice_footer)
         obj_print.data.push({
