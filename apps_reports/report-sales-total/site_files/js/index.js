@@ -108,39 +108,34 @@ app.controller("report_sales_total", function ($scope, $http, $timeout) {
       value: 'Average Cost'
     });
 
-
     obj_print.data.push({
       type: 'line'
     });
 
     obj_print.data.push({
-      type: 'text5b',
+      type: 'text3b',
       value: 'Item',
-      value: 'Unit',
       value2: 'Count',
-      value3: "Price",
-      value4: "Average"
+      value3: "Price"
     });
+
     obj_print.data.push({
-      type: 'text5b',
+      type: 'text3b',
       value: 'الصنف',
-      value: 'الوحدة',
       value2: 'العدد',
-      value3: "السعر",
-      value4: "التكلفة"
+      value3: "السعر"
     });
+
     obj_print.data.push({
       type: 'space'
     });
 
     _itemsList.forEach(_item => {
       obj_print.data.push({
-        type: 'text5',
+        type: 'text3',
         value: _item.size,
-        value: _item.unit.name,
         value2: _item.count,
-        value3: _item.total,
-        value4: _item.average,
+        value3: _item.total
       });
 
     });
@@ -154,7 +149,6 @@ app.controller("report_sales_total", function ($scope, $http, $timeout) {
         type: 'footer',
         value: $scope.defaultSettings.printer_program.invoice_footer
       });
-
 
     $http({
       method: "POST",
