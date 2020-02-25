@@ -114,16 +114,20 @@ app.controller("report_sales_total", function ($scope, $http, $timeout) {
     });
 
     obj_print.data.push({
-      type: 'text3b',
+      type: 'text5b',
       value: 'Item',
+      value: 'Unit',
       value2: 'Count',
-      value3: "Price"
+      value3: "Price",
+      value4: "Average"
     });
     obj_print.data.push({
-      type: 'text3b',
+      type: 'text5b',
       value: 'الصنف',
+      value: 'الوحدة',
       value2: 'العدد',
-      value3: "السعر"
+      value3: "السعر",
+      value4: "التكلفة"
     });
     obj_print.data.push({
       type: 'space'
@@ -131,10 +135,12 @@ app.controller("report_sales_total", function ($scope, $http, $timeout) {
 
     _itemsList.forEach(_item => {
       obj_print.data.push({
-        type: 'text3',
+        type: 'text5',
         value: _item.size,
+        value: _item.unit.name,
         value2: _item.count,
-        value3: _item.total
+        value3: _item.total,
+        value4: _item.average,
       });
 
     });
