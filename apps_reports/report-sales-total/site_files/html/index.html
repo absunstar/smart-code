@@ -35,9 +35,12 @@
                 </div>
                 <div class="row">
 
-                    <i-control class="col2 r_blue" label="##word.total_selling_count##" ng-model="count" disabled></i-control>
-                    <i-control class="col2 r_green" label="##word.total_selling_price##" ng-model="total" disabled></i-control>
-                    <i-control class="col2 r_darkRed" label="##word.average_cost##" ng-model="average_cost" disabled></i-control>
+                    <i-control class="col2 r_blue" label="##word.total_selling_count##" ng-model="count" disabled>
+                    </i-control>
+                    <i-control class="col2 r_green" label="##word.total_selling_price##" ng-model="total" disabled>
+                    </i-control>
+                    <i-control class="col2 r_darkRed" label="##word.average_cost##" ng-model="average_cost" disabled>
+                    </i-control>
                 </div>
 
                 <br>
@@ -46,6 +49,9 @@
                 <br>
                 <br>
 
+                <i-button type="save" x-permissions="report_sales_total_print || report_sales_total_manage"
+                    label="##word.print##" ng-click="printAccountInvoive(list)">
+                </i-button>
                 <div class="row">
 
 
@@ -54,6 +60,7 @@
                             <th> ##word.stores_items_name## </th>
                             <th> ##word.stores_size## </th>
                             <th> ##word.barcode## </th>
+                            <th> ##word.unit## </th>
                             <th> ##word.total_selling_count## </th>
                             <th> ##word.total_selling_price## </th>
                             <th>##word.average_cost##</th>
@@ -63,6 +70,10 @@
                             <td> {{c.name}} </td>
                             <td> {{c.size}} </td>
                             <td class="blue"> {{c.barcode}} </td>
+                            <td>
+                                <p>{{c.unit.name}}</p>
+                                <p>{{c.unit.barcode}}</p>
+                            </td>
                             <td> {{c.count}} </td>
                             <td class="green"> {{c.total}} </td>
                             <td class="red"> {{c.average_cost}} </td>

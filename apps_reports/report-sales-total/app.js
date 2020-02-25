@@ -49,14 +49,22 @@ module.exports = function init(site) {
 
     if (where['name']) {
       where['items.name'] = new RegExp(where['name'], 'i')
+      delete where['name']
+    }
+
+    if (where['unit']) {
+      where['items.unit.id'] = where['unit'].id;
+      delete where['unit']
     }
 
     if (where['size']) {
       where['items.size'] = new RegExp(where['size'], 'i')
+      delete where['size']
     }
 
     if (where['barcode']) {
       where['items.barcode'] = new RegExp(where['barcode'], 'i')
+      delete where['barcode']
     }
 
     where['company.id'] = site.get_company(req).id
@@ -76,13 +84,12 @@ module.exports = function init(site) {
 
         for (let i = 0; i < docs.length; i++) {
 
-
           docs[i].items.forEach(_item => {
             let exist = false
 
             if (total_size_list.length > 0) {
               total_size_list.forEach(_size => {
-                if (_size.barcode == _item.barcode) {
+                if (_size.unit && _size.barcode == _item.barcode && _size.unit.id == _item.unit.id) {
                   _size.total = site.toNumber(_size.total) + site.toNumber(_item.total)
                   _size.count = site.toNumber(_size.count) + site.toNumber(_item.count)
                   _size.average_cost = (site.toNumber(_size.average_cost) + (site.toNumber(_item.average_cost)) * site.toNumber(_item.count))

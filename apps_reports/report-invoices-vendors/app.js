@@ -67,7 +67,7 @@ module.exports = function init(site) {
 
     where['source_type.id'] = 1
     where['invoice_type.id'] = 1
-    
+
     where['company.id'] = site.get_company(req).id
     where['branch.code'] = site.get_branch(req).code
 
