@@ -3,27 +3,16 @@ module.exports = function init(site) {
   const $request_service = site.connectCollection("request_service")
   const $account_invoices = site.connectCollection("account_invoices")
 
-
-
-  attend_subscribers_list = []
+    
+  $attend_subscribers.trackBusy = false
   site.on('zk attend', attend => {
-    attend_subscribers_list.push(Object.assign({}, attend))
-  })
 
-  function attend_subscribers_handle(attend) {
-    if (attend == null) {
-      if (attend_subscribers_list.length > 0) {
-        attend = attend_subscribers_list[0]
-        attend_subscribers_handle(attend)
-        attend_subscribers_list.splice(0, 1)
-      } else {
-        setTimeout(() => {
-          attend_subscribers_handle(null)
-        }, 1000);
-      }
+    if ($attend_subscribers.trackBusy) {
+      setTimeout(() => {
+        site.call('zk attend', attend)
+      }, 400);
       return
     }
-
 
     finger_id = attend.finger_id || 0
 
@@ -52,7 +41,7 @@ module.exports = function init(site) {
         if (customerDoc == null) can_check_in = true
         if (customerDoc && customerDoc.leave_date) can_check_in = true
         if (customerDoc && customerDoc.attend_date) can_check_out = true
-
+        $attend_subscribers.trackBusy = false
         if (attend.check_status == "check_in" && can_check_in) {
 
           $request_service.findMany({ where: { 'customer.id': customerCb.id } }, (err, request_service_doc) => {
@@ -74,6 +63,8 @@ module.exports = function init(site) {
                   });
                 }
               });
+          
+              
 
               request_services_list.forEach(_request_services => {
                 if (_request_services.complex_service && _request_services.complex_service.length > 0) {
@@ -112,24 +103,20 @@ module.exports = function init(site) {
           customerDoc.leave = leave_time
           customerDoc.modifiy = new Date().getTime()
           $attend_subscribers.update(customerDoc, () => {
-            attend_subscribers_handle(null)
+            $attend_subscribers.trackBusy = false
           });
 
 
         } else if (customerDoc) {
           customerDoc.modifiy = new Date().getTime()
           $attend_subscribers.update(customerDoc, () => {
-            attend_subscribers_handle(null)
+            $attend_subscribers.trackBusy = false
           });
         }
 
       })
     })
-  }
-  attend_subscribers_handle(null)
-
-
-
+  })
 
 
 

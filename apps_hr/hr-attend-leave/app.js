@@ -2,22 +2,14 @@ module.exports = function init(site) {
   const $attend_leave = site.connectCollection("attend_leave")
 
 
-  attend_employees_list = []
-  site.on('zk attend', attend => {
-    attend_employees_list.push(Object.assign({}, attend))
-  })
 
-  function attend_employees_handle(attend) {
-    if (attend == null) {
-      if (attend_employees_list.length > 0) {
-        attend = attend_employees_list[0]
-        attend_employees_handle(attend)
-        attend_employees_list.splice(0, 1)
-      } else {
-        setTimeout(() => {
-          attend_employees_handle(null)
-        }, 1000);
-      }
+  $attend_leave.trackBusy = false
+  site.on('zk attend', attend => {
+
+    if ($attend_leave.trackBusy) {
+      setTimeout(() => {
+        site.call('zk attend', attend)
+      }, 400);
       return
     }
 
@@ -34,7 +26,7 @@ module.exports = function init(site) {
       }, (err, docs) => {
 
         let employeeDoc = null
-        
+
         if (!err && docs.length == 1) employeeDoc = docs[0]
 
         let attend_time = {
@@ -48,6 +40,7 @@ module.exports = function init(site) {
         if (employeeDoc == null) can_check_in = true
         if (employeeDoc && employeeDoc.leave_date) can_check_in = true
         if (employeeDoc && employeeDoc.attend_date) can_check_out = true
+        $attend_leave.trackBusy = true
 
         if (attend.check_status == "check_in" && can_check_in) {
 
@@ -71,14 +64,12 @@ module.exports = function init(site) {
           employeeDoc.leave_date = new Date(attend.date)
           employeeDoc.leave = leave_time
           $attend_leave.update(employeeDoc, () => {
-            attend_employees_handle(null)
+            $attend_leave.trackBusy = false
           });
         }
       })
     })
-  }
-  attend_employees_handle(null)
-
+  })
 
   site.get({
     name: 'images',
