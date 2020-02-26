@@ -112,7 +112,7 @@ module.exports = function init(site) {
     stores_out_doc.date = site.toDateTime(stores_out_doc.date)
 
 
-    if(stores_out_doc.type.id == 5){
+    if (stores_out_doc.type.id == 5) {
       delete stores_out_doc.customer
       delete stores_out_doc.delegate
     }
@@ -166,6 +166,9 @@ module.exports = function init(site) {
               site.call('item_transaction + items', Object.assign({}, _itm))
               site.returnStoresOut(doc, res => { })
             } else {
+              if (doc.type.id == 5)
+                _itm.set_average = 'minus_average'
+
               _itm.type = 'minus'
               _itm.transaction_type = 'out'
               site.call('item_transaction - items', Object.assign({}, _itm))
@@ -193,7 +196,7 @@ module.exports = function init(site) {
     stores_out_doc.type = site.fromJson(stores_out_doc.type)
     stores_out_doc.date = new Date(stores_out_doc.date)
 
-    if(stores_out_doc.type.id == 5){
+    if (stores_out_doc.type.id == 5) {
       delete stores_out_doc.customer
       delete stores_out_doc.delegate
     }
@@ -281,6 +284,9 @@ module.exports = function init(site) {
                 _itm.transaction_type = 'in'
                 site.call('item_transaction + items', Object.assign({}, _itm))
               } else {
+                if (doc.type.id == 5)
+                  _itm.set_average = 'minus_average'
+
                 _itm.type = 'minus'
                 _itm.transaction_type = 'out'
                 site.call('item_transaction - items', Object.assign({}, _itm))
@@ -292,6 +298,8 @@ module.exports = function init(site) {
                 _itm.transaction_type = 'out'
                 site.call('item_transaction - items', Object.assign({}, _itm))
               } else {
+                if (doc.type.id == 5)
+                  _itm.set_average = 'sum_average'
                 _itm.type = 'sum'
                 _itm.transaction_type = 'in'
                 site.call('item_transaction + items', Object.assign({}, _itm))
@@ -356,6 +364,8 @@ module.exports = function init(site) {
                 _itm.transaction_type = 'out'
                 site.call('item_transaction + items', Object.assign({}, _itm))
               } else {
+                if (doc.type.id == 5)
+                  _itm.set_average = 'sum_average'
                 _itm.type = 'sum'
                 _itm.transaction_type = 'in'
                 site.call('item_transaction - items', Object.assign({}, _itm))

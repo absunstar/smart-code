@@ -129,6 +129,7 @@ module.exports = function init(site) {
         total_value: stores_in_doc.total_value,
         net_value: stores_in_doc.net_value,
       }
+
     $stores_in.add(stores_in_doc, (err, doc) => {
 
       if (!err) {
@@ -156,11 +157,15 @@ module.exports = function init(site) {
             }
 
             if (doc.type.id == 4) {
+              _itm.set_average = 'minus_average'
               _itm.type = 'minus'
               _itm.transaction_type = 'out'
               site.returnStoresIn(doc, res => { })
               site.call('item_transaction - items', Object.assign({}, _itm))
             } else {
+              if (doc.type.id == 1)
+                _itm.set_average = 'sum_average'
+
               _itm.type = 'sum'
               _itm.transaction_type = 'in'
               site.call('item_transaction + items', Object.assign({}, _itm))
@@ -276,10 +281,13 @@ module.exports = function init(site) {
               _itm.current_status = 'storein'
 
               if (result.doc.type.id == 4) {
+                _itm.set_average = 'minus_average'
                 _itm.type = 'minus'
                 _itm.transaction_type = 'out'
                 site.call('item_transaction - items', Object.assign({}, _itm))
               } else {
+                if (doc.type.id == 1)
+                  _itm.set_average = 'sum_average'
                 _itm.type = 'sum'
                 _itm.transaction_type = 'in'
                 site.call('item_transaction + items', Object.assign({}, _itm))
@@ -288,10 +296,13 @@ module.exports = function init(site) {
             } else {
               _itm.current_status = 'r_storein'
               if (result.doc.type.id == 4) {
+                _itm.set_average = 'sum_average'
                 _itm.type = 'sum'
                 _itm.transaction_type = 'in'
                 site.call('item_transaction + items', Object.assign({}, _itm))
               } else {
+                if (doc.type.id == 1)
+                  _itm.set_average = 'minus_average'
                 _itm.type = 'minus'
                 _itm.transaction_type = 'out'
                 site.call('item_transaction - items', Object.assign({}, _itm))
@@ -351,10 +362,13 @@ module.exports = function init(site) {
                 name: stores_in_doc.shift.name
               }
               if (result.doc.type.id == 4) {
+                _itm.set_average = 'sum_average'
                 _itm.type = 'sum'
                 _itm.transaction_type = 'in'
                 site.call('item_transaction + items', Object.assign({}, _itm))
               } else {
+                if (doc.type.id == 1)
+                  _itm.set_average = 'minus_average'
                 _itm.type = 'minus'
                 _itm.transaction_type = 'out'
                 site.call('item_transaction - items', Object.assign({}, _itm))

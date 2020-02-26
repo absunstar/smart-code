@@ -19,6 +19,9 @@ app.controller("report_sales_total", function ($scope, $http, $timeout) {
         if (response.data.done) {
           $scope.count = response.data.doc.length;
           $scope.list = response.data.doc;
+
+          $scope.cash = 0;
+          $scope.bank = 0;
           $scope.average_cost = 0;
           $scope.count = 0;
           $scope.total = 0;
@@ -28,6 +31,7 @@ app.controller("report_sales_total", function ($scope, $http, $timeout) {
             $scope.average_cost += site.toNumber(_list.average_cost);
             $scope.count += _list.count;
             $scope.total += _list.total;
+
           });
 
           $scope.average_cost = site.toNumber($scope.average_cost);
@@ -41,7 +45,6 @@ app.controller("report_sales_total", function ($scope, $http, $timeout) {
       }
     )
   };
-
 
   $scope.printAccountInvoive = function (_itemsList) {
     $scope.error = '';
@@ -91,11 +94,7 @@ app.controller("report_sales_total", function ($scope, $http, $timeout) {
       value2: $scope.total,
       value: 'Total Selling Price'
     }, {
-      type: 'space'
-    }, {
       type: 'line'
-    }, {
-      type: 'space'
     }, {
       type: 'text3b',
       value: 'Item',
@@ -113,12 +112,12 @@ app.controller("report_sales_total", function ($scope, $http, $timeout) {
 
     _itemsList.forEach(_item => {
       obj_print.data.push(
-        { type: 'space' }, {
-        type: 'text3',
-        value: _item.size,
-        value2: _item.unit.id,
-        value3: _item.count
-      }, { type: 'line' }, { type: 'space' });
+        {
+          type: 'text3',
+          value: _item.size,
+          value2: _item.unit.id,
+          value3: _item.count
+        }, { type: 'line' });
 
     });
 

@@ -39,7 +39,8 @@
                     </i-control>
                     <i-control class="col2 r_green" label="##word.total_selling_price##" ng-model="total" disabled>
                     </i-control>
-                    <i-control class="col2 r_darkRed" label="##word.average_cost##" ng-model="average_cost" disabled>
+                    <i-control x-permissions="report_sales_total_average || report_sales_total_manage"
+                        class="col2 r_darkRed" label="##word.average_cost##" ng-model="average_cost" disabled>
                     </i-control>
                 </div>
 
@@ -63,7 +64,8 @@
                             <th> ##word.unit## </th>
                             <th> ##word.total_selling_count## </th>
                             <th> ##word.total_selling_price## </th>
-                            <th>##word.average_cost##</th>
+                            <th x-permissions="report_sales_total_average || report_sales_total_manage">
+                                ##word.average_cost##</th>
                         </tr>
 
                         <tr ng-repeat="c in list | orderBy : '-id'">
@@ -76,7 +78,8 @@
                             </td>
                             <td> {{c.count}} </td>
                             <td class="green"> {{c.total}} </td>
-                            <td class="red"> {{c.average_cost}} </td>
+                            <td class="red" x-permissions="report_sales_total_average || report_sales_total_manage">
+                                {{c.average_cost}} </td>
                         </tr>
                     </table>
                 </div>
