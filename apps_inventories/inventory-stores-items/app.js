@@ -164,7 +164,7 @@ module.exports = function init(site) {
                 // _units.cost = site.toNumber(obj.cost)
                 // _units.price = site.toNumber(obj.price)
 
-                if (obj.source_type && (obj.source_type.id == 1 || obj.source_type.id == 4) && obj.store_in)
+                if (obj.set_average)
                   $stores_items.findMany({
                     where: {
                       'sizes.complex_items.barcode': obj.barcode,
