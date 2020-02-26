@@ -92,7 +92,7 @@ module.exports = function init(site) {
                 if (_size.unit && _size.barcode == _item.barcode && _size.unit.id == _item.unit.id) {
                   _size.total = site.toNumber(_size.total) + site.toNumber(_item.total)
                   _size.count = site.toNumber(_size.count) + site.toNumber(_item.count)
-                  _size.average_cost = (site.toNumber(_size.average_cost) + (site.toNumber(_item.average_cost)) * site.toNumber(_item.count))
+                  _size.average_cost = site.toNumber(_size.average_cost || 0) + site.toNumber(_item.average_cost || 0)
                   exist = true
                 }
               })
@@ -101,7 +101,7 @@ module.exports = function init(site) {
             if (!exist) {
               _item.count = site.toNumber(_item.count)
               _item.total = site.toNumber(_item.total)
-              _item.average_cost = site.toNumber(_item.average_cost)
+              _item.average_cost = site.toNumber(_item.average_cost || 0)
 
               total_size_list.push(Object.assign({}, _item))
             }
