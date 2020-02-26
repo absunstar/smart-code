@@ -115,7 +115,7 @@ app.controller("report_sales_total", function ($scope, $http, $timeout) {
         {
           type: 'text3',
           value: _item.size,
-          value2: _item.unit.id,
+          value2: _item.unit.name,
           value3: _item.count
         }, { type: 'line' });
 
