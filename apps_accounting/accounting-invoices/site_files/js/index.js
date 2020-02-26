@@ -216,8 +216,8 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
       } else $scope.error = '##word.open_shift_not_found##';
     });
   };
-  $scope.getTransactionType = function (order_invoices_type) {
-    if (order_invoices_type.id == 3)
+  $scope.getTransactionType = function (source_type) {
+    if (source_type.id == 3)
       $scope.getTransactionTypeList();
   };
 
