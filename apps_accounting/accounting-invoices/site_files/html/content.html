@@ -25,7 +25,7 @@
                                 items="sourceTypeList" display="##session.lang##"></i-list>
 
                             <i-list help-id="" ng-show="account_invoices.source_type.id == 3"
-                                ng-change="orderInvoicesTypeList = [] ; account_invoices.current_book_list = [];"
+                                ng-change="orderInvoicesTypeList = [] ; account_invoices.current_book_list = [];getTransactionType()"
                                 ng-search="_search.$order_invoices_type_search" class="col2" label="##word.order_type##"
                                 ng-model="account_invoices.order_invoices_type" items="transactionTypeList"
                                 display="##session.lang##">
@@ -277,17 +277,19 @@
 
                             <i-control ng-show="account_invoices.total_tax" ng-model="account_invoices.total_tax"
                                 ng-disabled="account_invoices.source_type.id == 1 || account_invoices.source_type.id == 2"
-                                ng-change="calc(account_invoices)" label="##word.stores_out_total_tax##" class="col3" type="number">
+                                ng-change="calc(account_invoices)" label="##word.stores_out_total_tax##" class="col3"
+                                type="number">
                             </i-control>
                             <i-control ng-show="account_invoices.total_discount" ng-change="calc(account_invoices)"
                                 ng-disabled="account_invoices.source_type.id == 1 || account_invoices.source_type.id == 2 || account_invoices.source_type.id == 4"
                                 ng-model="account_invoices.total_discount" label="##word.stores_out_total_discount##"
                                 class="col3" type="number"></i-control>
-                            <i-control ng-show="account_invoices.price_delivery_service" ng-change="calc(account_invoices)"
-                                ng-model="account_invoices.price_delivery_service"
+                            <i-control ng-show="account_invoices.price_delivery_service"
+                                ng-change="calc(account_invoices)" ng-model="account_invoices.price_delivery_service"
                                 label="##word.price_delivery_service##" class="col3" type="number"></i-control>
-                            <i-control class="col3" ng-show="account_invoices.service" ng-change="calc(account_invoices)"
-                                ng-model="account_invoices.service" label="##word.service##" type="number"></i-control>
+                            <i-control class="col3" ng-show="account_invoices.service"
+                                ng-change="calc(account_invoices)" ng-model="account_invoices.service"
+                                label="##word.service##" type="number"></i-control>
                             <div class="col2"></div>
 
                         </div>
@@ -300,7 +302,8 @@
                             </i-list>
 
                             <i-list class="col3 control padding" ng-search="_search.$currency_search"
-                                ng-model="account_invoices.currency" ng-change="getSafeByType(account_invoices) ; calc(account_invoices)"
+                                ng-model="account_invoices.currency"
+                                ng-change="getSafeByType(account_invoices) ; calc(account_invoices)"
                                 items="currenciesList" label="##word.currency##"></i-list>
 
                             <i-control class="col2" disabled ng-model="account_invoices.currency.ex_rate" type="number"
@@ -313,11 +316,11 @@
                         </div>
 
                         <div class="row" ng-show="account_invoices.invoice_id">
-                            <i-control class="col2" disabled ng-show="account_invoices.net_value" 
+                            <i-control class="col2" disabled ng-show="account_invoices.net_value"
                                 ng-model="account_invoices.net_value" label="##word.net_value##" type="number">
                             </i-control>
-                            <i-control class="col2" disabled ng-model="amount_currency"
-                                label="##word.amount_currency##" type="number">
+                            <i-control class="col2" disabled ng-model="amount_currency" label="##word.amount_currency##"
+                                type="number">
                             </i-control>
 
                             <i-control class="col2" ng-show="account_invoices.net_value"

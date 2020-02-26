@@ -216,6 +216,10 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
       } else $scope.error = '##word.open_shift_not_found##';
     });
   };
+  $scope.getTransactionType = function (order_invoices_type) {
+    if (order_invoices_type.id == 3)
+      $scope.getTransactionTypeList();
+  };
 
   $scope.deleteAccountInvoices = function () {
     $scope.error = '';
@@ -818,7 +822,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
 
       $scope.account_invoices.total_remain = site.toNumber($scope.account_invoices.total_remain);
       $scope.account_invoices.total_paid_up = site.toNumber($scope.account_invoices.total_paid_up);
-  
+
     }
 
     if ($scope.account_invoices.net_value)
