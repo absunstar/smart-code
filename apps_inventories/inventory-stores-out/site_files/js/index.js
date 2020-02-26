@@ -1157,7 +1157,6 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
           value: $scope.defaultSettings.printer_program.invoice_header
         });
 
-
       obj_print.data.push(
         {
           type: 'title',
@@ -1184,6 +1183,44 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
       obj_print.data.push({
         type: 'line'
       });
+
+      if ($scope.account_invoices.current_book_list && $scope.account_invoices.current_book_list.length > 0) {
+
+        obj_print.data.push(
+          {
+            type: 'space'
+          },
+          {
+            type: 'line'
+          },
+          {
+            type: 'text3b',
+            value: 'Item',
+            value2: 'Count',
+            value3: 'Price'
+          },
+          {
+            type: 'text3b',
+            value: 'الصنف',
+            value2: 'العدد',
+            value3: 'السعر'
+          }, {
+          type: 'space'
+        }
+        );
+
+        $scope.account_invoices.current_book_list.forEach(_current_book_list => {
+          obj_print.data.push({
+            type: 'text3',
+            value: _current_book_list.size,
+            value2: _current_book_list.count,
+            value3: _current_book_list.total
+          },
+            {
+              type: 'line'
+            })
+        });
+      };
 
       if ($scope.account_invoices.total_discount)
         obj_print.data.push({

@@ -778,7 +778,10 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
           value: _current_book_list.size,
           value2: _current_book_list.count,
           value3: _current_book_list.total
-        })
+        },
+          {
+            type: 'line'
+          })
       });
     };
 

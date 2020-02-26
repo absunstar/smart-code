@@ -40,6 +40,11 @@
         "ar": "المورد"
     },
     {
+        "name": "post_all",
+        "en": "Post All",
+        "ar": "ترحيل الكل"
+    },
+    {
         "name": "add_currencies",
         "en": "Add Currencies",
         "ar": "إضافة عملات"
