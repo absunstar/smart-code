@@ -23,7 +23,7 @@ app.controller("report_sales_total", function ($scope, $http, $timeout) {
           $scope.count = 0;
           $scope.total = 0;
           $scope.list.forEach(_list => {
-            _list.average_cost = (site.toNumber(_list.average_cost) || 0) / site.toNumber(_list.count);
+            _list.average_cost = (site.toNumber(_list.average_cost) || 0) * site.toNumber(_list.count);
             _list.average_cost = site.toNumber(_list.average_cost);
             $scope.average_cost += site.toNumber(_list.average_cost);
             $scope.count += _list.count;

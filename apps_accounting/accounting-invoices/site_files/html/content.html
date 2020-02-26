@@ -20,12 +20,12 @@
                     <div class="row">
                         <div class="row">
                             <i-list help-id="" ng-search="_search.$source_type_search" class="col4"
-                                ng-change="orderInvoicesTypeList = [] ; account_invoices.current_book_list = []; getOrderTypeSetting()"
+                                ng-change="orderInvoicesTypeList = [] ; account_invoices.current_book_list = []; getOrderTypeSetting();getTransactionType(account_invoices.order_invoices_type)"
                                 label="##word.source_type##" ng-model="account_invoices.source_type"
                                 items="sourceTypeList" display="##session.lang##"></i-list>
 
                             <i-list help-id="" ng-show="account_invoices.source_type.id == 3"
-                                ng-change="orderInvoicesTypeList = [] ; account_invoices.current_book_list = [];getTransactionType(account_invoices.order_invoices_type)"
+                                ng-change="orderInvoicesTypeList = [] ; account_invoices.current_book_list = []"
                                 ng-search="_search.$order_invoices_type_search" class="col2" label="##word.order_type##"
                                 ng-model="account_invoices.order_invoices_type" items="transactionTypeList"
                                 display="##session.lang##">
