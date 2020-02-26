@@ -74,78 +74,58 @@ app.controller("report_sales_total", function ($scope, $http, $timeout) {
       {
         type: 'title',
         value: 'Total Sales Items'
-      },
-      {
-        type: 'space'
-      },
-      {
-        type: 'text2',
-        value2: site.toDateXF(InvoiceDate),
-        value: 'Date'
-      });
-
-
-    obj_print.data.push({
+      }, {
+      type: 'space'
+    }, {
+      type: 'text2',
+      value2: site.toDateXF(InvoiceDate),
+      value: 'Date'
+    }, {
       type: 'line'
-    });
-
-
-    obj_print.data.push({
+    }, {
       type: 'text2',
       value2: $scope.count,
       value: 'Total Selling Count'
-    });
-
-    obj_print.data.push({
+    }, {
       type: 'text2',
       value2: $scope.total,
       value: 'Total Selling Price'
-    });
-
-    obj_print.data.push({
-      type: 'text2',
-      value2: $scope.average_cost,
-      value: 'Average Cost'
-    });
-
-    obj_print.data.push({
+    }, {
+      type: 'space'
+    }, {
       type: 'line'
-    });
-
-    obj_print.data.push({
+    }, {
+      type: 'space'
+    }, {
       type: 'text3b',
       value: 'Item',
-      value2: 'Count',
-      value3: "Price"
-    });
-
-    obj_print.data.push({
+      value2: "Unit",
+      value3: 'Count'
+    }, {
       type: 'text3b',
       value: 'الصنف',
-      value2: 'العدد',
-      value3: "السعر"
-    });
-
-    obj_print.data.push({
+      value2: "الوحدة",
+      value3: 'العدد'
+    }, {
       type: 'space'
     });
 
+
     _itemsList.forEach(_item => {
-      obj_print.data.push({
+      obj_print.data.push(
+        { type: 'space' }, {
         type: 'text3',
         value: _item.size,
-        value2: _item.count,
-        value3: _item.total
-      });
+        value2: _item.unit.id,
+        value3: _item.count
+      }, { type: 'line' }, { type: 'space' });
 
-    });
-
-    obj_print.data.push({
-      type: 'line'
     });
 
     if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.invoice_footer)
       obj_print.data.push({
+        type: 'space'
+      }, {
         type: 'footer',
         value: $scope.defaultSettings.printer_program.invoice_footer
       });

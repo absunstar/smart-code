@@ -325,6 +325,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         value2: 'Count',
         value3: "Notes"
       });
+      
       _kitchen.data.push({
         type: 'text3b',
         value: 'الصنف',
