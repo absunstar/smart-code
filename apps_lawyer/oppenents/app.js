@@ -239,31 +239,5 @@ module.exports = function init(site) {
   })
 
 
-  site.getCustomerAttend = function (data, callback) {
-
-    let select = {
-      id: 1, name_ar: 1,
-      active: 1, finger_code: 1,
-      busy: 1, child: 1, indentfy: 1,
-      address: 1, mobile: 1, phone: 1,
-      gov: 1, city: 1, area: 1,
-      company: 1, branch: 1,
-      weight: 1, tall: 1,
-      blood_type: 1,
-      medicine_notes: 1
-    }
-
-    let where = { finger_code : data }
-
-    $oppenents.findOne({
-      select: select,
-      where: where,
-    }, (err, doc) => {
-      if (!err) {
-        if (doc) callback(doc)
-        else callback(false)
-      }
-    })
-  }
-
+  
 }

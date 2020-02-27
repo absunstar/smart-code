@@ -127,10 +127,7 @@ app.controller("attend_subscribers", function ($scope, $http, $timeout, $interva
   $scope.deleteAttendSubscribers = function () {
     $scope.busy = true;
     $scope.error = '';
-    let id = $scope.attend_subscribers ? $scope.attend_subscribers.id : null;
-    if (!id) {
-      return false;
-    }
+   
     $http({
       method: "POST",
       url: "/api/attend_subscribers/delete",
