@@ -286,7 +286,7 @@ module.exports = function init(site) {
                 _itm.transaction_type = 'out'
                 site.call('item_transaction - items', Object.assign({}, _itm))
               } else {
-                if (doc.type.id == 1)
+                if (result.doc.type.id == 1)
                   _itm.set_average = 'sum_average'
                 _itm.type = 'sum'
                 _itm.transaction_type = 'in'
@@ -301,7 +301,7 @@ module.exports = function init(site) {
                 _itm.transaction_type = 'in'
                 site.call('item_transaction + items', Object.assign({}, _itm))
               } else {
-                if (doc.type.id == 1)
+                if (result.doc.type.id == 1)
                   _itm.set_average = 'minus_average'
                 _itm.type = 'minus'
                 _itm.transaction_type = 'out'
@@ -367,7 +367,7 @@ module.exports = function init(site) {
                 _itm.transaction_type = 'in'
                 site.call('item_transaction + items', Object.assign({}, _itm))
               } else {
-                if (doc.type.id == 1)
+                if (result.doc.type.id == 1)
                   _itm.set_average = 'minus_average'
                 _itm.type = 'minus'
                 _itm.transaction_type = 'out'

@@ -64,25 +64,6 @@ module.exports = function init(site) {
     });
   });
 
-  site.on('[register][request_service][add]', doc => {
-
-    $request_service.add({
-      code: "1",
-      name: "طلب خدمة إفتراضية",
-      image_url: '/images/request_service.png',
-
-      code: $request_service.newCode(),
-      company: {
-        id: doc.id,
-        name_ar: doc.name_ar
-      },
-      branch: {
-        code: doc.branch_list[0].code,
-        name_ar: doc.branch_list[0].name_ar
-      },
-      active: true
-    }, (err, doc) => { })
-  })
 
   site.post({
     name: "/api/period_class/all",

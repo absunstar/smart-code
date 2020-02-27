@@ -559,8 +559,10 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
             else $scope.paid_invoice.safe = $scope.defaultSettings.accounting.safe_bank;
           }
         }
-        if ($scope.paid_invoice.currency)
+        if ($scope.paid_invoice.currency){
           $scope.amount_currency = site.toNumber($scope.paid_invoice.remain_amount) / site.toNumber($scope.paid_invoice.currency.ex_rate);
+          $scope.amount_currency = site.toNumber($scope.amount_currency)
+        }
         site.showModal('#invoicesPaymentModal');
       } else $scope.error = '##word.open_shift_not_found##';
     });
