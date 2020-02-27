@@ -20,13 +20,11 @@ app.controller("report_sales_total", function ($scope, $http, $timeout) {
           $scope.count = response.data.doc.length;
           $scope.list = response.data.doc;
 
-          $scope.cash = 0;
-          $scope.bank = 0;
+    
           $scope.average_cost = 0;
           $scope.count = 0;
           $scope.total = 0;
           $scope.list.forEach(_list => {
-            _list.average_cost = (site.toNumber(_list.average_cost) || 0) * site.toNumber(_list.count);
             _list.average_cost = site.toNumber(_list.average_cost);
             $scope.average_cost += site.toNumber(_list.average_cost);
             $scope.count += _list.count;
