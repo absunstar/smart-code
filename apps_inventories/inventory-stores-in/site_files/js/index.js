@@ -635,7 +635,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
               else if (_size.discount.type == 'percent')
 
                 discount = (_size.discount.value || 0) * (_size.price * _size.count) / 100;
-              _size.total = ((site.toNumber(_size.price) * site.toNumber(_size.count)) - discount);
+              _size.total = (site.toNumber(_size.price)  - discount);
             }
             $scope.store_in.items.push({
               image_url: $scope.item.image_url,
