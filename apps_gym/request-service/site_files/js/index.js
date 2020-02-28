@@ -237,7 +237,7 @@ app.controller("request_service", function ($scope, $http, $timeout) {
       $scope.error = "##word.err_net_value##";
       return;
     }
-    
+
     if ($scope.defaultSettings.general_Settings && $scope.defaultSettings.general_Settings.work_posting)
       account_invoices.posting = false;
     else account_invoices.posting = true;
@@ -282,7 +282,7 @@ app.controller("request_service", function ($scope, $http, $timeout) {
     $scope.account_invoices.net_value = site.toNumber($scope.account_invoices.net_value);
     $scope.account_invoices.paid_up = site.toNumber($scope.account_invoices.paid_up);
     $scope.account_invoices.payment_paid_up = site.toNumber($scope.account_invoices.payment_paid_up);
-    
+
     let obj_print = { data: [] };
 
     if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.printer_path)
@@ -783,7 +783,22 @@ app.controller("request_service", function ($scope, $http, $timeout) {
     request_service.attend_count = $scope.service.attend_count || null;
     request_service.available_period = $scope.service.available_period || 0;
     request_service.services_price = $scope.service.services_price || 0;
+    if (request_service && request_service.selectedServicesList.length > 0) {
+      request_service.selectedServicesList.forEach(_selectedServicesList => {
+        _selectedServicesList.trainer_attend = request_service.trainer;
+        _selectedServicesList.total_real_attend_count = _selectedServicesList.total_attend_count;
+        _selectedServicesList.current_attendance = 0;
+        _selectedServicesList.remain = _selectedServicesList.total_attend_count;
+      });
+    } else {
+      request_service.trainer_attend = request_service.trainer;
+      request_service.total_real_attend_count = request_service.attend_count;
+      request_service.current_attendance = 0;
+      request_service.remain = request_service.attend_count;
+    }
+
     $scope.service = {};
+
   };
 
   $scope.startDateToDay = function () {
@@ -794,7 +809,7 @@ app.controller("request_service", function ($scope, $http, $timeout) {
 
     s.current_attendance = (s.current_attendance || 0) + 1;
     s.remain = s.remain - 1;
-
+    $scope.attend_service.attend_service_list = $scope.attend_service.attend_service_list || [];
     $scope.attend_service.attend_service_list.unshift({
       id: s.service_id || s.id,
       trainer_attend: s.trainer_attend,
@@ -818,27 +833,42 @@ app.controller("request_service", function ($scope, $http, $timeout) {
   $scope.showAttendServices = function (service) {
     $scope.attend_service = service;
 
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/default_setting/get",
-      data: {}
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.doc) {
-          $scope.defaultSettings = response.data.doc;
-          if ($scope.attend_service && $scope.attend_service.selectedServicesList.length > 0) {
-            $scope.attend_service.selectedServicesList.forEach(selectedServicesList => {
-              selectedServicesList.trainer_attend = $scope.defaultSettings.general_Settings ? $scope.defaultSettings.general_Settings.trainer : null
-            });
-          } else {
-            $scope.attend_service.trainer_attend = $scope.defaultSettings.general_Settings ? $scope.defaultSettings.general_Settings.trainer : null
-          }
-        }
-      }
-    );
 
+    if ($scope.attend_service && $scope.attend_service.selectedServicesList.length > 0) {
+      $scope.attend_service.selectedServicesList.forEach(_selectedServicesList => {
+        _selectedServicesList.trainer_attend = $scope.attend_service.trainer;
+        _selectedServicesList.total_real_attend_count = _selectedServicesList.total_real_attend_count || (_selectedServicesList.total_attend_count * $scope.attend_service.service_count);
+        _selectedServicesList.current_attendance = _selectedServicesList.current_attendance || 0;
+        _selectedServicesList.remain = _selectedServicesList.remain || (_selectedServicesList.total_attend_count * $scope.attend_service.service_count);
+      });
+    } else {
+      $scope.attend_service.trainer_attend = $scope.attend_service.trainer;
+      $scope.attend_service.total_real_attend_count = $scope.attend_service.total_real_attend_count || ($scope.attend_service.attend_count * $scope.attend_service.service_count);
+      $scope.attend_service.current_attendance = $scope.attend_service.current_attendance || 0;
+      $scope.attend_service.remain = $scope.attend_service.remain || ($scope.attend_service.attend_count * $scope.attend_service.service_count);
+    }
+
+    /*     $scope.busy = true;
+        $http({
+          method: "POST",
+          url: "/api/default_setting/get",
+          data: {}
+        }).then(
+          function (response) {
+            $scope.busy = false;
+            if (response.data.done && response.data.doc) {
+              $scope.defaultSettings = response.data.doc;
+              if ($scope.attend_service && $scope.attend_service.selectedServicesList.length > 0) {
+                $scope.attend_service.selectedServicesList.forEach(selectedServicesList => {
+                  selectedServicesList.trainer_attend = $scope.defaultSettings.general_Settings ? $scope.defaultSettings.general_Settings.trainer : null
+                });
+              } else {
+                $scope.attend_service.trainer_attend = $scope.defaultSettings.general_Settings ? $scope.defaultSettings.general_Settings.trainer : null
+              }
+            }
+          }
+        );
+     */
     site.showModal('#attendServiceModal');
 
   };
@@ -856,6 +886,26 @@ app.controller("request_service", function ($scope, $http, $timeout) {
         type: $scope.discount.type
       });
     };
+  };
+
+  $scope.calcServiceCount = function (request_service) {
+    $timeout(() => {
+
+      if (request_service && request_service.selectedServicesList.length > 0) {
+        request_service.selectedServicesList.forEach(_selectedServicesList => {
+          _selectedServicesList.trainer_attend = request_service.trainer;
+          _selectedServicesList.total_real_attend_count = _selectedServicesList.total_attend_count * request_service.service_count;
+          _selectedServicesList.remain = _selectedServicesList.total_attend_count * request_service.service_count;
+          _selectedServicesList.current_attendance = 0;
+        });
+      } else {
+        request_service.trainer_attend = request_service.trainer;
+        request_service.total_real_attend_count = request_service.attend_count * request_service.service_count;
+        request_service.remain = request_service.attend_count * request_service.service_count;
+        request_service.current_attendance = 0;
+      }
+
+    }, 250);
   };
 
   $scope.calc = function (obj) {

@@ -52,3 +52,23 @@
     font-weight :bold;
     font-size: 20px;
 }
+
+.bg_Gold,
+.bg_Gold {
+    background-color: Gold !important;
+}
+
+.bg_LawnGreen,
+.bg_LawnGreen {
+    background-color: springgreen !important;
+}
+
+.bg_OrangeRed ,
+.bg_OrangeRed  {
+    background-color:OrangeRed  !important;
+}
+
+.bg_skyblue,
+.bg_skyblue {
+    background-color: turquoise !important;
+}

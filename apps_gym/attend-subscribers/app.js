@@ -168,8 +168,9 @@ module.exports = function init(site) {
 
         let request_services_list = [];
         request_service_doc.forEach(_request_service => {
+
           if (new Date(_request_service.date_to) >= new Date()) {
-            request_services_list.push({
+            request_services_list.unshift({
               service_name: _request_service.service_name,
               complex_service: _request_service.selectedServicesList,
               date_from: _request_service.date_from,
@@ -193,7 +194,7 @@ module.exports = function init(site) {
 
           account_invoices_doc.forEach(_account_invoices => {
 
-            if (_request_services.id === _account_invoices.invoice_id) {
+            if (_request_services.id == _account_invoices.invoice_id) {
               _request_services.invoice_remain = _account_invoices.remain_amount
 
             }
@@ -382,12 +383,19 @@ module.exports = function init(site) {
       select: req.body.select || {},
       where: where,
       sort: req.body.sort || {
-        modifiy: -1
+        id: -1
       },
       limit: req.body.limit
     }, (err, docs, count) => {
       if (!err) {
         response.done = true
+        docs.forEach(_doc => {
+          _doc.service_list.forEach(_serviceList => {
+            let gifTime = Math.abs(new Date() - new Date(_serviceList.date_to))
+            _serviceList.ex_service = Math.ceil(gifTime / (1000 * 60 * 60 * 24))
+            
+          });
+        });
         response.list = docs
         response.count = count
       } else {

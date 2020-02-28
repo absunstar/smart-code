@@ -182,7 +182,7 @@
 
                             <i-control ng-show="request_service.service_name" help-id="service_count" type="number"
                                 class="col2" label="##word.service_count##" ng-model="request_service.service_count"
-                                ng-change="calc(request_service)">
+                                ng-change="calc(request_service) ; calcServiceCount(request_service)">
                             </i-control>
                         </div>
 

@@ -79,8 +79,6 @@
                             <i-button x-permissions="attend_subscribers_view || attend_subscribers_manage" type="view"
                                 label="##word.details##" ng-click="displayDetailsAttendSubscribers(c)"></i-button>
 
-
-
                             <i-button x-permissions="attend_subscribers_delete || attend_subscribers_manage"
                                 type="delete" label="##word.delete##" ng-click="displayDeleteAttendSubscribers(c)">
                             </i-button>
@@ -97,8 +95,13 @@
                                         <th>##word.invoice_remain##</th>
                                     </tr>
 
-                                    <tr ng-repeat="service in c.service_list">
-                                        <td class="center bold blue">
+                                    <tr ng-repeat="service in c.service_list" ng-class="{
+                                        bg_skyblue : service.ex_service >= 7,
+                                        bg_LawnGreen : service.ex_service == 6 || service.ex_service == 5,
+                                        bg_Gold : service.ex_service == 4 || service.ex_service == 3,
+                                        bg_OrangeRed : service.ex_service == 2 || service.ex_service == 1,
+                                        }">
+                                        <td>
                                             <br ng-show="service.complex_service.length > 0">
                                             {{service.service_name}}
                                         </td>
@@ -114,8 +117,10 @@
                                         <td class="center brown">
                                             <br ng-show="service.complex_service.length > 0">
                                             {{service.date_to | date : 'yyyy - MM - dd'}}
-                                            <p class="center green"> {{service.time_to.minute}} :
-                                                {{service.time_to.hour}}</p>
+                                            <p class="center green">
+                                                {{service.time_to.minute}} :
+                                                {{service.time_to.hour}}
+                                            </p>
                                         </td>
 
                                         <td>
@@ -138,7 +143,7 @@
                                             <br ng-show="service.complex_service.length > 0">
                                             {{service.remain}}
                                         </td>
-                                        <td class="red">
+                                        <td>
                                             <br ng-show="service.complex_service.length > 0">
                                             {{service.invoice_remain || 0}}
                                         </td>
