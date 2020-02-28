@@ -475,9 +475,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
                   _item.sizes.forEach(_size => {
                     let foundHold = false;
 
-                    if ($scope.store_out.type && $scope.store_out.type.id == 5)
-                      _size.price = _size.cost
-
+                 
                     let foundUnit = false;
                     let indxUnit = 0;
 

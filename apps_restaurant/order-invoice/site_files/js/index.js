@@ -130,7 +130,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         $scope.error = v.messages[0].ar;
         return;
       };
-      if (!$scope.order_invoice.transaction_type) {
+      if (!$scope.order_invoice.transaction_type || ($scope.order_invoice.transaction_type && !$scope.order_invoice.transaction_type.id)) {
         $scope.error = "##word.err_transaction_type##";
         return;
       };
