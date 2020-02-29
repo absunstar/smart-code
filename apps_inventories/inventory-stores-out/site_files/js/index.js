@@ -474,8 +474,6 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
                 if (_item.sizes && _item.sizes.length > 0)
                   _item.sizes.forEach(_size => {
                     let foundHold = false;
-
-                 
                     let foundUnit = false;
                     let indxUnit = 0;
 
@@ -562,9 +560,6 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         _item.name = $scope.item.name.name;
         _item.store = $scope.store_out.store;
         _item.count = 1;
-
-        if ($scope.store_out.type && $scope.store_out.type.id == 5)
-          _item.price = _item.cost;
 
         let indxUnit = _item.size_units_list.findIndex(_unit => _unit.id == $scope.item.name.main_unit.id);
         if (_item.size_units_list[indxUnit]) {
