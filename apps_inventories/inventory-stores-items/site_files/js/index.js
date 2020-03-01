@@ -909,5 +909,6 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
   $scope.loadAll();
   $scope.loadItems();
   $scope.loadUnitsBarcodesList();
-  $scope.loadKitchens();
+  if (site.feature('restaurant'))
+    $scope.loadKitchens();
 });

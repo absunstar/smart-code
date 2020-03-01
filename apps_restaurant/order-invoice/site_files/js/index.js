@@ -325,7 +325,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         value2: 'Count',
         value3: "Notes"
       });
-      
+
       _kitchen.data.push({
         type: 'text3b',
         value: 'الصنف',
@@ -487,7 +487,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     };
 
     $scope.account_invoices.total_remain = $scope.account_invoices.net_value - $scope.account_invoices.paid_up;
-  
+
     $scope.account_invoices.total_remain = site.toNumber($scope.account_invoices.total_remain);
     let obj_print = { data: [] };
 
@@ -601,7 +601,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     if ($scope.account_invoices.payment_paid_up) {
       $scope.account_invoices.total_remain = $scope.account_invoices.total_remain - $scope.account_invoices.payment_paid_up;
       $scope.account_invoices.total_paid_up = $scope.account_invoices.total_paid_up + $scope.account_invoices.payment_paid_up;
-  
+
       $scope.account_invoices.total_remain = site.toNumber($scope.account_invoices.total_remain);
       $scope.account_invoices.total_paid_up = site.toNumber($scope.account_invoices.total_paid_up);
     }
@@ -1550,11 +1550,19 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
 
   $scope.showItemsIn = function (i) {
     $scope.current_items = i;
-    if ($scope.current_items.sizes) $scope.current_items.sizes.forEach(size => {
-      size.item_id = $scope.current_items.id;
-      size.name = $scope.current_items.name;
-      size.main_unit = $scope.current_items.main_unit;
-    });
+    if ($scope.current_items.sizes) {
+
+      $scope.current_items.sizes.forEach(_size => {
+        _size.main_unit = $scope.current_items.main_unit;
+        _size.size_units_list.forEach(_unit => {
+          if (_unit.id === _size.main_unit.id) {
+            _size.price = _unit.price
+          }
+        });
+        _size.item_id = $scope.current_items.id;
+        _size.name = $scope.current_items.name;
+      });
+    }
     site.showModal('#sizesModal');
   };
 

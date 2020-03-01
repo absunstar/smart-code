@@ -80,14 +80,13 @@ module.exports = function init(site) {
     }
 
     $stores_items.findOne({
-      name: obj.name,
       'sizes.barcode': obj.barcode,
       'company.id': obj.company.id
     }, (err, doc) => {
 
       if (!err && doc) {
         doc.sizes.forEach(_size => {
-          if (_size.barcode == obj.barcode) {
+          if (_size.barcode === obj.barcode) {
 
             let totalPrice = obj.price * site.toNumber(obj.count);
             let total_complex_av = 0
@@ -164,7 +163,7 @@ module.exports = function init(site) {
                 // _unitSize.cost = site.toNumber(obj.cost)
                 // _unitSize.price = site.toNumber(obj.price)
 
-                if (obj.set_average){
+                if (obj.set_average) {
 
                   $stores_items.findMany({
                     where: {
@@ -174,17 +173,17 @@ module.exports = function init(site) {
                     },
                   }, (err, comolex_docs) => {
                     if (comolex_docs && comolex_docs.length > 0)
-                    comolex_docs.forEach(_complexDoc => {
-                      if (_complexDoc.sizes && _complexDoc.sizes.length > 0)
-                      _complexDoc.sizes.forEach(_complexSize => {
-                        if (_complexSize.complex_items && _complexSize.complex_items.length > 0)
-                        _complexSize.complex_items.forEach(_complexItem => {
-                          if (_complexItem.barcode == obj.barcode && _complexItem.unit.id == obj.unit.id)
-                          _complexItem.unit.average_cost = _unitSize.average_cost
-                        });
+                      comolex_docs.forEach(_complexDoc => {
+                        if (_complexDoc.sizes && _complexDoc.sizes.length > 0)
+                          _complexDoc.sizes.forEach(_complexSize => {
+                            if (_complexSize.complex_items && _complexSize.complex_items.length > 0)
+                              _complexSize.complex_items.forEach(_complexItem => {
+                                if (_complexItem.barcode == obj.barcode && _complexItem.unit.id == obj.unit.id)
+                                  _complexItem.unit.average_cost = _unitSize.average_cost
+                              });
+                          });
+                        $stores_items.update(_complexDoc, () => { });
                       });
-                      $stores_items.update(_complexDoc, () => { });
-                    });
                   })
                 }
               }
@@ -368,13 +367,11 @@ module.exports = function init(site) {
 
                   } else _branch.stores_list.push(obj_store)
 
-
                 } else _branch.stores_list = [obj_store]
 
                 _size.branches_list[indxBranch] = _branch
 
               } else _size.branches_list.push(obj_branch)
-
 
             } else _size.branches_list = [obj_branch]
           }
@@ -645,8 +642,8 @@ module.exports = function init(site) {
   })
 
   site.post("/api/stores_items/all", (req, res) => {
-    /*     let data = {};
-     */
+    //  let data = {};
+
 
     let response = {}
     let where = req.body.where || {}
@@ -683,15 +680,15 @@ module.exports = function init(site) {
       where['name'] = new RegExp(where['name'], 'i')
     }
 
-    /*   if (req.body.search) {
-        where = {
-          $or: [
-            { 'sizes.size': req.body.search },
-            { 'sizes.size_units_list.barcode': req.body.search },
-            { 'sizes.barcode': req.body.search }
-          ]
-        }
-      } */
+    //  if (req.body.search) {
+    //   where = {
+    //     $or: [
+    //       { 'sizes.size': req.body.search },
+    //       { 'sizes.size_units_list.barcode': req.body.search },
+    //       { 'sizes.barcode': req.body.search }
+    //     ]
+    //   }
+    // } 
 
 
 
@@ -720,40 +717,40 @@ module.exports = function init(site) {
       delete where.cost
     }
 
-    /*  if (where && where.current_countLt && where.current_countGt) {
-       data.current_countLt = site.toNumber(where.current_countLt)
-       data.current_countGt = site.toNumber(where.current_countGt)
-       where['sizes.current_count'] = {
-         $lte: where.current_countLt,
-         $gte: where.current_countGt
-       }
-       delete where.current_countLt
-       delete where.current_countGt
-     }
- 
- 
-     if (where && where.current_countGt && !where.current_countLt) {
-       data.current_countGt = site.toNumber(where.current_countGt)
-       where['sizes.current_count'] = {
-         $gte: where.current_countGt
-       }
- 
-       delete where.current_countGt
-     }
- 
-     if (where && where.current_count) {
-       data.current_count = site.toNumber(where.current_count)
-       where['sizes.current_count'] = where.current_count
-       delete where.current_count
-     }
- 
-     if (where && where.current_countLt && !where.current_countGt) {
-       data.current_countLt = site.toNumber(where.current_countLt)
-       where['sizes.current_count'] = {
-         $lte: where.current_countLt
-       }
-       delete where.current_countLt
-     } */
+    // / if (where && where.current_countLt && where.current_countGt) {
+    //    data.current_countLt = site.toNumber(where.current_countLt)
+    //    data.current_countGt = site.toNumber(where.current_countGt)
+    //    where['sizes.current_count'] = {
+    //      $lte: where.current_countLt,
+    //      $gte: where.current_countGt
+    //    }
+    //    delete where.current_countLt
+    //    delete where.current_countGt
+    //  }
+
+
+    //  if (where && where.current_countGt && !where.current_countLt) {
+    //    data.current_countGt = site.toNumber(where.current_countGt)
+    //    where['sizes.current_count'] = {
+    //      $gte: where.current_countGt
+    //    }
+
+    //    delete where.current_countGt
+    //  }
+
+    //  if (where && where.current_count) {
+    //    data.current_count = site.toNumber(where.current_count)
+    //    where['sizes.current_count'] = where.current_count
+    //    delete where.current_count
+    //  }
+
+    //  if (where && where.current_countLt && !where.current_countGt) {
+    //    data.current_countLt = site.toNumber(where.current_countLt)
+    //    where['sizes.current_count'] = {
+    //      $lte: where.current_countLt
+    //    }
+    //    delete where.current_countLt
+    //  } 
 
     response.done = false
     $stores_items.findMany({
@@ -768,113 +765,113 @@ module.exports = function init(site) {
       if (!err) {
         response.done = true
 
-        /*         if (data.size) {
-                  docs.forEach(doc => {
-                    doc.sizes.forEach((s, i) => {
-                      if (s.size !== data.size) {
-                        doc.sizes.splice(i, 1)
-                      }
-                    })
-                    doc.sizes.forEach((s, i) => {
-                      if (s.size !== data.size) {
-                        doc.sizes.splice(i, 1)
-                      }
-                    })
-                  })
-                }
-        
-                if (data.price) {
-                  docs.forEach(doc => {
-                    doc.sizes.forEach((p, i) => {
-                      if (p.price !== data.price) {
-                        doc.sizes.splice(i, 1)
-                      }
-                    })
-                    doc.sizes.forEach((p, i) => {
-                      if (p.price !== data.price) {
-                        doc.sizes.splice(i, 1)
-                      }
-                    })
-                  })
-                }
-        
-                if (data.cost) {
-                  docs.forEach(doc => {
-                    doc.sizes.forEach((c, i) => {
-                      if (c.cost !== data.cost) {
-                        doc.sizes.splice(i, 1)
-                      }
-                    })
-                    doc.sizes.forEach((c, i) => {
-                      if (c.cost !== data.cost) {
-                        doc.sizes.splice(i, 1)
-                      }
-                    })
-                  })
-                }
-        
-                if (data.current_count) {
-                  docs.forEach(doc => {
-                    doc.sizes.forEach((c, i) => {
-                      if (c.current_count < data.current_count) {
-                        doc.sizes.splice(i, 1)
-                      }
-                    })
-                    doc.sizes.forEach((c, i) => {
-                      if (c.current_count !== data.current_count) {
-                        doc.sizes.splice(i, 1)
-                      }
-                    })
-                  })
-                }
-        
-                if (data.current_countGt && !data.current_countLt) {
-                  docs.forEach(doc => {
-                    doc.sizes.forEach((c, i) => {
-                      if (c.current_count < data.current_countGt) {
-                        doc.sizes.splice(i, 1)
-                      }
-                    })
-                    doc.sizes.forEach((c, i) => {
-                      if (c.current_count < data.current_countGt) {
-                        doc.sizes.splice(i, 1)
-                      }
-                    })
-                  })
-                }
-        
-                if (data.current_countLt && !data.current_countGt) {
-                  docs.forEach(doc => {
-                    doc.sizes.forEach((c, i) => {
-                      if (c.current_count > data.current_countLt) {
-                        doc.sizes.splice(i, 1)
-                      }
-                    })
-                    doc.sizes.forEach((c, i) => {
-                      if (c.current_count > data.current_countLt) {
-                        doc.sizes.splice(i, 1)
-                      }
-                    })
-                  })
-                }
-        
-                if (data.current_countLt && data.current_countGt) {
-                  docs.forEach((doc, index) => {
-                    doc.sizes.forEach((c, i) => {
-                      if (c.current_count > data.current_countLt || c.current_count < data.current_countGt) {
-                        doc.sizes.splice(i, 1)
-                      }
-                    })
-                    doc.sizes.forEach((c, i) => {
-                      if (c.current_count > data.current_countLt || c.current_count < data.current_countGt) {
-                        doc.sizes.splice(i, 1)
-                      }
-                    })
-                    if (doc.sizes.length === 0) {
-                      docs.splice(index, 1)
-                    }
-                  })
-                } */
+        //  if (data.size) {
+        //   docs.forEach(doc => {
+        //     doc.sizes.forEach((s, i) => {
+        //       if (s.size !== data.size) {
+        //         doc.sizes.splice(i, 1)
+        //       }
+        //     })
+        //     doc.sizes.forEach((s, i) => {
+        //       if (s.size !== data.size) {
+        //         doc.sizes.splice(i, 1)
+        //       }
+        //     })
+        //   })
+        // }
+
+        // if (data.price) {
+        //   docs.forEach(doc => {
+        //     doc.sizes.forEach((p, i) => {
+        //       if (p.price !== data.price) {
+        //         doc.sizes.splice(i, 1)
+        //       }
+        //     })
+        //     doc.sizes.forEach((p, i) => {
+        //       if (p.price !== data.price) {
+        //         doc.sizes.splice(i, 1)
+        //       }
+        //     })
+        //   })
+        // }
+
+        // if (data.cost) {
+        //   docs.forEach(doc => {
+        //     doc.sizes.forEach((c, i) => {
+        //       if (c.cost !== data.cost) {
+        //         doc.sizes.splice(i, 1)
+        //       }
+        //     })
+        //     doc.sizes.forEach((c, i) => {
+        //       if (c.cost !== data.cost) {
+        //         doc.sizes.splice(i, 1)
+        //       }
+        //     })
+        //   })
+        // }
+
+        // if (data.current_count) {
+        //   docs.forEach(doc => {
+        //     doc.sizes.forEach((c, i) => {
+        //       if (c.current_count < data.current_count) {
+        //         doc.sizes.splice(i, 1)
+        //       }
+        //     })
+        //     doc.sizes.forEach((c, i) => {
+        //       if (c.current_count !== data.current_count) {
+        //         doc.sizes.splice(i, 1)
+        //       }
+        //     })
+        //   })
+        // }
+
+        // if (data.current_countGt && !data.current_countLt) {
+        //   docs.forEach(doc => {
+        //     doc.sizes.forEach((c, i) => {
+        //       if (c.current_count < data.current_countGt) {
+        //         doc.sizes.splice(i, 1)
+        //       }
+        //     })
+        //     doc.sizes.forEach((c, i) => {
+        //       if (c.current_count < data.current_countGt) {
+        //         doc.sizes.splice(i, 1)
+        //       }
+        //     })
+        //   })
+        // }
+
+        // if (data.current_countLt && !data.current_countGt) {
+        //   docs.forEach(doc => {
+        //     doc.sizes.forEach((c, i) => {
+        //       if (c.current_count > data.current_countLt) {
+        //         doc.sizes.splice(i, 1)
+        //       }
+        //     })
+        //     doc.sizes.forEach((c, i) => {
+        //       if (c.current_count > data.current_countLt) {
+        //         doc.sizes.splice(i, 1)
+        //       }
+        //     })
+        //   })
+        // }
+
+        // if (data.current_countLt && data.current_countGt) {
+        //   docs.forEach((doc, index) => {
+        //     doc.sizes.forEach((c, i) => {
+        //       if (c.current_count > data.current_countLt || c.current_count < data.current_countGt) {
+        //         doc.sizes.splice(i, 1)
+        //       }
+        //     })
+        //     doc.sizes.forEach((c, i) => {
+        //       if (c.current_count > data.current_countLt || c.current_count < data.current_countGt) {
+        //         doc.sizes.splice(i, 1)
+        //       }
+        //     })
+        //     if (doc.sizes.length === 0) {
+        //       docs.splice(index, 1)
+        //     }
+        //   })
+        // } 
 
 
 
@@ -981,9 +978,6 @@ module.exports = function init(site) {
 
                 if (unit.id) {
 
-                  _sizes.discount = {
-                    max: 5, type: 'number', value: 2
-                  }
                   _sizes.size_units_list = [{
                     id: unit.id,
                     name: unit.name,
@@ -1001,7 +995,8 @@ module.exports = function init(site) {
                     convert: 1
                   }]
 
-                  if (_sizes.branches_list && _sizes.branches_list.length > 0)
+                  if (_sizes.branches_list && _sizes.branches_list.length > 0) {
+
                     _sizes.branches_list.forEach(_branch => {
                       _branch.size_units_list = [{
                         id: unit.id,
@@ -1033,6 +1028,7 @@ module.exports = function init(site) {
 
                         });
                     });
+                  }
 
                 }
 
@@ -1175,7 +1171,6 @@ module.exports = function init(site) {
           docs.forEach(item => {
             if (item.sizes && item.sizes.length > 0)
               item.sizes.forEach(size => {
-
                 if (size.size_units_list && size.size_units_list.length > 0)
                   size.size_units_list.forEach(_unit => {
                     if (_unit.barcode)
@@ -1270,5 +1265,113 @@ module.exports = function init(site) {
       }
     })
   }
+
+
+
+
+  site.post("/api/stores_items/handel_zeft", (req, res) => {
+    let response = {
+      done: false
+    }
+    let where = req.body.where || {}
+
+    where['company.id'] = site.get_company(req).id
+
+    $stores_items.findMany({
+      select: req.body.select || {},
+      where: where,
+      sort: req.body.sort || {
+        id: -1
+      },
+    }, (err, docs) => {
+      if (!err) {
+        response.done = true
+
+        site.getDefaultSetting(req, callback => {
+          let unit = {}
+
+          if (callback.inventory) {
+            if (callback.inventory.store)
+              store = callback.inventory.store
+            if (callback.inventory.unit)
+              unit = callback.inventory.unit
+          }
+
+          docs.forEach(_doc => {
+
+            _doc.main_unit = unit
+
+            _doc.units_list = [{
+              id: unit.id,
+              name: unit.name,
+              convert: 1
+            }]
+
+
+            if (_doc.sizes && _doc.sizes.length > 0)
+              _doc.sizes.forEach(_sizes => {
+                if (unit.id) {
+
+                  _sizes.size_units_list = [{
+                    id: unit.id,
+                    name: unit.name,
+                    barcode: _barcode,
+                    current_count: 0,
+                    start_count: 0,
+                    price: _sizes.price,
+                    cost: _sizes.cost,
+                    discount: _sizes.discount,
+                    total_buy_price: 0,
+                    total_buy_count: 0,
+                    total_sell_price: 0,
+                    total_sell_count: 0,
+                    average_cost: 0,
+                    convert: 1
+                  }]
+
+                  if (_sizes.branches_list && _sizes.branches_list.length > 0) {
+
+                    _sizes.branches_list.forEach(_branch => {
+                      _branch.size_units_list = [{
+                        id: unit.id,
+                        name: unit.name,
+                        current_count: 0,
+                        start_count: 0,
+                        total_buy_price: 0,
+                        total_buy_count: 0,
+                        total_sell_price: 0,
+                        total_sell_count: 0,
+                        average_cost: 0
+                      }]
+
+                      if (_branch.stores_list && _branch.stores_list.length > 0)
+                        _branch.stores_list.forEach(_store => {
+                          _store.size_units_list = [{
+                            id: unit.id,
+                            name: unit.name,
+                            current_count: 0,
+                            start_count: 0,
+                            total_buy_price: 0,
+                            total_buy_count: 0,
+                            total_sell_price: 0,
+                            total_sell_count: 0,
+                            average_cost: 0
+                          }]
+                        });
+                    });
+                  }
+                }
+              });
+            $stores_items.update(_doc)
+          });
+        })
+
+      } else {
+        response.error = err.message
+      }
+      res.json(response)
+    })
+  })
+
 
 }

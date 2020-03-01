@@ -19,7 +19,7 @@ module.exports = function init(site) {
       if (!err && doc) {
         response.done = true
         doc.book_list.forEach(book_list => {
-          if (book_list.size == item.size && book_list.barcode == item.barcode)
+          if (book_list.size == item.size && book_list.barcode === item.barcode)
             book_list.done_kitchen = true;
         });
         $order_invoice.update(doc)
@@ -37,6 +37,7 @@ module.exports = function init(site) {
     let where = req.body.where || {}
     where['company.id'] = site.get_company(req).id
     where['branch.code'] = site.get_branch(req).code
+    
     if (where['kitchen']) {
       kitchen = where['kitchen']
       where['book_list.kitchen.id'] = where['kitchen'].id;
