@@ -216,10 +216,12 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
 
 
       $scope.category_item.sizes.forEach(_size => {
+        if (_size.barcode === (undefined || null)) notBarcodeUnit = true;
+
         _size.size_units_list.forEach(_unit => {
-          if (_unit.barcode == (undefined || null)) notBarcodeUnit = true;
+          if (_unit.barcode === (undefined || null)) notBarcodeUnit = true;
           if (_unit.discount && _unit.discount.value > _unit.discount.max) unitDiscount = true;
-          foundBarcodeUnit = $scope.unitsBarcodesList.some(_unit1 => _unit1.barcode == _unit.barcode);
+          foundBarcodeUnit = $scope.unitsBarcodesList.some(_unit1 => _unit1.barcode === _unit.barcode);
         });
       });
 

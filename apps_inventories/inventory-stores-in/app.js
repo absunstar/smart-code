@@ -121,7 +121,8 @@ module.exports = function init(site) {
     stores_in_doc.total_value = site.toNumber(stores_in_doc.total_value)
     stores_in_doc.net_value = site.toNumber(stores_in_doc.net_value)
 
-    if (stores_in_doc.type.id == 1)
+    if (stores_in_doc.type.id == 1) {
+
       stores_in_doc.return_paid = {
         items: stores_in_doc.items,
         total_discount: stores_in_doc.total_discount,
@@ -129,6 +130,7 @@ module.exports = function init(site) {
         total_value: stores_in_doc.total_value,
         net_value: stores_in_doc.net_value,
       }
+    }
 
     $stores_in.add(stores_in_doc, (err, doc) => {
 
@@ -683,7 +685,9 @@ module.exports = function init(site) {
 
 
 
-  site.post("/api/stores_in/handel_", (req, res) => {
+
+
+  site.post("/api/stores_in/handel_zeft", (req, res) => {
     let response = {}
     response.done = false
     if (!req.session.user) {
@@ -691,93 +695,99 @@ module.exports = function init(site) {
       return;
     }
 
-    let stores_in_doc = req.body
 
-    stores_in_doc.company = site.get_company(req)
-    stores_in_doc.branch = site.get_branch(req)
-    stores_in_doc.number = $stores_in.newCode();
-    stores_in_doc.add_user_info = site.security.getUserFinger({ $req: req, $res: res })
-
-    stores_in_doc.$req = req
-    stores_in_doc.$res = res
-
-    stores_in_doc.date = site.toDateTime(stores_in_doc.date)
-
-    stores_in_doc.items.forEach(itm => {
-      itm.current_count = site.toNumber(itm.current_count)
-      itm.count = site.toNumber(itm.count)
-      itm.cost = site.toNumber(itm.cost)
-      itm.price = site.toNumber(itm.price)
-      itm.total = site.toNumber(itm.total)
-    })
-
-    stores_in_doc.total_value = site.toNumber(stores_in_doc.total_value)
-    stores_in_doc.net_value = site.toNumber(stores_in_doc.net_value)
-
-    if (stores_in_doc.type.id == 1)
-      stores_in_doc.return_paid = {
-        items: stores_in_doc.items,
-        total_discount: stores_in_doc.total_discount,
-        total_tax: stores_in_doc.total_tax,
-        total_value: stores_in_doc.total_value,
-        net_value: stores_in_doc.net_value,
-      }
-
-    $stores_in.add(stores_in_doc, (err, doc) => {
-
+    $stores_in.findMany({
+      select: req.body.select || {},
+      where: { 'company.id': site.get_company(req).id },
+      sort: req.body.sort || {
+        id: -1
+      },
+    }, (err, docs) => {
       if (!err) {
+        docs.forEach(stores_in_doc => {
 
-        response.done = true
-        response.doc = doc
-
-        if (doc.posting) {
-
-          doc.items.forEach(_itm => {
-
-            
-            _itm.store = doc.store
-            _itm.company = doc.company
-            _itm.branch = doc.branch
-            _itm.source_type = doc.type
-            _itm.store_in = true
-            _itm.number = doc.number
-            _itm.vendor = doc.vendor
-            _itm.date = doc.date
-            _itm.current_status = 'storein'
-            _itm.shift = {
-              id: doc.shift.id,
-              code: doc.shift.code,
-              name: doc.shift.name
-            }
-
-            if (doc.type.id == 4) {
-              _itm.set_average = 'minus_average'
-              _itm.type = 'minus'
-              _itm.transaction_type = 'out'
-              site.returnStoresIn(doc, res => { })
-              site.call('item_transaction - items', Object.assign({}, _itm))
-            } else {
-              if (doc.type.id == 1)
-                _itm.set_average = 'sum_average'
-
-              _itm.type = 'sum'
-              _itm.transaction_type = 'in'
-              site.call('item_transaction + items', Object.assign({}, _itm))
-            }
-            site.call('[transfer_branch][stores_items][add_balance]', _itm)
+          stores_in_doc.$req = req
+          stores_in_doc.$res = res
 
 
+          stores_in_doc.items.forEach(itm => {
+            itm.current_count = site.toNumber(itm.current_count)
+            itm.count = site.toNumber(itm.count)
+            itm.cost = site.toNumber(itm.cost)
+            itm.price = site.toNumber(itm.price)
+            itm.total = site.toNumber(itm.total)
           })
 
-        }
+          stores_in_doc.items.map(_item => _item.unit.id = 1)
 
-      } else {
-        response.error = err.message
+          stores_in_doc.total_value = site.toNumber(stores_in_doc.total_value)
+          stores_in_doc.net_value = site.toNumber(stores_in_doc.net_value)
+
+          if (stores_in_doc.type.id == 1) {
+            stores_in_doc.return_paid = {
+              items: stores_in_doc.items,
+              total_discount: stores_in_doc.total_discount,
+              total_tax: stores_in_doc.total_tax,
+              total_value: stores_in_doc.total_value,
+              net_value: stores_in_doc.net_value,
+            }
+          }
+
+          $stores_in.edit(stores_in_doc, (err, doc) => {
+
+            if (!err) {
+
+              response.done = true
+              response.doc = doc
+
+              if (doc.posting) {
+
+                doc.items.forEach(_itm => {
+
+                  _itm.store = doc.store
+                  _itm.company = doc.company
+                  _itm.branch = doc.branch
+                  _itm.source_type = doc.type
+                  _itm.store_in = true
+                  _itm.number = doc.number
+                  _itm.vendor = doc.vendor
+                  _itm.date = doc.date
+                  _itm.current_status = 'storein'
+                  _itm.shift = {
+                    id: doc.shift.id,
+                    code: doc.shift.code,
+                    name: doc.shift.name
+                  }
+
+                  if (doc.type.id == 4) {
+                    _itm.set_average = 'minus_average'
+                    _itm.type = 'minus'
+                    _itm.transaction_type = 'out'
+                    site.returnStoresIn(doc, res => { })
+                    site.call('item_transaction - items', Object.assign({}, _itm))
+                  } else {
+                    if (doc.type.id == 1)
+                      _itm.set_average = 'sum_average'
+
+                    _itm.type = 'sum'
+                    _itm.transaction_type = 'in'
+                    site.call('item_transaction + items', Object.assign({}, _itm))
+                  }
+                  site.call('[transfer_branch][stores_items][add_balance]', _itm)
+
+                })
+
+              }
+
+            } else {
+              response.error = err.message
+            }
+            res.json(response)
+          })
+        });
       }
-      res.json(response)
     })
   })
-
 
   //  site.getStoresIn = function (req, callback) {
   //   callback = callback || {};
