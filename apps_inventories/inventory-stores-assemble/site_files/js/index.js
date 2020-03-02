@@ -285,14 +285,18 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
                                   indxStore = i;
                                   foundStore = true;
 
-                                  if (_store.hold) foundHold = true;
+                                  if (_store.hold) {
+                                    foundHold = true;
+                                  }
                                 }
                               });
-                              if (foundStore)
+                              if (foundStore) {
+
                                 _size.branches_list[indxBranch].stores_list[indxStore].size_units_list.forEach(_unit => {
                                   if (_unit.id == _item.main_unit.id)
                                     _size.store_count = _unit.current_count;
                                 });
+                              }
                             } else _size.store_count = 0;
 
                           } else _size.store_count = 0;
@@ -328,7 +332,8 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.item.sizes = $scope.item.sizes || [];
     let foundSize = false;
-    if ($scope.item.name && $scope.item.name.sizes && $scope.item.name.sizes.length > 0)
+    if ($scope.item.name && $scope.item.name.sizes && $scope.item.name.sizes.length > 0) {
+
       $scope.item.name.sizes.forEach(_item => {
         let foundHold = false;
 
@@ -364,8 +369,10 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
                 });
                 if (foundStore)
                   _item.branches_list[indxBranch].stores_list[indxStore].size_units_list.forEach(_unit => {
-                    if (_unit.id == $scope.item.name.main_unit.id)
+                    if (_unit.id == $scope.item.name.main_unit.id) {
                       _item.store_count = _unit.current_count;
+
+                    }
                   });
               } else _item.store_count = 0;
 
@@ -377,6 +384,7 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
         if (!foundSize && _item.item_complex && !foundHold)
           $scope.item.sizes.unshift(_item);
       });
+    };
   };
 
   $scope.getBarcode = function (ev) {
