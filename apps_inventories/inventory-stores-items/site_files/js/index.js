@@ -226,7 +226,7 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
       });
 
       if (unitDiscount) {
-        $scope.error = '##word.unit_discount_err##';
+        $scope.error = '##word.err_barcode##';
         return;
       };
 
@@ -309,6 +309,7 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
       let notBarcodeUnit = false;
 
       $scope.category_item.sizes.forEach(_size => {
+        if (_unit.barcode === (undefined || null)) notBarcodeUnit = true;
         _size.size_units_list.forEach(_unit => {
           if (_unit.barcode == (undefined || null)) notBarcodeUnit = true;
           if (_unit.discount && _unit.discount.value > _unit.discount.max) unitDiscount = true;
@@ -317,7 +318,7 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
       });
 
       if (unitDiscount) {
-        $scope.error = '##word.unit_discount_err##';
+        $scope.error = '##word.err_barcode##';
         return;
       };
 
