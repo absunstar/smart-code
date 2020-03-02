@@ -8,16 +8,18 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
 
     if ($scope.defaultSettings && $scope.defaultSettings.inventory && !$scope.defaultSettings.inventory.auto_barcode_generation) {
 
+      if(!$scope.item.barcode || $scope.item.barcode === null) {
+        $scope.error = "##word.err_barcode##";
+        return
+      };
+
       let err_barcode1 = $scope.itemSizeList.some(_itemSize => _itemSize.barcode === $scope.item.barcode);
       let err_barcode2 = $scope.category_item.sizes.some(_itemSize => _itemSize.barcode === $scope.item.barcode);
 
       if (err_barcode1 || err_barcode2) {
         $scope.error = "##word.err_barcode_exist##";
         return;
-      } else if (!$scope.item.barcode) {
-        $scope.error = "##word.err_barcode##";
-        return
-      };
+      }
     }
 
     if (!$scope.category_item.sizes) {
@@ -216,8 +218,6 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
 
 
       $scope.category_item.sizes.forEach(_size => {
-        if (_size.barcode === (undefined || null)) notBarcodeUnit = true;
-
         _size.size_units_list.forEach(_unit => {
           if (_unit.barcode === (undefined || null)) notBarcodeUnit = true;
           if (_unit.discount && _unit.discount.value > _unit.discount.max) unitDiscount = true;
@@ -309,7 +309,7 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
       let notBarcodeUnit = false;
 
       $scope.category_item.sizes.forEach(_size => {
-        if (_unit.barcode === (undefined || null)) notBarcodeUnit = true;
+        if (_size.barcode === (undefined || null)) notBarcodeUnit = true;
         _size.size_units_list.forEach(_unit => {
           if (_unit.barcode == (undefined || null)) notBarcodeUnit = true;
           if (_unit.discount && _unit.discount.value > _unit.discount.max) unitDiscount = true;
