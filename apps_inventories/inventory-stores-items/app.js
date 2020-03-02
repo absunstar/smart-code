@@ -1320,6 +1320,11 @@ module.exports = function init(site) {
                     start_count: 0,
                     price: _sizes.price,
                     cost: _sizes.cost,
+                    discount: {
+                      value: 0,
+                      max: 0,
+                      type: 'number'
+                    },
                     discount: _sizes.discount,
                     total_buy_price: 0,
                     total_buy_count: 0,

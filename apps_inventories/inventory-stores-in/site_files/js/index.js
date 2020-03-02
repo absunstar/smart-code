@@ -644,7 +644,6 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
               price: _size.unit.price,
               discount: _size.unit.discount,
               barcode: _size.barcode,
-              average_cost: _size.average_cost,
               count: _size.count,
               discount: _size.discount,
               total: _size.total,
@@ -658,16 +657,17 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
     } else $scope.error = "##word.err_transaction_type##";
   };
 
-  $scope.calcSize = function (size) {
+  $scope.calcSize = function (calc_size) {
     $scope.error = '';
+
     setTimeout(() => {
       let discount = 0;
-      if (size.cost && size.count) {
-        if (size.discount.type == 'number')
-          discount = size.discount.value * size.count;
-        else if (size.discount.type == 'percent')
-          discount = size.discount.value * (size.cost * size.count) / 100;
-        size.total = ((site.toNumber(size.cost) * site.toNumber(size.count)) - discount);
+      if (calc_size.cost && calc_size.count) {
+        if (calc_size.discount.type == 'number')
+          discount = calc_size.discount.value * calc_size.count;
+        else if (calc_size.discount.type == 'percent')
+          discount = calc_size.discount.value * (calc_size.cost * calc_size.count) / 100;
+        calc_size.total = ((site.toNumber(calc_size.cost) * site.toNumber(calc_size.count)) - discount);
       }
       $scope.calc($scope.store_in);
     }, 100);

@@ -385,9 +385,6 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
 
             let discount = 0;
 
-            if ($scope.store_out.type && $scope.store_out.type.id == 5)
-              _size.price = _size.cost
-
             if (_size.price && _size.count) {
               if (_size.discount.type == 'number')
                 discount = (_size.discount.value || 0) * _size.count;
@@ -420,17 +417,17 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
     } else $scope.error = "##word.err_transaction_type##";
   };
 
-  $scope.calcSize = function (size) {
+  $scope.calcSize = function (calc_size) {
     $scope.error = '';
     setTimeout(() => {
       let discount = 0;
-      if (size.price && size.count) {
-        if (size.discount.type == 'number')
-          discount = size.discount.value * size.count;
-        else if (size.discount.type == 'percent')
-          discount = size.discount.value * (size.price * size.count) / 100;
+      if (calc_size.price && calc_size.count) {
+        if (calc_size.discount.type == 'number')
+          discount = calc_size.discount.value * calc_size.count;
+        else if (calc_size.discount.type == 'percent')
+          discount = calc_size.discount.value * (calc_size.price * calc_size.count) / 100;
 
-        size.total = ((site.toNumber(size.price) * site.toNumber(size.count)) - discount);
+        calc_size.total = ((site.toNumber(calc_size.price) * site.toNumber(calc_size.count)) - discount);
       }
       $scope.calc($scope.store_out);
     }, 100);

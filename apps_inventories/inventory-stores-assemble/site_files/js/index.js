@@ -34,10 +34,16 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
           items: [],
           date: new Date(),
         };
+        if ($scope.defaultSettings) {
 
-        if ($scope.defaultSettings.inventory) {
-          if ($scope.defaultSettings.inventory.store)
-            $scope.store_assemble.store = $scope.defaultSettings.inventory.store
+          if ($scope.defaultSettings.inventory) {
+            if ($scope.defaultSettings.inventory.store)
+              $scope.store_assemble.store = $scope.defaultSettings.inventory.store
+
+          }
+          if (!$scope.defaultSettings.general_Settings && $scope.defaultSettings.general_Settings.work_posting) {
+            $scope.store_assemble.posting = true
+          }
         }
         site.showModal('#addStoreAssembleModal');
       } else $scope.error = '##word.open_shift_not_found##';
@@ -87,7 +93,6 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
           $scope.busy = false;
           if (response.data.done) {
             site.hideModal('#addStoreAssembleModal');
-
             $scope.loadAll();
 
           } else $scope.error = response.data.error;

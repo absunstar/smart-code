@@ -38,9 +38,16 @@ app.controller("stores_dismantle", function ($scope, $http, $timeout) {
           date: new Date(),
         };
 
-        if ($scope.defaultSettings.inventory) {
-          if ($scope.defaultSettings.inventory.store)
-            $scope.store_dismantle.store = $scope.defaultSettings.inventory.store
+        if ($scope.defaultSettings) {
+
+          if ($scope.defaultSettings.inventory) {
+            if ($scope.defaultSettings.inventory.store)
+              $scope.store_dismantle.store = $scope.defaultSettings.inventory.store
+
+          }
+          if (!$scope.defaultSettings.general_Settings && $scope.defaultSettings.general_Settings.work_posting) {
+            $scope.store_dismantle.posting = true
+          }
         }
         site.showModal('#addStoreDismantleModal');
       } else $scope.error = '##word.open_shift_not_found##';
