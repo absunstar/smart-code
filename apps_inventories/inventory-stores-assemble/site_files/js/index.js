@@ -41,7 +41,7 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
               $scope.store_assemble.store = $scope.defaultSettings.inventory.store
 
           }
-          if (!$scope.defaultSettings.general_Settings && $scope.defaultSettings.general_Settings.work_posting) {
+          if ($scope.defaultSettings.general_Settings && !$scope.defaultSettings.general_Settings.work_posting) {
             $scope.store_assemble.posting = true
           }
         }

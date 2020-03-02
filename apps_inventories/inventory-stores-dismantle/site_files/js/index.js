@@ -45,7 +45,7 @@ app.controller("stores_dismantle", function ($scope, $http, $timeout) {
               $scope.store_dismantle.store = $scope.defaultSettings.inventory.store
 
           }
-          if (!$scope.defaultSettings.general_Settings && $scope.defaultSettings.general_Settings.work_posting) {
+          if ($scope.defaultSettings.general_Settings && !$scope.defaultSettings.general_Settings.work_posting) {
             $scope.store_dismantle.posting = true
           }
         }
