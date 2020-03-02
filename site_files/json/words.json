@@ -40,6 +40,16 @@
         "ar": "المورد"
     },
     {
+        "name": "cash",
+        "en": "Cash",
+        "ar": "كاش"
+    },
+    {
+        "name": "bank",
+        "en": "Bank",
+        "ar": "بنك"
+    },
+    {
         "name": "post_all",
         "en": "Post All",
         "ar": "ترحيل الكل"

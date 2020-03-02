@@ -20,7 +20,7 @@ app.controller("report_sales_total", function ($scope, $http, $timeout) {
           $scope.count = response.data.doc.length;
           $scope.list = response.data.doc;
 
-    
+
           $scope.average_cost = 0;
           $scope.count = 0;
           $scope.total = 0;
@@ -79,29 +79,29 @@ app.controller("report_sales_total", function ($scope, $http, $timeout) {
       type: 'space'
     }, {
       type: 'text2',
-      value2: site.toDateXF(InvoiceDate),
-      value: 'Date'
+      value: 'Date',
+      value2: site.toDateXF(InvoiceDate)
     }, {
       type: 'line'
     }, {
       type: 'text2',
-      value2: $scope.count,
-      value: 'Total Selling Count'
+      value: 'Total Selling Count',
+      value2: $scope.count
     }, {
       type: 'text2',
-      value2: $scope.total,
-      value: 'Total Selling Price'
+      value: 'Total Selling Price',
+      value2: $scope.total
     }, {
       type: 'line'
     }, {
       type: 'text3b',
       value: 'Item',
-      value2: "Unit",
+      value2: " Total Price",
       value3: 'Count'
     }, {
       type: 'text3b',
       value: 'الصنف',
-      value2: "الوحدة",
+      value2: "إجمالي السعر",
       value3: 'العدد'
     }, {
       type: 'space'
@@ -109,11 +109,13 @@ app.controller("report_sales_total", function ($scope, $http, $timeout) {
 
 
     _itemsList.forEach(_item => {
+      _item.total = site.toNumber(_item.total);
+
       obj_print.data.push(
         {
           type: 'text3',
           value: _item.size,
-          value2: _item.unit.name,
+          value2: _item.total,
           value3: _item.count
         }, { type: 'line' });
 

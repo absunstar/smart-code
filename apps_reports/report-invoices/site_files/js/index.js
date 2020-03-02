@@ -86,19 +86,27 @@ app.controller("report_invoices", function ($scope, $http, $timeout) {
           $scope.net_value = 0;
           $scope.total_tax = 0;
           $scope.total_discount = 0;
+          $scope.cash = 0;
+          $scope.bank = 0;
+
           $scope.list.forEach(_invoice => {
-
-            _invoice.total_discount = site.toNumber(_invoice.total_discount);
-            _invoice.total_tax = site.toNumber(_invoice.total_tax);
-
+           
             _invoice.net_value = site.toNumber(_invoice.net_value);
             _invoice.paid_up = site.toNumber(_invoice.paid_up);
             _invoice.remain_amount = site.toNumber(_invoice.remain_amount);
+            _invoice.total_discount = site.toNumber(_invoice.total_discount);
+            _invoice.total_tax = site.toNumber(_invoice.total_tax);
 
             $scope.remain_amount += site.toNumber(_invoice.remain_amount);
             $scope.net_value += site.toNumber(_invoice.net_value);
             $scope.total_tax += site.toNumber(_invoice.total_tax);
             $scope.total_discount += site.toNumber(_invoice.total_discount);
+        
+            if (_invoice.payment_method) {
+              if (_invoice.payment_method.id === 1)
+                $scope.cash += site.toNumber(_invoice.paid_up);
+              else $scope.bank += site.toNumber(_invoice.paid_up);
+            }
 
           });
 
@@ -118,6 +126,144 @@ app.controller("report_invoices", function ($scope, $http, $timeout) {
     )
   };
 
+
+  $scope.printAccountInvoive = function (_itemsList) {
+    $scope.error = '';
+    if ($scope.busy) return;
+    $scope.busy = true;
+
+    let ip = '127.0.0.1';
+    let port = '11111';
+
+    let InvoiceDate = new Date();
+
+
+
+
+
+    if ($scope.defaultSettings.printer_program) {
+      ip = $scope.defaultSettings.printer_program.ip || '127.0.0.1';
+      port = $scope.defaultSettings.printer_program.port || '11111';
+    };
+
+    let obj_print = { data: [] };
+
+    if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.printer_path)
+      obj_print.printer = $scope.defaultSettings.printer_program.printer_path.ip.trim();
+
+    if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.invoice_header)
+      obj_print.data.push({
+        type: 'header',
+        value: $scope.defaultSettings.printer_program.invoice_header
+      });
+
+    obj_print.data.push(
+      {
+        type: 'title',
+        value: 'Total  Accounts Invoices'
+      }, {
+      type: 'space'
+    }, {
+      type: 'text2',
+      value: 'Date',
+      value2: site.toDateXF(InvoiceDate)
+    }, {
+      type: 'line'
+    }, {
+      type: 'space'
+    }, {
+      type: 'text2',
+      value: 'Required',
+      value2: $scope.net_value
+    }, {
+      type: 'space'
+    }, {
+      type: 'text2',
+      value: 'Paid Up',
+      value2: $scope.paid_up
+    }, {
+      type: 'space'
+    }, {
+      type: 'text2',
+      value: 'Remain',
+      value2: $scope.remain_amount
+    }, {
+      type: 'space'
+    }, {
+      type: 'text2',
+      value: 'Tax',
+      value2: $scope.total_tax
+    }, {
+      type: 'space'
+    }, {
+      type: 'text2',
+      value: 'Discount',
+      value2: $scope.total_discount
+    }, {
+      type: 'space'
+    }, {
+      type: 'text2',
+      value: 'Cash',
+      value2: $scope.cash
+    }, {
+      type: 'space'
+    }, {
+      type: 'text2',
+      value: 'Bank',
+      value2: $scope.bank
+    });
+
+
+    if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.invoice_footer) {
+
+      obj_print.data.push({
+        type: 'space'
+      }, {
+        type: 'footer',
+        value: $scope.defaultSettings.printer_program.invoice_footer
+      });
+    }
+
+    $http({
+      method: "POST",
+      url: `http://${ip}:${port}/print`,
+      data: obj_print
+    }).then(
+      function (response) {
+        if (response)
+          $scope.busy = false;
+      },
+      function (err) {
+        console.log(err);
+      }
+    );
+
+  };
+
+  $scope.getDefaultSettings = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/default_setting/get",
+      data: {}
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.doc) {
+          $scope.defaultSettings = response.data.doc;
+
+        };
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+
+  };
+
+
   $scope.searchAll = function () {
     $scope._search = {};
     $scope.getReportInvoicesList($scope.search);
@@ -129,6 +275,7 @@ app.controller("report_invoices", function ($scope, $http, $timeout) {
   if (site.feature('restaurant'))
     $scope.getTransactionTypeList();
   $scope.getPaymentMethodList();
+  $scope.getDefaultSettings();
   $scope.getSourceType();
 
 });
