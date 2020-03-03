@@ -50,6 +50,11 @@ module.exports = function init(site) {
       where['items.name'] = new RegExp(where['name'], 'i')
     }
 
+    if (where['item_group']) {
+      where['items.item_group.id'] = where['item_group'].id;
+      delete where['item_group']
+    }
+
     if (where['size']) {
       where['items.size'] = new RegExp(where['size'], 'i')
     }

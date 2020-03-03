@@ -57,6 +57,11 @@ module.exports = function init(site) {
       delete where['unit']
     }
 
+    if (where['item_group']) {
+      where['items.item_group.id'] = where['item_group'].id;
+      delete where['item_group']
+    }
+
     if (where['size']) {
       where['items.size'] = new RegExp(where['size'], 'i')
       delete where['size']

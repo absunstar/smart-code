@@ -28,6 +28,32 @@ app.controller("report_sales_detailed", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.loadItemsGroups = function () {
+    $scope.busy = true;
+    $scope.itemsGroupList = [];
+    $http({
+      method: "POST",
+      url: "/api/items_group/all",
+      data: {
+        select: {
+          id: 1,
+          name: 1
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.itemsGroupList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
   $scope.searchAll = function () {
     $scope._search = {};
     $scope.getReportSalesList($scope.search);
@@ -36,4 +62,5 @@ app.controller("report_sales_detailed", function ($scope, $http, $timeout) {
   };
 
   $scope.getReportSalesList({date : new Date()});
+  $scope.loadItemsGroups();
 });

@@ -13,6 +13,26 @@ module.exports = function init(site) {
     compress: true
   })
 
+
+  site.on('[company][created]', doc => {
+
+    $currency.add({
+      name: "عملة إفتراضية",
+      image_url: '/images/currency.png',
+      ex_rate: 1,
+      company: {
+        id: doc.id,
+        name_ar: doc.name_ar
+      },
+      branch: {
+        code: doc.branch_list[0].code,
+        name_ar: doc.branch_list[0].name_ar
+      },
+      active: true
+    }, (err, doc) => { })
+  })
+
+
   site.post("/api/currency/add", (req, res) => {
     let response = {
       done: false
@@ -37,12 +57,11 @@ module.exports = function init(site) {
     }
 
     currency_doc.company = site.get_company(req)
-/*     currency_doc.branch = site.get_branch(req)
- */
+    currency_doc.branch = site.get_branch(req)
+
     $currency.find({
       'company.id': site.get_company(req).id,
-/*       'branch.code': site.get_branch(req).code,
- */      where: {
+      where: {
         'name': currency_doc.name
       }
     }, (err, doc) => {
@@ -173,10 +192,8 @@ module.exports = function init(site) {
     if (where['name']) {
       where['name'] = new RegExp(where['name'], "i");
     }
-
     where['company.id'] = site.get_company(req).id
-/*     where['branch.code'] = site.get_branch(req).code
- */
+
     $currency.findMany({
       select: req.body.select || {},
       where: where,

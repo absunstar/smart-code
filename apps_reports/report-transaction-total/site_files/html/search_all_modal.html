@@ -14,7 +14,8 @@
                     </div>
 
                     <div class="row">
-
+                        <i-list ng-search="_search.$item_group" class="col3" display="name" ng-model="search.item_group"
+                            label="##word.item_group##" items="itemsGroupList"></i-list>
                         <i-control class="col2" ng-model="search.name" label="##word.stores_items_name##" type="text">
                         </i-control>
                         <i-control class="col2" ng-model="search.size" label="##word.stores_items_sizes##" type="text">

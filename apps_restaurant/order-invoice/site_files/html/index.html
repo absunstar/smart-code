@@ -235,11 +235,13 @@
                                 <div class="row">
                                     <i-button type="bg-green" label="##word.new_order##" ng-click="newOrderInvoice()">
                                     </i-button>
+
                                     <i-button type="bg-blue" label="##word.open_orders##"
                                         ng-click="viewInvoicesActiveList()">
                                     </i-button>
-                                    <i-button type="bg-red" label="##word.cancel_order##"
-                                        ng-click="cancelOrderInvoice()">
+
+                                    <i-button x-permissions="order_invoice_cancel_order || order_invoice_manage"
+                                        type="bg-red" label="##word.cancel_order##" ng-click="cancelOrderInvoice()">
                                     </i-button>
                                 </div>
 
@@ -382,6 +384,7 @@
 
                                     <td class="center not-print">
                                         <i-button type="delete default" label="##word.delete##"
+                                            x-permissions="order_invoice_delete_items || order_invoice_manage"
                                             ng-click="deleteItemsList(size) ; calcSize(size)"></i-button>
                                     </td>
                                 </tr>

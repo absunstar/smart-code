@@ -397,7 +397,7 @@
     {
         "name": "inventory_stores_out",
         "en": "Stores Out",
-        "ar": "إذن صرف / فاتورة شراء"
+        "ar": "إذن صرف / فاتورة بيع"
     },
     {
         "name": "stores_out_total_value_gt",

@@ -1,8 +1,8 @@
 [
     {
         "name": "order_invoice",
-        "en": "Items Group",
-        "ar": "قائمة الأصناف"
+        "en": "Orders Screen",
+        "ar": "شاشة الطلبات"
     },
     {
         "name": "order_invoice_new",

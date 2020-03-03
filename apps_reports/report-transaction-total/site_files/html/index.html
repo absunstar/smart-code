@@ -37,25 +37,26 @@
                 </div>
                 <table class="table loaded center hover bold" id="t1">
                     <tr>
+                        <th> ##word.item_group## </th>
                         <th> ##word.stores_items_name## </th>
                         <th> ##word.barcode## </th>
                         <th> ##word.stores_size## </th>
                         <th>##word.average_cost##</th>
                         <th>##word.count_in##</th>
-                        <!-- <th>##word.total_in##</th> -->
-                        <!-- <th>##word.total_out##</th> -->
                         <th>##word.count_out##</th>
                         <th>##word.safes_payments_safe_balance##</th>
                     </tr>
 
                     <tr ng-repeat="c in list | orderBy : '-id'">
+                        <td> {{c.item_group.name}} </td>
                         <td> {{c.name}} </td>
                         <td class="blue"> {{c.barcode}} </td>
-                        <td> {{c.size}} </td>
+                        <td>
+                            <p>{{c.size}} </p>
+                            <p>{{c.size_en}} </p>
+                        </td>
                         <td> {{c.average_cost ||0}} </td>
-                        <!-- <td> {{c.total_in}} </td> -->
                         <td class="green"> {{c.count_in || 0}} </td>
-                        <!-- <td> {{c.total_out}} </td> -->
                         <td class="red"> {{c.count_out || 0}} </td>
                         <td> {{c.current_count || 0}} </td>
 

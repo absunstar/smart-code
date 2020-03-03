@@ -57,6 +57,11 @@ module.exports = function init(site) {
 
     }
 
+    if (where['item_group']) {
+      where['book_list.item_group.id'] = where['item_group'].id;
+      delete where['item_group']
+    }
+
     if (where['name']) {
       where['book_list.name'] = where['name']
       delete where['name']

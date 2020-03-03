@@ -112,7 +112,7 @@
                                 ng-show="defaultSettings.general_Settings.work_posting && !c.posting"
                                 ng-click="c.posting = true ; posting(c)"></i-button>
 
-                            <i-button x-permissions="stores_in_post || stores_in_manage" label="##word.unposting##"
+                            <i-button x-permissions="stores_in_unpost || stores_in_manage" label="##word.unposting##"
                                 ng-show="defaultSettings.general_Settings.work_unposting && c.posting"
                                 ng-click="c.posting = false ; posting(c)"></i-button>
 

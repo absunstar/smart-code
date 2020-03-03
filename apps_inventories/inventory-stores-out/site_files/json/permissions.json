@@ -7,6 +7,8 @@
     { "module_name" : "inventory" , "screen_name" : "inventory-stores-out" , "name":"stores_out_search" , "en":"Search" , "ar":"بحث"},
     { "module_name" : "inventory" , "screen_name" : "inventory-stores-out" , "name":"stores_out_export" , "en":"Export" , "ar":"تصدير"},
     { "module_name" : "inventory" , "screen_name" : "inventory-stores-out" , "name":"stores_out_print" , "en":"Print" , "ar":"طباعة"},
+    { "module_name" : "inventory" , "screen_name" : "inventory-stores-out" , "name":"stores_out_post" , "en":"Post" , "ar":"ترحيل"},
+    { "module_name" : "inventory" , "screen_name" : "inventory-stores-out" , "name":"stores_out_unpost" , "en":"UnPost" , "ar":"فك ترحيل"},
     { "module_name" : "inventory" , "screen_name" : "inventory-stores-out" , "name":"stores_out_price" , "en":"Edit Sale Price" , "ar":"تعديل سعر البيع"},
     { "module_name" : "inventory" , "screen_name" : "inventory-stores-out" , "name":"stores_out_ui" , "en":"UI" , "ar":"الواجهة الرسومية"},
     { "module_name" : "inventory" , "screen_name" : "inventory-stores-out" , "name":"stores_out_handle" , "en":"Handler" , "ar":"تهيئة"}

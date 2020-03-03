@@ -9,6 +9,5 @@
     { "module_name" : "inventory" , "screen_name" : "inventory-stores-dismantle" , "name":"stores_dismantle_print" , "en":"Print" , "ar":"طباعة"},
     { "module_name" : "inventory" , "screen_name" : "inventory-stores-dismantle" , "name":"stores_dismantle_post" , "en":"Post" , "ar":"ترحيل"},
     { "module_name" : "inventory" , "screen_name" : "inventory-stores-dismantle" , "name":"stores_dismantle_unpost" , "en":"UnPost" , "ar":"فك ترحيل"},
-    { "module_name" : "inventory" , "screen_name" : "inventory-stores-dismantle" , "name":"stores_dismantle_price" , "en":"Edit Purchase Price" , "ar":"تعديل سعر الشراء"},
     { "module_name" : "inventory" , "screen_name" : "inventory-stores-dismantle" , "name":"stores_dismantle_ui" , "en":"UI" , "ar":"الواجهة الرسومية"}
 ]

@@ -58,6 +58,7 @@
 
                     <table class="table loaded center hover bold" id="t1">
                         <tr>
+                            <th> ##word.item_group## </th>
                             <th> ##word.stores_items_name## </th>
                             <th> ##word.stores_size## </th>
                             <th> ##word.barcode## </th>
@@ -69,8 +70,12 @@
                         </tr>
 
                         <tr ng-repeat="c in list | orderBy : '-id'">
+                            <td> {{c.item_group.name}} </td>
                             <td> {{c.name}} </td>
-                            <td> {{c.size}} </td>
+                            <td>
+                                <p>{{c.size}}</p>
+                                <p>{{c.size_en}}</p>
+                            </td>
                             <td class="blue"> {{c.barcode}} </td>
                             <td>
                                 <p>{{c.unit.name}}</p>

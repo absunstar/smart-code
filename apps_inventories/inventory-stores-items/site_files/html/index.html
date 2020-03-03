@@ -95,7 +95,10 @@
                                     </tr>
 
                                     <tr ng-repeat="_size in c.sizes">
-                                        <td class="center">{{_size.size}}</td>
+                                        <td class="center">
+                                            <p>{{_size.size}}</p>
+                                            <p>{{_size.size_en}}</p>
+                                        </td>
                                         <td class="center blue">{{_size.barcode}}</td>
                                         <td class="center" x-feature="restaurant">{{_size.kitchen.name}}</td>
                                         <!-- <td class="center red">{{_size.cost}}</td>

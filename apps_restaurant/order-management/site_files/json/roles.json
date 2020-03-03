@@ -1,5 +1,5 @@
 [{
-    "module_name" : "accounting" ,
+    "module_name" : "public" ,
     "name": "order_management_admin",
     "en": "Order Management  Admin",
     "ar": "إدارة الطلبات",

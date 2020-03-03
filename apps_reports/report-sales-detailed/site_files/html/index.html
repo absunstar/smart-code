@@ -41,8 +41,9 @@
                         <th>##word.date##</th>
                         <th>##word.code##</th>
                         <th>##word.transaction_type##</th>
-                        <th>##word.stores_out_item_name##</th>
+                        <th>##word.item_group##</th>
                         <th>##word.barcode##</th>
+                        <th>##word.stores_out_item_name##</th>
                         <th>##word.stores_out_item_size##</th>
                         <th>##word.quantity##</th>
                         <th>##word.stores_price##</th>
@@ -55,9 +56,13 @@
                         <td class="brown"> {{itm.date | date : 'dd - MM - yyyy'}} </td>
                         <td class="blue"> {{itm.code}}</td>
                         <td> {{itm.type.ar}}</td>
+                        <td> {{itm.item_group.name}}</td>
                         <td> {{itm.name}}</td>
+                        <td>
+                            <p>{{itm.size}} </p>
+                            <p>{{itm.size_en}} </p>
+                        </td>
                         <td class="blue"> {{itm.barcode}}</td>
-                        <td> {{itm.size}}</td>
                         <td> {{itm.count}}</td>
                         <td><p> {{itm.price}} </p></td>
 
