@@ -48,7 +48,10 @@
                             <td> <br> {{$index + 1}}</td>
                             <td> <br> {{itm.name}}</td>
                             <td> <br> {{itm.barcode}}</td>
-                            <td> <br> {{itm.size}}</td>
+                            <td>
+                                <p>{{itm.size}}</p>
+                                <p>{{itm.size_en}}</p>
+                            </td>
                             <td>
                                 <i-list ng-model="itm.unit" ng-search="_search.$category_item.$unit_search"
                                     ng-change="itm.store_count = itm.unit.current_count ;calcSize(itm)"

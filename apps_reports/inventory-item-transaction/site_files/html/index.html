@@ -37,6 +37,7 @@
                         <tr>
                             <th>##word.item_transaction_date##</th>
                             <th>##word.vendor_name##</th>
+                            <th>##word.item_group##</th>
                             <th>##word.item_transaction_store##</th>
                             <th>##word.item_transaction_name##</th>
                             <th>##word.item_transaction_size##</th>
@@ -65,6 +66,10 @@
                             </td>
                             <td>
                                 <br>
+                                <p class=" blue center"> {{c.item_group.name}} </p>
+                            </td>
+                            <td>
+                                <br>
                                 <p class=" blue center"> {{c.store.name}} </p>
                             </td>
                             <td>
@@ -74,6 +79,7 @@
                             <td>
                                 <br>
                                 <p class="bold blue center"> {{c.size}} </p>
+                                <p class="bold blue center"> {{c.size_en}} </p>
                             </td>
                             <td>
                                 <br>

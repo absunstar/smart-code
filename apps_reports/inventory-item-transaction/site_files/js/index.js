@@ -203,6 +203,32 @@ app.controller("item_transaction", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.loadItemsGroups = function () {
+    $scope.busy = true;
+    $scope.itemsGroupList = [];
+    $http({
+      method: "POST",
+      url: "/api/items_group/all",
+      data: {
+        select: {
+          id: 1,
+          name: 1
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.itemsGroupList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
   $scope.handeItemTransactions = function () {
     $scope.error = '';
     $scope.busy = true;
@@ -225,7 +251,7 @@ app.controller("item_transaction", function ($scope, $http, $timeout) {
 
   $scope.loadvendors();
   $scope.loadStores();
- 
+  $scope.loadItemsGroups();
   $scope.loadTransactionTypes();
   $scope.loadEng();
   $scope.loadAll({ date: new Date() });

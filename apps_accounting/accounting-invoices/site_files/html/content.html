@@ -131,7 +131,10 @@
                                 </tr>
 
                                 <tr ng-repeat="c in account_invoices.current_book_list">
-                                    <td class="center title">{{c.size}}</td>
+                                    <td class="center title">
+                                        <p>{{c.size}}</p>
+                                        <p>{{c.size_en}}</p>
+                                    </td>
                                     <td class="center blue">{{c.count}}</td>
                                     <td class="center">
                                         <p ng-hide="account_invoices.source_type.id ==1">{{c.price}}</p>

@@ -1,47 +1,28 @@
 module.exports = function init(site) {
   const $account_invoices = site.connectCollection("account_invoices")
 
-  A_itemName_list = []
-  site.on('[stores_items][item_name][change]', obj => {
-    A_itemName_list.push(Object.assign({}, obj))
-  })
+  site.on('[stores_items][item_name][change]', objectInvoice => {
 
-  function A_itemName_handle(obj) {
-    if (obj == null) {
-      if (A_itemName_list.length > 0) {
-        obj = A_itemName_list[0]
-        A_itemName_handle(obj)
-        A_itemName_list.splice(0, 1)
-      } else {
-        setTimeout(() => {
-          A_itemName_handle(null)
-        }, 1000);
-      }
-      return
-    }
+    let barcode = objectInvoice.sizes_list.map(_obj => _obj.barcode)
 
-    let barcode = obj.sizes_list.map(_obj => _obj.barcode)
-    let size = obj.sizes_list.map(_obj => _obj.size)
-
-    $account_invoices.findMany({ 'company.id': obj.company.id, 'current_book_list.size': size, 'current_book_list.barcode': barcode }, (err, doc) => {
+    $account_invoices.findMany({ 'company.id': objectInvoice.company.id, 'current_book_list.barcode': barcode }, (err, doc) => {
       if (doc) {
 
         doc.forEach(_doc => {
           if (_doc.current_book_list)
             _doc.current_book_list.forEach(_items => {
-              obj.sizes_list.forEach(_size => {
-                if (_items.barcode == _size.barcode)
+              objectInvoice.sizes_list.forEach(_size => {
+                if (_items.barcode === _size.barcode){
                   _items.size = _size.size
+                  _items.size_en = _size.size_en
+                }
               })
             });
           $account_invoices.update(_doc);
         });
-        A_itemName_handle(null)
       }
     });
-  }
-  A_itemName_handle(null)
-
+  });
 
 
   function addZero(code, number) {

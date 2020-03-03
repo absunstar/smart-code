@@ -3,42 +3,27 @@ module.exports = function init(site) {
   const $stores_dismantle = site.connectCollection("stores_dismantle")
 
 
-  in_itemName_list = []
-  site.on('[stores_items][item_name][change]', obj => {
-    in_itemName_list.push(Object.assign({}, obj))
-  })
+  site.on('[stores_items][item_name][change]', objectDismantle => {
 
-  function in_itemName_handle(obj) {
-    if (obj == null) {
-      if (in_itemName_list.length > 0) {
-        obj = in_itemName_list[0]
-        in_itemName_handle(obj)
-        in_itemName_list.splice(0, 1)
-      } else {
-        setTimeout(() => {
-          in_itemName_handle(null)
-        }, 1000);
-      }
-      return
-    }
 
-    let barcode = obj.sizes_list.map(_obj => _obj.barcode)
-    let size = obj.sizes_list.map(_obj => _obj.size)
+    let barcode = objectDismantle.sizes_list.map(_obj => _obj.barcode)
 
-    $stores_dismantle.findMany({ 'company.id': obj.company.id, 'items.size': size, 'items.barcode': barcode }, (err, doc) => {
+    $stores_dismantle.findMany({ 'company.id': objectDismantle.company.id, 'items.barcode': barcode }, (err, doc) => {
       doc.forEach(_doc => {
         if (_doc.items) _doc.items.forEach(_items => {
-          if (obj.sizes_list) obj.sizes_list.forEach(_size => {
-            if (_items.barcode == _size.barcode)
+          if (objectDismantle.sizes_list) objectDismantle.sizes_list.forEach(_size => {
+            if (_items.barcode == _size.barcode) {
               _items.size = _size.size
+              _items.size_en = _size.size_en
+            }
           })
         });
         $stores_dismantle.update(_doc);
       });
-      in_itemName_handle(null)
     });
-  };
-  in_itemName_handle(null)
+  });
+
+
 
   site.get({
     name: "stores_dismantle",

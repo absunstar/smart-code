@@ -568,12 +568,16 @@ module.exports = function init(site) {
 
           obj.company = item_doc.doc.company
 
-          item_doc.doc.sizes.forEach(size => {
+          item_doc.doc.sizes.forEach(_size => {
+            let foundSize = false;
+            let foundNameEn = false;
+            item_doc.old_doc.sizes.map(old_size => {
+              if (_size.size === old_size.size) foundSize = true
+              if (_size.size_en === old_size.size_en) foundNameEn = true
+            })
 
-            let found = item_doc.old_doc.sizes.some(old_size => size.size == old_size.size)
-
-            if (!found) {
-              obj.sizes_list.push({ size: size.size, barcode: size.barcode })
+            if (!foundSize || !foundNameEn) {
+              obj.sizes_list.push({ size: _size.size, barcode: _size.barcode, size_en: _size.size_en })
               exist = true
             }
           });

@@ -104,7 +104,10 @@
                                 </tr>
                                 <tr ng-repeat="c in order_management.book_list">
                                     <td class="center title">{{c.name}}</td>
-                                    <td class="center title">{{c.size}}</td>
+                                    <td class="center title">
+                                        <p>{{c.size}}</p>
+                                        <p>{{c.size_en}}</p>
+                                    </td>
                                     <td class="center blue">{{c.count}}</td>
                                     <td class="center">{{c.price}}</td>
                                     <td class="center green">{{c.total}}</td>

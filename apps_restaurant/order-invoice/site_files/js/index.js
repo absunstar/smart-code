@@ -1554,6 +1554,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
 
       $scope.current_items.sizes.forEach(_size => {
         _size.main_unit = $scope.current_items.main_unit;
+        _size.item_group = $scope.current_items.item_group;
         _size.size_units_list.forEach(_unit => {
           if (_unit.id === _size.main_unit.id) {
             _size.price = _unit.price
@@ -1600,7 +1601,8 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
       item.unit = item.size_units_list[indxUnit];
       item.discount = item.size_units_list[indxUnit].discount;
       item.price = item.size_units_list[indxUnit].price;
-      if (!foundHold)
+      if (!foundHold) {
+
         $scope.order_invoice.book_list.push({
           item_id: item.item_id,
           kitchen: item.kitchen,
@@ -1608,6 +1610,8 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
           store: item.store,
           barcode: item.barcode,
           size: item.size,
+          size_en: item.size_en,
+          item_group: item.item_group,
           unit: item.unit,
           total: (item.price - item.discount.value),
           vendor: item.vendor,
@@ -1616,6 +1620,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
           discount: item.discount,
           count: 1
         });
+      }
     };
     $scope.calc($scope.order_invoice);
   };

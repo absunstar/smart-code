@@ -19,7 +19,12 @@
                         <tr ng-repeat="itm in store_stock.items">
                             <td> <br> {{$index + 1}}</td>
                             <td> <br> {{itm.name}}</td>
-                            <td> <br> {{itm.size}}</td>
+
+                            <td>
+                                <p>{{itm.size}}</p>
+                                <p>{{itm.size_en}}</p>
+                            </td>
+
                             <td> <br> {{itm.barcode}}</td>
 
                             <td>

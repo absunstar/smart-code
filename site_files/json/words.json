@@ -40,6 +40,16 @@
         "ar": "المورد"
     },
     {
+        "name": "name_en",
+        "en": "Name In En",
+        "ar": "اللإسم بالإنجليزية"
+    },
+    {
+        "name": "size_en",
+        "en": "Size In En",
+        "ar": "المقاس بالإنجليزية"
+    },
+    {
         "name": "cash",
         "en": "Cash",
         "ar": "كاش"

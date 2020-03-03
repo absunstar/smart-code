@@ -4,49 +4,22 @@ module.exports = function init(site) {
 
 
 
-  transaction_itemName_list = []
-  site.on('[stores_items][item_name][change]', obj => {
-    transaction_itemName_list.push(Object.assign({}, obj))
-  })
+  site.on('[stores_items][item_name][change]', objectTransaction => {
 
-  function transaction_itemName_handle(obj) {
-    if (obj == null) {
-      if (transaction_itemName_list.length > 0) {
-        obj = transaction_itemName_list[0]
-        transaction_itemName_handle(obj)
-        transaction_itemName_list.splice(0, 1)
-      } else {
-        setTimeout(() => {
-          transaction_itemName_handle(null)
-        }, 1000);
-      }
-      return
-    }
+    let barcode = objectTransaction.sizes_list.map(_obj => _obj.barcode)
 
-    let barcode = obj.sizes_list.map(_obj => _obj.barcode)
-    let size = obj.sizes_list.map(_obj => _obj.size)
-
-    $item_transaction.findMany({ 'company.id': obj.company.id, 'size': size, 'barcode': barcode }, (err, doc) => {
+    $item_transaction.findMany({ 'company.id': objectTransaction.company.id, 'barcode': barcode }, (err, doc) => {
       if (doc) doc.forEach(_items => {
-        if (obj.sizes_list) obj.sizes_list.forEach(_size => {
-          if (_items.barcode == _size.barcode)
+        if (objectTransaction.sizes_list) objectTransaction.sizes_list.forEach(_size => {
+          if (_items.barcode == _size.barcode) {
             _items.size = _size.size
+            _items.size_en = _size.size_en
+          }
         })
         $item_transaction.update(_items);
       });
-      transaction_itemName_handle(null)
     });
-  };
-  transaction_itemName_handle(null)
-
-
-
-
-
-
-
-
-
+  });
 
 
 
@@ -295,7 +268,7 @@ module.exports = function init(site) {
     //   where['current_status'] = new RegExp(_r, 'i')
     //   delete where['un_post']
     // }
-    
+
 
     if (where['name']) {
       where['name'] = new RegExp(where['name'], 'i')
@@ -318,6 +291,12 @@ module.exports = function init(site) {
       where['store.id'] = where['store'].id;
       delete where['store']
     }
+
+    if (where['item_group']) {
+      where['item_group.id'] = where['item_group'].id;
+      delete where['item_group']
+    }
+
 
     if (where['store']) {
       where['store.id'] = where['store'].id;

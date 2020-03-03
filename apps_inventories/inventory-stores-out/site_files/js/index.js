@@ -397,6 +397,8 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
               image_url: $scope.item.image_url,
               name: _size.name,
               size: _size.size,
+              item_group: _size.item_group,
+              size_en: _size.size_en,
               size_units_list: _size.size_units_list,
               unit: _size.unit,
               cost: _size.unit.cost,
@@ -487,6 +489,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
 
                     if ((_size.barcode == $scope.item.search_item_name) || foundUnit) {
                       _size.name = _item.name;
+                      _size.item_group = _item.item_group;
                       _size.store = $scope.store_out.store;
                       _size.unit = _size.size_units_list[indxUnit];
                       _size.discount = _size.size_units_list[indxUnit].discount;
@@ -555,6 +558,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
       $scope.item.name.sizes.forEach(_item => {
         let foundHold = false;
         _item.name = $scope.item.name.name;
+        _item.item_group = $scope.item.name.item_group;
         _item.store = $scope.store_out.store;
         _item.count = 1;
 
@@ -646,6 +650,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
 
                   if ((_size.barcode == $scope.search_barcode) || foundUnit) {
                     _size.name = response.data.list[0].name;
+                    _size.item_group = response.data.list[0].item_group;
                     _size.store = $scope.store_out.store;
                     _size.unit = _size.size_units_list[indxUnit];
                     _size.discount = _size.size_units_list[indxUnit].discount;

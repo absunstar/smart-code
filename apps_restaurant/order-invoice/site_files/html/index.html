@@ -359,7 +359,10 @@
 
                                 <tr ng-repeat="size in order_invoice.book_list">
                                     <td class="center title">{{size.name}}</td>
-                                    <td class="center title">{{size.size}}</td>
+                                    <td class="center title">
+                                        <p>{{size.size}}</p>
+                                        <p>{{size.size_en}}</p>
+                                    </td>
                                     <td class="center">
                                         <i-control ng-change="calcSize(size)" ng-model="size.count" type="number">
                                         </i-control>

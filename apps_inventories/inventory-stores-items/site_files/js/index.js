@@ -8,7 +8,7 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
 
     if ($scope.defaultSettings && $scope.defaultSettings.inventory && !$scope.defaultSettings.inventory.auto_barcode_generation) {
 
-      if(!$scope.item.barcode || $scope.item.barcode === null) {
+      if (!$scope.item.barcode || $scope.item.barcode === null) {
         $scope.error = "##word.err_barcode##";
         return
       };
@@ -671,18 +671,18 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
 
     if ($scope.items_size && $scope.items_size.size) {
 
-      if (!foundSize)
+      if (!foundSize) {
         item.complex_items.unshift({
           name: $scope.items_size.name,
           size: $scope.items_size.size,
+          size_en: $scope.items_size.size_en,
+          item_group: $scope.items_size.item_group,
           barcode: $scope.items_size.barcode,
           unit: $scope.items_size.unit,
-          size_units_list: $scope.items_size.size_units_list,
           price: $scope.items_size.price,
           count: 0
         });
-
-      else $scope.error = "##word.dublicate_item##"
+      } else $scope.error = "##word.dublicate_item##"
 
     } else $scope.error = "##word.Err_should_select_item##";
 
@@ -727,6 +727,7 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
               response.data.list.forEach(_item => {
                 _item.sizes.forEach(_size => {
                   _size.name = _item.name;
+                  _size.item_group = _item.item_group;
                   _size.item_id = _item.id;
                   let indxUnit = 0;
                   _size.size_units_list.forEach((_unit, i) => {

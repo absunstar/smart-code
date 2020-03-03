@@ -3,42 +3,24 @@ module.exports = function init(site) {
   const $stores_stock = site.connectCollection("stores_stock")
 
 
-  stock_itemName_list = []
-  site.on('[stores_items][item_name][change]', obj => {
-    stock_itemName_list.push(Object.assign({}, obj))
-  })
+  site.on('[stores_items][item_name][change]', objectStock => {
 
-  function stock_itemName_handle(obj) {
-    if (obj == null) {
-      if (stock_itemName_list.length > 0) {
-        obj = stock_itemName_list[0]
-        stock_itemName_handle(obj)
-        stock_itemName_list.splice(0, 1)
-      } else {
-        setTimeout(() => {
-          stock_itemName_handle(null)
-        }, 1000);
-      }
-      return
-    }
+    let barcode = objectStock.sizes_list.map(_obj => _obj.barcode)
 
-    let barcode = obj.sizes_list.map(_obj => _obj.barcode)
-    let size = obj.sizes_list.map(_obj => _obj.size)
-
-    $stores_stock.findMany({ 'company.id': obj.company.id, 'items.size': size, 'items.barcode': barcode }, (err, doc) => {
+    $stores_stock.findMany({ 'company.id': objectStock.company.id, 'items.barcode': barcode }, (err, doc) => {
       doc.forEach(_doc => {
         if (_doc.items) _doc.items.forEach(_items => {
-          if (obj.sizes_list) obj.sizes_list.forEach(_size => {
-            if (_items.barcode == _size.barcode)
+          if (objectStock.sizes_list) objectStock.sizes_list.forEach(_size => {
+            if (_items.barcode == _size.barcode) {
               _items.size = _size.size
+              _items.size_en = _size.size_en
+            }
           })
         });
         $stores_stock.update(_doc);
       });
-      stock_itemName_handle(null)
     });
-  };
-  stock_itemName_handle(null)
+  });
 
 
   site.get({

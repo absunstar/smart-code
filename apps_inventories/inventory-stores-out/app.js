@@ -7,43 +7,24 @@ module.exports = function init(site) {
     })
   })
 
-  out_itemName_list = []
-  site.on('[stores_items][item_name][change]', obj => {
-    out_itemName_list.push(Object.assign({}, obj))
-  })
+  site.on('[stores_items][item_name][change]', objectStoreOut => {
 
-  function out_itemName_handle(obj) {
-    if (obj == null) {
-      if (out_itemName_list.length > 0) {
-        obj = out_itemName_list[0]
-        out_itemName_handle(obj)
-        out_itemName_list.splice(0, 1)
-      } else {
-        setTimeout(() => {
-          out_itemName_handle(null)
-        }, 1000);
-      }
-      return
-    }
+    let barcode = objectStoreOut.sizes_list.map(_obj => _obj.barcode)
 
-    let barcode = obj.sizes_list.map(_obj => _obj.barcode)
-    let size = obj.sizes_list.map(_obj => _obj.size)
-
-    $stores_out.findMany({ 'company.id': obj.company.id, 'items.size': size, 'items.barcode': barcode }, (err, doc) => {
+    $stores_out.findMany({ 'company.id': objectStoreOut.company.id, 'items.barcode': barcode }, (err, doc) => {
       doc.forEach(_doc => {
         if (_doc.items) _doc.items.forEach(_items => {
-          if (obj.sizes_list) obj.sizes_list.forEach(_size => {
-            if (_items.barcode == _size.barcode)
+          if (objectStoreOut.sizes_list) objectStoreOut.sizes_list.forEach(_size => {
+            if (_items.barcode == _size.barcode) {
               _items.size = _size.size
+              _items.size_en = _size.size_en
+            }
           })
         });
         $stores_out.update(_doc);
       });
-      out_itemName_handle(null)
-
     });
-  };
-  out_itemName_handle(null)
+  })
 
 
 
@@ -688,7 +669,7 @@ module.exports = function init(site) {
 
   //   site.getStoresOut = function (req, callback) {
   //    callback = callback || {};
- 
+
   //    let where = req.data.where || {};
   //    where['company.id'] = site.get_company(req).id
   //    where['branch.code'] = site.get_branch(req).code
@@ -701,5 +682,5 @@ module.exports = function init(site) {
   //      else callback(false)
   //    })
   //  }
-  
+
 }

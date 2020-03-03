@@ -8,42 +8,25 @@ module.exports = function init(site) {
   })
 
 
-  in_itemName_list = []
-  site.on('[stores_items][item_name][change]', obj => {
-    in_itemName_list.push(Object.assign({}, obj))
-  })
+  site.on('[stores_items][item_name][change]', objectStoreIn => {
 
-  function in_itemName_handle(obj) {
-    if (obj == null) {
-      if (in_itemName_list.length > 0) {
-        obj = in_itemName_list[0]
-        in_itemName_handle(obj)
-        in_itemName_list.splice(0, 1)
-      } else {
-        setTimeout(() => {
-          in_itemName_handle(null)
-        }, 1000);
-      }
-      return
-    }
 
-    let barcode = obj.sizes_list.map(_obj => _obj.barcode)
-    let size = obj.sizes_list.map(_obj => _obj.size)
+    let barcode = objectStoreIn.sizes_list.map(_obj => _obj.barcode)
 
-    $stores_in.findMany({ 'company.id': obj.company.id, 'items.size': size, 'items.barcode': barcode }, (err, doc) => {
+    $stores_in.findMany({ 'company.id': objectStoreIn.company.id, 'items.barcode': barcode }, (err, doc) => {
       doc.forEach(_doc => {
         if (_doc.items) _doc.items.forEach(_items => {
-          if (obj.sizes_list) obj.sizes_list.forEach(_size => {
-            if (_items.barcode == _size.barcode)
+          if (objectStoreIn.sizes_list) objectStoreIn.sizes_list.forEach(_size => {
+            if (_items.barcode == _size.barcode) {
               _items.size = _size.size
+              _items.size_en = _size.size_en
+            }
           })
         });
         $stores_in.update(_doc);
       });
-      in_itemName_handle(null)
     });
-  };
-  in_itemName_handle(null)
+  });
 
 
   site.on('[store_in][account_invoice][invoice]', function (obj) {

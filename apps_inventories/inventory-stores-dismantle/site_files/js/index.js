@@ -194,7 +194,9 @@ app.controller("stores_dismantle", function ($scope, $http, $timeout) {
           $scope.store_dismantle.items.unshift({
             image_url: $scope.item.image_url,
             name: _size.name,
+            item_group: _size.item_group,
             size: _size.size,
+            size_en: _size.size_en,
             barcode: _size.barcode,
             size_units_list: _size.size_units_list,
             unit: _size.unit,
@@ -263,6 +265,7 @@ app.controller("stores_dismantle", function ($scope, $http, $timeout) {
                       });
                     if ((_size.barcode == $scope.item.search_item_name) || foundUnit) {
                       _size.name = _item.name;
+                      _size.item_group = _item.item_group;
                       _size.store = $scope.store_dismantle.store;
                       _size.unit = _size.size_units_list[indxUnit];
                       _size.count = 1;
@@ -334,6 +337,7 @@ app.controller("stores_dismantle", function ($scope, $http, $timeout) {
       $scope.item.name.sizes.forEach(_item => {
         let foundHold = false;
         _item.name = $scope.item.name.name;
+        _item.item_group = $scope.item.name.item_group;
         _item.store = $scope.store_dismantle.store;
         let indxUnit = _item.size_units_list.findIndex(_unit => _unit.id == $scope.item.name.main_unit.id);
         _item.unit = _item.size_units_list[indxUnit];
@@ -412,6 +416,7 @@ app.controller("stores_dismantle", function ($scope, $http, $timeout) {
                     });
                   if ((_size.barcode == $scope.search_barcode) || foundUnit) {
                     _size.name = response.data.list[0].name;
+                    _size.item_group = response.data.list[0].item_group;
                     _size.store = $scope.store_dismantle.store;
                     _size.unit = _size.size_units_list[indxUnit];
                     _size.count = 1;

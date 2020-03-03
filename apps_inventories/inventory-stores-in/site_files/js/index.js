@@ -117,7 +117,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
     if ($scope.account_invoices) {
 
       $scope.account_invoices.total_remain = $scope.account_invoices.net_value - ($scope.account_invoices.paid_up * $scope.account_invoices.currency.ex_rate);
-    
+
       $scope.account_invoices.total_remain = site.toNumber($scope.account_invoices.total_remain)
       $scope.account_invoices.total_paid_up = site.toNumber($scope.account_invoices.total_paid_up)
       $scope.account_invoices.total_tax = site.toNumber($scope.account_invoices.total_tax)
@@ -632,12 +632,14 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
               else if (_size.discount.type == 'percent')
 
                 discount = (_size.discount.value || 0) * (_size.cost * _size.count) / 100;
-              _size.total = (site.toNumber(_size.total)  - discount);
+              _size.total = (site.toNumber(_size.total) - discount);
             }
             $scope.store_in.items.push({
               image_url: $scope.item.image_url,
               name: _size.name,
               size: _size.size,
+              item_group: _size.item_group,
+              size_en: _size.size_en,
               size_units_list: _size.size_units_list,
               unit: _size.unit,
               cost: _size.unit.cost,
@@ -724,9 +726,9 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
 
                     if ((_size.barcode == $scope.search_item_name) || foundUnit) {
                       _size.name = _item.name;
+                      _size.item_group = _item.item_group;
                       _size.store = $scope.store_in.store;
                       _size.count = 1;
-
                       _size.unit = _size.size_units_list[indxUnit];
                       _size.discount = _size.size_units_list[indxUnit].discount;
                       _size.cost = _size.size_units_list[indxUnit].cost
@@ -794,6 +796,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
       $scope.item.name.sizes.forEach(_item => {
         let foundHold = false;
         _item.name = $scope.item.name.name;
+        _item.item_group = $scope.item.name.item_group;
         _item.store = $scope.store_in.store;
         _item.count = 1;
 
@@ -886,6 +889,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
                   if ((_size.barcode == $scope.search_barcode) || foundUnit) {
 
                     _size.name = response.data.list[0].name;
+                    _size.item_group = response.data.list[0].item_group;
                     _size.store = $scope.store_in.store;
                     _size.count = 1;
                     _size.unit = _size.size_units_list[indxUnit];

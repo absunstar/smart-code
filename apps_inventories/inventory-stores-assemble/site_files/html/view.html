@@ -38,7 +38,10 @@
                         <tr ng-repeat="itm in store_assemble.items">
                             <td class="center blue">{{$index + 1}}</td>
                             <td class="center">{{itm.name}}</td>
-                            <td class="center">{{itm.size}}</td>
+                            <td class="center">
+                                <p>{{itm.size}}</p>
+                                <p>{{itm.size_en}}</p>
+                            </td>
                             <td class="center">{{itm.barcode}}</td>
                             <td class="center">{{itm.unit.name}}</td>
                             <td class="center">{{itm.count}}</td>

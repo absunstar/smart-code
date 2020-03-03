@@ -31,6 +31,9 @@
 
                     <div class="row">
 
+                        <i-list ng-search="_search.$item_group" class="col3" display="name" ng-model="search.item_group"
+                        label="##word.item_group##" items="itemsGroupList"></i-list>
+                        
                         <i-list ng-search="_search.$store" class="col3" display="name" ng-model="search.store"
                             label="##word.store##" items="storesList"></i-list>
 
