@@ -143,7 +143,6 @@
                                     <th>##word.stores_items_sizes##</th>
                                     <th>##word.barcode##
                                     </th>
-                                    <th x-feature="restaurant">##word.kitchen_name##</th>
                                     <th>##word.stores_current_balance##</th>
                                     <th>##word.stores_items_start_count##</th>
                                     <th>##word.actions##</th>
@@ -163,11 +162,6 @@
                                     <td>
                                         <br>
                                         <p class="center blue">{{itm.barcode}}</p>
-                                    </td>
-
-                                    <td x-feature="restaurant">
-                                        <i-list class="col3" ng-model="itm.kitchen" ng-search="_search.$kitchen_search"
-                                            items="itemsKitchenList"></i-list>
                                     </td>
 
                                     <td>
@@ -190,6 +184,12 @@
                                         <div class="row center">
                                             <i-button ng-show="itm.item_complex == true" type="view"
                                                 label="##word.complex_items##" ng-click="showComplexItemsView(itm)">
+                                            </i-button>
+                                        </div>
+
+                                        <div class="row center">
+                                            <i-button type="view" label="##word.branches_balances##"
+                                                ng-click="branchesBalances(itm)">
                                             </i-button>
                                         </div>
 

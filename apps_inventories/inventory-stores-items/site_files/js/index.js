@@ -1,7 +1,6 @@
 app.controller("stores_items", function ($scope, $http, $timeout) {
   $scope._search = {};
 
-
   $scope.addSize = function () {
 
     $scope.error = '';
@@ -34,22 +33,6 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
     if ($scope.item.discount && $scope.item.discount.value > $scope.item.discount.max) {
       $scope.error = "##word.err_discount_value##";
       return
-    };
-
-    if ($scope.complex && $scope.complex.length > 0)
-      $scope.complex = $scope.complex;
-
-    else $scope.complex = [];
-
-    if ($scope.complex_items && $scope.complex_items.length > 0) {
-
-      $scope.complex_items.forEach(item => {
-        item.barcode = $scope.item.barcode
-      });
-      $scope.com_item = {
-        complex_items: $scope.complex_items
-      };
-      $scope.complex.push($scope.com_item);
     };
 
     $scope.item.start_count = 0;
@@ -93,10 +76,7 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
       }
     };
 
-    if ($scope.defaultSettings.general_Settings) {
-      if ($scope.defaultSettings.general_Settings.kitchen)
-        $scope.item.kitchen = $scope.defaultSettings.general_Settings.kitchen
-    }
+
 
   };
 
@@ -173,7 +153,6 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
     };
 
     if ($scope.defaultSettings.general_Settings) {
-      if ($scope.defaultSettings.general_Settings.kitchen) $scope.item.kitchen = $scope.defaultSettings.general_Settings.kitchen
     }
 
     if ($scope.defaultSettings.inventory) {
@@ -288,7 +267,6 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
     $scope.items_size = {};
     $scope.view(category_item);
     if ($scope.defaultSettings.general_Settings) {
-      if ($scope.defaultSettings.general_Settings.kitchen) $scope.item.kitchen = $scope.defaultSettings.general_Settings.kitchen
     }
     site.showModal('#updateCategoryItemModal');
     document.querySelector('#updateCategoryItemModal .tab-link').click();
@@ -347,7 +325,6 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           site.hideModal('#updateCategoryItemModal');
-          $scope.loadAll();
         } else {
           $scope.error = '##word.error##';
         }
@@ -606,6 +583,26 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
     $http({
       method: "POST",
       url: "/api/stores_items/handel_items"
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.loadAll();
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.handelKitchen = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/stores_items/handel_kitchen"
     }).then(
       function (response) {
         $scope.busy = false;

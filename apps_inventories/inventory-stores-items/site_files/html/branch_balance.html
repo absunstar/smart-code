@@ -16,6 +16,7 @@
 
                         <tr>
                             <th>##word.branches##</th>
+                            <th x-feature="restaurant">##word.kitchen##</th>
                             <th>##word.average_cost##</th>
                             <th>##word.stores_current_balance##</th>
                             <th>##word.stores_start_balance##</th>
@@ -24,6 +25,15 @@
 
                         <tr ng-repeat="item in branchesBalance.branches_list">
                             <td class="center">{{item.name_ar}}</td>
+
+                            <td class="center" x-feature="restaurant">
+                                <p ng-show="branchesBalance.view">{{item.kitchen.name}}</p>
+                                <i-list ng-hide="branchesBalance.view" class="col4" ng-model="item.kitchen"
+                                    ng-search="_search.$kitchen_search" items="itemsKitchenList">
+                                </i-list>
+
+
+                            </td>
                             <td class="center red">{{item.average_cost}}</td>
                             <td class="center blue">{{item.current_count}}</td>
                             <td class="center blue">{{item.start_count}}</td>

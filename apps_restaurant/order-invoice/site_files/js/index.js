@@ -1577,15 +1577,21 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     $scope.order_invoice.book_list = $scope.order_invoice.book_list || [];
     let exist = false;
     let foundHold = false;
-    if (item.branches_list && item.branches_list.length > 0)
+    let kitchenBranch = {};
+    if (item.branches_list && item.branches_list.length > 0) {
+
       item.branches_list.forEach(_branch => {
-        if (_branch.code == '##session.branch.code##')
+        if (_branch.code == '##session.branch.code##') {
+          kitchenBranch = _branch.kitchen
           _branch.stores_list.forEach(_store => {
             if (_store.store && _store.store.id == $scope.order_invoice.store.id) {
               if (_store.hold) foundHold = true;
             }
           });
+        }
       });
+    }
+    
     $scope.order_invoice.book_list.forEach(el => {
       if (item.size == el.size && item.barcode == el.barcode && !el.printed) {
         exist = true;
@@ -1605,7 +1611,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
 
         $scope.order_invoice.book_list.push({
           item_id: item.item_id,
-          kitchen: item.kitchen,
+          kitchen: kitchenBranch,
           name: item.name,
           store: item.store,
           barcode: item.barcode,

@@ -5,6 +5,11 @@
         "ar": "إضافة صنف"
     },
     {
+        "name": "kitchen_handel",
+        "en": "Kitchen Handel",
+        "ar": "هندلة المطابخ"
+    },
+    {
         "name": "stores_items_new",
         "en": "New Category",
         "ar": "صنف جديد"

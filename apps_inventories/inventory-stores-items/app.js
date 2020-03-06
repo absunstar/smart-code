@@ -890,7 +890,41 @@ module.exports = function init(site) {
     })
   })
 
+  site.post("/api/stores_items/handel_kitchen", (req, res) => {
+    let response = {
+      done: false
+    }
+    let where = req.body.where || {}
 
+    where['company.id'] = site.get_company(req).id
+
+    $stores_items.findMany({
+      select: req.body.select || {},
+      where: where,
+      sort: req.body.sort || {
+        id: -1
+      },
+    }, (err, docs) => {
+      if (!err) {
+        response.done = true
+
+        docs.forEach(_docs => {
+          _docs.sizes.forEach(_size => {
+            if (_size.branches_list && _size.branches_list.length > 0) {
+              _size.branches_list.forEach(_branch => {
+                _branch.kitchen = _size.kitchen
+              })
+            }
+          });
+          $stores_items.update(_docs)
+        });
+
+      } else {
+        response.error = err.message
+      }
+      res.json(response)
+    })
+  })
 
   site.post("/api/stores_items/handel_items2", (req, res) => {
     let response = {
