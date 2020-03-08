@@ -1351,10 +1351,12 @@ module.exports = function init(site) {
                   let _barcodeUnit = _doc.id + _doc.company.id + unit.id + (Math.floor(Math.random() * 100)) + y
 
                   _sizes.barcode = _barcode
+                  _sizes.current_count = 0
+                  _sizes.start_count = 0
                   _sizes.item_complex = false
                   delete _sizes.complex_items
                   delete _sizes.value_add
-
+                  _sizes.size_units_list[0].cost = site.toNumber(_sizes.size_units_list[0].cost)
                   _sizes.size_units_list = [{
                     id: unit.id,
                     name: unit.name,
