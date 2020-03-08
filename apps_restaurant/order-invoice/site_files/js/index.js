@@ -1582,7 +1582,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
 
       item.branches_list.forEach(_branch => {
         if (_branch.code == '##session.branch.code##') {
-          kitchenBranch = _branch.kitchen
+          kitchenBranch = _branch.kitchen;
           _branch.stores_list.forEach(_store => {
             if (_store.store && _store.store.id == $scope.order_invoice.store.id) {
               if (_store.hold) foundHold = true;
