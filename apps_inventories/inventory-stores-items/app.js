@@ -501,7 +501,7 @@ module.exports = function init(site) {
 
             _size.size_units_list.forEach(_unit => {
               if (!_unit.barcode || _unit.barcode == '') {
-                _unit.barcode = doc.company.id + doc.id + (_unit.id || 0) + (Math.floor(Math.random() * 100) + i)+ y 
+                _unit.barcode = doc.company.id + doc.id + (_unit.id || 0) + (Math.floor(Math.random() * 100) + i) + y
               }
             });
 
@@ -542,7 +542,7 @@ module.exports = function init(site) {
           _size_unit.average_cost = _size_unit.cost
 
         if (!_size_unit.barcode || _size_unit.barcode == '')
-          _size_unit.barcode = stores_items_doc.id + stores_items_doc.company.id + (_size_unit.id || 0) + (Math.floor(Math.random() * 100)) + _i + y 
+          _size_unit.barcode = stores_items_doc.id + stores_items_doc.company.id + (_size_unit.id || 0) + (Math.floor(Math.random() * 100)) + _i + y
       });
 
     });
@@ -1351,14 +1351,19 @@ module.exports = function init(site) {
                   let _barcodeUnit = _doc.id + _doc.company.id + unit.id + (Math.floor(Math.random() * 100)) + y
 
                   _sizes.barcode = _barcode
+                  _sizes.item_complex = false
+                  delete _sizes.complex_items
+                  delete _sizes.value_add
+
                   _sizes.size_units_list = [{
                     id: unit.id,
                     name: unit.name,
                     barcode: _barcodeUnit,
                     current_count: 0,
                     start_count: 0,
-                    price: _sizes.size_units_list[0].price,
                     cost: _sizes.size_units_list[0].cost,
+                    price: _sizes.size_units_list[0].price,
+                    average_cost: _sizes.size_units_list[0].cost,
                     discount: {
                       value: 0,
                       max: 0,
