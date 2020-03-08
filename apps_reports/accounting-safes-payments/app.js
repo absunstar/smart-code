@@ -48,6 +48,7 @@ module.exports = function init(site) {
       pre_balance: obj.pre_balance,
       invoice_type: obj.invoice_type,
       sourceName: obj.sourceName || '',
+      operation: obj.operation || '',
       description: obj.description || '',
       notes: obj.notes || '',
       code: obj.code || ''
@@ -190,6 +191,14 @@ module.exports = function init(site) {
     })
   })
 
-
+  site.safesPaymentsShift = function (shiftId, callback) {
+    $safes_payments.findMany({
+      where: { 'shift.id': shiftId }
+    }, (err, docs) => {
+      if (!err && docs)
+        callback(docs)
+      else callback(false)
+    })
+  }
 
 }

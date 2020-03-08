@@ -644,6 +644,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
               unit: _size.unit,
               cost: _size.unit.cost,
               price: _size.unit.price,
+              average_cost: _size.unit.average_cost,
               discount: _size.unit.discount,
               barcode: _size.barcode,
               count: _size.count,
@@ -731,7 +732,9 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
                       _size.count = 1;
                       _size.unit = _size.size_units_list[indxUnit];
                       _size.discount = _size.size_units_list[indxUnit].discount;
+                      _size.average_cost = _size.size_units_list[indxUnit].average_cost
                       _size.cost = _size.size_units_list[indxUnit].cost
+                      _size.price = _size.size_units_list[indxUnit].price
                       _size.total = _size.count * _size.cost;
 
                       if (_size.branches_list && _size.branches_list.length > 0) {
@@ -804,7 +807,9 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
         if (_item.size_units_list[indxUnit]) {
           _item.unit = _item.size_units_list[indxUnit];
           _item.discount = _item.size_units_list[indxUnit].discount;
+          _item.average_cost = _item.size_units_list[indxUnit].average_cost
           _item.cost = _item.size_units_list[indxUnit].cost;
+          _item.price = _item.size_units_list[indxUnit].price;
         }
 
         _item.total = _item.count * _item.cost;
@@ -894,7 +899,9 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
                     _size.count = 1;
                     _size.unit = _size.size_units_list[indxUnit];
                     _size.discount = _size.size_units_list[indxUnit].discount;
+                    _size.average_cost = _size.size_units_list[indxUnit].average_cost;
                     _size.cost = _size.size_units_list[indxUnit].cost;
+                    _size.price = _size.size_units_list[indxUnit].price;
                     _size.total = _size.count * _size.cost;
 
                     foundSize = $scope.store_in.items.some(_itemSize => _itemSize.barcode == _size.barcode);

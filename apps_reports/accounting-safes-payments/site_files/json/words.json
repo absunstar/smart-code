@@ -22,7 +22,6 @@
     {"name" : "safes_payments_safe_balance" , "en" : " Safe Balance" , "ar" : " الرصيد الحالي"}, 
     {"name" : "safes_payments_pre_safe_balance" , "en" : " Pre Safe Balance" , "ar" : " الرصيد السابقة"},
     {"name" : "safes_payments_description" , "en" : " Descroiption" , "ar" : "البيان"},
-
     
     {"name" : "safes_payments_logo" , "en" : "Safe Logo" , "ar" : "الشعار"},
     {"name" : "safes_payments_img" , "en" : "Safe Images" , "ar" : "الملفات"}

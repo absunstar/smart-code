@@ -316,4 +316,31 @@ module.exports = function init(site) {
   })
 
 
+  site.post("/api/shifts/get_invoices", (req, res) => {
+    let response = {
+      done: false
+    }
+
+    if (!req.session.user) {
+      response.error = 'Please Login First'
+      res.json(response)
+      return
+    }
+
+    site.safesPaymentsShift(req.body.id, accountInvoicesDocs => {
+
+      let obj = {}
+      obj.accounts_count =  accountInvoicesDocs.length
+      accountInvoicesDocs.forEach(_acc_Inv_doc => {
+        obj.total_discount =  _acc_Inv_doc.total_discount
+        obj.total_tax =  _acc_Inv_doc.total_tax
+        obj.total_remain =  _acc_Inv_doc.total_remain
+        
+      });
+
+
+    })
+  })
+
+
 }

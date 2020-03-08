@@ -85,7 +85,7 @@
                             <td>
                                 <i-list ng-disabled="store_in.type.id == 4" ng-model="itm.unit"
                                     ng-search="_search.$category_item.$unit_search"
-                                    ng-change="itm.discount = itm.unit.discount ; itm.cost = itm.unit.cost ;calcSize(itm)"
+                                    ng-change="itm.discount = itm.unit.discount ; itm.cost = itm.unit.cost ; itm.average_cost = itm.unit.average_cost ;calcSize(itm)"
                                     display2="barcode" items="itm.size_units_list"></i-list>
                             </td>
 

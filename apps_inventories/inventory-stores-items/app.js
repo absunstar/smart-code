@@ -176,11 +176,12 @@ module.exports = function init(site) {
                       comolex_docs.forEach(_complexDoc => {
                         if (_complexDoc.sizes && _complexDoc.sizes.length > 0)
                           _complexDoc.sizes.forEach(_complexSize => {
-                            if (_complexSize.complex_items && _complexSize.complex_items.length > 0)
+                            if (_complexSize.complex_items && _complexSize.complex_items.length > 0) {
                               _complexSize.complex_items.forEach(_complexItem => {
                                 if (_complexItem.barcode == obj.barcode && _complexItem.unit.id == obj.unit.id)
                                   _complexItem.unit.average_cost = _unitSize.average_cost
                               });
+                            }
                           });
                         $stores_items.update(_complexDoc, () => { });
                       });
@@ -493,16 +494,14 @@ module.exports = function init(site) {
         let foundBarcode = doc.sizes.every(_size => !_size.barcode)
         if (foundBarcode) {
           let y = new Date().getFullYear().toString()
-          let c = String(doc.id) + String(doc.company.id)
 
           stores_items_doc.sizes.forEach((_size, i) => {
             if (!_size.barcode || _size.barcode == '')
-              _size.barcode = c + y + (Math.floor(Math.random() * 100) + i)
+              _size.barcode = doc.company.id + doc.id + y + (Math.floor(Math.random() * 100) + i)
 
             _size.size_units_list.forEach(_unit => {
               if (!_unit.barcode || _unit.barcode == '') {
-
-                _unit.barcode = c + (_unit.id || 0) + (Math.floor(Math.random() * 100) + i)
+                _unit.barcode = doc.company.id + doc.id + (_unit.id || 0) + (Math.floor(Math.random() * 100) + i)+ y 
               }
             });
 
@@ -514,7 +513,6 @@ module.exports = function init(site) {
       res.json(response)
     })
   })
-
 
 
   site.post("/api/stores_items/update", (req, res) => {
@@ -531,11 +529,10 @@ module.exports = function init(site) {
     });
 
     let y = new Date().getFullYear().toString()
-    let c = String(stores_items_doc.id) + String(stores_items_doc.company.id)
 
     stores_items_doc.sizes.forEach((_size, i) => {
       if (!_size.barcode || _size.barcode == '')
-        _size.barcode = c + y + (Math.floor(Math.random() * 100) + i)
+        _size.barcode = stores_items_doc.id + stores_items_doc.company.id + y + (Math.floor(Math.random() * 100)) + i
 
       _size.size_units_list.forEach((_size_unit, _i) => {
         let indx = stores_items_doc.units_list.findIndex(_unit1 => _unit1.id == _size_unit.id);
@@ -545,7 +542,7 @@ module.exports = function init(site) {
           _size_unit.average_cost = _size_unit.cost
 
         if (!_size_unit.barcode || _size_unit.barcode == '')
-          _size_unit.barcode = c + (_size_unit.id || 0) + (Math.floor(Math.random() * 100) + _i)
+          _size_unit.barcode = stores_items_doc.id + stores_items_doc.company.id + (_size_unit.id || 0) + (Math.floor(Math.random() * 100)) + _i + y 
       });
 
     });
@@ -926,7 +923,7 @@ module.exports = function init(site) {
     })
   })
 
-  site.post("/api/stores_items/handel_items2", (req, res) => {
+  site.post("/api/stores_items/reset_items", (req, res) => {
     let response = {
       done: false
     }
@@ -944,7 +941,6 @@ module.exports = function init(site) {
       if (!err) {
         response.done = true
 
-
         docs.forEach(_docs => {
           _docs.sizes.forEach(_sizes => {
             _sizes.count = 0
@@ -954,10 +950,11 @@ module.exports = function init(site) {
             _sizes.total_buy_count = 0
             _sizes.total_sell_price = 0
             _sizes.total_sell_count = 0
-            _sizes.branches_list = []
+            _sizes.branches_list
 
           });
           $stores_items.update(_docs)
+          // $stores_items.delete({id: _docs.id})
         });
 
       } else {
@@ -1012,7 +1009,7 @@ module.exports = function init(site) {
             if (_doc.sizes && _doc.sizes.length > 0)
               _doc.sizes.forEach(_sizes => {
                 let _barcode = _doc.id + _doc.company.id + _doc.branch.code + y + (Math.floor(Math.random() * 100))
-                let _barcodeUnit = _doc.id + _doc.company.id + _doc.branch.code + unit.id + (Math.floor(Math.random() * 100) + y)
+                let _barcodeUnit = _doc.id + _doc.company.id + _doc.branch.code + unit.id + (Math.floor(Math.random() * 100)) + y
 
                 if (unit.id) {
 
@@ -1329,8 +1326,6 @@ module.exports = function init(site) {
           let unit = {}
 
           if (callback.inventory) {
-            if (callback.inventory.store)
-              store = callback.inventory.store
             if (callback.inventory.unit)
               unit = callback.inventory.unit
           }
@@ -1345,25 +1340,30 @@ module.exports = function init(site) {
               convert: 1
             }]
 
+            if (_doc.sizes && _doc.sizes.length > 0) {
 
-            if (_doc.sizes && _doc.sizes.length > 0)
               _doc.sizes.forEach(_sizes => {
-                if (unit.id) {
 
+                if (unit.id) {
+                  let y = new Date().getFullYear().toString()
+
+                  let _barcode = _doc.id + _doc.company.id + y + (Math.floor(Math.random() * 100))
+                  let _barcodeUnit = _doc.id + _doc.company.id + unit.id + (Math.floor(Math.random() * 100)) + y
+
+                  _sizes.barcode = _barcode
                   _sizes.size_units_list = [{
                     id: unit.id,
                     name: unit.name,
-                    barcode: _barcode,
+                    barcode: _barcodeUnit,
                     current_count: 0,
                     start_count: 0,
-                    price: _sizes.price,
-                    cost: _sizes.cost,
+                    price: _sizes.size_units_list[0].price,
+                    cost: _sizes.size_units_list[0].cost,
                     discount: {
                       value: 0,
                       max: 0,
                       type: 'number'
                     },
-                    discount: _sizes.discount,
                     total_buy_price: 0,
                     total_buy_count: 0,
                     total_sell_price: 0,
@@ -1372,39 +1372,42 @@ module.exports = function init(site) {
                     convert: 1
                   }]
 
-                  if (_sizes.branches_list && _sizes.branches_list.length > 0) {
+                  _sizes.branches_list = []
 
-                    _sizes.branches_list.forEach(_branch => {
-                      _branch.size_units_list = [{
-                        id: unit.id,
-                        name: unit.name,
-                        current_count: 0,
-                        start_count: 0,
-                        total_buy_price: 0,
-                        total_buy_count: 0,
-                        total_sell_price: 0,
-                        total_sell_count: 0,
-                        average_cost: 0
-                      }]
+                  // if (_sizes.branches_list && _sizes.branches_list.length > 0) {
 
-                      if (_branch.stores_list && _branch.stores_list.length > 0)
-                        _branch.stores_list.forEach(_store => {
-                          _store.size_units_list = [{
-                            id: unit.id,
-                            name: unit.name,
-                            current_count: 0,
-                            start_count: 0,
-                            total_buy_price: 0,
-                            total_buy_count: 0,
-                            total_sell_price: 0,
-                            total_sell_count: 0,
-                            average_cost: 0
-                          }]
-                        });
-                    });
-                  }
+                  //   _sizes.branches_list.forEach(_branch => {
+                  //     _branch.size_units_list = [{
+                  //       id: unit.id,
+                  //       name: unit.name,
+                  //       current_count: 0,
+                  //       start_count: 0,
+                  //       total_buy_price: 0,
+                  //       total_buy_count: 0,
+                  //       total_sell_price: 0,
+                  //       total_sell_count: 0,
+                  //       average_cost: 0
+                  //     }]
+
+                  //     if (_branch.stores_list && _branch.stores_list.length > 0)
+                  //       _branch.stores_list.forEach(_store => {
+                  //         _store.size_units_list = [{
+                  //           id: unit.id,
+                  //           name: unit.name,
+                  //           current_count: 0,
+                  //           start_count: 0,
+                  //           total_buy_price: 0,
+                  //           total_buy_count: 0,
+                  //           total_sell_price: 0,
+                  //           total_sell_count: 0,
+                  //           average_cost: 0
+                  //         }]
+                  //       });
+                  //   });
+                  // }
                 }
               });
+            }
             $stores_items.update(_doc)
           });
         })
