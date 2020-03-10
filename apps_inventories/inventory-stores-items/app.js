@@ -654,7 +654,7 @@ module.exports = function init(site) {
       where.$or = []
 
       where.$or.push({
-        'sizes.size': new RegExp(search, "i")
+        'sizes.size': search
       })
 
       where.$or.push({
@@ -662,15 +662,15 @@ module.exports = function init(site) {
       })
 
       where.$or.push({
-        'sizes.size_units_list.barcode': new RegExp(search, "i")
+        'sizes.size_units_list.barcode': search
       })
 
       where.$or.push({
-        'name': new RegExp(search, "i")
+        'name': search
       })
 
       where.$or.push({
-        'item_group.name': new RegExp(search, "i")
+        'item_group.name': search
       })
 
     }
