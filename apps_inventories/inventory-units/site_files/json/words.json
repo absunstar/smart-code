@@ -35,7 +35,7 @@
         "ar": "حذف وحدة "
     },
     {
-        "name": "units_name",
+        "name": "unit_name",
         "en": "Unit Name",
         "ar": "إسم الوحدة "
     }
