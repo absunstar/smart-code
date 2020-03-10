@@ -106,46 +106,31 @@ module.exports = function init(site) {
           response.done = true
           let doc = document.doc
           doc.items.forEach(_itm => {
-            let item = _itm
-            item.company = doc.company
-            item.branch = doc.branch_from
-            item.number = doc.number
-            item.current_status = 'transferred'
-            item.date = doc.date
-            item.transaction_type = 'out'
-            item.store = doc.store_from
-            site.call('item_transaction - items', Object.assign({}, item))
+            _itm.company = doc.company
+            _itm.branch = doc.branch_from
+            _itm.number = doc.number
+            _itm.current_status = 'transferred'
+            _itm.date = doc.date
+            _itm.transaction_type = 'out'
+            _itm.store = doc.store_from
+            site.call('item_transaction - items', Object.assign({}, _itm))
+            _itm.type = 'minus'
+            site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _itm))
           })
 
           doc.items.forEach(_itm => {
-            let item = _itm
-            item.company = doc.company
-            item.branch = doc.branch_to
-            item.number = doc.number
-            item.current_status = 'transferred'
-            item.date = doc.date
-            item.transaction_type = 'in'
-            item.store = doc.store_to
-            site.call('item_transaction + items', Object.assign({}, item))
+            _itm.company = doc.company
+            _itm.branch = doc.branch_to
+            _itm.number = doc.number
+            _itm.current_status = 'transferred'
+            _itm.date = doc.date
+            _itm.transaction_type = 'in'
+            _itm.store = doc.store_to
+            site.call('item_transaction + items', Object.assign({}, _itm))
+            _itm.type = 'sum'
+            site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _itm))
           })
 
-          doc.items.forEach(_itm => {
-            let item = _itm
-            item.type = 'minus'
-            item.store = doc.store_from
-            item.company = doc.company
-            item.branch = doc.branch_from
-            site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, item))
-          });
-
-          doc.items.forEach(_itm => {
-            let item = _itm
-            item.type = 'sum'
-            item.store = doc.store_to
-            item.company = doc.company
-            item.branch = doc.branch_to
-            site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, item))
-          });
         } else {
           response.error = err.message
         }
