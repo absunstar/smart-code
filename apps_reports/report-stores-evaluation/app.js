@@ -73,6 +73,7 @@ module.exports = function init(site) {
             _iStore.store_units_list.forEach(_store_units => {
               if (_size_units.id == _store_units.id) {
                 _store_units.average_cost = _size_units.average_cost
+                _store_units.total_average_cost = _size_units.average_cost * _size_units.current_count
               }
             });
           });

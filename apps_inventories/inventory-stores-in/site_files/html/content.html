@@ -23,7 +23,7 @@
 
                 <div class="row">
                     <i-list class="col3" ng-model="store_in.vendor" items="vendorsList" display="name_ar"
-                        ng-search="_search.$search_vendor" label="##word.stores_in_Company_name##" ></i-list>
+                        ng-search="_search.$search_vendor" label="##word.stores_in_Company_name##"></i-list>
 
                     <i-list class="col3" ng-model="store_in.store" items="storesList" ng-search="_search.$search_stores"
                         label="##word.store##" v="r"></i-list>
@@ -68,8 +68,9 @@
                             <th>##word.quantity##</th>
                             <th>##word.price##</th>
                             <th>##word.discount##</th>
-<!--                             <th>##word.maximum_discount##</th>
- -->                            <th>##word.stores_in_item_total##</th>
+                            <!--                             <th>##word.maximum_discount##</th>
+ -->
+                            <th>##word.stores_in_item_total##</th>
                             <th>##word.actions##</th>
                         </tr>
 
@@ -78,6 +79,7 @@
                             <td> <br> {{itm.name}}</td>
                             <td> <br> {{itm.barcode}}</td>
                             <td>
+                                <br>
                                 <p>{{itm.size}}</p>
                                 <p>{{itm.size_en}}</p>
                             </td>
@@ -107,7 +109,7 @@
                                 <b class="" ng-show="itm.discount.type =='number'">$</b>
                                 <b class="" ng-show="itm.discount.type =='percent'">%</b>
                             </td>
-                         <!--    <td> <br>
+                            <!--    <td> <br>
                                 <p class="red">{{itm.discount.max}}</p>
                                 <b class="" ng-show="itm.discount.type =='number'">$</b>
                                 <b class="" ng-show="itm.discount.type =='percent'">%</b>

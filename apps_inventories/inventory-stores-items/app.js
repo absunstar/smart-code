@@ -658,7 +658,7 @@ module.exports = function init(site) {
       })
 
       where.$or.push({
-        'sizes.barcode': new RegExp(search, "i")
+        'sizes.barcode': search
       })
 
       where.$or.push({

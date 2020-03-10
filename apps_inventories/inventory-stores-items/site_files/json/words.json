@@ -235,6 +235,11 @@
         "ar": "متوسط التكلفة"
     },
     {
+        "name": "total_average_cost",
+        "en": "Total Average Cost",
+        "ar": "إجمالي متوسط التكلفة"
+    },
+    {
         "name": "total_selling_price",
         "en": "Total Selling Price",
         "ar": "إجمالي سعر المبيعات"

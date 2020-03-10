@@ -78,7 +78,7 @@
                             </i-button>
 
                             <i-button x-permissions="transfer_branch_update || transfer_branch_manage" type="update"
-                                label="##word.edit##" ng-click="edit(c)"></i-button>
+                            ng-hide="c.transfer"  label="##word.edit##" ng-click="edit(c)"></i-button>
 
                             <i-button x-permissions="transfer_branch_delete || transfer_branch_manage" type="delete"
                                 ng-show="c.branch.code == ##session.branch.code##" label="##word.delete##"

@@ -85,6 +85,7 @@
                                         <th> ##word.barcode## </th>
                                         <th> ##word.items_count## </th>
                                         <th> ##word.average_cost## </th>
+                                        <th> ##word.total_average_cost## </th>
 
                                     </tr>
                                     <tr ng-repeat="u in c.store_units_list">
@@ -92,6 +93,7 @@
                                         <td class="blue"> {{u.barcode}} </td>
                                         <td> {{u.current_count || 0}} </td>
                                         <td class="red"> {{u.average_cost}} </td>
+                                        <td> {{u.total_average_cost}} </td>
                                     </tr>
                                 </table>
                             </td>
