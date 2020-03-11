@@ -416,8 +416,6 @@ module.exports = function init(site) {
 
 
 
-
-
   site.on('holding items', function (obj) {
     $stores_items.findMany({ 'company.id': obj.company.id }, (err, docs) => {
       docs.forEach(_doc => {
