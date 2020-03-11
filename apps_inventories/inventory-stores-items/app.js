@@ -421,24 +421,31 @@ module.exports = function init(site) {
   site.on('holding items', function (obj) {
     $stores_items.findMany({ 'company.id': obj.company.id }, (err, docs) => {
       docs.forEach(_doc => {
-        _doc.sizes.forEach(_size => {
-          obj.items.forEach(_item => {
-            if (_size.barcode == _item.barcode) {
-              _size.branches_list.forEach(_branch => {
-                if (_branch.code == obj.branch.code) {
-                  _branch.stores_list.forEach(_storeHold => {
-                    if (_storeHold.store && _storeHold.store.id == obj.store.id) {
 
-                      if (obj.hold) _storeHold.hold = true
-                      else _storeHold.hold = false
+        if (_doc.sizes && _doc.sizes.length > 0) {
+          _doc.sizes.forEach(_size => {
+            obj.items.forEach(_item => {
+              if (_size.barcode == _item.barcode) {
+                if (_size.branches_list && _size.branches_list.length > 0) {
+                  _size.branches_list.forEach(_branch => {
+                    if (_branch.code == obj.branch.code) {
+                      if (_branch.stores_list && _branch.stores_list.length > 0) {
+                        _branch.stores_list.forEach(_storeHold => {
+                          if (_storeHold.store && _storeHold.store.id == obj.store.id) {
 
+                            if (obj.hold) _storeHold.hold = true
+                            else _storeHold.hold = false
+
+                          }
+                        });
+                      }
                     }
                   });
                 }
-              });
-            }
+              }
+            });
           });
-        });
+        }
         $stores_items.update(_doc)
       });
     });
