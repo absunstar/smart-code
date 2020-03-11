@@ -331,6 +331,86 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
       });
   };
 
+
+  $scope.stockItemsGroup = function (item_group) {
+    $scope.error = '';
+    $scope.store_stock.items = [];
+    where = { item_group: item_group }
+    $http({
+      method: "POST",
+      url: "/api/stores_items/all",
+      data: { where: where }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          if (response.data.list.length > 0) {
+            let foundSize = false;
+            response.data.list.forEach(_list => {
+
+              if (_list.sizes && _list.sizes.length > 0)
+                _list.sizes.forEach(_size => {
+                  let foundHold = false;
+
+                  if (_size.size_units_list && _size.size_units_list.length > 0)
+                    _size.size_units_list.forEach(_unit => {
+
+                      if (_size.branches_list && _size.branches_list.length > 0) {
+                        let foundBranch = false;
+                        let indxBranch = 0;
+                        _size.branches_list.map((_branch, i) => {
+                          if (_branch.code == '##session.branch.code##') {
+                            foundBranch = true;
+                            indxBranch = i;
+                          }
+                        });
+                        if (foundBranch) {
+
+                          if (_size.branches_list[indxBranch].code == '##session.branch.code##') {
+                            if (_size.branches_list[indxBranch].stores_list && _size.branches_list[indxBranch].stores_list.length > 0) {
+
+                              let foundStore = false;
+                              let indxStore = 0;
+                              _size.branches_list[indxBranch].stores_list.map((_store, i) => {
+                                if (_store.store.id == $scope.store_stock.store.id) {
+                                  foundStore = true;
+                                  indxStore = i;
+                                  if (_store.hold) foundHold = true;
+                                }
+                              });
+                              _size.branches_list[indxBranch].stores_list[indxStore].size_units_list.forEach(_unitStore => {
+
+                                if (foundStore && _unitStore.id == _unit.id)
+                                  _unit.store_count = _unitStore.current_count || 0
+                              });
+                            }
+                          }
+                        }
+                      }
+                    });
+
+                  _size.name = _list.name;
+                  _size.item_group = _list.item_group;
+                  foundSize = $scope.store_stock.items.some(_itemSize => _itemSize.barcode == _size.barcode);
+                  if (!foundSize && !foundHold) $scope.store_stock.items.unshift(_size);
+
+                });
+            });
+
+            if (foundSize) $scope.error = '##word.dublicate_item##';
+          }
+
+        } else {
+          $scope.error = response.data.error;
+        };
+      },
+      function (err) {
+        console.log(err);
+      }
+    );
+  }
+
+
   $scope.stockGeneral = function () {
     $scope.error = '';
     $scope.store_stock.items = [];
@@ -530,7 +610,7 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
 
           if (store_stock.status == 1) site.hideModal('#updateStoreStockModal');
           else site.hideModal('#settlementItemsModal');
-          
+
           $scope.loadAll();
         } else {
           $scope.error = '##word.error##';
@@ -584,7 +664,6 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
 
 
 
-
   $scope.loadCategories = function () {
     $scope.error = '';
     $scope.busy = true;
@@ -601,7 +680,10 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done) $scope.categories = response.data.list;
+        if (response.data.done){
+
+          $scope.categories = response.data.list;
+        }
 
       },
       function (err) {

@@ -61,9 +61,7 @@ module.exports = function init(site) {
 
     $items_group.find({
       where: {
-        
         'company.id': site.get_company(req).id,
-        'branch.code': site.get_branch(req).code,
         'name': items_group_doc.name
       }
     }, (err, doc) => {
@@ -195,8 +193,7 @@ module.exports = function init(site) {
     }
 
     where['company.id'] = site.get_company(req).id
-/*     where['branch.code'] = site.get_branch(req).code
- */    
+
     $items_group.findMany({
       select: req.body.select || {},
       where: where,
