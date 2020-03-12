@@ -260,11 +260,13 @@ module.exports = function init(site) {
                   _unit.transaction_type = 'out'
                   site.call('item_transaction - items', Object.assign({}, _unit))
 
+                  site.call('[transfer_branch][stores_items][add_balance]', _unit)
                 } else if (_unit.stock_count > _unit.store_count) {
                   _unit.count = _unit.stock_count - _unit.store_count
                   _unit.type = 'sum'
                   _unit.transaction_type = 'in'
                   site.call('item_transaction + items', Object.assign({}, _unit))
+                  site.call('[transfer_branch][stores_items][add_balance]', _unit)
 
                 } else if(_unit.stock_count == _unit.store_count) {
 
@@ -273,9 +275,8 @@ module.exports = function init(site) {
                   _unit.type = 'sum'
                   _unit.transaction_type = 'in'
                   site.call('item_transaction + items', Object.assign({}, _unit))
+                  site.call('[transfer_branch][stores_items][add_balance]', _unit)
                 }
-
-                site.call('[transfer_branch][stores_items][add_balance]', _unit)
 
               });
           });
