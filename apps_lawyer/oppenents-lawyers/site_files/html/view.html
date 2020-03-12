@@ -64,8 +64,10 @@
 
                                 <tr>
                                     <td class="title"> ##word.status## </td>
-                                    <td ng-show="oppenents_lawyers.active == true" class="center green"> ##word.active## </td>
-                                    <td ng-show="oppenents_lawyers.active == false" class="center red"> ##word.not_active## </td>
+                                    <td ng-show="oppenents_lawyers.active == true" class="center green"> ##word.active##
+                                    </td>
+                                    <td ng-show="oppenents_lawyers.active == false" class="center red">
+                                        ##word.not_active## </td>
                                 </tr>
 
 
@@ -76,12 +78,13 @@
                             <i-image view ng-model="oppenents_lawyers.image_url"> </i-image>
                         </div>
 
-                        <i-button class="not-print" x-permission="print" type="print left"
-                            onclick="site.print('#oppenentDetailsModal #personalInformationTable')"></i-button>
+                        <i-button class="not-print" x-permissions="oppenents_lawyers_manage || oppenents_lawyers_print"
+                            type="print left" onclick="site.print('#oppenentDetailsModal #personalInformationTable')">
+                        </i-button>
                     </div>
                 </fieldset>
 
-              <!--   <fieldset id="oppenents_lawyersIdInforamationTable">
+                <!--   <fieldset id="oppenents_lawyersIdInforamationTable">
                     <legend> ##word.oppenents_lawyers_id_inforamation## </legend>
                     <table class="table hover">
                         <tr>
@@ -105,7 +108,7 @@
                         </tr>
 
                     </table>
-                    <i-button class="not-print" x-permission="print" type="print left"
+                    <i-button class="not-print" x-permissions="oppenents_lawyers_print || oppenents_lawyers_manage" type="print left"
                         onclick="site.print('#oppenentDetailsModal #oppenents_lawyersIdInforamationTable')"></i-button>
                 </fieldset> -->
             </div>
@@ -135,8 +138,9 @@
                             <td class="center"> {{oppenents_lawyers.address}} </td>
                         </tr>
                     </table>
-                    <i-button class="not-print" x-permission="print" type="print left "
-                        onclick="site.print('#oppenentDetailsModal #addressInformations')"></i-button>
+                    <i-button class="not-print" x-permissions="oppenents_lawyers_print || oppenents_lawyers_manage"
+                        type="print left " onclick="site.print('#oppenentDetailsModal #addressInformations')">
+                    </i-button>
 
                 </fieldset>
 
@@ -180,7 +184,8 @@
 
                     </table>
 
-                    <i-button class="not-print" x-permission="print" type="print left "
+                    <i-button class="not-print" x-permissions="oppenents_lawyers_print || oppenents_lawyers_manage"
+                        type="print left "
                         onclick="site.print('#oppenentDetailsModal #oppenents_lawyersContactInformations')"></i-button>
 
                 </fieldset>
@@ -199,7 +204,8 @@
                         </tr>
 
                     </table>
-                    <i-button class="not-print" x-permission="print" type="print left "
+                    <i-button class="not-print" x-permissions="oppenents_lawyers_print || oppenents_lawyers_manage"
+                        type="print left "
                         onclick="site.print('#oppenentDetailsModal #oppenents_lawyersPostInformations')"></i-button>
 
                 </fieldset>
@@ -220,7 +226,8 @@
                         <tr>
                             <td class="title"> ##word.oppenents_lawyers_social_facebook_account## </td>
                             <td class="center">
-                                <a ng-show="oppenents_lawyers.social_facebook" href="tel:{{oppenents_lawyers.social_facebook}}">
+                                <a ng-show="oppenents_lawyers.social_facebook"
+                                    href="tel:{{oppenents_lawyers.social_facebook}}">
                                     {{oppenents_lawyers.social_facebook}}
                                     <i class="fa fa-facebook" aria-hidden="true"></i>
                                 </a>
@@ -230,7 +237,8 @@
                         <tr>
                             <td class="title"> ##word.oppenents_lawyers_social_twitter_account## </td>
                             <td class="center">
-                                <a ng-show="oppenents_lawyers.social_twitter" href="tel:{{oppenents_lawyers.social_twitter}}">
+                                <a ng-show="oppenents_lawyers.social_twitter"
+                                    href="tel:{{oppenents_lawyers.social_twitter}}">
                                     {{oppenents_lawyers.social_twitter}}
                                     <i class="blue fa fa-twitter" aria-hidden="true"></i>
                                 </a>
@@ -240,7 +248,8 @@
                         <tr>
                             <td class="title"> ##word.oppenents_lawyers_social_google_account## </td>
                             <td class="center">
-                                <a ng-show="oppenents_lawyers.social_google" href="tel:{{oppenents_lawyers.social_google}}">
+                                <a ng-show="oppenents_lawyers.social_google"
+                                    href="tel:{{oppenents_lawyers.social_google}}">
                                     {{oppenents_lawyers.social_google}}
                                     <i class="red fa fa-google-plus" aria-hidden="true"></i>
                                 </a>
@@ -249,7 +258,8 @@
 
                     </table>
 
-                    <i-button class="not-print" x-permission="print" type="print left "
+                    <i-button class="not-print" x-permissions="oppenents_lawyers_print || oppenents_lawyers_manage"
+                        type="print left "
                         onclick="site.print('#oppenentDetailsModal #oppenents_lawyersWebAndSocialAccounts')"></i-button>
 
                 </fieldset>

@@ -34,7 +34,8 @@
                         <i-image view ng-model="printer_path.image_url"> </i-image>
                     </div>
 
-                    <i-button x-permission="print" type="print left " onclick="site.print('#vendorsGroupViewModal')">
+                    <i-button x-permissions="printers_path_print || printers_path_manage" type="print left "
+                        onclick="site.print('#vendorsGroupViewModal')">
                     </i-button>
                 </div>
             </fieldset>

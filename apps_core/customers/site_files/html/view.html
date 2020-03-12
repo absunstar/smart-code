@@ -7,7 +7,8 @@
 
             <a class="tab-link" onclick="site.showTabContent(event, '#contactAndAddress')">
                 ##word.customers_contact_and_addresses## </a>
-            <a class="tab-link" x-features="gym || academy" onclick="site.showTabContent(event,'#medicalConditionInformation')">
+            <a class="tab-link" x-features="gym || academy"
+                onclick="site.showTabContent(event,'#medicalConditionInformation')">
                 ##word.medical_condition##
             </a>
             <a class="tab-link" onclick="site.showTabContent(event, '#customersFiles')">
@@ -124,8 +125,9 @@
                             <i-image view ng-model="customer.image_url"> </i-image>
                         </div>
 
-                        <i-button class="not-print" x-permission="print" type="print left"
-                            onclick="site.print('#customerDetailsModal #personalInformationTable')"></i-button>
+                        <i-button class="not-print" x-permissions="customers_print || customers_manage"
+                            type="print left" onclick="site.print('#customerDetailsModal #personalInformationTable')">
+                        </i-button>
                     </div>
                 </fieldset>
 
@@ -153,7 +155,7 @@
                         </tr>
 
                     </table>
-                    <i-button class="not-print" x-permission="print" type="print left"
+                    <i-button class="not-print" x-permissions="customers_print || customers_manage" type="print left"
                         onclick="site.print('#customerDetailsModal #customersIdInforamationTable')"></i-button>
                 </fieldset>
             </div>
@@ -325,7 +327,7 @@
 
 
                     </table>
-                    <i-button class="not-print" x-permission="print" type="print left "
+                    <i-button class="not-print" x-permissions="customers_print || customers_manage" type="print left "
                         onclick="site.print('#customerDetailsModal #customersTaxInformations')"></i-button>
 
                 </fieldset>
@@ -381,7 +383,7 @@
 
 
                     </table>
-                    <i-button class="not-print" x-permission="print" type="print left "
+                    <i-button class="not-print" x-permissions="customers_print || customers_manage" type="print left "
                         onclick="site.print('#customerDetailsModal #commercialRegisterInformation')"></i-button>
                 </fieldset>
             </div>
@@ -440,7 +442,7 @@
                         </tr>
 
                     </table>
-                    <i-button class="not-print" x-permission="print" type="print left "
+                    <i-button class="not-print" x-permissions="customers_print || customers_manage" type="print left "
                         onclick="site.print('#customerDetailsModal #customersBalanceAndCurrencyInformation')">
                     </i-button>
                 </fieldset>
@@ -487,7 +489,7 @@
                         </tr>
 
                     </table>
-                    <i-button class="not-print" x-permission="print" type="print left "
+                    <i-button class="not-print" x-permissions="customers_print || customers_manage" type="print left "
                         onclick="site.print('#customerDetailsModal #accounting')"></i-button>
                 </fieldset>
 
@@ -507,8 +509,8 @@
                             </tr>
 
                         </table>
-                        <i-button class="not-print" x-permission="print" type="print left"
-                            onclick="site.print('#customerDetailsModal #banking')"></i-button>
+                        <i-button class="not-print" x-permissions="customers_print || customers_manage"
+                            type="print left" onclick="site.print('#customerDetailsModal #banking')"></i-button>
                     </fieldset>
                 </fieldset>
 
@@ -539,7 +541,7 @@
                             <td class="center"> {{customer.address}} </td>
                         </tr>
                     </table>
-                    <i-button class="not-print" x-permission="print" type="print left "
+                    <i-button class="not-print" x-permissions="customers_print || customers_manage" type="print left "
                         onclick="site.print('#customerDetailsModal #addressInformations')"></i-button>
 
                 </fieldset>
@@ -584,7 +586,7 @@
 
                     </table>
 
-                    <i-button class="not-print" x-permission="print" type="print left "
+                    <i-button class="not-print" x-permissions="customers_print || customers_manage" type="print left "
                         onclick="site.print('#customerDetailsModal #customersContactInformations')"></i-button>
 
                 </fieldset>
@@ -603,7 +605,7 @@
                         </tr>
 
                     </table>
-                    <i-button class="not-print" x-permission="print" type="print left "
+                    <i-button class="not-print" x-permissions="customers_print || customers_manage" type="print left "
                         onclick="site.print('#customerDetailsModal #customersPostInformations')"></i-button>
 
                 </fieldset>
@@ -653,7 +655,7 @@
 
                     </table>
 
-                    <i-button class="not-print" x-permission="print" type="print left "
+                    <i-button class="not-print" x-permissions="customers_print || customers_manage" type="print left "
                         onclick="site.print('#customerDetailsModal #customersWebAndSocialAccounts')"></i-button>
 
                 </fieldset>
@@ -737,8 +739,9 @@
                             </tr>
 
                         </table>
-                        <i-button class="not-print" x-permission="print" type="print left "
-                            onclick="site.print('#customerDetailsModal #branchInformations')"></i-button>
+                        <i-button class="not-print" x-permissions="customers_print || customers_manage"
+                            type="print left " onclick="site.print('#customerDetailsModal #branchInformations')">
+                        </i-button>
 
                     </fieldset>
 
@@ -790,11 +793,11 @@
                                 </td>
                             </tr>
                         </table>
-                        <i-button class="not-print" x-permission="print" type="print left "
-                            onclick="site.print('#customerDetailsModal #chargeName')"></i-button>
+                        <i-button class="not-print" x-permissions="customers_print || customers_manage"
+                            type="print left " onclick="site.print('#customerDetailsModal #chargeName')"></i-button>
                     </fieldset>
 
-                    <i-button class="not-print" x-permission="print" type="print left "
+                    <i-button class="not-print" x-permissions="customers_print || customers_manage" type="print left "
                         onclick="site.print('#customerDetailsModal #customersBranches')"></i-button>
 
                 </fieldset>
@@ -944,7 +947,7 @@
                         </table>
 
                     </fieldset>
-                    <i-button class="not-print" x-permission="print" type="print left "
+                    <i-button class="not-print" x-permissions="customers_print || customers_manage" type="print left "
                         onclick="site.print('#customerDetailsModal #dealingInformationsAll')"></i-button>
 
                 </fieldset>

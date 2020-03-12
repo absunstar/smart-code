@@ -105,7 +105,7 @@
                             <i-image view ng-model="office_lawyers.image_url"> </i-image>
                         </div>
 
-                        <i-button class="not-print" x-permission="print" type="print left"
+                        <i-button class="not-print" x-permissions="office_lawyers_print || office_lawyers_manage" type="print left"
                             onclick="site.print('#oppenentDetailsModal #personalInformationTable')"></i-button>
                     </div>
                 </fieldset>
@@ -134,7 +134,7 @@
                         </tr>
 
                     </table>
-                    <i-button class="not-print" x-permission="print" type="print left"
+                    <i-button class="not-print" x-permissions="office_lawyers_print || office_lawyers_manage" type="print left"
                         onclick="site.print('#oppenentDetailsModal #office_lawyersIdInforamationTable')"></i-button>
                 </fieldset> -->
             </div>
@@ -164,7 +164,7 @@
                             <td class="center"> {{office_lawyers.address}} </td>
                         </tr>
                     </table>
-                    <i-button class="not-print" x-permission="print" type="print left "
+                    <i-button class="not-print" x-permissions="office_lawyers_print || office_lawyers_manage" type="print left "
                         onclick="site.print('#oppenentDetailsModal #addressInformations')"></i-button>
 
                 </fieldset>
@@ -209,7 +209,7 @@
 
                     </table>
 
-                    <i-button class="not-print" x-permission="print" type="print left "
+                    <i-button class="not-print" x-permissions="office_lawyers_print || office_lawyers_manage" type="print left "
                         onclick="site.print('#oppenentDetailsModal #office_lawyersContactInformations')"></i-button>
 
                 </fieldset>
@@ -228,7 +228,7 @@
                         </tr>
 
                     </table>
-                    <i-button class="not-print" x-permission="print" type="print left "
+                    <i-button class="not-print" x-permissions="office_lawyers_print || office_lawyers_manage" type="print left "
                         onclick="site.print('#oppenentDetailsModal #office_lawyersPostInformations')"></i-button>
 
                 </fieldset>
@@ -279,7 +279,7 @@
 
                     </table>
 
-                    <i-button class="not-print" x-permission="print" type="print left "
+                    <i-button class="not-print" x-permissions="office_lawyers_print || office_lawyers_manage" type="print left "
                         onclick="site.print('#oppenentDetailsModal #office_lawyersWebAndSocialAccounts')"></i-button>
 
                 </fieldset>

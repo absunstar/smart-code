@@ -1,5 +1,5 @@
 <div id="printerPathDetailsModal" class="modal">
-    
+
 
     <div class="modal-content">
         <div class="modal-header">
@@ -18,11 +18,13 @@
         </div>
         <h2 class="error"> {{error}} </h2>
         <div class="modal-footer center">
-            <i-button x-permission="print" type="print" label="##word.print##" onclick="site.print('#v1')"></i-button>
+            <i-button x-permissions="printers_path_manage || printers_path_print" type="print" label="##word.print##"
+                onclick="site.print('#v1')"></i-button>
 
-            <i-button type="close" label="##word.close##" onclick="site.hideModal('#printerPathDetailsModal')"></i-button>
+            <i-button type="close" label="##word.close##" onclick="site.hideModal('#printerPathDetailsModal')">
+            </i-button>
 
         </div>
     </div>
-    
+
 </div>
