@@ -37,6 +37,7 @@ site.words.add({
     "ar": "ريال"
 })
 
+site.ready = false
 site.loadLocalApp('client-side')
 site.importApp(__dirname + '/apps_private/cloud_security', 'security')
 site.importApp(__dirname + '/apps_private/ui-print')
@@ -63,7 +64,12 @@ setTimeout(() => {
     // })
 
 }, 1000)
+setTimeout(() => {
+    site.ready = true
+}, 1000 * 2);
 
+
+site.exe(process.cwd() + '/applications/PrinterManager.exe')
 site.run()
 
 // site.on('zk attend', attend=>{

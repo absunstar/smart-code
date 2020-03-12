@@ -42,6 +42,7 @@ site.words.add({
     "ar": "ريال"
 })
 
+site.ready = false
 site.loadLocalApp('client-side')
 site.importApp(__dirname + '/apps_private/cloud_security', 'security')
 site.importApp(__dirname + '/apps_private/ui-print')
@@ -59,6 +60,18 @@ setTimeout(() => {
 
     site.importApp(__dirname + '/apps_private/companies')
     site.importApp(__dirname + '/apps_private/zk-reader')
+    // site.zk.load_attendance( {
+    //     ip: '192.168.100.201',
+    //     port: 4370,
+    //     inport: 5200,
+    //     timeout: 5000,
+    //     attendanceParser: 'v6.60',
+    //     connectionType: 'udp',
+    //     auto: true,
+    //     auto_time: 1000 * 3
+    // }, (err, attendance_array) => {
+    //     console.log(attendance_array || err)
+    // })
 
 }, 1000)
 setTimeout(() => {
@@ -69,6 +82,6 @@ setTimeout(() => {
 site.exe(process.cwd() + '/applications/PrinterManager.exe')
 site.run()
 
-site.on('zk attend', attend => {
-    console.log(attend)
-})
+// site.on('zk attend', attend=>{
+//     console.log(attend)
+// })
