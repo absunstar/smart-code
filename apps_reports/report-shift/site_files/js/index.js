@@ -1,15 +1,15 @@
-app.controller("report_stores_evaluation", function ($scope, $http, $timeout) {
+app.controller("report_shift", function ($scope, $http, $timeout) {
   $scope._search = {};
 
-  $scope.report_stores_evaluation = {};
+  $scope.report_shift = {};
 
-  $scope.getReportStoreEvaluationList = function (store) {
+  $scope.getShiftList = function (store) {
     $scope.busy = true;
     $scope.list = [];
     where = { store: store };
     $http({
       method: "POST",
-      url: "/api/report_stores_evaluation/all",
+      url: "/api/report_shift/all",
       data: {
         where: where
       }
@@ -19,7 +19,8 @@ app.controller("report_stores_evaluation", function ($scope, $http, $timeout) {
 
         if (response.data.done) {
           $scope.count = response.data.doc.length;
-          $scope.list = response.data.doc;
+          $scope.list = response.data.doc;          
+
         }
       },
       function (err) {
@@ -59,7 +60,7 @@ app.controller("report_stores_evaluation", function ($scope, $http, $timeout) {
     obj_print.data.push(
       {
         type: 'title',
-        value: 'Total StoreEvaluation Items'
+        value: 'Total Shift Items'
       }, {
       type: 'space'
     }, {
@@ -235,8 +236,8 @@ app.controller("report_stores_evaluation", function ($scope, $http, $timeout) {
 
   $scope.searchAll = function () {
     $scope._search = {};
-    $scope.getReportStoreEvaluationList($scope.search);
-    site.hideModal('#reportStoreEvaluationSearchModal');
+    $scope.getShiftList($scope.search);
+    site.hideModal('#reportShiftSearchModal');
     $scope.search = {}
   };
 

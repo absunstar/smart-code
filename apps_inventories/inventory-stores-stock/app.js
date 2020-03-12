@@ -230,9 +230,6 @@ module.exports = function init(site) {
       }, (err, result) => {
         if (!err) {
           response.done = true
-          result.doc.hold = false
-          site.call('holding items', Object.assign({}, result.doc))
-
           result.doc.items.forEach(_itm => {
             if (_itm.size_units_list && _itm.size_units_list.length > 0)
               _itm.size_units_list.forEach(_unit => {
@@ -268,6 +265,8 @@ module.exports = function init(site) {
                   _unit.type = 'sum'
                   _unit.transaction_type = 'in'
                   site.call('item_transaction + items', Object.assign({}, _unit))
+
+                } else if(_unit.stock_count == _unit.store_count) {
 
                 } else {
                   _unit.count = _unit.stock_count

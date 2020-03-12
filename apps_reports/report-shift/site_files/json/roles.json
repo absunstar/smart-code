@@ -1,0 +1,7 @@
+[{
+    "module_name" : "inventory" ,
+    "name": "report_shift_admin",
+    "en": "Report Inventory Evaluation Admin",
+    "ar": "تقرير تقييم المخزون",
+    "permissions": ["report_shift_manage"]
+}]

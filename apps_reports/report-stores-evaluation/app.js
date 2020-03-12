@@ -1,6 +1,5 @@
 module.exports = function init(site) {
   const $stores_items = site.connectCollection("stores_items")
-  // const $stores_items = site.connectCollection("stores_items")
 
   site.get({
     name: "report_stores_evaluation",

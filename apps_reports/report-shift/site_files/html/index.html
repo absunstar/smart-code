@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="report_shift_ui || report_shift_manage" data-ng-app="myApp">
+
+<head x-import="head.html">
+
+</head>
+
+<body class="##session.lang##">
+
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+    </nav>
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+    </nav>
+
+    <div id="main-layout" class="container">
+        <div class="row">
+            <div class="row" ng-controller="report_shift" x-permissions="login">
+
+                <div x-import="report-shift/search_all_modal.html"></div>
+
+                <div class="row">
+                    <h1 class="bold text-center"> ##word.report_shift_name## </h1>
+                </div>
+
+                <div class="top-actions">
+
+                    <!--   <i-button type="search"
+                        x-permissions="report_shift_search || report_shift_manage"
+                        label="##word.search_all##" onclick="site.showModal('#reportShiftSearchModal')">
+                    </i-button> -->
+
+                    <span ng-show="busy">
+                        <span class="sr-only">Loading...</span>
+                    </span>
+                    <br>
+                </div>
+                <div class="row">
+                    <i-list ng-search="_search.$store" class="col3" display="name" ng-model="store"
+                        label="##word.store##" ng-change="getReportShiftList(store)" items="storesList">
+                    </i-list>
+
+                    <!--     <i-control class="col2 r_blue" label="##word.total_selling_count##" ng-model="count" disabled>
+                    </i-control>
+                    <i-control class="col2 r_green" label="##word.total_selling_price##" ng-model="total" disabled>
+                    </i-control>
+                    <i-control x-permissions="report_shift_average || report_shift_manage"
+                        class="col2 r_darkRed" label="##word.average_cost##" ng-model="average_cost" disabled>
+                    </i-control> -->
+                </div>
+
+                <br>
+                <br>
+                <hr>
+                <br>
+                <br>
+
+                <!--   <i-button type="save" x-permissions="report_shift_print || report_shift_manage"
+                    label="##word.print##" ng-click="printAccountInvoive(list)">
+                </i-button> -->
+                <div class="row">
+
+
+                    <table class="table loaded center hover bold" id="t1">
+                        <tr>
+                            <th> ##word.item_group## </th>
+                            <th> ##word.stores_items_name## </th>
+                            <th> ##word.stores_size## </th>
+                            <th> ##word.barcode## </th>
+                            <th> ##word.units## </th>
+
+                        </tr>
+
+                        <tr ng-repeat="c in list | orderBy : '-id'">
+                            <td> {{c.item_group.name}} </td>
+                            <td> {{c.name}} </td>
+                            <td>
+                                <p>{{c.size}}</p>
+                                <p>{{c.size_en}}</p>
+                            </td>
+                            <td class="blue"> {{c.barcode}} </td>
+                            <td>
+                                <table class="table center hover bold">
+                                    <tr>
+                                        <th> ##word.unit_name## </th>
+                                        <th> ##word.barcode## </th>
+                                        <th> ##word.items_count## </th>
+                                        <th> ##word.average_cost## </th>
+                                        <th> ##word.total_average_cost## </th>
+
+                                    </tr>
+                                    <tr ng-repeat="u in c.store_units_list">
+                                        <td> {{u.name}} </td>
+                                        <td class="blue"> {{u.barcode}} </td>
+                                        <td> {{u.current_count || 0}} </td>
+                                        <td class="red"> {{u.average_cost}} </td>
+                                        <td> {{u.total_average_cost}} </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="row">
+                    <i-button x-permissions="report_shift_print || report_shift_manage"
+                        type="print" label="##word.print##" onclick="site.print('#t1')"></i-button>
+                    <i-button x-permissions="report_shift_export || report_shift_manage"
+                        type="export" label="##word.export_to_excel##"
+                        onclick="export_to_xlsx('t1' , 'report_shift.xlsx')">
+                    </i-button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div x-import="scripts.html"></div>
+
+    <script x-permissions="login" x-import="report-shift/index.js"></script>
+</body>
+
+</html>

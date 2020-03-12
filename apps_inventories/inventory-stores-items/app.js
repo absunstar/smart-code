@@ -293,6 +293,8 @@ module.exports = function init(site) {
 
                   if (foundStore) {
                     let unit_store = false
+                    if(obj.stock) _branch.stores_list[indxStore].hold = false
+
                     _branch.stores_list[indxStore].size_units_list.forEach(_unitStore => {
                       if (obj.unit && _unitStore.id == obj.unit.id) {
                         if (obj.type == 'sum') {
@@ -431,8 +433,8 @@ module.exports = function init(site) {
                         _branch.stores_list.forEach(_storeHold => {
                           if (_storeHold.store && _storeHold.store.id == obj.store.id) {
 
-                            if (obj.hold) _storeHold.hold = true
-                            else _storeHold.hold = false
+                            if (obj.hold) { _storeHold.hold = true }
+                            else { _storeHold.hold = false }
 
                           }
                         });
