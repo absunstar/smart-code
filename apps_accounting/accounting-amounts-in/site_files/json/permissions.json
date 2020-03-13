@@ -5,6 +5,8 @@
     { "module_name" : "accounting" , "screen_name" : "accounting-amounts-in" , "name":"amounts_in_delete" , "en":"Delete" , "ar":"حذف"},
     { "module_name" : "accounting" , "screen_name" : "accounting-amounts-in" , "name":"amounts_in_view" , "en":"View" , "ar":"عرض"},
     { "module_name" : "accounting" , "screen_name" : "accounting-amounts-in" , "name":"amounts_in_search" , "en":"Search" , "ar":"بحث"},
+    { "module_name" : "accounting" , "screen_name" : "accounting-amounts-in" , "name":"amounts_in_post" , "en":"Post" , "ar":"ترحيل"},
+    { "module_name" : "accounting" , "screen_name" : "accounting-amounts-in" , "name":"amounts_in_unpost" , "en":"Un Post" , "ar":"فك ترحيل"},
     { "module_name" : "accounting" , "screen_name" : "accounting-amounts-in" , "name":"amounts_in_export" , "en":"Export" , "ar":"تصدير"},
     { "module_name" : "accounting" , "screen_name" : "accounting-amounts-in" , "name":"amounts_in_print" , "en":"Print" , "ar":"طباعة"},
     { "module_name" : "accounting" , "screen_name" : "accounting-amounts-in" , "name":"amounts_in_ui" , "en":"Ui" , "ar":"الواجهة الرسومية"}
