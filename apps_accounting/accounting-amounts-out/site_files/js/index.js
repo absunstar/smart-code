@@ -322,7 +322,8 @@ app.controller("amounts_out", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/in_out_names/all",
       data: {
-        where: { out: true }
+        where: { out: true },
+        select: { id: 1, name: 1 }
       }
     }).then(
       function (response) {

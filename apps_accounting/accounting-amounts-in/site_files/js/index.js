@@ -351,9 +351,8 @@ app.controller("amounts_in", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/in_out_names/all",
       data: {
-        where: {
-          in: true
-        }
+        where: { in: true },
+        select: { id: 1, name: 1 }
       }
     }).then(
       function (response) {

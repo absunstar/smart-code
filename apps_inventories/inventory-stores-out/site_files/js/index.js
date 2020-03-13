@@ -251,7 +251,6 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         function (response) {
           $scope.busy = false;
           if (response.data.done) {
-            if ($scope.store_out.posting) {
               if ($scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto && $scope.store_out.type && $scope.store_out.type.id != 5) {
 
                 let account_invoices = {
@@ -279,7 +278,6 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
                 };
                 $scope.addAccountInvoice(account_invoices)
               }
-            }
 
             $scope.loadAll();
             $scope.newStoreOut();
@@ -1547,36 +1545,6 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
           function (response) {
             $scope.busy = false;
             if (response.data.done) {
-              if (store_out.posting) {
-                if ($scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto && store_out.type && store_out.type.id != 5) {
-
-                  let account_invoices = {
-                    image_url: '/images/account_invoices.png',
-                    date: store_out.date,
-                    invoice_id: store_out.id,
-                    invoice_type: store_out.type,
-                    vendor: store_out.vendor,
-                    shift: store_out.shift,
-                    net_value: store_out.net_value,
-                    currency: store_out.currency,
-                    paid_up: store_out.paid_up,
-                    payment_method: store_out.payment_method,
-                    safe: store_out.safe,
-                    invoice_code: store_out.number,
-                    total_discount: store_out.total_discount,
-                    total_tax: store_out.total_tax,
-                    current_book_list: store_out.items,
-                    source_type: {
-                      id: 2,
-                      en: "Stores Out / Sales Invoice",
-                      ar: "إذن صرف / فاتورة بيع"
-                    },
-                    active: true
-                  };
-
-                  $scope.addAccountInvoice(account_invoices)
-                }
-              }
               $scope.loadAll();
             } else {
               $scope.error = '##word.error##';
