@@ -232,14 +232,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         $scope.error = "##word.nosafe_warning##";
         return;
       }
-    } /* else {
-      if ($scope.store_out.payment_method)
-        $scope.store_out.payment_method = null;
-      if ($scope.store_out.safe)
-        $scope.store_out.safe = null;
-      $scope.store_out.paid_up = 0
-
-    } */
+    }
 
     if ($scope.store_out.items.length > 0) {
       $scope.busy = true;
@@ -251,33 +244,33 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         function (response) {
           $scope.busy = false;
           if (response.data.done) {
-              if ($scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto && $scope.store_out.type && $scope.store_out.type.id != 5) {
+            if ($scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto && $scope.store_out.type && $scope.store_out.type.id != 5) {
 
-                let account_invoices = {
-                  image_url: '/images/account_invoices.png',
-                  date: response.data.doc.date,
-                  invoice_id: response.data.doc.id,
-                  customer: response.data.doc.customer,
-                  invoice_type: response.data.doc.type,
-                  currency: response.data.doc.currency,
-                  shift: response.data.doc.shift,
-                  net_value: response.data.doc.net_value,
-                  paid_up: response.data.doc.paid_up,
-                  payment_method: response.data.doc.payment_method,
-                  safe: response.data.doc.safe,
-                  invoice_code: response.data.doc.number,
-                  total_discount: response.data.doc.total_discount,
-                  total_tax: response.data.doc.total_tax,
-                  current_book_list: response.data.doc.items,
-                  source_type: {
-                    id: 2,
-                    en: "Stores Out / Sales Invoice",
-                    ar: "إذن صرف / فاتورة مبيعات"
-                  },
-                  active: true
-                };
-                $scope.addAccountInvoice(account_invoices)
-              }
+              let account_invoices = {
+                image_url: '/images/account_invoices.png',
+                date: response.data.doc.date,
+                invoice_id: response.data.doc.id,
+                customer: response.data.doc.customer,
+                invoice_type: response.data.doc.type,
+                currency: response.data.doc.currency,
+                shift: response.data.doc.shift,
+                net_value: response.data.doc.net_value,
+                paid_up: response.data.doc.paid_up || 0,
+                payment_method: response.data.doc.payment_method,
+                safe: response.data.doc.safe,
+                invoice_code: response.data.doc.number,
+                total_discount: response.data.doc.total_discount,
+                total_tax: response.data.doc.total_tax,
+                current_book_list: response.data.doc.items,
+                source_type: {
+                  id: 2,
+                  en: "Stores Out / Sales Invoice",
+                  ar: "إذن صرف / فاتورة مبيعات"
+                },
+                active: true
+              };
+              $scope.addAccountInvoice(account_invoices)
+            }
 
             $scope.loadAll();
             $scope.newStoreOut();
@@ -399,6 +392,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
               size_en: _size.size_en,
               size_units_list: _size.size_units_list,
               unit: _size.unit,
+              item_complex: _size.item_complex,
               average_cost: _size.unit.average_cost,
               cost: _size.unit.cost,
               price: _size.unit.price,
@@ -426,7 +420,12 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         else if (calc_size.discount.type == 'percent')
           discount = calc_size.discount.value * (calc_size.price * calc_size.count) / 100;
 
-        calc_size.total = ((site.toNumber(calc_size.price) * site.toNumber(calc_size.count)) - discount);
+        let totalNumber = 0;
+        if ($scope.store_out.type && $scope.store_out.type.id == 5) totalNumber = calc_size.average_cost
+        else totalNumber = calc_size.price
+
+
+        calc_size.total = ((site.toNumber(totalNumber) * site.toNumber(calc_size.count)) - discount);
       }
       $scope.calc($scope.store_out);
     }, 100);
@@ -482,8 +481,6 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
                           indxUnit = i;
                       });
 
-
-
                     if ((_size.barcode == $scope.item.search_item_name) || foundUnit) {
                       _size.name = _item.name;
                       _size.item_group = _item.item_group;
@@ -494,7 +491,12 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
                       _size.price = _size.size_units_list[indxUnit].price;
                       _size.cost = _size.size_units_list[indxUnit].cost;
                       _size.count = 1;
-                      _size.total = _size.count * _size.price;
+                      let totalNumber = 0;
+                      if ($scope.store_out.type && $scope.store_out.type.id == 5) totalNumber = _size.average_cost
+                      else totalNumber = _size.price
+
+
+                      _size.total = _size.count * totalNumber;
                       if (_size.branches_list && _size.branches_list.length > 0) {
                         let foundBranch = false;
                         let indxBranch = 0;
@@ -568,7 +570,12 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
           _item.average_cost = _item.size_units_list[indxUnit].average_cost;
           _item.price = _item.size_units_list[indxUnit].price;
           _item.cost = _item.size_units_list[indxUnit].cost;
-          _item.total = _item.count * _item.price;
+
+          let totalNumber = 0;
+          if ($scope.store_out.type && $scope.store_out.type.id == 5) totalNumber = _item.average_cost
+          else totalNumber = _item.price
+
+          _item.total = _item.count * totalNumber;
         }
 
         if (_item.branches_list && _item.branches_list.length > 0) {
@@ -1097,7 +1104,6 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
       account_invoices.posting = false;
     else account_invoices.posting = true;
 
-    if (account_invoices.paid_up <= 0) account_invoices.safe = null;
     $http({
       method: "POST",
       url: "/api/account_invoices/add",

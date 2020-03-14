@@ -80,7 +80,6 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
       account_invoices.posting = false;
     else account_invoices.posting = true;
 
-    if (account_invoices.paid_up <= 0) account_invoices.safe = null;
     $http({
       method: "POST",
       url: "/api/account_invoices/add",
@@ -482,15 +481,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
         $scope.error = "##word.nosafe_warning##";
         return;
       }
-    }/*  else {
-      if ($scope.store_in.payment_method)
-        $scope.store_in.payment_method = null;
-      if ($scope.store_in.safe)
-        $scope.store_in.safe = null;
-      $scope.store_in.paid_up = 0
-
-    } */
-
+    }
 
     let max_discount = false;
     let returned_count = false;
@@ -526,34 +517,34 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
         function (response) {
           $scope.busy = false;
           if (response.data.done) {
-              if (($scope.store_in.type.id == 1 || $scope.store_in.type.id == 4) && $scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto) {
+            if (($scope.store_in.type.id == 1 || $scope.store_in.type.id == 4) && $scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto) {
 
-                let account_invoices = {
-                  image_url: '/images/account_invoices.png',
-                  date: response.data.doc.date,
-                  invoice_id: response.data.doc.id,
-                  invoice_type: response.data.doc.type,
-                  vendor: response.data.doc.vendor,
-                  shift: response.data.doc.shift,
-                  net_value: response.data.doc.net_value,
-                  currency: response.data.doc.currency,
-                  paid_up: response.data.doc.paid_up,
-                  payment_method: response.data.doc.payment_method,
-                  safe: response.data.doc.safe,
-                  invoice_code: response.data.doc.number,
-                  total_discount: response.data.doc.total_discount,
-                  total_tax: response.data.doc.total_tax,
-                  current_book_list: response.data.doc.items,
-                  source_type: {
-                    id: 1,
-                    en: "Stores In / Purchase Invoice",
-                    ar: "إذن وارد / فاتورة شراء"
-                  },
-                  active: true
-                };
+              let account_invoices = {
+                image_url: '/images/account_invoices.png',
+                date: response.data.doc.date,
+                invoice_id: response.data.doc.id,
+                invoice_type: response.data.doc.type,
+                vendor: response.data.doc.vendor,
+                shift: response.data.doc.shift,
+                net_value: response.data.doc.net_value,
+                currency: response.data.doc.currency,
+                paid_up: response.data.doc.paid_up || 0,
+                payment_method: response.data.doc.payment_method,
+                safe: response.data.doc.safe,
+                invoice_code: response.data.doc.number,
+                total_discount: response.data.doc.total_discount,
+                total_tax: response.data.doc.total_tax,
+                current_book_list: response.data.doc.items,
+                source_type: {
+                  id: 1,
+                  en: "Stores In / Purchase Invoice",
+                  ar: "إذن وارد / فاتورة شراء"
+                },
+                active: true
+              };
 
-                $scope.addAccountInvoice(account_invoices)
-              }
+              $scope.addAccountInvoice(account_invoices)
+            }
 
             $scope.loadAll();
             $scope.newStoreIn();
@@ -612,7 +603,6 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
     site.showModal('#viewStoreInModal');
   };
 
-
   $scope.addToItems = function () {
     $scope.error = '';
     if ($scope.store_in.type) {
@@ -644,6 +634,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
               cost: _size.unit.cost,
               price: _size.unit.price,
               average_cost: _size.unit.average_cost,
+              item_complex: _size.item_complex,
               discount: _size.unit.discount,
               barcode: _size.barcode,
               count: _size.count,

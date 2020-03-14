@@ -157,7 +157,6 @@ module.exports = function init(site) {
             }
             site.call('[transfer_branch][stores_items][add_balance]', _itm)
 
-
           })
 
         }

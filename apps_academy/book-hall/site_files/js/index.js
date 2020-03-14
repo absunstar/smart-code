@@ -741,7 +741,6 @@ app.controller("book_hall", function ($scope, $http, $timeout) {
       account_invoices.posting = false;
     else account_invoices.posting = true;
 
-    if (account_invoices.paid_up <= 0) account_invoices.safe = null;
     
     $http({
       method: "POST",

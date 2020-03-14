@@ -78,8 +78,6 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
       return;
     }
 
-    if ($scope.account_invoices.paid_up <= 0) $scope.account_invoices.safe = null;
-
     $http({
       method: "POST",
       url: "/api/account_invoices/add",

@@ -90,7 +90,7 @@ module.exports = function init(site) {
 
                 } else {
                   _size.count_out = (site.toNumber(_size.count_out) || 0) + (site.toNumber(docs[i].count) || 0)
-                  _size.average_cost = (site.toNumber(_size.average_cost || 0) + (site.toNumber(docs[i].average_cost || 0)) * site.toNumber((docs[i].count || 0)))
+                  // _size.average_cost = (site.toNumber(_size.average_cost || 0) + (site.toNumber(docs[i].average_cost || 0)) * site.toNumber((docs[i].count || 0)))
 
                 }
                 exist = true
@@ -106,14 +106,14 @@ module.exports = function init(site) {
 
             } else if (obj.transaction_type == 'out') {
               obj.count_out = (obj.count || 0)
-              obj.average_cost = site.toNumber(obj.average_cost || 0) * site.toNumber(obj.count || 0)
+              // obj.average_cost = site.toNumber(obj.average_cost || 0) * site.toNumber(obj.count || 0)
 
             }
 
             total_size_list.push(obj)
           }
         }
-
+        total_size_list.map(_list => _list.average_cost = site.toNumber(_list.average_cost) * _list.current_count)
         response.done = true
         response.doc = total_size_list
         res.json(response)

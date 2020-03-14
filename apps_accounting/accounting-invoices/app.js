@@ -113,7 +113,7 @@ module.exports = function init(site) {
 
       if (account_invoices_doc.currency)
         account_invoices_doc.remain_amount = site.toNumber(account_invoices_doc.net_value) - (account_invoices_doc.total_paid_up * site.toNumber(account_invoices_doc.currency.ex_rate))
-    };
+    } else account_invoices_doc.remain_amount = site.toNumber(account_invoices_doc.net_value)
     account_invoices_doc.remain_amount = site.toNumber(account_invoices_doc.remain_amount)
 
     $account_invoices.add(account_invoices_doc, (err, doc) => {
