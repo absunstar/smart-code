@@ -20,6 +20,12 @@ app.controller("report_stores_evaluation", function ($scope, $http, $timeout) {
         if (response.data.done) {
           $scope.count = response.data.doc.length;
           $scope.list = response.data.doc;
+          $scope.total_average_cost = 0;
+          $scope.list.forEach(_list => {
+            _list.store_units_list.map(_store_unit => $scope.total_average_cost += _store_unit.total_average_cost)
+          });
+
+          $scope.total_average_cost = site.toNumber($scope.total_average_cost)
         }
       },
       function (err) {

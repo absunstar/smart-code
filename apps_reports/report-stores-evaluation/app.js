@@ -66,13 +66,16 @@ module.exports = function init(site) {
             });
           })
         })
-        
+
         i_store_list.forEach(_iStore => {
           _iStore.size_units_list.forEach(_size_units => {
             _iStore.store_units_list.forEach(_store_units => {
               if (_size_units.id == _store_units.id) {
                 _store_units.average_cost = _size_units.average_cost
-                _store_units.total_average_cost = _size_units.average_cost * _size_units.current_count
+                _store_units.total_average_cost = _size_units.average_cost * _store_units.current_count
+
+                _store_units.average_cost = site.toNumber(_store_units.average_cost)
+                _store_units.total_average_cost = site.toNumber(_store_units.total_average_cost)
               }
             });
           });

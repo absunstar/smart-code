@@ -24,11 +24,6 @@
 
                 <div class="top-actions">
 
-                    <!--   <i-button type="search"
-                        x-permissions="report_stores_evaluation_search || report_stores_evaluation_manage"
-                        label="##word.search_all##" onclick="site.showModal('#reportStoreEvaluationSearchModal')">
-                    </i-button> -->
-
                     <span ng-show="busy">
                         <span class="sr-only">Loading...</span>
                     </span>
@@ -39,13 +34,6 @@
                         label="##word.store##" ng-change="getReportStoreEvaluationList(store)" items="storesList">
                     </i-list>
 
-                    <!--     <i-control class="col2 r_blue" label="##word.total_selling_count##" ng-model="count" disabled>
-                    </i-control>
-                    <i-control class="col2 r_green" label="##word.total_selling_price##" ng-model="total" disabled>
-                    </i-control>
-                    <i-control x-permissions="report_stores_evaluation_average || report_stores_evaluation_manage"
-                        class="col2 r_darkRed" label="##word.average_cost##" ng-model="average_cost" disabled>
-                    </i-control> -->
                 </div>
 
                 <br>
@@ -54,9 +42,10 @@
                 <br>
                 <br>
 
-                <!--   <i-button type="save" x-permissions="report_stores_evaluation_print || report_stores_evaluation_manage"
-                    label="##word.print##" ng-click="printAccountInvoive(list)">
-                </i-button> -->
+                <i-control id="item_name" class="col2 r_red" ng-model="total_average_cost"
+                    label="##word.total_average_cost##" type="number" disabled>
+                </i-control>
+
                 <div class="row">
 
 
