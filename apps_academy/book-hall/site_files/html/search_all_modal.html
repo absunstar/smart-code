@@ -4,37 +4,42 @@
         <div class="modal-header">
             <span class="close">&times;</span>
             <h2>
-                ##word.search_all## <i class="fa fa-search"></i> 
+                ##word.search_all## <i class="fa fa-search"></i>
 
             </h2>
         </div>
 
         <div class="modal-body">
             <form class="form">
-                <div class="row">
-                    <i-list class="col4" items="tenantList" ng-model="search.tenant" ng-search="book_hall.$tenant_search"
-                    label="##word.tenant##"></i-list>
-                    <i-list class="col4" label="##word.hall##" ng-model="search.hall" items="hallsList"
-                    ng-search="book_hall.$class_room_search"></i-list>
-                    <div class="control col3">
-                        <label> ##word.status## </label>
-                        <select ng-model="search.active">
-                            <option ng-value="true"> ##word.active## </option>
-                            <option ng-value="false"> ##word.not_active## </option>
-                        </select>
-                    </div>
-                </div>
-                <div class="row">
+                <fieldset>
+                    <legend>##word.search_all##</legend>
                     <div class="row">
-                        <i-date2 class="col4" ng-model="search.date_from" label="##word.start_book##"></i-date2>
-                        <i-date2 class="col4" ng-model="search.date_to" label="##word.end_book##"></i-date2>
+                        <i-list class="col4" items="tenantList" ng-model="search.tenant"
+                            ng-search="book_hall.$tenant_search" label="##word.tenant##"></i-list>
+                        <i-list class="col4" label="##word.hall##" ng-model="search.hall" items="hallsList"
+                            ng-search="book_hall.$class_room_search"></i-list>
+                        <div class="control col3">
+                            <label> ##word.status## </label>
+                            <select ng-model="search.active">
+                                <option ng-value="true"> ##word.active## </option>
+                                <option ng-value="false"> ##word.not_active## </option>
+                            </select>
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <i-control class="col2" type="number" label="##word.total_period##" ng-model="search.total_period"></i-control>
-                    <i-control class="col2" type="number" ng-model="search.number_lecture" label="##word.number_lecture##"></i-control>
+                    <div class="row">
+                        <div class="row">
+                            <i-date2 class="col4" ng-model="search.date_from" label="##word.start_book##"></i-date2>
+                            <i-date2 class="col4" ng-model="search.date_to" label="##word.end_book##"></i-date2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <i-control class="col2" type="number" label="##word.total_period##"
+                            ng-model="search.total_period"></i-control>
+                        <i-control class="col2" type="number" ng-model="search.number_lecture"
+                            label="##word.number_lecture##"></i-control>
 
-                </div>
+                    </div>
+                </fieldset>
             </form>
         </div>
 

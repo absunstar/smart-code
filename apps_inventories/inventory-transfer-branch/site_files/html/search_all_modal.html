@@ -11,43 +11,47 @@
             <div class="row">
 
                 <form class="form">
+                    <fieldset>
+                        <legend>##word.search_all##</legend>
+                        <div class="row">
+                            <i-date2 class="col3" ng-model="search.date" label="##word.amounts_in_date##"></i-date2>
+                            <i-date2 class="col3" ng-model="search.dateFrom" type="date"
+                                label="##word.amounts_in_date_from##"></i-date2>
+                            <i-date2 class="col3" ng-model="search.dateTo" type="date"
+                                label="##word.amounts_in_date_to##">
+                            </i-date2>
 
-                    <div class="row">
-                        <i-date2 class="col3" ng-model="search.date" label="##word.amounts_in_date##"></i-date2>
-                        <i-date2 class="col3" ng-model="search.dateFrom" type="date"
-                            label="##word.amounts_in_date_from##"></i-date2>
-                        <i-date2 class="col3" ng-model="search.dateTo" type="date" label="##word.amounts_in_date_to##">
-                        </i-date2>
+                        </div>
+                        <div class="row">
 
-                    </div>
-                    <div class="row">
+                            <i-list class="col3" ng-model="search.branch_from" display="name_ar" items="branchesList"
+                                ng-search="_search.$branch_from" label="##word.branch_from##"></i-list>
+                            <i-list class="col3" ng-model="search.branch_to" items="branchesList" display="name_ar"
+                                ng-change="loadStoresTo(search.branch_to)" ng-search="_search.$branch_to"
+                                label="##word.branch_to##"></i-list>
 
-                        <i-list class="col3" ng-model="search.branch_from" display="name_ar" items="branchesList"
-                            ng-search="_search.$branch_from" label="##word.branch_from##"></i-list>
-                        <i-list class="col3" ng-model="search.branch_to" items="branchesList" display="name_ar"
-                            ng-change="loadStoresTo(search.branch_to)" ng-search="_search.$branch_to"
-                            label="##word.branch_to##"></i-list>
+                        </div>
 
-                    </div>
+                        <div class="row">
 
-                    <div class="row">
+                            <i-list class="col3" ng-model="search.store_from" items="storesFromList"
+                                ng-search="_search.$store_from" label="##word.store_from##"></i-list>
+                            <i-list class="col3" ng-model="search.store_to" items="storesToList"
+                                ng-search="_search.$store_to" label="##word.store_to##"></i-list>
 
-                        <i-list class="col3" ng-model="search.store_from" items="storesFromList"
-                            ng-search="_search.$store_from" label="##word.store_from##"></i-list>
-                        <i-list class="col3" ng-model="search.store_to" items="storesToList"
-                            ng-search="_search.$store_to" label="##word.store_to##"></i-list>
-
-                    </div>
-
-
-                    <div class="row">
-                        <i-control class="col3 r_indigo" type="text" label="##word.shift##" ng-model="search.shift_code">
-                        </i-control>
-                        <i-control class="col6" ng-model="search.notes" label="##word.notes##" type="text"></i-control>
-                    </div>
+                        </div>
 
 
+                        <div class="row">
+                            <i-control class="col3 r_indigo" type="text" label="##word.shift##"
+                                ng-model="search.shift_code">
+                            </i-control>
+                            <i-control class="col6" ng-model="search.notes" label="##word.notes##" type="text">
+                            </i-control>
+                        </div>
 
+
+                    </fieldset>
 
                 </form>
             </div>

@@ -1,5 +1,3 @@
-
-
 <div id="searchModal" class="modal">
 
     <div class="modal-content">
@@ -13,26 +11,28 @@
         <div class="modal-body">
 
             <form>
+                <fieldset>
+                    <legend>##word.search_all##</legend>
+                    <div class="row">
+                        <i-list class="col4" ng-search="_search.$engRep_search" class="col12" ng-model="search.employee"
+                            items="employeeList" label="##word.employees_report_Employee_Name##"></i-list>
 
-                <div class="row">
-                        <i-list class="col4" ng-search="_search.$engRep_search" class="col12" ng-model="search.employee" items="employeeList"
-                        label="##word.employees_report_Employee_Name##"></i-list>
+                    </div>
 
-                </div>
-                    
-                <i-month2 type="date" class="col4" ng-model="search.date" label="##word.employees_report_date##"></i-month2>
-
+                    <i-month2 type="date" class="col4" ng-model="search.date" label="##word.employees_report_date##">
+                    </i-month2>
+                </fieldset>
             </form>
 
         </div>
         <h2>{{error}}</h2>
         <div class="modal-footer row center">
 
-           
 
-                <i-button  type="search" label="##word.search##" ng-click="searchEmployeeReport()"></i-button>
-                <i-button  type="clear" label="##word.clear##" ng-click="search.employee = {}"></i-button>
-                <i-button  type="close" label="##word.close##" onclick="site.hideModal('#searchModal')"></i-button>
+
+            <i-button type="search" label="##word.search##" ng-click="searchEmployeeReport()"></i-button>
+            <i-button type="clear" label="##word.clear##" ng-click="search.employee = {}"></i-button>
+            <i-button type="close" label="##word.close##" onclick="site.hideModal('#searchModal')"></i-button>
         </div>
     </div>
 </div>

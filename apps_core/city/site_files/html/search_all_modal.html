@@ -11,21 +11,24 @@
 
         <div class="modal-body">
             <form class="form">
-                <div class="row">
+                <fieldset>
+                    <legend>##word.search_all##</legend>
+                    <div class="row">
 
-                    <i-list help-id="" class="col3" label="##word.goves_name##" ng-model="search.gov" display="name"
-                        items="govesList" ng-search="_search.$city_gov"></i-list>
+                        <i-list help-id="" class="col3" label="##word.goves_name##" ng-model="search.gov" display="name"
+                            items="govesList" ng-search="_search.$city_gov"></i-list>
 
-                    <i-control class="col3" label="##word.city_name##" ng-model="search.name"></i-control>
+                        <i-control class="col3" label="##word.city_name##" ng-model="search.name"></i-control>
 
-                    <div class="control col3">
-                        <label> ##word.status## </label>
-                        <select ng-model="search.active">
-                            <option ng-value="true"> ##word.active## </option>
-                            <option ng-value="false"> ##word.not_active## </option>
-                        </select>
+                        <div class="control col3">
+                            <label> ##word.status## </label>
+                            <select ng-model="search.active">
+                                <option ng-value="true"> ##word.active## </option>
+                                <option ng-value="false"> ##word.not_active## </option>
+                            </select>
+                        </div>
                     </div>
-                </div>
+                </fieldset>
             </form>
         </div>
 

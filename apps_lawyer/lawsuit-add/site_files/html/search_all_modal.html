@@ -10,88 +10,92 @@
         <div class="modal-body">
             <div class="row">
                 <form class="form">
-                    <div class="row">
-                        <fieldset>
-                            <legend> ##word.lawsuit_data## </legend>
-                            <div class="row">
-                                <div class="col9">
-                                    <div class="row">
-                                        <i-date2 class="col3" ng-model="search.date" label="##word.amounts_in_date##">
-                                        </i-date2>
-                                        <i-date2 class="col3" ng-model="search.dateFrom" type="date"
-                                            label="##word.amounts_in_date_from##"></i-date2>
-                                        <i-date2 class="col3" ng-model="search.dateTo" type="date"
-                                            label="##word.amounts_in_date_to##">
-                                        </i-date2>
+                    <fieldset>
+                        <legend>##word.search_all##</legend>
+                        <div class="row">
+                         
+                                <div class="row">
+                                    <div class="col9">
+                                        <div class="row">
+                                            <i-date2 class="col3" ng-model="search.date"
+                                                label="##word.amounts_in_date##">
+                                            </i-date2>
+                                            <i-date2 class="col3" ng-model="search.dateFrom" type="date"
+                                                label="##word.amounts_in_date_from##"></i-date2>
+                                            <i-date2 class="col3" ng-model="search.dateTo" type="date"
+                                                label="##word.amounts_in_date_to##">
+                                            </i-date2>
+                                        </div>
+
+                                        <div class="row">
+                                            <i-control class="col3" label="##word.lawsuit_number##"
+                                                ng-model="search.number">
+                                            </i-control>
+
+                                            <i-control class="col2" type="number" label="##word.lawsuit_year##"
+                                                ng-model="search.year">
+                                            </i-control>
+                                        </div>
+
+                                        <div class="row">
+                                            <i-list ng-search="lawsuit_place" class="col4" items="courtsList"
+                                                ng-model="search.courts" label="##word.lawsuit_place##">
+                                            </i-list>
+
+                                            <i-list ng-search="circles" class="col4" items="circlesList"
+                                                ng-model="search.circle" label="##word.circle##">
+                                            </i-list>
+                                        </div>
+
+                                        <div class="row">
+                                            <i-textarea ng-model="search.lawsuit_topic" class="col6"
+                                                label="##word.lawsuit_topic##">
+                                            </i-textarea>
+                                        </div>
+
+                                        <div class="row">
+                                            <fieldset>
+                                                <legend> ##word.lawsuit_properties## </legend>
+
+                                                <div class="row">
+                                                    <i-list ng-search="lawsuit_degree" class="col4"
+                                                        items="lawsuitDegreesList" ng-model="search.lawsuit_degree"
+                                                        label="##word.lawsuit_degree##">
+                                                    </i-list>
+                                                    <i-list ng-search="lawsuit_type" class="col4"
+                                                        items="lawsuitTypesList" ng-model="search.lawsuit_type"
+                                                        label="##word.lawsuit_type##">
+                                                    </i-list>
+                                                </div>
+
+                                                <div class="row">
+                                                    <i-list ng-search="lawsuit_status" class="col4"
+                                                        items="lawsuitStatusList" ng-model="search.lawsuit_status"
+                                                        label="##word.lawsuit_status##">
+                                                    </i-list>
+                                                    <i-list ng-search="lawsuit_basic" class="col4"
+                                                        items="lawsuitBasicList" display="year" display2="number"
+                                                        space="-" ng-model="search.lawsuit_basic"
+                                                        label="##word.lawsuit_basic##">
+                                                    </i-list>
+                                                </div>
+
+                                            </fieldset>
+                                        </div>
+
+                                        <div class="row">
+                                            <i-textarea ng-model="search.notes" class="col8" label="##word.notes##">
+                                            </i-textarea>
+                                        </div>
+
                                     </div>
 
-                                    <div class="row">
-                                        <i-control class="col3" label="##word.lawsuit_number##"
-                                            ng-model="search.number">
-                                        </i-control>
-
-                                        <i-control class="col2" type="number" label="##word.lawsuit_year##"
-                                            ng-model="search.year">
-                                        </i-control>
+                                    <div class="col3">
+                                        <i-image category="search" ng-model="search.image_url"> </i-image>
                                     </div>
-
-                                    <div class="row">
-                                        <i-list ng-search="lawsuit_place" class="col4" items="courtsList"
-                                            ng-model="search.courts" label="##word.lawsuit_place##">
-                                        </i-list>
-
-                                        <i-list ng-search="circles" class="col4" items="circlesList"
-                                            ng-model="search.circle" label="##word.circle##">
-                                        </i-list>
-                                    </div>
-
-                                    <div class="row">
-                                        <i-textarea ng-model="search.lawsuit_topic" class="col6"
-                                            label="##word.lawsuit_topic##">
-                                        </i-textarea>
-                                    </div>
-
-                                    <div class="row">
-                                        <fieldset>
-                                            <legend> ##word.lawsuit_properties## </legend>
-
-                                            <div class="row">
-                                                <i-list ng-search="lawsuit_degree" class="col4"
-                                                    items="lawsuitDegreesList" ng-model="search.lawsuit_degree"
-                                                    label="##word.lawsuit_degree##">
-                                                </i-list>
-                                                <i-list ng-search="lawsuit_type" class="col4" items="lawsuitTypesList"
-                                                    ng-model="search.lawsuit_type" label="##word.lawsuit_type##">
-                                                </i-list>
-                                            </div>
-
-                                            <div class="row">
-                                                <i-list ng-search="lawsuit_status" class="col4"
-                                                    items="lawsuitStatusList" ng-model="search.lawsuit_status"
-                                                    label="##word.lawsuit_status##">
-                                                </i-list>
-                                                <i-list ng-search="lawsuit_basic" class="col4" items="lawsuitBasicList"
-                                                    display="year" display2="number" space="-"
-                                                    ng-model="search.lawsuit_basic" label="##word.lawsuit_basic##">
-                                                </i-list>
-                                            </div>
-
-                                        </fieldset>
-                                    </div>
-
-                                    <div class="row">
-                                        <i-textarea ng-model="search.notes" class="col8" label="##word.notes##">
-                                        </i-textarea>
-                                    </div>
-
                                 </div>
-
-                                <div class="col3">
-                                    <i-image category="search" ng-model="search.image_url"> </i-image>
-                                </div>
-                            </div>
-                        </fieldset>
-                    </div>
+                        </div>
+                    </fieldset>
                 </form>
             </div>
 

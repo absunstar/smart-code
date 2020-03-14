@@ -7,19 +7,22 @@
         <div class="modal-body">
             <div class="row">
                 <form class="form">
-                    <div class="row">
-                        <i-date2 class="col3" ng-model="search.date" label="##word.date##"></i-date2>
-                        <i-date2 class="col3" ng-model="search.date_from" label="##word.date_from##"></i-date2>
-                        <i-date2 class="col3" ng-model="search.date_to" label="##word.date_to##"></i-date2>
-                    </div>
+                    <fieldset>
+                        <legend>##word.search_all##</legend>
+                        <div class="row">
+                            <i-date2 class="col3" ng-model="search.date" label="##word.date##"></i-date2>
+                            <i-date2 class="col3" ng-model="search.date_from" label="##word.date_from##"></i-date2>
+                            <i-date2 class="col3" ng-model="search.date_to" label="##word.date_to##"></i-date2>
+                        </div>
 
-                    <div class="row">
-                        <i-control class="col2 r_indigo" type="text" label="##word.shift##" ng-model="search.shift_code">
-                        </i-control>
-                        <i-list help-id="" ng-search="_search.$vendor_search" class="col2"
-                            label="##word.vendor##" ng-model="search.vendor"
-                            items="vendorsList" display="name_ar"></i-list>
-                    </div>
+                        <div class="row">
+                            <i-control class="col2 r_indigo" type="text" label="##word.shift##"
+                                ng-model="search.shift_code">
+                            </i-control>
+                            <i-list help-id="" ng-search="_search.$vendor_search" class="col2" label="##word.vendor##"
+                                ng-model="search.vendor" items="vendorsList" display="name_ar"></i-list>
+                        </div>
+                    </fieldset>
                 </form>
             </div>
 

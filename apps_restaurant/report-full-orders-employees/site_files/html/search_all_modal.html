@@ -7,29 +7,33 @@
         <div class="modal-body">
             <div class="row">
                 <form class="form">
-                    <div class="row">
-                        <i-date2 class="col3" ng-model="search.date" label="##word.date##"></i-date2>
-                        <i-date2 class="col3" ng-model="search.date_from" label="##word.date_from##"></i-date2>
-                        <i-date2 class="col3" ng-model="search.date_to" label="##word.date_to##"></i-date2>
-                    </div>
-                    <div class="row">
-                        <i-control class="col3 r_indigo" type="text" label="##word.shift##" ng-model="search.shift_code">
-                        </i-control>
-                        <i-list help-id="" ng-search="_search.$employees_search" class="col2"
-                            label="##word.employee_name##" ng-model="search.employee" items="employeesList"
-                            display="name">
-                        </i-list>
+                    <fieldset>
+                        <legend>##word.search_all##</legend>
+                        <div class="row">
+                            <i-date2 class="col3" ng-model="search.date" label="##word.date##"></i-date2>
+                            <i-date2 class="col3" ng-model="search.date_from" label="##word.date_from##"></i-date2>
+                            <i-date2 class="col3" ng-model="search.date_to" label="##word.date_to##"></i-date2>
+                        </div>
+                        <div class="row">
+                            <i-control class="col3 r_indigo" type="text" label="##word.shift##"
+                                ng-model="search.shift_code">
+                            </i-control>
+                            <i-list help-id="" ng-search="_search.$employees_search" class="col2"
+                                label="##word.employee_name##" ng-model="search.employee" items="employeesList"
+                                display="name">
+                            </i-list>
 
-                        <i-list help-id="" ng-search="_search.$order_status_search" class="col3"
-                            label="##word.order_status##" ng-model="search.order_status" items="orderStatusList"
-                            display="##session.lang##">
-                        </i-list>
+                            <i-list help-id="" ng-search="_search.$order_status_search" class="col3"
+                                label="##word.order_status##" ng-model="search.order_status" items="orderStatusList"
+                                display="##session.lang##">
+                            </i-list>
 
-                        <i-list help-id="" ng-search="_search.$transaction_type_search" class="col3"
-                            label="##word.order_type##" ng-model="search.transaction_type"
-                            items="transactionTypeList" display="##session.lang##">
-                        </i-list>
-                    </div>
+                            <i-list help-id="" ng-search="_search.$transaction_type_search" class="col3"
+                                label="##word.order_type##" ng-model="search.transaction_type"
+                                items="transactionTypeList" display="##session.lang##">
+                            </i-list>
+                        </div>
+                    </fieldset>
                 </form>
             </div>
 

@@ -9,12 +9,16 @@
         </div>
         <div class="modal-body">
             <form class="form">
-                <div class="row">
-                    <div class="col5">
-                        <i-control ng-model="search.name" type="text" label="##word.employees_degrees_name##"></i-control>
-                        <i-textarea ng-model="search.notes" label="##word.notes##"></i-textarea>
+                <fieldset>
+                    <legend>##word.search_all##</legend>
+                    <div class="row">
+                        <div class="col5">
+                            <i-control ng-model="search.name" type="text" label="##word.employees_degrees_name##">
+                            </i-control>
+                            <i-textarea ng-model="search.notes" label="##word.notes##"></i-textarea>
+                        </div>
                     </div>
-                </div>
+                </fieldset>
             </form>
         </div>
         <h2 class="error">{{error}}</h2>

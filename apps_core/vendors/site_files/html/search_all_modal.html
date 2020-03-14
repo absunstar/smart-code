@@ -4,42 +4,48 @@
             <span class="close">&times;</span>
             <h2>
                 ##word.search_all## <i class="fa fa-search"></i>
-                 
+
             </h2>
         </div>
         <div class="modal-body">
             <div class="row">
                 <form class="form">
-
-                    <div class="row">
-                        <i-control class="col2" label="##word.vendors_code##" ng-model="search.code"></i-control>
-                        <i-control v="r" class="col4" label="##word.vendors_name_ar##" ng-model="search.name_ar"></i-control>
-                        <i-control class="col4" label="##word.vendors_name_en##" ng-model="search.name_en"></i-control>
-                    </div>
-
-
-                    <div class="row">
-
-                        <i-list class="col2" label="##word.vendors_nationality##" ng-model="search.nationality" items="nationalityList"
-                            display="name_ar" ng-search="_search.$vendornationality"></i-list>
-
-                        <i-list class="col3" label="##word.vendors_gov##" ng-model="search.gov" items="govList" display="name"
-                            ng-change="getCityList(search.gov)" ng-search="_search.$govNameContact"></i-list>
-
-                        <i-list class="col3" v="r" label="##word.vendors_city##" ng-model="search.city" items="cityList"
-                            display="name" ng-search="_search.$cityName"></i-list>
-
-                    </div>
+                    <fieldset>
+                        <legend>##word.search_all##</legend>
+                        <div class="row">
+                            <i-control class="col2" label="##word.vendors_code##" ng-model="search.code"></i-control>
+                            <i-control v="r" class="col4" label="##word.vendors_name_ar##" ng-model="search.name_ar">
+                            </i-control>
+                            <i-control class="col4" label="##word.vendors_name_en##" ng-model="search.name_en">
+                            </i-control>
+                        </div>
 
 
-                    <div class="row">
+                        <div class="row">
 
-                        <i-control class="col3" label="##word.vendors_phone##" ng-model="search.phone"></i-control>
-                        <i-control class="col3" label="##word.vendors_mobile##" ng-model="search.mobile"></i-control>
+                            <i-list class="col2" label="##word.vendors_nationality##" ng-model="search.nationality"
+                                items="nationalityList" display="name_ar" ng-search="_search.$vendornationality">
+                            </i-list>
 
-                    </div>
+                            <i-list class="col3" label="##word.vendors_gov##" ng-model="search.gov" items="govList"
+                                display="name" ng-change="getCityList(search.gov)" ng-search="_search.$govNameContact">
+                            </i-list>
 
-                    
+                            <i-list class="col3" v="r" label="##word.vendors_city##" ng-model="search.city"
+                                items="cityList" display="name" ng-search="_search.$cityName"></i-list>
+
+                        </div>
+
+
+                        <div class="row">
+
+                            <i-control class="col3" label="##word.vendors_phone##" ng-model="search.phone"></i-control>
+                            <i-control class="col3" label="##word.vendors_mobile##" ng-model="search.mobile">
+                            </i-control>
+
+                        </div>
+
+                    </fieldset>
                 </form>
             </div>
 

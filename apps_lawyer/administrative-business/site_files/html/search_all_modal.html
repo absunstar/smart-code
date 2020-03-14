@@ -10,19 +10,23 @@
         <div class="modal-body">
             <div class="row">
                 <form class="form">
-                    <div class="row">
+                    <fieldset>
+                        <legend>##word.search_all##</legend>
+                        <div class="row">
 
-                        <i-date2 ng-model="search.date" class="col3" label="##word.date##"></i-date2>
+                            <i-date2 ng-model="search.date" class="col3" label="##word.date##"></i-date2>
 
-                        <i-control class="col3" label="##word.administrative_business_name##" ng-model="search.name">
-                        </i-control>
+                            <i-control class="col3" label="##word.administrative_business_name##"
+                                ng-model="search.name">
+                            </i-control>
 
-                        <i-list help-id="" ng-search="_search.$request_type_search" class="col3"
-                            label="##word.request_type##" ng-model="search.request_type"
-                            items="administrativeBusinessList" display="name">
-                            <i-list>
+                            <i-list help-id="" ng-search="_search.$request_type_search" class="col3"
+                                label="##word.request_type##" ng-model="search.request_type"
+                                items="administrativeBusinessList" display="name">
+                                <i-list>
 
-                    </div>
+                        </div>
+                    </fieldset>
                 </form>
             </div>
 

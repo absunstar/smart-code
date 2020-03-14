@@ -11,17 +11,21 @@
             <div class="row">
 
                 <form class="form">
+                    <fieldset>
+                        <legend>##word.search_all##</legend>
+                        <div class="row ">
+                            <i-control class="col3" ng-model="search.name" type="text"
+                                label="##word.in_out_name_name##"></i-control>
+                            <!-- <i-control class="col2" label="##word.limit##" type="number" ng-model="search.limit"></i-control> -->
+                            <i-checkbox ng-model="search.in" label="##word.in_out_name_in##"></i-checkbox>
+                            <i-checkbox ng-model="search.out" label="##word.in_out_name_out##"></i-checkbox>
+                        </div>
 
-                    <div class="row ">
-                        <i-control class="col3" ng-model="search.name" type="text" label="##word.in_out_name_name##"></i-control>
-                        <!-- <i-control class="col2" label="##word.limit##" type="number" ng-model="search.limit"></i-control> -->
-                        <i-checkbox ng-model="search.in" label="##word.in_out_name_in##"></i-checkbox>
-                        <i-checkbox ng-model="search.out" label="##word.in_out_name_out##"></i-checkbox>
-                    </div>
-
-                    <div class="row">
-                        <i-textarea ng-model="search.details" class="col5" type="text" label="##word.in_out_name_details##"></i-textarea>
-                    </div>
+                        <div class="row">
+                            <i-textarea ng-model="search.details" class="col5" type="text"
+                                label="##word.in_out_name_details##"></i-textarea>
+                        </div>
+                    </fieldset>
                 </form>
             </div>
 
@@ -29,7 +33,8 @@
         <h2 class="error">{{error}}</h2>
         <div class="modal-footer center">
 
-            <i-button type="search" label="##word.search##" ng-click="searchAll();search = {}" onclick="site.hideModal('#In_OutSearchModal')"></i-button>
+            <i-button type="search" label="##word.search##" ng-click="searchAll();search = {}"
+                onclick="site.hideModal('#In_OutSearchModal')"></i-button>
             <i-button type="clear" label="##word.clear##" ng-click="search = {}"></i-button>
             <i-button type="close" label="##word.close##" onclick="site.hideModal('#In_OutSearchModal')"></i-button>
 

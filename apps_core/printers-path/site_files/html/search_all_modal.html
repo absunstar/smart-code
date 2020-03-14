@@ -9,13 +9,17 @@
         <div class="modal-body">
             <div class="row">
                 <form class="form">
-                    <div class="row">
-                        <i-control class="col3" label="##word.printers_path_name##" ng-model="search.name"></i-control>
-                        <i-control class="col3" label="##word.printers_path_type##" ng-model="search.type">
-                        </i-control>
-                        <i-control class="col3" label="##word.printers_path_ip##" ng-model="search.ip">
-                        </i-control>
-                    </div>
+                    <fieldset>
+                        <legend>##word.search_all##</legend>
+                        <div class="row">
+                            <i-control class="col3" label="##word.printers_path_name##" ng-model="search.name">
+                            </i-control>
+                            <i-control class="col3" label="##word.printers_path_type##" ng-model="search.type">
+                            </i-control>
+                            <i-control class="col3" label="##word.printers_path_ip##" ng-model="search.ip">
+                            </i-control>
+                        </div>
+                    </fieldset>
                 </form>
             </div>
 

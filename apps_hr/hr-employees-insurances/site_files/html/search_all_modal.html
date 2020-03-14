@@ -5,37 +5,47 @@
             <span class="close">&times;</span>
             <h2>
                 ##word.search_all## <i class="fa fa-search"></i>
-                 
+
             </h2>
         </div>
         <div class="modal-body">
             <div class="row">
 
                 <form class="form">
+                    <fieldset>
+                        <legend>##word.search_all##</legend>
+                        <div class="row">
+                            <i-list class="col3" ng-search="_search.$employee_search" class="col12"
+                                ng-model="search.employee" items="employees" label="##word.employees_insurances_name##">
+                            </i-list>
+                            <i-list ng-search="_search.$facility_search" class="col3" items="facilities_codes"
+                                ng-model="search.facility_name" label="##word.employees_insurances_facility_name##">
+                            </i-list>
+                            <i-list ng-search="_search.$slides_search" class="col3" items="insurances_slides"
+                                ng-model="search.insurance_slide" label="##word.employees_insurances_insurance_slide##">
+                            </i-list>
+                            <i-control class="col3" label="##word.limit##" type="number" ng-model="search.limit">
+                            </i-control>
 
-                    <div class="row">
-                        <i-list class="col3" ng-search="_search.$employee_search" class="col12" ng-model="search.employee" items="employees"
-                            label="##word.employees_insurances_name##"></i-list>
-                        <i-list ng-search="_search.$facility_search" class="col3" items="facilities_codes" ng-model="search.facility_name"
-                            label="##word.employees_insurances_facility_name##"></i-list>
-                        <i-list ng-search="_search.$slides_search" class="col3" items="insurances_slides" ng-model="search.insurance_slide"
-                            label="##word.employees_insurances_insurance_slide##"></i-list>
-                        <i-control class="col3" label="##word.limit##" type="number" ng-model="search.limit"></i-control>
+                        </div>
 
-                    </div>
+                        <div class="row">
+                            <i-control ng-model="search.fixed_salary" class="col3"
+                                label="##word.employees_insurances_fixed_salary##"></i-control>
+                            <i-control ng-model="search.insurance_discount" class="col3"
+                                label="##word.employees_insurances_insurance_discount##"></i-control>
+                            <i-control ng-model="search.variable_salary" class="col3"
+                                label="##word.employees_insurances_variable_salary##"></i-control>
+                            <i-control ng-model="search.salary_discount" class="col3"
+                                label="##word.employees_insurances_salary_discount##"></i-control>
+                        </div>
 
-                    <div class="row">
-                        <i-control ng-model="search.fixed_salary" class="col3" label="##word.employees_insurances_fixed_salary##"></i-control>
-                        <i-control ng-model="search.insurance_discount" class="col3" label="##word.employees_insurances_insurance_discount##"></i-control>
-                        <i-control ng-model="search.variable_salary" class="col3" label="##word.employees_insurances_variable_salary##"></i-control>
-                        <i-control ng-model="search.salary_discount" class="col3" label="##word.employees_insurances_salary_discount##"></i-control>
-                    </div>
+                        <div class="row">
 
-                    <div class="row">
-
-                        <i-textarea ng-model="search.description" type="text" label="##word.employee_insurance_description##"></i-textarea>
-                    </div>
-
+                            <i-textarea ng-model="search.description" type="text"
+                                label="##word.employee_insurance_description##"></i-textarea>
+                        </div>
+                    </fieldset>
 
                 </form>
             </div>
@@ -45,9 +55,11 @@
         <div class="modal-footer center">
 
 
-            <i-button type="search" label="##word.search##" ng-click="searchAll();search = {}" onclick="site.hideModal('#Employee_InsuranceSearchModal')"></i-button>
+            <i-button type="search" label="##word.search##" ng-click="searchAll();search = {}"
+                onclick="site.hideModal('#Employee_InsuranceSearchModal')"></i-button>
             <i-button type="clear" label="##word.clear##" ng-click="search = {}"></i-button>
-            <i-button type="close" label="##word.close##" onclick="site.hideModal('#Employee_InsuranceSearchModal')"></i-button>
+            <i-button type="close" label="##word.close##" onclick="site.hideModal('#Employee_InsuranceSearchModal')">
+            </i-button>
 
         </div>
     </div>

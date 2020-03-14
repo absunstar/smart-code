@@ -4,16 +4,21 @@
             <span class="close">&times;</span>
             <h2>
                 ##word.search_all## <i class="fa fa-search"></i>
-                 
+
             </h2>
         </div>
         <div class="modal-body">
             <div class="row">
                 <form class="form">
-                    <div class="row">
-                        <i-control class="col2" label="##word.vendors_group_code##" ng-model="search.code"></i-control>
-                        <i-control class="col4" label="##word.vendors_group_name##" ng-model="search.name"></i-control>
-                    </div>
+                    <fieldset>
+                        <legend>##word.search_all##</legend>
+                        <div class="row">
+                            <i-control class="col2" label="##word.vendors_group_code##" ng-model="search.code">
+                            </i-control>
+                            <i-control class="col4" label="##word.vendors_group_name##" ng-model="search.name">
+                            </i-control>
+                        </div>
+                    </fieldset>
                 </form>
             </div>
 

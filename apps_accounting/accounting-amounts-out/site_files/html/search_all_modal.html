@@ -9,39 +9,45 @@
         </div>
         <div class="modal-body">
             <form>
-                <input type="hidden">
-                <div class="row">
-                    <i-date2 class="col3" ng-model="search.date" label="##word.amounts_out_date##"></i-date2>
-                    <i-date2 class="col3" ng-model="search.dateFrom" label="##word.amounts_out_date_from##"></i-date2>
-                    <i-date2 class="col3" ng-model="search.dateTo" label="##word.amounts_out_date_to##"></i-date2>
-                </div>
+                <fieldset>
+                    <legend>##word.search_all##</legend>
+                    <input type="hidden">
+                    <div class="row">
+                        <i-date2 class="col3" ng-model="search.date" label="##word.amounts_out_date##"></i-date2>
+                        <i-date2 class="col3" ng-model="search.dateFrom" label="##word.amounts_out_date_from##">
+                        </i-date2>
+                        <i-date2 class="col3" ng-model="search.dateTo" label="##word.amounts_out_date_to##"></i-date2>
+                    </div>
 
-                <div class="row">
-                    <i-control class="col3 r_indigo" type="text" label="##word.shift##" ng-model="search.shift_code">
-                    </i-control>
-                    <i-control class="col3" ng-model="search.value" type="number" label="##word.amounts_in_value##">
-                    </i-control>
-                    <i-list help-id="" ng-search="_search.$payment_method_search" class="col2"
-                        label="##word.payment_method##" ng-model="search.payment_method" items="paymentMethodList"
-                        ng-change="getSafeByType(search)" display="##session.lang##">
-                    </i-list>
-                    <i-list class="col3" ng-search="_search.$safe_search" ng-model="search.safe" items="safes"
-                        label="##word.amounts_in_safe##"></i-list>
+                    <div class="row">
+                        <i-control class="col3 r_indigo" type="text" label="##word.shift##"
+                            ng-model="search.shift_code">
+                        </i-control>
+                        <i-control class="col3" ng-model="search.value" type="number" label="##word.amounts_in_value##">
+                        </i-control>
+                        <i-list help-id="" ng-search="_search.$payment_method_search" class="col2"
+                            label="##word.payment_method##" ng-model="search.payment_method" items="paymentMethodList"
+                            ng-change="getSafeByType(search)" display="##session.lang##">
+                        </i-list>
+                        <i-list class="col3" ng-search="_search.$safe_search" ng-model="search.safe" items="safes"
+                            label="##word.amounts_in_safe##"></i-list>
 
-                </div>
+                    </div>
 
-                <div class="row">
-                    <i-list label="##word.amounts_in_employees##" class="col3" ng-search="_search.$eng_amount_in"
-                        ng-model="search.employee" display="name" items="employeesList">
-                    </i-list>
+                    <div class="row">
+                        <i-list label="##word.amounts_in_employees##" class="col3" ng-search="_search.$eng_amount_in"
+                            ng-model="search.employee" display="name" items="employeesList">
+                        </i-list>
 
 
-                    <i-list class="col3 padding" label="##word.amounts_out_source##" ng-search="_search.$source_search"
-                        class="col12" ng-model="search.source" items="namesList"></i-list>
-                    <i-control class="col2" label="##word.limit##" type="number" ng-model="search.limit"></i-control>
-                </div>
+                        <i-list class="col3 padding" label="##word.amounts_out_source##"
+                            ng-search="_search.$source_search" class="col12" ng-model="search.source" items="namesList">
+                        </i-list>
+                        <i-control class="col2" label="##word.limit##" type="number" ng-model="search.limit">
+                        </i-control>
+                    </div>
 
-                <!-- 
+                    <!-- 
                     <i-list class="col3 padding" label="##word.amounts_out_employees##" ng-search="_search.$eng_search"
                         class="col12" ng-model="search.employee" items="employeeList"></i-list>
 
@@ -59,11 +65,12 @@
 
                     </div> -->
 
-                <div class="row">
-                    <i-textarea class="col6" type="text" label="##word.amounts_out_description##"
-                        ng-model="search.description"></i-textarea>
+                    <div class="row">
+                        <i-textarea class="col6" type="text" label="##word.amounts_out_description##"
+                            ng-model="search.description"></i-textarea>
 
-                </div>
+                    </div>
+                </fieldset>
             </form>
         </div>
         <h2 class="error">{{error}}</h2>

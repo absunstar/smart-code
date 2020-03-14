@@ -11,23 +11,27 @@
 
         <div class="modal-body">
             <form class="form">
-                <div class="row">
+                <fieldset>
+                    <legend>##word.search_all##</legend>
+                    <div class="row">
 
-                    <i-control class="col3" label="##word.courses_name##" ng-model="search.name"></i-control>
+                        <i-control class="col3" label="##word.courses_name##" ng-model="search.name"></i-control>
 
-                    <i-control help-id="courses_name" type="number" class="col2" label="##word.courses_price##"
-                        ng-model="search.price"></i-control>
+                        <i-control help-id="courses_name" type="number" class="col2" label="##word.courses_price##"
+                            ng-model="search.price"></i-control>
 
-                    <i-control type="number" class="col2" label="##word.courses_total##" ng-model="search.courses_total"></i-control>
+                        <i-control type="number" class="col2" label="##word.courses_total##"
+                            ng-model="search.courses_total"></i-control>
 
-                    <div class="control col3">
-                        <label> ##word.status## </label>
-                        <select ng-model="search.active">
-                            <option ng-value="true"> ##word.active## </option>
-                            <option ng-value="false"> ##word.not_active## </option>
-                        </select>
+                        <div class="control col3">
+                            <label> ##word.status## </label>
+                            <select ng-model="search.active">
+                                <option ng-value="true"> ##word.active## </option>
+                                <option ng-value="false"> ##word.not_active## </option>
+                            </select>
+                        </div>
                     </div>
-                </div>
+                </fieldset>
             </form>
         </div>
 

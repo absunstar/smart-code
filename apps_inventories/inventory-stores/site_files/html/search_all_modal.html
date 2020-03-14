@@ -5,32 +5,34 @@
             <span class="close">&times;</span>
             <h2>
                 ##word.search_all## <i class="fa fa-search"></i>
-                 
+
             </h2>
         </div>
         <div class="modal-body">
             <div class="row">
                 <form class="form">
-                    <div class="row">
-                        <div class="col3">
-                            <i-control ng-model="search.name" label="##word.stores_name##"></i-control>
-                        </div>
-                        <i-list display="##session.lang##" class="col3" ng-model="search.type" items="store_types" ng-search="_search.$serach_store_types"
-                            label="##word.stores_type##"></i-list>
-                        <div class="col3">
-                            <i-control ng-model="search.note" label="##word.stores_note##"></i-control>
-                        </div>
+                    <fieldset>
+                        <legend>##word.search_all##</legend>
+                        <div class="row">
+                            <div class="col3">
+                                <i-control ng-model="search.name" label="##word.stores_name##"></i-control>
+                            </div>
+                            <i-list display="##session.lang##" class="col3" ng-model="search.type" items="store_types"
+                                ng-search="_search.$serach_store_types" label="##word.stores_type##"></i-list>
+                            <div class="col3">
+                                <i-control ng-model="search.note" label="##word.stores_note##"></i-control>
+                            </div>
 
-                        <div class="col3">
+                            <div class="col3">
                                 <i-control label="##word.limit##" type="number" ng-model="search.limit"></i-control>
                             </div>
 
 
 
-                    </div>
+                        </div>
 
 
-
+                    </fieldset>
                 </form>
             </div>
 

@@ -11,26 +11,29 @@
 
         <div class="modal-body">
             <form class="form">
-                <div class="row">
+                <fieldset>
+                    <legend>##word.search_all##</legend>
+                    <div class="row">
 
-                    <i-list ng-search="_search.$tables_group" class="col4" display="name" display2="code" space="-"
-                        ng-model="search.tables_group" label="##word.tables_group##" items="tablesGroupList">
-                    </i-list>
+                        <i-list ng-search="_search.$tables_group" class="col4" display="name" display2="code" space="-"
+                            ng-model="search.tables_group" label="##word.tables_group##" items="tablesGroupList">
+                        </i-list>
 
-                    <i-control type="text" help-id="tables_number" v="r" class="col3" label="##word.tables_number##"
-                        ng-model="search.code"></i-control>
+                        <i-control type="text" help-id="tables_number" v="r" class="col3" label="##word.tables_number##"
+                            ng-model="search.code"></i-control>
 
-                    <i-control type="text" help-id="table_name" v="r" class="col3" label="##word.table_name##"
-                        ng-model="search.name"></i-control>
+                        <i-control type="text" help-id="table_name" v="r" class="col3" label="##word.table_name##"
+                            ng-model="search.name"></i-control>
 
-                    <div class="control col3">
-                        <label> ##word.status## </label>
-                        <select ng-model="search.active">
-                            <option ng-value="true"> ##word.active## </option>
-                            <option ng-value="false"> ##word.not_active## </option>
-                        </select>
+                        <div class="control col3">
+                            <label> ##word.status## </label>
+                            <select ng-model="search.active">
+                                <option ng-value="true"> ##word.active## </option>
+                                <option ng-value="false"> ##word.not_active## </option>
+                            </select>
+                        </div>
                     </div>
-                </div>
+                </fieldset>
             </form>
         </div>
 

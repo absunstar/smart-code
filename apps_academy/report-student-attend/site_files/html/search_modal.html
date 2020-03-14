@@ -9,20 +9,22 @@
             </h2>
         </div>
         <div class="modal-body">
-                <input type="hidden">
+            <input type="hidden">
             <form>
-                   
-                <div class="row">
+                <fieldset>
+                    <legend>##word.search_all##</legend>
 
                     <div class="row">
-                        <i-list class="col4" ng-search="engRep_search"  ng-model="search.customer" items="studentsList"
-                            label="##word.student##"></i-list>
+
+                        <div class="row">
+                            <i-list class="col4" ng-search="engRep_search" ng-model="search.customer"
+                                items="studentsList" label="##word.student##"></i-list>
+
+                        </div>
+
 
                     </div>
-                   
-                   
-                </div>
-
+                </fieldset>
             </form>
 
         </div>
