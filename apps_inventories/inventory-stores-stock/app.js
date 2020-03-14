@@ -235,6 +235,7 @@ module.exports = function init(site) {
               _itm.size_units_list.forEach(_unit => {
                 _unit.barcode = _itm.barcode
                 _unit.name = _itm.name
+                _unit.item_group = _itm.item_group
                 _unit.size = _itm.size
                 _unit.store = result.doc.store
                 _unit.company = result.doc.company
@@ -247,7 +248,7 @@ module.exports = function init(site) {
                   id: _unit.id,
                   name: _unit.name,
                   barcode: _unit.barcode,
-                  convert: _unit.convert,
+                  convert: _unit.convert
                 }
                 _unit.shift = {
                   id: result.doc.shift.id,
@@ -260,22 +261,23 @@ module.exports = function init(site) {
                   _unit.transaction_type = 'out'
                   site.call('item_transaction - items', Object.assign({}, _unit))
 
-                  site.call('[transfer_branch][stores_items][add_balance]', _unit)
+                  site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _unit))
+
                 } else if (_unit.stock_count > _unit.store_count) {
                   _unit.count = _unit.stock_count - _unit.store_count
                   _unit.type = 'sum'
                   _unit.transaction_type = 'in'
                   site.call('item_transaction + items', Object.assign({}, _unit))
-                  site.call('[transfer_branch][stores_items][add_balance]', _unit)
+                  site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _unit))
 
-                } else if(_unit.stock_count == _unit.store_count) {
+                } else if (_unit.stock_count == _unit.store_count) {
 
                 } else {
                   _unit.count = _unit.stock_count
                   _unit.type = 'sum'
                   _unit.transaction_type = 'in'
                   site.call('item_transaction + items', Object.assign({}, _unit))
-                  site.call('[transfer_branch][stores_items][add_balance]', _unit)
+                  site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _unit))
                 }
 
               });

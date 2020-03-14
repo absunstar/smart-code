@@ -21,10 +21,6 @@ module.exports = function init(site) {
     });
   });
 
-
-
-
-
   $item_transaction.trackBusy = false
   site.on('item_transaction + items', itm => {
 
@@ -41,8 +37,8 @@ module.exports = function init(site) {
 
       $item_transaction.findMany({ sort: { id: -1 }, where: { 'barcode': itm.barcode, name: itm.name, 'branch.code': itm.branch.code, 'company.id': itm.company.id, 'store.id': itm.store.id, 'unit.id': itm.unit.id } }, (err, docs) => {
 
-        // delete itm._id
-        // delete itm.id
+        delete itm._id
+        delete itm.id
         // delete itm.type
         // delete itm.units_list
 
