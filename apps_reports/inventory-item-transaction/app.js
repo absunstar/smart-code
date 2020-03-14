@@ -99,8 +99,8 @@ module.exports = function init(site) {
 
     delete itm.id
     delete itm._id
-    delete itm.type
-    delete itm.units_list
+    // delete itm.type
+    // delete itm.units_list
 
     $item_transaction.findMany({ sort: { id: -1 }, where: { 'barcode': itm.barcode, name: itm.name, 'branch.code': itm.branch.code, 'company.id': itm.company.id, 'store.id': itm.store.id, 'unit.id': itm.unit.id } }, (err, docs) => {
 
