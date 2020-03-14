@@ -63,7 +63,7 @@ module.exports = function init(site) {
         if (docs && docs.length > 0) {
           itm.last_count = docs[0].current_count
           itm.current_count = itm.last_count + itm.count
-          itm.last_price = docs[0].price
+          // itm.last_price = docs[0].price
           itm.count = itm.count
           itm.current_status = itm.current_status
           $item_transaction.add(itm, () => {
@@ -75,7 +75,7 @@ module.exports = function init(site) {
           // itm.last_count = (itm.current_count || 0)  -  itm.count 
           itm.last_count = 0
           itm.current_count = itm.count
-          itm.last_price = itm.price
+          // itm.last_price = itm.price
           itm.count = itm.count
           itm.current_status = itm.current_status
           $item_transaction.add(itm, () => {
@@ -108,7 +108,7 @@ module.exports = function init(site) {
 
         itm.last_count = docs[0].current_count
         itm.current_count = itm.last_count - itm.count
-        itm.last_price = docs[0].price
+        // itm.last_price = docs[0].price
         itm.count = itm.count
         $item_transaction.add(itm, (err, doc) => {
 
@@ -121,7 +121,7 @@ module.exports = function init(site) {
         itm.last_count = itm.current_count || 0
         itm.current_count = itm.last_count - itm.count
         itm.count = itm.count
-        itm.last_price = itm.price
+        // itm.last_price = itm.price
         $item_transaction.add(itm, () => {
           setTimeout(() => {
             $item_transaction.outBusy = false
