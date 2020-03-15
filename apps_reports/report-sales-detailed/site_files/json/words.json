@@ -2,7 +2,7 @@
     {
         "name": "report_sales_detailed_name",
         "en": "Report Items Sales Detailed",
-        "ar": "تقرير مبيعات تفصيلي الأصناف"
+        "ar": "تقرير مبيعات الأصناف تفصيلي"
     },
     {
         "name": "report_total",
@@ -17,7 +17,7 @@
     {
         "name": "report_sales_detailed_menus",
         "en": "Report Sales Detailed Menu",
-        "ar": "قائمة تقرير تفصيلي للمبيعات"
+        "ar": "قائمة تقرير المبيعات تفصيلي"
     },
     {
         "name": "invoices_code",

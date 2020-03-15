@@ -108,6 +108,10 @@ module.exports = function init(site) {
 
         itm.last_count = docs[0].current_count
         itm.current_count = itm.last_count - itm.count
+        if(itm.cost == undefined || null){
+          itm.cost = docs[0].cost
+          itm.average_cost = docs[0].average_cost
+        }
         // itm.last_price = docs[0].price
         itm.count = itm.count
         $item_transaction.add(itm, (err, doc) => {
