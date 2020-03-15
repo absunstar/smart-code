@@ -113,9 +113,16 @@ module.exports = function init(site) {
             }
 
             if (!exist) {
-              _item.count = site.toNumber(_item.count)
-              _item.total = site.toNumber(_item.total)
-              _item.average_cost = (site.toNumber(_item.average_cost) * site.toNumber(_item.count))
+              if (docs[i].type.id == 6) {
+                _item.count = 0 - site.toNumber(_item.count)
+                _item.total = 0 - site.toNumber(_item.total)
+                _item.average_cost = 0 - (site.toNumber(_item.average_cost) * site.toNumber(_item.count))
+              } else {
+
+                _item.count = site.toNumber(_item.count)
+                _item.total = site.toNumber(_item.total)
+                _item.average_cost = (site.toNumber(_item.average_cost) * site.toNumber(_item.count))
+              }
 
               total_size_list.push(Object.assign({}, _item))
             }
