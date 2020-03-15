@@ -420,12 +420,11 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         else if (calc_size.discount.type == 'percent')
           discount = calc_size.discount.value * (calc_size.price * calc_size.count) / 100;
 
-        let totalNumber = 0;
-        if ($scope.store_out.type && $scope.store_out.type.id == 5) totalNumber = calc_size.average_cost
-        else totalNumber = calc_size.price
+        if ($scope.store_out.type && $scope.store_out.type.id == 5)
+          calc_size.total = site.toNumber(calc_size.average_cost) * site.toNumber(calc_size.count);
+        else calc_size.total = ((site.toNumber(calc_size.price) * site.toNumber(calc_size.count)) - discount);
 
 
-        calc_size.total = ((site.toNumber(totalNumber) * site.toNumber(calc_size.count)) - discount);
       }
       $scope.calc($scope.store_out);
     }, 100);
@@ -491,12 +490,10 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
                       _size.price = _size.size_units_list[indxUnit].price;
                       _size.cost = _size.size_units_list[indxUnit].cost;
                       _size.count = 1;
-                      let totalNumber = 0;
-                      if ($scope.store_out.type && $scope.store_out.type.id == 5) totalNumber = _size.average_cost
-                      else totalNumber = _size.price
-
-
-                      _size.total = _size.count * totalNumber;
+                      
+                      if ($scope.store_out.type && $scope.store_out.type.id == 5) _size.total = _size.count * _size.average_cost;
+                      else _size.total = _size.count * _size.price;
+                      
                       if (_size.branches_list && _size.branches_list.length > 0) {
                         let foundBranch = false;
                         let indxBranch = 0;
@@ -571,11 +568,9 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
           _item.price = _item.size_units_list[indxUnit].price;
           _item.cost = _item.size_units_list[indxUnit].cost;
 
-          let totalNumber = 0;
-          if ($scope.store_out.type && $scope.store_out.type.id == 5) totalNumber = _item.average_cost
-          else totalNumber = _item.price
+          if ($scope.store_out.type && $scope.store_out.type.id == 5) _item.total = _item.count * _item.average_cost
+          else _item.total = _item.count * _item.price
 
-          _item.total = _item.count * totalNumber;
         }
 
         if (_item.branches_list && _item.branches_list.length > 0) {
