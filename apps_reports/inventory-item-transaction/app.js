@@ -111,6 +111,7 @@ module.exports = function init(site) {
         if(itm.cost == undefined || null){
           itm.cost = docs[0].cost
           itm.average_cost = docs[0].average_cost
+          itm.discount = docs[0].discount
         }
         // itm.last_price = docs[0].price
         itm.count = itm.count
