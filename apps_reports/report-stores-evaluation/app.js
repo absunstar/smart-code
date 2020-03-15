@@ -43,7 +43,7 @@ module.exports = function init(site) {
       if (!err1) {
 
         let i_store_list = [];
-        
+
         docs.forEach(_doc => {
           _doc.sizes.forEach(_sizes => {
             _sizes.branches_list.forEach(_branch => {
