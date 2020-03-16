@@ -197,7 +197,7 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
         let total_complex_av = 0;
 
         if (_size.item_complex) {
-          _size.complex_items.map(_complex => total_complex_av += _complex.unit.average_cost);
+          _size.complex_items.map(_complex => total_complex_av += (_complex.unit.average_cost * _complex.count));
 
           if (_size.value_add) {
             if (_size.value_add.type == 'percent')
@@ -305,7 +305,7 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
         let total_complex_av = 0;
 
         if (_size.item_complex) {
-          _size.complex_items.map(_complex => total_complex_av += _complex.unit.average_cost);
+          _size.complex_items.map(_complex => total_complex_av += (_complex.unit.average_cost * _complex.count));
 
           if (_size.value_add) {
             if (_size.value_add.type == 'percent')
