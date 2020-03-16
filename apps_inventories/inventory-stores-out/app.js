@@ -104,6 +104,7 @@ module.exports = function init(site) {
       _itm.cost = site.toNumber(_itm.cost)
       _itm.price = site.toNumber(_itm.price)
       _itm.total = site.toNumber(_itm.total)
+      delete _itm.show_max_dis
     })
 
     stores_out_doc.total_value = site.toNumber(stores_out_doc.total_value)
