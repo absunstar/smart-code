@@ -722,9 +722,9 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
                       _size.count = 1;
                       _size.unit = _size.size_units_list[indxUnit];
                       _size.discount = _size.size_units_list[indxUnit].discount;
-                      _size.average_cost = _size.size_units_list[indxUnit].average_cost
-                      _size.cost = _size.size_units_list[indxUnit].cost
-                      _size.price = _size.size_units_list[indxUnit].price
+                      _size.average_cost = _size.size_units_list[indxUnit].average_cost;
+                      _size.cost = _size.size_units_list[indxUnit].cost;
+                      _size.price = _size.size_units_list[indxUnit].price;
                       _size.total = _size.count * _size.cost;
 
                       if (_size.branches_list && _size.branches_list.length > 0) {
@@ -797,7 +797,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
         if (_item.size_units_list[indxUnit]) {
           _item.unit = _item.size_units_list[indxUnit];
           _item.discount = _item.size_units_list[indxUnit].discount;
-          _item.average_cost = _item.size_units_list[indxUnit].average_cost
+          _item.average_cost = _item.size_units_list[indxUnit].average_cost;
           _item.cost = _item.size_units_list[indxUnit].cost;
           _item.price = _item.size_units_list[indxUnit].price;
         }

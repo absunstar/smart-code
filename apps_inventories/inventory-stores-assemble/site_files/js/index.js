@@ -224,7 +224,6 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
       price: 0,
       size: '',
       current_count: 0,
-      total: 0,
     });
   };
 
@@ -266,7 +265,11 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
                       _size.item_group = _item.item_group;
                       _size.store = $scope.store_assemble.store;
                       _size.unit = _size.size_units_list[indxUnit];
-                      _size.count = 1
+                      _size.count = 1;
+                      _size.discount = _size.size_units_list[indxUnit].discount;
+                      _size.average_cost = _size.size_units_list[indxUnit].average_cost;
+                      _size.cost = _size.size_units_list[indxUnit].cost;
+                      _size.price = _size.size_units_list[indxUnit].price;
                       if (_size.branches_list && _size.branches_list.length > 0) {
                         let foundBranch = false;
                         let indxBranch = 0;
@@ -346,6 +349,11 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
         let indxUnit = _item.size_units_list.findIndex(_unit => _unit.id == $scope.item.name.main_unit.id);
         _item.unit = _item.size_units_list[indxUnit];
         _item.count = 1;
+        _item.discount = _item.size_units_list[indxUnit].discount;
+        _item.average_cost = _item.size_units_list[indxUnit].average_cost;
+        _item.cost = _item.size_units_list[indxUnit].cost;
+        _item.price = _item.size_units_list[indxUnit].price;
+
         if (_item.branches_list && _item.branches_list.length > 0) {
           let foundBranch = false
           let indxBranch = 0
@@ -428,7 +436,11 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
                     _size.store = $scope.store_assemble.store;
                     _size.unit = _size.size_units_list[indxUnit];
                     _size.count = 1;
-                    _size.total = _size.count * _size.cost;
+                    _size.discount = _size.size_units_list[indxUnit].discount;
+                    _size.average_cost = _size.size_units_list[indxUnit].average_cost;
+                    _size.cost = _size.size_units_list[indxUnit].cost;
+                    _size.price = _size.size_units_list[indxUnit].price;
+
                     if (_size.branches_list && _size.branches_list.length > 0) {
                       let foundBranch = false
                       let indxBranch = 0
