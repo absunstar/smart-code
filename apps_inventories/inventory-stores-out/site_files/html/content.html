@@ -53,10 +53,6 @@
                     ng-hide="edit_price || store_out.type.id ==5" label="##word.edit_sale_price##"
                     ng-click="edit_price = true"></i-button>
 
-                <i-button type="view" x-permissions="stores_out_price || stores_out_manage"
-                    ng-hide="showMaxDis || store_out.type.id ==5" label="##word.view_maximum_discount##"
-                    ng-click="showMaxDis = true">
-                </i-button>
             </div>
             <br>
             <br>
@@ -77,7 +73,7 @@
                             <th>##word.quantity##</th>
                             <th ng-hide="store_out.type.id == 5">##word.price##</th>
                             <th ng-hide="store_out.type.id == 5">##word.discount##</th>
-                            <th ng-show="showMaxDis">##word.maximum_discount##</th>
+                            <th ng-hide="store_out.type.id == 5">##word.maximum_discount##</th>
                             <th>##word.stores_out_item_total##</th>
                             <th>##word.actions##</th>
                         </tr>
@@ -115,16 +111,34 @@
                                 <b class="" ng-show="itm.discount.type =='percent'">%</b>
                             </td>
 
-                            <td ng-show="showMaxDis"> <br>
-                                <p class="red">{{itm.discount.max}}</p>
-                                <b class="" ng-show="itm.discount.type =='number'">$</b>
-                                <b class="" ng-show="itm.discount.type =='percent'">%</b>
+                            <td ng-hide="store_out.type.id == 5"> <br>
+                                <div class="row" ng-show="itm.show_max_dis">
+                                    <p class="red">{{itm.discount.max}}</p>
+                                    <b class="" ng-show="itm.discount.type =='number'">$</b>
+                                    <b class="" ng-show="itm.discount.type =='percent'">%</b>
+                                </div>
+                            
                             </td>
 
                             <td class="green"> <br> {{itm.total}}</td>
 
                             <td>
-                                <i-button type="delete" ng-click="deleteRow(itm)"></i-button>
+                                <div class="row">
+                                    <i-button type="delete" ng-click="deleteRow(itm)"></i-button>
+                                </div>
+                                <div class="row">
+
+                                    <i-button type="" x-permissions="stores_out_price || stores_out_manage"
+                                        ng-hide="itm.show_max_dis || store_out.type.id ==5"
+                                        label="##word.view_maximum_discount##" ng-click="itm.show_max_dis = true">
+                                    </i-button>
+
+                                    <i-button type="" x-permissions="stores_out_price || stores_out_manage"
+                                        ng-hide="!itm.show_max_dis || store_out.type.id ==5"
+                                        label="##word.hide_maximum_discount##" ng-click="itm.show_max_dis = false">
+                                    </i-button>
+
+                                </div>
                             </td>
                         </tr>
                     </table>

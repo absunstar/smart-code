@@ -16,8 +16,13 @@
     },
     {
         "name": "view_maximum_discount",
-        "en": "View Maximum Discount",
-        "ar": "عرض أقصى خصم"
+        "en": "View Max.D",
+        "ar": "عرض أ.خ"
+    },
+    {
+        "name": "hide_maximum_discount",
+        "en": "Hide Max.D",
+        "ar": "إخفاء أ.خ"
     },
     {
         "name": "stores_out_empty_search",

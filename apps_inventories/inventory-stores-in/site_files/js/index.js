@@ -615,7 +615,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
 
             let discount = 0;
 
-            if (_size.cost && _size.count) {
+            if (_size.count) {
               if (_size.discount.type == 'number')
                 discount = (_size.discount.value || 0) * _size.count;
               else if (_size.discount.type == 'percent')
@@ -655,7 +655,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
 
     setTimeout(() => {
       let discount = 0;
-      if (calc_size.cost && calc_size.count) {
+      if (calc_size.count) {
         if (calc_size.discount.type == 'number')
           discount = calc_size.discount.value * calc_size.count;
         else if (calc_size.discount.type == 'percent')

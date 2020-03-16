@@ -147,8 +147,7 @@ module.exports = function init(site) {
               site.call('item_transaction + items', Object.assign({}, _itm))
               site.returnStoresOut(doc, res => { })
             } else {
-              if (doc.type.id == 5)
-                _itm.set_average = 'minus_average'
+              if (doc.type.id == 5) _itm.set_average = 'minus_average'
 
               _itm.type = 'minus'
               _itm.transaction_type = 'out'
