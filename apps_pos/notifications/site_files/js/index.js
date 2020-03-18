@@ -166,6 +166,18 @@ app.controller("notifications", function ($scope, $http, $interval) {
       $scope.jobs = n.add;
       site.showModal('#jobsViewModal');
 
+    } else if (n.link.collection == 'currency') {
+      $scope.currency = n.add;
+      site.showModal('#currencyViewModal');
+
+    } else if (n.link.collection == 'shifts') {
+      $scope.shift = n.add;
+      site.showModal('#shiftViewModal');
+
+    } else if (n.link.collection == 'units') {
+      $scope.unit = n.add;
+      site.showModal('#unitViewModal');
+
     } else if (n.link.collection == 'trainer') {
       $scope.trainer = n.add;
       site.showModal('#trainerViewModal');
@@ -334,6 +346,9 @@ app.controller("notifications", function ($scope, $http, $interval) {
   };
 
 
+
+
+
   $scope.showUpdate = (n) => {
     if (n.link.collection == 'students') {
       $scope.students = n.update;
@@ -345,13 +360,27 @@ app.controller("notifications", function ($scope, $http, $interval) {
       site.showModal('#companyDetailsModal');
       document.querySelector('#companyDetailsModal .tab-link').click();
 
+    } else if (n.link.collection == 'shifts') {
+      $scope.shift = n.update;
+      site.showModal('#shiftViewModal');
+
+
     } else if (n.link.collection == 'facilities_codes') {
       $scope.facilities_codes = n.update;
       site.showModal('#viewFacilityCodeModal');
 
+    } else if (n.link.collection == 'currency') {
+      $scope.currency = n.update;
+      site.showModal('#currencyViewModal');
+
+
     } else if (n.link.collection == 'tables') {
       $scope.tables = n.update;
       site.showModal('#tablesViewModal');
+
+    } else if (n.link.collection == 'units') {
+      $scope.unit = n.update;
+      site.showModal('#unitViewModal');
 
     } else if (n.link.collection == 'delivery_employee_list') {
       $scope.delivery_employee_list = n.update;
@@ -551,6 +580,21 @@ app.controller("notifications", function ($scope, $http, $interval) {
     } else if (n.link.collection == 'tables') {
       $scope.tables = n.delete;
       site.showModal('#tablesViewModal');
+
+    } else if (n.link.collection == 'units') {
+      $scope.unit = n.delete;
+      site.showModal('#unitViewModal');
+
+
+    } else if (n.link.collection == 'currency') {
+      $scope.currency = n.delete;
+      site.showModal('#currencyViewModal');
+
+
+    } else if (n.link.collection == 'shifts') {
+      $scope.shift = n.delete;
+      site.showModal('#shiftViewModal');
+
 
     } else if (n.link.collection == 'delivery_employee_list') {
       $scope.delivery_employee_list = n.delete;
