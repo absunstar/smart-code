@@ -51,13 +51,25 @@ module.exports = function init(site) {
     stores_doc.company = site.get_company(req)
     stores_doc.branch = site.get_branch(req)
 
-    $stores.add(stores_doc, (err, _id) => {
-      if (!err) {
-        response.done = true
-      } else {
-        response.error = err.message
+    $stores.findMany({
+      where: {
+        'company.id': site.get_company(req).id,
       }
-      res.json(response)
+    }, (err, docs, count) => {
+      if (!err && count >= site.get_company(req).store) {
+
+        response.error = 'You have exceeded the maximum number of extensions'
+        res.json(response)
+      } else {
+        $stores.add(stores_doc, (err, _id) => {
+          if (!err) {
+            response.done = true
+          } else {
+            response.error = err.message
+          }
+          res.json(response)
+        })
+      }
     })
   })
 

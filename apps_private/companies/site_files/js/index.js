@@ -9,6 +9,11 @@ app.controller("companies", function ($scope, $http, $timeout) {
       image_url: '/images/company.png',
       calender_type: 'gegorian',
       active: true,
+      branch_count: 1,
+      store: 1,
+      item: 1,
+      unit: 1,
+      currency: 1,
       branch_list: [{
         code: 1,
         name_ar: 'الفرع الرئيسى',

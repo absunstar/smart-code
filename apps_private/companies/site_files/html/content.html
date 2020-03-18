@@ -18,18 +18,47 @@
                     <div class="row">
                         <div class="col9">
                             <div class="row">
-                                <i-control id="cmd" class="col2" label="##word.code##" ng-model="company.code"></i-control>
+                                <i-control id="cmd" class="col2" label="##word.code##" ng-model="company.code">
+                                </i-control>
 
-                                <i-control class="col4" label="##word.companies_name_ar##" ng-model="company.name_ar"></i-control>
+                                <i-control class="col4" label="##word.companies_name_ar##" ng-model="company.name_ar">
+                                </i-control>
 
-                                <i-control class="col4" label="##word.companies_name_en##" ng-model="company.name_en"></i-control>
+                                <i-control class="col4" label="##word.companies_name_en##" ng-model="company.name_en">
+                                </i-control>
 
                                 <i-checkbox class="col2" label="##word.active##" ng-model="company.active"></i-checkbox>
                             </div>
 
+                            <div class="row">
+
+                                <i-control class="col2" label="##word.count_branches##" type="number"
+                                    ng-model="company.branch_count">
+                                </i-control>
+
+                                <i-control class="col2" label="##word.count_stores##" type="number"
+                                    ng-model="company.store">
+                                </i-control>
+
+                                <i-control class="col2" label="##word.count_items##" type="number"
+                                    ng-model="company.item">
+                                </i-control>
+
+                                <i-control class="col2" label="##word.count_units##" type="number"
+                                    ng-model="company.unit">
+                                </i-control>
+
+
+                                <i-control class="col2" label="##word.count_currencies##" type="number"
+                                    ng-model="company.currency">
+                                </i-control>
+
+                            </div>
+
                             <div class="row hide">
                                 <i-list class="col6" label="##word.companies_activity##" ng-model="company.activity"
-                                    items="companisActivitiesList" display="name" ng-search="_search.$company_activity_search">
+                                    items="companisActivitiesList" display="name"
+                                    ng-search="_search.$company_activity_search">
                                 </i-list>
                             </div>
 
@@ -46,10 +75,12 @@
                     <legend> ##word.companies_calender_type## </legend>
                     <div class="row">
 
-                        <i-radio class="col3" label="##word.companies_gegorian##" ng-value="gegorian" ng-model="company.calender_type">
+                        <i-radio class="col3" label="##word.companies_gegorian##" ng-value="gegorian"
+                            ng-model="company.calender_type">
                         </i-radio>
 
-                        <i-radio class="col3" label="##word.companies_hijri##" ng-value="hijri" ng-model="company.calender_type">
+                        <i-radio class="col3" label="##word.companies_hijri##" ng-value="hijri"
+                            ng-model="company.calender_type">
                         </i-radio>
                     </div>
                 </fieldset>
@@ -59,10 +90,10 @@
                     <div class="row">
                         <i-date class="col6" label="##word.companies_date##" ng-model="company.filter_date"></i-date>
                     </div>
-
                 </fieldset>
 
-                <i-button type="default left" fa="2x fa-angle-double-left" onclick="document.querySelector('.tab-link.active + .tab-link').click();"></i-button>
+                <i-button type="default left" fa="2x fa-angle-double-left"
+                    onclick="document.querySelector('.tab-link.active + .tab-link').click();"></i-button>
 
             </div>
 
@@ -71,36 +102,46 @@
                     <legend>
                         <i-button type="add default" ng-click="company.branch_list.push({charge: [{}]})"></i-button>
                         ##word.companies_branch##
-                        <i-button type="delete default" ng-click="company.branch_list.length === 1 || company.branch_list.splice($index,1)"></i-button>
+                        <i-button type="delete default"
+                            ng-click="company.branch_list.length === 1 || company.branch_list.splice($index,1)">
+                        </i-button>
                     </legend>
 
                     <fieldset>
                         <legend> ##word.companies_branch_information## </legend>
 
                         <div class="row">
-                            <i-control class="col2" label="##word.companies_branch_code##" ng-model="branch.code"></i-control>
+                            <i-control class="col2" label="##word.companies_branch_code##" ng-model="branch.code">
+                            </i-control>
 
-                            <i-control class="col5" label="##word.companies_branch_name_ar##" ng-model="branch.name_ar"></i-control>
-                            <i-control class="col5" label="##word.companies_branch_name_en##" ng-model="branch.name_en"></i-control>
+                            <i-control class="col5" label="##word.companies_branch_name_ar##" ng-model="branch.name_ar">
+                            </i-control>
+                            <i-control class="col5" label="##word.companies_branch_name_en##" ng-model="branch.name_en">
+                            </i-control>
 
-                            <i-control class="row" label="##word.companies_branch_notes##" ng-model="branch.notes"></i-control>
+                            <i-control class="row" label="##word.companies_branch_notes##" ng-model="branch.notes">
+                            </i-control>
                         </div>
 
                         <div class="row">
-                            <i-list class="col3" label="##word.companies_gov##" ng-model="branch.gov" ng-change="getCityList(branch.gov)"
-                                items="govList" display="name"></i-list>
+                            <i-list class="col3" label="##word.companies_gov##" ng-model="branch.gov"
+                                ng-change="getCityList(branch.gov)" items="govList" display="name"></i-list>
 
                             <i-list class="col3" label="##word.companies_city##" ng-model="branch.city" items="cityList"
                                 display="name"></i-list>
 
-                            <i-control class="col6" label="##word.companies_address##" ng-model="branch.address"></i-control>
+                            <i-control class="col6" label="##word.companies_address##" ng-model="branch.address">
+                            </i-control>
                         </div>
 
                         <div class="row">
-                            <i-control class="col3" label="##word.companies_phone##" ng-model="branch.phone"></i-control>
-                            <i-control class="col3" label="##word.companies_mobile##" ng-model="branch.mobile"></i-control>
+                            <i-control class="col3" label="##word.companies_phone##" ng-model="branch.phone">
+                            </i-control>
+                            <i-control class="col3" label="##word.companies_mobile##" ng-model="branch.mobile">
+                            </i-control>
                             <i-control class="col3" label="##word.companies_fax##" ng-model="branch.fax"></i-control>
-                            <i-control class="col3" label="##word.companies_email##" ng-model="branch.email"></i-control>
+                            <i-control class="col3" label="##word.companies_email##" ng-model="branch.email">
+                            </i-control>
                         </div>
                     </fieldset>
 
@@ -110,27 +151,35 @@
 
                             ##word.companies_contact_charge##
 
-                            <i-button type="delete default" ng-click="branch.charge.length === 1 || branch.charge.splice($index,1)"></i-button>
+                            <i-button type="delete default"
+                                ng-click="branch.charge.length === 1 || branch.charge.splice($index,1)"></i-button>
                         </legend>
 
                         <div class="row">
-                            <i-control class="col3" label="##word.companies_charge_name##" ng-model="charge.name"></i-control>
+                            <i-control class="col3" label="##word.companies_charge_name##" ng-model="charge.name">
+                            </i-control>
 
-                            <i-control class="col3" label="##word.companies_charge_job##" ng-model="charge.job"></i-control>
+                            <i-control class="col3" label="##word.companies_charge_job##" ng-model="charge.job">
+                            </i-control>
 
-                            <i-control class="col3" label="##word.companies_phone##" ng-model="charge.phone"></i-control>
+                            <i-control class="col3" label="##word.companies_phone##" ng-model="charge.phone">
+                            </i-control>
 
-                            <i-control class="col3" label="##word.companies_internal_number##" ng-model="charge.internal_number"></i-control>
+                            <i-control class="col3" label="##word.companies_internal_number##"
+                                ng-model="charge.internal_number"></i-control>
                         </div>
 
                         <div class="row">
-                            <i-control class="col3" label="##word.companies_mobile##" ng-model="charge.mobile"></i-control>
+                            <i-control class="col3" label="##word.companies_mobile##" ng-model="charge.mobile">
+                            </i-control>
 
-                            <i-control class="col3" label="##word.companies_email##" ng-model="charge.email"></i-control>
+                            <i-control class="col3" label="##word.companies_email##" ng-model="charge.email">
+                            </i-control>
                         </div>
                     </fieldset>
                 </fieldset>
-                <i-button type="default left" fa="2x fa-angle-double-left" onclick="document.querySelector('.tab-link.active + .tab-link').click();"></i-button>
+                <i-button type="default left" fa="2x fa-angle-double-left"
+                    onclick="document.querySelector('.tab-link.active + .tab-link').click();"></i-button>
             </div>
 
             <div id="bankingAndAccounting" class="tab-content">
@@ -139,13 +188,15 @@
                     <legend>
                         <i-button type="add default" ng-click="company.bank_list.push({})"></i-button>
                         ##word.companies_bank_information##
-                        <i-button type="delete default" ng-click="company.bank_list.length === 1 || company.bank_list.splice($index,1)"></i-button>
+                        <i-button type="delete default"
+                            ng-click="company.bank_list.length === 1 || company.bank_list.splice($index,1)"></i-button>
                     </legend>
                     <div class="row">
-                        <i-list class="col4" label="##word.companies_bank_name##" ng-model="bank.bank_name" items="bankList"
-                            display="name_ar" ng-search="_search.$bank_name_search"></i-list>
+                        <i-list class="col4" label="##word.companies_bank_name##" ng-model="bank.bank_name"
+                            items="bankList" display="name_ar" ng-search="_search.$bank_name_search"></i-list>
 
-                        <i-control class="col4" label="##word.companies_bank_account_number##" ng-model="bank.account_number"></i-control>
+                        <i-control class="col4" label="##word.companies_bank_account_number##"
+                            ng-model="bank.account_number"></i-control>
                     </div>
                 </fieldset>
             </div>
@@ -156,7 +207,8 @@
 
                     <i-control help-id="" class="col4" label="##word.email##" ng-model="company.username"></i-control>
 
-                    <i-control help-id="" class="col4" label="##word.password##" ng-model="company.password"></i-control>
+                    <i-control help-id="" class="col4" label="##word.password##" ng-model="company.password">
+                    </i-control>
 
                 </fieldset>
             </div>

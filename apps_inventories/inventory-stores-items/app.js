@@ -493,32 +493,47 @@ module.exports = function init(site) {
         _size_unit.start_count = 0
       });
     });
+    console.log(site.get_company(req));
+    
+    $stores_items.findMany({
+      where: {
+        'company.id': site.get_company(req).id,
+      }
+    }, (err, docs, count) => {
+      if (!err && count >= site.get_company(req).item) {
 
-    $stores_items.add(stores_items_doc, (err, doc) => {
-      if (!err) {
-        response.done = true
+        response.error = 'You have exceeded the maximum number of extensions'
+        res.json(response)
+      } else {
 
-        let foundBarcode = doc.sizes.every(_size => !_size.barcode)
-        if (foundBarcode) {
-          let y = new Date().getFullYear().toString()
+        $stores_items.add(stores_items_doc, (err, doc) => {
+          if (!err) {
+            response.done = true
 
-          stores_items_doc.sizes.forEach((_size, i) => {
-            if (!_size.barcode || _size.barcode == '')
-              _size.barcode = doc.company.id + doc.id + y + (Math.floor(Math.random() * 100) + i)
+            let foundBarcode = doc.sizes.every(_size => !_size.barcode)
+            if (foundBarcode) {
+              let y = new Date().getFullYear().toString()
 
-            _size.size_units_list.forEach(_unit => {
-              if (!_unit.barcode || _unit.barcode == '') {
-                _unit.barcode = doc.company.id + doc.id + (_unit.id || 0) + (Math.floor(Math.random() * 100) + i) + y
-              }
-            });
+              stores_items_doc.sizes.forEach((_size, i) => {
+                if (!_size.barcode || _size.barcode == '')
+                  _size.barcode = doc.company.id + doc.id + y + (Math.floor(Math.random() * 100) + i)
 
-          });
+                _size.size_units_list.forEach(_unit => {
+                  if (!_unit.barcode || _unit.barcode == '') {
+                    _unit.barcode = doc.company.id + doc.id + (_unit.id || 0) + (Math.floor(Math.random() * 100) + i) + y
+                  }
+                });
 
-          $stores_items.update(doc)
-        }
-      } else response.error = err.message
-      res.json(response)
+              });
+
+              $stores_items.update(doc)
+            }
+          } else response.error = err.message
+          res.json(response)
+        })
+      }
     })
+
   })
 
 

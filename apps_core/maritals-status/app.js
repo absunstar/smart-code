@@ -1,15 +1,6 @@
 module.exports = function init(site) {
   const $maritals_status = site.connectCollection("maritals_status")
 
-  site.get_company = function (req) {
-    let company = req.session('company')
-    return site.fromJson(company)
-  }
-  site.get_branch = function (req) {
-    let branch = req.session('branch')
-    return site.fromJson(branch)
-  }
-
   site.get({
     name: "maritals_status",
     path: __dirname + "/site_files/html/index.html",

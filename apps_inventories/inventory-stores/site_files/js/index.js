@@ -55,6 +55,7 @@ app.controller("stores", function ($scope, $http) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.list = response.data.list;
+          $scope.count = $scope.list.length;
           site.hideModal('#StoreSearchModal');
         }
       },
@@ -114,7 +115,7 @@ app.controller("stores", function ($scope, $http) {
           site.hideModal('#addStoreModal');
           $scope.loadAll();
         } else {
-          $scope.error = '##word.error11##';
+          $scope.error = response.data.error;
         }
        
       },

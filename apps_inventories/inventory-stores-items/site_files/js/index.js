@@ -7,13 +7,13 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
 
     if ($scope.defaultSettings && $scope.defaultSettings.inventory && !$scope.defaultSettings.inventory.auto_barcode_generation) {
 
-      if (!$scope.item.barcode || $scope.item.barcode === null) {
+      if (!$scope.item.barcode || $scope.item.barcode == null) {
         $scope.error = "##word.err_barcode##";
         return
       };
 
-      let err_barcode1 = $scope.itemSizeList.some(_itemSize => _itemSize.barcode === $scope.item.barcode);
-      let err_barcode2 = $scope.category_item.sizes.some(_itemSize => _itemSize.barcode === $scope.item.barcode);
+      let err_barcode1 = $scope.itemSizeList.some(_itemSize => _itemSize.barcode == $scope.item.barcode);
+      let err_barcode2 = $scope.category_item.sizes.some(_itemSize => _itemSize.barcode == $scope.item.barcode);
 
       if (err_barcode1 || err_barcode2) {
         $scope.error = "##word.err_barcode_exist##";
@@ -211,10 +211,11 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
 
           if (_size.item_complex) _unit.average_cost = total_complex_av;
           _unit.average_cost = site.toNumber(_unit.average_cost);
-
-          if (_unit.barcode === (undefined || null)) notBarcodeUnit = true;
+          console.log(_unit.barcode);
+          
+          if (_unit.barcode == (undefined || null)) notBarcodeUnit = true;
           if (_unit.discount && _unit.discount.value > _unit.discount.max) unitDiscount = true;
-          foundBarcodeUnit = $scope.unitsBarcodesList.some(_unit1 => _unit1.barcode === _unit.barcode);
+          foundBarcodeUnit = $scope.unitsBarcodesList.some(_unit1 => _unit1.barcode == _unit.barcode);
         });
       });
 
@@ -224,9 +225,7 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
       };
 
 
-
       if ($scope.defaultSettings && $scope.defaultSettings.inventory && !$scope.defaultSettings.inventory.auto_barcode_generation) {
-
 
         if (notBarcodeUnit) {
           $scope.error = '##word.err_barcode_units##';
@@ -253,7 +252,7 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
             $scope.category_item = {};
 
           } else {
-            $scope.error = '##word.error##';
+            $scope.error = response.data.error;
           }
         },
         function (err) {
@@ -315,7 +314,7 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
           }
         };
 
-        if (_size.barcode === (undefined || null)) notBarcodeUnit = true;
+        if (_size.barcode == (undefined || null)) notBarcodeUnit = true;
         _size.size_units_list.forEach(_unit => {
 
           if (_size.item_complex) _unit.average_cost = total_complex_av;

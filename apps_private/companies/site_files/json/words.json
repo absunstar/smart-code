@@ -16,6 +16,12 @@
     {"name" : "companies_branch_information" , "en" : "Branch Information" , "ar" : "بيانات الفرع"},
     {"name" : "companies_contact_charge" , "en" : "Charge Information" , "ar" : "بيانات المسئول"},
 
+    {"name" : "count_items" , "en" : "Items Count" , "ar" : "عدد الأصناف"},
+    {"name" : "count_units" , "en" : "Units Count" , "ar" : "عدد الوحدات"},
+    {"name" : "count_stores" , "en" : "Stores Count" , "ar" : "عدد المخازن"},
+    {"name" : "count_currencies" , "en" : "Currencies Count" , "ar" : "عدد العملات"},
+    {"name" : "count_branches" , "en" : "Branches Count" , "ar" : "عدد الفروع"},
+
     {"name" : "companies_branch_code" , "en" : "Branch Code" , "ar" : "كود الفرع"},
     {"name" : "companies_branch_name" , "en" : "Branch Name" , "ar" : "إسم الفرع"},
     {"name" : "companies_branch_name_ar" , "en" : "Branch Name Arabic" , "ar" : "إسم الفرع بالعربى"},

@@ -83,37 +83,45 @@ module.exports = function init(site) {
     companies_doc.company = site.get_company(req)
     companies_doc.branch = site.get_branch(req)
 
-    $companies.add(companies_doc, (err, doc) => {
-      if (!err) {
-        response.done = true
-        response.doc = doc
+    if (companies_doc.branch_list.length > companies_doc.branch_count) {
 
-        site.call('[company][created]', doc)
-
-        site.call('please add user', {
-          is_company: true,
-          company_id: doc.id,
-          email: doc.username,
-          password: doc.password,
-          roles: [{
-            name: "companies_admin"
-          }],
-          branch_list: [{
-            company: doc,
-            branch: doc.branch_list[0]
-          }],
-          profile: {
-            name: doc.name_ar,
-            mobile: doc.mobile,
-            image_url: companies_doc.image_url
-          }
-        })
-
-      } else {
-        response.error = err.message
-      }
+      response.error = 'You have exceeded the maximum number of Branches'
       res.json(response)
-    })
+    } else {
+
+
+      $companies.add(companies_doc, (err, doc) => {
+        if (!err) {
+          response.done = true
+          response.doc = doc
+
+          site.call('[company][created]', doc)
+
+          site.call('please add user', {
+            is_company: true,
+            company_id: doc.id,
+            email: doc.username,
+            password: doc.password,
+            roles: [{
+              name: "companies_admin"
+            }],
+            branch_list: [{
+              company: doc,
+              branch: doc.branch_list[0]
+            }],
+            profile: {
+              name: doc.name_ar,
+              mobile: doc.mobile,
+              image_url: companies_doc.image_url
+            }
+          })
+
+        } else {
+          response.error = err.message
+        }
+        res.json(response)
+      })
+    }
   })
 
   site.post("/api/companies/update", (req, res) => {
@@ -130,38 +138,49 @@ module.exports = function init(site) {
     let companies_doc = req.body
 
     if (companies_doc.id) {
-      $companies.edit({
-        where: {
-          id: companies_doc.id
-        },
-        set: companies_doc,
-        $req: req,
-        $res: res
-      }, (err, result) => {
-        if (!err) {
-          response.done = true
-          response.doc = result.doc
 
-          site.call('please add user', {
-            email: companies_doc.username,
-            password: companies_doc.password,
-            roles: [{
-              name: "companies"
-            }],
-            company_id: companies_doc.id,
-            is_company: true,
-            profile: {
-              name: companies_doc.name_ar,
-              mobile: companies_doc.mobile,
-              image_url: companies_doc.image_url
-            }
-          })
 
-        } else {
-          response.error = err.message
-        }
+      if (companies_doc.branch_list.length > companies_doc.branch_count) {
+
+        response.error = 'You have exceeded the maximum number of Branches'
         res.json(response)
-      })
+
+      } else {
+
+        $companies.edit({
+          where: {
+            id: companies_doc.id
+          },
+          set: companies_doc,
+          $req: req,
+          $res: res
+        }, (err, result) => {
+          if (!err) {
+            response.done = true
+            response.doc = result.doc
+
+            site.call('please add user', {
+              email: companies_doc.username,
+              password: companies_doc.password,
+              roles: [{
+                name: "companies"
+              }],
+              company_id: companies_doc.id,
+              is_company: true,
+              profile: {
+                name: companies_doc.name_ar,
+                mobile: companies_doc.mobile,
+                image_url: companies_doc.image_url
+              }
+            })
+
+          } else {
+            response.error = err.message
+          }
+          res.json(response)
+        })
+      }
+
     } else {
       response.error = 'no id'
       res.json(response)
@@ -249,8 +268,8 @@ module.exports = function init(site) {
         response.list = docs.branch_list
         response.branch = {}
         response.list.forEach(_list => {
-          if(_list.code == site.get_branch(req).code)
-          response.branch = _list
+          if (_list.code == site.get_branch(req).code)
+            response.branch = _list
         })
         response.count = count
       } else {

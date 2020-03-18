@@ -59,15 +59,14 @@ module.exports = function init(site) {
     currency_doc.company = site.get_company(req)
     currency_doc.branch = site.get_branch(req)
 
-    $currency.find({
-      'company.id': site.get_company(req).id,
+    $currency.findMany({
       where: {
-        'name': currency_doc.name
+        'company.id': site.get_company(req).id,
       }
-    }, (err, doc) => {
-      if (!err && doc) {
+    }, (err, docs, count) => {
+      if (!err && count >= site.get_company(req).currency) {
 
-        response.error = 'Name Exists'
+        response.error = 'You have exceeded the maximum number of extensions'
         res.json(response)
       } else {
         $currency.add(currency_doc, (err, doc) => {

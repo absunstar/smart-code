@@ -58,19 +58,14 @@ module.exports = function init(site) {
     units_doc.company = site.get_company(req)
     units_doc.branch = site.get_branch(req)
 
-
-    $units.find({
-
+    $units.findMany({
       where: {
-
         'company.id': site.get_company(req).id,
-        'branch.code': site.get_branch(req).code,
-        'name': units_doc.name,
       }
-    }, (err, doc) => {
-      if (!err && doc) {
+    }, (err, docs, count) => {
+      if (!err && count >= site.get_company(req).unit) {
 
-        response.error = 'Name Exists'
+        response.error = 'You have exceeded the maximum number of extensions'
         res.json(response)
       } else {
         $units.add(units_doc, (err, doc) => {

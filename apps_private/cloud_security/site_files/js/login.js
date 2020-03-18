@@ -10,14 +10,16 @@ app.controller('login', function ($scope, $http) {
     };
 
 
-    $scope.login = function () {
-
+    $scope.login = function (b) {
         $scope.error = '';
         const v = site.validated('#loginModal');
         if (!v.ok) {
             $scope.error = v.messages[0].ar;
             return;
         }
+
+        $scope.user.company = b.company
+        $scope.user.branch = b.branch
 
         $scope.busy = true;
 
@@ -31,7 +33,11 @@ app.controller('login', function ($scope, $http) {
                 company: site.to123({
                     id: $scope.user.company.id,
                     name_ar: $scope.user.company.name_ar,
-                    name_en: $scope.user.company.name_en
+                    name_en: $scope.user.company.name_en,
+                    item: $scope.user.company.item,
+                    store: $scope.user.company.store,
+                    unit: $scope.user.company.unit,
+                    currency: $scope.user.company.currency
                 }),
                 branch: site.to123({
                     code: $scope.user.branch.code,
@@ -63,7 +69,7 @@ app.controller('login', function ($scope, $http) {
             method: "POST",
             url: "/api/user/branches/all",
             data: {
-                where:{email : $scope.user.email}
+                where: { email: $scope.user.email }
             }
         }).then(
             function (response) {
@@ -73,14 +79,14 @@ app.controller('login', function ($scope, $http) {
                     $scope.company_list = []
                     $scope.branch_list.forEach(b => {
                         let exist = false;
-                        $scope.company_list.forEach(company=>{
-                            if(company.id === b.company.id){
+                        $scope.company_list.forEach(company => {
+                            if (company.id === b.company.id) {
                                 exist = true;
                                 company.branch_list.push(b.branch);
                             }
                         });
 
-                        if(!exist){
+                        if (!exist) {
                             b.company.branch_list = [b.branch];
                             $scope.company_list.push(b.company);
                         }
