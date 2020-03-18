@@ -334,7 +334,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
       if (obj.items)
         obj.items.map(itm => obj.total_value += site.toNumber(itm.total));
 
-      if (obj.type.id !== 4) {
+      if (obj.type && obj.type.id !== 4) {
         obj.total_tax = 0;
         obj.total_discount = 0;
       };
