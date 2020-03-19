@@ -216,8 +216,10 @@ app.controller("request_service", function ($scope, $http, $timeout) {
             else $scope.account_invoices.safe = $scope.defaultSettings.accounting.safe_bank;
           }
         }
-        if ($scope.account_invoices.currency)
+        if ($scope.account_invoices.currency){
           $scope.amount_currency = site.toNumber($scope.account_invoices.net_value) / site.toNumber($scope.account_invoices.currency.ex_rate);
+          $scope.amount_currency = site.toNumber($scope.amount_currency);
+        }
 
         $scope.calc($scope.account_invoices);
 
@@ -924,8 +926,11 @@ app.controller("request_service", function ($scope, $http, $timeout) {
         type: 'number'
       };
 
-      if (obj.currency)
-        $scope.amount_currency = site.toNumber(obj.paid_require) / site.toNumber(obj.currency.ex_rate);
+      if (obj.currency){
+        $scope.amount_currency = obj.paid_require / obj.currency.ex_rate;
+        $scope.amount_currency = site.toNumber($scope.amount_currency);
+
+      }
 
     }, 250);
   };

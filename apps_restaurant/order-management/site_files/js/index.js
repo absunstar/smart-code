@@ -116,17 +116,18 @@ app.controller("order_management", function ($scope, $http, $timeout) {
         };
 
         if ($scope.defaultSettings.accounting) {
+          $scope.account_invoices.currency = $scope.defaultSettings.accounting.currency;
           if ($scope.defaultSettings.accounting.payment_method) {
             $scope.account_invoices.payment_method = $scope.defaultSettings.accounting.payment_method;
-            $scope.loadSafes($scope.account_invoices.payment_method);
-            if ($scope.account_invoices.payment_method.id == 1) {
-              if ($scope.defaultSettings.accounting.safe_box)
-                $scope.account_invoices.safe = $scope.defaultSettings.accounting.safe_box;
-            } else {
-              if ($scope.defaultSettings.accounting.safe_bank)
-                $scope.account_invoices.safe = $scope.defaultSettings.accounting.safe_bank;
-            }
+            $scope.loadSafes($scope.account_invoices.payment_method, $scope.account_invoices.currency);
+            if ($scope.account_invoices.payment_method.id == 1)
+              $scope.account_invoices.safe = $scope.defaultSettings.accounting.safe_box;
+            else $scope.account_invoices.safe = $scope.defaultSettings.accounting.safe_bank;
           }
+        }
+        if ($scope.account_invoices.currency) {
+          $scope.amount_currency = site.toNumber($scope.account_invoices.net_value) / site.toNumber($scope.account_invoices.currency.ex_rate);
+          $scope.amount_currency = site.toNumber($scope.amount_currency);
         }
         site.showModal('#accountInvoiceModal');
       } else $scope.error = '##word.open_shift_not_found##';
@@ -167,14 +168,15 @@ app.controller("order_management", function ($scope, $http, $timeout) {
     }
   };
 
-  $scope.loadSafes = function (method) {
+  $scope.loadSafes = function (method, currency) {
     $scope.error = '';
     $scope.busy = true;
-    let where = {};
+
+    let where = { 'currency.id': currency.id };
 
     if (method.id == 1)
-      where = { 'type.id': 1 };
-    else where = { 'type.id': 2 };
+      where['type.id'] = 1;
+    else where['type.id'] = 2;
 
     $http({
       method: "POST",
@@ -184,6 +186,7 @@ app.controller("order_management", function ($scope, $http, $timeout) {
           id: 1,
           name: 1,
           number: 1,
+          currency: 1,
           type: 1
         },
         where: where
@@ -200,6 +203,7 @@ app.controller("order_management", function ($scope, $http, $timeout) {
       }
     )
   };
+
 
 
   $scope.addStoresOut = function (store_out) {
@@ -490,6 +494,35 @@ app.controller("order_management", function ($scope, $http, $timeout) {
     });
   };
 
+  $scope.loadCurrencies = function () {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/currency/all",
+      data: {
+        select: {
+          id: 1,
+          name: 1,
+          ex_rate: 1
+        },
+        where: {
+          active: true
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.currenciesList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
   /*   $scope.returnToOrders = function (order) {
       $scope.error = '';
       $scope.get_open_shift((shift) => {
@@ -545,6 +578,7 @@ app.controller("order_management", function ($scope, $http, $timeout) {
   $scope.getPaymentMethodList();
   $scope.getCustomerList();
   $scope.getTablesGroupList();
+  $scope.loadCurrencies();
   $scope.getOrderStatusList();
   $scope.getDeliveryEmployeesList();
   $scope.getDefaultSettingsList();

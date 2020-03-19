@@ -576,9 +576,11 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
         account_invoices.net_value = site.toNumber(total_price_item) + (account_invoices.service || 0) + (account_invoices.price_delivery_service || 0) + (account_invoices.total_tax || 0) - (account_invoices.total_discount || 0);
       }
 
+      if (account_invoices.currency){
+        $scope.amount_currency = account_invoices.net_value / account_invoices.currency.ex_rate;
+        $scope.amount_currency = site.toNumber($scope.amount_currency);
 
-      if (account_invoices.currency)
-        $scope.amount_currency = site.toNumber(account_invoices.net_value) / site.toNumber(account_invoices.currency.ex_rate);
+      }
     }, 250);
 
   };

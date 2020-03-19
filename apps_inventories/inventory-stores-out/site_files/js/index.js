@@ -1661,9 +1661,10 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
           if (_item.count > 0) $scope.store_out.items.push(_item);
         });
 
-      if ($scope.store_out.currency)
+      if ($scope.store_out.currency){
         $scope.amount_currency = site.toNumber($scope.store_out.net_value) / site.toNumber($scope.store_out.currency.ex_rate);
-
+        $scope.amount_currency = site.toNumber($scope.amount_currency);
+      }
       site.hideModal('#returnedViewModal');
     };
 
