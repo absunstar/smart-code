@@ -410,7 +410,6 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          $scope.order_invoice.has_invoice = true;
           $scope.account_invoices = response.data.doc;
           site.hideModal('#accountInvoiceModal');
           $scope.printAccountInvoive();
