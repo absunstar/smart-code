@@ -1,6 +1,6 @@
 module.exports = function init(site) {
 
-  let collection_name = 'employee_list'
+  let collection_name = 'hr_employee_list'
 
   let source = {
     name: 'Employee System',

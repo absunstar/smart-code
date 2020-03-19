@@ -1,10 +1,7 @@
 app.controller("stores_stock", function ($scope, $http, $timeout) {
   $scope._search = {};
 
-  $scope.store_stock = {
-    discountes: [],
-    taxes: []
-  };
+  $scope.store_stock = {};
   $scope.search = {};
   $scope.item = {
     sizes: []

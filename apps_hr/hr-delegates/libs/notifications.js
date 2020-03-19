@@ -1,10 +1,10 @@
 module.exports = function init(site) {
 
-  let collection_name = 'delegate_list'
+  let collection_name = 'hr_delegate_list'
 
   let source = {
-    name: 'Delegates System',
-    ar: 'نظام المناديب'
+    name : 'Jobs And Employees System' ,
+    ar : 'نظام الوظائف والموظفين'
   }
 
   let image_url = '/images/delegate.png'
