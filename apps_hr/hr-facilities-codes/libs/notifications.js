@@ -3,11 +3,11 @@ module.exports = function init(site) {
   let collection_name = 'facilities_codes'
 
   let source = {
-    name: 'Accounting Facilities System',
+    name: ' Facilities System',
     ar: 'نظام المنشأت'
   }
 
-  let image_url = '/images/amount_out.png'
+  let image_url = '/images/facility_code.png'
   let add_message = { name: 'New Facilities Codes Added', ar: ' تم إضافة منشأة جديدة' }
   let update_message = { name: 'Facilities Codes updated', ar: 'تم تعديل المنشأة' }
   let delete_message = { name: 'Facilities Codes deleted', ar: 'تم حذف المنشأة ' }

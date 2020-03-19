@@ -1,10 +1,10 @@
 module.exports = function init(site) {
 
-  let collection_name = 'trainer'
+  let collection_name = 'hr_employee_list'
 
   let source = {
-    name: 'Trainer System',
-    ar: 'نظام المدربين'
+    name : 'Jobs And Employees System' ,
+    ar : 'نظام الوظائف والموظفين'
   }
 
   let image_url = '/images/trainer.png'

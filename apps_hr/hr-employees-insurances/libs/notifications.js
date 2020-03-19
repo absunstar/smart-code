@@ -1,10 +1,10 @@
 module.exports = function init(site) {
 
-  let collection_name = 'employees_insurances'
+  let collection_name = 'hr_employees_insurances'
 
- let source = {
-    name : 'Accounting System' ,
-    ar : 'نظام الحسابات'
+  let source = {
+    name : 'Jobs And Employees System' ,
+    ar : 'نظام الوظائف والموظفين'
   }
 
   let image_url = '/images/customer.png'

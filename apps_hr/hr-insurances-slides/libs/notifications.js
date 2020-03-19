@@ -2,11 +2,10 @@ module.exports = function init(site) {
 
   let collection_name = 'insurances_slides'
 
- let source = {
-    name : 'Accounting System' ,
-    ar : 'نظام الحسابات'
+  let source = {
+    name : 'Jobs And Employees System' ,
+    ar : 'نظام الوظائف والموظفين'
   }
-
   let image_url = '/images/insurance_slides.png'
   let add_message = {name : 'New Slide Added' , ar : ' تم إضافة شريحة تأمين جديد'}
   let update_message =  {name : 'Slide updated' , ar : 'تم تعديل شريحة تأمين'}
