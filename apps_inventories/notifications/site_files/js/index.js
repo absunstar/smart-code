@@ -139,20 +139,10 @@ app.controller("notifications", function ($scope, $http, $interval) {
       $scope.tables = n.add;
       site.showModal('#tablesViewModal');
 
-    } else if (n.link.collection == 'delivery_employee_list') {
-      $scope.delivery_employee_list = n.add;
-      site.showModal('#deliveryEmployeeViewModal');
-      document.querySelector('#deliveryEmployeeViewModal .tab-link').click();
-
     } else if (n.link.collection == 'items_group') {
       $scope.items_group = n.add;
       site.showModal('#itemsGroupViewModal');
       document.querySelector('#itemsGroupViewModal .tab-link').click();
-
-    } else if (n.link.collection == 'employee_list') {
-      $scope.employee_list = n.add;
-      site.showModal('#employeeViewModal');
-      document.querySelector('#employeeViewModal .tab-link').click();
 
     } else if (n.link.collection == 'employees_degrees') {
       $scope.employee_degree = n.add;
@@ -162,17 +152,13 @@ app.controller("notifications", function ($scope, $http, $interval) {
       $scope.jobs = n.add;
       site.showModal('#jobsViewModal');
 
-
     } else if (n.link.collection == 'stores_dismantle') {
       $scope.store_dismantle = n.add;
       site.showModal('#viewStoreDismantleModal');
-
       
     } else if (n.link.collection == 'stores_assemble') {
       $scope.store_assemble = n.add;
       site.showModal('#viewStoreAssembleModal');
-
-
 
     } else if (n.link.collection == 'maritals_status') {
       $scope.marital_state = n.add;
@@ -189,11 +175,11 @@ app.controller("notifications", function ($scope, $http, $interval) {
     } else if (n.link.collection == 'hr_employee_list') {
       $scope.employee_list = n.add;
       site.showModal('#employeeViewModal');
+      document.querySelector('#employeeViewModal .tab-link').click();
 
     } else if (n.link.collection == 'units') {
       $scope.unit = n.add;
       site.showModal('#unitViewModal');
-
 
     } else if (n.link.collection == 'hr_delegate_list') {
       $scope.delegate_list = n.add;
@@ -204,10 +190,7 @@ app.controller("notifications", function ($scope, $http, $interval) {
       site.showModal('#trainerViewModal');
       document.querySelector('#trainerViewModal .tab-link').click();
 
-    } else if (n.link.collection == 'facilities_codes') {
-      $scope.facility_code = n.add;
-      site.showModal('#viewFacilityCodeModal');
-
+  
     } else if (n.link.collection == 'safes') {
       $scope.safe = n.add;
       site.showModal('#viewSafeModal');
@@ -224,17 +207,9 @@ app.controller("notifications", function ($scope, $http, $interval) {
       $scope.in_out_name = n.add;
       site.showModal('#viewInOutNameModal');
 
-    } else if (n.link.collection == 'insurances_slides') {
-      $scope.insurances_slides = n.add;
-      site.showModal('#viewInsuranceSlideModal');
-
     } else if (n.link.collection == 'employees_advances') {
       $scope.employees_advances = n.add;
       site.showModal('#viewEmployeesAdvancesModal');
-
-    } else if (n.link.collection == 'employee_discount') {
-      $scope.employee_discount = n.add;
-      site.showModal('#viewEmployeeDiscountModal');
 
     } else if (n.link.collection == 'employee_offer') {
       $scope.employee_offer = n.add;
@@ -244,19 +219,6 @@ app.controller("notifications", function ($scope, $http, $interval) {
       $scope.employees_advances_fin = n.add;
       site.showModal('#viewEmployeesAdvancesFinModal');
 
-    } else if (n.link.collection == 'tenant') {
-      $scope.tenant = n.add;
-      site.showModal('#tenantViewModal');
-      document.querySelector('#tenantViewModal .tab-link').click();
-
-    } else if (n.link.collection == 'book_hall') {
-      $scope.book_hall = n.add;
-      site.showModal('#bookHallViewModal');
-
-    } else if (n.link.collection == 'hall') {
-      $scope.hall = n.add;
-      site.showModal('#classRoomsViewModal');
-
     } else if (n.link.collection == 'disease') {
       $scope.disease = n.add;
       site.showModal('#diseaseViewModal');
@@ -264,7 +226,6 @@ app.controller("notifications", function ($scope, $http, $interval) {
     } else if (n.link.collection == 'medicine') {
       $scope.medicine = n.add;
       site.showModal('#medicineViewModal');
-
 
     } else if (n.link.collection == 'stores_stock') {
       $scope.store_stock = n.add;
@@ -335,7 +296,6 @@ app.controller("notifications", function ($scope, $http, $interval) {
       $scope.vendor_group = n.add;
       site.showModal('#vendorGroupDetailsModal');
 
-
     } else if (n.link.collection == 'hr_employees_advances') {
       $scope.employees_advances = n.add;
       site.showModal('#viewEmployeesAdvancesModal');
@@ -343,8 +303,6 @@ app.controller("notifications", function ($scope, $http, $interval) {
     } else if (n.link.collection == 'insurances_slides') {
       $scope.insurance_slide = n.add;
       site.showModal('#viewInsuranceSlideModal');
-
-
 
     } else if (n.link.collection == 'hr_employee_discount') {
       $scope.employee_discount = n.add;
@@ -354,7 +312,6 @@ app.controller("notifications", function ($scope, $http, $interval) {
       $scope.facility_code = n.add;
       site.showModal('#viewFacilityCodeModal');
 
-
     } else if (n.link.collection == 'hr_employees_degrees') {
       $scope.employee_degree = n.add;
       site.showModal('#viewEmployeeDegreeModal');
@@ -362,7 +319,6 @@ app.controller("notifications", function ($scope, $http, $interval) {
     } else if (n.link.collection == 'hr_employees_insurances') {
       $scope.employee_insurance = n.add;
       site.showModal('#viewEmployeeInsuranceModal');
-
 
     } else if (n.link.collection == 'customers') {
       $scope.customer = n.add;
@@ -372,9 +328,11 @@ app.controller("notifications", function ($scope, $http, $interval) {
     } else if (n.link.collection == 'customers_group') {
       $scope.customer_group = n.add;
       site.showModal('#customerGroupDetailsModal');
+
     } else if (n.link.collection == 'kitchen') {
       $scope.kitchen = n.add;
       site.showModal('#kitchenViewModal');
+
     } else if (n.link.collection == 'order_slides') {
       $scope.order_slides = n.add;
       site.showModal('#viewOrderlidesModal');
@@ -392,9 +350,7 @@ app.controller("notifications", function ($scope, $http, $interval) {
     } else if (n.link.collection == 'request_service') {
       $scope.request_service = n.add;
       site.showModal('#requestServiceViewModal');
-    } else if (n.link.collection == 'account_invoices') {
-      $scope.account_invoices = n.add;
-      site.showModal('#creatInvoicesDetailsModal');
+
     } else if (n.link.collection == 'attend_subscribers') {
       $scope.attend_subscribers = n.add;
       site.showModal('#attendSubscribersViewModal');
@@ -443,21 +399,13 @@ app.controller("notifications", function ($scope, $http, $interval) {
       $scope.employees_advances = n.update;
       site.showModal('#viewEmployeesAdvancesModal');
 
-
-    } else if (n.link.collection == 'facilities_codes') {
-      $scope.facility_code = n.update;
-      site.showModal('#viewFacilityCodeModal');
-
-
     } else if (n.link.collection == 'stores_assemble') {
       $scope.store_assemble = n.update;
       site.showModal('#viewStoreAssembleModal');
 
-
     } else if (n.link.collection == 'hr_employee_offer') {
       $scope.employee_offer = n.update;
       site.showModal('#viewemployeeOfferModal');
-
 
     } else if (n.link.collection == 'stores_dismantle') {
       $scope.store_dismantle = n.update;
@@ -471,8 +419,6 @@ app.controller("notifications", function ($scope, $http, $interval) {
       $scope.store_stock = n.update;
       site.showModal('#viewStoreStockModal');
 
-
-
     } else if (n.link.collection == 'tables') {
       $scope.tables = n.update;
       site.showModal('#tablesViewModal');
@@ -480,11 +426,6 @@ app.controller("notifications", function ($scope, $http, $interval) {
     } else if (n.link.collection == 'units') {
       $scope.unit = n.update;
       site.showModal('#unitViewModal');
-
-    } else if (n.link.collection == 'delivery_employee_list') {
-      $scope.delivery_employee_list = n.update;
-      site.showModal('#deliveryEmployeeViewModal');
-      document.querySelector('#deliveryEmployeeViewModal .tab-link').click();
 
     } else if (n.link.collection == 'items_group') {
       $scope.items_group = n.update;
@@ -511,7 +452,7 @@ app.controller("notifications", function ($scope, $http, $interval) {
       $scope.in_out_name = n.update;
       site.showModal('#viewInOutNameModal');
     } else if (n.link.collection == 'insurances_slides') {
-      $scope.insurances_slides = n.update;
+      $scope.insurance_slide = n.update;
       site.showModal('#viewInsuranceSlideModal');
 
     } else if (n.link.collection == 'employees_advances') {
@@ -522,11 +463,6 @@ app.controller("notifications", function ($scope, $http, $interval) {
       $scope.employee_insurance = n.update;
       site.showModal('#viewEmployeeInsuranceModal');
 
-
-    } else if (n.link.collection == 'employee_discount') {
-      $scope.employee_discount = n.update;
-      site.showModal('#viewEmployeeDiscountModal');
-
     } else if (n.link.collection == 'employee_offer') {
       $scope.employee_offer = n.update;
       site.showModal('#viewemployeeOfferModal');
@@ -534,19 +470,6 @@ app.controller("notifications", function ($scope, $http, $interval) {
     } else if (n.link.collection == 'employees_advances_fin') {
       $scope.employees_advances_fin = n.update;
       site.showModal('#viewEmployeesAdvancesFinModal');
-
-    } else if (n.link.collection == 'tenant') {
-      $scope.tenant = n.update;
-      site.showModal('#tenantViewModal');
-      document.querySelector('#tenantViewModal .tab-link').click();
-
-    } else if (n.link.collection == 'book_hall') {
-      $scope.book_hall = n.update;
-      site.showModal('#bookHallViewModal');
-
-    } else if (n.link.collection == 'hall') {
-      $scope.hall = n.update;
-      site.showModal('#classRoomsViewModal');
 
     } else if (n.link.collection == 'disease') {
       $scope.disease = n.update;
@@ -560,11 +483,6 @@ app.controller("notifications", function ($scope, $http, $interval) {
       $scope.attend_leave = n.update;
       site.showModal('#attendLeaveViewModal');
 
-    } else if (n.link.collection == 'employee_list') {
-      $scope.employee_list = n.update;
-      site.showModal('#employeeViewModal');
-      document.querySelector('#employeeViewModal .tab-link').click();
-
     } else if (n.link.collection == 'employees_degrees') {
       $scope.employee_degree = n.update;
       site.showModal('#viewEmployeeDegreeModal');
@@ -577,16 +495,9 @@ app.controller("notifications", function ($scope, $http, $interval) {
       $scope.jobs = n.update;
       site.showModal('#jobsViewModal');
 
-
     } else if (n.link.collection == 'hr_employees_degrees') {
       $scope.employee_degree = n.update;
       site.showModal('#viewEmployeeDegreeModal');
-
-
-    } else if (n.link.collection == 'trainer') {
-      $scope.trainer = n.update;
-      site.showModal('#trainerViewModal');
-      document.querySelector('#trainerViewModal .tab-link').click();
 
     } else if (n.link.collection == 'goves') {
       $scope.gov = n.update;
@@ -611,7 +522,7 @@ app.controller("notifications", function ($scope, $http, $interval) {
     } else if (n.link.collection == 'hr_employee_list') {
       $scope.employee_list = n.update;
       site.showModal('#employeeViewModal');
-
+      document.querySelector('#employeeViewModal .tab-link').click();
 
     } else if (n.link.collection == 'discount_types') {
       $scope.discount_type = n.update;
@@ -629,15 +540,9 @@ app.controller("notifications", function ($scope, $http, $interval) {
       $scope.category_item = n.update;
       site.showModal('#viewCategoryItemModal');
 
-
     } else if (n.link.collection == 'hr_employee_discount') {
       $scope.employee_discount = n.update;
       site.showModal('#viewEmployeeDiscountModal');
-
-    } else if (n.link.collection == 'insurances_slides') {
-      $scope.insurance_slide = n.update;
-      site.showModal('#viewInsuranceSlideModal');
-
 
 
     } else if (n.link.collection == 'stores_out') {
@@ -661,27 +566,31 @@ app.controller("notifications", function ($scope, $http, $interval) {
     } else if (n.link.collection == 'customers_group') {
       $scope.customer_group = n.update;
       site.showModal('#customerGroupDetailsModal');
+
     } else if (n.link.collection == 'kitchen') {
       $scope.kitchen = n.update;
       site.showModal('#kitchenViewModal');
+
     } else if (n.link.collection == 'order_slides') {
       $scope.order_slides = n.update;
       site.showModal('#viewOrderlidesModal');
+
     } else if (n.link.collection == 'service') {
       $scope.service = n.update;
       site.showModal('#serviceViewModal');
+
     } else if (n.link.collection == 'hall') {
       $scope.hall = n.update;
       site.showModal('#hallViewModal');
+
     } else if (n.link.collection == 'request_service') {
       $scope.request_service = n.update;
       site.showModal('#requestServiceViewModal');
-    } else if (n.link.collection == 'account_invoices') {
-      $scope.account_invoices = n.update;
-      site.showModal('#creatInvoicesDetailsModal');
+  
     } else if (n.link.collection == 'attend_subscribers') {
       $scope.attend_subscribers = n.update;
       site.showModal('#attendSubscribersViewModal');
+
     } else if (n.link.collection == 'transfer_branch') {
       $scope.transfer_branch = n.update;
       site.showModal('#viewTransferBranchModal');
@@ -697,7 +606,6 @@ app.controller("notifications", function ($scope, $http, $interval) {
       $scope.students = n.delete;
       site.showModal('#studentsViewModal');
       document.querySelector('#studentsViewModal .tab-link').click();
-
    
     } else if (n.link.collection == 'tables') {
       $scope.tables = n.delete;
@@ -707,7 +615,6 @@ app.controller("notifications", function ($scope, $http, $interval) {
       $scope.unit = n.delete;
       site.showModal('#unitViewModal');
 
-
     } else if (n.link.collection == 'militaries_status') {
       $scope.military_state = n.delete;
       site.showModal('#viewMilitaryStateModal');
@@ -716,33 +623,25 @@ app.controller("notifications", function ($scope, $http, $interval) {
       $scope.employees_advances = n.delete;
       site.showModal('#viewEmployeesAdvancesModal');
 
-
     } else if (n.link.collection == 'hr_employee_offer') {
       $scope.employee_offer = n.delete;
       site.showModal('#viewemployeeOfferModal');
-
 
     } else if (n.link.collection == 'currency') {
       $scope.currency = n.delete;
       site.showModal('#currencyViewModal');
 
-
     } else if (n.link.collection == 'hr_employee_discount') {
       $scope.employee_discount = n.delete;
       site.showModal('#viewEmployeeDiscountModal');
-
-
 
     } else if (n.link.collection == 'hr_delegate_list') {
       $scope.delegate_list = n.delete;
       site.showModal('#delegateViewModal');
 
-
     } else if (n.link.collection == 'stores_stock') {
       $scope.store_stock = n.delete;
       site.showModal('#viewStoreStockModal');
-
-
 
     } else if (n.link.collection == 'shifts') {
       $scope.shift = n.delete;
@@ -752,32 +651,22 @@ app.controller("notifications", function ($scope, $http, $interval) {
       $scope.marital_state = n.delete;
       site.showModal('#viewMaritalStateModal');
 
-
     } else if (n.link.collection == 'stores_assemble') {
       $scope.store_assemble = n.delete;
       site.showModal('#viewStoreAssembleModal');
-
 
     } else if (n.link.collection == 'stores_dismantle') {
       $scope.store_dismantle = n.delete;
       site.showModal('#viewStoreDismantleModal');
 
-
     } else if (n.link.collection == 'hr_employee_list') {
       $scope.employee_list = n.delete;
       site.showModal('#employeeViewModal');
-
-
+      document.querySelector('#employeeViewModal .tab-link').click();
 
     } else if (n.link.collection == 'hr_employees_degrees') {
       $scope.employee_degree = n.delete;
       site.showModal('#viewEmployeeDegreeModal');
-
-
-    } else if (n.link.collection == 'delivery_employee_list') {
-      $scope.delivery_employee_list = n.delete;
-      site.showModal('#deliveryEmployeeViewModal');
-      document.querySelector('#deliveryEmployeeViewModal .tab-link').click();
 
     } else if (n.link.collection == 'items_group') {
       $scope.items_group = n.delete;
@@ -813,21 +702,12 @@ app.controller("notifications", function ($scope, $http, $interval) {
       $scope.employee_insurance = n.delete;
       site.showModal('#viewEmployeeInsuranceModal');
 
-
-    } else if (n.link.collection == 'insurances_slides') {
-      $scope.insurance_slide = n.delete;
-      site.showModal('#viewInsuranceSlideModal');
-
     } else if (n.link.collection == 'employees_advances') {
       $scope.employees_advances = n.delete;
       site.showModal('#viewEmployeesAdvancesModal');
 
-    } else if (n.link.collection == 'employee_discount') {
-      $scope.employee_discount = n.delete;
-      site.showModal('#viewEmployeeDiscountModal');
-
     } else if (n.link.collection == 'insurances_slides') {
-      $scope.insurances_slides = n.delete;
+      $scope.insurance_slide = n.delete;
       site.showModal('#viewInsuranceSlideModal');
 
     } else if (n.link.collection == 'employee_offer') {
@@ -837,24 +717,6 @@ app.controller("notifications", function ($scope, $http, $interval) {
     } else if (n.link.collection == 'employees_advances_fin') {
       $scope.employees_advances_fin = n.delete;
       site.showModal('#viewEmployeesAdvancesFinModal');
-
-    } else if (n.link.collection == 'tenant') {
-      $scope.tenant = n.delete;
-      site.showModal('#tenantViewModal');
-      document.querySelector('#tenantViewModal .tab-link').click();
-
-    } else if (n.link.collection == 'book_hall') {
-      $scope.book_hall = n.delete;
-      site.showModal('#bookHallViewModal');
-
-
-    } else if (n.link.collection == 'facilities_codes') {
-      $scope.facility_code = n.delete;
-      site.showModal('#viewFacilityCodeModal');
-
-    } else if (n.link.collection == 'hall') {
-      $scope.hall = n.delete;
-      site.showModal('#classRoomsViewModal');
 
     } else if (n.link.collection == 'disease') {
       $scope.disease = n.delete;
@@ -867,11 +729,6 @@ app.controller("notifications", function ($scope, $http, $interval) {
     } else if (n.link.collection == 'attend_leave') {
       $scope.attend_leave = n.delete;
       site.showModal('#attendLeaveViewModal');
-
-    } else if (n.link.collection == 'employee_list') {
-      $scope.employee_list = n.delete;
-      site.showModal('#employeeViewModal');
-      document.querySelector('#employeeViewModal .tab-link').click();
 
     } else if (n.link.collection == 'employees_degrees') {
       $scope.employee_degree = n.delete;
@@ -947,27 +804,31 @@ app.controller("notifications", function ($scope, $http, $interval) {
     } else if (n.link.collection == 'customers_group') {
       $scope.customer_group = n.delete;
       site.showModal('#customerGroupDetailsModal');
+
     } else if (n.link.collection == 'kitchen') {
       $scope.kitchen = n.delete;
       site.showModal('#kitchenViewModal');
+
     } else if (n.link.collection == 'order_slides') {
       $scope.order_slides = n.delete;
       site.showModal('#viewOrderlidesModal');
+
     } else if (n.link.collection == 'service') {
       $scope.service = n.delete;
       site.showModal('#serviceViewModal');
+
     } else if (n.link.collection == 'hall') {
       $scope.hall = n.delete;
       site.showModal('#hallViewModal');
+
     } else if (n.link.collection == 'request_service') {
       $scope.request_service = n.delete;
       site.showModal('#requestServiceViewModal');
-    } else if (n.link.collection == 'account_invoices') {
-      $scope.account_invoices = n.delete;
-      site.showModal('#creatInvoicesDetailsModal');
+
     } else if (n.link.collection == 'attend_subscribers') {
       $scope.attend_subscribers = n.delete;
       site.showModal('#attendSubscribersViewModal');
+
     } else if (n.link.collection == 'transfer_branch') {
       $scope.transfer_branch = n.delete;
       site.showModal('#viewTransferBranchModal');
