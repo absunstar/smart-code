@@ -333,6 +333,14 @@ app.controller("notifications", function ($scope, $http, $interval) {
       $scope.kitchen = n.add;
       site.showModal('#kitchenViewModal');
 
+    } else if (n.link.collection == 'order_invoice') {
+      $scope.order_invoice = n.add;
+      site.showModal('#OrderInvoiceViewModal');
+
+    } else if (n.link.collection == 'tables_group') {
+      $scope.tables_group = n.add;
+      site.showModal('#tablesGroupViewModal');
+
     } else if (n.link.collection == 'order_slides') {
       $scope.order_slides = n.add;
       site.showModal('#viewOrderlidesModal');
@@ -415,6 +423,10 @@ app.controller("notifications", function ($scope, $http, $interval) {
       $scope.currency = n.update;
       site.showModal('#currencyViewModal');
 
+    } else if (n.link.collection == 'order_invoice') {
+      $scope.order_invoice = n.update;
+      site.showModal('#OrderInvoiceViewModal');
+
     } else if (n.link.collection == 'stores_stock') {
       $scope.store_stock = n.update;
       site.showModal('#viewStoreStockModal');
@@ -454,6 +466,10 @@ app.controller("notifications", function ($scope, $http, $interval) {
     } else if (n.link.collection == 'insurances_slides') {
       $scope.insurance_slide = n.update;
       site.showModal('#viewInsuranceSlideModal');
+
+    } else if (n.link.collection == 'tables_group') {
+      $scope.tables_group = n.update;
+      site.showModal('#tablesGroupViewModal');
 
     } else if (n.link.collection == 'employees_advances') {
       $scope.employees_advances = n.update;
@@ -639,6 +655,11 @@ app.controller("notifications", function ($scope, $http, $interval) {
       $scope.delegate_list = n.delete;
       site.showModal('#delegateViewModal');
 
+    } else if (n.link.collection == 'tables_group') {
+      $scope.tables_group = n.delete;
+      site.showModal('#tablesGroupViewModal');
+
+
     } else if (n.link.collection == 'stores_stock') {
       $scope.store_stock = n.delete;
       site.showModal('#viewStoreStockModal');
@@ -650,6 +671,10 @@ app.controller("notifications", function ($scope, $http, $interval) {
     } else if (n.link.collection == 'maritals_status') {
       $scope.marital_state = n.delete;
       site.showModal('#viewMaritalStateModal');
+
+    } else if (n.link.collection == 'order_invoice') {
+      $scope.order_invoice = n.delete;
+      site.showModal('#OrderInvoiceViewModal');
 
     } else if (n.link.collection == 'stores_assemble') {
       $scope.store_assemble = n.delete;

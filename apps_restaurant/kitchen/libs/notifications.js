@@ -4,21 +4,21 @@ module.exports = function init(site) {
 
   let source = {
     name: 'Kitchen System',
-    ar: 'نظام تعريف المطابخ'
+    ar: 'نظام المطابخ'
   }
 
   let image_url = '/images/kitchen.png'
   let add_message = {
     name: 'New Kitchen Added',
-    ar: 'تم إضافة تعريف مطبخ جديد'
+    ar: 'تم إضافة مطبخ جديد'
   }
   let update_message = {
     name: ' Kitchen Updated',
-    ar: 'تم تعديل تعريف مطبخ'
+    ar: 'تم تعديل مطبخ'
   }
   let delete_message = {
     name: ' Kitchen Deleted',
-    ar: 'تم حذف تعريف مطبخ '
+    ar: 'تم حذف مطبخ '
   }
 
   site.on('mongodb after insert', function (result) {

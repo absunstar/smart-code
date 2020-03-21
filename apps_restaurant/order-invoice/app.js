@@ -1,6 +1,6 @@
 module.exports = function init(site) {
   const $order_invoice = site.connectCollection("order_invoice")
-  const $stores_items = site.connectCollection("stores_items")
+  // const $stores_items = site.connectCollection("stores_items")
 
 
   site.on('[stores_items][item_name][change]', objectOrder => {
@@ -384,28 +384,28 @@ module.exports = function init(site) {
   })
 
 
-  site.post("/api/stores_items/load", (req, res) => {
-    let response = {
-      done: false
-    }
-    $stores_items.findMany({
-      where: {
+  // site.post("/api/stores_items/load", (req, res) => {
+  //   let response = {
+  //     done: false
+  //   }
+  //   $stores_items.findMany({
+  //     where: {
 
-        'company.id': site.get_company(req).id,
-        'branch.id': site.get_branch(req).id,
+  //       'company.id': site.get_company(req).id,
+  //       'branch.id': site.get_branch(req).id,
 
-      }
-    }, (err, docs, count) => {
-      if (!err) {
-        response.done = true
-        response.list = docs
-        response.count = count
-      } else {
-        response.error = err.message
-      }
-      res.json(response)
-    })
-  })
+  //     }
+  //   }, (err, docs, count) => {
+  //     if (!err) {
+  //       response.done = true
+  //       response.list = docs
+  //       response.count = count
+  //     } else {
+  //       response.error = err.message
+  //     }
+  //     res.json(response)
+  //   })
+  // })
 
   site.post("/api/order_invoice/all", (req, res) => {
     let response = {

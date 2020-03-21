@@ -10,21 +10,21 @@ module.exports = function init(site) {
   let image_url = '/images/delivery_employee_list.png'
   let add_message = {
     name: 'New Trainer Added',
-    ar: 'تم إضافة موظف جديد'
+    ar: 'تم إضافة موظف توصيل جديد'
   }
   let update_message = {
     name: ' Trainer Updated',
-    ar: 'تم تعديل موظف'
+    ar: 'تم تعديل موظف توصيل'
   }
   let delete_message = {
     name: ' Trainer Deleted',
-    ar: 'تم حذف موظف '
+    ar: 'تم حذف موظف توصيل '
   }
 
-
-
+  
+  
   site.on('mongodb after insert', function (result) {
-    if (result.collection === collection_name) {
+    if (result.collection === collection_name && result.doc && result.doc.delivery == true) {
       site.call('please monitor action', {
         obj: {
           icon: image_url,
@@ -43,7 +43,8 @@ module.exports = function init(site) {
   })
 
   site.on('mongodb after update', function (result) {
-    if (result.collection === collection_name) {
+
+    if (result.collection === collection_name && result.old_doc && result.old_doc.delivery == true) {
       site.call('please monitor action', {
         obj: {
           icon: image_url,
@@ -63,7 +64,7 @@ module.exports = function init(site) {
 
 
   site.on('mongodb after delete', function (result) {
-    if (result.collection === collection_name) {
+    if (result.collection === collection_name && result.old_doc && result.old_doc.delivery == true) {
       site.call('please monitor action', {
         obj: {
           icon: image_url,

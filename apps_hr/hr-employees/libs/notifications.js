@@ -21,9 +21,8 @@ module.exports = function init(site) {
     ar: 'تم حذف موظف '
   }
 
-
-  site.on('mongodb after insert', function (result) {
-    if (result.collection === collection_name) {
+  site.on('mongodb after insert', function (result) {    
+    if (result.collection === collection_name && result.doc && !result.doc.delivery && !result.doc.trainer) {
       site.call('please monitor action', {
         obj: {
           icon: image_url,
@@ -42,7 +41,7 @@ module.exports = function init(site) {
   })
 
   site.on('mongodb after update', function (result) {
-    if (result.collection === collection_name) {
+    if (result.collection === collection_name && result.old_doc && !result.old_doc.delivery && !result.old_doc.trainer) {
       site.call('please monitor action', {
         obj: {
           icon: image_url,
@@ -62,7 +61,7 @@ module.exports = function init(site) {
 
 
   site.on('mongodb after delete', function (result) {
-    if (result.collection === collection_name) {
+    if (result.collection === collection_name && result.old_doc && !result.old_doc.delivery && !result.old_doc.trainer) {
       site.call('please monitor action', {
         obj: {
           icon: image_url,

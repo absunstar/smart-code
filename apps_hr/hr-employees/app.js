@@ -408,6 +408,8 @@ module.exports = function init(site) {
     }
 
     where['company.id'] = site.get_company(req).id
+    where['trainer'] = {$ne : true}
+    where['delivery'] = {$ne : true}
     /*     where['branch.code'] = site.get_branch(req).code
      */
     $employee_list.findMany({
