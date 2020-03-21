@@ -7,13 +7,9 @@
 
 <body class="##session.lang##">
 
-    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar"></nav>
 
-    </nav>
-
-    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
-
-    </nav>
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom"></nav>
 
     <div id="main-layout" class="container">
         <div class="row">
@@ -29,9 +25,11 @@
                 </div>
 
                 <div class="top-actions">
-                    <i-button x-permissions="trainer_add || trainer_manage" type="add" label="##word.trainer_new##" ng-click="displayAddTrainer()"></i-button>
+                    <i-button x-permissions="trainer_add || trainer_manage" type="add" label="##word.trainer_new##"
+                        ng-click="displayAddTrainer()"></i-button>
 
-                    <i-button x-permissions="trainer_search || trainer_manage" type="search" label="##word.search_all##" ng-click="displaySearchModal()"></i-button>
+                    <i-button x-permissions="trainer_search || trainer_manage" type="search" label="##word.search_all##"
+                        ng-click="displaySearchModal()"></i-button>
                     <i-button class="left" label="##word.handel_trainers##" ng-click="handelTrainers()">
                     </i-button>
                     <h3 class="bold text-center"> ##word.count## : {{count}}</h3>
@@ -52,25 +50,31 @@
                         </td>
                         <td class="center title">{{c.name}}</td>
                         <td class="center">{{c.gov.name + ' - ' + c.city.name + ' - ' + c.address}}</td>
-                        <td class="center blue">{{c.mobile}} <i class="fa fa-mobile" ng-show="c.mobile" aria-hidden="true"></i></td>
+                        <td class="center blue">{{c.mobile}} <i class="fa fa-mobile" ng-show="c.mobile"
+                                aria-hidden="true"></i></td>
                         <td class="center">
                             <p ng-show="c.active ==true" class="green"> ##word.active## </p>
                             <p ng-show="c.active ==false" class="red"> ##word.not_active## </p>
                         </td>
 
                         <td class="center not-print">
-                            <i-button x-permissions="trainer_view || trainer_manage" type="view" label="##word.details##" ng-click="displayDetailsTrainer(c)"></i-button>
+                            <i-button x-permissions="trainer_view || trainer_manage" type="view"
+                                label="##word.details##" ng-click="displayDetailsTrainer(c)"></i-button>
 
-                            <i-button x-permissions="trainer_update || trainer_manage" type="edit" label="##word.edit##" ng-click="displayUpdateTrainer(c)"></i-button>
+                            <i-button x-permissions="trainer_update || trainer_manage" type="edit" label="##word.edit##"
+                                ng-click="displayUpdateTrainer(c)"></i-button>
 
-                            <i-button x-permissions="trainer_delete || trainer_manage" type="delete" label="##word.delete##" ng-click="displayDeleteTrainer(c)"></i-button>
+                            <i-button x-permissions="trainer_delete || trainer_manage" type="delete"
+                                label="##word.delete##" ng-click="displayDeleteTrainer(c)"></i-button>
                         </td>
                     </tr>
                 </table>
 
-                <i-button x-permissions="trainer_print || trainer_manage" type="print" label="##word.print##" onclick="site.print('#t1')"></i-button>
+                <i-button x-permissions="trainer_print || trainer_manage" type="print" label="##word.print##"
+                    onclick="site.print('#t1')"></i-button>
 
-                <i-button x-permissions="trainer_export || trainer_manage" type="export" label="##word.export_to_excel##" onclick="export_to_xlsx('t1' , 'trainer.xlsx')"></i-button>
+                <i-button x-permissions="trainer_export || trainer_manage" type="export"
+                    label="##word.export_to_excel##" onclick="export_to_xlsx('t1' , 'trainer.xlsx')"></i-button>
             </div>
         </div>
     </div>

@@ -10,15 +10,15 @@ module.exports = function init(site) {
   let image_url = '/images/trainer.png'
   let add_message = {
     name: 'New Trainer Added',
-    ar: 'تم إضافة مدرب جديد'
+    ar: 'تم إضافة موظف جديد'
   }
   let update_message = {
     name: ' Trainer Updated',
-    ar: 'تم تعديل مدرب'
+    ar: 'تم تعديل موظف'
   }
   let delete_message = {
     name: ' Trainer Deleted',
-    ar: 'تم حذف مدرب '
+    ar: 'تم حذف موظف '
   }
 
 

@@ -28,20 +28,20 @@ module.exports = function init(site) {
       }
   })
 
-  site.on('mongodb after update', function (result) {
-      if (result.collection === collection_name) {
-        site.call('please monitor action' , { obj : {
-          company : result.doc.company,
-          branch :  result.doc.branch,
-          icon: image_url,
-          source : source,
-          message: update_message ,
-          value: {name : result.old_doc.name , ar : result.old_doc.name},
-          update: site.objectDiff(result.update.$set, result.old_doc),
-          action: 'update'
-        }, result : result })
-      }
-  })
+  // site.on('mongodb after update', function (result) {
+  //     if (result.collection === collection_name) {
+  //       site.call('please monitor action' , { obj : {
+  //         company : result.doc.company,
+  //         branch :  result.doc.branch,
+  //         icon: image_url,
+  //         source : source,
+  //         message: update_message ,
+  //         value: {name : result.old_doc.name , ar : result.old_doc.name},
+  //         update: site.objectDiff(result.update.$set, result.old_doc),
+  //         action: 'update'
+  //       }, result : result })
+  //     }
+  // })
 
 
   site.on('mongodb after delete', function (result) {

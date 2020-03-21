@@ -9,17 +9,18 @@ module.exports = function init(site) {
 
   let image_url = '/images/delivery_employee_list.png'
   let add_message = {
-    name: 'New Delivery Employee Added',
-    ar: 'تم إضافة موظف توصيل'
+    name: 'New Trainer Added',
+    ar: 'تم إضافة موظف جديد'
   }
   let update_message = {
-    name: ' Delivery Employee Updated',
-    ar: 'تم تعديل موظف توصيل'
+    name: ' Trainer Updated',
+    ar: 'تم تعديل موظف'
   }
   let delete_message = {
-    name: ' Delivery Employee Deleted',
-    ar: 'تم حذف موظف توصيل '
+    name: ' Trainer Deleted',
+    ar: 'تم حذف موظف '
   }
+
 
 
   site.on('mongodb after insert', function (result) {

@@ -3,21 +3,21 @@ module.exports = function init(site) {
   let collection_name = 'hr_employee_list'
 
   let source = {
-    name: 'Employee System',
-    ar: 'نظام الموظفين'
+    name : 'Jobs And Employees System' ,
+    ar : 'نظام الوظائف والموظفين'
   }
 
   let image_url = '/images/employee.png'
   let add_message = {
-    name: 'New Employee Added',
+    name: 'New Trainer Added',
     ar: 'تم إضافة موظف جديد'
   }
   let update_message = {
-    name: ' Employee Updated',
+    name: ' Trainer Updated',
     ar: 'تم تعديل موظف'
   }
   let delete_message = {
-    name: ' Employee Deleted',
+    name: ' Trainer Deleted',
     ar: 'تم حذف موظف '
   }
 
