@@ -30,8 +30,8 @@ module.exports = function init(site) {
           source: source,
           message: add_message,
           value: {
-            name: result.doc.name,
-            ar: result.doc.name
+            name: result.doc.code,
+            ar: result.doc.code
           },
           add: result.doc,
           action: 'add'
@@ -49,8 +49,8 @@ module.exports = function init(site) {
           source: source,
           message: update_message,
           value: {
-            name: result.old_doc.name,
-            ar: result.old_doc.name
+            name: result.old_doc.code,
+            ar: result.old_doc.code
           },
           update: site.objectDiff(result.update.$set, result.old_doc),
           action: 'update'
@@ -69,8 +69,8 @@ module.exports = function init(site) {
           source: source,
           message: delete_message,
           value: {
-            name: result.doc.name,
-            ar: result.doc.name
+            name: result.doc.code,
+            ar: result.doc.code
           },
           delete: result.doc,
           action: 'delete'
