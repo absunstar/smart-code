@@ -326,10 +326,7 @@ module.exports = function init(site) {
       select: req.body.select || {},
       where: where,
       limit: req.body.limit,
-
-      sort: {
-        id: -1
-      },
+      sort: { id: -1 },
 
     }, (err, docs) => {
       if (!err) {
@@ -342,5 +339,27 @@ module.exports = function init(site) {
     })
   })
 
+  site.getAmountsOutShift = function (shiftId, callback) {
+    $amounts_in.findMany({
+      where: { 'shift.id': shiftId },
+      select: { id: 1, value: 1, payment_method: 1 }
+    }, (err, docs) => {
+      if (!err && docs) {
+        let arr = [{ id: 1, value: 0 }, { id: 2, value: 0 }, { id: 3, value: 0 }, { id: 4, value: 0 }]
+        docs.forEach(_doc => {
+          if (_doc.payment_method.id == 1) {
+            arr[0].value += _doc.value
+          } else if (_doc.payment_method.id == 2) {
+            arr[1].value += _doc.value
+          } else if (_doc.payment_method.id == 3) {
+            arr[2].value += _doc.value
+          } else if (_doc.payment_method.id == 4) {
+            arr[3].value += _doc.value
+          }
+        });
+        callback(arr)
+      } else callback(null)
+    })
+  }
 
 }
