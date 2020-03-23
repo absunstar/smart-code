@@ -12,25 +12,7 @@ module.exports = function init(site) {
     });
   });
 
-
-  s_p_balance_list = []
   site.on('[safes][safes_payments][+]', obj => {
-    s_p_balance_list.push(Object.assign({}, obj))
-  })
-
-  function s_p_balance_handle(obj) {
-    if (obj == null) {
-      if (s_p_balance_list.length > 0) {
-        obj = s_p_balance_list[0]
-        s_p_balance_handle(obj)
-        s_p_balance_list.splice(0, 1)
-      } else {
-        setTimeout(() => {
-          s_p_balance_handle(null)
-        }, 1000);
-      }
-      return
-    }
 
     let info = {
       safe: obj.safe,
@@ -57,12 +39,9 @@ module.exports = function init(site) {
     info.pre_balance = site.toNumber(info.pre_balance)
     info.balance = site.toNumber(info.balance)
 
-    $safes_payments.add(info, () => {
+    $safes_payments.add(info, () => { });
 
-      s_p_balance_handle(null)
-    });
-  }
-  s_p_balance_handle(null)
+  })
 
 
 
@@ -190,15 +169,5 @@ module.exports = function init(site) {
       res.json(response)
     })
   })
-
-  site.safesPaymentsShift = function (shiftId, callback) {
-    $safes_payments.findMany({
-      where: { 'shift.id': shiftId }
-    }, (err, docs) => {
-      if (!err && docs)
-        callback(docs)
-      else callback(false)
-    })
-  }
 
 }
