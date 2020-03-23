@@ -152,6 +152,12 @@ app.controller("notifications", function ($scope, $http, $interval) {
       $scope.jobs = n.add;
       site.showModal('#jobsViewModal');
 
+
+    } else if (n.link.collection == 'attend_session') {
+      $scope.attend_session = n.add;
+      site.showModal('#attendSessionViewModal');
+
+
     } else if (n.link.collection == 'stores_dismantle') {
       $scope.store_dismantle = n.add;
       site.showModal('#viewStoreDismantleModal');
@@ -415,6 +421,10 @@ app.controller("notifications", function ($scope, $http, $interval) {
       $scope.employee_offer = n.update;
       site.showModal('#viewemployeeOfferModal');
 
+    } else if (n.link.collection == 'attend_session') {
+      $scope.attend_session = n.update;
+      site.showModal('#attendSessionViewModal');
+
     } else if (n.link.collection == 'stores_dismantle') {
       $scope.store_dismantle = n.update;
       site.showModal('#viewStoreDismantleModal');
@@ -630,6 +640,11 @@ app.controller("notifications", function ($scope, $http, $interval) {
     } else if (n.link.collection == 'units') {
       $scope.unit = n.delete;
       site.showModal('#unitViewModal');
+
+
+    } else if (n.link.collection == 'attend_session') {
+      $scope.attend_session = n.delete;
+      site.showModal('#attendSessionViewModal');
 
     } else if (n.link.collection == 'militaries_status') {
       $scope.military_state = n.delete;

@@ -3,8 +3,8 @@ module.exports = function init(site) {
   let collection_name = 'hr_employee_list'
 
   let source = {
-    name : 'Jobs And Employees System' ,
-    ar : 'نظام الوظائف والموظفين'
+    name: 'Jobs And Employees System',
+    ar: 'نظام الوظائف والموظفين'
   }
 
   let image_url = '/images/trainer.png'
@@ -23,7 +23,7 @@ module.exports = function init(site) {
 
 
   site.on('mongodb after insert', function (result) {
-    if (result.collection === collection_name && result.old_doc && result.old_doc.trainer == true) {
+    if (result.collection === collection_name && result.doc && result.doc.trainer == true) {
       site.call('please monitor action', {
         obj: {
           icon: image_url,
@@ -42,7 +42,7 @@ module.exports = function init(site) {
   })
 
   site.on('mongodb after update', function (result) {
-    if (result.collection === collection_name && result.doc && result.doc.trainer == true) {
+    if (result.collection === collection_name && result.old_doc && result.old_doc.trainer == true) {
       site.call('please monitor action', {
         obj: {
           icon: image_url,
@@ -59,7 +59,6 @@ module.exports = function init(site) {
       })
     }
   })
-
 
   site.on('mongodb after delete', function (result) {
     if (result.collection === collection_name && result.old_doc && result.old_doc.trainer == true) {

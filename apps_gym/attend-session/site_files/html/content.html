@@ -85,7 +85,7 @@
 
                     <div class="row">
 
-                        <i-list ng-search="_search.$trainer" class="col4" display="name"
+                        <i-list ng-search="_search.$trainer" v="r" class="col4" display="name"
                             ng-model="attend_session.trainer" label="##word.trainer##" items="trainersList"></i-list>
 
                         <i-list ng-search="_search.$hall" class="col4" display="name" v="r"
@@ -101,7 +101,7 @@
                             <i-control ng-keydown="getService($event)" id="service" class="col3" ng-model="search_service"
                             label="##word.search##" type="text"></i-control>
 
-                        <i-list ng-search="_search.$service" class="col4" display="name" space="-" display2="general_service" ng-model="attend_session.service"
+                        <i-list ng-search="_search.$service" class="col4" v="r" display="name" space="-" display2="general_service" ng-model="attend_session.service"
                             label="##word.service##"
                             items="sessionList"></i-list>
 
