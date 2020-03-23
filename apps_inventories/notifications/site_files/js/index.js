@@ -334,8 +334,8 @@ app.controller("notifications", function ($scope, $http, $interval) {
       site.showModal('#kitchenViewModal');
 
     } else if (n.link.collection == 'order_invoice') {
-      $scope.order_invoice = n.add;
-      site.showModal('#OrderInvoiceViewModal');
+      $scope.order_management = n.add;
+      site.showModal('#reportInvoicesDetailsModal');
 
     } else if (n.link.collection == 'tables_group') {
       $scope.tables_group = n.add;
@@ -424,8 +424,8 @@ app.controller("notifications", function ($scope, $http, $interval) {
       site.showModal('#currencyViewModal');
 
     } else if (n.link.collection == 'order_invoice') {
-      $scope.order_invoice = n.update;
-      site.showModal('#OrderInvoiceViewModal');
+      $scope.order_management = n.update;
+      site.showModal('#reportInvoicesDetailsModal');
 
     } else if (n.link.collection == 'stores_stock') {
       $scope.store_stock = n.update;
@@ -673,8 +673,8 @@ app.controller("notifications", function ($scope, $http, $interval) {
       site.showModal('#viewMaritalStateModal');
 
     } else if (n.link.collection == 'order_invoice') {
-      $scope.order_invoice = n.delete;
-      site.showModal('#OrderInvoiceViewModal');
+      $scope.order_management = n.delete;
+      site.showModal('#reportInvoicesDetailsModal');
 
     } else if (n.link.collection == 'stores_assemble') {
       $scope.store_assemble = n.delete;

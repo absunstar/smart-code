@@ -19,7 +19,7 @@ module.exports = function init(site) {
           icon: image_url,
           source: source,
           message: add_message ,
-          value: { name : result.doc.value , ar : result.doc.value},
+          value: { name : result.doc.code , ar : result.doc.code},
           add: result.doc,
           action: 'add'
         }, result : result })
@@ -32,7 +32,7 @@ module.exports = function init(site) {
           icon: image_url,
           source : source,
           message: update_message ,
-          value: {name : result.old_doc.value , ar : result.old_doc.value},
+          value: {name : result.old_doc.code , ar : result.old_doc.code},
           update: site.objectDiff(result.update.$set, result.old_doc),
           action: 'update'
         }, result : result })
@@ -46,7 +46,7 @@ module.exports = function init(site) {
           icon: image_url,
           source: source ,
           message: delete_message ,
-          value: {name : result.doc.value , ar : result.doc.value},
+          value: {name : result.doc.code , ar : result.doc.code},
           delete: result.doc,
           action: 'delete'
         }, result : result })
