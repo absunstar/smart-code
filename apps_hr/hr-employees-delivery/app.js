@@ -3,11 +3,11 @@ module.exports = function init(site) {
 
   site.on('[company][created]', doc => {
 
-    if (site.feature('restaurant'))
+    if (site.feature('restaurant')) {
       $delivery_employee_list.add({
         name: "موظف توصيل إفتراضي",
         image_url: '/images/delivery_employee_list.png',
-        delivery : true,
+        delivery: true,
         company: {
           id: doc.id,
           name_ar: doc.name_ar
@@ -18,6 +18,8 @@ module.exports = function init(site) {
         },
         active: true
       }, (err, doc) => { })
+    }
+
   })
 
   site.get({

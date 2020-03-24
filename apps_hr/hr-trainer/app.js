@@ -3,7 +3,8 @@ module.exports = function init(site) {
 
   site.on('[company][created]', doc => {
 
-    if (site.feature('gym') || site.feature('academy'))
+    if (site.feature('gym') || site.feature('academy')) {
+
       $trainer.add({
         name: "مدرب إفتراضي",
         image_url: '/images/trainer.png',
@@ -24,6 +25,7 @@ module.exports = function init(site) {
         },
         active: true
       }, (err, doc) => { })
+    }
   })
 
   site.on('[attend_session][busy][+]', obj => {

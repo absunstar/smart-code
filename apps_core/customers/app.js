@@ -63,13 +63,18 @@ module.exports = function init(site) {
 
   site.on('[company][created]', doc => {
 
+    let name_ar = "عميل إفتراضي"
+
+    if (site.feature('gym'))
+      name_ar = "مشترك إفتراضي"
+
     $customers.add({
       group: {
         id: doc.id,
         name: doc.name
       },
       code: "1",
-      name_ar: "عميل إفتراضي",
+      name_ar: name_ar,
       branch_list: [
         {
           charge: [{}]
@@ -279,7 +284,7 @@ module.exports = function init(site) {
     if (where['name_en']) {
       where['name_en'] = new RegExp(where['name_en'], 'i')
     }
-    
+
     if (where.code) {
 
       where['code'] = where.code;
@@ -308,13 +313,13 @@ module.exports = function init(site) {
 
     where['company.id'] = site.get_company(req).id
 
-    
+
     $customers.findMany({
       select: req.body.select || {},
       where: where,
       sort: req.body.sort || { id: -1 },
     }, (err, docs, count) => {
-      
+
       if (!err) {
         response.done = true
         response.list = docs
