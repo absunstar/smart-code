@@ -1,6 +1,6 @@
 module.exports = function init(site) {
-  const fs = require('fs');
 
+  
   site.post('/api/security/permissions', (req, res) => {
 
     let response = {
@@ -125,14 +125,30 @@ module.exports = function init(site) {
     user.company = site.get_company(req)
     user.branch = site.get_branch(req)
 
-    site.security.addUser(user, (err, _id) => {
-      if (!err) {
-        response.done = true
-      } else {
-        response.error = err.message
+
+    site.$users.findMany({
+      where: {
+        'company.id': site.get_company(req).id,
       }
-      res.json(response)
+    }, (err, docs, count) => {
+      if (!err && count >= (site.get_company(req).users_count || 0)) {
+
+        response.error = `You have exceeded the maximum number of Users [ ${count} of ${site.get_company(req).users_count} ]`
+        res.json(response)
+      } else {
+
+        site.security.addUser(user, (err, _id) => {
+          if (!err) {
+            response.done = true
+          } else {
+            response.error = err.message
+          }
+          res.json(response)
+        })
+      }
     })
+
+  
   })
 
   site.post("/api/user/update", (req, res) => {

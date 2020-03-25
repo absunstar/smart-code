@@ -493,7 +493,8 @@ module.exports = function init(site) {
         _size_unit.start_count = 0
       });
     });
-    console.log(site.get_company(req));
+
+    
     
     $stores_items.findMany({
       where: {

@@ -21,6 +21,7 @@
     {"name" : "count_stores" , "en" : "Stores Count" , "ar" : "عدد المخازن"},
     {"name" : "count_currencies" , "en" : "Currencies Count" , "ar" : "عدد العملات"},
     {"name" : "count_branches" , "en" : "Branches Count" , "ar" : "عدد الفروع"},
+    {"name" : "compaines_users_count" , "en" : "Users Count" , "ar" : "عدد المستخدمين"},
 
     {"name" : "companies_branch_code" , "en" : "Branch Code" , "ar" : "كود الفرع"},
     {"name" : "companies_branch_name" , "en" : "Branch Name" , "ar" : "إسم الفرع"},
