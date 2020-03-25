@@ -69,22 +69,24 @@
 
             <div id="contactAndAddress" class="tab-content">
                 <fieldset>
-                    <legend> ##word.oppenents_lawyers_address_informations## </legend>
-                    <div class="row">
-                        <i-list class="col3" label="##word.oppenents_lawyers_gov##" ng-model="oppenents_lawyers.gov" items="govList"
-                            display="name" ng-change="getCityList(oppenent.gov)" ng-search="_search.$$govNameContact">
-                        </i-list>
-
-                        <i-list class="col4" label="##word.city##" ng-model="oppenents_lawyers.city" items="cityList"
-                            ng-change="getAreaList(oppenent.city)" display="name"
-                            ng-search="_search.$oppenent.$city_search"></i-list>
-                        <i-list class="col4" label="##word.area##" ng-model="oppenents_lawyers.area" items="areaList"
-                            display="name" ng-search="_search.$oppenent.$area_search"></i-list>
-                        <i-control class="col6" label="##word.oppenents_lawyers_address##" ng-model="oppenents_lawyers.address">
-                        </i-control>
-                    </div>
-
-                </fieldset>
+                    <fieldset>
+                        <legend> ##word.oppenents_address_informations## </legend>
+                        <div class="row">
+                            <i-list class="col3" label="##word.oppenents_gov##" ng-model="oppenents_lawyers.gov" items="govList"
+                                display="name" ng-change="getCityList(oppenents_lawyers.gov)" ng-search="_search.$govNameContact">
+                            </i-list>
+    
+                            <i-list class="col4" label="##word.city##" ng-model="oppenents_lawyers.city" items="cityList"
+                                ng-change="getAreaList(oppenents_lawyers.city)" display="name"
+                                ng-search="_search.$oppenents_lawyers.$city_search"></i-list>
+                            <i-list class="col4" label="##word.area##" ng-model="oppenents_lawyers.area" items="areaList"
+                                display="name" ng-search="_search.$oppenents_lawyers.$area_search"></i-list>
+                            <i-control class="col6" label="##word.oppenents_address##" ng-model="oppenents_lawyers.address">
+                            </i-control>
+                        </div>
+    
+                    </fieldset>
+    
 
                 <fieldset>
                     <legend> ##word.oppenents_lawyers_contact_informations## </legend>

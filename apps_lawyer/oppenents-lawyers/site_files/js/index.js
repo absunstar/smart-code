@@ -195,6 +195,8 @@ app.controller("oppenents_lawyers", function ($scope, $http, $timeout) {
     )
   };
 
+
+
   $scope.displaySendEmail = function () {
     $scope.error = '';
     site.showModal('#oppenentsLawyersSendEmailModal');
@@ -220,59 +222,6 @@ app.controller("oppenents_lawyers", function ($scope, $http, $timeout) {
         if (response.data.done && response.data.list.length > 0) {
           $scope.list = response.data.list;
           $scope.count = response.data.count;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
-  };
-
-  $scope.getGovList = function (where) {
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/goves/all",
-      data: {
-        where: {
-          active: true
-        },
-        select: { id: 1, name: 1 }
-      }
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.govList = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-
-    )
-
-  };
-
-  $scope.getCityList = function (gov) {
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/city/all",
-      data: {
-        where: {
-          'gov.id': gov.id,
-          active: true
-        },
-        select: { id: 1, name: 1 }
-      }
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.cityList = response.data.list;
         }
       },
       function (err) {
@@ -347,6 +296,59 @@ app.controller("oppenents_lawyers", function ($scope, $http, $timeout) {
   };
 
 
+  $scope.getGovList = function (where) {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/goves/all",
+      data: {
+        where: {
+          active: true
+        },
+        select: { id: 1, name: 1 }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.govList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+
+    )
+
+  };
+
+  $scope.getCityList = function (gov) {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/city/all",
+      data: {
+        where: {
+          'gov.id': gov.id,
+          active: true
+        },
+        select: { id: 1, name: 1 }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.cityList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
   $scope.getAreaList = function (city) {
     $scope.busy = true;
     $http({
@@ -372,6 +374,8 @@ app.controller("oppenents_lawyers", function ($scope, $http, $timeout) {
     )
   };
 
+
+ 
   $scope.searchAll = function () {
 
     let where = {};

@@ -411,8 +411,12 @@ app.controller("employees_advances", function ($scope, $http) {
   };
 
 
-  $scope.getDefaultSettings();
-  $scope.getPaymentMethodList();
+  
+  if(!site.feature('lawyer')){
+    
+    $scope.getDefaultSettings();
+    $scope.getPaymentMethodList();
+  }
   $scope.loadCurrencies();
   $scope.loadEmployees();
   $scope.loadAll({ date: new Date() });

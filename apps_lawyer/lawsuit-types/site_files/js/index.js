@@ -103,7 +103,7 @@ app.controller("lawsuit_types", function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.detailsLawsuitStatus(lawsuit_types);
     $scope.lawsuit_types = {};
-    site.showModal('#lawsuitStatusDetailsModal');
+    site.showModal('#lawsuitTypesDetailsModal');
   };
 
   $scope.detailsLawsuitStatus = function (lawsuit_types) {

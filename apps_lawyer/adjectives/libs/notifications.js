@@ -1,6 +1,6 @@
 module.exports = function init(site) {
 
-  let collection_name = 'Adjectivess'
+  let collection_name = 'adjectives'
 
   let source = {
     name: 'Adjectives System',

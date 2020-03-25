@@ -145,7 +145,7 @@ app.controller("notifications", function ($scope, $http, $interval) {
       document.querySelector('#deliveryEmployeeViewModal .tab-link').click();
 
     } else if (n.link.collection == 'facilities_codes') {
-      $scope.facilities_codes = n.add;
+      $scope.facility_code = n.add;
       site.showModal('#viewFacilityCodeModal');
 
     } else if (n.link.collection == 'items_group') {
@@ -153,12 +153,8 @@ app.controller("notifications", function ($scope, $http, $interval) {
       site.showModal('#itemsGroupViewModal');
       document.querySelector('#itemsGroupViewModal .tab-link').click();
 
-    } else if (n.link.collection == 'employee_list') {
-      $scope.employee_list = n.add;
-      site.showModal('#employeeViewModal');
-      document.querySelector('#employeeViewModal .tab-link').click();
 
-    } else if (n.link.collection == 'employees_degrees') {
+    } else if (n.link.collection == 'hr_employees_degrees') {
       $scope.employee_degree = n.add;
       site.showModal('#viewEmployeeDegreeModal');
 
@@ -171,9 +167,6 @@ app.controller("notifications", function ($scope, $http, $interval) {
       site.showModal('#trainerViewModal');
       document.querySelector('#trainerViewModal .tab-link').click();
 
-    } else if (n.link.collection == 'facilities_codes') {
-      $scope.facility_code = n.add;
-      site.showModal('#viewFacilityCodeModal');
 
     } else if (n.link.collection == 'safes') {
       $scope.safe = n.add;
@@ -187,29 +180,40 @@ app.controller("notifications", function ($scope, $http, $interval) {
       $scope.amount_out = n.add;
       site.showModal('#viewAmountOutModal');
 
+
+
     } else if (n.link.collection == 'in_out_names') {
       $scope.in_out_name = n.add;
       site.showModal('#viewInOutNameModal');
 
-    } else if (n.link.collection == 'employees_insurances') {
+
+    } else if (n.link.collection == 'lawsuit_types') {
+      $scope.lawsuit_types = n.add;
+      site.showModal('#lawsuitTypesDetailsModal');
+
+
+    } else if (n.link.collection == 'hr_employees_insurances') {
       $scope.employee_insurance = n.add;
       site.showModal('#viewEmployeeInsuranceModal');
 
     } else if (n.link.collection == 'insurances_slides') {
-      $scope.insurances_slides = n.add;
+      $scope.insurance_slide = n.add;
       site.showModal('#viewInsuranceSlideModal');
 
     } else if (n.link.collection == 'employees_advances') {
       $scope.employees_advances = n.add;
       site.showModal('#viewEmployeesAdvancesModal');
 
-    } else if (n.link.collection == 'employee_discount') {
+    } else if (n.link.collection == 'hr_employee_discount') {
       $scope.employee_discount = n.add;
       site.showModal('#viewEmployeeDiscountModal');
 
-    } else if (n.link.collection == 'employee_offer') {
+    } else if (n.link.collection == 'hr_employee_offer') {
       $scope.employee_offer = n.add;
       site.showModal('#viewemployeeOfferModal');
+
+  
+
 
     } else if (n.link.collection == 'employees_advances_fin') {
       $scope.employees_advances_fin = n.add;
@@ -243,6 +247,15 @@ app.controller("notifications", function ($scope, $http, $interval) {
     } else if (n.link.collection == 'goves') {
       $scope.gov = n.add;
       site.showModal('#govViewModal');
+
+
+      
+    } else if (n.link.collection == 'hr_employee_list') {
+      $scope.employee_list = n.add;
+      site.showModal('#employeeViewModal');
+
+      document.querySelector('#employeeViewModal .tab-link').click();
+
 
     } else if (n.link.collection == 'lecture') {
       $scope.lecture = n.add;
@@ -354,6 +367,20 @@ app.controller("notifications", function ($scope, $http, $interval) {
       $scope.circle = n.add;
       site.showModal('#circleViewModal');
 
+    } else if (n.link.collection == 'adjectives') {
+      $scope.adjectives = n.add;
+      site.showModal('#adjectivesViewModal');
+
+
+  } else if (n.link.collection == 'lawsuit_degrees') {
+      $scope.lawsuit_degrees = n.add;
+      site.showModal('#lawsuitDegreesDetailsModal');  
+
+
+    } else if (n.link.collection == 'lawsuit_status') {
+      $scope.lawsuit_status = n.add;
+      site.showModal('#lawsuitStatusDetailsModal');
+
     } else if (n.link.collection == 'reasons_sessions') {
       $scope.reasons_sessions = n.add;
       site.showModal('#reasonsSessionsDetailsModal');
@@ -391,14 +418,13 @@ app.controller("notifications", function ($scope, $http, $interval) {
       site.showModal('#studentsViewModal');
       document.querySelector('#studentsViewModal .tab-link').click();
 
+ 
+
     } else if (n.link.collection == 'companies') {
       $scope.company = n.update;
       site.showModal('#companyDetailsModal');
       document.querySelector('#companyDetailsModal .tab-link').click();
 
-    } else if (n.link.collection == 'facilities_codes') {
-      $scope.facilities_codes = n.update;
-      site.showModal('#viewFacilityCodeModal');
 
     } else if (n.link.collection == 'tables') {
       $scope.tables = n.update;
@@ -434,25 +460,39 @@ app.controller("notifications", function ($scope, $http, $interval) {
       $scope.in_out_name = n.update;
       site.showModal('#viewInOutNameModal');
 
-    } else if (n.link.collection == 'employees_insurances') {
+    } else if (n.link.collection == 'hr_employees_insurances') {
       $scope.employee_insurance = n.update;
       site.showModal('#viewEmployeeInsuranceModal');
 
     } else if (n.link.collection == 'insurances_slides') {
-      $scope.insurances_slides = n.update;
+      $scope.insurance_slide = n.update;
       site.showModal('#viewInsuranceSlideModal');
 
     } else if (n.link.collection == 'employees_advances') {
       $scope.employees_advances = n.update;
       site.showModal('#viewEmployeesAdvancesModal');
 
-    } else if (n.link.collection == 'employee_discount') {
+
+    } else if (n.link.collection == 'adjectives') {
+      $scope.adjectives = n.update;
+      site.showModal('#adjectivesViewModal');
+
+    } else if (n.link.collection == 'hr_employee_discount') {
       $scope.employee_discount = n.update;
       site.showModal('#viewEmployeeDiscountModal');
 
-    } else if (n.link.collection == 'employee_offer') {
+    } else if (n.link.collection == 'lawsuit_status') {
+      $scope.lawsuit_status = n.update;
+      site.showModal('#lawsuitStatusDetailsModal');
+
+    } else if (n.link.collection == 'hr_employee_offer') {
       $scope.employee_offer = n.update;
       site.showModal('#viewemployeeOfferModal');
+
+    } else if (n.link.collection == 'hr_employee_list') {
+      $scope.employee_list = n.update;
+      site.showModal('#employeeViewModal');
+      document.querySelector('#employeeViewModal .tab-link').click();
 
     } else if (n.link.collection == 'employees_advances_fin') {
       $scope.employees_advances_fin = n.update;
@@ -466,6 +506,10 @@ app.controller("notifications", function ($scope, $http, $interval) {
     } else if (n.link.collection == 'book_hall') {
       $scope.book_hall = n.update;
       site.showModal('#bookHallViewModal');
+
+    } else if (n.link.collection == 'lawsuit_degrees') {
+      $scope.lawsuit_degrees = n.update;
+      site.showModal('#lawsuitDegreesDetailsModal');  
 
     } else if (n.link.collection == 'hall') {
       $scope.hall = n.update;
@@ -483,12 +527,9 @@ app.controller("notifications", function ($scope, $http, $interval) {
       $scope.attend_leave = n.update;
       site.showModal('#attendLeaveViewModal');
 
-    } else if (n.link.collection == 'employee_list') {
-      $scope.employee_list = n.update;
-      site.showModal('#employeeViewModal');
       document.querySelector('#employeeViewModal .tab-link').click();
 
-    } else if (n.link.collection == 'employees_degrees') {
+    } else if (n.link.collection == 'hr_employees_degrees') {
       $scope.employee_degree = n.update;
       site.showModal('#viewEmployeeDegreeModal');
 
@@ -504,6 +545,10 @@ app.controller("notifications", function ($scope, $http, $interval) {
     } else if (n.link.collection == 'goves') {
       $scope.gov = n.update;
       site.showModal('#govViewModal');
+
+    } else if (n.link.collection == 'lawsuit_types') {
+      $scope.lawsuit_types = n.update;
+      site.showModal('#lawsuitTypesDetailsModal');
 
     } else if (n.link.collection == 'lecture') {
       $scope.lecture = n.update;
@@ -644,13 +689,11 @@ app.controller("notifications", function ($scope, $http, $interval) {
       site.showModal('#studentsViewModal');
       document.querySelector('#studentsViewModal .tab-link').click();
 
-    } else if (n.link.collection == 'facilities_codes') {
-      $scope.facilities_codes = n.delete;
-      site.showModal('#viewFacilityCodeModal');
 
     } else if (n.link.collection == 'tables') {
       $scope.tables = n.delete;
       site.showModal('#tablesViewModal');
+
 
     } else if (n.link.collection == 'delivery_employee_list') {
       $scope.delivery_employee_list = n.delete;
@@ -687,23 +730,27 @@ app.controller("notifications", function ($scope, $http, $interval) {
       $scope.in_out_name = n.delete;
       site.showModal('#viewInOutNameModal');
 
-    } else if (n.link.collection == 'employees_insurances') {
+    } else if (n.link.collection == 'hr_employees_insurances') {
       $scope.employee_insurance = n.delete;
       site.showModal('#viewEmployeeInsuranceModal');
+
+    } else if (n.link.collection == 'lawsuit_degrees') {
+      $scope.lawsuit_degrees = n.delete;
+      site.showModal('#lawsuitDegreesDetailsModal');  
 
     } else if (n.link.collection == 'employees_advances') {
       $scope.employees_advances = n.delete;
       site.showModal('#viewEmployeesAdvancesModal');
 
-    } else if (n.link.collection == 'employee_discount') {
+    } else if (n.link.collection == 'hr_employee_discount') {
       $scope.employee_discount = n.delete;
       site.showModal('#viewEmployeeDiscountModal');
 
     } else if (n.link.collection == 'insurances_slides') {
-      $scope.insurances_slides = n.delete;
+      $scope.insurance_slide = n.delete;
       site.showModal('#viewInsuranceSlideModal');
 
-    } else if (n.link.collection == 'employee_offer') {
+    } else if (n.link.collection == 'hr_employee_offer') {
       $scope.employee_offer = n.delete;
       site.showModal('#viewemployeeOfferModal');
 
@@ -724,9 +771,22 @@ app.controller("notifications", function ($scope, $http, $interval) {
       $scope.hall = n.delete;
       site.showModal('#classRoomsViewModal');
 
+    } else if (n.link.collection == 'lawsuit_types') {
+      $scope.lawsuit_types = n.delete;
+      site.showModal('#lawsuitTypesDetailsModal');
+
+    } else if (n.link.collection == 'lawsuit_status') {
+      $scope.lawsuit_status = n.delete;
+      site.showModal('#lawsuitStatusDetailsModal');
+
     } else if (n.link.collection == 'disease') {
       $scope.disease = n.delete;
       site.showModal('#diseaseViewModal');
+
+    } else if (n.link.collection == 'hr_employee_list') {
+      $scope.employee_list = n.delete;
+      site.showModal('#employeeViewModal');
+      document.querySelector('#employeeViewModal .tab-link').click();
 
     } else if (n.link.collection == 'medicine') {
       $scope.medicine = n.delete;
@@ -736,12 +796,8 @@ app.controller("notifications", function ($scope, $http, $interval) {
       $scope.attend_leave = n.delete;
       site.showModal('#attendLeaveViewModal');
 
-    } else if (n.link.collection == 'employee_list') {
-      $scope.employee_list = n.delete;
-      site.showModal('#employeeViewModal');
-      document.querySelector('#employeeViewModal .tab-link').click();
 
-    } else if (n.link.collection == 'employees_degrees') {
+    } else if (n.link.collection == 'hr_employees_degrees') {
       $scope.employee_degree = n.delete;
       site.showModal('#viewEmployeeDegreeModal');
 
@@ -773,6 +829,10 @@ app.controller("notifications", function ($scope, $http, $interval) {
     } else if (n.link.collection == 'stores') {
       $scope.store = n.delete;
       site.showModal('#viewStoreModal');
+
+    } else if (n.link.collection == 'adjectives') {
+      $scope.adjectives = n.delete;
+      site.showModal('#adjectivesViewModal');
 
     } else if (n.link.collection == 'discount_types') {
       $scope.discount_type = n.delete;
