@@ -158,6 +158,7 @@ module.exports = function init(site) {
           operation: 'خزينة جديدة',
           pre_balance: 0,
           balance: doc.balance,
+          currency: doc.currency,
           company: doc.company,
           branch: doc.branch,
           value: doc.balance,

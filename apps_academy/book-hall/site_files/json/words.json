@@ -14,6 +14,11 @@
         "ar": "حجز قاعة"
     },
     {
+        "name": "view_attend",
+        "en": "View Attend",
+        "ar": "عرض الحضور"
+    },
+    {
         "name": "err_dates",
         "en": "Should Add Dates",
         "ar": "يجب إضافة مواعيد"

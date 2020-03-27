@@ -1,0 +1,57 @@
+<div id="attendViewModal" class="modal">
+    <div class="col2"></div>
+    <div class="modal-content col8" >
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.book_hall_details##
+                <i class="fa fa-file"></i>
+            </h2>
+        </div>
+
+        <div class="modal-body">
+            <div class="row">
+                <div class="col1"></div>
+                <fieldset class="col10">
+                    <legend>
+                        ##word.dates##
+                    </legend>
+
+                    <table class="table hover center bold">
+                        <tr>
+                            <th>##word.date##</th>
+                            <th>##word.from##</th>
+                            <th>##word.to##</th>
+                            <th>##word.attend##</th>
+
+                        </tr>
+
+                        <tr ng-repeat="d in book_hall.dates_list">
+                            <td class="brown">{{d.date_count | date : 'dd- MM -yyyy'}}</td>
+                            <td class="green"> {{d.from.minute}} : {{d.from.hour}} </td>
+                            <td class="red"> {{d.to.minute}} : {{d.to.hour}} </td>
+                            <td>
+                                <i-list disabled ng-model="d.attend" display="##session.lang##" items="attendList">
+                                </i-list>
+                                <i-button type="update" ng-hide="d.attend.id" label="##word.attend##"
+                                    ng-click="attend(d)"></i-button>
+                                <i-button type="exit" ng-hide="d.attend.id" label="##word.absence##"
+                                    ng-click="cancel(d)"></i-button>
+                            </td>
+                        </tr>
+                    </table>
+
+                </fieldset>
+            </div>
+        </div>
+
+        <h2 class="error"> {{error}} </h2>
+
+        <div class="modal-footer center">
+            <i-button type="print" label="##word.print##" onclick="site.print('#v1')"></i-button>
+            <i-button type="save" label="##word.save##" ng-click="updateBookHall(book_hall)"></i-button>
+
+            <i-button type="close" label="##word.close##" onclick="site.hideModal('#attendViewModal')"></i-button>
+        </div>
+    </div>
+</div>

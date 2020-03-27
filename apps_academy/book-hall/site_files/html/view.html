@@ -94,14 +94,8 @@
                                 <td class="brown">{{d.date_count | date : 'dd- MM -yyyy'}}</td>
                                 <td class="green"> {{d.from.minute}} : {{d.from.hour}} </td>
                                 <td class="red"> {{d.to.minute}} : {{d.to.hour}} </td>
-                                <td>
-                                    <i-list disabled ng-model="d.attend" display="##session.lang##" items="attendList">
-                                    </i-list>
-                                    <i-button type="update" ng-hide="d.attend.id" label="##word.attend##"
-                                        ng-click="attend(d)"></i-button>
-                                    <i-button type="exit" ng-hide="d.attend.id" label="##word.absence##"
-                                        ng-click="cancel(d)"></i-button>
-                                </td>
+                                <td> {{d.attend.ar}} </td>
+                             
                             </tr>
                         </table>
 

@@ -15,7 +15,6 @@ app.controller("book_hall", function ($scope, $http, $timeout) {
           total_value: 0,
           dates_list: [],
           paid_list: []
-
         };
 
         if ($scope.defaultSettings.general_Settings) {
@@ -26,20 +25,20 @@ app.controller("book_hall", function ($scope, $http, $timeout) {
         };
 
         if ($scope.defaultSettings.accounting) {
-          if ($scope.defaultSettings.accounting.create_invoice_auto) {
-            if ($scope.defaultSettings.accounting.payment_method) {
-              $scope.book_hall.payment_method = $scope.defaultSettings.accounting.payment_method;
-              $scope.loadSafes($scope.book_hall.payment_method);
-              if ($scope.book_hall.payment_method.id == 1) {
-                if ($scope.defaultSettings.accounting.safe_box)
-                  $scope.book_hall.safe = $scope.defaultSettings.accounting.safe_box;
-              } else {
-                if ($scope.defaultSettings.accounting.safe_bank)
-                  $scope.book_hall.safe = $scope.defaultSettings.accounting.safe_bank;
-              }
-            }
+          $scope.book_hall.currency = $scope.defaultSettings.accounting.currency;
+          if ($scope.defaultSettings.accounting.payment_method) {
+            $scope.book_hall.payment_method = $scope.defaultSettings.accounting.payment_method;
+            $scope.loadSafes($scope.book_hall.payment_method, $scope.book_hall.currency);
+            if ($scope.book_hall.payment_method.id == 1)
+              $scope.book_hall.safe = $scope.defaultSettings.accounting.safe_box;
+            else $scope.book_hall.safe = $scope.defaultSettings.accounting.safe_bank;
           }
-        };
+        }
+        if ($scope.book_hall.currency) {
+          $scope.amount_currency = site.toNumber($scope.book_hall.net_value) / site.toNumber($scope.book_hall.currency.ex_rate);
+          $scope.amount_currency = site.toNumber($scope.amount_currency);
+        }
+
 
         site.showModal('#bookHallAddModal');
 
@@ -61,6 +60,11 @@ app.controller("book_hall", function ($scope, $http, $timeout) {
       $scope.error = "##word.err_dates##";
       return;
     };
+
+    if ($scope.book_hall.paid_up > $scope.amount_currency) {
+      $scope.error = "##word.err_net_value##";
+      return;
+    }
 
     if ($scope.book_hall.paid_up > 0 && !$scope.book_hall.safe) {
       $scope.error = "##word.should_select_safe##";
@@ -157,6 +161,7 @@ app.controller("book_hall", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           site.hideModal('#bookHallUpdateModal');
+          site.hideModal('#attendViewModal');
           $scope.getBookHallList();
         } else {
           $scope.error = 'Please Login First';
@@ -442,22 +447,29 @@ app.controller("book_hall", function ($scope, $http, $timeout) {
 
   };
 
+  $scope.showAttend = function (d) {
+
+    $scope.book_hall = d;
+    site.showModal('#attendViewModal')
+
+  };
+
   $scope.attend = function (d) {
     d.attend = $scope.attendList[0];
-    $http({
-      method: "POST",
-      url: "/api/book_hall/update",
-      data: $scope.book_hall
-    })
+    /*    $http({
+         method: "POST",
+         url: "/api/book_hall/update",
+         data: $scope.book_hall
+       }) */
   };
 
   $scope.cancel = function (d) {
     d.attend = $scope.attendList[1];
-    $http({
-      method: "POST",
-      url: "/api/book_hall/update",
-      data: $scope.book_hall
-    })
+    /*   $http({
+        method: "POST",
+        url: "/api/book_hall/update",
+        data: $scope.book_hall
+      }) */
   };
 
 
@@ -592,39 +604,6 @@ app.controller("book_hall", function ($scope, $http, $timeout) {
     $scope.book_hall.discountes.splice($scope.book_hall.discountes.indexOf(_ds), 1);
   };
 
-  $scope.loadSafes = function (method) {
-    $scope.error = '';
-    $scope.busy = true;
-    let where = {};
-
-    if (method.id == 1)
-      where = { 'type.id': 1 };
-    else where = { 'type.id': 2 };
-
-    $http({
-      method: "POST",
-      url: "/api/safes/all",
-      data: {
-        select: {
-          id: 1,
-          name: 1,
-          number: 1,
-          type: 1
-        },
-        where: where
-      }
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) $scope.safesList = response.data.list;
-
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
-  };
 
   $scope.getPaymentMethodList = function () {
     $scope.error = '';
@@ -646,41 +625,33 @@ app.controller("book_hall", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.getSafeByType = function (obj) {
-    $scope.error = '';
-    if ($scope.defaultSettings.accounting) {
-      $scope.loadSafes(obj.payment_method);
-      if (obj.payment_method.id == 1) {
-        if ($scope.defaultSettings.accounting.safe_box)
-          obj.safe = $scope.defaultSettings.accounting.safe_box;
-      } else {
-        if ($scope.defaultSettings.accounting.safe_bank)
-          obj.safe = $scope.defaultSettings.accounting.safe_bank;
-      }
-    }
-  };
-
-  $scope.calc = function () {
+  $scope.calc = function (obj) {
     $scope.error = '';
     $timeout(() => {
-      $scope.book_hall.total_discount = 0;
+      obj.total_discount = 0;
 
-      if ($scope.book_hall.discountes && $scope.book_hall.discountes.length > 0)
-        $scope.book_hall.discountes.forEach(ds => {
+      if (obj.discountes && obj.discountes.length > 0)
+        obj.discountes.forEach(ds => {
           if (ds.type == 'percent')
-            $scope.book_hall.total_discount += $scope.book_hall.total_value * site.toNumber(ds.value) / 100;
-          else $scope.book_hall.total_discount += site.toNumber(ds.value);
+            obj.total_discount += obj.total_value * site.toNumber(ds.value) / 100;
+          else obj.total_discount += site.toNumber(ds.value);
         });
 
-      if ($scope.book_hall.period && $scope.book_hall.period.id == 1) {
+      if (obj.period && obj.period.id == 1) {
 
-        $scope.book_hall.total_value = $scope.book_hall.total_period * $scope.book_hall.price_day - $scope.book_hall.total_discount;
+        obj.total_value = obj.total_period * obj.price_day - obj.total_discount;
       };
 
-      if ($scope.book_hall.period && $scope.book_hall.period.id == 2) {
+      if (obj.period && obj.period.id == 2) {
 
-        $scope.book_hall.total_value = $scope.book_hall.total_period * $scope.book_hall.price_hour - $scope.book_hall.total_discount;
+        obj.total_value = obj.total_period * obj.price_hour - obj.total_discount;
       };
+
+      if (obj.currency) {
+        $scope.amount_currency = obj.total_value / obj.currency.ex_rate;
+        $scope.amount_currency = site.toNumber($scope.amount_currency);
+
+      }
       $scope.discount = {
         type: 'number'
       };
@@ -716,9 +687,11 @@ app.controller("book_hall", function ($scope, $http, $timeout) {
         };
 
         if ($scope.defaultSettings.accounting) {
+          $scope.account_invoices.currency = $scope.defaultSettings.accounting.currency;
           if ($scope.defaultSettings.accounting.payment_method) {
             $scope.account_invoices.payment_method = $scope.defaultSettings.accounting.payment_method;
-            $scope.loadSafes($scope.account_invoices.payment_method);
+
+            $scope.loadSafes($scope.account_invoices.payment_method, $scope.account_invoices.currency);
             if ($scope.account_invoices.payment_method.id == 1) {
               if ($scope.defaultSettings.accounting.safe_box)
                 $scope.account_invoices.safe = $scope.defaultSettings.accounting.safe_box;
@@ -728,6 +701,13 @@ app.controller("book_hall", function ($scope, $http, $timeout) {
             }
           }
         }
+
+        if ($scope.account_invoices.currency) {
+          $scope.amount_currency = site.toNumber($scope.account_invoices.net_value) / site.toNumber($scope.account_invoices.currency.ex_rate);
+          $scope.amount_currency = site.toNumber($scope.amount_currency);
+        }
+
+        $scope.calc($scope.account_invoices);
         site.showModal('#accountInvoiceModal');
       } else $scope.error = '##word.open_shift_not_found##';
     });
@@ -741,7 +721,7 @@ app.controller("book_hall", function ($scope, $http, $timeout) {
       account_invoices.posting = false;
     else account_invoices.posting = true;
 
-    
+
     $http({
       method: "POST",
       url: "/api/account_invoices/add",
@@ -776,13 +756,13 @@ app.controller("book_hall", function ($scope, $http, $timeout) {
     $scope.account_invoices.total_remain = $scope.account_invoices.net_value - $scope.account_invoices.paid_up;
 
 
-    $scope.account_invoices.total_remain = site.toNumber($scope.account_invoices.total_remain)
-    $scope.account_invoices.total_paid_up = site.toNumber($scope.account_invoices.total_paid_up)
-    $scope.account_invoices.total_tax = site.toNumber($scope.account_invoices.total_tax)
-    $scope.account_invoices.total_discount = site.toNumber($scope.account_invoices.total_discount)
-    $scope.account_invoices.net_value = site.toNumber($scope.account_invoices.net_value)
-    $scope.account_invoices.paid_up = site.toNumber($scope.account_invoices.paid_up)
-    $scope.account_invoices.payment_paid_up = site.toNumber($scope.account_invoices.payment_paid_up)
+    $scope.account_invoices.total_remain = site.toNumber($scope.account_invoices.total_remain);
+    $scope.account_invoices.total_paid_up = site.toNumber($scope.account_invoices.total_paid_up);
+    $scope.account_invoices.total_tax = site.toNumber($scope.account_invoices.total_tax);
+    $scope.account_invoices.total_discount = site.toNumber($scope.account_invoices.total_discount);
+    $scope.account_invoices.net_value = site.toNumber($scope.account_invoices.net_value);
+    $scope.account_invoices.paid_up = site.toNumber($scope.account_invoices.paid_up);
+    $scope.account_invoices.payment_paid_up = site.toNumber($scope.account_invoices.payment_paid_up);
 
 
     let obj_print = { data: [] };
@@ -841,8 +821,8 @@ app.controller("book_hall", function ($scope, $http, $timeout) {
       $scope.account_invoices.total_remain = $scope.account_invoices.total_remain - $scope.account_invoices.payment_paid_up;
       $scope.account_invoices.total_paid_up = $scope.account_invoices.total_paid_up + $scope.account_invoices.payment_paid_up;
 
-      $scope.account_invoices.total_remain = site.toNumber($scope.account_invoices.total_remain)
-      $scope.account_invoices.total_paid_up = site.toNumber($scope.account_invoices.total_paid_up)
+      $scope.account_invoices.total_remain = site.toNumber($scope.account_invoices.total_remain);
+      $scope.account_invoices.total_paid_up = site.toNumber($scope.account_invoices.total_paid_up);
 
     }
 
@@ -896,6 +876,85 @@ app.controller("book_hall", function ($scope, $http, $timeout) {
     );
   };
 
+  $scope.getSafeByType = function (obj) {
+    $scope.error = '';
+    if ($scope.defaultSettings.accounting) {
+      $scope.loadSafes(obj.payment_method, obj.currency);
+      if (obj.payment_method.id == 1) {
+        if ($scope.defaultSettings.accounting.safe_box)
+          obj.safe = $scope.defaultSettings.accounting.safe_box
+      } else {
+        if ($scope.defaultSettings.accounting.safe_bank)
+          obj.safe = $scope.defaultSettings.accounting.safe_bank
+      }
+    }
+  };
+
+
+  $scope.loadSafes = function (method, currency) {
+    $scope.error = '';
+    $scope.busy = true;
+
+    let where = { 'currency.id': currency.id };
+
+    if (method.id == 1)
+      where['type.id'] = 1;
+    else where['type.id'] = 2;
+
+    $http({
+      method: "POST",
+      url: "/api/safes/all",
+      data: {
+        select: {
+          id: 1,
+          name: 1,
+          number: 1,
+          currency: 1,
+          type: 1
+        },
+        where: where
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) $scope.safesList = response.data.list;
+
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+  $scope.loadCurrencies = function () {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/currency/all",
+      data: {
+        select: {
+          id: 1,
+          name: 1,
+          ex_rate: 1
+        },
+        where: {
+          active: true
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.currenciesList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
   $scope.displaySearchModal = function () {
     $scope.error = '';
     site.showModal('#bookHallSearchModal');
@@ -912,6 +971,7 @@ app.controller("book_hall", function ($scope, $http, $timeout) {
   $scope.getBookHallList();
   $scope.getPeriod();
   $scope.getPaymentMethodList();
+  $scope.loadCurrencies();
   $scope.loadDiscountTypes();
   $scope.getTimeList();
   $scope.getDefaultSettings();
