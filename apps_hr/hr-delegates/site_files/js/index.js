@@ -274,35 +274,6 @@ app.controller("delegate_list", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.getJobsList = function (where) {
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/jobs/all",
-      data: {
-        select: {
-          id: 1, active: 1, trainer: 1, name: 1, code: 1
-        },
-        where: {
-          active: true
-        },
-      }
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.jobsList = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-
-    )
-
-  };
-
   $scope.getDegree = function () {
     $scope.busy = true;
     $http({
@@ -434,7 +405,6 @@ app.controller("delegate_list", function ($scope, $http, $timeout) {
   $scope.getGovList();
   $scope.getClassRoomsList();
   $scope.getCoursesList();
-  $scope.getJobsList();
   $scope.getDegree();
   $scope.getIndentfy();
   $scope.loadMaritalsStatus();

@@ -189,10 +189,7 @@ module.exports = function init(site) {
     if (where['name']) {
       where['name'] = new RegExp(where['name'], "i");
     }
-    if (where.search && where.search.salary) {
-
-      where['salary'] = where.search.salary
-    }
+ 
 
     delete where.search
 

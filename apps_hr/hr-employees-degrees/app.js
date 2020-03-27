@@ -142,8 +142,12 @@ module.exports = function init(site) {
       where['name'] = new RegExp(where['name'], 'i')
     }
 
-    if (where['notes']) {
-      where['notes'] = new RegExp(where['notes'], 'i')
+    if (where['name']) {
+      where['name'] = new RegExp(where['name'], 'i')
+    }
+    
+    if (where['salary']) {
+      where['salary'] = where['salary']
     }
 
     where['company.id'] = site.get_company(req).id

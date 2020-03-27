@@ -357,11 +357,7 @@ module.exports = function init(site) {
       delete where.active
     }
 
-    if (where['job']) {
-      where['job.id'] = where['job'].id;
-      delete where['job']
-      delete where.active
-    }
+ 
 
     if (where['name']) {
       where['name'] = new RegExp(where['name'], "i");

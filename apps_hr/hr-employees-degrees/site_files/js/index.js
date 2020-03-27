@@ -167,20 +167,7 @@ app.controller("employees_degrees", function ($scope, $http) {
   };
 
   $scope.searchAll = function () {
-
-    let where = {};
-
-    if ($scope.search.name) {
-
-      where['name'] = $scope.search.name;
-    }
-
-    if ($scope.search.notes) {
-
-      where['notes'] = $scope.search.notes;
-    }
-
-    $scope.loadAll(where);
+    $scope.loadAll($scope.search);
 
     site.hideModal('#SearchModal');
     $scope.search = {}

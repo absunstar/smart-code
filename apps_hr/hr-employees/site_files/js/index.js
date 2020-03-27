@@ -441,7 +441,6 @@ app.controller("employee_list", function ($scope, $http, $timeout) {
   $scope.displaySearchModal = function () {
     $scope.error = '';
     site.showModal('#employeeSearchModal');
-
   };
 
   $scope.searchAll = function () {
