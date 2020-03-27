@@ -20,6 +20,7 @@
             <div class="row" ng-controller="book_hall">
                 <div x-permissions="book_hall_add || book_hall_manage" x-import="book-hall/add_modal.html"></div>
                 <div x-permissions="book_hall_update || book_hall_manage" x-import="book-hall/update_modal.html"></div>
+                <div x-permissions="book_hall_update || book_hall_manage" x-import="book-hall/attend.html"></div>
                 <div x-permissions="book_hall_delete || book_hall_manage" x-import="book-hall/delete_modal.html"></div>
                 <div x-import="tenants/view_modal.html"></div>
                 <div x-permissions="book_hall_view || book_hall_manage" x-import="book-hall/view_modal.html"></div>
@@ -104,6 +105,9 @@
                             <i-button ng-show="!c.invoice && !defaultSettings.accounting.create_invoice_auto"
                                 type="save" label="##word.create_an_invoice##" ng-click="displayAccountInvoice(c)">
                             </i-button>
+
+                            <i-button x-permissions="book_hall_update || book_hall_manage" type="view"
+                                label="##word.view_attend##" ng-click="showAttend(c)"></i-button>
 
                             <i-button x-permissions="book_hall_update || book_hall_manage" type="edit"
                                 label="##word.edit##" ng-click="displayUpdateBookHall(c)"></i-button>
