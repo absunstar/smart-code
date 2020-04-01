@@ -10,8 +10,7 @@
             <a class="tab-link " onclick="site.showTabContent(event, '#customersFiles')">
                 ##word.customers_files## </a>
 
-            <a class="tab-link" x-features="gym"
-                onclick="site.showTabContent(event,'#medicalConditionInformation')">
+            <a class="tab-link" x-features="gym" onclick="site.showTabContent(event,'#medicalConditionInformation')">
                 ##word.medical_condition##</a>
             <a class="tab-link" x-features="academy" onclick="site.showTabContent(event,'#familyInformation')">
                 ##word.family_info##
@@ -36,7 +35,9 @@
             <a class="tab-link hide" ng-Show="showOpeningBalance"
                 onclick="site.showTabContent(event, '#openingBalance')">
                 ##word.customers_opening_balance## </a>
-
+            <a class="tab-link" onclick="site.showTabContent(event,'#loginInformation')">
+                ##word.login_information##
+            </a>
 
         </div>
 
@@ -83,7 +84,8 @@
 
                             <div class="row">
 
-                                <i-control class="col4" x-features="gym || academy" label="##word.finger_code##" ng-model="customer.finger_code">
+                                <i-control class="col4" x-features="gym || academy" label="##word.finger_code##"
+                                    ng-model="customer.finger_code">
                                 </i-control>
 
                                 <i-list help-id="" ng-search="_search.$indentfy_search" class="col2"
@@ -705,6 +707,18 @@
 
                 </fieldset>
 
+            </div>
+
+            <div id="loginInformation" class="tab-content">
+                <fieldset>
+                    <legend> ##word.login_information## </legend>
+
+                    <i-control help-id="" class="col4" label="##word.email##" ng-model="customer.username"></i-control>
+
+                    <i-control help-id="" class="col4" label="##word.password##" ng-model="customer.password">
+                    </i-control>
+
+                </fieldset>
             </div>
 
         </div>

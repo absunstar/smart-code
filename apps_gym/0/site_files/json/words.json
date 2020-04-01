@@ -50,6 +50,11 @@
         "ar": "المشتركين"
     },
     {
+        "name": "customers_data",
+        "en": "Customers Data",
+        "ar": "بيانات العميل"
+    },
+    {
         "name": "customers_new",
         "en": "New Subscriber",
         "ar": "مشترك جديد"

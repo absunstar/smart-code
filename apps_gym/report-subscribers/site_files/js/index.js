@@ -142,7 +142,7 @@ app.controller("report_subscribers", function ($scope, $http, $timeout) {
     if ($scope.search)
       $scope.customer = $scope.search.customer;
     $scope.search = {};
-    site.hideModal('#reportServicesSearchModal');
+    site.hideModal('#report-info');
   };
 
   $scope.getReportServicesList({ date: new Date() });

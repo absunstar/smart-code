@@ -1,18 +1,23 @@
 [
     {
-        "name": "report_subscribers_add",
+        "name": "report_info_add",
         "en": "Add Customer",
         "ar": "إضافة عميل"
     },
     {
-        "name": "report_subscribers_informations",
+        "name": "report_info_informations",
         "en": "Report Invoices Informations",
         "ar": "بيانات تقرير فاتورة"
     },
     {
-        "name": "report_subscribers_name",
-        "en": "Account statement Subscribers",
-        "ar": "كشف حساب المشتركين"
+        "name": "report_info_name",
+        "en": "Informations Subscribers",
+        "ar": " معلومات المشتركين"
+    },
+    {
+        "name": "report_info_menus",
+        "en": "Informations Subscribers Menu",
+        "ar": "قائمة معلومات المشتركين"
     },
     {
         "name": "source_type",
@@ -20,7 +25,7 @@
         "ar": "نوع المصدر"
     },
     {
-        "name": "order_subscribers_type",
+        "name": "order_info_type",
         "en": "Order Invoices Type",
         "ar": "نوع أمر الفاتورة"
     },
@@ -50,7 +55,7 @@
         "ar": "تأكيد"
     },
     {
-        "name": "subscribers",
+        "name": "info",
         "en": "Services",
         "ar": "الخدمات"
     },
@@ -65,17 +70,17 @@
         "ar": "تاريخ إلى"
     },
     {
-        "name": "report_subscribers_details",
+        "name": "report_info_details",
         "en": "Report Invoices Details",
         "ar": "تفاصيل تقرير فاتورة"
     },
     {
-        "name": "report_subscribers_update",
+        "name": "report_info_update",
         "en": "Edit Report Invoices",
         "ar": "تعديل تقرير فاتورة"
     },
     {
-        "name": "report_subscribers_total_required",
+        "name": "report_info_total_required",
         "en": "Total Required",
         "ar": "إجمالي المطلوب"
     },

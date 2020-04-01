@@ -9,6 +9,12 @@ module.exports = function init(site) {
     compress: false
   })
 
+  site.get({
+    name: 'images',
+    path: __dirname + '/site_files/images/'
+  })
+
+
   site.post("/api/employees_salary_report/add", (req, res) => {
     let response = {}
     response.done = false

@@ -1,4 +1,4 @@
-<div id="OrderInvoiceSearchModal" class="modal">
+<div id="OrderCustomerSearchModal" class="modal">
     <div class="col2"></div>
     <div class="modal-content col8">
         <div class="modal-header">
@@ -15,7 +15,7 @@
                     <legend>##word.search_all##</legend>
                     <div class="row">
 
-                        <i-control class="col3" label="##word.order_invoice_name##" ng-model="search.name"></i-control>
+                        <i-control class="col3" label="##word.order_customer_name##" ng-model="search.name"></i-control>
 
                         <div class="control col3">
                             <label> ##word.status## </label>
@@ -37,7 +37,7 @@
 
             <i-button type="clear" label="##word.empty_search##" ng-click="search = {}"> </i-button>
 
-            <i-button type="close" label="##word.close##" onclick="site.hideModal('#OrderInvoiceSearchModal')">
+            <i-button type="close" label="##word.close##" onclick="site.hideModal('#OrderCustomerSearchModal')">
             </i-button>
 
         </div>

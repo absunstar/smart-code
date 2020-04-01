@@ -1,0 +1,7 @@
+[{
+    "module_name" : "public" ,
+    "name": "order_customer_admin",
+    "en": "Order Customers Admin",
+    "ar": "إدارة شاشة طلبات العملاء",
+    "permissions": ["order_customer_manage"]
+}]

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="report_info_ui || report_info_manage" data-ng-app="myApp">
+
+<head x-import="head.html">
+
+</head>
+
+<body class="##session.lang##">
+
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+    </nav>
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+    </nav>
+
+    <div id="main-layout" class="container">
+        <div class="row">
+            <div class="row" ng-controller="report_info" x-permissions="login">
+                <div class="row">
+                    <h1 class="bold text-center"> ##word.report_info_name## </h1>
+                </div>
+
+                <div class="row" ng-hide="##session.user.type## == 'customer'">
+                    <i-control ng-model="search_customer" ng-keydown="getCustomerList($event)" class="col2"
+                        label="##word.search##"></i-control>
+
+                    <i-list ng-search="_search.$customer" class="col3" display="name_ar" v="r"
+                        ng-model="search.customer" ng-change="searchAll()" label="##word.subscribers_name##"
+                        items="customersList">
+                    </i-list>
+                </div>
+                <br>
+
+                <div class="top-actions">
+
+                    <div class="row" ng-show="customer.id">
+                        <fieldset class="col7">
+                            <legend>##word.customers_data##</legend>
+
+                            <table class="table bold center hover">
+                                <tr>
+                                    <td class="blue"> ##word.customer_name## </td>
+                                    <td colspan="7" class="center"> {{customer.name_ar}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="blue"> ##word.customers_indentfy## </td>
+                                    <td colspan="2" class="center"> {{customer.indentfy.ar}} </td>
+                                    <td class="blue"> ##word.child## </td>
+                                    <td colspan="2" ng-show="customer.child == true">
+                                        <p class="green"> ##word.yes## </p>
+                                    </td>
+                                    <td colspan="2" ng-show="!customer.child">
+                                        <p class="red"> ##word.no## </p>
+                                    </td>
+                                    <td colspan="2"></td>
+                                </tr>
+
+                                <tr>
+                                    <td class="blue"> ##word.weight## </td>
+                                    <td colspan="2" class="center"> {{customer.weight}} </td>
+                                    <td class="blue"> ##word.tall## </td>
+                                    <td colspan="2" class="center"> {{customer.tall}} </td>
+                                    <td class="blue"> ##word.blood_type## </td>
+                                    <td colspan="2" class="center red"> {{customer.blood_type.name}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="blue"> ##word.medicine_notes## </td>
+                                    <td colspan="7" class="center"> {{customer.medicine_notes}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="blue"> ##word.gov## </td>
+                                    <td colspan="2" class="center"> {{customer.gov.name}} </td>
+                                    <td class="blue"> ##word.city## </td>
+                                    <td colspan="2" class="center"> {{customer.city.name}} </td>
+                                    <td class="blue"> ##word.area## </td>
+                                    <td colspan="2" class="center"> {{customer.area.name}} </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="blue"> ##word.address## </td>
+                                    <td colspan="7" class="center"> {{customer.address}}</td>
+                                </tr>
+
+                                <tr>
+                                    <td class="blue"> ##word.mobile## </td>
+                                    <td colspan="4" class="center"> {{customer.mobile}}</td>
+                                    <td class="blue"> ##word.phone## </td>
+                                    <td colspan="3" class="center"> {{customer.phone}}</td>
+                                </tr>
+
+                            </table>
+                        </fieldset>
+                    </div>
+
+                    <span ng-show="busy">
+                        <span class="sr-only">Loading...</span>
+                    </span>
+                    <h3 class="bold text-center" ng-hide="customer.id"> ##word.count## : {{count}} </h3>
+                    <br>
+                </div>
+
+                <!--    <div class="row">
+                    <i-control id="item_name" class="col3" ng-model="total_discount"
+                        label="##word.stores_out_total_discount##" type="number" disabled></i-control>
+
+                    <i-control id="item_name" class="col3" ng-model="paid_require"
+                        label="##word.report_info_total_required##" type="number" disabled></i-control>
+                    <i-control id="item_name" class="col3" ng-model="total_paid_up" label="##word.total_paid_up##"
+                        type="number" disabled></i-control>
+                    <i-control id="item_name" class="col3" ng-model="total_remain" label="##word.total_remain##"
+                        type="number" disabled></i-control>
+                </div> -->
+
+                <div class="row">
+                    <table class="table bold center hover">
+
+                        <tr>
+                            <th>##word.service##</th>
+                            <th>##word.date_from##</th>
+                            <th>##word.expired_date##</th>
+                            <th>##word.complex_services##</th>
+                            <th>##word.service_remain##</th>
+                            <th>##word.invoice_remain##</th>
+                        </tr>
+
+                        <tr ng-repeat="service in list" ng-class="{
+                            bg_skyblue : service.ex_service >= 7,
+                            bg_LawnGreen : service.ex_service == 6 || service.ex_service == 5,
+                            bg_Gold : service.ex_service == 4 || service.ex_service == 3,
+                            bg_tomato : service.ex_service == 2 || service.ex_service == 1,
+                            }">
+                            <td>
+                                <br ng-show="service.complex_service.length > 0">
+                                {{service.service_name}}
+                            </td>
+
+                            <td class="center brown">
+                                <br ng-show="service.complex_service.length > 0">
+                                {{service.date_from | date : 'yyyy - MM - dd'}}
+                                <p class="center green"> {{service.time_from.minute}} :
+                                    {{service.time_from.hour}}
+                                </p>
+                            </td>
+
+                            <td class="center brown">
+                                <br ng-show="service.complex_service.length > 0">
+                                {{service.date_to | date : 'yyyy - MM - dd'}}
+                                <p class="center green">
+                                    {{service.time_to.minute}} :
+                                    {{service.time_to.hour}}
+                                </p>
+                            </td>
+
+                            <td>
+                                <table class="table bold center hover" ng-show="service.complex_service.length > 0">
+                                    <tr>
+                                        <th>##word.service##</th>
+                                        <th>##word.service_remain##</th>
+                                    </tr>
+
+                                    <tr ng-repeat="complex_service in service.complex_service">
+                                        <td class="center bold blue">{{complex_service.name}}</td>
+                                        <td class="center bold">{{complex_service.remain}}</td>
+                                    </tr>
+                                </table>
+
+                            </td>
+
+                            <td class="center bold ">
+                                <br ng-show="service.complex_service.length > 0">
+                                {{service.remain}}
+                            </td>
+                            <td>
+                                <br ng-show="service.complex_service.length > 0">
+                                {{service.invoice_remain || 0}}
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="row">
+                    <i-button x-permissions="report_info_print || report_info_manage" type="print"
+                        label="##word.print##" onclick="site.print('#t1')"></i-button>
+                    <i-button x-permissions="report_info_export || report_info_manage" type="export"
+                        label="##word.export_to_excel##" onclick="export_to_xlsx('t1' , 'report_info.xlsx')">
+                    </i-button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div x-import="scripts.html"></div>
+
+    <script x-permissions="login" x-import="report-info/index.js"></script>
+</body>
+
+</html>
