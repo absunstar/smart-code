@@ -2,7 +2,7 @@ app.controller("report_info", function ($scope, $http, $timeout) {
   $scope._search = {};
 
   $scope.getReportServicesList = function (where) {
-    
+    $scope.search = {};
     $scope.busy = true;
     $scope.list = [];
     $scope.count = 0;
@@ -71,10 +71,14 @@ app.controller("report_info", function ($scope, $http, $timeout) {
   $scope.searchAll = function () {
 
     $scope.getReportServicesList($scope.search);
-    if ($scope.search)
-      $scope.customer = $scope.search.customer;
 
+    if ($scope.search) $scope.customer = $scope.search.customer;
+
+    site.hideModal('#reportInfoSearchModal')
+    
   };
+
+
 
   $scope.getReportServicesList();
 });

@@ -25,6 +25,11 @@
         "ar": "نوع المصدر"
     },
     {
+        "name": "days_service_termination",
+        "en": "Days of service termination",
+        "ar": "ايام إنتهاء الخدمة"
+    },
+    {
         "name": "order_info_type",
         "en": "Order Invoices Type",
         "ar": "نوع أمر الفاتورة"
