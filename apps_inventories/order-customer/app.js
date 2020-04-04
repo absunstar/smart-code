@@ -1,5 +1,5 @@
 module.exports = function init(site) {
-  const $order_invoice = site.connectCollection("order_invoice")
+  const $order_customer = site.connectCollection("order_customer")
   // const $stores_items = site.connectCollection("stores_items")
 
 
@@ -7,7 +7,7 @@ module.exports = function init(site) {
 
     let barcode = objectOrder.sizes_list.map(_object => _object.barcode)
 
-    $order_invoice.findMany({ 'company.id': objectOrder.company.id, 'book_list.barcode': barcode }, (err, doc) => {
+    $order_customer.findMany({ 'company.id': objectOrder.company.id, 'book_list.barcode': barcode }, (err, doc) => {
       doc.forEach(_doc => {
         if (_doc.book_list) _doc.book_list.forEach(_items => {
           if (objectOrder.sizes_list) objectOrder.sizes_list.forEach(_size => {
@@ -17,7 +17,7 @@ module.exports = function init(site) {
             }
           })
         });
-        $order_invoice.update(_doc);
+        $order_customer.update(_doc);
       });
     });
   });
@@ -26,7 +26,7 @@ module.exports = function init(site) {
 
 
   order_paid_list = []
-  site.on('[account_invoices][order_invoice][+]', obj => {
+  site.on('[account_invoices][order_customer][+]', obj => {
     order_paid_list.push(Object.assign({}, obj))
   })
 
@@ -44,7 +44,7 @@ module.exports = function init(site) {
       return
     }
 
-    $order_invoice.findOne({ id: obj.invoice_id }, (err, doc) => {
+    $order_customer.findOne({ id: obj.invoice_id }, (err, doc) => {
 
       if (doc.under_paid) {
 
@@ -90,7 +90,7 @@ module.exports = function init(site) {
             };
           });
         });
-        $order_invoice.update(doc, () => {
+        $order_customer.update(doc, () => {
           order_paid_handle(null)
         });
       };
@@ -105,7 +105,7 @@ module.exports = function init(site) {
 
 
   order_done_list = []
-  site.on('[account_invoices][order_invoice][paid]', obj => {
+  site.on('[account_invoices][order_customer][paid]', obj => {
     order_done_list.push(Object.assign({}, obj))
   })
 
@@ -123,9 +123,9 @@ module.exports = function init(site) {
       return
     }
 
-    $order_invoice.findOne({ id: obj }, (err, doc) => {
+    $order_customer.findOne({ id: obj }, (err, doc) => {
       if (doc.under_paid.net_value <= 0) doc.status = { id: 5, en: "Closed & paid", ar: "مغلق و تم الدفع" }
-      $order_invoice.update(doc, () => {
+      $order_customer.update(doc, () => {
         order_done_handle(null)
       });
     });
@@ -143,7 +143,7 @@ module.exports = function init(site) {
     return code
   };
 
-  $order_invoice.newCode = function () {
+  $order_customer.newCode = function () {
 
     let y = new Date().getFullYear().toString().substr(2, 2)
     let m = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L'][new Date().getMonth()].toString()
@@ -166,23 +166,23 @@ module.exports = function init(site) {
   });
 
   site.post({
-    name: '/api/order_invoice/transaction_type/all',
+    name: '/api/order_customer/transaction_type/all',
     path: __dirname + '/site_files/json/transaction_type.json'
   });
 
   site.post({
-    name: '/api/order_invoice/order_status/all',
+    name: '/api/order_customer/order_status/all',
     path: __dirname + '/site_files/json/order_status.json'
   });
 
   site.get({
-    name: "order_invoice",
+    name: "order_customer",
     path: __dirname + "/site_files/html/index.html",
     parser: "html",
     compress: true
   });
 
-  site.post("/api/order_invoice/add", (req, res) => {
+  site.post("/api/order_customer/add", (req, res) => {
 
     let response = {
       done: false
@@ -194,51 +194,51 @@ module.exports = function init(site) {
       return
     };
 
-    let order_invoice_doc = req.body
-    order_invoice_doc.$req = req
-    order_invoice_doc.$res = res
+    let order_customer_doc = req.body
+    order_customer_doc.$req = req
+    order_customer_doc.$res = res
 
-    order_invoice_doc.add_user_info = site.security.getUserFinger({
+    order_customer_doc.add_user_info = site.security.getUserFinger({
       $req: req,
       $res: res
     });
 
-    if (typeof order_invoice_doc.active === 'undefined') {
-      order_invoice_doc.active = true
+    if (typeof order_customer_doc.active === 'undefined') {
+      order_customer_doc.active = true
     };
 
-    order_invoice_doc.company = site.get_company(req)
-    order_invoice_doc.branch = site.get_branch(req)
-    order_invoice_doc.code = $order_invoice.newCode()
-    order_invoice_doc.image_url = '/images/order_invoice.png'
+    order_customer_doc.company = site.get_company(req)
+    order_customer_doc.branch = site.get_branch(req)
+    order_customer_doc.code = $order_customer.newCode()
+    order_customer_doc.image_url = '/images/order_customer.png'
 
-    if (!order_invoice_doc.status)
-      order_invoice_doc.status = {
+    if (!order_customer_doc.status)
+      order_customer_doc.status = {
         id: 1,
         en: "Opened",
         ar: "مفتوحة"
       }
 
-    if (order_invoice_doc.transaction_type && order_invoice_doc.transaction_type.id == 2) {
-      order_invoice_doc.status_delivery = {
+    if (order_customer_doc.transaction_type && order_customer_doc.transaction_type.id == 2) {
+      order_customer_doc.status_delivery = {
         id: 1,
         en: "Under Delivery",
         ar: "تحت التوصيل"
       };
     };
 
-    if (order_invoice_doc.transaction_type && order_invoice_doc.transaction_type.id == 1 && order_invoice_doc.table) {
-      let table = order_invoice_doc.table
+    if (order_customer_doc.transaction_type && order_customer_doc.transaction_type.id == 1 && order_customer_doc.table) {
+      let table = order_customer_doc.table
       table.busy = true
-      site.call('[order_invoice][tables][busy]', table)
+      site.call('[order_customer][tables][busy]', table)
     };
 
-    order_invoice_doc.total_book_list = 0
-    order_invoice_doc.book_list.forEach(book_list => {
-      order_invoice_doc.total_book_list += book_list.total
+    order_customer_doc.total_book_list = 0
+    order_customer_doc.book_list.forEach(book_list => {
+      order_customer_doc.total_book_list += book_list.total
     });
 
-    $order_invoice.add(order_invoice_doc, (err, doc) => {
+    $order_customer.add(order_customer_doc, (err, doc) => {
       if (!err) {
         response.done = true
         response.doc = doc
@@ -250,7 +250,7 @@ module.exports = function init(site) {
     })
   });
 
-  site.post("/api/order_invoice/update", (req, res) => {
+  site.post("/api/order_customer/update", (req, res) => {
     let response = {
       done: false
     }
@@ -261,45 +261,45 @@ module.exports = function init(site) {
       return
     }
 
-    let order_invoice_doc = req.body
+    let order_customer_doc = req.body
 
-    order_invoice_doc.edit_user_info = site.security.getUserFinger({
+    order_customer_doc.edit_user_info = site.security.getUserFinger({
       $req: req,
       $res: res
     })
 
-    order_invoice_doc.total_book_list = 0
-    order_invoice_doc.book_list.forEach(book_list => {
-      order_invoice_doc.total_book_list += book_list.total
+    order_customer_doc.total_book_list = 0
+    order_customer_doc.book_list.forEach(book_list => {
+      order_customer_doc.total_book_list += book_list.total
     })
 
-    if (order_invoice_doc.transaction_type && order_invoice_doc.transaction_type.id == 2) {
+    if (order_customer_doc.transaction_type && order_customer_doc.transaction_type.id == 2) {
 
-      order_invoice_doc.status_delivery = {
+      order_customer_doc.status_delivery = {
         id: 1,
         en: "Under Delivery",
         ar: "تحت التوصيل"
       };
     };
 
-    if (order_invoice_doc.transaction_type && order_invoice_doc.transaction_type.id == 1 && order_invoice_doc.table && order_invoice_doc.table.id) {
-      if (order_invoice_doc.status.id == 2) {
-        let table = order_invoice_doc.table
+    if (order_customer_doc.transaction_type && order_customer_doc.transaction_type.id == 1 && order_customer_doc.table && order_customer_doc.table.id) {
+      if (order_customer_doc.status.id == 2) {
+        let table = order_customer_doc.table
         table.busy = false
-        site.call('[order_invoice][tables][busy]', table)
-      } else if (order_invoice_doc.status.id == 1) {
-        let table = order_invoice_doc.table
+        site.call('[order_customer][tables][busy]', table)
+      } else if (order_customer_doc.status.id == 1) {
+        let table = order_customer_doc.table
         table.busy = true
-        site.call('[order_invoice][tables][busy]', table)
+        site.call('[order_customer][tables][busy]', table)
       }
     };
 
-    if (order_invoice_doc.id) {
-      $order_invoice.edit({
+    if (order_customer_doc.id) {
+      $order_customer.edit({
         where: {
-          id: order_invoice_doc.id
+          id: order_customer_doc.id
         },
-        set: order_invoice_doc,
+        set: order_customer_doc,
         $req: req,
         $res: res
       }, (err, result) => {
@@ -318,7 +318,7 @@ module.exports = function init(site) {
     };
   })
 
-  site.post("/api/order_invoice/view", (req, res) => {
+  site.post("/api/order_customer/view", (req, res) => {
     let response = {
       done: false
     }
@@ -329,7 +329,7 @@ module.exports = function init(site) {
       return
     }
 
-    $order_invoice.findOne({
+    $order_customer.findOne({
       where: {
         id: req.body.id
       }
@@ -344,7 +344,7 @@ module.exports = function init(site) {
     })
   })
 
-  site.post("/api/order_invoice/delete", (req, res) => {
+  site.post("/api/order_customer/delete", (req, res) => {
     let response = {
       done: false
     }
@@ -355,16 +355,16 @@ module.exports = function init(site) {
       return
     }
 
-    let order_invoice_doc = req.body
+    let order_customer_doc = req.body
     let id = req.body.id
-    if (order_invoice_doc.table) {
-      let table = order_invoice_doc.table
+    if (order_customer_doc.table) {
+      let table = order_customer_doc.table
       table.busy = false
-      site.call('[order_invoice][tables][busy]', table)
+      site.call('[order_customer][tables][busy]', table)
     };
 
     if (id) {
-      $order_invoice.delete({
+      $order_customer.delete({
         id: id,
         $req: req,
         $res: res
@@ -407,7 +407,7 @@ module.exports = function init(site) {
   //   })
   // })
 
-  site.post("/api/order_invoice/all", (req, res) => {
+  site.post("/api/order_customer/all", (req, res) => {
     let response = {
       done: false
     }
@@ -421,7 +421,7 @@ module.exports = function init(site) {
     where['company.id'] = site.get_company(req).id
     where['branch.code'] = site.get_branch(req).code
 
-    $order_invoice.findMany({
+    $order_customer.findMany({
       select: req.body.select || {},
       where: where,
       sort: req.body.sort || {
@@ -441,7 +441,7 @@ module.exports = function init(site) {
   })
 
 
-  site.post("/api/order_invoice/active_all", (req, res) => {
+  site.post("/api/order_customer/active_all", (req, res) => {
     let response = {
       done: false
     }
@@ -451,7 +451,7 @@ module.exports = function init(site) {
     where['branch.code'] = site.get_branch(req).code
     where['status.id'] = 1
 
-    $order_invoice.findMany({
+    $order_customer.findMany({
       select: req.body.select || {},
       where: where,
       sort: req.body.sort || {
@@ -472,7 +472,7 @@ module.exports = function init(site) {
   })
 
 
-  site.post("/api/order_invoice/kitchen_items_all", (req, res) => {
+  site.post("/api/order_customer/kitchen_items_all", (req, res) => {
     let response = {
       done: false
     }
@@ -485,7 +485,7 @@ module.exports = function init(site) {
     where['company.id'] = site.get_company(req).id
     where['branch.code'] = site.get_branch(req).code
     where['status.id'] = 1
-    $order_invoice.findMany({
+    $order_customer.findMany({
       select: req.body.select || {},
       where: where,
       sort: req.body.sort || {
@@ -505,7 +505,7 @@ module.exports = function init(site) {
   })
 
 
-  site.post("/api/order_invoice/invoices", (req, res) => {
+  site.post("/api/order_customer/invoices", (req, res) => {
     let response = {
       done: false
     }
@@ -535,12 +535,12 @@ module.exports = function init(site) {
       '$lt': 5
     }
 
-    if (req.data.order_invoices_type && req.data.order_invoices_type.id) {
-      where['transaction_type.id'] = req.data.order_invoices_type.id;
+    if (req.data.order_customers_type && req.data.order_customers_type.id) {
+      where['transaction_type.id'] = req.data.order_customers_type.id;
       delete where['transaction_type']
     }
 
-    $order_invoice.findMany({
+    $order_customer.findMany({
       select: req.body.select || {},
       where: where,
       sort: req.body.sort || {
@@ -577,7 +577,7 @@ module.exports = function init(site) {
     else if (data.name == 'customer') where['customer.id'] = data.id
     else if (data.name == 'tables') where['table.id'] = data.id
 
-    $order_invoice.findOne({
+    $order_customer.findOne({
       where: where,
     }, (err, docs, count) => {
 

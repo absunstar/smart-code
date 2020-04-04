@@ -90,6 +90,16 @@
         "ar": "تقرير فواتير الموردين "
     },
     {
+        "name": "order_customer_menus",
+        "en": "Orders Customer Screen",
+        "ar": "شاشة طلبات العملاء"
+    },
+    {
+        "name": "order_customer_management",
+        "en": "Orders Customer Management",
+        "ar": "إدارة طلبات العملاء"
+    },
+    {
         "name": "work_posting",
         "en": "Work Posting",
         "ar": "العمل بالترحيل"

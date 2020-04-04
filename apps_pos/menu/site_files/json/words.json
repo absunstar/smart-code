@@ -1026,11 +1026,6 @@
         "ar": "إدارة نظام نقاط البيع"
     },
     {
-        "name": "order_invoice_menus",
-        "en": "Orders Invoice Screen",
-        "ar": "شاشة الطلبات"
-    },
-    {
         "name": "order_invoice_management",
         "en": "Orders Invoice Management",
         "ar": "طاولات / ديلفيرى / تيك اواى"

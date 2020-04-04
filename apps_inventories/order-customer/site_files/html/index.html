@@ -8,7 +8,7 @@
             margin-top: 30px;
         }
 
-        .order-invoice {
+        .order-customer {
             padding: 5px !important;
             border: 1px solid #ffeb3b;
         }
@@ -128,35 +128,35 @@
         <div class="row">
             <div class="row" ng-controller="order_customer">
                 <div x-permissions="order_customer_add || order_customer_manage"
-                    x-import="order-invoice/order_customers_active.html">
+                    x-import="order-customer/order_customers_active.html">
                 </div>
                 <div x-permissions="order_customer_add || order_customer_manage" x-import="customers/add_modal.html">
                 </div>
                 <div x-permissions="order_customer_add || order_customer_manage"
-                    x-import="order-invoice/delivery_service.html">
+                    x-import="order-customer/delivery_service.html">
                 </div>
                 <div x-permissions="order_customer_add || order_customer_manage"
-                    x-import="order-invoice/select_table.html">
+                    x-import="order-customer/select_table.html">
                 </div>
                 <div x-permissions="order_customer_add || order_customer_manage"
-                    x-import="order-invoice/merge_tables.html">
+                    x-import="order-customer/merge_tables.html">
                 </div>
                 <!--  <div x-permissions="order_customer_add || order_customer_manage"
-                    x-import="order-invoice/change_item_count.html">
+                    x-import="order-customer/change_item_count.html">
                 </div> -->
                 <div x-permissions="order_customer_add || order_customer_manage"
-                    x-import="order-invoice/account_invoice.html">
+                    x-import="order-customer/account_invoice.html">
                 </div>
 
                 <div x-permissions="order_customer_update || order_customer_manage"
-                    x-import="order-invoice/update_modal.html"></div>
+                    x-import="order-customer/update_modal.html"></div>
                 <div x-permissions="order_customer_delete || order_customer_manage"
-                    x-import="order-invoice/delete_modal.html"></div>
+                    x-import="order-customer/delete_modal.html"></div>
                 <div x-permissions="order_customer_view || order_customer_manage"
-                    x-import="order-invoice/view_modal.html"></div>
-                <div x-import="order-invoice/items_modal.html"></div>
+                    x-import="order-customer/view_modal.html"></div>
+                <div x-import="order-customer/items_modal.html"></div>
                 <div x-permissions="order_customer_search || order_customer_manage"
-                    x-import="order-invoice/search_all_modal.html"></div>
+                    x-import="order-customer/search_all_modal.html"></div>
 
                 <div class="row">
 
@@ -229,7 +229,7 @@
 
                     <div class="col6">
                         <div class="row">
-                            <div class="row order-invoice">
+                            <div class="row order-customer">
                                 <h2 class="bold center red">{{error}}</h2>
 
                                 <div class="row">
@@ -554,7 +554,7 @@
     </div>
 
     <div x-import="scripts.html"></div>
-    <script x-import="order-invoice/index.js"></script>
+    <script x-import="order-customer/index.js"></script>
 </body>
 
 </html>
