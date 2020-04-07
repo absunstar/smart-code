@@ -16,7 +16,23 @@
 </style>
 <div class="main-menu">
 
-    <div class="tabs">
+    <div class="row" ng-show="'##user.type##' == 'customer'">
+        <div class="col4"></div>
+        <a class="item" href="/customers" x-permissions="customers_ui || customers_manage">
+            <img src="/images/vendor.png">
+            <h2> ##word.menu_customers## </h2>
+            <p> ##word.menu_customers_tag##</p>
+        </a>
+
+        <a class="item" href="/order_customer" x-permissions="order_customer_ui || order_customer_manage">
+            <img src="/images/order_customer.png">
+            <h2> ##word.order_customer_menus## </h2>
+            <p> ##word.order_customer_management##</p>
+        </a>
+    </div>
+
+
+    <div class="tabs" ng-hide="'##user.type##' == 'customer'">
         <div class="tabs-header">
 
 

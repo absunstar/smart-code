@@ -15,8 +15,23 @@
     }
 </style>
 <div class="main-menu">
+    <div class="row" ng-show="'##user.type##' == 'customer'">
+        <div class="col4"></div>
+        <a class="item" href="/customers" x-permissions="customers_ui || customers_manage">
+            <img src="/images/vendor.png">
+            <h2> ##word.menu_customers## </h2>
+            <p> ##word.menu_customers_tag##</p>
+        </a>
 
-    <div class="tabs">
+        <a class="item" href="/report_info" x-permissions="report_info_ui || report_info_manage">
+            <img src="/images/customer_info.png">
+            <h2>##word.report_info_menus##</h2>
+            <p>##word.report_info_name##</p>
+        </a>
+    </div>
+
+
+    <div class="tabs" ng-hide="'##user.type##' == 'customer'">
         <div class="tabs-header">
 
             <a x-feature="gym" class="tab-link" onclick="site.showTabContent(event, '#companyTab')">
@@ -489,8 +504,7 @@
                     <p>##word.report_subscribers_name##</p>
                 </a>
 
-                <a class="item" href="/report_info"
-                    x-permissions="report_info_ui || report_info_manage">
+                <a class="item" href="/report_info" x-permissions="report_info_ui || report_info_manage">
                     <img src="/images/customer_info.png">
                     <h2>##word.report_info_menus##</h2>
                     <p>##word.report_info_name##</p>
@@ -561,7 +575,14 @@
                     <p> ##word.attend_sessions_registration##</p>
                 </a>
 
+                <a class="item" href="/report_info" x-permissions="report_info_ui || report_info_manage">
+                    <img src="/images/customer_info.png">
+                    <h2>##word.report_info_menus##</h2>
+                    <p>##word.report_info_name##</p>
+                </a>
             </div>
 
         </div>
+
     </div>
+</div>

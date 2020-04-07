@@ -10,6 +10,11 @@
         "ar": "قائمة أصناف جديد"
     },
     {
+        "name": "add_to_orders",
+        "en": "Add To Orders",
+        "ar": "إضافة للطلبات"
+    },
+    {
         "name": "select_table",
         "en": "Select Table",
         "ar": "إختيار الطاولة"

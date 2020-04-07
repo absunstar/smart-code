@@ -20,7 +20,7 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
       }
     })
   };
-
+    
   $scope.cancelOrderCustomer = function () {
 
     $scope.busy = true;

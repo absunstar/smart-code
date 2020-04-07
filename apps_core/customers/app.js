@@ -132,9 +132,28 @@ module.exports = function init(site) {
       type: 'customer'
     }
 
-    user.roles = [{
-      permissions: [customers_update, customers_view, customers_ui, report_info_ui]
-    }]
+    user.roles = [
+      {
+        module_name: "public",
+        name: "customers_user",
+        en: "Customers User",
+        ar: "إدارة العملاء للمستخدم",
+        permissions: ['customers_update', 'customers_view', 'customers_ui']
+      },
+      {
+        module_name: "public",
+        name: "report_info_user",
+        en: "Subscribe Info USer",
+        ar: "معلومات المشتركين للمستخدم",
+        permissions: ["report_info_ui"]
+      },
+      {
+        module_name: "public",
+        name: "order_customer_user",
+        en: "Order Customers User",
+        ar: "طلبات العملاء للمستخدمين",
+        permissions: ["order_customer_ui", "order_customer_delete_items"]
+      }]
 
     user.profile = {
       name: user.name,
@@ -142,12 +161,18 @@ module.exports = function init(site) {
       image_url: user.image_url
     }
 
+    user.branch_list = [{
+      company: site.get_company(req),
+      branch: site.get_branch(req)
+    }]
+
     $customers.add(customers_doc, (err, doc) => {
       if (!err) {
         response.done = true
         response.doc = doc
 
         if (user.password && user.username) {
+          user.ref_info = { id: doc.id }
           site.security.addUser(user, (err, doc1) => {
             if (!err) {
               delete user._id
@@ -196,19 +221,26 @@ module.exports = function init(site) {
 
     user.roles = [
       {
-        module_name : "public" ,
+        module_name: "public",
         name: "customers_user",
         en: "Customers User",
         ar: "إدارة العملاء للمستخدم",
         permissions: ['customers_update', 'customers_view', 'customers_ui']
-    },
-    {
-      module_name : "public" ,
-      name: "report_info_user",
-      en: "Subscribe Info USer",
-      ar: "معلومات المشتركين للمستخدم",
-      permissions: ["report_info_ui"]
-  }]
+      },
+      {
+        module_name: "public",
+        name: "report_info_user",
+        en: "Subscribe Info USer",
+        ar: "معلومات المشتركين للمستخدم",
+        permissions: ["report_info_ui"]
+      },
+      {
+        module_name: "public",
+        name: "order_customer_user",
+        en: "Order Customers User",
+        ar: "طلبات العملاء للمستخدمين",
+        permissions: ["order_customer_ui", "order_customer_delete_items"]
+      }]
 
     user.profile = {
       name: user.name,
