@@ -127,20 +127,14 @@
     <div id="main-layout" class="container">
         <div class="row">
             <div class="row" ng-controller="order_customer">
-                <div x-permissions="order_customer_add || order_customer_manage"
-                    x-import="order-customer/order_invoices_active.html">
+                <div x-import="order-customer/order_invoices_active.html">
                 </div>
                 <div x-permissions="order_customer_add || order_customer_manage" x-import="customers/add_modal.html">
                 </div>
                 <div x-permissions="order_customer_add || order_customer_manage"
                     x-import="order-customer/delivery_service.html">
                 </div>
-                <div x-permissions="order_customer_add || order_customer_manage"
-                    x-import="order-customer/select_table.html">
-                </div>
-                <div x-permissions="order_customer_add || order_customer_manage"
-                    x-import="order-customer/merge_tables.html">
-                </div>
+
                 <!--  <div x-permissions="order_customer_add || order_customer_manage"
                     x-import="order-customer/change_item_count.html">
                 </div> -->
@@ -258,34 +252,14 @@
                                     </i-control>
                                 </div>
 
-                                <div class="row">
-                                    <i-list ng-search="_search.$transaction_type" class="col4"
-                                        display="##session.lang##" ng-model="order_customer.transaction_type"
-                                        label="##word.transaction_type##" items="transactionTypeList"
-                                        ng-change="calc(order_customer)">
-                                    </i-list>
+                                <div class="row" ng-hide="'##user.type##' == 'customer'">
 
-                                    <i-button ng-show="order_customer.transaction_type.id == 1 && order_customer.id"
-                                        type="bg-blue" label="##word.merge_table##"
-                                        ng-click="viewCustomersTablesList()">
-                                    </i-button>
-                                    <i-list ng-show="order_customer.transaction_type.id == 2"
-                                        ng-search="_search.$order_customer_employee" class="col4" display="name"
+                                    <i-list ng-search="_search.$order_customer_employee" class="col4" display="name"
                                         ng-model="order_customer.delivery_employee" label="##word.delivery_employee##"
                                         items="deliveryEmployeesList"></i-list>
                                 </div>
 
-                                <div class="row" ng-show="order_customer.transaction_type.id == 1">
-                                    <i-button type="bg-blue" label="##word.select_table##" ng-click="showTable()">
-                                    </i-button>
-                                    <i-control class="col4" ng-model="order_customer.table.name" label="##word.table##"
-                                        type="text" disabled></i-control>
-                                    <i-control class="col2" ng-model="order_customer.count_person"
-                                        label="##word.count_person##" type="number"></i-control>
-                                    <i-control class="col2" ng-model="order_customer.service" label="##word.service##"
-                                        type="number" ng-change="calc(order_customer)"></i-control>
-                                </div>
-                                <div class="row">
+                                <div class="row" ng-hide="'##user.type##' == 'customer'">
                                     <div class="row">
                                         <i-button type="add" label="##word.customers_new##"
                                             ng-click="displayAddCustomer()">
@@ -301,7 +275,7 @@
                                         </i-list>
 
                                     </div>
-                                    <fieldset ng-show="order_customer.transaction_type.id == 2">
+                                    <fieldset>
                                         <legend> ##word.customer_data##</legend>
                                         <div class="row">
                                             <div class="row">
@@ -326,8 +300,7 @@
 
                                             <div class="row">
 
-                                                <i-control ng-show="order_customer.transaction_type.id == 2"
-                                                    ng-model="order_customer.price_delivery_service"
+                                                <i-control ng-model="order_customer.price_delivery_service"
                                                     label="##word.price_delivery_service##"
                                                     ng-change="calc(order_customer)" class="col3" type="number">
                                                 </i-control>
@@ -374,8 +347,8 @@
                                     </td>
                                     <td class="center blue"><br> {{size.price}}</td>
                                     <td class="center">
-                                        <i-control type="number" ng-change="calcSize(size)"
-                                            ng-model="size.discount.value">
+                                        <i-control type="number" ng-disabled="'##user.type##' == 'customer'"
+                                            ng-change="calcSize(size)" ng-model="size.discount.value">
                                         </i-control>
                                         <b class="red" ng-show="size.discount.type =='number'">$</b>
                                         <b class="red" ng-show="size.discount.type =='percent'">%</b>
@@ -462,7 +435,7 @@
 
                             </div>
 
-                            <div class="col5 padding margin" >
+                            <div class="col5 padding margin">
                                 <table class="table box-shadow " ng-init="taxEditorAdd = true">
 
                                     <tr>
@@ -537,14 +510,14 @@
                             </div>
                         </div>
 
-                        <i-button
+                        <!--    <i-button
                             ng-show="defaultSettings.accounting.create_invoice_auto && order_customer.status.id == 2 && !order_customer.invoice && '##user.type##' != 'customer'"
                             type="save" label="##word.create_an_invoice##"
                             ng-click="displayAccountCustomer(order_customer)">
-                        </i-button>
+                        </i-button> -->
 
-                        <i-button ng-hide="'##user.type##' == 'customer'" class="not-print" label="##word.print_invoice##"
-                            type="print " ng-click="printAccountInvoive()">
+                        <i-button ng-hide="'##user.type##' == 'customer'" class="not-print"
+                            label="##word.print_invoice##" type="print " ng-click="printAccountInvoive()">
                         </i-button>
 
                     </div>

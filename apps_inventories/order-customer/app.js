@@ -166,11 +166,6 @@ module.exports = function init(site) {
   });
 
   site.post({
-    name: '/api/order_customer/transaction_type/all',
-    path: __dirname + '/site_files/json/transaction_type.json'
-  });
-
-  site.post({
     name: '/api/order_customer/order_status/all',
     path: __dirname + '/site_files/json/order_status.json'
   });
@@ -227,26 +222,40 @@ module.exports = function init(site) {
       };
     };
 
-    if (order_customer_doc.transaction_type && order_customer_doc.transaction_type.id == 1 && order_customer_doc.table) {
-      let table = order_customer_doc.table
-      table.busy = true
-      site.call('[order_customer][tables][busy]', table)
-    };
+
 
     order_customer_doc.total_book_list = 0
     order_customer_doc.book_list.forEach(book_list => {
       order_customer_doc.total_book_list += book_list.total
     });
 
-    $order_customer.add(order_customer_doc, (err, doc) => {
-      if (!err) {
-        response.done = true
-        response.doc = doc
+    let customerId = 0
 
-      } else {
-        response.error = err.message
+    if (req.session.user.ref_info)
+      customerId = req.session.user.ref_info.id
+
+    site.getCustomerUser(customerId, callback => {
+      if (req.session.user.type == 'customer') {
+        order_customer_doc.customer = callback
+        order_customer_doc.gov = order_customer_doc.customer.gov
+        order_customer_doc.city = order_customer_doc.customer.city
+        order_customer_doc.area = order_customer_doc.customer.area
+        if (order_customer_doc.area) order_customer_doc.price_delivery_service = order_customer_doc.area.price_delivery_service
+        order_customer_doc.address = order_customer_doc.customer.address
+        order_customer_doc.customer_mobile = order_customer_doc.customer.mobile
+        order_customer_doc.customer_phone = order_customer_doc.customer.phone
+        order_customer_doc.net_value = order_customer_doc.net_value + (site.toNumber(order_customer_doc.price_delivery_service) || 0)
       }
-      res.json(response)
+      $order_customer.add(order_customer_doc, (err, doc) => {
+        if (!err) {
+          response.done = true
+          response.doc = doc
+
+        } else {
+          response.error = err.message
+        }
+        res.json(response)
+      })
     })
   });
 
@@ -281,18 +290,8 @@ module.exports = function init(site) {
         ar: "تحت التوصيل"
       };
     };
-
-    if (order_customer_doc.transaction_type && order_customer_doc.transaction_type.id == 1 && order_customer_doc.table && order_customer_doc.table.id) {
-      if (order_customer_doc.status.id == 2) {
-        let table = order_customer_doc.table
-        table.busy = false
-        site.call('[order_customer][tables][busy]', table)
-      } else if (order_customer_doc.status.id == 1) {
-        let table = order_customer_doc.table
-        table.busy = true
-        site.call('[order_customer][tables][busy]', table)
-      }
-    };
+    if (order_customer_doc.status.id == 2)
+      site.call('[order_customer][order_invoice][+]', order_customer_doc)
 
     if (order_customer_doc.id) {
       $order_customer.edit({
@@ -383,30 +382,6 @@ module.exports = function init(site) {
     }
   })
 
-
-  // site.post("/api/stores_items/load", (req, res) => {
-  //   let response = {
-  //     done: false
-  //   }
-  //   $stores_items.findMany({
-  //     where: {
-
-  //       'company.id': site.get_company(req).id,
-  //       'branch.id': site.get_branch(req).id,
-
-  //     }
-  //   }, (err, docs, count) => {
-  //     if (!err) {
-  //       response.done = true
-  //       response.list = docs
-  //       response.count = count
-  //     } else {
-  //       response.error = err.message
-  //     }
-  //     res.json(response)
-  //   })
-  // })
-
   site.post("/api/order_customer/all", (req, res) => {
     let response = {
       done: false
@@ -450,6 +425,10 @@ module.exports = function init(site) {
     where['company.id'] = site.get_company(req).id
     where['branch.code'] = site.get_branch(req).code
     where['status.id'] = 1
+
+    if (req.session.user.type == 'customer') {
+      where['customer.id'] = req.session.user.ref_info.id
+    }
 
     $order_customer.findMany({
       select: req.body.select || {},

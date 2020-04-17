@@ -45,7 +45,6 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
       $scope.deleteOrderInvoice($scope.order_invoice);
       $scope.newOrderInvoice();
 
-
     }
 
 
@@ -106,11 +105,11 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
             if ($scope.defaultSettings.general_Settings.customer.address)
               $scope.order_invoice.address = $scope.defaultSettings.general_Settings.customer.address;
 
-            if ($scope.defaultSettings.general_Settings.customer.customer_phone)
-              $scope.order_invoice.customer_phone = $scope.defaultSettings.general_Settings.customer.customer_phone;
+            if ($scope.defaultSettings.general_Settings.customer.phone)
+              $scope.order_invoice.customer_phone = $scope.defaultSettings.general_Settings.customer.phone;
 
-            if ($scope.defaultSettings.general_Settings.customer.customer_mobile)
-              $scope.order_invoice.customer_mobile = $scope.defaultSettings.general_Settings.customer.customer_mobile;
+            if ($scope.defaultSettings.general_Settings.customer.mobile)
+              $scope.order_invoice.customer_mobile = $scope.defaultSettings.general_Settings.customer.mobile;
           }
         }
 
