@@ -80,48 +80,9 @@ app.controller("employees_advances", function ($scope, $http) {
 
 
   $scope.searchAll = function () {
-    let where = {};
-
-
-    if ($scope.search.date) {
-      where['date'] = $scope.search.date;
-    }
-
-    if ($scope.search.dateFrom) {
-      where['date_from'] = $scope.search.dateFrom;
-    }
-
-    if ($scope.search.dateTo) {
-      where['date_to'] = $scope.search.dateTo;
-    }
-
-
-    if ($scope.search.safe && $scope.search.safe.id) {
-      where['safe.id'] = $scope.search.safe.id;
-    }
-
-    if ($scope.search.source && $scope.search.source.id) {
-      where['source.id'] = $scope.search.source.id;
-    }
-
-    if ($scope.search.customer && $scope.search.customer.id) {
-      where['customer.id'] = $scope.search.customer.id;
-    }
-
-    if ($scope.search.employee && $scope.search.employee.id) {
-      where['employee.id'] = $scope.search.employee.id;
-    }
-
-    if ($scope.search.value) {
-      where['value'] = ($scope.search.value);
-    }
-
-    if ($scope.search.description) {
-      where['description'] = ($scope.search.description);
-    }
-
-
-    $scope.loadAll(where);
+    
+    $scope.loadAll($scope.search);
+    $scope.search = {};
   };
 
   $scope.add = function () {

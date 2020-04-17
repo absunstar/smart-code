@@ -177,6 +177,7 @@ module.exports = function init(site) {
     response.done = false
 
     let where = req.body.where || {}
+    let _limit = where.limit
 
     if (where.date) {
       let d1 = site.toDate(where.date)
@@ -198,9 +199,9 @@ module.exports = function init(site) {
       delete where.date_to
     }
 
-    if (where.search && where.search.date) {
-      let d1 = site.toDate(where.search.date)
-      let d2 = site.toDate(where.search.date)
+    if (where && where.date) {
+      let d1 = site.toDate(where.date)
+      let d2 = site.toDate(where.date)
       d2.setDate(d2.getDate() + 1)
       where.date = {
         '$gte': d1,
@@ -208,9 +209,9 @@ module.exports = function init(site) {
       }
     }
 
-    if (where && where.search && where.search.date_from) {
-      let d1 = site.toDate(where.search.date_from)
-      let d2 = site.toDate(where.search.date_to)
+    if (where && where && where.date_from) {
+      let d1 = site.toDate(where.date_from)
+      let d2 = site.toDate(where.date_to)
       d2.setDate(d2.getDate() + 1);
       where.date = {
         '$gte': d1,
@@ -219,8 +220,8 @@ module.exports = function init(site) {
     }
 
 
-    if (where.search && where.search.employee) {
-      where['employee.id'] = where.search.employee.id
+    if (where && where.employee) {
+      where['employee.id'] = where.employee.id
     }
 
     if (where['description']) {
@@ -228,23 +229,21 @@ module.exports = function init(site) {
     }
 
 
-    if (where.search && where.search.value) {
+    if (where && where.value) {
 
-      where['value'] = where.search.value
+      where['value'] = where.value
     }
-
-    delete where.search
 
     where['company.id'] = site.get_company(req).id
     where['branch.code'] = site.get_branch(req).code
-
+    
     $employees_advances.findMany({
       select: req.body.select || {},
       where: where,
       sort: {
         id: -1
       },
-      limit: req.body.limit,
+      limit: _limit,
 
     }, (err, docs) => {
 

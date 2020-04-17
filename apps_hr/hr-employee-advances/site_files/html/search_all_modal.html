@@ -22,12 +22,12 @@
                             <i-control class="col4" ng-model="search.value" type="number"
                                 label="##word.employees_advances_value##"></i-control>
                             <i-list class="col4" ng-search="_search.$engDis_search" class="col12"
-                                ng-model="search.employee" items="engList"
+                                ng-model="search.employee" items="employeeList"
                                 label="##word.employees_advances_employees##"></i-list>
                         </div>
                         <div class="row">
-                            <i-list class="col3" ng-search="_search.$safe_search" ng-model="search.safe" items="safes"
-                                label="##word.employees_advances_safe##"></i-list>
+                           <!--  <i-list class="col3" ng-search="_search.$safe_search" ng-model="search.safe" items="safes"
+                                label="##word.employees_advances_safe##"></i-list> -->
                             <i-control class="col3" label="##word.limit##" type="number" ng-model="search.limit">
                             </i-control>
                             <i-date2 class="col3" ng-model="search.dateFrom"
