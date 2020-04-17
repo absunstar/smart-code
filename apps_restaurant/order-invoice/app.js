@@ -23,6 +23,23 @@ module.exports = function init(site) {
   });
 
 
+  site.on('[order_customer][order_invoice][+]', order_customer => {
+    delete order_customer._id
+    delete order_customer.id
+    order_customer.status = {
+      id: 1,
+      en: "Opened",
+      ar: "مفتوحة"
+    }
+    order_customer.transaction_type = {
+      id: 2,
+      en: "delivery",
+      ar: "توصيل"
+    }
+    
+    $order_invoice.add(order_customer, (err, doc) => {})
+
+  });
 
 
   order_paid_list = []

@@ -15,16 +15,6 @@
         "ar": "كشف حساب المشتركين"
     },
     {
-        "name": "report_subscribers_menus",
-        "en": "Report Invoices Menu",
-        "ar": "قائمة تقرير فاتورة"
-    },
-    {
-        "name": "report_subscribers_name",
-        "en": "Report Invoices Name",
-        "ar": "اسم تقرير فاتورة"
-    },
-    {
         "name": "source_type",
         "en": "Source Type",
         "ar": "نوع المصدر"

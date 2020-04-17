@@ -121,10 +121,74 @@ module.exports = function init(site) {
     customers_doc.company = site.get_company(req)
     customers_doc.branch = site.get_branch(req)
 
+
+    user = {
+      name: customers_doc.name,
+      mobile: customers_doc.mobile,
+      username: customers_doc.username,
+      email: customers_doc.username,
+      password: customers_doc.password,
+      image_url: customers_doc.image_url,
+      type: 'customer'
+    }
+
+    user.roles = [
+      {
+        module_name: "public",
+        name: "customers_user",
+        en: "Customers User",
+        ar: "إدارة العملاء للمستخدم",
+        permissions: ['customers_update', 'customers_view', 'customers_ui']
+      },
+      {
+        module_name: "public",
+        name: "report_info_user",
+        en: "Subscribe Info USer",
+        ar: "معلومات المشتركين للمستخدم",
+        permissions: ["report_info_ui"]
+      },
+      {
+        module_name: "public",
+        name: "order_customer_user",
+        en: "Order Customers User",
+        ar: "طلبات العملاء للمستخدمين",
+        permissions: ["order_customer_ui", "order_customer_delete_items"]
+      }]
+
+    user.profile = {
+      name: user.name,
+      mobile: user.mobile,
+      image_url: user.image_url
+    }
+
+    user.branch_list = [{
+      company: site.get_company(req),
+      branch: site.get_branch(req)
+    }]
+
     $customers.add(customers_doc, (err, doc) => {
       if (!err) {
         response.done = true
         response.doc = doc
+
+        if (user.password && user.username) {
+          user.ref_info = { id: doc.id }
+          site.security.addUser(user, (err, doc1) => {
+            if (!err) {
+              delete user._id
+              delete user.id
+              doc.user_info = {
+                id: doc1.id
+              }
+              $customers.edit(doc, (err2, doc2) => {
+                res.json(response)
+              })
+            } else {
+              response.error = err.message
+            }
+            res.json(response)
+          })
+        }
       } else {
         response.error = err.message
       }
@@ -145,6 +209,53 @@ module.exports = function init(site) {
 
     let customers_doc = req.body
 
+    user = {
+      name: customers_doc.name_ar,
+      mobile: customers_doc.mobile,
+      username: customers_doc.username,
+      email: customers_doc.username,
+      password: customers_doc.password,
+      image_url: customers_doc.image_url,
+      type: 'customer'
+    }
+
+    user.roles = [
+      {
+        module_name: "public",
+        name: "customers_user",
+        en: "Customers User",
+        ar: "إدارة العملاء للمستخدم",
+        permissions: ['customers_update', 'customers_view', 'customers_ui']
+      },
+      {
+        module_name: "public",
+        name: "report_info_user",
+        en: "Subscribe Info USer",
+        ar: "معلومات المشتركين للمستخدم",
+        permissions: ["report_info_ui"]
+      },
+      {
+        module_name: "public",
+        name: "order_customer_user",
+        en: "Order Customers User",
+        ar: "طلبات العملاء للمستخدمين",
+        permissions: ["order_customer_ui", "order_customer_delete_items"]
+      }]
+
+    user.profile = {
+      name: user.name,
+      mobile: user.mobile,
+      image_url: user.image_url
+    }
+    user.ref_info = {
+      id: customers_doc.id
+    }
+
+    user.branch_list = [{
+      company: site.get_company(req),
+      branch: site.get_branch(req)
+    }]
+
     if (customers_doc.id) {
       $customers.edit({
         where: {
@@ -157,6 +268,26 @@ module.exports = function init(site) {
         if (!err) {
           response.done = true
           response.doc = result.doc
+
+          if (!result.doc.user_info && user.password && user.username) {
+            site.security.addUser(user, (err, doc1) => {
+              if (!err) {
+                delete user._id
+                delete user.id
+                result.doc.user_info = {
+                  id: doc1.id
+                }
+                $customers.edit(result.doc, (err2, doc2) => {
+                  res.json(response)
+                })
+              } else {
+                response.error = err.message
+              }
+              res.json(response)
+            })
+          } else if (result.doc.user_info && result.doc.user_info.id) {
+            site.security.updateUser(user, (err, user_doc) => { })
+          }
         } else {
           response.error = err.message
         }
@@ -313,6 +444,9 @@ module.exports = function init(site) {
 
     where['company.id'] = site.get_company(req).id
 
+    if (req.session.user && req.session.user.type === 'customer') {
+      where['id'] = req.session.user.ref_info.id;
+    }
 
     $customers.findMany({
       select: req.body.select || {},
@@ -350,6 +484,31 @@ module.exports = function init(site) {
     $customers.findOne({
       select: select,
       where: where,
+    }, (err, doc) => {
+      if (!err) {
+        if (doc) callback(doc)
+        else callback(false)
+      }
+    })
+  }
+
+  site.getCustomerUser = function (data, callback) {
+
+    let select = {
+      id: 1, name_ar: 1,
+      active: 1, finger_code: 1,
+      busy: 1, child: 1, indentfy: 1,
+      address: 1, mobile: 1, phone: 1,
+      gov: 1, city: 1, area: 1,
+      company: 1, branch: 1,
+      weight: 1, tall: 1,
+      blood_type: 1,
+      medicine_notes: 1
+    }
+
+    $customers.findOne({
+      select: select,
+      where: {id: data},
     }, (err, doc) => {
       if (!err) {
         if (doc) callback(doc)

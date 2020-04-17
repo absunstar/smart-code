@@ -6,11 +6,11 @@
                 <div class="col9">
                     <div class="row">
                         <i-list class="col3" label="##word.gov##" ng-model="area.gov" items="govList"
-                            ng-change="getCityList(area.gov)" display="name"
-                            ng-search="_search.$area.$gov_search"></i-list>
+                            ng-change="getCityList(area.gov)" display="name" ng-search="_search.$area.$gov_search">
+                        </i-list>
 
-                        <i-list class="col3" label="##word.city##" ng-model="area.city"
-                            items="cityList" display="name" ng-search="_search.$area.$city_search">
+                        <i-list class="col3" label="##word.city##" ng-model="area.city" items="cityList" display="name"
+                            ng-search="_search.$area.$city_search">
                         </i-list>
                         <div class="col4"></div>
                         <i-checkbox help-id="area_active" class="col2" label="##word.active##" ng-model="area.active">
@@ -23,7 +23,8 @@
                             ng-model="area.name"></i-control>
 
                         <i-control help-id="price_delivery_service" v="r" type="number" class="col2"
-                           x-feature="restaurant" label="##word.price_delivery_service##" ng-model="area.price_delivery_service"></i-control>
+                            x-features="restaurant || pos" label="##word.price_delivery_service##"
+                            ng-model="area.price_delivery_service"></i-control>
 
                     </div>
                 </div>

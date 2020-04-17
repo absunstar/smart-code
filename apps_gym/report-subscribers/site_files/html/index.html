@@ -15,7 +15,6 @@
     <div id="main-layout" class="container">
         <div class="row">
             <div class="row" ng-controller="report_subscribers" x-permissions="login">
-                <div x-import="report-subscribers/add_modal.html"></div>
                 <div x-import="report-subscribers/view_modal.html"></div>
                 <div x-import="report-subscribers/search_all_modal.html"></div>
                 <div class="row">
@@ -27,7 +26,7 @@
                         label="##word.report_subscribers_new##" ng-click="displayAddReportServices()"></i-button>-->
 
                     <i-button type="search" x-permissions="report_subscribers_search || report_subscribers_manage"
-                        label="##word.search_all##" onclick="site.showModal('#reportServicesSearchModal')"></i-button>
+                        label="##word.search_all##" onclick="site.showModal('#reportSubscriberSearchModal')"></i-button>
 
                     <div ng-show="customer.id" class="row margin padding dashed">
                         <div class="col6 padding">

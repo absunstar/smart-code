@@ -33,6 +33,10 @@
 
             <a class="tab-link hide" onclick="site.showTabContent(event, '#customersDealing')">
                 ##word.customers_dealing## </a>
+
+            <a class="tab-link" onclick="site.showTabContent(event,'#loginInformation')">
+                ##word.login_information##
+            </a>
         </div>
 
         <div id="customerAllInfo" class="tabs-content full bold">
@@ -952,6 +956,21 @@
 
                 </fieldset>
             </div>
+
+            <fieldset>
+                <legend> ##word.login_information## </legend>
+
+                <table class="table hover bold">
+                    <tr>
+                        <td class="title">##word.email##</td>
+                        <td class="center">{{customer.username}}</td>
+                    </tr>
+                    <tr>
+                        <td class="title">##word.password##</td>
+                        <td class="center">{{customer.password}}</td>
+                    </tr>
+                </table>
+            </fieldset>
         </div>
 
     </div>

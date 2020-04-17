@@ -1,0 +1,40 @@
+<div id="underDeliveryAddModal" class="modal" fixed>
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.order_customer_add##
+                <i class="fa fa-plus "></i>
+            </h2>
+
+        </div>
+        <div class="main-menu">
+
+            <div class="modal-body">
+                <div class="row">
+
+                    <div class="row center" ng-show="underDeliverylist.length > 0">
+                        <h1 class="black">##word.waiting_under_delivery##</h1>
+                        <a class="item pointer done_attendance" ng-repeat="item in underDeliverylist"
+                            ng-click="deleteUnderDelivery(item); returnWaitingOrder(item)" help-id="menu_monitor">
+                            <img ng-src="{{item.image_url}}">
+                            <h2 class="black"> ##word.customer## : {{item.customer.name_ar}}</h2>
+                            <hr>
+                            <h2 class="black"> ##word.delivery_employee## : {{item.delivery_employee.name}}</h2>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-footer center">
+            <h2 class="error"> {{error}} </h2>
+            <i-button type="add" label="##word.add##" ng-click="addOrderCustomer()"></i-button>
+
+            <i-button type="close" label="##word.close##" onclick="site.hideModal( '#underDeliveryAddModal')">
+            </i-button>
+        </div>
+    </div>
+
+</div>
