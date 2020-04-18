@@ -70,6 +70,11 @@
         "ar": "إضافة عملات"
     },
     {
+        "name": "register_customer",
+        "en": "Register Customer",
+        "ar": "تسجيل عميل"
+    },
+    {
         "name": "report_employee_delegate_menus",
         "en": "Report Commissions Delegate Menu",
         "ar": "قائمة تقارير عمولات المناديب "

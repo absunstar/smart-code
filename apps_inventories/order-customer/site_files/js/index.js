@@ -56,12 +56,9 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
         };
 
         if ($scope.defaultSettings.general_Settings) {
-
           $scope.order_customer.delivery_employee = $scope.defaultSettings.general_Settings.delivery_employee;
-
-          $scope.order_customer.service = $scope.defaultSettings.general_Settings.service;
-
         }
+        $scope.getCustomerList();
 
       } else {
         $scope.error = '##word.open_shift_not_found##'
@@ -111,39 +108,39 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
             $scope.sendToKitchens(Object.assign({}, response.data.doc));
             $scope.order_customer = response.data.doc;
 
-           /*  if ($scope.order_customer.status.id == 2 && $scope.order_customer.posting) {
-
-              let store_out = {
-                image_url: '/images/store_out.png',
-                supply_date: new Date(),
-                date: $scope.order_customer.date,
-                order_id: $scope.order_customer.id,
-                customer: $scope.order_customer.customer,
-                shift: $scope.order_customer.shift,
-                net_value: $scope.order_customer.net_value,
-                paid_up: $scope.order_customer.net_value,
-                payment_method: $scope.order_customer.payment_method,
-                store: $scope.order_customer.store,
-                order_code: $scope.order_customer.code,
-                items: $scope.order_customer.book_list,
-                total_discount: $scope.order_customer.total_discount,
-                total_tax: $scope.order_customer.total_tax,
-                total_value: $scope.order_customer.total_value,
-                net_value: $scope.order_customer.net_value,
-                type: {
-                  id: 4,
-                  en: "Orders Screen",
-                  ar: "شاشة الطلبات"
-                },
-                active: true
-              };
-
-              if ($scope.defaultSettings.general_Settings && !$scope.defaultSettings.general_Settings.work_posting)
-                store_out.posting = true;
-
-              $scope.addStoresOut(store_out)
-            }
- */
+            /*  if ($scope.order_customer.status.id == 2 && $scope.order_customer.posting) {
+ 
+               let store_out = {
+                 image_url: '/images/store_out.png',
+                 supply_date: new Date(),
+                 date: $scope.order_customer.date,
+                 order_id: $scope.order_customer.id,
+                 customer: $scope.order_customer.customer,
+                 shift: $scope.order_customer.shift,
+                 net_value: $scope.order_customer.net_value,
+                 paid_up: $scope.order_customer.net_value,
+                 payment_method: $scope.order_customer.payment_method,
+                 store: $scope.order_customer.store,
+                 order_code: $scope.order_customer.code,
+                 items: $scope.order_customer.book_list,
+                 total_discount: $scope.order_customer.total_discount,
+                 total_tax: $scope.order_customer.total_tax,
+                 total_value: $scope.order_customer.total_value,
+                 net_value: $scope.order_customer.net_value,
+                 type: {
+                   id: 4,
+                   en: "Orders Screen",
+                   ar: "شاشة الطلبات"
+                 },
+                 active: true
+               };
+ 
+               if ($scope.defaultSettings.general_Settings && !$scope.defaultSettings.general_Settings.work_posting)
+                 store_out.posting = true;
+ 
+               $scope.addStoresOut(store_out)
+             }
+  */
           } else {
             $scope.error = response.data.error;
           }
@@ -296,8 +293,8 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
 
     });
 
-    $scope.updateOrderCustomer(_order_customer);
-
+    /*     $scope.updateOrderCustomer(_order_customer);
+     */
   };
 
   $scope.addAccountInvoice = function () {
@@ -963,82 +960,42 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.displayAddCustomer = function () {
+  $scope.getCustomerList = function () {
     $scope.error = '';
-    $scope.customer = {
-      image_url: '/images/customer.png',
-      active: true,
-      allergic_food_list: [{}],
-      allergic_drink_list: [{}],
-      medicine_list: [{}],
-      disease_list: [{}],
-    };
-    site.showModal('#customerAddModal');
-    document.querySelector('#customerAddModal .tab-link').click();
-  };
-
-  $scope.addCustomer = function () {
-    $scope.error = '';
-    if ($scope.busy) {
-      return;
-    }
-
-    const v = site.validated('#customerAddModal');
-    if (!v.ok) {
-      $scope.error = v.messages[0].ar;
-      return;
-    }
-
     $scope.busy = true;
+    let id = 0;
+
+    if ('##user.type##' == 'customer') id = '##user.ref_info.id##';
 
     $http({
       method: "POST",
-      url: "/api/customers/add",
-      data: $scope.customer
+      url: "/api/customers/view",
+      data: {
+        id: id
+      }
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#customerAddModal');
-          $scope.count = $scope.list.length;
-        } else {
-          $scope.error = 'Please Login First';
+          $scope.customerDoc = response.data.doc;
+
+          $scope.order_customer.customer = $scope.customerDoc;
+          $scope.order_customer.gov = $scope.customerDoc.gov;
+          $scope.order_customer.city = $scope.customerDoc.city;
+          $scope.order_customer.area = $scope.customerDoc.area;
+          if ($scope.order_customer.area) $scope.order_customer.price_delivery_service = $scope.customerDoc.area.price_delivery_service;
+          $scope.order_customer.address = $scope.customerDoc.address;
+          $scope.order_customer.customer_mobile = $scope.customerDoc.mobile;
+          $scope.order_customer.customer_phone = $scope.customerDoc.phone;
+          $scope.order_customer.net_value = ($scope.customerDoc.net_value || 0) + (site.toNumber($scope.order_customer.price_delivery_service) || 0);
+
         }
       },
       function (err) {
-        console.log(err);
+        $scope.busy = false;
+        $scope.error = err;
       }
     )
-  };
-
-  $scope.getCustomerList = function (ev) {
-    $scope.error = '';
-    $scope.busy = true;
-    if (ev.which === 13) {
-      $http({
-        method: "POST",
-        url: "/api/customers/all",
-        data: {
-          search: $scope.search_customer
-          /*  select: {
-            id: 1,
-            name_ar: 1,
-            name_en: 1,
-          } */
-        }
-      }).then(
-        function (response) {
-          $scope.busy = false;
-          if (response.data.done && response.data.list.length > 0) {
-            $scope.customersList = response.data.list;
-          }
-        },
-        function (err) {
-          $scope.busy = false;
-          $scope.error = err;
-        }
-      )
-    };
   };
 
   $scope.get_open_shift = function (callback) {
@@ -1478,7 +1435,6 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
       obj.total_tax = 0;
       obj.total_discount = 0;
 
-
       if (obj.book_list && obj.book_list.length > 0) {
         obj.book_list.forEach(itm => {
           obj.total_value += site.toNumber(itm.total);
@@ -1500,8 +1456,7 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
             obj.total_discount += site.toNumber(ds.value);
         });
       };
-      console.log(obj.price_delivery_service);
-      
+
       obj.price_delivery_service = site.toNumber(obj.price_delivery_service) || 0;
 
       if (obj.book_list && obj.book_list.length > 0)
@@ -1599,6 +1554,8 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.getDefaultSettingsList();
+  $scope.newOrderCustomer();
   $scope.getOrderCustomerList();
   $scope.loadItemsGroups();
   $scope.loadDiscountTypes();
@@ -1609,6 +1566,5 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
   $scope.getGovList();
   $scope.getPrintersPath();
   $scope.getPaymentMethodList();
-  $scope.getDefaultSettingsList();
   $scope.loadKitchenList();
 });

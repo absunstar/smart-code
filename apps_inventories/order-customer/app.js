@@ -234,28 +234,15 @@ module.exports = function init(site) {
     if (req.session.user.ref_info)
       customerId = req.session.user.ref_info.id
 
-    site.getCustomerUser(customerId, callback => {
-      if (req.session.user.type == 'customer') {
-        order_customer_doc.customer = callback
-        order_customer_doc.gov = order_customer_doc.customer.gov
-        order_customer_doc.city = order_customer_doc.customer.city
-        order_customer_doc.area = order_customer_doc.customer.area
-        if (order_customer_doc.area) order_customer_doc.price_delivery_service = order_customer_doc.area.price_delivery_service
-        order_customer_doc.address = order_customer_doc.customer.address
-        order_customer_doc.customer_mobile = order_customer_doc.customer.mobile
-        order_customer_doc.customer_phone = order_customer_doc.customer.phone
-        order_customer_doc.net_value = order_customer_doc.net_value + (site.toNumber(order_customer_doc.price_delivery_service) || 0)
-      }
-      $order_customer.add(order_customer_doc, (err, doc) => {
-        if (!err) {
-          response.done = true
-          response.doc = doc
+    $order_customer.add(order_customer_doc, (err, doc) => {
+      if (!err) {
+        response.done = true
+        response.doc = doc
 
-        } else {
-          response.error = err.message
-        }
-        res.json(response)
-      })
+      } else {
+        response.error = err.message
+      }
+      res.json(response)
     })
   });
 
@@ -291,7 +278,7 @@ module.exports = function init(site) {
       };
     };
     if (order_customer_doc.status.id == 2)
-      site.call('[order_customer][order_invoice][+]', order_customer_doc)
+      site.call('[order_customer][order_invoice][+]', Object.assign({}, order_customer_doc))
 
     if (order_customer_doc.id) {
       $order_customer.edit({
@@ -305,7 +292,6 @@ module.exports = function init(site) {
         if (!err, result) {
           response.done = true
           response.doc = result.doc
-
         } else {
           response.error = 'Code Already Exist'
         };
@@ -426,7 +412,8 @@ module.exports = function init(site) {
     where['branch.code'] = site.get_branch(req).code
     where['status.id'] = 1
 
-    if (req.session.user.type == 'customer') {
+    if (req.session.user && req.session.user.type == 'customer') {
+
       where['customer.id'] = req.session.user.ref_info.id
     }
 

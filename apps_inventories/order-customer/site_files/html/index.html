@@ -259,11 +259,11 @@
                                         items="deliveryEmployeesList"></i-list>
                                 </div>
 
-                                <div class="row" ng-hide="'##user.type##' == 'customer'">
-                                    <div class="row">
-                                        <i-button type="add" label="##word.customers_new##"
+                                <div class="row" >
+                                    <div class="row" ng-hide="'##user.type##' == 'customer'">
+                                        <!--   <i-button type="add" label="##word.customers_new##"
                                             ng-click="displayAddCustomer()">
-                                        </i-button>
+                                        </i-button> -->
 
                                         <i-control ng-keydown="getCustomerList($event)" id="service" class="col3"
                                             ng-model="search_customer" label="##word.search##" type="text"></i-control>
@@ -481,7 +481,6 @@
 
                         </div>
 
-
                         <div class="row" ng-hide="'##user.type##' == 'customer'">
                             <i-control class="col3" ng-model="order_customer.total_discount"
                                 label="##word.stores_out_total_discount##" type="number" disabled></i-control>
@@ -503,9 +502,8 @@
                                 <br>
                                 <br>
                                 <br>
-                                <i-button type="closing"
-                                    ng-hide="order_customer.active == false || '##user.type##' == 'customer'"
-                                    label="##word.close_order##" ng-click="closeOrder()">
+                                <i-button type="closing" ng-hide="order_customer.posting == true"
+                                    label="##word.approve_order##" ng-click="closeOrder()">
                                 </i-button>
                             </div>
                         </div>
