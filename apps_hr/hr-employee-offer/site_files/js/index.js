@@ -5,6 +5,7 @@ app.controller("employee_offer", function ($scope, $http) {
   $scope.search = {};
 
   $scope.loadAll = function (where) {
+   
     $scope.busy = true;
 
     $http({
@@ -19,7 +20,7 @@ app.controller("employee_offer", function ($scope, $http) {
         if (response.data.done) {
           $scope.list = response.data.list;
 
-          site.hideModal('#amountsInSearchModal');
+          site.hideModal('#EployeeOfferSearchModal');
         }
       },
       function (err) {
@@ -74,47 +75,10 @@ app.controller("employee_offer", function ($scope, $http) {
 
 
   $scope.searchAll = function () {
-    let where = {};
 
-
-    if ($scope.search.date) {
-      where['date'] = $scope.search.date;
-    }
-
-    if ($scope.search.dateFrom) {
-      where['date_from'] = $scope.search.dateFrom;
-    }
-
-    if ($scope.search.dateTo) {
-      where['date_to'] = $scope.search.dateTo;
-    }
-
-    if ($scope.search.company && $scope.search.company.id) {
-      where['company.id'] = $scope.search.company.id;
-    }
-
-    if ($scope.search.source && $scope.search.source.id) {
-      where['source.id'] = $scope.search.source.id;
-    }
-
-    if ($scope.search.customer && $scope.search.customer.id) {
-      where['customer.id'] = $scope.search.customer.id;
-    }
-
-    if ($scope.search.employee && $scope.search.employee.id) {
-      where['employee.id'] = $scope.search.employee.id;
-    }
-
-    if ($scope.search.value) {
-      where['value'] = parseInt($scope.search.value);
-    }
-
-    if ($scope.search.description) {
-      where['description'] = ($scope.search.description);
-    }
-
-
-    $scope.loadAll(where);
+    $scope.loadAll($scope.search);
+    $scope.search = {};
+    site.hideModal('#EployeeOfferSearchModal')
   };
 
   $scope.add = function () {
@@ -237,7 +201,7 @@ app.controller("employee_offer", function ($scope, $http) {
     )
   };
 
-  
+
   $scope.loadEmployees = function () {
     $scope.busy = true;
     $http({

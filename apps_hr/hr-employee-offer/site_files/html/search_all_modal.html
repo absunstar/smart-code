@@ -1,4 +1,4 @@
-<div id="Eployee_OfferSearchModal" class="modal">
+<div id="EployeeOfferSearchModal" class="modal">
 
     <div class="modal-content">
         <div class="modal-header">
@@ -18,7 +18,7 @@
                         <div class="row">
                             <i-date2 class="col3" ng-model="search.date" label="##word.employee_offer_date##"></i-date2>
                             <i-list class="col3" ng-search="_search.$eng_serach" class="col12"
-                                ng-model="search.employee" items="engList" label="##word.employee_offer_employees##">
+                                ng-model="search.employee" items="employeeList" label="##word.employee_offer_employees##">
                             </i-list>
 
                         </div>
@@ -50,9 +50,9 @@
         <h2 class="error">{{error}}</h2>
         <div class="modal-footer center">
 
-            <i-button type="search" label="##word.search##" ng-click="searchAll();search = {}"></i-button>
+            <i-button type="search" label="##word.search##" ng-click="searchAll()"></i-button>
             <i-button type="clear" label="##word.clear##" ng-click="search = {}"></i-button>
-            <i-button type="close" label="##word.close##" onclick="site.hideModal('#Eployee_OfferSearchModal')">
+            <i-button type="close" label="##word.close##" onclick="site.hideModal('#EployeeOfferSearchModal')">
             </i-button>
 
         </div>
