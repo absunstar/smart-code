@@ -64,14 +64,14 @@ module.exports = function init(site) {
     $goves.find({
 
       where: {
-        
+
         'company.id': site.get_company(req).id,
         'branch.code': site.get_branch(req).code,
         'name': goves_doc.name
       }
     }, (err, doc) => {
       if (!err && doc) {
-        
+
         response.error = 'Name Exists'
         res.json(response)
       } else {
@@ -174,7 +174,7 @@ module.exports = function init(site) {
         $res: res
       }, (err, result) => {
         if (!err) {
-          response.done = true          
+          response.done = true
         } else {
           response.error = err.message
         }
@@ -198,7 +198,8 @@ module.exports = function init(site) {
       where['name'] = new RegExp(where['name'], "i");
     }
 
-    where['company.id'] = site.get_company(req).id
+    if (site.get_company(req) && site.get_company(req).id)
+      where['company.id'] = site.get_company(req).id
 
     $goves.findMany({
       select: req.body.select || {},

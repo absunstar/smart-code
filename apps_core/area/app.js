@@ -202,10 +202,11 @@ module.exports = function init(site) {
     if (where['name']) {
       where['name'] = new RegExp(where['name'], "i");
     }
-
-    where['company.id'] = site.get_company(req).id
-/*     where['branch.code'] = site.get_branch(req).code
- */
+    
+    if (site.get_company(req) && site.get_company(req).id)
+      where['company.id'] = site.get_company(req).id
+    /*     where['branch.code'] = site.get_branch(req).code
+     */
     $area.findMany({
       select: req.body.select || {},
       where: where,

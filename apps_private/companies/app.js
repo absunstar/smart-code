@@ -289,12 +289,13 @@ module.exports = function init(site) {
 
 
 
-    if (req.session.user.is_company) {
+    if (req.session.user && req.session.user.is_company) {
       where['id'] = req.session.user.company_id;
-    } else {
+    } else if (site.get_company(req) && site.get_company(req).id) {
       where['company.id'] = site.get_company(req).id
       where['branch.code'] = site.get_branch(req).code
     }
+    
 
     $companies.findMany({
       select: req.body.select || {},

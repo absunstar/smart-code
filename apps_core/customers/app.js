@@ -108,18 +108,16 @@ module.exports = function init(site) {
       done: false
     }
 
-    if (!req.session.user) {
-      response.error = 'Please Login First'
-      res.json(response)
-      return
-    }
+    // if (!req.session.user) {
+    //   response.error = 'Please Login First'
+    //   res.json(response)
+    //   return
+    // }
 
     let customers_doc = req.body
     customers_doc.$req = req
     customers_doc.$res = res
 
-    customers_doc.company = site.get_company(req)
-    customers_doc.branch = site.get_branch(req)
 
 
     user = {
@@ -161,10 +159,26 @@ module.exports = function init(site) {
       image_url: user.image_url
     }
 
-    user.branch_list = [{
-      company: site.get_company(req),
-      branch: site.get_branch(req)
-    }]
+
+    if (req.session.user) {
+
+      customers_doc.company = site.get_company(req)
+      customers_doc.branch = site.get_branch(req)
+
+      user.branch_list = [{
+        company: site.get_company(req),
+        branch: site.get_branch(req)
+      }]
+
+    } else {
+      customers_doc.active = true
+
+      user.branch_list = [{
+        company: customers_doc.company,
+        branch: customers_doc.branch
+      }]
+    }
+
 
     $customers.add(customers_doc, (err, doc) => {
       if (!err) {
@@ -181,6 +195,27 @@ module.exports = function init(site) {
                 id: doc1.id
               }
               $customers.edit(doc, (err2, doc2) => {
+                // if (!req.session.user) {
+                //   site.security.login({
+                //     email: doc1.email,
+                //     password: doc1.password,
+                //     $req: req,
+                //     $res: res
+                //   },
+                //     function (err, user_login) {
+                //       if (!err) {                        
+                //         response.user = user_login
+                //         response.done = true
+                //       } else {
+                //         console.log(err)
+                //         response.error = err.message
+                //       }
+
+                //       res.json(response)
+                //     }
+                //   )
+                // }
+
                 res.json(response)
               })
             } else {
@@ -508,7 +543,7 @@ module.exports = function init(site) {
 
     $customers.findOne({
       select: select,
-      where: {id: data},
+      where: { id: data },
     }, (err, doc) => {
       if (!err) {
         if (doc) callback(doc)

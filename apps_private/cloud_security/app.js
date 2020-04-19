@@ -1,6 +1,6 @@
 module.exports = function init(site) {
 
-  
+
   site.post('/api/security/permissions', (req, res) => {
 
     let response = {
@@ -478,8 +478,6 @@ module.exports = function init(site) {
   })
 
 
-
-
   site.post("/api/get_dir_names", (req, res) => {
 
     let response = {
@@ -508,6 +506,5 @@ module.exports = function init(site) {
     res.json(response)
 
   })
-
 
 }

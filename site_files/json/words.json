@@ -40,6 +40,11 @@
         "ar": "المورد"
     },
     {
+        "name": "name_ar",
+        "en": "Name In Ar",
+        "ar": "اللإسم بالعربية"
+    },
+    {
         "name": "name_en",
         "en": "Name In En",
         "ar": "اللإسم بالإنجليزية"
@@ -68,6 +73,11 @@
         "name": "add_currencies",
         "en": "Add Currencies",
         "ar": "إضافة عملات"
+    },
+    {
+        "name": "register",
+        "en": "Register",
+        "ar": "تسجيل"
     },
     {
         "name": "register_customer",
@@ -556,7 +566,7 @@
     },
     {
         "name": "phone",
-        "en": "Phone",
+        "en": "Phone Number",
         "ar": "رقم التليفون"
     },
     {

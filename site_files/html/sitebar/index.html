@@ -1,7 +1,8 @@
 <h2 class="brand ">
     <div class="row">
         <div class="col4" help-id="brand_title">
-            <a x-permissions="login" href="#" onclick="$('.sitebar .links').toggle(200)"> <i class="fa fa-bars"></i> </a>
+            <a x-permissions="login" href="#" onclick="$('.sitebar .links').toggle(200)"> <i class="fa fa-bars"></i>
+            </a>
             <a x-permissions="login" href="#" onclick="$('.sitebar .links').toggle(200)">
                 ##word.brand_title## <span> ##word.brand_tag##</span>
             </a>
@@ -14,10 +15,12 @@
         <div class="col4 text-left ">
             <div class="info">
                 <span x-features="login" class=" user-name"> ##user.name## </span>
-                <a x-features="test" class=" btn-register" ng-click="register()"> ##word.security_register##
+                <a x-features="!login" class=" btn-register" onclick="site.showModal('#customerRegisterModal')">
+                    ##word.security_register##
                 </a>
                 <a x-features="login" class=" btn-logout" ng-click="logout()"> ##word.security_logout##
                 </a>
+
                 <a x-features="!login" ng-click="login()"> ##word.security_login## </a>
             </div>
         </div>

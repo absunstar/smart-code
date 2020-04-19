@@ -15,6 +15,15 @@ app.controller('sitebar', ($scope, $http) => {
         site.showModal('#registerModal');
     };
 
+    $scope.showRegisterModal = function () {
+        $scope.customer = {
+          image_url: '/images/customer.png'
+        };
+        
+        site.showModal('#customerRegisterModal')
+      };
+    
+
     $scope.login = function () {
         site.showModal('#loginModal');
     };
