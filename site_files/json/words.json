@@ -1,5 +1,10 @@
 [
     {
+        "name": "customer_register",
+        "en": "New Customer",
+        "ar": "عميل جديد"
+    },
+    {
         "name": "name",
         "en": "Name",
         "ar": "الاسم"

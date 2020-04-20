@@ -60,7 +60,7 @@ module.exports = function init(site) {
         minute: new Date().getMinutes()
       },
       active: true
-    }, (err, doc) => { })
+    }, (err, doc) => {})
   })
 
 
@@ -215,7 +215,9 @@ module.exports = function init(site) {
   })
 
   site.post("/api/shifts/open_shift", (req, res) => {
-    let response = { done: false }
+    let response = {
+      done: false
+    }
 
     let where = req.body.where || {}
 
@@ -235,7 +237,9 @@ module.exports = function init(site) {
   })
 
   site.post("/api/shifts/is_shift_open", (req, res) => {
-    let response = { is_open: true }
+    let response = {
+      is_open: true
+    }
 
     let where = {}
 
@@ -255,7 +259,9 @@ module.exports = function init(site) {
   })
 
   site.post("/api/shifts/get_open_shift", (req, res) => {
-    let response = { done: false }
+    let response = {
+      done: false
+    }
 
     let where = {}
 
@@ -264,12 +270,28 @@ module.exports = function init(site) {
     where['active'] = true
 
     $shifts.findOne({
-      select: { id: 1, name: 1, code: 1, from_date: 1, from_time: 1, to_date: 1, to_time: 1 },
+      select: {
+        id: 1,
+        name: 1,
+        code: 1,
+        from_date: 1,
+        from_time: 1,
+        to_date: 1,
+        to_time: 1
+      },
       where: where,
     }, (err, doc) => {
       if (!err && doc) {
         response.done = true
-        let obj = { id: doc.id, name: doc.name, code: doc.code, from_date: doc.from_date, from_time: doc.from_time, to_date: doc.to_date, to_time: doc.to_time }
+        let obj = {
+          id: doc.id,
+          name: doc.name,
+          code: doc.code,
+          from_date: doc.from_date,
+          from_time: doc.from_time,
+          to_date: doc.to_date,
+          to_time: doc.to_time
+        }
         response.doc = obj
       }
       res.json(response)

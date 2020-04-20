@@ -168,9 +168,20 @@ nav .info .user-name {
     color: #bbbbbb;
 }
 
-nav .info .btn-logout {
+#btn_login {
+    color: #bbb;
+    text-shadow: 1px 1px 1px #000000;
+    margin-left: 20px;
+}
+#btn_logout {
+    color: #bbb;
+    text-shadow: 1px 1px 1px #000000;
+    margin-left: 20px;
+}
+#btn_register {
     color: #ffffff;
     text-shadow: 1px 1px 1px #000000;
+    margin-left: 20px;
 }
 
 
@@ -201,6 +212,19 @@ nav.sitebottom a.link:hover {
     color: #444;
 }
 
+.footer{
+   margin: 20px;
+   border: 1px solid #bbb;
+   padding: 5px;
+}
+.footer h2{
+    font-weight: bold;
+    color: #000;
+}
+.footer h2 span{
+    font-weight: bold;
+    color: green;
+}
 @media screen and (max-width: 768px) {
     .tabs .tabs-header .tab-link {
         font-size: 12px;

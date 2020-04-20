@@ -1,9 +1,54 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="myApp">
 
-<head x-import="head.html"></head>
+<head x-import="head.html">
+  <style>
+    #posts {
+      display: block;
+      padding: 5px;
+      margin: 5px;
+    }
 
-<body  class=" ##session.lang## ">
+    .post {
+      display: inline-grid;
+      border: 1px solid #eee;
+      background: #fff;
+      color: #000;
+      text-align: center;
+      line-height: 1.8;
+      width: 300px;
+      height: 400px;
+      margin: 15px;
+    }
+
+    .post h2 {
+      font-family: cursive;
+      font-size: 20px;
+      text-align: center;
+      font-weight: bold;
+      color: #3f51b5;
+      padding: 10px;
+      background: #eeeeee54;
+    }
+
+    .post img {
+      margin-top: 20px !important;
+      margin-bottom: 20px !important;
+      border-radius: 20px;
+      width: 200px;
+      height: 200px;
+    }
+
+    .post p {
+      padding: 15px;
+      text-align: left !important;
+      color: #fff;
+      background: #353535;
+    }
+  </style>
+</head>
+
+<body class=" ##session.lang## ">
 
   <nav class="sitebar" x-import="sitebar/index.html" ng-controller="sitebar">
   </nav>
@@ -11,10 +56,93 @@
   <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
   </nav>
 
-  <div id="main-layout" ></div>
+  <div id="main-layout">
+    <div id="posts" class="center">
+
+    </div>
+    <div class="footer">
+      <h2 class="center">
+        whats up <span> +201090061266 </span> 
+      </h2>
+      <h2 class="center">
+        Email <span>  call.smart.code@gmail.com </span> 
+      </h2>
+
+     
+    </div>
+  </div>
 
   <div x-import="scripts.html"></div>
+  <script id="post-template" type="x-tmpl-mustache">
+    <div class="post" >
+        <h2 class="title"> {{title}} </h2>
+        <img src="{{image_url}}" alt="">
+        <p class="description"> {{description}} </p>
+    </div>
+</script>
+  <script>
+    let busy = false;
 
+    function loadPosts(more) {
+
+      if (busy) {
+        return;
+      }
+
+      if (typeof (Mustache) == 'undefined') {
+        return;
+      }
+
+      if (busy) return;
+      busy = true;
+
+      $('.posts-loading').remove();
+      $('#posts').append(
+        '<p class="posts-loading"> <img src="/images/loading.gif"> ##word.posts_load_more## </p>');
+
+      busy = true;
+
+
+      site.getData({
+        url: '/json/restaurant.json',
+        method: 'POST'
+      }, function (res) {
+        busy = false;
+
+        var rendered = '';
+        var post_template = $('#post-template').html();
+        Mustache.parse(post_template);
+
+        for (var i = 0; i < res.length; i++) {
+          try {
+            var post = res[i];
+            rendered += Mustache.render(post_template, post);
+          } catch (error) {
+
+          }
+        }
+
+        $('#posts').append(
+          '<span class="line"></span><span class="line"></span><span class="line"></span>');
+        $('#posts').append(rendered);
+
+        busy = false;
+        $('.posts-loading').remove();
+
+      });
+
+
+    };
+
+    loadPosts();
+
+    var app = app || angular.module('myApp', []);
+
+    function scope() {
+      return angular.element(document.getElementById('main-layout')).scope();
+    };
+
+  </script>
 </body>
 
 </html>

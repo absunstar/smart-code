@@ -1,0 +1,92 @@
+[
+    {
+        "title" : "Login With Multi User",
+        "description" : "Create Multi-Profiles And Login To Any Site With Multi Users And Passwords",
+        "image_url" : "/images/user.png"
+    },
+    {
+        "title" : "Site Ads Block",
+        "description" : "Block Site Ads With Options To Customize Ads Links",
+        "image_url" : "/images/block.png"
+    },
+    {
+        "title" : "Block Site Tracking",
+        "description" : "Hide Your Privacy From Tracking on Visiting Sites",
+        "image_url" : "/images/privacy.png"
+    },
+    {
+        "title" : "Chromium Based",
+        "description" : "Build On Last Version of chromium For Fast Browsing and Experience",
+        "image_url" : "/images/chromium.png"
+    },
+    {
+        "title" : "Save Bandwidth",
+        "description" : "Save Your Internet Quta by Blocking unWanted Files From Downloads in Background",
+        "image_url" : "/images/mony.png"
+    },
+    {
+        "title" : "Download Manager",
+        "description" : "Bultin Download Manager With Option To Integrate With External Downloader",
+        "image_url" : "/images/download.png"
+    },
+    {
+        "title" : "Advanced Setting",
+        "description" : "AI Setting Manager To Control In Every Option In Browser",
+        "image_url" : "/images/setting.png"
+    },
+    {
+        "title" : "Speed Browsing",
+        "description" : "Using Multi technique to Speed Browsing Sites and Fetching Data",
+        "image_url" : "/images/speed.png"
+    },
+
+    {
+        "title" : "Passwords Manager",
+        "description" : "Save Site Passwords And Logins While Visiting Sites And Auto Fill",
+        "image_url" : "/images/passwords.png"
+    },
+    {
+        "title" : "Auto Fill Forms",
+        "description" : "Automatic Collect Forms Data From All Site And Storage in Encription Ways Then Auto Fill Again",
+        "image_url" : "/images/forms.png"
+    },
+    {
+        "title" : "Youtube Ads Skip",
+        "description" : "Auto Option To Skip Youtube Ads While Playing Videos",
+        "image_url" : "/images/youtube.png"
+    },{
+        "title" : "Youtube Downloader",
+        "description" : "Download Any Video on Multi Quality",
+        "image_url" : "/images/youtube.png"
+    },
+    {
+        "title" : "Proxy Configration",
+        "description" : "With Proxy List Can Configer Your Proxy Setting For anonymous Browsing",
+        "image_url" : "/images/proxy.png"
+    },
+    {
+        "title" : "Changing User Agent",
+        "description" : "Can Act As Chrome or mobile or firefox or Any Browser When Visiting Sites",
+        "image_url" : "/images/user-agent.png"
+    },
+    {
+        "title" : "Disable Popup Window",
+        "description" : "Control on Internal And External Popup Windows ",
+        "image_url" : "/images/poppup.png"
+    },
+    {
+        "title" : "Safty Mode",
+        "description" : "Protect Your Family From unSafty Site With Options To Customize UnSatfy Site Links",
+        "image_url" : "/images/safty_mode.png"
+    },
+    {
+        "title" : "Customize Context Menu",
+        "description" : "Fast Menu and Open Site As And Many Options",
+        "image_url" : "/images/menu.png"
+    },
+    {
+        "title" : "Social Browsing",
+        "description" : "New Way To Browser Sites Will Let Love Browsing",
+        "image_url" : "/images/logo.png"
+    }
+]

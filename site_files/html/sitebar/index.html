@@ -6,6 +6,9 @@
             <a x-permissions="login" href="#" onclick="$('.sitebar .links').toggle(200)">
                 ##word.brand_title## <span> ##word.brand_tag##</span>
             </a>
+            <a x-permissions="!login" href="/">
+                ##word.brand_title## <span> ##word.brand_tag##</span>
+            </a>
         </div>
         <div class="col4 text-center desktop">
             <div class="info " ng-show="##session.company.id##">
@@ -15,13 +18,13 @@
         <div class="col4 text-left ">
             <div class="info">
                 <span x-features="login" class=" user-name"> ##user.name## </span>
-                <a x-features="!login" class=" btn-register" onclick="site.showModal('#customerRegisterModal')">
-                    ##word.security_register##
+                <a x-features="!login" id="btn_register" onclick="site.showModal('#customerRegisterModal')">
+                    ##word.customer_register##
                 </a>
-                <a x-features="login" class=" btn-logout" ng-click="logout()"> ##word.security_logout##
+                <a x-features="login" id="btn_logout" ng-click="logout()"> ##word.security_logout##
                 </a>
 
-                <a x-features="!login" ng-click="login()"> ##word.security_login## </a>
+                <a x-features="!login" id="btn_login" ng-click="login()"> ##word.security_login## </a>
             </div>
         </div>
     </div>

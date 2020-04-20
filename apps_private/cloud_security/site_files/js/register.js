@@ -76,7 +76,43 @@ app.controller('register', function ($scope, $http) {
         $scope.busy = false;
         if (response.data.done) {
           site.hideModal('#customerRegisterModal');
-          /* document.location.href = '/order_customer'; */
+          $http({
+            method: 'POST',
+            url: '/api/user/login',
+            data: {
+                $encript: '123',
+                email: site.to123($scope.customer.username),
+                password: site.to123($scope.customer.password),
+                company: site.to123({
+                    id: $scope.customer.company.id,
+                    name_ar: $scope.customer.company.name_ar,
+                    name_en: $scope.customer.company.name_en,
+                    item: $scope.customer.company.item,
+                    store: $scope.customer.company.store,
+                    unit: $scope.customer.company.unit,
+                    currency: $scope.customer.company.currency,
+                    users_count: $scope.customer.company.users_count
+                }),
+                branch: site.to123({
+                    code: $scope.customer.branch.code,
+                    name_ar: $scope.customer.branch.name_ar,
+                    name_en: $scope.customer.branch.name_en
+                }),
+            }
+        }).then(function (response) {
+
+            if (response.data.error) {
+                $scope.error = response.data.error;
+                $scope.busy = false;
+            }
+            if (response.data.done) {
+              document.location.href = '/order_customer';
+            }
+        }, function (err) {
+            $scope.busy = false;
+            $scope.error = err;
+        });
+          
 
         } else {
           $scope.error = 'Please Login First';
