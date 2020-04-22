@@ -21,8 +21,8 @@
         "en": "It records all that is done on the program, from adding, modifying or deleting transactions and files, and specifying the user and the time that the process was completed."
     },
     {
-        "title_ar": "الحماية و التشفير",
-        "title_en": "Security and encryption",
+        "title_ar": "الحماية و تشفير البيانات",
+        "title_en": "Security and data encryption",
         "image_url": "/images/security_encrypt.png",
         "ar": "تتمتع برامجنا بأعلى درجات الحماية لتوفر الأمان لك  و لشركتك و للبيانات الخاصة بسير العمل للمؤسسات مع أقوى برامج الحماية و تشفير البيانات بشكل كامل لمنع سرقة البيانات أو الإختراق",
         "en": "Our programs enjoy the highest levels of protection to provide security for you and your company and data for the workflow of institutions with the strongest protection programs and data encryption completely to prevent data theft or hack"
@@ -243,5 +243,12 @@
         "image_url": "/images/Insurance-employee.png",
         "ar": "يتيح لك إضافة شرائح تأمين للموظفين و إضافة منشأة التأمين و إنشاء تأمين خاص بموظف و ربطهم بالتأمين و تحديد مبلغ التأمين و قيمة تحمل الموظف و المؤسسة و ربطها بالمرتب",
         "en": "It allows you to add insurance slides to employees, add an insurance facility, create insurance for an employee, link them to insurance, determine the amount of insurance, and the value of employee and institution incurred and link them to the salary"
+    },
+    {
+        "title_ar": "طلبات العملاء",
+        "title_en": "Customer orders",
+        "image_url": "/images/order_customer.png",
+        "ar": "يتيح للعميل الدخول على البرنامج من خلال الحاسوب أو الهاتف و عمل تسجيل عميل جديد ليتمكن من إضافة طلبات للأصناف التي يريد شرائها",
+        "en": "It allows the customer to enter the program through a computer or phone and make a new customer registration so that he can add requests to the items he wants to buy"
     }
 ]
