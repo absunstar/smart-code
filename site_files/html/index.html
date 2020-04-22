@@ -11,24 +11,26 @@
 
     .post {
       display: inline-grid;
-      border: 1px solid #eee;
+      border: 1px solid #5369e0;
       background: #fff;
       color: #000;
       text-align: center;
       line-height: 1.8;
       width: 320px;
-      height: 450px;
+      height: 470px;
       margin: 15px;
     }
 
     .post h2 {
-      font-family: cursive;
-      font-size: 20px;
-      text-align: center;
-      font-weight: bold;
-      color: #3f51b5;
-      padding: 5px;
-      background: #eeeeee54;
+      height: 50px;
+    font-family: cursive;
+    font-size: 20px;
+    text-align: center;
+    font-weight: bold;
+    color: #fff;
+    padding: 5px;
+    background: #3f51b5;
+    text-shadow: 1px 1px 8px #000000;
     }
 
     .post img {
@@ -36,14 +38,17 @@
       margin-bottom: 20px !important;
       border-radius: 20px;
       width: 120px;
-      height: 120px;
+      min-height: 170px;
     }
 
     .post p {
-      padding: 10px;
-      text-align: left !important;
-      color: #fff;
-      background: #353535;
+      padding: 15px;
+      text-align: right !important;
+      color: #ffffff;
+      background: #3f51b5;
+      min-height: 200px;
+      font-size: 16px;
+      text-shadow: 1px 1px 1px #5369e0;
     }
   </style>
 </head>
@@ -62,23 +67,22 @@
     </div>
     <div class="footer">
       <h2 class="center">
-        whats up <span> +201090061266 </span> 
+        whats up <span> +201090061266 </span>
       </h2>
       <h2 class="center">
-        Email <span>  call.smart.code@gmail.com </span> 
+        Email <span> call.smart.code@gmail.com </span>
       </h2>
 
-     
+
     </div>
   </div>
 
   <div x-import="scripts.html"></div>
   <script id="post-template" type="x-tmpl-mustache">
     <div class="post" >
-        <h2 class="title"> {{title_ar}} </h2>
-        <h2 class="title"> {{title_en}} </h2>
+        <h2> {{title_##session.lang##}} </h2>
         <img src="{{image_url}}" alt="">
-        <p class="description"> {{##session.lang##}} </p>
+        <p class="description"> {{description_##session.lang##}} </p>
     </div>
 </script>
   <script>
@@ -105,7 +109,7 @@
 
 
       site.getData({
-        url: '/json/features.json',
+        url: '/json/app_features.json',
         method: 'POST'
       }, function (res) {
         busy = false;
@@ -142,7 +146,6 @@
     function scope() {
       return angular.element(document.getElementById('main-layout')).scope();
     };
-
   </script>
 </body>
 

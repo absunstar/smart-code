@@ -1,0 +1,254 @@
+[
+    {
+        "title_ar": "الشركات و الفروع",
+        "title_en": "Companies and Branches",
+        "image_url": "/images/company.png",
+        "description_ar": "يتيح البرنامج إضافة أكثر من شركة و أكثر من فرع لشركة و ربطهم ببعض و التحكم فيهم بسهولة",
+        "description_en": "The program allows adding more than one company and more than one branch of a company and linking them to each other and controlling them easily"
+    },
+    {
+        "title_ar": "المستخدمين و الصلاحيات",
+        "title_en": "Users and permissions",
+        "image_url": "/images/permision.png",
+        "description_ar": "يتيح البرنامج إضافة مستخدمين و ربطهم بالموظفين و العملاء و تنظيم صلاحيات كل منهم على الشاشات و الأزرار و ظهور البيانات لتحديد إحتياجات العمل لكل مستخدم.",
+        "description_en": "The program allows adding users, linking them to employees and clients, and organizing the powers of each of them on screens, buttons, and the appearance of data to determine the business needs of each user."
+    },
+    {
+        "title_ar": "نظام المراقبة",
+        "title_en": "Monitoring system",
+        "image_url": "/images/monitor.png",
+        "description_ar": "يتم فيه تسجيل كل ما يتم على البرنامج من إضافة أو تعديل أو حذف المعاملات و الملفات و تحديد المستخدم و الوقت الذي تمت فيه العملية.",
+        "description_en": "It records all that is done on the program, from adding, modifying or deleting transactions and files, and specifying the user and the time that the process was completed."
+    },
+    {
+        "title_ar": "الحماية و تشفير البيانات",
+        "title_en": "Security and data encryption",
+        "image_url": "/images/security_encrypt.png",
+        "description_ar": "تتمتع برامجنا بأعلى درجات الحماية لتوفر الأمان لك  و لشركتك و للبيانات الخاصة بسير العمل للمؤسسات مع أقوى برامج الحماية و تشفير البيانات بشكل كامل لمنع سرقة البيانات أو الإختراق",
+        "description_en": "Our programs enjoy the highest levels of protection to provide security for you and your company and data for the workflow of institutions with the strongest protection programs and data encryption completely to prevent data theft or hack"
+    },
+    {
+        "title_ar": "الإدارة والتنظيم عن بعد",
+        "title_en": "Remote administration and management",
+        "image_url": "/images/Remote_management.png",
+        "description_ar": "بإستطاعة برامجنا توفير الدخول على النظام عن طريق الهاتف أو الأجهزة المحمولة مما يضيف مرونة لإدارة النظام من أي مكان و في أي وقت.",
+        "description_en": "Our brograms can provide access to the system by phone or mobile devices, which adds flexibility to manage the system from anywhere and at any time"
+    },
+    {
+        "title_ar": "التكامل مع البرامج الأخرى",
+        "title_en": "Integration with other programs",
+        "image_url": "/images/integration.png",
+        "description_ar": "القدرة على التكامل مع البرامج الأخرى هي ميزة كبيرة من برامجنا . بعد استخدام البرنامج لإدخال جميع المبيعات و الإيرادات والنفقات، يمكن لأصحاب الأعمال بسهولة تصدير تلك البيانات إلى برامج أخرى Word ، Exel ، إلخ...",
+        "description_en": "The ability to integrate with other programs is a huge advantage of our Program. After using the Program to enter all sales, revenue and expenses, business owners can easily export that data to other programs Word, Exel, etc..."
+    },
+    {
+        "title_ar": "سهولة الإستخدام",
+        "title_en": "Ease of use",
+        "image_url": "/images/easy_use.png",
+        "description_ar": "مشكلة واحدة مع برامج المحاسبة هي أن العديد منهم يصعب استخدامها ومرهقة للتعلم. لذلك تم تصميمه ليكون بديهي وسهل الفهم ، حتى لأصحاب الأعمال الذين يفتقرون إلى الخلفية المالية أو المحاسبية.",
+        "description_en": "One problem with accounting Program is that many of them are difficult to use and cumbersome to learn. So it is designed to be intuitive and easy to understand, even for business owners who lack a financial or accounting background"
+    },
+    {
+        "title_ar": "إضافات سريعة لبياناتك",
+        "title_en": "Quick additions to data",
+        "image_url": "/images/add_data.png",
+        "description_ar": "يتميز برنامج بالسهولة والسرعة فى الاداء فهو يمتلك العديد من الامكانيات التى تساعده على ذلك حيث يتيح لك إنشاء أكثر من معاملة في مكان واحد و سهولة التنقل يبن الشاشات ، كما يمكنك ايضا عمل اضافة سريعة للعملاء الجدد كل ذلك بضغطة واحدة.",
+        "description_en": "The program is characterized by ease and speed in performance as it has many capabilities that help it to that, as it allows you to create more than one transaction in one place and ease of movement builds screens, you can also make a quick addition to new customers all with one click"
+    },
+    {
+        "title_ar": "إرفاق الملفات و الصور",
+        "title_en": "Attach files and pictures",
+        "image_url": "/images/file_pic.png",
+        "description_ar": "يتيح لك إرفاق الملفات و الصور في المعاملات و الفواتير و الموظفين و العملاء إلخ.....",
+        "description_en": "It allows you to attach files and pictures to transactions, invoices, employees, customers, etc...."
+    },
+    {
+        "title_ar": "البصمة و الحضور و الإنصراف",
+        "title_en": "Fingerprint and attendance and Departure",
+        "image_url": "/images/fingerprint.png",
+        "description_ar": "ربط البرنامج بجهاز البصمة يتيح تسجيل بصمة الموظفين و العملاء و تسجيل الحضور و الإنصراف بالوقت و التاريخ ",
+        "description_en": "Connecting the program to the fingerprint device enables recording the fingerprint of employees and clients and record attendance and leave time and date"
+    },
+    {
+        "title_ar": "قراءة الباركود",
+        "title_en": "Barcode reading",
+        "image_url": "/images/barcode_reading.png",
+        "description_ar": "إمكانية إستخدام قارئ الباركود مباشرة في عملية البيع. تتبع المخزون أوتوماتيك , إنشاء باركود أوتوماتيك للأصناف.",
+        "description_en": "The possibility of using the barcode reader directly in the selling process. Automatic inventory tracking, automatic barcode creation for items."
+    },
+    {
+        "title_ar": "الإعدادات الإفتراضية",
+        "title_en": "Default settings",
+        "image_url": "/images/default_setting.png",
+        "description_ar": "التحكم في إعدادات البرنامج و الطباعة حسب الحاجة و تعريف خانات إفتراضية للمعاملات لسهولة إضافة المعاملات.",
+        "description_en": "Control program settings, print as needed, and define default checkboxes for transactions, for ease of adding transactions."
+    },
+    {
+        "title_ar": "ورديات العمل",
+        "title_en": "Work shifts",
+        "image_url": "/images/shift.png",
+        "description_ar": "فتح وردية تمكنك من إضافة المعاملات داخل الوردية و عند غلقها يمكن استعراض كافة تفاصيل الوردية و الفواتير المضافة و طباعتها.",
+        "description_en": "Opening a shift enables you to add transactions inside the shift and when closed it can review all details of the shift and added bills and print them."
+    },
+    {
+        "title_ar": "المجموعات",
+        "title_en": "Groups",
+        "image_url": "/images/groups.png",
+        "description_ar": "يتم ربط العملاء أو الموردين أو الأصناف المخزنية في مجموعات عندما يكون هناك توافق و تشابه في الصفات و الميزات بينهم لتسهيل الوصول و الربط بينهم",
+        "description_en": "Clients, suppliers, or items stored in groups are linked when there is compatibility and similarities in characteristics and features between them to facilitate access and linking between them."
+    },
+    {
+        "title_ar": "التقارير و الطباعة",
+        "title_en": "Reports and printing",
+        "image_url": "/images/printer_path.png",
+        "description_ar": "يوجد بالبرنامج نظام يحتوي على العديد من التقارير الدقيقة و الشاملة مع إمكانية عمل فلتر للتقارير حسب الحاجة و إمكانية طباعة التقارير و الفواتير بطرق مختلفة مثل الطابعة الحرارية , pdf, OneNote, fax .. إلخ.....",
+        "description_en": "The program has a system that contains many accurate and comprehensive reports with the ability to make a filter for reports as needed and the ability to print reports and invoices in various ways such as thermal printer, pdf, OneNote, fax..etc...."
+    },
+    {
+        "title_ar": "العناويــــــــــن و طرق الوصـــــول",
+        "title_en": "Addresses and access methods",
+        "image_url": "/images/area.png",
+        "description_ar": "يتيح لك نظام العناوين من إضافة محافظات و مدن و مناطق و كتابة عناوين و ربطها بالموظفين و العملاء و الموردين و تسجيل أرقامهم الشخصية و حسابات التواصل الإجتماعي لهم لسهولة الوصول إليهم و إرسال الإشعارات ",
+        "description_en": "The address system enables you to add provinces, cities and regions, write addresses and link them to employees, customers and suppliers, and register their personal numbers and social media accounts for them to easily reach them and send notifications."
+    },
+    {
+        "title_ar": "العملات",
+        "title_en": "Currencies",
+        "image_url": "/images/currency.png",
+        "description_ar": "يتيح لك العمل بعملات مختلفة في الفواتير و الدفع و التحصيل .. إلخ....  ",
+        "description_en": "Enables you to work in different currencies on billing, payment and collection .. etc...."
+    },
+    {
+        "title_ar": "تعدد طرق الدفع",
+        "title_en": "Multiple payment methods",
+        "image_url": "/images/payment_methods.png",
+        "description_ar": "يتيح البرنامج أكثر من طريقة دفع أو تحصيل عن طريق الكاش أو الشيك أو الفيزا أو الماستر كارت.",
+        "description_en": "Our program provides you with more than one way to pay or collect by cash, check, visa or master card."
+    },
+    {
+        "title_ar": "التجنيد و الحالات الإجتماعية",
+        "title_en": "Enlistment and Social status",
+        "image_url": "/images/military.png",
+        "description_ar": "يتيح لك إضافة حالات تجنيد و حالات إجتماعية و ربطها بالموظفين لمعرفة حالاتهم الإجتماعاية و موقف التجنيد.",
+        "description_en": "It allows you to add recruitment and social cases and link them to employees to know their social status and recruitment situation."
+    },
+    {
+        "title_ar": "الضرائب و الخصومات",
+        "title_en": "Taxes and discounts",
+        "image_url": "/images/tax_type.png",
+        "description_ar": "يتم إضافة خصومات و ضرائب على المعاملات و الأصناف المخزنية و تحديدها ك نسبة أو سعر حسب نوع الخصم أو الضريبة و يتم حسابها من قيمة المعاملة",
+        "description_en": "Discounts and taxes on transactions and inventory items are added and determined as a percentage or price according to the type of discount or tax and are calculated from the value of the transaction."
+    },
+    {
+        "title_ar": "الوحدات",
+        "title_en": "Units",
+        "image_url": "/images/unit.png",
+        "description_ar": "يتم ربط الأصناف المخزنية بالوحدات ليتم البيع أو الشراء للصنف بالوحدة مثل : جرام , كيلو , قطعة , دستة و إلخ....",
+        "description_en": "The stored items are linked to the units to be sold or bought for the item in the unit such as: grams, kilos, pieces, dozen, etc...."
+    },
+    {
+        "title_ar": "تحويل الأصناف",
+        "title_en": "Items Transfer",
+        "image_url": "/images/transfer_branch.png",
+        "description_ar": "يتيح لك تحويل أصناف مخزنية من مخزن لمخزن أو من فرع لفرع بعد الحصول على الموافقة من المخزن أو الفرع المحول إليه",
+        "description_en": "It allows you to transfer store items from store to store or from branch to branch after obtaining approval from the store or the branch transferred to it"
+    },
+    {
+        "title_ar": "تجميع و تفكيك الأصناف",
+        "title_en": "Assembling and dismantling items",
+        "image_url": "/images/store_dismantle.png",
+        "description_ar": "يتيح لك إضافة صنف مجمع من أصناف أخرى و وضع قيمة مضافة على سعر الصنف و أيضا تفكيك ذلك الصنف و إعادة الأصناف المجمعة بداخله لمكانها",
+        "description_en": "It allows you to add a grouped item from other items and put an added value on the price of the item, and also to dismantle that item and return the items grouped inside to its place"
+    },
+    {
+        "title_ar": "الجرد المخزني",
+        "title_en": "stock inventory",
+        "image_url": "/images/store_stock.png",
+        "description_ar": "يتيح لك عمل محاضر جرد لمعرفة كميات الأصناف على مستوى المخازن و تسوية المخزون و إيقاف التداول على الأصناف تحت الجرد حتى الإنتهاء من تسوية المخزون",
+        "description_en": "It allows you to make inventory records to know the quantities of items at the warehouse level and to settle inventory and stop trading on items under inventory until the stock settlement is completed."
+    },
+    {
+        "title_ar": "فواتير مرتجع البيع و الشراء",
+        "title_en": "Buy and purchase Invoices returns",
+        "image_url": "/images/return_invoice.png",
+        "description_ar": "يتم عمل فاتورة مرتجع لإذن البيع أو الشراء لإعادة الأصناف التي تم بيعها أو شرائها من المخزن",
+        "description_en": "A returned invoice of sale or purchase authorization is returned to return items that were sold or purchased from the store"
+    },
+    {
+        "title_ar": "فواتير الحسابات",
+        "title_en": "Account invoices",
+        "image_url": "/images/account_invoices.png",
+        "description_ar": "يتم إنشاء فاتورة حسابات مستقلة مع الأوذونات و الطلبات لتسجيل كل ما يتم صرفة أو إضافته للخزينة",
+        "description_en": "A separate accounts invoice is created with permissions and requests to record everything that is cashed out or added to the treasury"
+    },
+    {
+        "title_ar": "فواتير الوارد و المنصرف",
+        "title_en": "Incoming and outgoing Invoices",
+        "image_url": "/images/pic_out.png",
+        "description_ar": "يتيح لك تسجيل فواتير للنقود الواردة أو المنصرفة من الخزنة و إضافة أنواع محددة لها لتحديد أوجه الصرف و الإيرادات",
+        "description_en": "It allows you to record invoices for cash received or spent from the treasury and add specific types to it to determine the aspects of spending and revenue"
+    },
+    {
+        "title_ar": "فواتير الشراء و البيع و الإتلاف المخزني",
+        "title_en": "Invoices for purchase, sale and store damage",
+        "image_url": "/images/store_out.png",
+        "description_ar": "نظام فواتير الشراء يتم فيه تسجيل الأصناف الواردة للمخزن  ك رصيد إفتتاحي أو شراء أو عهدة و فواتير البيع لتسجيل الأصناف المصروفة من المخزن ك بيع أو إتلاف أو أخرى",
+        "description_en": "The purchase invoices system in which the incoming items to the store are recorded as an opening or purchase balance or custody and the sales invoices to register the items expended from the store as a sale or damage or other"
+    },
+    {
+        "title_ar": "العملاء و الموردين",
+        "title_en": "Customers And Suppliers",
+        "image_url": "/images/vendor.png",
+        "description_ar": "يتيح لك تسجيل عملاءأو موردين و ربطهم بالمعاملات و الفواتير و الطلبات",
+        "description_en": "It allows you to register clients or suppliers and link them to transactions, invoices and orders"
+    },
+    {
+        "title_ar": "الوظائف و الدرجات الوظيفية",
+        "title_en": "Jobs and job degree",
+        "image_url": "/images/degree.png",
+        "description_ar": "يتم إضافة وظائف و درجات وظيفية و ربطها بالموظفين و تحديد مرتب كل وظيفة حسب الدرجة الوظيفية",
+        "description_en": "Jobs and job grades are added, linked to employees, and the salary for each job is determined by job degree"
+    },
+    {
+        "title_ar": "مرتبات الموظفين",
+        "title_en": "Employees salaries",
+        "image_url": "/images/employees_salary.png",
+        "description_ar": "يتيح لك صرف المرتبات شهريا للموظفين و عمل تقرير شامل للموظف و بيان بمشاركته في العمل  لتحديد قيمة المرتب",
+        "description_en": "It allows you to pay salaries monthly to employees, make a comprehensive report for the employee, and indicate his participation in the work to determine the value of the salary"
+    },
+    {
+        "title_ar": "الموظفين و المناديب و موظفين التوصيل",
+        "title_en": "Employees, delegates, and delivery employees",
+        "image_url": "/images/employee_list.png",
+        "description_ar": "يتم إضافة الموظفين و تحديد إختصاصاتهم و إضافة مناديب و ربطهم بفواتير البيع و إضافة موظفين توصيل و ربطهم بالطلبات و يتم عمل تقارير مفصلة لكلٌ منهم حسب طبيعة عمله",
+        "description_en": "Employees are added, their terms of reference are added, delegates are added and they are linked to sales invoices, add delivery staff and link them to requests, and detailed reports are made for each of them according to the nature of their work"
+    },
+    {
+        "title_ar": "السلف و سداد السلف",
+        "title_en": "Advances and payment of advances",
+        "image_url": "/images/emp_advances2.png",
+        "description_ar": "يتيح لك صرف سلف للموظفين و عمل نظام شهري لسداد السلف",
+        "description_en": "It allows you to make advances to employees and create a monthly system for paying advances"
+    },
+    {
+        "title_ar": "مكافئات و خصومات الموظفين",
+        "title_en": "Employee bonuses and discounts",
+        "image_url": "/images/offer.png",
+        "description_ar": "يتم تعيين مكافئات تحفيزية أو خصمومات على الموظفين و إضافتها خصمها من الراتب الشهري",
+        "description_en": "Incentive bonuses or deductions are set for employees and their deduction is added to the monthly salary"
+    },
+    {
+        "title_ar": "التأمينات الإجتماعية",
+        "title_en": "Social Security",
+        "image_url": "/images/Insurance-employee.png",
+        "description_ar": "يتيح لك إضافة شرائح تأمين للموظفين و إضافة منشأة التأمين و إنشاء تأمين خاص بموظف و ربطهم بالتأمين و تحديد مبلغ التأمين و قيمة تحمل الموظف و المؤسسة و ربطها بالمرتب",
+        "description_en": "It allows you to add insurance slides to employees, add an insurance facility, create insurance for an employee, link them to insurance, determine the amount of insurance, and the value of employee and institution incurred and link them to the salary"
+    },
+    {
+        "title_ar": "طلبات العملاء",
+        "title_en": "Customer orders",
+        "image_url": "/images/order_customer.png",
+        "description_ar": "يتيح للعميل الدخول على البرنامج من خلال الحاسوب أو الهاتف و عمل تسجيل عميل جديد ليتمكن من إضافة طلبات للأصناف التي يريد شرائها",
+        "description_en": "It allows the customer to enter the program through a computer or phone and make a new customer registration so that he can add requests to the items he wants to buy"
+    }
+]
