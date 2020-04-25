@@ -1,5 +1,6 @@
 [
     {
+        "feature" : "puplic",
         "title_ar": "الشركات و الفروع",
         "title_en": "Companies and Branches",
         "image_url": "/images/company.png",
@@ -7,6 +8,7 @@
         "description_en": "The program allows adding more than one company and more than one branch of a company and linking them to each other and controlling them easily"
     },
     {
+        "feature" : "puplic",
         "title_ar": "المستخدمين و الصلاحيات",
         "title_en": "Users and permissions",
         "image_url": "/images/permision.png",
@@ -14,6 +16,7 @@
         "description_en": "The program allows adding users, linking them to employees and clients, and organizing the powers of each of them on screens, buttons, and the appearance of data to determine the business needs of each user."
     },
     {
+        "feature" : "puplic",
         "title_ar": "نظام المراقبة",
         "title_en": "Monitoring system",
         "image_url": "/images/monitor.png",
@@ -21,6 +24,7 @@
         "description_en": "It records all that is done on the program, from adding, modifying or deleting transactions and files, and specifying the user and the time that the process was completed."
     },
     {
+        "feature" : "puplic",
         "title_ar": "الحماية و تشفير البيانات",
         "title_en": "Security and data encryption",
         "image_url": "/images/security_encrypt.png",
@@ -28,6 +32,7 @@
         "description_en": "Our programs enjoy the highest levels of protection to provide security for you and your company and data for the workflow of institutions with the strongest protection programs and data encryption completely to prevent data theft or hack"
     },
     {
+        "feature" : "puplic",
         "title_ar": "الإدارة والتنظيم عن بعد",
         "title_en": "Remote administration and management",
         "image_url": "/images/Remote_management.png",
@@ -35,6 +40,7 @@
         "description_en": "Our brograms can provide access to the system by phone or mobile devices, which adds flexibility to manage the system from anywhere and at any time"
     },
     {
+        "feature" : "puplic",
         "title_ar": "التكامل مع البرامج الأخرى",
         "title_en": "Integration with other programs",
         "image_url": "/images/integration.png",
@@ -42,6 +48,7 @@
         "description_en": "The ability to integrate with other programs is a huge advantage of our Program. After using the Program to enter all sales, revenue and expenses, business owners can easily export that data to other programs Word, Exel, etc..."
     },
     {
+        "feature" : "puplic",
         "title_ar": "سهولة الإستخدام",
         "title_en": "Ease of use",
         "image_url": "/images/easy_use.png",
@@ -49,6 +56,7 @@
         "description_en": "One problem with accounting Program is that many of them are difficult to use and cumbersome to learn. So it is designed to be intuitive and easy to understand, even for business owners who lack a financial or accounting background"
     },
     {
+        "feature" : "puplic",
         "title_ar": "إضافات سريعة لبياناتك",
         "title_en": "Quick additions to data",
         "image_url": "/images/add_data.png",
@@ -56,6 +64,7 @@
         "description_en": "The program is characterized by ease and speed in performance as it has many capabilities that help it to that, as it allows you to create more than one transaction in one place and ease of movement builds screens, you can also make a quick addition to new customers all with one click"
     },
     {
+        "feature" : "puplic",
         "title_ar": "إرفاق الملفات و الصور",
         "title_en": "Attach files and pictures",
         "image_url": "/images/file_pic.png",
@@ -63,6 +72,7 @@
         "description_en": "It allows you to attach files and pictures to transactions, invoices, employees, customers, etc...."
     },
     {
+        "feature" : "puplic",
         "title_ar": "البصمة و الحضور و الإنصراف",
         "title_en": "Fingerprint and attendance and Departure",
         "image_url": "/images/fingerprint.png",
@@ -70,6 +80,7 @@
         "description_en": "Connecting the program to the fingerprint device enables recording the fingerprint of employees and clients and record attendance and leave time and date"
     },
     {
+        "feature" : "puplic",
         "title_ar": "قراءة الباركود",
         "title_en": "Barcode reading",
         "image_url": "/images/barcode_reading.png",
@@ -77,6 +88,7 @@
         "description_en": "The possibility of using the barcode reader directly in the selling process. Automatic inventory tracking, automatic barcode creation for items."
     },
     {
+        "feature" : "puplic",
         "title_ar": "الإعدادات الإفتراضية",
         "title_en": "Default settings",
         "image_url": "/images/default_setting.png",
@@ -84,6 +96,7 @@
         "description_en": "Control program settings, print as needed, and define default checkboxes for transactions, for ease of adding transactions."
     },
     {
+        "feature" : "puplic",
         "title_ar": "ورديات العمل",
         "title_en": "Work shifts",
         "image_url": "/images/shift.png",
@@ -91,6 +104,7 @@
         "description_en": "Opening a shift enables you to add transactions inside the shift and when closed it can review all details of the shift and added bills and print them."
     },
     {
+        "feature" : "puplic",
         "title_ar": "المجموعات",
         "title_en": "Groups",
         "image_url": "/images/groups.png",
@@ -98,6 +112,7 @@
         "description_en": "Clients, suppliers, or items stored in groups are linked when there is compatibility and similarities in characteristics and features between them to facilitate access and linking between them."
     },
     {
+        "feature" : "puplic",
         "title_ar": "التقارير و الطباعة",
         "title_en": "Reports and printing",
         "image_url": "/images/printer_path.png",
@@ -105,6 +120,7 @@
         "description_en": "The program has a system that contains many accurate and comprehensive reports with the ability to make a filter for reports as needed and the ability to print reports and invoices in various ways such as thermal printer, pdf, OneNote, fax..etc...."
     },
     {
+        "feature" : "puplic",
         "title_ar": "العناويــــــــــن و طرق الوصـــــول",
         "title_en": "Addresses and access methods",
         "image_url": "/images/area.png",
@@ -112,6 +128,7 @@
         "description_en": "The address system enables you to add provinces, cities and regions, write addresses and link them to employees, customers and suppliers, and register their personal numbers and social media accounts for them to easily reach them and send notifications."
     },
     {
+        "feature" : "puplic",
         "title_ar": "العملات",
         "title_en": "Currencies",
         "image_url": "/images/currency.png",
@@ -119,6 +136,7 @@
         "description_en": "Enables you to work in different currencies on billing, payment and collection .. etc...."
     },
     {
+        "feature" : "puplic",
         "title_ar": "تعدد طرق الدفع",
         "title_en": "Multiple payment methods",
         "image_url": "/images/payment_methods.png",
@@ -126,6 +144,7 @@
         "description_en": "Our program provides you with more than one way to pay or collect by cash, check, visa or master card."
     },
     {
+        "feature" : "puplic",
         "title_ar": "التجنيد و الحالات الإجتماعية",
         "title_en": "Enlistment and Social status",
         "image_url": "/images/military.png",
@@ -133,6 +152,7 @@
         "description_en": "It allows you to add recruitment and social cases and link them to employees to know their social status and recruitment situation."
     },
     {
+        "feature" : "puplic",
         "title_ar": "الضرائب و الخصومات",
         "title_en": "Taxes and discounts",
         "image_url": "/images/tax_type.png",
@@ -140,6 +160,7 @@
         "description_en": "Discounts and taxes on transactions and inventory items are added and determined as a percentage or price according to the type of discount or tax and are calculated from the value of the transaction."
     },
     {
+        "feature" : "puplic",
         "title_ar": "الوحدات",
         "title_en": "Units",
         "image_url": "/images/unit.png",
@@ -147,6 +168,7 @@
         "description_en": "The stored items are linked to the units to be sold or bought for the item in the unit such as: grams, kilos, pieces, dozen, etc...."
     },
     {
+        "feature" : "puplic",
         "title_ar": "تحويل الأصناف",
         "title_en": "Items Transfer",
         "image_url": "/images/transfer_branch.png",
@@ -154,6 +176,7 @@
         "description_en": "It allows you to transfer store items from store to store or from branch to branch after obtaining approval from the store or the branch transferred to it"
     },
     {
+        "feature" : "puplic",
         "title_ar": "تجميع و تفكيك الأصناف",
         "title_en": "Assembling and dismantling items",
         "image_url": "/images/store_dismantle.png",
@@ -161,6 +184,7 @@
         "description_en": "It allows you to add a grouped item from other items and put an added value on the price of the item, and also to dismantle that item and return the items grouped inside to its place"
     },
     {
+        "feature" : "puplic",
         "title_ar": "الجرد المخزني",
         "title_en": "stock inventory",
         "image_url": "/images/store_stock.png",
@@ -168,6 +192,7 @@
         "description_en": "It allows you to make inventory records to know the quantities of items at the warehouse level and to settle inventory and stop trading on items under inventory until the stock settlement is completed."
     },
     {
+        "feature" : "puplic",
         "title_ar": "فواتير مرتجع البيع و الشراء",
         "title_en": "Buy and purchase Invoices returns",
         "image_url": "/images/return_invoice.png",
@@ -175,6 +200,7 @@
         "description_en": "A returned invoice of sale or purchase authorization is returned to return items that were sold or purchased from the store"
     },
     {
+        "feature" : "puplic",
         "title_ar": "فواتير الحسابات",
         "title_en": "Account invoices",
         "image_url": "/images/account_invoices.png",
@@ -182,6 +208,7 @@
         "description_en": "A separate accounts invoice is created with permissions and requests to record everything that is cashed out or added to the treasury"
     },
     {
+        "feature" : "puplic",
         "title_ar": "فواتير الوارد و المنصرف",
         "title_en": "Incoming and outgoing Invoices",
         "image_url": "/images/pic_out.png",
@@ -189,6 +216,7 @@
         "description_en": "It allows you to record invoices for cash received or spent from the treasury and add specific types to it to determine the aspects of spending and revenue"
     },
     {
+        "feature" : "puplic",
         "title_ar": "فواتير الشراء و البيع و الإتلاف المخزني",
         "title_en": "Invoices for purchase, sale and store damage",
         "image_url": "/images/store_out.png",
@@ -196,6 +224,7 @@
         "description_en": "The purchase invoices system in which the incoming items to the store are recorded as an opening or purchase balance or custody and the sales invoices to register the items expended from the store as a sale or damage or other"
     },
     {
+        "feature" : "puplic",
         "title_ar": "العملاء و الموردين",
         "title_en": "Customers And Suppliers",
         "image_url": "/images/vendor.png",
@@ -203,6 +232,7 @@
         "description_en": "It allows you to register clients or suppliers and link them to transactions, invoices and orders"
     },
     {
+        "feature" : "puplic",
         "title_ar": "الوظائف و الدرجات الوظيفية",
         "title_en": "Jobs and job degree",
         "image_url": "/images/degree.png",
@@ -210,6 +240,7 @@
         "description_en": "Jobs and job grades are added, linked to employees, and the salary for each job is determined by job degree"
     },
     {
+        "feature" : "puplic",
         "title_ar": "مرتبات الموظفين",
         "title_en": "Employees salaries",
         "image_url": "/images/employees_salary.png",
@@ -217,6 +248,7 @@
         "description_en": "It allows you to pay salaries monthly to employees, make a comprehensive report for the employee, and indicate his participation in the work to determine the value of the salary"
     },
     {
+        "feature" : "puplic",
         "title_ar": "الموظفين و المناديب و موظفين التوصيل",
         "title_en": "Employees, delegates, and delivery employees",
         "image_url": "/images/employee_list.png",
@@ -224,6 +256,7 @@
         "description_en": "Employees are added, their terms of reference are added, delegates are added and they are linked to sales invoices, add delivery staff and link them to requests, and detailed reports are made for each of them according to the nature of their work"
     },
     {
+        "feature" : "puplic",
         "title_ar": "السلف و سداد السلف",
         "title_en": "Advances and payment of advances",
         "image_url": "/images/emp_advances2.png",
@@ -231,6 +264,7 @@
         "description_en": "It allows you to make advances to employees and create a monthly system for paying advances"
     },
     {
+        "feature" : "puplic",
         "title_ar": "مكافئات و خصومات الموظفين",
         "title_en": "Employee bonuses and discounts",
         "image_url": "/images/offer.png",
@@ -238,6 +272,7 @@
         "description_en": "Incentive bonuses or deductions are set for employees and their deduction is added to the monthly salary"
     },
     {
+        "feature" : "puplic",
         "title_ar": "التأمينات الإجتماعية",
         "title_en": "Social Security",
         "image_url": "/images/Insurance-employee.png",
@@ -245,10 +280,107 @@
         "description_en": "It allows you to add insurance slides to employees, add an insurance facility, create insurance for an employee, link them to insurance, determine the amount of insurance, and the value of employee and institution incurred and link them to the salary"
     },
     {
+        "feature" : "puplic",
         "title_ar": "طلبات العملاء",
         "title_en": "Customer orders",
         "image_url": "/images/order_customer.png",
         "description_ar": "يتيح للعميل الدخول على البرنامج من خلال الحاسوب أو الهاتف و عمل تسجيل عميل جديد ليتمكن من إضافة طلبات للأصناف التي يريد شرائها",
         "description_en": "It allows the customer to enter the program through a computer or phone and make a new customer registration so that he can add requests to the items he wants to buy"
+    },
+    {
+        "feature" : "restaurant",
+        "title_ar": "شاشة الطلبات",
+        "title_en": "Orders screen",
+        "image_url": "/images/order_invoice.png",
+        "description_ar": "الشاشة المسئولة عن إضافة طلبات الأصناف للعملاء و أنواعها طاولات , تيك أواي , توصيل ويمكن منها إضافة عملاء و إنشاء فاتورة حساب للطلب",
+        "description_en": "The screen responsible for adding items requests to customers and their types, tables, take away, delivery, and it is possible to add clients and create an account invoice for the order."
+    },
+    {
+        "feature" : "restaurant",
+        "title_ar": "شاشة إدارة الطلبات",
+        "title_en": "Orders management screen",
+        "image_url": "/images/order_management.png",
+        "description_ar": "هي شاشة مسئولة عن إدارة الطلبات من شاشة الطلبات و يمكن فتح الطلبات المغلقة أو إنشاء فواتير حسابات أو تغيير عامل التوصيل",
+        "description_en": "Is a screen responsible for managing orders from the orders screen and can open closed orders or create account invoices or change the delivery factor"
+    },
+    {
+        "feature" : "restaurant",
+        "title_ar": "المطابخ - طلبات المطابخ",
+        "title_en": "Kitchens - Kitchens orders",
+        "image_url": "/images/order_kitchen.png",
+        "description_ar": "يتم ربط الصنف بمطبخ و عند عمل طلب من شاشة الطلبات يتم نقل الأصناف إلى طلبات المطبخ ليتم تسليم الأصناف التي تم تجهيزها",
+        "description_en": "The item is linked to a kitchen, and when a request is made from the orders screen, the items are transferred to the kitchen requests, so that the supplied items are delivered"
+    },
+    {
+        "feature" : "restaurant",
+        "title_ar": "الطلبات الموزعة",
+        "title_en": "Distributed orders",
+        "image_url": "/images/order_distributor.png",
+        "description_ar": "يتم متابعة الطلبات من نوع توصيل و الإشراف على وصولها و متابعة عامل التوصيل حتى يتم توصيل الطلب للعميل",
+        "description_en": "Follow-up requests of the type of delivery and supervision of their arrival and follow-up of the delivery agent until the request is delivered to the customer"
+    },
+    {
+        "feature" : "restaurant",
+        "title_ar": "الطاولات - مجموعة الطاولات",
+        "title_en": "Tables - tables group",
+        "image_url": "/images/tables.png",
+        "description_ar": "يتم إضافة مجموعة طاولات و ربطها  بمجموعة من الطاولات الموجودين في نفس المكان المشتركة في نفس الصفات",
+        "description_en": "A group of tables is added and linked to a group of tables located in the same place who share the same characteristics"
+    },
+    {
+        "feature" : "gym",
+        "title_ar": "الخدمات والخدمات المجمعة",
+        "title_en": "Services & Bundled services ",
+        "image_url": "/images/service.png",
+        "description_ar": "يتم إضافة خدمات حسب طبيعة عمل الجيم و يمكن إضافة خدمة مجمعة تتكون من خدمات أخرى و يتم تعيين سعر كل خدمة و عدد مرات الحضور",
+        "description_en": "Services are added according to the nature of the work of the gym, and a combined service consisting of other services can be added, and the price of each service and the number of times are set"
+    },
+    {
+        "feature" : "gym",
+        "title_ar": "القاعات",
+        "title_en": "Halls",
+        "image_url": "/images/hall.png",
+        "description_ar": "يتم إضافة قاعات التدريب و المحاضرات و ربطها بالمشتركين أو الطلاب و الخدمات المشتركين بها داخل القاعة لتسهيل و حصر سير العمل",
+        "description_en": "Training rooms and lectures are added and linked to the participants or students and the services subscribed to inside the hall to facilitate and limit the work progress."
+    },
+    {
+        "feature" : "gym",
+        "title_ar": "الأمراض و الأدوية",
+        "title_en": "Diseases and medications",
+        "image_url": "/images/disease.png",
+        "description_ar": "يتم إضافة أنواع من الأمراض أو الأدوية و ربط المشتركين أو الطلاب بها ليتم التعامل مع المصابين بالطريقة المناسبة و للحفاظ على سلامتهم",
+        "description_en": "Kinds of diseases or medications are added, and the participants or students are linked to them in order to deal with the injured in the appropriate way and to maintain their safety"
+    },
+    {
+        "feature" : "gym",
+        "title_ar": "طلبات الخدمات",
+        "title_en": "Services Requests",
+        "image_url": "/images/request_service.png",
+        "description_ar": "يتيح إضافة طلب خدمات للمشترك و يتم تحديد المشترك و القاعة و المدرب و الخدمة التي يريد الإشتراك بها و يمكن إضافة فاتورة حساب و تسجيل حضور الجلسات للخدمة بالوقت و التاريخ",
+        "description_en": "It allows adding a service request to the subscriber, and the subscriber, the hall, the trainer and the service that he wants to subscribe to are specified, and an account invoice can be added and the attendance of the sessions for the service is recorded by time and date"
+    },
+    {
+        "feature" : "gym",
+        "title_ar": "حضور المشتركين",
+        "title_en": "Attend subscribers",
+        "image_url": "/images/attend_subscribers.png",
+        "description_ar": "يتم تسجيل حضور للمشتركين للجيم بالوقت و التاريخ و يمكن تسجيل الحضور يدويا أو بالبصمة و يتم عرض الخدمات المتاحة للعميل الذي حضر و عرض باقي الفواتير المستحقة على العميل",
+        "description_en": "Attendance of the participants in the gym is recorded by time and date, attendance can be recorded manually or by fingerprint, and the services available to the customer who attended and the remaining bills due on the customer are shown"
+    },
+    {
+        "feature" : "gym",
+        "title_ar": "حضور الجلسات",
+        "title_en": "Attend Sessions",
+        "image_url": "/images/attend_session.png",
+        "description_ar": "يتم تسجيل حضور للمشتركين للجلسة بالوقت و التاريخ و إختيار المدرب المصاحب للمشترك خلال الجلسة و يتم خصم الجلسة من مرات حضور المشترك للخدمة",
+        "description_en": "The attendance of the participants is recorded in the session by time and date and the choice of the coach accompanying the participant during the session. The session is deducted from the times the participant attends the service."
+    },
+    {
+        "feature" : "gym",
+        "title_ar": "معلومات المشتركين",
+        "title_en": "Subscribers Information",
+        "image_url": "/images/customer_info.png",
+        "description_ar": "يتم اختيار مشترك و عرض الخدمات المشترك بها و عدد مرات الحضور المتبقية و الفواتير المستحقة وعرض الأيام المتبقية لإنتهاء الخدمة و ظهور الخدمات بألوان مميزة لتسهيل معرفة الأيام المتبقية من الإشتراك لتجديده",
+        "description_en": "A subscriber is chosen, the services offered are subscribed, the number of remaining attendance, the bills due, and the remaining days for the end of service and the appearance of services in distinct colors to facilitate knowledge of the remaining days of the subscription to renew it."
     }
 ]

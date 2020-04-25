@@ -23,14 +23,14 @@
 
     .post h2 {
       height: 50px;
-    font-family: cursive;
-    font-size: 20px;
-    text-align: center;
-    font-weight: bold;
-    color: #fff;
-    padding: 5px;
-    background: #3f51b5;
-    text-shadow: 1px 1px 8px #000000;
+      font-family: cursive;
+      font-size: 20px;
+      text-align: center;
+      font-weight: bold;
+      color: #fff;
+      padding: 5px;
+      background: #3f51b5;
+      text-shadow: 1px 1px 8px #000000;
     }
 
     .post img {
@@ -73,7 +73,7 @@
         Email <span> call.smart.code@gmail.com </span>
       </h2>
       <h2 class="center">
-        Download  <a target="_blank" href="https://social-browser.com/"> Social Browser </a> For Best Browsing
+        Download <a target="_blank" href="https://social-browser.com/"> Social Browser </a> For Best Browsing
       </h2>
 
     </div>
@@ -109,12 +109,12 @@
 
       busy = true;
 
-
       site.getData({
         url: '/json/app_features.json',
         method: 'POST'
       }, function (res) {
         busy = false;
+
 
         var rendered = '';
         var post_template = $('#post-template').html();
@@ -122,8 +122,19 @@
 
         for (var i = 0; i < res.length; i++) {
           try {
-            var post = res[i];
-            rendered += Mustache.render(post_template, post);
+            var post = {};
+
+            if (res[i].feature == "puplic") {
+              post = res[i];
+              rendered += Mustache.render(post_template, post);
+            } else if (res[i].feature == "gym" && site.features.like('*gym*')) {
+              post = res[i];
+              rendered += Mustache.render(post_template, post);
+            } else if (res[i].feature == "restaurant" && site.features.like('*restaurant*')) {
+              post = res[i];
+              rendered += Mustache.render(post_template, post);
+            }
+
           } catch (error) {
 
           }
