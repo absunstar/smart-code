@@ -42,14 +42,20 @@ app.controller('register', function ($scope, $http) {
     if ($scope.busy) {
       return;
     }
+    $scope.busy = true;
 
-    const v = site.validated('#customerAddModal');
+    const v = site.validated('#customerRegisterModal');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
+      $scope.busy = false;
       return;
-    }
+    };
+    if ($scope.customer.password != $scope.customer.password_return) {
+      $scope.error = "##word.password_err##";
+      $scope.busy = false;
+      return;
+    };
 
-    $scope.busy = true;
     if ($scope.Gender) {
       if ($scope.Gender.type == 'male') {
         $scope.customer.indentfy = {
@@ -107,6 +113,7 @@ app.controller('register', function ($scope, $http) {
             }
             if (response.data.done) {
               document.location.href = '/order_customer';
+              $scope.busy = false;
             }
         }, function (err) {
             $scope.busy = false;

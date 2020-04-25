@@ -54,11 +54,11 @@
                                 </div>
 
                                 <div class="row">
-                                    <i-list label="##word.security_company##" ng-search="_search.$company_search"
+                                    <i-list v="r" label="##word.security_company##" ng-search="_search.$company_search"
                                         display="name_ar" class="col3" items="company_list" ng-model="customer.company">
                                     </i-list>
 
-                                    <i-list label="##word.security_branch##" primary="code" display="name_ar"
+                                    <i-list label="##word.security_branch##" v="r" primary="code" display="name_ar"
                                         ng-search="_search.$branch_search" class="col3"
                                         items="customer.company.branch_list" ng-model="customer.branch">
                                     </i-list>
