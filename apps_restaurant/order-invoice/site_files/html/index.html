@@ -224,11 +224,10 @@
 
                         </div>
 
-
                     </div>
 
                     <div class="col6">
-                        <div class="row">
+                        <div class="row" ng-hide="'##user.type##' == 'table'">
                             <div class="row order-invoice">
                                 <h2 class="bold center red">{{error}}</h2>
 
@@ -344,6 +343,7 @@
 
                             </div>
                         </div>
+                        <br>
                         <div class="row ">
 
                             <table class="table bold loaded" id="t1">
@@ -356,7 +356,7 @@
                                     <th>##word.discount##</th>
                                     <th>##word.items_price_total##</th>
                                     <th>##word.notes##</th>
-                                    <th class="not-print">##word.actions##</th>
+                                    <th ng-hide="'##user.type##' == 'table'" class="not-print">##word.actions##</th>
                                 </tr>
 
                                 <tr ng-repeat="size in order_invoice.book_list">
@@ -382,7 +382,7 @@
                                         <i-control ng-model="size.notes"></i-control>
                                     </td>
 
-                                    <td class="center not-print">
+                                    <td ng-hide="'##user.type##' == 'table'" class="center not-print">
                                         <i-button type="delete default" label="##word.delete##"
                                             x-permissions="order_invoice_delete_items || order_invoice_manage"
                                             ng-click="deleteItemsList(size) ; calcSize(size)"></i-button>
@@ -396,7 +396,7 @@
                             <h2 class="bold center red">{{error}}</h2>
                         </div>
 
-                        <div class="row">
+                        <div class="row" ng-hide="'##user.type##' == 'table'">
 
                             <div class="col6 padding margin">
                                 <table class="table box-shadow " ng-init="discountEditorAdd = true">
@@ -499,11 +499,8 @@
                                         </td>
                                     </tr>
                                 </table>
-
                             </div>
-
                         </div>
-
 
                         <div class="row">
                             <i-control class="col3" ng-model="order_invoice.total_discount"
@@ -520,12 +517,14 @@
                                 type="number" disabled></i-control>
 
                             <div class="col6 center" ng-hide="order_invoice.status.id == 2">
-                                <i-button type="saving" label="##word.save##" ng-click="addOrderInvoice()">
+                                <i-button label="##word.add_to_orders##" type="fa fa-cart-plus saving"
+                                    ng-click="addOrderInvoice()">
                                 </i-button>
                                 <br>
                                 <br>
                                 <br>
-                                <i-button type="closing" ng-hide="order_invoice.active == false"
+                                <i-button type="closing"
+                                    ng-hide="order_invoice.active == false || '##user.type##' == 'table'"
                                     label="##word.close_order##" ng-click="closeOrder()">
                                 </i-button>
                             </div>
@@ -537,8 +536,8 @@
                             ng-click="displayAccountInvoice(order_invoice)">
                         </i-button>
 
-                        <i-button class="not-print" label="##word.print_invoice##" type="print "
-                            ng-click="printAccountInvoive()">
+                        <i-button ng-hide="'##user.type##' == 'table'" class="not-print" label="##word.print_invoice##"
+                            type="print " ng-click="printAccountInvoive()">
                         </i-button>
 
                     </div>
