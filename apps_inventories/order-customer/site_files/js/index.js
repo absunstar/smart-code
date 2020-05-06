@@ -77,7 +77,6 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
         return;
       };
 
-
       if ($scope.defaultSettings.inventory && $scope.defaultSettings.inventory.dont_max_discount_items) {
         let max_discount = false;
 

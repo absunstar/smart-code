@@ -81,6 +81,53 @@ module.exports = function init(site) {
     tables_doc.$req = req
     tables_doc.$res = res
 
+    user = {
+      name: tables_doc.name,
+      mobile: tables_doc.mobile,
+      username: tables_doc.username,
+      email: tables_doc.username,
+      password: tables_doc.password,
+      image_url: tables_doc.image_url,
+      type: 'table'
+    }
+
+    user.roles = [
+      {
+        module_name: "public",
+        name: "order_customer_user",
+        en: "Order Customers User",
+        ar: "طلبات العملاء للمستخدمين",
+        permissions: ["order_customer_ui", "order_customer_delete_items"]
+      }
+    ]
+
+    user.profile = {
+      name: user.name,
+      mobile: user.mobile,
+      image_url: user.image_url
+    }
+
+
+    if (req.session.user) {
+
+      tables_doc.company = site.get_company(req)
+      tables_doc.branch = site.get_branch(req)
+
+      user.branch_list = [{
+        company: site.get_company(req),
+        branch: site.get_branch(req)
+      }]
+
+    } else {
+      tables_doc.active = true
+
+      user.branch_list = [{
+        company: tables_doc.company,
+        branch: tables_doc.branch
+      }]
+    }
+
+
     tables_doc.add_user_info = site.security.getUserFinger({
       $req: req,
       $res: res
@@ -108,6 +155,27 @@ module.exports = function init(site) {
           if (!err) {
             response.done = true
             response.doc = doc
+
+            if (user.password && user.username) {
+              user.ref_info = { id: doc.id }
+              site.security.addUser(user, (err, doc1) => {
+                if (!err) {
+                  delete user._id
+                  delete user.id
+                  doc.user_info = {
+                    id: doc1.id
+                  }
+                  $tables.edit(doc, (err2, doc2) => {
+
+                    res.json(response)
+                  })
+                } else {
+                  response.error = err.message
+                }
+                res.json(response)
+              })
+            }
+
           } else {
             response.error = err.message
           }
@@ -130,12 +198,50 @@ module.exports = function init(site) {
 
     let tables_doc = req.body
 
+
+    user = {
+      name: tables_doc.name_ar,
+      mobile: tables_doc.mobile,
+      username: tables_doc.username,
+      email: tables_doc.username,
+      password: tables_doc.password,
+      image_url: tables_doc.image_url,
+      type: 'table'
+    }
+
+    user.roles = [
+      {
+        module_name: "public",
+        name: "order_customer_user",
+        en: "Order Customers User",
+        ar: "طلبات العملاء للمستخدمين",
+        permissions: ["order_customer_ui", "order_customer_delete_items"]
+      }
+    ]
+
+    user.profile = {
+      name: user.name,
+      mobile: user.mobile,
+      image_url: user.image_url
+    }
+    user.ref_info = {
+      id: tables_doc.id
+    }
+
+    user.branch_list = [{
+      company: site.get_company(req),
+      branch: site.get_branch(req)
+    }]
+
+
     tables_doc.edit_user_info = site.security.getUserFinger({
       $req: req,
       $res: res
     })
 
     if (tables_doc.id) {
+
+
       $tables.edit({
         where: {
           id: tables_doc.id
@@ -143,11 +249,32 @@ module.exports = function init(site) {
         set: tables_doc,
         $req: req,
         $res: res
-      }, err => {
+      }, (err, result) => {
         if (!err) {
           response.done = true
+          response.doc = result.doc
+
+          if (!result.doc.user_info && user.password && user.username) {
+            site.security.addUser(user, (err, doc1) => {
+              if (!err) {
+                delete user._id
+                delete user.id
+                result.doc.user_info = {
+                  id: doc1.id
+                }
+                $tables.edit(result.doc, (err2, doc2) => {
+                  res.json(response)
+                })
+              } else {
+                response.error = err.message
+              }
+              res.json(response)
+            })
+          } else if (result.doc.user_info && result.doc.user_info.id) {
+            site.security.updateUser(user, (err, user_doc) => { })
+          }
         } else {
-          response.error = 'Code Already Exist'
+          response.error = err.message
         }
         res.json(response)
       })
@@ -235,7 +362,8 @@ module.exports = function init(site) {
     if (where['name']) {
       where['name'] = new RegExp(where['name'], "i");
     }
-
+   
+    
     if (where['code']) {
       where['code'] = new RegExp(where['code'], "i");
     }
