@@ -102,6 +102,10 @@ popup item:hover {
     overflow-y: auto;
 }
 
+.modal.small .modal-content,.modal-content.small{
+    width: 50%;
+  }
+
 nav.sitebar {
     z-index: 999999;
     position: fixed;
@@ -240,4 +244,7 @@ nav.sitebottom a.link:hover {
     .tab-link span {
         padding: 1px;
     }
+    .modal.small .modal-content,.modal-content.small{
+        width: 90%;
+      }
 }

@@ -50,6 +50,73 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
 
   };
 
+  $scope.bookingTable = function (tableId) {
+
+    $scope.order_invoice.transaction_type = {
+      id: 1,
+      ar: 'طاولات',
+      en: 'Tables'
+    };
+
+    $http({
+      method: "POST",
+      url: "/api/tables/view",
+      data: {
+        select: { id: 1, name: 1, code: 1, active: 1, busy: 1, tables_group: 1, image_url: 1 },
+
+        where: {
+          active: true
+        },
+        id: tableId
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+
+          $scope.order_invoice.table = response.data.doc;
+          $http({
+            method: "POST",
+            url: "/api/tables_group/view",
+            data: {
+              select: { id: 1, name: 1, code: 1, active: 1, tables_group: 1, image_url: 1 },
+
+              where: {
+                active: true
+              },
+              id: $scope.order_invoice.table.tables_group.id
+            }
+          }).then(
+            function (response) {
+              $scope.busy = false;
+              if (response.data.done) {
+
+                $scope.order_invoice.table_group = response.data.doc;
+                if ($scope.order_invoice.table)
+                  $scope.order_invoice.table.busy = true;
+
+                $http({
+                  method: "POST",
+                  url: "/api/tables/update",
+                  data: $scope.order_invoice.table
+                });
+              }
+            },
+            function (err) {
+              $scope.busy = false;
+              $scope.error = err;
+            }
+          )
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+
+  };
+
   $scope.newOrderInvoice = function () {
     $scope.error = '';
     $scope.get_open_shift((shift) => {
@@ -87,7 +154,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
             }
           }
 
-          if ($scope.defaultSettings.general_Settings.customer) {
+          if ($scope.defaultSettings.general_Settings.customer && $scope.order_invoice.transaction_type.id == 2) {
             $scope.order_invoice.customer = $scope.defaultSettings.general_Settings.customer;
             if ($scope.defaultSettings.general_Settings.customer.gov)
               $scope.order_invoice.gov = $scope.defaultSettings.general_Settings.customer.gov;
@@ -170,61 +237,67 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
 
       let url = '/api/order_invoice/update';
       if ($scope.order_invoice.id) url = '/api/order_invoice/update';
-      else url = '/api/order_invoice/add';
+      else {
+        $scope.bookingTable('##user.ref_info.id##');
 
-      $scope.busy = true;
-      $http({
-        method: "POST",
-        url: url,
-        data: $scope.order_invoice
-      }).then(
-        function (response) {
-          $scope.busy = false;
-          if (response.data.done) {
-            $scope.sendToKitchens(Object.assign({}, response.data.doc));
-            $scope.order_invoice = response.data.doc;
+        url = '/api/order_invoice/add';
+      }
 
-            if ($scope.order_invoice.status.id == 2 && $scope.order_invoice.posting) {
+      $timeout(() => {
+        $scope.busy = true;
+        $http({
+          method: "POST",
+          url: url,
+          data: $scope.order_invoice
+        }).then(
+          function (response) {
+            $scope.busy = false;
+            if (response.data.done) {
+              $scope.sendToKitchens(Object.assign({}, response.data.doc));
+              $scope.order_invoice = response.data.doc;
 
-              let store_out = {
-                image_url: '/images/store_out.png',
-                supply_date: new Date(),
-                date: $scope.order_invoice.date,
-                order_id: $scope.order_invoice.id,
-                customer: $scope.order_invoice.customer,
-                shift: $scope.order_invoice.shift,
-                net_value: $scope.order_invoice.net_value,
-                paid_up: $scope.order_invoice.net_value,
-                payment_method: $scope.order_invoice.payment_method,
-                store: $scope.order_invoice.store,
-                order_code: $scope.order_invoice.code,
-                items: $scope.order_invoice.book_list,
-                total_discount: $scope.order_invoice.total_discount,
-                total_tax: $scope.order_invoice.total_tax,
-                total_value: $scope.order_invoice.total_value,
-                net_value: $scope.order_invoice.net_value,
-                type: {
-                  id: 4,
-                  en: "Orders Screen",
-                  ar: "شاشة الطلبات"
-                },
-                active: true
-              };
+              if ($scope.order_invoice.status.id == 2 && $scope.order_invoice.posting) {
 
-              if ($scope.defaultSettings.general_Settings && !$scope.defaultSettings.general_Settings.work_posting)
-                store_out.posting = true;
+                let store_out = {
+                  image_url: '/images/store_out.png',
+                  supply_date: new Date(),
+                  date: $scope.order_invoice.date,
+                  order_id: $scope.order_invoice.id,
+                  customer: $scope.order_invoice.customer,
+                  shift: $scope.order_invoice.shift,
+                  net_value: $scope.order_invoice.net_value,
+                  paid_up: $scope.order_invoice.net_value,
+                  payment_method: $scope.order_invoice.payment_method,
+                  store: $scope.order_invoice.store,
+                  order_code: $scope.order_invoice.code,
+                  items: $scope.order_invoice.book_list,
+                  total_discount: $scope.order_invoice.total_discount,
+                  total_tax: $scope.order_invoice.total_tax,
+                  total_value: $scope.order_invoice.total_value,
+                  net_value: $scope.order_invoice.net_value,
+                  type: {
+                    id: 4,
+                    en: "Orders Screen",
+                    ar: "شاشة الطلبات"
+                  },
+                  active: true
+                };
 
-              $scope.addStoresOut(store_out)
+                if ($scope.defaultSettings.general_Settings && !$scope.defaultSettings.general_Settings.work_posting)
+                  store_out.posting = true;
+
+                $scope.addStoresOut(store_out)
+              }
+
+            } else {
+              $scope.error = response.data.error;
             }
-
-          } else {
-            $scope.error = response.data.error;
+          },
+          function (err) {
+            console.log(err);
           }
-        },
-        function (err) {
-          console.log(err);
-        }
-      )
+        )
+      }, 500);
     } else $scope.error = '##word.open_shift_not_found##';
   };
 
@@ -1589,7 +1662,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         }
       });
     }
-    
+
     $scope.order_invoice.book_list.forEach(el => {
       if (item.size == el.size && item.barcode == el.barcode && !el.printed) {
         exist = true;
@@ -1695,7 +1768,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
 
   $scope.calcSize = function (size) {
     $scope.error = '';
-    setTimeout(() => {
+    $timeout(() => {
       let discount = 0;
       if (size.price && size.count) {
         if (size.discount.type == 'number')
@@ -1758,10 +1831,10 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
       if (obj.book_list && obj.book_list.length > 0)
         obj.net_value = (site.toNumber(obj.total_value) + (obj.service || 0) + (obj.total_tax || 0) + (obj.price_delivery_service || 0)) - (obj.total_discount || 0);
 
-        if (obj.currency) {
-          $scope.amount_currency = obj.net_value / obj.currency.ex_rate;
-          $scope.amount_currency = site.toNumber($scope.amount_currency);
-        }
+      if (obj.currency) {
+        $scope.amount_currency = obj.net_value / obj.currency.ex_rate;
+        $scope.amount_currency = site.toNumber($scope.amount_currency);
+      }
 
       $scope.discount = {
         type: 'number'

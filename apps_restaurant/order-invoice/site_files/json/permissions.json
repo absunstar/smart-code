@@ -5,7 +5,7 @@
     { "module_name" : "public" , "screen_name" : "order-invoice" , "name":"order_invoice_delete" , "en":"Delete" , "ar":"حذف"},
     { "module_name" : "public" , "screen_name" : "order-invoice" , "name":"order_invoice_view" , "en":"View" , "ar":"عرض"},
     { "module_name" : "public" , "screen_name" : "order-invoice" , "name":"order_invoice_cancel_order" , "en":"Cancle Order" , "ar":"إلغاء الطلب"},
-    { "module_name" : "public" , "screen_name" : "order-invoice" , "name":"order_invoice_delete_items" , "en":"]Delete Items" , "ar":"حذف الأصناف"},
+    { "module_name" : "public" , "screen_name" : "order-invoice" , "name":"order_invoice_delete_items" , "en":"Delete Items" , "ar":"حذف الأصناف"},
     { "module_name" : "public" , "screen_name" : "order-invoice" , "name":"order_invoice_search" , "en":"Search" , "ar":"بحث"},
     { "module_name" : "public" , "screen_name" : "order-invoice" , "name":"order_invoice_export" , "en":"Export" , "ar":"تصدير"},
     { "module_name" : "public" , "screen_name" : "order-invoice" , "name":"order_invoice_print" , "en":"Print" , "ar":"طباعة"},

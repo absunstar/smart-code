@@ -214,25 +214,19 @@ module.exports = function init(site) {
         ar: "مفتوحة"
       }
 
-    if (order_customer_doc.transaction_type && order_customer_doc.transaction_type.id == 2) {
       order_customer_doc.status_delivery = {
         id: 1,
         en: "Under Delivery",
         ar: "تحت التوصيل"
       };
-    };
-
-
 
     order_customer_doc.total_book_list = 0
     order_customer_doc.book_list.forEach(book_list => {
       order_customer_doc.total_book_list += book_list.total
     });
 
-    let customerId = 0
-
-    if (req.session.user.ref_info)
-      customerId = req.session.user.ref_info.id
+    if (order_customer_doc.status.id == 2)
+    site.call('[order_customer][order_invoice][+]', Object.assign({}, order_customer_doc))
 
     $order_customer.add(order_customer_doc, (err, doc) => {
       if (!err) {
@@ -269,14 +263,7 @@ module.exports = function init(site) {
       order_customer_doc.total_book_list += book_list.total
     })
 
-    if (order_customer_doc.transaction_type && order_customer_doc.transaction_type.id == 2) {
 
-      order_customer_doc.status_delivery = {
-        id: 1,
-        en: "Under Delivery",
-        ar: "تحت التوصيل"
-      };
-    };
     if (order_customer_doc.status.id == 2)
       site.call('[order_customer][order_invoice][+]', Object.assign({}, order_customer_doc))
 
