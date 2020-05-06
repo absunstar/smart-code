@@ -94,10 +94,10 @@ module.exports = function init(site) {
     user.roles = [
       {
         module_name: "public",
-        name: "order_customer_user",
-        en: "Order Customers User",
-        ar: "طلبات العملاء للمستخدمين",
-        permissions: ["order_customer_ui", "order_customer_delete_items"]
+        name: "order_invoice_tables",
+        en: "Order Invoice Tables",
+        ar: "طلبات الطاولات",
+        permissions: ["order_invoice_ui"]
       }
     ]
 
@@ -212,10 +212,10 @@ module.exports = function init(site) {
     user.roles = [
       {
         module_name: "public",
-        name: "order_customer_user",
-        en: "Order Customers User",
-        ar: "طلبات العملاء للمستخدمين",
-        permissions: ["order_customer_ui", "order_customer_delete_items"]
+        name: "order_invoice_tables",
+        en: "Order Invoice Tables",
+        ar: "طلبات الطاولات",
+        permissions: ["order_invoice_ui"]
       }
     ]
 
@@ -362,8 +362,8 @@ module.exports = function init(site) {
     if (where['name']) {
       where['name'] = new RegExp(where['name'], "i");
     }
-   
-    
+
+
     if (where['code']) {
       where['code'] = new RegExp(where['code'], "i");
     }

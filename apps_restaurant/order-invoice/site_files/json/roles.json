@@ -1,7 +1,20 @@
-[{
-    "module_name" : "public" ,
-    "name": "order_invoice_admin",
-    "en": "Order Invoice Admin",
-    "ar": "إدارة شاشة الطلبات",
-    "permissions": ["order_invoice_manage"]
-}]
+[
+    {
+        "module_name": "public",
+        "name": "order_invoice_admin",
+        "en": "Order Invoice Admin",
+        "ar": "إدارة شاشة الطلبات",
+        "permissions": [
+            "order_invoice_manage"
+        ]
+    },
+    {
+        "module_name": "public",
+        "name": "order_invoice_tables",
+        "en": "Order Invoice Tables",
+        "ar": "طلبات الطاولات",
+        "permissions": [
+            "order_invoice_ui"
+        ]
+    }
+]
