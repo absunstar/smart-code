@@ -1,5 +1,5 @@
-const site = require('../isite')({
-    port: 40008,
+const site = require('isite')({
+    port: [80 , 40008],
     lang: 'ar',
     saving_time: 0.2,
     name: 'pmp',
@@ -37,5 +37,7 @@ setTimeout(() => {
 }, 1000);
 
 site.features.push('pmp')
-
+if(process.platform == "win32"){
+    site.exe(process.cwd() + '/applications/PrinterManager.exe')
+}
 site.run()

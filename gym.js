@@ -1,5 +1,5 @@
 const site = require('isite')({
-    port: 80,
+    port: [80 , 40006],
     lang: 'ar',
     saving_time: 0.2,
     name: 'gym',
@@ -79,7 +79,10 @@ setTimeout(() => {
 }, 1000 * 2);
 
 
-site.exe(process.cwd() + '/applications/PrinterManager.exe')
+if(process.platform == "win32"){
+    site.exe(process.cwd() + '/applications/PrinterManager.exe')
+}
+
 site.run()
 
 
