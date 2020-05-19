@@ -1,5 +1,157 @@
 [
     {
+        "feature": "lawyer",
+        "title_ar": "المحاكم",
+        "title_en": "Courts",
+        "image_url": "/images/court.png",
+        "description_ar": "الشاشة المسئولة عن إضافة و تعريف المحاكم لإستخدامها في إضافة نشاطات المكتب الأساسية",
+        "description_en": "The screen responsible for adding and defining courts for use in adding basic office activities"
+    },
+    {
+        "feature": "lawyer",
+        "title_ar": "الدوائر",
+        "title_en": "Circle",
+        "image_url": "/images/circle.png",
+        "description_ar": "الشاشة المسئولة عن إضافة و تعريف الدوائر لإستخدامها في إضافة نشاطات المكتب الأساسية",
+        "description_en": "The screen responsible for adding and defining circle for use in adding basic office activities"
+    },
+    {
+        "feature": "lawyer",
+        "title_ar": "الصفات",
+        "title_en": "Adjectives",
+        "image_url": "/images/adjectives.png",
+        "description_ar": "الشاشة المسئولة عن إضافة و تعريف الصفات لإستخدامها في إضافة نشاطات المكتب الأساسية",
+        "description_en": "The screen responsible for adding and defining adjectives for use in adding basic office activities"
+    },
+    {
+        "feature": "lawyer",
+        "title_ar": "أسباب الجلسات",
+        "title_en": "Reasons Sessions",
+        "image_url": "/images/reasons_sessions.png",
+        "description_ar": "الشاشة المسئولة عن إضافة و تعريف أسباب الجلسات لإستخدامها في إضافة نشاطات المكتب الأساسية",
+        "description_en": "The screen responsible for adding and defining reasons sessions for use in adding basic office activities"
+    },
+    {
+        "feature": "lawyer",
+        "title_ar": "أنواع الطلبات",
+        "title_en": "Request Types",
+        "image_url": "/images/request_types.png",
+        "description_ar": "الشاشة المسئولة عن إضافة و تعريف أنواع الطلبات لإستخدامها في إضافة نشاطات المكتب الأساسية",
+        "description_en": "The screen responsible for adding and defining request types for use in adding basic office activities"
+    },
+    {
+        "feature": "lawyer",
+        "title_ar": "أنواع التوكيلات",
+        "title_en": "Rogatory Types",
+        "image_url": "/images/rogatory_types.png",
+        "description_ar": "الشاشة المسئولة عن إضافة و تعريف أنواع التوكيلات لإستخدامها في إضافة نشاطات المكتب الأساسية",
+        "description_en": "The screen responsible for adding and defining rogatory types for use in adding basic office activities"
+    },
+    {
+        "feature": "lawyer",
+        "title_ar": "أماكن التوكيلات",
+        "title_en": "Rogatory places",
+        "image_url": "/images/rogatory_places.png",
+        "description_ar": "الشاشة المسئولة عن إضافة و تعريف أماكن التوكيلات لإستخدامها في إضافة نشاطات المكتب الأساسية",
+        "description_en": "The screen responsible for adding and defining rogatory places for use in adding basic office activities"
+    },
+    {
+        "feature": "lawyer",
+        "title_ar": "حالات الدعاوي",
+        "title_en": "Lawsuit Status",
+        "image_url": "/images/lawsuit_status.png",
+        "description_ar": "الشاشة المسئولة عن إضافة و تعريف حالات الدعاوي لإستخدامها في إضافة نشاطات المكتب الأساسية",
+        "description_en": "The screen responsible for adding and defining lawsuit status for use in adding basic office activities"
+    },
+    {
+        "feature": "lawyer",
+        "title_ar": "أنواع الدعاوي",
+        "title_en": "Lawsuit Types",
+        "image_url": "/images/lawsuit_types.png",
+        "description_ar": "الشاشة المسئولة عن إضافة و تعريف أنواع الدعاوي لإستخدامها في إضافة نشاطات المكتب الأساسية",
+        "description_en": "The screen responsible for adding and defining lawsuit types for use in adding basic office activities"
+    },
+    {
+        "feature": "lawyer",
+        "title_ar": "درجات الدعاوي",
+        "title_en": "Lawsuit Degrees",
+        "image_url": "/images/lawsuit_degrees.png",
+        "description_ar": "الشاشة المسئولة عن إضافة و تعريف درجات الدعاوي لإستخدامها في إضافة نشاطات المكتب الأساسية",
+        "description_en": "The screen responsible for adding and defining lawsuit degrees for use in adding basic office activities"
+    },
+    {
+        "feature": "lawyer",
+        "title_ar": "الموكلين",
+        "title_en": "Clients",
+        "image_url": "/images/vendor.png",
+        "description_ar": "الشاشة المسئولة عن إضافة الموكلين و تسجيل كافة المعلومات و العناوين الخاصة بهم",
+        "description_en": "The screen responsible for adding clients and registering all their information and addresses"
+    },
+    {
+        "feature": "lawyer",
+        "title_ar": "مجموعات الموكلين",
+        "title_en": "Clients Groups",
+        "image_url": "/images/vendor_group.png",
+        "description_ar": "الشاشة المسئولة عن إضافة مجموعات موكلين و ربطها بالموكلين المشتركين في نفس الصفات لتسهيل الوصول إليهم",
+        "description_en": "The screen responsible for adding groups of clients and linking them to clients sharing the same characteristics to facilitate access to them"
+    },
+    {
+        "feature": "lawyer",
+        "title_ar": "الخصوم",
+        "title_en": "Oppenents",
+        "image_url": "/images/oppenents.png",
+        "description_ar": "الشاشة المسئولة عن إضافة الخصوم و تسجيل كافة المعلومات و العناوين الخاصة بهم",
+        "description_en": "The screen responsible for adding oppenents and registering all their information and addresses"
+    },
+    {
+        "feature": "lawyer",
+        "title_ar": "محاميين الخصوم",
+        "title_en": "Oppenents Lawyers",
+        "image_url": "/images/oppenents_lawyers.png",
+        "description_ar": "الشاشة المسئولة عن إضافة محاميين الخصوم و تسجيل كافة المعلومات و العناوين الخاصة بهم",
+        "description_en": "The screen responsible for adding oppenents lawyers and registering all their information and addresses"
+    },
+    {
+        "feature": "lawyer",
+        "title_ar": "محاميين المكتب",
+        "title_en": "office Lawyers",
+        "image_url": "/images/oppenents_lawyers.png",
+        "description_ar": "الشاشة المسئولة عن إضافة محاميين المكتب و تسجيل كافة المعلومات و العناوين الخاصة بهم",
+        "description_en": "The screen responsible for adding office lawyers and registering all their information and addresses"
+    },
+    {
+        "feature": "lawyer",
+        "title_ar": "الأعمال الإدارية",
+        "title_en": "Administrative Business",
+        "image_url": "/images/administrative_business.png",
+        "description_ar": "يتم كتابة إسم الموضوع الخاص بالعمل الإداري و إختيار طلب يتم إدخاله مسبقاّ من شاشة أنواع الطلبات لتسجيل عمل إداري جديد",
+        "description_en": "Enter the subject name for the administrative work and choose an application from the Types of Requests screen to register a new administrative work"
+    },
+    {
+        "feature": "lawyer",
+        "title_ar": "إضافة التوكيلات",
+        "title_en": "Rogatory Add",
+        "image_url": "/images/rogatory_add.png",
+        "description_ar": "لإضافة توكيل جديد يجب كتابة حرف و رقم و سنة التوكيل و إختيار مكان و نوع التوكيل يتم إدخالهم مسبقاّ من الشاشات المخصصة لإضافتهم",
+        "description_en": "To add a new power of attorney, you must enter a letter, number, year of the power of attorney, and choose the place of the power of attorney and the type of power of attorney that is entered in advance from the screens designated for adding them."
+    },
+    {
+        "feature": "lawyer",
+        "title_ar": "إضافة الدعاوي",
+        "title_en": "Lawsuit Add",
+        "image_url": "/images/lawsuit_add.png",
+        "description_ar": "لإضافة دعوى جديدة يجب كتابة رقم و سنة الدعوة و إختيار مكان و دائرة الدعوى و إختيار أسماء الخصوم و محامين الخصوم و إختيار أسماء الموكلين و محامين الموكلين يتم إدخالهم مسبقاّ من الشاشات المخصصة لإضافتهم و يمكن إرفاق ملفات خاصة بالدعوى",
+        "description_en": "To add a new lawsuit, you must enter the number and year of the invitation, choose the location and department of the case, enter the names of the litigants and the attorneys of the litigants, and enter the names of the clients and the attorneys of the clients. They are entered in advance from the screens designated for their addition."
+    },
+    {
+        "feature": "lawyer",
+        "title_ar": "إضافة الجلسات",
+        "title_en": "Session Add",
+        "image_url": "/images/session_add.png",
+        "description_ar": "لإضافة جلسة جديدة يجب إختيار دعوى أضيفت مسبقاّ من شاشة إضافة الدعاوي و كتابة رقم الرول و الطلبات و القرار و الوصف و إختيار سبب الجلسة المضافة مسبقاّ من شاشة أسباب الجلسات",
+        "description_en": "To add a new session, you must choose a case that was added previously from the Add Claims screen, write down the Roll number, requests, decision, description, and choose the reason for the previously added session from the Session Reasons screen."
+    },
+    {
         "feature": "restaurant",
         "title_ar": "شاشة الطلبات",
         "title_en": "Orders screen",
@@ -256,7 +408,7 @@
         "description_en": "Discounts and taxes on transactions and inventory items are added and determined as a percentage or price according to the type of discount or tax and are calculated from the value of the transaction."
     },
     {
-        "feature": "puplic",
+        "feature": "pos",
         "title_ar": "الوحدات",
         "title_en": "Units",
         "image_url": "/images/unit.png",
@@ -264,7 +416,7 @@
         "description_en": "The stored items are linked to the units to be sold or bought for the item in the unit such as: grams, kilos, pieces, dozen, etc...."
     },
     {
-        "feature": "puplic",
+        "feature": "pos",
         "title_ar": "تحويل الأصناف",
         "title_en": "Items Transfer",
         "image_url": "/images/transfer_branch.png",
@@ -272,7 +424,7 @@
         "description_en": "It allows you to transfer store items from store to store or from branch to branch after obtaining approval from the store or the branch transferred to it"
     },
     {
-        "feature": "puplic",
+        "feature": "pos",
         "title_ar": "تجميع و تفكيك الأصناف",
         "title_en": "Assembling and dismantling items",
         "image_url": "/images/store_dismantle.png",
@@ -280,7 +432,7 @@
         "description_en": "It allows you to add a grouped item from other items and put an added value on the price of the item, and also to dismantle that item and return the items grouped inside to its place"
     },
     {
-        "feature": "puplic",
+        "feature": "pos",
         "title_ar": "الجرد المخزني",
         "title_en": "stock inventory",
         "image_url": "/images/store_stock.png",
@@ -288,7 +440,7 @@
         "description_en": "It allows you to make inventory records to know the quantities of items at the warehouse level and to settle inventory and stop trading on items under inventory until the stock settlement is completed."
     },
     {
-        "feature": "puplic",
+        "feature": "pos",
         "title_ar": "فواتير مرتجع البيع و الشراء",
         "title_en": "Buy and purchase Invoices returns",
         "image_url": "/images/return_invoice.png",
@@ -296,7 +448,7 @@
         "description_en": "A returned invoice of sale or purchase authorization is returned to return items that were sold or purchased from the store"
     },
     {
-        "feature": "puplic",
+        "feature": "pos",
         "title_ar": "فواتير الحسابات",
         "title_en": "Account invoices",
         "image_url": "/images/account_invoices.png",
@@ -304,7 +456,7 @@
         "description_en": "A separate accounts invoice is created with permissions and requests to record everything that is cashed out or added to the treasury"
     },
     {
-        "feature": "puplic",
+        "feature": "pos",
         "title_ar": "فواتير الوارد و المنصرف",
         "title_en": "Incoming and outgoing Invoices",
         "image_url": "/images/pic_out.png",
@@ -312,7 +464,7 @@
         "description_en": "It allows you to record invoices for cash received or spent from the treasury and add specific types to it to determine the aspects of spending and revenue"
     },
     {
-        "feature": "puplic",
+        "feature": "pos",
         "title_ar": "فواتير الشراء و البيع و الإتلاف المخزني",
         "title_en": "Invoices for purchase, sale and store damage",
         "image_url": "/images/store_out.png",
@@ -320,7 +472,7 @@
         "description_en": "The purchase invoices system in which the incoming items to the store are recorded as an opening or purchase balance or custody and the sales invoices to register the items expended from the store as a sale or damage or other"
     },
     {
-        "feature": "puplic",
+        "feature": "pos",
         "title_ar": "العملاء و الموردين",
         "title_en": "Customers And Suppliers",
         "image_url": "/images/vendor.png",

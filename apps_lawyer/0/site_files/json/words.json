@@ -229,9 +229,59 @@
         "en": "Address",
         "ar": "العنوان"
     },
+    
+    {"name" : "customers" , "en" : "Clients" , "ar" : "الموكلين"},
+    {"name" : "customers_new" , "en" : "New Client" , "ar" : "موكل جديد"},   
+    {"name" : "customers_add" , "en" : "Add Client" , "ar" : "إضافة موكل"}, 
+    {"name" : "customers_edit" , "en" : "Client Edit" , "ar" : "تعديل بيانات موكل"},
+    {"name" : "customers_details" , "en" : "Client Details" , "ar" : "تفاصيل موكل"}, 
+    {"name" : "customers_delete" , "en" : "Delete Client" , "ar" : "حذف موكل"},
+    {"name" : "customers_indentfy" , "en" : "Client indentfy" , "ar" : "نوع الموكل"},
+
+    {"name" : "customers_personal_information" , "en" : "Personal Information" , "ar" : "البيانات الشخصية"},
+    {"name" : "customers_basic_information" , "en" : "Basic Information" , "ar" : "البيانات الاساسية"},
+    {"name" : "customers_code" , "en" : "Client Code" , "ar" : "كود الموكل"},
+    {"name" : "customers_name_ar" , "en" : "Client Name Arabic" , "ar" : "إسم الموكل بالعربي"},
+    {"name" : "customers_name_en" , "en" : "Client Name English" , "ar" : "إسم الموكل بالانجليزية"},
+    {"name" : "customer_name" , "en" : "Client Name" , "ar" : "إسم الموكل"},
+    {"name" : "customer" , "en" : "Client" , "ar" : " الموكل"},
+    {"name" : "customers_groups" , "en" : "Clients Group" , "ar" : "مجموعة الموكلين"},
+    {
+        "name": "menu_customers_groups",
+        "en": "Clients Groups Menu",
+        "ar": "قائمة مجموعة الموكلين"
+    },
+    {
+        "name": "menu_customers_groups_tag",
+        "en": "Add Clients Groups",
+        "ar": "إضافة مجموعة موكلين"
+    },
+    {
+        "name": "menu_customers",
+        "en": "Client Menu",
+        "ar": "قائمة الموكلين"
+    },
+    {
+        "name": "menu_customers_tag",
+        "en": "Add Client",
+        "ar": "إضافة موكلين"
+    },
     {
         "name": "companies_customer_service",
         "en": "Customer Services",
         "ar": "خدمة العملاء"
-    }
+    },
+    {"name" : "customers_group_informations" , "en" : "Clients Group Informations" , "ar" : "بيانات مجموعة موكلين"},
+
+    {"name" : "customers_groups_name" , "en" : "Clients Groups" , "ar" : "مجموعات الموكلين"},
+    {"name" : "customers_group_menus" , "en" : "Clients Group Menu" , "ar" : "قائمة مجموعة الموكلين"},
+    {"name" : "customers_group_code" , "en" : "Clients Group Code" , "ar" : "كود مجموعة الموكلين"},
+    {"name" : "customers_group_name" , "en" : "Clients Group Name" , "ar" : "اسم مجموعة الموكلين"},
+
+    {"name" : "customers_group_new" , "en" : "New Clients Group" , "ar" : "مجموعة موكلين جديدة"},
+    {"name" : "customers_group_details" , "en" : "Clients Group Details" , "ar" : "تفاصيل مجموعة موكلين"},
+    {"name" : "customers_group_update" , "en" : "Edit Clients Group" , "ar" : "تعديل مجموعة موكلين"},
+    {"name" : "customers_group_delete" , "en" : "Delte Clients Group" , "ar" : "حذف مجموعة موكلين"},
+    {"name" : "customers_group_add_name" , "en" : "Add Clients Group" , "ar" : "إضافة مجموعة موكلين"}
+
 ]

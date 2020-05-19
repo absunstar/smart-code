@@ -73,7 +73,7 @@
       <h2 class="center">
         Password <span> test </span>
       </h2>
-     
+
 
     </div>
 
@@ -142,12 +142,26 @@
             if (res[i].feature == "puplic") {
               post = res[i];
               rendered += Mustache.render(post_template, post);
+
             } else if (res[i].feature == "gym" && site.features.like('*gym*')) {
               post = res[i];
               rendered += Mustache.render(post_template, post);
+
             } else if (res[i].feature == "restaurant" && site.features.like('*restaurant*')) {
               post = res[i];
               rendered += Mustache.render(post_template, post);
+
+            } else if (res[i].feature == "lawyer" && site.features.like('*lawyer*')) {
+              post = res[i];
+              rendered += Mustache.render(post_template, post);
+
+            } else if (res[i].feature == "pos") {
+
+              if (site.features.like('*gym*') || site.features.like('*restaurant*')) {
+                post = res[i];
+                rendered += Mustache.render(post_template, post);
+              }
+
             }
 
           } catch (error) {
