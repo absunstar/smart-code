@@ -10,7 +10,7 @@
             <a class="tab-link " onclick="site.showTabContent(event, '#customersFiles')">
                 ##word.customers_files## </a>
 
-            <a class="tab-link" x-features="gym" onclick="site.showTabContent(event,'#medicalConditionInformation')">
+            <a class="tab-link" x-features="gym || academy" onclick="site.showTabContent(event,'#medicalConditionInformation')">
                 ##word.medical_condition##</a>
             <a class="tab-link" x-features="academy" onclick="site.showTabContent(event,'#familyInformation')">
                 ##word.family_info##
@@ -234,7 +234,7 @@
                 </fieldset>
             </div>
 
-            <div id="medicalConditionInformation" x-features="gym" class="tab-content">
+            <div id="medicalConditionInformation" x-features="gym || academy" class="tab-content">
                 <fieldset>
 
                     <legend>

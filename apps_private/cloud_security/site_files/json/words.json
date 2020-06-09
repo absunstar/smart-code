@@ -3,7 +3,7 @@
     {"name" : "security_login" , "en" : "Login" , "ar":"تسجيل الدخول"},
     {"name" : "security_register" , "en" : "Register" , "ar":"تسجيل الاشتراك"},
     {"name" : "security_logout" , "en" : "Logout" , "ar":"تسجيل الخروج"},
-    {"name" : "security_user_email" , "en" : "Email" , "ar":"البريد الالكترونى"},
+    {"name" : "security_user_email" , "en" : "User Name" , "ar":"إسم المستخدم"},
     {"name" : "security_user_password" , "en" : "Password" , "ar":"كلمة المرور"},
     {"name" : "security_user_password_return" , "en" : "Password Return" , "ar":"إعادة كتابة كلمة المرور"},
     {"name" : "security_user_name" , "en" : "Name" , "ar":"الأسم"},

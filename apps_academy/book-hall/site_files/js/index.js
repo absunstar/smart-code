@@ -12,7 +12,7 @@ app.controller("book_hall", function ($scope, $http, $timeout) {
           date: new Date(),
           date_from: new Date(),
           shift: shift,
-          total_value: 0,
+          net_value: 0,
           dates_list: [],
           paid_list: []
         };
@@ -70,7 +70,7 @@ app.controller("book_hall", function ($scope, $http, $timeout) {
       $scope.error = "##word.should_select_safe##";
       return;
 
-    } else if ($scope.book_hall.paid_up > $scope.book_hall.total_value) {
+    } else if ($scope.book_hall.paid_up > $scope.book_hall.net_value) {
       $scope.error = "##word.err_paid_require##";
       return;
     }
@@ -102,10 +102,11 @@ app.controller("book_hall", function ($scope, $http, $timeout) {
               total_period: request_doc.total_period,
               period: request_doc.period,
               price_hour: request_doc.price_hour,
+              currency: request_doc.currency,
               safe: request_doc.safe,
               price_day: request_doc.price_day,
               total_discount: request_doc.total_discount,
-              net_value: request_doc.total_value,
+              net_value: request_doc.net_value,
               paid_up: request_doc.paid_up,
               invoice_code: request_doc.code,
               source_type: {
@@ -174,14 +175,10 @@ app.controller("book_hall", function ($scope, $http, $timeout) {
   };
 
   $scope.displayDetailsBookHall = function (book_hall) {
-    $scope.get_open_shift((shift) => {
-      if (shift) {
-        $scope.error = '';
-        $scope.viewBookHall(book_hall);
-        $scope.book_hall = {};
-        site.showModal('#bookHallViewModal');
-      } else $scope.error = '##word.open_shift_not_found##';
-    });
+    $scope.error = '';
+    $scope.viewBookHall(book_hall);
+    $scope.book_hall = {};
+    site.showModal('#bookHallViewModal');
   };
 
   $scope.viewBookHall = function (book_hall) {
@@ -493,42 +490,43 @@ app.controller("book_hall", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.paidUpdate = function () {
-    $scope.error = '';
-    if ($scope.book_hall.safe) {
-
-      if (!$scope.book_hall.total_rest) {
-        $scope.book_hall.total_rest = $scope.book_hall.paid;
-
-      } else {
-        $scope.book_hall.total_rest += $scope.book_hall.paid;
-      };
-
-      $scope.book_hall.rest = ($scope.book_hall.total_value - $scope.book_hall.total_rest);
-      $scope.book_hall.baid_go = $scope.book_hall.paid;
-
-      $scope.book_hall.paid_list = $scope.book_hall.paid_list || [];
-      $scope.book_hall.paid_list.unshift({
-
-        payment: $scope.book_hall.baid_go,
-        date_paid: $scope.book_hall.date_paid,
-        safe: $scope.book_hall.safe
-
-      });
-
-      $scope.book_hall.paid = 0;
-      $scope.error = "";
-      $scope.busy = true;
-
-      $http({
-        method: "POST",
-        url: "/api/book_hall/update_paid",
-        data: $scope.book_hall
-      })
-    };
-    site.hideModal('#acceptModal')
-
-  };
+  /*  $scope.paidUpdate = function () {
+     $scope.error = '';
+     if ($scope.book_hall.safe) {
+ 
+       if (!$scope.book_hall.total_rest) {
+         $scope.book_hall.total_rest = $scope.book_hall.paid;
+ 
+       } else {
+         $scope.book_hall.total_rest += $scope.book_hall.paid;
+       };
+ 
+       $scope.book_hall.rest = ($scope.book_hall.net_value - $scope.book_hall.total_rest);
+       $scope.book_hall.baid_go = $scope.book_hall.paid;
+ 
+       $scope.book_hall.paid_list = $scope.book_hall.paid_list || [];
+       $scope.book_hall.paid_list.unshift({
+ 
+         payment: $scope.book_hall.baid_go,
+         date_paid: $scope.book_hall.date_paid,
+         safe: $scope.book_hall.safe
+ 
+       });
+ 
+       $scope.book_hall.paid = 0;
+       $scope.error = "";
+       $scope.busy = true;
+ 
+       $http({
+         method: "POST",
+         url: "/api/book_hall/update_paid",
+         data: $scope.book_hall
+       })
+     };
+     site.hideModal('#acceptModal')
+ 
+   };
+  */
 
   $scope.get_open_shift = function (callback) {
     $scope.busy = true;
@@ -633,22 +631,22 @@ app.controller("book_hall", function ($scope, $http, $timeout) {
       if (obj.discountes && obj.discountes.length > 0)
         obj.discountes.forEach(ds => {
           if (ds.type == 'percent')
-            obj.total_discount += obj.total_value * site.toNumber(ds.value) / 100;
+            obj.total_discount += obj.net_value * site.toNumber(ds.value) / 100;
           else obj.total_discount += site.toNumber(ds.value);
         });
 
       if (obj.period && obj.period.id == 1) {
 
-        obj.total_value = obj.total_period * obj.price_day - obj.total_discount;
+        obj.net_value = obj.total_period * obj.price_day - obj.total_discount;
       };
 
       if (obj.period && obj.period.id == 2) {
 
-        obj.total_value = obj.total_period * obj.price_hour - obj.total_discount;
+        obj.net_value = obj.total_period * obj.price_hour - obj.total_discount;
       };
 
       if (obj.currency) {
-        $scope.amount_currency = obj.total_value / obj.currency.ex_rate;
+        $scope.amount_currency = obj.net_value / obj.currency.ex_rate;
         $scope.amount_currency = site.toNumber($scope.amount_currency);
 
       }
@@ -675,7 +673,7 @@ app.controller("book_hall", function ($scope, $http, $timeout) {
           price_hour: book_hall.price_hour,
           price_day: book_hall.price_day,
           total_discount: book_hall.total_discount,
-          net_value: book_hall.total_value,
+          net_value: book_hall.net_value,
           paid_up: 0,
           invoice_code: book_hall.code,
           source_type: {
@@ -972,9 +970,9 @@ app.controller("book_hall", function ($scope, $http, $timeout) {
   $scope.getPeriod();
   $scope.getPaymentMethodList();
   $scope.loadCurrencies();
+  $scope.getDefaultSettings();
   $scope.loadDiscountTypes();
   $scope.getTimeList();
-  $scope.getDefaultSettings();
   $scope.getAttend();
   $scope.getClassRooms();
 });

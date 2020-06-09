@@ -3,14 +3,42 @@ app.controller("hosting", function ($scope, $http, $timeout) {
   $scope.hosting = {};
 
   $scope.displayAddHosting = function () {
-    $scope.error = '';
-    $scope.hosting = {
-      image_url: '/images/hosting.png',
-      student_list: [{}],
-      date: new Date(),
-      active: true
-    };
-    site.showModal('#hostingAddModal');
+
+    $scope.get_open_shift((shift) => {
+      if (shift) {
+
+        $scope.error = '';
+        $scope.hosting = {
+          image_url: '/images/hosting.png',
+          student_list: [{}],
+          date: new Date(),
+          active: true
+        };
+
+        if ($scope.defaultSettings.general_Settings) {
+          if ($scope.defaultSettings.general_Settings.hall)
+            $scope.hosting.hall = $scope.defaultSettings.general_Settings.hall;
+        };
+
+        if ($scope.defaultSettings.accounting) {
+          $scope.hosting.currency = $scope.defaultSettings.accounting.currency;
+          if ($scope.defaultSettings.accounting.payment_method) {
+            $scope.hosting.payment_method = $scope.defaultSettings.accounting.payment_method;
+            $scope.loadSafes($scope.hosting.payment_method, $scope.hosting.currency);
+            if ($scope.hosting.payment_method.id == 1)
+              $scope.hosting.safe = $scope.defaultSettings.accounting.safe_box;
+            else $scope.hosting.safe = $scope.defaultSettings.accounting.safe_bank;
+          }
+        }
+        if ($scope.hosting.currency) {
+          $scope.amount_currency = site.toNumber($scope.hosting.net_value) / site.toNumber($scope.hosting.currency.ex_rate);
+          $scope.amount_currency = site.toNumber($scope.amount_currency);
+        }
+
+        site.showModal('#hostingAddModal');
+
+      } else $scope.error = '##word.open_shift_not_found##';
+    });
   };
 
   $scope.addHosting = function () {
@@ -42,10 +70,14 @@ app.controller("hosting", function ($scope, $http, $timeout) {
   };
 
   $scope.displayUpdateHosting = function (hosting) {
-    $scope.error = '';
-    $scope.viewHosting(hosting);
-    $scope.hosting = {};
-    site.showModal('#hostingUpdateModal');
+    $scope.get_open_shift((shift) => {
+      if (shift) {
+        $scope.error = '';
+        $scope.viewHosting(hosting);
+        $scope.hosting = {};
+        site.showModal('#hostingUpdateModal');
+      } else $scope.error = '##word.open_shift_not_found##';
+    });
   };
 
   $scope.updateHosting = function () {
@@ -78,10 +110,14 @@ app.controller("hosting", function ($scope, $http, $timeout) {
   };
 
   $scope.displayDetailsHosting = function (hosting) {
-    $scope.error = '';
-    $scope.viewHosting(hosting);
-    $scope.hosting = {};
-    site.showModal('#hostingViewModal');
+    $scope.get_open_shift((shift) => {
+      if (shift) {
+        $scope.error = '';
+        $scope.viewHosting(hosting);
+        $scope.hosting = {};
+        site.showModal('#hostingViewModal');
+      } else $scope.error = '##word.open_shift_not_found##';
+    });
   };
 
   $scope.viewHosting = function (hosting) {
@@ -108,10 +144,14 @@ app.controller("hosting", function ($scope, $http, $timeout) {
     )
   };
   $scope.displayDeleteHosting = function (hosting) {
-    $scope.error = '';
-    $scope.viewHosting(hosting);
-    $scope.hosting = {};
-    site.showModal('#hostingDeleteModal');
+    $scope.get_open_shift((shift) => {
+      if (shift) {
+        $scope.error = '';
+        $scope.viewHosting(hosting);
+        $scope.hosting = {};
+        site.showModal('#hostingDeleteModal');
+      } else $scope.error = '##word.open_shift_not_found##';
+    });
   };
 
   $scope.deleteHosting = function () {
@@ -237,25 +277,6 @@ app.controller("hosting", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.getSafesList = function () {
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/safes/all",
-      data: {}
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.safesList = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
-  };
 
   $scope.getHost = function () {
     $scope.busy = true;
@@ -399,11 +420,170 @@ app.controller("hosting", function ($scope, $http, $timeout) {
     $scope.search = {};
   };
 
+  $scope.spliceStudents = function () {
+    $scope.hosting.student_list.forEach((h_s, i) => {
+      $scope.studentList.forEach(s => {
+        if (h_s.customer.id == s.id) {
+          $scope.studentList.splice(i, 1);
+        }
+      });
+    });
+  };
+
+
+  $scope.getPaymentMethodList = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $scope.paymentMethodList = [];
+    $http({
+      method: "POST",
+      url: "/api/payment_method/all"
+
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.paymentMethodList = response.data;
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.getSafeByType = function (obj) {
+    $scope.error = '';
+    if ($scope.defaultSettings.accounting) {
+      $scope.loadSafes(obj.payment_method, obj.currency);
+      if (obj.payment_method.id == 1) {
+        if ($scope.defaultSettings.accounting.safe_box)
+          obj.safe = $scope.defaultSettings.accounting.safe_box
+      } else {
+        if ($scope.defaultSettings.accounting.safe_bank)
+          obj.safe = $scope.defaultSettings.accounting.safe_bank
+      }
+    }
+  };
+
+  $scope.loadSafes = function (method, currency) {
+    $scope.error = '';
+    $scope.busy = true;
+
+    let where = { 'currency.id': currency.id };
+
+    if (method.id == 1)
+      where['type.id'] = 1;
+    else where['type.id'] = 2;
+
+    $http({
+      method: "POST",
+      url: "/api/safes/all",
+      data: {
+        select: {
+          id: 1,
+          name: 1,
+          number: 1,
+          currency: 1,
+          type: 1
+        },
+        where: where
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) $scope.safesList = response.data.list;
+
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.loadCurrencies = function () {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/currency/all",
+      data: {
+        select: {
+          id: 1,
+          name: 1,
+          ex_rate: 1
+        },
+        where: {
+          active: true
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.currenciesList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.getDefaultSettings = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/default_setting/get",
+      data: {}
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.doc)
+          $scope.defaultSettings = response.data.doc;
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.get_open_shift = function (callback) {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/shifts/get_open_shift",
+      data: {
+        where: { active: true },
+        select: { id: 1, name: 1, code: 1, from_date: 1, from_time: 1, to_date: 1, to_time: 1 }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.doc) {
+          $scope.shift = response.data.doc;
+          callback(response.data.doc);
+        } else {
+          callback(null);
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+        callback(null);
+      }
+    )
+  };
+
   $scope.getHostingList();
+  $scope.getPaymentMethodList();
+  $scope.loadCurrencies();
+  $scope.getDefaultSettings();
   $scope.getEmployeeList();
   $scope.getStudentList();
   $scope.getTimeList();
-  $scope.getSafesList();
   $scope.getHost();
   $scope.getClassRooms();
 });

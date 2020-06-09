@@ -147,6 +147,10 @@
               post = res[i];
               rendered += Mustache.render(post_template, post);
 
+            } else if (res[i].feature == "academy" && site.features.like('*academy*')) {
+              post = res[i];
+              rendered += Mustache.render(post_template, post);
+
             } else if (res[i].feature == "restaurant" && site.features.like('*restaurant*')) {
               post = res[i];
               rendered += Mustache.render(post_template, post);

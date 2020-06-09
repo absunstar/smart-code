@@ -1,3 +1,5 @@
+
+
 .r_red,
 .r_red input {
     color: red;
@@ -16,59 +18,4 @@
     color:Indigo;
     font-weight :bold;
     font-size: 20px;
-}
-
-.r_blue,
-.r_blue input {
-    color: blue;
-    font-weight :bold;
-    font-size: 20px;
-}
-
-.r_black,
-.r_black input {
-    color: black;
-    font-weight :bold;
-    font-size: 20px;
-}
-
-.r_brown,
-.r_brown input {
-    color: brown;
-    font-weight :bold;
-    font-size: 20px;
-}
-
-.r_orange,
-.r_orange input {
-    color: OrangeRed;
-    font-weight :bold;
-    font-size: 20px;
-}
-
-.r_darkRed,
-.r_darkRed input {
-    color: DarkRed;
-    font-weight :bold;
-    font-size: 20px;
-}
-
-.bg_Gold,
-.bg_Gold {
-    background-color: Gold !important;
-}
-
-.bg_LawnGreen,
-.bg_LawnGreen {
-    background-color: springgreen !important;
-}
-
-.bg_tomato ,
-.bg_tomato  {
-    background-color:tomato  !important;
-}
-
-.bg_skyblue,
-.bg_skyblue {
-    background-color: turquoise !important;
 }

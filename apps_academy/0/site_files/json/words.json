@@ -326,5 +326,20 @@
         "name": "companies_customer_service",
         "en": "Student Services",
         "ar": "خدمة العملاء"
-    }
+    },
+    {"name" : "customers_group_informations" , "en" : "Students Group Informations" , "ar" : "بيانات مجموعة طلاب"},
+    {"name" : "customers_groups" , "en" : "Students Group" , "ar" : "مجموعة طلاب"},
+
+    {"name" : "customers_groups_name" , "en" : "Students Groups" , "ar" : "مجموعات الطلاب"},
+    {"name" : "customers_group_menus" , "en" : "Students Group Menu" , "ar" : "قائمة مجموعة الطلاب"},
+    {"name" : "customers_group_code" , "en" : "Students Group Code" , "ar" : "كود مجموعة الطلاب"},
+    {"name" : "customers_group_name" , "en" : "Students Group Name" , "ar" : "اسم مجموعة الطلاب"},
+
+    {"name" : "customers_group_new" , "en" : "New Students Group" , "ar" : "مجموعة طلاب جديدة"},
+    {"name" : "customers_group_details" , "en" : "Students Group Details" , "ar" : "تفاصيل مجموعة طلاب"},
+    {"name" : "customers_group_update" , "en" : "Edit Students Group" , "ar" : "تعديل مجموعة طلاب"},
+    {"name" : "customers_group_delete" , "en" : "Delte Students Group" , "ar" : "حذف مجموعة طلاب"},
+    {"name" : "customers_group_add_name" , "en" : "Add Students Group" , "ar" : "إضافة مجموعة طلاب"}
+
+
 ]

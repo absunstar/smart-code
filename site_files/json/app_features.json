@@ -1,5 +1,77 @@
 [
     {
+        "feature": "academy",
+        "title_ar": "الطلاب",
+        "title_en": "Students",
+        "image_url": "/images/customer.png",
+        "description_ar": "الشاشة المسئولة عن إضافة الطلاب و تسجيل البيانات الخاصة بهم و بأولياء أمورهم لسهولة التواصل معهم و إيضا بيان عن حالة الطالب و الأمراض التي يعاني منهاو الأدوية التي يتناولها و المشروبات و الأطعمة التي يعاني من حساسية منها",
+        "description_en": "The screen responsible for adding students and recording their data and their families for easy communication with them, as well as a statement about the student’s condition, the diseases that the medications you take, drinks and foods that he suffers from are allergic to."
+    },
+    {
+        "feature": "academy",
+        "title_ar": "المستأجرين",
+        "title_en": "TenantS",
+        "image_url": "/images/tenant.png",
+        "description_ar": "الشاشة المسئولة عن إضافة المستأجرين و بياناتهم و العناوين الخاصة بهم لسهولة الوصول إليهم",
+        "description_en": "The screen responsible for adding tenants, their data and addresses for easy access to them."
+    },
+    {
+        "feature": "academy",
+        "title_ar": "القاعات",
+        "title_en": "Halls",
+        "image_url": "/images/hall.png",
+        "description_ar": "يتم إضافة قاعات التدريب و المحاضرات و ربطها بالمشتركين أو الطلاب و الخدمات المشتركين بها داخل القاعة لتسهيل و حصر سير العمل",
+        "description_en": "Training rooms and lectures are added and linked to the participants or students and the services subscribed to inside the hall to facilitate and limit the work progress."
+    },
+    {
+        "feature": "academy",
+        "title_ar": "الأمراض و الأدوية",
+        "title_en": "Diseases and medications",
+        "image_url": "/images/disease.png",
+        "description_ar": "يتم إضافة أنواع من الأمراض أو الأدوية و ربط المشتركين أو الطلاب بها ليتم التعامل مع المصابين بالطريقة المناسبة و للحفاظ على سلامتهم",
+        "description_en": "Kinds of diseases or medications are added, and the participants or students are linked to them in order to deal with the injured in the appropriate way and to maintain their safety"
+    },
+    {
+        "feature": "academy",
+        "title_ar": "تعريف الكورسات",
+        "title_en": "Courses",
+        "image_url": "/images/courses.png",
+        "description_ar": "يتم من خلالها تعريف إسم الكورس و السعر و إجمالي مدة الكورس و عدد المحاضرات",
+        "description_en": "Through which the name of the course, price, total duration of the course and number of lectures are defined."
+    },
+    {
+        "feature": "academy",
+        "title_ar": "إنشاء الكورسات",
+        "title_en": "Create Course",
+        "image_url": "/images/create_course.png",
+        "description_ar": "الشاشة التي يتم منها إنشاء الكورسات من خلال إختيار كورس تم إدخاله مسبقا من شاشة تعريف الكورسات ثم إدخال تاريخ بداية و نهاية الكورس و إختيار القاعة من شاشة القاعات ثم تحديد عدد المحاضرات و التعديل عليها و تحديد ميعاد المحاضرات بالوقت و التاريخ",
+        "description_en": "The screen from which courses are created by selecting a course that was previously entered from the course definition screen and then entering the beginning and end date of the course and choosing the hall from the halls screen then determining the number of lectures and modifying them and setting the date of the lectures by time and date."
+    },
+    {
+        "feature": "academy",
+        "title_ar": "حجز القاعات",
+        "title_en": "Book Hall",
+        "image_url": "/images/book_hall.png",
+        "description_ar": "يتم من خلالها حجز القاعات من خلال إختيار مستأجر و قاعة تم إضافتهم مسبقا من الشاشات المخصصة لهم و إدخال تاريخ بداية و نهاية الحجز و إدخال مدة الحجز و عدد المحاضرات و تحديد كل محاضرة بالوقت و التاريخ",
+        "description_en": "Through which rooms are reserved by selecting a tenant and a hall previously added from the screens designated for them, entering the start and end date of the reservation, entering the reservation period and the number of lectures, and specifying each lecture by time and date."
+    },
+    {
+        "feature": "academy",
+        "title_ar": "إستمارة حجز كورس",
+        "title_en": "Course reservation form",
+        "image_url": "/images/book_course.png",
+        "description_ar": "الشاشة المسئولة عن إضافة حجز الطلاب للكورسات من خلال إختيار الطالب ثم إختيار الكورس و عرض المدربين ثم يختار الطالب الكورس الذي يريده و يتم الحجز و إنشاء فاتورة حجز",
+        "description_en": "The screen responsible for adding students ’bookings to the courses through selecting the student, then choosing the course and displaying the trainers, then the student selects the course he wants and the reservation is made and a reservation invoice is created."
+    },
+    {
+        "feature": "academy",
+        "title_ar": "الإستضافة",
+        "title_en": "Hosting",
+        "image_url": "/images/hosting.png",
+        "description_ar": "الإستضافة هي أشبه بقاعة إنتظار لمجموعة من الطلاب حتى يتم إستلامهم من أولياء أمورهم و يتم إضافة إستضافة جديدة من خلال إختيار قاعة و موظفمن الشاشات المخصصة لهم و تحديد نوع الإستضافة صباحية أو مسائية و إضافة الطلاب فيها مع وقت دخول الطالب ووقت خروجه و تحديد سعر الإستضافة لكل طالب لإنشاء فاتورة",
+        "description_en": "Hosting is more like a waiting room for a group of students until they are received from their parents, and a new hosting is added by selecting a hall and an employee from the screens assigned to them and determining the type of hosting in the morning or evening and adding students in it with the time of student entry and the time of his exit and determining the hosting price for each Request to create an invoice."
+    },
+    {
         "feature": "lawyer",
         "title_ar": "المحاكم",
         "title_en": "Courts",
