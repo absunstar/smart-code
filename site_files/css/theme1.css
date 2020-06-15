@@ -1,0 +1,122 @@
+.tabs .tabs-content .tab-content {
+    display: none;
+    padding: 6px 12px;
+    width: 100%;
+    -webkit-animation-name: var( --tab-animation-name);
+    -webkit-animation-duration: var( --tab-animation-duration);
+    animation-name: var( --tab-animation-name);
+    animation-duration: var( --tab-animation-duration);
+    overflow: scroll;
+}
+
+.r_blue,
+.r_blue input {
+    color: blue;
+    font-weight :bold;
+    font-size: 20px;
+}
+
+.r_black,
+.r_black input {
+    color: black;
+    font-weight :bold;
+    font-size: 20px;
+}
+
+.r_brown,
+.r_brown input {
+    color: brown;
+    font-weight :bold;
+    font-size: 20px;
+}
+
+.r_orange,
+.r_orange input {
+    color: OrangeRed;
+    font-weight :bold;
+    font-size: 20px;
+}
+
+.r_darkRed,
+.r_darkRed input {
+    color: DarkRed;
+    font-weight :bold;
+    font-size: 20px;
+}
+
+.bg_Gold,
+.bg_Gold {
+    background-color: Gold !important;
+}
+
+.bg_LawnGreen,
+.bg_LawnGreen {
+    background-color: springgreen !important;
+}
+
+.bg_tomato ,
+.bg_tomato  {
+    background-color:tomato  !important;
+}
+
+.bg_skyblue,
+.bg_skyblue {
+    background-color: turquoise !important;
+}
+.bord {
+    background-color: #7381e5 !important;
+    width: auto;
+    text-align: center;
+    height: auto;
+    border-radius: 25px;
+
+}
+
+
+
+:root{
+    --tabs-header-link-border-bottom : none;
+}
+
+.tabs .tabs-header .tab-link.active {
+    border-radius: 25px;
+}
+
+.tabs .tabs-header .tab-link:hover {
+    border-radius: 25px;
+}
+
+i-checkbox .selector {
+    border-radius: 25px;
+}
+
+i-image img {
+    border-radius: 50%;
+
+}
+
+img {
+    border-radius: 50%;
+
+}
+
+.logo {
+    border-radius: 50%;
+
+}
+
+.btn {
+    border-radius: 25px;
+}
+
+.table th {
+    border-width: 5px;
+    border-radius: 30px;
+    border-color: #fbfbfb;
+}
+
+.table td {
+    border-radius: 25px;
+    border-width: 5px;
+    border-color: #fbfbfb;
+}
