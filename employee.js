@@ -1,7 +1,7 @@
 const site = require('isite')({
-    port: [80 , 40010],
+    port: [80, 40010],
     lang: 'ar',
-    saving_time: 0.2,
+    version: '1.0.0',
     name: 'employee',
     theme: 'theme_paper',
     mongodb: {
@@ -47,7 +47,7 @@ site.importApps(__dirname + '/apps_hr')
 site.importApps(__dirname + '/apps_employee')
 site.addFeature('employee')
 setTimeout(() => {
-    
+
     site.importApps(__dirname + '/apps_core')
     site.importApp(__dirname + '/apps_private/companies')
     site.importApp(__dirname + '/apps_private/zk-reader')
@@ -72,7 +72,7 @@ setTimeout(() => {
 }, 1000 * 2);
 
 
-if(process.platform == "win32"){
+if (process.platform == "win32") {
     site.exe(process.cwd() + '/applications/PrinterManager.exe')
 }
 

@@ -1,7 +1,7 @@
-<script src="/x-js/jquery.js"></script>
-<script src="/x-js/mustache.js"></script>
-<script src="/x-js/angular.js"></script>
-<script src="/x-js/site.js"></script>
+<script src="/x-js/jquery.js?v=##site.options.version##"></script>
+<script src="/x-js/mustache.js?v=##site.options.version##"></script>
+<script src="/x-js/angular.js?v=##site.options.version##"></script>
+<script src="/x-js/site.js?v=##site.options.version##"></script>
 <script>
     site.features = '##req.features##';
     site.feature = (f)=> site.features.indexOf(f) !== -1;
@@ -19,11 +19,11 @@
 </script>
 
 
-<script src="/x-js/directive.js"></script>
-<script src="/js/sitebar.js"></script>
-<script src="/js/sitebottom.js"></script>
-<script src="/js/FileSaver.js"></script>
-<script src="/js/xlsx.full.min.js"></script>
+<script src="/x-js/directive.js?v=##site.options.version##"></script>
+<script src="/js/sitebar.js?v=##site.options.version##"></script>
+<script src="/js/sitebottom.js?v=##site.options.version##"></script>
+<script src="/js/FileSaver.js?v=##site.options.version##"></script>
+<script src="/js/xlsx.full.min.js?v=##site.options.version##"></script>
 
 <div x-permission="!login" x-import="security/login_modal.html"></div>
 <div x-permission="login" x-import="security/logout_modal.html"></div>

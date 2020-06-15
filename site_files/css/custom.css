@@ -85,14 +85,14 @@ popup item:hover {
     position: fixed;
     width: auto;
     right: 0px;
-    top: 50px;
+    top: 54px;
     overflow: scroll;
     height: 100vh;
     padding: 40px;
     text-align: center;
     box-shadow: 1px 1px 3px 1px var(--theme-color);
     background: var(--x-background);
-    border-radius: 0px 0px 0px 30px;
+    border-radius: 0px 0px 0px 0px;
 
 }
 
@@ -118,7 +118,7 @@ nav.sitebar {
   left: 0px;
   box-shadow: 1px 1px 1px 1px #555;
   background: var(--theme-color);
-  border-radius: 0px 0px 20px 20px;
+  border-radius: 0px 0px 0px 0px;
 }
 
 nav h2.brand {
@@ -252,4 +252,10 @@ nav.sitebottom a.link:hover {
   .modal-content.small {
     width: 90%;
   }
+  .main-menu {
+  
+    top: 84px;
+   
+
+}
 }
