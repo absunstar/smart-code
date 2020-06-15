@@ -85,7 +85,7 @@ popup item:hover {
     position: fixed;
     width: auto;
     right: 0px;
-    top: 70px;
+    top: 50px;
     overflow: scroll;
     height: 100vh;
     padding: 40px;
@@ -93,6 +93,7 @@ popup item:hover {
     box-shadow: 1px 1px 3px 1px var(--theme-color);
     background: var(--x-background);
     border-radius: 0px 0px 0px 30px;
+
 }
 
 .modal {
@@ -142,6 +143,10 @@ nav h2.brand a i {
 
 nav .links {
   display: none;
+  -webkit-animation-name: var(--modal-animation-name);
+  -webkit-animation-duration: var(--modal-animation-duration);
+  animation-name: var(--modal-animation-name);
+  animation-duration: var(--modal-animation-duration);
 }
 
 nav .links ul {
