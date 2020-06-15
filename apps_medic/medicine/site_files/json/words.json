@@ -6,13 +6,13 @@
     {
         "name": "medicine_new",
         "en": "New Medicine",
-        "ar": "دواء  جديد"
+        "ar": "دواء جديد"
     },
 
     {
         "name": "medicine_add",
         "en": "Add Medicine",
-        "ar": "اضافة دواء "
+        "ar": "إضافة دواء "
     },
     {
         "name": "medicine_edit",

@@ -5,6 +5,11 @@
         "ar": "المطبخ"
     },
     {
+        "name": "kitchens",
+        "en": "Kitchens",
+        "ar": "المطابخ"
+    },
+    {
         "name": "kitchen_name",
         "en": "Kitchen Name",
         "ar": "إسم المطبخ"
