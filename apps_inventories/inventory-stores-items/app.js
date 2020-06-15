@@ -1510,25 +1510,29 @@ module.exports = function init(site) {
                   itemsCb.forEach(cbSize => {
 
                     if (currentSize.barcode == cbSize.barcode && currentSize.size == cbSize.size) {
-                      currentSize.branches_list.forEach(branchesList => {
-                        branchesList.stores_list.forEach(storesList => {
 
-                          if (store.id == storesList.store.id) {
-                            storesList.size_units_list.forEach(sizeUnits => {
+                      if (currentSize.branches_list && currentSize.branches_list.length > 0)
+                        currentSize.branches_list.forEach(branchesList => {
 
-                              if (sizeUnits.id == cbSize.unit.id) {
+                          if (branchesList.stores_list && branchesList.stores_list.length > 0)
+                            branchesList.stores_list.forEach(storesList => {
 
-                                let over = site.toNumber(sizeUnits.current_count) - site.toNumber(cbSize.count)
+                              if (store.id == storesList.store.id) {
+                                storesList.size_units_list.forEach(sizeUnits => {
 
-                                if (over < 0)
-                                  cbObj.value = true
+                                  if (sizeUnits.id == cbSize.unit.id) {
+
+                                    let over = site.toNumber(sizeUnits.current_count) - site.toNumber(cbSize.count)
+
+                                    if (over < 0)
+                                      cbObj.value = true
+                                  }
+
+                                });
                               }
 
                             });
-                          }
-
                         });
-                      });
 
                     }
                   })
