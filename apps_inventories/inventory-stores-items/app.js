@@ -494,8 +494,8 @@ module.exports = function init(site) {
       });
     });
 
-    
-    
+
+
     $stores_items.findMany({
       where: {
         'company.id': site.get_company(req).id,
@@ -964,20 +964,54 @@ module.exports = function init(site) {
       if (!err) {
         response.done = true
 
-        docs.forEach(_docs => {
-          _docs.sizes.forEach(_sizes => {
-            _sizes.count = 0
-            _sizes.start_count = 0
-            _sizes.current_count = 0
-            _sizes.total_buy_price = 0
-            _sizes.total_buy_count = 0
-            _sizes.total_sell_price = 0
-            _sizes.total_sell_count = 0
-            _sizes.branches_list
 
+        site.getDefaultSetting(req, callback => {
+          let unit = {}
+
+          if (callback.inventory) {
+            if (callback.inventory.unit)
+              unit = callback.inventory.unit
+          }
+
+          docs.forEach(_docs => {
+
+            _docs.main_unit.id = unit.id
+            _docs.main_unit.name = unit.name
+
+            _docs.units_list.forEach(_units_main => {
+              _units_main.id = unit.id
+              _units_main.name = unit.name
+            });
+
+
+            _docs.sizes.forEach(_sizes => {
+              _sizes.start_count = 0
+              _sizes.current_count = 0
+              _sizes.total_buy_price = 0
+              _sizes.total_buy_count = 0
+              _sizes.total_sell_price = 0
+              _sizes.total_sell_count = 0
+              _sizes.branches_list = []
+
+              _sizes.size_units_list.forEach(_units_size => {
+                _units_size.id = unit.id
+                _units_size.name = unit.name
+                _units_size.current_count = 0
+                _units_size.start_count = 0
+                _units_size.total_buy_price = 0
+                _units_size.total_buy_count = 0
+                _units_size.total_sell_price = 0
+                _units_size.total_sell_count = 0
+              });
+            });
+
+            if (!_docs.item_group || (_docs.item_group && !_docs.item_group.id)) {
+              $stores_items.delete({ id: _docs.id })
+
+            } else {
+              $stores_items.update(_docs)
+            }
           });
-          $stores_items.update(_docs)
-          // $stores_items.delete({id: _docs.id})
         });
 
       } else {
@@ -1324,9 +1358,6 @@ module.exports = function init(site) {
     })
   }
 
-
-
-
   site.post("/api/stores_items/handel_zeft", (req, res) => {
     let response = {
       done: false
@@ -1448,6 +1479,73 @@ module.exports = function init(site) {
       res.json(response)
     })
   })
+
+
+  site.overdraft = function (req, itemsCb, callback) {
+
+    let where = {}
+    let store = req.body.store;
+    let barcodes = itemsCb.map(_item => _item.barcode)
+
+    let cbObj = {}
+
+    where['sizes.barcode'] = { $in: barcodes }
+    site.getDefaultSetting(req, cbSetting => {
+
+      cbObj.overdraft = cbSetting.inventory.overdraft
+
+      $stores_items.findMany({
+        select: req.body.select || {},
+        where: where,
+        sort: req.body.sort || {
+          id: -1
+        },
+        limit: req.body.limit
+      }, (err, docs) => {
+        if (!err) {
+          if (docs && docs.length > 0) {
+            docs.forEach(_item => {
+              if (_item.sizes && _item.sizes.length > 0)
+                _item.sizes.forEach(currentSize => {
+                  itemsCb.forEach(cbSize => {
+
+                    if (currentSize.barcode == cbSize.barcode && currentSize.size == cbSize.size) {
+                      currentSize.branches_list.forEach(branchesList => {
+                        branchesList.stores_list.forEach(storesList => {
+
+                          if (store.id == storesList.store.id) {
+                            storesList.size_units_list.forEach(sizeUnits => {
+
+                              if (sizeUnits.id == cbSize.unit.id) {
+
+                                let over = site.toNumber(sizeUnits.current_count) - site.toNumber(cbSize.count)
+
+                                if (over < 0)
+                                  cbObj.value = true
+                              }
+
+                            });
+                          }
+
+                        });
+                      });
+
+                    }
+                  })
+
+                })
+            })
+
+          }
+
+          callback(cbObj)
+        }
+
+
+      })
+    })
+
+  }
 
 
 }

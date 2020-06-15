@@ -553,7 +553,12 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
             $scope.loadAll();
             $scope.newStoreIn();
 
-          } else $scope.error = response.data.error;
+            } else {
+            $scope.error = response.data.error;
+            if (response.data.error.like('*OverDraft Not*')) {
+              $scope.error = "##word.overdraft_not_active##"
+            }
+          }
 
         },
         function (err) {
@@ -1004,7 +1009,12 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
             if (response.data.done) {
               site.hideModal('#deleteStoreInModal');
               $scope.loadAll();
-            } else $scope.error = response.data.error;
+            } else {
+              $scope.error = response.data.error;
+              if (response.data.error.like('*OverDraft Not*')) {
+                $scope.error = "##word.overdraft_not_active##"
+              }
+            };
 
           },
           function (err) {
@@ -1044,6 +1054,10 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
               $scope.loadAll();
             } else {
               $scope.error = '##word.error##';
+              if (response.data.error.like('*OverDraft Not*')) {
+                $scope.error = "##word.overdraft_not_active##"
+                store_out.posting = false;
+              }
             }
           },
           function (err) {

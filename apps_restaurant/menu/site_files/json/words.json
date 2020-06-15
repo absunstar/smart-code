@@ -389,11 +389,7 @@
         "en": "Book Courses Manegment",
         "ar": "إدارة إستمارات حجز الكورسات"
     },
-    {
-        "name": "report_orders_menus",
-        "en": "Report Orders Menu",
-        "ar": "قائمة تقارير مبيعات الطلبات "
-    },
+ 
     {
         "name": "menu_medicine",
         "en": "Medicines",
@@ -688,17 +684,6 @@
         "name": "report_invoices_menus",
         "en": "Report Invoices Menu",
         "ar": "قائمة تقارير الفواتير "
-    },
-   
-    {
-        "name": "report_employee_delivery_menus",
-        "en": "Report Employees Delivery Menu",
-        "ar": "قائمة تقارير موظفين التوصيل "
-    },
-    {
-        "name": "report_employee_delivery_name",
-        "en": "Report Employees Delivery",
-        "ar": "تقارير موظفين التوصيل "
     },
     {
         "name": "report_employee_user_menus",
@@ -1035,11 +1020,6 @@
         "name": "pos_management",
         "en": "Point Of Sale System Management",
         "ar": "إدارة نظام نقاط البيع"
-    },
-    {
-        "name": "order_invoice_menus",
-        "en": "Orders Invoice Screen",
-        "ar": "شاشة الطلبات"
     },
     {
         "name": "order_invoice_management",

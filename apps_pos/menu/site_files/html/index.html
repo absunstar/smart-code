@@ -135,6 +135,32 @@
                 <br>
                 <br>
 
+                <a class="item" href="/customers" x-permissions="customers_ui || customers_manage">
+                    <img src="/images/vendor.png">
+                    <h2> ##word.menu_customers## </h2>
+                    <p> ##word.menu_customers_tag##</p>
+                </a>
+                <a class="item" href="/vendors" x-permissions="vendors_ui || vendors_manage">
+                    <img src="/images/vendor.png">
+                    <h2> ##word.menu_vendors## </h2>
+                    <p> ##word.menu_vendors_tag##</p>
+                </a>
+                <a class="item" href="/customers_group"
+                    x-permissions="sales_customers_group_ui || sales_customers_group_manage">
+                    <img src="/images/vendor_group.png">
+                    <h2> ##word.menu_customers_groups## </h2>
+                    <p> ##word.menu_customers_groups_tag##</p>
+                </a>
+                <a class="item" href="/vendors_group" x-permissions="vendors_group_ui || vendors_group_manage">
+                    <img src="/images/vendor_group.png">
+                    <h2> ##word.menu_vendors_groups## </h2>
+                    <p> ##word.menu_vendors_groups_tag##</p>
+                </a>
+
+
+                <br>
+                <br>
+
                 <a class="item" href="/militaries_status"
                     x-permissions="militaries_status_ui || militaries_status_manage">
                     <img src="images/military.png">
@@ -287,6 +313,16 @@
                     <h2> ##word.delegates## </h2>
                     <p> ##word.menu_delegates_tag##</p>
                 </a>
+
+                <a class="item" href="/delivery_employees"
+                    x-permissions="delivery_employee_ui || delivery_employee_manage">
+                    <img src="/images/delivery_employee_list.png">
+                    <h2> ##word.delivery_employee_menus## </h2>
+                    <p> ##word.delivery_employee_manage##</p>
+                </a>
+
+                <br>
+                <br>
 
                 <a class="item" href="/jobs" x-permissions="jobs_ui || jobs_manage">
                     <img src="/images/jobs.png">
@@ -446,15 +482,79 @@
                     <p>##word.report_invoices_vendors_name##</p>
                 </a>
 
+
+                <a class="item" href="/report_orders" x-permissions="report_orders_ui || report_orders_manage">
+                    <img src="/images/report_orders.png">
+                    <h2>##word.report_orders_menus##</h2>
+                    <p>##word.report_orders_name##</p>
+                </a>
+
+                <a class="item" href="/report_employee_user"
+                    x-permissions="report_employee_user_ui || report_employee_user_manage">
+                    <img src="/images/report_employee_user.png">
+                    <h2>##word.report_employee_user_name##</h2>
+                    <p>##word.report_employee_user_menus##</p>
+                </a>
+
+                <a class="item" href="/report_full_employees"
+                    x-permissions="report_full_employees_ui || report_full_employees_manage">
+                    <img src="/images/report_full_employees.png">
+                    <h2>##word.report_full_employees_name##</h2>
+                    <p>##word.report_full_employees_menus##</p>
+                </a>
+
+
+                <a class="item" href="/report_employee_delivery"
+                    x-permissions="report_employee_delivery_ui || report_employee_delivery_manage">
+                    <img src="/images/report_employee_delivery.png">
+                    <h2>##word.report_employee_delivery_menus##</h2>
+                    <p>##word.report_employee_delivery_name##</p>
+                </a>
+
+
             </div>
 
             <div id="companyTab" class="tab-content">
+
+
+                <a class="item" href="/order_invoice" x-permissions="order_invoice_ui || order_invoice_manage">
+                    <img src="/images/order_invoice.png">
+                    <h2> ##word.order_invoice_menus## </h2>
+                    <p> ##word.order_invoice_management##</p>
+                </a>
+
+                <a class="item" href="/order_management" x-permissions="order_management_ui || order_management_manage">
+                    <img src="/images/order_management.png">
+                    <h2> ##word.order_management_menus## </h2>
+                    <p> ##word.order_management_management##</p>
+                </a>
+
+                <a class="item" href="/order_customer" x-permissions="order_customer_ui || order_customer_manage">
+                    <img src="/images/order_customer.png">
+                    <h2> ##word.order_customer_menus## </h2>
+                    <p> ##word.order_customer_management##</p>
+                </a>
+
+
+                <br>
+                <br>
+
+
+                <a class="item" href="/order_distributor"
+                    x-permissions="order_distributor_ui || order_distributor_manage">
+                    <img src="/images/order_distributor.png">
+                    <h2>##word.order_distributor_menus## </h2>
+                    <p>##word.order_distributor_management##</p>
+                </a>
 
                 <a class="item" href="/account_invoices" x-permissions="account_invoices_ui || account_invoices_manage">
                     <img src="/images/account_invoices.png">
                     <h2>##word.account_invoices_menu## </h2>
                     <p>##word.account_invoices_management##</p>
                 </a>
+
+                <br>
+                <br>
 
                 <a class="item" href="/stores_in" x-permissions="stores_in_ui || stores_in_manage">
                     <img src="/images/pic_money_in.png">
@@ -473,36 +573,6 @@
                     <h2>##word.stores_assemble##</h2>
                     <p>##word.system_register_stores_assemble##</p>
                 </a>
-
-                <br>
-                <br>
-
-                <a class="item" href="/customers" x-permissions="customers_ui || customers_manage">
-                    <img src="/images/vendor.png">
-                    <h2> ##word.menu_customers## </h2>
-                    <p> ##word.menu_customers_tag##</p>
-                </a>
-                <a class="item" href="/vendors" x-permissions="vendors_ui || vendors_manage">
-                    <img src="/images/vendor.png">
-                    <h2> ##word.menu_vendors## </h2>
-                    <p> ##word.menu_vendors_tag##</p>
-                </a>
-
-                <br>
-                <br>
-
-                <a class="item" href="/customers_group"
-                    x-permissions="sales_customers_group_ui || sales_customers_group_manage">
-                    <img src="/images/vendor_group.png">
-                    <h2> ##word.menu_customers_groups## </h2>
-                    <p> ##word.menu_customers_groups_tag##</p>
-                </a>
-                <a class="item" href="/vendors_group" x-permissions="vendors_group_ui || vendors_group_manage">
-                    <img src="/images/vendor_group.png">
-                    <h2> ##word.menu_vendors_groups## </h2>
-                    <p> ##word.menu_vendors_groups_tag##</p>
-                </a>
-
 
                 <br>
                 <br>

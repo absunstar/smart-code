@@ -26,6 +26,7 @@ module.exports = function init(site) {
         name: doc.name
       },
       name: "منطقة إفتراضية",
+      price_delivery_service: 0,
       image_url: '/images/area.png',
       company: {
         id: doc.company.id,
@@ -202,7 +203,7 @@ module.exports = function init(site) {
     if (where['name']) {
       where['name'] = new RegExp(where['name'], "i");
     }
-    
+
     if (site.get_company(req) && site.get_company(req).id)
       where['company.id'] = site.get_company(req).id
     /*     where['branch.code'] = site.get_branch(req).code

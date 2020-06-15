@@ -557,7 +557,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
             else $scope.paid_invoice.safe = $scope.defaultSettings.accounting.safe_bank;
           }
         }
-        if ($scope.paid_invoice.currency){
+        if ($scope.paid_invoice.currency) {
           $scope.amount_currency = site.toNumber($scope.paid_invoice.remain_amount) / site.toNumber($scope.paid_invoice.currency.ex_rate);
           $scope.amount_currency = site.toNumber($scope.amount_currency)
         }
@@ -576,7 +576,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
         account_invoices.net_value = site.toNumber(total_price_item) + (account_invoices.service || 0) + (account_invoices.price_delivery_service || 0) + (account_invoices.total_tax || 0) - (account_invoices.total_discount || 0);
       }
 
-      if (account_invoices.currency){
+      if (account_invoices.currency) {
         $scope.amount_currency = account_invoices.net_value / account_invoices.currency.ex_rate;
         $scope.amount_currency = site.toNumber($scope.amount_currency);
 
@@ -609,7 +609,8 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
-        $scope.transactionTypeList = response.data;
+        if (site.feature('pos')) $scope.transactionTypeList = response.data.filter(i => i.id != 1);
+        else $scope.transactionTypeList = response.data;
       },
       function (err) {
         $scope.busy = false;
@@ -649,8 +650,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
         $scope.busy = false;
 
         if (site.feature('gym')) $scope.sourceTypeList = response.data.filter(i => i.id != 3 && i.id != 5 && i.id != 6 && i.id != 7);
-        else if (site.feature('restaurant')) $scope.sourceTypeList = response.data.filter(i => i.id != 4 && i.id != 5 && i.id != 6 && i.id != 7);
-        else if (site.feature('pos')) $scope.sourceTypeList = response.data.filter(i => i.id != 4 && i.id != 3 && i.id != 5 && i.id != 6 && i.id != 7);
+        else if (site.feature('restaurant') || site.feature('pos')) $scope.sourceTypeList = response.data.filter(i => i.id != 4 && i.id != 5 && i.id != 6 && i.id != 7);
         else if (site.feature('academy')) $scope.sourceTypeList = response.data.filter(i => i.id != 4 && i.id != 3);
         else $scope.sourceTypeList = response.data;
       },

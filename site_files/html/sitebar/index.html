@@ -3,8 +3,8 @@
         <div class="col4" help-id="brand_title">
             <a x-permissions="login" href="#" onclick="$('.sitebar .links').toggle(200)"> <i class="fa fa-bars"></i>
             </a>
-            <a x-permissions="login"   href="#" onclick="$('.sitebar .links').toggle(200)">
-                ##word.brand_title## <span > ##word.brand_tag##</span>
+            <a x-permissions="login" href="#" onclick="$('.sitebar .links').toggle(200)">
+                ##word.brand_title## <span> ##word.brand_tag##</span>
             </a>
             <a x-permissions="!login" href="/">
                 ##word.brand_title## <span> ##word.brand_tag##</span>
@@ -12,7 +12,8 @@
         </div>
         <div class="col4 text-center desktop">
             <div class="info bord" ng-show="##session.company.id##">
-                 <i> ##session.company.name_ar## - ##session.branch.name_ar## </i> 
+                <i ng-show="'##session.lang##' == 'ar'"> ##session.company.name_ar## - ##session.branch.name_ar## </i>
+                <i ng-show="'##session.lang##' == 'en'"> ##session.company.name_en## - ##session.branch.name_en## </i>
             </div>
         </div>
         <div class="col4 text-left ">

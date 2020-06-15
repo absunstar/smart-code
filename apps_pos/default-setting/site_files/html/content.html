@@ -31,9 +31,25 @@
                         <i-list class="col3" ng-model="default_setting.general_Settings.vendor" items="vendorsList"
                             display="name_ar" ng-search="_search.$search_vendor"
                             label="##word.stores_in_Company_name##"></i-list>
+
+
                     </div>
                     <br>
                     <br>
+
+                    <div class="row">
+                        <i-list help-id="" ng-search="_search.$discount_method_search" class="col2"
+                            label="##word.discount_method##" ng-model="default_setting.general_Settings.discount_method"
+                            items="discountMethodList" display="##session.lang##">
+                        </i-list>
+
+                        <i-list ng-search="_search.$order_type" class="col2" display="##session.lang##"
+                            ng-model="default_setting.general_Settings.order_type" label="##word.order_type##"
+                            items="transactionTypeList">
+                        </i-list>
+
+
+                    </div>
 
                     <div class="row">
                         <i-checkbox label="##word.work_posting##"
@@ -176,6 +192,9 @@
                             ng-model="default_setting.inventory.dont_max_discount_items"></i-checkbox>
                         <i-checkbox label="##word.auto_barcode_generation##"
                             ng-model="default_setting.inventory.auto_barcode_generation"></i-checkbox>
+
+                        <i-checkbox label="##word.overdraft##" ng-model="default_setting.inventory.overdraft">
+                        </i-checkbox>
                     </div>
                 </fieldset>
 

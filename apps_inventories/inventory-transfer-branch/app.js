@@ -93,52 +93,63 @@ module.exports = function init(site) {
 
     branch_ransfer_doc.date = new Date(branch_ransfer_doc.date)
 
-    if (branch_ransfer_doc._id) {
-      $transfer_branch.edit({
-        where: {
-          _id: branch_ransfer_doc._id
-        },
-        set: branch_ransfer_doc,
-        $req: req,
-        $res: res
-      }, (err, document) => {
-        if (!err) {
-          response.done = true
-          let doc = document.doc
-          doc.items.forEach(_itm => {
-            _itm.company = doc.company
-            _itm.branch = doc.branch_from
-            _itm.number = doc.number
-            _itm.current_status = 'transferred'
-            _itm.date = doc.date
-            _itm.transaction_type = 'out'
-            _itm.store = doc.store_from
-            site.call('item_transaction - items', Object.assign({}, _itm))
-            _itm.type = 'minus'
-            site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _itm))
-          })
+    site.overdraft(req, branch_ransfer_doc.items, cbOverDraft => {
 
-          doc.items.forEach(_itm => {
-            _itm.company = doc.company
-            _itm.branch = doc.branch_to
-            _itm.number = doc.number
-            _itm.current_status = 'transferred'
-            _itm.date = doc.date
-            _itm.transaction_type = 'in'
-            _itm.store = doc.store_to
-            site.call('item_transaction + items', Object.assign({}, _itm))
-            _itm.type = 'sum'
-            site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _itm))
-          })
+      if (!cbOverDraft.overdraft && cbOverDraft.value) {
 
-        } else {
-          response.error = err.message
-        }
+        response.error = 'OverDraft Not Active'
         res.json(response)
-      })
-    } else {
-      res.json(response)
-    }
+
+      } else {
+
+        if (branch_ransfer_doc._id) {
+          $transfer_branch.edit({
+            where: {
+              _id: branch_ransfer_doc._id
+            },
+            set: branch_ransfer_doc,
+            $req: req,
+            $res: res
+          }, (err, document) => {
+            if (!err) {
+              response.done = true
+              let doc = document.doc
+              doc.items.forEach(_itm => {
+                _itm.company = doc.company
+                _itm.branch = doc.branch_from
+                _itm.number = doc.number
+                _itm.current_status = 'transferred'
+                _itm.date = doc.date
+                _itm.transaction_type = 'out'
+                _itm.store = doc.store_from
+                site.call('item_transaction - items', Object.assign({}, _itm))
+                _itm.type = 'minus'
+                site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _itm))
+              })
+
+              doc.items.forEach(_itm => {
+                _itm.company = doc.company
+                _itm.branch = doc.branch_to
+                _itm.number = doc.number
+                _itm.current_status = 'transferred'
+                _itm.date = doc.date
+                _itm.transaction_type = 'in'
+                _itm.store = doc.store_to
+                site.call('item_transaction + items', Object.assign({}, _itm))
+                _itm.type = 'sum'
+                site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _itm))
+              })
+
+            } else {
+              response.error = err.message
+            }
+            res.json(response)
+          })
+        } else {
+          res.json(response)
+        }
+      }
+    })
   })
 
   site.post("/api/transfer_branch/update", (req, res) => {

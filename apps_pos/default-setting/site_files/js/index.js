@@ -21,7 +21,7 @@ app.controller("default_setting", function ($scope, $http) {
       en: 'Store'
     }
   ];
-  
+
   $scope.showSearch = function () {
     site.showModal('#searchModal');
   };
@@ -82,6 +82,26 @@ app.controller("default_setting", function ($scope, $http) {
         if (response.data.done) {
           $scope.vendorsList = response.data.list;
         }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.getTransactionTypeList = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $scope.transactionTypeList = [];
+    $http({
+      method: "POST",
+      url: "/api/order_invoice/transaction_type/all"
+
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.transactionTypeList = response.data.filter(i => i.id == 2 || i.id == 3);
       },
       function (err) {
         $scope.busy = false;
@@ -436,7 +456,7 @@ app.controller("default_setting", function ($scope, $http) {
         select: {
           id: 1,
           name: 1,
-          barcode : 1
+          barcode: 1
         }
       }
     }).then(
@@ -516,4 +536,5 @@ app.controller("default_setting", function ($scope, $http) {
   $scope.loadStoresInTypes();
   $scope.loadSetting();
   $scope.getPrintersPath();
+  $scope.getTransactionTypeList();
 });

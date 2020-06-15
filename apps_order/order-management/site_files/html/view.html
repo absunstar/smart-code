@@ -1,0 +1,171 @@
+<div ng-hide="busy" id="v1">
+    <div class="form">
+        <div id="customersGroupViewModal">
+            <fieldset>
+                <legend> ##word.basic_information## </legend>
+                <div class="row">
+                    <div class="col9">
+                        <div class="row">
+
+                            <table class="table bold hover">
+
+                                <tr>
+                                    <td class="title"> ##word.shift## </td>
+                                    <td class="center"> {{order_management.shift.code}} </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title"> ##word.code## </td>
+                                    <td class="center blue"> {{order_management.code}} </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title"> ##word.date## </td>
+                                    <td class="center brown"> {{order_management.date | date : 'dd - MM - yyyy'}} </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title"> ##word.status## </td>
+                                    <td class="center"> {{order_management.status.ar}} </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title"> ##word.invoice_type## </td>
+                                    <td class="center"> {{order_management.transaction_type.ar}}
+                                        <b ng-show="order_management.transaction_type.id ==2" class="blue">
+                                            ( {{order_management.status_delivery.ar}} )</b>
+                                    </td>
+                                </tr>
+
+                                <tr ng-show="order_management.service > 0">
+                                    <td class="title"> ##word.service## </td>
+                                    <td class="center"> {{order_management.service}} </td>
+                                </tr>
+
+                                <tr ng-show="order_management.price_delivery_service > 0">
+                                    <td class="title"> ##word.price_delivery_service## </td>
+                                    <td class="center"> {{order_management.price_delivery_service}} </td>
+                                </tr>
+
+                                <tr ng-show="order_management.total_discount > 0">
+                                    <td class="title"> ##word.stores_out_total_discount## </td>
+                                    <td class="center"> {{order_management.total_discount}} </td>
+                                </tr>
+
+                                <tr ng-show="order_management.total_tax > 0">
+                                    <td class="title"> ##word.stores_out_total_tax## </td>
+                                    <td class="center"> {{order_management.total_tax}} </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title"> ##word.net_value## </td>
+                                    <td class="center blue"> {{order_management.net_value}} </td>
+                                </tr>
+
+                                <tr ng-show="order_management.table">
+                                    <td class="title"> ##word.tables_group## </td>
+                                    <td class="center"> {{order_management.table.tables_group.name}} </td>
+                                </tr>
+
+                                <tr ng-show="order_management.table">
+                                    <td class="title"> ##word.table## </td>
+                                    <td class="center"> {{order_management.table.name}} </td>
+                                </tr>
+
+                                <tr ng-show="order_management.delivery_employee.id">
+                                    <td class="title"> ##word.delivery_employee## </td>
+                                    <td class="center"> {{order_management.delivery_employee.name}} </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title"> ##word.active## </td>
+                                    <td ng-show="order_management.active == true" class="center green"> ##word.active##
+                                    </td>
+                                    <td ng-show="order_management.active == false" class="center red">
+                                        ##word.not_active##
+                                    </td>
+                                </tr>
+
+                            </table>
+                        </div>
+
+                        <div class="row">
+                            <table x-permissions="login" class="table bold hover loaded" id="t1">
+                                <tr>
+                                    <th>##word.stores_items_name##</th>
+                                    <th>##word.stores_size##</th>
+                                    <th>##word.items_count##</th>
+                                    <th>##word.items_price##</th>
+                                    <th>##word.items_price_total##</th>
+                                    <th x-features="restaurant">##word.kitchen##</th>
+                                    <th>##word.discount##</th>
+                                    <th>##word.notes##</th>
+                                    <th x-features="restaurant">##word.actions##</th>
+                                </tr>
+                                <tr ng-repeat="c in order_management.book_list">
+                                    <td class="center title">{{c.name}}</td>
+                                    <td class="center title">
+                                        <p>{{c.size}}</p>
+                                        <p>{{c.size_en}}</p>
+                                    </td>
+                                    <td class="center blue">{{c.count}}</td>
+                                    <td class="center">{{c.price}}</td>
+                                    <td class="center green">{{c.total}}</td>
+                                    <td x-features="restaurant" class="center">{{c.kitchen.name}}</td>
+                                    <td class="center red">{{c.discount.value}}
+                                        <b class="red" ng-show="c.discount.type =='number'">$</b>
+                                        <b class="red" ng-show="c.discount.type =='percent'">%</b>
+                                    </td>
+                                    <td class="center">{{c.notes}}</td>
+                                    <td class="center" x-features="restaurant">
+                                        <i-button type="add" ng-show="c.done_kitchen"
+                                            x-permissions="order_management_edit || order_kitchen_manage"
+                                            label="##word.return_to_kitchen##"
+                                            ng-click="returnToKitchen(order_management , c)"></i-button>
+
+                                        <h2 class="red center" ng-show="!c.done_kitchen">
+                                            ##word.in_kitchen##</h2>
+
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <br>
+                        <br>
+                        <!--   <div class="row">
+                            <fieldset>
+
+                                <legend>##word.detailes_amounts_paid##</legend>
+
+                                <i-control disabled class="col2" ng-model="order_management.payment_paid_up"
+                                    label="##word.paid_up##" type="number"></i-control>
+                                <br>
+                                <table class="table bold hover loaded">
+
+                                    <tr>
+                                        <th>##word.date##</th>
+                                        <th>##word.safe##</th>
+                                        <th>##word.paid_up##</th>
+                                    </tr>
+
+                                    <tr ng-repeat="c in order_management.payment_list">
+                                        <td class="center brown">{{c.date | date : 'dd / MM / yyyy'}}</td>
+                                        <td class="center blue">{{c.safe.name}}
+                                        </td>
+                                        <td class="center green">{{c.paid_up}}</td>
+                                    </tr>
+                                </table>
+                            </fieldset>
+                        </div> -->
+                    </div>
+
+                    <div class="col3">
+                        <i-image class="not-print" view ng-model="order_management.image_url"> </i-image>
+                    </div>
+
+                </div>
+            </fieldset>
+        </div>
+    </div>
+</div>
+<div x-import="order-management/action_info.html"></div>

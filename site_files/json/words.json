@@ -10,9 +10,24 @@
         "ar": "الاسم"
     },
     {
+        "name": "overdraft_not_active",
+        "en": "The transaction cannot be completed because the overdraft feature has not been activated",
+        "ar": "لا يمكن إتمام المعاملة لعدم تفعيل خاصية السحب على المكشوف"
+    },
+    {
+        "name": "try_application",
+        "en": "Try Application With All Features Free",
+        "ar": "جرب التطبيق مع جميع الميزات مجاناّ"
+    },
+    {
         "name": "quantity",
         "en": "Quantity",
         "ar": "الكمية"
+    },
+    {
+        "name": "overdraft",
+        "en": "Overdraft",
+        "ar": "السحب على المكشوف"
     },
     {
         "name": "indentfy",

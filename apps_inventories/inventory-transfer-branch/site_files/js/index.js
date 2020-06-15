@@ -526,6 +526,10 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
               $scope.loadAll();
             } else {
               $scope.error = '##word.error##';
+              if (response.data.error.like('*OverDraft Not*')) {
+                transfer_branch.transfer = false;
+                $scope.error = "##word.overdraft_not_active##";
+              }
             }
           },
           function (err) {

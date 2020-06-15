@@ -274,7 +274,12 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
 
             $scope.loadAll();
             $scope.newStoreOut();
-          } else $scope.error = response.data.error;
+          } else {
+            $scope.error = response.data.error;
+            if (response.data.error.like('*OverDraft Not*')) {
+              $scope.error = "##word.overdraft_not_active##"
+            }
+          }
 
         },
         function (err) {
@@ -351,7 +356,12 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
             if (response.data.done) {
               site.hideModal('#deleteStoreOutModal');
               $scope.loadAll();
-            } else $scope.error = response.data.error;
+            } else {
+              $scope.error = response.data.error;
+              if (response.data.error.like('*OverDraft Not*')) {
+                $scope.error = "##word.overdraft_not_active##"
+              }
+            };
 
           },
           function (err) {
@@ -490,10 +500,10 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
                       _size.price = _size.size_units_list[indxUnit].price;
                       _size.cost = _size.size_units_list[indxUnit].cost;
                       _size.count = 1;
-                      
+
                       if ($scope.store_out.type && $scope.store_out.type.id == 5) _size.total = _size.count * _size.average_cost;
                       else _size.total = _size.count * _size.price;
-                      
+
                       if (_size.branches_list && _size.branches_list.length > 0) {
                         let foundBranch = false;
                         let indxBranch = 0;
@@ -1549,6 +1559,10 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
               $scope.loadAll();
             } else {
               $scope.error = '##word.error##';
+              if (response.data.error.like('*OverDraft Not*')) {
+                $scope.error = "##word.overdraft_not_active##"
+                store_out.posting = false;
+              }
             }
           },
           function (err) {
@@ -1561,6 +1575,8 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         else store_out.posting = true;
         $scope.error = '##word.err_stock_item##';
       }
+
+
     })
   };
 
@@ -1661,7 +1677,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
           if (_item.count > 0) $scope.store_out.items.push(_item);
         });
 
-      if ($scope.store_out.currency){
+      if ($scope.store_out.currency) {
         $scope.amount_currency = site.toNumber($scope.store_out.net_value) / site.toNumber($scope.store_out.currency.ex_rate);
         $scope.amount_currency = site.toNumber($scope.amount_currency);
       }

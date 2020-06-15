@@ -110,7 +110,7 @@ module.exports = function init(site) {
     stores_out_doc.total_value = site.toNumber(stores_out_doc.total_value)
     stores_out_doc.net_value = site.toNumber(stores_out_doc.net_value)
 
-    if (stores_out_doc.type.id !== 5 && stores_out_doc.type.id !== 6)
+    if (stores_out_doc.type.id != 5 && stores_out_doc.type.id != 6)
       stores_out_doc.return_paid = {
         items: stores_out_doc.items,
         total_discount: stores_out_doc.total_discount,
@@ -119,49 +119,61 @@ module.exports = function init(site) {
         net_value: stores_out_doc.net_value,
       }
 
-    $stores_out.add(stores_out_doc, (err, doc) => {
-      if (!err) {
-        response.done = true
-        response.doc = doc
+    site.overdraft(req, stores_out_doc.items, cbOverDraft => {
 
-        if (doc.posting) {
+      if (!cbOverDraft.overdraft && cbOverDraft.value && stores_out_doc.posting && stores_out_doc.type.id != 6) {
 
-          doc.items.forEach(_itm => {
-
-            _itm.store = doc.store
-            _itm.company = doc.company
-            _itm.branch = doc.branch
-            _itm.source_type = doc.type
-            _itm.number = doc.number
-            _itm.current_status = 'sold'
-            _itm.date = doc.date
-            _itm.customer = doc.customer
-            _itm.store = doc.store
-            _itm.shift = {
-              id: doc.shift.id,
-              code: doc.shift.code,
-              name: doc.shift.name
-            }
-            if (doc.type.id == 6) {
-              _itm.type = 'sum'
-              _itm.transaction_type = 'in'
-              site.call('item_transaction + items', Object.assign({}, _itm))
-              site.returnStoresOut(doc, res => { })
-            } else {
-              if (doc.type.id == 5) _itm.set_average = 'minus_average'
-
-              _itm.type = 'minus'
-              _itm.transaction_type = 'out'
-              site.call('item_transaction - items', Object.assign({}, _itm))
-            }
-            site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _itm))
-          })
-        }
+        response.error = 'OverDraft Not Active'
+        res.json(response)
 
       } else {
-        response.error = err.message
+
+        $stores_out.add(stores_out_doc, (err, doc) => {
+          if (!err) {
+            response.done = true
+            response.doc = doc
+
+            if (doc.posting) {
+
+              doc.items.forEach(_itm => {
+
+                _itm.store = doc.store
+                _itm.company = doc.company
+                _itm.branch = doc.branch
+                _itm.source_type = doc.type
+                _itm.number = doc.number
+                _itm.current_status = 'sold'
+                _itm.date = doc.date
+                _itm.customer = doc.customer
+                _itm.store = doc.store
+                _itm.shift = {
+                  id: doc.shift.id,
+                  code: doc.shift.code,
+                  name: doc.shift.name
+                }
+                if (doc.type.id == 6) {
+                  _itm.type = 'sum'
+                  _itm.transaction_type = 'in'
+                  site.call('item_transaction + items', Object.assign({}, _itm))
+                  site.returnStoresOut(doc, res => { })
+                } else {
+                  if (doc.type.id == 5) _itm.set_average = 'minus_average'
+
+                  _itm.type = 'minus'
+                  _itm.transaction_type = 'out'
+                  site.call('item_transaction - items', Object.assign({}, _itm))
+                }
+                site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _itm))
+              })
+            }
+
+          } else {
+            response.error = err.message
+          }
+          res.json(response)
+        })
       }
-      res.json(response)
+
     })
   })
 
@@ -232,79 +244,97 @@ module.exports = function init(site) {
 
     stores_out_doc.edit_user_info = site.security.getUserFinger({ $req: req, $res: res })
 
-    if (stores_out_doc._id) {
-      $stores_out.edit({
-        where: {
-          _id: stores_out_doc._id
-        },
-        set: stores_out_doc,
-        $req: req,
-        $res: res
-      }, (err, result) => {
-        if (!err) {
-          response.done = true
-          response.doc = result.doc
+    site.overdraft(req, stores_out_doc.items, cbOverDraft => {
 
-          result.doc.items.forEach(_itm => {
-            _itm.store = result.doc.store
-            _itm.company = result.doc.company
-            _itm.branch = result.doc.branch
-            _itm.source_type = result.doc.type
-            _itm.number = result.doc.number
-            _itm.customer = result.doc.customer
-            _itm.date = result.doc.date
-            _itm.shift = {
-              id: result.doc.shift.id,
-              code: result.doc.shift.code,
-              name: result.doc.shift.name
-            }
-            if (result.doc.posting) {
-              _itm.current_status = 'sold'
-              if (result.doc.type.id == 6) {
-                _itm.type = 'sum'
-                _itm.transaction_type = 'in'
-                site.call('item_transaction + items', Object.assign({}, _itm))
-              } else {
-                if (result.doc.type.id == 5)
-                  _itm.set_average = 'minus_average'
+      if (!cbOverDraft.overdraft && cbOverDraft.value && stores_out_doc.posting && stores_out_doc.type.id != 6) {
 
-                _itm.type = 'minus'
-                _itm.transaction_type = 'out'
-                site.call('item_transaction - items', Object.assign({}, _itm))
-              }
-            } else {
-              _itm.current_status = 'r_sold'
-              if (result.doc.type.id == 6) {
-                _itm.type = 'minus'
-                _itm.transaction_type = 'out'
-                site.call('item_transaction - items', Object.assign({}, _itm))
-              } else {
-                if (result.doc.type.id == 5)
-                  _itm.set_average = 'sum_average'
-                _itm.type = 'sum'
-                _itm.transaction_type = 'in'
-                site.call('item_transaction + items', Object.assign({}, _itm))
-              }
-            }
-
-            site.call('[transfer_branch][stores_items][add_balance]', _itm)
-
-          })
-
-          if (result.doc.type && result.doc.type.id == 6) {
-            if (!result.doc.posting)
-              result.doc.return = true
-            site.returnStoresOut(result.doc, res => { })
-          }
-
-        } else {
-          response.error = err.message
-        }
+        response.error = 'OverDraft Not Active'
         res.json(response)
-      })
-    } else {
-      res.json(response)
-    }
+
+      } else if (!cbOverDraft.overdraft && cbOverDraft.value && !stores_out_doc.posting && stores_out_doc.type.id == 6) {
+
+        response.error = 'OverDraft Not Active'
+        res.json(response)
+
+
+      } else {
+
+
+        if (stores_out_doc._id) {
+          $stores_out.edit({
+            where: {
+              _id: stores_out_doc._id
+            },
+            set: stores_out_doc,
+            $req: req,
+            $res: res
+          }, (err, result) => {
+            if (!err) {
+              response.done = true
+              response.doc = result.doc
+
+              result.doc.items.forEach(_itm => {
+                _itm.store = result.doc.store
+                _itm.company = result.doc.company
+                _itm.branch = result.doc.branch
+                _itm.source_type = result.doc.type
+                _itm.number = result.doc.number
+                _itm.customer = result.doc.customer
+                _itm.date = result.doc.date
+                _itm.shift = {
+                  id: result.doc.shift.id,
+                  code: result.doc.shift.code,
+                  name: result.doc.shift.name
+                }
+                if (result.doc.posting) {
+                  _itm.current_status = 'sold'
+                  if (result.doc.type.id == 6) {
+                    _itm.type = 'sum'
+                    _itm.transaction_type = 'in'
+                    site.call('item_transaction + items', Object.assign({}, _itm))
+                  } else {
+                    if (result.doc.type.id == 5)
+                      _itm.set_average = 'minus_average'
+
+                    _itm.type = 'minus'
+                    _itm.transaction_type = 'out'
+                    site.call('item_transaction - items', Object.assign({}, _itm))
+                  }
+                } else {
+                  _itm.current_status = 'r_sold'
+                  if (result.doc.type.id == 6) {
+                    _itm.type = 'minus'
+                    _itm.transaction_type = 'out'
+                    site.call('item_transaction - items', Object.assign({}, _itm))
+                  } else {
+                    if (result.doc.type.id == 5)
+                      _itm.set_average = 'sum_average'
+                    _itm.type = 'sum'
+                    _itm.transaction_type = 'in'
+                    site.call('item_transaction + items', Object.assign({}, _itm))
+                  }
+                }
+
+                site.call('[transfer_branch][stores_items][add_balance]', _itm)
+
+              })
+
+              if (result.doc.type && result.doc.type.id == 6) {
+                if (!result.doc.posting)
+                  result.doc.return = true
+                site.returnStoresOut(result.doc, res => { })
+              }
+
+            } else {
+              response.error = err.message
+            }
+            res.json(response)
+          })
+        } else {
+          res.json(response)
+        }
+      }
+    })
   })
 
   site.post("/api/stores_out/delete", (req, res) => {
@@ -313,61 +343,75 @@ module.exports = function init(site) {
     if (req.session.user === undefined) {
       res.json(response)
     }
+
     let stores_out_doc = req.body
-    if (stores_out_doc._id) {
-      $stores_out.delete({
-        where: {
-          _id: stores_out_doc._id
-        },
-        $req: req,
-        $res: res
-      }, (err, result) => {
-        if (!err) {
-          response.done = true
-          if (stores_out_doc.posting) {
 
-            stores_out_doc.items.forEach(_itm => {
-              _itm.source_type = stores_out_doc.type
-              _itm.store = stores_out_doc.store
-              _itm.company = stores_out_doc.company
-              _itm.branch = stores_out_doc.branch
-              _itm.number = stores_out_doc.number
-              _itm.customer = stores_out_doc.customer
-              _itm.date = stores_out_doc.date
-              _itm.current_status = 'd_sold'
-              _itm.shift = {
-                id: stores_out_doc.shift.id,
-                code: stores_out_doc.shift.code,
-                name: stores_out_doc.shift.name
-              }
-              if (result.doc.type.id == 6) {
-                _itm.type = 'minus'
-                _itm.transaction_type = 'out'
-                site.call('item_transaction + items', Object.assign({}, _itm))
-              } else {
-                if (result.doc.type.id == 5)
-                  _itm.set_average = 'sum_average'
-                _itm.type = 'sum'
-                _itm.transaction_type = 'in'
-                site.call('item_transaction - items', Object.assign({}, _itm))
-              }
+    site.overdraft(req, stores_out_doc.items, cbOverDraft => {
 
-              site.call('[transfer_branch][stores_items][add_balance]', _itm)
+      if (!cbOverDraft.overdraft && cbOverDraft.value && stores_out_doc.posting && stores_out_doc.type.id == 6) {
 
-
-            });
-            if (result.doc.type && result.doc.type.id == 6) {
-              result.doc.return = true
-              site.returnStoresOut(result.doc, res => { })
-            }
-          }
-
-        }
+        response.error = 'OverDraft Not Active'
         res.json(response)
-      })
-    } else {
-      res.json(response)
-    }
+
+      } else {
+
+        if (stores_out_doc._id) {
+          $stores_out.delete({
+            where: {
+              _id: stores_out_doc._id
+            },
+            $req: req,
+            $res: res
+          }, (err, result) => {
+            if (!err) {
+              response.done = true
+              if (stores_out_doc.posting) {
+
+                stores_out_doc.items.forEach(_itm => {
+                  _itm.source_type = stores_out_doc.type
+                  _itm.store = stores_out_doc.store
+                  _itm.company = stores_out_doc.company
+                  _itm.branch = stores_out_doc.branch
+                  _itm.number = stores_out_doc.number
+                  _itm.customer = stores_out_doc.customer
+                  _itm.date = stores_out_doc.date
+                  _itm.current_status = 'd_sold'
+                  _itm.shift = {
+                    id: stores_out_doc.shift.id,
+                    code: stores_out_doc.shift.code,
+                    name: stores_out_doc.shift.name
+                  }
+                  if (result.doc.type.id == 6) {
+                    _itm.type = 'minus'
+                    _itm.transaction_type = 'out'
+                    site.call('item_transaction + items', Object.assign({}, _itm))
+                  } else {
+                    if (result.doc.type.id == 5)
+                      _itm.set_average = 'sum_average'
+                    _itm.type = 'sum'
+                    _itm.transaction_type = 'in'
+                    site.call('item_transaction - items', Object.assign({}, _itm))
+                  }
+
+                  site.call('[transfer_branch][stores_items][add_balance]', _itm)
+
+
+                });
+                if (result.doc.type && result.doc.type.id == 6) {
+                  result.doc.return = true
+                  site.returnStoresOut(result.doc, res => { })
+                }
+              }
+
+            }
+            res.json(response)
+          })
+        } else {
+          res.json(response)
+        }
+      }
+    })
+
   })
 
   site.post("/api/stores_out/view", (req, res) => {

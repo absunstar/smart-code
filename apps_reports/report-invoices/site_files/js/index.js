@@ -272,7 +272,7 @@ app.controller("report_invoices", function ($scope, $http, $timeout) {
   };
 
   $scope.getReportInvoicesList({ date: new Date() });
-  if (site.feature('restaurant'))
+  if (site.feature('restaurant') || site.feature('pos'))
     $scope.getTransactionTypeList();
   $scope.getPaymentMethodList();
   $scope.getDefaultSettings();

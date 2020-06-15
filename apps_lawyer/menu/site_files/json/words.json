@@ -749,16 +749,7 @@
         "en": "Report Sales Menu",
         "ar": "قائمة تقارير مبيعات الأصناف "
     },
-    {
-        "name": "report_employee_delivery_menus",
-        "en": "Report Employees Delivery Menu",
-        "ar": "قائمة تقارير موظفين التوصيل "
-    },
-    {
-        "name": "report_employee_delivery_name",
-        "en": "Report Employees Delivery",
-        "ar": "تقارير موظفين التوصيل "
-    },
+ 
     {
         "name": "report_employee_user_menus",
         "en": "Report Employees Order Menu",
