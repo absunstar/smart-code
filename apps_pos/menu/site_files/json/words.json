@@ -1,5 +1,10 @@
 [
     {
+        "name": "main_menu",
+        "en": "Main Menu",
+        "ar": "القائمة الرئيسية"
+    },
+    {
         "name": "menu_monitor",
         "en": "Monitor",
         "ar": "المراقبة"

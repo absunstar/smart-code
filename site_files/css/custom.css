@@ -1,250 +1,250 @@
 :root {
-    --theme-color: #556ae2;
-    --theme-color2: #2f8033;
-    --x-background: #ffffff;
-    --font-size: 14px;
-    --form-color: #444;
-    --input-background-color: var(--x-background);
-    --input-focus-border-color: var(--theme-color);
-    --input-color: #000000;
-    --color: #444;
-    --background-color: var(--x-background);
-    --body-background: var(--x-background);
-    --modal-header-background-color: var(--theme-color);
-    --modal-box-shadow-color: #555;
-    --modal-animation-name: animateopacity;
-    --modal-background: #0000006e;
-    --modal-content-background: var(--x-background);
-    --btn-box-shadow-color: #555;
-    --btn-border-radius: 0px;
-    --btn-color: #fff;
-    --btn-background-color: #000;
-    --fieldset-border: 1px solid var(--theme-color);
-    --fieldset-background: none;
-    --legend-color: #444;
-    --tabs-header-link-color: #444;
-    --tabs-header-link-color2: #ffffff;
-    --tabs-header-link-border-bottom: 1px solid var(--theme-color);
-    --help-content-color: blue;
-    --help-background-color: var(--x-background);
-    --help-border: 1px solid #000;
+  --theme-color: #556ae2;
+  --theme-color2: #2f8033;
+  --x-background: #ffffff;
+  --font-size: 14px;
+  --form-color: #444;
+  --input-background-color: var(--x-background);
+  --input-focus-border-color: var(--theme-color);
+  --input-color: #000000;
+  --color: #444;
+  --background-color: var(--x-background);
+  --body-background: var(--x-background);
+  --modal-header-background-color: var(--theme-color);
+  --modal-box-shadow-color: #555;
+  --modal-animation-name: animateopacity;
+  --modal-background: #0000006e;
+  --modal-content-background: var(--x-background);
+  --btn-box-shadow-color: #555;
+  --btn-border-radius: 0px;
+  --btn-color: #fff;
+  --btn-background-color: #000;
+  --fieldset-border: 1px solid var(--theme-color);
+  --fieldset-background: none;
+  --legend-color: #444;
+  --tabs-header-link-color: #444;
+  --tabs-header-link-color2: #ffffff;
+  --tabs-header-link-border-bottom: 1px solid var(--theme-color);
+  --help-content-color: blue;
+  --help-background-color: var(--x-background);
+  --help-border: 1px solid #000;
 }
 
 body {
-    margin-top: 100px;
-    margin-bottom: 100px;
+  margin-top: 100px;
+  margin-bottom: 100px;
 }
 
 #main-layout {
-   
 }
 
 a {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 fieldset legend {
-    background: none;
+  background: none;
 }
 
 .help-container {
-    bottom: 50px;
+  bottom: 50px;
 }
 
 .tabs .tabs-header .tab-link {
-    font-size: 16px;
+  font-size: 16px;
 }
 
 .tabs .tabs-header .tab-link.active {
-    background-color: #5369e0;
-    padding-right: 30px;
+  background-color: #5369e0;
+  padding-right: 30px;
 }
 
 .tabs .tabs-header .tab-link:hover {
-    background-color: #5369e0;
-    padding-right: 30px;
+  background-color: #5369e0;
+  padding-right: 30px;
 }
 
 .btn {
-    font-size: 15px;
-    box-shadow: 0px 8px 14px -1px var(--btn-box-shadow-color);
-    -webkit-box-shadow: 0px 8px 14px -1px var(--btn-box-shadow-color);
-    box-shadow: 0px 8px 14px -1px var(--btn-box-shadow-color);
+  font-size: 15px;
+  box-shadow: 0px 8px 14px -1px var(--btn-box-shadow-color);
+  -webkit-box-shadow: 0px 8px 14px -1px var(--btn-box-shadow-color);
+  box-shadow: 0px 8px 14px -1px var(--btn-box-shadow-color);
 }
 
 .table th {
-    background-color: #677cf1;
-    color: #ffffff;
+  background-color: #677cf1;
+  color: #ffffff;
 }
 
 popup item:hover {
-    background: #3F51ff;
-    color: #ffffff;
+  background: #3f51ff;
+  color: #ffffff;
 }
 
-
 .main-menu {
-    margin: 0 auto;
-    width: 100%;
+    position: fixed;
+    width: auto;
+    right: 0px;
+    top: 70px;
+    overflow: scroll;
+    height: 100vh;
     padding: 40px;
     text-align: center;
     box-shadow: 1px 1px 3px 1px var(--theme-color);
     background: var(--x-background);
-    border-radius: 0px 0px 30px 30px;
+    border-radius: 0px 0px 0px 30px;
 }
 
 .modal {
-    background-color: #0000006e;
-    z-index: 999999;
+  background-color: #0000006e;
+  z-index: 999999;
 }
 
 .modal-body {
-    overflow-y: auto;
+  overflow-y: auto;
 }
 
-.modal.small .modal-content,.modal-content.small{
-    width: 50%;
-  }
+.modal.small .modal-content,
+.modal-content.small {
+  width: 50%;
+}
 
 nav.sitebar {
-    z-index: 999999;
-    position: fixed;
-    top: 0px;
-    right: 0px;
-    left: 0px;
-    box-shadow: 1px 1px 1px 1px #555;
-    background: var(--theme-color);
-    border-radius: 0px 0px 20px 20px;
+  z-index: 999999;
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  left: 0px;
+  box-shadow: 1px 1px 1px 1px #555;
+  background: var(--theme-color);
+  border-radius: 0px 0px 20px 20px;
 }
 
 nav h2.brand {
-    margin: 0px;
-    padding: 5px;
+  margin: 0px;
+  padding: 5px;
 }
 
 nav h2.brand a {
-    font-weight: bold;
-    color: #FFEB3B;
-    text-decoration: none;
+  font-weight: bold;
+  color: #ffeb3b;
+  text-decoration: none;
 }
 
-
-
 nav h2.brand a span {
-    font-size: 12px;
-    color: #ffffff;
+  font-size: 12px;
+  color: #ffffff;
 }
 
 nav h2.brand a i {
-    color: #ffffff;
+  color: #ffffff;
 }
-
 
 nav .links {
-    display: none;
+  display: none;
 }
 
-
 nav .links ul {
-    list-style: none;
+  list-style: none;
 }
 
 nav .links ul li {
-    display: inline-block;
-    margin: 3px;
-    padding: 3px;
+  display: inline-block;
+  margin: 3px;
+  padding: 3px;
 }
 
 nav .links ul li a {
-    color: #030303;
+  color: #030303;
 }
 
 nav .info {
-    font-weight: bold;
-    display: inline-block;
-    font-size: 14px;
-    color: #ffffff;
-    margin-left: 10px;
-    margin-right: 10px;
+  font-weight: bold;
+  display: inline-block;
+  font-size: 14px;
+  color: #ffffff;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 nav .info .user-name {
-    color: #bbbbbb;
+  color: #bbbbbb;
 }
 
 #btn_login {
-    color: #bbb;
-    text-shadow: 1px 1px 1px #000000;
-    margin-left: 20px;
+  color: #bbb;
+  text-shadow: 1px 1px 1px #000000;
+  margin-left: 20px;
 }
 #btn_logout {
-    color: #bbb;
-    text-shadow: 1px 1px 1px #000000;
-    margin-left: 20px;
+  color: #bbb;
+  text-shadow: 1px 1px 1px #000000;
+  margin-left: 20px;
 }
 #btn_register {
-    color: #ffffff;
-    text-shadow: 1px 1px 1px #000000;
-    margin-left: 20px;
+  color: #ffffff;
+  text-shadow: 1px 1px 1px #000000;
+  margin-left: 20px;
 }
 
-
 nav.sitebottom {
-    z-index: 999999;
-    position: fixed;
-    bottom: 0px;
-    right: 0px;
-    left: 0px;
-    background: #000000;
-    color: #ffffff;
-    border: 2px solid #000;
+  z-index: 999999;
+  position: fixed;
+  bottom: 0px;
+  right: 0px;
+  left: 0px;
+  background: #000000;
+  color: #ffffff;
+  border: 2px solid #000;
 }
 
 nav.sitebottom a.link {
-    color: #fff;
-    font-size: 16px;
-    text-decoration: none;
-    padding: 5px;
-    padding-right: 10px;
-    margin: 5px;
-    border-right: 1px solid #ffffff;
-    display: inline-block;
+  color: #fff;
+  font-size: 16px;
+  text-decoration: none;
+  padding: 5px;
+  padding-right: 10px;
+  margin: 5px;
+  border-right: 1px solid #ffffff;
+  display: inline-block;
 }
 
 nav.sitebottom a.link:hover {
-    background: #fff;
-    color: #444;
+  background: #fff;
+  color: #444;
 }
 
-.footer{
-   margin: 20px;
-   border: 1px solid #bbb;
-   padding: 5px;
+.footer {
+  margin: 20px;
+  border: 1px solid #bbb;
+  padding: 5px;
 }
-.footer h2{
-    font-weight: bold;
-    color: #000;
+.footer h2 {
+  font-weight: bold;
+  color: #000;
 }
-.footer h2 span{
-    font-weight: bold;
-    color: green;
+.footer h2 span {
+  font-weight: bold;
+  color: green;
 }
 @media screen and (max-width: 768px) {
-    .tabs .tabs-header .tab-link {
-        font-size: 12px;
-        padding: 5px;
-        margin: 1px;
-    }
-    .tabs .tabs-header .tab-link.active , .tabs .tabs-header .tab-link:hover {
-        background-color: #5369e0;
-        padding: 5px;
-        margin: 1px;
-    }
-   
-    .tab-link span {
-        padding: 1px;
-    }
-    .modal.small .modal-content,.modal-content.small{
-        width: 90%;
-      }
+  .tabs .tabs-header .tab-link {
+    font-size: 12px;
+    padding: 5px;
+    margin: 1px;
+  }
+  .tabs .tabs-header .tab-link.active,
+  .tabs .tabs-header .tab-link:hover {
+    background-color: #5369e0;
+    padding: 5px;
+    margin: 1px;
+  }
+
+  .tab-link span {
+    padding: 1px;
+  }
+  .modal.small .modal-content,
+  .modal-content.small {
+    width: 90%;
+  }
 }

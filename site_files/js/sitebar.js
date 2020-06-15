@@ -1,9 +1,11 @@
 var app = app || angular.module('myApp', []);
 
-let btn = document.querySelector('.sitebar .tab-link');
+/*let btn = document.querySelector('.sitebar .tab-link');
 if (btn) {
     btn.click();
-}
+}*/
+
+site.showTabs(event , '#main_tabs');
 
 $('#main-layout').click(()=>{
     $('.sitebar .links').hide(200);
