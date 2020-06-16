@@ -72,6 +72,10 @@
     padding: 5px 9px;
 }
 
+.main-menu {
+    top: 56px;
+}
+
 :root{
     --tabs-header-link-border-bottom : none;
 }
