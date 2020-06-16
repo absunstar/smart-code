@@ -195,6 +195,11 @@
         "ar": "القائمة الرئيسية"
     },
     {
+        "name": "basic_screens",
+        "en": "Basic Screens",
+        "ar": "الشاشات الأساسية"
+    },
+    {
         "name": "gym_setting",
         "en": "Gym Setting",
         "ar": "إعدادات الجيم"
@@ -208,6 +213,16 @@
         "name": "restaurant_setting",
         "en": "Restaurant Setting",
         "ar": "إعدادات المطعم"
+    },
+    {
+        "name": "lawyer_setting",
+        "en": "Lawyer Office Setting",
+        "ar": "إعدادات مكتب المحاماه"
+    },
+    {
+        "name": "pos_setting",
+        "en": "Pos Setting",
+        "ar": "إعدادات نقطة البيع"
     },
     {
         "name": "add_hosting_tag",
