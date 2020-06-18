@@ -1,208 +1,201 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="myApp">
+  <head x-import="head.html">
+    <style>
+      #posts {
+        display: block;
+        padding: 5px;
+        margin: 5px;
+      }
 
-<head x-import="head.html">
-  <style>
-    #posts {
-      display: block;
-      padding: 5px;
-      margin: 5px;
-    }
+      .post {
+        display: inline-grid;
+        border: 1px solid #5369e0;
+        background: #fff;
+        color: #000;
+        text-align: center;
+        line-height: 1.8;
+        width: 320px;
+        height: 470px;
+        margin: 15px;
+      }
 
-    .post {
-      display: inline-grid;
-      border: 1px solid #5369e0;
-      background: #fff;
-      color: #000;
-      text-align: center;
-      line-height: 1.8;
-      width: 320px;
-      height: 470px;
-      margin: 15px;
-    }
+      .post h2 {
+        height: 50px;
+        font-family: cursive;
+        font-size: 20px;
+        text-align: center;
+        font-weight: bold;
+        color: #fff;
+        padding: 5px;
+        background: #3f51b5;
+        text-shadow: 1px 1px 8px #000000;
+      }
 
-    .post h2 {
-      height: 50px;
-      font-family: cursive;
-      font-size: 20px;
-      text-align: center;
-      font-weight: bold;
-      color: #fff;
-      padding: 5px;
-      background: #3f51b5;
-      text-shadow: 1px 1px 8px #000000;
-    }
+      .post img {
+        margin-top: 20px !important;
+        margin-bottom: 20px !important;
+        border-radius: 20px;
+        width: 120px;
+        min-height: 180px;
+      }
 
-    .post img {
-      margin-top: 20px !important;
-      margin-bottom: 20px !important;
-      border-radius: 20px;
-      width: 120px;
-      min-height: 180px;
-    }
+      .icc img {
+        margin-top: 20px !important;
+        margin-bottom: 20px !important;
+        width: 170px;
+      }
 
-    .icc img {
-      margin-top: 20px !important;
-      margin-bottom: 20px !important;
-      width: 170px;
-    }
+      .post p {
+        padding: 15px;
+        text-align: right !important;
+        color: #ffffff;
+        background: #3f51b5;
+        min-height: 200px;
+        font-size: 16px;
+        text-shadow: 1px 1px 1px #5369e0;
+      }
+    </style>
+  </head>
 
-    .post p {
-      padding: 15px;
-      text-align: right !important;
-      color: #ffffff;
-      background: #3f51b5;
-      min-height: 200px;
-      font-size: 16px;
-      text-shadow: 1px 1px 1px #5369e0;
-    }
-  </style>
-</head>
+  <body class="##session.lang##">
+    <nav class="sitebar" x-import="sitebar/index.html" ng-controller="sitebar"></nav>
 
-<body class="##session.lang##">
-  <nav class="sitebar" x-import="sitebar/index.html" ng-controller="sitebar"></nav>
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom"></nav>
 
-  <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom"></nav>
-
-  <div id="main-layout">
-    <div class="footer">
-      <h2 class="center red bold">
-        ##word.try_application##
-      </h2>
-      <br>
-      <h2 class="center">##word.security_user_email## : <span> test </span></h2>
-      <h2 class="center">##word.security_user_password## : <span> test </span></h2>
-      <br>
-    </div>
-
-    <div id="posts" class="center"></div>
-    <div class="footer">
-      <div class="row egypt">
-        <h2 class="center">whats up <span> +201090061266 </span></h2>
-        <h2 class="center">Email <span> call.smart.code@gmail.com </span></h2>
-      </div>
-      <br>
-      <br>
-      <h2 class="center">Download <a target="_blank" href="https://social-browser.com/"> Social Browser </a> For Best
-        Browsing</h2>
-      <br>
-      <br>
-      <div class="row oman">
-
-        <h2 class="center ">
-          فرع عمان
-          <span>
-            مشاريع الزوراء المتحده ش.م.م <br />
-            فرع : سيرفت للبرامج <br />
-            مسقط - السيب - المعبيله <br />
-            ص.ب 598 رمز بريدى 133
-          </span>
+    <div id="main-layout">
+      <div class="footer">
+        <h2 class="center red bold">
+          ##word.try_application##
         </h2>
-        <h2 class="center"> تليفونات عمان <span> 0096891246272 - 0096898927057 </span></h2>
-
+        <br />
+        <h2 class="center">##word.security_user_email## : <span> test </span></h2>
+        <h2 class="center">##word.security_user_password## : <span> test </span></h2>
+        <br />
       </div>
-      <div class="center icc">
-        <img ng-src="/images/icc.png">
+
+      <div id="posts" class="center"></div>
+      <div class="footer">
+        <div class="row egypt">
+          <h2 class="center">whats up <span> +201090061266 </span></h2>
+          <h2 class="center">Email <span> call.smart.code@gmail.com </span></h2>
+        </div>
+        <br />
+        <br />
+        <h2 class="center">Download <a target="_blank" href="https://social-browser.com/"> Social Browser </a> For Best Browsing</h2>
+        <br />
+        <br />
+        <div class="row oman">
+          <h2 class="center">
+            فرع عمان
+            <span>
+              مشاريع الزوراء المتحده ش.م.م <br />
+              فرع : سيرفت للبرامج <br />
+              مسقط - السيب - المعبيله <br />
+              ص.ب 598 رمز بريدى 133
+            </span>
+          </h2>
+          <h2 class="center">تليفونات عمان <span> 0096891246272 - 0096898927057 </span></h2>
+        </div>
+        <div class="center icc">
+          <img ng-src="/images/icc.png" />
+        </div>
       </div>
     </div>
-  </div>
 
-  <div x-import="scripts.html"></div>
-  <script id="post-template" type="x-tmpl-mustache">
+    <div x-import="scripts.html"></div>
+    <script id="post-template" type="x-tmpl-mustache">
       <div class="post" >
           <h2> {{title_##session.lang##}} </h2>
           <img src="{{image_url}}" alt="">
           <p class="description"> {{description_##session.lang##}} </p>
       </div>
     </script>
-  <script>
-    let busy = false;
+    <script>
+      let busy = false;
 
-    if("##req.headers.host##".like("*icc*")){
-      $(".oman , .egypt").hide();
-    }else{
-     $(".icc").hide();
-    }
-
-    function loadPosts(more) {
-      if (busy) {
-        return;
+      if ("##req.headers.host##".like("*icc*")) {
+        $(".oman , .egypt").hide();
+      } else {
+        $(".icc").hide();
       }
 
-      if (typeof Mustache == "undefined") {
-        return;
-      }
+      function loadPosts(more) {
+        if (busy) {
+          return;
+        }
 
-      if (busy) return;
-      busy = true;
+        if (typeof Mustache == "undefined") {
+          return;
+        }
 
-      $(".posts-loading").remove();
-      $("#posts").append('<p class="posts-loading"> <img src="/images/loading.gif"> ##word.posts_load_more## </p>');
+        if (busy) return;
+        busy = true;
 
-      busy = true;
+        $(".posts-loading").remove();
+        $("#posts").append('<p class="posts-loading"> <img src="/images/loading.gif"> ##word.posts_load_more## </p>');
 
-      site.getData(
-        {
-          url: "/json/app_features.json",
-          method: "POST",
-        },
-        function (res) {
-          busy = false;
+        busy = true;
 
-          var rendered = "";
-          var post_template = $("#post-template").html();
-          Mustache.parse(post_template);
+        site.getData(
+          {
+            url: "/json/app_features.json",
+            method: "POST",
+          },
+          function (res) {
+            busy = false;
 
-          for (var i = 0; i < res.length; i++) {
-            try {
-              var post = {};
+            var rendered = "";
+            var post_template = $("#post-template").html();
+            Mustache.parse(post_template);
 
+            for (var i = 0; i < res.length; i++) {
+              try {
+                var post = {};
 
-              if (res[i].feature == "puplic") {
-                post = res[i];
-                rendered += Mustache.render(post_template, post);
-              } else if (res[i].feature == "gym" && site.features.like("*gym*")) {
-                post = res[i];
-                rendered += Mustache.render(post_template, post);
-              } else if (res[i].feature == "academy" && site.features.like("*academy*")) {
-                post = res[i];
-                rendered += Mustache.render(post_template, post);
-              } else if (res[i].feature == "restaurant" && site.features.like("*restaurant*")) {
-                post = res[i];
-                rendered += Mustache.render(post_template, post);
-              } else if (res[i].feature == "lawyer" && site.features.like("*lawyer*")) {
-                post = res[i];
-                rendered += Mustache.render(post_template, post);
-              } else if (res[i].feature == "pos" && site.features.like("*pos*")) {
-                post = res[i];
-                rendered += Mustache.render(post_template, post);
-              } else if (res[i].feature == "pos") {
-                if (site.features.like("*gym*") || site.features.like("*restaurant*") || site.features.like("*academy*")) {
+                if (res[i].feature == "puplic") {
                   post = res[i];
                   rendered += Mustache.render(post_template, post);
+                } else if (res[i].feature == "gym" && site.features.like("*gym*")) {
+                  post = res[i];
+                  rendered += Mustache.render(post_template, post);
+                } else if (res[i].feature == "academy" && site.features.like("*academy*")) {
+                  post = res[i];
+                  rendered += Mustache.render(post_template, post);
+                } else if (res[i].feature == "restaurant" && site.features.like("*restaurant*")) {
+                  post = res[i];
+                  rendered += Mustache.render(post_template, post);
+                } else if (res[i].feature == "lawyer" && site.features.like("*lawyer*")) {
+                  post = res[i];
+                  rendered += Mustache.render(post_template, post);
+                } else if (res[i].feature == "pos" && site.features.like("*pos*")) {
+                  post = res[i];
+                  rendered += Mustache.render(post_template, post);
+                } else if (res[i].feature == "pos") {
+                  if (site.features.like("*gym*") || site.features.like("*restaurant*") || site.features.like("*academy*")) {
+                    post = res[i];
+                    rendered += Mustache.render(post_template, post);
+                  }
                 }
-              }
+              } catch (error) {}
+            }
 
-            } catch (error) { }
+            $("#posts").append('<span class="line"></span><span class="line"></span><span class="line"></span>');
+            $("#posts").append(rendered);
+
+            busy = false;
+            $(".posts-loading").remove();
           }
+        );
+      }
 
-          $("#posts").append('<span class="line"></span><span class="line"></span><span class="line"></span>');
-          $("#posts").append(rendered);
+      loadPosts();
 
-          busy = false;
-          $(".posts-loading").remove();
-        }
-      );
-    }
+      var app = app || angular.module("myApp", []);
 
-    loadPosts();
-
-    var app = app || angular.module("myApp", []);
-
-    function scope() {
-      return angular.element(document.getElementById("main-layout")).scope();
-    }
-  </script>
-</body>
-
+      function scope() {
+        return angular.element(document.getElementById("main-layout")).scope();
+      }
+    </script>
+  </body>
 </html>
