@@ -224,7 +224,7 @@
         "description_en": "To add a new session, you must choose a case that was added previously from the Add Claims screen, write down the Roll number, requests, decision, description, and choose the reason for the previously added session from the Session Reasons screen."
     },
     {
-        "feature": "restaurant",
+        "feature": "pos",
         "title_ar": "شاشة الطلبات",
         "title_en": "Orders screen",
         "image_url": "/images/order_invoice.png",
@@ -232,12 +232,28 @@
         "description_en": "The screen responsible for adding items requests to customers and their types, tables, take away, delivery, and it is possible to add clients and create an account invoice for the order."
     },
     {
-        "feature": "restaurant",
+        "feature": "pos",
         "title_ar": "شاشة إدارة الطلبات",
         "title_en": "Orders management screen",
         "image_url": "/images/order_management.png",
         "description_ar": "هي شاشة مسئولة عن إدارة الطلبات من شاشة الطلبات و يمكن فتح الطلبات المغلقة أو إنشاء فواتير حسابات أو تغيير عامل التوصيل",
         "description_en": "Is a screen responsible for managing orders from the orders screen and can open closed orders or create account invoices or change the delivery factor"
+    },
+    {
+        "feature": "pos",
+        "title_ar": "طلبات العملاء",
+        "title_en": "Customer orders",
+        "image_url": "/images/order_customer.png",
+        "description_ar": "يتيح للعميل الدخول على البرنامج من خلال الحاسوب أو الهاتف و عمل تسجيل عميل جديد ليتمكن من إضافة طلبات للأصناف التي يريد شرائها",
+        "description_en": "It allows the customer to enter the program through a computer or phone and make a new customer registration so that he can add requests to the items he wants to buy"
+    },
+    {
+        "feature": "pos",
+        "title_ar": "الطلبات الموزعة",
+        "title_en": "Distributed orders",
+        "image_url": "/images/order_distributor.png",
+        "description_ar": "يتم متابعة الطلبات من نوع توصيل و الإشراف على وصولها و متابعة عامل التوصيل حتى يتم توصيل الطلب للعميل",
+        "description_en": "Follow-up requests of the type of delivery and supervision of their arrival and follow-up of the delivery agent until the request is delivered to the customer"
     },
     {
         "feature": "restaurant",
@@ -246,14 +262,6 @@
         "image_url": "/images/order_kitchen.png",
         "description_ar": "يتم ربط الصنف بمطبخ و عند عمل طلب من شاشة الطلبات يتم نقل الأصناف إلى طلبات المطبخ ليتم تسليم الأصناف التي تم تجهيزها",
         "description_en": "The item is linked to a kitchen, and when a request is made from the orders screen, the items are transferred to the kitchen requests, so that the supplied items are delivered"
-    },
-    {
-        "feature": "restaurant",
-        "title_ar": "الطلبات الموزعة",
-        "title_en": "Distributed orders",
-        "image_url": "/images/order_distributor.png",
-        "description_ar": "يتم متابعة الطلبات من نوع توصيل و الإشراف على وصولها و متابعة عامل التوصيل حتى يتم توصيل الطلب للعميل",
-        "description_en": "Follow-up requests of the type of delivery and supervision of their arrival and follow-up of the delivery agent until the request is delivered to the customer"
     },
     {
         "feature": "restaurant",
@@ -598,13 +606,5 @@
         "image_url": "/images/Insurance-employee.png",
         "description_ar": "يتيح لك إضافة شرائح تأمين للموظفين و إضافة منشأة التأمين و إنشاء تأمين خاص بموظف و ربطهم بالتأمين و تحديد مبلغ التأمين و قيمة تحمل الموظف و المؤسسة و ربطها بالمرتب",
         "description_en": "It allows you to add insurance slides to employees, add an insurance facility, create insurance for an employee, link them to insurance, determine the amount of insurance, and the value of employee and institution incurred and link them to the salary"
-    },
-    {
-        "feature": "puplic",
-        "title_ar": "طلبات العملاء",
-        "title_en": "Customer orders",
-        "image_url": "/images/order_customer.png",
-        "description_ar": "يتيح للعميل الدخول على البرنامج من خلال الحاسوب أو الهاتف و عمل تسجيل عميل جديد ليتمكن من إضافة طلبات للأصناف التي يريد شرائها",
-        "description_en": "It allows the customer to enter the program through a computer or phone and make a new customer registration so that he can add requests to the items he wants to buy"
     }
 ]

@@ -200,6 +200,11 @@
         "ar": "الشاشات الأساسية"
     },
     {
+        "name": "main",
+        "en": "Main",
+        "ar": "الرئيسية"
+    },
+    {
         "name": "gym_setting",
         "en": "Gym Setting",
         "ar": "إعدادات الجيم"
