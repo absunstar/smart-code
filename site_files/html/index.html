@@ -77,15 +77,18 @@
 
     <div id="posts" class="center"></div>
     <div class="footer">
-      <h2 class="center">whats up <span> +201090061266 </span></h2>
-      <h2 class="center">Email <span> call.smart.code@gmail.com </span></h2>
+      <div class="row egypt">
+        <h2 class="center">whats up <span> +201090061266 </span></h2>
+        <h2 class="center">Email <span> call.smart.code@gmail.com </span></h2>
+      </div>
+     
       <h2 class="center">Download <a target="_blank" href="https://social-browser.com/"> Social Browser </a> For Best
         Browsing</h2>
       <br>
       <br>
-      <div class="row">
+      <div class="row oman">
 
-        <h2 class="center">
+        <h2 class="center ">
           فرع عمان
           <span>
             مشاريع الزوراء المتحده ش.م.م <br />
@@ -113,6 +116,12 @@
     </script>
   <script>
     let busy = false;
+
+    if("##req.headers.host##".like("*icc*")){
+      $(".oman , .egypt").hide();
+    }else{
+     $(".icc").hide();
+    }
 
     function loadPosts(more) {
       if (busy) {
