@@ -66,6 +66,9 @@
 
   <div id="main-layout">
     <div class="footer">
+      <div class="center icc">
+        <img ng-src="/images/icc.png">
+      </div>
       <h2 class="center red bold">
         ##word.try_application##
       </h2>
@@ -81,7 +84,7 @@
         <h2 class="center">whats up <span> +201090061266 </span></h2>
         <h2 class="center">Email <span> call.smart.code@gmail.com </span></h2>
       </div>
-     
+
       <h2 class="center">Download <a target="_blank" href="https://social-browser.com/"> Social Browser </a> For Best
         Browsing</h2>
       <br>
@@ -100,9 +103,7 @@
         <h2 class="center"> تليفونات عمان <span> 0096891246272 - 0096898927057 </span></h2>
 
       </div>
-      <div class="center icc">
-        <img ng-src="/images/icc.png">
-      </div>
+
     </div>
   </div>
 
@@ -117,10 +118,10 @@
   <script>
     let busy = false;
 
-    if("##req.headers.host##".like("*icc*")){
+    if ("##req.headers.host##".like("*icc*")) {
       $(".oman , .egypt").hide();
-    }else{
-     $(".icc").hide();
+    } else {
+      $(".icc").hide();
     }
 
     function loadPosts(more) {
