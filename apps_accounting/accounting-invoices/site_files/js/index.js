@@ -559,7 +559,8 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
         }
         if ($scope.paid_invoice.currency) {
           $scope.amount_currency = site.toNumber($scope.paid_invoice.remain_amount) / site.toNumber($scope.paid_invoice.currency.ex_rate);
-          $scope.amount_currency = site.toNumber($scope.amount_currency)
+          $scope.amount_currency = site.toNumber($scope.amount_currency);
+          $scope.paid_invoice.payment_paid_up = $scope.amount_currency;
         }
         site.showModal('#invoicesPaymentModal');
       } else $scope.error = '##word.open_shift_not_found##';
@@ -579,6 +580,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
       if (account_invoices.currency) {
         $scope.amount_currency = account_invoices.net_value / account_invoices.currency.ex_rate;
         $scope.amount_currency = site.toNumber($scope.amount_currency);
+        account_invoices.paid_up = $scope.amount_currency;
 
       }
     }, 250);

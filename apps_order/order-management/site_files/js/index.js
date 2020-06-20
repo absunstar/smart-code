@@ -128,6 +128,7 @@ app.controller("order_management", function ($scope, $http, $timeout) {
         if ($scope.account_invoices.currency) {
           $scope.amount_currency = site.toNumber($scope.account_invoices.net_value) / site.toNumber($scope.account_invoices.currency.ex_rate);
           $scope.amount_currency = site.toNumber($scope.amount_currency);
+          $scope.account_invoices.paid_up = $scope.amount_currency;
         }
         site.showModal('#accountInvoiceModal');
       } else $scope.error = '##word.open_shift_not_found##';

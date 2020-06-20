@@ -337,12 +337,12 @@ module.exports = function init(site) {
       }
     }
 
-    if (site.security.isUserLogin(req, res)) {
-      response.error = "Login Error , You Are Loged "
-      response.done = true
-      res.json(response)
-      return
-    }
+    // if (site.security.isUserLogin(req, res)) {
+    //   response.error = "Login Error , You Are Loged "
+    //   response.done = true
+    //   res.json(response)
+    //   return
+    // }
 
     site.security.login({
         email: req.body.email,

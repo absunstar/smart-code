@@ -256,10 +256,8 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
             if (response.data.done) {
               $scope.sendToKitchens(Object.assign({}, response.data.doc));
               $scope.order_invoice = response.data.doc;
-              console.log("xxxxxxxxxxxxxxxxxxxxxxx");
 
               if ($scope.order_invoice.status.id == 2 && $scope.order_invoice.posting) {
-                console.log("sssssssssssssssss");
 
                 let store_out = {
                   image_url: '/images/store_out.png',
@@ -805,8 +803,10 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
             else $scope.account_invoices.safe = $scope.defaultSettings.accounting.safe_bank;
           }
         }
-        if ($scope.account_invoices.currency)
+        if ($scope.account_invoices.currency){
           $scope.amount_currency = site.toNumber($scope.account_invoices.net_value) / site.toNumber($scope.account_invoices.currency.ex_rate);
+          $scope.account_invoices.paid_up = $scope.amount_currency;
+        };
         $scope.calc($scope.account_invoices);
 
         site.showModal('#accountInvoiceModal');
