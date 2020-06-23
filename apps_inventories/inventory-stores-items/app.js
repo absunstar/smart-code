@@ -1491,7 +1491,12 @@ module.exports = function init(site) {
     where['sizes.barcode'] = { $in: barcodes }
     site.getDefaultSetting(req, cbSetting => {
 
-      cbObj.overdraft = cbSetting.inventory.overdraft
+      if (cbSetting.inventory) {
+        if (cbSetting.inventory.overdraft)
+          cbObj.overdraft = cbSetting.inventory.overdraft
+        else cbObj.overdraft = false
+
+      } else cbObj.overdraft = false
 
       $stores_items.findMany({
         select: req.body.select || {},

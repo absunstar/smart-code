@@ -12,6 +12,8 @@
     {"name": "password_err","en": "password does not match","ar": "كلمة السر غير متطابقة"},
     {"name" : "security_user_mobile" , "en" : "Mobile" , "ar":"رقم الموبيل"},
     {"name" : "security_logo" , "en" : "Logo" , "ar":"الشعار"},
+    {"name" : "security_entry" , "en" : "Entry" , "ar":"دخول"},
+    {"name" : "security_change_branch" , "en" : "Change Branch" , "ar":"تغيير الفرع"},
     {"name" : "security_role" , "en" : "Role" , "ar":"الصفة العامة"},
     {"name" : "security_add_role" , "en" : "Add Role" , "ar":"أضف الى الصفات العامة"},
     {"name" : "security_role_ar" , "en" : "Role Arabic" , "ar":"الاسم بالعربى"},

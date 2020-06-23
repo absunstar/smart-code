@@ -75,6 +75,8 @@ module.exports = function init(site) {
     where['company.id'] = site.get_company(req).id
     where['branch.code'] = site.get_branch(req).code
     where['type.id'] = { $ne: 5 }
+    where['posting'] = true
+
 
     // where['$or'] = [{ 'type.id': 1 }, { 'type.id': 3 }, { 'type.id': 4 }, { 'type.id': 7 }]
 

@@ -49,6 +49,8 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
         if ($scope.account_invoices.currency) {
           $scope.amount_currency = site.toNumber($scope.account_invoices.net_value) / site.toNumber($scope.account_invoices.currency.ex_rate);
           $scope.amount_currency = site.toNumber($scope.amount_currency);
+          $scope.account_invoices.paid_up = $scope.amount_currency;
+
         }
 
         $scope.calc($scope.account_invoices);
@@ -363,9 +365,9 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
       obj.net_value = site.toNumber(obj.net_value);
 
       if (obj.currency) {
-
         $scope.amount_currency = obj.net_value / site.toNumber(obj.currency.ex_rate);
         $scope.amount_currency = site.toNumber($scope.amount_currency);
+        obj.paid_up = $scope.amount_currency;
       }
 
       $scope.discount = {
@@ -1375,9 +1377,9 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
         });
 
       if ($scope.store_in.currency) {
-
         $scope.amount_currency = site.toNumber($scope.store_in.net_value) / site.toNumber($scope.store_in.currency.ex_rate);
         $scope.amount_currency = site.toNumber($scope.amount_currency);
+        $scope.store_in.paid_up = $scope.amount_currency;
       }
       site.hideModal('#returnedViewModal');
     };

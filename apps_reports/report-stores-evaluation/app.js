@@ -26,12 +26,30 @@ module.exports = function init(site) {
 
     let where = req.data.where || {};
     let store_id = where.store.id
+    // let branch_code = null
+
+    // if (where.branch && where.branch.code)
+    //   branch_code = where.branch.code
 
     where['company.id'] = site.get_company(req).id
 
-    if (where['store'].id) {
+
+    if (where['branch'] && where['branch'].code) {
+      where['sizes.branches_list.code'] = where['branch'].code
+      delete where['branch']
+    }
+
+
+
+
+    if (where['store'] && where['store'].id) {
       where['sizes.branches_list.stores_list.store.id'] = where['store'].id
       delete where['store']
+    }
+
+    if (where['item_group'] && where['item_group'].id) {
+      where['item_group.id'] = where['item_group'].id
+      delete where['item_group']
     }
 
     $stores_items.findMany({
@@ -48,7 +66,6 @@ module.exports = function init(site) {
           _doc.sizes.forEach(_sizes => {
             _sizes.branches_list.forEach(_branch => {
               _branch.stores_list.forEach(_store => {
-                
                 if (_store.store.id == store_id) {
 
                   i_store_list.push({
@@ -68,17 +85,19 @@ module.exports = function init(site) {
         })
 
         i_store_list.forEach(_iStore => {
-          _iStore.size_units_list.forEach(_size_units => {
-            _iStore.store_units_list.forEach(_store_units => {
-              if (_size_units.id == _store_units.id) {
-                _store_units.average_cost = _size_units.average_cost
-                _store_units.total_average_cost = _size_units.average_cost * _store_units.current_count
+          if (_iStore.size_units_list && _iStore.size_units_list.length > 0)
+            _iStore.size_units_list.forEach(_size_units => {
+              if (_iStore.store_units_list && _iStore.store_units_list.length > 0)
+                _iStore.store_units_list.forEach(_store_units => {
+                  if (_size_units.id == _store_units.id) {
+                    _store_units.average_cost = _size_units.average_cost
+                    _store_units.total_average_cost = _size_units.average_cost * _store_units.current_count
 
-                _store_units.average_cost = site.toNumber(_store_units.average_cost)
-                _store_units.total_average_cost = site.toNumber(_store_units.total_average_cost)
-              }
+                    _store_units.average_cost = site.toNumber(_store_units.average_cost)
+                    _store_units.total_average_cost = site.toNumber(_store_units.total_average_cost)
+                  }
+                });
             });
-          });
         });
 
         response.done = true

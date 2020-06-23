@@ -7,25 +7,18 @@
         <div class="modal-body">
             <div class="row">
                 <form class="form">
-                    <div class="row">
-                        <i-date2 class="col3" ng-model="search.date" label="##word.date##"></i-date2>
-                        <i-date2 class="col3" ng-model="search.date_from" label="##word.date_from##"></i-date2>
-                        <i-date2 class="col3" ng-model="search.date_to" label="##word.date_to##"></i-date2>
-                    </div>
 
                     <div class="row">
+                   <!--      <i-list class="col3" ng-model="search.branch" display="name_ar" items="branchesList"
+                            ng-search="_search.$branch" label="##word.companies_branch##"></i-list>
+ -->
+                        <i-list ng-search="_search.$store" class="col3" display="name" ng-model="search.store"
+                            label="##word.store##" items="storesList">
+                        </i-list>
+
                         <i-list ng-search="_search.$item_group" class="col3" display="name" ng-model="search.item_group"
                             label="##word.item_group##" items="itemsGroupList"></i-list>
 
-                        <i-list class="col3" ng-model="search.unit" ng-search="_search.$unit_search"
-                            label="##word.unit##" items="unitsList"></i-list>
-
-                        <i-control class="col2" ng-model="search.name" label="##word.stores_items_name##" type="text">
-                        </i-control>
-                        <i-control class="col2" ng-model="search.size" label="##word.stores_items_sizes##" type="text">
-                        </i-control>
-                        <i-control class="col2" ng-model="search.barcode" label="##word.barcode##" type="text">
-                        </i-control>
 
                     </div>
                 </form>
@@ -33,9 +26,10 @@
 
             <h2 class="error"> {{error}} </h2>
             <div class="modal-footer center">
-                <i-button type="search" ng-click="searchAll()" label="##word.search##"></i-button>
+                <i-button type="search" ng-click="searchAll()" label="##word.search##">
+                </i-button>
                 <i-button type="clear" ng-click="search = {}" label="##word.empty_search##"></i-button>
-                <i-button type="close" onclick="hideModal('reportStoreEvaluationSearchModal')" label="##word.close##">
+                <i-button type="close" onclick="hideModal('#reportStoreEvaluationSearchModal')" label="##word.close##">
                 </i-button>
             </div>
         </div>

@@ -3,10 +3,10 @@ app.controller("report_stores_evaluation", function ($scope, $http, $timeout) {
 
   $scope.report_stores_evaluation = {};
 
-  $scope.getReportStoreEvaluationList = function (store) {
+  $scope.getReportStoreEvaluationList = function (where) {
     $scope.busy = true;
     $scope.list = [];
-    where = { store: store };
+    
     $http({
       method: "POST",
       url: "/api/report_stores_evaluation/all",
@@ -22,6 +22,7 @@ app.controller("report_stores_evaluation", function ($scope, $http, $timeout) {
           $scope.list = response.data.doc;
           $scope.total_average_cost = 0;
           $scope.list.forEach(_list => {
+            if(_list.store_units_list && _list.store_units_list.length > 0)
             _list.store_units_list.map(_store_unit => $scope.total_average_cost += _store_unit.total_average_cost)
           });
 
@@ -212,6 +213,28 @@ app.controller("report_stores_evaluation", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.loadBranches = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/branches/all"
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.branchesList = response.data.list;
+          $scope.branchCode = response.data.branch;
+        }
+
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
   $scope.loadStores = function () {
     $scope.busy = true;
     $scope.storesList = [];
@@ -247,6 +270,7 @@ app.controller("report_stores_evaluation", function ($scope, $http, $timeout) {
   };
 
   $scope.getDefaultSettings();
+  $scope.loadBranches();
   $scope.loadItemsGroups();
   $scope.loadStores();
   $scope.loadUnits();
