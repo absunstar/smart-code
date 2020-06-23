@@ -1,80 +1,71 @@
 <!DOCTYPE html>
 <html lang="en" data-ng-app="myApp">
-
-<head x-import="head.html">
+  <head x-import="head.html">
     <style>
-
-     
-        i-image.photo img{
-            min-width: 240px;
-        }
-        .user {
-            padding: 10px;
-            background: var(--theme-color);
-            margin: 5px;
-            border-radius: 10px;
-            }
-
-        .title {
-                font-weight: bold;
-                color: #000 !important;
-            }
-
+      i-image.photo img {
+        width: 128px;
+        height: 128px;
+        border: none;
+        border-radius: 0px;
+        padding: 3px;
+      }
+      .user {
+        padding: 10px;
+    border: 1px solid #eee;
+    margin: 15px;
+    border-radius: 10px;
+    height: 250px;
+    width: 250px;
+      }
+      .user:hover {
+        transform: scale(1.1);
+      }
+      .title {
+        font-weight: bold;
+        color: #000 !important;
+      }
     </style>
-</head>
+  </head>
 
-<body class="##session.lang##">
+  <body class="##session.lang##">
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar"></nav>
+    <nav x-import="sitebottom/index.html" class="sitebottom" data-ng-controller="sitebottom"></nav>
 
-    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
-    </nav>
-    <nav x-import="sitebottom/index.html" class="sitebottom" data-ng-controller="sitebottom">
-    </nav>
+    <div id="main-layout" class="container">
+      <div class="row">
+        <div class="row" ng-controller="security">
+          <div x-import="security/add_modal.html"></div>
+          <div x-import="security/update_modal.html"></div>
+          <div x-import="security/delete_modal.html"></div>
+          <div x-import="security/view_modal.html"></div>
+          <div x-permissions="security_manage " class="top-actions">
+            <i-button type="btn add bg-white black" ng-click="newuser()" label="##word.security_new_user##"></i-button>
+            <i-button type="bg-white black" label="##word.security_roles##" ng-click="gotoRoles()"></i-button>
 
-    <div id="main-layout" class="container ">
-        <div class="row ">
-            <div class="row" ng-controller="security">
-                <div x-import="security/add_modal.html"></div>
-                <div x-import="security/update_modal.html"></div>
-                <div x-import="security/delete_modal.html"></div>
-                <div x-import="security/view_modal.html"></div>
-                <div x-permissions="security_manage " class="top-actions ">
-                    <i-button type="add" ng-click="newuser()" label="##word.security_new_user##"></i-button>
-                    <i-button label="##word.security_roles##" ng-click="gotoRoles()"></i-button>
-
-                    <span ng-show="busy">
-                        <i class="fa fa-spinner white fa-pulse fa-3x fa-fw"></i>
-                        <span class="sr-only">Loading...</span>
-                    </span>
-                </div>
-                <br>
-                <div x-permissions="security_manage  " class="users pointer center loaded">
-                    <div class="user inline-grid" ng-repeat="user in list" ng-click="details(user)">
-
-                        <div class="row ">
-                            <i-image view class="photo hover" ng-model="user.profile.image_url"></i-image>
-                        </div>
-                        <div class="row ">
-                            <h2 class="text-center bold white"> {{user.profile.name}}
-                                <p class="text-center yellow"> {{user.email}} </p>
-                            </h2>
-
-                        </div>
-                    </div>
-                </div>
-
+            <span ng-show="busy">
+              <i class="fa fa-spinner white fa-pulse fa-3x fa-fw"></i>
+              <span class="sr-only">Loading...</span>
+            </span>
+          </div>
+          <br />
+          <div x-permissions="security_manage  " class="users pointer center loaded">
+            <div class="user inline-grid" ng-repeat="user in list" ng-click="details(user)">
+              <div class="row">
+                <i-image view class="photo hover" ng-model="user.profile.image_url"></i-image>
+              </div>
+              <div class="row">
+                <h2 class="text-center bold blue">
+                  {{user.profile.name}}
+                  <p class="text-center black">{{user.email}}</p>
+                </h2>
+              </div>
             </div>
-
-
+          </div>
         </div>
-
+      </div>
     </div>
-
-
 
     <div x-import="scripts.html"></div>
     <script x-import="security/index.js"></script>
-
-
-</body>
-
+  </body>
 </html>

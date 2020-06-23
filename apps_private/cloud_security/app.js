@@ -18,8 +18,6 @@ module.exports = function init(site) {
     res.json(response)
   })
 
-
-
   site.post('/api/security/roles', (req, res) => {
 
     let response = {
@@ -81,9 +79,9 @@ module.exports = function init(site) {
 
     let where = req.body.where || {}
 
-    if(req.session.user.is_admin){
+    if (req.session.user.is_admin) {
       where = {}
-    }else{
+    } else {
       where['company.id'] = site.get_company(req).id
       where['branch.code'] = site.get_branch(req).code
     }
@@ -148,7 +146,7 @@ module.exports = function init(site) {
       }
     })
 
-  
+
   })
 
   site.post("/api/user/update", (req, res) => {
@@ -208,8 +206,6 @@ module.exports = function init(site) {
       res.json(response)
     }
   })
-
-
 
   site.post("/api/user/branches/all", (req, res) => {
 
@@ -355,8 +351,11 @@ module.exports = function init(site) {
       function (err, user) {
         if (!err) {
 
-          req.session('company', site.toJson(req.body.company))
-          req.session('branch', site.toJson(req.body.branch))
+          site.call('[session][update]', {
+            'accessToken': req.session.accessToken,
+            'company': req.body.company,
+            'branch': req.body.branch
+          })
 
           response.user = {
             id: user.id,
@@ -387,8 +386,6 @@ module.exports = function init(site) {
     site.security.logout(req, res, (err, ok) => {
       if (ok) {
         response.done = true
-        req.session('company', null)
-        req.session('branch', null)
         res.json(response)
       } else {
         response.error = "You Are Not Loged"
@@ -398,6 +395,29 @@ module.exports = function init(site) {
     })
   })
 
+
+  site.post("/api/user/change-branch", function (req, res) {
+
+    let response = {
+      done : true,
+      accessToken: req.session.accessToken
+    }
+
+    if (req.body.$encript) {
+      if (req.body.$encript === "64") {
+        req.body.branch = site.fromJson(site.fromBase64(req.body.branch))
+      } else if (req.body.$encript === "123") {
+        req.body.branch = site.fromJson(site.from123(req.body.branch))
+      }
+    }
+
+    site.call('[session][update]', {
+      'accessToken': req.session.accessToken,
+      'branch': req.body.branch
+    })
+
+    res.json(response)
+  })
 
   site.post("/api/role/add", (req, res) => {
 

@@ -303,7 +303,7 @@ app.controller("security", function ($scope, $http, $interval) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.user = response.data.doc;
-
+          $scope.user.branch_list = $scope.user.branch_list || [];
 
           $scope.user.permissions.forEach(x => {
             if ($scope.onepermission.hasOwnProperty(x.screen_name)) {

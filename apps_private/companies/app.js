@@ -97,7 +97,7 @@ module.exports = function init(site) {
 
           site.call('[company][created]', doc)
 
-          site.call('please add user', {
+          site.call('[user][add]', {
             is_company: true,
             company_id: doc.id,
             email: doc.username,
@@ -113,6 +113,11 @@ module.exports = function init(site) {
               name: doc.name_ar,
               mobile: doc.mobile,
               image_url: companies_doc.image_url
+            }
+          } , (err  , user_doc)=>{
+            if(!err && user_doc){
+              doc.user_id = user_doc.id
+              $companies.update(doc)
             }
           })
 
@@ -147,7 +152,7 @@ module.exports = function init(site) {
 
       } else {
 
-        $companies.edit({
+        $companies.update({
           where: {
             id: companies_doc.id
           },
@@ -159,18 +164,48 @@ module.exports = function init(site) {
             response.done = true
             response.doc = result.doc
 
-            site.call('please add user', {
+            site.call('[user][update]', {
+              id : companies_doc.user_id,
               email: companies_doc.username,
               password: companies_doc.password,
-              roles: [{
-                name: "companies"
-              }],
               company_id: companies_doc.id,
               is_company: true,
               profile: {
                 name: companies_doc.name_ar,
                 mobile: companies_doc.mobile,
                 image_url: companies_doc.image_url
+              }
+            } , (err , user_result)=>{
+              if(!err && user_result.doc){
+                result.doc.user_id = user_result.doc.id
+                $companies.update(result.doc)
+              }else{
+                site.call('[user][add]', {
+                  email: companies_doc.username,
+                  password: companies_doc.password,
+                  company_id: companies_doc.id,
+                  is_company: true,
+                  roles: [{
+                    name: "companies_admin"
+                  }],
+                  branch_list: [{
+                    company: companies_doc,
+                    branch: companies_doc.branch_list[0]
+                  }],
+                  profile: {
+                    name: companies_doc.name_ar,
+                    mobile: companies_doc.mobile,
+                    image_url: companies_doc.image_url
+                  }
+                } , (err , user_doc)=>{
+                  if(!err && user_doc){
+                    result.doc.user_id = user_doc.id
+                    $companies.update(result.doc)
+                  }else{
+                    console.log(err)
+                    console.log(user_doc)
+                  }
+                })
               }
             })
 
