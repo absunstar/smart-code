@@ -191,7 +191,7 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
       let unitDiscount = false;
       let foundBarcodeUnit = false;
       let notBarcodeUnit = false;
-
+      let existBarcodeUnit_list = [];
 
       $scope.category_item.sizes.forEach(_size => {
         let total_complex_av = 0;
@@ -213,7 +213,9 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
           _unit.average_cost = site.toNumber(_unit.average_cost);
           if (_unit.barcode == (undefined || null)) notBarcodeUnit = true;
           if (_unit.discount && _unit.discount.value > _unit.discount.max) unitDiscount = true;
-          foundBarcodeUnit = $scope.unitsBarcodesList.some(_unit1 => _unit1.barcode == _unit.barcode);
+
+          let fonudExistBU = $scope.unitsBarcodesList.some(_unit1 => _unit1 == _unit.barcode);
+          if (fonudExistBU) foundBarcodeUnit = true;
         });
       });
 
@@ -319,7 +321,8 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
           _unit.average_cost = site.toNumber(_unit.average_cost);
           if (_unit.barcode == (undefined || null)) notBarcodeUnit = true;
           if (_unit.discount && _unit.discount.value > _unit.discount.max) unitDiscount = true;
-          foundBarcodeUnit = $scope.unitsBarcodesList.some(_unit1 => _unit1.barcode == _unit.barcode);
+          let fonudExistBU = $scope.unitsBarcodesList.some(_unit1 => _unit1 == _unit.barcode);
+          if (fonudExistBU) foundBarcodeUnit = true;
         });
       });
 
