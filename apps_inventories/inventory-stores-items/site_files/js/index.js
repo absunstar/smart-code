@@ -211,8 +211,6 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
 
           if (_size.item_complex) _unit.average_cost = total_complex_av;
           _unit.average_cost = site.toNumber(_unit.average_cost);
-          console.log(_unit.barcode);
-          
           if (_unit.barcode == (undefined || null)) notBarcodeUnit = true;
           if (_unit.discount && _unit.discount.value > _unit.discount.max) unitDiscount = true;
           foundBarcodeUnit = $scope.unitsBarcodesList.some(_unit1 => _unit1.barcode == _unit.barcode);
@@ -225,7 +223,7 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
       };
 
 
-      if ($scope.defaultSettings && $scope.defaultSettings.inventory && !$scope.defaultSettings.inventory.auto_barcode_generation) {
+      if ($scope.defaultSettings && $scope.defaultSettings.inventory && (!$scope.defaultSettings.inventory.auto_unit_barcode_generation || $scope.defaultSettings.inventory.auto_unit_barcode_generation == null)) {
 
         if (notBarcodeUnit) {
           $scope.error = '##word.err_barcode_units##';
@@ -330,7 +328,7 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
         return;
       };
 
-      if ($scope.defaultSettings && $scope.defaultSettings.inventory && !$scope.defaultSettings.inventory.auto_barcode_generation) {
+      if ($scope.defaultSettings && $scope.defaultSettings.inventory && (!$scope.defaultSettings.inventory.auto_unit_barcode_generation || $scope.defaultSettings.inventory.auto_unit_barcode_generation == null)) {
 
 
         if (notBarcodeUnit) {

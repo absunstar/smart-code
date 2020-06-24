@@ -270,11 +270,6 @@
         "ar": "كود المجموعة"
     },
     {
-        "name": "stores_items_code",
-        "en": "Item Code",
-        "ar": "كود الصنف"
-    },
-    {
         "name": "stores_items_categry",
         "en": "Stores Items Categry",
         "ar": "الفئة"

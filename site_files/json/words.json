@@ -300,6 +300,21 @@
         "ar": "توليد ألي للباركود"
     },
     {
+        "name": "auto_item_code_generation",
+        "en": "Automatic Item code Generation",
+        "ar": "توليد ألي لكود الصنف"
+    },
+    {
+        "name": "auto_unit_barcode_generation",
+        "en": "Automatic Unit Barcode Generation",
+        "ar": "توليد ألي لباركود الوحدة"
+    },
+    {
+        "name": "item_code",
+        "en": "Item Code",
+        "ar": "كود الصنف"
+    },
+    {
         "name": "paid_require",
         "en": "Paid Require",
         "ar": "المطلوب دفعه"

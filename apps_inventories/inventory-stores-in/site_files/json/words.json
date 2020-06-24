@@ -160,11 +160,6 @@
         "ar": "الأصناف"
     },
     {
-        "name": "stores_in_item_code",
-        "en": "Item Code",
-        "ar": "كود الصنف"
-    },
-    {
         "name": "stores_in_item_name",
         "en": "Item Name",
         "ar": "إسم الصنف"

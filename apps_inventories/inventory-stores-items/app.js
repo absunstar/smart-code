@@ -510,24 +510,27 @@ module.exports = function init(site) {
           if (!err) {
             response.done = true
 
-            let foundBarcode = doc.sizes.every(_size => !_size.barcode)
-            if (foundBarcode) {
-              let y = new Date().getFullYear().toString()
+            let d = new Date().getDate().toString()
+            let h = new Date().getHours().toString()
+            let m = new Date().getMinutes().toString()
+            doc.sizes.forEach((_size, i) => {
+              if (!_size.barcode || _size.barcode == null)
+                _size.barcode = doc.company.id + doc.id + d + h + m + i
 
-              stores_items_doc.sizes.forEach((_size, i) => {
-                if (!_size.barcode || _size.barcode == '')
-                  _size.barcode = doc.company.id + doc.id + y + (Math.floor(Math.random() * 100) + i)
+              _size.size_units_list.forEach((_size_unit, _i) => {
+                let indx = doc.units_list.findIndex(_unit1 => _unit1.id == _size_unit.id);
+                _size_unit.convert = doc.units_list[indx].convert
 
-                _size.size_units_list.forEach(_unit => {
-                  if (!_unit.barcode || _unit.barcode == '') {
-                    _unit.barcode = doc.company.id + doc.id + (_unit.id || 0) + (Math.floor(Math.random() * 100) + i) + y
-                  }
-                });
+                if (!_size_unit.average_cost)
+                  _size_unit.average_cost = _size_unit.cost
 
+                if (!_size_unit.barcode || _size_unit.barcode == null)
+                  _size_unit.barcode = doc.company.id + doc.id + (_size_unit.id || 0) + d + h + m + i + _i
               });
 
-              $stores_items.update(doc)
-            }
+            });
+            $stores_items.update(doc)
+
           } else response.error = err.message
           res.json(response)
         })
@@ -550,11 +553,14 @@ module.exports = function init(site) {
       $res: res
     });
 
-    let y = new Date().getFullYear().toString()
+    let d = new Date().getDate().toString()
+    let h = new Date().getHours().toString()
+    let m = new Date().getMinutes().toString()
+
 
     stores_items_doc.sizes.forEach((_size, i) => {
-      if (!_size.barcode || _size.barcode == '')
-        _size.barcode = stores_items_doc.id + stores_items_doc.company.id + y + (Math.floor(Math.random() * 100)) + i
+      if (!_size.barcode || _size.barcode == null)
+        _size.barcode = stores_items_doc.company.id + stores_items_doc.id + d + h + m + i
 
       _size.size_units_list.forEach((_size_unit, _i) => {
         let indx = stores_items_doc.units_list.findIndex(_unit1 => _unit1.id == _size_unit.id);
@@ -563,8 +569,8 @@ module.exports = function init(site) {
         if (!_size_unit.average_cost)
           _size_unit.average_cost = _size_unit.cost
 
-        if (!_size_unit.barcode || _size_unit.barcode == '')
-          _size_unit.barcode = stores_items_doc.id + stores_items_doc.company.id + (_size_unit.id || 0) + (Math.floor(Math.random() * 100)) + _i + y
+        if (!_size_unit.barcode || _size_unit.barcode == null)
+          _size_unit.barcode = stores_items_doc.company.id + stores_items_doc.id + (_size_unit.id || 0) + d + h + m + i + _i
       });
 
     });
@@ -788,118 +794,6 @@ module.exports = function init(site) {
       if (!err) {
         response.done = true
 
-        //  if (data.size) {
-        //   docs.forEach(doc => {
-        //     doc.sizes.forEach((s, i) => {
-        //       if (s.size !== data.size) {
-        //         doc.sizes.splice(i, 1)
-        //       }
-        //     })
-        //     doc.sizes.forEach((s, i) => {
-        //       if (s.size !== data.size) {
-        //         doc.sizes.splice(i, 1)
-        //       }
-        //     })
-        //   })
-        // }
-
-        // if (data.price) {
-        //   docs.forEach(doc => {
-        //     doc.sizes.forEach((p, i) => {
-        //       if (p.price !== data.price) {
-        //         doc.sizes.splice(i, 1)
-        //       }
-        //     })
-        //     doc.sizes.forEach((p, i) => {
-        //       if (p.price !== data.price) {
-        //         doc.sizes.splice(i, 1)
-        //       }
-        //     })
-        //   })
-        // }
-
-        // if (data.cost) {
-        //   docs.forEach(doc => {
-        //     doc.sizes.forEach((c, i) => {
-        //       if (c.cost !== data.cost) {
-        //         doc.sizes.splice(i, 1)
-        //       }
-        //     })
-        //     doc.sizes.forEach((c, i) => {
-        //       if (c.cost !== data.cost) {
-        //         doc.sizes.splice(i, 1)
-        //       }
-        //     })
-        //   })
-        // }
-
-        // if (data.current_count) {
-        //   docs.forEach(doc => {
-        //     doc.sizes.forEach((c, i) => {
-        //       if (c.current_count < data.current_count) {
-        //         doc.sizes.splice(i, 1)
-        //       }
-        //     })
-        //     doc.sizes.forEach((c, i) => {
-        //       if (c.current_count !== data.current_count) {
-        //         doc.sizes.splice(i, 1)
-        //       }
-        //     })
-        //   })
-        // }
-
-        // if (data.current_countGt && !data.current_countLt) {
-        //   docs.forEach(doc => {
-        //     doc.sizes.forEach((c, i) => {
-        //       if (c.current_count < data.current_countGt) {
-        //         doc.sizes.splice(i, 1)
-        //       }
-        //     })
-        //     doc.sizes.forEach((c, i) => {
-        //       if (c.current_count < data.current_countGt) {
-        //         doc.sizes.splice(i, 1)
-        //       }
-        //     })
-        //   })
-        // }
-
-        // if (data.current_countLt && !data.current_countGt) {
-        //   docs.forEach(doc => {
-        //     doc.sizes.forEach((c, i) => {
-        //       if (c.current_count > data.current_countLt) {
-        //         doc.sizes.splice(i, 1)
-        //       }
-        //     })
-        //     doc.sizes.forEach((c, i) => {
-        //       if (c.current_count > data.current_countLt) {
-        //         doc.sizes.splice(i, 1)
-        //       }
-        //     })
-        //   })
-        // }
-
-        // if (data.current_countLt && data.current_countGt) {
-        //   docs.forEach((doc, index) => {
-        //     doc.sizes.forEach((c, i) => {
-        //       if (c.current_count > data.current_countLt || c.current_count < data.current_countGt) {
-        //         doc.sizes.splice(i, 1)
-        //       }
-        //     })
-        //     doc.sizes.forEach((c, i) => {
-        //       if (c.current_count > data.current_countLt || c.current_count < data.current_countGt) {
-        //         doc.sizes.splice(i, 1)
-        //       }
-        //     })
-        //     if (doc.sizes.length === 0) {
-        //       docs.splice(index, 1)
-        //     }
-        //   })
-        // } 
-
-
-
-
-
         response.list = docs
         response.count = count
       } else {
@@ -1060,12 +954,15 @@ module.exports = function init(site) {
               convert: 1
             }]
 
-            let y = new Date().getFullYear().toString()
+            let d = new Date().getDate().toString()
+            let h = new Date().getHours().toString()
+            let m = new Date().getMinutes().toString()
+
 
             if (_doc.sizes && _doc.sizes.length > 0)
               _doc.sizes.forEach(_sizes => {
-                let _barcode = _doc.id + _doc.company.id + _doc.branch.code + y + (Math.floor(Math.random() * 100))
-                let _barcodeUnit = _doc.id + _doc.company.id + _doc.branch.code + unit.id + (Math.floor(Math.random() * 100)) + y
+                let _barcode = _doc.id + _doc.company.id + d + h + m + i
+                let _barcodeUnit = _doc.id + _doc.company.id + _doc.branch.code + (unit.id || 0) + d + h + m + i
 
                 if (unit.id) {
 

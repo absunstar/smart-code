@@ -170,11 +170,6 @@
         "ar": "كود المجموعة"
     },
     {
-        "name": "item_transaction_code",
-        "en": "Item Code",
-        "ar": "كود الصنف"
-    },
-    {
         "name": "categories_size",
         "en": "Sizes",
         "ar": "المقاس"

@@ -35,11 +35,9 @@
     {"name" : "edit_ticket" , "en" : "Edit ticket" , "ar" : "  تعديل الطلب "},
 
     
-    
     {"name" : "transfer_branch_Company_code" , "en" : "vendor Code" , "ar" : "كود المورد"},   
     {"name" : "transfer_branch_Company_name" , "en" : "vendor Name" , "ar" : "إسم المورد"},   
     {"name" : "transfer_branch_items" , "en" : "Items" , "ar" : "الأصناف"},   
-    {"name" : "transfer_branch_item_code" , "en" : "Item Code" , "ar" : "كود الصنف"},   
     {"name" : "transfer_branch_item_name" , "en" : "Item Name" , "ar" : "إسم الصنف"},   
     {"name" : "transfer_branch_item_Company" , "en" : "Item vendor" , "ar" : "إسم المصنع"},   
     {"name" : "transfer_branch_item_size" , "en" : "Item Size" , "ar" : "المقاس"},   
