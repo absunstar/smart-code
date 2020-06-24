@@ -315,6 +315,11 @@
         "ar": "كود الصنف"
     },
     {
+        "name": "unit_barcode",
+        "en": "Unit Barcode",
+        "ar": "باركود الوحدة"
+    },
+    {
         "name": "paid_require",
         "en": "Paid Require",
         "ar": "المطلوب دفعه"
