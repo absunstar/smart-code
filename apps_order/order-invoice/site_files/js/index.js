@@ -724,14 +724,14 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     if ($scope.account_invoices.net_value) {
       obj_print.data.push({
         type: 'invoice-total',
-        value2: site.addSubZero($scope.account_invoices.net_value , 2),
+        value2: site.addSubZero($scope.account_invoices.net_value, 2),
         value: "Total Value"
       });
     } else {
       obj_print.data.push({
         type: 'invoice-total',
         name: "Total Value",
-        value: site.addSubZero($scope.order_invoice.net_value , 2),
+        value: site.addSubZero($scope.order_invoice.net_value, 2),
       });
     }
 
@@ -766,6 +766,12 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         type: 'footer',
         value: $scope.defaultSettings.printer_program.invoice_footer
       });
+
+
+    obj_print.data.push({
+      type: 'invoice-barcode',
+      value: ($scope.account_invoices.code || $scope.order_invoice.code)
+    });
 
     $http({
       method: "POST",
