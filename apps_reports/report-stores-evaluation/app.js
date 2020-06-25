@@ -25,7 +25,9 @@ module.exports = function init(site) {
     };
 
     let where = req.data.where || {};
-    let store_id = where.store.id
+    let store_id = 0;
+
+    if (where.store) store_id = where.store.id
     // let branch_code = null
 
     // if (where.branch && where.branch.code)

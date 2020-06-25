@@ -10,7 +10,7 @@
     {
         "feature": "academy",
         "title_ar": "المستأجرين",
-        "title_en": "TenantS",
+        "title_en": "Tenants",
         "image_url": "/images/tenant.png",
         "description_ar": "الشاشة المسئولة عن إضافة المستأجرين و بياناتهم و العناوين الخاصة بهم لسهولة الوصول إليهم",
         "description_en": "The screen responsible for adding tenants, their data and addresses for easy access to them."

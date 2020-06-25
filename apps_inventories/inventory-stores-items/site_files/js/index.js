@@ -196,7 +196,7 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
       $scope.category_item.sizes.forEach(_size => {
         let total_complex_av = 0;
 
-        if (_size.item_complex) {
+        if (_size.item_complex && _size.complex_items && _size.complex_items.length > 0) {
           _size.complex_items.map(_complex => total_complex_av += (_complex.unit.average_cost * _complex.count));
 
           if (_size.value_add) {
@@ -209,7 +209,7 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
 
         _size.size_units_list.forEach(_unit => {
 
-          if (_size.item_complex) _unit.average_cost = total_complex_av;
+          if (_size.item_complex && _size.complex_items && _size.complex_items.length > 0) _unit.average_cost = total_complex_av;
           _unit.average_cost = site.toNumber(_unit.average_cost);
           if (_unit.barcode == (undefined || null)) notBarcodeUnit = true;
           if (_unit.discount && _unit.discount.value > _unit.discount.max) unitDiscount = true;
@@ -293,7 +293,7 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
       return;
     }
 
-    if ($scope.category_item.sizes && $scope.category_item.sizes.length > 0) {
+   /*  if ($scope.category_item.sizes && $scope.category_item.sizes.length > 0) {
 
       let unitDiscount = false;
       let foundBarcodeUnit = false;
@@ -303,7 +303,7 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
 
         let total_complex_av = 0;
 
-        if (_size.item_complex) {
+        if (_size.item_complex && _size.complex_items && _size.complex_items.length > 0) {
           _size.complex_items.map(_complex => total_complex_av += (_complex.unit.average_cost * _complex.count));
 
           if (_size.value_add) {
@@ -317,7 +317,7 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
         if (_size.barcode == (undefined || null)) notBarcodeUnit = true;
         _size.size_units_list.forEach(_unit => {
 
-          if (_size.item_complex) _unit.average_cost = total_complex_av;
+          if (_size.item_complex && _size.complex_items && _size.complex_items.length > 0) _unit.average_cost = total_complex_av;
           _unit.average_cost = site.toNumber(_unit.average_cost);
           if (_unit.barcode == (undefined || null)) notBarcodeUnit = true;
           if (_unit.discount && _unit.discount.value > _unit.discount.max) unitDiscount = true;
@@ -345,7 +345,7 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
         };
       };
     };
-
+ */
     $scope.busy = true;
     $http({
       method: "POST",

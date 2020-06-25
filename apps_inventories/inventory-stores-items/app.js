@@ -91,7 +91,8 @@ module.exports = function init(site) {
             let total_complex_av = 0
 
             if (_size.item_complex) {
-              _size.complex_items.map(_complex => total_complex_av += (_complex.unit.average_cost * _complex.count));
+              if (_size.complex_items && _size.complex_items.length > 0)
+                _size.complex_items.map(_complex => total_complex_av += (_complex.unit.average_cost * _complex.count));
 
               if (_size.value_add) {
                 if (_size.value_add.type == 'percent')
