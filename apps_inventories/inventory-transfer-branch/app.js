@@ -92,7 +92,7 @@ module.exports = function init(site) {
     branch_ransfer_doc.edit_user_info = site.security.getUserFinger({ $req: req, $res: res })
 
     branch_ransfer_doc.date = new Date(branch_ransfer_doc.date)
-
+    req.body.store = req.body.store_from;
     site.overdraft(req, branch_ransfer_doc.items, cbOverDraft => {
 
       if (!cbOverDraft.overdraft && cbOverDraft.value) {
