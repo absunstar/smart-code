@@ -65,7 +65,7 @@
   <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom"></nav>
 
   <div id="main-layout">
-    <div class="footer">
+    <div class="footer" x-feature="!login">
       <div class="center icc">
         <img ng-src="/images/icc.png">
       </div>
@@ -79,7 +79,7 @@
     </div>
 
     <div id="posts" class="center"></div>
-    <div class="footer">
+    <div class="footer" x-feature="!login">
       <div class="row egypt">
         <h2 class="center">whats up <span> +201090061266 </span></h2>
         <h2 class="center">Email <span> call.smart.code@gmail.com </span></h2>
@@ -107,7 +107,7 @@
     </div>
   </div>
 
-  <div x-import="scripts.html"></div>
+  <div x-import="scripts.html" ></div>
   <script id="post-template" type="x-tmpl-mustache">
       <div class="post" >
           <h2> {{title_##session.lang##}} </h2>

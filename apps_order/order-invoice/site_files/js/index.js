@@ -579,42 +579,44 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     let obj_print = {
       data: []
     };
+    if ($scope.defaultSettings.printer_program) {
 
-    if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.printer_path)
-      obj_print.printer = $scope.defaultSettings.printer_program.printer_path.ip.trim();
+      if ($scope.defaultSettings.printer_program.printer_path)
+        obj_print.printer = $scope.defaultSettings.printer_program.printer_path.ip.trim();
 
 
-    if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.invoice_top_title) {
-      obj_print.data.push({
-        type: 'invoice-top-title',
-        name: $scope.defaultSettings.printer_program.invoice_top_title
-      });
-    } else {
-      obj_print.data.push({
-        type: 'invoice-top-title',
-        name: "Smart Code"
-      });
+      if ($scope.defaultSettings.printer_program.invoice_top_title) {
+        obj_print.data.push({
+          type: 'invoice-top-title',
+          name: $scope.defaultSettings.printer_program.invoice_top_title
+        });
+      } else {
+        obj_print.data.push({
+          type: 'invoice-top-title',
+          name: "Smart Code"
+        });
+      }
+
+      if ($scope.defaultSettings.printer_program.invoice_logo) {
+        obj_print.data.push({
+          type: 'invoice-logo',
+          url: $scope.defaultSettings.printer_program.invoice_logo
+        });
+      } else {
+        obj_print.data.push({
+          type: 'invoice-logo',
+          url: "http://127.0.0.1/images/logo.png"
+        });
+      }
+
+      if ($scope.defaultSettings.printer_program.invoice_header) {
+        obj_print.data.push({
+          type: 'header',
+          value: $scope.defaultSettings.printer_program.invoice_header
+        });
+      }
+
     }
-
-    if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.invoice_logo) {
-      obj_print.data.push({
-        type: 'invoice-logo',
-        url: $scope.defaultSettings.printer_program.invoice_logo
-      });
-    } else {
-      obj_print.data.push({
-        type: 'invoice-logo',
-        url: "http://127.0.0.1/images/logo.png"
-      });
-    }
-
-    if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.invoice_header) {
-      obj_print.data.push({
-        type: 'header',
-        value: $scope.defaultSettings.printer_program.invoice_header
-      });
-    }
-
 
     obj_print.data.push({
       type: 'invoice-code',
@@ -1463,7 +1465,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
   };
 
   $scope.getTablesList = function (callback) {
-    callback = callback || function () {};
+    callback = callback || function () { };
 
     $scope.busy = true;
     $scope.tablesList = [];
@@ -1500,7 +1502,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
   };
 
   $scope.getOrderInvoicesActiveList = function (callback) {
-    callback = callback || function () {};
+    callback = callback || function () { };
     $scope.busy = true;
     $scope.invoicesActivelist = [];
     $http({

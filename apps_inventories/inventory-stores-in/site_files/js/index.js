@@ -132,14 +132,45 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
 
       let obj_print = { data: [] };
 
-      if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.printer_path)
-        obj_print.printer = $scope.defaultSettings.printer_program.printer_path.ip.trim();
+      if ($scope.defaultSettings.printer_program) {
 
-      if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.invoice_header)
-        obj_print.data.push({
-          type: 'header',
-          value: $scope.defaultSettings.printer_program.invoice_header
-        });
+        if ($scope.defaultSettings.printer_program.printer_path)
+          obj_print.printer = $scope.defaultSettings.printer_program.printer_path.ip.trim();
+
+
+        if ($scope.defaultSettings.printer_program.invoice_top_title) {
+          obj_print.data.push({
+            type: 'invoice-top-title',
+            name: $scope.defaultSettings.printer_program.invoice_top_title
+          });
+        } else {
+          obj_print.data.push({
+            type: 'invoice-top-title',
+            name: "Smart Code"
+          });
+        }
+
+        if ($scope.defaultSettings.printer_program.invoice_logo) {
+          obj_print.data.push({
+            type: 'invoice-logo',
+            url: $scope.defaultSettings.printer_program.invoice_logo
+          });
+        } else {
+          obj_print.data.push({
+            type: 'invoice-logo',
+            url: "http://127.0.0.1/images/logo.png"
+          });
+        }
+
+        if ($scope.defaultSettings.printer_program.invoice_header) {
+          obj_print.data.push({
+            type: 'header',
+            value: $scope.defaultSettings.printer_program.invoice_header
+          });
+        }
+
+      }
+
 
       obj_print.data.push(
         {
@@ -188,20 +219,24 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
             value2: 'العدد',
             value3: 'السعر'
           }, {
-          type: 'space'
+          type: 'line2'
         }
         );
 
-        $scope.account_invoices.current_book_list.forEach(_current_book_list => {
+        $scope.account_invoices.current_book_list.forEach((_current_book_list, i) => {
+          _current_book_list.total = site.toNumber(_current_book_list.total);
           obj_print.data.push({
-            type: 'text3',
-            value: _current_book_list.size,
-            value2: _current_book_list.count,
-            value3: _current_book_list.total
-          },
-            {
-              type: 'line'
-            })
+            type: 'invoice-item',
+            count: _current_book_list.count,
+            name: _current_book_list.size,
+            price: site.addSubZero(_current_book_list.total, 2)
+          });
+          if (i < $scope.account_invoices.current_book_list.length - 1) {
+            obj_print.data.push({
+              type: 'line3'
+            });
+          }
+
         });
       };
 
@@ -555,7 +590,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
             $scope.loadAll();
             $scope.newStoreIn();
 
-            } else {
+          } else {
             $scope.error = response.data.error;
             if (response.data.error.like('*OverDraft Not*')) {
               $scope.error = "##word.overdraft_not_active##"

@@ -200,6 +200,9 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
         })
       }
 
+
+      
+
       _kitchen.data.push({
         type: 'text2',
         value2: site.toDateXF(_order_customer.date),
@@ -385,8 +388,6 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
         $scope.account_invoices.service = $scope.order_customer.service;
 
     }
-
-
 
     let ip = '127.0.0.1';
     let port = '11111';
