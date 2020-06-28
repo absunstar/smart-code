@@ -149,8 +149,7 @@ module.exports = function init(site) {
     let where = req.data.where || {}
 
     where['company.id'] = site.get_company(req).id
-/*     where['branch.code'] = site.get_branch(req).code
- */
+
     $tax_types.findMany({
       select: req.body.select || {},
       where: where

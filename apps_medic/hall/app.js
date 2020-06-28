@@ -215,8 +215,7 @@ module.exports = function init(site) {
     delete where.search
 
     where['company.id'] = site.get_company(req).id
-/*     where['branch.code'] = site.get_branch(req).code
- */
+
     $hall.findMany({
       select: req.body.select || {},
       where: where,

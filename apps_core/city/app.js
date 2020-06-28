@@ -122,7 +122,7 @@ module.exports = function init(site) {
     let response = {
       done: false
     }
-   
+
     if (!req.session.user) {
       response.error = 'Please Login First'
       res.json(response)
@@ -193,11 +193,10 @@ module.exports = function init(site) {
     if (where['name']) {
       where['name'] = new RegExp(where['name'], "i");
     }
-    
+
     if (site.get_company(req) && site.get_company(req).id)
-    where['company.id'] = site.get_company(req).id
-/*     where['branch.code'] = site.get_branch(req).code
- */
+      where['company.id'] = site.get_company(req).id
+
 
     $city.findMany({
       select: req.body.select || {},
