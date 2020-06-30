@@ -93,14 +93,14 @@ module.exports = function init(site) {
     })
   }
 
-  /*  site.getDefaultSetting = function (callback) {
-     $default_setting.get({
-     }, (err, doc) => {
-       if (!err && doc) {
-         return callback(err, doc)
-       }
-     })
-   } */
+  //   site.getDefaultSetting = function (callback) {
+  //    $default_setting.get({
+  //    }, (err, doc) => {
+  //      if (!err && doc) {
+  //        return callback(err, doc)
+  //      }
+  //    })
+  //  } 
 
   site.post("/api/default_setting/save", (req, res) => {
     let response = {
@@ -119,10 +119,11 @@ module.exports = function init(site) {
     if (data.printer_program) {
 
       if (!data.printer_program.invoice_header)
-        data.printer_program.invoice_header = []
+        data.printer_program.invoice_header = [{}]
 
       if (!data.printer_program.invoice_footer)
-        data.printer_program.invoice_footer = []
+        data.printer_program.invoice_footer = [{}]
+
     } else {
       data.printer_program = {
         invoice_header: [{}],
