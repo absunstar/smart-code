@@ -121,6 +121,11 @@ module.exports = function init(site) {
       if (!err) {
         response.done = true;
         response.doc = doc;
+
+        if (doc.source_type.id == 1) site.call('[store_in][account_invoice][invoice]', doc.invoice_id)
+        else if (doc.source_type.id == 2) site.call('[store_out][account_invoice][invoice]', doc.invoice_id)
+
+
         if (doc.posting) {
 
           let paid_value = {
@@ -142,7 +147,6 @@ module.exports = function init(site) {
 
           if (doc.source_type.id == 1) {
 
-
             if (doc.invoice_type && doc.invoice_type.id == 4) {
 
               paid_value.operation = { ar: ' مرتجع فاتورة مشتريات', en: 'Return Purchase Invoice' }
@@ -153,7 +157,6 @@ module.exports = function init(site) {
               paid_value.transition_type = 'out'
             }
 
-            site.call('[store_in][account_invoice][invoice]', doc.invoice_id)
 
           } else if (doc.source_type.id == 2) {
             if (doc.invoice_type && doc.invoice_type.id == 6) {
@@ -164,7 +167,8 @@ module.exports = function init(site) {
               paid_value.operation = { ar: 'فاتورة مبيعات', en: 'Sales Invoice' }
               paid_value.transition_type = 'in'
             }
-            site.call('[store_out][account_invoice][invoice]', doc.invoice_id)
+
+
           } else if (doc.source_type.id == 3) {
             paid_value.operation = { ar: 'فاتورة شاشة الطلبات', en: 'Orders Screen Invoice' }
             paid_value.transition_type = 'in'
@@ -358,7 +362,6 @@ module.exports = function init(site) {
               obj.transition_type = 'out'
             }
 
-            site.call('[store_in][account_invoice][invoice]', account_invoices_doc.invoice_id)
 
           } else if (account_invoices_doc.source_type.id == 2) {
             if (account_invoices_doc.invoice_type && account_invoices_doc.invoice_type.id == 6) {
@@ -369,7 +372,6 @@ module.exports = function init(site) {
               obj.operation = { ar: 'فاتورة مبيعات', en: 'Sales Invoice' }
               obj.transition_type = 'in'
             }
-            site.call('[store_out][account_invoice][invoice]', account_invoices_doc.invoice_id)
 
           } else if (account_invoices_doc.source_type.id == 3) {
             obj.operation = { ar: 'فاتورة شاشة الطلبات', en: 'Orders Screen Invoice' }

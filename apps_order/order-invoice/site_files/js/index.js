@@ -739,6 +739,16 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         value: "Required to pay"
       });
 
+
+    if (obj.currency)
+      obj_print.data.push(
+        {
+          type: 'text2',
+          value2: obj.currency.name,
+          value: "Currency"
+        });
+
+
     if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.invoice_footer && $scope.defaultSettings.printer_program.invoice_footer.length > 0) {
       $scope.defaultSettings.printer_program.invoice_footer.forEach(_if => {
         obj_print.data.push({

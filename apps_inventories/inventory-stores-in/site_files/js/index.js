@@ -92,7 +92,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response) {
-          $scope.account_invoices = account_invoices;
+          $scope.account_invoices = response.data.doc;
           site.hideModal('#accountInvoiceModal');
           $scope.printAccountInvoive();
           $scope.loadAll();
@@ -151,9 +151,10 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
         }
 
         if ($scope.defaultSettings.printer_program.invoice_logo) {
+
           obj_print.data.push({
             type: 'invoice-logo',
-            url: $scope.defaultSettings.printer_program.invoice_logo
+            url: document.location.origin + $scope.defaultSettings.printer_program.invoice_logo
           });
         } else {
           obj_print.data.push({
@@ -162,28 +163,30 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
           });
         }
 
-        if ($scope.defaultSettings.printer_program.invoice_header) {
-          obj_print.data.push({
-            type: 'header',
-            value: $scope.defaultSettings.printer_program.invoice_header
+        if ($scope.defaultSettings.printer_program.invoice_header && $scope.defaultSettings.printer_program.invoice_header.length > 0) {
+          $scope.defaultSettings.printer_program.invoice_header.forEach(_ih => {
+            obj_print.data.push({
+              type: 'header',
+              value: _ih.name
+            });
           });
         }
-
       }
 
 
       obj_print.data.push(
         {
-          type: 'title',
-          value: 'Purchase Invoice'
+          type: 'invoice-code',
+          name: 'Purchase I',
+          value: $scope.account_invoices.code
+        },
+        {
+          type: 'invoice-date',
+          name: 'Date',
+          value: site.toDateXF($scope.account_invoices.date)
         },
         {
           type: 'space'
-        },
-        {
-          type: 'text2',
-          value2: site.toDateXF($scope.account_invoices.date),
-          value: 'Date'
         });
 
 
@@ -200,29 +203,22 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
 
       if ($scope.account_invoices.current_book_list && $scope.account_invoices.current_book_list.length > 0) {
 
-        obj_print.data.push(
-          {
-            type: 'space'
-          },
-          {
-            type: 'line'
-          },
-          {
-            type: 'text3b',
-            value: 'Item',
-            value2: 'Count',
-            value3: 'Price'
-          },
-          {
-            type: 'text3b',
-            value: 'الصنف',
-            value2: 'العدد',
-            value3: 'السعر'
-          }, {
+        obj_print.data.push({
+          type: 'line'
+        }, {
+          type: 'invoice-item-title',
+          count: 'العدد',
+          name: 'الاسم',
+          price: 'السعر'
+        }, {
+          type: 'invoice-item-title',
+          count: 'Count',
+          name: 'Name',
+          price: 'Price'
+        }, {
           type: 'line2'
-        }
-        );
-
+        });
+  
         $scope.account_invoices.current_book_list.forEach((_current_book_list, i) => {
           _current_book_list.total = site.toNumber(_current_book_list.total);
           obj_print.data.push({
@@ -236,9 +232,10 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
               type: 'line3'
             });
           }
-
+  
         });
       };
+  
 
 
       if ($scope.account_invoices.total_discount)
@@ -257,29 +254,24 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
 
       obj_print.data.push({ type: 'space' });
 
-      if ($scope.account_invoices.net_value)
-        obj_print.data.push(
-          {
-            type: 'text2',
-            value2: $scope.account_invoices.net_value,
-            value: "Total Value"
-          });
+
+      if ($scope.account_invoices.net_value) {
+
+        obj_print.data.push({
+          type: 'invoice-total',
+          value: site.addSubZero($scope.account_invoices.net_value, 2),
+          name: "Total Value"
+        });
+      }
 
       if ($scope.account_invoices.paid_up)
         obj_print.data.push(
           {
             type: 'text2',
-            value2: $scope.account_invoices.paid_up,
+            value2: site.addSubZero($scope.account_invoices.paid_up, 2),
             value: "Paid Up"
           });
 
-      if ($scope.account_invoices.currency)
-        obj_print.data.push(
-          {
-            type: 'text2',
-            value2: $scope.account_invoices.currency,
-            value: "Currency"
-          });
 
 
       obj_print.data.push({ type: 'space' });
@@ -287,16 +279,36 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
       if ($scope.account_invoices.total_remain) {
         obj_print.data.push({
           type: 'text2b',
-          value2: $scope.account_invoices.total_remain,
+          value2: site.addSubZero($scope.account_invoices.total_remain, 2),
           value: "Required to pay"
         });
       }
 
-      if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.invoice_footer)
-        obj_print.data.push({
-          type: 'footer',
-          value: $scope.defaultSettings.printer_program.invoice_footer
+      if ($scope.account_invoices.currency)
+        obj_print.data.push(
+          {
+            type: 'text2',
+            value2: $scope.account_invoices.currency.name,
+            value: "Currency"
+          });
+
+
+      if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.invoice_footer && $scope.defaultSettings.printer_program.invoice_footer.length > 0) {
+        $scope.defaultSettings.printer_program.invoice_footer.forEach(_if => {
+          obj_print.data.push({
+            type: 'header',
+            value: _if.name
+          });
         });
+
+      }
+
+      if ($scope.account_invoices.code) {
+        obj_print.data.push({
+          type: 'invoice-barcode',
+          value: ($scope.account_invoices.code)
+        });
+      }
 
       $http({
         method: "POST",
