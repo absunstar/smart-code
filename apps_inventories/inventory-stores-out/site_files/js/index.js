@@ -1246,7 +1246,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         }, {
           type: 'line2'
         });
-  
+
         $scope.account_invoices.current_book_list.forEach((_current_book_list, i) => {
           _current_book_list.total = site.toNumber(_current_book_list.total);
           obj_print.data.push({
@@ -1260,10 +1260,10 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
               type: 'line3'
             });
           }
-  
+
         });
       };
-  
+
 
       if ($scope.account_invoices.total_discount)
         obj_print.data.push({
@@ -1585,6 +1585,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
     )
   };
 
+
   $scope.posting = function (store_out) {
     $scope.error = '';
 
@@ -1628,6 +1629,52 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
 
 
     })
+  };
+
+  $scope.postingAll = function (store_out_all) {
+    $scope.error = '';
+    for (let i = 0; i < store_out_all.length; i++) {
+      let store_out = store_out_all[i];
+      store_out.posting = true;
+
+
+      $scope.getStockItems(store_out.items, callback => {
+
+        if (!callback) {
+
+          $scope.busy = true;
+          $http({
+            method: "POST",
+            url: "/api/stores_out/posting",
+            data: store_out
+          }).then(
+            function (response) {
+              $scope.busy = false;
+              if (response.data.done) {
+                $scope.loadAll();
+              } else {
+                $scope.error = '##word.error##';
+                if (response.data.error.like('*OverDraft Not*')) {
+                  $scope.error = "##word.overdraft_not_active##"
+                  store_out.posting = false;
+                }
+              }
+            },
+            function (err) {
+              console.log(err);
+            }
+          )
+        } else {
+          if (store_out.posting)
+            store_out.posting = false;
+          else store_out.posting = true;
+          $scope.error = '##word.err_stock_item##';
+        }
+
+
+      })
+    };
+
   };
 
   $scope.getStockItems = function (items, callback) {

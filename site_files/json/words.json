@@ -305,6 +305,11 @@
         "ar": "توليد ألي لكود الصنف"
     },
     {
+        "name": "posting_all",
+        "en": "Posting All",
+        "ar": "ترحيل الكل"
+    },
+    {
         "name": "auto_unit_barcode_generation",
         "en": "Automatic Unit Barcode Generation",
         "ar": "توليد ألي لباركود الوحدة"
