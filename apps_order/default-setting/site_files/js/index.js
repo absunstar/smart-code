@@ -7,9 +7,7 @@ if (btn1) {
 app.controller("default_setting", function ($scope, $http) {
   $scope._search = {};
 
-  $scope.default_setting = {
-
-  };
+  $scope.default_setting = {};
 
   $scope.priceMethod = [
     {
@@ -40,31 +38,35 @@ app.controller("default_setting", function ($scope, $http) {
     $scope.search = new Search();
   };
 
-  $scope.loadUnits = function () {
+  $scope.getCustomerList = function (ev) {
+    $scope.error = '';
     $scope.busy = true;
-    $scope.unitsList = [];
-    $http({
-      method: "POST",
-      url: "/api/units/all",
-      data: {
-        select: {
-          id: 1,
-          name: 1,
-          barcode: 1
+    if (ev.which === 13) {
+      $http({
+        method: "POST",
+        url: "/api/customers/all",
+        data: {
+          search: $scope.search_customer,
+
+          /*  select: {
+            id: 1,
+            name_ar: 1,
+            name_en: 1,
+          } */
         }
-      }
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          $scope.unitsList = response.data.list;
+      }).then(
+        function (response) {
+          $scope.busy = false;
+          if (response.data.done && response.data.list.length > 0) {
+            $scope.customersList = response.data.list;
+          }
+        },
+        function (err) {
+          $scope.busy = false;
+          $scope.error = err;
         }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
+      )
+    };
   };
 
   $scope.loadVendors = function () {
@@ -88,46 +90,18 @@ app.controller("default_setting", function ($scope, $http) {
     )
   };
 
-  $scope.loadCustomers = function () {
+  $scope.getTransactionTypeList = function () {
     $scope.error = '';
     $scope.busy = true;
+    $scope.transactionTypeList = [];
     $http({
       method: "POST",
-      url: "/api/customers/all",
-      data: {}
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          $scope.customersList = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
-  };
+      url: "/api/order_invoice/transaction_type/all"
 
-  $scope.loadKitchens = function () {
-    $scope.error = '';
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/kitchen/all",
-      data: {
-        select: {
-          id: 1,
-          name: 1,
-          printer_path: 1
-        }
-      }
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done) {
-          $scope.kitchensList = response.data.list;
-        }
+        $scope.transactionTypeList = response.data.filter(i => i.id == 2 || i.id == 3);
       },
       function (err) {
         $scope.busy = false;
@@ -262,9 +236,9 @@ app.controller("default_setting", function ($scope, $http) {
     }).then(
       function (response) {
         $scope.busy = false;
+
         if (site.feature('gym')) $scope.sourceTypeList = response.data.filter(i => i.id != 3 && i.id != 5 && i.id != 6 && i.id != 7);
-        else if (site.feature('restaurant')) $scope.sourceTypeList = response.data.filter(i => i.id != 4 && i.id != 5 && i.id != 6 && i.id != 7);
-        else if (site.feature('pos')) $scope.sourceTypeList = response.data.filter(i => i.id != 4 && i.id != 3 && i.id != 5 && i.id != 6 && i.id != 7);
+        else if (site.feature('restaurant') || site.feature('pos')) $scope.sourceTypeList = response.data.filter(i => i.id != 4 && i.id != 5 && i.id != 6 && i.id != 7);
         else if (site.feature('academy')) $scope.sourceTypeList = response.data.filter(i => i.id != 4 && i.id != 3);
         else $scope.sourceTypeList = response.data;
       },
@@ -275,76 +249,6 @@ app.controller("default_setting", function ($scope, $http) {
     )
   };
 
-  $scope.getPrintersPath = function () {
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/printers_path/all",
-      data: {
-        select: {
-          id: 1,
-          name: 1,
-          type: 1,
-          ip: 1,
-        }
-      }
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          $scope.printersPathList = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
-  };
-
-
-  $scope.getTablesGroupList = function () {
-    $scope.busy = true;
-    $scope.tablesGroupList = [];
-    $http({
-      method: "POST",
-      url: "/api/tables_group/all",
-      data: {
-        select: { id: 1, name: 1, code: 1 }
-      }
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.tablesGroupList = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
-  };
-
-  $scope.getDeliveryEmployeesList = function () {
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/delivery_employees/all",
-      data: {}
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.deliveryEmployeesList = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
-  };
 
   $scope.getDiscountMethodList = function () {
     $scope.error = '';
@@ -366,26 +270,6 @@ app.controller("default_setting", function ($scope, $http) {
     )
   };
 
-  $scope.getTransactionTypeList = function () {
-    $scope.error = '';
-    $scope.busy = true;
-    $scope.transactionTypeList = [];
-    $http({
-      method: "POST",
-      url: "/api/order_invoice/transaction_type/all"
-
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        $scope.transactionTypeList = response.data;
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
-  };
-
   $scope.getPlaceProgramList = function () {
     $scope.error = '';
     $scope.busy = true;
@@ -398,52 +282,6 @@ app.controller("default_setting", function ($scope, $http) {
       function (response) {
         $scope.busy = false;
         $scope.placeProgramList = response.data;
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
-  };
-
-  $scope.getPaymentMethodList = function () {
-    $scope.error = '';
-    $scope.busy = true;
-    $scope.paymentMethodList = [];
-    $http({
-      method: "POST",
-      url: "/api/payment_method/all"
-
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        $scope.paymentMethodList = response.data;
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
-  };
-
-  $scope.loadSetting = function (where) {
-    $scope.default_setting = {};
-    $scope.busy = true;
-
-    $http({
-      method: "POST",
-      url: "/api/default_setting/get",
-      data: {
-        where: where
-      }
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          $scope.default_setting = response.data.doc
-        } else {
-          $scope.default_setting = {};
-        }
       },
       function (err) {
         $scope.busy = false;
@@ -540,6 +378,53 @@ app.controller("default_setting", function ($scope, $http) {
     )
   };
 
+
+  $scope.getPaymentMethodList = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $scope.paymentMethodList = [];
+    $http({
+      method: "POST",
+      url: "/api/payment_method/all"
+
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.paymentMethodList = response.data;
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.loadSetting = function (where) {
+    $scope.default_setting = {};
+    $scope.busy = true;
+
+    $http({
+      method: "POST",
+      url: "/api/default_setting/get",
+      data: {
+        where: where
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.default_setting = response.data.doc
+        } else {
+          $scope.default_setting = {};
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
   $scope.saveSetting = function (where) {
     $scope.busy = true;
     $http({
@@ -561,25 +446,130 @@ app.controller("default_setting", function ($scope, $http) {
     )
   };
 
-  $scope.loadUnits();
+  $scope.getDeliveryEmployeesList = function () {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/delivery_employees/all",
+      data: {}
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.deliveryEmployeesList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.loadUnits = function () {
+    $scope.busy = true;
+    $scope.unitsList = [];
+    $http({
+      method: "POST",
+      url: "/api/units/all",
+      data: {
+        select: {
+          id: 1,
+          name: 1,
+          barcode: 1
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.unitsList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+
+  $scope.loadKitchens = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/kitchen/all",
+      data: {
+        select: {
+          id: 1,
+          name: 1,
+          printer_path: 1
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.kitchensList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+
+  $scope.getPrintersPath = function () {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/printers_path/all",
+      data: {
+        select: {
+          id: 1,
+          name: 1,
+          type: 1,
+          ip: 1,
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.printersPathList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
   $scope.loadStores();
-  $scope.loadSafesBox();
-  $scope.loadSafesBank();
-  $scope.loadCurrencies();
   $scope.loadVendors();
-  $scope.loadDelegates();
-  $scope.loadStoresOutTypes();
-  $scope.loadStoresInTypes();
-  $scope.getTransactionTypeList();
-  $scope.loadCustomers();
-  $scope.loadItemsGroups();
-  $scope.getTablesGroupList();
-  $scope.getDeliveryEmployeesList();
   $scope.getPaymentMethodList();
   $scope.getDiscountMethodList();
-  $scope.loadKitchens();
-  $scope.getSourceType();
   $scope.getPlaceProgramList();
-  $scope.getPrintersPath();
+  $scope.loadStoresOutTypes();
+  $scope.loadItemsGroups();
+  $scope.loadDelegates();
+  $scope.getSourceType();
+  $scope.loadSafesBank();
+  $scope.loadUnits();
+  $scope.loadCurrencies();
+  $scope.loadSafesBox();
+  $scope.loadStoresInTypes();
   $scope.loadSetting();
+  $scope.getPrintersPath();
+  $scope.getTransactionTypeList();
+  if (site.feature('restaurant') || site.feature('pos')) {
+    $scope.getDeliveryEmployeesList();
+  }
+  if (site.feature('restaurant')) {
+    $scope.loadKitchens();
+  }
 });

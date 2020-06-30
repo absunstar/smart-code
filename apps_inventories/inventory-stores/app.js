@@ -160,6 +160,7 @@ module.exports = function init(site) {
     }
     response.done = false
 
+    
     where['company.id'] = site.get_company(req).id
 
     if (req.body.branchTo) {

@@ -315,6 +315,11 @@
         "ar": "كود الصنف"
     },
     {
+        "name": "invoice_top_title",
+        "en": "invoice top title",
+        "ar": "عنوان الفاتورة العلوي"
+    },
+    {
         "name": "unit_barcode",
         "en": "Unit Barcode",
         "ar": "باركود الوحدة"

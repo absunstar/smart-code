@@ -53,7 +53,7 @@
                             <th>##word.stores_in_discountes##</th>
                         </tr>
 
-                        <tr ng-repeat="s in size.size_units_list">
+                        <tr ng-repeat="s in size.size_units_list track by $index">
 
                             <td>
                                 <br>
@@ -91,8 +91,8 @@
                             </td>
 
                             <td class="center bold" ng-show="_view">
-                                <p>##word.maximum_discount## : <b class="red">{{s.discount.max}}</b></p>
                                 <p>##word.discount## : <b class="red">{{s.discount.value}} </b></p>
+                                <p>##word.maximum_discount## : <b class="red">{{s.discount.max}}</b></p>
                                 </p> <b class="red" ng-show="s.discount.type == 'number'">
                                     $</b>
                                 <b class="red" ng-show="s.discount.type == 'percent'"> % </b>

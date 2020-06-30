@@ -250,6 +250,7 @@ module.exports = function init(site) {
       site.call('[order_invoice][tables][busy]', table)
     };
 
+
     order_invoice_doc.total_book_list = 0
     order_invoice_doc.book_list.forEach(book_list => {
       order_invoice_doc.total_book_list += book_list.total

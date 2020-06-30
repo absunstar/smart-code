@@ -85,7 +85,8 @@
         <h2 class="center">Email <span> call.smart.code@gmail.com </span></h2>
       </div>
 
-      <h2 class="center">Download <a target="_blank" href="https://social-browser.com##new_tab##"> Social Browser </a> For Best
+      <h2 class="center">Download <a target="_blank" href="https://social-browser.com##new_tab##"> Social Browser </a>
+        For Best
         Browsing</h2>
       <br>
       <br>
@@ -107,7 +108,7 @@
     </div>
   </div>
 
-  <div x-import="scripts.html" ></div>
+  <div x-import="scripts.html"></div>
   <script id="post-template" type="x-tmpl-mustache">
       <div class="post" >
           <h2> {{title_##session.lang##}} </h2>
@@ -176,6 +177,11 @@
               } else if (res[i].feature == "pos" && site.features.like("*pos*")) {
                 post = res[i];
                 rendered += Mustache.render(post_template, post);
+              } else if (res[i].feature == "order") {
+                if (site.features.like("*restaurant*") || site.features.like("*pos*")) {
+                  post = res[i];
+                  rendered += Mustache.render(post_template, post);
+                }
               } else if (res[i].feature == "pos") {
                 if (site.features.like("*gym*") || site.features.like("*restaurant*") || site.features.like("*academy*")) {
                   post = res[i];

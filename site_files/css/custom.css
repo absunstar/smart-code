@@ -35,9 +35,6 @@ body {
   margin-bottom: 100px;
 }
 
-#main-layout {
-}
-
 a {
   cursor: pointer;
 }
@@ -257,5 +254,9 @@ nav.sitebottom a.link:hover {
     top: 84px;
    
 
+}
+
+.userPrint {
+  user-select :all
 }
 }

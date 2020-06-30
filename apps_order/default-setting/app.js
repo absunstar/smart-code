@@ -53,7 +53,15 @@ module.exports = function init(site) {
           },
           branch: {
             code: site.get_branch(req).code
-          }
+          },
+          printer_program: {
+            invoice_header: [{}],
+            invoice_footer: [{}]
+          },
+          accounting: {},
+          inventory: {},
+          general_Settings: {}
+
         }, (err, doc) => {
           if (!err && doc) {
             response.done = true
@@ -65,6 +73,7 @@ module.exports = function init(site) {
           }
         })
       }
+
     })
   })
 
@@ -106,6 +115,20 @@ module.exports = function init(site) {
 
     let data = req.data
 
+
+    if (data.printer_program) {
+
+      if (!data.printer_program.invoice_header)
+        data.printer_program.invoice_header = []
+
+      if (!data.printer_program.invoice_footer)
+        data.printer_program.invoice_footer = []
+    } else {
+      data.printer_program = {
+        invoice_header: [{}],
+        invoice_footer: [{}]
+      }
+    }
 
     $default_setting.update(data, (err, result) => {
       if (!err) {

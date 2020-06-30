@@ -47,7 +47,6 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
 
     }
 
-
   };
 
   $scope.bookingTable = function (tableId) {
@@ -83,45 +82,49 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         if (response.data.done) {
 
           $scope.order_invoice.table = response.data.doc;
-          $http({
-            method: "POST",
-            url: "/api/tables_group/view",
-            data: {
-              select: {
-                id: 1,
-                name: 1,
-                code: 1,
-                active: 1,
-                tables_group: 1,
-                image_url: 1
-              },
 
-              where: {
-                active: true
-              },
-              id: $scope.order_invoice.table.tables_group.id
-            }
-          }).then(
-            function (response) {
-              $scope.busy = false;
-              if (response.data.done) {
+          if ($scope.order_invoice.table.tables_group) {
 
-                $scope.order_invoice.table_group = response.data.doc;
-                if ($scope.order_invoice.table)
-                  $scope.order_invoice.table.busy = true;
+            $http({
+              method: "POST",
+              url: "/api/tables_group/view",
+              data: {
+                select: {
+                  id: 1,
+                  name: 1,
+                  code: 1,
+                  active: 1,
+                  tables_group: 1,
+                  image_url: 1
+                },
 
-                $http({
-                  method: "POST",
-                  url: "/api/tables/update",
-                  data: $scope.order_invoice.table
-                });
+                where: {
+                  active: true
+                },
+                id: $scope.order_invoice.table.tables_group.id
               }
-            },
-            function (err) {
-              $scope.busy = false;
-              $scope.error = err;
-            }
-          )
+            }).then(
+              function (response) {
+                $scope.busy = false;
+                if (response.data.done) {
+
+                  $scope.order_invoice.table_group = response.data.doc;
+                  if ($scope.order_invoice.table)
+                    $scope.order_invoice.table.busy = true;
+
+                  $http({
+                    method: "POST",
+                    url: "/api/tables/update",
+                    data: $scope.order_invoice.table
+                  });
+                }
+              },
+              function (err) {
+                $scope.busy = false;
+                $scope.error = err;
+              }
+            )
+          }
         }
       },
       function (err) {
@@ -202,6 +205,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
 
   };
 
+
   $scope.addOrderInvoice = function () {
     $scope.error = '';
     if ($scope.order_invoice.shift) {
@@ -255,8 +259,9 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
       else {
         url = '/api/order_invoice/add';
 
-        if (site.feature('restaurant'))
+        if (site.feature('restaurant') && '##user.type##' == 'table') {
           $scope.bookingTable('##user.ref_info.id##');
+        }
       }
 
       $timeout(() => {
@@ -269,7 +274,10 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
           function (response) {
             $scope.busy = false;
             if (response.data.done) {
-              $scope.sendToKitchens(Object.assign({}, response.data.doc));
+              if (site.feature('restaurant'))
+                $scope.sendToKitchens(Object.assign({}, response.data.doc));
+
+
               $scope.order_invoice = response.data.doc;
 
               if ($scope.order_invoice.status.id == 2 && $scope.order_invoice.posting) {
@@ -484,6 +492,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     }
 
 
+
     if ($scope.defaultSettings.general_Settings && $scope.defaultSettings.general_Settings.work_posting)
       $scope.account_invoices.posting = false;
     else $scope.account_invoices.posting = true;
@@ -500,7 +509,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         if (response.data.done) {
           $scope.account_invoices = response.data.doc;
           site.hideModal('#accountInvoiceModal');
-          $scope.printAccountInvoive();
+          $scope.printAccountInvoive($scope.account_invoices);
         } else {
           $scope.error = response.data.error;
           if (response.data.error.like('*duplicate key error*')) {
@@ -516,54 +525,29 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.printAccountInvoive = function () {
+  $scope.printAccountInvoive = function (x) {
     $scope.error = '';
     if ($scope.busy) return;
     $scope.busy = true;
-    $scope.account_invoices = $scope.account_invoices || {};
-    $scope.account_invoices.order_invoices_type = $scope.order_invoice.transaction_type;
 
+    let obj = x;
 
-    $scope.account_invoices.total_paid_up = site.toNumber($scope.account_invoices.total_paid_up);
-    $scope.account_invoices.total_tax = site.toNumber($scope.account_invoices.total_tax);
-    $scope.account_invoices.total_discount = site.toNumber($scope.account_invoices.total_discount);
-    $scope.account_invoices.total_remain = site.toNumber($scope.account_invoices.total_remain);
-    $scope.account_invoices.net_value = site.toNumber($scope.account_invoices.net_value);
-    $scope.account_invoices.paid_up = site.toNumber($scope.account_invoices.paid_up);
-    $scope.account_invoices.payment_paid_up = site.toNumber($scope.account_invoices.payment_paid_up);
+    obj.transaction_type = $scope.order_invoice.transaction_type;
 
+    if ($scope.account_invoices && $scope.account_invoices.invoice_id) {
+      obj.book_list = $scope.account_invoices.current_book_list;
+      obj.total_remain = $scope.account_invoices.net_value - $scope.account_invoices.paid_up;
 
+      obj.total_remain = site.toNumber($scope.account_invoices.total_remain);
+      obj.price_delivery_service = $scope.order_invoice.price_delivery_service;
+      obj.service = $scope.order_invoice.service;
+      obj.table = $scope.order_invoice.table;
 
-    if ($scope.safe)
-      $scope.account_invoices.safe = $scope.safe;
+    } else {
 
-    if ($scope.order_invoice.customer)
-      $scope.account_invoices.customer = $scope.order_invoice.customer;
-
-    if ($scope.order_invoice.delivery_employee)
-      $scope.account_invoices.delivery_employee = $scope.order_invoice.delivery_employee;
-
-    if ($scope.order_invoice.table)
-      $scope.account_invoices.table = $scope.order_invoice.table;
-
-    if ($scope.order_invoice) {
-      $scope.account_invoices.current_book_list = $scope.order_invoice.book_list;
-      $scope.account_invoices.invoice_id = $scope.order_invoice.id;
-
-      if ($scope.order_invoice.total_tax)
-        $scope.account_invoices.total_tax = $scope.order_invoice.total_tax;
-
-      if ($scope.order_invoice.total_discount)
-        $scope.account_invoices.total_discount = $scope.order_invoice.total_discount;
-
-      if ($scope.order_invoice.price_delivery_service)
-        $scope.account_invoices.price_delivery_service = $scope.order_invoice.price_delivery_service;
-
-      if ($scope.order_invoice.service)
-        $scope.account_invoices.service = $scope.order_invoice.service;
+      obj.code = $scope.order_invoice.code
 
     }
-
 
 
     let ip = '127.0.0.1';
@@ -573,9 +557,10 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
       port = $scope.defaultSettings.printer_program.port || '11111';
     };
 
-    $scope.account_invoices.total_remain = $scope.account_invoices.net_value - $scope.account_invoices.paid_up;
 
-    $scope.account_invoices.total_remain = site.toNumber($scope.account_invoices.total_remain);
+
+
+
     let obj_print = {
       data: []
     };
@@ -598,9 +583,10 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
       }
 
       if ($scope.defaultSettings.printer_program.invoice_logo) {
+
         obj_print.data.push({
           type: 'invoice-logo',
-          url: $scope.defaultSettings.printer_program.invoice_logo
+          url: document.location.origin + $scope.defaultSettings.printer_program.invoice_logo
         });
       } else {
         obj_print.data.push({
@@ -609,42 +595,50 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         });
       }
 
-      if ($scope.defaultSettings.printer_program.invoice_header) {
-        obj_print.data.push({
-          type: 'header',
-          value: $scope.defaultSettings.printer_program.invoice_header
+      if ($scope.defaultSettings.printer_program.invoice_header && $scope.defaultSettings.printer_program.invoice_header.length > 0) {
+        $scope.defaultSettings.printer_program.invoice_header.forEach(_ih => {
+          obj_print.data.push({
+            type: 'header',
+            value: _ih.name
+          });
         });
+
       }
 
     }
 
     obj_print.data.push({
       type: 'invoice-code',
-      name: $scope.account_invoices.payment_paid_up ? ' Bill payment ' : 'Bill ',
-      value: ($scope.account_invoices.code || $scope.order_invoice.code)
-    }, {
-      type: 'space'
+      name: obj.payment_paid_up ? ' Bill payment ' : 'Bill ',
+      value: (obj.code)
     }, {
       type: 'invoice-date',
       name: 'Date',
-      value: site.toDateXF($scope.account_invoices.date)
+      value: site.toDateXF(obj.date)
+    }, {
+      type: 'space'
+    }, {
+      type: 'text2',
+      value2: obj.transaction_type.en,
+      value: 'Type'
     });
 
-    if ($scope.account_invoices.customer)
+
+    if (obj.customer)
       obj_print.data.push({
         type: 'text2',
-        value2: $scope.account_invoices.customer.name_ar,
+        value2: obj.customer.name_ar,
         value: 'Cutomer'
       });
 
-    if ($scope.account_invoices.table)
+    if (obj.table)
       obj_print.data.push({
         type: 'invoice-table',
-        name: $scope.account_invoices.table.tables_group.name,
-        value: $scope.account_invoices.table.name
+        name: obj.table.tables_group.name,
+        value: obj.table.name
       });
 
-    if ($scope.account_invoices.current_book_list && $scope.account_invoices.current_book_list.length > 0) {
+    if (obj.book_list && obj.book_list.length > 0) {
 
       obj_print.data.push({
         type: 'line'
@@ -662,7 +656,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         type: 'line2'
       });
 
-      $scope.account_invoices.current_book_list.forEach((_current_book_list, i) => {
+      obj.book_list.forEach((_current_book_list, i) => {
         _current_book_list.total = site.toNumber(_current_book_list.total);
         obj_print.data.push({
           type: 'invoice-item',
@@ -670,7 +664,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
           name: _current_book_list.size,
           price: site.addSubZero(_current_book_list.total, 2)
         });
-        if (i < $scope.account_invoices.current_book_list.length - 1) {
+        if (i < obj.book_list.length - 1) {
           obj_print.data.push({
             type: 'line3'
           });
@@ -683,31 +677,31 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
       type: 'line'
     });
 
-    if ($scope.account_invoices.total_tax)
+    if (obj.total_tax)
       obj_print.data.push({
         type: 'text2',
-        value2: $scope.account_invoices.total_tax,
+        value2: obj.total_tax,
         value: 'Total Taxes'
       });
 
-    if ($scope.account_invoices.total_discount)
+    if (obj.total_discount)
       obj_print.data.push({
         type: 'text2',
-        value2: $scope.account_invoices.total_discount,
+        value2: obj.total_discount,
         value: 'Total Discount'
       });
 
-    if ($scope.account_invoices.price_delivery_service)
+    if (obj.price_delivery_service)
       obj_print.data.push({
         type: 'text2',
-        value2: $scope.account_invoices.price_delivery_service,
+        value2: obj.price_delivery_service,
         value: 'Service Delivery'
       });
 
-    if ($scope.account_invoices.service)
+    if (obj.service)
       obj_print.data.push({
         type: 'text2',
-        value2: $scope.account_invoices.service,
+        value2: obj.service,
         value: 'Service'
       });
 
@@ -715,64 +709,50 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
       type: 'space'
     });
 
-    if ($scope.account_invoices.payment_paid_up) {
-      $scope.account_invoices.total_remain = $scope.account_invoices.total_remain - $scope.account_invoices.payment_paid_up;
-      $scope.account_invoices.total_paid_up = $scope.account_invoices.total_paid_up + $scope.account_invoices.payment_paid_up;
 
-      $scope.account_invoices.total_remain = site.toNumber($scope.account_invoices.total_remain);
-      $scope.account_invoices.total_paid_up = site.toNumber($scope.account_invoices.total_paid_up);
-    }
+    if (obj.net_value) {
 
-    if ($scope.account_invoices.net_value) {
       obj_print.data.push({
         type: 'invoice-total',
-        value2: site.addSubZero($scope.account_invoices.net_value, 2),
-        value: "Total Value"
-      });
-    } else {
-      obj_print.data.push({
-        type: 'invoice-total',
-        name: "Total Value",
-        value: site.addSubZero($scope.order_invoice.net_value, 2),
+        value: site.addSubZero(obj.net_value, 2),
+        name: "Total Value"
       });
     }
 
 
-    if ($scope.account_invoices.payment_paid_up || $scope.account_invoices.paid_up)
+    if (obj.paid_up)
       obj_print.data.push({
         type: 'text2',
-        value2: $scope.account_invoices.payment_paid_up || $scope.account_invoices.paid_up,
+        value2: site.addSubZero(obj.paid_up, 2),
         value: "Paid Up"
       });
 
-    if ($scope.account_invoices.payment_paid_up || $scope.account_invoices.paid_up)
-      obj_print.data.push({
-        type: 'text2',
-        value2: $scope.account_invoices.total_paid_up || $scope.account_invoices.paid_up,
-        value: "Total Payments"
-      });
 
     obj_print.data.push({
       type: 'space'
     });
 
-    if ($scope.account_invoices.total_remain)
+    if (obj.total_remain)
       obj_print.data.push({
         type: 'total',
-        value2: $scope.account_invoices.total_remain,
+        value2: site.addSubZero(obj.total_remain, 2),
         value: "Required to pay"
       });
 
-    if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.invoice_footer)
-      obj_print.data.push({
-        type: 'footer',
-        value: $scope.defaultSettings.printer_program.invoice_footer
+    if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.invoice_footer && $scope.defaultSettings.printer_program.invoice_footer.length > 0) {
+      $scope.defaultSettings.printer_program.invoice_footer.forEach(_if => {
+        obj_print.data.push({
+          type: 'header',
+          value: _if.name
+        });
       });
+
+    }
 
 
     obj_print.data.push({
       type: 'invoice-barcode',
-      value: ($scope.account_invoices.code || $scope.order_invoice.code)
+      value: (obj.code)
     });
 
     $http({
@@ -839,7 +819,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
           order_invoices_type: order_invoice.transaction_type,
           net_value: order_invoice.net_value,
           paid_up: 0,
-          invoice_code: order_invoice.number,
+          invoice_code: order_invoice.code,
           total_discount: order_invoice.total_discount,
           total_tax: order_invoice.total_tax,
           current_book_list: order_invoice.under_paid.book_list,
@@ -1917,9 +1897,11 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         obj.price_delivery_service = 0;
       };
 
-      if (obj.book_list && obj.book_list.length > 0)
-        obj.net_value = (site.toNumber(obj.total_value) + (obj.service || 0) + (obj.total_tax || 0) + (obj.price_delivery_service || 0)) - (obj.total_discount || 0);
+      if (obj.book_list && obj.book_list.length > 0) {
 
+        obj.net_value = (site.toNumber(obj.total_value) + (obj.service || 0) + (obj.total_tax || 0) + (obj.price_delivery_service || 0)) - (obj.total_discount || 0);
+        obj.net_value = site.toNumber(obj.net_value)
+      }
       if (obj.currency) {
         $scope.amount_currency = obj.net_value / obj.currency.ex_rate;
         $scope.amount_currency = site.toNumber($scope.amount_currency);

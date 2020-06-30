@@ -224,7 +224,7 @@
         "description_en": "To add a new session, you must choose a case that was added previously from the Add Claims screen, write down the Roll number, requests, decision, description, and choose the reason for the previously added session from the Session Reasons screen."
     },
     {
-        "feature": "pos",
+        "feature": "order",
         "title_ar": "شاشة الطلبات",
         "title_en": "Orders screen",
         "image_url": "/images/order_invoice.png",
@@ -232,7 +232,7 @@
         "description_en": "The screen responsible for adding items requests to customers and their types, tables, take away, delivery, and it is possible to add clients and create an account invoice for the order."
     },
     {
-        "feature": "pos",
+        "feature": "order",
         "title_ar": "شاشة إدارة الطلبات",
         "title_en": "Orders management screen",
         "image_url": "/images/order_management.png",
@@ -240,7 +240,7 @@
         "description_en": "Is a screen responsible for managing orders from the orders screen and can open closed orders or create account invoices or change the delivery factor"
     },
     {
-        "feature": "pos",
+        "feature": "order",
         "title_ar": "طلبات العملاء",
         "title_en": "Customer orders",
         "image_url": "/images/order_customer.png",
@@ -248,7 +248,7 @@
         "description_en": "It allows the customer to enter the program through a computer or phone and make a new customer registration so that he can add requests to the items he wants to buy"
     },
     {
-        "feature": "pos",
+        "feature": "order",
         "title_ar": "الطلبات الموزعة",
         "title_en": "Distributed orders",
         "image_url": "/images/order_distributor.png",
