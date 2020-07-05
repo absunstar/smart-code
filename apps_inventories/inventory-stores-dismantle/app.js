@@ -240,14 +240,14 @@ module.exports = function init(site) {
             _itm.code = result.doc.code
             _itm.date = result.doc.date
             _itm.source_type = result.doc.type
-            if (result.doc.posting){
-              _itm.transaction_type = 'out'
+            _itm.transaction_type = 'out'
+            if (result.doc.posting) {
               _itm.current_status = 'Dismantling'
             }
             else {
-              _itm.transaction_type = 'in'
+              _itm.count = (-Math.abs(_itm.count))
               _itm.current_status = 'r_Dismantling'
-            } 
+            }
             _itm.shift = {
               id: result.doc.shift.id,
               code: result.doc.shift.code,
@@ -262,17 +262,17 @@ module.exports = function init(site) {
                 _complex.company = result.doc.company
                 _complex.branch = result.doc.branch
                 _complex.count = _complex.count * _itm.count
+                _complex.transaction_type = 'in'
 
-                if (result.doc.posting){
+                if (result.doc.posting) {
                   _complex.type = 'sum'
-                  _complex.transaction_type = 'out'
                   _complex.current_status = 'Dismantling'
                 }
                 else {
-                  _complex.transaction_type = 'in'
+                  _complex.count = (-Math.abs(_complex.count))
                   _complex.current_status = 'r_Dismantling'
                   _complex.type = 'minus'
-                  } 
+                }
 
                 _complex.shift = {
                   id: result.doc.shift.id,
@@ -282,17 +282,13 @@ module.exports = function init(site) {
                 complex_list.push(_complex)
               });
             }
-            if (result.doc.posting)
-              site.call('item_transaction - items', Object.assign({}, _itm))
-            else site.call('item_transaction + items', Object.assign({}, _itm))
+            site.call('item_transaction - items', Object.assign({}, _itm))
 
           })
 
           complex_list.forEach(_complex => {
             site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _complex))
-            if (result.doc.posting)
-              site.call('item_transaction + items', Object.assign({}, _complex))
-            else site.call('item_transaction - items', Object.assign({}, _complex))
+            site.call('item_transaction + items', Object.assign({}, _complex))
           });
 
 
@@ -340,7 +336,7 @@ module.exports = function init(site) {
               _itm.code = result.doc.code
               _itm.date = result.doc.date
               _itm.source_type = result.doc.type
-              _itm.transaction_type = 'in'
+              _itm.transaction_type = 'out'
               _itm.current_status = 'd_Dismantling'
               _itm.shift = {
                 id: result.doc.shift.id,
@@ -357,7 +353,8 @@ module.exports = function init(site) {
                   _complex.company = result.doc.company
                   _complex.branch = result.doc.branch
                   _complex.count = _complex.count * _itm.count
-                  _complex.transaction_type = 'out'
+                  _complex.count = (-Math.abs(_complex.count))
+                  _complex.transaction_type = 'in'
                   _complex.current_status = 'd_Dismantling'
                   _complex.shift = {
                     id: result.doc.shift.id,
@@ -367,13 +364,13 @@ module.exports = function init(site) {
                   complex_list.push(Object.assign({}, _complex))
                 });
               }
-              site.call('item_transaction + items', Object.assign({}, _itm))
+              site.call('item_transaction - items', Object.assign({}, _itm))
 
             })
 
             complex_list.forEach(_complex => {
               site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _complex))
-              site.call('item_transaction - items', Object.assign({}, _complex))
+              site.call('item_transaction + items', Object.assign({}, _complex))
             });
 
           }

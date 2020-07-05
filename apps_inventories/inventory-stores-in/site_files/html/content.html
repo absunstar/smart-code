@@ -41,7 +41,7 @@
                 <i-control id="search_barcode" class="col4" ng-keydown="getBarcode($event)" class="col3"
                     ng-model="search_barcode" label="##word.search##" type="text"></i-control>
                 <div class="col1"></div>
-                <i-button type="search" label=" ##word.select_items##" onclick="site.showModal('#selectItemsModal')">
+                <i-button type="search" label=" ##word.select_items##" ng-click="selectItems()">
                 </i-button>
                 <div class="col1"></div>
                 <i-button type="edit" x-permissions="stores_in_price || stores_in_manage" ng-hide="edit_price"
@@ -118,7 +118,11 @@
                             <td class="green"> <br> {{itm.total}}</td>
 
                             <td>
-                                <i-button type="delete" ng-click="deleteRow(itm)"></i-button>
+                                <div class="row">
+                                    <i-button label="##word.patch##" ng-show="itm.work_patch" type="view" ng-click="patchesList(itm)">
+                                    </i-button>
+                                    <i-button type="delete" ng-click="deleteRow(itm)"></i-button>
+                                </div>
                             </td>
                         </tr>
                     </table>

@@ -10,6 +10,41 @@
         "ar": "هندلة المطابخ"
     },
     {
+        "name": "work_patch",
+        "en": "Works Patch",
+        "ar": "يعمل بالتشغيلة"
+    },
+    {
+        "name": "patch",
+        "en": "Patch",
+        "ar": "التشغيلة"
+    },
+    {
+        "name": "patches_list",
+        "en": "Patches List",
+        "ar": "قائمة الباتشات"
+    },
+    {
+        "name": "production_date",
+        "en": "Production Date",
+        "ar": "تاريخ الإنتاج"
+    },
+    {
+        "name": "expiry_date",
+        "en": "Expiry date",
+        "ar": "تاريخ الإنتهاء"
+    },
+    {
+        "name": "validit",
+        "en": "Days of validity",
+        "ar": "أيام الصلاحية"
+    },
+    {
+        "name": "must_expiry",
+        "en": "The validity period must be entered",
+        "ar": "يجب إدخال مدة الصلاحية"
+    },
+    {
         "name": "stores_items_new",
         "en": "New Category",
         "ar": "صنف جديد"

@@ -21,6 +21,9 @@
                 </div>
                 <div x-permissions="stores_out_add || stores_out_manage" x-import="customers/add_modal.html">
                 </div>
+                <div x-permissions="stores_out_add || stores_out_manage"
+                    x-import="inventory-stores-out/patches_list.html">
+                </div>
 
                 <div x-permissions="stores_out_add || stores_out_manage"
                     x-import="inventory-stores-out/account_invoice.html">
@@ -52,7 +55,7 @@
                     <i-button class="left" x-permissions="stores_out_handle" label="##word.posting_all##"
                         ng-click="postingAll(list)"></i-button>
 
-              <!--       <i-button class="left" type="save" x-permissions="stores_out_post_all" label="##word.post_all##"
+                    <!--       <i-button class="left" type="save" x-permissions="stores_out_post_all" label="##word.post_all##"
                         ng-click="postAll()"></i-button> -->
 
                     <h2 class="bold red text-center"> {{error}}</h2>

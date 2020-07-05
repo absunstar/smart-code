@@ -25,6 +25,11 @@
         "ar": "الكمية"
     },
     {
+        "name": "total_quantity",
+        "en": "Total Quantity",
+        "ar": "إجمالي الكمية"
+    },
+    {
         "name": "overdraft",
         "en": "Overdraft",
         "ar": "السحب على المكشوف"

@@ -80,6 +80,7 @@
                             <th>##word.stores_start_balance##</th>
                             <th>##word.stores_current_balance##</th>
                             <th>##word.average_cost##</th>
+                            <th>##word.actions##</th>
                         </tr>
 
                         <tr ng-repeat="c in storeUnitBalance.size_units_list">
@@ -99,6 +100,11 @@
                             <td>
                                 <p class="bold center"> {{c.average_cost}} </p>
                             </td>
+                            <td>
+                                <i-button label="##word.patch##" type="view"
+                                    ng-click="viewPatchesList(c)">
+                                </i-button>
+                            </td>
                         </tr>
                     </table>
                 </div>
@@ -110,6 +116,55 @@
             </i-button>
             <i-button type="close" onclick="site.hideModal('#storeUnitsModal')" label="##word.close##"></i-button>
 
+        </div>
+    </div>
+</div>
+
+
+<div id="patchesListViewModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>
+                ##word.patches_list## <i class="fa fa-plus"></i>
+            </h2>
+        </div>
+
+        <div class="modal-body">
+
+            <table class="table loaded center bold hover">
+                <tr>
+                    <th>##word.production_date##</th>
+                    <th>##word.expiry_date##</th>
+                    <th>##word.validit##</th>
+                    <th>##word.patch_number##</th>
+                    <th>##word.quantity##</th>
+                </tr>
+
+                <tr ng-repeat="c in item_patch.patch_list">
+
+                    <td class="green">
+                        {{c.production_date  | date : 'dd - MM - yyyy'}}
+                    </td>
+
+                    <td class="red">
+                        {{c.expiry_date  | date : 'dd - MM - yyyy'}}
+                    </td>
+
+                    <td>{{c.validit}}</td>
+
+                    <td>{{c.patch}}</td>
+
+                    <td class="blue">{{c.count}}</td>
+
+                </tr>
+
+            </table>
+
+
+        </div>
+        <h2 class="error center bold">{{error}}</h2>
+        <div class="modal-footer center">
+            <i-button type="close" label="##word.close##" onclick="site.hideModal('#patchesListViewModal')"></i-button>
         </div>
     </div>
 </div>

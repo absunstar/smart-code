@@ -58,7 +58,13 @@
 
                         </tr>
                         <tr ng-repeat="itm in store_in.items">
-                            <td class="center blue">{{$index + 1}}</td>
+                            <td class="center blue">
+                                <p>{{$index + 1}}</p>
+
+                                <i-button label="##word.patch##" ng-show="itm.work_patch" type="view"
+                                    ng-click="viewPatchesList(itm)">
+                                </i-button>
+                            </td>
                             <td class="center">{{itm.name}}</td>
                             <td class="center">
                                 <p>{{itm.size}}</p>
@@ -156,4 +162,9 @@
     </div>
 
 </div>
+
+
+
+
+
 <div class="not-print" x-import="inventory-stores-in/action_info.html"></div>

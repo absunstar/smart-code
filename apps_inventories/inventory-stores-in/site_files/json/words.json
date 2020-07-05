@@ -15,6 +15,11 @@
         "ar": "المخزن"
     },
     {
+        "name": "err_store_select",
+        "en": "Be sure to choose a store",
+        "ar": "يجب التأكد من إختيار المخزن"
+    },
+    {
         "name": "stores_in_empty_search",
         "en": "Empty Search",
         "ar": "تفريغ الحقول"
@@ -133,6 +138,11 @@
         "name": "err_transaction_type",
         "en": "You should select transaction type",
         "ar": "  يرجى التأكد من اختيار نوع المعاملة"
+    },
+    {
+        "name": "add_patch",
+        "en": "Add Patch",
+        "ar": "إضافة تشغيلة"
     },
     {
         "name": "stores_in_categry",
@@ -413,5 +423,15 @@
         "name": "stores_in_img",
         "en": "Images",
         "ar": "الملفات"
+    },
+    {
+        "name": "err_patch_count",
+        "en": "The number of patches is not equal to the number of the item",
+        "ar": "عدد الباتشات لا تساوي عدد الصنف"
+    },
+    {
+        "name": "patch_number",
+        "en": "Patch Number",
+        "ar": "رقم التشغيلة"
     }
 ]

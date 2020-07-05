@@ -45,6 +45,7 @@ module.exports = function init(site) {
         current_count: site.toNumber(total_unit),
         total_buy_price: totalCost,
         size_units_list: [{
+          patch_list: obj.patch_list,
           id: obj.unit.id,
           name: obj.unit.name,
           barcode: obj.unit.barcode,
@@ -64,6 +65,7 @@ module.exports = function init(site) {
       start_count: obj.source_type && obj.source_type.id == 3 && obj.store_in ? site.toNumber(total_unit) : 0,
       current_count: site.toNumber(total_unit),
       size_units_list: [{
+        patch_list: obj.patch_list,
         id: obj.unit.id,
         name: obj.unit.name,
         barcode: obj.unit.barcode,
@@ -296,7 +298,59 @@ module.exports = function init(site) {
                     if (obj.stock) _branch.stores_list[indxStore].hold = false
 
                     _branch.stores_list[indxStore].size_units_list.forEach(_unitStore => {
+
                       if (obj.unit && _unitStore.id == obj.unit.id) {
+
+
+                        if (_unitStore.patch_list && _unitStore.patch_list.length > 0) {
+
+                          // if (obj.patch_list && obj.patch_list.length > 0)
+                          //   obj.patch_list.map(_patch1 => {
+                          //     let found_patch = _unitStore.patch_list.some(_pp => _patch1.patch == _pp.patch && _patch1.validit == _pp.validit)
+                          //     if (!found_patch) _unitStore.patch_list.push(_patch1)
+
+                          //   });
+
+
+
+                          if (obj.patch_list && obj.patch_list.length > 0) {
+
+                            let foundPatshList = []
+
+                            obj.patch_list.forEach(_patch => {
+                              let foundPatsh = _unitStore.patch_list.some(_p1 => _patch.patch == _p1.patch && _patch.validit == _p1.validit)
+
+                              if(!foundPatsh) foundPatshList.push(_patch)
+
+                              _unitStore.patch_list.forEach(_patchStore => {
+                                if (_patch.patch == _patchStore.patch && _patch.validit == _patchStore.validit) {
+                                  if (obj.type == 'sum') {
+                                    _patchStore.count = _patchStore.count + _patch.count
+                                  } else if (obj.type == 'minus') {
+                                    _patchStore.count = _patchStore.count - _patch.count
+                                  }
+                                  //  else {
+                                  //   _unitStore.patch_list.push(_patch)
+                                  // }
+                                }
+                              });
+                            });
+
+                            foundPatshList.forEach(fP => {
+                              _unitStore.patch_list.push(fP)
+                            });
+
+                            _unitStore.patch_list.forEach((_p, _ipatch) => {
+                              if (_p.count == 0) {
+                                _unitStore.patch_list.splice(_ipatch, 1);
+                              }
+                            })
+
+                          }
+
+                        } else { _unitStore.patch_list = obj.patch_list }
+
+
                         if (obj.type == 'sum') {
                           _unitStore.current_count = (_unitStore.current_count || 0) + obj.count
                           if (obj.source_type && obj.source_type.id == 3 && obj.store_in) _unitStore.start_count = site.toNumber(_unitStore.start_count || 0) + site.toNumber(obj.count)
@@ -330,6 +384,7 @@ module.exports = function init(site) {
                     if (!unit_store) {
 
                       _branch.stores_list[indxStore].size_units_list.push({
+                        patch_list: obj.patch_list,
                         id: obj.unit.id,
                         name: obj.unit.name,
                         barcode: obj.unit.barcode,

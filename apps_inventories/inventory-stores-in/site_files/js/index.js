@@ -10,6 +10,19 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
     sizes: []
   };
 
+
+
+  let y = new Date().getFullYear().toString()
+  let m = new Date().getMonth().toString()
+  let d = new Date().getDate().toString()
+
+
+  function addDays(date, days) {
+    var result = new Date(date);
+    result.setDate(result.getDate() + days);
+    return result;
+  }
+
   $scope.displayAccountInvoice = function (store_in) {
     $scope.get_open_shift((shift) => {
       if (shift) {
@@ -60,11 +73,6 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
     });
   };
 
-  /*  $scope.showCreateInvoice = function (){
-     
- 
-   };
-  */
 
   $scope.addAccountInvoice = function (account_invoices) {
     $scope.error = '';
@@ -218,7 +226,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
         }, {
           type: 'line2'
         });
-  
+
         $scope.account_invoices.current_book_list.forEach((_current_book_list, i) => {
           _current_book_list.total = site.toNumber(_current_book_list.total);
           obj_print.data.push({
@@ -232,10 +240,10 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
               type: 'line3'
             });
           }
-  
+
         });
       };
-  
+
 
 
       if ($scope.account_invoices.total_discount)
@@ -438,10 +446,81 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
 
   };
 
+  $scope.selectItems = function () {
+
+    if (!$scope.store_in.store) {
+      $scope.error = '##word.err_store_select##';
+    } else if (!$scope.store_in.type) {
+      $scope.error = '##word.err_transaction_type##';
+    } else site.showModal('#selectItemsModal')
+
+  };
+
+  $scope.patchesList = function (itm) {
+    $scope.error = '';
+
+    $scope.item_patch = itm;
+
+    if (!$scope.item_patch.patch_list) {
+
+      $scope.item_patch.patch_list = [{
+        patch: y + m + d + '001' + itm.validit,
+        production_date: new Date(),
+        expiry_date: new Date(addDays(new Date(), itm.validit)),
+        count: itm.count,
+        validit: itm.validit
+
+      }];
+
+    } else if ($scope.item_patch.patch_list && $scope.item_patch.patch_list.length == 1) {
+      $scope.item_patch.patch_list[0].count = itm.count
+    }
+
+    site.showModal('#patchesListModal');
+
+  };
+
+  $scope.viewPatchesList = function (itm) {
+    $scope.error = '';
+    $scope.item_patch = itm;
+
+    site.showModal('#patchesListViewModal');
+
+  };
+
+  $scope.addNewPAtch = function (itm) {
+    itm.patch_list.unshift({
+      patch: y + m + d + '00' + (itm.patch_list.length + 1) + itm.validit.toString(),
+      production_date: new Date(),
+      expiry_date: new Date(addDays(new Date(), itm.validit)),
+      validit: itm.validit,
+      count: 0
+    })
+  };
+
+  $scope.changeDate = function (i) {
+    i.expiry_date = new Date(addDays(i.production_date, i.validit))
+  };
+
+  $scope.exitPatchModal = function (itm) {
+    let count = 0;
+
+    itm.patch_list.map(p => count += p.count)
+
+    if (itm.count == count) {
+      site.hideModal('#patchesListModal');
+      $scope.error = '';
+
+    } else $scope.error = '##word.err_patch_count##';
+
+  };
+
+
   $scope.deleteitem = function (itm) {
     $scope.error = '';
     $scope.item.sizes.splice($scope.item.sizes.indexOf(itm), 1);
   };
+
   $scope.newStoreIn = function () {
     $scope.error = '';
     $scope.get_open_shift((shift) => {
@@ -538,12 +617,40 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
 
     let max_discount = false;
     let returned_count = false;
+    let patchCount = false;
+    let patch_list = [];
 
     if ($scope.store_in.items && $scope.store_in.items.length > 0)
       $scope.store_in.items.forEach(_itemSize => {
         if (_itemSize.discount.value > _itemSize.discount.max)
           max_discount = true;
         if (_itemSize.count > _itemSize.r_count) returned_count = true;
+
+
+        if (_itemSize.work_patch) {
+
+          if (_itemSize.patch_list && _itemSize.patch_list.length > 0) {
+
+            let c = 0;
+            _itemSize.patch_list.map(p => c += p.count)
+
+            if (_itemSize.count != c) {
+              patchCount = true;
+              patch_list.push(_itemSize.barcode)
+            }
+
+          } else {
+            _itemSize.patch_list = [{
+              patch: y + m + d + '001' + _itemSize.validit,
+              production_date: new Date(),
+              expiry_date: new Date(addDays(new Date(), _itemSize.validit)),
+              count: _itemSize.count,
+              validit: _itemSize.validit
+            }];
+          }
+        }
+
+
       });
 
     if ($scope.defaultSettings.inventory && $scope.defaultSettings.inventory.dont_max_discount_items) {
@@ -558,6 +665,11 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
         $scope.error = "##word.return_item_err##";
         return;
       }
+    };
+
+    if (patchCount) {
+      $scope.error = `##word.err_patch_count##   ( ${patch_list.join('-')} )`;
+      return;
     };
 
     if ($scope.store_in.items.length > 0) {
@@ -634,6 +746,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
   $scope.view = function (store_in) {
     $scope.error = '';
     $scope.busy = true;
+
     $http({
       method: "POST",
       url: "/api/stores_in/view",
@@ -687,6 +800,8 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
               size: _size.size,
               item_group: _size.item_group,
               size_en: _size.size_en,
+              work_patch: _size.work_patch,
+              validit: _size.validit,
               size_units_list: _size.size_units_list,
               unit: _size.unit,
               cost: _size.unit.cost,
@@ -801,7 +916,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
                               let foundStore = false;
                               let indxStore = 0;
                               _size.branches_list[indxBranch].stores_list.map((_store, i) => {
-                                if (_store.store.id == $scope.store_in.store.id) {
+                                if ($scope.store_in.store && _store.store.id == $scope.store_in.store.id) {
                                   foundStore = true;
                                   indxStore = i;
                                   if (_store.hold) foundHold = true;
@@ -879,7 +994,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
                 let foundStore = false;
                 let indxStore = 0;
                 _item.branches_list[indxBranch].stores_list.map((_store, i) => {
-                  if (_store.store.id == $scope.store_in.store.id) {
+                  if ($scope.store_in.store && _store.store.id == $scope.store_in.store.id) {
                     foundStore = true;
                     indxStore = i;
                     if (_store.hold) foundHold = true;
@@ -933,7 +1048,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
                     _size.branches_list.forEach(_branch => {
                       if (_branch.code == '##session.branch.code##')
                         _branch.stores_list.forEach(_store => {
-                          if (_store.store && _store.store.id == $scope.store_in.store.id) {
+                          if ($scope.store_in.store && _store.store && _store.store.id == $scope.store_in.store.id) {
                             if (_store.hold) foundHold = true;
                           }
                         });
@@ -999,20 +1114,53 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
       return;
     }
 
-    if ($scope.defaultSettings.inventory && $scope.defaultSettings.inventory.dont_max_discount_items) {
-      let max_discount = false;
+    let max_discount = false;
+    let patchCount = false;
 
-      if ($scope.store_in.items && $scope.store_in.items.length > 0)
-        $scope.store_in.items.forEach(_itemSize => {
-          if (_itemSize.discount.value > _itemSize.discount.max)
-            max_discount = true;
-        });
+    if ($scope.store_in.items && $scope.store_in.items.length > 0)
+      $scope.store_in.items.forEach(_itemSize => {
+        if (_itemSize.discount.value > _itemSize.discount.max)
+          max_discount = true;
+
+
+        if (_itemSize.work_patch) {
+
+          if (_itemSize.patch_list && _itemSize.patch_list.length > 0) {
+
+            let c = 0;
+            _itemSize.patch_list.map(p => c += p.count)
+
+            if (_itemSize.count != c) {
+              patchCount = true;
+              patch_list.push(_itemSize.barcode)
+            }
+
+          } else {
+            _itemSize.patch_list = [{
+              patch: y + m + d + '001' + _itemSize.validit,
+              production_date: new Date(),
+              expiry_date: new Date(addDays(new Date(), _itemSize.validit)),
+              count: _itemSize.count,
+              validit: _itemSize.validit
+            }];
+          }
+        }
+
+      });
+
+    if ($scope.defaultSettings.inventory && $scope.defaultSettings.inventory.dont_max_discount_items) {
 
       if (max_discount) {
         $scope.error = "##word.err_maximum_discount##";
         return;
       }
     }
+
+    if (patchCount) {
+      $scope.error = `##word.err_patch_count##   ( ${patch_list.join('-')} )`;
+      return;
+    };
+
 
 
     $scope.busy = true;

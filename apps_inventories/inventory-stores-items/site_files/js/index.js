@@ -24,6 +24,11 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
     if (!$scope.category_item.sizes) {
       $scope.category_item.sizes = [];
     };
+    
+    if ($scope.item.work_patch && !$scope.item.validit) {
+      $scope.error = "##word.must_expiry##";
+      return
+    };
 
     if (!$scope.item.size) {
       $scope.error = "##word.no_size_error##";
@@ -917,6 +922,20 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.storeUnitBalance = storeUnitBalance;
     site.showModal('#storeUnitsModal');
+  };
+
+  $scope.viewStoreUnits = function (storeUnitBalance) {
+    $scope.error = '';
+    $scope.storeUnitBalance = storeUnitBalance;
+    site.showModal('#storeUnitsModal');
+  };
+
+  $scope.viewPatchesList = function (itm) {
+    $scope.error = '';
+    $scope.item_patch = itm;
+    
+    site.showModal('#patchesListViewModal');
+
   };
 
 

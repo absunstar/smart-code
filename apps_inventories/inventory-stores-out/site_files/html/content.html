@@ -46,7 +46,7 @@
                 <i-control id="search_barcode" class="col4" ng-keydown="getBarcode($event)" class="col3"
                     ng-model="search_barcode" label="##word.search##" type="text"></i-control>
                 <div class="col1"></div>
-                <i-button type="search" label=" ##word.select_items##" onclick="site.showModal('#selectItemsModal')">
+                <i-button type="search" label=" ##word.select_items##" ng-click="selectItems()">
                 </i-button>
                 <div class="col1"></div>
                 <i-button type="edit" x-permissions="stores_out_price || stores_out_manage"
@@ -79,7 +79,13 @@
                         </tr>
 
                         <tr ng-repeat="itm in store_out.items">
-                            <td> <br> {{$index + 1}}</td>
+                            <td> <br ng-show="itm.work_patch"> {{$index + 1}}
+                                <div class="row">
+                                    <i-button label="##word.patch##" ng-show="itm.work_patch" type="view"
+                                        ng-click="patchesList(itm)">
+                                    </i-button>
+                                </div>
+                            </td>
                             <td> <br> {{itm.name}}</td>
                             <td> <br> {{itm.barcode}}</td>
                             <td>
@@ -117,7 +123,7 @@
                                     <b class="" ng-show="itm.discount.type =='number'">$</b>
                                     <b class="" ng-show="itm.discount.type =='percent'">%</b>
                                 </div>
-                            
+
                             </td>
 
                             <td class="green"> <br> {{itm.total}}</td>
