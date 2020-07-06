@@ -10,6 +10,11 @@
         "ar": "الاسم"
     },
     {
+        "name": "date_exceed",
+        "en": "The transaction date cannot exceed today's date",
+        "ar": "تاريخ المعاملة لا يمكن أن يتجاوز تاريخ اليوم"
+    },
+    {
         "name": "overdraft_not_active",
         "en": "The transaction cannot be completed because the overdraft feature has not been activated",
         "ar": "لا يمكن إتمام المعاملة لعدم تفعيل خاصية السحب على المكشوف"

@@ -78,6 +78,13 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
       return;
     }
 
+    if (new Date($scope.transfer_branch.date) > new Date()) {
+
+      $scope.error = "##word.date_exceed##";
+      return;
+
+    };
+
     if ($scope.transfer_branch.store_from.id === $scope.transfer_branch.store_to.id) {
       $scope.error = "##word.cant_transfer_to_same_store##";
       return;
@@ -486,6 +493,12 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
       $scope.error = v.messages[0].ar;
       return;
     }
+
+    if (new Date($scope.transfer_branch.date) > new Date()) {
+      $scope.error = "##word.date_exceed##";
+      return;
+    };
+    
     $scope.busy = true;
     $http({
       method: "POST",

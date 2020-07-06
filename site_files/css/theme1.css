@@ -117,6 +117,10 @@ img {
     border-color: #fbfbfb;
 }
 
+.small_t {
+    width: 11%;
+}
+
 .table td {
     border-radius: 25px;
     border-width: 5px;

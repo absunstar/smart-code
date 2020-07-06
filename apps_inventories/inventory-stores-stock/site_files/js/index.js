@@ -72,6 +72,13 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
       return;
     }
 
+    if (new Date($scope.store_stock.date) > new Date()) {
+
+      $scope.error = "##word.date_exceed##";
+      return;
+
+    }
+
     $scope.store_stock.status = 1;
 
     if ($scope.store_stock.items.length > 0) {
@@ -596,6 +603,15 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
   $scope.update = function (store_stock) {
     $scope.error = '';
     $scope.busy = true;
+
+    if (new Date(store_stock.date) > new Date()) {
+
+      $scope.error = "##word.date_exceed##";
+      return;
+
+    };
+
+
     $http({
       method: "POST",
       url: "/api/stores_stock/update",

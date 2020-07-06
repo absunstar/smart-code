@@ -390,14 +390,14 @@ module.exports = function init(site) {
                   }
                   if (result.doc.type.id == 6) {
                     _itm.type = 'minus'
-                    _itm.transaction_type = 'in'
+                    _itm.transaction_type = 'out'
                     _itm.count = (-Math.abs(_itm.count))
                     site.call('item_transaction - items', Object.assign({}, _itm))
                   } else {
                     if (result.doc.type.id == 5)
                       _itm.set_average = 'sum_average'
                     _itm.type = 'sum'
-                    _itm.transaction_type = 'in'
+                    _itm.transaction_type = 'out'
                     site.call('item_transaction - items', Object.assign({}, _itm))
                   }
 
@@ -717,6 +717,32 @@ module.exports = function init(site) {
       $stores_out.update(doc);
     });
   };
+
+
+  site.post("/api/stores_out/un_post", (req, res) => {
+    let response = {}
+    response.done = false
+    if (!req.session.user) {
+      res.json(response)
+      return;
+    }
+
+
+    $stores_out.findMany({
+      select: req.body.select || {},
+      where: { 'company.id': site.get_company(req).id },
+      sort: req.body.sort || {
+        id: -1
+      },
+    }, (err, docs) => {
+      if (!err) {
+        docs.forEach(stores_out_doc => {
+          stores_out_doc.posting = false;
+          $stores_out.update(stores_out_doc);
+        });
+      }
+    })
+  })
 
 
   //   site.getStoresOut = function (req, callback) {

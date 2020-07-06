@@ -76,7 +76,12 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
     } else if ($scope.account_invoices.paid_up > $scope.amount_currency) {
       $scope.error = "##word.err_net_value##";
       return;
-    }
+    } else if (new Date($scope.account_invoices.date) > new Date()) {
+
+      $scope.error = "##word.date_exceed##";
+      return;
+
+    };
 
     $http({
       method: "POST",
@@ -149,6 +154,14 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
       $scope.error = v.messages[0].ar;
       return;
     }
+
+    if (new Date($scope.account_invoices.date) > new Date()) {
+
+      $scope.error = "##word.date_exceed##";
+      return;
+
+    };
+
     $http({
       method: "POST",
       url: "/api/account_invoices/update",

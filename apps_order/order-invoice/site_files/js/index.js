@@ -242,6 +242,13 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         }
       }
 
+      if (new Date($scope.order_invoice.date) > new Date()) {
+
+        $scope.error = "##word.date_exceed##";
+        return;
+  
+      };
+
       if ($scope.order_invoice.transaction_type.id != 2 && $scope.order_invoice.delivery_employee)
         $scope.order_invoice.delivery_employee = {};
 

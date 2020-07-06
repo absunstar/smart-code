@@ -603,6 +603,13 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
       return;
     }
 
+    if (new Date($scope.store_in.date) > new Date()) {
+
+      $scope.error = "##word.date_exceed##";
+      return;
+
+    };
+
     if ($scope.store_in.paid_up > $scope.amount_currency) {
       $scope.error = "##word.err_net_value##";
       return;
@@ -1109,18 +1116,36 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
   $scope.update = function () {
     $scope.error = '';
 
+    if (new Date($scope.store_in.date) > new Date()) {
+
+      $scope.error = "##word.date_exceed##";
+      return;
+
+    };
+
+
+    if ($scope.store_in.type && ($scope.store_in.type.id == 1 || $scope.store_in.type.id == 4) && $scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto) {
+      if (!$scope.store_in.safe) {
+        $scope.error = "##word.nosafe_warning##";
+        return;
+      }
+    }
+
     if ($scope.store_in.paid_up > $scope.amount_currency) {
       $scope.error = "##word.err_net_value##";
       return;
     }
 
     let max_discount = false;
+    let returned_count = false;
     let patchCount = false;
+    let patch_list = [];
 
     if ($scope.store_in.items && $scope.store_in.items.length > 0)
       $scope.store_in.items.forEach(_itemSize => {
         if (_itemSize.discount.value > _itemSize.discount.max)
           max_discount = true;
+        if (_itemSize.count > _itemSize.r_count) returned_count = true;
 
 
         if (_itemSize.work_patch) {
@@ -1146,21 +1171,27 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
           }
         }
 
+
       });
 
     if ($scope.defaultSettings.inventory && $scope.defaultSettings.inventory.dont_max_discount_items) {
-
       if (max_discount) {
         $scope.error = "##word.err_maximum_discount##";
         return;
       }
-    }
+    };
+
+    if ($scope.store_in.type.id == 4) {
+      if (returned_count) {
+        $scope.error = "##word.return_item_err##";
+        return;
+      }
+    };
 
     if (patchCount) {
       $scope.error = `##word.err_patch_count##   ( ${patch_list.join('-')} )`;
       return;
     };
-
 
 
     $scope.busy = true;
@@ -1653,6 +1684,26 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
     $http({
       method: "POST",
       url: "/api/stores_in/handel_store_in"
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.loadAll();
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.unPostAll = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/stores_in/un_post"
     }).then(
       function (response) {
         $scope.busy = false;

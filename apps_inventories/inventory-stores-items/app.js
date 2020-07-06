@@ -320,7 +320,7 @@ module.exports = function init(site) {
                             obj.patch_list.forEach(_patch => {
                               let foundPatsh = _unitStore.patch_list.some(_p1 => _patch.patch == _p1.patch && _patch.validit == _p1.validit)
 
-                              if(!foundPatsh) foundPatshList.push(_patch)
+                              if (!foundPatsh) foundPatshList.push(_patch)
 
                               _unitStore.patch_list.forEach(_patchStore => {
                                 if (_patch.patch == _patchStore.patch && _patch.validit == _patchStore.validit) {
@@ -446,26 +446,27 @@ module.exports = function init(site) {
           balance_handle(null)
         });
 
-      } else {
-        if (obj.source_type)
-          delete obj.source_type.id
-        let item = {
-          name: obj.name,
-          main_unit: obj.unit,
-          units_list: [{
-            id: obj.unit.id,
-            name: obj.unit.name,
-            convert: 1
-          }],
-          company: obj.company,
-          branch: obj.branch,
-          sizes: [obj_branch]
-        };
+      }
+      // else {
+      //   if (obj.source_type)
+      //     delete obj.source_type.id
+      //   let item = {
+      //     name: obj.name,
+      //     main_unit: obj.unit,
+      //     units_list: [{
+      //       id: obj.unit.id,
+      //       name: obj.unit.name,
+      //       convert: 1
+      //     }],
+      //     company: obj.company,
+      //     branch: obj.branch,
+      //     sizes: [obj_branch]
+      //   };
 
-        $stores_items.add(item, () => {
-          balance_handle(null)
-        });
-      };
+      //   $stores_items.add(item, () => {
+      //     balance_handle(null)
+      //   });
+      // };
     })
   }
 
@@ -895,6 +896,49 @@ module.exports = function init(site) {
     })
   })
 
+  site.post("/api/stores_items/V_S_barcodes", (req, res) => {
+    let response = {
+      done: false
+    }
+    let where = req.body.where || {}
+
+    where['company.id'] = site.get_company(req).id
+
+    $stores_items.findMany({
+      select: req.body.select || {},
+      where: where,
+      sort: req.body.sort || {
+        id: -1
+      },
+      limit: req.body.limit
+    }, (err, docs, count) => {
+      if (!err) {
+        response.done = true
+
+        let barcodes_list = [];
+        docs.forEach(_doc => {
+          if (_doc.sizes && _doc.sizes.length > 0) {
+
+            _doc.sizes.forEach(_sizes => {
+              barcodes_list.push(_sizes.barcode);
+            });
+          }
+        });
+
+
+        let findDuplicates = arr => arr.filter((item, index) => arr.indexOf(item) != index)
+        console.log(findDuplicates(barcodes_list));
+
+
+        response.count = count
+      } else {
+        response.error = err.message
+      }
+      res.json(response)
+    })
+  })
+
+
   site.post("/api/stores_items/reset_items", (req, res) => {
     let response = {
       done: false
@@ -914,54 +958,54 @@ module.exports = function init(site) {
         response.done = true
 
 
-        site.getDefaultSetting(req, callback => {
-          let unit = {}
+        // site.getDefaultSetting(req, callback => {
+        //   let unit = {}
 
-          if (callback.inventory) {
-            if (callback.inventory.unit)
-              unit = callback.inventory.unit
-          }
+        //   if (callback.inventory) {
+        //     if (callback.inventory.unit)
+        //       unit = callback.inventory.unit
+        //   }
 
-          docs.forEach(_docs => {
+        docs.forEach(_docs => {
 
-            _docs.main_unit.id = unit.id
-            _docs.main_unit.name = unit.name
+          // _docs.main_unit.id = unit.id
+          // _docs.main_unit.name = unit.name
 
-            _docs.units_list.forEach(_units_main => {
-              _units_main.id = unit.id
-              _units_main.name = unit.name
+          // _docs.units_list.forEach(_units_main => {
+          //   _units_main.id = unit.id
+          //   _units_main.name = unit.name
+          // });
+
+
+          _docs.sizes.forEach(_sizes => {
+            _sizes.start_count = 0
+            _sizes.current_count = 0
+            _sizes.total_buy_price = 0
+            _sizes.total_buy_count = 0
+            _sizes.total_sell_price = 0
+            _sizes.total_sell_count = 0
+            _sizes.branches_list = []
+
+            _sizes.size_units_list.forEach(_units_size => {
+              _units_size.id = unit.id
+              _units_size.name = unit.name
+              _units_size.current_count = 0
+              _units_size.start_count = 0
+              _units_size.total_buy_price = 0
+              _units_size.total_buy_count = 0
+              _units_size.total_sell_price = 0
+              _units_size.total_sell_count = 0
             });
-
-
-            _docs.sizes.forEach(_sizes => {
-              _sizes.start_count = 0
-              _sizes.current_count = 0
-              _sizes.total_buy_price = 0
-              _sizes.total_buy_count = 0
-              _sizes.total_sell_price = 0
-              _sizes.total_sell_count = 0
-              _sizes.branches_list = []
-
-              _sizes.size_units_list.forEach(_units_size => {
-                _units_size.id = unit.id
-                _units_size.name = unit.name
-                _units_size.current_count = 0
-                _units_size.start_count = 0
-                _units_size.total_buy_price = 0
-                _units_size.total_buy_count = 0
-                _units_size.total_sell_price = 0
-                _units_size.total_sell_count = 0
-              });
-            });
-
-            if (!_docs.item_group || (_docs.item_group && !_docs.item_group.id)) {
-              $stores_items.delete({ id: _docs.id })
-
-            } else {
-              $stores_items.update(_docs)
-            }
           });
+
+          if (!_docs.item_group || (_docs.item_group && !_docs.item_group.id)) {
+            $stores_items.delete({ id: _docs.id })
+
+          } else {
+            $stores_items.update(_docs)
+          }
         });
+        // });
 
       } else {
         response.error = err.message

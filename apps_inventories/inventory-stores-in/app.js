@@ -716,7 +716,30 @@ module.exports = function init(site) {
   };
 
 
+  site.post("/api/stores_in/un_post", (req, res) => {
+    let response = {}
+    response.done = false
+    if (!req.session.user) {
+      res.json(response)
+      return;
+    }
 
+
+    $stores_in.findMany({
+      select: req.body.select || {},
+      where: { 'company.id': site.get_company(req).id },
+      sort: req.body.sort || {
+        id: -1
+      },
+    }, (err, docs) => {
+      if (!err) {
+        docs.forEach(stores_in_doc => {
+          stores_in_doc.posting = false;
+          $stores_in.update(stores_in_doc);
+        });
+      }
+    })
+  })
 
 
   site.post("/api/stores_in/handel_zeft", (req, res) => {

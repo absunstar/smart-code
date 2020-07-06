@@ -77,6 +77,13 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
         return;
       };
 
+      if (new Date($scope.order_customer.date) > new Date()) {
+
+        $scope.error = "##word.date_exceed##";
+        return;
+  
+      };
+
       if ($scope.defaultSettings.inventory && $scope.defaultSettings.inventory.dont_max_discount_items) {
         let max_discount = false;
 

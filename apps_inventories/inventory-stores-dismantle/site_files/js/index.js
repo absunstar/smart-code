@@ -86,6 +86,13 @@ app.controller("stores_dismantle", function ($scope, $http, $timeout) {
       return;
     }
 
+    if (new Date($scope.store_dismantle.date) > new Date()) {
+
+      $scope.error = "##word.date_exceed##";
+      return;
+
+    };
+
     if ($scope.store_dismantle.items.length > 0) {
       $scope.busy = true;
       $http({
@@ -500,6 +507,13 @@ app.controller("stores_dismantle", function ($scope, $http, $timeout) {
 
   $scope.update = function () {
     $scope.error = '';
+
+    if (new Date($scope.store_dismantle.date) > new Date()) {
+
+      $scope.error = "##word.date_exceed##";
+      return;
+
+    };
 
     $scope.busy = true;
     $http({

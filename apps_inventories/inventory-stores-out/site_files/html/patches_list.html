@@ -23,29 +23,31 @@
                         <tr>
                             <th>##word.production_date##</th>
                             <th>##word.expiry_date##</th>
-                            <th>##word.validit##</th>
                             <th>##word.patch_number##</th>
-                            <th>##word.balance##</th>
-                            <th>##word.quantity##</th>
+                            <th class="small_t">##word.validit##</th>
+                            <th class="small_t">##word.balance##</th>
+                            <th class="small_t">##word.quantity##</th>
 
                             <!-- <th>##word.actions##</th> -->
                         </tr>
 
                         <tr ng-repeat="c in item_patch.patch_list">
                             <td class="green">
+                                <br>
                                 {{c.production_date  | date : 'dd - MM - yyyy'}}
                             </td>
 
                             <td class="red">
+                                <br>
                                 {{c.expiry_date  | date : 'dd - MM - yyyy'}}
                             </td>
 
-                            <td>{{c.validit}}</td>
+                            <td><br> {{c.patch}}</td>
 
-                            <td>{{c.patch}}</td>
+                            <td class="small_t"> <br>{{c.validit}}</td>
 
-                            <td class="blue">{{c.current_count}}</td>
-                            <td>
+                            <td class="blue small_t"><br> {{c.current_count}}</td>
+                            <td class="small_t">
                                 <i-control ng-model="c.count" type="number"></i-control>
                             </td>
 
@@ -90,9 +92,10 @@
                 <tr>
                     <th>##word.production_date##</th>
                     <th>##word.expiry_date##</th>
-                    <th>##word.validit##</th>
                     <th>##word.patch_number##</th>
-                    <th>##word.quantity##</th>
+                    <th class="small_t">##word.validit##</th>
+                    <th class="small_t">##word.balance##</th>
+                    <th class="small_t">##word.quantity##</th>
                 </tr>
 
                 <tr ng-repeat="c in item_patch.patch_list">
@@ -105,11 +108,12 @@
                         {{c.expiry_date  | date : 'dd - MM - yyyy'}}
                     </td>
 
-                    <td>{{c.validit}}</td>
-
                     <td>{{c.patch}}</td>
+                    <td class="small_t">{{c.validit}}</td>
 
-                    <td class="blue">{{c.count}}</td>
+                    <td class="blue small_t">{{c.current_count}}</td>
+
+                    <td class="blue small_t">{{c.count}}</td>
 
                 </tr>
 

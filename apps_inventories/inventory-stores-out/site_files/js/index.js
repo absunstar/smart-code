@@ -208,26 +208,92 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
       return;
     }
 
+    if (new Date($scope.store_out.date) > new Date()) {
+
+      $scope.error = "##word.date_exceed##";
+      return;
+
+    }
+
+    if ($scope.store_out.type && $scope.store_out.type.id != 5 && $scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto) {
+      if (!$scope.store_out.safe) {
+        $scope.error = "##word.nosafe_warning##";
+        return;
+      }
+    }
+
     if ($scope.store_out.paid_up > $scope.amount_currency) {
       $scope.error = "##word.err_net_value##";
       return;
     }
 
+    let max_discount = false;
+    let returned_count = false;
+    let patchCount = false;
+    let patch_list = [];
+
+    if ($scope.store_out.items && $scope.store_out.items.length > 0)
+      $scope.store_out.items.forEach(_itemSize => {
+
+        if (_itemSize.discount.value > _itemSize.discount.max) max_discount = true;
+        if (_itemSize.count > _itemSize.r_count) returned_count = true;
+
+        if (_itemSize.work_patch) {
+
+          if (_itemSize.patch_list && _itemSize.patch_list.length > 0) {
+
+            let c = 0;
+            _itemSize.patch_list.map(p => c += p.count);
+
+            let difference = _itemSize.count - c;
+
+            if (_itemSize.count < c) {
+              patchCount = true;
+              patch_list.push(_itemSize.barcode)
+
+            } else if (_itemSize.count > c) {
+              _itemSize.patch_list = _itemSize.patch_list.slice().sort((a, b) => new Date(b.expiry_date) - new Date(a.expiry_date)).reverse();
+              _itemSize.patch_list.forEach(_pl => {
+                if (difference > 0 && _pl.count == 0) {
+
+                  if (_pl.current_count <= difference) {
+
+                    _pl.count = _pl.current_count;
+                    difference = difference - _pl.count;
+
+
+                  } else if (_pl.current_count > difference) {
+
+                    _pl.count = difference;
+                    difference = 0;
+                  }
+                }
+              });
+            }
+
+          }
+        }
+      });
+
     if ($scope.defaultSettings.inventory && $scope.defaultSettings.inventory.dont_max_discount_items) {
-      let max_discount = false;
-
-      if ($scope.store_out.items && $scope.store_out.items.length > 0)
-        $scope.store_out.items.forEach(_itemSize => {
-          if (_itemSize.discount.value > _itemSize.discount.max)
-            max_discount = true;
-        });
-
-
       if (max_discount) {
         $scope.error = "##word.err_maximum_discount##";
         return;
       }
     }
+
+    if ($scope.store_out.type.id == 6) {
+      if (returned_count) {
+        $scope.error = "##word.return_item_err##";
+        return;
+      }
+    };
+
+
+    if (patchCount) {
+      $scope.error = `##word.err_patch_count##   ( ${patch_list.join('-')} )`;
+      return;
+    };
 
     if ($scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto && $scope.store_out.type && $scope.store_out.type.id != 5) {
       if (!$scope.store_out.safe) {
@@ -396,6 +462,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
 
               _size.total = (site.toNumber(_size.total) - discount);
             }
+
             $scope.store_out.items.push({
               image_url: $scope.item.image_url,
               name: _size.name,
@@ -405,6 +472,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
               validit: _size.validit,
               size_en: _size.size_en,
               size_units_list: _size.size_units_list,
+              patch_list: _size.patch_list,
               unit: _size.unit,
               store_units_list: _size.store_units_list,
               item_complex: _size.item_complex,
@@ -544,10 +612,11 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
                       if (_size.store_units_list && _size.store_units_list.length > 0) {
                         _size.store_units_list.forEach(_ul => {
                           if (_ul.id == _size.unit.id) {
-                            _ul.patch_list.forEach(_p => {
-                              _p.current_count = _p.count
-                              _p.count = 0
-                            });
+                            if (_ul.patch_list && _ul.patch_list.length > 0)
+                              _ul.patch_list.forEach(_p => {
+                                _p.current_count = _p.count
+                                _p.count = 0
+                              });
                             _size.patch_list = _ul.patch_list
                           }
                         });
@@ -619,6 +688,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
                 let indxStore = 0;
                 _item.branches_list[indxBranch].stores_list.map((_store, i) => {
                   if (_store.store.id == $scope.store_out.store.id) {
+                    _item.store_units_list = _store.size_units_list;
                     foundStore = true;
                     indxStore = i;
                     if (_store.hold) foundHold = true;
@@ -631,6 +701,19 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
           } else _item.store_count = 0;
         } else _item.store_count = 0;
         foundSize = $scope.item.sizes.some(_itemSize => _itemSize.barcode == _item.barcode);
+
+        if (_item.store_units_list && _item.store_units_list.length > 0) {
+          _item.store_units_list.forEach(_ul => {
+            if (_ul.id == _item.unit.id) {
+              if (_ul.patch_list && _ul.patch_list.length > 0)
+                _ul.patch_list.forEach(_p => {
+                  _p.current_count = _p.count
+                  _p.count = 0
+                });
+              _item.patch_list = _ul.patch_list
+            }
+          });
+        };
         if (!foundSize && !foundHold) $scope.item.sizes.push(_item);
       });
   };
@@ -693,10 +776,11 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
                     if (_size.store_units_list && _size.store_units_list.length > 0) {
                       _size.store_units_list.forEach(_ul => {
                         if (_ul.id == _size.unit.id) {
-                          _ul.patch_list.forEach(_p => {
-                            _p.current_count = _p.count
-                            _p.count = 0
-                          });
+                          if (_ul.patch_list && _ul.patch_list.length > 0)
+                            _ul.patch_list.forEach(_p => {
+                              _p.current_count = _p.count
+                              _p.count = 0
+                            });
                           _size.patch_list = _ul.patch_list
                         }
                       });
@@ -741,23 +825,98 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
   $scope.update = function () {
     $scope.error = '';
 
+    
+    if (new Date($scope.store_out.date) > new Date()) {
+
+      $scope.error = "##word.date_exceed##";
+      return;
+
+    }
+
+    if ($scope.store_out.type && $scope.store_out.type.id != 5 && $scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto) {
+      if (!$scope.store_out.safe) {
+        $scope.error = "##word.nosafe_warning##";
+        return;
+      }
+    }
+
     if ($scope.store_out.paid_up > $scope.amount_currency) {
       $scope.error = "##word.err_net_value##";
       return;
     }
 
+    let max_discount = false;
+    let returned_count = false;
+    let patchCount = false;
+    let patch_list = [];
+
+    if ($scope.store_out.items && $scope.store_out.items.length > 0)
+      $scope.store_out.items.forEach(_itemSize => {
+
+        if (_itemSize.discount.value > _itemSize.discount.max) max_discount = true;
+        if (_itemSize.count > _itemSize.r_count) returned_count = true;
+
+        if (_itemSize.work_patch) {
+
+          if (_itemSize.patch_list && _itemSize.patch_list.length > 0) {
+
+            let c = 0;
+            _itemSize.patch_list.map(p => c += p.count);
+
+            let difference = _itemSize.count - c;
+
+            if (_itemSize.count < c) {
+              patchCount = true;
+              patch_list.push(_itemSize.barcode)
+
+            } else if (_itemSize.count > c) {
+              _itemSize.patch_list = _itemSize.patch_list.slice().sort((a, b) => new Date(b.expiry_date) + new Date(a.expiry_date)).reverse();
+
+              _itemSize.patch_list.forEach(_pl => {
+                if (difference > 0 && _pl.count == 0) {
+
+                  if (_pl.current_count <= difference) {
+
+                    _pl.count = _pl.current_count;
+                    difference = difference - _pl.count;
+
+
+                  } else if (_pl.current_count > difference) {
+
+                    _pl.count = difference;
+                    difference = 0;
+                  }
+                }
+              });
+            }
+
+          }
+        }
+      });
 
     if ($scope.defaultSettings.inventory && $scope.defaultSettings.inventory.dont_max_discount_items) {
-      let max_discount = false;
-
-      if ($scope.store_out.items && $scope.store_out.items.length > 0)
-        $scope.store_out.items.forEach(_itemSize => {
-          if (_itemSize.discount.value > _itemSize.discount.max)
-            max_discount = true;
-        });
-
       if (max_discount) {
         $scope.error = "##word.err_maximum_discount##";
+        return;
+      }
+    }
+
+    if ($scope.store_out.type.id == 6) {
+      if (returned_count) {
+        $scope.error = "##word.return_item_err##";
+        return;
+      }
+    };
+
+
+    if (patchCount) {
+      $scope.error = `##word.err_patch_count##   ( ${patch_list.join('-')} )`;
+      return;
+    };
+
+    if ($scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto && $scope.store_out.type && $scope.store_out.type.id != 5) {
+      if (!$scope.store_out.safe) {
+        $scope.error = "##word.nosafe_warning##";
         return;
       }
     }
@@ -1750,21 +1909,6 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
 
     $scope.item_patch = itm;
 
-    if (!$scope.item_patch.patch_list) {
-
-      $scope.item_patch.patch_list = [{
-        patch: y + m + d + '001' + itm.validit,
-        production_date: new Date(),
-        expiry_date: new Date(addDays(new Date(), itm.validit)),
-        count: itm.count,
-        validit: itm.validit
-
-      }];
-
-    } else if ($scope.item_patch.patch_list && $scope.item_patch.patch_list.length == 1) {
-      $scope.item_patch.patch_list[0].count = itm.count
-    }
-
     site.showModal('#patchesListModal');
 
   };
@@ -1780,18 +1924,50 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
 
 
   $scope.exitPatchModal = function (itm) {
+    let bigger = false;
     let count = 0;
+
+    itm.patch_list.forEach(_pl => {
+      if (_pl.count > _pl.current_count) bigger = true;
+    });
+
 
     itm.patch_list.map(p => count += p.count)
 
-    if (itm.count == count) {
-      site.hideModal('#patchesListModal');
-      $scope.error = '';
+    if (itm.count != count) {
+      $scope.error = '##word.err_patch_count##';
+      return;
+    };
 
-    } else $scope.error = '##word.err_patch_count##';
+    if (bigger) {
+      $scope.error = '##word.err_patch_current_count##';
+      return;
+    };
 
+    site.hideModal('#patchesListModal');
+    $scope.error = '';
   };
 
+
+  $scope.unPostAll = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/stores_out/un_post"
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.loadAll();
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
 
   $scope.handeStoreOut = function () {
     $scope.error = '';

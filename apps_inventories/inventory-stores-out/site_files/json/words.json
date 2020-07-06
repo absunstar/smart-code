@@ -10,6 +10,11 @@
         "ar": "بحث"
     },
     {
+        "name": "err_patch_current_count",
+        "en": "There is a higher amount of balance",
+        "ar": "يوجد كمية أكبر من الرصيد"
+    },
+    {
         "name": "stores_out_store",
         "en": "Store",
         "ar": "المخزن"

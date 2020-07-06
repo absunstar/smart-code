@@ -82,6 +82,13 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
       return;
     }
 
+    if (new Date($scope.store_assemble.date) > new Date()) {
+
+      $scope.error = "##word.date_exceed##";
+      return;
+
+    };
+
     if ($scope.store_assemble.items.length > 0) {
       $scope.busy = true;
       $http({
@@ -512,6 +519,13 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
 
   $scope.update = function () {
     $scope.error = '';
+
+    if (new Date($scope.store_assemble.date) > new Date()) {
+
+      $scope.error = "##word.date_exceed##";
+      return;
+
+    };
 
     $scope.busy = true;
     $http({
