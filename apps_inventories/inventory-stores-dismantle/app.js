@@ -235,7 +235,6 @@ module.exports = function init(site) {
             _itm.company = result.doc.company
             _itm.branch = result.doc.branch
 
-            site.call('[transfer_branch][stores_items][add_balance]', _itm)
 
             _itm.code = result.doc.code
             _itm.date = result.doc.date
@@ -282,13 +281,17 @@ module.exports = function init(site) {
                 complex_list.push(_complex)
               });
             }
+
             site.call('item_transaction - items', Object.assign({}, _itm))
+            _itm.count = Math.abs(_itm.count)
+            site.call('[transfer_branch][stores_items][add_balance]', _itm)
 
           })
 
-          complex_list.forEach(_complex => {
-            site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _complex))
-            site.call('item_transaction + items', Object.assign({}, _complex))
+          complex_list.forEach(_complex1 => {
+            site.call('item_transaction + items', Object.assign({}, _complex1))
+            _complex1.count = Math.abs(_complex1.count)
+            site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _complex1))
           });
 
 
@@ -331,12 +334,12 @@ module.exports = function init(site) {
               _itm.company = result.doc.company
               _itm.branch = result.doc.branch
 
-              site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _itm))
 
               _itm.code = result.doc.code
               _itm.date = result.doc.date
               _itm.source_type = result.doc.type
               _itm.transaction_type = 'out'
+              _itm.count = (-Math.abs(_itm.count))
               _itm.current_status = 'd_Dismantling'
               _itm.shift = {
                 id: result.doc.shift.id,
@@ -366,11 +369,16 @@ module.exports = function init(site) {
               }
               site.call('item_transaction - items', Object.assign({}, _itm))
 
+              _itm.count = Math.abs(_itm.count)
+              site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _itm))
+
             })
 
-            complex_list.forEach(_complex => {
-              site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _complex))
-              site.call('item_transaction + items', Object.assign({}, _complex))
+            complex_list.forEach(_complex1 => {
+              site.call('item_transaction + items', Object.assign({}, _complex1))
+
+              _complex1.count = Math.abs(_complex1.count)
+              site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _complex1))
             });
 
           }

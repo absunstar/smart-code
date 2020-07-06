@@ -164,6 +164,8 @@ module.exports = function init(site) {
                   _itm.transaction_type = 'out'
                   site.call('item_transaction - items', Object.assign({}, _itm))
                 }
+
+                _itm.count = Math.abs(_itm.count)
                 site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _itm))
               })
             }
@@ -296,7 +298,7 @@ module.exports = function init(site) {
                     site.call('item_transaction - items', Object.assign({}, _itm))
                   } else {
 
-                    if (result.doc.type.id == 5){
+                    if (result.doc.type.id == 5) {
                       _itm.set_average = 'minus_average'
                     }
 
@@ -314,7 +316,7 @@ module.exports = function init(site) {
                     _itm.transaction_type = 'out'
                     site.call('item_transaction - items', Object.assign({}, _itm))
                   } else {
-                    if (result.doc.type.id == 5){
+                    if (result.doc.type.id == 5) {
                       _itm.set_average = 'sum_average'
                     }
 
@@ -403,7 +405,8 @@ module.exports = function init(site) {
                     _itm.transaction_type = 'out'
                     site.call('item_transaction - items', Object.assign({}, _itm))
                   }
-
+                  
+                  _itm.count = Math.abs(_itm.count)
                   site.call('[transfer_branch][stores_items][add_balance]', _itm)
 
 
