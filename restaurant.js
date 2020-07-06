@@ -1,19 +1,17 @@
-let port = [80 , 40004]
-let name = "restaurant"
 
-const site = require('isite')({
-    port: port,
+const site = require('../isite')({
+    port: [80 , 40004],
     lang: 'ar',
     saving_time: 0.2,
-    name: name,
+    name: "restaurant",
     theme: 'theme_paper',
     mongodb: {
-        db: 'smart_code_' + name,
+        db: 'smart_code_restaurants',
         limit: 100000
     },
     security: {
         admin: {
-            email: name,
+            email: "restaurant",
             password: 'P@$$w0rd'
         }
     }

@@ -325,6 +325,7 @@ module.exports = function init(site) {
                     site.call('item_transaction + items', Object.assign({}, _itm))
                   }
                 }
+                _itm.count = Math.abs(_itm.count) // amr
                 site.call('[transfer_branch][stores_items][add_balance]', _itm)
               })
 
