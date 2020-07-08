@@ -20,7 +20,7 @@
 
             <tr ng-show="store_out.customer.id">
                 <td class="title">##word.customer##</td>
-                <td class="center">{{store_out.customer.name_ar}}</td>
+                <td class="center">{{store_out.customer.name_##session.lang##}}</td>
             </tr>
 
             <tr ng-show="store_out.delegate.id">
@@ -36,7 +36,7 @@
             <tr>
                 <td class="title">##word.transaction_type##</td>
                 <td class="center">
-                    {{store_out.type.ar}}
+                    {{store_out.type.##session.lang##}}
                     <h3 class="blue bold center">{{store_out.retured_number}}</h3>
                 </td>
 

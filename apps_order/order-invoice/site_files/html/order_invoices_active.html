@@ -29,8 +29,8 @@
                 </tr>
                 <tr class="pointer" ng-repeat="item in invoicesActivelist" ng-click="returnWaitingOrder(item)">
                     <td class="code"> {{item.code}} </td>
-                    <td> {{item.transaction_type.ar}} </td>
-                    <td> {{item.customer.name_ar}} </td>
+                    <td> {{item.transaction_type.##session.lang##}} </td>
+                    <td> {{item.customer.name_##session.lang##}} </td>
                     <td> {{item.delivery_employee.name}}</td>
                     <td x-features="restaurant"> {{item.table.tables_group.name}} </td>
                     <td x-features="restaurant">{{item.table.name}}</td>

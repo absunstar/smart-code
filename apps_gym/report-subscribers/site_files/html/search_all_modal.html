@@ -20,7 +20,7 @@
                         <div class="row">
                             <i-control ng-keydown="getCustomerList($event)" id="service" class="col2"
                                 ng-model="search_customer" label="##word.search##" type="text"></i-control>
-                            <i-list ng-search="_search.$customer" class="col3" display="name_ar" v="r"
+                            <i-list ng-search="_search.$customer" class="col3" display="name_##session.lang##" v="r"
                                 ng-model="search.customer" label="##word.subscribers_name##" items="customersList">
                             </i-list>
 

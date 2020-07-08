@@ -50,8 +50,8 @@
                             <tr>
                                 <td class="title">##word.apps##</td>
                                 <td>
-                                    <P ng-show="task.type.id === 1" class="green bold">{{task.type.ar}} </P>
-                                    <P ng-show="task.type.id === 2" class="blue bold"> {{task.type.ar}} </P>
+                                    <P ng-show="task.type.id === 1" class="green bold">{{task.type.##session.lang##}} </P>
+                                    <P ng-show="task.type.id === 2" class="blue bold"> {{task.type.##session.lang##}} </P>
                                 </td>
                             </tr>
 
@@ -99,7 +99,7 @@
 
                             <tr>
                                 <td class="title">##word.status##</td>
-                                <td>{{task.status.ar}}
+                                <td>{{task.status.##session.lang##}}
                                 </td>
                             </tr>
 
@@ -192,7 +192,7 @@
                             <td>{{x.name.name}}</td>
                             <td>
                                 <p ng-repeat="y in x.operations_list">
-                                    {{y.status.ar}} => {{y.date  | date:"dd/MM/yyyy"}}
+                                    {{y.status.##session.lang##}} => {{y.date  | date:"dd/MM/yyyy"}}
                                 </p>
                             </td>
                         </tr>

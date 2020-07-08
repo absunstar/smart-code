@@ -90,7 +90,7 @@
                         </td>
                         <td class="brown"> {{c.date | date : 'dd - MM - yyyy'}} </td>
                         <td class="blue"> {{c.code}} </td>
-                        <td> {{c.status.ar}} </td>
+                        <td> {{c.status.##session.lang##}} </td>
                         <td ng-hide="delivery_employee.id"> {{c.delivery_employee.name}} </td>
 
                         <td class="blue"> {{c.total_book_list ||0}} </td>

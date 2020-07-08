@@ -17,8 +17,8 @@
 
                 <div class="row" ng-repeat="b in branch_list">
 
-                    <div class="col2 bold blue"> <br> {{b.company.name_ar}} </div>
-                    <div class="col2 bold green"> <br> {{b.branch.name_ar}} </div>
+                    <div class="col2 bold blue"> <br> {{b.company.name_##session.lang##}} </div>
+                    <div class="col2 bold green"> <br> {{b.branch.name_##session.lang##}} </div>
                     <i-button label="##word.security_login##" ng-hide="busy" id="loginBtn" class="col2" type="add"
                         ng-click="login(b)"></i-button>
 

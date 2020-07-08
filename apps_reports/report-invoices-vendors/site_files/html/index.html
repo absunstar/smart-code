@@ -35,7 +35,7 @@
                                 <tr>
                                     <td class="title">##word.vendor##</td>
                                     <td>
-                                        <h3 class="center bold">{{vendor.name_ar}}</h3>
+                                        <h3 class="center bold">{{vendor.name_##session.lang##}}</h3>
                                     </td>
                                 </tr>
 
@@ -104,7 +104,7 @@
                         <td class="blue"> {{c.shift.code}} </td>
                         <td class="blue"> {{c.code}} </td>
 
-                        <td ng-hide="vendor.id"> {{c.vendor.name_ar}} </td>
+                        <td ng-hide="vendor.id"> {{c.vendor.name_##session.lang##}} </td>
                         <td> {{c.total_tax ||0}} </td>
                         <td> {{c.total_discount ||0}} </td>
                         <td class="green"> {{c.net_value}} </td>

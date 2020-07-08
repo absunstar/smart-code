@@ -21,7 +21,7 @@
                         <i-control class="col2" label="##word.search_tenant##" ng-model="tenant_search"
                             ng-keydown="getTenantList($event)"></i-control>
 
-                        <i-list v="r" class="col5" items="tenantList" ng-model="book_hall.tenant" display="name_ar"
+                        <i-list v="r" class="col5" items="tenantList" ng-model="book_hall.tenant" display="name_##session.lang##"
                             ng-search="book_hall.$tenant_search" label="##word.tenant##"></i-list>
 
                         <i-button class="col3" ng-show="book_hall.tenant.id" type="details"
@@ -34,7 +34,7 @@
                                 <td class="title">##word.tenant##</td>
                                 <td colspan="3"> {{book_hall.tenant.name}}</td>
                                 <td class="title">##word.indentfy##</td>
-                                <td class="blue "> {{book_hall.tenant.indentfy.ar}}</td>
+                                <td class="blue "> {{book_hall.tenant.indentfy.##session.lang##}}</td>
                             </tr>
 
                             <tr>

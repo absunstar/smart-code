@@ -62,8 +62,8 @@
                         </td> -->
                         <td ng-click="showDetailes(c)" class="pointer brown"> {{c.date | date : 'dd - MM - yyyy'}} </td>
                         <td ng-click="showDetailes(c)" class="pointer blue"> {{c.code}} </td>
-                        <td ng-click="showDetailes(c)" class="pointer"> {{c.transaction_type.ar}}
-                            <p ng-show="c.transaction_type.id ==2" class="blue"> ({{c.status_delivery.ar}})</p>
+                        <td ng-click="showDetailes(c)" class="pointer"> {{c.transaction_type.##session.lang##}}
+                            <p ng-show="c.transaction_type.id ==2" class="blue"> ({{c.status_delivery.##session.lang##}})</p>
                         </td>
                         <td ng-click="showDetailes(c)" class="pointer blue"> {{c.total_book_list ||0}} </td>
                         <td ng-click="showDetailes(c)" class="pointer"> {{c.total_tax ||0}} </td>
@@ -75,7 +75,7 @@
                             <p ng-show="c.price_delivery_service">{{c.price_delivery_service}}</p>
                         </td>
                         <td ng-click="showDetailes(c)" class="pointer"> {{c.net_value}} </td>
-                        <td ng-click="showDetailes(c)" class="pointer">{{c.status.ar}}</td>
+                        <td ng-click="showDetailes(c)" class="pointer">{{c.status.##session.lang##}}</td>
                         <td>
                             <i-button type="add"
                                 ng-show="c.transaction_type.id == 1 && (c.status.id == 1 || c.status_delivery.id == 1)"

@@ -81,8 +81,8 @@
                                 <p class="center brown"> {{t.date_course | date : 'dd - MM -yyyy'}} </p>
                             </td>
                             <td>
-                                <p ng-show="t.attend.id == 1" class="center green"> {{t.attend.ar}} </p>
-                                <p ng-show="t.attend.id == 2" class="center red"> {{t.attend.ar}} </p>
+                                <p ng-show="t.attend.id == 1" class="center green"> {{t.attend.##session.lang##}} </p>
+                                <p ng-show="t.attend.id == 2" class="center red"> {{t.attend.##session.lang##}} </p>
                             </td>
                             <td>
                                 <p class="center green"> {{t.attend_hour.minute}} : {{t.attend_hour.hour}} </p>

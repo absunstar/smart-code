@@ -82,16 +82,16 @@
                                 <img class="logo" ng-src="{{n.icon}}">
                                 <br>
                                 <span x-lang="en">{{n.source.name}}</span>
-                                <span x-lang="ar">{{n.source.ar}}</span>
+                                <span x-lang="ar">{{n.source.##session.lang##}}</span>
                             </label>
                         </td>
                         <td class="center">
                             <b x-lang="en">{{n.message.name}}</b>
-                            <b x-lang="ar">{{n.message.ar}}</b>
+                            <b x-lang="ar">{{n.message.##session.lang##}}</b>
                         </td>
                         <td class="center">
                             <span x-lang="en">{{n.value.name}}</span>
-                            <span x-lang="ar">{{n.value.ar}}</span>
+                            <span x-lang="ar">{{n.value.##session.lang##}}</span>
                         </td>
                         <td class="center">
                             <span class="blue">{{n.date | date : 'yyyy - MM - dd'}}</span>

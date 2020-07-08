@@ -23,13 +23,13 @@
                         <i-control ng-keydown="getCustomerList($event)" class="col2" ng-model="search_customer"
                             label="##word.search##" type="text"></i-control>
 
-                        <i-list ng-search="_search.$customer" class="col4" display="name_ar" v="r"
+                        <i-list ng-search="_search.$customer" class="col4" display="name_##session.lang##" v="r"
                             ng-model="default_setting.general_Settings.customer" label="##word.customer##"
                             items="customersList">
                         </i-list>
 
                         <i-list class="col3" ng-model="default_setting.general_Settings.vendor" items="vendorsList"
-                            display="name_ar" ng-search="_search.$search_vendor"
+                            display="name_##session.lang##" ng-search="_search.$search_vendor"
                             label="##word.stores_in_Company_name##"></i-list>
 
                     </div>

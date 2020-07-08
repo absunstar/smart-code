@@ -72,7 +72,7 @@
                             <p>{{c.shift.name}}</p>
                             <p class="blue">{{c.shift.code}}</p>
                         </td>
-                        <td ng-click="displayDetailsBookHall(c)"> <br>{{c.tenant.name_ar}}</td>
+                        <td ng-click="displayDetailsBookHall(c)"> <br>{{c.tenant.name_##session.lang##}}</td>
 
                         <td ng-click="displayDetailsBookHall(c)"> <br> {{c.hall.name}}</td>
 
@@ -84,7 +84,7 @@
 
                         <td ng-click="displayDetailsBookHall(c)">
                             <p class="blue">{{c.total_period}}</p>
-                            <p>{{c.period.ar}}</p>
+                            <p>{{c.period.##session.lang##}}</p>
                         </td>
 
                         <td ng-click="displayDetailsBookHall(c)" class="blue"> <br> {{c.number_lecture}}</td>

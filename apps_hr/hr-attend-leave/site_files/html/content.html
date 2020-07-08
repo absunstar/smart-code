@@ -23,11 +23,11 @@
                             <table class="table bold center hover">
                                 <tr>
                                     <td class="blue"> ##word.employee_name## </td>
-                                    <td colspan="7" class="center"> {{attend_leave.employee.name_ar}}</td>
+                                    <td colspan="7" class="center"> {{attend_leave.employee.name_##session.lang##}}</td>
                                 </tr>
                                 <tr>
                                     <td class="blue"> ##word.employees_indentfy## </td>
-                                    <td colspan="2" class="center"> {{attend_leave.employee.indentfy.ar}} </td>
+                                    <td colspan="2" class="center"> {{attend_leave.employee.indentfy.##session.lang##}} </td>
                                     <td class="blue"> ##word.child## </td>
                                     <td colspan="2" ng-show="attend_leave.employee.child == true">
                                         <p class="green"> ##word.yes## </p>

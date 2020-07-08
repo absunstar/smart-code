@@ -51,8 +51,8 @@
                                 <tr class="pointer" ng-repeat="item in orderInvoicesTypeList"
                                     ng-click="selectOrderInvoices(item)">
                                     <td class="center"> {{item.code}} </td>
-                                    <td class="center"> {{item.customer.name_ar}} </td>
-                                    <td class="center"> {{item.delivery_employee.name_ar}}</td>
+                                    <td class="center"> {{item.customer.name_##session.lang##}} </td>
+                                    <td class="center"> {{item.delivery_employee.name_##session.lang##}}</td>
                                     <td class="center"> {{item.tables_group.name}} </td>
                                     <td class="center">{{item.table.name}}</td>
                                 </tr>

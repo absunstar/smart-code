@@ -197,7 +197,7 @@
                     </legend>
                     <div class="row">
                         <i-list class="col4" label="##word.companies_bank_name##" ng-model="bank.bank_name"
-                            items="bankList" display="name_ar" ng-search="_search.$bank_name_search"></i-list>
+                            items="bankList" display="name_##session.lang##" ng-search="_search.$bank_name_search"></i-list>
 
                         <i-control class="col4" label="##word.companies_bank_account_number##"
                             ng-model="bank.account_number"></i-control>

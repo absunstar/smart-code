@@ -24,7 +24,7 @@
                             ng-keydown="getTenantList($event)"></i-control>
 
                         <i-list class="col4" items="tenantList" ng-model="default_setting.general_Settings.tenant"
-                            display="name_ar" ng-search="default_setting.general_Settings.$tenant_search"
+                            display="name_##session.lang##" ng-search="default_setting.general_Settings.$tenant_search"
                             label="##word.tenant##">
                         </i-list>
                     </div>

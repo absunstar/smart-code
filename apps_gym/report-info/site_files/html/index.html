@@ -44,11 +44,11 @@
                             <table class="table bold center hover">
                                 <tr>
                                     <td class="blue"> ##word.customer_name## </td>
-                                    <td colspan="7" class="center"> {{customer.name_ar}}</td>
+                                    <td colspan="7" class="center"> {{customer.name_##session.lang##}}</td>
                                 </tr>
                                 <tr>
                                     <td class="blue"> ##word.customers_indentfy## </td>
-                                    <td colspan="2" class="center"> {{customer.indentfy.ar}} </td>
+                                    <td colspan="2" class="center"> {{customer.indentfy.##session.lang##}} </td>
                                     <td class="blue"> ##word.child## </td>
                                     <td colspan="2" ng-show="customer.child == true">
                                         <p class="green"> ##word.yes## </p>

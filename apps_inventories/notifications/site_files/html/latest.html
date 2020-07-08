@@ -48,6 +48,6 @@
 <ul class="notifications" ng-controller="notifications">
     <li ng-repeat="n in latestList"> 
         <p x-lang="en"> <img ng-src="{{n.icon}}"> <b>{{n.source}}</b> <span class="op-{{n.action}}">{{n.message}}</span> <small>{{n.value}}</small></p>
-        <p x-lang="ar"> <img ng-src="{{n.icon}}"> <b>{{n.source_ar}}</b> <span class="op-{{n.action}}">{{n.message_ar}}</span> <small>{{n.value_ar}}</small> </p>
+        <p x-lang="ar"> <img ng-src="{{n.icon}}"> <b>{{n.source_##session.lang##}}</b> <span class="op-{{n.action}}">{{n.message_##session.lang##}}</span> <small>{{n.value_##session.lang##}}</small> </p>
     </li>
 </ul>

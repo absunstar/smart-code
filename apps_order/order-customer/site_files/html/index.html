@@ -268,7 +268,7 @@
                                         <i-control ng-keydown="getCustomerList($event)" id="service" class="col3"
                                             ng-model="search_customer" label="##word.search##" type="text"></i-control>
 
-                                        <i-list ng-search="_search.$order_customers" class="col5" display="name_ar"
+                                        <i-list ng-search="_search.$order_customers" class="col5" display="name_##session.lang##"
                                             ng-model="order_customer.customer" label="##word.customer_name##"
                                             ng-change="changeCustomerAddresses(order_customer.customer)"
                                             items="customersList">

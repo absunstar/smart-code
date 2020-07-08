@@ -353,6 +353,31 @@ module.exports = function init(site) {
     })
   })
 
+
+  site.post("/api/transfer_branch/un_confirm", (req, res) => {
+    let response = {}
+    response.done = false
+    if (!req.session.user) {
+      res.json(response)
+      return;
+    }
+
+    $transfer_branch.findMany({
+      select: req.body.select || {},
+      where: { 'company.id': site.get_company(req).id },
+      sort: req.body.sort || {
+        id: -1
+      },
+    }, (err, docs) => {
+      if (!err) {
+        docs.forEach(transfer_branch_doc => {
+          transfer_branch_doc.transfer = false;
+          $transfer_branch.update(transfer_branch_doc);
+        });
+      }
+    })
+  })
+
   site.post("/api/transfer_branch/handel_transfer_branch", (req, res) => {
     let response = {
       done: false

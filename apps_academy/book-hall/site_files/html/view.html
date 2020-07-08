@@ -14,7 +14,7 @@
                     </tr>
                     <tr>
                         <td class="title">##word.tenant##</td>
-                        <td class="center">{{book_hall.tenant.name_ar}}</td>
+                        <td class="center">{{book_hall.tenant.name_##session.lang##}}</td>
                     </tr>
 
                     <tr>
@@ -40,7 +40,7 @@
 
                     <tr>
                         <td class="title">##word.period##</td>
-                        <td class="center">{{book_hall.period.ar}}</td>
+                        <td class="center">{{book_hall.period.##session.lang##}}</td>
                     </tr>
 
                     <tr ng-show="book_hall.period.id == 2">
@@ -94,7 +94,7 @@
                                 <td class="brown">{{d.date_count | date : 'dd- MM -yyyy'}}</td>
                                 <td class="green"> {{d.from.minute}} : {{d.from.hour}} </td>
                                 <td class="red"> {{d.to.minute}} : {{d.to.hour}} </td>
-                                <td> {{d.attend.ar}} </td>
+                                <td> {{d.attend.##session.lang##}} </td>
                              
                             </tr>
                         </table>

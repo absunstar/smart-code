@@ -68,7 +68,7 @@
 
                         <tr ng-repeat="c in paid_invoice.payment_list">
                             <td class="center brown">{{c.date | date : 'dd / MM / yyyy'}}</td>
-                            <td class="center">{{c.payment_method.ar}}</td>
+                            <td class="center">{{c.payment_method.##session.lang##}}</td>
                             <td class="center">{{c.currency.name}} <b class="blue">{{c.currency.ex_rate}}</b></td>
                             <td class="center">{{c.safe.name}}</td>
                             <td class="center green">{{c.paid_up}}</td>

@@ -99,7 +99,7 @@
                         <td class="brown"> {{c.date | date : 'dd - MM - yyyy'}} </td>
                         <td class="blue"> {{c.shift.code}} </td>
                         <td class="blue"> {{c.number}} </td>
-                        <td> {{c.type.ar}} </td>
+                        <td> {{c.type.##session.lang##}} </td>
                         <td ng-hide="delegate.id"> {{c.delegate.name}} </td>
                         <td class="red"> {{c.total_tax ||0}} </td>
                         <td> {{c.total_discount ||0}} </td>

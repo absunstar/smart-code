@@ -70,8 +70,8 @@
                         </td>
                         <td> {{c.edit_user_info.name || c.add_user_info.name}} </td>
 
-                        <td> {{c.transaction_type.ar}} </td>
-                        <td> {{c.status.ar}} </td>
+                        <td> {{c.transaction_type.##session.lang##}} </td>
+                        <td> {{c.status.##session.lang##}} </td>
                         <td class="green"> {{c.total_book_list ||0}} </td>
                         <td class="green"> {{c.total_tax ||0}} </td>
                         <td class="red"> {{c.total_discount ||0}} </td>

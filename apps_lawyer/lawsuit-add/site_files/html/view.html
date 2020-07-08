@@ -124,7 +124,7 @@
                                     <th> ##word.adjective## </th>
                                 </tr>
                                 <tr ng-repeat="c in lawsuit_add.oppenents_list ">
-                                    <td> {{c.oppenents.name_ar}} </td>
+                                    <td> {{c.oppenents.name_##session.lang##}} </td>
                                     <td> {{c.adjective}} </td>
                                 </tr>
                             </table>
@@ -149,7 +149,7 @@
                             </tr>
                             <tr ng-repeat="c in lawsuit_add.oppenents_lawyers_list ">
 
-                                <td> {{c.oppenents_lawyer.name_ar}} </td>
+                                <td> {{c.oppenents_lawyer.name_##session.lang##}} </td>
                                 <td> {{c.adjective}} </td>
 
                             </tr>
@@ -174,7 +174,7 @@
                             </tr>
                             <tr ng-repeat="c in lawsuit_add.clients_list ">
 
-                                <td> {{c.customer.name_ar}} </td>
+                                <td> {{c.customer.name_##session.lang##}} </td>
                                 <td> {{c.adjective}} </td>
                             </tr>
                         </table>
@@ -196,7 +196,7 @@
                             </tr>
 
                             <tr ng-repeat="c in lawsuit_add.office_lawyers_list ">
-                                <td> {{c.office_lawyer.name_ar}} </td>
+                                <td> {{c.office_lawyer.name_##session.lang##}} </td>
                                 <td> {{c.adjective}} </td>
                             </tr>
                         </table>

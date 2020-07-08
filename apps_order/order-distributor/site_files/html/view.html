@@ -16,14 +16,14 @@
 
                                 <tr>
                                     <td class="title"> ##word.status## </td>
-                                    <td class="center"> {{order_distributor.status.ar}} </td>
+                                    <td class="center"> {{order_distributor.status.##session.lang##}} </td>
                                 </tr>
 
                                 <tr>
                                     <td class="title"> ##word.invoice_type## </td>
-                                    <td class="center"> {{order_distributor.transaction_type.ar}}
+                                    <td class="center"> {{order_distributor.transaction_type.##session.lang##}}
                                         <b ng-show="order_distributor.transaction_type.id ==2" class="blue">
-                                            ( {{order_distributor.status_delivery.ar}} )</b>
+                                            ( {{order_distributor.status_delivery.##session.lang##}} )</b>
                                     </td>
                                 </tr>
 

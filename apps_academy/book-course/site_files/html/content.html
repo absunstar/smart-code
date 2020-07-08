@@ -52,7 +52,7 @@
 
                             <tr>
                                 <td class="title">##word.indentfy##</td>
-                                <td class="blue "> {{book_course.customer.indentfy.ar}}</td>
+                                <td class="blue "> {{book_course.customer.indentfy.##session.lang##}}</td>
                                 <td class="title">##word.birth_date##</td>
                                 <td colspan="3" class="brown "> {{book_course.customer.birth_date | date : 'dd - MM -
                                     yyyy'}}</td>
@@ -140,7 +140,7 @@
                                     <td class="blue">
                                         <br>
                                         <p class="blue">{{c.course.courses_total}}</p>
-                                        <p class="blue">{{c.course.period.ar}}</p>
+                                        <p class="blue">{{c.course.period.##session.lang##}}</p>
 
                                     </td>
 
@@ -200,7 +200,7 @@
 
                                     <td class="blue">
                                         <p class="blue">{{book_course.select_book.course.courses_total}}</p>
-                                        <p class="blue">{{book_course.select_book.course.period.ar}}</p>
+                                        <p class="blue">{{book_course.select_book.course.period.##session.lang##}}</p>
 
                                     </td>
 

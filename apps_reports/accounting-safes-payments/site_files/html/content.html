@@ -7,7 +7,7 @@
                 <div class="control">
                     <label>##word.safes_payments_type##</label>
                     <select ng-model="safe_payment.type" v="r">
-                        <option ng-repeat="sm in safes_movements_types" ng-value="sm">{{sm.ar}}</option>
+                        <option ng-repeat="sm in safes_movements_types" ng-value="sm">{{sm.##session.lang##}}</option>
                     </select>
                 </div>
             </div>
@@ -16,7 +16,7 @@
                 <div class="control">
                     <label>##word.safes_payments_source##</label>
                     <select ng-model="safe_payment.source" v="r">
-                        <option ng-repeat="ss in safes_movements_sources" ng-value="ss">{{ss.ar}}</option>
+                        <option ng-repeat="ss in safes_movements_sources" ng-value="ss">{{ss.##session.lang##}}</option>
                     </select>
                 </div>
             </div>
@@ -128,7 +128,7 @@
                                 <div class="control">
                                     <label>##word.safes_payments_method##</label>
                                     <select ng-model="payment.method" ng-change="setDueDate();getChequeId()">
-                                        <option ng-repeat="me in payments_methods" ng-value="me">{{me.ar}}</option>
+                                        <option ng-repeat="me in payments_methods" ng-value="me">{{me.##session.lang##}}</option>
                                     </select>
                                 </div>
                             </div>
@@ -138,7 +138,7 @@
                                     <label>##word.safes_payments_cheque_state##</label>
                                     <select ng-model="payment.cheque_state" disabled>
                                         <option ng-selected="payment.cheque_state.id == cs.id" ng-repeat="cs in cheques_status"
-                                            ng-value="cs">{{cs.ar}}</option>
+                                            ng-value="cs">{{cs.##session.lang##}}</option>
                                     </select>
                                 </div>
                             </div>
@@ -205,7 +205,7 @@
                     <th>##word.actions##</th>
                 </tr>
                 <tr ng-repeat="s in safe_payment.payments">
-                    <td>{{s.method.ar}}</td>
+                    <td>{{s.method.##session.lang##}}</td>
                     <td>{{s.value}}</td>
                     <td>{{s.descrebtion}}</td>
                     <td>{{s.cheque_id}}</td>

@@ -54,7 +54,7 @@
 
                                 <tr>
                                     <td class="title"> ##word.customers_name_ar## </td>
-                                    <td class="center"> {{customer.name_ar}} </td>
+                                    <td class="center"> {{customer.name_##session.lang##}} </td>
                                 </tr>
 
                                 <tr>
@@ -69,7 +69,7 @@
 
                                 <tr x-feature="lawyer">
                                     <td class="title"> ##word.customers_indentfy## </td>
-                                    <td class="center"> {{customer.indentfy.ar}}</td>
+                                    <td class="center"> {{customer.indentfy.##session.lang##}}</td>
                                 </tr>
 
                                 <tr x-feature="lawyer">
@@ -95,7 +95,7 @@
 
                                 <tr>
                                     <td class="title"> ##word.customers_indentfy## </td>
-                                    <td class="center"> {{customer.indentfy.ar}}</td>
+                                    <td class="center"> {{customer.indentfy.##session.lang##}}</td>
                                 </tr>
 
                                 <tr x-feature="gym">
@@ -140,7 +140,7 @@
                     <table class="table hover">
                         <tr>
                             <td class="title"> ##word.customers_nationality## </td>
-                            <td class="center"> {{customer.nationality.name_ar}} </td>
+                            <td class="center"> {{customer.nationality.name_##session.lang##}} </td>
                         </tr>
 
                         <tr>
@@ -253,7 +253,7 @@
                                 <tr ng-repeat="medicine in customer.medicine_list">
                                     <td class="center">{{medicine.name.name}}</td>
                                     <td class="center">{{medicine.count_dosage}}</td>
-                                    <!--                             <td class="center">{{medicine.time.ar}}</td>
+                                    <!--                             <td class="center">{{medicine.time.##session.lang##}}</td>
  -->
                                 </tr>
 
@@ -362,7 +362,7 @@
 
                         <tr>
                             <td class="title"> ##word.customers_commerical_nationality## </td>
-                            <td class="center"> {{customer.commerical_nationality.name_ar}} </td>
+                            <td class="center"> {{customer.commerical_nationality.name_##session.lang##}} </td>
                         </tr>
 
                         <tr>
@@ -404,7 +404,7 @@
 
                         <tr>
                             <td class="title"> ##word.customers_currency_name## </td>
-                            <td class="center"> {{openBalance.currency.name_ar}} </td>
+                            <td class="center"> {{openBalance.currency.name_##session.lang##}} </td>
                         </tr>
 
                         <tr>
@@ -438,7 +438,7 @@
 
                         <tr>
                             <td class="title"> ##word.customers_notes_arabic## </td>
-                            <td class="center"> {{openBalance.notes_ar}} </td>
+                            <td class="center"> {{openBalance.notes_##session.lang##}} </td>
                         </tr>
                         <tr>
                             <td class="title"> ##word.customers_notes_english## </td>
@@ -474,7 +474,7 @@
 
                         <tr>
                             <td class="title"> ##word.customers_currency_name## </td>
-                            <td class="center"> {{customer.currency.name_ar}} </td>
+                            <td class="center"> {{customer.currency.name_##session.lang##}} </td>
                         </tr>
 
                         <tr>
@@ -504,7 +504,7 @@
                         <table class="table hover">
                             <tr>
                                 <td class="title"> ##word.customers_bank_name## </td>
-                                <td class="center"> {{bank.bank_name.name_ar}} </td>
+                                <td class="center"> {{bank.bank_name.name_##session.lang##}} </td>
                             </tr>
 
                             <tr>
@@ -536,8 +536,8 @@
                         </tr>
 
                         <tr>
-                            <td class="title"> ##word.area## </td>
-                            <td class="center"> {{customer.area.name}} </td>
+                            <td class="title"> ##word.##session.lang##ea## </td>
+                            <td class="center"> {{customer.##session.lang##ea.name}} </td>
                         </tr>
 
                         <tr>
@@ -941,7 +941,7 @@
                         <table class="table hover">
                             <tr>
                                 <td class="title"> ##word.customers_company_name## </td>
-                                <td class="center"> {{dealCompany.company.name_ar}} </td>
+                                <td class="center"> {{dealCompany.company.name_##session.lang##}} </td>
                             </tr>
 
                             <tr>

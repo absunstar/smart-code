@@ -101,7 +101,7 @@
                     <div class="row">
                         <i-control ng-keydown="getOppenentsList($event)" id="service" class="col2"
                             ng-model="search_oppenents" label="##word.search##" type="text"></i-control>
-                        <i-list ng-search="_search.$oppenents" class="col4" display="name_ar" ng-model="oppenents"
+                        <i-list ng-search="_search.$oppenents" class="col4" display="name_##session.lang##" ng-model="oppenents"
                             label="##word.oppenents_name##" items="oppenentsList">
                         </i-list>
 
@@ -123,7 +123,7 @@
                                 </tr>
 
                                 <tr ng-repeat="c in lawsuit_add.oppenents_list ">
-                                    <td> {{c.oppenents.name_ar}} </td>
+                                    <td> {{c.oppenents.name_##session.lang##}} </td>
                                     <td> {{c.adjective}} </td>
                                     <td class="center">
                                         <i-button type="delete"
@@ -142,7 +142,7 @@
                     <div class="row">
                         <i-control ng-keydown="getOppenentsLawyersList($event)" id="service" class="col2"
                             ng-model="search_oppenents_lawyers" label="##word.search##" type="text"></i-control>
-                        <i-list ng-search="_search.$oppenents_lawyer" class="col4" display="name_ar"
+                        <i-list ng-search="_search.$oppenents_lawyer" class="col4" display="name_##session.lang##"
                             ng-model="oppenents_lawyer" label="##word.oppenents_lawyers##" items="oppenentsLawyersList">
                         </i-list>
 
@@ -165,7 +165,7 @@
                                 </tr>
                                 <tr ng-repeat="c in lawsuit_add.oppenents_lawyers_list ">
 
-                                    <td> {{c.oppenents_lawyer.name_ar}} </td>
+                                    <td> {{c.oppenents_lawyer.name_##session.lang##}} </td>
                                     <td> {{c.adjective}} </td>
                                     <td class="center">
                                         <i-button type="delete"
@@ -190,7 +190,7 @@
                     <div class="row">
                         <i-control ng-keydown="getCustomerList($event)" id="service" class="col2"
                             ng-model="search_customer" label="##word.search##" type="text"></i-control>
-                        <i-list ng-search="_search.$customer" class="col4" display="name_ar" ng-model="customer"
+                        <i-list ng-search="_search.$customer" class="col4" display="name_##session.lang##" ng-model="customer"
                             label="##word.client_name##" items="customersList">
                         </i-list>
 
@@ -213,7 +213,7 @@
                                 </tr>
                                 <tr ng-repeat="c in lawsuit_add.clients_list ">
 
-                                    <td> {{c.customer.name_ar}} </td>
+                                    <td> {{c.customer.name_##session.lang##}} </td>
                                     <td> {{c.adjective}} </td>
                                     <td class="center">
                                         <i-button type="delete"
@@ -231,7 +231,7 @@
                     <div class="row">
                         <i-control ng-keydown="getOfficeLawyersList($event)" id="service" class="col2"
                             ng-model="search_office_lawyers" label="##word.search##" type="text"></i-control>
-                        <i-list ng-search="_search.$office_lawyer" class="col4" display="name_ar"
+                        <i-list ng-search="_search.$office_lawyer" class="col4" display="name_##session.lang##"
                             ng-model="office_lawyer" label="##word.clients_lawyers##" items="officeLawyersList">
                         </i-list>
 
@@ -254,7 +254,7 @@
                                 </tr>
                                 <tr ng-repeat="c in lawsuit_add.office_lawyers_list ">
 
-                                    <td> {{c.office_lawyer.name_ar}} </td>
+                                    <td> {{c.office_lawyer.name_##session.lang##}} </td>
                                     <td> {{c.adjective}} </td>
                                     <td class="center">
                                         <i-button type="delete"

@@ -25,7 +25,7 @@
 
             <tr>
                 <td class="title">##word.stores_in_Company_name##</td>
-                <td class="center">{{store_in.vendor.name_ar}}</td>
+                <td class="center">{{store_in.vendor.name_##session.lang##}}</td>
             </tr>
 
             <tr>
@@ -36,7 +36,7 @@
             <tr>
                 <td class="title">##word.transaction_type##</td>
                 <td class="center">
-                    {{store_in.type.ar}}
+                    {{store_in.type.##session.lang##}}
                     <h3 class="blue bold center">{{store_in.retured_number}}</h3>
                 </td>
             </tr>

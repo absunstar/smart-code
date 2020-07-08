@@ -67,11 +67,11 @@
                                     <td class="center blue"> {{item.code || item.number}} </td>
                                     <td class="center"
                                         ng-show="account_invoices.source_type.id == 2 ||account_invoices.source_type.id == 3 || account_invoices.source_type.id == 4">
-                                        {{item.customer.name_ar}} <b ng-show="!item.customer.name_ar">
+                                        {{item.customer.name_##session.lang##}} <b ng-show="!item.customer.name_##session.lang##">
                                             ##word.not_found##</b> </td>
 
                                     <td class="center" ng-show="account_invoices.source_type.id == 1">
-                                        {{item.vendor.name_ar}} <b ng-show="!item.vendor.name_ar">
+                                        {{item.vendor.name_##session.lang##}} <b ng-show="!item.vendor.name_##session.lang##">
                                             ##word.not_found##</b> </td>
 
                                     <td class="center" ng-show="account_invoices.source_type.id == 4">
@@ -98,8 +98,8 @@
                                     <td ng-show="account_invoices.order_invoices_type.id ==1" class="center">
                                         {{item.table.name}}</td>
                                     <td class="center">
-                                        {{item.transaction_type.ar ||item.type.ar}} <b
-                                            ng-show="!item.transaction_type.ar && !item.type.ar">
+                                        {{item.transaction_type.##session.lang## ||item.type.##session.lang##}} <b
+                                            ng-show="!item.transaction_type.##session.lang## && !item.type.##session.lang##">
                                             ##word.not_found##</b></td>
                                 </tr>
                             </table>
@@ -180,14 +180,14 @@
                                         <td class="center blue">{{account_invoices.invoice_code}}</td>
                                     </tr>
 
-                                    <tr ng-show="account_invoices.customer.name_ar">
+                                    <tr ng-show="account_invoices.customer.name_##session.lang##">
                                         <td class="title">##word.customer##</td>
-                                        <td class="center">{{account_invoices.customer.name_ar}}</td>
+                                        <td class="center">{{account_invoices.customer.name_##session.lang##}}</td>
                                     </tr>
 
-                                    <tr ng-show="account_invoices.vendor.name_ar">
+                                    <tr ng-show="account_invoices.vendor.name_##session.lang##">
                                         <td class="title">##word.vendor##</td>
-                                        <td class="center">{{account_invoices.vendor.name_ar}}</td>
+                                        <td class="center">{{account_invoices.vendor.name_##session.lang##}}</td>
                                     </tr>
 
                                     <tr ng-show="account_invoices.trainer.id">
@@ -212,7 +212,7 @@
 
                                     <tr ng-show="account_invoices.period > 0">
                                         <td class="title"> ##word.period## </td>
-                                        <td class="center"> {{account_invoices.period.ar}} </td>
+                                        <td class="center"> {{account_invoices.period.##session.lang##}} </td>
                                     </tr>
 
                                     <tr ng-show="account_invoices.price_hour > 0">

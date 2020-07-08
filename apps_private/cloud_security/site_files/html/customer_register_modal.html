@@ -22,10 +22,10 @@
 
                                 <div class="row">
                                     <i-list v="r" label="##word.security_company##" ng-search="_search.$company_search"
-                                        display="name_ar" class="col4" items="company_list" ng-model="customer.company">
+                                        display="name_##session.lang##" class="col4" items="company_list" ng-model="customer.company">
                                     </i-list>
 
-                                    <i-list label="##word.security_branch##" v="r" primary="code" display="name_ar"
+                                    <i-list label="##word.security_branch##" v="r" primary="code" display="name_##session.lang##"
                                         ng-search="_search.$branch_search" class="col4"
                                         items="customer.company.branch_list" ng-model="customer.branch">
                                     </i-list>

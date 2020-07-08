@@ -118,7 +118,7 @@
                     <legend> ##word.customers_id_inforamation## </legend>
                     <div class="row">
                         <i-list class="col3" label="##word.customers_nationality##" ng-model="customer.nationality"
-                            items="nationalityList" display="name_ar" ng-search="_search.$$customernationality">
+                            items="nationalityList" display="name_##session.lang##" ng-search="_search.$$customernationality">
                         </i-list>
 
                         <i-control class="col3" label="##word.customers_id_number##" ng-model="customer.id_number">
@@ -386,7 +386,7 @@
 
                     <div class="row">
                         <i-list class="col3" label="##word.customers_commerical_nationality##"
-                            ng-model="customer.commerical_nationality" items="nationalityList" display="name_ar"
+                            ng-model="customer.commerical_nationality" items="nationalityList" display="name_##session.lang##"
                             ng-search="_search.$$commericalNationality"></i-list>
 
                         <i-control class="col3" label="##word.customers_financial_system##"
@@ -425,7 +425,7 @@
                             ng-model="openBalance.initial_balance"></i-control>
 
                         <i-list class="col4" label="##word.customers_currency_name##" ng-model="openBalance.currency"
-                            items="currencyList" display="name_ar" ng-search="_search.$$currency_name"></i-list>
+                            items="currencyList" display="name_##session.lang##" ng-search="_search.$$currency_name"></i-list>
 
                         <i-radio class="col2" group="bt_{{$index}}" label="##word.customers_debit##"
                             ng-model="openBalance.balance_type" ng-value="debit"></i-radio>
@@ -695,7 +695,7 @@
 
                         <div class="row">
                             <i-list class="col6" label="##word.customers_company_name##" ng-model="dealCompany.company"
-                                items="companyList" display="name_ar" ng-search="_search.$$dealCompanyName"></i-list>
+                                items="companyList" display="name_##session.lang##" ng-search="_search.$$dealCompanyName"></i-list>
 
                             <i-list class="col6" label="##word.customers_branch_name##" ng-model="dealCompany.branch"
                                 items="dealCompany.company.branch_list" ng-search="_search.$$dealCompanyBranchName">

@@ -34,7 +34,7 @@
                     </label>
                     <select ng-show="search.bySystem" ng-model="search.system">
                         <option x-lang="en" ng-repeat="s in systemList" ng-value="s.en">{{s.en}}</option>
-                        <option x-lang="ar" ng-repeat="s in systemList" ng-value="s.en">{{s.ar}}</option>
+                        <option x-lang="ar" ng-repeat="s in systemList" ng-value="s.en">{{s.##session.lang##}}</option>
                     </select>
                 </div>
                 <div class="control">
@@ -83,13 +83,13 @@
                         <div class="col5">
                             <select ng-show="search.bySort" ng-model="search.sort">
                                 <option x-lang="en" ng-repeat="s in sortList" ng-value="s.value">{{s.en}}</option>
-                                <option x-lang="ar" ng-repeat="s in sortList" ng-value="s.value">{{s.ar}}</option>
+                                <option x-lang="ar" ng-repeat="s in sortList" ng-value="s.value">{{s.##session.lang##}}</option>
                             </select>
                         </div>
                         <div class="col5">
                             <select ng-show="search.bySort" ng-model="search.sortType">
                                 <option x-lang="en" ng-repeat="s in sortTypeList" ng-value="s.value">{{s.en}}</option>
-                                <option x-lang="ar" ng-repeat="s in sortTypeList" ng-value="s.value">{{s.ar}}</option>
+                                <option x-lang="ar" ng-repeat="s in sortTypeList" ng-value="s.value">{{s.##session.lang##}}</option>
                             </select>
                         </div>
                     </div>

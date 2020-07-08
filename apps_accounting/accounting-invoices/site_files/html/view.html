@@ -23,26 +23,26 @@
                                 </tr>
                                 <tr>
                                     <td class="title"> ##word.source_type## </td>
-                                    <td class="center"> {{account_invoices.source_type.ar}}
-                                        <p class="blue">{{account_invoices.invoice_type.ar}} </td>
+                                    <td class="center"> {{account_invoices.source_type.##session.lang##}}
+                                        <p class="blue">{{account_invoices.invoice_type.##session.lang##}} </td>
                                 </tr>
                                 <tr x-feature="restaurant">
                                     <td class="title"> ##word.order_invoices_type## </td>
-                                    <td class="center"> {{account_invoices.order_invoices_type.ar}} </td>
+                                    <td class="center"> {{account_invoices.order_invoices_type.##session.lang##}} </td>
                                 </tr>
 
-                                <tr ng-show="account_invoices.tenant.name_ar">
+                                <tr ng-show="account_invoices.tenant.name_##session.lang##">
                                     <td class="title"> ##word.tenant## </td>
-                                    <td class="center blue"> {{account_invoices.tenant.name_ar}} </td>
+                                    <td class="center blue"> {{account_invoices.tenant.name_##session.lang##}} </td>
                                 </tr>
 
-                                <tr ng-show="account_invoices.customer.name_ar">
+                                <tr ng-show="account_invoices.customer.name_##session.lang##">
                                     <td class="title"> ##word.customer## </td>
-                                    <td class="center blue"> {{account_invoices.customer.name_ar}} </td>
+                                    <td class="center blue"> {{account_invoices.customer.name_##session.lang##}} </td>
                                 </tr>
-                                <tr ng-show="account_invoices.vendor.name_ar">
+                                <tr ng-show="account_invoices.vendor.name_##session.lang##">
                                     <td class="title"> ##word.vendor## </td>
-                                    <td class="center blue"> {{account_invoices.vendor.name_ar}} </td>
+                                    <td class="center blue"> {{account_invoices.vendor.name_##session.lang##}} </td>
                                 </tr>
                                 <tr ng-show="account_invoices.trainer.name">
                                     <td class="title"> ##word.trainer## </td>
@@ -82,7 +82,7 @@
 
                                 <tr ng-show="account_invoices.period > 0">
                                     <td class="title"> ##word.period## </td>
-                                    <td class="center"> {{account_invoices.period.ar}} </td>
+                                    <td class="center"> {{account_invoices.period.##session.lang##}} </td>
                                 </tr>
 
                                 <tr ng-show="account_invoices.price_hour > 0">
@@ -125,7 +125,7 @@
 
                                 <!-- <tr>
                                     <td class="title"> ##word.payment_method## </td>
-                                    <td class="center blue"> {{account_invoices.payment_method.ar}} </td>
+                                    <td class="center blue"> {{account_invoices.payment_method.##session.lang##}} </td>
                                 </tr>
 
                                 <tr ng-show="account_invoices.safe">
@@ -216,7 +216,7 @@
 
                                     <tr ng-repeat="c in account_invoices.payment_list">
                                         <td class="center brown">{{c.date | date : 'dd / MM / yyyy'}}</td>
-                                        <td class="center">{{c.payment_method.ar}}</td>
+                                        <td class="center">{{c.payment_method.##session.lang##}}</td>
                                         <td class="center">{{c.currency.name}} - <b
                                                 class="blue">{{c.currency.ex_rate}}</b></td>
                                         <td class="center blue">{{c.safe.name}}</td>

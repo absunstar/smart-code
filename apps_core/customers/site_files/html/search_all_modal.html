@@ -25,7 +25,7 @@
                         <div class="row">
 
                             <i-list class="col2" label="##word.customers_nationality##" ng-model="search.nationality"
-                                items="nationalityList" display="name_ar" ng-search="_search.$customernationality">
+                                items="nationalityList" display="name_##session.lang##" ng-search="_search.$customernationality">
                             </i-list>
 
                             <i-list class="col3" label="##word.customers_gov##" ng-model="search.gov" items="govList"

@@ -53,7 +53,7 @@
                         <th> ##word.security_actions## </th>
                     </tr>
                     <tr ng-repeat="role in roles | orderBy : 'id'">
-                        <td> {{role.ar}} </td>
+                        <td> {{role.##session.lang##}} </td>
                         <td>
                             <i-button ng-click="displayViewRole(role)" type="view" label="##word.security_role_details##"></i-button>
                             <i-button ng-click="displayUpdateRole(role)" ng-show="role.module_name == 'custom'" type="edit" label="##word.security_role_edit##"></i-button>
