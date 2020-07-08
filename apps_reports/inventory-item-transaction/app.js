@@ -21,20 +21,9 @@ module.exports = function init(site) {
     });
   });
 
-  $item_transaction.trackBusy = false
   site.on('item_transaction + items', itm => {
 
-    if ($item_transaction.trackBusy) {
-      setTimeout(() => {
-        site.call('item_transaction + items', itm)
-      }, 400);
-      return
-    }
-
     if (itm) {
-
-      $item_transaction.trackBusy = true
-
       $item_transaction.findMany({ sort: { id: -1 }, where: { 'barcode': itm.barcode, name: itm.name, 'branch.code': itm.branch.code, 'company.id': itm.company.id, 'store.id': itm.store.id, 'unit.id': itm.unit.id } }, (err, docs) => {
 
         delete itm._id
@@ -43,21 +32,15 @@ module.exports = function init(site) {
         // delete itm.units_list
 
         if (itm.current_status == 'damaged') {
-          $item_transaction.update(itm, () => {
-            $item_transaction.trackBusy = false
-          })
+          $item_transaction.update(itm)
         }
 
         if (itm.current_status == 'debt') {
-          $item_transaction.update(itm, () => {
-            $item_transaction.trackBusy = false
-          })
+          $item_transaction.update(itm)
         }
 
         if (itm.current_status == 'transferred') {
-          $item_transaction.update(itm, () => {
-            $item_transaction.trackBusy = false
-          })
+          $item_transaction.update(itm)
         }
 
         if (docs && docs.length > 0) {
@@ -66,9 +49,7 @@ module.exports = function init(site) {
           // itm.last_price = docs[0].price
           itm.count = itm.count
           itm.current_status = itm.current_status
-          $item_transaction.add(itm, () => {
-            $item_transaction.trackBusy = false
-          })
+          $item_transaction.add(itm)
 
         } else {
 
@@ -78,24 +59,13 @@ module.exports = function init(site) {
           // itm.last_price = itm.price
           itm.count = itm.count
           itm.current_status = itm.current_status
-          $item_transaction.add(itm, () => {
-            $item_transaction.trackBusy = false
-          })
+          $item_transaction.add(itm)
         }
       })
     }
   })
 
-  $item_transaction.outBusy = false
   site.on('item_transaction - items', itm => {
-
-    if ($item_transaction.outBusy) {
-      setTimeout(() => {
-        site.call('item_transaction - items', Object.assign({}, itm))
-      }, 400);
-      return;
-    }
-    $item_transaction.outBusy = true
 
     delete itm.id
     delete itm._id
@@ -115,30 +85,17 @@ module.exports = function init(site) {
         }
         // itm.last_price = docs[0].price
         itm.count = itm.count
-        $item_transaction.add(itm, (err, doc) => {
-
-          setTimeout(() => {
-            $item_transaction.outBusy = false
-          }, 200);
-        })
+        $item_transaction.add(itm)
       } else {
 
         itm.last_count = itm.current_count || 0
         itm.current_count = itm.last_count - itm.count
         itm.count = itm.count
         // itm.last_price = itm.price
-        $item_transaction.add(itm, () => {
-          setTimeout(() => {
-            $item_transaction.outBusy = false
-          }, 200);
-        })
+        $item_transaction.add(itm)
       }
     })
   })
-
-
-
-
 
   site.post({
     name: '/api/item_transaction/transaction_type/all',
