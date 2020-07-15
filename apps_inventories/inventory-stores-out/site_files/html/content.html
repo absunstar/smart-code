@@ -95,7 +95,7 @@
 
                             <td>
                                 <i-list ng-model="itm.unit" ng-search="_search.$category_item.$unit_search"
-                                    ng-change="itm.discount = itm.unit.discount ; itm.price = itm.unit.price ; itm.average_cost = itm.unit.average_cost ;calcSize(itm)"
+                                    ng-change="ChangeUnitPatch(itm);"
                                     display2="barcode" items="itm.size_units_list"></i-list>
                             </td>
 

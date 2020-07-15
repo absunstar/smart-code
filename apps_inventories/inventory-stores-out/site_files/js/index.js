@@ -825,7 +825,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
   $scope.update = function () {
     $scope.error = '';
 
-    
+
     if (new Date($scope.store_out.date) > new Date()) {
 
       $scope.error = "##word.date_exceed##";
@@ -1577,6 +1577,30 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         $scope.error = err;
       }
     )
+  };
+
+  $scope.ChangeUnitPatch = function (itm) {
+    $scope.error = '';
+    itm.discount = itm.unit.discount;
+    itm.price = itm.unit.price;
+    itm.average_cost = itm.unit.average_cost;
+
+    if (itm.store_units_list && itm.store_units_list.length > 0) {
+      itm.store_units_list.forEach(_store_unit => {
+        if (_store_unit.id == itm.unit.id) {
+
+          if (_store_unit.patch_list && _store_unit.patch_list.length > 0)
+            _store_unit.patch_list.forEach(_p => {
+              _p.current_count = _p.count
+              _p.count = 0
+            });
+
+          itm.patch_list = _store_unit.patch_list
+        }
+      });
+    }
+
+    $scope.calcSize(itm);
   };
 
 

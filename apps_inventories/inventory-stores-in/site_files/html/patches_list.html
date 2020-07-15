@@ -24,9 +24,9 @@
                         <tr>
                             <th>##word.production_date##</th>
                             <th>##word.expiry_date##</th>
-                            <th>##word.validit##</th>
+                            <th class="small_t">##word.validit##</th>
                             <th>##word.patch_number##</th>
-                            <th>##word.quantity##</th>
+                            <th class="small_t">##word.quantity##</th>
                             <th>##word.actions##</th>
                         </tr>
 
@@ -40,15 +40,15 @@
                                 <i-date2 ng-click="changeDate(c)" ng-model="c.expiry_date"></i-date2>
                             </td>
 
-                            <td>
+                            <td class="small_t">
                                 <i-control ng-change="changeDate(c)" ng-model="c.validit"></i-control>
                             </td>
 
                             <td>
                                 <i-control ng-model="c.patch"></i-control>
-                            </td>
+                            </td >
 
-                            <td>
+                            <td class="small_t">
                                 <p>
                                     <i-control type="number" ng-model="c.count"></i-control>
                                 </p>
