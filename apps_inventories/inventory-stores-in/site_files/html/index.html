@@ -21,8 +21,7 @@
                 <div x-permissions="stores_in_add || stores_in_manage"
                     x-import="inventory-stores-in/account_invoice.html">
                 </div>
-                <div x-permissions="stores_in_add || stores_in_manage"
-                    x-import="inventory-stores-in/patches_list.html">
+                <div x-permissions="stores_in_add || stores_in_manage" x-import="inventory-stores-in/patches_list.html">
                 </div>
 
                 <div x-permissions="stores_in_delete || stores_in_manage"
@@ -49,9 +48,10 @@
 
                     <h2 class="bold red text-center"> {{error}}</h2>
 
+                    <i-button class="left" x-permissions="stores_in_handle" label="##word.posting_all##"
+                        ng-click="postingAll(list)"></i-button>
 
-                    <!-- <i-button class="left" label="فك ترحيل الكل"
-                    ng-click="unPostAll()"></i-button> -->
+                    <i-button class="left" label="فك ترحيل الكل" ng-click="unPostAll()"></i-button>
 
                     <!-- <i-button class="left" x-permissions="stores_in_handle" label="##word.handle##"
                         ng-click="handelStoreIn()"></i-button> -->

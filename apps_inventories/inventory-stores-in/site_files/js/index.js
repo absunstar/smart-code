@@ -1301,6 +1301,48 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
     })
   };
 
+
+  $scope.postingAll = function (store_in_all) {
+    $scope.error = '';
+    for (let i = 0; i < store_in_all.length; i++) {
+      let store_in = store_in_all[i];
+      store_in.posting = true;
+
+
+      $scope.getStockItems(store_in.items, callback => {
+
+        if (!callback) {
+
+          $http({
+            method: "POST",
+            url: "/api/stores_in/posting",
+            data: store_in
+          }).then(
+            function (response) {
+              if (response.data.done) {
+              } else {
+                $scope.error = '##word.error##';
+                if (response.data.error.like('*OverDraft Not*')) {
+                  $scope.error = "##word.overdraft_not_active##"
+                  store_in.posting = false;
+                }
+              }
+            },
+            function (err) {
+              console.log(err);
+            }
+          )
+        } else {
+          if (store_in.posting)
+            store_in.posting = false;
+          $scope.error = '##word.err_stock_item##';
+        }
+
+      })
+    };
+
+  };
+
   $scope.getStockItems = function (items, callback) {
     $scope.error = '';
     $scope.busy = true;

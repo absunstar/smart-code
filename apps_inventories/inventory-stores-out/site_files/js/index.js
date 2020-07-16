@@ -1854,16 +1854,13 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
 
         if (!callback) {
 
-          $scope.busy = true;
           $http({
             method: "POST",
             url: "/api/stores_out/posting",
             data: store_out
           }).then(
             function (response) {
-              $scope.busy = false;
               if (response.data.done) {
-                $scope.loadAll();
               } else {
                 $scope.error = '##word.error##';
                 if (response.data.error.like('*OverDraft Not*')) {
@@ -1879,7 +1876,6 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         } else {
           if (store_out.posting)
             store_out.posting = false;
-          else store_out.posting = true;
           $scope.error = '##word.err_stock_item##';
         }
 

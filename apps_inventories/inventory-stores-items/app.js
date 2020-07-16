@@ -1,5 +1,6 @@
 module.exports = function init(site) {
   const $stores_items = site.connectCollection("stores_items")
+  const $item_transaction = site.connectCollection("item_transaction")
 
   balance_list = []
   site.on('[transfer_branch][stores_items][add_balance]', obj => {
@@ -1012,6 +1013,8 @@ module.exports = function init(site) {
       }
       res.json(response)
     })
+
+    $item_transaction.drop();
   })
 
 
