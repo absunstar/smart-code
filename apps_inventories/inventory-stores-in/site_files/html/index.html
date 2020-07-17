@@ -24,16 +24,24 @@
                 <div x-permissions="stores_in_add || stores_in_manage" x-import="inventory-stores-in/patches_list.html">
                 </div>
 
+                <div x-permissions="stores_in_add || stores_in_manage" x-import="inventory-stores-in/patches_list_re.html">
+                </div>
+
                 <div x-permissions="stores_in_delete || stores_in_manage"
                     x-import="inventory-stores-in/delete_modal.html"></div>
+
                 <div x-permissions="stores_in_view || stores_in_manage" x-import="inventory-stores-in/view_modal.html">
                 </div>
+
                 <div x-permissions="stores_in_search || stores_in_manage"
                     x-import="inventory-stores-in/search_all_modal.html"></div>
+
                 <div x-permissions="stores_in_update || stores_in_manage"
                     x-import="inventory-stores-in/update_modal.html"></div>
+
                 <div x-permissions="stores_in_add || stores_in_manage"
                     x-import="inventory-stores-in/select_items_modal.html"></div>
+
                 <div x-import="inventory-stores-in/returned.html"></div>
 
                 <div class="row">
@@ -48,10 +56,10 @@
 
                     <h2 class="bold red text-center"> {{error}}</h2>
 
-                    <i-button class="left" x-permissions="stores_in_handle" label="##word.posting_all##"
+                    <i-button class="left" x-permissions="stores_in_post_all" label="##word.posting_all##"
                         ng-click="postingAll(list)"></i-button>
 
-                    <i-button class="left" label="فك ترحيل الكل" ng-click="unPostAll()"></i-button>
+                    <i-button x-permissions="stores_in_handle" class="left" label="فك ترحيل الكل" ng-click="unPostAll()"></i-button>
 
                     <!-- <i-button class="left" x-permissions="stores_in_handle" label="##word.handle##"
                         ng-click="handelStoreIn()"></i-button> -->
@@ -102,7 +110,6 @@
                         <td>
                             <p class="bold text-center"> <br> {{c.type.##session.lang##}} </p>
                             <h3 class="blue bold center">{{c.retured_number}}</h3>
-
                         </td>
 
 

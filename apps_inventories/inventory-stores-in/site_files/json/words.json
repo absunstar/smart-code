@@ -15,6 +15,11 @@
         "ar": "المخزن"
     },
     {
+        "name": "quantity_return",
+        "en": "Quantity Re",
+        "ar": "ك.المرتجع"
+    },
+    {
         "name": "err_store_select",
         "en": "Be sure to choose a store",
         "ar": "يجب التأكد من إختيار المخزن"

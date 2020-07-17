@@ -101,7 +101,7 @@
                                 <i-control ng-disabled="store_in.type.id == 4" ng-show='edit_price'
                                     ng-change="calcSize(itm)" type="number" ng-model="itm.cost"></i-control>
                             </td>
-
+0
                             <td>
                                 <i-control ng-disabled="store_in.type.id == 4" ng-change="calcSize(itm)" type="number"
                                     ng-model="itm.discount.value">
@@ -109,6 +109,7 @@
                                 <b class="" ng-show="itm.discount.type =='number'">$</b>
                                 <b class="" ng-show="itm.discount.type =='percent'">%</b>
                             </td>
+
                             <!--    <td> <br>
                                 <p class="red">{{itm.discount.max}}</p>
                                 <b class="" ng-show="itm.discount.type =='number'">$</b>

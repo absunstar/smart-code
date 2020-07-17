@@ -554,6 +554,49 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
       }
     })
   };
+ 
+  $scope.confirmAll = function (transfer_branch_all) {
+    $scope.error = '';
+    for (let i = 0; i < transfer_branch_all.length; i++) {
+      let _transfer_branch = transfer_branch_all[i];
+
+      if (!_transfer_branch.transfer) {
+
+        $scope.getStockItems(_transfer_branch.items, callback => {
+
+          if (!callback) {
+
+            _transfer_branch.transfer = true;
+
+            $http({
+              method: "POST",
+              url: "/api/transfer_branch/confirm",
+              data: _transfer_branch
+            }).then(
+              function (response) {
+                if (response.data.done) {
+                  
+                } else {
+                  $scope.error = '##word.error##';
+                  if (response.data.error.like('*OverDraft Not*')) {
+                    $scope.error = "##word.overdraft_not_active##"
+                    _transfer_branch.transfer = false;
+                  }
+                }
+              },
+              function (err) {
+                console.log(err);
+              }
+            )
+          } else {
+            $scope.error = '##word.err_stock_item##';
+          }
+
+        })
+      };
+    }
+  };
+
 
   $scope.getStockItems = function (items, callback) {
     $scope.error = '';

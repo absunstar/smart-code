@@ -1,5 +1,6 @@
 module.exports = function init(site) {
   const $account_invoices = site.connectCollection("account_invoices")
+  const $safes_payments = site.connectCollection("safes_payments")
 
   site.on('[stores_items][item_name][change]', objectInvoice => {
 
@@ -797,6 +798,34 @@ module.exports = function init(site) {
       }
       res.json(response)
     })
+  })
+
+
+
+  site.post("/api/account_invoices/un_post", (req, res) => {
+    let response = {}
+    response.done = false
+    if (!req.session.user) {
+      res.json(response)
+      return;
+    }
+
+    $account_invoices.findMany({
+      select: req.body.select || {},
+      where: { 'company.id': site.get_company(req).id },
+      sort: req.body.sort || {
+        id: -1
+      },
+    }, (err, docs) => {
+      if (!err) {
+        docs.forEach(account_invoices_doc => {
+          account_invoices_doc.posting = false;
+          $account_invoices.update(account_invoices_doc);
+        });
+      }
+    })
+    $safes_payments.drop();
+
   })
 
 

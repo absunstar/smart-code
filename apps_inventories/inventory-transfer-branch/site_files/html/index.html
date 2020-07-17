@@ -43,7 +43,15 @@
                     <i-button x-permissions="transfer_branch_search || transfer_branch_manage" type="search"
                         label="##word.search_all##" onclick="site.showModal('#transferSearchModal')"></i-button>
                     <!-- <i-button class="left" ng-click="handelTransfer()"></i-button> -->
-                    <i-button class="left" label="فك اعتماد الكل" ng-click="unConfirmAll()"></i-button>
+
+
+                    <i-button class="left" x-permissions="transfer_branch_confirm_all" label="إعتماد الكل"
+                        ng-click="confirmAll(list)"></i-button>
+
+                    <i-button class="left" x-permissions="transfer_branch_un_confirm_all" label="فك إعتماد الكل"
+                        ng-click="unConfirmAll()"></i-button>
+
+
                     <h2 class="bold red text-center"> {{error}}</h2>
                     <h3 class="bold text-center"> ##word.count## : {{count}}</h3>
                 </div>

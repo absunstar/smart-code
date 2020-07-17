@@ -2,7 +2,7 @@ module.exports = function init(site) {
 
   const $safes_payments = site.connectCollection("safes_payments")
 
-
+ 
   site.on('delete safe payment', function (id) {
 
     $safes_payments.findMany({ 'safe.id': id }, (err, docs) => {

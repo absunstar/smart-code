@@ -130,6 +130,38 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.postingAll = function (account_invoices_all) {
+    $scope.error = '';
+    for (let i = 0; i < account_invoices_all.length; i++) {
+      let _account_invoices = account_invoices_all[i];
+
+      if (!_account_invoices.posting) {
+
+        _account_invoices.posting = true;
+
+        $http({
+          method: "POST",
+          url: "/api/account_invoices/posting",
+          data: _account_invoices
+        }).then(
+          function (response) {
+            if (response.data.done) {
+
+            } else {
+              $scope.error = '##word.error##';
+            }
+          },
+          function (err) {
+            console.log(err);
+          }
+        )
+
+      };
+    }
+
+  };
+
+
   $scope.displayUpdateAccountInvoices = function (account_invoices) {
     $scope.error = '';
     $scope._search = {};
@@ -923,6 +955,23 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
       },
       function (err) {
         $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.unPostAll = function () {
+    $scope.error = '';
+    $http({
+      method: "POST",
+      url: "/api/account_invoices/un_post"
+    }).then(
+      function (response) {
+        if (response.data.done) {
+          $scope.getAccountInvoicesList();
+        }
+      },
+      function (err) {
         $scope.error = err;
       }
     )

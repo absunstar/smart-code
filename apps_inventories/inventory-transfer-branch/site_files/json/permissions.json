@@ -7,6 +7,8 @@
     { "module_name" : "inventory" , "screen_name" : "inventory-transfer-branch" , "name":"transfer_branch_search" , "en":"Search" , "ar":"بحث"},
     { "module_name" : "inventory" , "screen_name" : "inventory-transfer-branch" , "name":"transfer_branch_export" , "en":"Export" , "ar":"تصدير"},
     { "module_name" : "inventory" , "screen_name" : "inventory-transfer-branch" , "name":"transfer_branch_print" , "en":"Print" , "ar":"طباعة"},
-    { "module_name" : "inventory" , "screen_name" : "inventory-transfer-branch" , "name":"transfer_branch_confirm" , "en":"Confirm Transfer" , "ar":"قبول التحويل"},
+    { "module_name" : "inventory" , "screen_name" : "inventory-transfer-branch" , "name":"transfer_branch_confirm" , "en":"Confirm Transfer" , "ar":"إعتماد التحويل"},
+    { "module_name" : "inventory" , "screen_name" : "inventory-transfer-branch" , "name":"transfer_branch_confirm_all" , "en":"Confirm All" , "ar":"إعتماد الكل"},
+    { "module_name" : "inventory" , "screen_name" : "inventory-transfer-branch" , "name":"transfer_branch_un_confirm_all" , "en":"Un Confirm All" , "ar":"فك إعتماد الكل"},
     { "module_name" : "inventory" , "screen_name" : "inventory-transfer-branch" , "name":"transfer_branch_ui" , "en":"UI" , "ar":"الواجهة الرسومية"}
 ]

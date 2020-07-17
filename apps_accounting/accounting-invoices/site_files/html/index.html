@@ -31,13 +31,25 @@
                     <i-button type="search" x-permissions="account_invoices_search || account_invoices_manage"
                         label="##word.search_all##" onclick="site.showModal('#accountInvoicesSearchModal')"></i-button>
 
+                    <!--     <i-button class="left" ng-click="handelInvoice()" x-permissions="account_invoices_handle"
+                        label="##word.handle##">
+                    </i-button>
+ -->
+
+                    <i-button class="left" x-permissions="account_invoices_post_all" label="##word.posting_all##"
+                        ng-click="postingAll(list)"></i-button>
+
+                    <i-button x-permissions="account_invoices_handle" class="left" label="فك ترحيل الكل"
+                        ng-click="unPostAll()"></i-button>
+
+
+
+
                     <span ng-show="busy">
                         <span class="sr-only">Loading...</span>
                     </span>
                     <h2 class="bold red text-center">{{error}} </h2>
-                    <i-button class="left" ng-click="handelInvoice()" x-permissions="account_invoices_handle"
-                        label="##word.handle##">
-                    </i-button>
+
                     <h3 class="bold text-center"> ##word.count## : {{count}} </h3>
                     <br>
                 </div>
@@ -63,7 +75,9 @@
                             {{c.date | date : 'dd - MM - yyyy'}}
                         </td>
                         <td ng-click="displayDetailsAccountInvoices(c)" class="blue"> {{c.code}} </td>
-                        <td ng-click="displayDetailsAccountInvoices(c)"> {{c.source_type.##session.lang##}} <p class="blue">{{c.invoice_type.##session.lang##}}</p> </td>
+                        <td ng-click="displayDetailsAccountInvoices(c)"> {{c.source_type.##session.lang##}} <p
+                                class="blue">{{c.invoice_type.##session.lang##}}</p>
+                        </td>
                         <td ng-click="displayDetailsAccountInvoices(c)" x-feature="restaurant">
                             {{c.order_invoices_type.##session.lang##}}
                         </td>
@@ -92,7 +106,8 @@
                                 ng-click="c.posting = false ; posting(c)"></i-button>
 
                             <i-button x-permissions="account_invoices_update || account_invoices_manage" type="update"
-                                ng-show="!c.posting" label="##word.edit##" ng-click="displayUpdateAccountInvoices(c)"></i-button>
+                                ng-show="!c.posting" label="##word.edit##" ng-click="displayUpdateAccountInvoices(c)">
+                            </i-button>
 
                             <i-button ng-show="c.remain_amount > 0 && c.posting "
                                 x-permissions="account_invoices_edit || account_invoices_manage" type="edit"
