@@ -987,8 +987,8 @@ module.exports = function init(site) {
             _sizes.branches_list = []
 
             _sizes.size_units_list.forEach(_units_size => {
-              _units_size.id = unit.id
-              _units_size.name = unit.name
+             // _units_size.id = unit.id
+             // _units_size.name = unit.name
               _units_size.current_count = 0
               _units_size.start_count = 0
               _units_size.total_buy_price = 0
