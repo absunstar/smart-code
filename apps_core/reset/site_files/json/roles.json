@@ -1,0 +1,7 @@
+[{
+    "module_name" : "public" ,
+    "name": "reset_admin",
+    "en": "Reset Admin",
+    "ar": "إدارة التهيئة",
+    "permissions": ["reset_manage"]
+}]

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="reset_ui || reset_manage" data-ng-app="myApp">
+
+<head x-import="head.html">
+
+</head>
+
+<body class="##session.lang##">
+
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+
+    </nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+
+    </nav>
+    <div id="main-layout" class="container">
+        <div class="row">
+            <div class="row" ng-controller="reset">
+
+                <div class="row">
+                    <h1 class="bold text-center">##word.reset##</h1>
+                </div>
+                <br><br><br>
+
+                <div class="row">
+
+                    <i-button x-permissions="reset_stores_i || reset_manage" label="##word.reset_stores_items##"
+                        ng-click="resetItems()">
+                    </i-button>
+                </div>
+                <br><br><br>
+
+                <div class="row">
+
+                    <i-button x-permissions="reset_unpost_store_in || reset_manage"
+                        label="##word.reset_unpost_store_in##" ng-click="unPostStoreIn()">
+                    </i-button>
+                </div>
+                <br><br><br>
+
+                <div class="row">
+
+                    <i-button x-permissions="reset_unpost_store_out || reset_manage"
+                        label="##word.reset_unpost_store_out##" ng-click="unPostStoreOut()">
+                    </i-button>
+                </div>
+                <br><br><br>
+
+                <div class="row">
+
+                    <i-button x-permissions="reset_unpost_store_transfer || reset_manage"
+                        label="##word.reset_unpost_store_transfer##" ng-click="unPostStoreTransfer()">
+                    </i-button>
+                </div>
+                <br><br><br>
+
+                <div class="row">
+
+                    <i-button x-permissions="reset_unpost_acc_invoice || reset_manage"
+                        label="##word.reset_unpost_acc_invoice##" ng-click="unPostAccInvoice()">
+                    </i-button>
+                </div>
+
+                <br><br><br>
+                <div class="row">
+
+                    <i-button x-permissions="reset_i_transaction || reset_manage" label="##word.reset_i_transactions##"
+                        ng-click="resetItemTransaction()">
+                    </i-button>
+                </div>
+                <br><br><br>
+
+                <div class="row">
+
+                    <i-button x-permissions="reset_safes_payments || reset_manage" label="##word.reset_safes_payments##"
+                        ng-click="resetSafesPayment()">
+                    </i-button>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+    <div x-import="scripts.html"></div>
+    <script x-import="reset/index.js"></script>
+</body>
+
+</html>

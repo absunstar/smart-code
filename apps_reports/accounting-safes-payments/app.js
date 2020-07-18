@@ -2,7 +2,7 @@ module.exports = function init(site) {
 
   const $safes_payments = site.connectCollection("safes_payments")
 
- 
+
   site.on('delete safe payment', function (id) {
 
     $safes_payments.findMany({ 'safe.id': id }, (err, docs) => {
@@ -169,5 +169,20 @@ module.exports = function init(site) {
       res.json(response)
     })
   })
+
+
+  site.post("/api/safes_payments/drop", (req, res) => {
+    let response = {}
+    response.done = false
+    if (req.session.user === undefined) {
+      res.json(response)
+    }
+    $safes_payments.deleteMany({
+      'company.id': site.get_company(req).id,
+      $req: req,
+      $res: res
+    });
+  })
+
 
 }

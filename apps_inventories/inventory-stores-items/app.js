@@ -1,6 +1,5 @@
 module.exports = function init(site) {
   const $stores_items = site.connectCollection("stores_items")
-  const $item_transaction = site.connectCollection("item_transaction")
 
   balance_list = []
   site.on('[transfer_branch][stores_items][add_balance]', obj => {
@@ -1014,7 +1013,6 @@ module.exports = function init(site) {
       res.json(response)
     })
 
-    $item_transaction.drop();
   })
 
 
@@ -1521,7 +1519,7 @@ module.exports = function init(site) {
                           if (branchesList.stores_list && branchesList.stores_list.length > 0)
                             branchesList.stores_list.forEach(storesList => {
 
-                              if (store.id == storesList.store.id) {
+                              if (store.id == storesList.store.id && storesList.size_units_list && storesList.size_units_list.length > 0) {
                                 storesList.size_units_list.forEach(sizeUnits => {
 
                                   if (sizeUnits.id == cbSize.unit.id) {

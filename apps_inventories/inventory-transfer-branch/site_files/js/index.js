@@ -815,25 +815,7 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.unConfirmAll = function () {
-    $scope.error = '';
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/transfer_branch/un_confirm"
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          $scope.loadAll();
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
-  };
+
 
   $scope.loadCategories();
   $scope.getDefaultSettings();

@@ -167,7 +167,7 @@ module.exports = function init(site) {
                 }
 
                 _itm.count = Math.abs(_itm.count)
-                
+
                 site.call('[transfer_branch][stores_items][add_balance]', _itm)
 
               })
@@ -682,6 +682,29 @@ module.exports = function init(site) {
         doc.return_paid.items.forEach(_itemsDoc => {
 
           if (_itemsObj.barcode == _itemsDoc.barcode && _itemsObj.size == _itemsDoc.size) {
+
+
+            if (_itemsObj.patch_list && _itemsObj.patch_list.length > 0) {
+
+              if (_itemsDoc.patch_list && _itemsDoc.patch_list.length > 0) {
+
+                _itemsObj.patch_list.forEach(objPatch => {
+                  _itemsDoc.patch_list.forEach(docPatch => {
+
+                    if (objPatch.patch == docPatch.patch) {
+
+                    }
+                    
+                  });
+                });
+
+              }
+            }
+
+
+
+
+
             if (obj.return) _itemsDoc.count = _itemsDoc.count + _itemsObj.count
 
             else _itemsDoc.count = _itemsDoc.count - _itemsObj.count

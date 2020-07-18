@@ -1,6 +1,5 @@
 module.exports = function init(site) {
   const $account_invoices = site.connectCollection("account_invoices")
-  const $safes_payments = site.connectCollection("safes_payments")
 
   site.on('[stores_items][item_name][change]', objectInvoice => {
 
@@ -824,7 +823,6 @@ module.exports = function init(site) {
         });
       }
     })
-    $safes_payments.drop();
 
   })
 

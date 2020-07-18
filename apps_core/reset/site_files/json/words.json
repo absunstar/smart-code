@@ -1,0 +1,38 @@
+[
+    {
+        "name": "reset_stores_items",
+        "en": "Reset Stores Items",
+        "ar": "تهيئة الأصناف المخزنية"
+    },
+    {
+        "name": "reset_i_transactions",
+        "en": "Delete Item Transactions",
+        "ar": "حذف كارتة الصنف"
+    },
+    {
+        "name": "reset_safes_payments",
+        "en": "Delete Safes Payments",
+        "ar": "حذف معاملات الخزينة"
+    },
+    {
+        "name": "reset_unpost_store_in",
+        "en": "Un Post Store Purchase",
+        "ar": "فك ترحيل المشتريات"
+    }, 
+    {
+        "name": "reset_unpost_store_out",
+        "en": "Un Post Store Sales",
+        "ar": "فك ترحيل المبيعات"
+    }, 
+    {
+        "name": "reset_unpost_store_transfer",
+        "en": "Un Post Stores Transfer",
+        "ar": "فك ترحيل التحويلات المخزنية"
+    }, 
+    {
+        "name": "reset_unpost_acc_invoice",
+        "en": "Un Post Account Invoice",
+        "ar": "فك ترحيل فواتير الحسابات"
+    }
+    
+]

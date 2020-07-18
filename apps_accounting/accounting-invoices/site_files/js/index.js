@@ -960,24 +960,6 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.unPostAll = function () {
-    $scope.error = '';
-    $http({
-      method: "POST",
-      url: "/api/account_invoices/un_post"
-    }).then(
-      function (response) {
-        if (response.data.done) {
-          $scope.getAccountInvoicesList();
-        }
-      },
-      function (err) {
-        $scope.error = err;
-      }
-    )
-  };
-
-
   $scope.handelInvoice = function () {
     $scope.error = '';
     $scope.busy = true;

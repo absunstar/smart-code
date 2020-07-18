@@ -1667,13 +1667,6 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
   };
 
 
-
-
-
-
-
-
-
   $scope.selectReturnedStoreIn = function (i) {
 
     if ($scope.store_in && i.return_paid) {
@@ -1795,24 +1788,6 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
       }
     )
   };
-
-  $scope.unPostAll = function () {
-    $scope.error = '';
-    $http({
-      method: "POST",
-      url: "/api/stores_in/un_post"
-    }).then(
-      function (response) {
-        if (response.data.done) {
-          $scope.loadAll();
-        }
-      },
-      function (err) {
-        $scope.error = err;
-      }
-    )
-  };
-
 
 
   $scope.get_open_shift = function (callback) {

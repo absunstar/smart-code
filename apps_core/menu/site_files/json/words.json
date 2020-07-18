@@ -10,6 +10,11 @@
         "ar": "المراقبة"
     },
     {
+        "name": "reset",
+        "en": "Reset",
+        "ar": "تهيئة"
+    },
+    {
         "name": "security_system",
         "en": "Security System",
         "ar": "نظام الحماية"

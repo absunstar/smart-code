@@ -579,7 +579,7 @@
             <a x-features="restaurant || pos" class="tab-link" href="/report_full_employees"
                 x-permissions="report_full_employees_ui || report_full_employees_manage">
                 <img src="/images/report_full_employees.png">
-                <span>##word.report_full_employees_name##</span> 
+                <span>##word.report_full_employees_name##</span>
             </a>
 
 
@@ -599,7 +599,6 @@
 
     <div id="company_tabs" class="tabs">
         <div class="tabs-header">
-
 
             <div class="row" x-features="lawyer">
 
@@ -797,6 +796,10 @@
                 </a>
             </div>
 
+            <a class="tab-link" href="/reset" x-permissions="reset_ui || reset_manage">
+                <img src="/images/reset.png">
+                <span> ##word.reset## </span>
+            </a>
 
             <a class="tab-link" onclick="site.showTabs(event, '#main_tabs')">
                 <img src="/images/back.png">
@@ -822,12 +825,12 @@
 
             <a class="tab-link" onclick="site.showTabs(event, '#company_tabs')">
                 <img src="/images/main.png">
-           <!--      <span x-features="restaurant"> ##word.restaurant_setting##</span>
+                <!--      <span x-features="restaurant"> ##word.restaurant_setting##</span>
                 <span x-features="gym"> ##word.gym_setting##</span>
                 <span x-features="academy"> ##word.academy_setting##</span>
                 <span x-features="pos"> ##word.pos_setting##</span>
                 <span x-features="lawyer"> ##word.lawyer_setting##</span> -->
-                <span > ##word.main##</span>
+                <span> ##word.main##</span>
 
             </a>
 

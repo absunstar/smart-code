@@ -1970,25 +1970,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
   };
 
 
-  $scope.unPostAll = function () {
-    $scope.error = '';
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/stores_out/un_post"
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          $scope.loadAll();
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
-  };
+ 
 
   $scope.handeStoreOut = function () {
     $scope.error = '';

@@ -3,7 +3,6 @@ module.exports = function init(site) {
   const $item_transaction = site.connectCollection("item_transaction")
 
 
-
   site.on('[stores_items][item_name][change]', objectTransaction => {
 
     let barcode = objectTransaction.sizes_list.map(_obj => _obj.barcode)
@@ -78,7 +77,7 @@ module.exports = function init(site) {
 
         itm.last_count = docs[0].current_count
         itm.current_count = itm.last_count - itm.count
-        if(itm.cost == undefined || null){
+        if (itm.cost == undefined || null) {
           itm.cost = docs[0].cost
           itm.average_cost = docs[0].average_cost
           itm.discount = docs[0].discount
@@ -130,6 +129,19 @@ module.exports = function init(site) {
       res.json(response)
     }
   })
+
+
+  site.post("/api/item_transaction/drop", (req, res) => {
+    let response = {}
+    if (req.session.user === undefined) {
+      res.json(response)
+    }
+    $item_transaction.deleteMany({
+      'company.id': site.get_company(req).id,
+      $req: req,
+      $res: res
+    });
+  });
 
 
   site.post("/api/item_transaction/view", (req, res) => {
