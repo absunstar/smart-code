@@ -375,6 +375,8 @@ module.exports = function init(site) {
           $transfer_branch.update(transfer_branch_doc);
         });
       }
+      response.done = true
+      res.json(response)
     })
   })
 

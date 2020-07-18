@@ -822,6 +822,8 @@ module.exports = function init(site) {
           $account_invoices.update(account_invoices_doc);
         });
       }
+      response.done = true
+      res.json(response)
     })
 
   })

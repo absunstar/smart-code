@@ -181,6 +181,9 @@ module.exports = function init(site) {
       'company.id': site.get_company(req).id,
       $req: req,
       $res: res
+    } , ()=>{
+      response.done = true
+      res.json(response)
     });
   })
 

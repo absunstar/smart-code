@@ -765,6 +765,8 @@ module.exports = function init(site) {
           $stores_in.update(stores_in_doc);
         });
       }
+      response.done = true
+      res.json(response)
     })
   })
 

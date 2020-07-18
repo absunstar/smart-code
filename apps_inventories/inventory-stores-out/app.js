@@ -747,6 +747,8 @@ module.exports = function init(site) {
           $stores_out.update(stores_out_doc);
         });
       }
+      response.done = true
+      res.json(response)
     })
   })
 
