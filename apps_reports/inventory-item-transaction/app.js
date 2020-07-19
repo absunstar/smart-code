@@ -7,8 +7,8 @@ module.exports = function init(site) {
 
     let barcode = objectTransaction.sizes_list.map(_obj => _obj.barcode)
 
-    $item_transaction.findMany({ 'company.id': objectTransaction.company.id, 'barcode': barcode }, (err, doc) => {
-      if (doc) doc.forEach(_items => {
+    $item_transaction.findMany({ 'company.id': objectTransaction.company.id, 'barcode': barcode }, (err, docs) => {
+      if (!err && docs) docs.forEach(_items => {
         if (objectTransaction.sizes_list) objectTransaction.sizes_list.forEach(_size => {
           if (_items.barcode == _size.barcode) {
             _items.size = _size.size
@@ -16,9 +16,9 @@ module.exports = function init(site) {
           }
         })
         $item_transaction.update(_items);
-      });
-    });
-  });
+      })
+    })
+  })
 
   site.on('item_transaction + items', itm => {
 
@@ -314,7 +314,7 @@ module.exports = function init(site) {
         response.error = err.message
       }
       res.json(response)
-    })
+    } , true)
   })
 
 
