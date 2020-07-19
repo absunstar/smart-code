@@ -2,7 +2,7 @@
 const site = require('../isite')({
     port: [80 , 40004],
     lang: 'ar',
-    saving_time: 0.2,
+    version : '1.0.2',
     name: "restaurant",
     theme: 'theme_paper',
     mongodb: {
