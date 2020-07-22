@@ -10,7 +10,7 @@ module.exports = function init(site) {
       if (docs.length === 1)
         $safes_payments.delete(docs[0]);
     });
-  });
+  })
 
   site.on('[safes][safes_payments][+]', obj => {
 
@@ -42,9 +42,6 @@ module.exports = function init(site) {
     $safes_payments.add(info, () => { });
 
   })
-
-
-
 
   site.get({
     name: "safes_payments",
