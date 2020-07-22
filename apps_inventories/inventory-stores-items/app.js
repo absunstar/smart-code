@@ -427,9 +427,7 @@ module.exports = function init(site) {
             // }
           });
   
-          $stores_items.update(doc, () => {
-            balance_handle(null)
-          });
+          $stores_items.update(doc);
   
         }
         // else {
