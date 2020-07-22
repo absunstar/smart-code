@@ -59,7 +59,7 @@ module.exports = function init(site) {
         if (doc.posting) {
 
           let obj = {
-            value: doc.value,
+            value: (-Math.abs(doc.value)),
             safe: doc.safe,
             date: doc.date,
             company: doc.company,
@@ -74,7 +74,7 @@ module.exports = function init(site) {
               code: doc.shift.code,
               name: doc.shift.name
             },
-            operation: 'وارد',
+            operation: { ar: 'فاتورة وارد', en: 'Invoice In' },
             transition_type: 'in'
           }
           if (obj.value && obj.safe && obj.date && obj.sourceName) {
@@ -168,12 +168,14 @@ module.exports = function init(site) {
           }
 
           if (result.doc.posting) {
-            obj.operation = 'وارد'
+
+            obj.operation = { ar: 'فاتورة وارد', en: 'Invoice In' }
             obj.transition_type = 'in'
-          }
-          else {
-            obj.operation = 'فك ترحيل وارد'
-            obj.transition_type = 'out'
+     
+          } else {
+            obj.value = (-Math.abs(obj.value))
+            obj.operation = { ar: 'فك ترحيل فاتورة وارد', en: 'Un Post Invoice In' }
+            obj.transition_type = 'in'
           }
 
           if (obj.value && obj.safe && obj.date)
@@ -207,7 +209,7 @@ module.exports = function init(site) {
           if (result.doc.posting) {
 
             let obj = {
-              value: result.doc.value,
+              value: (-Math.abs(result.doc.value)),
               safe: result.doc.safe,
               date: result.doc.date,
               company: result.doc.company,
@@ -222,8 +224,8 @@ module.exports = function init(site) {
                 name: result.doc.shift.name
               },
               payment_method: result.doc.payment_method,
-              operation: 'حذف وارد',
-              transition_type: 'out'
+              operation: { ar: 'حذف فاتورة وارد', en: 'Delete Invoice In' },
+              transition_type: 'in'
             }
             if (obj.value && obj.safe && obj.date && obj.sourceName) {
               site.call('[amounts][safes][+]', obj)

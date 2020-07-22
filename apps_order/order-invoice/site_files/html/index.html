@@ -291,8 +291,9 @@
                                         <i-control ng-keydown="getCustomerList($event)" id="service" class="col3"
                                             ng-model="search_customer" label="##word.search##" type="text"></i-control>
 
-                                        <i-list ng-search="_search.$order_customers" class="col5" display="name_##session.lang##"
-                                            ng-model="order_invoice.customer" label="##word.customer_name##"
+                                        <i-list ng-search="_search.$order_customers" class="col5"
+                                            display="name_##session.lang##" ng-model="order_invoice.customer"
+                                            label="##word.customer_name##"
                                             ng-change="changeCustomerAddresses(order_invoice.customer)"
                                             items="customersList">
                                         </i-list>
@@ -419,7 +420,7 @@
                                                 </div>
 
                                                 <div class="row">
-                                                    <i-control class="col4" ng-model="discount.value"
+                                                    <i-control class="col4" ng-model="discount.value" type="number"
                                                         label="##word.stores_out_discount_value##"></i-control>
                                                     <div class="col5 padding">
                                                         <br>

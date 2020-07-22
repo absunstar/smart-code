@@ -557,8 +557,11 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
  
   $scope.confirmAll = function (transfer_branch_all) {
     $scope.error = '';
-    for (let i = 0; i < transfer_branch_all.length; i++) {
-      let _transfer_branch = transfer_branch_all[i];
+
+    let _transfer_branch_all = transfer_branch_all.reverse();
+
+    for (let i = 0; i < _transfer_branch_all.length; i++) {
+      let _transfer_branch = _transfer_branch_all[i];
 
       if (!_transfer_branch.transfer) {
 

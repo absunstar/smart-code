@@ -148,25 +148,26 @@ module.exports = function init(site) {
           if (doc.source_type.id == 1) {
 
             if (doc.invoice_type && doc.invoice_type.id == 4) {
-
+              paid_value.value = (-Math.abs(paid_value.value))
               paid_value.operation = { ar: ' مرتجع فاتورة مشتريات', en: 'Return Purchase Invoice' }
-              paid_value.transition_type = 'in'
 
             } else {
               paid_value.operation = { ar: 'فاتورة مشتريات', en: 'Purchase Invoice' }
-              paid_value.transition_type = 'out'
             }
+
+            paid_value.transition_type = 'out'
 
 
           } else if (doc.source_type.id == 2) {
-            if (doc.invoice_type && doc.invoice_type.id == 6) {
-              paid_value.operation = { ar: 'مرتجع فاتورة مبيعات', en: 'Return Sales Invoice' }
-              paid_value.transition_type = 'out'
-            } else {
 
+            if (doc.invoice_type && doc.invoice_type.id == 6) {
+              paid_value.value = (-Math.abs(paid_value.value))
+              paid_value.operation = { ar: 'مرتجع فاتورة مبيعات', en: 'Return Sales Invoice' }
+
+            } else {
               paid_value.operation = { ar: 'فاتورة مبيعات', en: 'Sales Invoice' }
-              paid_value.transition_type = 'in'
             }
+            paid_value.transition_type = 'in'
 
 
           } else if (doc.source_type.id == 3) {
@@ -251,34 +252,45 @@ module.exports = function init(site) {
 
 
           if (account_invoices_doc.invoice_type && account_invoices_doc.invoice_type.id == 4) {
+
             paid_value.operation = { ar: 'دفعة مرتجع فاتورة مشتريات', en: 'Pay Return Purchase Invoice' }
-            paid_value.transition_type = 'in'
+            paid_value.value = (-Math.abs(paid_value.value))
           } else {
+
             paid_value.operation = { ar: 'دفعة فاتورة مشتريات', en: 'Pay Purchase Invoice' }
-            paid_value.transition_type = 'out'
           }
+
+          paid_value.transition_type = 'out'
 
         }
 
         else if (account_invoices_doc.source_type.id == 2) {
+
           if (account_invoices_doc.invoice_type && account_invoices_doc.invoice_type.id == 6) {
+
             paid_value.operation = { ar: 'دفعة مرتجع فاتورة مبيعات', en: 'Pay Return Sales Invoice' }
-            paid_value.transition_type = 'out'
+            paid_value.value = (-Math.abs(paid_value.value))
           } else {
 
             paid_value.operation = { ar: 'دفعة فاتورة مبيعات', en: 'Pay Sales Invoice' }
-            paid_value.transition_type = 'in'
           }
+
+          paid_value.transition_type = 'in'
+
+
         } else if (account_invoices_doc.source_type.id == 3) {
           paid_value.operation = { ar: ' دفعة فاتورة شاشة الطلبات', en: 'Pay Orders Return Screen Invoice' }
           paid_value.transition_type = 'in'
+          
         } else if (account_invoices_doc.source_type.id == 4) {
           paid_value.operation = { ar: 'دفعة فاتورة طلب خدمة', en: 'Pay Request Service' }
           paid_value.transition_type = 'in'
+
         } else if (account_invoices_doc.source_type.id == 5) {
           paid_value.operation = { ar: 'دفعة فاتورة حجز قاعة', en: 'Pay Book Hall' }
           paid_value.transition_type = 'in'
         }
+
         site.call('[amounts][safes][+]', paid_value)
       }
 
@@ -355,23 +367,27 @@ module.exports = function init(site) {
           if (account_invoices_doc.source_type.id == 1) {
 
             if (account_invoices_doc.invoice_type && account_invoices_doc.invoice_type.id == 4) {
+
               obj.operation = { ar: 'مرتجع فاتورة مشتريات', en: 'Return Purchase Invoice' }
-              obj.transition_type = 'in'
+              obj.value = (-Math.abs(obj.value))
             } else {
+
               obj.operation = { ar: 'فاتورة مشتريات', en: 'Purchase Invoice' }
-              obj.transition_type = 'out'
             }
 
+            obj.transition_type = 'out'
 
           } else if (account_invoices_doc.source_type.id == 2) {
             if (account_invoices_doc.invoice_type && account_invoices_doc.invoice_type.id == 6) {
+
+              obj.value = (-Math.abs(obj.value))
               obj.operation = { ar: 'مرتجع فاتورة مبيعات', en: 'Return Sales Invoice' }
-              obj.transition_type = 'out'
             } else {
 
               obj.operation = { ar: 'فاتورة مبيعات', en: 'Sales Invoice' }
-              obj.transition_type = 'in'
             }
+
+            obj.transition_type = 'in'
 
           } else if (account_invoices_doc.source_type.id == 3) {
             obj.operation = { ar: 'فاتورة شاشة الطلبات', en: 'Orders Screen Invoice' }
@@ -393,31 +409,43 @@ module.exports = function init(site) {
           if (account_invoices_doc.source_type.id == 1) {
 
             if (account_invoices_doc.invoice_type && account_invoices_doc.invoice_type.id == 4) {
-              obj.transition_type = 'out'
               obj.operation = { ar: 'فك ترحيل مرتجع فاتورة مشتريات', en: 'Un Post Return Purchase Invoice' }
-            } else {
-              obj.transition_type = 'in'
-              obj.operation = { ar: 'فك ترحيل فاتورة مشتريات', en: 'Un Post Purchase Invoice' }
-            }
-          }
-          else if (account_invoices_doc.source_type.id == 2) {
-            if (account_invoices_doc.invoice_type && account_invoices_doc.invoice_type.id == 6) {
-              obj.transition_type = 'in'
-              obj.operation = { ar: 'فك ترحيل مرتجع فاتورة مبيعات', en: 'Un Post Return Sales Invoice' }
+
             } else {
 
-              obj.transition_type = 'out'
-              obj.operation = { ar: 'فك ترحيل فاتورة مبيعات', en: 'Un Post Sales Invoice' }
+              obj.value = (-Math.abs(obj.value))
+              obj.operation = { ar: 'فك ترحيل فاتورة مشتريات', en: 'Un Post Purchase Invoice' }
             }
+
+            obj.transition_type = 'out'
+
+          } else if (account_invoices_doc.source_type.id == 2) {
+            if (account_invoices_doc.invoice_type && account_invoices_doc.invoice_type.id == 6) {
+
+              obj.operation = { ar: 'فك ترحيل مرتجع فاتورة مبيعات', en: 'Un Post Return Sales Invoice' }
+            } else {
+              obj.value = (-Math.abs(obj.value))
+              obj.operation = { ar: 'فك ترحيل فاتورة مبيعات', en: 'Un Post Sales Invoice' }
+
+            }
+
+            obj.transition_type = 'in'
+
           } else if (account_invoices_doc.source_type.id == 3) {
-            obj.transition_type = 'out'
+            obj.transition_type = 'in'
+            obj.value = (-Math.abs(obj.value))
             obj.operation = { ar: 'فك ترحيل فاتورة شاشة الطلبات', en: 'Un Post Orders Screen Invoice' }
+
           } else if (account_invoices_doc.source_type.id == 4) {
-            obj.transition_type = 'out'
+            obj.transition_type = 'in'
+            obj.value = (-Math.abs(obj.value))
             obj.operation = { ar: 'فك ترحيل فاتورة طلب خدمة', en: 'Un Post Request Service Invoice' }
+
           } else if (_payment_list.source_type.id == 5) {
             obj.operation = { ar: 'فك ترحيل فاتورة حجز قاعة', en: 'Un Post Book Hall Invoice' }
-            obj.transition_type = 'out'
+            obj.transition_type = 'in'
+            obj.value = (-Math.abs(obj.value))
+
           }
 
         }
@@ -519,32 +547,45 @@ module.exports = function init(site) {
 
                 if (result.doc.invoice_type && result.doc.invoice_type.id == 4) {
 
-                  obj.transition_type = 'out'
                   obj.operation = { ar: 'حذف مرتجع فاتورة مشتريات', en: 'Delete Return Purchase Invoice' }
 
                 } else {
-                  obj.transition_type = 'in'
+                  obj.value = (-Math.abs(obj.value))
                   obj.operation = { ar: 'حذف فاتورة مشتريات', en: 'Delete Purchase Invoice' }
                 }
+
+                obj.transition_type = 'out'
+
+
               } else if (result.doc.source_type.id == 2) {
                 if (account_invoices_doc.invoice_type && account_invoices_doc.invoice_type.id == 6) {
-                  obj.transition_type = 'in'
                   obj.operation = { ar: 'حذف مرتجع فاتورة مبيعات', en: 'Delete Return Sales Invoice' }
                 } else {
-                  obj.transition_type = 'out'
                   obj.operation = { ar: 'حذف فاتورة مبيعات', en: 'Delete Sales Invoice' }
+                  obj.value = (-Math.abs(obj.value))
+
                 }
+
+                obj.transition_type = 'in'
+
               } else if (result.doc.source_type.id == 3) {
-                obj.transition_type = 'out'
+
+                obj.transition_type = 'in'
+                obj.value = (-Math.abs(obj.value))
                 obj.operation = { ar: 'حذف فاتورة شاشة الطلبات', en: 'Delete Orders Screen Invoice' }
 
               } else if (result.doc.source_type.id == 4) {
-                obj.transition_type = 'out'
+
+                obj.transition_type = 'in'
+                obj.value = (-Math.abs(obj.value))
                 obj.operation = { ar: 'حذف فاتورة طلب خدمة', en: 'Delete Request Service Invoice' }
               } else if (response.doc.source_type.id == 5) {
+
                 obj.operation = { ar: 'حذف فاتورة حجز قاعة', en: 'Delete Book Hall Invoice' }
-                obj.transition_type = 'out'
+                obj.transition_type = 'in'
+                obj.value = (-Math.abs(obj.value))
               }
+
               if (obj.safe) site.call('[amounts][safes][+]', obj)
 
             })

@@ -66,7 +66,6 @@ module.exports = function init(site) {
       if (doc.under_paid) {
 
 
-
         if (obj.return) {
           doc.under_paid.net_value = doc.under_paid.net_value + obj.net_value;
           doc.under_paid.total_tax = doc.under_paid.total_tax + obj.total_tax;

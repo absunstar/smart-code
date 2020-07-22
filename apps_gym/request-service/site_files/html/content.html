@@ -28,7 +28,8 @@
                             </tr>
                             <tr>
                                 <td class="blue"> ##word.customers_indentfy## </td>
-                                <td colspan="2" class="center"> {{request_service.customer.indentfy.##session.lang##}} </td>
+                                <td colspan="2" class="center"> {{request_service.customer.indentfy.##session.lang##}}
+                                </td>
                                 <td class="blue"> ##word.child## </td>
                                 <td colspan="2" ng-show="request_service.customer.child == true">
                                     <p class="green"> ##word.yes## </p>
@@ -118,7 +119,7 @@
                                                 </div>
 
                                                 <div class="row">
-                                                    <i-control class="col4" ng-model="discount.value"
+                                                    <i-control class="col4" ng-model="discount.value" type="number"
                                                         label="##word.stores_out_discount_value##"></i-control>
                                                     <div class="col5 padding">
                                                         <br>

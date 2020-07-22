@@ -95,12 +95,15 @@
 
                             <td>
                                 <i-list ng-model="itm.unit" ng-search="_search.$category_item.$unit_search"
-                                    ng-change="ChangeUnitPatch(itm);"
-                                    display2="barcode" items="itm.size_units_list"></i-list>
+                                    ng-change="ChangeUnitPatch(itm);" display2="barcode" items="itm.size_units_list">
+                                </i-list>
                             </td>
 
                             <td>
                                 <i-control ng-change="calcSize(itm)" type="number" ng-model="itm.count"></i-control>
+                                <hr>
+                                <br>
+                                <p class="center green">{{itm.store_count}}</p>
                             </td>
 
                             <td ng-hide="store_out.type.id ==5">
@@ -153,7 +156,7 @@
 
             <div class="row">
                 <div class="col6 padding margin">
-                    <table class="table box-shadow " ng-init="discountEditorAdd = true">
+                    <table class="table box-shadow">
                         <tr>
                             <th colspan="2" class="pointer" ng-click="discountEditorAdd = !discountEditorAdd">
                                 ##word.stores_out_discountes##
@@ -169,8 +172,8 @@
                                             {{di.name}}
                                         </i-list>
                                         <div class="col1"></div>
-                                        <i-control class="col2" ng-model="discount.value"
-                                            label="##word.stores_out_discount_value##" type="text"></i-control>
+                                        <i-control class="col2" ng-model="discount.value" type="number"
+                                            label="##word.stores_out_discount_value##" type="number"></i-control>
 
                                     </div>
                                     <div class="row">

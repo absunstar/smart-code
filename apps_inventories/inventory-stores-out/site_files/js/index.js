@@ -44,7 +44,12 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         value: $scope.discount.value,
         type: $scope.discount.type
       });
+
       $scope.calc($scope.store_out);
+
+      $scope.discount = {
+        type: 'number'
+      };
     };
 
   };
@@ -101,9 +106,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         obj.paid_up = $scope.amount_currency;
       }
 
-      $scope.discount = {
-        type: 'number'
-      };
+
     }, 250);
   };
 
@@ -125,8 +128,14 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
     $scope.item.sizes.splice($scope.item.sizes.indexOf(itm), 1);
 
   };
+
   $scope.newStoreOut = function () {
     $scope.error = '';
+    $scope.discount = {
+      name: 'خصم',
+      type: 'number'
+    };
+
     $scope.get_open_shift((shift) => {
       if (shift) {
         $scope.error = '';
@@ -483,7 +492,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
               barcode: _size.barcode,
               count: _size.count,
               total: _size.total,
-              current_count: _size.current_count,
+              store_count: _size.store_count,
               ticket_code: _size.ticket_code,
             });
           }
@@ -756,6 +765,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
                         _branch.stores_list.forEach(_store => {
 
                           if (_store.store && _store.store.id == $scope.store_out.store.id) {
+                            _size.store_count = _store.current_count;
                             _size.store_units_list = _store.size_units_list;
                             if (_store.hold) foundHold = true;
                           }
@@ -1139,78 +1149,15 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
     )
   };
 
+
   $scope.searchAll = function () {
     $scope.error = '';
-    let where = {};
-
-    if ($scope.search.number) {
-      where['number'] = $scope.search.number;
-    }
-    if ($scope.search.shift_code) {
-      where['shift.code'] = $scope.search.shift_code;
-    }
-
-    if ($scope.search.category && $scope.search.category.id) {
-      where['category.id'] = $scope.search.category.id;
-    }
-    if ($scope.search.type) {
-      where['type.id'] = $scope.search.type.id;
-    }
-    if ($scope.search.supply_number) {
-      where['supply_number'] = $scope.search.supply_number;
-    }
-
-    if ($scope.search.ticket_code) {
-      where['items.ticket_code'] = $scope.search.ticket_code;
-    }
-
-    if ($scope.search.date) {
-      where['date'] = $scope.search.date;
-    }
-
-    if ($scope.search.dateFrom) {
-      where['date_from'] = $scope.search.dateFrom;
-    }
-
-    if ($scope.search.dateTo) {
-      where['date_to'] = $scope.search.dateTo;
-    }
-
-    if ($scope.search.store && $scope.search.store.id) {
-      where['store.id'] = $scope.search.store.id;
-    }
-    if ($scope.search.safe && $scope.search.safe.id) {
-      where['safe.id'] = $scope.search.safe.id;
-    }
-    if ($scope.search.notes) {
-
-      where['notes'] = $scope.search.notes;
-    }
-
-    if ($scope.search.total_valueGt) {
-      where['total_value'] = {
-        $gte: site.toNumber($scope.search.total_valueGt)
-      };
-    }
-
-    if ($scope.search.total_valueLt) {
-      where['total_value'] = {
-        $lte: site.toNumber($scope.search.total_valueLt)
-      };
-    }
-
-    if ($scope.search.total_valueGt && $scope.search.total_valueLt) {
-      where['total_value'] = {
-        $gte: site.toNumber($scope.search.total_valueGt),
-        $lte: site.toNumber($scope.search.total_valueLt)
-      };
-    }
-
-
-    $scope.loadAll(where);
-    site.hideModal('#StoresOutSearchModal');
+    $scope.loadAll($scope.search);
     $scope.search = {};
+    site.hideModal('#StoresOutSearchModal');
   };
+
+
   $scope.loadAll = function (where) {
     $scope.error = '';
     $scope.list = {};
@@ -1844,8 +1791,11 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
 
   $scope.postingAll = function (store_out_all) {
     $scope.error = '';
-    for (let i = 0; i < store_out_all.length; i++) {
-      let _store_out = store_out_all[i];
+
+    let _store_out_all = store_out_all.reverse();
+
+    for (let i = 0; i < _store_out_all.length; i++) {
+      let _store_out = _store_out_all[i];
 
 
       if (!_store_out.posting) {
@@ -1970,7 +1920,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
   };
 
 
- 
+
 
   $scope.handeStoreOut = function () {
     $scope.error = '';

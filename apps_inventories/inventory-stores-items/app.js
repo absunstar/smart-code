@@ -19,6 +19,7 @@ module.exports = function init(site) {
       }
       return
     }
+
     let total_unit = obj.count * obj.unit.convert;
     let totalCost = obj.cost * site.toNumber(obj.count);
     let obj_branch = {
@@ -762,10 +763,6 @@ module.exports = function init(site) {
 
     where['company.id'] = site.get_company(req).id
 
-    if (where && where['name']) {
-      where['name'] = new RegExp(where['name'], 'i')
-    }
-
     //  if (req.body.search) {
     //   where = {
     //     $or: [
@@ -776,11 +773,18 @@ module.exports = function init(site) {
     //   }
     // } 
 
-
+    if (where && where['name']) {
+      where['name'] = new RegExp(where['name'], 'i')
+    }
 
     if (where && where['size']) {
       where['sizes.size'] = new RegExp(where['size'], 'i')
       delete where['size']
+    }
+
+    if (where['size_en']) {
+      where['sizes.size_en'] = new RegExp(where['size_en'], 'i')
+      delete where['size_en']
     }
 
     if (where && where['barcode']) {
@@ -987,8 +991,8 @@ module.exports = function init(site) {
             _sizes.branches_list = []
 
             _sizes.size_units_list.forEach(_units_size => {
-             // _units_size.id = unit.id
-             // _units_size.name = unit.name
+              // _units_size.id = unit.id
+              // _units_size.name = unit.name
               _units_size.current_count = 0
               _units_size.start_count = 0
               _units_size.total_buy_price = 0
@@ -1489,12 +1493,8 @@ module.exports = function init(site) {
     where['sizes.barcode'] = { $in: barcodes }
     site.getDefaultSetting(req, cbSetting => {
 
-      if (cbSetting.inventory) {
-        if (cbSetting.inventory.overdraft)
-          cbObj.overdraft = cbSetting.inventory.overdraft
-        else cbObj.overdraft = false
-
-      } else cbObj.overdraft = false
+      if (cbSetting.inventory && cbSetting.inventory.overdraft == true) cbObj.overdraft = true
+      else cbObj.overdraft = false
 
       $stores_items.findMany({
         select: req.body.select || {},

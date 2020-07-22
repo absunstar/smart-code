@@ -20,8 +20,24 @@
                                 label="##word.amounts_in_date_to##">
                             </i-date2>
 
-                            <i-date2 class="col4" ng-model="search.supply_date" label="##word.stores_in_supply_date##">
+                            <i-date2 class="col3" ng-model="search.supply_date" label="##word.stores_in_supply_date##">
                             </i-date2>
+                        </div>
+
+                        <div class="row">
+                            <i-control class="col2" ng-model="search.name" label="##word.stores_items_name##"
+                                type="text">
+                            </i-control>
+
+                            <i-control class="col2" ng-model="search.size" label="##word.stores_in_item_size##"
+                                type="text">
+                            </i-control>
+
+                            <i-control class="col2" ng-model="search.size_en" label="##word.size_en##" type="text">
+                            </i-control>
+
+                            <i-control class="col2" ng-model="search.barcode" label="##word.item_code##" type="text">
+                            </i-control>
                         </div>
 
                         <div class="row">
@@ -40,7 +56,8 @@
 
                         <div class="row">
                             <i-list v="r" ng-search="_search.$storein_type" display="##session.lang##" class="col2"
-                                ng-model="search.type" items="storesInTypes" label="##word.transaction_type##"></i-list>
+                                ng-model="search.type" items="storesOutTypes" label="##word.transaction_type##"></i-list>
+
                             <i-list class="col3" ng-search="_search.$safe_search" ng-model="search.safe" items="safes"
                                 label="##word.amounts_in_safe##"></i-list>
 
@@ -51,13 +68,13 @@
 
                         <div class="row">
 
-                            <i-control ng-keydown="getCustomerList($event)" id="service" class="col3"
+                            <i-control ng-keydown="getCustomerList($event)" id="service" class="col2"
                                 ng-model="search_customer" label="##word.search##" type="text"></i-control>
-                            <i-list ng-search="_search.$customer" class="col4" display="name_##session.lang##" v="r"
+                            <i-list ng-search="_search.$customer" class="col3" display="name_##session.lang##" v="r"
                                 ng-model="search.customer" label="##word.customer##" items="customersList">
                             </i-list>
 
-                            <i-list class="col4" ng-model="search.delegate" ng-search="_search.$$items_group_search"
+                            <i-list class="col3" ng-model="search.delegate" ng-search="_search.$$items_group_search"
                                 label="##word.delegate##" items="delegatesList">
                             </i-list>
                         </div>

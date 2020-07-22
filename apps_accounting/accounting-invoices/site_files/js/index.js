@@ -132,8 +132,11 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
 
   $scope.postingAll = function (account_invoices_all) {
     $scope.error = '';
-    for (let i = 0; i < account_invoices_all.length; i++) {
-      let _account_invoices = account_invoices_all[i];
+
+    let _account_invoices_all = account_invoices_all.reverse();
+
+    for (let i = 0; i < _account_invoices_all.length; i++) {
+      let _account_invoices = _account_invoices_all[i];
 
       if (!_account_invoices.posting) {
 

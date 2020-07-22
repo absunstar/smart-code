@@ -101,7 +101,7 @@
                                 <i-control ng-disabled="store_in.type.id == 4" ng-show='edit_price'
                                     ng-change="calcSize(itm)" type="number" ng-model="itm.cost"></i-control>
                             </td>
-0
+                            0
                             <td>
                                 <i-control ng-disabled="store_in.type.id == 4" ng-change="calcSize(itm)" type="number"
                                     ng-model="itm.discount.value">
@@ -120,7 +120,8 @@
 
                             <td>
                                 <div class="row">
-                                    <i-button label="##word.patch##" ng-show="itm.work_patch" type="view" ng-click="patchesList(itm)">
+                                    <i-button label="##word.patch##" ng-show="itm.work_patch" type="view"
+                                        ng-click="patchesList(itm)">
                                     </i-button>
                                     <i-button type="delete" ng-click="deleteRow(itm)"></i-button>
                                 </div>
@@ -148,7 +149,7 @@
                                             {{di.name}}
                                         </i-list>
                                         <div class="col1"></div>
-                                        <i-control class="col2" ng-model="discount.value"
+                                        <i-control class="col2" ng-model="discount.value" type="number"
                                             label="##word.stores_in_discount_value##" type="text"></i-control>
 
                                     </div>

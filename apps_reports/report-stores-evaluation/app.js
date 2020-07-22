@@ -36,12 +36,29 @@ module.exports = function init(site) {
     where['company.id'] = site.get_company(req).id
 
 
+    if (where && where['name']) {
+      where['name'] = new RegExp(where['name'], 'i')
+    }
+
+    if (where && where['size']) {
+      where['sizes.size'] = new RegExp(where['size'], 'i')
+      delete where['size']
+    }
+
+    if (where && where['size_en']) {
+      where['sizes.size_en'] = new RegExp(where['size_en'], 'i')
+      delete where['size_en']
+    }
+
+    if (where && where['barcode']) {
+      where['sizes.barcode'] = new RegExp(where['barcode'], 'i')
+      delete where['barcode']
+    }
+
     if (where['branch'] && where['branch'].code) {
       where['sizes.branches_list.code'] = where['branch'].code
       delete where['branch']
     }
-
-
 
 
     if (where['store'] && where['store'].id) {

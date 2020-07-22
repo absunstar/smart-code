@@ -335,6 +335,26 @@ module.exports = function init(site) {
       delete where.date_to
     }
 
+    if (where['name']) {
+      where['items.name'] = new RegExp(where['name'], 'i')
+      delete where['name']
+    }
+
+    if (where['size']) {
+      where['items.size'] = new RegExp(where['size'], 'i')
+      delete where['size']
+    }
+
+    if (where['size_en']) {
+      where['items.size_en'] = new RegExp(where['size_en'], 'i')
+      delete where['size_en']
+    }
+
+    if (where['barcode']) {
+      where['items.barcode'] = new RegExp(where['barcode'], 'i')
+      delete where['barcode']
+    }
+
     $transfer_branch.findMany({
       select: req.body.select || {},
       limit: req.body.limit,

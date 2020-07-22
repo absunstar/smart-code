@@ -59,7 +59,7 @@ module.exports = function init(site) {
       if (!err) {
         if (doc.posting) {
           let Obj = {
-            value: doc.value,
+            value: (-Math.abs(doc.value)),
             safe: doc.safe,
             company: doc.company,
             branch: doc.branch,
@@ -74,7 +74,7 @@ module.exports = function init(site) {
               code: doc.shift.code,
               name: doc.shift.name
             },
-            operation: 'منصرف',
+            operation: { ar: 'فاتورة منصرف', en: 'Invoice Out' },
             transition_type: 'out'
           }
           if (Obj.value && Obj.safe && Obj.date && Obj.sourceName) {
@@ -161,12 +161,12 @@ module.exports = function init(site) {
           }
 
           if (result.doc.posting) {
-            obj.operation = 'منصرف'
+            obj.operation = { ar: 'فاتورة منصرف', en: 'Invoice Out' }
             obj.transition_type = 'out'
-          }
-          else {
-            obj.operation = 'فك ترحيل منصرف'
-            obj.transition_type = 'in'
+
+          } else {
+            obj.operation = { ar: 'فك ترحيل فاتورة منصرف', en: 'Un Post Invoice Out' }
+            obj.transition_type = 'out'
           }
 
           if (obj.value && obj.safe && obj.date)
@@ -201,7 +201,7 @@ module.exports = function init(site) {
         if (!err && result) {
           if (result.doc.posting) {
             let Obj = {
-              value: result.doc.value,
+              value: (-Math.abs(result.doc.value)),
               safe: result.doc.safe,
               company: result.doc.company,
               branch: result.doc.branch,
@@ -216,8 +216,8 @@ module.exports = function init(site) {
                 name: result.doc.shift.name
               },
               code: result.doc.code,
-              operation: 'حذف منصرف',
-              transition_type: 'in'
+              operation: { ar: 'حذف فاتورة منصرف', en: 'Delete Invoice Out' },
+              transition_type: 'out'
             }
             if (Obj.value && Obj.safe && Obj.date && Obj.sourceName) {
               site.call('[amounts][safes][+]', Obj)

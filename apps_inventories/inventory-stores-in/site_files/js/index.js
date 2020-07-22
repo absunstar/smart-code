@@ -1340,9 +1340,10 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
 
   $scope.postingAll = function (store_in_all) {
     $scope.error = '';
-    for (let i = 0; i < store_in_all.length; i++) {
-      let _store_in = store_in_all[i];
+    let _store_in_all = store_in_all.reverse();
 
+    for (let i = 0; i < _store_in_all.length; i++) {
+      let _store_in = _store_in_all[i];
       if (!_store_in.posting) {
 
 
@@ -1359,7 +1360,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
             }).then(
               function (response) {
                 if (response.data.done) {
-                  
+
                 } else {
                   $scope.error = '##word.error##';
                   if (response.data.error.like('*OverDraft Not*')) {

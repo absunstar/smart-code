@@ -23,58 +23,61 @@
                 </div>
                 <br><br><br>
 
-                <div class="row">
+                <div class="row" ng-hide="reset_stores_items">
 
                     <i-button x-permissions="reset_stores_i || reset_manage" label="##word.reset_stores_items##"
-                        ng-click="resetItems()">
+                        ng-click="resetItems();reset_stores_items = true ">
                     </i-button>
                 </div>
                 <br><br><br>
 
-                <div class="row">
+                <div class="row" ng-hide="reset_unpost_store_in">
 
                     <i-button x-permissions="reset_unpost_store_in || reset_manage"
-                        label="##word.reset_unpost_store_in##" ng-click="unPostStoreIn()">
+                        label="##word.reset_unpost_store_in##" ng-click="unPostStoreIn();reset_unpost_store_in = true ">
                     </i-button>
                 </div>
                 <br><br><br>
 
-                <div class="row">
+                <div class="row" ng-hide="reset_unpost_store_out">
 
                     <i-button x-permissions="reset_unpost_store_out || reset_manage"
-                        label="##word.reset_unpost_store_out##" ng-click="unPostStoreOut()">
+                        label="##word.reset_unpost_store_out##"
+                        ng-click="unPostStoreOut();reset_unpost_store_out = true ">
                     </i-button>
                 </div>
                 <br><br><br>
 
-                <div class="row">
+                <div class="row" ng-hide="reset_unpost_store_transfer">
 
                     <i-button x-permissions="reset_unpost_store_transfer || reset_manage"
-                        label="##word.reset_unpost_store_transfer##" ng-click="unPostStoreTransfer()">
+                        label="##word.reset_unpost_store_transfer##"
+                        ng-click="unPostStoreTransfer();reset_unpost_store_transfer = true ">
                     </i-button>
                 </div>
                 <br><br><br>
 
-                <div class="row">
+                <div class="row" ng-hide="reset_unpost_acc_invoice">
 
                     <i-button x-permissions="reset_unpost_acc_invoice || reset_manage"
-                        label="##word.reset_unpost_acc_invoice##" ng-click="unPostAccInvoice()">
+                        label="##word.reset_unpost_acc_invoice##"
+                        ng-click="unPostAccInvoice();reset_unpost_acc_invoice = true">
                     </i-button>
                 </div>
 
                 <br><br><br>
-                <div class="row">
+                <div class="row" ng-hide="reset_i_transaction">
 
                     <i-button x-permissions="reset_i_transaction || reset_manage" label="##word.reset_i_transactions##"
-                        ng-click="resetItemTransaction()">
+                        ng-click="resetItemTransaction() ;reset_i_transaction = true">
                     </i-button>
                 </div>
                 <br><br><br>
 
-                <div class="row">
+                <div class="row" ng-hide="reset_safes_payments">
 
                     <i-button x-permissions="reset_safes_payments || reset_manage" label="##word.reset_safes_payments##"
-                        ng-click="resetSafesPayment()">
+                        ng-click="resetSafesPayment() ;reset_safes_payments = true">
                     </i-button>
                 </div>
 
