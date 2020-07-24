@@ -232,7 +232,7 @@ module.exports = function init(site) {
           response.done = true
           result.doc.items.forEach(_itm => {
             if (_itm.size_units_list && _itm.size_units_list.length > 0)
-              _itm.size_units_list.forEach(_unit => {
+              _itm.size_units_list.forEach((_unit , i) => {
                 _unit.barcode = _itm.barcode
                 _unit.name = _itm.name
                 _unit.item_group = _itm.item_group
@@ -261,14 +261,19 @@ module.exports = function init(site) {
                   _unit.transaction_type = 'out'
                   site.call('item_transaction - items', Object.assign({}, _unit))
 
-                  site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _unit))
+                  
+                  setTimeout(() => {
+                    site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _unit))
+                  }, 250 * i)
 
                 } else if (_unit.stock_count > _unit.store_count) {
                   _unit.count = _unit.stock_count - _unit.store_count
                   _unit.type = 'sum'
                   _unit.transaction_type = 'in'
                   site.call('item_transaction + items', Object.assign({}, _unit))
-                  site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _unit))
+                     setTimeout(() => {
+                    site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _unit))
+                  }, 250 * i)
 
                 } else if (_unit.stock_count == _unit.store_count) {
 
@@ -277,7 +282,9 @@ module.exports = function init(site) {
                   _unit.type = 'sum'
                   _unit.transaction_type = 'in'
                   site.call('item_transaction + items', Object.assign({}, _unit))
-                  site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _unit))
+                  setTimeout(() => {
+                    site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _unit))
+                  }, 250 * i)
                 }
 
               });

@@ -59,7 +59,9 @@ module.exports = function init(site) {
             invoice_footer: [{}]
           },
           accounting: {},
-          inventory: {},
+          inventory: {
+            overdraft : true
+          },
           general_Settings: {}
 
         }, (err, doc) => {

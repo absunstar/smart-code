@@ -138,7 +138,9 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
       $scope.account_invoices.payment_paid_up = site.toNumber($scope.account_invoices.payment_paid_up)
 
 
-      let obj_print = { data: [] };
+      let obj_print = {
+        data: []
+      };
 
       if ($scope.defaultSettings.printer_program) {
 
@@ -182,20 +184,17 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
       }
 
 
-      obj_print.data.push(
-        {
-          type: 'invoice-code',
-          name: 'Purchase I',
-          value: $scope.account_invoices.code
-        },
-        {
-          type: 'invoice-date',
-          name: 'Date',
-          value: site.toDateXF($scope.account_invoices.date)
-        },
-        {
-          type: 'space'
-        });
+      obj_print.data.push({
+        type: 'invoice-code',
+        name: 'Purchase I',
+        value: $scope.account_invoices.code
+      }, {
+        type: 'invoice-date',
+        name: 'Date',
+        value: site.toDateXF($scope.account_invoices.date)
+      }, {
+        type: 'space'
+      });
 
 
       if ($scope.account_invoices.vendor)
@@ -260,7 +259,9 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
           value: 'Total Tax'
         });
 
-      obj_print.data.push({ type: 'space' });
+      obj_print.data.push({
+        type: 'space'
+      });
 
 
       if ($scope.account_invoices.net_value) {
@@ -273,16 +274,17 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
       }
 
       if ($scope.account_invoices.paid_up)
-        obj_print.data.push(
-          {
-            type: 'text2',
-            value2: site.addSubZero($scope.account_invoices.paid_up, 2),
-            value: "Paid Up"
-          });
+        obj_print.data.push({
+          type: 'text2',
+          value2: site.addSubZero($scope.account_invoices.paid_up, 2),
+          value: "Paid Up"
+        });
 
 
 
-      obj_print.data.push({ type: 'space' });
+      obj_print.data.push({
+        type: 'space'
+      });
 
       if ($scope.account_invoices.total_remain) {
         obj_print.data.push({
@@ -293,12 +295,11 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
       }
 
       if ($scope.account_invoices.currency)
-        obj_print.data.push(
-          {
-            type: 'text2',
-            value2: $scope.account_invoices.currency.name,
-            value: "Currency"
-          });
+        obj_print.data.push({
+          type: 'text2',
+          value2: $scope.account_invoices.currency.name,
+          value: "Currency"
+        });
 
 
       if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.invoice_footer && $scope.defaultSettings.printer_program.invoice_footer.length > 0) {
@@ -987,7 +988,9 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
             };
           } else {
             $scope.error = response.data.error;
-            $scope.item = { sizes: [] };
+            $scope.item = {
+              sizes: []
+            };
           };
         },
         function (err) {
@@ -1320,7 +1323,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
               $scope.error = '##word.error##';
               if (response.data.error.like('*OverDraft Not*')) {
                 $scope.error = "##word.overdraft_not_active##"
-                store_out.posting = false;
+                store_in.posting = !store_in.posting;
               }
             }
           },
@@ -1329,9 +1332,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
           }
         )
       } else {
-        if (store_in.posting)
-          store_in.posting = false;
-        else store_in.posting = true;
+        store_in.posting = !store_in.posting;
         $scope.error = '##word.err_stock_item##';
       }
     })
@@ -1417,7 +1418,13 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
     $http({
       method: "POST",
       url: "/api/stores/all",
-      data: { select: { id: 1, name: 1, type: 1 } }
+      data: {
+        select: {
+          id: 1,
+          name: 1,
+          type: 1
+        }
+      }
     }).then(
       function (response) {
         $scope.busy = false;
@@ -1478,7 +1485,9 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
     $scope.busy = true;
 
 
-    let where = { 'currency.id': currency.id };
+    let where = {
+      'currency.id': currency.id
+    };
 
     if (method.id == 1)
       where['type.id'] = 1;
@@ -1650,7 +1659,10 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
         url: "/api/stores_in/all",
         data: {
           search: $scope.storesInSearch,
-          where: { 'posting': true, 'type.id': 1 }
+          where: {
+            'posting': true,
+            'type.id': 1
+          }
         }
       }).then(
         function (response) {
@@ -1798,8 +1810,18 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/shifts/get_open_shift",
       data: {
-        where: { active: true },
-        select: { id: 1, name: 1, code: 1, from_date: 1, from_time: 1, to_date: 1, to_time: 1 }
+        where: {
+          active: true
+        },
+        select: {
+          id: 1,
+          name: 1,
+          code: 1,
+          from_date: 1,
+          from_time: 1,
+          to_date: 1,
+          to_time: 1
+        }
       }
     }).then(
       function (response) {
@@ -1828,5 +1850,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
   $scope.loadTax_Types();
   $scope.loadDiscount_Types();
   $scope.getDefaultSettings();
-  $scope.loadAll({ date: new Date() });
+  $scope.loadAll({
+    date: new Date()
+  });
 });

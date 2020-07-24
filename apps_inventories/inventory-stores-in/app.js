@@ -115,7 +115,7 @@ module.exports = function init(site) {
       }
     }
 
-    site.overdraft(req, stores_in_doc.items, cbOverDraft => {
+    site.isAllowOverDraft(req, stores_in_doc.items, cbOverDraft => {
 
       if (!cbOverDraft.overdraft && cbOverDraft.value && stores_in_doc.posting && stores_in_doc.type.id == 4) {
 
@@ -133,7 +133,7 @@ module.exports = function init(site) {
 
             if (doc.posting) {
 
-              doc.items.forEach(_itm => {
+              doc.items.forEach((_itm , i) => {
 
                 _itm.store = doc.store
                 _itm.company = doc.company
@@ -168,8 +168,9 @@ module.exports = function init(site) {
 
                 _itm.count = Math.abs(_itm.count)
 
-                site.call('[transfer_branch][stores_items][add_balance]', _itm)
-
+                setTimeout(() => {
+                  site.call('[transfer_branch][stores_items][add_balance]', _itm)
+                }, 250 * i);
               })
 
             }
@@ -250,7 +251,7 @@ module.exports = function init(site) {
     stores_in_doc.edit_user_info = site.security.getUserFinger({ $req: req, $res: res })
 
 
-    site.overdraft(req, stores_in_doc.items, cbOverDraft => {
+    site.isAllowOverDraft(req, stores_in_doc.items, cbOverDraft => {
 
       if (!cbOverDraft.overdraft && cbOverDraft.value && stores_in_doc.posting && stores_in_doc.type.id == 4) {
 
@@ -277,7 +278,7 @@ module.exports = function init(site) {
               response.done = true
               response.doc = result.doc
 
-              result.doc.items.forEach(_itm => {
+              result.doc.items.forEach( ( _itm , i) => {
                 _itm.store = result.doc.store
                 _itm.company = result.doc.company
                 _itm.branch = result.doc.branch
@@ -329,7 +330,11 @@ module.exports = function init(site) {
                   }
                 }
                 _itm.count = Math.abs(_itm.count) // amr
-                site.call('[transfer_branch][stores_items][add_balance]', _itm)
+
+                setTimeout(() => {
+                  site.call('[transfer_branch][stores_items][add_balance]', _itm)
+                }, 250 * i);
+                
               })
 
               if (result.doc.type && result.doc.type.id == 4) {
@@ -358,7 +363,7 @@ module.exports = function init(site) {
     }
     let stores_in_doc = req.body
 
-    site.overdraft(req, stores_in_doc.items, cbOverDraft => {
+    site.isAllowOverDraft(req, stores_in_doc.items, cbOverDraft => {
 
       if (!cbOverDraft.overdraft && cbOverDraft.value && stores_in_doc.posting && stores_in_doc.type.id != 4) {
 
@@ -379,7 +384,7 @@ module.exports = function init(site) {
               response.done = true
               if (stores_in_doc.posting) {
 
-                stores_in_doc.items.forEach(_itm => {
+                stores_in_doc.items.forEach((_itm , i) => {
                   _itm.store = stores_in_doc.store
                   _itm.company = stores_in_doc.company
                   _itm.branch = stores_in_doc.branch
@@ -408,7 +413,9 @@ module.exports = function init(site) {
                     site.call('item_transaction + items', Object.assign({}, _itm))
                   }
                   _itm.count = Math.abs(_itm.count)
-                  site.call('[transfer_branch][stores_items][add_balance]', _itm)
+                  setTimeout(() => {
+                    site.call('[transfer_branch][stores_items][add_balance]', _itm)
+                  }, 250 * i);
 
                 });
 
@@ -846,7 +853,7 @@ module.exports = function init(site) {
 
               if (doc.posting) {
 
-                doc.items.forEach(_itm => {
+                doc.items.forEach((_itm , i) => {
 
                   _itm.store = doc.store
                   _itm.company = doc.company
@@ -877,8 +884,9 @@ module.exports = function init(site) {
                     _itm.transaction_type = 'in'
                     site.call('item_transaction + items', Object.assign({}, _itm))
                   }
-                  site.call('[transfer_branch][stores_items][add_balance]', _itm)
-
+                  setTimeout(() => {
+                    site.call('[transfer_branch][stores_items][add_balance]', _itm)
+                  }, 250 * i);
                 })
 
               }

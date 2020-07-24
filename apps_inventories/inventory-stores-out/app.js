@@ -116,7 +116,7 @@ module.exports = function init(site) {
         net_value: stores_out_doc.net_value,
       }
 
-    site.overdraft(req, stores_out_doc.items, cbOverDraft => {
+    site.isAllowOverDraft(req, stores_out_doc.items, cbOverDraft => {
 
       if (!cbOverDraft.overdraft && cbOverDraft.value && stores_out_doc.posting && stores_out_doc.type.id != 6) {
 
@@ -132,7 +132,7 @@ module.exports = function init(site) {
 
             if (doc.posting) {
 
-              doc.items.forEach(_itm => {
+              doc.items.forEach((_itm , i) => {
 
                 _itm.store = doc.store
                 _itm.company = doc.company
@@ -163,7 +163,9 @@ module.exports = function init(site) {
                 }
 
                 _itm.count = Math.abs(_itm.count)
-                site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _itm))
+                setTimeout(() => {
+                  site.call('[transfer_branch][stores_items][add_balance]', _itm)
+                }, 250 * i);
               })
             }
 
@@ -244,7 +246,7 @@ module.exports = function init(site) {
 
     stores_out_doc.edit_user_info = site.security.getUserFinger({ $req: req, $res: res })
 
-    site.overdraft(req, stores_out_doc.items, cbOverDraft => {
+    site.isAllowOverDraft(req, stores_out_doc.items, cbOverDraft => {
 
       if (!cbOverDraft.overdraft && cbOverDraft.value && stores_out_doc.posting && stores_out_doc.type.id != 6) {
 
@@ -273,7 +275,7 @@ module.exports = function init(site) {
               response.done = true
               response.doc = result.doc
 
-              result.doc.items.forEach(_itm => {
+              result.doc.items.forEach((_itm , i) => {
                 _itm.store = result.doc.store
                 _itm.company = result.doc.company
                 _itm.branch = result.doc.branch
@@ -324,7 +326,9 @@ module.exports = function init(site) {
                   }
                 }
                 _itm.count = Math.abs(_itm.count) // amr
-                site.call('[transfer_branch][stores_items][add_balance]', _itm)
+                setTimeout(() => {
+                  site.call('[transfer_branch][stores_items][add_balance]', _itm)
+                }, 250 * i);
 
               })
 
@@ -355,7 +359,7 @@ module.exports = function init(site) {
 
     let stores_out_doc = req.body
 
-    site.overdraft(req, stores_out_doc.items, cbOverDraft => {
+    site.isAllowOverDraft(req, stores_out_doc.items, cbOverDraft => {
 
       if (!cbOverDraft.overdraft && cbOverDraft.value && stores_out_doc.posting && stores_out_doc.type.id == 6) {
 
@@ -376,7 +380,7 @@ module.exports = function init(site) {
               response.done = true
               if (stores_out_doc.posting) {
 
-                stores_out_doc.items.forEach(_itm => {
+                stores_out_doc.items.forEach((_itm , i) => {
                   _itm.source_type = stores_out_doc.type
                   _itm.store = stores_out_doc.store
                   _itm.company = stores_out_doc.company
@@ -404,7 +408,9 @@ module.exports = function init(site) {
                   }
                   
                   _itm.count = Math.abs(_itm.count)
-                  site.call('[transfer_branch][stores_items][add_balance]', _itm)
+                  setTimeout(() => {
+                    site.call('[transfer_branch][stores_items][add_balance]', _itm)
+                  }, 250 * i);
 
 
                 });

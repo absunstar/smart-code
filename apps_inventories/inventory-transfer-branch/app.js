@@ -93,7 +93,7 @@ module.exports = function init(site) {
 
     branch_ransfer_doc.date = new Date(branch_ransfer_doc.date)
     req.body.store = req.body.store_from;
-    site.overdraft(req, branch_ransfer_doc.items, cbOverDraft => {
+    site.isAllowOverDraft(req, branch_ransfer_doc.items, cbOverDraft => {
 
       if (!cbOverDraft.overdraft && cbOverDraft.value) {
 
@@ -114,7 +114,7 @@ module.exports = function init(site) {
             if (!err) {
               response.done = true
               let doc = document.doc
-              doc.items.forEach(_itm => {
+              doc.items.forEach((_itm , i) => {
                 _itm.company = doc.company
                 _itm.branch = doc.branch_from
                 _itm.number = doc.number
@@ -124,10 +124,13 @@ module.exports = function init(site) {
                 _itm.store = doc.store_from
                 site.call('item_transaction - items', Object.assign({}, _itm))
                 _itm.type = 'minus'
-                site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _itm))
+                setTimeout(() => {
+                  site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _itm))
+                }, 250 * i)
+                
               })
 
-              doc.items.forEach(_itm => {
+              doc.items.forEach((_itm , i) => {
                 _itm.company = doc.company
                 _itm.branch = doc.branch_to
                 _itm.number = doc.number
@@ -137,7 +140,9 @@ module.exports = function init(site) {
                 _itm.store = doc.store_to
                 site.call('item_transaction + items', Object.assign({}, _itm))
                 _itm.type = 'sum'
-                site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _itm))
+                setTimeout(() => {
+                  site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _itm))
+                }, 250 * i)
               })
 
             } else {
