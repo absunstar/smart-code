@@ -1501,7 +1501,7 @@ module.exports = function init(site) {
                               if (storesList.store && store.id == storesList.store.id && storesList.size_units_list && storesList.size_units_list.length > 0) {
                                 storesList.size_units_list.forEach(sizeUnits => {
 
-                                  if (sizeUnits.id == cbSize.unit.id) {
+                                  if (cbSize.unit && sizeUnits.id == cbSize.unit.id) {
 
                                     let over = site.toNumber(sizeUnits.current_count) - site.toNumber(cbSize.count)
 
