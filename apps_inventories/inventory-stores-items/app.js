@@ -1498,7 +1498,7 @@ module.exports = function init(site) {
                           if (branchesList.stores_list && branchesList.stores_list.length > 0)
                             branchesList.stores_list.forEach(storesList => {
 
-                              if (store.id == storesList.store.id && storesList.size_units_list && storesList.size_units_list.length > 0) {
+                              if (storesList.store && store.id == storesList.store.id && storesList.size_units_list && storesList.size_units_list.length > 0) {
                                 storesList.size_units_list.forEach(sizeUnits => {
 
                                   if (sizeUnits.id == cbSize.unit.id) {
