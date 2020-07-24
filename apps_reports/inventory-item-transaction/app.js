@@ -22,7 +22,7 @@ module.exports = function init(site) {
 
   site.on('item_transaction + items', itm => {
 
-    if (itm) {
+    if (itm && itm.store && itm.unit) {
       $item_transaction.findMany({ sort: { id: -1 }, where: { 'barcode': itm.barcode, name: itm.name, 'branch.code': itm.branch.code, 'company.id': itm.company.id, 'store.id': itm.store.id, 'unit.id': itm.unit.id } }, (err, docs) => {
 
         delete itm._id
