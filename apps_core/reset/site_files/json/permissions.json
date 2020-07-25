@@ -5,7 +5,8 @@
     { "module_name" : "public" , "screen_name" : "reset" , "name":"reset_safes_payments" , "en":"Delete Safes Payments" , "ar":"حذف معاملات الخزينة"},
     { "module_name" : "public" , "screen_name" : "reset" , "name":"reset_unpost_store_in" , "en":"Un Post Purchase" , "ar":"فك ترحيل المشتريات"},
     { "module_name" : "public" , "screen_name" : "reset" , "name":"reset_unpost_store_out" , "en":"Un Post Sales" , "ar":"فك ترحيل المبيعات"},
-    { "module_name" : "public" , "screen_name" : "reset" , "name":"reset_unpost_store_transfer" , "en":"Un Post Stores Transfer" , "ar":"فك ترحيل التحويلات المخزنية"},
+    { "module_name" : "public" , "screen_name" : "reset" , "name":"reset_unpost_store_transfer" , "en":"Un Confirm Stores Transfer" , "ar":"فك إعتماد التحويلات المخزنية"},
+    { "module_name" : "public" , "screen_name" : "reset" , "name":"reset_stores_stock" , "en":"Un Confirm Stock" , "ar":"فك إعتماد الجرد"},
     { "module_name" : "public" , "screen_name" : "reset" , "name":"reset_unpost_acc_invoice" , "en":"Un Post Account Invoice" , "ar":"فك ترحيل فواتير الحسابات"},
     { "module_name" : "public" , "screen_name" : "reset" , "name":"reset_print" , "en":"Print" , "ar":"طباعة"},
     { "module_name" : "public" , "screen_name" : "reset" , "name":"reset_ui" , "en":"UI" , "ar":"الواجهة الرسومية"}

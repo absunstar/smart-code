@@ -23,11 +23,16 @@
         "name": "reset_unpost_store_out",
         "en": "Un Post Store Sales",
         "ar": "فك ترحيل المبيعات"
+    },
+    {
+        "name": "reset_stores_stock",
+        "en": "Un Confirm Stock",
+        "ar": "فك إعتماد الجرد"
     }, 
     {
         "name": "reset_unpost_store_transfer",
-        "en": "Un Post Stores Transfer",
-        "ar": "فك ترحيل التحويلات المخزنية"
+        "en": "Un Confirm Stores Transfer",
+        "ar": "فك إعتماد التحويلات المخزنية"
     }, 
     {
         "name": "reset_unpost_acc_invoice",

@@ -49,12 +49,20 @@
                 <br><br><br>
 
                 <div class="row" ng-hide="reset_unpost_store_transfer">
-
                     <i-button x-permissions="reset_unpost_store_transfer || reset_manage"
                         label="##word.reset_unpost_store_transfer##"
                         ng-click="unPostStoreTransfer();reset_unpost_store_transfer = true ">
                     </i-button>
                 </div>
+                <br><br><br>
+
+                <div class="row" ng-hide="reset_stores_stock">
+
+                    <i-button x-permissions="reset_stores_stock || reset_manage" label="##word.reset_stores_stock##"
+                        ng-click="unPostStoreStock();reset_stores_stock = true">
+                    </i-button>
+                </div>
+
                 <br><br><br>
 
                 <div class="row" ng-hide="reset_unpost_acc_invoice">
