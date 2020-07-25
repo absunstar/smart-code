@@ -768,6 +768,7 @@ module.exports = function init(site) {
       if (!err) {
         docs.forEach(stores_out_doc => {
           stores_out_doc.posting = false;
+          stores_out_doc.return_paid = null;
           $stores_out.update(stores_out_doc);
         });
       }

@@ -789,6 +789,7 @@ module.exports = function init(site) {
       if (!err) {
         docs.forEach(stores_in_doc => {
           stores_in_doc.posting = false;
+          stores_in_doc.return_paid = null;
           $stores_in.update(stores_in_doc);
         });
       }
