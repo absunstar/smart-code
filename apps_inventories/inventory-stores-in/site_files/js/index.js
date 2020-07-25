@@ -662,9 +662,13 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
     let max_discount = false;
     let returned_count = false;
     let patchCount = false;
+    let notExistCount = false;
     let patch_list = [];
 
-    if ($scope.store_in.items && $scope.store_in.items.length > 0)
+    if ($scope.store_in.items && $scope.store_in.items.length > 0) {
+
+      notExistCount = $scope.store_in.items.some(_iz => _iz.count < 1);
+
       $scope.store_in.items.forEach(_itemSize => {
         if (_itemSize.discount.value > _itemSize.discount.max)
           max_discount = true;
@@ -696,6 +700,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
 
 
       });
+    }
 
     if ($scope.defaultSettings.inventory && $scope.defaultSettings.inventory.dont_max_discount_items) {
       if (max_discount) {
@@ -709,6 +714,11 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
         $scope.error = "##word.return_item_err##";
         return;
       }
+    };
+
+    if (notExistCount) {
+      $scope.error = "##word.err_exist_count##";
+      return;
     };
 
     if (patchCount) {
@@ -1178,9 +1188,13 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
     let max_discount = false;
     let returned_count = false;
     let patchCount = false;
+    let notExistCount = false;
     let patch_list = [];
 
-    if ($scope.store_in.items && $scope.store_in.items.length > 0)
+    if ($scope.store_in.items && $scope.store_in.items.length > 0) {
+
+      notExistCount = $scope.store_in.items.some(_iz => _iz.count < 1);
+
       $scope.store_in.items.forEach(_itemSize => {
         if (_itemSize.discount.value > _itemSize.discount.max)
           max_discount = true;
@@ -1210,8 +1224,8 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
           }
         }
 
-
       });
+    }
 
     if ($scope.defaultSettings.inventory && $scope.defaultSettings.inventory.dont_max_discount_items) {
       if (max_discount) {
@@ -1225,6 +1239,11 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
         $scope.error = "##word.return_item_err##";
         return;
       }
+    };
+
+    if (notExistCount) {
+      $scope.error = "##word.err_exist_count##";
+      return;
     };
 
     if (patchCount) {
@@ -1341,21 +1360,21 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
 
   $scope.postingAll = function (store_in_all) {
     $scope.error = '';
-    
+
     let _store_in_all = store_in_all.reverse();
 
     for (let i = 0; i < _store_in_all.length; i++) {
       setTimeout(() => {
         let _store_in = _store_in_all[i];
         if (!_store_in.posting) {
-  
-  
+
+
           $scope.getStockItems(_store_in.items, callback => {
-  
+
             if (!callback) {
-  
+
               _store_in.posting = true;
-  
+
               $http({
                 method: "POST",
                 url: "/api/stores_in/posting",
@@ -1363,7 +1382,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
               }).then(
                 function (response) {
                   if (response.data.done) {
-  
+
                   } else {
                     $scope.error = '##word.error##';
                     if (response.data.error.like('*OverDraft Not*')) {
@@ -1379,12 +1398,12 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
             } else {
               $scope.error = '##word.err_stock_item##';
             }
-  
+
           });
-  
+
         };
       }, 1000 * 10 * i);
-    
+
     }
 
   };

@@ -310,11 +310,15 @@
         "ar": "توليد ألي للباركود"
     },
     {
+        "name": "err_exist_count",
+        "en": "Must Be Item Count",
+        "ar": "يجب وجود عدد للصنف"
+    },
+    {
         "name": "done",
         "en": "Done",
         "ar": "تم"
     },
-    
     {
         "name": "auto_item_code_generation",
         "en": "Automatic Item code Generation",

@@ -85,10 +85,17 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
 
     };
 
-    if ($scope.transfer_branch.store_from.id === $scope.transfer_branch.store_to.id) {
+    if ($scope.transfer_branch.store_from && $scope.transfer_branch.store_to && $scope.transfer_branch.store_from.id === $scope.transfer_branch.store_to.id) {
       $scope.error = "##word.cant_transfer_to_same_store##";
       return;
     }
+
+    let notExistCount = $scope.transfer_branch.items.some(_iz => _iz.count < 1);
+
+    if (notExistCount) {
+      $scope.error = "##word.err_exist_count##";
+      return;
+    };
 
     if ($scope.transfer_branch.items.length > 0) {
       $scope.busy = true;
@@ -494,11 +501,18 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
       return;
     }
 
+    let notExistCount = $scope.transfer_branch.items.some(_iz => _iz.count < 1);
+
+    if (notExistCount) {
+      $scope.error = "##word.err_exist_count##";
+      return;
+    };
+
     if (new Date($scope.transfer_branch.date) > new Date()) {
       $scope.error = "##word.date_exceed##";
       return;
     };
-    
+
     $scope.busy = true;
     $http({
       method: "POST",
@@ -554,7 +568,7 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
       }
     })
   };
- 
+
   $scope.confirmAll = function (transfer_branch_all) {
     $scope.error = '';
 
@@ -578,7 +592,7 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
             }).then(
               function (response) {
                 if (response.data.done) {
-                  
+
                 } else {
                   $scope.error = '##word.error##';
                   if (response.data.error.like('*OverDraft Not*')) {

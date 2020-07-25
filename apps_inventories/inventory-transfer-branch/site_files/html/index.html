@@ -83,11 +83,12 @@
                             </i-button>
 
                             <i-button x-permissions="transfer_branch_update || transfer_branch_manage" type="update"
-                                ng-show="!c.transfer && c.branch_from.code == ##session.branch.code##" label="##word.edit##" ng-click="edit(c)"></i-button>
+                                ng-show="!c.transfer && c.branch_from.code == ##session.branch.code##"
+                                label="##word.edit##" ng-click="edit(c)"></i-button>
 
-                            <i-button x-permissions="transfer_branch_delete || transfer_branch_manage" type="delete"
+                            <!-- <i-button x-permissions="transfer_branch_delete || transfer_branch_manage" type="delete"
                                 ng-show="c.branch_from.code == ##session.branch.code##" label="##word.delete##"
-                                ng-click="remove(c)"></i-button>
+                                ng-click="remove(c)"></i-button> -->
                         </td>
 
                     </tr>

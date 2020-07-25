@@ -239,9 +239,12 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
     let max_discount = false;
     let returned_count = false;
     let patchCount = false;
+    let notExistCount = false;
     let patch_list = [];
 
-    if ($scope.store_out.items && $scope.store_out.items.length > 0)
+    if ($scope.store_out.items && $scope.store_out.items.length > 0) {
+      notExistCount = $scope.store_out.items.some(_iz => _iz.count < 1);
+
       $scope.store_out.items.forEach(_itemSize => {
 
         if (_itemSize.discount.value > _itemSize.discount.max) max_discount = true;
@@ -283,6 +286,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
           }
         }
       });
+    }
 
     if ($scope.defaultSettings.inventory && $scope.defaultSettings.inventory.dont_max_discount_items) {
       if (max_discount) {
@@ -298,6 +302,10 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
       }
     };
 
+    if (notExistCount) {
+      $scope.error = "##word.err_exist_count##";
+      return;
+    };
 
     if (patchCount) {
       $scope.error = `##word.err_patch_count##   ( ${patch_list.join('-')} )`;
@@ -858,9 +866,13 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
     let max_discount = false;
     let returned_count = false;
     let patchCount = false;
+    let notExistCount = false;
     let patch_list = [];
 
-    if ($scope.store_out.items && $scope.store_out.items.length > 0)
+    if ($scope.store_out.items && $scope.store_out.items.length > 0) {
+
+      notExistCount = $scope.store_out.items.some(_iz => _iz.count < 1);
+
       $scope.store_out.items.forEach(_itemSize => {
 
         if (_itemSize.discount.value > _itemSize.discount.max) max_discount = true;
@@ -903,7 +915,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
           }
         }
       });
-
+    }
     if ($scope.defaultSettings.inventory && $scope.defaultSettings.inventory.dont_max_discount_items) {
       if (max_discount) {
         $scope.error = "##word.err_maximum_discount##";
@@ -918,6 +930,10 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
       }
     };
 
+    if (notExistCount) {
+      $scope.error = "##word.err_exist_count##";
+      return;
+    };
 
     if (patchCount) {
       $scope.error = `##word.err_patch_count##   ( ${patch_list.join('-')} )`;
@@ -1799,42 +1815,42 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         let _store_out = _store_out_all[i];
 
 
-      if (!_store_out.posting) {
+        if (!_store_out.posting) {
 
-        $scope.getStockItems(_store_out.items, callback => {
+          $scope.getStockItems(_store_out.items, callback => {
 
-          if (!callback) {
+            if (!callback) {
 
-            _store_out.posting = true;
+              _store_out.posting = true;
 
-            $http({
-              method: "POST",
-              url: "/api/stores_out/posting",
-              data: _store_out
-            }).then(
-              function (response) {
-                if (response.data.done) {
-                } else {
-                  $scope.error = '##word.error##';
-                  if (response.data.error.like('*OverDraft Not*')) {
-                    $scope.error = "##word.overdraft_not_active##"
-                    _store_out.posting = false;
+              $http({
+                method: "POST",
+                url: "/api/stores_out/posting",
+                data: _store_out
+              }).then(
+                function (response) {
+                  if (response.data.done) {
+                  } else {
+                    $scope.error = '##word.error##';
+                    if (response.data.error.like('*OverDraft Not*')) {
+                      $scope.error = "##word.overdraft_not_active##"
+                      _store_out.posting = false;
+                    }
                   }
+                },
+                function (err) {
+                  console.log(err);
                 }
-              },
-              function (err) {
-                console.log(err);
-              }
-            )
-          } else {
-            $scope.error = '##word.err_stock_item##';
-          }
+              )
+            } else {
+              $scope.error = '##word.err_stock_item##';
+            }
 
 
-        })
-      };
+          })
+        };
       }, 1000 * 10 * i);
-      
+
     };
 
   };

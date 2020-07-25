@@ -172,7 +172,7 @@ module.exports = function init(site) {
                               });
                             }
                           });
-                        $stores_items.update(_complexDoc, () => {});
+                        $stores_items.update(_complexDoc, () => { });
                       });
                   })
                 }
@@ -977,6 +977,7 @@ module.exports = function init(site) {
               _units_size.total_buy_count = 0
               _units_size.total_sell_price = 0
               _units_size.total_sell_count = 0
+              _units_size.average_cost = _units_size.cost
             });
           });
 
@@ -1470,7 +1471,7 @@ module.exports = function init(site) {
     let store = req.body.store;
     let barcodes = itemsCb.map(_item => _item.barcode)
 
-    let cbObj = {value : false}
+    let cbObj = { value: false }
 
     where['sizes.barcode'] = {
       $in: barcodes
@@ -1515,21 +1516,21 @@ module.exports = function init(site) {
 
                                     if (over < 0)
                                       cbObj.value = true
-                                  }else{
+                                  } else {
                                     cbObj.value = true
                                   }
 
                                 })
-                              }else{
+                              } else {
                                 cbObj.value = true
                               }
 
                             })
-                          }else{
+                          } else {
                             cbObj.value = true
                           }
                         })
-                      }else{
+                      } else {
                         cbObj.value = true
                       }
                     }

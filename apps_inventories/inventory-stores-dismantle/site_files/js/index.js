@@ -93,6 +93,14 @@ app.controller("stores_dismantle", function ($scope, $http, $timeout) {
 
     };
 
+    let notExistCount = $scope.store_dismantle.items.some(_iz => _iz.count < 1);
+
+    if (notExistCount) {
+      $scope.error = "##word.err_exist_count##";
+      return;
+    };
+
+
     if ($scope.store_dismantle.items.length > 0) {
       $scope.busy = true;
       $http({
@@ -514,6 +522,14 @@ app.controller("stores_dismantle", function ($scope, $http, $timeout) {
       return;
 
     };
+
+    let notExistCount = $scope.store_dismantle.items.some(_iz => _iz.count < 1);
+
+    if (notExistCount) {
+      $scope.error = "##word.err_exist_count##";
+      return;
+    };
+
 
     $scope.busy = true;
     $http({
