@@ -165,7 +165,7 @@ module.exports = function init(site) {
                 _itm.count = Math.abs(_itm.count)
                 setTimeout(() => {
                   site.call('[transfer_branch][stores_items][add_balance]', _itm)
-                }, 250 * i);
+                }, 200 * i);
               })
             }
 
@@ -328,7 +328,7 @@ module.exports = function init(site) {
                 _itm.count = Math.abs(_itm.count) // amr
                 setTimeout(() => {
                   site.call('[transfer_branch][stores_items][add_balance]', _itm)
-                }, 250 * i);
+                }, 200 * i);
 
               })
 
@@ -410,7 +410,7 @@ module.exports = function init(site) {
                   _itm.count = Math.abs(_itm.count)
                   setTimeout(() => {
                     site.call('[transfer_branch][stores_items][add_balance]', _itm)
-                  }, 250 * i);
+                  }, 200 * i);
 
 
                 });

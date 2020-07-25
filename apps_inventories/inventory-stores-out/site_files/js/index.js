@@ -1795,7 +1795,8 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
     let _store_out_all = store_out_all.reverse();
 
     for (let i = 0; i < _store_out_all.length; i++) {
-      let _store_out = _store_out_all[i];
+      setTimeout(() => {
+        let _store_out = _store_out_all[i];
 
 
       if (!_store_out.posting) {
@@ -1832,6 +1833,8 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
 
         })
       };
+      }, 1000 * i);
+      
     };
 
   };

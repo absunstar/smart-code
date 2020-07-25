@@ -127,7 +127,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
       function (err) {
         console.log(err);
       }
-    )
+    );
   };
 
   $scope.postingAll = function (account_invoices_all) {
@@ -136,7 +136,8 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
     let _account_invoices_all = account_invoices_all.reverse();
 
     for (let i = 0; i < _account_invoices_all.length; i++) {
-      let _account_invoices = _account_invoices_all[i];
+      setTimeout(() => {
+        let _account_invoices = _account_invoices_all[i];
 
       if (!_account_invoices.posting) {
 
@@ -160,7 +161,9 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
         )
 
       };
-    }
+      }, 1000 * i);
+      
+    };
 
   };
 

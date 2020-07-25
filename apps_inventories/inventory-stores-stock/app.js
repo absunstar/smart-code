@@ -264,7 +264,7 @@ module.exports = function init(site) {
                   
                   setTimeout(() => {
                     site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _unit))
-                  }, 250 * i)
+                  }, 200 * i)
 
                 } else if (_unit.stock_count > _unit.store_count) {
                   _unit.count = _unit.stock_count - _unit.store_count
@@ -273,7 +273,7 @@ module.exports = function init(site) {
                   site.call('item_transaction + items', Object.assign({}, _unit))
                      setTimeout(() => {
                     site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _unit))
-                  }, 250 * i)
+                  }, 200 * i)
 
                 } else if (_unit.stock_count == _unit.store_count) {
 
@@ -284,7 +284,7 @@ module.exports = function init(site) {
                   site.call('item_transaction + items', Object.assign({}, _unit))
                   setTimeout(() => {
                     site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _unit))
-                  }, 250 * i)
+                  }, 200 * i)
                 }
 
               });

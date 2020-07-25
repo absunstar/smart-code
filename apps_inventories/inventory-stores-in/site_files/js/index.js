@@ -1341,45 +1341,50 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
 
   $scope.postingAll = function (store_in_all) {
     $scope.error = '';
+    
     let _store_in_all = store_in_all.reverse();
 
     for (let i = 0; i < _store_in_all.length; i++) {
-      let _store_in = _store_in_all[i];
-      if (!_store_in.posting) {
-
-
-        $scope.getStockItems(_store_in.items, callback => {
-
-          if (!callback) {
-
-            _store_in.posting = true;
-
-            $http({
-              method: "POST",
-              url: "/api/stores_in/posting",
-              data: _store_in
-            }).then(
-              function (response) {
-                if (response.data.done) {
-
-                } else {
-                  $scope.error = '##word.error##';
-                  if (response.data.error.like('*OverDraft Not*')) {
-                    $scope.error = "##word.overdraft_not_active##"
-                    _store_in.posting = false;
+      setTimeout(() => {
+        let _store_in = _store_in_all[i];
+        if (!_store_in.posting) {
+  
+  
+          $scope.getStockItems(_store_in.items, callback => {
+  
+            if (!callback) {
+  
+              _store_in.posting = true;
+  
+              $http({
+                method: "POST",
+                url: "/api/stores_in/posting",
+                data: _store_in
+              }).then(
+                function (response) {
+                  if (response.data.done) {
+  
+                  } else {
+                    $scope.error = '##word.error##';
+                    if (response.data.error.like('*OverDraft Not*')) {
+                      $scope.error = "##word.overdraft_not_active##"
+                      _store_in.posting = false;
+                    }
                   }
+                },
+                function (err) {
+                  console.log(err);
                 }
-              },
-              function (err) {
-                console.log(err);
-              }
-            )
-          } else {
-            $scope.error = '##word.err_stock_item##';
-          }
-
-        })
-      };
+              )
+            } else {
+              $scope.error = '##word.err_stock_item##';
+            }
+  
+          });
+  
+        };
+      }, 1000 * i);
+    
     }
 
   };
