@@ -433,26 +433,7 @@ module.exports = function init(site) {
         $stores_items.update(doc);
 
       }
-      // else {
-      //   if (obj.source_type)
-      //     delete obj.source_type.id
-      //   let item = {
-      //     name: obj.name,
-      //     main_unit: obj.unit,
-      //     units_list: [{
-      //       id: obj.unit.id,
-      //       name: obj.unit.name,
-      //       convert: 1
-      //     }],
-      //     company: obj.company,
-      //     branch: obj.branch,
-      //     sizes: [obj_branch]
-      //   };
-
-      //   $stores_items.add(item, () => {
-      //     balance_handle(null)
-      //   });
-      // };
+      
     })
 
   })
