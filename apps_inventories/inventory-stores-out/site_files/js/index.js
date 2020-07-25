@@ -1847,10 +1847,10 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
             }
 
 
-          })
-        };
-      }, 1000 * 10 * i);
-
+        })
+      };
+      }, 100 * 1 * i);
+      
     };
 
   };

@@ -105,7 +105,7 @@ module.exports = function init(site) {
 
             setTimeout(() => {
               site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _itm))
-            }, 200 * i)
+            }, 2 * 1 * i)
 
             _itm.code = doc.code
             _itm.date = doc.date
@@ -145,7 +145,7 @@ module.exports = function init(site) {
           complex_list.forEach(( _complex , i) => {
             setTimeout(() => {
               site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _complex1))
-            }, 200 * i)
+            }, 2 * 1 * i)
             site.call('item_transaction - items', Object.assign({}, _complex))
           });
 
@@ -290,7 +290,7 @@ module.exports = function init(site) {
             _itm.count = Math.abs(_itm.count)
             setTimeout(() => {
               site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _itm))
-            }, 200 * i)
+            }, 2 * 1 * i)
 
           })
 
@@ -300,7 +300,7 @@ module.exports = function init(site) {
             _complex1.count = Math.abs(_complex1.count)
             setTimeout(() => {
               site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _complex1))
-            }, 200 * i)
+            }, 2 * 1 * i)
           });
 
 
@@ -379,7 +379,7 @@ module.exports = function init(site) {
               _itm.count = Math.abs(_itm.count)
               setTimeout(() => {
                 site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _itm))
-              }, 200 * i)
+              }, 2 * 1 * i)
 
             })
 
@@ -389,7 +389,7 @@ module.exports = function init(site) {
               _complex1.count = Math.abs(_complex1.count)
               setTimeout(() => {
                 site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _complex1))
-              }, 200 * i)
+              }, 2 * 1 * i)
               
 
             });
