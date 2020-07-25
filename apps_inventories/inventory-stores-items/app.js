@@ -4,7 +4,7 @@ module.exports = function init(site) {
 
   site.on('[transfer_branch][stores_items][add_balance]', obj => {
 
-    console.log('[transfer_branch][stores_items][add_balance]')
+    console.log(new Date().getTime() + ' : [transfer_branch][stores_items][add_balance]')
 
     let total_unit = obj.count * obj.unit.convert;
     let totalCost = obj.cost * site.toNumber(obj.count);
