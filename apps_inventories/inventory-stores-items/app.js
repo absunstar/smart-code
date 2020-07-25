@@ -4,6 +4,7 @@ module.exports = function init(site) {
 
   site.on('[transfer_branch][stores_items][add_balance]', obj => {
 
+    console.log('[transfer_branch][stores_items][add_balance]')
 
     let total_unit = obj.count * obj.unit.convert;
     let totalCost = obj.cost * site.toNumber(obj.count);
@@ -433,7 +434,7 @@ module.exports = function init(site) {
         $stores_items.update(doc);
 
       }
-      
+
     })
 
   })
