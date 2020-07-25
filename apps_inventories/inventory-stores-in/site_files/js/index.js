@@ -1383,7 +1383,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
           });
   
         };
-      }, 3000 * i);
+      }, 1000 * 10 * i);
     
     }
 

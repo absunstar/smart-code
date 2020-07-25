@@ -161,7 +161,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
         )
 
       };
-      }, 3000 * i);
+      }, 1000 * 10 * i);
       
     };
 
