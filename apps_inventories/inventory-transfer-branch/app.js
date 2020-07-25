@@ -126,7 +126,7 @@ module.exports = function init(site) {
                 _itm.type = 'minus'
                 setTimeout(() => {
                   site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _itm))
-                }, 200 * i)
+                }, 2 * 1 * i)
                 
               })
 
@@ -142,7 +142,7 @@ module.exports = function init(site) {
                 _itm.type = 'sum'
                 setTimeout(() => {
                   site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _itm))
-                }, 200 * i)
+                }, 2 * 1 * i)
               })
 
             } else {

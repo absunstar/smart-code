@@ -1,11 +1,17 @@
 module.exports = function init(site) {
   const $stores_items = site.connectCollection("stores_items")
 
+  let add_balance_list = []
+  let add_balance_list_busy = false
 
   site.on('[transfer_branch][stores_items][add_balance]', obj => {
-
+    add_balance_list.push(obj)
     console.log(new Date().getTime() + ' : [transfer_branch][stores_items][add_balance]')
+  })
 
+  function add_balance_list_action(obj) {
+    console.log(new Date().getTime() + ' : add_balance_list_action()')
+    add_balance_list_busy = true
     let total_unit = obj.count * obj.unit.convert;
     let totalCost = obj.cost * site.toNumber(obj.count);
     let obj_branch = {
@@ -72,7 +78,7 @@ module.exports = function init(site) {
       'company.id': obj.company.id
     }, (err, doc) => {
 
-      if (!err && doc) {
+      if (!err && doc && doc.sizes && doc.sizes.length > 0) {
         doc.sizes.forEach(_size => {
           if (_size.barcode === obj.barcode) {
 
@@ -431,13 +437,29 @@ module.exports = function init(site) {
           // }
         });
 
-        $stores_items.update(doc);
+        $stores_items.update(doc, () => {
+          add_balance_list_busy = false
+        });
 
+      } else {
+        add_balance_list_busy = false
       }
 
     })
+  }
 
-  })
+  function add_balance_list_handle() {
+    if (!add_balance_list_busy && add_balance_list.length > 0) {
+      let obj = add_balance_list.shift()
+      add_balance_list_action(obj)
+    }
+    setTimeout(() => {
+      add_balance_list_handle()
+    }, 100);
+
+  }
+  add_balance_list_handle()
+
 
   site.on('holding items', function (obj) {
     $stores_items.findMany({
@@ -1470,7 +1492,9 @@ module.exports = function init(site) {
     let store = req.body.store;
     let barcodes = itemsCb.map(_item => _item.barcode)
 
-    let cbObj = {value : false}
+    let cbObj = {
+      value: false
+    }
 
     where['sizes.barcode'] = {
       $in: barcodes
@@ -1515,21 +1539,21 @@ module.exports = function init(site) {
 
                                     if (over < 0)
                                       cbObj.value = true
-                                  }else{
+                                  } else {
                                     cbObj.value = true
                                   }
 
                                 })
-                              }else{
+                              } else {
                                 cbObj.value = true
                               }
 
                             })
-                          }else{
+                          } else {
                             cbObj.value = true
                           }
                         })
-                      }else{
+                      } else {
                         cbObj.value = true
                       }
                     }
