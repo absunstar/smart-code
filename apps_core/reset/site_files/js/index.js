@@ -108,6 +108,22 @@ app.controller("reset", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.unPostStoreStock = function () {
+    $scope.error = '';
+    $http({
+      method: "POST",
+      url: "/api/stores_stock/un_confirm"
+    }).then(
+      function (response) {
+        if (response.data.done) {
+        }
+      },
+      function (err) {
+        $scope.error = err;
+      }
+    )
+  };
+
   $scope.unPostAccInvoice = function () {
     $scope.error = '';
     $http({

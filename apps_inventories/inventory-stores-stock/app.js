@@ -232,7 +232,7 @@ module.exports = function init(site) {
           response.done = true
           result.doc.items.forEach(_itm => {
             if (_itm.size_units_list && _itm.size_units_list.length > 0)
-              _itm.size_units_list.forEach((_unit , i) => {
+              _itm.size_units_list.forEach((_unit, i) => {
                 _unit.barcode = _itm.barcode
                 _unit.name = _itm.name
                 _unit.item_group = _itm.item_group
@@ -261,7 +261,7 @@ module.exports = function init(site) {
                   _unit.transaction_type = 'out'
                   site.call('item_transaction - items', Object.assign({}, _unit))
 
-                  
+
                   setTimeout(() => {
                     site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _unit))
                   }, 2 * 1 * i)
@@ -271,7 +271,7 @@ module.exports = function init(site) {
                   _unit.type = 'sum'
                   _unit.transaction_type = 'in'
                   site.call('item_transaction + items', Object.assign({}, _unit))
-                     setTimeout(() => {
+                  setTimeout(() => {
                     site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _unit))
                   }, 2 * 1 * i)
 
@@ -316,6 +316,33 @@ module.exports = function init(site) {
       } else {
         response.error = err.message
       }
+      res.json(response)
+    })
+  })
+
+
+  site.post("/api/stores_stock/un_confirm", (req, res) => {
+    let response = {}
+    response.done = false
+    if (!req.session.user) {
+      res.json(response)
+      return;
+    }
+
+    $stores_stock.findMany({
+      select: req.body.select || {},
+      where: { 'company.id': site.get_company(req).id },
+      sort: req.body.sort || {
+        id: -1
+      },
+    }, (err, docs) => {
+      if (!err) {
+        docs.forEach(stores_stock_doc => {
+          stores_stock_doc.status = 1;
+          $stores_stock.update(stores_stock_doc);
+        });
+      }
+      response.done = true
       res.json(response)
     })
   })
