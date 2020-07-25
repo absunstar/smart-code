@@ -176,7 +176,7 @@ module.exports = function init(site) {
                   })
                 }
               }
-            });
+            })
 
             if (_size.branches_list && _size.branches_list.length > 0) {
 
