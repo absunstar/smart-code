@@ -124,10 +124,8 @@ module.exports = function init(site) {
                 _itm.store = doc.store_from
                 site.call('item_transaction - items', Object.assign({}, _itm))
                 _itm.type = 'minus'
-                setTimeout(() => {
                   site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _itm))
-                }, 2 * 1 * i)
-                
+
               })
 
               doc.items.forEach((_itm , i) => {
@@ -140,9 +138,7 @@ module.exports = function init(site) {
                 _itm.store = doc.store_to
                 site.call('item_transaction + items', Object.assign({}, _itm))
                 _itm.type = 'sum'
-                setTimeout(() => {
                   site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _itm))
-                }, 2 * 1 * i)
               })
 
             } else {

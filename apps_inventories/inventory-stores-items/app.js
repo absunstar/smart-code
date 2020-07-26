@@ -6,11 +6,11 @@ module.exports = function init(site) {
 
   site.on('[transfer_branch][stores_items][add_balance]', obj => {
     add_balance_list.push(obj)
-    console.log(new Date().getTime() + ' : [transfer_branch][stores_items][add_balance]')
+    // console.log(new Date().getTime() + ' : [transfer_branch][stores_items][add_balance]')
   })
 
   function add_balance_list_action(obj) {
-    console.log(new Date().getTime() + ' : add_balance_list_action()')
+    // console.log(new Date().getTime() + ' : add_balance_list_action()')
     add_balance_list_busy = true
     let total_unit = obj.count * obj.unit.convert;
     let totalCost = obj.cost * site.toNumber(obj.count);
@@ -930,8 +930,8 @@ module.exports = function init(site) {
         });
 
 
-        let findDuplicates = arr => arr.filter((item, index) => arr.indexOf(item) != index)
-        console.log(findDuplicates(barcodes_list));
+        // let findDuplicates = arr => arr.filter((item, index) => arr.indexOf(item) != index)
+        // console.log(findDuplicates(barcodes_list));
 
 
         response.count = count
@@ -1529,38 +1529,35 @@ module.exports = function init(site) {
                         currentSize.branches_list.forEach(branchesList => {
 
                           if (branchesList.stores_list && branchesList.stores_list.length > 0) {
-                            
+
                             branchesList.stores_list.forEach(storesList => {
+                              
+                              if (storesList.size_units_list && storesList.size_units_list.length > 0) {
+                                if (storesList.store && store.id == storesList.store.id) {
 
-                              if (storesList.store && store.id == storesList.store.id && storesList.size_units_list && storesList.size_units_list.length > 0) {
-                                storesList.size_units_list.forEach(sizeUnits => {
+                                  storesList.size_units_list.forEach(sizeUnits => {
 
-                                  if (cbSize.unit && sizeUnits.id == cbSize.unit.id) {
+                                    if (cbSize.unit && sizeUnits.id == cbSize.unit.id) {
 
-                                    let over = site.toNumber(sizeUnits.current_count) - site.toNumber(cbSize.count)
+                                      let over = site.toNumber(sizeUnits.current_count) - site.toNumber(cbSize.count)
 
-                                    if (over < 0){
-                                      cbObj.value = true
+                                      if (over < 0) {
+                                        cbObj.value = true
+                                      }
                                     }
-                                  }
 
-                                })
+                                  })
+                                }
                               } else {
-                                console.log("xxxxxxxxx");
-
                                 cbObj.value = true
                               }
 
                             })
                           } else {
-                            console.log("vvvvvvvvvvvvv");
-
                             cbObj.value = true
                           }
                         })
                       } else {
-                        console.log("qqqqqqqqqqqqq");
-
                         cbObj.value = true
                       }
                     }

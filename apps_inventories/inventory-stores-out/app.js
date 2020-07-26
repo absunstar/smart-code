@@ -132,7 +132,7 @@ module.exports = function init(site) {
 
             if (doc.posting) {
 
-              doc.items.forEach((_itm , i) => {
+              doc.items.forEach((_itm, i) => {
 
                 _itm.store = doc.store
                 _itm.company = doc.company
@@ -163,9 +163,7 @@ module.exports = function init(site) {
                 }
 
                 _itm.count = Math.abs(_itm.count)
-                setTimeout(() => {
-                  site.call('[transfer_branch][stores_items][add_balance]', _itm)
-                }, 2 * 1 * i);
+                site.call('[transfer_branch][stores_items][add_balance]', _itm)
               })
             }
 
@@ -275,7 +273,7 @@ module.exports = function init(site) {
               response.done = true
               response.doc = result.doc
 
-              result.doc.items.forEach((_itm , i) => {
+              result.doc.items.forEach((_itm, i) => {
                 _itm.store = result.doc.store
                 _itm.company = result.doc.company
                 _itm.branch = result.doc.branch
@@ -326,9 +324,7 @@ module.exports = function init(site) {
                   }
                 }
                 _itm.count = Math.abs(_itm.count) // amr
-                setTimeout(() => {
-                  site.call('[transfer_branch][stores_items][add_balance]', _itm)
-                }, 2 * 1 * i);
+                site.call('[transfer_branch][stores_items][add_balance]', _itm)
 
               })
 
@@ -380,7 +376,7 @@ module.exports = function init(site) {
               response.done = true
               if (stores_out_doc.posting) {
 
-                stores_out_doc.items.forEach((_itm , i) => {
+                stores_out_doc.items.forEach((_itm, i) => {
                   _itm.source_type = stores_out_doc.type
                   _itm.store = stores_out_doc.store
                   _itm.company = stores_out_doc.company
@@ -406,11 +402,9 @@ module.exports = function init(site) {
                     _itm.transaction_type = 'out'
                     site.call('item_transaction - items', Object.assign({}, _itm))
                   }
-                  
+
                   _itm.count = Math.abs(_itm.count)
-                  setTimeout(() => {
-                    site.call('[transfer_branch][stores_items][add_balance]', _itm)
-                  }, 2 * 1 * i);
+                  site.call('[transfer_branch][stores_items][add_balance]', _itm)
 
 
                 });
