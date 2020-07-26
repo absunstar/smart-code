@@ -315,6 +315,11 @@
         "ar": "يجب وجود عدد للصنف"
     },
     {
+        "name": "err_exist_count_invoice",
+        "en": "Must Be Item Count In Invoice",
+        "ar": "يجب وجود عدد للصنف في فاتورة"
+    },
+    {
         "name": "done",
         "en": "Done",
         "ar": "تم"

@@ -70,30 +70,33 @@ module.exports = function init(site) {
     delete itm._id
     // delete itm.type
     // delete itm.units_list
+    if (itm.branch && itm.store && itm.unit) {
 
-    $item_transaction.findMany({ sort: { id: -1 }, where: { 'barcode': itm.barcode, name: itm.name, 'branch.code': itm.branch.code, 'company.id': itm.company.id, 'store.id': itm.store.id, 'unit.id': itm.unit.id } }, (err, docs) => {
 
-      if (docs && docs.length > 0) {
+      $item_transaction.findMany({ sort: { id: -1 }, where: { 'barcode': itm.barcode, name: itm.name, 'branch.code': itm.branch.code, 'company.id': itm.company.id, 'store.id': itm.store.id, 'unit.id': itm.unit.id } }, (err, docs) => {
 
-        itm.last_count = docs[0].current_count
-        itm.current_count = itm.last_count - itm.count
-        if (itm.cost == undefined || null) {
-          itm.cost = docs[0].cost
-          itm.average_cost = docs[0].average_cost
-          itm.discount = docs[0].discount
+        if (docs && docs.length > 0) {
+
+          itm.last_count = docs[0].current_count
+          itm.current_count = itm.last_count - itm.count
+          if (itm.cost == undefined || null) {
+            itm.cost = docs[0].cost
+            itm.average_cost = docs[0].average_cost
+            itm.discount = docs[0].discount
+          }
+          // itm.last_price = docs[0].price
+          itm.count = itm.count
+          $item_transaction.add(itm)
+        } else {
+
+          itm.last_count = itm.current_count || 0
+          itm.current_count = itm.last_count - itm.count
+          itm.count = itm.count
+          // itm.last_price = itm.price
+          $item_transaction.add(itm)
         }
-        // itm.last_price = docs[0].price
-        itm.count = itm.count
-        $item_transaction.add(itm)
-      } else {
-
-        itm.last_count = itm.current_count || 0
-        itm.current_count = itm.last_count - itm.count
-        itm.count = itm.count
-        // itm.last_price = itm.price
-        $item_transaction.add(itm)
-      }
-    })
+      })
+    }
   })
 
   site.post({
@@ -140,7 +143,7 @@ module.exports = function init(site) {
       'company.id': site.get_company(req).id,
       $req: req,
       $res: res
-    } , ()=>{
+    }, () => {
       response.done = true
       res.json(response)
     })
@@ -314,7 +317,7 @@ module.exports = function init(site) {
         response.error = err.message
       }
       res.json(response)
-    } , true)
+    }, true)
   })
 
 

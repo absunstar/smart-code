@@ -1324,6 +1324,16 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
       return;
     };
 
+    let notExistCount = store_in.items.some(_iz => _iz.count < 1);
+
+    if (notExistCount) {
+      if (store_in.posting) store_in.posting = false;
+      else store_in.posting = true;
+
+      $scope.error = "##word.err_exist_count##";
+      return;
+    };
+
     $scope.getStockItems(store_in.items, callback => {
 
       if (!callback) {
@@ -1363,47 +1373,66 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
 
     let _store_in_all = store_in_all.reverse();
 
-    for (let i = 0; i < _store_in_all.length; i++) {
-      setTimeout(() => {
-        let _store_in = _store_in_all[i];
-        if (!_store_in.posting) {
+    let notExist = false;
+    let notExistCountList = [];
+    _store_in_all.forEach(_stIn => {
+      let notExistCount = _stIn.items.some(_iz => _iz.count < 1);
+      if (notExistCount) {
+        notExist = true;
+        notExistCountList.push(_stIn.number)
+      }
+    });
 
 
-          $scope.getStockItems(_store_in.items, callback => {
+    if (notExist) {
 
-            if (!callback) {
+      $scope.error = `##word.err_exist_count_invoice##   ( ${notExistCountList.join('-')} )`;
+      return;
+    } else {
 
-              _store_in.posting = true;
 
-              $http({
-                method: "POST",
-                url: "/api/stores_in/posting",
-                data: _store_in
-              }).then(
-                function (response) {
-                  if (response.data.done) {
+      for (let i = 0; i < _store_in_all.length; i++) {
+        setTimeout(() => {
+          let _store_in = _store_in_all[i];
+          if (!_store_in.posting) {
 
-                  } else {
-                    $scope.error = '##word.error##';
-                    if (response.data.error.like('*OverDraft Not*')) {
-                      $scope.error = "##word.overdraft_not_active##"
-                      _store_in.posting = false;
+
+            $scope.getStockItems(_store_in.items, callback => {
+
+              if (!callback) {
+
+                _store_in.posting = true;
+
+                $http({
+                  method: "POST",
+                  url: "/api/stores_in/posting",
+                  data: _store_in
+                }).then(
+                  function (response) {
+                    if (response.data.done) {
+
+                    } else {
+                      $scope.error = '##word.error##';
+                      if (response.data.error.like('*OverDraft Not*')) {
+                        $scope.error = "##word.overdraft_not_active##"
+                        _store_in.posting = false;
+                      }
                     }
+                  },
+                  function (err) {
+                    console.log(err);
                   }
-                },
-                function (err) {
-                  console.log(err);
-                }
-              )
-            } else {
-              $scope.error = '##word.err_stock_item##';
-            }
+                )
+              } else {
+                $scope.error = '##word.err_stock_item##';
+              }
 
-          });
+            });
 
-        };
-      }, 100 * 1 * i);
-    
+          };
+        }, 100 * 1 * i);
+
+      }
     }
 
   };

@@ -1529,6 +1529,7 @@ module.exports = function init(site) {
                         currentSize.branches_list.forEach(branchesList => {
 
                           if (branchesList.stores_list && branchesList.stores_list.length > 0) {
+                            
                             branchesList.stores_list.forEach(storesList => {
 
                               if (storesList.store && store.id == storesList.store.id && storesList.size_units_list && storesList.size_units_list.length > 0) {
@@ -1538,23 +1539,28 @@ module.exports = function init(site) {
 
                                     let over = site.toNumber(sizeUnits.current_count) - site.toNumber(cbSize.count)
 
-                                    if (over < 0)
+                                    if (over < 0){
                                       cbObj.value = true
-                                  } else {
-                                    cbObj.value = true
+                                    }
                                   }
 
                                 })
                               } else {
+                                console.log("xxxxxxxxx");
+
                                 cbObj.value = true
                               }
 
                             })
                           } else {
+                            console.log("vvvvvvvvvvvvv");
+
                             cbObj.value = true
                           }
                         })
                       } else {
+                        console.log("qqqqqqqqqqqqq");
+
                         cbObj.value = true
                       }
                     }

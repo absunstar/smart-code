@@ -1769,6 +1769,18 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
       $scope.error = '##word.err_unpost_return##';
       return;
     };
+
+    let notExistCount = store_out.items.some(_iz => _iz.count < 1);
+
+    if (notExistCount) {
+      if (store_out.posting) store_out.posting = false;
+      else store_out.posting = true;
+
+      $scope.error = "##word.err_exist_count##";
+      return;
+    };
+
+
     $scope.getStockItems(store_out.items, callback => {
 
       if (!callback) {
@@ -1809,49 +1821,66 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
     $scope.error = '';
 
     let _store_out_all = store_out_all.reverse();
+    let notExist = false;
+    let notExistCountList = [];
+    _store_out_all.forEach(_stOut => {
+      let notExistCount = _stOut.items.some(_iz => _iz.count < 1);
+      if (notExistCount) {
+        notExist = true;
+        notExistCountList.push(_stOut.number)
+      }
+    });
 
-    for (let i = 0; i < _store_out_all.length; i++) {
-      setTimeout(() => {
-        let _store_out = _store_out_all[i];
+
+    if (notExist) {
+
+      $scope.error = `##word.err_exist_count_invoice##   ( ${notExistCountList.join('-')} )`;
+      return;
+    } else {
 
 
-        if (!_store_out.posting) {
+      for (let i = 0; i < _store_out_all.length; i++) {
+        setTimeout(() => {
+          let _store_out = _store_out_all[i];
 
-          $scope.getStockItems(_store_out.items, callback => {
+          if (!_store_out.posting) {
 
-            if (!callback) {
+            $scope.getStockItems(_store_out.items, callback => {
 
-              _store_out.posting = true;
+              if (!callback) {
 
-              $http({
-                method: "POST",
-                url: "/api/stores_out/posting",
-                data: _store_out
-              }).then(
-                function (response) {
-                  if (response.data.done) {
-                  } else {
-                    $scope.error = '##word.error##';
-                    if (response.data.error.like('*OverDraft Not*')) {
-                      $scope.error = "##word.overdraft_not_active##"
-                      _store_out.posting = false;
+                _store_out.posting = true;
+
+                $http({
+                  method: "POST",
+                  url: "/api/stores_out/posting",
+                  data: _store_out
+                }).then(
+                  function (response) {
+                    if (response.data.done) {
+                    } else {
+                      $scope.error = '##word.error##';
+                      if (response.data.error.like('*OverDraft Not*')) {
+                        $scope.error = "##word.overdraft_not_active##"
+                        _store_out.posting = false;
+                      }
                     }
+                  },
+                  function (err) {
+                    console.log(err);
                   }
-                },
-                function (err) {
-                  console.log(err);
-                }
-              )
-            } else {
-              $scope.error = '##word.err_stock_item##';
-            }
+                )
+              } else {
+                $scope.error = '##word.err_stock_item##';
+              }
 
 
-        })
+            })
+          };
+        }, 100 * 1 * i);
+
       };
-      }, 100 * 1 * i);
-      
-    };
+    }
 
   };
 
