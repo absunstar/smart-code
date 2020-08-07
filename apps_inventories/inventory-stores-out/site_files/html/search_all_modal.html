@@ -56,7 +56,8 @@
 
                         <div class="row">
                             <i-list v="r" ng-search="_search.$storein_type" display="##session.lang##" class="col2"
-                                ng-model="search.type" items="storesOutTypes" label="##word.transaction_type##"></i-list>
+                                ng-model="search.type" items="storesOutTypes" label="##word.transaction_type##">
+                            </i-list>
 
                             <i-list class="col3" ng-search="_search.$safe_search" ng-model="search.safe" items="safes"
                                 label="##word.amounts_in_safe##"></i-list>
@@ -74,8 +75,9 @@
                                 ng-model="search.customer" label="##word.customer##" items="customersList">
                             </i-list>
 
-                            <i-list class="col3" ng-model="search.delegate" ng-search="_search.$$items_group_search"
-                                label="##word.delegate##" items="delegatesList">
+                            <i-list ng-hide="'##user.type##' == 'delegate'" class="col3" ng-model="search.delegate"
+                                ng-search="_search.$$items_group_search" label="##word.delegate##"
+                                items="delegatesList">
                             </i-list>
                         </div>
                         <div class="row">

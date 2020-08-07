@@ -1,8 +1,6 @@
 module.exports = function init(site) {
   const $account_invoices = site.connectCollection("account_invoices")
 
-
-
   site.get({
     name: "report_invoices",
     path: __dirname + "/site_files/html/index.html",

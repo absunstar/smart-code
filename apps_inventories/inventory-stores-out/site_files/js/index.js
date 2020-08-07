@@ -160,11 +160,19 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         };
 
         if ($scope.defaultSettings.inventory) {
-          if ($scope.defaultSettings.inventory.store)
+
+          if ('##user.type##' == 'delegate') {
+            $scope.store_out.store = JSON.parse('##user.store##');
+          } else if ($scope.defaultSettings.inventory.store)
             $scope.store_out.store = $scope.defaultSettings.inventory.store;
+
           if ($scope.defaultSettings.inventory.type_out)
             $scope.store_out.type = $scope.defaultSettings.inventory.type_out;
-          if ($scope.defaultSettings.inventory.delegate)
+
+          if ('##user.type##' == 'delegate') {
+            $scope.store_out.delegate = $scope.delegatesList[0];
+
+          } else if ($scope.defaultSettings.inventory.delegate)
             $scope.store_out.delegate = $scope.defaultSettings.inventory.delegate;
         };
 
@@ -268,7 +276,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
               _itemSize.patch_list.forEach(_pl => {
                 if (difference > 0 && _pl.count == 0) {
 
-                  if (_pl.current_count <= difference) {
+                  if (_pl.current_count < difference || _pl.current_count == difference) {
 
                     _pl.count = _pl.current_count;
                     difference = difference - _pl.count;
@@ -897,7 +905,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
               _itemSize.patch_list.forEach(_pl => {
                 if (difference > 0 && _pl.count == 0) {
 
-                  if (_pl.current_count <= difference) {
+                  if (_pl.current_count < difference || _pl.current_count == difference) {
 
                     _pl.count = _pl.current_count;
                     difference = difference - _pl.count;
@@ -1048,7 +1056,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         select: {
           id: 1,
           name: 1,
-          number: 1,
+          commission: 1,
           currency: 1,
           type: 1
         },

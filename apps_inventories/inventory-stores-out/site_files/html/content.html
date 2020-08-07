@@ -20,8 +20,9 @@
                         ng-model="store_out.customer" label="##word.customer##" items="customersList">
                     </i-list>
 
-                    <i-list class="col4" ng-model="store_out.delegate" ng-search="_search.$items_group_search"
-                        label="##word.delegate##" ng-disabled="store_out.retured_number" items="delegatesList">
+                    <i-list ng-hide="'##user.type##' == 'delegate'" class="col4" ng-model="store_out.delegate"
+                        ng-search="_search.$items_group_search" label="##word.delegate##"
+                        ng-disabled="store_out.retured_number" items="delegatesList">
                     </i-list>
                 </div>
 
@@ -30,8 +31,9 @@
                     <i-list display="##session.lang##" ng-search="_search.$search_in_out" class="col3"
                         ng-model="store_out.type" items="storesOutTypes" label="##word.transaction_type##"></i-list>
 
-                    <i-list class="col3" ng-model="store_out.store" items="storesList"
-                        ng-search="_search.$stores_search" label="##word.stores_out_store##"></i-list>
+                    <i-list ng-hide="'##user.type##' == 'delegate'" class="col3" ng-model="store_out.store"
+                        items="storesList" ng-search="_search.$stores_search" label="##word.stores_out_store##">
+                    </i-list>
 
                 </div>
 

@@ -127,6 +127,9 @@ module.exports = function init(site) {
       }]
     }
 
+    user.company = tables_doc.company
+    user.branch = tables_doc.branch
+
 
     tables_doc.add_user_info = site.security.getUserFinger({
       $req: req,
@@ -232,6 +235,9 @@ module.exports = function init(site) {
       company: site.get_company(req),
       branch: site.get_branch(req)
     }]
+
+    user.company = tables_doc.company
+    user.branch = tables_doc.branch
 
 
     tables_doc.edit_user_info = site.security.getUserFinger({

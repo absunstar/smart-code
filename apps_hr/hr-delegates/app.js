@@ -76,6 +76,7 @@ module.exports = function init(site) {
         res.json(response)
       } else {
 
+
         let user = {};
 
 
@@ -86,20 +87,24 @@ module.exports = function init(site) {
           email: delegate_doc.username,
           password: delegate_doc.password,
           image_url: delegate_doc.image_url,
-          branch_list: [{
-            company: site.get_company(req),
-            branch: site.get_branch(req)
-          }],
-          is_delegate: true
+          type: 'delegate'
         }
 
-        user.roles = [{
-          module_name: "public",
-          name: "delegate_admin",
-          en: "Employee Admin",
-          ar: "إدارة الموظفين",
-          permissions: ["delegate_manage"]
-        }]
+        user.roles = [
+          {
+            module_name: "inventory",
+            name: "stores_out_user",
+            en: "Stores Out User",
+            ar: "فاتورة مبيعات للمستخدم",
+            permissions: ["stores_out_add",
+              "stores_out_update",
+              "stores_out_view",
+              "stores_out_search",
+              "stores_out_price",
+              "stores_out_ui",
+              "stores_out_print",
+              "stores_out_export"]
+          }]
 
         user.profile = {
           name: user.name,
@@ -107,18 +112,37 @@ module.exports = function init(site) {
           image_url: user.image_url
         }
 
-        user.ref_info = {
-          id: delegate_doc.id
+        user.store = delegate_doc.store
+
+        if (req.session.user) {
+
+          delegate_doc.company = site.get_company(req)
+          delegate_doc.branch = site.get_branch(req)
+
+          user.branch_list = [{
+            company: site.get_company(req),
+            branch: site.get_branch(req)
+          }]
+
+        } else {
+          delegate_doc.active = true
+
+          user.branch_list = [{
+            company: delegate_doc.company,
+            branch: delegate_doc.branch
+          }]
         }
+
+        user.company = delegate_doc.company
+        user.branch = delegate_doc.branch
 
         $delegate_list.add(delegate_doc, (err, doc) => {
           if (!err) {
             response.done = true
             response.doc = doc
 
-
             if (user.password && user.username) {
-
+              user.ref_info = { id: doc.id }
               site.security.addUser(user, (err, doc1) => {
                 if (!err) {
                   delete user._id
@@ -158,7 +182,6 @@ module.exports = function init(site) {
     let delegate_doc = req.body
     let user = {}
 
-
     user = {
       name: delegate_doc.name,
       mobile: delegate_doc.mobile,
@@ -166,21 +189,24 @@ module.exports = function init(site) {
       email: delegate_doc.username,
       password: delegate_doc.password,
       image_url: delegate_doc.image_url,
-      branch_list: [{
-        company: site.get_company(req),
-        branch: site.get_branch(req)
-      }],
-      is_delegate: true
+      type: 'delegate'
     }
 
-
-    user.roles = [{
-      module_name: "public",
-      name: "delegate_admin",
-      en: "Employee Admin",
-      ar: "إدارة الموظفين",
-      permissions: ["delegate_manage"]
-    }]
+    user.roles = [
+      {
+        module_name: "inventory",
+        name: "stores_out_user",
+        en: "Stores Out User",
+        ar: "فاتورة مبيعات للمستخدم",
+        permissions: ["stores_out_add",
+          "stores_out_update",
+          "stores_out_view",
+          "stores_out_search",
+          "stores_out_price",
+          "stores_out_ui",
+          "stores_out_print",
+          "stores_out_export"]
+      }]
 
     user.profile = {
       name: user.name,
@@ -191,6 +217,17 @@ module.exports = function init(site) {
     user.ref_info = {
       id: delegate_doc.id
     }
+
+    user.store = delegate_doc.store
+
+    user.branch_list = [{
+      company: site.get_company(req),
+      branch: site.get_branch(req)
+    }]
+
+
+    user.company = delegate_doc.company
+    user.branch = delegate_doc.branch
 
     delegate_doc.edit_user_info = site.security.getUserFinger({
       $req: req,
@@ -218,17 +255,18 @@ module.exports = function init(site) {
                 delegate_doc.doc.user_info = {
                   id: doc1.id
                 }
-                $delegate_list.edit(delegate_doc.doc, (err2, doc2) => { res.json(response) })
+                $delegate_list.edit(delegate_doc.doc, (err2, doc2) => {
+                  res.json(response)
+                })
               } else {
                 response.error = err.message
               }
               res.json(response)
             })
           } else if (delegate_doc.doc.user_info && delegate_doc.doc.user_info.id) {
-            user.id = delegate_doc.doc.user_info.id
-            site.security.updateUser(user, (err, user_doc) => { })
+            site.security.updateUser(user, (err, user_doc) => { 
+            })
           }
-
         } else {
           response.error = 'Code Already Exist'
         }
@@ -357,7 +395,7 @@ module.exports = function init(site) {
       delete where.active
     }
 
- 
+
 
     if (where['name']) {
       where['name'] = new RegExp(where['name'], "i");
@@ -389,8 +427,8 @@ module.exports = function init(site) {
       where['twitter'] = new RegExp(where['twitter'], "i");
     }
 
-    if (req.session.user.roles[0].name === 'delegate_admin') {
-      where['id'] = req.session.user.delegate_id;
+    if (req.session.user.type === 'delegate') {
+      where['id'] = req.session.user.ref_info.id;
     }
 
     where['company.id'] = site.get_company(req).id

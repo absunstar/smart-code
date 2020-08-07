@@ -1,7 +1,27 @@
-[{
-    "module_name" : "inventory" ,
-    "name": "stores_out_admin",
-    "en": "Stores Out Admin",
-    "ar": "إدارة إذن صرف / فاتورة مبيعات",
-    "permissions": ["stores_out_manage"]
-}]
+[
+    {
+        "module_name": "inventory",
+        "name": "stores_out_admin",
+        "en": "Stores Out Admin",
+        "ar": "إدارة إذن صرف / فاتورة مبيعات",
+        "permissions": [
+            "stores_out_manage"
+        ]
+    },
+    {
+        "module_name": "inventory",
+        "name": "stores_out_user",
+        "en": "Stores Out User",
+        "ar": "فاتورة مبيعات للمستخدم",
+        "permissions": [
+            "stores_out_add",
+            "stores_out_update",
+            "stores_out_view",
+            "stores_out_search",
+            "stores_out_price",
+            "stores_out_ui",
+            "stores_out_print",
+            "stores_out_export"
+        ]
+    }
+]

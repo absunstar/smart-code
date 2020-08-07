@@ -121,6 +121,9 @@ module.exports = function init(site) {
           id: employee_doc.id
         }
 
+        user.company = employee_doc.company
+        user.branch = employee_doc.branch
+
         $employee_list.add(employee_doc, (err, doc) => {
           if (!err) {
             response.done = true
@@ -201,6 +204,9 @@ module.exports = function init(site) {
     user.ref_info = {
       id: employee_doc.id
     }
+
+    user.company = employee_doc.company
+    user.branch = employee_doc.branch
 
     employee_doc.edit_user_info = site.security.getUserFinger({
       $req: req,

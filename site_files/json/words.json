@@ -305,6 +305,11 @@
         "ar": "الخزينة"
     },
     {
+        "name": "commission",
+        "en": "Commission",
+        "ar": "العمولة"
+    },
+    {
         "name": "auto_barcode_generation",
         "en": "Automatic Barcode Generation",
         "ar": "توليد ألي للباركود"

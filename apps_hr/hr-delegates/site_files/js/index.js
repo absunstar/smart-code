@@ -389,6 +389,28 @@ app.controller("delegate_list", function ($scope, $http, $timeout) {
     )
   };
 
+
+  $scope.loadStores = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/stores/all",
+      data: { select: { id: 1, name: 1, type: 1 } }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.storesList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
   $scope.displaySearchModal = function () {
     $scope.error = '';
     site.showModal('#delegateSearchModal');
@@ -402,6 +424,7 @@ app.controller("delegate_list", function ($scope, $http, $timeout) {
   };
 
   $scope.getDelegateList();
+  $scope.loadStores();
   $scope.getGovList();
   $scope.getClassRoomsList();
   $scope.getCoursesList();

@@ -620,6 +620,10 @@ module.exports = function init(site) {
       where['description'] = new RegExp(where['description'], 'i')
     }
 
+    if (req.session.user.type === 'delegate') {
+      where['delegate.id'] = req.session.user.ref_info.id;
+    }
+
 
     $stores_out.findMany({
       select: req.body.select || {},

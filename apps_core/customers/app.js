@@ -118,6 +118,7 @@ module.exports = function init(site) {
     customers_doc.$req = req
     customers_doc.$res = res
 
+    let user = {};
 
 
     user = {
@@ -178,6 +179,9 @@ module.exports = function init(site) {
         branch: customers_doc.branch
       }]
     }
+
+    user.company = customers_doc.company
+    user.branch = customers_doc.branch
 
 
     $customers.add(customers_doc, (err, doc) => {
@@ -243,6 +247,7 @@ module.exports = function init(site) {
     }
 
     let customers_doc = req.body
+    let user = {}
 
     user = {
       name: customers_doc.name_ar,
@@ -285,6 +290,9 @@ module.exports = function init(site) {
     user.ref_info = {
       id: customers_doc.id
     }
+
+    user.company = customers_doc.company
+    user.branch = customers_doc.branch
 
     user.branch_list = [{
       company: site.get_company(req),

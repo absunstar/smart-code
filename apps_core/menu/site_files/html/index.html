@@ -28,7 +28,9 @@
         </a>
     </div>
 
-    <div id="security_tabs" class="tabs" ng-hide="'##user.type##' == 'customer' || '##user.type##' == 'table'">
+
+
+    <div id="security_tabs" class="tabs">
 
         <div class="tabs-header">
             <a class="tab-link" href="/notifications" x-permissions="nationalities_ui || nationalities_manage">
@@ -819,51 +821,69 @@
 
         </div>
     </div>
-    <div id="main_tabs" class="tabs" ng-hide="'##user.type##' == 'customer'">
+
+
+    <div id="main_tabs" class="tabs">
         <div class="tabs-header">
+            <div class="row"
+                ng-hide="'##user.type##' == 'customer' || '##user.type##' == 'table' || '##user.type##' == 'delegate'">
+                <a class="tab-link" onclick="site.showTabs(event, '#company_tabs')">
+                    <img src="/images/main.png">
+                    <span> ##word.main##</span>
 
+                </a>
 
-            <a class="tab-link" onclick="site.showTabs(event, '#company_tabs')">
-                <img src="/images/main.png">
-                <!--      <span x-features="restaurant"> ##word.restaurant_setting##</span>
-                <span x-features="gym"> ##word.gym_setting##</span>
-                <span x-features="academy"> ##word.academy_setting##</span>
-                <span x-features="pos"> ##word.pos_setting##</span>
-                <span x-features="lawyer"> ##word.lawyer_setting##</span> -->
-                <span> ##word.main##</span>
+                <a class="tab-link" onclick="site.showTabs(event, '#security_tabs')">
+                    <img src="/images/users.png">
+                    <span> ##word.security_system##</span>
+                </a>
+                <a x-features="restaurant || pos || academy || gym" class="tab-link"
+                    onclick="site.showTabs(event, '#inventory_tabs')">
+                    <img src="/images/pic_store2.png">
+                    <span>##word.inventories##</span>
+                </a>
+                <a class="tab-link" onclick="site.showTabs(event, '#accounting_tabs')">
+                    <img src="/images/safe.png">
+                    <span>##word.accounting## </span>
+                </a>
 
+                <a class="tab-link" onclick="site.showTabs(event, '#general_tabs')">
+                    <img src="/images/gov.png">
+                    <span>##word.general_setting##</span>
+                </a>
+                <a class="tab-link" onclick="site.showTabs(event, '#employees_tabs')">
+                    <img src="/images/delegate.png">
+                    <span>##word.employees## </span>
+                </a>
+
+                <a x-features="restaurant || pos || academy || gym" class="tab-link"
+                    onclick="site.showTabs(event, '#reporting_tabs')">
+                    <img src="/images/item_transaction.png">
+                    <span>##word.reports## </span>
+                </a>
+            </div>
+
+            <a class="tab-link" ng-show="'##user.type##' == 'delegate'" href="/stores_out"
+                x-permissions="stores_out_ui || stores_out_manage">
+                <img src="/images/store_out.png">
+                <span>##word.system_stores_out_menus##</span>
             </a>
 
-            <a class="tab-link" onclick="site.showTabs(event, '#security_tabs')">
-                <img src="/images/users.png">
-                <span> ##word.security_system##</span>
-            </a>
-            <a x-features="restaurant || pos || academy || gym" class="tab-link"
-                onclick="site.showTabs(event, '#inventory_tabs')">
-                <img src="/images/pic_store2.png">
-                <span>##word.inventories##</span>
-            </a>
-            <a class="tab-link" onclick="site.showTabs(event, '#accounting_tabs')">
-                <img src="/images/safe.png">
-                <span>##word.accounting## </span>
-            </a>
+            <div class="row" ng-show="'##user.type##' == 'customer'">
+                <div class="col4"></div>
+                <a class="tab-link" href="/customers" x-permissions="customers_ui || customers_manage">
+                    <img src="/images/customer.png">
+                    <span> ##word.customers##</span>
+                </a>
 
-            <a class="tab-link" onclick="site.showTabs(event, '#general_tabs')">
-                <img src="/images/gov.png">
-                <span>##word.general_setting##</span>
-            </a>
-            <a class="tab-link" onclick="site.showTabs(event, '#employees_tabs')">
-                <img src="/images/delegate.png">
-                <span>##word.employees## </span>
-            </a>
-
-            <a x-features="restaurant || pos || academy || gym" class="tab-link"
-                onclick="site.showTabs(event, '#reporting_tabs')">
-                <img src="/images/item_transaction.png">
-                <span>##word.reports## </span>
-            </a>
+                <a class="tab-link" href="/order_customer" x-permissions="order_customer_ui || order_customer_manage">
+                    <img src="/images/order_customer.png">
+                    <span> ##word.order_customer_management##</span>
+                </a>
+            </div>
 
         </div>
 
     </div>
+
 </div>

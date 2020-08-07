@@ -201,7 +201,7 @@ app.controller("employees_advances", function ($scope, $http) {
         select: {
           id: 1,
           name: 1,
-          number: 1,
+          commission: 1,
           currency: 1,
           type: 1
         },

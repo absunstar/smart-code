@@ -326,7 +326,7 @@ app.controller("amounts_in", function ($scope, $http, $timeout) {
         select: {
           id: 1,
           name: 1,
-          number: 1,
+          commission: 1,
           currency: 1,
           type: 1
         },

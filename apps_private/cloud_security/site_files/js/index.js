@@ -379,9 +379,32 @@ app.controller("security", function ($scope, $http, $interval) {
     )
   };
 
+
+  $scope.loadStores = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/stores/all",
+      data: { select: { id: 1, name: 1, type: 1 } }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.storesList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+
+
   $scope.getCompanyList();
-
-
+  $scope.loadStores();
   $scope.loadAll();
   $scope.loadRoles();
   $scope.loadPermissions();
