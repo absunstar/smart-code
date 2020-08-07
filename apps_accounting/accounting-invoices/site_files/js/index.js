@@ -629,7 +629,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
       }
 
       if (account_invoices.currency) {
-        $scope.amount_currency = account_invoices.net_value / account_invoices.currency.ex_rate;
+        $scope.amount_currency = account_invoices.remain_amount / account_invoices.currency.ex_rate;
         $scope.amount_currency = site.toNumber($scope.amount_currency);
         account_invoices.paid_up = $scope.amount_currency;
 

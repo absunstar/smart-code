@@ -7,12 +7,6 @@ module.exports = function init(site) {
     })
   })
 
-
-  site.post({
-    name: '/api/transfer_branch/types/all',
-    path: __dirname + '/site_files/json/types.json'
-  })
-
   site.get({
     name: "transfer_branch",
     path: __dirname + "/site_files/html/index.html",
