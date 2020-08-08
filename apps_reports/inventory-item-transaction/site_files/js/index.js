@@ -23,7 +23,8 @@ app.controller("item_transaction", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name_ar: 1
+          name_ar: 1,
+          name_en: 1
         }
       }
     }).then(
