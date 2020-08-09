@@ -1844,8 +1844,8 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
 
       $scope.error = `##word.err_exist_count_invoice##   ( ${notExistCountList.join('-')} )`;
       return;
-    } else {
 
+    } else {
 
       for (let i = 0; i < _store_out_all.length; i++) {
         setTimeout(() => {
@@ -1880,6 +1880,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
                 )
               } else {
                 $scope.error = '##word.err_stock_item##';
+                break;
               }
 
 
