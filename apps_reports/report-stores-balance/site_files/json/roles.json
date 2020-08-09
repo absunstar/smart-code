@@ -1,0 +1,7 @@
+[{
+    "module_name" : "inventory" ,
+    "name": "report_stores_balance_admin",
+    "en": "Report Items Balance Admin",
+    "ar": "تقرير أرصدة الأصناف",
+    "permissions": ["report_stores_balance_manage"]
+}]

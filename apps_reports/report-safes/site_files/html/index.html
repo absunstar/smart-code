@@ -61,48 +61,7 @@
 
                 </div>
 
-                <div class="row" id="t1">
 
-                    <i-control class="col2 r_green" ng-model="total_incoming" label="##word.total_incoming##"
-                        type="number" disabled></i-control>
-                    <i-control class="col2 r_blue" ng-model="total_incoming_comm" label="##word.total_incoming_comm##"
-                        type="number" disabled></i-control>
-
-                </div>
-
-                <div class="row" id="t1">
-
-                    <i-control class="col2 r_darkRed" ng-model="total_outgoing" label="##word.total_outgoing##"
-                        type="number" disabled></i-control>
-
-                    <i-control class="col2 r_blue" ng-model="total_outgoing_comm" label="##word.total_outgoing_comm##"
-                        type="number" disabled></i-control>
-                </div>
-
-                <!--   <div class="row" id="t1">
-                    <i-control id="item_name" class="col2 r_black" ng-model="net_value"
-                        label="##word.report_safes_total_required##" type="number" disabled></i-control>
-                    <i-control id="item_name" class="col2 r_green" ng-model="paid_up" label="##word.total_paid_up##"
-                        type="number" disabled></i-control>
-                    <i-control id="item_name" class="col2 r_blue" ng-model="remain_amount" label="##word.total_remain##"
-                        type="number" disabled></i-control>
-                </div>
-                <div class="row" id="t1">
-                    <i-control id="item_name" class="col2 r_green" ng-model="cash" label="##word.cash##" type="number"
-                        disabled></i-control>
-                    <i-control id="item_name" class="col2 r_green" ng-model="bank" label="##word.bank##" type="number"
-                        disabled></i-control>
-
-
-                    <i-control id="item_name" class="col2 r_darkRed" ng-model="total_tax"
-                        label="##word.stores_out_total_tax##" type="number" disabled></i-control>
-                    <i-control id="item_name" class="col2 r_darkRed" ng-model="total_discount"
-                        label="##word.stores_out_total_discount##" type="number" disabled></i-control>
-                </div> -->
-
-                <!--      <i-button type="save" x-permissions="report_safes_print || report_safes_manage" label="##word.print##"
-                    ng-click="printAccountInvoive(list)">
-                </i-button> -->
                 <div class="row">
 
                     <table class="table loaded center hover bold" id="t1">
@@ -114,7 +73,7 @@
                             <th x-feature="restaurant"> ##word.order_type## </th>
                             <th> ##word.payment_method## </th>
                             <!--  <th> ##word.total_items_price## </th> -->
-                           <!--  <th> ##word.stores_out_total_tax## </th>
+                            <!--  <th> ##word.stores_out_total_tax## </th>
                             <th> ##word.stores_out_total_discount## </th> -->
                             <th x-feature="restaurant"> ##word.services## </th>
                             <th> ##word.net_value## </th>
@@ -138,7 +97,7 @@
                             <td x-feature="restaurant"> {{c.order_invoices_type.##session.lang##}} </td>
                             <td> {{c.payment_method.##session.lang##}} </td>
                             <!-- <td> {{c.items_price ||0}} </td> -->
-                          <!--   <td class="red"> {{c.total_tax ||0}} </td>
+                            <!--   <td class="red"> {{c.total_tax ||0}} </td>
                             <td class="red"> {{c.total_discount ||0}} </td> -->
                             <td x-feature="restaurant">
                                 <p ng-show="c.service"> ##word.service## </p>
@@ -156,6 +115,24 @@
                             </td>
                         </tr>
                     </table>
+                </div>
+
+                <div class="row" id="t1">
+
+                    <i-control class="col2 r_green" ng-model="total_incoming" label="##word.total_incoming##"
+                        type="number" disabled></i-control>
+                    <i-control class="col2 r_blue" ng-model="total_incoming_comm" label="##word.total_incoming_comm##"
+                        type="number" disabled></i-control>
+
+                </div>
+
+                <div class="row" id="t1">
+
+                    <i-control class="col2 r_darkRed" ng-model="total_outgoing" label="##word.total_outgoing##"
+                        type="number" disabled></i-control>
+
+                    <i-control class="col2 r_blue" ng-model="total_outgoing_comm" label="##word.total_outgoing_comm##"
+                        type="number" disabled></i-control>
                 </div>
 
                 <div class="row">
