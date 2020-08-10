@@ -1845,7 +1845,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
       return;
 
     } else {
-
+      let stopLoop = false;
       for (let i = 0; i < _store_out_all.length; i++) {
         setTimeout(() => {
           let _store_out = _store_out_all[i];
@@ -1854,7 +1854,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
 
             $scope.getStockItems(_store_out.items, callback => {
 
-              if (!callback) {
+              if (!callback && !stopLoop) {
 
                 _store_out.posting = true;
 
@@ -1878,6 +1878,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
                   }
                 )
               } else {
+                stopLoop = true;
                 $scope.error = '##word.err_stock_item##';
               }
 

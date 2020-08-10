@@ -573,6 +573,7 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
     $scope.error = '';
 
     let _transfer_branch_all = transfer_branch_all.reverse();
+    let stopLoop = false;
 
     for (let i = 0; i < _transfer_branch_all.length; i++) {
       let _transfer_branch = _transfer_branch_all[i];
@@ -581,7 +582,7 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
 
         $scope.getStockItems(_transfer_branch.items, callback => {
 
-          if (!callback) {
+          if (!callback && !stopLoop) {
 
             _transfer_branch.transfer = true;
 
@@ -606,6 +607,7 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
               }
             )
           } else {
+            stopLoop = true;
             $scope.error = '##word.err_stock_item##';
           }
 
