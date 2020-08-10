@@ -936,15 +936,15 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
 
                     if (_size.size_units_list && _size.size_units_list.length > 0)
                       _size.size_units_list.forEach((_unit, i) => {
-                        if ((_unit.barcode == $scope.search_item_name || _size.size_en.includes($scope.search_item_name) || _size.size.includes($scope.search_item_name)) && typeof _unit.barcode == 'string') {
+                        if ((_unit.barcode == $scope.item.search_item_name) && typeof _unit.barcode == 'string') {
                           foundUnit = true;
                         }
                         if (_unit.id == _item.main_unit.id)
                           indxUnit = i;
                       });
 
-                    if ((_size.barcode == $scope.search_item_name) || foundUnit) {
-                      _size.name = _item.name;
+                      if ((_size.barcode == $scope.item.search_item_name) || (_size.size_en && _size.size_en.includes($scope.item.search_item_name)) || (_size.size && _size.size.includes($scope.item.search_item_name)) || foundUnit) {
+                        _size.name = _item.name;
                       _size.item_group = _item.item_group;
                       _size.store = $scope.store_in.store;
                       _size.count = 1;

@@ -203,7 +203,7 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
         method: "POST",
         url: "/api/stores_items/all",
         data: {
-          search: $scope.search_item_name
+          search: $scope.item.search_item_name
         }
       }).then(
         function (response) {
@@ -221,7 +221,7 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
 
                     if (_size.size_units_list && _size.size_units_list.length > 0)
                       _size.size_units_list.forEach(_unit => {
-                        if ((_unit.barcode == $scope.search_item_name) && typeof _unit.barcode == 'string') {
+                        if ((_unit.barcode == $scope.item.search_item_name) && typeof _unit.barcode == 'string') {
                           foundUnit = true;
                         }
 
@@ -257,7 +257,7 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
                           }
                         }
                       });
-                    if ((_size.barcode == $scope.search_item_name) || foundUnit) {
+                    if ((_size.barcode == $scope.item.search_item_name) || (_size.size_en && _size.size_en.includes($scope.item.search_item_name)) || (_size.size && _size.size.includes($scope.item.search_item_name)) || foundUnit) {
                       _size.name = _item.name;
                       _size.item_group = _item.item_group;
                       foundSize = $scope.item.sizes.some(_itemSize => _itemSize.barcode == _size.barcode);
@@ -693,7 +693,7 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done){
+        if (response.data.done) {
 
           $scope.categories = response.data.list;
         }

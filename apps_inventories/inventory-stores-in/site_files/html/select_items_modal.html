@@ -10,7 +10,7 @@
             <form>
                 <div class="row">
                     <i-control ng-keydown="getItemsName($event)" id="item_name" class="col3"
-                        ng-model="search_item_name" label="##word.search##" type="text"></i-control>
+                        ng-model="item.search_item_name" label="##word.search##" type="text"></i-control>
                     <i-list class="col4" label="##word.stores_in_item_name##" ng-model="item.name" display="name"
                         items="itemsNameList" ng-change="itemsStoresIn()" ng-search="item_searching"></i-list>
                 </div>

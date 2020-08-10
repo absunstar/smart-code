@@ -101,7 +101,8 @@ module.exports = function init(site) {
 
                         _store.size_units_list.forEach(_unit => {
                           if (_unit.id == unit_id) {
-                            if (_sizes.size.includes(size) || _sizes.size_en.includes(size_en) || _sizes.barcode.includes(barcode))
+                            if ((_sizes.size && _sizes.size.includes(size)) || (_sizes.size_en && _sizes.size_en.includes(size_en)) || (_sizes.barcode && _sizes.barcode.includes(barcode))) {
+
                               i_store_list.push({
                                 name: _doc.name,
                                 item_group: _doc.item_group,
@@ -111,7 +112,7 @@ module.exports = function init(site) {
                                 barcode: _sizes.barcode,
                                 count: _unit.current_count
                               })
-
+                            }
                           }
                         });
 
