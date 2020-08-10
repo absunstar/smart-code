@@ -82,26 +82,27 @@ module.exports = function init(site) {
         let i_store_list = [];
 
         docs.forEach(_doc => {
-          _doc.sizes.forEach(_sizes => {
-            if (_sizes.branches_list && _sizes.branches_list.length > 0)
-              _sizes.branches_list.forEach(_branch => {
-                _branch.stores_list.forEach(_store => {
-                  if (_store.store.id == store_id) {
+          if (_doc.sizes && _doc.sizes.length > 0)
+            _doc.sizes.forEach(_sizes => {
+              if (_sizes.branches_list && _sizes.branches_list.length > 0)
+                _sizes.branches_list.forEach(_branch => {
+                  _branch.stores_list.forEach(_store => {
+                    if (_store.store.id == store_id) {
 
-                    i_store_list.push({
-                      name: _doc.name,
-                      item_group: _doc.item_group,
-                      size: _sizes.size,
-                      barcode: _sizes.barcode,
-                      size_en: _sizes.size_en,
-                      average_cost: _sizes.average_cost,
-                      size_units_list: _sizes.size_units_list,
-                      store_units_list: _store.size_units_list
-                    })
-                  }
+                      i_store_list.push({
+                        name: _doc.name,
+                        item_group: _doc.item_group,
+                        size: _sizes.size,
+                        barcode: _sizes.barcode,
+                        size_en: _sizes.size_en,
+                        average_cost: _sizes.average_cost,
+                        size_units_list: _sizes.size_units_list,
+                        store_units_list: _store.size_units_list
+                      })
+                    }
+                  });
                 });
-              });
-          })
+            })
         })
 
         i_store_list.forEach(_iStore => {
