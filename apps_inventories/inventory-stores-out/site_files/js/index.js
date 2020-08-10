@@ -485,7 +485,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
               else if (_size.discount.type == 'percent')
                 discount = (_size.discount.value || 0) * (_size.price * _size.count) / 100;
 
-              _size.total = (site.toNumber(_size.total) - discount);
+              _size.total = (site.toNumber(_size.total * _size.count) - discount);
             }
 
             $scope.store_out.items.push({
@@ -581,7 +581,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
 
                     if (_size.size_units_list && _size.size_units_list.length > 0)
                       _size.size_units_list.forEach((_unit, i) => {
-                        if ((_unit.barcode == $scope.search_item_name) && typeof _unit.barcode == 'string') {
+                        if ((_unit.barcode == $scope.search_item_name || _size.size_en.includes($scope.search_item_name) || _size.size.includes($scope.search_item_name)) && typeof _unit.barcode == 'string') {
                           foundUnit = true;
                         }
                         if (_unit.id == _item.main_unit.id)
@@ -652,8 +652,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
                   });
               });
 
-              if (!foundSize)
-                $scope.itemsNameList = response.data.list;
+              if (!foundSize) $scope.itemsNameList = response.data.list;
               else if (foundSize) $scope.error = '##word.dublicate_item##';
 
             };
@@ -1880,7 +1879,6 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
                 )
               } else {
                 $scope.error = '##word.err_stock_item##';
-                break;
               }
 
 

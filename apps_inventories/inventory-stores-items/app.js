@@ -740,7 +740,11 @@ module.exports = function init(site) {
       where.$or = []
 
       where.$or.push({
-        'sizes.size': search
+        'sizes.size':  new RegExp(search, 'i')
+      })
+
+      where.$or.push({
+        'sizes.size_en':  new RegExp(search, 'i')
       })
 
       where.$or.push({
@@ -752,7 +756,7 @@ module.exports = function init(site) {
       })
 
       where.$or.push({
-        'name': search
+        'name': new RegExp(search, 'i')
       })
 
       where.$or.push({
@@ -806,41 +810,6 @@ module.exports = function init(site) {
       where['sizes.cost'] = site.toNumber(where.cost)
       delete where.cost
     }
-
-    // / if (where && where.current_countLt && where.current_countGt) {
-    //    data.current_countLt = site.toNumber(where.current_countLt)
-    //    data.current_countGt = site.toNumber(where.current_countGt)
-    //    where['sizes.current_count'] = {
-    //      $lte: where.current_countLt,
-    //      $gte: where.current_countGt
-    //    }
-    //    delete where.current_countLt
-    //    delete where.current_countGt
-    //  }
-
-
-    //  if (where && where.current_countGt && !where.current_countLt) {
-    //    data.current_countGt = site.toNumber(where.current_countGt)
-    //    where['sizes.current_count'] = {
-    //      $gte: where.current_countGt
-    //    }
-
-    //    delete where.current_countGt
-    //  }
-
-    //  if (where && where.current_count) {
-    //    data.current_count = site.toNumber(where.current_count)
-    //    where['sizes.current_count'] = where.current_count
-    //    delete where.current_count
-    //  }
-
-    //  if (where && where.current_countLt && !where.current_countGt) {
-    //    data.current_countLt = site.toNumber(where.current_countLt)
-    //    where['sizes.current_count'] = {
-    //      $lte: where.current_countLt
-    //    }
-    //    delete where.current_countLt
-    //  } 
 
     response.done = false
     $stores_items.findMany({

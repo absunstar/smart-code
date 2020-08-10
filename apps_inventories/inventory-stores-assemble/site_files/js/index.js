@@ -5,6 +5,7 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
     discountes: [],
     taxes: []
   };
+
   $scope.search = {};
   $scope.item = {
     sizes: []

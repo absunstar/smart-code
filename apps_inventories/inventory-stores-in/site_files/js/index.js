@@ -844,9 +844,10 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
               if (_size.discount.type == 'number')
                 discount = (_size.discount.value || 0) * _size.count;
               else if (_size.discount.type == 'percent')
-
                 discount = (_size.discount.value || 0) * (_size.cost * _size.count) / 100;
-              _size.total = (site.toNumber(_size.total) - discount);
+
+
+              _size.total = (site.toNumber(_size.total * _size.count) - discount);
             }
             $scope.store_in.items.push({
               image_url: $scope.item.image_url,
@@ -935,7 +936,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
 
                     if (_size.size_units_list && _size.size_units_list.length > 0)
                       _size.size_units_list.forEach((_unit, i) => {
-                        if ((_unit.barcode == $scope.search_item_name) && typeof _unit.barcode == 'string') {
+                        if ((_unit.barcode == $scope.search_item_name || _size.size_en.includes($scope.search_item_name) || _size.size.includes($scope.search_item_name)) && typeof _unit.barcode == 'string') {
                           foundUnit = true;
                         }
                         if (_unit.id == _item.main_unit.id)
@@ -986,7 +987,6 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
                       foundSize = $scope.item.sizes.some(_itemSize => _itemSize.barcode == _size.barcode);
 
                       if (!foundSize && !foundHold) $scope.item.sizes.unshift(_size);
-                      $scope.calcSize(_size);
                     };
                   });
               });
@@ -1668,6 +1668,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
       }
     )
   };
+
   $scope.loadVendors = function () {
     $scope.error = '';
     $scope.busy = true;

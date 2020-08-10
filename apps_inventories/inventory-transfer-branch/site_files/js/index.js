@@ -607,7 +607,6 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
             )
           } else {
             $scope.error = '##word.err_stock_item##';
-            break;
           }
 
         })

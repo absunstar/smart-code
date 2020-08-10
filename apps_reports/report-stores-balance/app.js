@@ -30,6 +30,9 @@ module.exports = function init(site) {
     let store_id = 0;
     let branch_code = '';
     let unit_id = 0;
+    let size = where.size;
+    let size_en = where.size_en;
+    let barcode = where.barcode;
 
     if (where.store) store_id = where.store.id
     if (where.branch) branch_code = where.branch.code
@@ -97,17 +100,17 @@ module.exports = function init(site) {
                       if (_store.size_units_list && _store.size_units_list.length > 0) {
 
                         _store.size_units_list.forEach(_unit => {
-                          if(_unit.id == unit_id){
-
-                            i_store_list.push({
-                              name: _doc.name,
-                              item_group: _doc.item_group,
-                              size: _sizes.size,
-                              average_cost: _sizes.average_cost,
-                              size_en: _sizes.size_en,
-                              barcode: _sizes.barcode,
-                              count : _unit.current_count
-                            })
+                          if (_unit.id == unit_id) {
+                            if (_sizes.size.includes(size) || _sizes.size_en.includes(size_en) || _sizes.barcode.includes(barcode))
+                              i_store_list.push({
+                                name: _doc.name,
+                                item_group: _doc.item_group,
+                                size: _sizes.size,
+                                average_cost: _sizes.average_cost,
+                                size_en: _sizes.size_en,
+                                barcode: _sizes.barcode,
+                                count: _unit.current_count
+                              })
 
                           }
                         });
