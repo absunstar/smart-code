@@ -101,7 +101,7 @@ module.exports = function init(site) {
 
                         _store.size_units_list.forEach(_unit => {
                           if (_unit.id == unit_id) {
-                            if ((_sizes.size && _sizes.size.includes(size)) || (_sizes.size_en && _sizes.size_en.includes(size_en)) || (_sizes.barcode && _sizes.barcode.includes(barcode))) {
+                            if ((_sizes.size && _sizes.size.contains(size)) || (_sizes.size_en && _sizes.size_en.contains(size_en)) || (_sizes.barcode && _sizes.barcode.contains(barcode))) {
 
                               i_store_list.push({
                                 name: _doc.name,

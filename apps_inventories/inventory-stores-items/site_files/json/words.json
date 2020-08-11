@@ -65,6 +65,11 @@
         "ar": "القيمة المضافة"
     },
     {
+        "name": "not_value_added",
+        "en": "Not subject to value added",
+        "ar": "لا يخضع للقيمة المضافة"
+    },
+    {
         "name": "unit_discount_err",
         "en": "The Discount Is Greater Than The Maximum Discount",
         "ar": "الخصم أكبر من الحد الأقصى للخصم"

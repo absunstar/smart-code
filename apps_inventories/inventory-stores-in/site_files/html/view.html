@@ -136,6 +136,11 @@
                 <td class="center ">{{store_in.total_tax}} $</td>
             </tr>
 
+            <tr ng-show="store_in.total_value_added">
+                <td class="title">##word.total_value_added##</td>
+                <td class="center ">{{store_in.total_value_added}} $</td>
+            </tr>
+
             <tr>
                 <td class="title">##word.stores_in_total_value##</td>
                 <td class="center ">{{store_in.total_value}} $</td>
@@ -158,7 +163,7 @@
         <br>
         <i-image view category="stores_images" class="not-print" ng-model="store_in.image_url"></i-image>
         <br>
-        <i-files view ng-model="store_in.files"></i-files>
+        <i-files view class="not-print" ng-model="store_in.files"></i-files>
     </div>
 
 </div>

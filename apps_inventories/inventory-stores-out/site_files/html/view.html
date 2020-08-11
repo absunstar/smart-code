@@ -140,6 +140,12 @@
                 <td class="center ">{{store_out.total_tax}} $</td>
             </tr>
 
+            <tr ng-show="store_in.total_value_added">
+                <td class="title">##word.total_value_added##</td>
+                <td class="center ">{{store_in.total_value_added}} $</td>
+            </tr>
+
+
             <tr ng-show="store_out.type.id != 5">
                 <td class="title">##word.stores_out_total_value##</td>
                 <td class="center ">{{store_out.total_value}} $</td>

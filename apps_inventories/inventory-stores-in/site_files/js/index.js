@@ -389,10 +389,16 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
     $scope.error = '';
     $timeout(() => {
       obj.total_value = 0;
+      obj.total_value_added = 0;
       obj.net_value = obj.net_value || 0;
 
-      if (obj.items)
-        obj.items.map(itm => obj.total_value += site.toNumber(itm.total));
+      if (obj.items) {
+
+        obj.items.forEach(_itm => {
+          obj.total_value += site.toNumber(_itm.total);
+          obj.total_value_added += _itm.value_added * (_itm.cost * _itm.count) / 100;
+        });
+      };
 
       if (obj.type && obj.type.id !== 4) {
         obj.total_tax = 0;
@@ -839,6 +845,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
           if (_size.count > 0 && !foundSize) {
 
             let discount = 0;
+            let value_added = _size.value_added * (_size.cost * _size.count) / 100;
 
             if (_size.count) {
               if (_size.discount.type == 'number')
@@ -846,13 +853,13 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
               else if (_size.discount.type == 'percent')
                 discount = (_size.discount.value || 0) * (_size.cost * _size.count) / 100;
 
-
-              _size.total = (site.toNumber(_size.total * _size.count) - discount);
+              _size.total = (site.toNumber(_size.total * _size.count) - discount + value_added);
             }
             $scope.store_in.items.push({
               image_url: $scope.item.image_url,
               name: _size.name,
               size: _size.size,
+              value_added: _size.value_added,
               item_group: _size.item_group,
               size_en: _size.size_en,
               work_patch: _size.work_patch,
@@ -883,12 +890,14 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
 
     setTimeout(() => {
       let discount = 0;
+      let value_added = calc_size.value_added * (calc_size.cost * calc_size.count) / 100;
+
       if (calc_size.count) {
         if (calc_size.discount.type == 'number')
           discount = calc_size.discount.value * calc_size.count;
         else if (calc_size.discount.type == 'percent')
           discount = calc_size.discount.value * (calc_size.cost * calc_size.count) / 100;
-        calc_size.total = ((site.toNumber(calc_size.cost) * site.toNumber(calc_size.count)) - discount);
+        calc_size.total = ((site.toNumber(calc_size.cost) * site.toNumber(calc_size.count)) - discount + value_added);
       }
       $scope.calc($scope.store_in);
     }, 100);
@@ -943,11 +952,12 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
                           indxUnit = i;
                       });
 
-                      if ((_size.barcode == $scope.item.search_item_name) || (_size.size_en && _size.size_en.includes($scope.item.search_item_name)) || (_size.size && _size.size.includes($scope.item.search_item_name)) || foundUnit) {
-                        _size.name = _item.name;
+                    if ((_size.barcode == $scope.item.search_item_name) || (_size.size_en && _size.size_en.contains($scope.item.search_item_name)) || (_size.size && _size.size.contains($scope.item.search_item_name)) || foundUnit) {
+                      _size.name = _item.name;
                       _size.item_group = _item.item_group;
                       _size.store = $scope.store_in.store;
                       _size.count = 1;
+                      _size.value_added = _size.not_value_added ? 0 : $scope.defaultSettings.inventory.value_added;
                       _size.unit = _size.size_units_list[indxUnit];
                       _size.discount = _size.size_units_list[indxUnit].discount;
                       _size.average_cost = _size.size_units_list[indxUnit].average_cost;
@@ -1021,6 +1031,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
         _item.item_group = $scope.item.name.item_group;
         _item.store = $scope.store_in.store;
         _item.count = 1;
+        _item.value_added = _item.not_value_added ? 0 : $scope.defaultSettings.inventory.value_added;
 
         let indxUnit = _item.size_units_list.findIndex(_unit => _unit.id == $scope.item.name.main_unit.id);
         if (_item.size_units_list[indxUnit]) {
@@ -1116,6 +1127,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
                     _size.item_group = response.data.list[0].item_group;
                     _size.store = $scope.store_in.store;
                     _size.count = 1;
+                    _size.value_added = _size.not_value_added ? 0 : $scope.defaultSettings.inventory.value_added;
                     _size.unit = _size.size_units_list[indxUnit];
                     _size.discount = _size.size_units_list[indxUnit].discount;
                     _size.average_cost = _size.size_units_list[indxUnit].average_cost;
@@ -1741,6 +1753,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
 
       $scope.store_in.retured_number = i.number;
       $scope.store_in.total_discount = i.return_paid.total_discount;
+      $scope.store_in.total_value_added = i.return_paid.total_value_added;
       $scope.store_in.total_tax = i.return_paid.total_tax;
       $scope.store_in.total_value = i.return_paid.total_value;
       $scope.store_in.net_value = i.return_paid.net_value;

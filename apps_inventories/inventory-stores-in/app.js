@@ -109,6 +109,7 @@ module.exports = function init(site) {
       stores_in_doc.return_paid = {
         items: stores_in_doc.items,
         total_discount: stores_in_doc.total_discount,
+        total_value_added: stores_in_doc.total_value_added,
         total_tax: stores_in_doc.total_tax,
         total_value: stores_in_doc.total_value,
         net_value: stores_in_doc.net_value,
@@ -210,6 +211,7 @@ module.exports = function init(site) {
       stores_in_doc.return_paid = {
         items: stores_in_doc.items,
         total_discount: stores_in_doc.total_discount,
+        total_value_added: stores_in_doc.total_value_added,
         total_tax: stores_in_doc.total_tax,
         total_value: stores_in_doc.total_value,
         net_value: stores_in_doc.net_value,
@@ -678,6 +680,7 @@ module.exports = function init(site) {
                 _doc.return_paid = {
                   items: _doc.items,
                   total_discount: _doc.total_discount,
+                  total_value_added: _doc.total_value_added,
                   total_tax: _doc.total_tax,
                   total_value: _doc.total_value,
                   net_value: _doc.net_value,
@@ -723,9 +726,6 @@ module.exports = function init(site) {
             }
 
 
-
-
-
             if (obj.return) _itemsDoc.count = _itemsDoc.count + _itemsObj.count
 
             else _itemsDoc.count = _itemsDoc.count - _itemsObj.count
@@ -745,16 +745,19 @@ module.exports = function init(site) {
       });
       if (obj.return) {
         doc.return_paid.total_discount = doc.return_paid.total_discount + obj.total_discount
+        doc.return_paid.total_value_added = doc.return_paid.total_value_added + obj.total_value_added
         doc.return_paid.total_tax = doc.return_paid.total_tax + obj.total_tax
         doc.return_paid.total_value = doc.return_paid.total_value + obj.total_value
         doc.return_paid.net_value = doc.return_paid.net_value + obj.net_value
       } else {
         doc.return_paid.total_discount = doc.return_paid.total_discount - obj.total_discount
+        doc.return_paid.total_value_added = doc.return_paid.total_value_added - obj.total_value_added
         doc.return_paid.total_tax = doc.return_paid.total_tax - obj.total_tax
         doc.return_paid.total_value = doc.return_paid.total_value - obj.total_value
         doc.return_paid.net_value = doc.return_paid.net_value - obj.net_value
       }
       doc.return_paid.total_discount = site.toNumber(doc.return_paid.total_discount)
+      doc.return_paid.total_value_added = site.toNumber(doc.return_paid.total_value_added)
       doc.return_paid.total_tax = site.toNumber(doc.return_paid.total_tax)
       doc.return_paid.total_value = site.toNumber(doc.return_paid.total_value)
       doc.return_paid.net_value = site.toNumber(doc.return_paid.net_value)
@@ -815,7 +818,6 @@ module.exports = function init(site) {
           stores_in_doc.$req = req
           stores_in_doc.$res = res
 
-
           stores_in_doc.items.forEach(itm => {
             itm.current_count = site.toNumber(itm.current_count)
             itm.count = site.toNumber(itm.count)
@@ -833,6 +835,7 @@ module.exports = function init(site) {
             stores_in_doc.return_paid = {
               items: stores_in_doc.items,
               total_discount: stores_in_doc.total_discount,
+              total_value_added: stores_in_doc.total_value_added,
               total_tax: stores_in_doc.total_tax,
               total_value: stores_in_doc.total_value,
               net_value: stores_in_doc.net_value,

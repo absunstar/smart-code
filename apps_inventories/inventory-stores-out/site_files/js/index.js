@@ -69,10 +69,17 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
 
     $timeout(() => {
       obj.total_value = 0;
+      obj.total_value_added = 0;
       obj.net_value = obj.net_value || 0;
 
-      if (obj.items)
-        obj.items.map(itm => obj.total_value += site.toNumber(itm.total));
+      if (obj.items) {
+
+        obj.items.forEach(_itm => {
+          obj.total_value += site.toNumber(_itm.total);
+          obj.total_value_added += _itm.value_added * (_itm.price * _itm.count) / 100;
+        });
+      };
+
 
       if (obj.type && obj.type.id !== 6) {
         obj.total_tax = 0;
@@ -478,6 +485,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
           if (_size.count > 0 && !foundSize) {
 
             let discount = 0;
+            let value_added = _size.value_added * (_size.price * _size.count) / 100;
 
             if (_size.count) {
               if (_size.discount.type == 'number')
@@ -485,13 +493,14 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
               else if (_size.discount.type == 'percent')
                 discount = (_size.discount.value || 0) * (_size.price * _size.count) / 100;
 
-              _size.total = (site.toNumber(_size.total * _size.count) - discount);
+              _size.total = (site.toNumber(_size.total * _size.count) - discount + value_added);
             }
 
             $scope.store_out.items.push({
               image_url: $scope.item.image_url,
               name: _size.name,
               size: _size.size,
+              value_added: _size.value_added,
               item_group: _size.item_group,
               work_patch: _size.work_patch,
               validit: _size.validit,
@@ -522,6 +531,8 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
     $scope.error = '';
     setTimeout(() => {
       let discount = 0;
+      let value_added = calc_size.value_added * (calc_size.price * calc_size.count) / 100;
+
       if (calc_size.count) {
         if (calc_size.discount.type == 'number')
           discount = calc_size.discount.value * calc_size.count;
@@ -530,7 +541,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
 
         if ($scope.store_out.type && $scope.store_out.type.id == 5)
           calc_size.total = site.toNumber(calc_size.average_cost) * site.toNumber(calc_size.count);
-        else calc_size.total = ((site.toNumber(calc_size.price) * site.toNumber(calc_size.count)) - discount);
+        else calc_size.total = ((site.toNumber(calc_size.price) * site.toNumber(calc_size.count)) - discount + value_added);
 
 
       }
@@ -588,7 +599,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
                           indxUnit = i;
                       });
 
-                    if ((_size.barcode == $scope.item.search_item_name) || (_size.size_en && _size.size_en.includes($scope.item.search_item_name)) || (_size.size && _size.size.includes($scope.item.search_item_name)) || foundUnit) {
+                    if ((_size.barcode == $scope.item.search_item_name) || (_size.size_en && _size.size_en.contains($scope.item.search_item_name)) || (_size.size && _size.size.contains($scope.item.search_item_name)) || foundUnit) {
                       _size.name = _item.name;
                       _size.item_group = _item.item_group;
                       _size.store = $scope.store_out.store;
@@ -598,6 +609,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
                       _size.price = _size.size_units_list[indxUnit].price;
                       _size.cost = _size.size_units_list[indxUnit].cost;
                       _size.count = 1;
+                      _size.value_added = _size.not_value_added ? 0 : $scope.defaultSettings.inventory.value_added;
 
                       if ($scope.store_out.type && $scope.store_out.type.id == 5) _size.total = _size.count * _size.average_cost;
                       else _size.total = _size.count * _size.price;
@@ -680,6 +692,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         _item.item_group = $scope.item.name.item_group;
         _item.store = $scope.store_out.store;
         _item.count = 1;
+        _item.value_added = _item.not_value_added ? 0 : $scope.defaultSettings.inventory.value_added;
 
         let indxUnit = _item.size_units_list.findIndex(_unit => _unit.id == $scope.item.name.main_unit.id);
         if (_item.size_units_list[indxUnit]) {
@@ -797,6 +810,8 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
                     _size.price = _size.size_units_list[indxUnit].price;
                     _size.cost = _size.size_units_list[indxUnit].cost;
                     _size.count = 1;
+                    _size.value_added = _size.not_value_added ? 0 : $scope.defaultSettings.inventory.value_added;
+
                     foundSize = $scope.store_out.items.some(_itemSize => _itemSize.barcode == _size.barcode);
                     if (_size.store_units_list && _size.store_units_list.length > 0) {
                       _size.store_units_list.forEach(_ul => {
@@ -1879,15 +1894,14 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
                 )
               } else {
                 stopLoop = true;
-                $scope.error = '##word.err_stock_item##';
               }
-
 
             })
           };
         }, 100 * 1 * i);
 
       };
+      if (stopLoop) $scope.error = '##word.err_stock_item##';
     }
 
   };
@@ -2034,6 +2048,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
       $scope.store_out.retured_number = i.number;
       $scope.store_out.delegate = i.delegate || {};
       $scope.store_out.total_discount = i.return_paid.total_discount;
+      $scope.store_out.total_value_added = i.return_paid.total_value_added;
       $scope.store_out.total_tax = i.return_paid.total_tax;
       $scope.store_out.total_value = i.return_paid.total_value;
       $scope.store_out.net_value = i.return_paid.net_value;

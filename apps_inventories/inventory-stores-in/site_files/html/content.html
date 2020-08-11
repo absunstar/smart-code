@@ -68,6 +68,7 @@
                             <th>##word.quantity##</th>
                             <th>##word.price##</th>
                             <th>##word.discount##</th>
+                            <th>##word.value_added##</th>
                             <!--                             <th>##word.maximum_discount##</th>
  -->
                             <th>##word.stores_in_item_total##</th>
@@ -115,6 +116,11 @@
                                 <b class="" ng-show="itm.discount.type =='number'">$</b>
                                 <b class="" ng-show="itm.discount.type =='percent'">%</b>
                             </td> -->
+
+                            <td>
+                                <i-control ng-change="calcSize(itm)" type="number" ng-model="itm.value_added">
+                                </i-control>
+                            </td>
 
                             <td class="green"> <br> {{itm.total}}</td>
 
@@ -235,9 +241,14 @@
                 <i-control class="col2" ng-model="store_in.total_tax" type="number" ng-disabled="store_in.type.id !== 4"
                     ng-change="calcReturn(store_in)" label="##word.stores_in_total_tax##"></i-control>
 
+                <i-control class="col2" ng-model="store_in.total_value_added" type="number" disabled
+                    label="##word.total_value_added##"></i-control>
+
                 <i-control class="col2" ng-model="store_in.total_value" type="number" disabled
                     label="##word.stores_in_total_value##"></i-control>
             </div>
+
+
 
             <div class="row"
                 ng-show="(store_in.type.id== 1 || store_in.type.id== 4) && defaultSettings.accounting.create_invoice_auto">

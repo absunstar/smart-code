@@ -315,6 +315,11 @@
         "ar": "توليد ألي للباركود"
     },
     {
+        "name": "total_value_added",
+        "en": "Total Value Added",
+        "ar": "إجمالي القيمة المضافة"
+    },
+    {
         "name": "err_exist_count",
         "en": "Must Be Item Count",
         "ar": "يجب وجود عدد للصنف"

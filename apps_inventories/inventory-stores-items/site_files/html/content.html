@@ -175,29 +175,60 @@
                                     </td>
 
                                     <td>
-                                        <div class="row center">
-                                            <i-checkbox label="##word.stores_items_complex##"
-                                                ng-model="itm.item_complex">
-                                            </i-checkbox>
+                                        <div class="row">
+                                            <div class="col5">
+
+                                                <div class="row center">
+                                                    <i-checkbox label="##word.stores_items_complex##"
+                                                        ng-model="itm.item_complex">
+                                                    </i-checkbox>
+                                                </div>
+
+                                                <div class="row center">
+                                                    <i-button ng-show="itm.item_complex == true" type="view"
+                                                        label="##word.complex_items##"
+                                                        ng-click="showComplexItemsView(itm)">
+                                                    </i-button>
+                                                </div>
+
+                                                <div class="row center">
+                                                    <i-button type="view" label="##word.branches_balances##"
+                                                        ng-click="branchesBalances(itm)">
+                                                    </i-button>
+                                                </div>
+
+                                                <div class="row center">
+                                                    <i-button type="view" label="##word.units##"
+                                                        ng-click="viewUnits(itm)">
+                                                    </i-button>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="col2"></div>
+
+                                            <div class="col5">
+                                                <div class="row center">
+                                                    <i-control ng-show="itm.work_patch" type="number"
+                                                        label="##word.validit##" ng-model="itm.validit">
+                                                    </i-control>
+                                                </div>
+                                                <div class="row center">
+
+                                                    <i-checkbox label="##word.work_patch##" ng-model="itm.work_patch">
+                                                    </i-checkbox>
+                                                </div>
+
+                                                <div class="row center">
+
+                                                    <i-checkbox label="##word.not_value_added##" ng-model="itm.not_value_added">
+                                                    </i-checkbox>
+                                                </div>
+
+                                            </div>
                                         </div>
 
-                                        <div class="row center">
-                                            <i-button ng-show="itm.item_complex == true" type="view"
-                                                label="##word.complex_items##" ng-click="showComplexItemsView(itm)">
-                                            </i-button>
-                                        </div>
 
-                                        <div class="row center">
-                                            <i-button type="view" label="##word.branches_balances##"
-                                                ng-click="branchesBalances(itm)">
-                                            </i-button>
-                                        </div>
-
-                                        <div class="row center">
-                                            <i-button type="view" label="##word.units##" ng-click="viewUnits(itm)">
-                                            </i-button>
-                                            </i-button>
-                                        </div>
 
                                         <div class="row center">
                                             <i-button type="delete" ng-click="deleteSize(itm)"></i-button>

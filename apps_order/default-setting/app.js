@@ -60,7 +60,8 @@ module.exports = function init(site) {
           },
           accounting: {},
           inventory: {
-            overdraft : true
+            value_added: 0,
+            overdraft: true
           },
           general_Settings: {}
 

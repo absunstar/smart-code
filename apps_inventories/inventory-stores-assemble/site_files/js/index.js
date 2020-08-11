@@ -276,7 +276,7 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
                           indxUnit = i;
                       });
 
-                    if ((_size.barcode == $scope.item.search_item_name) || (_size.size_en && _size.size_en.includes($scope.item.search_item_name)) || (_size.size && _size.size.includes($scope.item.search_item_name)) || foundUnit) {
+                    if ((_size.barcode == $scope.item.search_item_name) || (_size.size_en && _size.size_en.contains($scope.item.search_item_name)) || (_size.size && _size.size.contains($scope.item.search_item_name)) || foundUnit) {
                       _size.name = _item.name;
                       _size.item_group = _item.item_group;
                       _size.store = $scope.store_assemble.store;
