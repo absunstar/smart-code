@@ -396,7 +396,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
 
         obj.items.forEach(_itm => {
           obj.total_value += site.toNumber(_itm.total);
-          obj.total_value_added += _itm.value_added * (_itm.cost * _itm.count) / 100;
+          obj.total_value_added += site.toNumber(_itm.value_added) * (_itm.cost * _itm.count) / 100;
         });
       };
 
@@ -845,6 +845,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
           if (_size.count > 0 && !foundSize) {
 
             let discount = 0;
+            _size.value_added = site.toNumber( _size.value_added);
             let value_added = _size.value_added * (_size.cost * _size.count) / 100;
 
             if (_size.count) {
@@ -890,6 +891,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
 
     setTimeout(() => {
       let discount = 0;
+      calc_size.value_added = site.toNumber(calc_size.value_added);
       let value_added = calc_size.value_added * (calc_size.cost * calc_size.count) / 100;
 
       if (calc_size.count) {
@@ -957,7 +959,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
                       _size.item_group = _item.item_group;
                       _size.store = $scope.store_in.store;
                       _size.count = 1;
-                      _size.value_added = _size.not_value_added ? 0 : $scope.defaultSettings.inventory.value_added;
+                      _size.value_added = _size.not_value_added ? 0 : $scope.defaultSettings.inventory.value_added || 0;
                       _size.unit = _size.size_units_list[indxUnit];
                       _size.discount = _size.size_units_list[indxUnit].discount;
                       _size.average_cost = _size.size_units_list[indxUnit].average_cost;
@@ -1127,7 +1129,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
                     _size.item_group = response.data.list[0].item_group;
                     _size.store = $scope.store_in.store;
                     _size.count = 1;
-                    _size.value_added = _size.not_value_added ? 0 : $scope.defaultSettings.inventory.value_added;
+                    _size.value_added = _size.not_value_added ? 0 : $scope.defaultSettings.inventory.value_added || 0;
                     _size.unit = _size.size_units_list[indxUnit];
                     _size.discount = _size.size_units_list[indxUnit].discount;
                     _size.average_cost = _size.size_units_list[indxUnit].average_cost;
