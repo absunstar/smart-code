@@ -740,11 +740,11 @@ module.exports = function init(site) {
       where.$or = []
 
       where.$or.push({
-        'sizes.size':  new RegExp(search, 'i')
+        'sizes.size': new RegExp(search, 'i')
       })
 
       where.$or.push({
-        'sizes.size_en':  new RegExp(search, 'i')
+        'sizes.size_en': new RegExp(search, 'i')
       })
 
       where.$or.push({
@@ -949,28 +949,29 @@ module.exports = function init(site) {
           //   _units_main.name = unit.name
           // });
 
+          if (_docs.sizes && _docs.sizes.length > 0)
+            _docs.sizes.forEach(_sizes => {
+              _sizes.start_count = 0
+              _sizes.current_count = 0
+              _sizes.total_buy_price = 0
+              _sizes.total_buy_count = 0
+              _sizes.total_sell_price = 0
+              _sizes.total_sell_count = 0
+              _sizes.branches_list = []
 
-          _docs.sizes.forEach(_sizes => {
-            _sizes.start_count = 0
-            _sizes.current_count = 0
-            _sizes.total_buy_price = 0
-            _sizes.total_buy_count = 0
-            _sizes.total_sell_price = 0
-            _sizes.total_sell_count = 0
-            _sizes.branches_list = []
-
-            _sizes.size_units_list.forEach(_units_size => {
-              // _units_size.id = unit.id
-              // _units_size.name = unit.name
-              _units_size.current_count = 0
-              _units_size.start_count = 0
-              _units_size.total_buy_price = 0
-              _units_size.total_buy_count = 0
-              _units_size.total_sell_price = 0
-              _units_size.total_sell_count = 0
-              _units_size.average_cost = _units_size.cost
+              if (_sizes.size_units_list && _sizes.size_units_list.length > 0)
+                _sizes.size_units_list.forEach(_units_size => {
+                  // _units_size.id = unit.id
+                  // _units_size.name = unit.name
+                  _units_size.current_count = 0
+                  _units_size.start_count = 0
+                  _units_size.total_buy_price = 0
+                  _units_size.total_buy_count = 0
+                  _units_size.total_sell_price = 0
+                  _units_size.total_sell_count = 0
+                  _units_size.average_cost = _units_size.cost
+                });
             });
-          });
 
           if (!_docs.item_group || (_docs.item_group && !_docs.item_group.id)) {
             $stores_items.delete({
@@ -1500,7 +1501,7 @@ module.exports = function init(site) {
                           if (branchesList.stores_list && branchesList.stores_list.length > 0) {
 
                             branchesList.stores_list.forEach(storesList => {
-                              
+
                               if (storesList.size_units_list && storesList.size_units_list.length > 0) {
                                 if (storesList.store && store.id == storesList.store.id) {
 
