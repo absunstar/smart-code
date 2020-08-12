@@ -1444,7 +1444,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
             });
 
           };
-        }, 100 * 1 * i);
+        }, 1000 * i);
 
       }
     }

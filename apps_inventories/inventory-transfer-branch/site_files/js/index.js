@@ -575,42 +575,46 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
     let stopLoop = false;
 
     for (let i = 0; i < _transfer_branch_all.length; i++) {
-      let _transfer_branch = _transfer_branch_all[i];
+      setTimeout(() => {
 
-      if (!_transfer_branch.transfer) {
+        let _transfer_branch = _transfer_branch_all[i];
 
-        $scope.getStockItems(_transfer_branch.items, callback => {
+        if (!_transfer_branch.transfer) {
 
-          if (!callback && !stopLoop) {
+          $scope.getStockItems(_transfer_branch.items, callback => {
 
-            _transfer_branch.transfer = true;
+            if (!callback && !stopLoop) {
 
-            $http({
-              method: "POST",
-              url: "/api/transfer_branch/confirm",
-              data: _transfer_branch
-            }).then(
-              function (response) {
-                if (response.data.done) {
+              _transfer_branch.transfer = true;
 
-                } else {
-                  $scope.error = '##word.error##';
-                  if (response.data.error.like('*OverDraft Not*')) {
-                    $scope.error = "##word.overdraft_not_active##"
-                    _transfer_branch.transfer = false;
+              $http({
+                method: "POST",
+                url: "/api/transfer_branch/confirm",
+                data: _transfer_branch
+              }).then(
+                function (response) {
+                  if (response.data.done) {
+
+                  } else {
+                    $scope.error = '##word.error##';
+                    if (response.data.error.like('*OverDraft Not*')) {
+                      $scope.error = "##word.overdraft_not_active##"
+                      _transfer_branch.transfer = false;
+                    }
                   }
+                },
+                function (err) {
+                  console.log(err);
                 }
-              },
-              function (err) {
-                console.log(err);
-              }
-            )
-          } else {
-            stopLoop = true;
-          }
+              )
+            } else {
+              stopLoop = true;
+            }
 
-        })
-      };
+          })
+        };
+      }, 1000 * i);
+
     }
 
     if (stopLoop) $scope.error = '##word.err_stock_item##';

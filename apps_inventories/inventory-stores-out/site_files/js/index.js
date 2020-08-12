@@ -1862,41 +1862,45 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
     } else {
       let stopLoop = false;
       for (let i = 0; i < _store_out_all.length; i++) {
-        let _store_out = _store_out_all[i];
 
-        if (!_store_out.posting) {
+        setTimeout(() => {
 
-          $scope.getStockItems(_store_out.items, callback => {
+          let _store_out = _store_out_all[i];
 
-            if (!callback && !stopLoop) {
+          if (!_store_out.posting) {
 
-              _store_out.posting = true;
+            $scope.getStockItems(_store_out.items, callback => {
 
-              $http({
-                method: "POST",
-                url: "/api/stores_out/posting",
-                data: _store_out
-              }).then(
-                function (response) {
-                  if (response.data.done) {
-                  } else {
-                    $scope.error = '##word.error##';
-                    if (response.data.error.like('*OverDraft Not*')) {
-                      $scope.error = "##word.overdraft_not_active##"
-                      _store_out.posting = false;
+              if (!callback && !stopLoop) {
+
+                _store_out.posting = true;
+
+                $http({
+                  method: "POST",
+                  url: "/api/stores_out/posting",
+                  data: _store_out
+                }).then(
+                  function (response) {
+                    if (response.data.done) {
+                    } else {
+                      $scope.error = '##word.error##';
+                      if (response.data.error.like('*OverDraft Not*')) {
+                        $scope.error = "##word.overdraft_not_active##"
+                        _store_out.posting = false;
+                      }
                     }
+                  },
+                  function (err) {
+                    console.log(err);
                   }
-                },
-                function (err) {
-                  console.log(err);
-                }
-              )
-            } else {
-              stopLoop = true;
-            }
+                )
+              } else {
+                stopLoop = true;
+              }
 
-          })
-        };
+            })
+          };
+        }, 1000 * i);
 
       };
       if (stopLoop) $scope.error = '##word.err_stock_item##';

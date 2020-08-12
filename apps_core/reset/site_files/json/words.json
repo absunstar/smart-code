@@ -25,6 +25,11 @@
         "ar": "فك ترحيل المبيعات"
     },
     {
+        "name": "reset_unpost_assemble",
+        "en": "Un Post Assemble",
+        "ar": "فك ترحيل التجميع"
+    },
+    {
         "name": "reset_stores_stock",
         "en": "Un Confirm Stock",
         "ar": "فك إعتماد الجرد"

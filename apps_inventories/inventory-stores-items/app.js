@@ -12,7 +12,11 @@ module.exports = function init(site) {
   function add_balance_list_action(obj) {
     // console.log(new Date().getTime() + ' : add_balance_list_action()')
     add_balance_list_busy = true
-    let total_unit = obj.count * obj.unit.convert;
+    let total_unit = 0
+
+    if (obj.unit)
+      total_unit = obj.count * obj.unit.convert;
+
     let totalCost = obj.cost * site.toNumber(obj.count);
     let obj_branch = {
       name_ar: obj.branch.name_ar,
@@ -531,7 +535,7 @@ module.exports = function init(site) {
     stores_items_doc.sizes.forEach(_size => {
       _size.size_units_list.forEach(_size_unit => {
         let indx = stores_items_doc.units_list.findIndex(_unit1 => _unit1.id == _size_unit.id);
-        if (stores_items_doc.units_list[indx].convert)
+        if (stores_items_doc.units_list[indx] && stores_items_doc.units_list[indx].convert)
           _size_unit.convert = stores_items_doc.units_list[indx].convert
 
         if (!_size_unit.average_cost)

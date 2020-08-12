@@ -92,6 +92,21 @@ app.controller("reset", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.unPostAssemble = function () {
+    $scope.error = '';
+    $http({
+      method: "POST",
+      url: "/api/stores_assemble/un_post"
+    }).then(
+      function (response) {
+        if (response.data.done) { }
+      },
+      function (err) {
+        $scope.error = err;
+      }
+    )
+  };
+
   $scope.unPostStoreTransfer = function () {
     $scope.error = '';
     $http({

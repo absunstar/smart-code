@@ -707,48 +707,50 @@ module.exports = function init(site) {
 
   site.returnStoresOut = function (obj, res) {
     $stores_out.findOne({ number: obj.retured_number }, (err, doc) => {
+      if (doc && doc.return_paid) {
 
-      obj.items.forEach(_itemsObj => {
-        doc.return_paid.items.forEach(_itemsDoc => {
+        obj.items.forEach(_itemsObj => {
+          doc.return_paid.items.forEach(_itemsDoc => {
 
-          if (_itemsObj.barcode == _itemsDoc.barcode && _itemsObj.size == _itemsDoc.size) {
-            if (obj.return) _itemsDoc.count = _itemsDoc.count + _itemsObj.count
+            if (_itemsObj.barcode == _itemsDoc.barcode && _itemsObj.size == _itemsDoc.size) {
+              if (obj.return) _itemsDoc.count = _itemsDoc.count + _itemsObj.count
 
-            else _itemsDoc.count = _itemsDoc.count - _itemsObj.count
+              else _itemsDoc.count = _itemsDoc.count - _itemsObj.count
 
-            let discount = 0;
-            if (_itemsDoc.discount) {
-              if (_itemsDoc.discount.type == 'number')
-                discount = _itemsDoc.discount.value * _itemsDoc.count;
-              else if (_itemsDoc.discount.type == 'percent')
-                discount = _itemsDoc.discount.value * (_itemsDoc.price * _itemsDoc.count) / 100;
+              let discount = 0;
+              if (_itemsDoc.discount) {
+                if (_itemsDoc.discount.type == 'number')
+                  discount = _itemsDoc.discount.value * _itemsDoc.count;
+                else if (_itemsDoc.discount.type == 'percent')
+                  discount = _itemsDoc.discount.value * (_itemsDoc.price * _itemsDoc.count) / 100;
+              }
+
+              _itemsDoc.total = (_itemsDoc.count * _itemsDoc.price) - discount;
+
             }
-
-            _itemsDoc.total = (_itemsDoc.count * _itemsDoc.price) - discount;
-
-          }
+          });
         });
-      });
-      if (obj.return) {
-        doc.return_paid.total_value_added = doc.return_paid.total_value_added + obj.total_value_added
-        doc.return_paid.total_discount = doc.return_paid.total_discount + obj.total_discount
-        doc.return_paid.total_tax = doc.return_paid.total_tax + obj.total_tax
-        doc.return_paid.total_value = doc.return_paid.total_value + obj.total_value
-        doc.return_paid.net_value = doc.return_paid.net_value + obj.net_value
-      } else {
-        doc.return_paid.total_value_added = doc.return_paid.total_value_added - obj.total_value_added
-        doc.return_paid.total_discount = doc.return_paid.total_discount - obj.total_discount
-        doc.return_paid.total_tax = doc.return_paid.total_tax - obj.total_tax
-        doc.return_paid.total_value = doc.return_paid.total_value - obj.total_value
-        doc.return_paid.net_value = doc.return_paid.net_value - obj.net_value
-      }
-      doc.return_paid.total_value_added = site.toNumber(doc.return_paid.total_value_added)
-      doc.return_paid.total_discount = site.toNumber(doc.return_paid.total_discount)
-      doc.return_paid.total_tax = site.toNumber(doc.return_paid.total_tax)
-      doc.return_paid.total_value = site.toNumber(doc.return_paid.total_value)
-      doc.return_paid.net_value = site.toNumber(doc.return_paid.net_value)
+        if (obj.return) {
+          doc.return_paid.total_value_added = doc.return_paid.total_value_added + obj.total_value_added
+          doc.return_paid.total_discount = doc.return_paid.total_discount + obj.total_discount
+          doc.return_paid.total_tax = doc.return_paid.total_tax + obj.total_tax
+          doc.return_paid.total_value = doc.return_paid.total_value + obj.total_value
+          doc.return_paid.net_value = doc.return_paid.net_value + obj.net_value
+        } else {
+          doc.return_paid.total_value_added = doc.return_paid.total_value_added - obj.total_value_added
+          doc.return_paid.total_discount = doc.return_paid.total_discount - obj.total_discount
+          doc.return_paid.total_tax = doc.return_paid.total_tax - obj.total_tax
+          doc.return_paid.total_value = doc.return_paid.total_value - obj.total_value
+          doc.return_paid.net_value = doc.return_paid.net_value - obj.net_value
+        }
+        doc.return_paid.total_value_added = site.toNumber(doc.return_paid.total_value_added)
+        doc.return_paid.total_discount = site.toNumber(doc.return_paid.total_discount)
+        doc.return_paid.total_tax = site.toNumber(doc.return_paid.total_tax)
+        doc.return_paid.total_value = site.toNumber(doc.return_paid.total_value)
+        doc.return_paid.net_value = site.toNumber(doc.return_paid.net_value)
 
-      $stores_out.update(doc);
+        $stores_out.update(doc);
+      }
     });
   };
 

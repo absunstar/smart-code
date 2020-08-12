@@ -536,5 +536,32 @@ module.exports = function init(site) {
   })
 
 
+  site.post("/api/stores_assemble/un_post", (req, res) => {
+    let response = {}
+    response.done = false
+    if (!req.session.user) {
+      res.json(response)
+      return;
+    }
+
+    $stores_assemble.findMany({
+      select: req.body.select || {},
+      where: { 'company.id': site.get_company(req).id },
+      sort: req.body.sort || {
+        id: -1
+      },
+    }, (err, docs) => {
+      if (!err) {
+        if (docs && docs.length > 0) {
+          docs.forEach(stores_assemble_doc => {
+            stores_assemble_doc.posting = false;
+            $stores_assemble.update(stores_assemble_doc);
+          });
+        }
+      }
+      response.done = true
+      res.json(response)
+    })
+  })
 
 }

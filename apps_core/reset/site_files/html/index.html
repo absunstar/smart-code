@@ -48,6 +48,15 @@
                 </div>
                 <br><br><br>
 
+                <div class="row" ng-hide="reset_unpost_assemble">
+
+                    <i-button x-permissions="reset_unpost_assemble || reset_manage"
+                        label="##word.reset_unpost_assemble##"
+                        ng-click="unPostAssemble();reset_unpost_assemble = true ">
+                    </i-button>
+                </div>
+                <br><br><br>
+
                 <div class="row" ng-hide="reset_unpost_store_transfer">
                     <i-button x-permissions="reset_unpost_store_transfer || reset_manage"
                         label="##word.reset_unpost_store_transfer##"
