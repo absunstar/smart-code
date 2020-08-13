@@ -1,4 +1,4 @@
-<div id="reportStoreBalanceSearchModal" class="modal" fixed>
+<div id="reportStoreMovementSearchModal" class="modal" fixed>
     <div class="modal-content">
         <div class="modal-header">
             <span class="close">&times;</span>
@@ -8,7 +8,26 @@
             <div class="row">
                 <form class="form">
 
-              <!--       <div class="row">
+
+                    <div class="row">
+
+                        <i-control class="col2" ng-model="search.count" label="##word.count##" type="number">
+                        </i-control>
+                        <i-list class="col3" ng-model="search.unit" ng-search="_search.$search_unit" v="r"
+                            label="##word.unit##" items="unitsList">
+                        </i-list>
+
+                        <div class="col1"></div>
+                        <i-radio class="col2" ng-model="search.type" ng-value="stagnant_items" group="type"
+                            label="##word.stagnant_items##"></i-radio>
+
+                        <i-radio class="col2" ng-model="search.type" group="type" ng-value="best_seller"
+                            label="##word.best_seller##">
+                        </i-radio>
+                    </div>
+
+
+                    <!-- <div class="row">
 
                         <i-list class="col3" ng-model="search.branch" items="branchesList"
                             display="name_##session.lang##" v="r" ng-change="loadStores(search.branch)"
@@ -24,18 +43,18 @@
                         </i-list>
 
                     </div>
- -->
-                    <div class="row">
-                    <!--     <i-control class="col2" ng-model="search.name" label="##word.stores_items_name##" type="text">
-                        </i-control> -->
+
+                   <div class="row">
+                         <i-control class="col2" ng-model="search.name" label="##word.stores_items_name##" type="text">
+                        </i-control>
                         <i-control class="col2" ng-model="search.size" label="##word.stores_items_sizes##" type="text">
                         </i-control>
                         <i-control class="col2" ng-model="search.size_en" label="##word.size_en##" type="text">
                         </i-control>
 
-                        <i-control class="col2" ng-model="search.barcode" label="##word.item_code##" type="text">
+                        <i-con trol class="col2" ng-model="search.barcode" label="##word.item_code##" type="text">
                         </i-control>
-                    </div>
+                    </div> -->
                 </form>
             </div>
 
@@ -44,7 +63,7 @@
                 <i-button type="search" ng-click="searchAll()" label="##word.search##">
                 </i-button>
                 <i-button type="clear" ng-click="search = {}" label="##word.empty_search##"></i-button>
-                <i-button type="close" onclick="hideModal('#reportStoreBalanceSearchModal')" label="##word.close##">
+                <i-button type="close" onclick="hideModal('#reportStoreMovementSearchModal')" label="##word.close##">
                 </i-button>
             </div>
         </div>

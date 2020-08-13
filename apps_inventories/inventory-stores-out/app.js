@@ -150,6 +150,7 @@ module.exports = function init(site) {
                   name: doc.shift.name
                 }
                 if (doc.type.id == 6) {
+                  _itm.returnSell = true
                   _itm.type = 'sum'
                   _itm.count = (-Math.abs(_itm.count))
                   _itm.transaction_type = 'out'
@@ -291,6 +292,7 @@ module.exports = function init(site) {
                 if (result.doc.posting) {
                   _itm.current_status = 'sold'
                   if (result.doc.type.id == 6) {
+                    _itm.returnSell = true
                     _itm.type = 'sum'
                     _itm.count = (-Math.abs(_itm.count))
                     _itm.transaction_type = 'out'
@@ -307,7 +309,6 @@ module.exports = function init(site) {
                   }
 
 
-
                 } else {
                   _itm.current_status = 'r_sold'
                   if (result.doc.type.id == 6) {
@@ -317,15 +318,16 @@ module.exports = function init(site) {
                   } else {
                     if (result.doc.type.id == 5) {
                       _itm.set_average = 'sum_average'
+                    } else {
+                      _itm.returnSell = true
                     }
-
                     _itm.type = 'sum'
                     _itm.count = (-Math.abs(_itm.count))
                     _itm.transaction_type = 'out'
                     site.call('item_transaction - items', Object.assign({}, _itm))
                   }
                 }
-                _itm.count = Math.abs(_itm.count) // amr
+                _itm.count = Math.abs(_itm.count)
                 site.call('[transfer_branch][stores_items][add_balance]', _itm)
 
               })
@@ -400,6 +402,8 @@ module.exports = function init(site) {
                   } else {
                     if (result.doc.type.id == 5)
                       _itm.set_average = 'sum_average'
+                    else _itm.returnSell = true
+
                     _itm.type = 'sum'
                     _itm.transaction_type = 'out'
                     site.call('item_transaction - items', Object.assign({}, _itm))

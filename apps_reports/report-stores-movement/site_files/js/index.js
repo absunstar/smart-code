@@ -1,24 +1,27 @@
-app.controller("report_stores_balance", function ($scope, $http, $timeout) {
+app.controller("report_stores_movement", function ($scope, $http, $timeout) {
   $scope._search = {};
 
-  $scope.report_stores_balance = {};
+  $scope.report_stores_movement = {};
 
-  $scope.getReportStoreBalanceList = function (where) {
+  $scope.getReportStoreMovementList = function (where) {
     $scope.busy = true;
     $scope.list = [];
 
     $http({
       method: "POST",
-      url: "/api/report_stores_balance/all",
+      url: "/api/report_stores_movement/all",
       data: {
         where: where
       }
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done) {
+
+        if (response.data.done && response.data.doc) {
           $scope.count = response.data.doc.length;
           $scope.list = response.data.doc;
+
+          $scope.total_average_cost = site.toNumber($scope.total_average_cost)
         }
       },
       function (err) {
@@ -58,7 +61,7 @@ app.controller("report_stores_balance", function ($scope, $http, $timeout) {
     obj_print.data.push(
       {
         type: 'title',
-        value: 'Total StoreBalance Items'
+        value: 'Total StoreMovement Items'
       }, {
       type: 'space'
     }, {
@@ -282,11 +285,25 @@ app.controller("report_stores_balance", function ($scope, $http, $timeout) {
 
   $scope.searchAll = function () {
 
+    const v = site.validated('#reportStoreMovementSearchModal');
+    if (!v.ok) {
+      $scope.error = v.messages[0].ar;
+      return;
+    }
     $scope._search = {};
-    $scope.getReportStoreBalanceList($scope.search);
+    $scope.getReportStoreMovementList($scope.search);
+    site.hideModal('#reportStoreMovementSearchModal');
+    $scope.search = {
+      unit: $scope.search.unit
+    }
+  };
 
-    site.hideModal('#reportStoreBalanceSearchModal');
-    $scope.search = {}
+  $scope.showSearchAll = function () {
+    $scope.search = {
+      type: 'stagnant_items'
+
+    };
+    site.showModal('#reportStoreMovementSearchModal');
   };
 
 

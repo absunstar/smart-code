@@ -79,8 +79,7 @@
                             <th> ##word.stores_items_name## </th>
                             <th> ##word.stores_size## </th>
                             <th> ##word.barcode## </th>
-                            <th> ##word.average_cost## </th>
-                            <th> ##word.balance## </th>
+                            <th> ##word.branches_balances## </th>
 
                         </tr>
 
@@ -91,10 +90,49 @@
                                 <p>{{c.size}}</p>
                                 <p>{{c.size_en}}</p>
                             </td>
-                            <td > {{c.barcode}} </td>
-                            <td class="red"> {{c.average_cost}} </td>
-                            <td class="blue"> {{c.count}} </td>
-                          
+                            <td> {{c.barcode}} </td>
+                            <td>
+                                <table class="table center hover bold">
+                                    <tr>
+                                        <th> ##word.companies_branch## </th>
+                                        <th> ##word.stores_in_item_store_balance## </th>
+                                    </tr>
+                                    <tr ng-repeat="b in c.branches_list">
+                                        <td> {{b.name_ar}} </td>
+                                        <td>
+                                            <table class="table center hover bold">
+                                                <tr>
+                                                    <th> ##word.store## </th>
+                                                    <th> ##word.units## </th>
+                                                </tr>
+                                                <tr ng-repeat="s in b.stores_list">
+                                                    <td> {{s.store.name}} </td>
+                                                    <td>
+                                                        <table class="table center hover bold">
+                                                            <tr>
+                                                                <th> ##word.unit## </th>
+                                                                <th> ##word.balance## </th>
+                                                            </tr>
+                                                            <tr ng-repeat="u in s.size_units_list">
+
+                                                                <td>
+                                                                    <p>{{u.name}}</p>
+                                                                    <p>{{u.barcode}}</p>
+                                                                </td>
+
+                                                                <td>
+                                                                    {{u.current_count}}
+                                                                </td>
+
+                                                            </tr>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
                         </tr>
                     </table>
                 </div>

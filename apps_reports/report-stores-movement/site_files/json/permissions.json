@@ -1,0 +1,7 @@
+[
+    { "module_name" : "accounting" , "screen_name" : "report-stores-movement" , "name":"report_stores_movement_manage" , "en":"Manage" , "ar":"إدارة"},
+    { "module_name" : "accounting" , "screen_name" : "report-stores-movement" , "name":"report_stores_movement_search" , "en":"Search" , "ar":"بحث"},
+    { "module_name" : "accounting" , "screen_name" : "report-stores-movement" , "name":"report_stores_movement_export" , "en":"Export" , "ar":"تصدير"},
+    { "module_name" : "accounting" , "screen_name" : "report-stores-movement" , "name":"report_stores_movement_print" , "en":"Print" , "ar":"طباعة"},
+    { "module_name" : "accounting" , "screen_name" : "report-stores-movement" , "name":"report_stores_movement_ui" , "en":"UI" , "ar":"الواجهة الرسومية"}
+]

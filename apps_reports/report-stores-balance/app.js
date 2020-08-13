@@ -59,22 +59,22 @@ module.exports = function init(site) {
       delete where['barcode']
     }
 
-    if (where['branch'] && where['branch'].code) {
-      where['sizes.branches_list.code'] = where['branch'].code
-      delete where['branch']
-    }
+    // if (where['branch'] && where['branch'].code) {
+    //   where['sizes.branches_list.code'] = where['branch'].code
+    //   delete where['branch']
+    // }
 
-    if (where['store'] && where['store'].id) {
-      where['sizes.branches_list.stores_list.store.id'] = where['store'].id
-      delete where['store']
-    }
+    // if (where['store'] && where['store'].id) {
+    //   where['sizes.branches_list.stores_list.store.id'] = where['store'].id
+    //   delete where['store']
+    // }
 
-    delete where['unit']
+    // delete where['unit']
 
-    if (where['item_group'] && where['item_group'].id) {
-      where['item_group.id'] = where['item_group'].id
-      delete where['item_group']
-    }
+    // if (where['item_group'] && where['item_group'].id) {
+    //   where['item_group.id'] = where['item_group'].id
+    //   delete where['item_group']
+    // }
 
     $stores_items.findMany({
       select: req.body.select || {},
@@ -90,37 +90,40 @@ module.exports = function init(site) {
         docs.forEach(_doc => {
           _doc.sizes.forEach(_sizes => {
             if (_sizes.branches_list && _sizes.branches_list.length > 0) {
+              if ((_sizes.size && _sizes.size.contains(size)) || (_sizes.size_en && _sizes.size_en.contains(size_en)) || (_sizes.barcode && _sizes.barcode.contains(barcode))) {
+             
+                _sizes.name = _doc.name
+                _sizes.item_group = _doc.item_group
+                i_store_list.push(_sizes)
+                // _sizes.branches_list.forEach(_branch => {
 
-              _sizes.branches_list.forEach(_branch => {
+                //   if (_branch.code == branch_code) {
+                //     _branch.stores_list.forEach(_store => {
+                //       if (_store.store.id == store_id) {
 
-                if (_branch.code == branch_code) {
-                  _branch.stores_list.forEach(_store => {
-                    if (_store.store.id == store_id) {
+                //         if (_store.size_units_list && _store.size_units_list.length > 0) {
 
-                      if (_store.size_units_list && _store.size_units_list.length > 0) {
+                //           _store.size_units_list.forEach(_unit => {
+                //             if (_unit.id == unit_id) {
 
-                        _store.size_units_list.forEach(_unit => {
-                          if (_unit.id == unit_id) {
-                            if ((_sizes.size && _sizes.size.contains(size)) || (_sizes.size_en && _sizes.size_en.contains(size_en)) || (_sizes.barcode && _sizes.barcode.contains(barcode))) {
+                //               i_store_list.push({
+                //                 name: _doc.name,
+                //                 item_group: _doc.item_group,
+                //                 size: _sizes.size,
+                //                 average_cost: _sizes.average_cost,
+                //                 size_en: _sizes.size_en,
+                //                 barcode: _sizes.barcode,
+                //                 count: _unit.current_count
+                //               })
+                //             }
+                //           });
 
-                              i_store_list.push({
-                                name: _doc.name,
-                                item_group: _doc.item_group,
-                                size: _sizes.size,
-                                average_cost: _sizes.average_cost,
-                                size_en: _sizes.size_en,
-                                barcode: _sizes.barcode,
-                                count: _unit.current_count
-                              })
-                            }
-                          }
-                        });
-
-                      }
-                    }
-                  });
-                }
-              });
+                //         }
+                //       }
+                //     });
+                //   }
+                // });
+              }
 
             }
           })
