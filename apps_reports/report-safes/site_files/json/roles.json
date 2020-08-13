@@ -3,5 +3,5 @@
     "name": "report_safes_admin",
     "en": "Report Safes Admin",
     "ar": "إدارة تقرير الخزينة",
-    "permissions": ["reat_safes_manage"]
+    "permissions": ["report_safes_manage"]
 }]

@@ -28,7 +28,7 @@
 
     {"name" : "vendors_official_documents" , "en" : "Official Documents" , "ar" : "الوثائق الرسمية"},
     {"name" : "vendors_tax_informations" , "en" : "Tax Information" , "ar" : "البيانات الضريبية"},
-    {"name" : "vendors_tax_regstration_number" , "en" : "Tax Registration Number" , "ar" : "رقم التسجيل الضريبي"},
+    {"name" : "vendors_tax_identification_number" , "en" : "Tax Identification Number" , "ar" : "رقم التعريف الضريبي"},
     {"name" : "vendors_tax_card_number" , "en" : "Tax Card Number" , "ar" : "رقم البطاقة الضريبية"},
     {"name" : "vendors_tax_office_code" , "en" : "Tax Office Code" , "ar" : "كود المأمورية"},
     {"name" : "vendors_tax_office_name" , "en" : "Tax Office Name" , "ar" : " إسم المأمورية"},

@@ -139,30 +139,30 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
       setTimeout(() => {
         let _account_invoices = _account_invoices_all[i];
 
-      if (!_account_invoices.posting) {
+        if (!_account_invoices.posting) {
 
-        _account_invoices.posting = true;
+          _account_invoices.posting = true;
 
-        $http({
-          method: "POST",
-          url: "/api/account_invoices/posting",
-          data: _account_invoices
-        }).then(
-          function (response) {
-            if (response.data.done) {
+          $http({
+            method: "POST",
+            url: "/api/account_invoices/posting",
+            data: _account_invoices
+          }).then(
+            function (response) {
+              if (response.data.done) {
 
-            } else {
-              $scope.error = '##word.error##';
+              } else {
+                $scope.error = '##word.error##';
+              }
+            },
+            function (err) {
+              console.log(err);
             }
-          },
-          function (err) {
-            console.log(err);
-          }
-        )
+          )
 
-      };
+        };
       }, 100 * 1 * i);
-      
+
     };
 
   };
@@ -537,6 +537,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
       }
     )
   };
+
   $scope.selectOrderInvoices = function (item) {
     $scope.error = '';
     $scope.account_invoices.current_book_list = [];
@@ -544,6 +545,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
     $scope.account_invoices.tenant = item.tenant;
     $scope.account_invoices.invoice_type = item.type;
     $scope.account_invoices.vendor = item.vendor;
+    $scope.account_invoices.total_value_added = item.total_value_added;
     $scope.account_invoices.delivery_employee = item.delivery_employee;
     $scope.account_invoices.table = item.table;
     $scope.account_invoices.services_price = item.services_price;

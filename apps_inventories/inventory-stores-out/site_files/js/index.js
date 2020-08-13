@@ -69,11 +69,11 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
 
     $timeout(() => {
       obj.total_value = 0;
-      obj.total_value_added = 0;
       obj.net_value = obj.net_value || 0;
 
       if (obj.items) {
 
+        obj.total_value_added = 0;
         obj.items.forEach(_itm => {
           obj.total_value += site.toNumber(_itm.total);
           obj.total_value_added += site.toNumber(_itm.value_added) * (_itm.price * _itm.count) / 100;
@@ -351,6 +351,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
                 date: response.data.doc.date,
                 invoice_id: response.data.doc.id,
                 customer: response.data.doc.customer,
+                total_value_added: response.data.doc.total_value_added,
                 invoice_type: response.data.doc.type,
                 currency: response.data.doc.currency,
                 shift: response.data.doc.shift,
@@ -1233,6 +1234,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
           invoice_id: store_out.id,
           invoice_type: store_out.type,
           customer: store_out.customer,
+          total_value_added: store_out.total_value_added,
           shift: shift,
           net_value: store_out.net_value,
           paid_up: 0,

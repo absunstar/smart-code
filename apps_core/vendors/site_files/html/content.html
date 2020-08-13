@@ -57,7 +57,8 @@
                     <legend> ##word.vendors_id_inforamation## </legend>
                     <div class="row">
                         <i-list class="col3" label="##word.vendors_nationality##" ng-model="vendor.nationality"
-                            items="nationalityList" display="name_##session.lang##" ng-search="_search.$$vendornationality"></i-list>
+                            items="nationalityList" display="name_##session.lang##"
+                            ng-search="_search.$$vendornationality"></i-list>
 
                         <i-control class="col3" label="##word.vendors_id_number##" ng-model="vendor.id_number">
                         </i-control>
@@ -81,8 +82,8 @@
                 <fieldset>
                     <legend> ##word.vendors_tax_informations## </legend>
                     <div class="row">
-                        <i-control class="col3" label="##word.vendors_tax_regstration_number##"
-                            ng-model="vendor.tax_regstration_number"></i-control>
+                        <i-control class="col3" label="##word.vendors_tax_identification_number##"
+                            ng-model="vendor.tax_identification_number"></i-control>
 
                         <i-control class="col3" label="##word.vendors_tax_card_number##"
                             ng-model="vendor.tax_card_number"></i-control>
@@ -128,8 +129,8 @@
 
                     <div class="row">
                         <i-list class="col3" label="##word.vendors_commerical_nationality##"
-                            ng-model="vendor.commerical_nationality" items="nationalityList" display="name_##session.lang##"
-                            ng-search="_search.$$commericalNationality"></i-list>
+                            ng-model="vendor.commerical_nationality" items="nationalityList"
+                            display="name_##session.lang##" ng-search="_search.$$commericalNationality"></i-list>
 
                         <i-control class="col3" label="##word.vendors_financial_system##"
                             ng-model="vendor.financial_system"></i-control>
@@ -167,7 +168,8 @@
                             ng-model="openBalance.initial_balance"></i-control>
 
                         <i-list class="col4" label="##word.vendors_currency_name##" ng-model="openBalance.currency"
-                            items="currencyList" display="name_##session.lang##" ng-search="_search.$$currency_name"></i-list>
+                            items="currencyList" display="name_##session.lang##" ng-search="_search.$$currency_name">
+                        </i-list>
 
                         <i-radio class="col2" group="bt_{{$index}}" label="##word.vendors_debit##"
                             ng-model="openBalance.balance_type" ng-value="debit"></i-radio>
@@ -187,7 +189,8 @@
                     </div>
 
                     <div class="row">
-                        <i-control class="col6" label="##word.vendors_notes_arabic##" ng-model="openBalance.notes_##session.lang##">
+                        <i-control class="col6" label="##word.vendors_notes_arabic##"
+                            ng-model="openBalance.notes_##session.lang##">
                         </i-control>
 
                         <i-control class="col6" label="##word.vendors_notes_english##" ng-model="openBalance.notes_en">
@@ -207,7 +210,8 @@
                             ng-model="vendor.period_maturity_purchases"></i-control>
 
                         <i-list class="col3" label="##word.customers_prof_account##" ng-model="vendor.gl_account"
-                            items="guideAccountsList" display="code" display2="name_##session.lang##" class="center" space="--">
+                            items="guideAccountsList" display="code" display2="name_##session.lang##" class="center"
+                            space="--">
                         </i-list>
 
 
@@ -259,8 +263,8 @@
                             display="name" ng-change="getCityList(vendor.gov)" ng-search="_search.$$govNameContact">
                         </i-list>
 
-                        <i-list class="col4" label="##word.city##" ng-model="vendor.city"
-                            items="cityList" ng-change="getAreaList(vendor.city)" display="name"
+                        <i-list class="col4" label="##word.city##" ng-model="vendor.city" items="cityList"
+                            ng-change="getAreaList(vendor.city)" display="name"
                             ng-search="_search.$vendor.$city_search"></i-list>
                         <i-list class="col4" label="##word.area##" ng-model="vendor.area" items="areaList"
                             display="name" ng-search="_search.$vendor.$area_search"></i-list>
@@ -428,10 +432,12 @@
 
                         <div class="row">
                             <i-list class="col6" label="##word.vendors_company_name##" ng-model="dealCompany.company"
-                                items="companyList" display="name_##session.lang##" ng-search="_search.$$dealCompanyName"></i-list>
+                                items="companyList" display="name_##session.lang##"
+                                ng-search="_search.$$dealCompanyName"></i-list>
 
                             <i-list class="col6" label="##word.vendors_branch_name##" ng-model="dealCompany.branch"
-                                items="dealCompany.company.branch_list" ng-search="_search.$$dealCompanyBranchName"></i-list>
+                                items="dealCompany.company.branch_list" ng-search="_search.$$dealCompanyBranchName">
+                            </i-list>
 
                         </div>
 

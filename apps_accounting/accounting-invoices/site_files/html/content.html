@@ -67,11 +67,13 @@
                                     <td class="center blue"> {{item.code || item.number}} </td>
                                     <td class="center"
                                         ng-show="account_invoices.source_type.id == 2 ||account_invoices.source_type.id == 3 || account_invoices.source_type.id == 4">
-                                        {{item.customer.name_##session.lang##}} <b ng-show="!item.customer.name_##session.lang##">
+                                        {{item.customer.name_##session.lang##}} <b
+                                            ng-show="!item.customer.name_##session.lang##">
                                             ##word.not_found##</b> </td>
 
                                     <td class="center" ng-show="account_invoices.source_type.id == 1">
-                                        {{item.vendor.name_##session.lang##}} <b ng-show="!item.vendor.name_##session.lang##">
+                                        {{item.vendor.name_##session.lang##}} <b
+                                            ng-show="!item.vendor.name_##session.lang##">
                                             ##word.not_found##</b> </td>
 
                                     <td class="center" ng-show="account_invoices.source_type.id == 4">
@@ -283,13 +285,20 @@
                                 ng-change="calc(account_invoices)" label="##word.stores_out_total_tax##" class="col3"
                                 type="number">
                             </i-control>
+
                             <i-control ng-show="account_invoices.total_discount" ng-change="calc(account_invoices)"
                                 ng-disabled="account_invoices.source_type.id == 1 || account_invoices.source_type.id == 2 || account_invoices.source_type.id == 4"
                                 ng-model="account_invoices.total_discount" label="##word.stores_out_total_discount##"
                                 class="col3" type="number"></i-control>
+
+                            <i-control ng-show="account_invoices.total_value_added" disabled
+                                ng-model="account_invoices.total_value_added"
+                                label="##word.total_value_added##" class="col3" type="number"></i-control>
+
                             <i-control ng-show="account_invoices.price_delivery_service"
                                 ng-change="calc(account_invoices)" ng-model="account_invoices.price_delivery_service"
                                 label="##word.price_delivery_service##" class="col3" type="number"></i-control>
+
                             <i-control class="col3" ng-show="account_invoices.service"
                                 ng-change="calc(account_invoices)" ng-model="account_invoices.service"
                                 label="##word.service##" type="number"></i-control>

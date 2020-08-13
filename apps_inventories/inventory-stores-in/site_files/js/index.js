@@ -31,6 +31,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
           date: new Date(),
           invoice_id: store_in.id,
           vendor: store_in.vendor,
+          total_value_added: store_in.total_value_added,
           invoice_type: store_in.type,
           shift: shift,
           net_value: store_in.net_value,
@@ -389,11 +390,11 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
     $scope.error = '';
     $timeout(() => {
       obj.total_value = 0;
-      obj.total_value_added = 0;
       obj.net_value = obj.net_value || 0;
-
+      
       if (obj.items) {
-
+        
+        obj.total_value_added = 0;
         obj.items.forEach(_itm => {
           obj.total_value += site.toNumber(_itm.total);
           obj.total_value_added += site.toNumber(_itm.value_added) * (_itm.cost * _itm.count) / 100;
@@ -750,6 +751,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
                 invoice_id: response.data.doc.id,
                 invoice_type: response.data.doc.type,
                 vendor: response.data.doc.vendor,
+                total_value_added: response.data.doc.total_value_added,
                 shift: response.data.doc.shift,
                 net_value: response.data.doc.net_value,
                 currency: response.data.doc.currency,
@@ -845,7 +847,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
           if (_size.count > 0 && !foundSize) {
 
             let discount = 0;
-            _size.value_added = site.toNumber( _size.value_added);
+            _size.value_added = site.toNumber(_size.value_added);
             let value_added = _size.value_added * (_size.cost * _size.count) / 100;
 
             if (_size.count) {
@@ -1694,7 +1696,8 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
           id: 1,
           name_ar: 1,
           name_en: 1,
-          balance: 1
+          balance: 1,
+          tax_identification_number: 1
         }
       }
     }).then(
