@@ -495,8 +495,18 @@ module.exports = function init(site) {
 
 
   site.on('holding items', function (obj) {
+
+    let where = {}
+    let barcodes = obj.items.map(_item => _item.barcode)
+
+    where['company.id'] = obj.company.id
+
+    where['sizes.barcode'] = {
+      $in: barcodes
+    }
+
     $stores_items.findMany({
-      'company.id': obj.company.id
+      where: where
     }, (err, docs) => {
       docs.forEach(_doc => {
 
@@ -1499,6 +1509,9 @@ module.exports = function init(site) {
     let cbObj = {
       value: false
     }
+
+
+    where['company.id'] = site.get_company(req).id
 
     where['sizes.barcode'] = {
       $in: barcodes

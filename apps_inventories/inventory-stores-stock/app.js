@@ -283,7 +283,8 @@ module.exports = function init(site) {
 
               });
           });
-
+          result.doc.hold = false
+          site.call('holding items', Object.assign({}, result.doc))
 
         } else {
           response.error = err.message
