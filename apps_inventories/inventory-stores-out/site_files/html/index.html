@@ -52,8 +52,9 @@
                     <i-button x-permissions="stores_out_search || stores_out_manage" type="search"
                         label="##word.search_all##" onclick="site.showModal('#StoresOutSearchModal')"></i-button>
 
-                    <i-button class="left" label="##word.posting_all##" x-permissions="stores_out_post_all"
-                        ng-click="postingAll(list)"></i-button>
+                    <i-button class="left" ng-hide="stores_out_post_all" label="##word.posting_all##"
+                        x-permissions="stores_out_post_all" ng-click="postingAll(list); stores_out_post_all = true">
+                    </i-button>
 
 
                     <!--       <i-button class="left" type="save" x-permissions="stores_out_post_all" label="##word.post_all##"

@@ -45,8 +45,9 @@
                     <!-- <i-button class="left" ng-click="handelTransfer()"></i-button> -->
 
 
-                    <i-button class="left" x-permissions="transfer_branch_confirm_all" label="إعتماد الكل"
-                        ng-click="confirmAll(list)"></i-button>
+                    <i-button class="left" ng-hide="transfer_branch_confirm_all"
+                        x-permissions="transfer_branch_confirm_all" label="إعتماد الكل"
+                        ng-click="confirmAll(list);transfer_branch_confirm_all = true"></i-button>
 
                     <h2 class="bold red text-center"> {{error}}</h2>
                     <h3 class="bold text-center"> ##word.count## : {{count}}</h3>
