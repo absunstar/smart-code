@@ -1534,14 +1534,14 @@ module.exports = function init(site) {
       }, (err, docs) => {
         if (!err) {
           if (docs && docs.length > 0) {
-            let foundUnit = false
-            let foundStores = false
-            let foundBranch = false
-
+            
             docs.forEach(_item => {
               if (_item.sizes && _item.sizes.length > 0) {
 
                 _item.sizes.forEach(currentSize => {
+                  let foundUnit = false
+                  let foundStores = false
+                  let foundBranch = false
                   itemsCb.forEach(cbSize => {
 
                     if (currentSize.barcode == cbSize.barcode && currentSize.size == cbSize.size) {
@@ -1591,14 +1591,16 @@ module.exports = function init(site) {
                     }
                   })
 
+                  if (!foundStores) cbObj.value = true
+                  else if (!foundUnit) cbObj.value = true
+                  else if (!foundBranch) cbObj.value = true
+                  
                 })
 
 
               }
             })
-            if (!foundStores) cbObj.value = true
-            else if (!foundUnit) cbObj.value = true
-            else if (!foundBranch) cbObj.value = true
+          
           }
 
         } else {
