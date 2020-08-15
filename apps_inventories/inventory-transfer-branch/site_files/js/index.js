@@ -579,7 +579,7 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
 
         let _transfer_branch = _transfer_branch_all[i];
 
-        if (!_transfer_branch.transfer) {
+        if (!_transfer_branch.transfer && _transfer_branch.branch_to.code == '##session.branch.code##') {
 
           $scope.getStockItems(_transfer_branch.items, callback => {
 

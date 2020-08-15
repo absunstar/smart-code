@@ -32,7 +32,8 @@
                             </i-list>
 
                             <i-control ng-keydown="loadOrderInvoicesType($event)" id="item_name" class="col3"
-                                ng-model="search_order" label="##word.search##" type="text"></i-control>
+                                ng-hide="account_invoices.source_type.id == 8" ng-model="search_order"
+                                label="##word.search##" type="text"></i-control>
                         </div>
 
                         <div class="row" ng-show="orderInvoicesTypeList.length > 0">
@@ -275,6 +276,15 @@
 
                         </div>
 
+
+                        <div class="row">
+                            <i-control ng-keydown="getCustomerList($event)" id="service" class="col3"
+                                ng-model="search_customer" label="##word.search##" type="text"></i-control>
+                            <i-list ng-search="_search.$customer" class="col4" display="name_##session.lang##" v="r"
+                                ng-model="account_invoices.customer" label="##word.customer##" items="customersList">
+                            </i-list>
+                        </div>
+
                         <br>
                         <br>
 
@@ -292,8 +302,8 @@
                                 class="col3" type="number"></i-control>
 
                             <i-control ng-show="account_invoices.total_value_added" disabled
-                                ng-model="account_invoices.total_value_added"
-                                label="##word.total_value_added##" class="col3" type="number"></i-control>
+                                ng-model="account_invoices.total_value_added" label="##word.total_value_added##"
+                                class="col3" type="number"></i-control>
 
                             <i-control ng-show="account_invoices.price_delivery_service"
                                 ng-change="calc(account_invoices)" ng-model="account_invoices.price_delivery_service"
@@ -306,7 +316,7 @@
 
                         </div>
 
-                        <div class="row" ng-show="account_invoices.invoice_id">
+                        <div class="row" ng-show="account_invoices.invoice_id || account_invoices.source_type.id == 8">
                             <i-list help-id="" ng-search="_search.$payment_method_search" class="col2"
                                 label="##word.payment_method##" ng-model="account_invoices.payment_method"
                                 items="paymentMethodList" ng-change="getSafeByType(account_invoices)"
@@ -331,12 +341,20 @@
                             <i-control class="col2" disabled ng-show="account_invoices.net_value"
                                 ng-model="account_invoices.net_value" label="##word.net_value##" type="number">
                             </i-control>
+
                             <i-control class="col2" disabled ng-model="amount_currency" label="##word.amount_currency##"
                                 type="number">
                             </i-control>
 
                             <i-control class="col2" ng-show="account_invoices.net_value"
                                 ng-model="account_invoices.paid_up" label="##word.paid_up##" type="number">
+                            </i-control>
+                        </div>
+
+                        <div class="row" ng-show="account_invoices.source_type.id == 8">
+
+                            <i-control class="col2" ng-model="account_invoices.paid_up" label="##word.paid_up##"
+                                type="number">
                             </i-control>
                         </div>
 

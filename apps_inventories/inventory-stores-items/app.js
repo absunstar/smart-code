@@ -1521,8 +1521,13 @@ module.exports = function init(site) {
       }, (err, docs) => {
         if (!err) {
           if (docs && docs.length > 0) {
+            let foundUnit = false
+            let foundStores = false
+            let foundBranch = false
+
             docs.forEach(_item => {
-              if (_item.sizes && _item.sizes.length > 0)
+              if (_item.sizes && _item.sizes.length > 0) {
+
                 _item.sizes.forEach(currentSize => {
                   itemsCb.forEach(cbSize => {
 
@@ -1530,32 +1535,38 @@ module.exports = function init(site) {
 
                       if (currentSize.branches_list && currentSize.branches_list.length > 0) {
                         currentSize.branches_list.forEach(branchesList => {
-
                           if (branchesList.stores_list && branchesList.stores_list.length > 0) {
+                            if (branchesList.code == req.body.branch.code) {
+                              foundBranch = true
+                              branchesList.stores_list.forEach(storesList => {
 
-                            branchesList.stores_list.forEach(storesList => {
+                                if (storesList.size_units_list && storesList.size_units_list.length > 0) {
+                                  if (storesList.store && store.id == storesList.store.id) {
+                                    foundStores = true
 
-                              if (storesList.size_units_list && storesList.size_units_list.length > 0) {
-                                if (storesList.store && store.id == storesList.store.id) {
+                                    storesList.size_units_list.forEach(sizeUnits => {
 
-                                  storesList.size_units_list.forEach(sizeUnits => {
+                                      if (cbSize.unit && sizeUnits.id == cbSize.unit.id) {
+                                        foundUnit = true
 
-                                    if (cbSize.unit && sizeUnits.id == cbSize.unit.id) {
+                                        let over = site.toNumber(sizeUnits.current_count) - site.toNumber(cbSize.count)
 
-                                      let over = site.toNumber(sizeUnits.current_count) - site.toNumber(cbSize.count)
-
-                                      if (over < 0) {
-                                        cbObj.value = true
+                                        if (over < 0) {
+                                          cbObj.value = true
+                                        }
                                       }
-                                    }
 
-                                  })
+                                    })
+                                  }
+
+                                } else {
+                                  cbObj.value = true
                                 }
-                              } else {
-                                cbObj.value = true
-                              }
 
-                            })
+                              })
+                            }
+
+
                           } else {
                             cbObj.value = true
                           }
@@ -1563,14 +1574,19 @@ module.exports = function init(site) {
                       } else {
                         cbObj.value = true
                       }
+
                     }
                   })
 
                 })
+
+
+              }
             })
-
+            if (!foundStores) cbObj.value = true
+            else if (!foundUnit) cbObj.value = true
+            else if (!foundBranch) cbObj.value = true
           }
-
 
         } else {
           console.log(err)

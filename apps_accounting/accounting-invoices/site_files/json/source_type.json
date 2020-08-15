@@ -33,5 +33,10 @@
         "id": 7,
         "en": "Form Course Booking",
         "ar": "إستمارة حجز كورس"
+    },
+    {
+        "id": 8,
+        "en": "Recharge Customer Balance",
+        "ar": "شحن رصيد عميل"
     }
 ]

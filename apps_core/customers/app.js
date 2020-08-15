@@ -61,6 +61,28 @@ module.exports = function init(site) {
 
 
 
+
+
+  site.on('[customer][account_invoice][balance]', function (obj) {
+    $customers.findOne({ id: obj.id }, (err, doc) => {
+
+
+      if (obj.sum) {
+
+        doc.balance = (doc.balance || 0) + obj.paid_up
+
+      } else if (obj.minus) {
+
+        doc.balance = (doc.balance || 0) - obj.paid_up
+
+      }
+
+
+      $customers.update(doc);
+    });
+  });
+
+
   site.on('[company][created]', doc => {
 
     let name_ar = "عميل إفتراضي"
