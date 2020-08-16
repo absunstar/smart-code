@@ -10,6 +10,11 @@
         "ar": "بحث"
     },
     {
+        "name": "cannot_exceeded_customer",
+        "en": "The customer's credit limit cannot be exceeded",
+        "ar": "لا يمكن تجاوز الحد الإئتماني للعميل"
+    },
+    {
         "name": "err_patch_current_count",
         "en": "There is a higher amount of balance",
         "ar": "يوجد كمية أكبر من الرصيد"

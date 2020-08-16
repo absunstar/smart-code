@@ -357,13 +357,18 @@ app.controller("stores_dismantle", function ($scope, $http, $timeout) {
         _item.name = $scope.item.name.name;
         _item.item_group = $scope.item.name.item_group;
         _item.store = $scope.store_dismantle.store;
-        let indxUnit = _item.size_units_list.findIndex(_unit => _unit.id == $scope.item.name.main_unit.id);
-        _item.unit = _item.size_units_list[indxUnit];
-        _item.count = 1;
-        _item.discount = _item.size_units_list[indxUnit].discount;
-        _item.average_cost = _item.size_units_list[indxUnit].average_cost;
-        _item.cost = _item.size_units_list[indxUnit].cost;
-        _item.price = _item.size_units_list[indxUnit].price;
+        let indxUnit = 0;
+        if (_item.size_units_list && _item.size_units_list.length > 0) {
+
+          indxUnit = _item.size_units_list.findIndex(_unit => _unit.id == $scope.item.name.main_unit.id);
+          _item.unit = _item.size_units_list[indxUnit];
+          _item.count = 1;
+          _item.discount = _item.size_units_list[indxUnit].discount;
+          _item.average_cost = _item.size_units_list[indxUnit].average_cost;
+          _item.cost = _item.size_units_list[indxUnit].cost;
+          _item.price = _item.size_units_list[indxUnit].price;
+        }
+
         if (_item.branches_list && _item.branches_list.length > 0) {
           let foundBranch = false;
           let indxBranch = 0;

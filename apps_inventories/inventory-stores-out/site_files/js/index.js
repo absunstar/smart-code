@@ -231,166 +231,183 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
       $scope.error = v.messages[0].ar;
       return;
     }
+    $scope.detailsCustomer((customer) => {
 
-    if (new Date($scope.store_out.date) > new Date()) {
+      if (new Date($scope.store_out.date) > new Date()) {
 
-      $scope.error = "##word.date_exceed##";
-      return;
+        $scope.error = "##word.date_exceed##";
+        return;
 
-    }
+      }
 
-    if ($scope.store_out.type && $scope.store_out.type.id != 5 && $scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto) {
-      if (!$scope.store_out.safe) {
-        $scope.error = "##word.nosafe_warning##";
+      if ($scope.store_out.type && $scope.store_out.type.id != 5 && $scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto) {
+        if (!$scope.store_out.safe) {
+          $scope.error = "##word.nosafe_warning##";
+          return;
+        }
+      }
+
+      if ($scope.store_out.paid_up > $scope.amount_currency) {
+        $scope.error = "##word.err_net_value##";
         return;
       }
-    }
 
-    if ($scope.store_out.paid_up > $scope.amount_currency) {
-      $scope.error = "##word.err_net_value##";
-      return;
-    }
+      let max_discount = false;
+      let returned_count = false;
+      let patchCount = false;
+      let notExistCount = false;
+      let patch_list = [];
 
-    let max_discount = false;
-    let returned_count = false;
-    let patchCount = false;
-    let notExistCount = false;
-    let patch_list = [];
+      if ($scope.store_out.items && $scope.store_out.items.length > 0) {
+        notExistCount = $scope.store_out.items.some(_iz => _iz.count < 1);
 
-    if ($scope.store_out.items && $scope.store_out.items.length > 0) {
-      notExistCount = $scope.store_out.items.some(_iz => _iz.count < 1);
+        $scope.store_out.items.forEach(_itemSize => {
 
-      $scope.store_out.items.forEach(_itemSize => {
+          if (_itemSize.discount.value > _itemSize.discount.max) max_discount = true;
+          if (_itemSize.count > _itemSize.r_count) returned_count = true;
 
-        if (_itemSize.discount.value > _itemSize.discount.max) max_discount = true;
-        if (_itemSize.count > _itemSize.r_count) returned_count = true;
+          if (_itemSize.work_patch) {
 
-        if (_itemSize.work_patch) {
+            if (_itemSize.patch_list && _itemSize.patch_list.length > 0) {
 
-          if (_itemSize.patch_list && _itemSize.patch_list.length > 0) {
+              let c = 0;
+              _itemSize.patch_list.map(p => c += p.count);
 
-            let c = 0;
-            _itemSize.patch_list.map(p => c += p.count);
+              let difference = _itemSize.count - c;
 
-            let difference = _itemSize.count - c;
+              if (_itemSize.count < c) {
+                patchCount = true;
+                patch_list.push(_itemSize.barcode)
 
-            if (_itemSize.count < c) {
-              patchCount = true;
-              patch_list.push(_itemSize.barcode)
+              } else if (_itemSize.count > c) {
+                _itemSize.patch_list = _itemSize.patch_list.slice().sort((a, b) => new Date(b.expiry_date) - new Date(a.expiry_date)).reverse();
+                _itemSize.patch_list.forEach(_pl => {
+                  if (difference > 0 && _pl.count == 0) {
 
-            } else if (_itemSize.count > c) {
-              _itemSize.patch_list = _itemSize.patch_list.slice().sort((a, b) => new Date(b.expiry_date) - new Date(a.expiry_date)).reverse();
-              _itemSize.patch_list.forEach(_pl => {
-                if (difference > 0 && _pl.count == 0) {
+                    if (_pl.current_count < difference || _pl.current_count == difference) {
 
-                  if (_pl.current_count < difference || _pl.current_count == difference) {
-
-                    _pl.count = _pl.current_count;
-                    difference = difference - _pl.count;
+                      _pl.count = _pl.current_count;
+                      difference = difference - _pl.count;
 
 
-                  } else if (_pl.current_count > difference) {
+                    } else if (_pl.current_count > difference) {
 
-                    _pl.count = difference;
-                    difference = 0;
+                      _pl.count = difference;
+                      difference = 0;
+                    }
                   }
-                }
-              });
-            }
+                });
+              }
 
-          }
-        }
-      });
-    }
-
-    if ($scope.defaultSettings.inventory && $scope.defaultSettings.inventory.dont_max_discount_items) {
-      if (max_discount) {
-        $scope.error = "##word.err_maximum_discount##";
-        return;
-      }
-    }
-
-    if ($scope.store_out.type.id == 6) {
-      if (returned_count) {
-        $scope.error = "##word.return_item_err##";
-        return;
-      }
-    };
-
-    if (notExistCount) {
-      $scope.error = "##word.err_exist_count##";
-      return;
-    };
-
-    if (patchCount) {
-      $scope.error = `##word.err_patch_count##   ( ${patch_list.join('-')} )`;
-      return;
-    };
-
-    if ($scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto && $scope.store_out.type && $scope.store_out.type.id != 5) {
-      if (!$scope.store_out.safe) {
-        $scope.error = "##word.nosafe_warning##";
-        return;
-      }
-    }
-
-    if ($scope.store_out.items.length > 0) {
-      $scope.busy = true;
-      $http({
-        method: "POST",
-        url: "/api/stores_out/add",
-        data: $scope.store_out
-      }).then(
-        function (response) {
-          $scope.busy = false;
-          if (response.data.done) {
-            if ($scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto && $scope.store_out.type && $scope.store_out.type.id != 5) {
-
-              let account_invoices = {
-                image_url: '/images/account_invoices.png',
-                date: response.data.doc.date,
-                invoice_id: response.data.doc.id,
-                customer: response.data.doc.customer,
-                total_value_added: response.data.doc.total_value_added,
-                invoice_type: response.data.doc.type,
-                currency: response.data.doc.currency,
-                shift: response.data.doc.shift,
-                net_value: response.data.doc.net_value,
-                paid_up: response.data.doc.paid_up || 0,
-                payment_method: response.data.doc.payment_method,
-                safe: response.data.doc.safe,
-                invoice_code: response.data.doc.number,
-                total_discount: response.data.doc.total_discount,
-                total_tax: response.data.doc.total_tax,
-                current_book_list: response.data.doc.items,
-                source_type: {
-                  id: 2,
-                  en: "Stores Out / Sales Invoice",
-                  ar: "إذن صرف / فاتورة مبيعات"
-                },
-                active: true
-              };
-              $scope.addAccountInvoice(account_invoices)
-            }
-
-            $scope.loadAll();
-            $scope.newStoreOut();
-          } else {
-            $scope.error = response.data.error;
-            if (response.data.error.like('*OverDraft Not*')) {
-              $scope.error = "##word.overdraft_not_active##"
             }
           }
+        });
+      }
 
-        },
-        function (err) {
-          $scope.error = err.message;
+      if ($scope.defaultSettings.inventory && $scope.defaultSettings.inventory.dont_max_discount_items) {
+        if (max_discount) {
+          $scope.error = "##word.err_maximum_discount##";
+          return;
         }
-      )
-    } else {
-      $scope.error = "##word.must_enter_quantity##";
-      return;
-    }
+      }
+
+      if ($scope.store_out.type.id == 6) {
+        if (returned_count) {
+          $scope.error = "##word.return_item_err##";
+          return;
+        }
+      };
+
+      if (notExistCount) {
+        $scope.error = "##word.err_exist_count##";
+        return;
+      };
+
+      if (patchCount) {
+        $scope.error = `##word.err_patch_count##   ( ${patch_list.join('-')} )`;
+        return;
+      };
+
+      if ($scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto && $scope.store_out.type && $scope.store_out.type.id != 5) {
+        if (!$scope.store_out.safe) {
+          $scope.error = "##word.nosafe_warning##";
+          return;
+        }
+      }
+
+      if ($scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto && $scope.store_out.type && $scope.store_out.type.id != 5) {
+        let totalCustomerBalance = 0;
+        if ($scope.store_out.customer && $scope.store_out.payment_method && $scope.store_out.payment_method.id == 5) {
+          totalCustomerBalance = customer.balance + (customer.credit_limit || 0);
+          let customerPay = $scope.store_out.paid_up * $scope.store_out.currency.ex_rate;
+
+          if (customerPay > totalCustomerBalance) {
+            $scope.error = "##word.cannot_exceeded_customer##";
+            return;
+          }
+        }
+      }
+
+
+      if ($scope.store_out.items.length > 0) {
+        $scope.busy = true;
+        $http({
+          method: "POST",
+          url: "/api/stores_out/add",
+          data: $scope.store_out
+        }).then(
+          function (response) {
+            $scope.busy = false;
+            if (response.data.done) {
+              if ($scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto && $scope.store_out.type && $scope.store_out.type.id != 5) {
+
+                let account_invoices = {
+                  image_url: '/images/account_invoices.png',
+                  date: response.data.doc.date,
+                  invoice_id: response.data.doc.id,
+                  customer: response.data.doc.customer,
+                  total_value_added: response.data.doc.total_value_added,
+                  invoice_type: response.data.doc.type,
+                  currency: response.data.doc.currency,
+                  shift: response.data.doc.shift,
+                  net_value: response.data.doc.net_value,
+                  paid_up: response.data.doc.paid_up || 0,
+                  payment_method: response.data.doc.payment_method,
+                  safe: response.data.doc.safe,
+                  invoice_code: response.data.doc.number,
+                  total_discount: response.data.doc.total_discount,
+                  total_tax: response.data.doc.total_tax,
+                  current_book_list: response.data.doc.items,
+                  source_type: {
+                    id: 2,
+                    en: "Stores Out / Sales Invoice",
+                    ar: "إذن صرف / فاتورة مبيعات"
+                  },
+                  active: true
+                };
+                $scope.addAccountInvoice(account_invoices)
+              }
+
+              $scope.loadAll();
+              $scope.newStoreOut();
+            } else {
+              $scope.error = response.data.error;
+              if (response.data.error.like('*OverDraft Not*')) {
+                $scope.error = "##word.overdraft_not_active##"
+              }
+            }
+
+          },
+          function (err) {
+            $scope.error = err.message;
+          }
+        )
+      } else {
+        $scope.error = "##word.must_enter_quantity##";
+        return;
+      }
+    });
+
   };
 
   $scope.remove = function (store_out) {
@@ -473,6 +490,39 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         $scope.error = '##word.err_stock_item##';
       }
     })
+  };
+
+  $scope.detailsCustomer = function (callback) {
+    $scope.error = '';
+    $scope.busy = true;
+
+    let customer = '';
+    if ($scope.account_invoices && $scope.account_invoices.customer) {
+      customer = $scope.account_invoices.customer
+    } else if ($scope.store_out && $scope.store_out.customer) {
+      customer = $scope.store_out.customer
+    }
+
+    $http({
+      method: "POST",
+      url: "/api/customers/view",
+      data: {
+        id: customer.id
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.customer = response.data.doc;
+          callback(response.data.doc);
+        } else {
+          callback(null);
+        }
+      },
+      function (err) {
+        console.log(err);
+      }
+    )
   };
 
   $scope.addToItems = function () {
@@ -694,9 +744,10 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         _item.store = $scope.store_out.store;
         _item.count = 1;
         _item.value_added = _item.not_value_added ? 0 : $scope.defaultSettings.inventory.value_added || 0;
+        let indxUnit = 0;
+        if (_item.size_units_list && _item.size_units_list.length > 0) {
 
-        let indxUnit = _item.size_units_list.findIndex(_unit => _unit.id == $scope.item.name.main_unit.id);
-        if (_item.size_units_list[indxUnit]) {
+          indxUnit = _item.size_units_list.findIndex(_unit => _unit.id == $scope.item.name.main_unit.id);
           _item.unit = _item.size_units_list[indxUnit];
           _item.discount = _item.size_units_list[indxUnit].discount;
           _item.average_cost = _item.size_units_list[indxUnit].average_cost;
@@ -1213,6 +1264,8 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         if (response.data.done && response.data.list.length > 0) {
           $scope.list = response.data.list;
           $scope.count = response.data.count;
+          $scope.store_out = {};
+          $scope.account_invoices = {};
         }
       },
       function (err) {
@@ -1276,38 +1329,52 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
   $scope.addAccountInvoice = function (account_invoices) {
     $scope.error = '';
     $scope.busy = true;
+    $scope.detailsCustomer((customer) => {
 
-    if (account_invoices.paid_up > 0 && !account_invoices.safe) {
-      $scope.error = "##word.should_select_safe##";
-      return;
+      if (account_invoices.paid_up > 0 && !account_invoices.safe) {
+        $scope.error = "##word.should_select_safe##";
+        return;
 
-    } else if (account_invoices.paid_up > $scope.amount_currency) {
-      $scope.error = "##word.err_net_value##";
-      return;
-    }
-
-    if ($scope.defaultSettings.general_Settings && $scope.defaultSettings.general_Settings.work_posting)
-      account_invoices.posting = false;
-    else account_invoices.posting = true;
-
-    $http({
-      method: "POST",
-      url: "/api/account_invoices/add",
-      data: account_invoices
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response) {
-          site.hideModal('#accountInvoiceModal');
-          $scope.account_invoices = response.data.doc;
-          $scope.printAccountInvoive();
-          $scope.loadAll();
-        } else $scope.error = response.data.error;
-      },
-      function (err) {
-        console.log(err);
+      } else if (account_invoices.paid_up > $scope.amount_currency) {
+        $scope.error = "##word.err_net_value##";
+        return;
       }
-    )
+
+      if (account_invoices.customer && account_invoices.payment_method && account_invoices.payment_method.id == 5) {
+        let totalCustomerBalance = 0;
+        totalCustomerBalance = customer.balance + (customer.credit_limit || 0);
+
+        let customerPay = account_invoices.paid_up * account_invoices.currency.ex_rate;
+
+        if (customerPay > totalCustomerBalance) {
+          $scope.error = "##word.cannot_exceeded_customer##";
+          return;
+        }
+      }
+
+      if ($scope.defaultSettings.general_Settings && $scope.defaultSettings.general_Settings.work_posting)
+        account_invoices.posting = false;
+      else account_invoices.posting = true;
+
+      $http({
+        method: "POST",
+        url: "/api/account_invoices/add",
+        data: account_invoices
+      }).then(
+        function (response) {
+          $scope.busy = false;
+          if (response) {
+            site.hideModal('#accountInvoiceModal');
+            $scope.account_invoices = response.data.doc;
+            $scope.printAccountInvoive();
+            $scope.loadAll();
+          } else $scope.error = response.data.error;
+        },
+        function (err) {
+          console.log(err);
+        }
+      )
+    })
   };
 
   $scope.printAccountInvoive = function () {

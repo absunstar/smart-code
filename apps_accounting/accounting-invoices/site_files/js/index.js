@@ -51,60 +51,75 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
 
   $scope.addAccountInvoice = function () {
     $scope.error = '';
+
     if ($scope.busy) {
       return;
     }
-    const v = site.validated('#accountInvoicesAddModal');
-    if (!v.ok) {
-      $scope.error = v.messages[0].ar;
-      return;
-    } else if ($scope.account_invoices.paid_up > 0 && !$scope.account_invoices.safe) {
-      $scope.error = "##word.should_select_safe##";
-      return;
-    } else if ($scope.account_invoices.total_tax > $scope.total_tax) {
-      $scope.error = "##word.err_total_tax##";
-      return;
-    } else if ($scope.account_invoices.total_discount > $scope.total_discount) {
-      $scope.error = "##word.err_total_discount##";
-      return;
-    } else if ($scope.account_invoices.price_delivery_service > $scope.price_delivery_service) {
-      $scope.error = "##word.err_price_delivery_service##";
-      return;
-    } else if ($scope.account_invoices.service > $scope.service) {
-      $scope.error = "##word.err_service##";
-      return;
-    } else if ($scope.account_invoices.paid_up > $scope.amount_currency) {
-      $scope.error = "##word.err_net_value##";
-      return;
-    } else if (new Date($scope.account_invoices.date) > new Date()) {
+    $scope.detailsCustomer((customer) => {
 
-      $scope.error = "##word.date_exceed##";
-      return;
+      const v = site.validated('#accountInvoicesAddModal');
+      if (!v.ok) {
+        $scope.error = v.messages[0].ar;
+        return;
+      } else if ($scope.account_invoices.paid_up > 0 && !$scope.account_invoices.safe) {
+        $scope.error = "##word.should_select_safe##";
+        return;
+      } else if ($scope.account_invoices.total_tax > $scope.total_tax) {
+        $scope.error = "##word.err_total_tax##";
+        return;
+      } else if ($scope.account_invoices.total_discount > $scope.total_discount) {
+        $scope.error = "##word.err_total_discount##";
+        return;
+      } else if ($scope.account_invoices.price_delivery_service > $scope.price_delivery_service) {
+        $scope.error = "##word.err_price_delivery_service##";
+        return;
+      } else if ($scope.account_invoices.service > $scope.service) {
+        $scope.error = "##word.err_service##";
+        return;
+      } else if ($scope.account_invoices.paid_up > $scope.amount_currency) {
+        $scope.error = "##word.err_net_value##";
+        return;
+      } else if (new Date($scope.account_invoices.date) > new Date()) {
+        $scope.error = "##word.date_exceed##";
+        return;
 
-    };
+      } else if ($scope.account_invoices.customer && $scope.account_invoices.payment_method && $scope.account_invoices.payment_method.id == 5) {
+        if (customer) {
+          let totalCustomerBalance = 0;
+          let customerPay = $scope.account_invoices.paid_up * $scope.account_invoices.currency.ex_rate;
 
-    $http({
-      method: "POST",
-      url: "/api/account_invoices/add",
-      data: $scope.account_invoices
-    }).then(
-      function (response) {
-        if (response.data.done) {
-          site.hideModal('#accountInvoicesAddModal');
-          $scope.getAccountInvoicesList();
-        } else {
-          $scope.error = response.data.error;
-          if (response.data.error.like('*duplicate key error*')) {
-            $scope.error = "##word.code_exisit##"
-          } else if (response.data.error.like('*Please write code*')) {
-            $scope.error = "##word.enter_code_inventory##"
+          totalCustomerBalance = ($scope.customer.balance || 0) + ($scope.customer.credit_limit || 0);
+
+          if (customerPay > totalCustomerBalance) {
+            $scope.error = "##word.cannot_exceeded_customer##";
+            return;
           }
         }
-      },
-      function (err) {
-        console.log(err);
       }
-    )
+
+      $http({
+        method: "POST",
+        url: "/api/account_invoices/add",
+        data: $scope.account_invoices
+      }).then(
+        function (response) {
+          if (response.data.done) {
+            site.hideModal('#accountInvoicesAddModal');
+            $scope.getAccountInvoicesList();
+          } else {
+            $scope.error = response.data.error;
+            if (response.data.error.like('*duplicate key error*')) {
+              $scope.error = "##word.code_exisit##"
+            } else if (response.data.error.like('*Please write code*')) {
+              $scope.error = "##word.enter_code_inventory##"
+            }
+          }
+        },
+        function (err) {
+          console.log(err);
+        }
+      )
+    })
   };
 
   $scope.posting = function (account_invoices) {
@@ -318,6 +333,8 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
         if (response.data.done && response.data.list.length > 0) {
           $scope.list = response.data.list;
           $scope.count = response.data.count;
+          $scope.paid_invoice = {};
+          $scope.account_invoices = {};
         }
       },
       function (err) {
@@ -352,46 +369,100 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
      });
    }; */
 
+
   $scope.acceptPaymentInvoice = function () {
     $scope.error = '';
-    if (!$scope.paid_invoice.safe) {
-      $scope.error = "##word.should_select_safe##";
-      return;
-    } else if (!$scope.paid_invoice.payment_paid_up) {
-      $scope.error = "##word.err_paid_up##";
-      return;
-    }
-    else if ($scope.paid_invoice.payment_paid_up > $scope.amount_currency) {
-      $scope.error = "##word.err_paid_up_payment##";
-      return;
-    } else if ($scope.paid_invoice.payment_paid_up > $scope.amount_currency) {
-      $scope.error = "##word.err_net_value##";
-      return;
-    }
+    $scope.detailsCustomer((customer) => {
 
-    $scope.paid_invoice.payment_list = $scope.paid_invoice.payment_list || [];
-    $scope.paid_invoice.payment_list.push({
-      paid_up: $scope.paid_invoice.payment_paid_up,
-      payment_method: $scope.paid_invoice.payment_method,
-      currency: $scope.paid_invoice.currency,
-      safe: $scope.paid_invoice.safe,
-      date: $scope.payment_date,
-    });
+      if (!$scope.paid_invoice.safe) {
+        $scope.error = "##word.should_select_safe##";
+        return;
+      } else if (!$scope.paid_invoice.payment_paid_up) {
+        $scope.error = "##word.err_paid_up##";
+        return;
+      }
+      else if ($scope.paid_invoice.payment_paid_up > $scope.amount_currency) {
+        $scope.error = "##word.err_paid_up_payment##";
+        return;
+      } else if ($scope.paid_invoice.payment_paid_up > $scope.amount_currency) {
+        $scope.error = "##word.err_net_value##";
+        return;
+      }
 
+      if ($scope.paid_invoice.customer && $scope.paid_invoice.payment_method && $scope.paid_invoice.payment_method.id == 5) {
+        if (customer) {
+
+          let totalCustomerBalance = 0;
+          let customerPay = $scope.paid_invoice.payment_paid_up * $scope.paid_invoice.currency.ex_rate;
+
+          totalCustomerBalance = (customer.balance || 0) + (customer.credit_limit || 0);
+
+          if (customerPay > totalCustomerBalance) {
+            $scope.error = "##word.cannot_exceeded_customer##";
+            return;
+          }
+        }
+      }
+
+      $scope.paid_invoice.payment_list = $scope.paid_invoice.payment_list || [];
+      $scope.paid_invoice.payment_list.push({
+        paid_up: $scope.paid_invoice.payment_paid_up,
+        payment_method: $scope.paid_invoice.payment_method,
+        currency: $scope.paid_invoice.currency,
+        safe: $scope.paid_invoice.safe,
+        date: $scope.payment_date,
+      });
+
+      $scope.busy = true;
+      $http({
+        method: "POST",
+        url: "/api/account_invoices/update_payment",
+        data: $scope.paid_invoice
+      }).then(
+        function (response) {
+          $scope.busy = false;
+
+          if (response.data.done) {
+            $scope.getAccountInvoicesList();
+
+            site.hideModal('#invoicesPaymentModal');
+          } else {
+            $scope.error = 'Please Login First';
+          }
+        },
+        function (err) {
+          console.log(err);
+        }
+      )
+    })
+
+  };
+
+
+  $scope.detailsCustomer = function (callback) {
+    $scope.error = '';
     $scope.busy = true;
+    let customer = '';
+    if ($scope.paid_invoice && $scope.paid_invoice.customer) {
+      customer = $scope.paid_invoice.customer
+    } else if ($scope.account_invoices && $scope.account_invoices.customer) {
+      customer = $scope.account_invoices.customer
+    }
+
     $http({
       method: "POST",
-      url: "/api/account_invoices/update_payment",
-      data: $scope.paid_invoice
+      url: "/api/customers/view",
+      data: {
+        id: customer.id
+      }
     }).then(
       function (response) {
         $scope.busy = false;
-
         if (response.data.done) {
-          $scope.getAccountInvoicesList();
-          site.hideModal('#invoicesPaymentModal');
+          $scope.customer = response.data.doc;
+          callback(response.data.doc);
         } else {
-          $scope.error = 'Please Login First';
+          callback(null);
         }
       },
       function (err) {
@@ -399,6 +470,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
       }
     )
   };
+
 
   $scope.loadOrderInvoicesType = function (ev) {
     $scope.error = '';
@@ -631,7 +703,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
       }
 
       if (account_invoices.currency) {
-        $scope.amount_currency = account_invoices.remain_amount / account_invoices.currency.ex_rate;
+        $scope.amount_currency = (account_invoices.remain_amount || account_invoices.net_value) / account_invoices.currency.ex_rate;
         $scope.amount_currency = site.toNumber($scope.amount_currency);
         account_invoices.paid_up = $scope.amount_currency;
 

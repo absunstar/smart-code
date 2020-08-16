@@ -347,8 +347,12 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
         _item.store_from = $scope.transfer_branch.store_from
         _item.count = 1;
 
-        let indxUnit = _item.size_units_list.findIndex(_unit => _unit.id == $scope.item.name.main_unit.id);
-        _item.unit = _item.size_units_list[indxUnit];
+        let indxUnit = 0;
+        if (_item.size_units_list && _item.size_units_list.length > 0){
+
+          indxUnit = _item.size_units_list.findIndex(_unit => _unit.id == $scope.item.name.main_unit.id);
+          _item.unit = _item.size_units_list[indxUnit];
+        }
 
         if (_item.branches_list && _item.branches_list.length > 0) {
           let foundBranch = false

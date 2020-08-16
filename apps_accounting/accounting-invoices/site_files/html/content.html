@@ -161,11 +161,6 @@
                         <br>
 
 
-
-
-
-
-
                         <div class="row" ng-show="account_invoices.invoice_id">
                             <div class="col6">
 
@@ -183,7 +178,7 @@
                                         <td class="center blue">{{account_invoices.invoice_code}}</td>
                                     </tr>
 
-                                    <tr ng-show="account_invoices.customer.name_##session.lang##">
+                                    <tr ng-show="account_invoices.customer.id">
                                         <td class="title">##word.customer##</td>
                                         <td class="center">{{account_invoices.customer.name_##session.lang##}}</td>
                                     </tr>
@@ -276,15 +271,6 @@
 
                         </div>
 
-
-                        <div class="row">
-                            <i-control ng-keydown="getCustomerList($event)" id="service" class="col3"
-                                ng-model="search_customer" label="##word.search##" type="text"></i-control>
-                            <i-list ng-search="_search.$customer" class="col4" display="name_##session.lang##" v="r"
-                                ng-model="account_invoices.customer" label="##word.customer##" items="customersList">
-                            </i-list>
-                        </div>
-
                         <br>
                         <br>
 
@@ -316,6 +302,14 @@
 
                         </div>
 
+                        <div class="row" ng-show="account_invoices.source_type.id == 8">
+                            <i-control ng-keydown="getCustomerList($event)" id="service" class="col3"
+                                ng-model="search_customer" label="##word.search##" type="text"></i-control>
+                            <i-list ng-search="_search.$customer" class="col4" display="name_##session.lang##" v="r"
+                                ng-model="account_invoices.customer" label="##word.customer##" items="customersList">
+                            </i-list>
+                        </div>
+
                         <div class="row" ng-show="account_invoices.invoice_id || account_invoices.source_type.id == 8">
                             <i-list help-id="" ng-search="_search.$payment_method_search" class="col2"
                                 label="##word.payment_method##" ng-model="account_invoices.payment_method"
@@ -323,7 +317,7 @@
                                 display="##session.lang##">
                             </i-list>
 
-                            <i-list class="col3 control padding" ng-search="_search.$currency_search"
+                            <i-list class="col3 control " ng-search="_search.$currency_search"
                                 ng-model="account_invoices.currency"
                                 ng-change="getSafeByType(account_invoices) ; calc(account_invoices)"
                                 items="currenciesList" label="##word.currency##"></i-list>
@@ -331,7 +325,7 @@
                             <i-control class="col2" disabled ng-model="account_invoices.currency.ex_rate" type="number"
                                 label="##word.exchange_rate##"></i-control>
 
-                            <i-list v="r" class="col3 control padding" ng-search="_search.$safe_account_invoices"
+                            <i-list v="r" class="col3 control " ng-search="_search.$safe_account_invoices"
                                 ng-model="account_invoices.safe" items="safesList" label="##word.amounts_in_safe##">
                             </i-list>
 

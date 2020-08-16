@@ -29,8 +29,10 @@ module.exports = function init(site) {
 
   site.on('[store_out][account_invoice][invoice]', function (obj) {
     $stores_out.findOne({ id: obj }, (err, doc) => {
-      doc.invoice = true
-      $stores_out.update(doc);
+      if (doc) {
+        doc.invoice = true
+        $stores_out.update(doc);
+      }
     });
   });
 

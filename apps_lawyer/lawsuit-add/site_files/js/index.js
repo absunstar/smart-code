@@ -398,8 +398,7 @@ app.controller("lawsuit_add", function ($scope, $http, $timeout) {
         method: "POST",
         url: "/api/customers/all",
         data: {
-          search: $scope.search_customer,
-          select: { name_ar: 1, id: 1 }
+          search: $scope.search_customer
 
         }
       }).then(

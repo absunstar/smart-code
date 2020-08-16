@@ -391,9 +391,9 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
     $timeout(() => {
       obj.total_value = 0;
       obj.net_value = obj.net_value || 0;
-      
+
       if (obj.items) {
-        
+
         obj.total_value_added = 0;
         obj.items.forEach(_itm => {
           obj.total_value += site.toNumber(_itm.total);
@@ -1037,8 +1037,10 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
         _item.count = 1;
         _item.value_added = _item.not_value_added ? 0 : $scope.defaultSettings.inventory.value_added;
 
-        let indxUnit = _item.size_units_list.findIndex(_unit => _unit.id == $scope.item.name.main_unit.id);
-        if (_item.size_units_list[indxUnit]) {
+        let indxUnit = 0;
+        if (_item.size_units_list && _item.size_units_list.length > 0) {
+          indxUnit = _item.size_units_list.findIndex(_unit => _unit.id == $scope.item.name.main_unit.id);
+
           _item.unit = _item.size_units_list[indxUnit];
           _item.discount = _item.size_units_list[indxUnit].discount;
           _item.average_cost = _item.size_units_list[indxUnit].average_cost;

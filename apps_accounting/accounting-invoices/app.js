@@ -124,8 +124,8 @@ module.exports = function init(site) {
         response.done = true;
         response.doc = doc;
 
-        if (doc.source_type.id == 1) site.call('[store_in][account_invoice][invoice]', doc.invoice_id)
-        else if (doc.source_type.id == 2) site.call('[store_out][account_invoice][invoice]', doc.invoice_id)
+        if (doc.source_type.id == 1) site.call('[store_in][account_invoice][invoice]', Object.assign({}, doc.invoice_id))
+        else if (doc.source_type.id == 2) site.call('[store_out][account_invoice][invoice]', Object.assign({}, doc.invoice_id))
 
 
         if (doc.posting) {
@@ -165,9 +165,29 @@ module.exports = function init(site) {
             if (doc.invoice_type && doc.invoice_type.id == 6) {
               paid_value.value = (-Math.abs(paid_value.value))
               paid_value.operation = { ar: 'مرتجع فاتورة مبيعات', en: 'Return Sales Invoice' }
+              if (doc.payment_method && doc.payment_method.id == 5) {
+                let customerPay = doc.paid_up * doc.currency.ex_rate
+                let customerBalance = {
+                  id: doc.customer.id,
+                  paid_up: customerPay,
+                  sum: true
+                }
+                site.call('[customer][account_invoice][balance]', Object.assign({}, customerBalance))
+              }
 
             } else {
               paid_value.operation = { ar: 'فاتورة مبيعات', en: 'Sales Invoice' }
+              if (doc.payment_method && doc.payment_method.id == 5) {
+
+                let customerPay = doc.paid_up * doc.currency.ex_rate
+                let customerBalance = {
+                  id: doc.customer.id,
+                  paid_up: customerPay,
+                  minus: true
+                }
+                site.call('[customer][account_invoice][balance]', Object.assign({}, customerBalance))
+
+              }
             }
             paid_value.transition_type = 'in'
 
@@ -183,30 +203,31 @@ module.exports = function init(site) {
               service: doc.service,
               invoice_id: doc.invoice_id
             }
-            site.call('[account_invoices][order_invoice][+]', under_paid)
+            site.call('[account_invoices][order_invoice][+]', Object.assign({}, under_paid))
 
           } else if (doc.source_type.id == 4) {
             paid_value.operation = { ar: 'فاتورة طلب خدمة', en: 'Request Service Invoice' }
             paid_value.transition_type = 'in'
-            site.call('[account_invoices][request_service][+]', doc.invoice_id)
+            site.call('[account_invoices][request_service][+]', Object.assign({}, doc.invoice_id))
 
           } else if (doc.source_type.id == 5) {
             paid_value.operation = { ar: 'فاتورة حجز قاعة', en: 'Book Hall Invoice' }
             paid_value.transition_type = 'in'
-            site.call('[account_invoices][book_hall][+]', doc.invoice_id)
+            site.call('[account_invoices][book_hall][+]', Object.assign({}, doc.invoice_id))
 
           } else if (doc.source_type.id == 8) {
             paid_value.operation = { ar: 'شحن رصيد عميل', en: 'Recharge Customer Balance' }
             paid_value.transition_type = 'in'
+            let customerPay = doc.paid_up * doc.currency.ex_rate
             let customerBalance = {
               id: doc.customer.id,
-              paid_up: doc.paid_up,
+              paid_up: customerPay,
               sum: true
             }
-            site.call('[customer][account_invoice][balance]', customerBalance)
+            site.call('[customer][account_invoice][balance]', Object.assign({}, customerBalance))
           }
 
-          if (doc.safe) site.call('[amounts][safes][+]', paid_value)
+          if (doc.safe) site.call('[amounts][safes][+]', Object.assign({}, paid_value))
         }
 
       } else {
@@ -281,9 +302,30 @@ module.exports = function init(site) {
 
             paid_value.operation = { ar: 'دفعة مرتجع فاتورة مبيعات', en: 'Pay Return Sales Invoice' }
             paid_value.value = (-Math.abs(paid_value.value))
+            if (_payment_list.payment_method && _payment_list.payment_method.id == 5) {
+              let customerPay = _payment_list.paid_up * _payment_list.currency.ex_rate
+
+              let customerBalance = {
+                id: account_invoices_doc.customer.id,
+                paid_up: customerPay,
+                sum: true
+              }
+              site.call('[customer][account_invoice][balance]', Object.assign({}, customerBalance))
+            }
+
           } else {
 
             paid_value.operation = { ar: 'دفعة فاتورة مبيعات', en: 'Pay Sales Invoice' }
+            if (_payment_list.payment_method && _payment_list.payment_method.id == 5) {
+              let customerPay = _payment_list.paid_up * _payment_list.currency.ex_rate
+
+              let customerBalance = {
+                id: account_invoices_doc.customer.id,
+                paid_up: customerPay,
+                minus: true
+              }
+              site.call('[customer][account_invoice][balance]', Object.assign({}, customerBalance))
+            }
           }
 
           paid_value.transition_type = 'in'
@@ -305,16 +347,17 @@ module.exports = function init(site) {
           paid_value.operation = { ar: 'دفعة شحن رصيد عميل', en: 'Pay Recharge Customer Balance' }
           paid_value.transition_type = 'in'
 
+          let customerPay = _payment_list.paid_up * _payment_list.currency.ex_rate
           let customerBalance = {
             id: account_invoices_doc.customer.id,
-            paid_up: account_invoices_doc.paid_up,
+            paid_up: customerPay,
             sum: true
           }
 
-          site.call('[customer][account_invoice][balance]', customerBalance)
+          site.call('[customer][account_invoice][balance]', Object.assign({}, customerBalance))
 
         }
-        site.call('[amounts][safes][+]', paid_value)
+        site.call('[amounts][safes][+]', Object.assign({}, paid_value))
       }
 
     })
@@ -337,7 +380,7 @@ module.exports = function init(site) {
           response.done = true
           response.doc = result.doc
           if (response.doc.remain_amount <= 0 && response.doc.source_type.id == 3)
-            site.call('[account_invoices][order_invoice][paid]', response.doc.invoice_id)
+            site.call('[account_invoices][order_invoice][paid]', Object.assign({}, response.doc.invoice_id))
 
         } else {
           response.error = err.message
@@ -349,6 +392,8 @@ module.exports = function init(site) {
       res.json(response)
     }
   })
+
+  
 
   site.post("/api/account_invoices/posting", (req, res) => {
     if (req.session.user === undefined)
@@ -406,9 +451,30 @@ module.exports = function init(site) {
 
               obj.value = (-Math.abs(obj.value))
               obj.operation = { ar: 'مرتجع فاتورة مبيعات', en: 'Return Sales Invoice' }
+              if (_payment_list.payment_method && _payment_list.payment_method.id == 5) {
+
+                let customerPay = _payment_list.paid_up * _payment_list.currency.ex_rate
+                let customerBalance = {
+                  id: account_invoices_doc.customer.id,
+                  paid_up: customerPay,
+                  sum: true
+                }
+                site.call('[customer][account_invoice][balance]', Object.assign({}, customerBalance))
+              }
+
             } else {
 
               obj.operation = { ar: 'فاتورة مبيعات', en: 'Sales Invoice' }
+              if (_payment_list.payment_method && _payment_list.payment_method.id == 5) {
+
+                let customerPay = _payment_list.paid_up * _payment_list.currency.ex_rate
+                let customerBalance = {
+                  id: account_invoices_doc.customer.id,
+                  paid_up: customerPay,
+                  minus: true
+                }
+                site.call('[customer][account_invoice][balance]', Object.assign({}, customerBalance))
+              }
             }
 
             obj.transition_type = 'in'
@@ -420,22 +486,23 @@ module.exports = function init(site) {
           } else if (account_invoices_doc.source_type.id == 4) {
             obj.operation = { ar: 'فاتورة طلب خدمة', en: 'Request Service Invoice' }
             obj.transition_type = 'in'
-            site.call('[account_invoices][request_service][+]', account_invoices_doc.invoice_id)
+            site.call('[account_invoices][request_service][+]', Object.assign({}, account_invoices_doc.invoice_id))
 
           } else if (account_invoices_doc.source_type.id == 5) {
             obj.operation = { ar: 'فاتورة حجز قاعة', en: 'Book Hall Invoice' }
             obj.transition_type = 'in'
-            site.call('[account_invoices][book_hall][+]', account_invoices_doc.invoice_id)
+            site.call('[account_invoices][book_hall][+]', Object.assign({}, account_invoices_doc.invoice_id))
 
           } else if (account_invoices_doc.source_type.id == 8) {
             obj.operation = { ar: 'شحن رصيد عميل', en: 'Recharge Customer Balance' }
             obj.transition_type = 'in'
+            let customerPay = _payment_list.paid_up * _payment_list.currency.ex_rate
             let customerBalance = {
               id: account_invoices_doc.customer.id,
-              paid_up: account_invoices_doc.paid_up,
+              paid_up: customerPay,
               sum: true
             }
-            site.call('[customer][account_invoice][balance]', customerBalance)
+            site.call('[customer][account_invoice][balance]', Object.assign({}, customerBalance))
           }
 
 
@@ -459,9 +526,29 @@ module.exports = function init(site) {
             if (account_invoices_doc.invoice_type && account_invoices_doc.invoice_type.id == 6) {
 
               obj.operation = { ar: 'فك ترحيل مرتجع فاتورة مبيعات', en: 'Un Post Return Sales Invoice' }
+              if (_payment_list.payment_method && _payment_list.payment_method.id == 5) {
+                let customerPay = _payment_list.paid_up * _payment_list.currency.ex_rate
+                let customerBalance = {
+                  id: account_invoices_doc.customer.id,
+                  paid_up: customerPay,
+                  minus: true
+                }
+                site.call('[customer][account_invoice][balance]', Object.assign({}, customerBalance))
+              }
+
             } else {
               obj.value = (-Math.abs(obj.value))
               obj.operation = { ar: 'فك ترحيل فاتورة مبيعات', en: 'Un Post Sales Invoice' }
+              if (_payment_list.payment_method && _payment_list.payment_method.id == 5) {
+
+                let customerPay = _payment_list.paid_up * _payment_list.currency.ex_rate
+                let customerBalance = {
+                  id: account_invoices_doc.customer.id,
+                  paid_up: customerPay,
+                  sum: true
+                }
+                site.call('[customer][account_invoice][balance]', Object.assign({}, customerBalance))
+              }
 
             }
 
@@ -486,22 +573,23 @@ module.exports = function init(site) {
             obj.operation = { ar: 'فك ترحيل شحن رصيد عميل', en: 'Un Post Recharge Customer Balance' }
             obj.transition_type = 'in'
             obj.value = (-Math.abs(obj.value))
+            let customerPay = _payment_list.paid_up * _payment_list.currency.ex_rate
             let customerBalance = {
               id: account_invoices_doc.customer.id,
-              paid_up: Math.abs(obj.value),
+              paid_up: customerPay,
               minus: true
             }
-            site.call('[customer][account_invoice][balance]', customerBalance)
+            site.call('[customer][account_invoice][balance]', Object.assign({}, customerBalance))
           }
         }
-        if (obj.safe) site.call('[amounts][safes][+]', obj)
+        if (obj.safe) site.call('[amounts][safes][+]', Object.assign({}, obj))
       })
 
     account_invoices_doc.remain_amount = site.toNumber(account_invoices_doc.net_value) - site.toNumber(account_invoices_doc.total_paid_up)
     account_invoices_doc.remain_amount = site.toNumber(account_invoices_doc.remain_amount)
     if (account_invoices_doc.source_type.id == 8) account_invoices_doc.remain_amount = 0
 
-    
+
     if (account_invoices_doc.source_type.id == 3) {
 
       let under_paid = {
@@ -517,7 +605,7 @@ module.exports = function init(site) {
       if (!account_invoices_doc.posting)
         under_paid.return = true
 
-      site.call('[account_invoices][order_invoice][+]', under_paid)
+      site.call('[account_invoices][order_invoice][+]', Object.assign({}, under_paid))
     }
 
 
@@ -608,10 +696,30 @@ module.exports = function init(site) {
               } else if (result.doc.source_type.id == 2) {
                 if (account_invoices_doc.invoice_type && account_invoices_doc.invoice_type.id == 6) {
                   obj.operation = { ar: 'حذف مرتجع فاتورة مبيعات', en: 'Delete Return Sales Invoice' }
+                  if (_payment_list.payment_method && _payment_list.payment_method.id == 5) {
+
+                    let customerPay = _payment_list.paid_up * _payment_list.currency.ex_rate
+                    let customerBalance = {
+                      id: result.doc.customer.id,
+                      paid_up: customerPay,
+                      minus: true
+                    }
+                    site.call('[customer][account_invoice][balance]', Object.assign({}, customerBalance))
+                  }
+
                 } else {
                   obj.operation = { ar: 'حذف فاتورة مبيعات', en: 'Delete Sales Invoice' }
                   obj.value = (-Math.abs(obj.value))
+                  if (_payment_list.payment_method && _payment_list.payment_method.id == 5) {
 
+                    let customerPay = _payment_list.paid_up * _payment_list.currency.ex_rate
+                    let customerBalance = {
+                      id: result.doc.customer.id,
+                      paid_up: customerPay,
+                      sum: true
+                    }
+                    site.call('[customer][account_invoice][balance]', Object.assign({}, customerBalance))
+                  }
                 }
 
                 obj.transition_type = 'in'
@@ -638,16 +746,17 @@ module.exports = function init(site) {
                 obj.operation = { ar: 'حذف شحن رصيد عميل', en: 'Recharge Customer Balance' }
                 obj.transition_type = 'in'
                 obj.value = (-Math.abs(obj.value))
+                let customerPay = _payment_list.paid_up * _payment_list.currency.ex_rate
                 let customerBalance = {
                   id: response.doc.customer.id,
-                  paid_up: Math.abs(obj.value),
+                  paid_up: customerPay,
                   minus: true
                 }
-                site.call('[customer][account_invoice][balance]', customerBalance)
+                site.call('[customer][account_invoice][balance]', Object.assign({}, customerBalance))
               }
 
 
-              if (obj.safe) site.call('[amounts][safes][+]', obj)
+              if (obj.safe) site.call('[amounts][safes][+]', Object.assign({}, obj))
 
             })
 
@@ -672,7 +781,7 @@ module.exports = function init(site) {
               if (!account_invoices_doc.posting)
                 under_paid.return = true
 
-              site.call('[account_invoices][order_invoice][+]', under_paid)
+              site.call('[account_invoices][order_invoice][+]', Object.assign({}, under_paid))
             }
           }
 

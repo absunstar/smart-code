@@ -472,17 +472,16 @@
                 <fieldset>
                     <legend> ##word.customers_accounting_informations## </legend>
                     <div class="row">
-                        <i-control class="col4" label="##word.customers_period_maturity_purchases##"
-                            ng-model="customer.period_maturity_purchases"></i-control>
-
-                        <i-list class="col3" label="##word.customers_prof_account##" ng-model="customer.gl_account"
+                        <i-list class="col4" label="##word.customers_prof_account##" ng-model="customer.gl_account"
                             items="guideAccountsList" display="code" display2="name_ar" class="center" space="--">
                         </i-list>
-
 
                         <i-control sign="%" class="col4" label="##word.customers_discount##"
                             ng-model="customer.discount">
                         </i-control>
+
+                        <i-control sign="%" class="col3" label="##word.customers_delegate_commission##"
+                        ng-model="customer.delegate_commission"></i-control>
                     </div>
 
                     <div class="row">
@@ -490,15 +489,18 @@
                             disabled display="currency.code" display2="currency.name_ar" space="--"
                             ng-search="_search.$search_currency"></i-list>
 
-                        <i-control class="col2" type="number" disabled label="##word.balance##" ng-model="customer.balance">
+                        <i-control class="col2" type="number" disabled label="##word.balance##"
+                            ng-model="customer.balance">
                         </i-control>
 
                         <i-control class="col2" type="number" label="##word.customers_credit_limit##"
                             ng-model="customer.credit_limit">
                         </i-control>
 
-                        <i-control sign="%" class="col3" label="##word.customers_delegate_commission##"
-                            ng-model="customer.delegate_commission"></i-control>
+                        <i-control class="col2" type="number" label="##word.customers_period_maturity_purchases##"
+                            ng-model="customer.period_maturity"></i-control>
+
+                       
                     </div>
                 </fieldset>
 
