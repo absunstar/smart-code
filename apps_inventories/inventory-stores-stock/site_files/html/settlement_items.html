@@ -33,6 +33,7 @@
                                         <th>##word.unit##</th>
                                         <th>##word.transfer_branch_item_store_balance##</th>
                                         <th>##word.safes_payments_safe_balance##</th>
+                                        <th>##word.difference_cost##</th>
                                     </tr>
 
                                     <tr ng-repeat="i in itm.size_units_list">
@@ -40,14 +41,26 @@
                                         </td>
                                         <td class="green"> {{i.store_count}}</td>
                                         <td>
-                                            <i-control type="number" ng-model="i.stock_count"></i-control>
+                                            <i-control type="number" ng-change="calcAverage(store_stock)"
+                                                ng-model="i.stock_count"></i-control>
                                         </td>
+                                        <td class="red"> {{i.difference_cost}}</td>
                                     </tr>
                                 </table>
                             </td>
                         </tr>
                     </table>
                 </div>
+                <br>
+                <br>
+                <div class="row">
+                    <i-control class="col2 r_darkRed " label="##word.total_difference_cost##"
+                        ng-model="store_stock.total_difference_cost" disabled>
+                    </i-control>
+                </div>
+                <br>
+                <br>
+                <hr>
             </form>
         </div>
         <h2 class="error center bold">{{error}}</h2>

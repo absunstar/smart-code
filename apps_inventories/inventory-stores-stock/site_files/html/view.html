@@ -19,6 +19,11 @@
             </tr>
 
             <tr>
+                <td class="title">##word.total_difference_cost##</td>
+                <td class="center">{{store_stock.total_difference_cost}}</td>
+            </tr>
+
+            <tr>
                 <td class="title">##word.stores_stock_items##</td>
                 <td>
                     <table class="table center bold hover">
@@ -45,6 +50,7 @@
                                         <th>##word.unit##</th>
                                         <th>##word.transfer_branch_item_store_balance##</th>
                                         <th>##word.safes_payments_safe_balance##</th>
+                                        <th>##word.difference_cost##</th>
                                     </tr>
 
                                     <tr ng-repeat="i in itm.size_units_list">
@@ -52,6 +58,7 @@
                                         </td>
                                         <td class="green"> {{i.store_count}}</td>
                                         <td> {{i.stock_count}}</td>
+                                        <td class="red"> {{i.difference_cost}}</td>
 
                                     </tr>
                                 </table>

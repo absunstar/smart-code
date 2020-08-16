@@ -547,7 +547,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
 
       }
       $scope.calc($scope.store_out);
-    }, 100);
+    }, 150);
   };
 
   $scope.addToSizes = function () {
