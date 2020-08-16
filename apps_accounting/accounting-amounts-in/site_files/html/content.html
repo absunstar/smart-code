@@ -7,8 +7,8 @@
 
                 <i-control class="col3 r_indigo" disabled label="##word.shift##" ng-model="shift.code">
                 </i-control>
-                <i-list class="col3 control " v="r" ng-search="_search.$source_amount_in"
-                    ng-model="amount_in.source" items="namesList" label="##word.amounts_in_source##"></i-list>
+                <i-list class="col3 control " v="r" ng-search="_search.$source_amount_in" ng-model="amount_in.source"
+                    items="namesList" label="##word.amounts_in_source##"></i-list>
             </div>
 
             <div class="row">
@@ -17,24 +17,30 @@
                     ng-change="getSafeByType(amount_in)" display="##session.lang##">
                 </i-list>
                 <i-list class="col3 control " ng-search="_search.$currency_search" ng-model="amount_in.currency"
-                ng-change="getSafeByType(amount_in)"  items="currenciesList" label="##word.currency##"></i-list>
+                    ng-change="getSafeByType(amount_in)" items="currenciesList" label="##word.currency##"></i-list>
 
                 <i-control class="col2" disabled ng-model="amount_in.currency.ex_rate" type="number"
                     label="##word.exchange_rate##"></i-control>
                 <i-list v="r" class="col3 control " ng-search="_search.$safe_amount_in" ng-model="amount_in.safe"
                     items="safesList" label="##word.amounts_in_safe##"></i-list>
 
-                <i-control  class="col2" v="r" ng-model="amount_in.value"
-                    type="number" label="##word.amounts_in_value##"></i-control>
-             
+                <i-control class="col2" v="r" ng-model="amount_in.value" type="number"
+                    label="##word.amounts_in_value##"></i-control>
+
             </div>
 
 
-            <div class="row">
+            <div class="row" ng-hide="'##user.type##' == 'delegate'">
                 <div class="col4 control">
                     <i-checkbox ng-model="fromeng" label="##word.amounts_in_employees##"></i-checkbox>
                     <i-list ng-show="fromeng" label="##word.amounts_in_employees##" ng-search="_search.$eng_amount_in"
                         ng-model="amount_in.employee" display="name" items="employeesList">
+                    </i-list>
+                </div>
+                <div class="col4 control" >
+                    <i-checkbox ng-model="fromdle" label="##word.delegate##"></i-checkbox>
+                    <i-list ng-show="fromdle" ng-model="amount_in.delegate"
+                        ng-search="_search.$items_group_search" label="##word.delegate##" items="delegatesList">
                     </i-list>
                 </div>
             </div>

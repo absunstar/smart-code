@@ -312,10 +312,14 @@ module.exports = function init(site) {
       where['value'] = where['value'];
     }
 
-
     if (where['description']) {
       where['description'] = new RegExp(where['description'], 'i')
     }
+
+    if (req.session.user.type === 'delegate') {
+      where['delegate.id'] = req.session.user.ref_info.id;
+    }
+
 
     delete where.search
 

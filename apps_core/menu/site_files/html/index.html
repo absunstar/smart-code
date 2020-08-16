@@ -893,6 +893,12 @@
                 <span>##word.system_stores_out_menus##</span>
             </a>
 
+            <a class="tab-link" ng-show="'##user.type##' == 'delegate'" href="/amounts_in" x-permissions="amounts_in_ui || amounts_in_manage">
+                <img src="/images/amount_in.png">
+                <span>##word.system_amounts_in_menus##</span>
+            </a>
+
+
             <div class="row" ng-show="'##user.type##' == 'customer'">
                 <div class="col4"></div>
                 <a class="tab-link" href="/customers" x-permissions="customers_ui || customers_manage">

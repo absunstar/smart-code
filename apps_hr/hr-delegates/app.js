@@ -104,6 +104,21 @@ module.exports = function init(site) {
               "stores_out_ui",
               "stores_out_print",
               "stores_out_export"]
+          },
+          {
+            module_name: "accounting",
+            name: "amounts_in_user",
+            en: "Amounts In User",
+            ar: "إدارة الوارد للمستخدم",
+            permissions: [
+              "amounts_in_add",
+              "amounts_in_update",
+              "amounts_in_view",
+              "amounts_in_search",
+              "amounts_in_ui",
+              "amounts_in_print",
+              "amounts_in_export"
+            ]
           }]
 
         user.profile = {
@@ -206,6 +221,21 @@ module.exports = function init(site) {
           "stores_out_ui",
           "stores_out_print",
           "stores_out_export"]
+      },
+      {
+        module_name: "accounting",
+        name: "amounts_in_user",
+        en: "Amounts In User",
+        ar: "إدارة الوارد للمستخدم",
+        permissions: [
+          "amounts_in_add",
+          "amounts_in_update",
+          "amounts_in_view",
+          "amounts_in_search",
+          "amounts_in_ui",
+          "amounts_in_print",
+          "amounts_in_export"
+        ]
       }]
 
     user.profile = {
@@ -264,7 +294,7 @@ module.exports = function init(site) {
               res.json(response)
             })
           } else if (delegate_doc.doc.user_info && delegate_doc.doc.user_info.id) {
-            site.security.updateUser(user, (err, user_doc) => { 
+            site.security.updateUser(user, (err, user_doc) => {
             })
           }
         } else {

@@ -14,9 +14,17 @@ app.controller("amounts_in", function ($scope, $http, $timeout) {
           date: new Date(),
           value: 0
         };
+
+        if ('##user.type##' == 'delegate') {
+          $scope.amount_in.delegate = $scope.delegatesList[0];
+
+        }
+
         if ($scope.defaultSettings) {
           if ($scope.defaultSettings.general_Settings && !$scope.defaultSettings.general_Settings.work_posting)
             $scope.amount_in.posting = true;
+
+
           if ($scope.defaultSettings.accounting) {
             $scope.amount_in.currency = $scope.defaultSettings.accounting.currency;
             if ($scope.defaultSettings.accounting.payment_method) {
@@ -345,6 +353,33 @@ app.controller("amounts_in", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.loadDelegates = function () {
+    $scope.busy = true;
+    $scope.delegatesList = [];
+    $http({
+      method: "POST",
+      url: "/api/delegates/all",
+      data: {
+        where: {
+          active: true
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.delegatesList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+
+
   $scope.loadInOutNames = function () {
     $scope.busy = true;
     $http({
@@ -432,6 +467,7 @@ app.controller("amounts_in", function ($scope, $http, $timeout) {
   $scope.getPaymentMethodList();
   $scope.loadInOutNames();
   $scope.loadCurrencies();
+  $scope.loadDelegates();
   $scope.loadEmployees();
   $scope.loadAll({ date: new Date() });
 });

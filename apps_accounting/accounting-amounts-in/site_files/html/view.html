@@ -42,11 +42,23 @@
                 <td class="green center">{{amount_in.value}}</td>
             </tr>
 
-          
+
             <tr ng-show="amount_in.employee">
                 <td class="title">##word.amounts_in_employees##</td>
-                <td class="center">{{amount_in.employee.name}}</td>
+                <td class="center">
+                    {{amount_in.employee.name}}
+
+                </td>
             </tr>
+
+            <tr ng-show="amount_in.delegate">
+                <td class="title">##word.amounts_in_employees##</td>
+                <td class="center">
+                    {{amount_in.delegate.name}}
+
+                </td>
+            </tr>
+
 
             <tr>
                 <td class="title">##word.amounts_in_description##</td>

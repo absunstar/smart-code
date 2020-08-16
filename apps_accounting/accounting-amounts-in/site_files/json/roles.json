@@ -4,4 +4,19 @@
     "en": "Amounts In Admin",
     "ar": "إدارة الوارد",
     "permissions": ["amounts_in_manage"]
+},
+{
+    "module_name": "accounting",
+    "name": "amounts_in_user",
+    "en": "Amounts In User",
+    "ar": "إدارة الوارد للمستخدم",
+    "permissions": [
+        "amounts_in_add",
+        "amounts_in_update",
+        "amounts_in_view",
+        "amounts_in_search",
+        "amounts_in_ui",
+        "amounts_in_print",
+        "amounts_in_export"
+    ]
 }]
