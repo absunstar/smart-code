@@ -85,6 +85,11 @@
         "ar": "المقاس بالإنجليزية"
     },
     {
+        "name": "Signature",
+        "en": "Signature",
+        "ar": "التوقيع"
+    },
+    {
         "name": "cash",
         "en": "Cash",
         "ar": "كاش"

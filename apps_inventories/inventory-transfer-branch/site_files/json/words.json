@@ -17,6 +17,7 @@
     {"name" : "transfer_branch_supply_number_date" , "en" : "supply number date" , "ar" : " تاريخ أذن التوريد"},
 
     {"name" : "err_maximum_discount" , "en" : "The item I discount must be less than or equal to the maximum discount" , "ar" : "يجب أن يكون الخصم على الصنف أقل من أو يساوي أقصى خصم"},
+    {"name" : "received_honesty" , "en" : "I received the above merchandise as a honesty until its value is paid at the selling price" , "ar" : "إستلمت البضاعه أعلاه وذلك بصفه أمانه لحين سداد قيمتها بسعر البيع"},
 
     {"name" : "transfer_branch_store_name" , "en" : "Transfer Branch" , "ar" : "إسم المخزن"},
     {"name" : "transfer_branch_items" , "en" : "Transfer Branch Items" , "ar" : "تحويل أصناف  بين الفروع"},
