@@ -40,7 +40,7 @@ module.exports = function init(site) {
 
   site.get_company = function (req) {
     let company = req.session('company')
-    return site.fromJson(company)
+    return company ? site.fromJson(company) || {}: {}
   }
 
   site.get_branch = function (req) {
