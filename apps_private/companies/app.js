@@ -40,12 +40,12 @@ module.exports = function init(site) {
 
   site.get_company = function (req) {
     let company = req.session('company')
-    return company ? site.fromJson(company) || {}: {}
+    return company ? site.fromJson(company) || {} : {}
   }
 
   site.get_branch = function (req) {
     let branch = req.session('branch')
-    return site.fromJson(branch)
+    return branch ? site.fromJson(branch) || {} : {}
   }
 
   site.post({
@@ -114,8 +114,8 @@ module.exports = function init(site) {
               mobile: doc.mobile,
               image_url: companies_doc.image_url
             }
-          } , (err  , user_doc)=>{
-            if(!err && user_doc){
+          }, (err, user_doc) => {
+            if (!err && user_doc) {
               doc.user_id = user_doc.id
               $companies.update(doc)
             }
@@ -165,7 +165,7 @@ module.exports = function init(site) {
             response.doc = result.doc
 
             site.call('[user][update]', {
-              id : companies_doc.user_id,
+              id: companies_doc.user_id,
               email: companies_doc.username,
               password: companies_doc.password,
               company_id: companies_doc.id,
@@ -175,11 +175,11 @@ module.exports = function init(site) {
                 mobile: companies_doc.mobile,
                 image_url: companies_doc.image_url
               }
-            } , (err , user_result)=>{
-              if(!err && user_result.doc){
+            }, (err, user_result) => {
+              if (!err && user_result.doc) {
                 result.doc.user_id = user_result.doc.id
                 $companies.update(result.doc)
-              }else{
+              } else {
                 site.call('[user][add]', {
                   email: companies_doc.username,
                   password: companies_doc.password,
@@ -197,11 +197,11 @@ module.exports = function init(site) {
                     mobile: companies_doc.mobile,
                     image_url: companies_doc.image_url
                   }
-                } , (err , user_doc)=>{
-                  if(!err && user_doc){
+                }, (err, user_doc) => {
+                  if (!err && user_doc) {
                     result.doc.user_id = user_doc.id
                     $companies.update(result.doc)
-                  }else{
+                  } else {
                     console.log(err)
                     console.log(user_doc)
                   }
@@ -330,7 +330,7 @@ module.exports = function init(site) {
       where['company.id'] = site.get_company(req).id
       where['branch.code'] = site.get_branch(req).code
     }
-    
+
 
     $companies.findMany({
       select: req.body.select || {},
