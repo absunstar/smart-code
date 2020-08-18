@@ -611,7 +611,7 @@ module.exports = function init(site) {
 
               _size.size_units_list.forEach((_size_unit, _i) => {
                 let indx = doc.units_list.findIndex(_unit1 => _unit1.id == _size_unit.id);
-                _size_unit.convert = doc.units_list[indx].convert
+                _size_unit.convert = (doc.units_list[indx] || _size_unit || {}).convert //amr
 
                 if (!_size_unit.average_cost)
                   _size_unit.average_cost = _size_unit.cost
