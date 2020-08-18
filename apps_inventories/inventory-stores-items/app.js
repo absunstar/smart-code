@@ -1530,7 +1530,6 @@ module.exports = function init(site) {
         sort: req.body.sort || {
           id: -1
         },
-        limit: req.body.limit
       }, (err, docs) => {
         if (!err) {
           if (docs && docs.length > 0) {

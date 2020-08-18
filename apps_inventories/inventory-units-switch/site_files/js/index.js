@@ -1,7 +1,7 @@
-app.controller("stores_assemble", function ($scope, $http, $timeout) {
+app.controller("units_switch", function ($scope, $http, $timeout) {
   $scope._search = {};
 
-  $scope.store_assemble = {
+  $scope.units_switch = {
     discountes: [],
     taxes: []
   };
@@ -13,7 +13,7 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
 
   $scope.deleteRow = function (itm) {
     $scope.error = '';
-    $scope.store_assemble.items.splice($scope.store_assemble.items.indexOf(itm), 1);
+    $scope.units_switch.items.splice($scope.units_switch.items.indexOf(itm), 1);
 
   };
 
@@ -23,14 +23,14 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
 
   };
 
-  $scope.newStoreAssemble = function () {
+  $scope.newUnitsSwitch = function () {
     $scope.error = '';
     $scope.get_open_shift((shift) => {
       if (shift) {
         $scope.error = '';
         $scope.item = {}
-        $scope.store_assemble = {
-          image_url: '/images/store_assemble.png',
+        $scope.units_switch = {
+          image_url: '/images/units_switch.png',
           shift: $scope.shift,
           items: [],
           date: new Date(),
@@ -39,14 +39,14 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
 
           if ($scope.defaultSettings.inventory) {
             if ($scope.defaultSettings.inventory.store)
-              $scope.store_assemble.store = $scope.defaultSettings.inventory.store
+              $scope.units_switch.store = $scope.defaultSettings.inventory.store
 
           }
           if ($scope.defaultSettings.general_Settings && !$scope.defaultSettings.general_Settings.work_posting) {
-            $scope.store_assemble.posting = true
+            $scope.units_switch.posting = true
           }
         }
-        site.showModal('#addStoreAssembleModal');
+        site.showModal('#addUnitsSwitchModal');
       } else $scope.error = '##word.open_shift_not_found##';
     });
   };
@@ -77,20 +77,20 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
   $scope.add = function () {
     $scope.error = '';
 
-    const v = site.validated('#addStoreAssembleModal');
+    const v = site.validated('#addUnitsSwitchModal');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
     }
 
-    if (new Date($scope.store_assemble.date) > new Date()) {
+    if (new Date($scope.units_switch.date) > new Date()) {
 
       $scope.error = "##word.date_exceed##";
       return;
 
     };
 
-    let notExistCount = $scope.store_assemble.items.some(_iz => _iz.count < 1);
+    let notExistCount = $scope.units_switch.items.some(_iz => _iz.count < 1);
 
     if (notExistCount) {
       $scope.error = "##word.err_exist_count##";
@@ -98,17 +98,17 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
     };
 
 
-    if ($scope.store_assemble.items.length > 0) {
+    if ($scope.units_switch.items.length > 0) {
       $scope.busy = true;
       $http({
         method: "POST",
-        url: "/api/stores_assemble/add",
-        data: $scope.store_assemble
+        url: "/api/units_switch/add",
+        data: $scope.units_switch
       }).then(
         function (response) {
           $scope.busy = false;
           if (response.data.done) {
-            site.hideModal('#addStoreAssembleModal');
+            site.hideModal('#addUnitsSwitchModal');
             $scope.loadAll();
 
           } else {
@@ -130,32 +130,32 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
     }
   };
 
-  $scope.remove = function (store_assemble) {
+  $scope.remove = function (units_switch) {
     $scope.error = '';
     $scope.get_open_shift((shift) => {
       if (shift) {
-        $scope.view(store_assemble);
-        $scope.store_assemble = {};
-        site.showModal('#deleteStoreAssembleModal');
+        $scope.view(units_switch);
+        $scope.units_switch = {};
+        site.showModal('#deleteUnitsSwitchModal');
       } else $scope.error = '##word.open_shift_not_found##';
     });
   };
 
-  $scope.view = function (store_assemble) {
+  $scope.view = function (units_switch) {
     $scope.error = '';
     $scope.busy = true;
     $http({
       method: "POST",
-      url: "/api/stores_assemble/view",
+      url: "/api/units_switch/view",
       data: {
-        _id: store_assemble._id
+        _id: units_switch._id
       }
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
           response.data.doc.date = new Date(response.data.doc.date);
-          $scope.store_assemble = response.data.doc;
+          $scope.units_switch = response.data.doc;
         } else $scope.error = response.data.error;
       },
       function (err) {
@@ -164,29 +164,29 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.details = function (store_assemble) {
+  $scope.details = function (units_switch) {
     $scope.error = '';
-    $scope.view(store_assemble);
-    $scope.store_assemble = {};
-    site.showModal('#viewStoreAssembleModal');
+    $scope.view(units_switch);
+    $scope.units_switch = {};
+    site.showModal('#viewUnitsSwitchModal');
   };
 
-  $scope.delete = function (store_assemble) {
+  $scope.delete = function (units_switch) {
     $scope.error = '';
-    $scope.getStockItems(store_assemble.items, callback => {
+    $scope.getStockItems(units_switch.items, callback => {
 
-      if (!callback || !store_assemble.posting) {
+      if (!callback || !units_switch.posting) {
 
         $scope.busy = true;
         $http({
           method: "POST",
-          url: "/api/stores_assemble/delete",
-          data: store_assemble
+          url: "/api/units_switch/delete",
+          data: units_switch
         }).then(
           function (response) {
             $scope.busy = false;
             if (response.data.done) {
-              site.hideModal('#deleteStoreAssembleModal');
+              site.hideModal('#deleteUnitsSwitchModal');
               $scope.loadAll();
             } else {
               $scope.error = response.data.error;
@@ -212,9 +212,9 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
 
     if ($scope.item.sizes && $scope.item.sizes.length > 0)
       $scope.item.sizes.forEach(_size => {
-        foundSize = $scope.store_assemble.items.some(_itemSize => _itemSize.barcode == _size.barcode);
+        foundSize = $scope.units_switch.items.some(_itemSize => _itemSize.barcode == _size.barcode);
         if (_size.count > 0 && !foundSize) {
-          $scope.store_assemble.items.unshift({
+          $scope.units_switch.items.unshift({
             image_url: $scope.item.image_url,
             name: _size.name,
             item_group: _size.item_group,
@@ -244,8 +244,8 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
     $scope.item.sizes = $scope.item.sizes || [];
     $scope.item.sizes.unshift({
       $new: true,
-      vendor: $scope.store_assemble.vendor,
-      store: $scope.store_assemble.store,
+      vendor: $scope.units_switch.vendor,
+      store: $scope.units_switch.store,
       count: 1,
       cost: 0,
       price: 0,
@@ -290,7 +290,7 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
                     if ((_size.barcode == $scope.item.search_item_name) || (_size.size_en && _size.size_en.contains($scope.item.search_item_name)) || (_size.size && _size.size.contains($scope.item.search_item_name)) || foundUnit) {
                       _size.name = _item.name;
                       _size.item_group = _item.item_group;
-                      _size.store = $scope.store_assemble.store;
+                      _size.store = $scope.units_switch.store;
                       _size.unit = _size.size_units_list[indxUnit];
                       _size.count = 1;
                       _size.discount = _size.size_units_list[indxUnit].discount;
@@ -314,7 +314,7 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
                               let indxStore = 0;
 
                               _size.branches_list[indxBranch].stores_list.map((_store, i) => {
-                                if (_store.store.id == $scope.store_assemble.store.id) {
+                                if (_store.store.id == $scope.units_switch.store.id) {
                                   indxStore = i;
                                   foundStore = true;
 
@@ -372,7 +372,7 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
 
         _item.name = $scope.item.name.name;
         _item.item_group = $scope.item.name.item_group;
-        _item.store = $scope.store_assemble.store;
+        _item.store = $scope.units_switch.store;
         let indxUnit = 0;
         if (_item.size_units_list && _item.size_units_list.length > 0) {
           indxUnit = _item.size_units_list.findIndex(_unit => _unit.id == $scope.item.name.main_unit.id);
@@ -400,7 +400,7 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
                 let foundStore = false;
                 let indxStore = 0;
                 _item.branches_list[indxBranch].stores_list.map((_store, i) => {
-                  if (_store.store.id == $scope.store_assemble.store.id) {
+                  if (_store.store.id == $scope.units_switch.store.id) {
                     foundStore = true;
                     indxStore = i;
                     if (_store.hold) foundHold = true;
@@ -462,7 +462,7 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
                   if ((_size.barcode == $scope.search_barcode) || foundUnit) {
                     _size.name = response.data.list[0].name;
                     _size.item_group = response.data.list[0].item_group;
-                    _size.store = $scope.store_assemble.store;
+                    _size.store = $scope.units_switch.store;
                     _size.unit = _size.size_units_list[indxUnit];
                     _size.count = 1;
                     _size.discount = _size.size_units_list[indxUnit].discount;
@@ -485,7 +485,7 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
                             let foundStore = false
                             let indxStore = 0
                             _size.branches_list[indxBranch].stores_list.map((_store, i) => {
-                              if (_store.store.id == $scope.store_assemble.store.id) {
+                              if (_store.store.id == $scope.units_switch.store.id) {
                                 foundStore = true
                                 indxStore = i
                                 if (_store.hold) foundHold = true;
@@ -503,9 +503,9 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
 
                     } else _size.store_count = 0
 
-                    foundSize = $scope.store_assemble.items.some(_itemSize => _itemSize.barcode == _size.barcode);
+                    foundSize = $scope.units_switch.items.some(_itemSize => _itemSize.barcode == _size.barcode);
                     if (!foundSize && _size.item_complex && !foundHold)
-                      $scope.store_assemble.items.unshift(_size);
+                      $scope.units_switch.items.unshift(_size);
                   }
                 });
               if (foundSize) $scope.error = '##word.dublicate_item##';
@@ -527,14 +527,14 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
     }
   };
 
-  $scope.edit = function (store_assemble) {
+  $scope.edit = function (units_switch) {
     $scope.error = '';
     $scope.get_open_shift((shift) => {
       if (shift) {
-        $scope.view(store_assemble);
-        $scope.store_assemble = {};
+        $scope.view(units_switch);
+        $scope.units_switch = {};
         $scope.edit_price = false;
-        site.showModal('#updateStoreAssembleModal');
+        site.showModal('#updateUnitsSwitchModal');
       } else $scope.error = '##word.open_shift_not_found##';
     });
   };
@@ -542,14 +542,14 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
   $scope.update = function () {
     $scope.error = '';
 
-    if (new Date($scope.store_assemble.date) > new Date()) {
+    if (new Date($scope.units_switch.date) > new Date()) {
 
       $scope.error = "##word.date_exceed##";
       return;
 
     };
 
-    let notExistCount = $scope.store_assemble.items.some(_iz => _iz.count < 1);
+    let notExistCount = $scope.units_switch.items.some(_iz => _iz.count < 1);
 
     if (notExistCount) {
       $scope.error = "##word.err_exist_count##";
@@ -560,13 +560,13 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
     $scope.busy = true;
     $http({
       method: "POST",
-      url: "/api/stores_assemble/update",
-      data: $scope.store_assemble
+      url: "/api/units_switch/update",
+      data: $scope.units_switch
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#updateStoreAssembleModal');
+          site.hideModal('#updateUnitsSwitchModal');
           $scope.loadAll();
         } else {
           $scope.error = '##word.error##';
@@ -578,16 +578,16 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.posting = function (store_assemble) {
+  $scope.posting = function (units_switch) {
     $scope.error = '';
-    $scope.getStockItems(store_assemble.items, callback => {
+    $scope.getStockItems(units_switch.items, callback => {
 
       if (!callback) {
         $scope.busy = true;
         $http({
           method: "POST",
-          url: "/api/stores_assemble/posting",
-          data: store_assemble
+          url: "/api/units_switch/posting",
+          data: units_switch
         }).then(
           function (response) {
             $scope.busy = false;
@@ -605,9 +605,9 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
           }
         )
       } else {
-        if (store_assemble.posting)
-          store_assemble.posting = false;
-        else store_assemble.posting = true;
+        if (units_switch.posting)
+          units_switch.posting = false;
+        else units_switch.posting = true;
         $scope.error = '##word.err_stock_item##';
       }
     })
@@ -708,7 +708,7 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
     $scope.busy = true;
     $http({
       method: "POST",
-      url: "/api/stores_assemble/all",
+      url: "/api/units_switch/all",
       data: {
         where: where
       }

@@ -10,7 +10,6 @@ module.exports = function init(site) {
 
   site.on('[stores_items][item_name][change]', objectStoreIn => {
 
-
     let barcode = objectStoreIn.sizes_list.map(_obj => _obj.barcode)
 
     $stores_in.findMany({ 'company.id': objectStoreIn.company.id, 'items.barcode': barcode }, (err, doc) => {

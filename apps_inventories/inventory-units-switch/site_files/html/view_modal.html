@@ -1,0 +1,22 @@
+<div id="viewUnitsSwitchModal" class="modal">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.units_switch_details## <i class="fa fa-file"></i>
+            </h2>
+        </div>
+        <div class="modal-body">
+
+            <div id="v1" x-import="inventory-units-switch/view.html"></div>
+
+
+        </div>
+        <h2 class="center">{{error}}</h2>
+        <div class="modal-footer center">
+            <i-button type="print" x-permissions="units_switch_print || units_switch_manage" label="##word.print##" onclick="site.print('#v1')"></i-button>
+            <i-button type="close" label="##word.close##" onclick="site.hideModal('#viewUnitsSwitchModal')"></i-button>
+        </div>
+    </div>
+</div>

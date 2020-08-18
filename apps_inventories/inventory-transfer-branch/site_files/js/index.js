@@ -149,6 +149,13 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
         if (response.data.done) {
           response.data.doc.date = new Date(response.data.doc.date);
           $scope.transfer_branch = response.data.doc;
+          $scope.total_price = 0;
+          $scope.transfer_branch.items.forEach(_item => {
+            _item.total_price = _item.count * _item.price;
+            $scope.total_price += _item.total_price
+          });
+
+
         } else $scope.error = response.data.error;
       },
       function (err) {
