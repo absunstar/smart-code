@@ -124,8 +124,8 @@ module.exports = function init(site) {
         response.done = true;
         response.doc = doc;
 
-        if (doc.source_type.id == 1) site.call('[store_in][account_invoice][invoice]', Object.assign({}, doc.invoice_id))
-        else if (doc.source_type.id == 2) site.call('[store_out][account_invoice][invoice]', Object.assign({}, doc.invoice_id))
+        if (doc.source_type.id == 1) site.call('[store_in][account_invoice][invoice]', doc.invoice_id)
+        else if (doc.source_type.id == 2) site.call('[store_out][account_invoice][invoice]', doc.invoice_id)
 
 
         if (doc.posting) {
@@ -393,7 +393,7 @@ module.exports = function init(site) {
     }
   })
 
-  
+
 
   site.post("/api/account_invoices/posting", (req, res) => {
     if (req.session.user === undefined)

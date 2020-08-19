@@ -2,10 +2,10 @@ module.exports = function init(site) {
 
   const $stores_out = site.connectCollection("stores_out")
 
-  $stores_out.deleteDuplicate({ number: 1 }, (err, result) => {
-    $stores_out.createUnique({ number: 1 }, (err, result) => {
-    })
-  })
+  // $stores_out.deleteDuplicate({ number: 1 }, (err, result) => {
+  //   $stores_out.createUnique({ number: 1 }, (err, result) => {
+  //   })
+  // })
 
   site.on('[stores_items][item_name][change]', objectStoreOut => {
 
