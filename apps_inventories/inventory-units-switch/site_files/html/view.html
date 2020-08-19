@@ -1,0 +1,66 @@
+<div ng-hide="busy" class="row" fixed>
+    <div class="col9">
+        <br>
+        <table class="table hover bold">
+
+            <tr>
+                <td class="title">##word.units_switch_date##</td>
+                <td class="center brown">{{units_switch.date |date:"dd - MM - yyyy" }}</td>
+            </tr>
+
+            <tr>
+                <td class="title">##word.units_switch_id##</td>
+                <td class="center">{{units_switch.number}}</td>
+            </tr>
+
+            <tr>
+                <td class="title">##word.store##</td>
+                <td class="center">{{units_switch.store.name}}</td>
+            </tr>
+
+            <tr>
+                <td class="title">##word.transaction_type##</td>
+                <td class="center">{{units_switch.type.##session.lang##}}</td>
+            </tr>
+
+            <tr>
+                <td class="title">##word.units_switch_items##</td>
+                <td>
+                    <table class="table bold hover">
+                        <tr>
+                            <th>##word.serial##</th>
+                            <th>##word.units_switch_item_name##</th>
+                            <th>##word.units_switch_item_size##</th>
+                            <th>##word.barcode##</th>
+                            <th>##word.unit##</th>
+                            <th>##word.units_switch_item_count##</th>
+                        </tr>
+                        <tr ng-repeat="itm in units_switch.items">
+                            <td class="center blue">{{$index + 1}}</td>
+                            <td class="center">{{itm.name}}</td>
+                            <td class="center">
+                                <p>{{itm.size}}</p>
+                                <p>{{itm.size_en}}</p>
+                            </td>
+                            <td class="center">{{itm.barcode}}</td>
+                            <td class="center">{{itm.unit.name}}</td>
+                            <td class="center">{{itm.count}}</td>
+
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+
+
+        </table>
+    </div>
+    <div class="col3">
+        <br>
+        <i-image view category="stores_images" class="not-print" ng-model="units_switch.image_url"></i-image>
+        <br>
+        <i-files view ng-model="units_switch.files"></i-files>
+    </div>
+
+</div>
+<div class="not-print" x-import="inventory-units-switch/action_info.html"></div>

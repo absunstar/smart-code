@@ -1,35 +1,37 @@
 module.exports = function init(site) {
 
-  const $stores_dismantle = site.connectCollection("stores_dismantle")
+  const $units_switch = site.connectCollection("units_switch")
 
 
-  site.on('[stores_items][item_name][change]', objectDismantle => {
+  site.on('[stores_items][item_name][change]', objectAssemble => {
 
+    let barcode = objectAssemble.sizes_list.map(_obj => _obj.barcode)
 
-    let barcode = objectDismantle.sizes_list.map(_obj => _obj.barcode)
-
-    $stores_dismantle.findMany({ 'company.id': objectDismantle.company.id, 'items.barcode': barcode }, (err, doc) => {
+    $units_switch.findMany({ 'company.id': objectAssemble.company.id, 'items.barcode': barcode }, (err, doc) => {
       doc.forEach(_doc => {
         if (_doc.items) _doc.items.forEach(_items => {
-          if (objectDismantle.sizes_list) objectDismantle.sizes_list.forEach(_size => {
+          if (objectAssemble.sizes_list) objectAssemble.sizes_list.forEach(_size => {
             if (_items.barcode == _size.barcode) {
               _items.size = _size.size
               _items.size_en = _size.size_en
             }
           })
         });
-        $stores_dismantle.update(_doc);
+        $units_switch.update(_doc);
       });
     });
   });
 
-
-
   site.get({
-    name: "stores_dismantle",
+    name: "units_switch",
     path: __dirname + "/site_files/html/index.html",
     parser: "html",
     compress: false
+  })
+
+  site.get({
+    name: 'images',
+    path: __dirname + '/site_files/images/'
   })
 
   function addZero(code, number) {
@@ -40,7 +42,7 @@ module.exports = function init(site) {
     return code
   }
 
-  $stores_dismantle.newCode = function () {
+  $units_switch.newCode = function () {
 
     let y = new Date().getFullYear().toString().substr(2, 2)
     let m = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L'][new Date().getMonth()].toString()
@@ -57,7 +59,7 @@ module.exports = function init(site) {
     return y + lastMonth + addZero(d, 2) + addZero(lastCode, 4)
   }
 
-  site.post("/api/stores_dismantle/add", (req, res) => {
+  site.post("/api/units_switch/add", (req, res) => {
     let response = {}
     response.done = false
     if (!req.session.user) {
@@ -65,19 +67,19 @@ module.exports = function init(site) {
       return;
     }
 
-    let stores_dismantle_doc = req.body
+    let units_switch_doc = req.body
 
-    stores_dismantle_doc.company = site.get_company(req)
-    stores_dismantle_doc.branch = site.get_branch(req)
-    stores_dismantle_doc.code = $stores_dismantle.newCode();
-    stores_dismantle_doc.add_user_dismantlefo = site.security.getUserFinger({ $req: req, $res: res })
+    units_switch_doc.company = site.get_company(req)
+    units_switch_doc.branch = site.get_branch(req)
+    units_switch_doc.code = $units_switch.newCode();
+    units_switch_doc.add_user_assemblefo = site.security.getUserFinger({ $req: req, $res: res })
 
-    stores_dismantle_doc.$req = req
-    stores_dismantle_doc.$res = res
+    units_switch_doc.$req = req
+    units_switch_doc.$res = res
 
-    stores_dismantle_doc.date = site.toDateTime(stores_dismantle_doc.date)
+    units_switch_doc.date = site.toDateTime(units_switch_doc.date)
 
-    stores_dismantle_doc.items.forEach(itm => {
+    units_switch_doc.items.forEach(itm => {
       itm.current_count = site.toNumber(itm.current_count)
       itm.count = site.toNumber(itm.count)
       itm.cost = site.toNumber(itm.cost)
@@ -85,11 +87,20 @@ module.exports = function init(site) {
       itm.total = site.toNumber(itm.total)
     })
 
-    stores_dismantle_doc.total_value = site.toNumber(stores_dismantle_doc.total_value)
-    stores_dismantle_doc.net_value = site.toNumber(stores_dismantle_doc.net_value)
+    units_switch_doc.total_value = site.toNumber(units_switch_doc.total_value)
+    units_switch_doc.net_value = site.toNumber(units_switch_doc.net_value)
+
+    let assembleItems = []
+    units_switch_doc.items.forEach(assembleDocItems => {
+      assembleDocItems.complex_items.forEach(aDiCoplex => {
+        aDiCoplex.count = aDiCoplex.count + assembleDocItems.count
+
+        assembleItems.push(aDiCoplex)
+      });
+    });
 
 
-    site.isAllowOverDraft(req, stores_dismantle_doc.items, cbOverDraft => {
+    site.isAllowOverDraft(req, assembleItems, cbOverDraft => {
 
       if (!cbOverDraft.overdraft && cbOverDraft.value) {
 
@@ -98,7 +109,8 @@ module.exports = function init(site) {
 
       } else {
 
-        $stores_dismantle.add(stores_dismantle_doc, (err, doc) => {
+
+        $units_switch.add(units_switch_doc, (err, doc) => {
 
           if (!err) {
 
@@ -109,7 +121,8 @@ module.exports = function init(site) {
               let complex_list = [];
 
               doc.items.forEach((_itm, i) => {
-                _itm.type = 'minus'
+                _itm.type = 'sum'
+                _itm.assemble = true
                 _itm.store = doc.store
                 _itm.company = doc.company
                 _itm.branch = doc.branch
@@ -119,8 +132,8 @@ module.exports = function init(site) {
                 _itm.code = doc.code
                 _itm.date = doc.date
                 _itm.source_type = doc.type
-                _itm.transaction_type = 'out'
-                _itm.current_status = 'Dismantling'
+                _itm.transaction_type = 'in'
+                _itm.current_status = 'Assembling'
                 _itm.shift = {
                   id: doc.shift.id,
                   code: doc.shift.code,
@@ -129,15 +142,15 @@ module.exports = function init(site) {
 
                 if (_itm.complex_items && _itm.complex_items.length > 0) {
                   _itm.complex_items.forEach(_complex => {
-                    _complex.type = 'sum'
+                    _complex.type = 'minus'
                     _complex.code = doc.code
                     _complex.date = doc.date
                     _complex.store = doc.store
                     _complex.company = doc.company
                     _complex.branch = doc.branch
                     _complex.count = _complex.count * _itm.count
-                    _complex.transaction_type = 'in'
-                    _complex.current_status = 'Dismantling'
+                    _complex.transaction_type = 'out'
+                    _complex.current_status = 'Assembling'
                     _complex.shift = {
                       id: doc.shift.id,
                       code: doc.shift.code,
@@ -147,14 +160,13 @@ module.exports = function init(site) {
                   });
                 }
 
-                site.call('item_transaction - items', Object.assign({}, _itm))
+                site.call('item_transaction + items', Object.assign({}, _itm))
 
               })
 
               complex_list.forEach((_complex, i) => {
-                site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _complex))
-
-                site.call('item_transaction + items', Object.assign({}, _complex))
+                site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _complex1))
+                site.call('item_transaction - items', Object.assign({}, _complex))
               });
 
             }
@@ -168,35 +180,35 @@ module.exports = function init(site) {
     })
   })
 
-  site.post("/api/stores_dismantle/update", (req, res) => {
+  site.post("/api/units_switch/update", (req, res) => {
     let response = {}
     response.done = false
     if (req.session.user === undefined) {
       res.json(response)
     }
-    let stores_dismantle_doc = req.body
-    stores_dismantle_doc.edit_user_dismantlefo = site.security.getUserFinger({ $req: req, $res: res })
+    let units_switch_doc = req.body
+    units_switch_doc.edit_user_assemblefo = site.security.getUserFinger({ $req: req, $res: res })
 
-    stores_dismantle_doc.vendor = site.fromJson(stores_dismantle_doc.vendor)
-    stores_dismantle_doc.seasonName = stores_dismantle_doc.seasonName
-    stores_dismantle_doc.type = site.fromJson(stores_dismantle_doc.type)
-    stores_dismantle_doc.date = new Date(stores_dismantle_doc.date)
+    units_switch_doc.vendor = site.fromJson(units_switch_doc.vendor)
+    units_switch_doc.seasonName = units_switch_doc.seasonName
+    units_switch_doc.type = site.fromJson(units_switch_doc.type)
+    units_switch_doc.date = new Date(units_switch_doc.date)
 
-    stores_dismantle_doc.items.forEach(itm => {
+    units_switch_doc.items.forEach(itm => {
       itm.count = site.toNumber(itm.count)
       itm.cost = site.toNumber(itm.cost)
       itm.price = site.toNumber(itm.price)
       itm.total = site.toNumber(itm.total)
     })
 
-    stores_dismantle_doc.total_value = site.toNumber(stores_dismantle_doc.total_value)
+    units_switch_doc.total_value = site.toNumber(units_switch_doc.total_value)
 
-    if (stores_dismantle_doc._id) {
-      $stores_dismantle.edit({
+    if (units_switch_doc._id) {
+      $units_switch.edit({
         where: {
-          _id: stores_dismantle_doc._id
+          _id: units_switch_doc._id
         },
-        set: stores_dismantle_doc,
+        set: units_switch_doc,
         $req: req,
         $res: res
       }, err => {
@@ -212,40 +224,39 @@ module.exports = function init(site) {
     }
   })
 
-  site.post("/api/stores_dismantle/posting", (req, res) => {
+  site.post("/api/units_switch/posting", (req, res) => {
     if (req.session.user === undefined)
       res.json(response)
 
     let response = {}
     response.done = false
 
-    let stores_dismantle_doc = req.body
+    let units_switch_doc = req.body
 
-    stores_dismantle_doc.edit_user_dismantlefo = site.security.getUserFinger({ $req: req, $res: res })
+    units_switch_doc.edit_user_assemblefo = site.security.getUserFinger({ $req: req, $res: res })
 
-    if (stores_dismantle_doc._id) {
+    if (units_switch_doc._id) {
 
 
-      let disAssembleItems = []
+      let assembleItems = []
 
-      if (stores_dismantle_doc.posting) {
+      if (units_switch_doc.posting) {
 
-        disAssembleItems = Object.assign({}, stores_assemble_doc.items)
+        units_switch_doc.items.forEach(assembleDocItems => {
+          assembleDocItems.complex_items.forEach(aDiCoplex => {
+            aDiCoplex.count = aDiCoplex.count + assembleDocItems.count
 
-      } else {
-
-        stores_assemble_doc.items.forEach(disAssembleDocItems => {
-          disAssembleDocItems.complex_items.forEach(dAdIcoplex => {
-            dAdIcoplex.count = dAdIcoplex.count + disAssembleDocItems.count
-            disAssembleItems.push(dAdIcoplex)
+            assembleItems.push(aDiCoplex)
           });
         });
 
+      } else {
+        assembleItems = Object.assign({}, units_switch_doc.items)
       }
 
 
 
-      site.isAllowOverDraft(req, disAssembleItems, cbOverDraft => {
+      site.isAllowOverDraft(req, assembleItems, cbOverDraft => {
 
         if (!cbOverDraft.overdraft && cbOverDraft.value) {
 
@@ -255,11 +266,11 @@ module.exports = function init(site) {
         } else {
 
 
-          $stores_dismantle.edit({
+          $units_switch.edit({
             where: {
-              _id: stores_dismantle_doc._id
+              _id: units_switch_doc._id
             },
-            set: stores_dismantle_doc,
+            set: units_switch_doc,
             $req: req,
             $res: res
           }, (err, result) => {
@@ -272,8 +283,9 @@ module.exports = function init(site) {
 
               result.doc.items.forEach((_itm, i) => {
                 if (result.doc.posting)
-                  _itm.type = 'minus'
-                else _itm.type = 'sum'
+                  _itm.type = 'sum'
+                else _itm.type = 'minus'
+                _itm.assemble = true
 
                 _itm.store = result.doc.store
                 _itm.company = result.doc.company
@@ -283,14 +295,14 @@ module.exports = function init(site) {
                 _itm.code = result.doc.code
                 _itm.date = result.doc.date
                 _itm.source_type = result.doc.type
-                _itm.transaction_type = 'out'
+                _itm.transaction_type = 'in'
                 if (result.doc.posting) {
-                  _itm.current_status = 'Dismantling'
-                }
-                else {
+                  _itm.current_status = 'Assembling'
+                } else {
                   _itm.count = (-Math.abs(_itm.count))
-                  _itm.current_status = 'r_Dismantling'
+                  _itm.current_status = 'r_Assembling'
                 }
+
                 _itm.shift = {
                   id: result.doc.shift.id,
                   code: result.doc.shift.code,
@@ -299,24 +311,23 @@ module.exports = function init(site) {
 
                 if (_itm.complex_items && _itm.complex_items.length > 0) {
                   _itm.complex_items.forEach(_complex => {
+
                     _complex.code = result.doc.code
                     _complex.date = result.doc.date
                     _complex.store = result.doc.store
                     _complex.company = result.doc.company
                     _complex.branch = result.doc.branch
                     _complex.count = _complex.count * _itm.count
-                    _complex.transaction_type = 'in'
-
+                    _complex.transaction_type = 'out'
                     if (result.doc.posting) {
-                      _complex.type = 'sum'
-                      _complex.current_status = 'Dismantling'
+                      _complex.type = 'minus'
+                      _complex.current_status = 'Assembling'
                     }
                     else {
                       _complex.count = (-Math.abs(_complex.count))
-                      _complex.current_status = 'r_Dismantling'
-                      _complex.type = 'minus'
+                      _complex.current_status = 'r_Assembling'
+                      _complex.type = 'sum'
                     }
-
                     _complex.shift = {
                       id: result.doc.shift.id,
                       code: result.doc.shift.code,
@@ -326,16 +337,17 @@ module.exports = function init(site) {
                   });
                 }
 
-                site.call('item_transaction - items', Object.assign({}, _itm))
+                site.call('item_transaction + items', Object.assign({}, _itm))
+
                 _itm.count = Math.abs(_itm.count)
                 site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _itm))
 
               })
 
               complex_list.forEach((_complex1, i) => {
-                site.call('item_transaction + items', Object.assign({}, _complex1))
-                _complex1.count = Math.abs(_complex1.count)
+                site.call('item_transaction - items', Object.assign({}, _complex1))
 
+                _complex1.count = Math.abs(_complex1.count)
                 site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _complex1))
               });
 
@@ -348,32 +360,22 @@ module.exports = function init(site) {
           })
         }
       })
+
     } else {
       res.json(response)
     }
   })
 
-  site.post("/api/stores_dismantle/delete", (req, res) => {
+  site.post("/api/units_switch/delete", (req, res) => {
     let response = {}
     response.done = false
     if (req.session.user === undefined) {
       res.json(response)
     }
-    let stores_dismantle_doc = req.body
-    if (stores_dismantle_doc._id) {
+    let units_switch_doc = req.body
+    if (units_switch_doc._id) {
 
-
-      let disAssembleItems = []
-      stores_dismantle_doc.items.forEach(disAssembleDocItems => {
-        disAssembleDocItems.complex_items.forEach(dAdIcoplex => {
-          dAdIcoplex.count = dAdIcoplex.count + disAssembleDocItems.count
-
-          disAssembleItems.push(dAdIcoplex)
-        });
-      });
-
-
-      site.isAllowOverDraft(req, disAssembleItems, cbOverDraft => {
+      site.isAllowOverDraft(req, units_switch_doc.items, cbOverDraft => {
 
         if (!cbOverDraft.overdraft && cbOverDraft.value) {
 
@@ -383,33 +385,31 @@ module.exports = function init(site) {
         } else {
 
 
-          $stores_dismantle.delete({
+          $units_switch.delete({
             where: {
-              _id: stores_dismantle_doc._id
+              _id: units_switch_doc._id
             },
             $req: req,
             $res: res
           }, (err, result) => {
             if (!err) {
               response.done = true
-              if (stores_dismantle_doc.posting) {
+              if (units_switch_doc.posting) {
 
                 let complex_list = [];
 
-
                 result.doc.items.forEach((_itm, i) => {
-                  _itm.type = 'sum'
+                  _itm.type = 'minus'
                   _itm.store = result.doc.store
                   _itm.company = result.doc.company
                   _itm.branch = result.doc.branch
-
-
+                  _itm.assemble = true
                   _itm.code = result.doc.code
                   _itm.date = result.doc.date
                   _itm.source_type = result.doc.type
-                  _itm.transaction_type = 'out'
+                  _itm.transaction_type = 'in'
                   _itm.count = (-Math.abs(_itm.count))
-                  _itm.current_status = 'd_Dismantling'
+                  _itm.current_status = 'd_Assembling'
                   _itm.shift = {
                     id: result.doc.shift.id,
                     code: result.doc.shift.code,
@@ -418,7 +418,7 @@ module.exports = function init(site) {
 
                   if (_itm.complex_items && _itm.complex_items.length > 0) {
                     _itm.complex_items.forEach(_complex => {
-                      _complex.type = 'minus'
+                      _complex.type = 'sum'
                       _complex.code = result.doc.code
                       _complex.date = result.doc.date
                       _complex.store = result.doc.store
@@ -426,8 +426,8 @@ module.exports = function init(site) {
                       _complex.branch = result.doc.branch
                       _complex.count = _complex.count * _itm.count
                       _complex.count = (-Math.abs(_complex.count))
-                      _complex.transaction_type = 'in'
-                      _complex.current_status = 'd_Dismantling'
+                      _complex.transaction_type = 'out'
+                      _complex.current_status = 'd_Assembling'
                       _complex.shift = {
                         id: result.doc.shift.id,
                         code: result.doc.shift.code,
@@ -436,15 +436,15 @@ module.exports = function init(site) {
                       complex_list.push(Object.assign({}, _complex))
                     });
                   }
-                  site.call('item_transaction - items', Object.assign({}, _itm))
+                  site.call('item_transaction + items', Object.assign({}, _itm))
 
                   _itm.count = Math.abs(_itm.count)
-
                   site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _itm))
+
                 })
 
                 complex_list.forEach((_complex1, i) => {
-                  site.call('item_transaction + items', Object.assign({}, _complex1))
+                  site.call('item_transaction - items', Object.assign({}, _complex1))
 
                   _complex1.count = Math.abs(_complex1.count)
                   site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _complex1))
@@ -461,10 +461,10 @@ module.exports = function init(site) {
     } else res.json(response)
   })
 
-  site.post("/api/stores_dismantle/view", (req, res) => {
+  site.post("/api/units_switch/view", (req, res) => {
     let response = {}
     response.done = false
-    $stores_dismantle.findOne({
+    $units_switch.findOne({
       where: {
         _id: site.mongodb.ObjectID(req.body._id)
       }
@@ -479,7 +479,7 @@ module.exports = function init(site) {
     })
   })
 
-  site.post("/api/stores_dismantle/all", (req, res) => {
+  site.post("/api/units_switch/all", (req, res) => {
     let response = {}
     response.done = false
     let where = req.body.where || {}
@@ -590,7 +590,7 @@ module.exports = function init(site) {
     }
 
     delete where.search
-    $stores_dismantle.findMany({
+    $units_switch.findMany({
       select: req.body.select || {},
       limit: req.body.limit,
       where: where,
@@ -604,6 +604,35 @@ module.exports = function init(site) {
       } else {
         response.error = err.message
       }
+      res.json(response)
+    })
+  })
+
+
+  site.post("/api/units_switch/un_post", (req, res) => {
+    let response = {}
+    response.done = false
+    if (!req.session.user) {
+      res.json(response)
+      return;
+    }
+
+    $units_switch.findMany({
+      select: req.body.select || {},
+      where: { 'company.id': site.get_company(req).id },
+      sort: req.body.sort || {
+        id: -1
+      },
+    }, (err, docs) => {
+      if (!err) {
+        if (docs && docs.length > 0) {
+          docs.forEach(units_switch_doc => {
+            units_switch_doc.posting = false;
+            $units_switch.update(units_switch_doc);
+          });
+        }
+      }
+      response.done = true
       res.json(response)
     })
   })

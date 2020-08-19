@@ -112,10 +112,14 @@ app.controller("stores_dismantle", function ($scope, $http, $timeout) {
           $scope.busy = false;
           if (response.data.done) {
             site.hideModal('#addStoreDismantleModal');
-
             $scope.loadAll();
 
-          } else $scope.error = response.data.error;
+          } else {
+            $scope.error = response.data.error;
+            if (response.data.error.like('*OverDraft Not*')) {
+              $scope.error = "##word.overdraft_not_active##"
+            }
+          }
 
         },
         function (err) {
@@ -186,7 +190,12 @@ app.controller("stores_dismantle", function ($scope, $http, $timeout) {
             if (response.data.done) {
               site.hideModal('#deleteStoreDismantleModal');
               $scope.loadAll();
-            } else $scope.error = response.data.error;
+            } else {
+              $scope.error = response.data.error;
+              if (response.data.error.like('*OverDraft Not*')) {
+                $scope.error = "##word.overdraft_not_active##"
+              }
+            }
 
           },
           function (err) {
@@ -575,6 +584,9 @@ app.controller("stores_dismantle", function ($scope, $http, $timeout) {
               $scope.loadAll();
             } else {
               $scope.error = '##word.error##';
+              if (response.data.error.like('*OverDraft Not*')) {
+                $scope.error = "##word.overdraft_not_active##"
+              }
             }
           },
           function (err) {
