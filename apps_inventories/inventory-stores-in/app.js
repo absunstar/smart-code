@@ -27,10 +27,9 @@ module.exports = function init(site) {
     });
   });
 
-  // error doc is null
   site.on('[store_in][account_invoice][invoice]', function (obj) {
     $stores_in.findOne({ id: obj }, (err, doc) => {
-      doc.invoice = true
+      if (doc) doc.invoice = true
       $stores_in.update(doc);
     });
   });
