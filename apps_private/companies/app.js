@@ -286,9 +286,18 @@ module.exports = function init(site) {
       done: false
     }
 
+    if (!req.session.user) {
+      response.error = 'Please Login First'
+      res.json(response)
+      return
+    }
+
+
     let where = req.body.where || {}
 
-    where['id'] = site.get_company(req).id
+    if (site.get_company(req) && site.get_company(req).id){
+      where['id'] = site.get_company(req).id
+    }
 
     $companies.findOne({
       select: req.body.select || {},
@@ -297,16 +306,15 @@ module.exports = function init(site) {
         id: -1
       },
       limit: req.body.limit
-    }, (err, docs, count) => {
-      if (!err) {
+    }, (err, doc) => {
+      if (!err && doc) {
         response.done = true
-        response.list = docs.branch_list
+        response.list = doc.branch_list
         response.branch = {}
         response.list.forEach(_list => {
           if (_list.code == site.get_branch(req).code)
             response.branch = _list
         })
-        response.count = count
       } else {
         response.error = err.message
       }
