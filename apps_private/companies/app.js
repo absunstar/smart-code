@@ -295,7 +295,7 @@ module.exports = function init(site) {
 
     let where = req.body.where || {}
 
-    if (site.get_company(req) && site.get_company(req).id){
+    if (site.get_company(req) && site.get_company(req).id) {
       where['id'] = site.get_company(req).id
     }
 
@@ -309,12 +309,15 @@ module.exports = function init(site) {
     }, (err, doc) => {
       if (!err && doc) {
         response.done = true
-        response.list = doc.branch_list
-        response.branch = {}
-        response.list.forEach(_list => {
-          if (_list.code == site.get_branch(req).code)
-            response.branch = _list
-        })
+        if (doc.branch_list && doc.branch_list.length > 0) {
+
+          response.list = doc.branch_list
+          response.branch = {}
+          response.list.forEach(_list => {
+            if (_list.code == site.get_branch(req).code)
+              response.branch = _list
+          })
+        }
       } else {
         response.error = err.message
       }
