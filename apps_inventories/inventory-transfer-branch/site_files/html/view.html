@@ -1,9 +1,12 @@
 <div ng-hide="busy" class="row" fixed>
 
 
-    <div class="row center">
-        <i-image view category="stores_images" class="hide" ng-model="defaultSettings.printer_program.invoice_logo">
+    <div class="row center hide">
+        <br>
+        <h2 class="center blue">##session.company.name_ar## - ##session.company.name_en##</h2>
+        <i-image view category="stores_images" ng-model="defaultSettings.printer_program.invoice_logo">
         </i-image>
+        <br>
 
     </div>
 
@@ -23,11 +26,13 @@
 
             <tr>
                 <td class="title">##word.branch_from## / ##word.store_from##</td>
-                <td class="center">{{transfer_branch.branch_from.name_##session.lang##}} / {{transfer_branch.store_from.name}}</td>
+                <td class="center">{{transfer_branch.branch_from.name_##session.lang##}} /
+                    {{transfer_branch.store_from.name}}</td>
             </tr>
             <tr>
                 <td class="title">##word.branch_to## / ##word.store_to##</td>
-                <td class="center">{{transfer_branch.branch_to.name_##session.lang##}} / {{transfer_branch.store_to.name}}</td>
+                <td class="center">{{transfer_branch.branch_to.name_##session.lang##}} /
+                    {{transfer_branch.store_to.name}}</td>
             </tr>
 
             <tr>
@@ -78,7 +83,7 @@
         <br>
         <div class="row">
             <div class="col2"></div>
-            <h2 class="black">##word.Signature## : </h2>
+            <h2 class="black">##word.recipient_signature## : </h2>
         </div>
     </div>
 

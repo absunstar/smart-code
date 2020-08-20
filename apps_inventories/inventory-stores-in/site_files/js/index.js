@@ -397,8 +397,12 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
         obj.total_value_added = 0;
         obj.items.forEach(_itm => {
           obj.total_value += site.toNumber(_itm.total);
-          obj.total_value_added += site.toNumber(_itm.value_added) * (_itm.cost * _itm.count) / 100;
+          _itm.total_v_a = site.toNumber(_itm.value_added) * (_itm.cost * _itm.count) / 100;
+          _itm.total_v_a = site.toNumber(_itm.total_v_a);
+          obj.total_value_added += _itm.total_v_a;
+
         });
+        obj.total_value_added = site.toNumber(obj.total_value_added);
       };
 
       if (obj.type && obj.type.id !== 4) {
@@ -821,6 +825,12 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
         if (response.data.done) {
           response.data.doc.date = new Date(response.data.doc.date);
           $scope.store_in = response.data.doc;
+          $scope.store_in.items.forEach(_item => {
+            if(!_item.total_v_a){
+              _item.total_v_a = site.toNumber(_item.value_added) * (_item.price * _item.count) / 100;
+            }
+          });
+
         } else $scope.error = response.data.error;
       },
       function (err) {
@@ -848,7 +858,8 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
 
             let discount = 0;
             _size.value_added = site.toNumber(_size.value_added);
-            let value_added = _size.value_added * (_size.cost * _size.count) / 100;
+            _size.total_v_a = _size.value_added * (_size.cost * _size.count) / 100;
+            _size.total_v_a = site.toNumber(_size.total_v_a);
 
             if (_size.count) {
               if (_size.discount.type == 'number')
@@ -856,13 +867,16 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
               else if (_size.discount.type == 'percent')
                 discount = (_size.discount.value || 0) * (_size.cost * _size.count) / 100;
 
-              _size.total = (site.toNumber(_size.total * _size.count) - discount + value_added);
+              _size.total = (site.toNumber(_size.total * _size.count) - discount + _size.total_v_a);
+              _size.total = site.toNumber(_size.total);
+
             }
             $scope.store_in.items.push({
               image_url: $scope.item.image_url,
               name: _size.name,
               size: _size.size,
               value_added: _size.value_added,
+              total_v_a: _size.total_v_a,
               item_group: _size.item_group,
               size_en: _size.size_en,
               work_patch: _size.work_patch,
@@ -894,14 +908,17 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
     setTimeout(() => {
       let discount = 0;
       calc_size.value_added = site.toNumber(calc_size.value_added);
-      let value_added = calc_size.value_added * (calc_size.cost * calc_size.count) / 100;
+      calc_size.total_v_a = calc_size.value_added * (calc_size.cost * calc_size.count) / 100;
+      calc_size.total_v_a = site.toNumber(calc_size.total_v_a);
 
       if (calc_size.count) {
         if (calc_size.discount.type == 'number')
           discount = calc_size.discount.value * calc_size.count;
         else if (calc_size.discount.type == 'percent')
           discount = calc_size.discount.value * (calc_size.cost * calc_size.count) / 100;
-        calc_size.total = ((site.toNumber(calc_size.cost) * site.toNumber(calc_size.count)) - discount + value_added);
+        calc_size.total = ((site.toNumber(calc_size.cost) * site.toNumber(calc_size.count)) - discount + calc_size.total_v_a);
+
+        calc_size.total = site.toNumber(calc_size.total);
       }
       $scope.calc($scope.store_in);
     }, 100);

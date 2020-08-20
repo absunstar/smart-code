@@ -90,6 +90,11 @@
         "ar": "التوقيع"
     },
     {
+        "name": "recipient_signature",
+        "en": "The recipient's signature",
+        "ar": "توقيع المستلم"
+    },
+    {
         "name": "cash",
         "en": "Cash",
         "ar": "كاش"
@@ -323,6 +328,11 @@
         "name": "total_value_added",
         "en": "Total Value Added",
         "ar": "إجمالي القيمة المضافة"
+    },
+    {
+        "name": "total_v_a",
+        "en": "Total V . A",
+        "ar": "إجمالي ق . م"
     },
     {
         "name": "err_exist_count",

@@ -77,6 +77,7 @@
                             <th ng-hide="store_out.type.id == 5">##word.discount##</th>
                             <th ng-hide="store_out.type.id == 5">##word.maximum_discount##</th>
                             <th>##word.value_added##</th>
+                            <th>##word.total_v_a##</th>
                             <th>##word.stores_out_item_total##</th>
                             <th>##word.actions##</th>
                         </tr>
@@ -131,11 +132,13 @@
                                 </div>
 
                             </td>
+
                             <td>
                                 <i-control ng-change="calcSize(itm)" type="number" ng-model="itm.value_added">
                                 </i-control>
                             </td>
 
+                            <td > <br> {{itm.total_v_a}}</td>
                             <td class="green"> <br> {{itm.total}}</td>
 
                             <td>

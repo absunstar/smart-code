@@ -69,8 +69,7 @@
                             <th>##word.price##</th>
                             <th>##word.discount##</th>
                             <th>##word.value_added##</th>
-                            <!--                             <th>##word.maximum_discount##</th>
- -->
+                            <th>##word.total_v_a##</th>
                             <th>##word.stores_in_item_total##</th>
                             <th>##word.actions##</th>
                         </tr>
@@ -121,6 +120,7 @@
                                 <i-control ng-change="calcSize(itm)" type="number" ng-model="itm.value_added">
                                 </i-control>
                             </td>
+                            <td> <br> {{itm.total_v_a}}</td>
 
                             <td class="green"> <br> {{itm.total}}</td>
 

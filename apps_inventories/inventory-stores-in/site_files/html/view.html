@@ -1,36 +1,39 @@
 <div ng-hide="busy" class="row" fixed>
-    <div class="col9">
+
+    <div class="row center hide">
+        <br>
+        <h2 class="center blue">##session.company.name_ar## - ##session.company.name_en##</h2>
+        <i-image view category="stores_images" ng-model="defaultSettings.printer_program.invoice_logo">
+        </i-image>
+        <br>
+
+    </div>
+
+    <div class="row">
         <br>
         <table class="table hover bold">
 
             <tr>
-                <td class="title">##word.stores_in_date##</td>
-                <td class="center brown">{{store_in.date |date:"dd - MM - yyyy" }}</td>
+                <td class="title">##word.stores_in_date## / ##word.stores_in_id##
+                </td>
+                <td>
+                    <p class="center brown">{{store_in.date |date:"dd - MM - yyyy" }} / <b
+                            class=" blue">{{store_in.number}}</b>
+                    </p>
+
+                </td>
             </tr>
 
-            <tr>
-                <td class="title">##word.stores_in_supply_date##</td>
-                <td class="center brown">{{store_in.supply_date |date:"dd - MM - yyyy" }}</td>
-            </tr>
 
             <tr>
-                <td class="title">##word.stores_in_id##</td>
-                <td class="center">{{store_in.number}}</td>
-            </tr>
-
-            <tr>
-                <td class="title">##word.stores_in_supply_number##</td>
-                <td class="center">{{store_in.supply_number}}</td>
-            </tr>
-
-            <tr>
-                <td class="title">##word.stores_in_Company_name##</td>
-                <td class="center">{{store_in.vendor.name_##session.lang##}}</td>
-            </tr>
-
-            <tr>
-                <td class="title">##word.store##</td>
-                <td class="center">{{store_in.store.name}}</td>
+                <td class="title">
+                    <b ng-show="store_in.vendor.id">##word.stores_in_Company_name## / </b>
+                    <b> ##word.store##</b>
+                </td>
+                <td class="center">
+                    <b ng-show="store_in.vendor.id">{{store_in.vendor.name_##session.lang##}} / </b>
+                    <b>{{store_in.store.name}}</b>
+                </td>
             </tr>
 
             <tr>
@@ -54,9 +57,12 @@
                             <th>##word.stores_in_item_count##</th>
                             <th class="not-print">##word.price##</th>
                             <th>##word.discount##</th>
+                            <th>##word.value_added##</th>
+                            <th>##word.total_v_a##</th>
                             <th>##word.stores_in_item_total##</th>
 
                         </tr>
+
                         <tr ng-repeat="itm in store_in.items">
                             <td class="center blue">
                                 <p>{{$index + 1}}</p>
@@ -79,6 +85,9 @@
                                 <b class="red" ng-show="itm.discount.type =='number'">$</b>
                                 <b class="red" ng-show="itm.discount.type =='percent'">%</b>
                             </td>
+                            <td class="center"> {{itm.value_added}}</td>
+                            <td class="center red"> {{itm.total_v_a}}</td>
+
                             <td class="center">{{itm.total}}</td>
 
                         </tr>
@@ -136,22 +145,6 @@
                 <td class="center ">{{store_in.total_tax}} $</td>
             </tr>
 
-            <tr ng-show="store_in.total_value_added">
-                <td class="title">##word.total_value_added##</td>
-                <td class="center ">{{store_in.total_value_added}} $</td>
-            </tr>
-
-            <tr>
-                <td class="title">##word.stores_in_total_value##</td>
-                <td class="center ">{{store_in.total_value}} $</td>
-            </tr>
-
-
-            <tr>
-                <td class="title">##word.stores_in_net_value##</td>
-                <td class="center green">{{store_in.net_value}} $</td>
-            </tr>
-
             <tr>
                 <td class="title">##word.stores_in_notes##</td>
                 <td class="center">{{store_in.notes}}</td>
@@ -159,12 +152,35 @@
 
         </table>
     </div>
-    <div class="col3">
+
+    <div class="row">
+        <i-control class="col2 r_black" ng-model="store_in.total_value"
+            label="##word.stores_in_total_value##" type="number" disabled>
+        </i-control>
+
+        <i-control ng-show="store_in.total_value_added" class="col2 r_darkRed" ng-model="store_in.total_value_added"
+            label="##word.total_value_added##" type="number" disabled>
+        </i-control>
+
+        <i-control class="col2 r_green" ng-model="store_in.net_value"
+            label="##word.stores_in_net_value##" type="number" disabled>
+        </i-control>
+    </div>
+
+    <div class="row hide">
+        <br>
+        <br>
+        <div class="row">
+            <div class="col2"></div>
+            <h2 class="black">##word.recipient_signature## : </h2>
+        </div>
+    </div>
+    <!-- <div class="col3">
         <br>
         <i-image view category="stores_images" class="not-print" ng-model="store_in.image_url"></i-image>
         <br>
         <i-files view class="not-print" ng-model="store_in.files"></i-files>
-    </div>
+    </div> -->
 
 </div>
 

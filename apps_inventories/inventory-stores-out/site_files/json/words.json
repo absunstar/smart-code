@@ -71,13 +71,13 @@
     },
     {
         "name": "stores_out_number",
-        "en": "Number",
-        "ar": "رقم الاذن"
+        "en": "Invoice Number",
+        "ar": "رقم الفاتورة"
     },
     {
         "name": "stores_out_date",
-        "en": "Store Date",
-        "ar": "تاربخ اﻷذن"
+        "en": "Invoice Date",
+        "ar": "تاربخ الفاتورة"
     },
     {
         "name": "stores_out_supply_date",
@@ -86,8 +86,8 @@
     },
     {
         "name": "stores_out_number",
-        "en": "Store in Number",
-        "ar": "رقم اﻷذن"
+        "en": "Invoice Number",
+        "ar": "رقم الفاتورة"
     },
     {
         "name": "stores_out_supply_number",
@@ -251,8 +251,8 @@
     },
     {
         "name": "stores_out_id",
-        "en": "Id",
-        "ar": "رقم الاذن"
+        "en": "Invoice Id",
+        "ar": "رقم الفاتورة"
     },
     {
         "name": "stores_out_total_value",
