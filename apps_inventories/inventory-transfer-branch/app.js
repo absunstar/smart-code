@@ -93,7 +93,7 @@ module.exports = function init(site) {
     req.body.store = req.body.store_from;
     site.isAllowOverDraft(req, branch_ransfer_doc.items, cbOverDraft => {
       response.overObj = cbOverDraft.overObj
-      console.log(response.overObj);
+
       if (!cbOverDraft.overdraft && cbOverDraft.value) {
 
         response.error = 'OverDraft Not Active'
