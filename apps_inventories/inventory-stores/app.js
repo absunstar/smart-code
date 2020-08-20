@@ -40,9 +40,12 @@ module.exports = function init(site) {
   site.post("/api/stores/add", (req, res) => {
     let response = {}
     response.done = false
-    if (req.session.user === undefined) {
+    if (!req.session.user) {
+      response.error = 'Please Login First'
       res.json(response)
+      return
     }
+
     let stores_doc = req.body
     stores_doc.$req = req
     stores_doc.$res = res
@@ -76,9 +79,12 @@ module.exports = function init(site) {
   site.post("/api/stores/update", (req, res) => {
     let response = {}
     response.done = false
-    if (req.session.user === undefined) {
+    if (!req.session.user) {
+      response.error = 'Please Login First'
       res.json(response)
+      return
     }
+
     let stores_doc = req.body
     stores_doc.edit_user_info = site.security.getUserFinger({ $req: req, $res: res })
 
@@ -107,8 +113,10 @@ module.exports = function init(site) {
   site.post("/api/stores/delete", (req, res) => {
     let response = {}
     response.done = false
-    if (req.session.user === undefined) {
+    if (!req.session.user) {
+      response.error = 'Please Login First'
       res.json(response)
+      return
     }
     let _id = req.body._id
 

@@ -61,8 +61,9 @@ module.exports = function init(site) {
     let response = {}
     response.done = false
     if (!req.session.user) {
+      response.error = 'Please Login First'
       res.json(response)
-      return;
+      return
     }
 
     let stores_dismantle_doc = req.body
@@ -171,9 +172,12 @@ module.exports = function init(site) {
   site.post("/api/stores_dismantle/update", (req, res) => {
     let response = {}
     response.done = false
-    if (req.session.user === undefined) {
+    if (!req.session.user) {
+      response.error = 'Please Login First'
       res.json(response)
+      return
     }
+
     let stores_dismantle_doc = req.body
     stores_dismantle_doc.edit_user_dismantlefo = site.security.getUserFinger({ $req: req, $res: res })
 
@@ -213,8 +217,11 @@ module.exports = function init(site) {
   })
 
   site.post("/api/stores_dismantle/posting", (req, res) => {
-    if (req.session.user === undefined)
+    if (!req.session.user) {
+      response.error = 'Please Login First'
       res.json(response)
+      return
+    }
 
     let response = {}
     response.done = false
@@ -356,9 +363,12 @@ module.exports = function init(site) {
   site.post("/api/stores_dismantle/delete", (req, res) => {
     let response = {}
     response.done = false
-    if (req.session.user === undefined) {
+    if (!req.session.user) {
+      response.error = 'Please Login First'
       res.json(response)
+      return
     }
+
     let stores_dismantle_doc = req.body
     if (stores_dismantle_doc._id) {
 

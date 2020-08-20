@@ -48,8 +48,10 @@ module.exports = function init(site) {
   site.post("/api/tax_types/add", (req, res) => {
     let response = {}
     response.done = false
-    if (req.session.user === undefined) {
+    if (!req.session.user) {
+      response.error = 'Please Login First'
       res.json(response)
+      return
     }
     let tax_types_doc = req.body
     tax_types_doc.$req = req
@@ -73,8 +75,10 @@ module.exports = function init(site) {
   site.post("/api/tax_types/update", (req, res) => {
     let response = {}
     response.done = false
-    if (req.session.user === undefined) {
+    if (!req.session.user) {
+      response.error = 'Please Login First'
       res.json(response)
+      return
     }
     let tax_types_doc = req.body
     tax_types_doc.edit_user_info = site.security.getUserFinger({$req : req , $res : res})
@@ -105,8 +109,10 @@ module.exports = function init(site) {
   site.post("/api/tax_types/delete", (req, res) => {
     let response = {}
     response.done = false
-    if (req.session.user === undefined) {
+    if (!req.session.user) {
+      response.error = 'Please Login First'
       res.json(response)
+      return
     }
     let _id = req.body._id
 

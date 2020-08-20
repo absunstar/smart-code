@@ -90,8 +90,8 @@ module.exports = function init(site) {
         docs.forEach(_doc => {
           _doc.sizes.forEach(_sizes => {
             if (_sizes.branches_list && _sizes.branches_list.length > 0) {
-              if ((_sizes.size && _sizes.size.contains(size)) || (_sizes.size_en && _sizes.size_en.contains(size_en)) || (_sizes.barcode && _sizes.barcode.contains(barcode))) {
-             
+              if (_sizes && (_sizes.size && _sizes.size.contains(size)) || (_sizes.size_en && _sizes.size_en.contains(size_en)) || (_sizes.barcode && _sizes.barcode.contains(barcode))) {
+
                 _sizes.name = _doc.name
                 _sizes.item_group = _doc.item_group
                 i_store_list.push(_sizes)

@@ -76,8 +76,10 @@ module.exports = function init(site) {
   site.post("/api/stores_out/add", (req, res) => {
     let response = {}
     response.done = false
-    if (req.session.user === undefined) {
+    if (!req.session.user) {
+      response.error = 'Please Login First'
       res.json(response)
+      return
     }
     let stores_out_doc = req.body
     stores_out_doc.$req = req
@@ -184,8 +186,10 @@ module.exports = function init(site) {
   site.post("/api/stores_out/update", (req, res) => {
     let response = {}
     response.done = false
-    if (req.session.user === undefined) {
+    if (!req.session.user) {
+      response.error = 'Please Login First'
       res.json(response)
+      return
     }
     let stores_out_doc = req.body
     stores_out_doc.edit_user_info = site.security.getUserFinger({ $req: req, $res: res })
@@ -239,8 +243,11 @@ module.exports = function init(site) {
   })
 
   site.post("/api/stores_out/posting", (req, res) => {
-    if (req.session.user === undefined)
+    if (!req.session.user) {
+      response.error = 'Please Login First'
       res.json(response)
+      return
+    }
 
     let response = {}
     response.done = false
@@ -355,8 +362,10 @@ module.exports = function init(site) {
   site.post("/api/stores_out/delete", (req, res) => {
     let response = {}
     response.done = false
-    if (req.session.user === undefined) {
+    if (!req.session.user) {
+      response.error = 'Please Login First'
       res.json(response)
+      return
     }
 
     let stores_out_doc = req.body
@@ -765,10 +774,10 @@ module.exports = function init(site) {
     let response = {}
     response.done = false
     if (!req.session.user) {
+      response.error = 'Please Login First'
       res.json(response)
-      return;
+      return
     }
-
 
     $stores_out.findMany({
       select: req.body.select || {},

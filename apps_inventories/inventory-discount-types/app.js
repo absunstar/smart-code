@@ -48,9 +48,12 @@ module.exports = function init(site) {
   site.post("/api/discount_types/add", (req, res) => {
     let response = {}
     response.done = false
-    if (req.session.user === undefined) {
+    if (!req.session.user) {
+      response.error = 'Please Login First'
       res.json(response)
+      return
     }
+
     let discount_types_doc = req.body
     discount_types_doc.$req = req
     discount_types_doc.$res = res
@@ -72,8 +75,10 @@ module.exports = function init(site) {
   site.post("/api/discount_types/update", (req, res) => {
     let response = {}
     response.done = false
-    if (req.session.user === undefined) {
+     if (!req.session.user) {
+      response.error = 'Please Login First'
       res.json(response)
+      return
     }
     let discount_types_doc = req.body
 
@@ -105,8 +110,10 @@ module.exports = function init(site) {
   site.post("/api/discount_types/delete", (req, res) => {
     let response = {}
     response.done = false
-    if (req.session.user === undefined) {
+    if (!req.session.user) {
+      response.error = 'Please Login First'
       res.json(response)
+      return
     }
     let _id = req.body._id
 

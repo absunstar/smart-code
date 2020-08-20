@@ -63,10 +63,10 @@ module.exports = function init(site) {
     let response = {}
     response.done = false
     if (!req.session.user) {
+      response.error = 'Please Login First'
       res.json(response)
-      return;
+      return
     }
-
     let units_switch_doc = req.body
 
     units_switch_doc.company = site.get_company(req)
@@ -183,8 +183,10 @@ module.exports = function init(site) {
   site.post("/api/units_switch/update", (req, res) => {
     let response = {}
     response.done = false
-    if (req.session.user === undefined) {
+    if (!req.session.user) {
+      response.error = 'Please Login First'
       res.json(response)
+      return
     }
     let units_switch_doc = req.body
     units_switch_doc.edit_user_assemblefo = site.security.getUserFinger({ $req: req, $res: res })
@@ -225,8 +227,11 @@ module.exports = function init(site) {
   })
 
   site.post("/api/units_switch/posting", (req, res) => {
-    if (req.session.user === undefined)
+    if (!req.session.user) {
+      response.error = 'Please Login First'
       res.json(response)
+      return
+    }
 
     let response = {}
     response.done = false
@@ -369,8 +374,10 @@ module.exports = function init(site) {
   site.post("/api/units_switch/delete", (req, res) => {
     let response = {}
     response.done = false
-    if (req.session.user === undefined) {
+    if (!req.session.user) {
+      response.error = 'Please Login First'
       res.json(response)
+      return
     }
     let units_switch_doc = req.body
     if (units_switch_doc._id) {
@@ -613,8 +620,9 @@ module.exports = function init(site) {
     let response = {}
     response.done = false
     if (!req.session.user) {
+      response.error = 'Please Login First'
       res.json(response)
-      return;
+      return
     }
 
     $units_switch.findMany({

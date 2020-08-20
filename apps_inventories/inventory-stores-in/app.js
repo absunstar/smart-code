@@ -75,8 +75,9 @@ module.exports = function init(site) {
     let response = {}
     response.done = false
     if (!req.session.user) {
+      response.error = 'Please Login First'
       res.json(response)
-      return;
+      return
     }
 
     let stores_in_doc = req.body
@@ -185,8 +186,10 @@ module.exports = function init(site) {
   site.post("/api/stores_in/update", (req, res) => {
     let response = {}
     response.done = false
-    if (req.session.user === undefined) {
+    if (!req.session.user) {
+      response.error = 'Please Login First'
       res.json(response)
+      return
     }
     let stores_in_doc = req.body
     stores_in_doc.edit_user_info = site.security.getUserFinger({ $req: req, $res: res })
@@ -238,9 +241,11 @@ module.exports = function init(site) {
 
 
   site.post("/api/stores_in/posting", (req, res) => {
-    if (req.session.user === undefined)
+    if (!req.session.user) {
+      response.error = 'Please Login First'
       res.json(response)
-
+      return
+    }
     let response = {}
     response.done = false
 
@@ -354,9 +359,12 @@ module.exports = function init(site) {
   site.post("/api/stores_in/delete", (req, res) => {
     let response = {}
     response.done = false
-    if (req.session.user === undefined) {
+    if (!req.session.user) {
+      response.error = 'Please Login First'
       res.json(response)
+      return
     }
+
     let stores_in_doc = req.body
 
     site.isAllowOverDraft(req, stores_in_doc.items, cbOverDraft => {
@@ -771,11 +779,11 @@ module.exports = function init(site) {
   site.post("/api/stores_in/un_post", (req, res) => {
     let response = {}
     response.done = false
-    if (!req.session.user) {
+  if (!req.session.user) {
+      response.error = 'Please Login First'
       res.json(response)
-      return;
+      return
     }
-
 
     $stores_in.findMany({
       select: req.body.select || {},
