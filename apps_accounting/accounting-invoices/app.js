@@ -124,8 +124,8 @@ module.exports = function init(site) {
         response.done = true;
         response.doc = doc;
 
-        if (doc.source_type.id == 1) site.call('[store_in][account_invoice][invoice]', Object.assign({}, doc.invoice_id))
-        else if (doc.source_type.id == 2) site.call('[store_out][account_invoice][invoice]', Object.assign({}, doc.invoice_id))
+        if (doc.source_type.id == 1) site.call('[store_in][account_invoice][invoice]', doc.invoice_id)
+        else if (doc.source_type.id == 2) site.call('[store_out][account_invoice][invoice]', doc.invoice_id)
 
 
         if (doc.posting) {
@@ -393,12 +393,14 @@ module.exports = function init(site) {
     }
   })
 
-  
+
 
   site.post("/api/account_invoices/posting", (req, res) => {
-    if (req.session.user === undefined)
+    if (!req.session.user) {
+      response.error = 'Please Login First'
       res.json(response)
-
+      return
+    }
     let response = {}
     response.done = false
 
@@ -799,9 +801,12 @@ module.exports = function init(site) {
   site.post("/api/account_invoices/update", (req, res) => {
     let response = {}
     response.done = false
-    if (req.session.user === undefined) {
+    if (!req.session.user) {
+      response.error = 'Please Login First'
       res.json(response)
+      return
     }
+
     let account_invoices_doc = req.body
 
     account_invoices_doc.edit_user_info = site.security.getUserFinger({ $req: req, $res: res })
@@ -1018,9 +1023,11 @@ module.exports = function init(site) {
   site.post("/api/account_invoices/un_post", (req, res) => {
     let response = {}
     response.done = false
+
     if (!req.session.user) {
+      response.error = 'Please Login First'
       res.json(response)
-      return;
+      return
     }
 
     $account_invoices.findMany({

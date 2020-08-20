@@ -42,10 +42,11 @@ module.exports = function init(site) {
   site.post("/api/transfer_branch/add", (req, res) => {
     let response = {}
     response.done = false
-    if (req.session.user === undefined) {
+    if (!req.session.user) {
+      response.error = 'Please Login First'
       res.json(response)
+      return
     }
-
     let branch_ransfer_doc = req.body
     branch_ransfer_doc.$req = req
     branch_ransfer_doc.$res = res
@@ -79,15 +80,19 @@ module.exports = function init(site) {
   site.post("/api/transfer_branch/confirm", (req, res) => {
     let response = {}
     response.done = false
-    if (req.session.user === undefined) {
+    if (!req.session.user) {
+      response.error = 'Please Login First'
       res.json(response)
+      return
     }
+
     let branch_ransfer_doc = req.body
     branch_ransfer_doc.edit_user_info = site.security.getUserFinger({ $req: req, $res: res })
 
     branch_ransfer_doc.date = new Date(branch_ransfer_doc.date)
     req.body.store = req.body.store_from;
     site.isAllowOverDraft(req, branch_ransfer_doc.items, cbOverDraft => {
+      response.overObj = cbOverDraft.overObj
 
       if (!cbOverDraft.overdraft && cbOverDraft.value) {
 
@@ -108,7 +113,7 @@ module.exports = function init(site) {
             if (!err) {
               response.done = true
               let doc = document.doc
-              doc.items.forEach((_itm , i) => {
+              doc.items.forEach((_itm, i) => {
                 _itm.company = doc.company
                 _itm.branch = doc.branch_from
                 _itm.number = doc.number
@@ -118,11 +123,11 @@ module.exports = function init(site) {
                 _itm.store = doc.store_from
                 site.call('item_transaction - items', Object.assign({}, _itm))
                 _itm.type = 'minus'
-                  site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _itm))
+                site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _itm))
 
               })
 
-              doc.items.forEach((_itm , i) => {
+              doc.items.forEach((_itm, i) => {
                 _itm.company = doc.company
                 _itm.branch = doc.branch_to
                 _itm.number = doc.number
@@ -132,7 +137,7 @@ module.exports = function init(site) {
                 _itm.store = doc.store_to
                 site.call('item_transaction + items', Object.assign({}, _itm))
                 _itm.type = 'sum'
-                  site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _itm))
+                site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _itm))
               })
 
             } else {
@@ -150,10 +155,11 @@ module.exports = function init(site) {
   site.post("/api/transfer_branch/update", (req, res) => {
     let response = {}
     response.done = false
-    if (req.session.user === undefined) {
+    if (!req.session.user) {
+      response.error = 'Please Login First'
       res.json(response)
+      return
     }
-
     let branch_ransfer_doc = req.body
     branch_ransfer_doc.edit_user_info = site.security.getUserFinger({ $req: req, $res: res })
 
@@ -192,8 +198,10 @@ module.exports = function init(site) {
   site.post("/api/transfer_branch/delete", (req, res) => {
     let response = {}
     response.done = false
-    if (req.session.user === undefined) {
+    if (!req.session.user) {
+      response.error = 'Please Login First'
       res.json(response)
+      return
     }
     let _id = req.body._id
     if (_id) {
@@ -373,10 +381,10 @@ module.exports = function init(site) {
     let response = {}
     response.done = false
     if (!req.session.user) {
+      response.error = 'Please Login First'
       res.json(response)
-      return;
+      return
     }
-
     $transfer_branch.findMany({
       select: req.body.select || {},
       where: { 'company.id': site.get_company(req).id },

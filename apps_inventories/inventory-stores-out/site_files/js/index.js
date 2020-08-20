@@ -1093,7 +1093,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
 
   $scope.getSafeByType = function (obj) {
     $scope.error = '';
-    if ($scope.defaultSettings.accounting) {
+    if ($scope.defaultSettings.accounting && obj.payment_method) {
       $scope.loadSafes(obj.payment_method, obj.currency);
       if (obj.payment_method.id == 1) {
         if ($scope.defaultSettings.accounting.safe_box)

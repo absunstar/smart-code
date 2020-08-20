@@ -602,7 +602,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
                 if ($scope.defaultSettings.accounting.payment_method) {
                   $scope.store_in.payment_method = $scope.defaultSettings.accounting.payment_method;
                   $scope.loadSafes($scope.store_in.payment_method, $scope.store_in.currency);
-                  if ($scope.store_in.payment_method.id == 1)
+                  if ($scope.store_in.payment_method && $scope.store_in.payment_method.id == 1)
                     $scope.store_in.safe = $scope.defaultSettings.accounting.safe_box;
                   else $scope.store_in.safe = $scope.defaultSettings.accounting.safe_bank;
                 }
@@ -1539,7 +1539,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
 
   $scope.getSafeByType = function (obj) {
     $scope.error = '';
-    if ($scope.defaultSettings.accounting) {
+    if ($scope.defaultSettings.accounting && obj.payment_method) {
       $scope.loadSafes(obj.payment_method, obj.currency);
       if (obj.payment_method.id == 1) {
         if ($scope.defaultSettings.accounting.safe_box)
@@ -1820,7 +1820,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
   $scope.getSafeBySetting = function () {
     $scope.error = '';
     if ($scope.defaultSettings.accounting) {
-      if (($scope.store_in.type.id == 1 || $scope.store_in.type.id == 4) && $scope.defaultSettings.accounting.create_invoice_auto) {
+      if ($scope.store_in.type && ($scope.store_in.type.id == 1 || $scope.store_in.type.id == 4) && $scope.defaultSettings.accounting.create_invoice_auto) {
         if ($scope.defaultSettings.accounting.payment_method) {
           $scope.store_in.payment_method = $scope.defaultSettings.accounting.payment_method
           $scope.loadSafes($scope.store_in.payment_method, $scope.store_in.currency)

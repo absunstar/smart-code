@@ -59,8 +59,9 @@ module.exports = function init(site) {
     let response = {}
     response.done = false
     if (!req.session.user) {
+      response.error = 'Please Login First'
       res.json(response)
-      return;
+      return
     }
 
     let stores_assemble_doc = req.body
@@ -179,8 +180,10 @@ module.exports = function init(site) {
   site.post("/api/stores_assemble/update", (req, res) => {
     let response = {}
     response.done = false
-    if (req.session.user === undefined) {
+    if (!req.session.user) {
+      response.error = 'Please Login First'
       res.json(response)
+      return
     }
     let stores_assemble_doc = req.body
     stores_assemble_doc.edit_user_assemblefo = site.security.getUserFinger({ $req: req, $res: res })
@@ -221,9 +224,11 @@ module.exports = function init(site) {
   })
 
   site.post("/api/stores_assemble/posting", (req, res) => {
-    if (req.session.user === undefined)
+    if (!req.session.user) {
+      response.error = 'Please Login First'
       res.json(response)
-
+      return
+    }
     let response = {}
     response.done = false
 
@@ -365,8 +370,10 @@ module.exports = function init(site) {
   site.post("/api/stores_assemble/delete", (req, res) => {
     let response = {}
     response.done = false
-    if (req.session.user === undefined) {
+    if (!req.session.user) {
+      response.error = 'Please Login First'
       res.json(response)
+      return
     }
     let stores_assemble_doc = req.body
     if (stores_assemble_doc._id) {
@@ -609,10 +616,10 @@ module.exports = function init(site) {
     let response = {}
     response.done = false
     if (!req.session.user) {
+      response.error = 'Please Login First'
       res.json(response)
-      return;
+      return
     }
-
     $stores_assemble.findMany({
       select: req.body.select || {},
       where: { 'company.id': site.get_company(req).id },

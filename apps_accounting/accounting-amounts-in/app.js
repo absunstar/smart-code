@@ -37,7 +37,8 @@ module.exports = function init(site) {
     let response = {}
     response.done = false
 
-    if (req.session.user === undefined) {
+    if (!req.session.user) {
+      response.error = 'Please Login First'
       res.json(response)
       return
     }
@@ -93,9 +94,12 @@ module.exports = function init(site) {
   site.post("/api/amounts_in/update", (req, res) => {
     let response = {}
     response.done = false
-    if (req.session.user === undefined) {
+    if (!req.session.user) {
+      response.error = 'Please Login First'
       res.json(response)
+      return
     }
+
     let amounts_in_doc = req.body
     amounts_in_doc.date = new Date(amounts_in_doc.date)
 
@@ -126,8 +130,11 @@ module.exports = function init(site) {
   })
 
   site.post("/api/amounts_in/posting", (req, res) => {
-    if (req.session.user === undefined)
+    if (!req.session.user) {
+      response.error = 'Please Login First'
       res.json(response)
+      return
+    }
 
     let response = {}
     response.done = false
@@ -195,9 +202,12 @@ module.exports = function init(site) {
   site.post("/api/amounts_in/delete", (req, res) => {
     let response = {}
     response.done = false
-    if (req.session.user === undefined) {
+    if (!req.session.user) {
+      response.error = 'Please Login First'
       res.json(response)
+      return
     }
+    
     let id = req.body.id
     if (id) {
       $amounts_in.delete({

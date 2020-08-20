@@ -65,8 +65,9 @@ module.exports = function init(site) {
     let response = {}
     response.done = false
     if (!req.session.user) {
+      response.error = 'Please Login First'
       res.json(response)
-      return;
+      return
     }
 
     let stores_stock_doc = req.body
@@ -109,8 +110,10 @@ module.exports = function init(site) {
   site.post("/api/stores_stock/update", (req, res) => {
     let response = {}
     response.done = false
-    if (req.session.user === undefined) {
+    if (!req.session.user) {
+      response.error = 'Please Login First'
       res.json(response)
+      return
     }
     let stores_stock_doc = req.body
     stores_stock_doc.edit_user_info = site.security.getUserFinger({ $req: req, $res: res })
@@ -188,8 +191,10 @@ module.exports = function init(site) {
   site.post("/api/stores_stock/delete", (req, res) => {
     let response = {}
     response.done = false
-    if (req.session.user === undefined) {
+    if (!req.session.user) {
+      response.error = 'Please Login First'
       res.json(response)
+      return
     }
     let stores_stock_doc = req.body
     if (stores_stock_doc._id) {
@@ -214,8 +219,10 @@ module.exports = function init(site) {
   site.post("/api/stores_stock/approve", (req, res) => {
     let response = {}
     response.done = false
-    if (req.session.user === undefined) {
+    if (!req.session.user) {
+      response.error = 'Please Login First'
       res.json(response)
+      return
     }
     let stores_stock_doc = req.body
 
@@ -320,8 +327,9 @@ module.exports = function init(site) {
     let response = {}
     response.done = false
     if (!req.session.user) {
+      response.error = 'Please Login First'
       res.json(response)
-      return;
+      return
     }
 
     $stores_stock.findMany({

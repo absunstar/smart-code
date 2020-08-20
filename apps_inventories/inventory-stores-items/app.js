@@ -555,6 +555,7 @@ module.exports = function init(site) {
     let response = {}
     response.done = false
     if (!req.session.user) {
+      response.error = 'Please Login First'
       res.json(response)
       return
     }
@@ -636,7 +637,11 @@ module.exports = function init(site) {
     let response = {};
     response.done = false
 
-    if (req.session.user === undefined) res.json(response)
+    if (!req.session.user) {
+      response.error = 'Please Login First'
+      res.json(response)
+      return
+    }
 
     let stores_items_doc = req.body;
 
@@ -715,9 +720,12 @@ module.exports = function init(site) {
   site.post("/api/stores_items/delete", (req, res) => {
     let response = {}
     response.done = false
-    if (req.session.user === undefined) {
+    if (!req.session.user) {
+      response.error = 'Please Login First'
       res.json(response)
+      return
     }
+
     let id = req.body.id
 
     let barcodes = req.body.category_item.sizes.map(_size => _size.barcode)
@@ -1506,6 +1514,8 @@ module.exports = function init(site) {
     let store = req.body.store;
     let barcodes = itemsCb.map(_item => _item.barcode)
 
+    let objFound = { current: [], cb: [], notFound: [] }
+
     let cbObj = {
       value: false
     }
@@ -1534,7 +1544,7 @@ module.exports = function init(site) {
       }, (err, docs) => {
         if (!err) {
           if (docs && docs.length > 0) {
-            
+
             docs.forEach(_item => {
               if (_item.sizes && _item.sizes.length > 0) {
 
@@ -1561,7 +1571,8 @@ module.exports = function init(site) {
 
                                       if (cbSize.unit && sizeUnits.id == cbSize.unit.id) {
                                         foundUnit = true
-
+                                        objFound.current.push({ unit: cbSize.unit, store: storesList.store, barcode: currentSize.barcode })
+                                        objFound.cb.push({ cbSize })
                                         let over = site.toNumber(sizeUnits.current_count) - site.toNumber(cbSize.count)
 
                                         if (over < 0) {
@@ -1573,6 +1584,7 @@ module.exports = function init(site) {
                                   }
 
                                 } else {
+                                  objFound.notFound.push({ id: _item.id, barcode: currentSize.barcode, action: 'notUnit' })
                                   cbObj.value = true
                                 }
 
@@ -1581,31 +1593,44 @@ module.exports = function init(site) {
 
 
                           } else {
+                            objFound.notFound.push({ id: _item.id, barcode: currentSize.barcode, action: 'notStore' })
+
                             cbObj.value = true
                           }
                         })
                       } else {
+                        objFound.notFound.push({ id: _item.id, barcode: currentSize.barcode, action: 'notBranch' })
                         cbObj.value = true
                       }
 
                     }
                   })
 
-                  if (!foundStores) cbObj.value = true
-                  else if (!foundUnit) cbObj.value = true
-                  else if (!foundBranch) cbObj.value = true
-                  
+                  if (!foundStores) {
+                    objFound.notFound.push({ id: _item.id, barcode: currentSize.barcode, action: 'notFoundStore' })
+                    cbObj.value = true
+                  }
+                  else if (!foundUnit) {
+                    objFound.notFound.push({ id: _item.id, barcode: currentSize.barcode, action: 'notFoundunit' })
+                    cbObj.value = true
+                  }
+                  else if (!foundBranch) {
+                    objFound.notFound.push({ id: _item.id, barcode: currentSize.barcode, action: 'notFoundBranch' })
+                    cbObj.value = true
+                  }
+
                 })
 
 
               }
             })
-          
+
           }
 
         } else {
           console.log(err)
         }
+        cbObj.overObj = objFound
         callback(cbObj)
       })
     })

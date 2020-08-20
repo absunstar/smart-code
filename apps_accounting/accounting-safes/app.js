@@ -134,7 +134,8 @@ module.exports = function init(site) {
   site.post("/api/safes/add", (req, res) => {
     let response = {}
     response.done = false
-    if (req.session.user === undefined) {
+    if (!req.session.user) {
+      response.error = 'Please Login First'
       res.json(response)
       return
     }
@@ -186,7 +187,8 @@ module.exports = function init(site) {
   site.post("/api/safes/update", (req, res) => {
     let response = {}
     response.done = false
-    if (req.session.user === undefined) {
+    if (!req.session.user) {
+      response.error = 'Please Login First'
       res.json(response)
       return
     }
@@ -220,8 +222,10 @@ module.exports = function init(site) {
   site.post("/api/safes/delete", (req, res) => {
     let response = {}
     response.done = false
-    if (req.session.user === undefined) {
+    if (!req.session.user) {
+      response.error = 'Please Login First'
       res.json(response)
+      return
     }
 
 
