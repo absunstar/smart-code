@@ -1548,12 +1548,15 @@ module.exports = function init(site) {
               if (_item.sizes && _item.sizes.length > 0) {
 
                 _item.sizes.forEach(currentSize => {
-                  let foundUnit = false
-                  let foundStores = false
-                  let foundBranch = false
+                
                   itemsCb.forEach(cbSize => {
 
                     if (currentSize.barcode == cbSize.barcode && currentSize.size == cbSize.size) {
+
+                      let foundUnit = false
+                      let foundStores = false
+                      let foundBranch = false
+
 
                       if (currentSize.branches_list && currentSize.branches_list.length > 0) {
                         currentSize.branches_list.forEach(branchesList => {
@@ -1602,21 +1605,22 @@ module.exports = function init(site) {
                         cbObj.value = true
                       }
 
+                      if (!foundStores) {
+                        objFound.notFound.push({ id: _item.id, barcode: currentSize.barcode, action: 'notFoundStore' })
+                        cbObj.value = true
+                      }
+                      else if (!foundUnit) {
+                        objFound.notFound.push({ id: _item.id, barcode: currentSize.barcode, action: 'notFoundunit' })
+                        cbObj.value = true
+                      }
+                      else if (!foundBranch) {
+                        objFound.notFound.push({ id: _item.id, barcode: currentSize.barcode, action: 'notFoundBranch' })
+                        cbObj.value = true
+                      }
+    
+
                     }
                   })
-
-                  if (!foundStores) {
-                    objFound.notFound.push({ id: _item.id, barcode: currentSize.barcode, action: 'notFoundStore' })
-                    cbObj.value = true
-                  }
-                  else if (!foundUnit) {
-                    objFound.notFound.push({ id: _item.id, barcode: currentSize.barcode, action: 'notFoundunit' })
-                    cbObj.value = true
-                  }
-                  else if (!foundBranch) {
-                    objFound.notFound.push({ id: _item.id, barcode: currentSize.barcode, action: 'notFoundBranch' })
-                    cbObj.value = true
-                  }
 
                 })
 
