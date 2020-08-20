@@ -1526,6 +1526,7 @@ module.exports = function init(site) {
     where['sizes.barcode'] = {
       $in: barcodes
     }
+    
     site.getDefaultSetting(req, cbSetting => {
 
       if (cbSetting.inventory && cbSetting.inventory.overdraft == true) {
