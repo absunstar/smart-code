@@ -97,6 +97,25 @@ app.controller("units_switch", function ($scope, $http, $timeout) {
       return;
     };
 
+    let sameUnit = false;
+
+    if ($scope.units_switch.items && $scope.units_switch.items.length > 0) {
+      $scope.units_switch.items.forEach(_sW_i => {
+        if (_sW_i.unit && _sW_i.Units_trans && _sW_i.unit.id == _sW_i.Units_trans.id) {
+          sameUnit = true;
+        }
+      });
+    } else {
+      $scope.error = "##word.should_add_items##";
+      return;
+    };
+
+    if (sameUnit) {
+      $scope.error = "##word.Units_trans_err##";
+      return;
+    };
+
+
 
     if ($scope.units_switch.items.length > 0) {
       $scope.busy = true;
@@ -261,8 +280,7 @@ app.controller("units_switch", function ($scope, $http, $timeout) {
         method: "POST",
         url: "/api/stores_items/all",
         data: {
-          search: $scope.item.search_item_name,
-          where: { 'sizes.item_complex': true }
+          search: $scope.item.search_item_name
         }
       }).then(
         function (response) {
@@ -339,7 +357,7 @@ app.controller("units_switch", function ($scope, $http, $timeout) {
 
                       foundSize = $scope.item.sizes.some(_itemSize => _itemSize.barcode == _size.barcode);
 
-                      if (!foundSize && _size.item_complex && !foundHold) $scope.item.sizes.unshift(_size);
+                      if (!foundSize && !foundHold) $scope.item.sizes.unshift(_size);
                     };
                   });
               });
@@ -421,7 +439,7 @@ app.controller("units_switch", function ($scope, $http, $timeout) {
 
         } else _item.store_count = 0;
         foundSize = $scope.item.sizes.some(_itemSize => _itemSize.barcode == _item.barcode);
-        if (!foundSize && _item.item_complex && !foundHold)
+        if (!foundSize && !foundHold)
           $scope.item.sizes.unshift(_item);
       });
     };
@@ -434,8 +452,7 @@ app.controller("units_switch", function ($scope, $http, $timeout) {
         method: "POST",
         url: "/api/stores_items/all",
         data: {
-          search: $scope.search_barcode,
-          where: { 'sizes.item_complex': true }
+          search: $scope.search_barcode
         }
       }).then(
         function (response) {
@@ -504,7 +521,7 @@ app.controller("units_switch", function ($scope, $http, $timeout) {
                     } else _size.store_count = 0
 
                     foundSize = $scope.units_switch.items.some(_itemSize => _itemSize.barcode == _size.barcode);
-                    if (!foundSize && _size.item_complex && !foundHold)
+                    if (!foundSize && !foundHold)
                       $scope.units_switch.items.unshift(_size);
                   }
                 });
@@ -555,6 +572,27 @@ app.controller("units_switch", function ($scope, $http, $timeout) {
       $scope.error = "##word.err_exist_count##";
       return;
     };
+
+
+    let sameUnit = false;
+
+    if ($scope.units_switch.items && $scope.units_switch.items.length > 0) {
+
+      $scope.units_switch.items.forEach(_sW_i => {
+        if (_sW_i.unit && _sW_i.Units_trans && _sW_i.unit.id == _sW_i.Units_trans.id) {
+          sameUnit = true;
+        }
+      });
+    } else {
+      $scope.error = "##word.should_add_items##";
+      return;
+    };
+
+    if (sameUnit) {
+      $scope.error = "##word.Units_trans_err##";
+      return;
+    };
+
 
 
     $scope.busy = true;

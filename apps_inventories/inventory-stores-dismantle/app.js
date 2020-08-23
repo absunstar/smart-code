@@ -71,7 +71,7 @@ module.exports = function init(site) {
     stores_dismantle_doc.company = site.get_company(req)
     stores_dismantle_doc.branch = site.get_branch(req)
     stores_dismantle_doc.code = $stores_dismantle.newCode();
-    stores_dismantle_doc.add_user_dismantlefo = site.security.getUserFinger({ $req: req, $res: res })
+    stores_dismantle_doc.add_user_info = site.security.getUserFinger({ $req: req, $res: res })
 
     stores_dismantle_doc.$req = req
     stores_dismantle_doc.$res = res
@@ -179,7 +179,7 @@ module.exports = function init(site) {
     }
 
     let stores_dismantle_doc = req.body
-    stores_dismantle_doc.edit_user_dismantlefo = site.security.getUserFinger({ $req: req, $res: res })
+    stores_dismantle_doc.edit_user_info = site.security.getUserFinger({ $req: req, $res: res })
 
     stores_dismantle_doc.vendor = site.fromJson(stores_dismantle_doc.vendor)
     stores_dismantle_doc.seasonName = stores_dismantle_doc.seasonName
@@ -228,7 +228,7 @@ module.exports = function init(site) {
 
     let stores_dismantle_doc = req.body
 
-    stores_dismantle_doc.edit_user_dismantlefo = site.security.getUserFinger({ $req: req, $res: res })
+    stores_dismantle_doc.edit_user_info = site.security.getUserFinger({ $req: req, $res: res })
 
     if (stores_dismantle_doc._id) {
 

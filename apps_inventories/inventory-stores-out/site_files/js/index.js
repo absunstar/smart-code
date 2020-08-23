@@ -440,7 +440,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         if (response.data.done) {
           response.data.doc.date = new Date(response.data.doc.date);
           $scope.store_out = response.data.doc;
-
+          console.log($scope.defaultSettings.printer_program.invoice_header);
           $scope.store_out.items.forEach(_item => {
             if(!_item.total_v_a){
               _item.total_v_a = site.toNumber(_item.value_added) * (_item.price * _item.count) / 100;

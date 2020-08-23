@@ -229,6 +229,17 @@ nav.sitebottom a.link:hover {
   font-weight: bold;
   color: green;
 }
+
+.logoPrint {
+  width: 140px;
+  height: 120px;
+  margin: 1px;
+  padding: 1px;
+  border-radius: 0;
+  border: 1px solid var(--background-color);
+}
+
+
 @media screen and (max-width: 768px) {
   .tabs .tabs-header .tab-link {
     font-size: 12px;

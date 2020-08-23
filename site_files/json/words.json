@@ -90,6 +90,11 @@
         "ar": "التوقيع"
     },
     {
+        "name": "name_size",
+        "en": "Name / Size",
+        "ar": "إسم / مقاس"
+    },
+    {
         "name": "recipient_signature",
         "en": "The recipient's signature",
         "ar": "توقيع المستلم"

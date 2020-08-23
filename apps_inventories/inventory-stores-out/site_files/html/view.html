@@ -3,9 +3,13 @@
     <div class="row center hide">
         <br>
         <h2 class="center blue">##session.company.name_ar## - ##session.company.name_en##</h2>
-        <i-image view category="stores_images" ng-model="defaultSettings.printer_program.invoice_logo">
-        </i-image>
+        <img class="logoPrint" ng-src="{{defaultSettings.printer_program.invoice_logo}}">
         <br>
+        <br>
+
+        <div class="row " ng-repeat="i in defaultSettings.printer_program.invoice_header">
+            <h3 class="black center">{{i.name}}</h3>
+        </div>
 
     </div>
 
@@ -61,14 +65,16 @@
                             <th>##word.serial##</th>
                             <th>##word.barcode##</th>
                             <th>##word.stores_out_item_name##</th>
+                            <th>##word.name_size##</th>
                             <th>##word.unit##</th>
                             <th>##word.stores_out_item_count##</th>
-                            <th class="not-print" ng-hide="store_out.type.id ==5">##word.price##</th>
+                            <th class="not-print" ng-hide="store_out.type.id ==5"
+                                x-permissions="stores_out_details_values || stores_out_manage">##word.price##</th>
                             <th ng-hide="store_out.type.id ==5">##word.discount##</th>
                             <th>##word.value_added##</th>
-                            <th>##word.total_v_a##</th>
-                            <th>##word.stores_out_item_total##</th>
-
+                            <th x-permissions="stores_out_details_values || stores_out_manage">##word.total_v_a##</th>
+                            <th x-permissions="stores_out_details_values || stores_out_manage">
+                                ##word.stores_out_item_total##</th>
                         </tr>
                         <tr ng-repeat="itm in store_out.items">
                             <td class="center blue">
@@ -78,7 +84,7 @@
                                 </i-button>
                             </td>
                             <td class="center">{{itm.barcode}}</td>
-
+                            <td class="center">{{itm.name}}</td>
                             <td class="center">
                                 <p>{{itm.size}}</p>
                                 <p>{{itm.size_en}}</p>
@@ -86,7 +92,8 @@
 
                             <td class="center">{{itm.unit.name}}</td>
                             <td class="center">{{itm.count}}</td>
-                            <td class="not-print center" ng-hide="store_out.type.id ==5">{{itm.price}}</td>
+                            <td class="not-print center" x-permissions="stores_out_details_values || stores_out_manage"
+                                ng-hide="store_out.type.id ==5">{{itm.price}}</td>
 
                             <td class="center" ng-hide="store_out.type.id ==5">
                                 {{itm.discount.value}}
@@ -95,9 +102,11 @@
                             </td>
 
                             <td class="center"> {{itm.value_added}}</td>
-                            <td class="center red"> {{itm.total_v_a}}</td>
+                            <td x-permissions="stores_out_details_values || stores_out_manage" class="center red">
+                                {{itm.total_v_a}}</td>
 
-                            <td class="center">{{itm.total}}</td>
+                            <td x-permissions="stores_out_details_values || stores_out_manage" class="center">
+                                {{itm.total}}</td>
 
 
 
@@ -164,7 +173,8 @@
 
         </table>
     </div>
-    <div class="row">
+
+    <div class="row" x-permissions="stores_out_details_values || stores_out_manage">
         <i-control ng-show="store_out.type.id != 5" class="col2 r_black" ng-model="store_out.total_value"
             label="##word.stores_out_total_value##" type="number" disabled>
         </i-control>
@@ -186,6 +196,15 @@
             <h2 class="black">##word.recipient_signature## : </h2>
         </div>
     </div>
+
+    <br>
+    <br>
+    <br>
+    
+    <div class="row hide" ng-repeat="i in defaultSettings.printer_program.invoice_footer">
+        <h3 class="black center">{{i.name}}</h3>
+    </div>
+
 
     <!-- <div class="col3">
         <br>

@@ -69,7 +69,7 @@ module.exports = function init(site) {
     stores_assemble_doc.company = site.get_company(req)
     stores_assemble_doc.branch = site.get_branch(req)
     stores_assemble_doc.code = $stores_assemble.newCode();
-    stores_assemble_doc.add_user_assemblefo = site.security.getUserFinger({ $req: req, $res: res })
+    stores_assemble_doc.add_user_info = site.security.getUserFinger({ $req: req, $res: res })
 
     stores_assemble_doc.$req = req
     stores_assemble_doc.$res = res
@@ -186,7 +186,7 @@ module.exports = function init(site) {
       return
     }
     let stores_assemble_doc = req.body
-    stores_assemble_doc.edit_user_assemblefo = site.security.getUserFinger({ $req: req, $res: res })
+    stores_assemble_doc.edit_user_info = site.security.getUserFinger({ $req: req, $res: res })
 
     stores_assemble_doc.vendor = site.fromJson(stores_assemble_doc.vendor)
     stores_assemble_doc.seasonName = stores_assemble_doc.seasonName
@@ -234,7 +234,7 @@ module.exports = function init(site) {
 
     let stores_assemble_doc = req.body
 
-    stores_assemble_doc.edit_user_assemblefo = site.security.getUserFinger({ $req: req, $res: res })
+    stores_assemble_doc.edit_user_info = site.security.getUserFinger({ $req: req, $res: res })
 
     if (stores_assemble_doc._id) {
 

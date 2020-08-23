@@ -12,5 +12,5 @@
     { "module_name" : "inventory" , "screen_name" : "inventory-stores-out" , "name":"stores_out_unpost" , "en":"UnPost" , "ar":"فك ترحيل"},
     { "module_name" : "inventory" , "screen_name" : "inventory-stores-out" , "name":"stores_out_price" , "en":"Edit Sale Price" , "ar":"تعديل سعر البيع"},
     { "module_name" : "inventory" , "screen_name" : "inventory-stores-out" , "name":"stores_out_ui" , "en":"UI" , "ar":"الواجهة الرسومية"},
-    { "module_name" : "inventory" , "screen_name" : "inventory-stores-out" , "name":"stores_out_handle" , "en":"Handler" , "ar":"تهيئة"}
+    { "module_name" : "inventory" , "screen_name" : "inventory-stores-out" , "name":"stores_out_details_values" , "en":"Details of values" , "ar":"تفاصيل القيم"}
 ]

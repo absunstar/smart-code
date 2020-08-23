@@ -72,7 +72,7 @@ module.exports = function init(site) {
     units_switch_doc.company = site.get_company(req)
     units_switch_doc.branch = site.get_branch(req)
     units_switch_doc.code = $units_switch.newCode();
-    units_switch_doc.add_user_assemblefo = site.security.getUserFinger({ $req: req, $res: res })
+    units_switch_doc.add_user_info = site.security.getUserFinger({ $req: req, $res: res })
 
     units_switch_doc.$req = req
     units_switch_doc.$res = res
@@ -90,17 +90,8 @@ module.exports = function init(site) {
     units_switch_doc.total_value = site.toNumber(units_switch_doc.total_value)
     units_switch_doc.net_value = site.toNumber(units_switch_doc.net_value)
 
-    let assembleItems = []
-    units_switch_doc.items.forEach(assembleDocItems => {
-      assembleDocItems.complex_items.forEach(aDiCoplex => {
-        aDiCoplex.count = aDiCoplex.count + assembleDocItems.count
 
-        assembleItems.push(aDiCoplex)
-      });
-    });
-
-
-    site.isAllowOverDraft(req, assembleItems, cbOverDraft => {
+    site.isAllowOverDraft(req, units_switch_doc.items, cbOverDraft => {
 
       if (!cbOverDraft.overdraft && cbOverDraft.value) {
 
@@ -118,11 +109,32 @@ module.exports = function init(site) {
             response.doc = doc
 
             if (doc.posting) {
-              let complex_list = [];
+              units_switch_doc.items.forEach((_isDoc, i) => {
+                _isDoc.type = 'sum'
+                _isDoc.store = units_switch_doc.store
+                _isDoc.company = units_switch_doc.company
+                _isDoc.branch = units_switch_doc.branch
+                _isDoc.unit = _isDoc.Units_trans
+                _isDoc.count = (_isDoc.unit.convert * _isDoc.count) / _isDoc.Units_trans.convert
+
+                site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _isDoc))
+
+                _isDoc.code = units_switch_doc.code
+                _isDoc.date = units_switch_doc.date
+                _isDoc.source_type = units_switch_doc.type
+                _isDoc.transaction_type = 'in'
+                _isDoc.current_status = 'switchUnit'
+                _isDoc.shift = {
+                  id: units_switch_doc.shift.id,
+                  code: units_switch_doc.shift.code,
+                  name: units_switch_doc.shift.name
+                }
+                site.call('item_transaction + items', Object.assign({}, _isDoc))
+
+              })
 
               doc.items.forEach((_itm, i) => {
-                _itm.type = 'sum'
-                _itm.assemble = true
+                _itm.type = 'minus'
                 _itm.store = doc.store
                 _itm.company = doc.company
                 _itm.branch = doc.branch
@@ -132,42 +144,18 @@ module.exports = function init(site) {
                 _itm.code = doc.code
                 _itm.date = doc.date
                 _itm.source_type = doc.type
-                _itm.transaction_type = 'in'
-                _itm.current_status = 'Assembling'
+                _itm.transaction_type = 'out'
+                _itm.current_status = 'switchUnit'
                 _itm.shift = {
                   id: doc.shift.id,
                   code: doc.shift.code,
                   name: doc.shift.name
                 }
 
-                if (_itm.complex_items && _itm.complex_items.length > 0) {
-                  _itm.complex_items.forEach(_complex => {
-                    _complex.type = 'minus'
-                    _complex.code = doc.code
-                    _complex.date = doc.date
-                    _complex.store = doc.store
-                    _complex.company = doc.company
-                    _complex.branch = doc.branch
-                    _complex.count = _complex.count * _itm.count
-                    _complex.transaction_type = 'out'
-                    _complex.current_status = 'Assembling'
-                    _complex.shift = {
-                      id: doc.shift.id,
-                      code: doc.shift.code,
-                      name: doc.shift.name
-                    }
-                    complex_list.push(_complex)
-                  });
-                }
-
-                site.call('item_transaction + items', Object.assign({}, _itm))
+                site.call('item_transaction - items', Object.assign({}, _itm))
 
               })
 
-              complex_list.forEach((_complex, i) => {
-                site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _complex1))
-                site.call('item_transaction - items', Object.assign({}, _complex))
-              });
 
             }
 
@@ -189,7 +177,7 @@ module.exports = function init(site) {
       return
     }
     let units_switch_doc = req.body
-    units_switch_doc.edit_user_assemblefo = site.security.getUserFinger({ $req: req, $res: res })
+    units_switch_doc.edit_user_info = site.security.getUserFinger({ $req: req, $res: res })
 
     units_switch_doc.vendor = site.fromJson(units_switch_doc.vendor)
     units_switch_doc.seasonName = units_switch_doc.seasonName
@@ -238,30 +226,12 @@ module.exports = function init(site) {
 
     let units_switch_doc = req.body
 
-    units_switch_doc.edit_user_assemblefo = site.security.getUserFinger({ $req: req, $res: res })
+    units_switch_doc.edit_user_info = site.security.getUserFinger({ $req: req, $res: res })
 
     if (units_switch_doc._id) {
 
 
-      let assembleItems = []
-
-      if (units_switch_doc.posting) {
-
-        units_switch_doc.items.forEach(assembleDocItems => {
-          assembleDocItems.complex_items.forEach(aDiCoplex => {
-            aDiCoplex.count = aDiCoplex.count + assembleDocItems.count
-
-            assembleItems.push(aDiCoplex)
-          });
-        });
-
-      } else {
-        assembleItems = Object.assign({}, units_switch_doc.items)
-      }
-
-
-
-      site.isAllowOverDraft(req, assembleItems, cbOverDraft => {
+      site.isAllowOverDraft(req, units_switch_doc.items, cbOverDraft => {
 
         if (!cbOverDraft.overdraft && cbOverDraft.value) {
 
@@ -283,14 +253,10 @@ module.exports = function init(site) {
               response.done = true
               response.doc = result.doc
 
-              let complex_list = [];
-
-
               result.doc.items.forEach((_itm, i) => {
                 if (result.doc.posting)
                   _itm.type = 'sum'
                 else _itm.type = 'minus'
-                _itm.assemble = true
 
                 _itm.store = result.doc.store
                 _itm.company = result.doc.company
@@ -302,10 +268,10 @@ module.exports = function init(site) {
                 _itm.source_type = result.doc.type
                 _itm.transaction_type = 'in'
                 if (result.doc.posting) {
-                  _itm.current_status = 'Assembling'
+                  _itm.current_status = 'switchUnit'
                 } else {
                   _itm.count = (-Math.abs(_itm.count))
-                  _itm.current_status = 'r_Assembling'
+                  _itm.current_status = 'r_switchUnit'
                 }
 
                 _itm.shift = {
@@ -314,33 +280,6 @@ module.exports = function init(site) {
                   name: result.doc.shift.name
                 }
 
-                if (_itm.complex_items && _itm.complex_items.length > 0) {
-                  _itm.complex_items.forEach(_complex => {
-
-                    _complex.code = result.doc.code
-                    _complex.date = result.doc.date
-                    _complex.store = result.doc.store
-                    _complex.company = result.doc.company
-                    _complex.branch = result.doc.branch
-                    _complex.count = _complex.count * _itm.count
-                    _complex.transaction_type = 'out'
-                    if (result.doc.posting) {
-                      _complex.type = 'minus'
-                      _complex.current_status = 'Assembling'
-                    }
-                    else {
-                      _complex.count = (-Math.abs(_complex.count))
-                      _complex.current_status = 'r_Assembling'
-                      _complex.type = 'sum'
-                    }
-                    _complex.shift = {
-                      id: result.doc.shift.id,
-                      code: result.doc.shift.code,
-                      name: result.doc.shift.name
-                    }
-                    complex_list.push(_complex)
-                  });
-                }
 
                 site.call('item_transaction + items', Object.assign({}, _itm))
 
@@ -348,15 +287,6 @@ module.exports = function init(site) {
                 site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _itm))
 
               })
-
-              complex_list.forEach((_complex1, i) => {
-                site.call('item_transaction - items', Object.assign({}, _complex1))
-
-                _complex1.count = Math.abs(_complex1.count)
-                site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _complex1))
-              });
-
-
 
             } else {
               response.error = err.message
@@ -403,60 +333,29 @@ module.exports = function init(site) {
               response.done = true
               if (units_switch_doc.posting) {
 
-                let complex_list = [];
-
                 result.doc.items.forEach((_itm, i) => {
                   _itm.type = 'minus'
                   _itm.store = result.doc.store
                   _itm.company = result.doc.company
                   _itm.branch = result.doc.branch
-                  _itm.assemble = true
                   _itm.code = result.doc.code
                   _itm.date = result.doc.date
                   _itm.source_type = result.doc.type
                   _itm.transaction_type = 'in'
                   _itm.count = (-Math.abs(_itm.count))
-                  _itm.current_status = 'd_Assembling'
+                  _itm.current_status = 'd_switchUnit'
                   _itm.shift = {
                     id: result.doc.shift.id,
                     code: result.doc.shift.code,
                     name: result.doc.shift.name
                   }
 
-                  if (_itm.complex_items && _itm.complex_items.length > 0) {
-                    _itm.complex_items.forEach(_complex => {
-                      _complex.type = 'sum'
-                      _complex.code = result.doc.code
-                      _complex.date = result.doc.date
-                      _complex.store = result.doc.store
-                      _complex.company = result.doc.company
-                      _complex.branch = result.doc.branch
-                      _complex.count = _complex.count * _itm.count
-                      _complex.count = (-Math.abs(_complex.count))
-                      _complex.transaction_type = 'out'
-                      _complex.current_status = 'd_Assembling'
-                      _complex.shift = {
-                        id: result.doc.shift.id,
-                        code: result.doc.shift.code,
-                        name: result.doc.shift.name
-                      }
-                      complex_list.push(Object.assign({}, _complex))
-                    });
-                  }
                   site.call('item_transaction + items', Object.assign({}, _itm))
 
                   _itm.count = Math.abs(_itm.count)
                   site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _itm))
 
                 })
-
-                complex_list.forEach((_complex1, i) => {
-                  site.call('item_transaction - items', Object.assign({}, _complex1))
-
-                  _complex1.count = Math.abs(_complex1.count)
-                  site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _complex1))
-
-                });
 
               }
               res.json(response)

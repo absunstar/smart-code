@@ -70,8 +70,8 @@
                         <th>##word.stores_out_id##</th>
                         <th>##word.customer##</th>
                         <th>##word.store##</th>
-                        <th x-permissions="stores_out_view || stores_out_manage">##word.stores_out_total_value##</th>
-                        <th x-permissions="stores_out_view || stores_out_manage">##word.stores_out_net_value##</th>
+                        <th x-permissions="stores_out_details_values || stores_out_manage">##word.stores_out_total_value##</th>
+                        <th x-permissions="stores_out_details_values || stores_out_manage">##word.stores_out_net_value##</th>
                         <th> ##word.transaction_type##</th>
                         <th class="not-print">##word.actions##</th>
                     </tr>
@@ -91,10 +91,10 @@
                         <td>
                             <p class="text-center"> <br> {{c.store.name}} </p>
                         </td>
-                        <td x-permissions="stores_out_view || stores_out_manage">
+                        <td x-permissions="stores_out_details_values || stores_out_manage">
                             <p class="bold text-center"> <br> {{c.total_value}} </p>
                         </td>
-                        <td x-permissions="stores_out_view || stores_out_manage">
+                        <td x-permissions="stores_out_details_values || stores_out_manage">
                             <p class="bold text-center green"> <br> {{c.net_value}} </p>
                         </td>
                         <td>
