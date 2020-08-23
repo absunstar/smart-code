@@ -830,6 +830,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
               _item.total_v_a = site.toNumber(_item.value_added) * (_item.price * _item.count) / 100;
             }
           });
+          $scope.store_in.total_value = $scope.store_in.total_value - $scope.store_in.total_value_added;
 
         } else $scope.error = response.data.error;
       },

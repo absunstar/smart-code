@@ -1,14 +1,23 @@
 <div ng-hide="busy" class="row" fixed>
 
-    <div class="row center hide">
+    <div class="row hide">
         <br>
-        <h2 class="center blue">##session.company.name_ar## - ##session.company.name_en##</h2>
-        <img class="logoPrint" ng-src="{{defaultSettings.printer_program.invoice_logo}}">
-        <br>
-        <br>
+        <div class="col3">
+            <h2 class="right red">##session.company.name_ar##</h2>
+            <div class="row " ng-repeat="i in defaultSettings.printer_program.invoice_header">
+                <h3 class="black right">{{i.name}}</h3>
+            </div>
+        </div>
 
-        <div class="row " ng-repeat="i in defaultSettings.printer_program.invoice_header">
-            <h3 class="black center">{{i.name}}</h3>
+        <div class="col6 center">
+            <img class="logoPrint " ng-src="{{defaultSettings.printer_program.invoice_logo}}">
+        </div>
+
+        <div class="col3">
+            <h2 class="left red">##session.company.name_en##</h2>
+            <div class="row " ng-repeat="i in defaultSettings.printer_program.invoice_header2">
+                <h3 class="black left">{{i.name}}</h3>
+            </div>
         </div>
 
     </div>
@@ -68,7 +77,7 @@
                             <th>##word.name_size##</th>
                             <th>##word.unit##</th>
                             <th>##word.stores_out_item_count##</th>
-                            <th class="not-print" ng-hide="store_out.type.id ==5"
+                            <th ng-hide="store_out.type.id ==5"
                                 x-permissions="stores_out_details_values || stores_out_manage">##word.price##</th>
                             <th ng-hide="store_out.type.id ==5">##word.discount##</th>
                             <th>##word.value_added##</th>
@@ -92,7 +101,7 @@
 
                             <td class="center">{{itm.unit.name}}</td>
                             <td class="center">{{itm.count}}</td>
-                            <td class="not-print center" x-permissions="stores_out_details_values || stores_out_manage"
+                            <td class="center" x-permissions="stores_out_details_values || stores_out_manage"
                                 ng-hide="store_out.type.id ==5">{{itm.price}}</td>
 
                             <td class="center" ng-hide="store_out.type.id ==5">
@@ -175,17 +184,25 @@
     </div>
 
     <div class="row" x-permissions="stores_out_details_values || stores_out_manage">
-        <i-control ng-show="store_out.type.id != 5" class="col2 r_black" ng-model="store_out.total_value"
-            label="##word.stores_out_total_value##" type="number" disabled>
-        </i-control>
 
-        <i-control ng-show="store_out.total_value_added" class="col2 r_darkRed" ng-model="store_out.total_value_added"
-            label="##word.total_value_added##" type="number" disabled>
-        </i-control>
+        <div class="row">
 
-        <i-control ng-show="store_out.type.id != 5" class="col2 r_green" ng-model="store_out.net_value"
-            label="##word.stores_out_net_value##" type="number" disabled>
-        </i-control>
+            <i-control ng-show="store_out.type.id != 5" class="col2 r_black" ng-model="store_out.total_value"
+                label="##word.stores_out_total_value##" type="number" disabled>
+            </i-control>
+        </div>
+        <div class="row">
+
+            <i-control ng-show="store_out.total_value_added" class="col2 r_darkRed"
+                ng-model="store_out.total_value_added" label="##word.total_value_added##" type="number" disabled>
+            </i-control>
+        </div>
+        <div class="row">
+
+            <i-control ng-show="store_out.type.id != 5" class="col2 r_green" ng-model="store_out.net_value"
+                label="##word.stores_out_net_value##" type="number" disabled>
+            </i-control>
+        </div>
     </div>
 
     <div class="row hide">
@@ -200,7 +217,7 @@
     <br>
     <br>
     <br>
-    
+
     <div class="row hide" ng-repeat="i in defaultSettings.printer_program.invoice_footer">
         <h3 class="black center">{{i.name}}</h3>
     </div>

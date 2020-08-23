@@ -55,8 +55,9 @@ module.exports = function init(site) {
             code: site.get_branch(req).code
           },
           printer_program: {
-            invoice_header: [{name:''}],
-            invoice_footer: [{name:''}]
+            invoice_header: [{ name: '' }],
+            invoice_header2: [{ name: '' }],
+            invoice_footer: [{ name: '' }]
           },
           accounting: {},
           inventory: {
@@ -122,15 +123,19 @@ module.exports = function init(site) {
     if (data.printer_program) {
 
       if (!data.printer_program.invoice_header)
-        data.printer_program.invoice_header = [{name:''}]
+        data.printer_program.invoice_header = [{ name: '' }]
+
+      if (!data.printer_program.invoice_header2)
+        data.printer_program.invoice_header2 = [{ name: '' }]
 
       if (!data.printer_program.invoice_footer)
-        data.printer_program.invoice_footer = [{name:''}]
+        data.printer_program.invoice_footer = [{ name: '' }]
 
     } else {
       data.printer_program = {
-        invoice_header: [{name:''}],
-        invoice_footer: [{name:''}]
+        invoice_header: [{ name: '' }],
+        invoice_header2: [{ name: '' }],
+        invoice_footer: [{ name: '' }]
       }
     }
 
