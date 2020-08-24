@@ -76,6 +76,7 @@ module.exports = function init(site) {
   site.post("/api/stores_out/add", (req, res) => {
     let response = {}
     response.done = false
+    
     if (!req.session.user) {
       response.error = 'Please Login First'
       res.json(response)
@@ -186,6 +187,7 @@ module.exports = function init(site) {
   site.post("/api/stores_out/update", (req, res) => {
     let response = {}
     response.done = false
+
     if (!req.session.user) {
       response.error = 'Please Login First'
       res.json(response)
@@ -243,6 +245,7 @@ module.exports = function init(site) {
   })
 
   site.post("/api/stores_out/posting", (req, res) => {
+
     if (!req.session.user) {
       response.error = 'Please Login First'
       res.json(response)
@@ -362,6 +365,7 @@ module.exports = function init(site) {
   site.post("/api/stores_out/delete", (req, res) => {
     let response = {}
     response.done = false
+
     if (!req.session.user) {
       response.error = 'Please Login First'
       res.json(response)
@@ -445,6 +449,13 @@ module.exports = function init(site) {
   site.post("/api/stores_out/view", (req, res) => {
     let response = {}
     response.done = false
+
+    if (!req.session.user) {
+      response.error = 'Please Login First'
+      res.json(response)
+      return
+    }
+
     $stores_out.findOne({
       where: {
         _id: site.mongodb.ObjectID(req.body._id)
@@ -463,6 +474,13 @@ module.exports = function init(site) {
   site.post("/api/stores_out/all", (req, res) => {
     let response = {}
     response.done = false
+
+    if (!req.session.user) {
+      response.error = 'Please Login First'
+      res.json(response)
+      return
+    }
+
     let where = req.body.where || {}
 
     let search = req.body.search || ''
@@ -637,7 +655,7 @@ module.exports = function init(site) {
       where['description'] = new RegExp(where['description'], 'i')
     }
 
-    if (req.session.user.type === 'delegate') {
+    if (req.session.user && req.session.user.type === 'delegate') {
       where['delegate.id'] = req.session.user.ref_info.id;
     }
 
@@ -666,6 +684,13 @@ module.exports = function init(site) {
     let response = {
       done: false
     }
+
+    if (!req.session.user) {
+      response.error = 'Please Login First'
+      res.json(response)
+      return
+    }
+
     let where = req.body.where || {}
 
     where['company.id'] = site.get_company(req).id
