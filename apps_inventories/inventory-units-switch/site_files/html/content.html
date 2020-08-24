@@ -21,7 +21,8 @@
                 <i-control id="search_barcode" class="col4" ng-keydown="getBarcode($event)" class="col3"
                     ng-model="search_barcode" label="##word.search##" type="text"></i-control>
                 <div class="col1"></div>
-                <i-button type="search" label=" ##word.select_items##" onclick="site.showModal('#selectItemsModal')">
+                <i-button type="search" ng-hide="hideSelectItems" label=" ##word.select_items##"
+                    onclick="site.showModal('#selectItemsModal')">
                 </i-button>
                 <div class="col1"></div>
 

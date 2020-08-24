@@ -16,7 +16,6 @@
 
                         <tr>
                             <th>##word.store##</th>
-
                             <th>##word.average_cost##</th>
                             <th>##word.stores_current_balance##</th>
                             <th>##word.stores_start_balance##</th>
@@ -52,7 +51,6 @@
 
 
 </div>
-
 
 
 <div id="storeUnitsModal" class="modal">
@@ -100,10 +98,11 @@
                             <td>
                                 <p class="bold center"> {{c.average_cost}} </p>
                             </td>
-                            <td>
-                                <i-button label="##word.patch##" type="view"
-                                    ng-click="viewPatchesList(c)">
+                            <td class="center">
+                                <i-button label="##word.patch##" type="view" ng-click="viewPatchesList(c)">
                                 </i-button>
+                                <!-- <i-button label="##word.Unit_switch##" type="add" ng-click="newUnitsSwitch(c)">
+                                </i-button> -->
                             </td>
                         </tr>
                     </table>

@@ -133,26 +133,26 @@ module.exports = function init(site) {
 
               })
 
-              doc.items.forEach((_itm, i) => {
-                _itm.type = 'minus'
-                _itm.store = doc.store
-                _itm.company = doc.company
-                _itm.branch = doc.branch
+              doc.items.forEach((_isDoc2, i) => {
+                _isDoc2.type = 'minus'
+                _isDoc2.store = doc.store
+                _isDoc2.company = doc.company
+                _isDoc2.branch = doc.branch
 
-                site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _itm))
+                site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _isDoc2))
 
-                _itm.code = doc.code
-                _itm.date = doc.date
-                _itm.source_type = doc.type
-                _itm.transaction_type = 'out'
-                _itm.current_status = 'switchUnit'
-                _itm.shift = {
+                _isDoc2.code = doc.code
+                _isDoc2.date = doc.date
+                _isDoc2.source_type = doc.type
+                _isDoc2.transaction_type = 'out'
+                _isDoc2.current_status = 'switchUnit'
+                _isDoc2.shift = {
                   id: doc.shift.id,
                   code: doc.shift.code,
                   name: doc.shift.name
                 }
 
-                site.call('item_transaction - items', Object.assign({}, _itm))
+                site.call('item_transaction - items', Object.assign({}, _isDoc2))
 
               })
 
@@ -253,40 +253,84 @@ module.exports = function init(site) {
               response.done = true
               response.doc = result.doc
 
-              result.doc.items.forEach((_itm, i) => {
-                if (result.doc.posting)
-                  _itm.type = 'sum'
-                else _itm.type = 'minus'
-
-                _itm.store = result.doc.store
-                _itm.company = result.doc.company
-                _itm.branch = result.doc.branch
+              units_switch_doc.items.forEach((_isDoc, i) => {
 
 
-                _itm.code = result.doc.code
-                _itm.date = result.doc.date
-                _itm.source_type = result.doc.type
-                _itm.transaction_type = 'in'
-                if (result.doc.posting) {
-                  _itm.current_status = 'switchUnit'
+
+                _isDoc.transaction_type = 'in'
+                _isDoc.store = units_switch_doc.store
+                _isDoc.company = units_switch_doc.company
+                _isDoc.branch = units_switch_doc.branch
+                _isDoc.unit = _isDoc.Units_trans
+                _isDoc.count = (_isDoc.unit.convert * _isDoc.count) / _isDoc.Units_trans.convert
+
+                if (units_switch_doc.posting) {
+
+                  _isDoc.type = 'sum'
+                  _isDoc.current_status = 'switchUnit'
                 } else {
-                  _itm.count = (-Math.abs(_itm.count))
-                  _itm.current_status = 'r_switchUnit'
+
+                  _isDoc.type = 'minus'
+                  _isDoc.current_status = 'r_switchUnit'
+                  _isDoc.count = (-Math.abs(_isDoc.count))
+
                 }
 
-                _itm.shift = {
+
+                _isDoc.code = units_switch_doc.code
+                _isDoc.date = units_switch_doc.date
+                _isDoc.source_type = units_switch_doc.type
+
+                _isDoc.shift = {
+                  id: units_switch_doc.shift.id,
+                  code: units_switch_doc.shift.code,
+                  name: units_switch_doc.shift.name
+                }
+                site.call('item_transaction + items', Object.assign({}, _isDoc))
+
+                _isDoc.count = Math.abs(_isDoc.count)
+
+                site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _isDoc))
+
+              })
+
+
+              result.doc.items.forEach((_isDoc2, i) => {
+                if (units_switch_doc.posting) {
+
+                  _isDoc2.type = 'minus'
+                  _isDoc2.current_status = 'switchUnit'
+                } else {
+
+                  _isDoc2.type = 'sum'
+                  _isDoc2.current_status = 'r_switchUnit'
+                  _isDoc2.count = (-Math.abs(_isDoc2.count))
+                }
+
+                _isDoc2.transaction_type = 'out'
+                _isDoc2.store = result.doc.store
+                _isDoc2.company = result.doc.company
+                _isDoc2.branch = result.doc.branch
+
+
+                _isDoc2.code = result.doc.code
+                _isDoc2.date = result.doc.date
+                _isDoc2.source_type = result.doc.type
+
+                _isDoc2.shift = {
                   id: result.doc.shift.id,
                   code: result.doc.shift.code,
                   name: result.doc.shift.name
                 }
 
+                site.call('item_transaction - items', Object.assign({}, _isDoc2))
 
-                site.call('item_transaction + items', Object.assign({}, _itm))
+                _isDoc2.count = Math.abs(_isDoc2.count)
 
-                _itm.count = Math.abs(_itm.count)
-                site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _itm))
+                site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _isDoc2))
 
               })
+
 
             } else {
               response.error = err.message
@@ -329,35 +373,60 @@ module.exports = function init(site) {
             $req: req,
             $res: res
           }, (err, result) => {
-            if (!err) {
+            if (!err && result) {
               response.done = true
-              if (units_switch_doc.posting) {
 
-                result.doc.items.forEach((_itm, i) => {
-                  _itm.type = 'minus'
-                  _itm.store = result.doc.store
-                  _itm.company = result.doc.company
-                  _itm.branch = result.doc.branch
-                  _itm.code = result.doc.code
-                  _itm.date = result.doc.date
-                  _itm.source_type = result.doc.type
-                  _itm.transaction_type = 'in'
-                  _itm.count = (-Math.abs(_itm.count))
-                  _itm.current_status = 'd_switchUnit'
-                  _itm.shift = {
+              if (result.doc.posting) {
+                units_switch_doc.items.forEach((_isDoc, i) => {
+                  _isDoc.type = 'minus'
+                  _isDoc.store = units_switch_doc.store
+                  _isDoc.company = units_switch_doc.company
+                  _isDoc.branch = units_switch_doc.branch
+                  _isDoc.unit = _isDoc.Units_trans
+                  _isDoc.count = (_isDoc.unit.convert * _isDoc.count) / _isDoc.Units_trans.convert
+
+                  site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _isDoc))
+
+                  _isDoc.code = units_switch_doc.code
+                  _isDoc.date = units_switch_doc.date
+                  _isDoc.source_type = units_switch_doc.type
+                  _isDoc.transaction_type = 'out'
+                  _isDoc.current_status = 'd_switchUnit'
+                  _isDoc.shift = {
+                    id: units_switch_doc.shift.id,
+                    code: units_switch_doc.shift.code,
+                    name: units_switch_doc.shift.name
+                  }
+                  site.call('item_transaction - items', Object.assign({}, _isDoc))
+
+                })
+
+                result.doc.items.forEach((_isDoc2, i) => {
+                  _isDoc2.type = 'sum'
+                  _isDoc2.store = result.doc.store
+                  _isDoc2.company = result.doc.company
+                  _isDoc2.branch = result.doc.branch
+
+                  site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _isDoc2))
+
+                  _isDoc2.code = result.doc.code
+                  _isDoc2.date = result.doc.date
+                  _isDoc2.source_type = result.doc.type
+                  _isDoc2.transaction_type = 'in'
+                  _isDoc2.current_status = 'd_switchUnit'
+                  _isDoc2.shift = {
                     id: result.doc.shift.id,
                     code: result.doc.shift.code,
                     name: result.doc.shift.name
                   }
 
-                  site.call('item_transaction + items', Object.assign({}, _itm))
-
-                  _itm.count = Math.abs(_itm.count)
-                  site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _itm))
+                  site.call('item_transaction + items', Object.assign({}, _isDoc2))
 
                 })
 
+
               }
+
               res.json(response)
             }
           })

@@ -18,6 +18,7 @@
 
     {"name" : "units_switch_store_name" , "en" : "Units Switch" , "ar" : "  إسم المخزن "},
     {"name" : "Units_trans" , "en" : "Unit to trans" , "ar" : "الوحدة م. لها"},
+    {"name" : "Unit_switch" , "en" : "Unit Switch" , "ar" : "تبديل وحدة"},
     {"name" : "Units_trans_err" , "en" : "It is not possible to convert to the same unit" , "ar" : "لا يمكن التحويل لنفس الوحدة"},
 
     {"name" : "err_barcode_exist" , "en" : "The barcode is exist" , "ar" : "الباركود مسجل من قبل"},

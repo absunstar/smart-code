@@ -28,7 +28,7 @@ app.controller("units_switch", function ($scope, $http, $timeout) {
     $scope.get_open_shift((shift) => {
       if (shift) {
         $scope.error = '';
-        $scope.item = {}
+        $scope.item = {};
         $scope.units_switch = {
           image_url: '/images/units_switch.png',
           shift: $scope.shift,
@@ -74,7 +74,7 @@ app.controller("units_switch", function ($scope, $http, $timeout) {
 
   };
 
-  $scope.add = function () {
+  $scope.addSwitch = function () {
     $scope.error = '';
 
     const v = site.validated('#addUnitsSwitchModal');

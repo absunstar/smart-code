@@ -23,6 +23,8 @@
                 <div x-permissions="stores_items_view || stores_items_manage"
                     x-import="inventory-stores-items/store_balance.html"></div>
                 <div x-permissions="stores_items_view || stores_items_manage"
+                    x-import="inventory-stores-items/add_size.html"></div>
+                <div x-permissions="stores_items_view || stores_items_manage"
                     x-import="inventory-stores-items/branch_balance.html"></div>
                 <div x-permissions="stores_items_add || stores_items_manage"
                     x-import="inventory-stores-items/complex_item.html"></div>
@@ -34,6 +36,10 @@
                     x-import="inventory-stores-items/view_modal.html"></div>
                 <div x-permissions="stores_items_search || stores_items_manage"
                     x-import="inventory-stores-items/search_all_modal.html"></div>
+
+                <div x-import="inventory-units-switch/add_modal.html">
+                </div>
+
                 <div class="row">
                     <h1 class="bold text-center ">##word.stores_items##</h1>
                 </div>
@@ -46,10 +52,10 @@
                     <i-button x-permissions="stores_items_search || stores_items_manage" type="search"
                         label="##word.search_all##" onclick="site.showModal('#CategoryItemSearchModal')"></i-button>
 
-                    
 
 
-                <!--     <i-button class="left" label="إعادة تهيئة الأصناف"
+
+                    <!--     <i-button class="left" label="إعادة تهيئة الأصناف"
                         ng-click="handelZeft()">
                     </i-button> -->
 
