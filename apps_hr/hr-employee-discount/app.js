@@ -15,9 +15,13 @@ module.exports = function init(site) {
   site.post("/api/employee_discount/add", (req, res) => {
     let response = {}
     response.done = false
-    if (req.session.user === undefined) {
+            
+    if (!req.session.user) {
+      response.error = 'Please Login First'
       res.json(response)
+      return
     }
+
     let employee_discount_doc = req.body
     employee_discount_doc.$req = req
     employee_discount_doc.$res = res
@@ -43,9 +47,13 @@ module.exports = function init(site) {
   site.post("/api/employee_discount/update", (req, res) => {
     let response = {}
     response.done = false
-    if (req.session.user === undefined) {
+            
+    if (!req.session.user) {
+      response.error = 'Please Login First'
       res.json(response)
+      return
     }
+
     let employee_discount_doc = req.body
     employee_discount_doc.date = new Date(employee_discount_doc.date)
     if (employee_discount_doc._id) {
@@ -72,9 +80,13 @@ module.exports = function init(site) {
   site.post("/api/employee_discount/delete", (req, res) => {
     let response = {}
     response.done = false
-    if (req.session.user === undefined) {
+             
+    if (!req.session.user) {
+      response.error = 'Please Login First'
       res.json(response)
+      return
     }
+
     let _id = req.body._id
     if (_id) {
       $employee_discount.delete({
@@ -115,6 +127,13 @@ module.exports = function init(site) {
   site.post("/api/employee_discount/view", (req, res) => {
     let response = {}
     response.done = false
+              
+    if (!req.session.user) {
+      response.error = 'Please Login First'
+      res.json(response)
+      return
+    }
+
     $employee_discount.findOne({
       where: {
         _id: site.mongodb.ObjectID(req.body._id)
@@ -133,10 +152,14 @@ module.exports = function init(site) {
   site.post("/api/employee_discount/all", (req, res) => {
     let response = {}
     response.done = false
+          
+    if (!req.session.user) {
+      response.error = 'Please Login First'
+      res.json(response)
+      return
+    }
 
     let where = req.body.where || {}
-
-
 
     if (where.date) {
       let d1 = site.toDate(where.date)

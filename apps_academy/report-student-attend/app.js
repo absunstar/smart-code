@@ -14,9 +14,15 @@ module.exports = function init(site) {
     let response = {
       done: false
     }
+          
+    if (!req.session.user) {
+      response.error = 'Please Login First'
+      res.json(response)
+      return
+    }
 
-    var where = req.body.where || {}
 
+    let where = req.body.where || {}
 
     where['company.id'] = site.get_company(req).id
     where['branch.code'] = site.get_branch(req).code

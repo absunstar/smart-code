@@ -764,6 +764,14 @@ module.exports = function init(site) {
   site.post("/api/stores_items/view", (req, res) => {
     let response = {}
     response.done = false
+
+    if (!req.session.user) {
+      response.error = 'Please Login First'
+      res.json(response)
+      return
+    }
+
+
     $stores_items.findOne({
       where: {
         _id: site.mongodb.ObjectID(req.body._id)
@@ -781,6 +789,12 @@ module.exports = function init(site) {
 
   site.post("/api/stores_items/all", (req, res) => {
     //  let data = {};
+
+    if (!req.session.user) {
+      response.error = 'Please Login First'
+      res.json(response)
+      return
+    }
 
 
     let response = {}
@@ -1230,6 +1244,13 @@ module.exports = function init(site) {
     let response = {
       done: false
     }
+
+    if (!req.session.user) {
+      response.error = 'Please Login First'
+      res.json(response)
+      return
+    }
+
     let where = req.body.where || {}
 
     where['company.id'] = site.get_company(req).id

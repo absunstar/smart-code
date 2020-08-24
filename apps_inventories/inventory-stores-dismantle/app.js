@@ -474,6 +474,13 @@ module.exports = function init(site) {
   site.post("/api/stores_dismantle/view", (req, res) => {
     let response = {}
     response.done = false
+
+    if (!req.session.user) {
+      response.error = 'Please Login First'
+      res.json(response)
+      return
+    }
+
     $stores_dismantle.findOne({
       where: {
         _id: site.mongodb.ObjectID(req.body._id)
@@ -492,8 +499,14 @@ module.exports = function init(site) {
   site.post("/api/stores_dismantle/all", (req, res) => {
     let response = {}
     response.done = false
-    let where = req.body.where || {}
 
+    if (!req.session.user) {
+      response.error = 'Please Login First'
+      res.json(response)
+      return
+    }
+
+    let where = req.body.where || {}
     let search = req.body.search
 
     if (search) {

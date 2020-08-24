@@ -30,9 +30,13 @@ module.exports = function init(site) {
   site.post("/api/insurances_slides/add", (req, res) => {
     let response = {}
     response.done = false
-    if (req.session.user === undefined) {
+
+    if (!req.session.user) {
+      response.error = 'Please Login First'
       res.json(response)
+      return
     }
+
     let insurances_slides_doc = req.body
     insurances_slides_doc.$req = req
     insurances_slides_doc.$res = res
@@ -55,9 +59,13 @@ module.exports = function init(site) {
   site.post("/api/insurances_slides/update", (req, res) => {
     let response = {}
     response.done = false
-    if (req.session.user === undefined) {
+
+    if (!req.session.user) {
+      response.error = 'Please Login First'
       res.json(response)
+      return
     }
+
     let insurances_slides_doc = req.body
     insurances_slides_doc.edit_user_info = site.security.getUserFinger({
       $req: req,
@@ -88,9 +96,13 @@ module.exports = function init(site) {
   site.post("/api/insurances_slides/delete", (req, res) => {
     let response = {}
     response.done = false
-    if (req.session.user === undefined) {
+    
+    if (!req.session.user) {
+      response.error = 'Please Login First'
       res.json(response)
+      return
     }
+
     let _id = req.body._id
     if (_id) {
       $insurances_slides.delete({
@@ -111,6 +123,13 @@ module.exports = function init(site) {
   site.post("/api/insurances_slides/view", (req, res) => {
     let response = {}
     response.done = false
+
+    if (!req.session.user) {
+      response.error = 'Please Login First'
+      res.json(response)
+      return
+    }
+
     $insurances_slides.findOne({
       where: {
         _id: site.mongodb.ObjectID(req.body._id)
@@ -129,6 +148,13 @@ module.exports = function init(site) {
   site.post("/api/insurances_slides/all", (req, res) => {
     let response = {}
     response.done = false
+
+    if (!req.session.user) {
+      response.error = 'Please Login First'
+      res.json(response)
+      return
+    }
+
     let where = req.data.where || {}
 
     if (where['name']) {
@@ -139,7 +165,7 @@ module.exports = function init(site) {
     }
 
     where['company.id'] = site.get_company(req).id
-  
+
     $insurances_slides.findMany({
       select: req.body.select || {},
       where: where,

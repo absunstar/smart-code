@@ -18,9 +18,9 @@ module.exports = function init(site) {
   site.post("/api/employees_salary_report/add", (req, res) => {
     let response = {}
     response.done = false
-
+      
     if (!req.session.user) {
-      response.error = ' not login'
+      response.error = 'Please Login First'
       res.json(response)
       return
     }
@@ -68,7 +68,11 @@ module.exports = function init(site) {
     let response = {}
     response.done = false
 
-
+    if (!req.session.user) {
+      response.error = 'Please Login First'
+      res.json(response)
+      return
+    }
 
     $employees_salary_report.findMany({
       select: req.body.select || {},

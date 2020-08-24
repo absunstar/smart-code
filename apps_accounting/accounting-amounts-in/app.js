@@ -254,6 +254,14 @@ module.exports = function init(site) {
   site.post("/api/amounts_in/view", (req, res) => {
     let response = {}
     response.done = false
+              
+    if (!req.session.user) {
+      response.error = 'Please Login First'
+      res.json(response)
+      return
+    }
+
+
     $amounts_in.findOne({
       id: req.body.id
     }, (err, doc) => {
@@ -270,6 +278,12 @@ module.exports = function init(site) {
   site.post("/api/amounts_in/all", (req, res) => {
     let response = {}
     response.done = false
+          
+    if (!req.session.user) {
+      response.error = 'Please Login First'
+      res.json(response)
+      return
+    }
 
     let where = req.body.where || {}
 

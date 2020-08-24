@@ -10,6 +10,12 @@ module.exports = function init(site) {
 
   site.post("/api/report_trainer_attend/trainer_attend", (req, res) => {
     let response = { done: false }
+          
+    if (!req.session.user) {
+      response.error = 'Please Login First'
+      res.json(response)
+      return
+    }
 
     let where = req.body.where || {}
 

@@ -31,10 +31,13 @@ module.exports = function init(site) {
     let response = {}
     response.done = false
 
+            
     if (!req.session.user) {
+      response.error = 'Please Login First'
       res.json(response)
       return
     }
+
 
     let doc = req.body
     doc.$req = req
@@ -58,10 +61,13 @@ module.exports = function init(site) {
     let response = {}
     response.done = false
 
+          
     if (!req.session.user) {
+      response.error = 'Please Login First'
       res.json(response)
       return
     }
+
 
     let doc = req.body
     doc.edit_user_info = site.security.getUserFinger({
@@ -94,10 +100,13 @@ module.exports = function init(site) {
     let response = {}
     response.done = false
 
+            
     if (!req.session.user) {
+      response.error = 'Please Login First'
       res.json(response)
       return
     }
+
 
     let id = req.body.id
     if (id) {
@@ -119,6 +128,14 @@ module.exports = function init(site) {
   site.post("/api/militaries_status/view", (req, res) => {
     let response = {}
     response.done = false
+              
+    if (!req.session.user) {
+      response.error = 'Please Login First'
+      res.json(response)
+      return
+    }
+
+
     $militaries_status.find({
       where: {
         id: req.body.id
@@ -137,13 +154,15 @@ module.exports = function init(site) {
   site.post("/api/militaries_status/all", (req, res) => {
     let response = {}
     response.done = false
-    let where = req.body.where || {}
-    where['company.id'] = site.get_company(req).id
-
+              
     if (!req.session.user) {
+      response.error = 'Please Login First'
       res.json(response)
       return
     }
+
+    let where = req.body.where || {}
+    where['company.id'] = site.get_company(req).id
 
     $militaries_status.findMany({
       select: req.body.select || {},

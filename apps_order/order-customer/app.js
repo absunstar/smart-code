@@ -355,6 +355,12 @@ module.exports = function init(site) {
     let response = {
       done: false
     }
+              
+    if (!req.session.user) {
+      response.error = 'Please Login First'
+      res.json(response)
+      return
+    }
 
     let where = req.body.where || {}
 
@@ -389,6 +395,14 @@ module.exports = function init(site) {
     let response = {
       done: false
     }
+              
+    if (!req.session.user) {
+      response.error = 'Please Login First'
+      res.json(response)
+      return
+    }
+
+
     let where = req.body.where || {}
 
     where['company.id'] = site.get_company(req).id
@@ -425,6 +439,14 @@ module.exports = function init(site) {
     let response = {
       done: false
     }
+              
+    if (!req.session.user) {
+      response.error = 'Please Login First'
+      res.json(response)
+      return
+    }
+
+
     let where = req.body.where || {}
 
     if (where['name']) {
@@ -457,6 +479,12 @@ module.exports = function init(site) {
   site.post("/api/order_customer/invoices", (req, res) => {
     let response = {
       done: false
+    }
+          
+    if (!req.session.user) {
+      response.error = 'Please Login First'
+      res.json(response)
+      return
     }
 
     let where = req.body.where || {}

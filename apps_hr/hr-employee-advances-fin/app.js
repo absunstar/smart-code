@@ -34,9 +34,13 @@ module.exports = function init(site) {
   site.post("/api/employees_advances_fin/add", (req, res) => {
     let response = {}
     response.done = false
-    if (req.session.user === undefined) {
+             
+    if (!req.session.user) {
+      response.error = 'Please Login First'
       res.json(response)
+      return
     }
+
     let employees_advances_fin_doc = req.body
     employees_advances_fin_doc.$req = req
     employees_advances_fin_doc.$res = res
@@ -62,9 +66,13 @@ module.exports = function init(site) {
   site.post("/api/employees_advances_fin/update", (req, res) => {
     let response = {}
     response.done = false
-    if (req.session.user === undefined) {
+            
+    if (!req.session.user) {
+      response.error = 'Please Login First'
       res.json(response)
+      return
     }
+
     let employees_advances_fin_doc = req.body
     employees_advances_fin_doc.date = new Date(employees_advances_fin_doc.date)
     if (employees_advances_fin_doc._id) {
@@ -91,9 +99,13 @@ module.exports = function init(site) {
   site.post("/api/employees_advances_fin/delete", (req, res) => {
     let response = {}
     response.done = false
-    if (req.session.user === undefined) {
+           
+    if (!req.session.user) {
+      response.error = 'Please Login First'
       res.json(response)
+      return
     }
+
     let _id = req.body._id
     if (_id) {
       $employees_advances_fin.delete({
@@ -136,6 +148,13 @@ module.exports = function init(site) {
   site.post("/api/employees_advances_fin/view", (req, res) => {
     let response = {}
     response.done = false
+              
+    if (!req.session.user) {
+      response.error = 'Please Login First'
+      res.json(response)
+      return
+    }
+
     $employees_advances_fin.findOne({
       where: {
         _id: site.mongodb.ObjectID(req.body._id)
@@ -156,7 +175,9 @@ module.exports = function init(site) {
     let response = {}
     response.done = false
 
+            
     if (!req.session.user) {
+      response.error = 'Please Login First'
       res.json(response)
       return
     }
@@ -211,10 +232,14 @@ module.exports = function init(site) {
   site.post("/api/employees_advances_fin/all", (req, res) => {
     let response = {}
     response.done = false
+          
+    if (!req.session.user) {
+      response.error = 'Please Login First'
+      res.json(response)
+      return
+    }
 
     let where = req.body.where || {}
-
-
 
     if (where.date) {
       let d1 = site.toDate(where.date)

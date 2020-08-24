@@ -15,9 +15,13 @@ module.exports = function init(site) {
   site.post("/api/employees_insurances/add", (req, res) => {
     let response = {}
     response.done = false
-    if (req.session.user === undefined) {
+      
+    if (!req.session.user) {
+      response.error = 'Please Login First'
       res.json(response)
+      return
     }
+
     let employees_insurances_doc = req.body
     employees_insurances_doc.$req = req
     employees_insurances_doc.$res = res
@@ -37,9 +41,13 @@ module.exports = function init(site) {
   site.post("/api/employees_insurances/update", (req, res) => {
     let response = {}
     response.done = false
-    if (req.session.user === undefined) {
+       
+    if (!req.session.user) {
+      response.error = 'Please Login First'
       res.json(response)
+      return
     }
+
     let employees_insurances_doc = req.body
     employees_insurances_doc.edit_user_info = site.security.getUserFinger({$req : req , $res : res})
 
@@ -68,9 +76,13 @@ module.exports = function init(site) {
   site.post("/api/employees_insurances/delete", (req, res) => {
     let response = {}
     response.done = false
-    if (req.session.user === undefined) {
+       
+    if (!req.session.user) {
+      response.error = 'Please Login First'
       res.json(response)
+      return
     }
+
     let _id = req.body._id
 
 
@@ -89,6 +101,13 @@ module.exports = function init(site) {
   site.post("/api/employees_insurances/view", (req, res) => {
     let response = {}
     response.done = false
+           
+    if (!req.session.user) {
+      response.error = 'Please Login First'
+      res.json(response)
+      return
+    }
+
     $employees_insurances.findOne({
       where: {
         _id: site.mongodb.ObjectID(req.body._id)
@@ -108,6 +127,13 @@ module.exports = function init(site) {
 
     let response = {}
     response.done = false
+           
+    if (!req.session.user) {
+      response.error = 'Please Login First'
+      res.json(response)
+      return
+    }
+
     let where = req.body.where || {}
 
    

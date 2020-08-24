@@ -12,6 +12,14 @@ module.exports = function init(site) {
     let response = {
       done: false
     }
+              
+    if (!req.session.user) {
+      response.error = 'Please Login First'
+      res.json(response)
+      return
+    }
+
+
     let item = req.body
     $order_invoice.findOne({
       id: item.order.id,
@@ -33,6 +41,14 @@ module.exports = function init(site) {
     let response = {
       done: false
     }
+              
+    if (!req.session.user) {
+      response.error = 'Please Login First'
+      res.json(response)
+      return
+    }
+
+
     let kitchen = {}
     let where = req.body.where || {}
     where['company.id'] = site.get_company(req).id

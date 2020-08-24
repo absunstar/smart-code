@@ -136,6 +136,13 @@ module.exports = function init(site) {
   site.post("/api/stores/view", (req, res) => {
     let response = {}
     response.done = false
+
+    if (!req.session.user) {
+      response.error = 'Please Login First'
+      res.json(response)
+      return
+    }
+
     $stores.findOne({
       where: {
         _id: site.mongodb.ObjectID(req.body._id)
@@ -153,6 +160,14 @@ module.exports = function init(site) {
 
   site.post("/api/stores/all", (req, res) => {
     let response = {}
+
+    if (!req.session.user) {
+      response.error = 'Please Login First'
+      res.json(response)
+      return
+    }
+
+
     let where = req.body.where || {}
 
     if (where && where.name) {

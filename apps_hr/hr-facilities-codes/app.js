@@ -13,9 +13,13 @@ module.exports = function init(site) {
   site.post("/api/facilities_codes/add", (req, res) => {
     let response = {}
     response.done = false
-    if (req.session.user === undefined) {
+    
+    if (!req.session.user) {
+      response.error = 'Please Login First'
       res.json(response)
+      return
     }
+
     let facilities_codes_doc = req.body
     facilities_codes_doc.$req = req
     facilities_codes_doc.$res = res

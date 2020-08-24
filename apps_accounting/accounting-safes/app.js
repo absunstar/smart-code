@@ -252,6 +252,13 @@ module.exports = function init(site) {
   site.post("/api/safes/view", (req, res) => {
     let response = {}
     response.done = false
+              
+    if (!req.session.user) {
+      response.error = 'Please Login First'
+      res.json(response)
+      return
+    }
+
     $safes.findOne({
       where: {
         _id: site.mongodb.ObjectID(req.body._id)
@@ -270,6 +277,13 @@ module.exports = function init(site) {
   site.post("/api/safes/all", (req, res) => {
     let response = {}
     response.done = false
+              
+    if (!req.session.user) {
+      response.error = 'Please Login First'
+      res.json(response)
+      return
+    }
+
     let where = req.body.where || {}
 
 

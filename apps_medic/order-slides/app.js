@@ -105,6 +105,13 @@ module.exports = function init(site) {
   site.post("/api/order_slides/view", (req, res) => {
     let response = {}
     response.done = false
+              
+    if (!req.session.user) {
+      response.error = 'Please Login First'
+      res.json(response)
+      return
+    }
+
     $order_slides.find({
       where: {
         id: req.body.id
@@ -123,6 +130,14 @@ module.exports = function init(site) {
   site.post("/api/order_slides/all", (req, res) => {
     let response = {}
     response.done = false
+              
+    if (!req.session.user) {
+      response.error = 'Please Login First'
+      res.json(response)
+      return
+    }
+
+
     let where = req.body.where || {}
     where['company.id'] = site.get_company(req).id
 

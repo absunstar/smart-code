@@ -117,6 +117,13 @@ module.exports = function init(site) {
   site.post("/api/maritals_status/view", (req, res) => {
     let response = {}
     response.done = false
+              
+    if (!req.session.user) {
+      response.error = 'Please Login First'
+      res.json(response)
+      return
+    }
+
     $maritals_status.find({
       where: {
         id: req.body.id
@@ -139,7 +146,9 @@ module.exports = function init(site) {
     let where = req.body.where || {}
     where['company.id'] = site.get_company(req).id
 
+            
     if (!req.session.user) {
+      response.error = 'Please Login First'
       res.json(response)
       return
     }

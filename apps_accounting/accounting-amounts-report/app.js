@@ -14,6 +14,13 @@ module.exports = function init(site) {
     let response = {
       done: false
     }
+          
+    if (!req.session.user) {
+      response.error = 'Please Login First'
+      res.json(response)
+      return
+    }
+
 
     let where = req.body.where || {}
 
@@ -43,6 +50,13 @@ module.exports = function init(site) {
     let response = {
       done: false
     }
+          
+    if (!req.session.user) {
+      response.error = 'Please Login First'
+      res.json(response)
+      return
+    }
+
 
     let where = req.body.where || {}
 

@@ -61,7 +61,11 @@ module.exports = function init(site) {
     let response = {}
     response.done = false
 
-
+    if (!req.session.user) {
+      response.error = 'Please Login First'
+      res.json(response)
+      return
+    }
 
     $employees_report.findMany({
       select: req.body.select || {},

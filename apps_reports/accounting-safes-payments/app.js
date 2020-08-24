@@ -54,6 +54,12 @@ module.exports = function init(site) {
     let response = {}
     response.done = false
 
+    if (!req.session.user) {
+      response.error = 'Please Login First'
+      res.json(response)
+      return
+    }
+
     let where = req.body.where || {}
 
 
@@ -129,6 +135,13 @@ module.exports = function init(site) {
     let response = {
       done: false
     }
+
+    if (!req.session.user) {
+      response.error = 'Please Login First'
+      res.json(response)
+      return
+    }
+
     let where = req.body.where || {}
 
     where['company.id'] = site.get_company(req).id
@@ -171,9 +184,12 @@ module.exports = function init(site) {
   site.post("/api/safes_payments/drop", (req, res) => {
     let response = {}
     response.done = false
-    if (req.session.user === undefined) {
+    if (!req.session.user) {
+      response.error = 'Please Login First'
       res.json(response)
+      return
     }
+
     $safes_payments.deleteMany({
       'company.id': site.get_company(req).id,
       $req: req,

@@ -393,6 +393,13 @@ module.exports = function init(site) {
   site.post("/api/stores_stock/all", (req, res) => {
     let response = {}
     response.done = false
+
+    if (!req.session.user) {
+      response.error = 'Please Login First'
+      res.json(response)
+      return
+    }
+
     let where = req.body.where || {}
 
     let search = req.body.search

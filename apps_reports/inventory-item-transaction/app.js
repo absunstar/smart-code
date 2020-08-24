@@ -136,9 +136,12 @@ module.exports = function init(site) {
 
   site.post("/api/item_transaction/drop", (req, res) => {
     let response = {}
-    if (req.session.user === undefined) {
+    if (!req.session.user) {
+      response.error = 'Please Login First'
       res.json(response)
+      return
     }
+
     $item_transaction.deleteMany({
       'company.id': site.get_company(req).id,
       $req: req,
@@ -153,6 +156,13 @@ module.exports = function init(site) {
   site.post("/api/item_transaction/view", (req, res) => {
     let response = {}
     response.done = false
+
+    if (!req.session.user) {
+      response.error = 'Please Login First'
+      res.json(response)
+      return
+    }
+
     $item_transaction.findOne({
       where: {
         _id: site.mongodb.ObjectID(req.body._id)
@@ -173,6 +183,13 @@ module.exports = function init(site) {
   site.post("/api/item_transaction/all", (req, res) => {
 
     let response = {}
+
+    if (!req.session.user) {
+      response.error = 'Please Login First'
+      res.json(response)
+      return
+    }
+
     let where = req.body.where || {}
 
     if (where.date) {

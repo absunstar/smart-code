@@ -13,8 +13,9 @@ module.exports = function init(site) {
   site.post("/api/employees_degrees/add", (req, res) => {
     let response = {}
     response.done = false
-
+          
     if (!req.session.user) {
+      response.error = 'Please Login First'
       res.json(response)
       return
     }
@@ -51,6 +52,7 @@ module.exports = function init(site) {
     response.done = false
 
     if (!req.session.user) {
+      response.error = 'Please Login First'
       res.json(response)
       return
     }
@@ -86,8 +88,9 @@ module.exports = function init(site) {
   site.post("/api/employees_degrees/delete", (req, res) => {
     let response = {}
     response.done = false
-
+    
     if (!req.session.user) {
+      response.error = 'Please Login First'
       res.json(response)
       return
     }
@@ -112,6 +115,13 @@ module.exports = function init(site) {
   site.post("/api/employees_degrees/view", (req, res) => {
     let response = {}
     response.done = false
+              
+    if (!req.session.user) {
+      response.error = 'Please Login First'
+      res.json(response)
+      return
+    }
+
     $employees_degrees.find({
       where: {
         id: req.body.id
@@ -130,8 +140,9 @@ module.exports = function init(site) {
   site.post("/api/employees_degrees/all", (req, res) => {
     let response = {}
     response.done = false
-
+   
     if (!req.session.user) {
+      response.error = 'Please Login First'
       res.json(response)
       return
     }

@@ -18,6 +18,13 @@ module.exports = function init(site) {
     let response = {
       done: false
     }
+              
+    if (!req.session.user) {
+      response.error = 'Please Login First'
+      res.json(response)
+      return
+    }
+
     let item = req.body
 
     $order_invoice.findOne({
@@ -44,6 +51,13 @@ module.exports = function init(site) {
     let response = {
       done: false
     }
+              
+    if (!req.session.user) {
+      response.error = 'Please Login First'
+      res.json(response)
+      return
+    }
+
     let item = req.body
 
     $order_invoice.findMany({

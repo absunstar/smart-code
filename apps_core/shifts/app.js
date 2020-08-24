@@ -218,6 +218,12 @@ module.exports = function init(site) {
     let response = {
       done: false
     }
+          
+    if (!req.session.user) {
+      response.error = 'Please Login First'
+      res.json(response)
+      return
+    }
 
     let where = req.body.where || {}
 
@@ -240,6 +246,12 @@ module.exports = function init(site) {
     let response = {
       is_open: true
     }
+          
+    if (!req.session.user) {
+      response.error = 'Please Login First'
+      res.json(response)
+      return
+    }
 
     let where = {}
 
@@ -261,6 +273,12 @@ module.exports = function init(site) {
   site.post("/api/shifts/get_open_shift", (req, res) => {
     let response = {
       done: false
+    }
+          
+    if (!req.session.user) {
+      response.error = 'Please Login First'
+      res.json(response)
+      return
     }
 
     let where = {}
@@ -303,6 +321,12 @@ module.exports = function init(site) {
   site.post("/api/shifts/all", (req, res) => {
     let response = {
       done: false
+    }
+          
+    if (!req.session.user) {
+      response.error = 'Please Login First'
+      res.json(response)
+      return
     }
 
     let where = req.body.where || {}

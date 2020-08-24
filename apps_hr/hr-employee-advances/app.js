@@ -26,9 +26,13 @@ module.exports = function init(site) {
   site.post("/api/employees_advances/add", (req, res) => {
     let response = {}
     response.done = false
-    if (req.session.user === undefined) {
+             
+    if (!req.session.user) {
+      response.error = 'Please Login First'
       res.json(response)
+      return
     }
+
     let employees_advances_doc = req.body
     employees_advances_doc.$req = req
     employees_advances_doc.$res = res
@@ -81,9 +85,13 @@ module.exports = function init(site) {
   site.post("/api/employees_advances/update", (req, res) => {
     let response = {}
     response.done = false
-    if (req.session.user === undefined) {
+            
+    if (!req.session.user) {
+      response.error = 'Please Login First'
       res.json(response)
+      return
     }
+
     let employees_advances_doc = req.body
     employees_advances_doc.date = new Date(employees_advances_doc.date)
     if (employees_advances_doc._id) {
@@ -110,9 +118,13 @@ module.exports = function init(site) {
   site.post("/api/employees_advances/delete", (req, res) => {
     let response = {}
     response.done = false
-    if (req.session.user === undefined) {
+           
+    if (!req.session.user) {
+      response.error = 'Please Login First'
       res.json(response)
+      return
     }
+
     let _id = req.body._id
     if (_id) {
       $employees_advances.delete({
@@ -157,6 +169,13 @@ module.exports = function init(site) {
   site.post("/api/employees_advances/view", (req, res) => {
     let response = {}
     response.done = false
+              
+    if (!req.session.user) {
+      response.error = 'Please Login First'
+      res.json(response)
+      return
+    }
+
     $employees_advances.findOne({
       where: {
         _id: site.mongodb.ObjectID(req.body._id)
@@ -175,6 +194,12 @@ module.exports = function init(site) {
   site.post("/api/employees_advances/all", (req, res) => {
     let response = {}
     response.done = false
+          
+    if (!req.session.user) {
+      response.error = 'Please Login First'
+      res.json(response)
+      return
+    }
 
     let where = req.body.where || {}
     let _limit = where.limit

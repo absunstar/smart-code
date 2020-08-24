@@ -57,9 +57,14 @@ module.exports = function init(site) {
   site.post("/api/in_out_names/add", (req, res) => {
     let response = {}
     response.done = false
-    if (req.session.user === undefined) {
+             
+    if (!req.session.user) {
+      response.error = 'Please Login First'
       res.json(response)
+      return
     }
+
+
     let in_out_names_doc = req.body
     in_out_names_doc.$req = req
     in_out_names_doc.$res = res
@@ -79,9 +84,14 @@ module.exports = function init(site) {
   site.post("/api/in_out_names/update", (req, res) => {
     let response = {}
     response.done = false
-    if (req.session.user === undefined) {
+             
+    if (!req.session.user) {
+      response.error = 'Please Login First'
       res.json(response)
+      return
     }
+
+
     let in_out_names_doc = req.body
 
     in_out_names_doc.edit_user_info = site.security.getUserFinger({ $req: req, $res: res })
@@ -110,9 +120,14 @@ module.exports = function init(site) {
   site.post("/api/in_out_names/delete", (req, res) => {
     let response = {}
     response.done = false
-    if (req.session.user === undefined) {
+            
+    if (!req.session.user) {
+      response.error = 'Please Login First'
       res.json(response)
+      return
     }
+
+
     let _id = req.body._id
     if (_id) {
       $in_out_names.delete({ _id: $in_out_names.ObjectID(_id), $req: req, $res: res }, (err, result) => {
@@ -129,6 +144,13 @@ module.exports = function init(site) {
   site.post("/api/in_out_names/view", (req, res) => {
     let response = {}
     response.done = false
+              
+    if (!req.session.user) {
+      response.error = 'Please Login First'
+      res.json(response)
+      return
+    }
+
     $in_out_names.findOne({
       where: {
         _id: site.mongodb.ObjectID(req.body._id)
@@ -146,6 +168,13 @@ module.exports = function init(site) {
 
   site.post("/api/in_out_names/all", (req, res) => {
     let response = {}
+              
+    if (!req.session.user) {
+      response.error = 'Please Login First'
+      res.json(response)
+      return
+    }
+
     let where = req.body.where || {};
     response.done = false
 
