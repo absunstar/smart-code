@@ -176,10 +176,10 @@
             </a>
 
             <a x-features="pos" class="tab-link" href="/itineraries"
-            x-permissions="itineraries_ui || itineraries_manage">
-            <img src="/images/itinerary.png">
-            <span> ##word.itineraries## </span>
-        </a>
+                x-permissions="itineraries_ui || itineraries_manage">
+                <img src="/images/itinerary.png">
+                <span> ##word.itineraries## </span>
+            </a>
 
             <a x-features="academy || gym" class="tab-link" href="/medicine"
                 x-permissions="medicine_ui || medicine_manage">
@@ -909,6 +909,12 @@
                 x-permissions="amounts_in_ui || amounts_in_manage">
                 <img src="/images/amount_in.png">
                 <span>##word.system_amounts_in_menus##</span>
+            </a>
+
+            <a class="tab-link" ng-show="'##user.type##' == 'delegate'" href="/itineraries"
+                x-permissions="itineraries_ui || itineraries_manage">
+                <img src="/images/itinerary.png">
+                <span>##word.system_itineraries_menus##</span>
             </a>
 
 

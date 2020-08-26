@@ -209,7 +209,12 @@ module.exports = function init(site) {
 
     if (req.session.user.type === 'delegate') {
       where['delegate.id'] = req.session.user.ref_info.id;
+
+    } else if (where['delegate']) {
+      where['delegate.id'] = where['delegate'].id;
+      delete where['delegate']
     }
+
 
     where['company.id'] = site.get_company(req).id
     where['branch.code'] = site.get_branch(req).code

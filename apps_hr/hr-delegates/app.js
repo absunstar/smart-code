@@ -119,6 +119,18 @@ module.exports = function init(site) {
               "amounts_in_print",
               "amounts_in_export"
             ]
+          }, {
+            module_name: "public",
+            name: "itineraries_user",
+            en: "Itineraries User",
+            ar: "إدارة خطوط السير للمستخدم",
+            permissions: [
+              "itineraries_view",
+              "itineraries_search",
+              "itineraries_ui",
+              "itineraries_print",
+              "itineraries_export"
+            ]
           }]
 
         user.profile = {
@@ -235,6 +247,18 @@ module.exports = function init(site) {
           "amounts_in_ui",
           "amounts_in_print",
           "amounts_in_export"
+        ]
+      }, {
+        module_name: "public",
+        name: "itineraries_user",
+        en: "Itineraries User",
+        ar: "إدارة خطوط السير للمستخدم",
+        permissions: [
+          "itineraries_view",
+          "itineraries_search",
+          "itineraries_ui",
+          "itineraries_print",
+          "itineraries_export"
         ]
       }]
 
@@ -380,7 +404,7 @@ module.exports = function init(site) {
     let response = {
       done: false
     }
-              
+
     if (!req.session.user) {
       response.error = 'Please Login First'
       res.json(response)

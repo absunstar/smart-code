@@ -54,10 +54,11 @@
                             <td class="center title">{{c.required}}</td>
                             <td class="center title">{{c.notes}}</td>
                             <td class="center title w200">
-                                <i-textarea ng-model="c.delegate_notes" label="##word.delegate_notes##">
+                                <p ng-hide="'##user.type##' == 'delegate'">{{c.notes}}</p>
+                                <i-textarea ng-show="'##user.type##' == 'delegate'" ng-model="c.delegate_notes" label="##word.delegate_notes##">
                                 </i-textarea>
                             </td>
-                            <td >
+                            <td>
                                 <div class="row center">
                                     <i-button type="view" label="##word.target_details##"
                                         ng-click="targetDetails(c.target)">
