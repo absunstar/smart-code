@@ -588,6 +588,16 @@
                             </td>
                         </tr>
 
+                        <tr>
+                            <td class="title"> ##word.whatsapp## </td>
+                            <td class="center">
+                                <a ng-show="customer.whatsapp" href="tel:{{customer.whatsapp}}">
+                                    {{customer.whatsapp}}
+                                    <i class="fa fa-whatsapp" aria-hidden="true"></i>
+                                </a>
+                            </td>
+                        </tr>
+
                     </table>
 
                     <i-button class="not-print" x-permissions="customers_print || customers_manage" type="print left "

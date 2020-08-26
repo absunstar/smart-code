@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="itineraries_ui || itineraries_manage" data-ng-app="myApp">
+
+<head x-import="head.html">
+
+   
+</head>
+
+<body class="##session.lang##">
+
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+
+    </nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+
+    </nav>
+    <div id="main-layout" class="container">
+        <div class="row">
+            <div class="row" ng-controller="itineraries">
+                <div x-permissions="itineraries_add || itineraries_manage" x-import="itineraries/add_modal.html"></div>
+                <div x-permissions="itineraries_update || itineraries_manage" x-import="itineraries/update_modal.html">
+                </div>
+                <div x-permissions="itineraries_delete || itineraries_manage" x-import="itineraries/delete_modal.html">
+                </div>
+                <div x-permissions="itineraries_view || itineraries_manage" x-import="itineraries/view_modal.html">
+                </div>
+                <div x-permissions="itineraries_view || itineraries_manage"
+                    x-import="itineraries/view_target_modal.html">
+                </div>
+                <div x-permissions="itineraries_search || itineraries_manage"
+                    x-import="itineraries/search_all_modal.html"></div>
+
+                <div class="row">
+                    <h1 class="bold text-center">##word.itineraries##</h1>
+                </div>
+
+                <div class="top-actions">
+                    <i-button x-permissions="itineraries_add || itineraries_manage" type="add"
+                        label="##word.itineraries_new##" ng-click="displayAddItinerary()"></i-button>
+
+                    <i-button x-permissions="itineraries_search || itineraries_manage" type="search"
+                        label="##word.search_all##" ng-click="displaySearchModal()"></i-button>
+
+                    <h3 class="bold text-center"> ##word.count## : {{count}}</h3>
+
+                </div>
+
+                <table x-permissions="login" class="table hover bold loaded" id="t1">
+                    <tr>
+                        <th class="not-print">##word.logo##</th>
+                        <th>##word.date##</th>
+                        <th>##word.delegate##</th>
+                        <th>##word.status##</th>
+                        <th class="not-print">##word.actions##</th>
+                    </tr>
+                    <tr ng-repeat="c in list">
+                        <td class="center not-print">
+                            <img class="logo" ng-src="{{c.image_url}}">
+                        </td>
+                        <td class="text-center brown">{{c.date | date : 'yyyy - MM - dd'}}</td>
+                        <td class="center title">{{c.delegate.name}}</td>
+                        <td class="center">
+                            <p ng-show="c.active == true" class="green"> ##word.active## </p>
+                            <p ng-show="c.active == false" class="red"> ##word.not_active## </p>
+                        </td>
+
+                        <td class="center not-print">
+                            <i-button x-permissions="itineraries_view || itineraries_manage" type="view"
+                                label="##word.details##" ng-click="displayDetailsItinerary(c)"></i-button>
+
+                            <i-button x-permissions="itineraries_update || itineraries_manage" type="edit"
+                                label="##word.edit##" ng-click="displayUpdateItinerary(c)"></i-button>
+
+                            <i-button x-permissions="itineraries_delete || itineraries_manage" type="delete"
+                                label="##word.delete##" ng-click="displayDeleteItinerary(c)"></i-button>
+                        </td>
+                    </tr>
+                </table>
+
+                <i-button x-permissions="itineraries_print || itineraries_manage" type="print" label="##word.print##"
+                    onclick="site.print('#t1')"></i-button>
+
+
+            </div>
+        </div>
+    </div>
+
+    <div x-import="scripts.html"></div>
+    <script x-import="itineraries/index.js"></script>
+</body>
+
+</html>

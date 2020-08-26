@@ -1,0 +1,62 @@
+[
+    {
+        "name": "itineraries",
+        "en": "Itineraries",
+        "ar": "خطوط السير"
+    },
+    {
+        "name": "itineraries_new",
+        "en": "New Itinerary",
+        "ar": "خط سير جديد"
+    },
+    {
+        "name": "itineraries_add",
+        "en": "Add Itinerary",
+        "ar": "إضافة خط سير "
+    },
+    {
+        "name": "itineraries_edit",
+        "en": "Edit Itinerary",
+        "ar": "تعديل خط سير "
+    },
+    {
+        "name": "required",
+        "en": "Required",
+        "ar": "المطلوب"
+    },
+    {
+        "name": "target_type",
+        "en": "Target Type",
+        "ar": "نوع الهدف"
+    },
+    {
+        "name": "target",
+        "en": "Target",
+        "ar": "الهدف"
+    },
+    {
+        "name": "delegate_notes",
+        "en": "Delegate Notes",
+        "ar": "ملاحظات المندوب"
+    },
+    {
+        "name": "target_details",
+        "en": "Target Details",
+        "ar": "تفاصيل الهدف"
+    },
+    {
+        "name": "itineraries_details",
+        "en": "Itinerary Details",
+        "ar": "تفاصيل خط السير "
+    },
+    {
+        "name": "itineraries_delete",
+        "en": "Delete Itinerary",
+        "ar": "حذف خط سير "
+    },
+    {
+        "name": "itineraries_name",
+        "en": "Itinerary Name",
+        "ar": "إسم خط سير "
+    }
+]

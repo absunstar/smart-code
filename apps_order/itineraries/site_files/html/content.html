@@ -1,0 +1,92 @@
+<div class="form">
+    <div id="basicInformation">
+        <fieldset>
+            <legend> ##word.basic_information## </legend>
+            <div class="row">
+                <div class="col9">
+                    <div class="row">
+                        <i-date2 class="col4" ng-model="itinerary.date" label="##word.date##"></i-date2>
+
+                        <i-list class="col4" ng-model="itinerary.delegate" ng-search="_search.$items_group_search"
+                            label="##word.delegate##" ng-disabled="itinerary.retured_number" items="delegatesList">
+                        </i-list>
+
+                        <div class="col2"></div>
+
+                        <i-checkbox help-id="itineraries_active" class="col2" label="##word.active##"
+                            ng-model="itinerary.active"></i-checkbox>
+                    </div>
+
+                    <br>
+                    <br>
+                    <fieldset>
+                        <legend> ##word.itineraries_details## </legend>
+
+                        <div class="row">
+
+                            <i-control ng-keydown="getCustomerList($event)" id="service" class="col3"
+                                ng-model="search_customer" label="##word.search##" type="text"></i-control>
+
+                            <i-list ng-search="_search.$customer" class="col4" display="name_##session.lang##" v="r"
+                                ng-model="itinerary.customer" ng-change="itinerary.vendor = {}"
+                                label="##word.customer##" items="customersList">
+                            </i-list>
+
+                            <div class="col1"></div>
+
+                            <i-list class="col4" ng-model="itinerary.vendor" items="vendorsList"
+                                ng-change="itinerary.customer = {}" display="name_##session.lang##"
+                                ng-search="_search.$search_vendor" label="##word.stores_in_Company_name##"></i-list>
+                        </div>
+
+                        <div class="row">
+                            <i-textarea ng-model="itinerary.required" class="col6" label="##word.required##">
+                            </i-textarea>
+                            <i-textarea ng-model="itinerary.notes" class="col6" label="##word.notes##">
+                            </i-textarea>
+                        </div>
+
+                        <div class="row">
+                            <i-button type="add" label="##word.itineraries_add##" ng-click="addItineraryList()">
+                            </i-button>
+
+                        </div>
+
+                    </fieldset>
+
+                </div>
+
+                <div class="col3">
+                    <i-image help-id="itineraries_logo" ng-model="itinerary.image_url"></i-image>
+                </div>
+            </div>
+            <br>
+            <br>
+            <div class="row" ng-show="itinerary.itinerary_list.length > 0">
+
+                <table class="table hover bold loaded">
+                    <tr>
+                        <th>##word.target_type##</th>
+                        <th>##word.target##</th>
+                        <th>##word.required##</th>
+                        <th>##word.notes##</th>
+                        <th>##word.actions##</th>
+                    </tr>
+
+                    <tr ng-repeat="c in itinerary.itinerary_list">
+                        <td class="center blue title">{{c.target_type.##session.lang##}}</td>
+                        <td class="center title">{{c.target.name_##session.lang##}} {{c.target.name}}</td>
+                        <td class="center title">{{c.required}}</td>
+                        <td class="center title">{{c.notes}}</td>
+                        <td class="center">
+                            <i-button type="delete" ng-click="itinerary.itinerary_list.splice($index,1)">
+                            </i-button>
+                        </td>
+                    </tr>
+                </table>
+
+            </div>
+        </fieldset>
+
+    </div>
+</div>

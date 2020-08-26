@@ -6,7 +6,7 @@ app.controller("report_stores_evaluation", function ($scope, $http, $timeout) {
   $scope.getReportStoreEvaluationList = function (where) {
     $scope.busy = true;
     $scope.list = [];
-    
+
     $http({
       method: "POST",
       url: "/api/report_stores_evaluation/all",
@@ -22,8 +22,8 @@ app.controller("report_stores_evaluation", function ($scope, $http, $timeout) {
           $scope.list = response.data.doc;
           $scope.total_average_cost = 0;
           $scope.list.forEach(_list => {
-            if(_list.store_units_list && _list.store_units_list.length > 0)
-            _list.store_units_list.map(_store_unit => $scope.total_average_cost += _store_unit.total_average_cost)
+            if (_list.store_units_list && _list.store_units_list.length > 0)
+              _list.store_units_list.map(_store_unit => $scope.total_average_cost += _store_unit.total_average_cost)
           });
 
           $scope.total_average_cost = site.toNumber($scope.total_average_cost)
@@ -263,10 +263,16 @@ app.controller("report_stores_evaluation", function ($scope, $http, $timeout) {
 
 
   $scope.searchAll = function () {
+    const v = site.validated('#reportStoreEvaluationSearchModal');
+    if (!v.ok) {
+      $scope.error = v.messages[0].ar;
+      return;
+    }
     $scope._search = {};
     $scope.getReportStoreEvaluationList($scope.search);
     site.hideModal('#reportStoreEvaluationSearchModal');
-    $scope.search = {}
+    $scope.search = {};
+    $scope.error = '';
   };
 
   $scope.getDefaultSettings();

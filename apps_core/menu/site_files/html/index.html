@@ -14,6 +14,7 @@
         vertical-align: super;
     }
 </style>
+
 <div class="main-menu">
     <div class="row" ng-show="'##user.type##' == 'customer'">
         <div class="col4"></div>
@@ -173,6 +174,12 @@
                 <img src="/images/vendor_group.png">
                 <span> ##word.vendors_group## </span>
             </a>
+
+            <a x-features="pos" class="tab-link" href="/itineraries"
+            x-permissions="itineraries_ui || itineraries_manage">
+            <img src="/images/itinerary.png">
+            <span> ##word.itineraries## </span>
+        </a>
 
             <a x-features="academy || gym" class="tab-link" href="/medicine"
                 x-permissions="medicine_ui || medicine_manage">

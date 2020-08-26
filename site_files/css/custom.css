@@ -230,6 +230,42 @@ nav.sitebottom a.link:hover {
   color: green;
 }
 
+.btn.true {
+  width: 24px;
+  height: 33px;
+  font-size: 13px;
+  padding-top: 10px;
+  background: #118011;
+  font-weight: bold;
+}
+
+
+.redDot {
+  height: 25px;
+  width: 25px;
+  background-color: red;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.greenDot {
+  height: 25px;
+  width: 25px;
+  background-color: green;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.blueDot {
+  height: 25px;
+  width: 25px;
+  background-color: blue;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+
+
 .logoPrint {
   width: 140px;
   height: 120px;

@@ -1,0 +1,86 @@
+<div ng-hide="busy" class="row">
+    <div id="basicInformation" class="">
+        <fieldset>
+            <legend> ##word.basic_information##</legend>
+            <div class="row">
+
+                <div class="col9">
+                    <table id="basicInformationTable" class="table bold">
+                        <tr>
+                            <td class="title">##word.date##</td>
+                            <td class="center brown">{{itinerary.date | date : 'yyyy - MM - dd'}}</td>
+                        </tr>
+
+                        <tr>
+                            <td class="title">##word.delegate##</td>
+                            <td class="center">{{itinerary.delegate.name}}</td>
+                        </tr>
+
+                        <tr>
+                            <td class="title">##word.status##</td>
+                            <td ng-show="itinerary.active == true" class="green center"> ##word.active## </td>
+                            <td ng-show="itinerary.active == false" class="red center"> ##word.not_active## </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="col3">
+                    <i-image view ng-model="itinerary.image_url"></i-image>
+                </div>
+            </div>
+
+            <div class="row grid" ng-show="itinerary.itinerary_list.length > 0">
+                <div class="grid">
+
+                    <table class="table hover bold loaded">
+                        <tr>
+                            <th>##word.status##</th>
+                            <th>##word.target_type##</th>
+                            <th>##word.target##</th>
+                            <th>##word.required##</th>
+                            <th>##word.notes##</th>
+                            <th>##word.delegate_notes##</th>
+                            <th>##word.actions##</th>
+                        </tr>
+
+                        <tr ng-repeat="c in itinerary.itinerary_list">
+                            <td class="center">
+                                <span ng-show="c.status == 1" class="blueDot"></span>
+                                <span ng-show="c.status == 2" class="greenDot"></span>
+                                <span ng-show="c.status == 3" class="redDot"></span>
+                            </td>
+                            <td class="center blue title">{{c.target_type.##session.lang##}}</td>
+                            <td class="center title">{{c.target.name_##session.lang##}} {{c.target.name}}</td>
+                            <td class="center title">{{c.required}}</td>
+                            <td class="center title">{{c.notes}}</td>
+                            <td class="center title w200">
+                                <i-textarea ng-model="c.delegate_notes" label="##word.delegate_notes##">
+                                </i-textarea>
+                            </td>
+                            <td >
+                                <div class="row center">
+                                    <i-button type="view" label="##word.target_details##"
+                                        ng-click="targetDetails(c.target)">
+                                    </i-button>
+                                </div>
+                                <div class="row center" ng-show="'##user.type##' == 'delegate' && c.status == 1">
+
+                                    <i-button type="fa fa-check true" ng-click="c.status = 2">
+                                    </i-button>
+
+                                    <i-button type="close default" ng-click="c.status = 3">
+                                    </i-button>
+
+                                </div>
+
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+            </div>
+
+        </fieldset>
+    </div>
+</div>
+<div x-import="itineraries/action_info.html"></div>

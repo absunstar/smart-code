@@ -32,10 +32,6 @@ module.exports = function init(site) {
       let size_en = where.size_en;
       let barcode = where.barcode;
 
-      if (where.store) store_id = where.store.id
-      if (where.branch) branch_code = where.branch.code
-      if (where.unit) unit_id = where.unit.id
-
       where['company.id'] = site.get_company(req).id
 
       if (where && where['name']) {
@@ -67,18 +63,15 @@ module.exports = function init(site) {
 
           let i_store_list = [];
 
-
           docs.forEach(_doc => {
             _doc.sizes.forEach(_sizes => {
               if (_sizes.branches_list && _sizes.branches_list.length > 0) {
-                if (_sizes && ((_sizes.size && _sizes.size.contains(size)) || (_sizes.size_en && _sizes.size_en.contains(size_en)) || (_sizes.barcode && _sizes.barcode.contains(barcode)))) {
+                if (_sizes && (size || size_en || barcode) && ((_sizes.size && _sizes.size.contains(size)) || (_sizes.size_en && _sizes.size_en.contains(size_en)) || (_sizes.barcode && _sizes.barcode.contains(barcode)))) {
 
                   _sizes.name = _doc.name
                   _sizes.item_group = _doc.item_group
                   i_store_list.push(_sizes)
-
                 }
-
               }
             })
           })

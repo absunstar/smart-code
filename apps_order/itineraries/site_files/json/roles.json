@@ -1,0 +1,7 @@
+[{
+    "module_name" : "public" ,
+    "name": "itineraries_admin",
+    "en": "Itineraries Admin",
+    "ar": "إدارة خطوط السير",
+    "permissions": ["itineraries_manage"]
+}]

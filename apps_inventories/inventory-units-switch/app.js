@@ -116,6 +116,8 @@ module.exports = function init(site) {
                 _isDoc.branch = units_switch_doc.branch
                 _isDoc.unit = _isDoc.Units_trans
                 _isDoc.count = (_isDoc.unit.convert * _isDoc.count) / _isDoc.Units_trans.convert
+                _isDoc.count = site.toNumber(_isDoc.count)
+
 
                 site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _isDoc))
 
@@ -255,14 +257,13 @@ module.exports = function init(site) {
 
               units_switch_doc.items.forEach((_isDoc, i) => {
 
-
-
                 _isDoc.transaction_type = 'in'
                 _isDoc.store = units_switch_doc.store
                 _isDoc.company = units_switch_doc.company
                 _isDoc.branch = units_switch_doc.branch
                 _isDoc.unit = _isDoc.Units_trans
                 _isDoc.count = (_isDoc.unit.convert * _isDoc.count) / _isDoc.Units_trans.convert
+                _isDoc.count = site.toNumber(_isDoc.count)
 
                 if (units_switch_doc.posting) {
 
@@ -275,7 +276,6 @@ module.exports = function init(site) {
                   _isDoc.count = (-Math.abs(_isDoc.count))
 
                 }
-
 
                 _isDoc.code = units_switch_doc.code
                 _isDoc.date = units_switch_doc.date
@@ -296,6 +296,8 @@ module.exports = function init(site) {
 
 
               result.doc.items.forEach((_isDoc2, i) => {
+                _isDoc2.count = site.toNumber(_isDoc2.count)
+
                 if (units_switch_doc.posting) {
 
                   _isDoc2.type = 'minus'

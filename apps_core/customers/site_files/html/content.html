@@ -481,7 +481,7 @@
                         </i-control>
 
                         <i-control sign="%" class="col3" label="##word.customers_delegate_commission##"
-                        ng-model="customer.delegate_commission"></i-control>
+                            ng-model="customer.delegate_commission"></i-control>
                     </div>
 
                     <div class="row">
@@ -500,7 +500,7 @@
                         <i-control class="col2" type="number" label="##word.customers_period_maturity_purchases##"
                             ng-model="customer.period_maturity"></i-control>
 
-                       
+
                     </div>
                 </fieldset>
 
@@ -555,8 +555,12 @@
                         </i-control>
 
                         <i-control class="col3" label="##word.customers_fax##" ng-model="customer.fax"></i-control>
-                        <i-control class="col3 hide" label="##word.customers_internal_number##"
-                            ng-model="customer.internal_number"></i-control>
+
+                        <i-control help-id="" class="col3" label="##word.whatsapp##" ng-model="customer.whatsapp">
+                        </i-control>
+
+                        <!-- <i-control class="col3 hide" label="##word.customers_internal_number##"
+                            ng-model="customer.internal_number"></i-control> -->
                     </div>
                 </fieldset>
 

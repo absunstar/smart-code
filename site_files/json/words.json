@@ -877,6 +877,11 @@
     {
         "name": "address",
         "en": "Address",
+        "ar": "العنوان"
+    },
+    {
+        "name": "addresses",
+        "en": "Addresses",
         "ar": "العناوين"
     },
     {

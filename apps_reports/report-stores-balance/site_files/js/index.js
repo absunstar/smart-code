@@ -17,7 +17,6 @@ app.controller("report_stores_balance", function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          $scope.count = response.data.doc.length;
           $scope.list = response.data.doc;
         }
       },
