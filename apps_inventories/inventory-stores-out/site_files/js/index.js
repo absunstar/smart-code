@@ -1,3 +1,16 @@
+window.addEventListener('keydown', (e) => {
+
+  if (e.keyCode == 113 /*f12*/ ) {
+          scope().add()
+  }
+
+}, true)
+
+function scope() {
+  return angular.element(document.querySelector('[ng-controller="stores_out"]')).scope()
+}
+
+
 app.controller("stores_out", function ($scope, $http, $timeout) {
   $scope._search = {};
   $scope.store_out = {
