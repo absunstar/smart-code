@@ -1,11 +1,11 @@
 <div ng-hide="busy" class="row">
     <div id="basicInformation" class="">
-        <fieldset>
+        <fieldset id="v1">
             <legend> ##word.basic_information##</legend>
             <div class="row">
 
                 <div class="col9">
-                    <table id="basicInformationTable" class="table bold">
+                    <table id="basicInformationTable" class="table hover bold">
                         <tr>
                             <td class="title">##word.date##</td>
                             <td class="center brown">{{itinerary.date | date : 'yyyy - MM - dd'}}</td>
@@ -24,7 +24,7 @@
                     </table>
                 </div>
 
-                <div class="col3">
+                <div class="col3 not-print">
                     <i-image view ng-model="itinerary.image_url"></i-image>
                 </div>
             </div>
@@ -35,12 +35,12 @@
                     <table class="table hover bold loaded">
                         <tr>
                             <th>##word.status##</th>
-                            <th>##word.target_type##</th>
                             <th>##word.target##</th>
+                            <th>##word.phone##</th>
+                            <th>##word.addresses##</th>
                             <th>##word.required##</th>
-                            <th>##word.notes##</th>
                             <th>##word.delegate_notes##</th>
-                            <th>##word.actions##</th>
+                            <th class="not-print">##word.actions##</th>
                         </tr>
 
                         <tr ng-repeat="c in itinerary.itinerary_list">
@@ -49,22 +49,42 @@
                                 <span ng-show="c.status == 2" class="greenDot"></span>
                                 <span ng-show="c.status == 3" class="redDot"></span>
                             </td>
-                            <td class="center blue title">{{c.target_type.##session.lang##}}</td>
-                            <td class="center title">{{c.target.name_##session.lang##}} {{c.target.name}}</td>
+
+                            <td class="center title">
+                                <p class="blue">{{c.target_type.##session.lang##}} :</p>
+                                <p class="blue">{{c.target.name_##session.lang##}} {{c.target.name}}</p>
+                            </td>
+
+                            <td class="center title">
+                                <a ng-show="c.target.whatsapp" href="tel:{{c.target.whatsapp}}">
+                                    {{c.target.whatsapp}}
+                                    <i class="fa fa-whatsapp" aria-hidden="true"></i>
+                                </a>
+                                <a ng-show="c.target.mobile" href="tel:{{c.target.mobile}}">
+                                    {{c.target.mobile}}
+                                    <i class="fa fa-mobile" aria-hidden="true"></i>
+                                </a>
+                            </td>
+
+                            <td class="center title">
+                                <p>{{c.target.gov.name}} - {{c.target.city.name}} - {{c.target.area.name}}</p>
+                                <p>{{c.target.address}}</p>
+                            </td>
+
                             <td class="center title">{{c.required}}</td>
-                            <td class="center title">{{c.notes}}</td>
                             <td class="center title w200">
-                                <p ng-hide="'##user.type##' == 'delegate'">{{c.notes}}</p>
-                                <i-textarea ng-show="'##user.type##' == 'delegate'" ng-model="c.delegate_notes" label="##word.delegate_notes##">
+                                <p ng-hide="'##user.type##' == 'delegate'">{{c.delegate_notes}}</p>
+                                <i-textarea ng-show="'##user.type##' == 'delegate'" ng-model="c.delegate_notes"
+                                    label="##word.delegate_notes##">
                                 </i-textarea>
                             </td>
-                            <td>
-                                <div class="row center">
+                            <td class="not-print">
+                                <!--    <div class="row center">
                                     <i-button type="view" label="##word.target_details##"
                                         ng-click="targetDetails(c.target)">
                                     </i-button>
-                                </div>
-                                <div class="row center" ng-show="'##user.type##' == 'delegate' && c.status == 1">
+                                </div> -->
+                                <div class="row center " x-permissions="itineraries_confirm || itineraries_manage"  ng-show="c.status == 1">
 
                                     <i-button type="fa fa-check true" ng-click="c.status = 2">
                                     </i-button>

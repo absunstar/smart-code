@@ -25,6 +25,11 @@
         "ar": "المطلوب"
     },
     {
+        "name": "addition_mission",
+        "en": "Addition Mission",
+        "ar": "إضافة مهمة"
+    },
+    {
         "name": "target_type",
         "en": "Target Type",
         "ar": "نوع الهدف"

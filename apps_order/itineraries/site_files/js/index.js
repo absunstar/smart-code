@@ -77,6 +77,7 @@ app.controller("itineraries", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           site.hideModal('#itineraryUpdateModal');
+          site.hideModal('#itineraryViewModal');
           $scope.getItineraryList();
         } else {
           $scope.error = 'Please Login First';
@@ -282,10 +283,8 @@ app.controller("itineraries", function ($scope, $http, $timeout) {
 
     obj.status = 1;
     obj.required = $scope.itinerary.required;
-    obj.notes = $scope.itinerary.notes;
 
     $scope.itinerary.required = '';
-    $scope.itinerary.notes = '';
 
     $scope.itinerary.itinerary_list.unshift(obj);
 

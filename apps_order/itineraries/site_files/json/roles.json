@@ -18,6 +18,7 @@
             "itineraries_search",
             "itineraries_ui",
             "itineraries_print",
+            "itineraries_confirm",
             "itineraries_export"
         ]
     }

@@ -128,6 +128,7 @@ module.exports = function init(site) {
               "itineraries_view",
               "itineraries_search",
               "itineraries_ui",
+              "itineraries_confirm",
               "itineraries_print",
               "itineraries_export"
             ]
@@ -257,6 +258,7 @@ module.exports = function init(site) {
           "itineraries_view",
           "itineraries_search",
           "itineraries_ui",
+          "itineraries_confirm",
           "itineraries_print",
           "itineraries_export"
         ]
