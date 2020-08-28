@@ -405,7 +405,6 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
                 $scope.addAccountInvoice(account_invoices)
               }
 
-              $scope.loadAll();
               $scope.newStoreOut();
             } else {
               $scope.error = response.data.error;
