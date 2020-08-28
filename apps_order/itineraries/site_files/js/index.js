@@ -8,7 +8,12 @@ app.controller("itineraries", function ($scope, $http, $timeout) {
     $scope.itinerary = {
       image_url: '/images/itinerary.png',
       date: new Date(),
+      amount: 0,
       active: true
+    };
+
+    if ($scope.defaultSettings.accounting) {
+      $scope.itinerary.currency = $scope.defaultSettings.accounting.currency;
     };
     site.showModal('#itineraryAddModal');
   };
@@ -77,7 +82,6 @@ app.controller("itineraries", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           site.hideModal('#itineraryUpdateModal');
-          site.hideModal('#itineraryViewModal');
           $scope.getItineraryList();
         } else {
           $scope.error = 'Please Login First';
@@ -189,13 +193,7 @@ app.controller("itineraries", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/vendors/all",
       data: {
-        select: {
-          id: 1,
-          name_ar: 1,
-          name_en: 1,
-          balance: 1,
-          tax_identification_number: 1
-        }
+       
       }
     }).then(
       function (response) {
@@ -280,10 +278,14 @@ app.controller("itineraries", function ($scope, $http, $timeout) {
       $scope.itinerary.vendor = {};
 
     };
-
+    
     obj.status = 1;
     obj.required = $scope.itinerary.required;
-
+    obj.mission_type = $scope.itinerary.mission_type;
+    obj.amount = $scope.itinerary.amount;
+    obj.collected_paid = 0;
+    obj.currency = $scope.itinerary.currency;
+    $scope.itinerary.amount = 0;
     $scope.itinerary.required = '';
 
     $scope.itinerary.itinerary_list.unshift(obj);
@@ -319,6 +321,77 @@ app.controller("itineraries", function ($scope, $http, $timeout) {
 
   };
 
+  $scope.loadCurrencies = function () {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/currency/all",
+      data: {
+        select: {
+          id: 1,
+          name: 1,
+          ex_rate: 1
+        },
+        where: {
+          active: true
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.currenciesList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+
+  $scope.loadItinerariesTypes = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: '/api/itineraries/types/all',
+      data: {}
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.itinerariesTypes = response.data;
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.getDefaultSettings = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/default_setting/get",
+      data: {}
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.doc) {
+          $scope.defaultSettings = response.data.doc;
+
+        };
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+
+  };
 
   $scope.displaySearchModal = function () {
     $scope.error = '';
@@ -335,5 +408,7 @@ app.controller("itineraries", function ($scope, $http, $timeout) {
   $scope.getItineraryList({ date: new Date() });
   $scope.loadDelegates();
   $scope.loadVendors();
-
+  $scope.loadItinerariesTypes();
+  $scope.loadCurrencies();
+  $scope.getDefaultSettings();
 });

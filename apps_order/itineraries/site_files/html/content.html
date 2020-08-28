@@ -7,7 +7,7 @@
                     <div class="row">
                         <i-date2 class="col4" ng-model="itinerary.date" label="##word.date##"></i-date2>
 
-                        <i-list class="col4" ng-model="itinerary.delegate" ng-search="_search.$items_group_search"
+                        <i-list class="col4" ng-model="itinerary.delegate" ng-search="_search.$items_group_search" v="r"
                             label="##word.delegate##" items="delegatesList">
                         </i-list>
 
@@ -19,6 +19,7 @@
 
                     <br>
                     <br>
+
                     <fieldset>
                         <legend> ##word.itineraries_details## </legend>
 
@@ -40,9 +41,31 @@
                         </div>
 
                         <div class="row">
+                            <div class="col5">
+
+                                <div class="row">
+
+                                    <i-list class="col7" ng-model="itinerary.mission_type"
+                                        ng-search="_search.$mission_type_search" display="##session.lang##"
+                                        label="##word.mission_type##" items="itinerariesTypes">
+                                    </i-list>
+
+                                </div>
+
+                                <div class="row">
+                                    <i-list class="col7" ng-search="_search.$currency_search"
+                                        ng-model="itinerary.currency" items="currenciesList" label="##word.currency##">
+                                    </i-list>
+                                    <div class="col1"></div>
+                                    <i-control class="col3" ng-model="itinerary.amount" label="##word.the_amount##"
+                                        type="number">
+                                    </i-control>
+                                </div>
+                            </div>
+                            <div class="col1"></div>
                             <i-textarea ng-model="itinerary.required" class="col6" label="##word.required##">
                             </i-textarea>
-                          
+
                         </div>
 
                         <div class="row">
@@ -65,15 +88,23 @@
 
                 <table class="table hover bold loaded">
                     <tr>
-                        <th>##word.target_type##</th>
                         <th>##word.target##</th>
+                        <th>##word.mission_type##</th>
+                        <th>##word.the_amount##</th>
                         <th>##word.required##</th>
                         <th>##word.actions##</th>
                     </tr>
 
                     <tr ng-repeat="c in itinerary.itinerary_list">
-                        <td class="center blue title">{{c.target_type.##session.lang##}}</td>
-                        <td class="center title">{{c.target.name_##session.lang##}} {{c.target.name}}</td>
+                        <td class="center title">
+                            <p class="blue">{{c.target_type.##session.lang##}} :</p>
+                            <p class="blue">{{c.target.name_##session.lang##}} {{c.target.name}}</p>
+                        </td>
+
+                        <td class="center title">
+                            {{c.mission_type.##session.lang##}}
+                        </td>
+                        <td class="center green">{{c.amount}} / {{c.currency.name}}</td>
                         <td class="center title">{{c.required}}</td>
                         <td class="center">
                             <i-button type="delete" ng-click="itinerary.itinerary_list.splice($index,1)">

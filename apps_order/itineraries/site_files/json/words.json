@@ -20,14 +20,29 @@
         "ar": "تعديل خط سير "
     },
     {
+        "name": "collected_paid",
+        "en": "collected / PaidUp",
+        "ar": "المحصل / المدفوع"
+    },
+    {
         "name": "required",
         "en": "Required",
         "ar": "المطلوب"
     },
     {
+        "name": "the_amount",
+        "en": "The Amount",
+        "ar": "المبلغ"
+    },
+    {
         "name": "addition_mission",
         "en": "Addition Mission",
         "ar": "إضافة مهمة"
+    },
+    {
+        "name": "mission_type",
+        "en": "Mission Type",
+        "ar": "نوع المهمة"
     },
     {
         "name": "target_type",

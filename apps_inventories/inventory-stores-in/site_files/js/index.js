@@ -10,8 +10,6 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
     sizes: []
   };
 
-
-
   let y = new Date().getFullYear().toString()
   let m = new Date().getMonth().toString()
   let d = new Date().getDate().toString()

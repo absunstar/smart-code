@@ -39,6 +39,9 @@
                             <th>##word.phone##</th>
                             <th>##word.addresses##</th>
                             <th>##word.required##</th>
+                            <th>##word.mission_type##</th>
+                            <th>##word.the_amount##</th>
+                            <th>##word.collected_paid##</th>
                             <th>##word.delegate_notes##</th>
                             <th class="not-print">##word.actions##</th>
                         </tr>
@@ -56,14 +59,19 @@
                             </td>
 
                             <td class="center title">
-                                <a ng-show="c.target.whatsapp" href="tel:{{c.target.whatsapp}}">
-                                    {{c.target.whatsapp}}
-                                    <i class="fa fa-whatsapp" aria-hidden="true"></i>
-                                </a>
-                                <a ng-show="c.target.mobile" href="tel:{{c.target.mobile}}">
-                                    {{c.target.mobile}}
-                                    <i class="fa fa-mobile" aria-hidden="true"></i>
-                                </a>
+                                <p>
+                                    <a ng-show="c.target.whatsapp" href="tel:{{c.target.whatsapp}}">
+                                        {{c.target.whatsapp}}
+                                        <i class="fa fa-whatsapp" aria-hidden="true"></i>
+                                    </a>
+                                </p>
+
+                                <p>
+                                    <a ng-show="c.target.mobile" href="tel:{{c.target.mobile}}">
+                                        {{c.target.mobile}}
+                                        <i class="fa fa-mobile" aria-hidden="true"></i>
+                                    </a>
+                                </p>
                             </td>
 
                             <td class="center title">
@@ -72,6 +80,21 @@
                             </td>
 
                             <td class="center title">{{c.required}}</td>
+
+                            <td class="center title">
+                                {{c.mission_type.##session.lang##}}
+                            </td>
+                            <td class="center green">{{c.amount}} / {{c.currency.name}}</td>
+
+                            <td class="center blue">
+
+                                <p ng-hide="'##user.type##' == 'delegate'">{{c.collected_paid}}</p>
+
+                                <i-control ng-show="'##user.type##' == 'delegate'" ng-model="c.collected_paid"
+                                    type="number">
+                                </i-control>
+                            </td>
+
                             <td class="center title w200">
                                 <p ng-hide="'##user.type##' == 'delegate'">{{c.delegate_notes}}</p>
                                 <i-textarea ng-show="'##user.type##' == 'delegate'" ng-model="c.delegate_notes"
@@ -84,9 +107,10 @@
                                         ng-click="targetDetails(c.target)">
                                     </i-button>
                                 </div> -->
-                                <div class="row center " x-permissions="itineraries_confirm || itineraries_manage"  ng-show="c.status == 1">
+                                <div class="row center " x-permissions="itineraries_confirm || itineraries_manage"
+                                    ng-show="c.status == 1">
 
-                                    <i-button type="fa fa-check true" ng-click="c.status = 2">
+                                    <i-button type="fa fa-check true default" ng-click="c.status = 2">
                                     </i-button>
 
                                     <i-button type="close default" ng-click="c.status = 3">

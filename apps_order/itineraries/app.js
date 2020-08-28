@@ -6,6 +6,12 @@ module.exports = function init(site) {
     path: __dirname + '/site_files/images/'
   })
 
+  site.post({
+    name: '/api/itineraries/types/all',
+    path: __dirname + '/site_files/json/types.json'
+  })
+
+
   site.get({
     name: "itineraries",
     path: __dirname + "/site_files/html/index.html",

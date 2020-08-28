@@ -231,14 +231,14 @@ nav.sitebottom a.link:hover {
 }
 
 .btn.true {
-  width: 24px;
+  width: 20px;
   height: 33px;
   font-size: 13px;
+  padding-left: 18px;
   padding-top: 10px;
   background: #118011;
   font-weight: bold;
 }
-
 
 .redDot {
   height: 25px;
