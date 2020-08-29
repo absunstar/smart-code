@@ -110,6 +110,19 @@ img {
 .btn {
     border-radius: 25px;
 }
+@media print {
+  
+    .table th {
+    
+        border-color: black !important;
+    }
+    .table td {
+    
+        border-color: black !important;
+    }
+    
+}
+
 
 .table th {
     border-width: 5px;

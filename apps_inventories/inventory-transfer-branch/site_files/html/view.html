@@ -48,37 +48,6 @@
                 <td class="center">{{transfer_branch.branch_to.name_##session.lang##}} /
                     {{transfer_branch.store_to.name}}</td>
             </tr>
-
-            <tr>
-                <td class="title">##word.transfer_branch_items##</td>
-                <td>
-                    <table class="table bold hover">
-                        <tr>
-                            <th>##word.serial##</th>
-                            <th>##word.barcode##</th>
-                            <th>##word.transfer_branch_item_name##</th>
-                            <th>##word.name_size##</th>
-                            <th>##word.unit##</th>
-                            <th>##word.transfer_branch_item_count##</th>
-                            <!-- <th class="hide">##word.total_price##</th> -->
-                        </tr>
-
-                        <tr ng-repeat="itm in transfer_branch.items">
-                            <td class="center blue">{{$index + 1}}</td>
-                            <td class="center">{{itm.barcode}}</td>
-                            <td class="center">{{itm.name}}</td>
-                            <td class="center">
-                                <p>{{itm.size}}</p>
-                                <p>{{itm.size_en}}</p>
-                            </td>
-                            <td class="center">{{itm.unit.name}}</td>
-                            <td class="center">{{itm.count}}</td>
-                            <!-- <td class="center hide">{{itm.total_price}}</td> -->
-                        </tr>
-                    </table>
-                </td>
-            </tr>
-
             <tr>
                 <td class="title">##word.transfer_branch_notes##</td>
                 <td class="center">{{transfer_branch.notes}}</td>
@@ -87,7 +56,36 @@
         </table>
     </div>
     <br>
-<!-- 
+    <br>
+    <div class="row">
+        <table class="table bold hover">
+            <tr>
+                <th>##word.serial##</th>
+                <th>##word.barcode##</th>
+                <th>##word.transfer_branch_item_name##</th>
+                <th>##word.name_size##</th>
+                <th>##word.unit##</th>
+                <th>##word.transfer_branch_item_count##</th>
+                <!-- <th class="hide">##word.total_price##</th> -->
+            </tr>
+
+            <tr ng-repeat="itm in transfer_branch.items">
+                <td class="center blue">{{$index + 1}}</td>
+                <td class="center">{{itm.barcode}}</td>
+                <td class="center">{{itm.name}}</td>
+                <td class="center">
+                    <p>{{itm.size}}</p>
+                    <p>{{itm.size_en}}</p>
+                </td>
+                <td class="center">{{itm.unit.name}}</td>
+                <td class="center">{{itm.count}}</td>
+                <!-- <td class="center hide">{{itm.total_price}}</td> -->
+            </tr>
+        </table>
+    </div>
+
+    <br>
+    <!-- 
     <div class="row hide">
         <i-control class="col2 r_green" ng-model="total_price" label="##word.total_price##" type="number" disabled>
         </i-control>
@@ -106,7 +104,7 @@
     <br>
     <br>
     <br>
-    
+
     <div class="row hide" ng-repeat="i in defaultSettings.printer_program.invoice_footer">
         <h3 class="black center">{{i.name}}</h3>
     </div>

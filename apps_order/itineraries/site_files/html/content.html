@@ -28,7 +28,7 @@
                             <i-control ng-keydown="getCustomerList($event)" id="service" class="col3"
                                 ng-model="search_customer" label="##word.search##" type="text"></i-control>
 
-                            <i-list ng-search="_search.$customer" class="col4" display="name_##session.lang##" v="r"
+                            <i-list ng-search="_search.$customer" class="col4" display="name_##session.lang##"
                                 ng-model="itinerary.customer" ng-change="itinerary.vendor = {}"
                                 label="##word.customer##" items="customersList">
                             </i-list>

@@ -58,56 +58,6 @@
                 </td>
             </tr>
 
-            <tr>
-                <td class="title">##word.stores_in_items##</td>
-                <td>
-                    <table class="table bold hover">
-                        <tr>
-                            <th>##word.serial##</th>
-                            <th>##word.barcode##</th>
-                            <th>##word.stores_in_item_name##</th>
-                            <th>##word.name_size##</th>
-                            <th>##word.unit##</th>
-                            <th>##word.stores_in_item_count##</th>
-                            <th class="not-print">##word.price##</th>
-                            <th>##word.discount##</th>
-                            <th>##word.value_added##</th>
-                            <th>##word.total_v_a##</th>
-                            <th>##word.stores_in_item_total##</th>
-
-                        </tr>
-
-                        <tr ng-repeat="itm in store_in.items">
-                            <td class="center blue">
-                                <p>{{$index + 1}}</p>
-
-                                <i-button label="##word.patch##" ng-show="itm.work_patch" type="view"
-                                    ng-click="viewPatchesList(itm)">
-                                </i-button>
-                            </td>
-                            <td class="center">{{itm.barcode}}</td>
-                            <td class="center">{{itm.name}}</td>
-                            <td class="center">
-                                <p>{{itm.size}}</p>
-                                <p>{{itm.size_en}}</p>
-                            </td>
-                            <td class="center">{{itm.unit.name}}</td>
-                            <td class="center">{{itm.count}}</td>
-                            <td class="not-print center">{{itm.cost}}</td>
-                            <td class="center">
-                                {{itm.discount.value}}
-                                <b class="red" ng-show="itm.discount.type =='number'">$</b>
-                                <b class="red" ng-show="itm.discount.type =='percent'">%</b>
-                            </td>
-                            <td class="center"> {{itm.value_added}}</td>
-                            <td class="center red"> {{itm.total_v_a}}</td>
-
-                            <td class="center">{{itm.total}}</td>
-
-                        </tr>
-                    </table>
-                </td>
-            </tr>
 
             <tr ng-show="store_in.taxes.length > 0">
                 <td class="title">##word.stores_in_taxes##</td>
@@ -164,6 +114,57 @@
                 <td class="center">{{store_in.notes}}</td>
             </tr>
 
+        </table>
+    </div>
+
+    <br>
+    <br>
+
+    <div class="row">
+        <table class="table bold hover">
+            <tr>
+                <th>##word.serial##</th>
+                <th>##word.barcode##</th>
+                <th>##word.stores_in_item_name##</th>
+                <th>##word.name_size##</th>
+                <th>##word.unit##</th>
+                <th>##word.stores_in_item_count##</th>
+                <th class="not-print">##word.price##</th>
+                <th>##word.discount##</th>
+                <th>##word.value_added##</th>
+                <th>##word.total_v_a##</th>
+                <th>##word.stores_in_item_total##</th>
+
+            </tr>
+
+            <tr ng-repeat="itm in store_in.items">
+                <td class="center blue">
+                    <p>{{$index + 1}}</p>
+
+                    <i-button label="##word.patch##" ng-show="itm.work_patch" type="view"
+                        ng-click="viewPatchesList(itm)">
+                    </i-button>
+                </td>
+                <td class="center">{{itm.barcode}}</td>
+                <td class="center">{{itm.name}}</td>
+                <td class="center">
+                    <p>{{itm.size}}</p>
+                    <p>{{itm.size_en}}</p>
+                </td>
+                <td class="center">{{itm.unit.name}}</td>
+                <td class="center">{{itm.count}}</td>
+                <td class="not-print center">{{itm.cost}}</td>
+                <td class="center">
+                    {{itm.discount.value}}
+                    <b class="red" ng-show="itm.discount.type =='number'">$</b>
+                    <b class="red" ng-show="itm.discount.type =='percent'">%</b>
+                </td>
+                <td class="center"> {{itm.value_added}}</td>
+                <td class="center red"> {{itm.total_v_a}}</td>
+
+                <td class="center">{{itm.total}}</td>
+
+            </tr>
         </table>
     </div>
 
