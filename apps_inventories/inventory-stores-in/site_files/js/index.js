@@ -824,7 +824,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
           response.data.doc.date = new Date(response.data.doc.date);
           $scope.store_in = response.data.doc;
           $scope.store_in.items.forEach(_item => {
-            if(!_item.total_v_a){
+            if (!_item.total_v_a) {
               _item.total_v_a = site.toNumber(_item.value_added) * (_item.price * _item.count) / 100;
             }
           });
@@ -1161,6 +1161,15 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
 
                     if (!foundSize && !foundHold)
                       $scope.store_in.items.unshift(_size);
+                    else if (foundSize) {
+                      $scope.store_in.items.forEach(_item => {
+                        if (_item.barcode == _size.barcode) {
+                          _item.count = _item.count + 1;
+                          $scope.calcSize(_item);
+
+                        }
+                      });
+                    }
                   }
                   $scope.calcSize(_size);
 

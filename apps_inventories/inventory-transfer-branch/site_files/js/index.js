@@ -355,7 +355,7 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
         _item.count = 1;
 
         let indxUnit = 0;
-        if (_item.size_units_list && _item.size_units_list.length > 0){
+        if (_item.size_units_list && _item.size_units_list.length > 0) {
 
           indxUnit = _item.size_units_list.findIndex(_unit => _unit.id == $scope.item.name.main_unit.id);
           _item.unit = _item.size_units_list[indxUnit];
@@ -471,9 +471,16 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
                     } else _size.store_count = 0
                     foundSize = $scope.transfer_branch.items.some(_itemSize => _itemSize.barcode == _size.barcode);
                     if (!foundSize && !foundHold) $scope.transfer_branch.items.unshift(_size);
+                    else if (foundSize) {
+                      $scope.transfer_branch.items.forEach(_item => {
+                        if (_item.barcode == _size.barcode) {
+                          _item.count = _item.count + 1;
+
+                        }
+                      });
+                    }
                   }
                 });
-              if (foundSize) $scope.error = '##word.dublicate_item##';
 
               $scope.search_barcode = '';
             }

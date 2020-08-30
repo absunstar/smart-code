@@ -212,7 +212,6 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
             }
           }
         }
-        console.log("ssssssssssssssssssssssssssssssss");
         site.showModal('#addStoreOutModal');
       } else $scope.error = '##word.open_shift_not_found##';
     });
@@ -910,6 +909,15 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
                     };
                     _size.branches_list = [];
                     if (!foundSize && !foundHold) $scope.store_out.items.unshift(_size);
+                    else if (foundSize) {
+                      $scope.store_out.items.forEach(_item => {
+                        if (_item.barcode == _size.barcode) {
+                          _item.count = _item.count + 1;
+                          $scope.calcSize(_item);
+
+                        }
+                      });
+                    }
                   }
                   $scope.calcSize(_size);
                 });

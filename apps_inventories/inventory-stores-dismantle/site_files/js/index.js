@@ -494,6 +494,14 @@ app.controller("stores_dismantle", function ($scope, $http, $timeout) {
                     foundSize = $scope.store_dismantle.items.some(_itemSize => _itemSize.barcode == _size.barcode);
                     if (!foundSize && _size.item_complex && !foundHold)
                       $scope.store_dismantle.items.unshift(_size);
+                    else if (foundSize) {
+                      $scope.store_dismantle.items.forEach(_item => {
+                        if (_item.barcode == _size.barcode) {
+                          _item.count = _item.count + 1;
+
+                        }
+                      });
+                    }
                   }
                 });
               if (foundSize) $scope.error = '##word.dublicate_item##';
