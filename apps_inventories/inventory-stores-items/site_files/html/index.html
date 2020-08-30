@@ -104,7 +104,7 @@
                                         <th>##word.stores_start_balance##</th>
                                     </tr>
 
-                                    <tr ng-repeat="_size in c.sizes">
+                                    <tr ng-repeat="_size in c.sizes" ng-hide="_size.$hide">
                                         <td class="center">
                                             <p>{{_size.size}}</p>
                                             <p>{{_size.size_en}}</p>

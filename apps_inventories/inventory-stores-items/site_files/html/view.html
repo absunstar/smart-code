@@ -134,11 +134,12 @@
                             <th>##word.actions##</th>
                         </tr>
 
-                        <tr ng-repeat="item in category_item.sizes">
+                        <tr ng-repeat="item in category_item.sizes" ng-hide="item.$hide">
 
                             <td>
                                 <i-image view class="logo" ng-model="item.image_url"></i-image>
                             </td>
+
                             <td class="center bold">
                                 <p>{{item.size}}</p>
                                 <p>{{item.size_en}}</p>

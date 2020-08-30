@@ -120,6 +120,25 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
         if (response.data.done && response.data.list.length > 0) {
           $scope.list = response.data.list;
           $scope.count = response.data.count;
+          if (where) {
+
+            $scope.hideObj = {
+              barcode: where.barcode,
+              size: where.size,
+              size_en: where.size_en,
+            };
+            $scope.list.forEach(_item => {
+              _item.sizes.forEach(_sizes => {
+                if (_sizes && ((_sizes.size && _sizes.size.contains(where.size)) || (_sizes.size_en && _sizes.size_en.contains(where.size_en)) || (_sizes.barcode && _sizes.barcode.contains(where.barcode)))) {
+
+                  _sizes.$hide = false
+                } else {
+                  _sizes.$hide = true
+
+                }
+              });
+            });
+          };
         }
       },
       function (err) {
@@ -396,6 +415,17 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.category_item = response.data.doc;
+          if ($scope.hideObj) {
+            $scope.category_item.sizes.forEach(_sizes => {
+              if (_sizes && ((_sizes.size && _sizes.size.contains($scope.hideObj.size)) || (_sizes.size_en && _sizes.size_en.contains($scope.hideObj.size_en)) || (_sizes.barcode && _sizes.barcode.contains($scope.hideObj.barcode)))) {
+
+                _sizes.$hide = false;
+              } else {
+                _sizes.$hide = true;
+
+              }
+            });
+          }
         } else {
           $scope.error = response.data.error;
         }
