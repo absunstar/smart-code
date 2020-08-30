@@ -1307,17 +1307,18 @@ module.exports = function init(site) {
     }, (err, docs, count) => {
       if (!err) {
         response.done = true
+        let list_err = []
         if (docs && docs.length > 0) {
           docs.forEach(item => {
             if (item.sizes && item.sizes.length > 0)
               item.sizes.forEach(size => {
                 if (typeof size.size != 'string') {
-                  console.log(`name : ${item.name} //// size : ${size.size}`);
+                  list_err.push({ barcode: size.barcode })
                 }
               })
           })
         }
-        response.count = count
+        response.list = list_err
       } else {
         response.error = err.message
       }

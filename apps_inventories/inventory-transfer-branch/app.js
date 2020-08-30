@@ -23,7 +23,6 @@ module.exports = function init(site) {
   })
 
 
-
   site.get({
     name: "transfer_branch",
     path: __dirname + "/site_files/html/index.html",
