@@ -2,10 +2,27 @@ module.exports = function init(site) {
 
   const $transfer_branch = site.connectCollection("transfer_branch")
 
-  $transfer_branch.deleteDuplicate({ number: 1 }, (err, result) => {
-    $transfer_branch.createUnique({ number: 1 }, (err, result) => {
-    })
+
+  site.on('[stores_items][item_name][change]', objectStoreOut => {
+
+    let barcode = objectStoreOut.sizes_list.map(_obj => _obj.barcode)
+
+    $transfer_branch.findMany({ 'company.id': objectStoreOut.company.id, 'items.barcode': barcode }, (err, doc) => {
+      doc.forEach(_doc => {
+        if (_doc.items) _doc.items.forEach(_items => {
+          if (objectStoreOut.sizes_list) objectStoreOut.sizes_list.forEach(_size => {
+            if (_items.barcode == _size.barcode) {
+              _items.size = _size.size
+              _items.size_en = _size.size_en
+            }
+          })
+        });
+        $transfer_branch.update(_doc);
+      });
+    });
   })
+
+
 
   site.get({
     name: "transfer_branch",

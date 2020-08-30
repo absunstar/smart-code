@@ -685,9 +685,7 @@ module.exports = function init(site) {
       }, (err, item_doc) => {
         if (!err) {
           response.done = true
-          let obj = {
-            sizes_list: []
-          }
+          let obj = { sizes_list: [] }
           let exist = false
 
           obj.company = item_doc.doc.company
@@ -1239,7 +1237,6 @@ module.exports = function init(site) {
     })
   }
 
-
   site.post("/api/stores_items/sizes_all", (req, res) => {
     let response = {
       done: false
@@ -1278,6 +1275,49 @@ module.exports = function init(site) {
         }
         response.count = count
         response.list = arr_sizes
+      } else {
+        response.error = err.message
+      }
+      res.json(response)
+    })
+  })
+
+  site.get("/api/stores_items/size_type", (req, res) => {
+    let response = {
+      done: false
+    }
+
+    if (!req.session.user) {
+      response.error = 'Please Login First'
+      res.json(response)
+      return
+    }
+
+    let where = req.body.where || {}
+
+    where['company.id'] = site.get_company(req).id
+
+    $stores_items.findMany({
+      select: req.body.select || {},
+      where: where,
+      sort: req.body.sort || {
+        id: -1
+      },
+      limit: req.body.limit
+    }, (err, docs, count) => {
+      if (!err) {
+        response.done = true
+        if (docs && docs.length > 0) {
+          docs.forEach(item => {
+            if (item.sizes && item.sizes.length > 0)
+              item.sizes.forEach(size => {
+                if (typeof size.size != 'string') {
+                  console.log(`name : ${item.name} //// size : ${size.size}`);
+                }
+              })
+          })
+        }
+        response.count = count
       } else {
         response.error = err.message
       }
@@ -1547,7 +1587,7 @@ module.exports = function init(site) {
     where['sizes.barcode'] = {
       $in: barcodes
     }
-    
+
     site.getDefaultSetting(req, cbSetting => {
 
       if (cbSetting.inventory && cbSetting.inventory.overdraft == true) {
@@ -1570,7 +1610,7 @@ module.exports = function init(site) {
               if (_item.sizes && _item.sizes.length > 0) {
 
                 _item.sizes.forEach(currentSize => {
-                
+
                   itemsCb.forEach(cbSize => {
 
                     if (currentSize.barcode == cbSize.barcode && currentSize.size == cbSize.size) {
@@ -1639,7 +1679,7 @@ module.exports = function init(site) {
                         objFound.notFound.push({ id: _item.id, barcode: currentSize.barcode, action: 'notFoundBranch' })
                         cbObj.value = true
                       }
-    
+
 
                     }
                   })

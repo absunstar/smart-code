@@ -1,7 +1,7 @@
 window.addEventListener('keydown', (e) => {
 
-  if (e.keyCode == 113 /*f12*/ ) {
-          scope().add()
+  if (e.keyCode == 113 /*f12*/) {
+    scope().add()
   }
 
 }, true)
@@ -90,7 +90,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         obj.items.forEach(_itm => {
           obj.total_value += site.toNumber(_itm.total);
           _itm.total_v_a = site.toNumber(_itm.value_added) * (_itm.price * _itm.count) / 100;
-          _itm.total_v_a = site.toNumber(_itm.total_v_a) ;
+          _itm.total_v_a = site.toNumber(_itm.total_v_a);
 
           obj.total_value_added += _itm.total_v_a;
         });
@@ -212,7 +212,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
             }
           }
         }
-
+        console.log("ssssssssssssssssssssssssssssssss");
         site.showModal('#addStoreOutModal');
       } else $scope.error = '##word.open_shift_not_found##';
     });
@@ -404,8 +404,10 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
                 };
                 $scope.addAccountInvoice(account_invoices)
               }
+              setTimeout(() => {
 
-              $scope.newStoreOut();
+                document.querySelector('#clickNew').click();
+              }, 1000);
             } else {
               $scope.error = response.data.error;
               if (response.data.error.like('*OverDraft Not*')) {
@@ -453,7 +455,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
           response.data.doc.date = new Date(response.data.doc.date);
           $scope.store_out = response.data.doc;
           $scope.store_out.items.forEach(_item => {
-            if(!_item.total_v_a){
+            if (!_item.total_v_a) {
               _item.total_v_a = site.toNumber(_item.value_added) * (_item.price * _item.count) / 100;
             }
           });
@@ -559,7 +561,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
           if (_size.count > 0 && !foundSize) {
 
             let discount = 0;
-            
+
             _size.value_added = site.toNumber(_size.value_added);
             _size.total_v_a = site.toNumber(_size.value_added) * (_size.price * _size.count) / 100;
             _size.total_v_a = site.toNumber(_size.total_v_a);
