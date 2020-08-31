@@ -520,7 +520,7 @@ module.exports = function init(site) {
     }
 
     where['company.id'] = site.get_company(req).id
-    where['branch.code'] = site.get_branch(req).code
+    // where['branch.code'] = site.get_branch(req).code
 
 
     if (where && where['notes']) {
@@ -727,7 +727,7 @@ module.exports = function init(site) {
         obj.items.forEach(_itemsObj => {
           doc.return_paid.items.forEach(_itemsDoc => {
 
-            if (_itemsObj.barcode == _itemsDoc.barcode && _itemsObj.size == _itemsDoc.size) {
+            if (_itemsObj.barcode === _itemsDoc.barcode && _itemsObj.size == _itemsDoc.size) {
 
 
               if (_itemsObj.patch_list && _itemsObj.patch_list.length > 0) {

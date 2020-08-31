@@ -11,7 +11,7 @@ module.exports = function init(site) {
       doc.forEach(_doc => {
         if (_doc.items) _doc.items.forEach(_items => {
           if (objectStoreOut.sizes_list) objectStoreOut.sizes_list.forEach(_size => {
-            if (_items.barcode == _size.barcode) {
+            if (_items.barcode === _size.barcode) {
               _items.size = _size.size
               _items.size_en = _size.size_en
             }
@@ -292,7 +292,7 @@ module.exports = function init(site) {
 
     where['company.id'] = site.get_company(req).id
 
-    where['$or'] = [{ 'branch_from.code': site.get_branch(req).code }, { 'branch_to.code': site.get_branch(req).code }]
+    // where['$or'] = [{ 'branch_from.code': site.get_branch(req).code }, { 'branch_to.code': site.get_branch(req).code }]
 
     if (where['branch_from']) {
       where['branch_from.id'] = where['branch_from'].id;

@@ -852,7 +852,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
 
       if ($scope.item.sizes && $scope.item.sizes.length > 0)
         $scope.item.sizes.forEach(_size => {
-          foundSize = $scope.store_in.items.some(_itemSize => _itemSize.barcode == _size.barcode);
+          foundSize = $scope.store_in.items.some(_itemSize => _itemSize.barcode === _size.barcode);
           if (_size.count > 0 && !foundSize) {
 
             let discount = 0;
@@ -965,14 +965,14 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
 
                     if (_size.size_units_list && _size.size_units_list.length > 0)
                       _size.size_units_list.forEach((_unit, i) => {
-                        if ((_unit.barcode == $scope.item.search_item_name) && typeof _unit.barcode == 'string') {
+                        if ((_unit.barcode === $scope.item.search_item_name) && typeof _unit.barcode == 'string') {
                           foundUnit = true;
                         }
                         if (_unit.id == _item.main_unit.id)
                           indxUnit = i;
                       });
 
-                    if ((_size.barcode == $scope.item.search_item_name) || (_size.size_en && _size.size_en.contains($scope.item.search_item_name)) || (_size.size && _size.size.contains($scope.item.search_item_name)) || foundUnit) {
+                    if ((_size.barcode === $scope.item.search_item_name) || (_size.size_en && _size.size_en.contains($scope.item.search_item_name)) || (_size.size && _size.size.contains($scope.item.search_item_name)) || foundUnit) {
                       _size.name = _item.name;
                       _size.item_group = _item.item_group;
                       _size.store = $scope.store_in.store;
@@ -1014,7 +1014,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
                         } else _size.store_count = 0;
                       } else _size.store_count = 0;
 
-                      foundSize = $scope.item.sizes.some(_itemSize => _itemSize.barcode == _size.barcode);
+                      foundSize = $scope.item.sizes.some(_itemSize => _itemSize.barcode === _size.barcode);
 
                       if (!foundSize && !foundHold) $scope.item.sizes.unshift(_size);
                     };
@@ -1095,7 +1095,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
             } else _item.store_count = 0;
           } else _item.store_count = 0;
         } else _item.store_count = 0;
-        foundSize = $scope.item.sizes.some(_itemSize => _itemSize.barcode == _item.barcode);
+        foundSize = $scope.item.sizes.some(_itemSize => _itemSize.barcode === _item.barcode);
         if (!foundSize && !foundHold)
           $scope.item.sizes.unshift(_item);
       });
@@ -1125,7 +1125,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
 
                   if (_size.size_units_list && _size.size_units_list.length > 0)
                     _size.size_units_list.forEach((_unit, i) => {
-                      if ((_unit.barcode == $scope.search_barcode) && typeof _unit.barcode == 'string') {
+                      if ((_unit.barcode === $scope.search_barcode) && typeof _unit.barcode == 'string') {
                         foundUnit = true;
                       }
 
@@ -1143,7 +1143,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
                         });
                     });
 
-                  if ((_size.barcode == $scope.search_barcode) || foundUnit) {
+                  if ((_size.barcode === $scope.search_barcode) || foundUnit) {
 
                     _size.name = response.data.list[0].name;
                     _size.item_group = response.data.list[0].item_group;
@@ -1157,13 +1157,13 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
                     _size.price = _size.size_units_list[indxUnit].price;
                     _size.total = _size.count * _size.cost;
 
-                    foundSize = $scope.store_in.items.some(_itemSize => _itemSize.barcode == _size.barcode);
+                    foundSize = $scope.store_in.items.some(_itemSize => _itemSize.barcode === _size.barcode);
 
                     if (!foundSize && !foundHold)
                       $scope.store_in.items.unshift(_size);
                     else if (foundSize) {
                       $scope.store_in.items.forEach(_item => {
-                        if (_item.barcode == _size.barcode) {
+                        if (_item.barcode === _size.barcode) {
                           _item.count = _item.count + 1;
                           $scope.calcSize(_item);
 
