@@ -148,7 +148,6 @@ module.exports = function init(site) {
                 _itm.current_status = 'sold'
                 _itm.date = doc.date
                 _itm.customer = doc.customer
-                _itm.store = doc.store
                 _itm.shift = {
                   id: doc.shift.id,
                   code: doc.shift.code,
