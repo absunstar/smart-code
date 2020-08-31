@@ -203,27 +203,26 @@ module.exports = function init(site) {
 
               let foundBranch = false
               let indxBranch = 0
-              _size.branches_list.map((b, i) => {
+              _size.branches_list.map((b, i_b) => {
                 if (b.code == obj.branch.code) {
                   foundBranch = true
-                  indxBranch = i
+                  indxBranch = i_b
                 }
               });
-              let _branch = _size.branches_list[indxBranch]
 
               let foundStore = false
               let indxStore = 0
-              _branch.stores_list.map((s, i) => {
+              _size.branches_list[indxBranch].stores_list.map((s, i_s) => {
                 if (s.store.id == obj.store.id) {
                   foundStore = true
-                  indxStore = i
+                  indxStore = i_s
                 }
               });
 
               if (foundBranch) {
                 let unit_branch = false;
 
-                _branch.size_units_list.forEach(_unitBranch => {
+                _size.branches_list[indxBranch].size_units_list.forEach(_unitBranch => {
                   if (obj.unit && _unitBranch.id == obj.unit.id) {
                     if (obj.type == 'sum') {
 
@@ -263,7 +262,7 @@ module.exports = function init(site) {
                 });
                 if (!unit_branch) {
 
-                  _branch.size_units_list.push({
+                  _size.branches_list[indxBranch].size_units_list.push({
                     id: obj.unit.id,
                     name: obj.unit.name,
                     barcode: obj.unit.barcode,
@@ -277,47 +276,46 @@ module.exports = function init(site) {
                 }
 
                 if (obj.type == 'sum') {
-                  if (obj.source_type && obj.source_type.id == 3 && obj.store_in) _branch.start_count = (_branch.start_count || 0) + site.toNumber(total_unit)
-                  _branch.current_count = _branch.current_count + site.toNumber(total_unit)
+                  if (obj.source_type && obj.source_type.id == 3 && obj.store_in) _size.branches_list[indxBranch].start_count = (_size.branches_list[indxBranch].start_count || 0) + site.toNumber(total_unit)
+                  _size.branches_list[indxBranch].current_count = _size.branches_list[indxBranch].current_count + site.toNumber(total_unit)
 
                   if (obj.returnSell) {
-                    _branch.total_sell_price = (_branch.total_sell_price || 0) - totalPrice
-                    _branch.total_sell_count = (_branch.total_sell_count || 0) - site.toNumber(total_unit)
+                    _size.branches_list[indxBranch].total_sell_price = (_size.branches_list[indxBranch].total_sell_price || 0) - totalPrice
+                    _size.branches_list[indxBranch].total_sell_count = (_size.branches_list[indxBranch].total_sell_count || 0) - site.toNumber(total_unit)
                   }
 
                 } else if (obj.type == 'minus') {
-                  if (obj.source_type && obj.source_type.id == 3 && obj.store_in) _branch.start_count = (_branch.start_count || 0) - site.toNumber(total_unit)
+                  if (obj.source_type && obj.source_type.id == 3 && obj.store_in) _size.branches_list[indxBranch].start_count = (_size.branches_list[indxBranch].start_count || 0) - site.toNumber(total_unit)
 
-                  _branch.current_count = _branch.current_count - site.toNumber(total_unit)
-                  _branch.total_sell_price = (_branch.total_sell_price || 0) + totalPrice
-                  _branch.total_sell_count = (_branch.total_sell_count || 0) + site.toNumber(total_unit)
+                  _size.branches_list[indxBranch].current_count = _size.branches_list[indxBranch].current_count - site.toNumber(total_unit)
+                  _size.branches_list[indxBranch].total_sell_price = (_size.branches_list[indxBranch].total_sell_price || 0) + totalPrice
+                  _size.branches_list[indxBranch].total_sell_count = (_size.branches_list[indxBranch].total_sell_count || 0) + site.toNumber(total_unit)
 
                 }
 
                 if (obj.set_average == 'sum_average') {
-                  _branch.total_buy_price = (_branch.total_buy_price || 0) + totalCost
-                  _branch.total_buy_count = (_branch.total_buy_count || 0) + site.toNumber(total_unit)
+                  _size.branches_list[indxBranch].total_buy_price = (_size.branches_list[indxBranch].total_buy_price || 0) + totalCost
+                  _size.branches_list[indxBranch].total_buy_count = (_size.branches_list[indxBranch].total_buy_count || 0) + site.toNumber(total_unit)
                 } else if (obj.set_average == 'minus_average') {
-                  _branch.total_buy_price = (_branch.total_buy_price || 0) - totalCost
-                  _branch.total_buy_count = (_branch.total_buy_count || 0) - site.toNumber(total_unit)
+                  _size.branches_list[indxBranch].total_buy_price = (_size.branches_list[indxBranch].total_buy_price || 0) - totalCost
+                  _size.branches_list[indxBranch].total_buy_count = (_size.branches_list[indxBranch].total_buy_count || 0) - site.toNumber(total_unit)
                 }
 
 
-                if (obj.assemble) _branch.average_cost = total_complex_av
-                else if (!obj.item_complex && obj.set_average) _branch.average_cost = site.toNumber(_branch.total_buy_price) / site.toNumber(_branch.total_buy_count)
+                if (obj.assemble) _size.branches_list[indxBranch].average_cost = total_complex_av
+                else if (!obj.item_complex && obj.set_average) _size.branches_list[indxBranch].average_cost = site.toNumber(_size.branches_list[indxBranch].total_buy_price) / site.toNumber(_size.branches_list[indxBranch].total_buy_count)
 
-                _branch.average_cost = site.toNumber(_branch.average_cost)
+                _size.branches_list[indxBranch].average_cost = site.toNumber(_size.branches_list[indxBranch].average_cost)
 
-                if (_branch.stores_list && _branch.stores_list.length > 0) {
+                if (_size.branches_list[indxBranch].stores_list && _size.branches_list[indxBranch].stores_list.length > 0) {
 
                   if (foundStore) {
                     let unit_store = false
-                    if (obj.stock) _branch.stores_list[indxStore].hold = false
+                    if (obj.stock) _size.branches_list[indxBranch].stores_list[indxStore].hold = false
 
-                    _branch.stores_list[indxStore].size_units_list.forEach(_unitStore => {
+                    _size.branches_list[indxBranch].stores_list[indxStore].size_units_list.forEach(_unitStore => {
 
                       if (obj.unit && _unitStore.id == obj.unit.id) {
-
 
                         if (_unitStore.patch_list && _unitStore.patch_list.length > 0) {
 
@@ -407,7 +405,7 @@ module.exports = function init(site) {
 
                     if (!unit_store) {
 
-                      _branch.stores_list[indxStore].size_units_list.push({
+                      _size.branches_list[indxBranch].stores_list[indxStore].size_units_list.push({
                         patch_list: obj.patch_list,
                         id: obj.unit.id,
                         name: obj.unit.name,
@@ -421,41 +419,39 @@ module.exports = function init(site) {
                     }
 
                     if (obj.type == 'sum') {
-                      if (obj.source_type && obj.source_type.id == 3 && obj.store_in) _branch.stores_list[indxStore].start_count = site.toNumber(_branch.stores_list[indxStore].start_count || 0) + site.toNumber(total_unit)
-                      _branch.stores_list[indxStore].current_count = site.toNumber(_branch.stores_list[indxStore].current_count || 0) + site.toNumber(total_unit)
+                      if (obj.source_type && obj.source_type.id == 3 && obj.store_in) _size.branches_list[indxBranch].stores_list[indxStore].start_count = site.toNumber(_size.branches_list[indxBranch].stores_list[indxStore].start_count || 0) + site.toNumber(total_unit)
+                      _size.branches_list[indxBranch].stores_list[indxStore].current_count = site.toNumber(_size.branches_list[indxBranch].stores_list[indxStore].current_count || 0) + site.toNumber(total_unit)
 
                       if (obj.returnSell) {
-                        _branch.stores_list[indxStore].total_sell_price = (_branch.stores_list[indxStore].total_sell_price || 0) - totalCost
-                        _branch.stores_list[indxStore].total_sell_count = (_branch.stores_list[indxStore].total_sell_count || 0) - site.toNumber(total_unit)
+                        _size.branches_list[indxBranch].stores_list[indxStore].total_sell_price = (_size.branches_list[indxBranch].stores_list[indxStore].total_sell_price || 0) - totalCost
+                        _size.branches_list[indxBranch].stores_list[indxStore].total_sell_count = (_size.branches_list[indxBranch].stores_list[indxStore].total_sell_count || 0) - site.toNumber(total_unit)
                       }
 
                     } else if (obj.type == 'minus') {
-                      if (obj.source_type && obj.source_type.id == 3 && obj.store_in) _branch.stores_list[indxStore].start_count = site.toNumber(_branch.stores_list[indxStore].start_count || 0) - site.toNumber(total_unit)
-                      _branch.stores_list[indxStore].current_count = site.toNumber(_branch.stores_list[indxStore].current_count || 0) - site.toNumber(total_unit)
-                      _branch.stores_list[indxStore].total_sell_price = (_branch.stores_list[indxStore].total_sell_price || 0) + totalCost
-                      _branch.stores_list[indxStore].total_sell_count = (_branch.stores_list[indxStore].total_sell_count || 0) + site.toNumber(total_unit)
+                      if (obj.source_type && obj.source_type.id == 3 && obj.store_in) _size.branches_list[indxBranch].stores_list[indxStore].start_count = site.toNumber(_size.branches_list[indxBranch].stores_list[indxStore].start_count || 0) - site.toNumber(total_unit)
+                      _size.branches_list[indxBranch].stores_list[indxStore].current_count = site.toNumber(_size.branches_list[indxBranch].stores_list[indxStore].current_count || 0) - site.toNumber(total_unit)
+                      _size.branches_list[indxBranch].stores_list[indxStore].total_sell_price = (_size.branches_list[indxBranch].stores_list[indxStore].total_sell_price || 0) + totalCost
+                      _size.branches_list[indxBranch].stores_list[indxStore].total_sell_count = (_size.branches_list[indxBranch].stores_list[indxStore].total_sell_count || 0) + site.toNumber(total_unit)
 
                     }
 
                     if (obj.set_average == 'sum_average') {
-                      _branch.stores_list[indxStore].total_buy_price = (_branch.stores_list[indxStore].total_buy_price || 0) + totalCost
-                      _branch.stores_list[indxStore].total_buy_count = (_branch.stores_list[indxStore].total_buy_count || 0) + site.toNumber(total_unit)
+                      _size.branches_list[indxBranch].stores_list[indxStore].total_buy_price = (_size.branches_list[indxBranch].stores_list[indxStore].total_buy_price || 0) + totalCost
+                      _size.branches_list[indxBranch].stores_list[indxStore].total_buy_count = (_size.branches_list[indxBranch].stores_list[indxStore].total_buy_count || 0) + site.toNumber(total_unit)
                     } else if (obj.set_average == 'minus_average') {
-                      _branch.stores_list[indxStore].total_buy_price = (_branch.stores_list[indxStore].total_buy_price || 0) - totalCost
-                      _branch.stores_list[indxStore].total_buy_count = (_branch.stores_list[indxStore].total_buy_count || 0) - site.toNumber(total_unit)
+                      _size.branches_list[indxBranch].stores_list[indxStore].total_buy_price = (_size.branches_list[indxBranch].stores_list[indxStore].total_buy_price || 0) - totalCost
+                      _size.branches_list[indxBranch].stores_list[indxStore].total_buy_count = (_size.branches_list[indxBranch].stores_list[indxStore].total_buy_count || 0) - site.toNumber(total_unit)
                     }
 
 
-                    if (obj.assemble) _branch.stores_list[indxStore].average_cost = total_complex_av
-                    else if (!obj.item_complex && obj.set_average) _branch.stores_list[indxStore].average_cost = site.toNumber(_branch.stores_list[indxStore].total_buy_price) / site.toNumber(_branch.stores_list[indxStore].total_buy_count)
+                    if (obj.assemble) _size.branches_list[indxBranch].stores_list[indxStore].average_cost = total_complex_av
+                    else if (!obj.item_complex && obj.set_average) _size.branches_list[indxBranch].stores_list[indxStore].average_cost = site.toNumber(_size.branches_list[indxBranch].stores_list[indxStore].total_buy_price) / site.toNumber(_size.branches_list[indxBranch].stores_list[indxStore].total_buy_count)
 
-                    _branch.stores_list[indxStore].average_cost = site.toNumber(_branch.stores_list[indxStore].average_cost)
+                    _size.branches_list[indxBranch].stores_list[indxStore].average_cost = site.toNumber(_size.branches_list[indxBranch].stores_list[indxStore].average_cost)
 
-                  } else _branch.stores_list.push(obj_store)
+                  } else _size.branches_list[indxBranch].stores_list.push(obj_store)
 
-                } else _branch.stores_list = [obj_store]
-
-                _size.branches_list[indxBranch] = _branch
+                } else _size.branches_list[indxBranch].stores_list = [obj_store]
 
               } else _size.branches_list.push(obj_branch)
 
@@ -606,9 +602,9 @@ module.exports = function init(site) {
             let d = new Date().getDate().toString()
             let h = new Date().getHours().toString()
             let m = new Date().getMinutes().toString()
-            doc.sizes.forEach((_size, i) => {
+            doc.sizes.forEach((_size, i_size) => {
               if (!_size.barcode || _size.barcode == null)
-                _size.barcode = doc.company.id + doc.id + d + h + m + i
+                _size.barcode = doc.company.id + doc.id + d + h + m + i_size
 
               _size.size_units_list.forEach((_size_unit, _i) => {
                 let indx = doc.units_list.findIndex(_unit1 => _unit1.id == _size_unit.id);
@@ -618,7 +614,7 @@ module.exports = function init(site) {
                   _size_unit.average_cost = _size_unit.cost
 
                 if (!_size_unit.barcode || _size_unit.barcode == null)
-                  _size_unit.barcode = doc.company.id + doc.id + (_size_unit.id || 0) + d + h + m + i + _i
+                  _size_unit.barcode = doc.company.id + doc.id + (_size_unit.id || 0) + d + h + m + i_size + _i
               });
 
             });

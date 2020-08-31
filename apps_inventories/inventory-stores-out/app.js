@@ -320,8 +320,8 @@ module.exports = function init(site) {
                     site.call('item_transaction - items', Object.assign({}, _itm))
                   }
 
-
                 } else {
+                  
                   _itm.current_status = 'r_sold'
                   if (result.doc.type.id == 6) {
                     _itm.type = 'minus'
