@@ -292,7 +292,7 @@ module.exports = function init(site) {
 
     where['company.id'] = site.get_company(req).id
 
-    // where['$or'] = [{ 'branch_from.code': site.get_branch(req).code }, { 'branch_to.code': site.get_branch(req).code }]
+     where['$or'] = [{ 'branch_from.code': site.get_branch(req).code }, { 'branch_to.code': site.get_branch(req).code }]
 
     if (where['branch_from']) {
       where['branch_from.id'] = where['branch_from'].id;

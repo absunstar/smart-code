@@ -520,7 +520,7 @@ module.exports = function init(site) {
     }
 
     where['company.id'] = site.get_company(req).id
-    // where['branch.code'] = site.get_branch(req).code
+     where['branch.code'] = site.get_branch(req).code
 
 
     if (where && where['notes']) {
