@@ -365,6 +365,32 @@ app.controller("DB_import_export", function ($scope, $http) {
     )
   };   
 
+  $scope.export_file_stores_items = function () {
+
+    window.location.href="/api/stores_items/export_file_stores_items"
+
+  };
+
+  $scope.import_file_stores_items = function () {
+    $scope.error = '';
+    $http({
+      method: "POST",
+      url: "/api/stores_items/import_file_stores_items",
+      data: $scope.stores_items
+
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+         loadAll()
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };   
 
   $scope.export_file_transfer_branch = function () {
 

@@ -60,6 +60,22 @@ app.controller("reset", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.safesReset = function () {
+    $scope.error = '';
+    $http({
+      method: "POST",
+      url: "/api/safes/reset"
+    }).then(
+      function (response) {
+        if (response.data.done) {
+        }
+      },
+      function (err) {
+        $scope.error = err;
+      }
+    )
+  };
+
 
   $scope.unPostStoreIn = function () {
     $scope.error = '';

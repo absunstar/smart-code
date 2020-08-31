@@ -20,6 +20,11 @@
         "ar": "فك ترحيل المشتريات"
     }, 
     {
+        "name": "reset_safes",
+        "en": "Reset Safes",
+        "ar": "تصفير الخزن"
+    }, 
+    {
         "name": "reset_unpost_store_out",
         "en": "Un Post Store Sales",
         "ar": "فك ترحيل المبيعات"

@@ -10,6 +10,7 @@ module.exports = function init(site) {
   const $insurances_slides = site.connectCollection("insurances_slides")
   const $customers = site.connectCollection('customers')
   const $stores = site.connectCollection("stores")
+  const $stores_items = site.connectCollection("stores_items")
   const $stores_in = site.connectCollection("stores_in")
   const $stores_out = site.connectCollection("stores_out")
   const $transfer_branch = site.connectCollection("transfer_branch")
@@ -347,6 +348,32 @@ module.exports = function init(site) {
       res.download(__dirname + "/site_files/db/stores_in")
      })
   })
+
+  site.post("/api/stores_items/import_file_stores_items", (req, res) => {
+    let response = {}
+    response.done = false
+
+    if (req.session.user === undefined) {
+      res.json(response)
+      return
+    }
+
+    $stores_items.import(__dirname + "/site_files/db/stores_items",(err , docs)=>{})
+  })
+  site.get("/api/stores_items/export_file_stores_items", (req, res) => {
+    let response = {}
+    response.done = false
+
+    if (req.session.user === undefined) {
+      res.json(response)
+      return
+    }
+    $stores_items.export({limit :  100000} ,__dirname + "/site_files/db/stores_items",(err , docs)=>{
+      res.download(__dirname + "/site_files/db/stores_items")
+     })
+  })
+
+
 
   site.post("/api/stores_out/import_file_stores_out", (req, res) => {
     let response = {}

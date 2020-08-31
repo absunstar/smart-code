@@ -274,6 +274,35 @@ module.exports = function init(site) {
     })
   })
 
+  
+  site.post("/api/safes/reset", (req, res) => {
+    let response = {}
+    response.done = false
+    if (!req.session.user) {
+      response.error = 'Please Login First'
+      res.json(response)
+      return
+    }
+
+    $safes.findMany({
+      select: req.body.select || {},
+      where: { 'company.id': site.get_company(req).id },
+      sort: req.body.sort || {
+        id: -1
+      },
+    }, (err, docs) => {
+      if (!err) {
+        docs.forEach(safes_doc => {
+          safes_doc.balance = 0;
+          $safes.update(safes_doc);
+        });
+      }
+      response.done = true
+      res.json(response)
+    })
+  })
+
+
   site.post("/api/safes/all", (req, res) => {
     let response = {}
     response.done = false

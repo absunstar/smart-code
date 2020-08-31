@@ -520,7 +520,7 @@ module.exports = function init(site) {
     }
 
     where['company.id'] = site.get_company(req).id
-     where['branch.code'] = site.get_branch(req).code
+    where['branch.code'] = site.get_branch(req).code
 
 
     if (where && where['notes']) {
@@ -794,7 +794,7 @@ module.exports = function init(site) {
   site.post("/api/stores_in/un_post", (req, res) => {
     let response = {}
     response.done = false
-  if (!req.session.user) {
+    if (!req.session.user) {
       response.error = 'Please Login First'
       res.json(response)
       return
