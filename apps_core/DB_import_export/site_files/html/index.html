@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="currency_ui || currency_manage" data-ng-app="myApp">
+
+<head x-import="head.html">
+
+</head>
+
+<body class="##session.lang##">
+
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+
+    </nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+
+    </nav>
+
+
+    <div x-permission="DB_import_export" id="main-layout" class="container">
+        <div class="row center">
+            <div class="row" ng-controller="DB_import_export">
+             
+                <table class="table loaded" id="t1">
+                    <tr>
+                        <th>##word.amounts_in_logo##</th>
+                        
+                        <th>##word.amounts_in_source##</th>
+                       
+                        <th >##word.actions##</th>
+                    </tr>
+                    <tr>
+                        <td><img view class="logo" src="/images/database.png"></td>
+                        <td>
+                            <p class="center"> الوارد </p>
+                        </td>
+                        <td class="center ">
+                          <!--   <form class="form">
+                                <label class="red bold">Import</label>
+                                <input type="file" name="fileToUpload" ng-click="import_file_amount_in()" onchange="angular.element(this).scope().uploadFile(this.files)" />  
+                                <p>{{uploadStatus}}</p>
+                            </form> -->
+                            <i-button  type="details" label="import" ng-click="import_file_amount_in()"></i-button>
+                            
+                            <i-button type="delete" label="export" ng-click="export_file_amount_in()"></i-button>
+                        </td>
+                    </tr>
+
+                    <tr >
+                        <td><img view class="logo" src="/images/database.png"></td>
+                        <td> <p class="center"> المنصرف </p></td>
+                        <td  class="center">
+                            <i-button  type="details" label="import" ng-click="import_file_amount_out()"></i-button>
+                            <i-button  type="delete" label="export" ng-click="export_file_amount_out()"></i-button>
+                        </td>
+                    </tr>
+
+                    <tr >
+                        <td><img view class="logo" src="/images/database.png"></td>
+                        <td> <p class="center"> الخزينة </p></td>
+                        <td  class="center">
+                            <i-button  type="details" label="import" ng-click="import_file_safes()"></i-button>
+                            <i-button  type="delete" label="export" ng-click="export_file_safes()"></i-button>
+                        </td>
+                    </tr>
+
+                    <tr >
+                        <td><img view class="logo" src="/images/database.png"></td>
+                        <td> <p class="center"> مسميات الصادر والوارد </p></td>
+                        <td  class="center">
+                            <i-button  type="details" label="import" ng-click="import_file_in_out_names()"></i-button>
+                            <i-button  type="delete" label="export" ng-click="export_file_in_out_names()"></i-button>
+                        </td>
+                    </tr>
+
+                    <tr >
+                        <td><img view class="logo" src="/images/database.png"></td>
+                        <td> <p class="center"> مكافئات الموظفين </p></td>
+                        <td  class="center">
+                            <i-button  type="details" label="import" ng-click="import_file_employee_offer()"></i-button>
+                            <i-button  type="delete" label="export" ng-click="export_file_employee_offer()"></i-button>
+                        </td>
+                    </tr>
+
+                    <tr >
+                        <td><img view class="logo" src="/images/database.png"></td>
+                        <td> <p class="center"> خصومات الموظفين </p></td>
+                        <td  class="center">
+                            <i-button  type="details" label="import" ng-click="import_file_employee_discount()"></i-button>
+                            <i-button  type="delete" label="export" ng-click="export_file_employee_discount()"></i-button>
+                        </td>
+                    </tr>
+
+                    <tr >
+                        <td><img view class="logo" src="/images/database.png"></td>
+                        <td> <p class="center"> سلف الموظفين </p></td>
+                        <td  class="center">
+                            <i-button  type="details" label="import" ng-click="import_file_employees_advances()"></i-button>
+                            <i-button  type="delete" label="export" ng-click="export_file_employees_advances()"></i-button>
+                        </td>
+                    </tr>
+
+                    <tr >
+                        <td><img view class="logo" src="/images/database.png"></td>
+                        <td> <p class="center"> تأمينات الموظفين </p></td>
+                        <td  class="center">
+                            <i-button  type="details" label="import" ng-click="import_file_employees_insurances()"></i-button>
+                            <i-button  type="delete" label="export" ng-click="export_file_employees_insurances()"></i-button>
+                        </td>
+                    </tr>
+
+                    <tr >
+                        <td><img view class="logo" src="/images/database.png"></td>
+                        <td> <p class="center">  شرائح التأمين </p></td>
+                        <td  class="center">
+                            <i-button  type="details" label="import" ng-click="import_file_insurances_slides()"></i-button>
+                            <i-button  type="delete" label="export" ng-click="export_file_insurances_slides()"></i-button>
+                        </td>
+                    </tr>
+                  
+
+                    <tr >
+                        <td><img view class="logo" src="/images/database.png"></td>
+                        <td> <p class="center">   العملاء  </p></td>
+                        <td  class="center">
+                            <i-button  type="details" label="import" ng-click="import_file_customers()"></i-button>
+                            <i-button  type="delete" label="export" ng-click="export_file_customers()"></i-button>
+                        </td>
+                    </tr>
+
+                    <tr >
+                        <td><img view class="logo" src="/images/database.png"></td>
+                        <td> <p class="center">   المخازن  </p></td>
+                        <td  class="center">
+                            <i-button  type="details" label="import" ng-click="import_file_stores()"></i-button>
+                            <i-button  type="delete" label="export" ng-click="export_file_stores()"></i-button>
+                        </td>
+                    </tr>
+
+
+                    <tr >
+                        <td><img view class="logo" src="/images/database.png"></td>
+                        <td> <p class="center">    اذن دخول  </p></td>
+                        <td  class="center">
+                            <i-button  type="details" label="import" ng-click="import_file_stores_in()"></i-button>
+                            <i-button  type="delete" label="export" ng-click="export_file_stores_in()"></i-button>
+                        </td>
+                    </tr>
+                    
+                    <tr >
+                        <td><img view class="logo" src="/images/database.png"></td>
+                        <td> <p class="center">    اذن صرف  </p></td>
+                        <td  class="center">
+                            <i-button  type="details" label="import" ng-click="import_file_stores_out()"></i-button>
+                            <i-button  type="delete" label="export" ng-click="export_file_stores_out()"></i-button>
+                        </td>
+                    </tr>
+
+                    <tr >
+                        <td><img view class="logo" src="/images/database.png"></td>
+                        <td> <p class="center">   تحويل مخزني  </p></td>
+                        <td  class="center">
+                            <i-button  type="details" label="import" ng-click="import_file_transfer_branch()"></i-button>
+                            <i-button  type="delete" label="export" ng-click="export_file_transfer_branch()"></i-button>
+                        </td>
+                    </tr>
+
+                    
+                    <tr >
+                        <td><img view class="logo" src="/images/database.png"></td>
+                        <td> <p class="center"> اضافة ضريبة</p></td>
+                        <td  class="center">
+                            <i-button  type="details" label="import" ng-click="import_file_tax_types()"></i-button>
+                            <i-button  type="delete" label="export" ng-click="export_file_tax_types()"></i-button>
+                        </td>
+                    </tr>
+
+                    <tr >
+                        <td><img view class="logo" src="/images/database.png"></td>
+                        <td> <p class="center">اضافة خصم جديد</p></td>
+                        <td  class="center">
+                            <i-button  type="details" label="import" ng-click="import_file_discount_types()"></i-button>
+                            <i-button  type="delete" label="export" ng-click="export_file_discount_types()"></i-button>
+                        </td>
+                    </tr>
+
+                   
+                    <tr >
+                        <td><img view class="logo" src="/images/database.png"></td>
+                        <td> <p class="center">  المحافظات</p></td>
+                        <td  class="center">
+                            <i-button  type="details" label="import" ng-click="import_file_goves()"></i-button>
+                            <i-button  type="delete" label="export" ng-click="export_file_goves()"></i-button>
+                        </td>
+                    </tr>
+
+                    <tr >
+                        <td><img view class="logo" src="/images/database.png"></td>
+                        <td> <p class="center">  المدن</p></td>
+                        <td  class="center">
+                            <i-button  type="details" label="import" ng-click="import_file_cities()"></i-button>
+                            <i-button  type="delete" label="export" ng-click="export_file_cities()"></i-button>
+                        </td>
+                    </tr>
+
+                    <tr >
+                        <td><img view class="logo" src="/images/database.png"></td>
+                        <td> <p class="center">  الشركات</p></td>
+                        <td  class="center">
+                            <i-button  type="details" label="import" ng-click="import_file_vendors()"></i-button>
+                            <i-button  type="delete" label="export" ng-click="export_file_vendors()"></i-button>
+                        </td>
+                    </tr>
+
+
+                    <tr >
+                        <td><img view class="logo" src="/images/database.png"></td>
+                        <td> <p class="center">  الموظفين  </p></td>
+                        <td  class="center">
+                            <i-button  type="details" label="import" ng-click="import_file_employees()"></i-button>
+                            <i-button  type="delete" label="export" ng-click="export_file_employees()"></i-button>
+                        </td>
+                    </tr>
+
+                    <tr >
+                        <td><img view class="logo" src="/images/database.png"></td>
+                        <td> <p class="center">  الوظائف  </p></td>
+                        <td  class="center">
+                            <i-button  type="details" label="import" ng-click="import_file_jobs()"></i-button>
+                            <i-button  type="delete" label="export" ng-click="export_file_jobs()"></i-button>
+                        </td>
+                    </tr>
+                    
+                    <tr >
+                        <td><img view class="logo" src="/images/database.png"></td>
+                        <td> <p class="center">  الدرجات الوظيفية  </p></td>
+                        <td  class="center">
+                            <i-button  type="details" label="import" ng-click="import_file_employees_degrees()"></i-button>
+                            <i-button  type="delete" label="export" ng-click="export_file_employees_degrees()"></i-button>
+                        </td>
+                    </tr>
+
+                    <tr >
+                        <td><img view class="logo" src="/images/database.png"></td>
+                        <td> <p class="center">   موقف التجنيد  </p></td>
+                        <td  class="center">
+                            <i-button  type="details" label="import" ng-click="import_file_militaries_status()"></i-button>
+                            <i-button  type="delete" label="export" ng-click="export_file_militaries_status()"></i-button>
+                        </td>
+                    </tr>
+
+                    <tr >
+                        <td><img view class="logo" src="/images/database.png"></td>
+                        <td> <p class="center">الحالة الاجتماعية</p></td>
+                        <td  class="center">
+                            <i-button  type="details" label="import" ng-click="import_file_maritals_status()"></i-button>
+                            <i-button  type="delete" label="export" ng-click="export_file_maritals_status()"></i-button>
+                        </td>
+                    </tr>
+
+                    
+                </table>
+                <i-button  type="export" label="##word.export_to_excel##" onclick="export_to_xlsx('t1' , 'amounts_in.xlsx')"></i-button>
+                <i-button type="print" label="##word.print##" onclick="site.print('#t1')"></i-button>
+            </div>
+        </div>
+    </div>
+
+
+  
+
+    <div x-import="scripts.html"></div>
+    
+    <script x-permission="DB_import_export" x-import="DB_import_export/index.js"></script>
+  
+
+</body>
+
+</html>
