@@ -595,20 +595,18 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
     for (let i = 0; i < _transfer_branch_all.length; i++) {
       setTimeout(() => {
 
-        let _transfer_branch = _transfer_branch_all[i];
+        if (!_transfer_branch_all[i].transfer && _transfer_branch_all[i].branch_to.code == '##session.branch.code##') {
 
-        if (!_transfer_branch.transfer && _transfer_branch.branch_to.code == '##session.branch.code##') {
-
-          $scope.getStockItems(_transfer_branch.items, callback => {
+          $scope.getStockItems(_transfer_branch_all[i].items, callback => {
 
             if (!callback && !stopLoop) {
 
-              _transfer_branch.transfer = true;
+              _transfer_branch_all[i].transfer = true;
 
               $http({
                 method: "POST",
                 url: "/api/transfer_branch/confirm",
-                data: _transfer_branch
+                data: _transfer_branch_all[i]
               }).then(
                 function (response) {
                   if (response.data.done) {
@@ -617,7 +615,7 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
                     $scope.error = '##word.error##';
                     if (response.data.error.like('*OverDraft Not*')) {
                       $scope.error = "##word.overdraft_not_active##"
-                      _transfer_branch.transfer = false;
+                      _transfer_branch_all[i].transfer = false;
                     }
                   }
                 },

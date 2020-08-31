@@ -1436,20 +1436,19 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
 
       for (let i = 0; i < _store_in_all.length; i++) {
         setTimeout(() => {
-          let _store_in = _store_in_all[i];
-          if (!_store_in.posting) {
+          if (!_store_in_all[i].posting) {
 
 
-            $scope.getStockItems(_store_in.items, callback => {
+            $scope.getStockItems(_store_in_all[i].items, callback => {
 
               if (!callback) {
 
-                _store_in.posting = true;
+                _store_in_all[i].posting = true;
 
                 $http({
                   method: "POST",
                   url: "/api/stores_in/posting",
-                  data: _store_in
+                  data: _store_in_all[i]
                 }).then(
                   function (response) {
                     if (response.data.done) {
@@ -1458,7 +1457,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
                       $scope.error = '##word.error##';
                       if (response.data.error.like('*OverDraft Not*')) {
                         $scope.error = "##word.overdraft_not_active##"
-                        _store_in.posting = false;
+                        _store_in_all[i].posting = false;
                       }
                     }
                   },
