@@ -187,7 +187,7 @@ module.exports = function init(site) {
                           _complexDoc.sizes.forEach(_complexSize => {
                             if (_complexSize.complex_items && _complexSize.complex_items.length > 0) {
                               _complexSize.complex_items.forEach(_complexItem => {
-                                if (_complexItem.barcode == obj.barcode && _complexItem.unit.id == obj.unit.id)
+                                if (_complexItem.barcode === obj.barcode && _complexItem.unit.id == obj.unit.id)
                                   _complexItem.unit.average_cost = _unitSize.average_cost
                               });
                             }
@@ -513,7 +513,7 @@ module.exports = function init(site) {
         if (_doc.sizes && _doc.sizes.length > 0) {
           _doc.sizes.forEach(_size => {
             obj.items.forEach(_item => {
-              if (_size.barcode == _item.barcode) {
+              if (_size.barcode === _item.barcode) {
                 if (_size.branches_list && _size.branches_list.length > 0) {
                   _size.branches_list.forEach(_branch => {
                     if (_branch.code == obj.branch.code) {
@@ -1430,7 +1430,7 @@ module.exports = function init(site) {
               complexItems.forEach(_complex => {
                 if (_item.sizes && _item.sizes.length > 0)
                   _item.sizes.forEach(_size => {
-                    if (_size.barcode == _complex.barcode) {
+                    if (_size.barcode === _complex.barcode) {
                       _size.size_units_list.forEach(_unit => {
                         if (_unit.id == _complex.unit.id)
                           total_average += _unit.average_cost
@@ -1613,7 +1613,7 @@ module.exports = function init(site) {
 
                   itemsCb.forEach(cbSize => {
 
-                    if (currentSize.barcode == cbSize.barcode && currentSize.size == cbSize.size) {
+                    if (currentSize.barcode === cbSize.barcode && currentSize.size == cbSize.size) {
 
                       let foundUnit = false
                       let foundStores = false

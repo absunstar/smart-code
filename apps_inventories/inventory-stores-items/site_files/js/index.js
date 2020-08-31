@@ -12,8 +12,8 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
         return
       };
 
-      let err_barcode1 = $scope.itemSizeList.some(_itemSize => _itemSize.barcode == $scope.item.barcode);
-      let err_barcode2 = $scope.category_item.sizes.some(_itemSize => _itemSize.barcode == $scope.item.barcode);
+      let err_barcode1 = $scope.itemSizeList.some(_itemSize => _itemSize.barcode === $scope.item.barcode);
+      let err_barcode2 = $scope.category_item.sizes.some(_itemSize => _itemSize.barcode === $scope.item.barcode);
 
       if (err_barcode1 || err_barcode2) {
         $scope.error = "##word.err_barcode_exist##";
@@ -235,10 +235,10 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
 
           if (_size.item_complex && _size.complex_items && _size.complex_items.length > 0) _unit.average_cost = total_complex_av;
           _unit.average_cost = site.toNumber(_unit.average_cost);
-          if (_unit.barcode == (undefined || null)) notBarcodeUnit = true;
+          if (_unit.barcode === (undefined || null)) notBarcodeUnit = true;
           if (_unit.discount && _unit.discount.value > _unit.discount.max) unitDiscount = true;
 
-          let fonudExistBU = $scope.unitsBarcodesList.some(_unit1 => _unit1 == _unit.barcode);
+          let fonudExistBU = $scope.unitsBarcodesList.some(_unit1 => _unit1 === _unit.barcode);
           if (fonudExistBU) foundBarcodeUnit = true;
         });
       });
@@ -750,7 +750,7 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
     $scope.error = '';
     item.complex_items = item.complex_items || [];
 
-    foundSize = item.complex_items.some(_itemSize => _itemSize.barcode == $scope.items_size.barcode);
+    foundSize = item.complex_items.some(_itemSize => _itemSize.barcode === $scope.items_size.barcode);
 
     if ($scope.items_size && $scope.items_size.size) {
 
@@ -1029,7 +1029,7 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
 
                   if (_size.size_units_list && _size.size_units_list.length > 0)
                     _size.size_units_list.forEach((_unit, i) => {
-                      if ((_unit.barcode == $scope.search_barcode) && typeof _unit.barcode == 'string') {
+                      if ((_unit.barcode === $scope.search_barcode) && typeof _unit.barcode == 'string') {
                         foundUnit = true;
                       }
                       if (_unit.id == response.data.list[0].main_unit.id)
@@ -1037,7 +1037,7 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
 
 
                     });
-                  if ((_size.barcode == $scope.search_barcode) || foundUnit) {
+                  if ((_size.barcode === $scope.search_barcode) || foundUnit) {
                     _size.name = response.data.list[0].name;
                     _size.item_group = response.data.list[0].item_group;
                     _size.store = $scope.units_switch.store;
@@ -1081,7 +1081,7 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
 
                     } else _size.store_count = 0;
 
-                    foundSize = $scope.units_switch.items.some(_itemSize => _itemSize.barcode == _size.barcode);
+                    foundSize = $scope.units_switch.items.some(_itemSize => _itemSize.barcode === _size.barcode);
                     if (!foundSize && !foundHold)
                       $scope.units_switch.items.unshift(_size);
                   }
