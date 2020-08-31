@@ -142,12 +142,6 @@ module.exports = function init(site) {
     let where = req.body.where || {}
     where['company.id'] = site.get_company(req).id
 
-    if (!req.session.user) {
-      response.error = 'you are not login'
-      res.json(response)
-      return
-    }
-
     $order_slides.findMany({
       select: req.body.select || {},
       where: where,

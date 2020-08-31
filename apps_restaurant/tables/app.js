@@ -71,11 +71,11 @@ module.exports = function init(site) {
     let response = {
       done: false
     }
-    if (!req.session.user) {
-      response.error = 'Please Login First'
-      res.json(response)
-      return
-    }
+    // if (!req.session.user) {
+    //   response.error = 'Please Login First'
+    //   res.json(response)
+    //   return
+    // }
 
     let tables_doc = req.body
     tables_doc.$req = req

@@ -241,12 +241,12 @@ module.exports = function init(site) {
 
 
   site.post("/api/stores_in/posting", (req, res) => {
+    let response = {}
     if (!req.session.user) {
       response.error = 'Please Login First'
       res.json(response)
       return
     }
-    let response = {}
     response.done = false
 
     let stores_in_doc = req.body

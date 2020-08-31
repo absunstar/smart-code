@@ -333,9 +333,9 @@ module.exports = function init(site) {
       where['notes'] = new RegExp(where['notes'], "i");
     }
 
-    /*     if (req.session.user.roles[0].name === 'trainer') {
-          where['id'] = req.session.user.trainer_id;
-        } */
+    //  if (req.session.user.roles[0].name === 'trainer') {
+    //   where['id'] = req.session.user.trainer_id;
+    // } 
 
     where['trainer'] = true
     where['company.id'] = site.get_company(req).id

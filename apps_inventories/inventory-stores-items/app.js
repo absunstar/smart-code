@@ -787,6 +787,7 @@ module.exports = function init(site) {
 
   site.post("/api/stores_items/all", (req, res) => {
     //  let data = {};
+    let response = {}
 
     if (!req.session.user) {
       response.error = 'Please Login First'
@@ -794,8 +795,6 @@ module.exports = function init(site) {
       return
     }
 
-
-    let response = {}
     let where = req.body.where || {}
     let search = req.body.search
 

@@ -123,13 +123,13 @@ module.exports = function init(site) {
   })
 
   site.post("/api/amounts_out/posting", (req, res) => {
+    let response = {}
     if (!req.session.user) {
       response.error = 'Please Login First'
       res.json(response)
       return
     }
 
-    let response = {}
     response.done = false
 
     let amounts_out_doc = req.body

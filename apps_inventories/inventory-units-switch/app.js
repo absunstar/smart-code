@@ -217,13 +217,14 @@ module.exports = function init(site) {
   })
 
   site.post("/api/units_switch/posting", (req, res) => {
+    let response = {}
+
     if (!req.session.user) {
       response.error = 'Please Login First'
       res.json(response)
       return
     }
 
-    let response = {}
     response.done = false
 
     let units_switch_doc = req.body

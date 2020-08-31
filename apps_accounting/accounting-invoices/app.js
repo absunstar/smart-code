@@ -396,12 +396,12 @@ module.exports = function init(site) {
 
 
   site.post("/api/account_invoices/posting", (req, res) => {
+    let response = {}
     if (!req.session.user) {
       response.error = 'Please Login First'
       res.json(response)
       return
     }
-    let response = {}
     response.done = false
 
     let account_invoices_doc = req.body

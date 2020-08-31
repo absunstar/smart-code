@@ -245,6 +245,7 @@ module.exports = function init(site) {
   })
 
   site.post("/api/stores_out/posting", (req, res) => {
+    let response = {}
 
     if (!req.session.user) {
       response.error = 'Please Login First'
@@ -252,7 +253,6 @@ module.exports = function init(site) {
       return
     }
 
-    let response = {}
     response.done = false
 
     let stores_out_doc = req.body
