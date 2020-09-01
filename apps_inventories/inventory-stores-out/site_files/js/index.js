@@ -247,13 +247,12 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
       $scope.error = v.messages[0].ar;
       return;
     }
+
     $scope.detailsCustomer((customer) => {
 
       if (new Date($scope.store_out.date) > new Date()) {
-
         $scope.error = "##word.date_exceed##";
         return;
-
       }
 
       if ($scope.store_out.type && $scope.store_out.type.id != 5 && $scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto) {
@@ -365,7 +364,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
       }
 
 
-      if ($scope.store_out.items.length > 0) {
+      if ($scope.store_out.items.length > 0 && !$scope.busy) {
         $scope.busy = true;
         $http({
           method: "POST",
@@ -373,7 +372,6 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
           data: $scope.store_out
         }).then(
           function (response) {
-            $scope.busy = false;
             if (response.data.done) {
               if ($scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto && $scope.store_out.type && $scope.store_out.type.id != 5) {
 
@@ -403,10 +401,13 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
                 };
                 $scope.addAccountInvoice(account_invoices)
               }
+              $scope.store_out = {};
+              site.hideModal('#addStoreOutModal');
               setTimeout(() => {
-
                 document.querySelector('#clickNew').click();
-              }, 1000);
+                $scope.busy = false;
+
+              }, 250);
             } else {
               $scope.error = response.data.error;
               if (response.data.error.like('*OverDraft Not*')) {
