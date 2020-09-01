@@ -408,7 +408,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
                 };
                 $scope.addAccountInvoice(account_invoices)
               }
-              /*$scope.store_out = {};*/
+              $scope.store_out = {};
               site.hideModal('#addStoreOutModal');
               $timeout(() => {
                 document.querySelector('#clickNew').click();
@@ -1324,7 +1324,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         if (response.data.done && response.data.list.length > 0) {
           $scope.list = response.data.list;
           $scope.count = response.data.count;
-          $scope.store_out = {};
+          /*$scope.store_out = {};*/
           $scope.account_invoices = {};
         }
       },
@@ -1438,7 +1438,6 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
   };
 
   $scope.printAccountInvoive = function () {
-    return;
 
     $scope.error = '';
     if ($scope.busy) return;
