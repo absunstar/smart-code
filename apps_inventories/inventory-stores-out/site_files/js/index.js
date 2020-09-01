@@ -403,7 +403,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
               }
               $scope.store_out = {};
               site.hideModal('#addStoreOutModal');
-              setTimeout(() => {
+              $timeout(() => {
                 document.querySelector('#clickNew').click();
                 $scope.busy = false;
 
@@ -609,7 +609,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
 
   $scope.calcSize = function (calc_size) {
     $scope.error = '';
-    setTimeout(() => {
+    $timeout(() => {
       let discount = 0;
       calc_size.total_v_a = site.toNumber(calc_size.value_added) * (calc_size.price * calc_size.count) / 100;
       calc_size.total_v_a = site.toNumber(calc_size.total_v_a);
@@ -1972,7 +1972,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
       let stopLoop = false;
       for (let i = 0; i < _store_out_all.length; i++) {
 
-        setTimeout(() => {
+        $timeout(() => {
 
           if (!_store_out_all[i].posting) {
 
