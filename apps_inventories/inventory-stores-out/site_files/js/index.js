@@ -154,6 +154,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
   };
 
   $scope.newStoreOut = function () {
+
     $scope.error = '';
     $scope.discount = {
       name: 'خصم',
@@ -178,6 +179,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
 
         if ($scope.defaultSettings.general_Settings) {
           if ($scope.defaultSettings.general_Settings.customer)
+            $scope.customersList = [$scope.defaultSettings.general_Settings.customer];
             $scope.store_out.customer = $scope.defaultSettings.general_Settings.customer;
           if (!$scope.defaultSettings.general_Settings.work_posting)
             $scope.store_out.posting = true
