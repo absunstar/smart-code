@@ -1430,6 +1430,8 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
   };
 
   $scope.printAccountInvoive = function () {
+    return;
+    
     $scope.error = '';
     if ($scope.busy) return;
     $scope.busy = true;
@@ -1638,7 +1640,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
       }).catch(err => {
         console.log(err);
       });
-      
+
     };
   };
 
