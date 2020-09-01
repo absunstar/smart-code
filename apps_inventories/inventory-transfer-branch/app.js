@@ -463,4 +463,79 @@ module.exports = function init(site) {
   })
 
 
+  site.post("/api/transfer_branch/confirm_all", (req, res) => {
+    let response = {}
+    response.done = false
+    if (!req.session.user) {
+      response.error = 'Please Login First'
+      res.json(response)
+      return
+    }
+
+    $transfer_branch.findMany({
+      select: req.body.select || {},
+      where: { 'company.id': site.get_company(req).id },
+    }, (err, docs) => {
+
+      if (!err) {
+
+        docs.forEach(transfer_branch_doc => {
+          transfer_branch_doc.transfer = true
+
+          if (transfer_branch_doc._id) {
+            $transfer_branch.edit({
+              where: {
+                _id: transfer_branch_doc._id
+              },
+              set: transfer_branch_doc,
+              $req: req,
+              $res: res
+            }, (err, document) => {
+              if (!err) {
+                response.done = true
+                let doc = document.doc
+                doc.items.forEach((_itm, i) => {
+                  _itm.company = doc.company
+                  _itm.branch = doc.branch_from
+                  _itm.number = doc.number
+                  _itm.current_status = 'transferred'
+                  _itm.date = doc.date
+                  _itm.transaction_type = 'out'
+                  _itm.store = doc.store_from
+                  site.call('item_transaction - items', Object.assign({}, _itm))
+                  _itm.type = 'minus'
+                  site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _itm))
+  
+                })
+  
+                doc.items.forEach((_itm, i) => {
+                  _itm.company = doc.company
+                  _itm.branch = doc.branch_to
+                  _itm.number = doc.number
+                  _itm.current_status = 'transferred'
+                  _itm.date = doc.date
+                  _itm.transaction_type = 'in'
+                  _itm.store = doc.store_to
+                  site.call('item_transaction + items', Object.assign({}, _itm))
+                  _itm.type = 'sum'
+                  site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _itm))
+                })
+  
+              } else {
+                response.error = err.message
+              }
+              res.json(response)
+            })
+          } else {
+            res.json(response)
+          }
+
+        });
+
+      }
+      response.done = true
+      res.json(response)
+    })
+  })
+
 }

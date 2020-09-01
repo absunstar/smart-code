@@ -76,7 +76,7 @@ module.exports = function init(site) {
   site.post("/api/stores_out/add", (req, res) => {
     let response = {}
     response.done = false
-    
+
     if (!req.session.user) {
       response.error = 'Please Login First'
       res.json(response)
@@ -320,7 +320,7 @@ module.exports = function init(site) {
                   }
 
                 } else {
-                  
+
                   _itm.current_status = 'r_sold'
                   if (result.doc.type.id == 6) {
                     _itm.type = 'minus'
@@ -533,7 +533,7 @@ module.exports = function init(site) {
     }
 
     where['company.id'] = site.get_company(req).id
-     where['branch.code'] = site.get_branch(req).code
+    where['branch.code'] = site.get_branch(req).code
 
     if (where && where['notes']) {
       where['notes'] = new RegExp(where['notes'], 'i')
@@ -816,6 +816,98 @@ module.exports = function init(site) {
           stores_out_doc.return_paid = null;
           $stores_out.update(stores_out_doc);
         });
+      }
+      response.done = true
+      res.json(response)
+    })
+  })
+
+
+  site.post("/api/stores_out/post_all", (req, res) => {
+    let response = {}
+    response.done = false
+    if (!req.session.user) {
+      response.error = 'Please Login First'
+      res.json(response)
+      return
+    }
+
+    $stores_out.findMany({
+      select: req.body.select || {},
+      where: { 'company.id': site.get_company(req).id },
+    }, (err, docs) => {
+
+      if (!err) {
+
+        docs.forEach(stores_out_doc => {
+          stores_out_doc.posting = true
+
+          if (stores_out_doc._id) {
+            $stores_out.edit({
+              where: {
+                _id: stores_out_doc._id
+              },
+              set: stores_out_doc,
+              $req: req,
+              $res: res
+            }, (err, result) => {
+              if (!err) {
+                response.done = true
+                response.doc = result.doc
+
+                result.doc.items.forEach((_itm, i) => {
+                  _itm.store = result.doc.store
+                  _itm.company = result.doc.company
+                  _itm.branch = result.doc.branch
+                  _itm.source_type = result.doc.type
+                  _itm.number = result.doc.number
+                  _itm.customer = result.doc.customer
+                  _itm.date = result.doc.date
+                  _itm.shift = {
+                    id: result.doc.shift.id,
+                    code: result.doc.shift.code,
+                    name: result.doc.shift.name
+                  }
+                  _itm.current_status = 'sold'
+                  if (result.doc.type.id == 6) {
+                    _itm.returnSell = true
+                    _itm.type = 'sum'
+                    _itm.count = (-Math.abs(_itm.count))
+                    _itm.transaction_type = 'out'
+                    site.call('item_transaction - items', Object.assign({}, _itm))
+                  } else {
+
+                    if (result.doc.type.id == 5) {
+                      _itm.set_average = 'minus_average'
+                    }
+
+                    _itm.type = 'minus'
+                    _itm.transaction_type = 'out'
+                    site.call('item_transaction - items', Object.assign({}, _itm))
+                  }
+
+                  _itm.count = Math.abs(_itm.count)
+                  site.call('[transfer_branch][stores_items][add_balance]', _itm)
+
+                })
+
+                if (result.doc.type && result.doc.type.id == 6) {
+                  if (!result.doc.posting)
+                    result.doc.return = true
+                  site.returnStoresOut(result.doc, res => { })
+                }
+
+              } else {
+                response.error = err.message
+              }
+              res.json(response)
+            })
+          } else {
+            res.json(response)
+          }
+
+        });
+
       }
       response.done = true
       res.json(response)

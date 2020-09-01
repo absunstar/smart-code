@@ -20,7 +20,17 @@ module.exports = function init(site) {
     })
   })
 
+
+  let item_transaction_sum = []
+  let item_transaction_sum_busy = false
+
   site.on('item_transaction + items', itm => {
+    item_transaction_sum.push(itm)
+  })
+
+  function item_transaction_sum_action(itm) {
+    item_transaction_sum_busy = true
+
 
     if (itm && itm.store && itm.unit) {
       $item_transaction.findMany({ sort: { id: -1 }, where: { 'barcode': itm.barcode, name: itm.name, 'branch.code': itm.branch.code, 'company.id': itm.company.id, 'store.id': itm.store.id, 'unit.id': itm.unit.id } }, (err, docs) => {
@@ -30,17 +40,17 @@ module.exports = function init(site) {
         // delete itm.type
         // delete itm.units_list
 
-        if (itm.current_status == 'damaged') {
-          $item_transaction.update(itm)
-        }
+        // if (itm.current_status == 'damaged') {
+        //   $item_transaction.update(itm)
+        // }
 
-        if (itm.current_status == 'debt') {
-          $item_transaction.update(itm)
-        }
+        // if (itm.current_status == 'debt') {
+        //   $item_transaction.update(itm)
+        // }
 
-        if (itm.current_status == 'transferred') {
-          $item_transaction.update(itm)
-        }
+        // if (itm.current_status == 'transferred') {
+        //   $item_transaction.update(itm)
+        // }
 
         if (docs && docs.length > 0) {
           itm.last_count = docs[0].current_count
@@ -48,7 +58,9 @@ module.exports = function init(site) {
           // itm.last_price = docs[0].price
           itm.count = itm.count
           itm.current_status = itm.current_status
-          $item_transaction.add(itm)
+          $item_transaction.add(itm, () => {
+            item_transaction_sum_busy = false
+          });
 
         } else {
 
@@ -58,13 +70,43 @@ module.exports = function init(site) {
           // itm.last_price = itm.price
           itm.count = itm.count
           itm.current_status = itm.current_status
-          $item_transaction.add(itm)
+          $item_transaction.add(itm, () => {
+            item_transaction_sum_busy = false
+          });
+
         }
       })
+    } else item_transaction_sum_busy = false
+  }
+
+
+  function item_transaction_sum_handle() {
+    if (!item_transaction_sum_busy && item_transaction_sum.length > 0) {
+      let itm = item_transaction_sum.shift()
+      item_transaction_sum_action(itm)
     }
-  })
+    setTimeout(() => {
+      item_transaction_sum_handle()
+    }, 100);
+
+  }
+  item_transaction_sum_handle()
+
+
+
+
+
+
+  let item_transaction_minus = []
+  let item_transaction_minus_busy = false
 
   site.on('item_transaction - items', itm => {
+    item_transaction_minus.push(itm)
+  })
+
+  function item_transaction_minus_action(itm) {
+    item_transaction_minus_busy = true
+
 
     delete itm.id
     delete itm._id
@@ -86,18 +128,41 @@ module.exports = function init(site) {
           }
           // itm.last_price = docs[0].price
           itm.count = itm.count
-          $item_transaction.add(itm)
+          $item_transaction.add(itm, () => {
+            item_transaction_minus_busy = false
+          });
         } else {
 
           itm.last_count = itm.current_count || 0
           itm.current_count = itm.last_count - itm.count
           itm.count = itm.count
           // itm.last_price = itm.price
-          $item_transaction.add(itm)
+          $item_transaction.add(itm, () => {
+            item_transaction_minus_busy = false
+          });
         }
       })
+    } else item_transaction_minus_busy = false
+
+  }
+
+
+  function item_transaction_minus_handle() {
+    if (!item_transaction_minus_busy && item_transaction_minus.length > 0) {
+      let itm = item_transaction_minus.shift()
+      item_transaction_minus_action(itm)
     }
-  })
+    setTimeout(() => {
+      item_transaction_minus_handle()
+    }, 100);
+
+  }
+  item_transaction_minus_handle()
+
+
+
+
+
 
   site.post({
     name: '/api/item_transaction/transaction_type/all',

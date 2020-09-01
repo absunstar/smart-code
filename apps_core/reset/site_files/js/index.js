@@ -107,6 +107,50 @@ app.controller("reset", function ($scope, $http, $timeout) {
       }
     )
   };
+  $scope.postStoreOut = function () {
+    $scope.error = '';
+    $http({
+      method: "POST",
+      url: "/api/stores_out/post_all"
+    }).then(
+      function (response) {
+        if (response.data.done) { }
+      },
+      function (err) {
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.postStoreIn = function () {
+    $scope.error = '';
+    $http({
+      method: "POST",
+      url: "/api/stores_in/post_all"
+    }).then(
+      function (response) {
+        if (response.data.done) { }
+      },
+      function (err) {
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.postStoreTransfer = function () {
+    $scope.error = '';
+    $http({
+      method: "POST",
+      url: "/api/transfer_branch/confirm_all"
+    }).then(
+      function (response) {
+        if (response.data.done) { }
+      },
+      function (err) {
+        $scope.error = err;
+      }
+    )
+  };
 
   $scope.unPostAssemble = function () {
     $scope.error = '';

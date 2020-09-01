@@ -30,6 +30,21 @@
         "ar": "فك ترحيل المبيعات"
     },
     {
+        "name": "reset_post_stores_out",
+        "en": "Post Stores Sales",
+        "ar": "ترحيل المبيعات"
+    },
+    {
+        "name": "reset_post_stores_in",
+        "en": "Post Stores Purchase",
+        "ar": "ترحيل المشتريات"
+    }, 
+    {
+        "name": "reset_post_stores_transfer",
+        "en": "Confirm Stores Transfer",
+        "ar": "إعتماد التحويلات المخزنية"
+    }, 
+    {
         "name": "reset_unpost_assemble",
         "en": "Un Post Assemble",
         "ar": "فك ترحيل التجميع"

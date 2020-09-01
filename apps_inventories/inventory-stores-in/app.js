@@ -921,6 +921,101 @@ module.exports = function init(site) {
     })
   })
 
+
+
+  site.post("/api/stores_in/post_all", (req, res) => {
+    let response = {}
+    response.done = false
+    if (!req.session.user) {
+      response.error = 'Please Login First'
+      res.json(response)
+      return
+    }
+
+    $stores_in.findMany({
+      select: req.body.select || {},
+      where: { 'company.id': site.get_company(req).id },
+    }, (err, docs) => {
+
+      if (!err) {
+
+        docs.forEach(stores_in_doc => {
+          stores_in_doc.posting = true
+
+          if (stores_in_doc._id) {
+            $stores_in.edit({
+              where: {
+                _id: stores_in_doc._id
+              },
+              set: stores_in_doc,
+              $req: req,
+              $res: res
+            }, (err, result) => {
+              if (!err) {
+                response.done = true
+                response.doc = result.doc
+
+                result.doc.items.forEach((_itm, i) => {
+                  _itm.store = result.doc.store
+                  _itm.company = result.doc.company
+                  _itm.branch = result.doc.branch
+                  _itm.source_type = result.doc.type
+                  _itm.store_in = true
+                  _itm.number = result.doc.number
+                  _itm.vendor = result.doc.vendor
+                  _itm.date = result.doc.date
+                  _itm.shift = {
+                    id: result.doc.shift.id,
+                    code: result.doc.shift.code,
+                    name: result.doc.shift.name
+                  }
+
+                  _itm.current_status = 'storein'
+
+                  if (result.doc.type.id == 4) {
+                    _itm.set_average = 'minus_average'
+                    _itm.type = 'minus'
+                    _itm.count = (-Math.abs(_itm.count))
+                    _itm.transaction_type = 'in'
+                    site.call('item_transaction + items', Object.assign({}, _itm))
+                  } else {
+                    if (result.doc.type.id == 1)
+                      _itm.set_average = 'sum_average'
+                    _itm.type = 'sum'
+                    _itm.transaction_type = 'in'
+                    site.call('item_transaction + items', Object.assign({}, _itm))
+                  }
+
+                  _itm.count = Math.abs(_itm.count) // amr
+
+                  site.call('[transfer_branch][stores_items][add_balance]', _itm)
+
+                })
+
+                if (result.doc.type && result.doc.type.id == 4) {
+                  if (!result.doc.posting)
+                    result.doc.return = true
+                  site.returnStoresIn(result.doc, res => { })
+                }
+
+              } else {
+                response.error = err.message
+              }
+              res.json(response)
+            })
+          } else {
+            res.json(response)
+          }
+
+        });
+
+      }
+      response.done = true
+      res.json(response)
+    })
+  })
+
+
   //  site.getStoresIn = function (req, callback) {
   //   callback = callback || {};
 
