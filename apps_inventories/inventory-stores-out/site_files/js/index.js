@@ -163,12 +163,14 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
 
     $scope.get_open_shift((shift) => {
       if (shift) {
+        $scope.shift = shift;
         $scope.error = '';
         $scope.item = {}
         $scope.edit_price = false;
+
         $scope.store_out = {
           image_url: '/images/store_out.png',
-          shift: $scope.shift,
+          shift: shift,
           items: [],
           invoice: false,
           discountes: [],
@@ -207,10 +209,13 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
             $scope.store_out.currency = $scope.defaultSettings.accounting.currency;
             if ($scope.defaultSettings.accounting.payment_method) {
               $scope.store_out.payment_method = $scope.defaultSettings.accounting.payment_method;
-              $scope.loadSafes($scope.store_out.payment_method, $scope.store_out.currency);
-              if ($scope.store_out.payment_method.id == 1)
-                $scope.store_out.safe = $scope.defaultSettings.accounting.safe_box;
-              else $scope.store_out.safe = $scope.defaultSettings.accounting.safe_bank;
+              $scope.loadSafes($scope.store_out.payment_method, $scope.store_out.currency , ()=>{
+                if ($scope.store_out.payment_method.id == 1){
+                  $scope.store_out.safe = $scope.defaultSettings.accounting.safe_box;
+                }else {
+                $scope.store_out.safe = $scope.defaultSettings.accounting.safe_bank;
+                }
+              });
             }
           }
         }
@@ -1155,7 +1160,8 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
     }
   };
 
-  $scope.loadSafes = function (method, currency) {
+  $scope.loadSafes = function (method, currency , callback) {
+    callback = callback || function(){};
     $scope.error = '';
     $scope.busy = true;
 
@@ -1183,8 +1189,10 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done) $scope.safesList = response.data.list;
-
+        if (response.data.done){
+          $scope.safesList = response.data.list;
+        } 
+        callback($scope.safesList)
       },
       function (err) {
         $scope.busy = false;
@@ -1431,7 +1439,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
 
   $scope.printAccountInvoive = function () {
     return;
-    
+
     $scope.error = '';
     if ($scope.busy) return;
     $scope.busy = true;
