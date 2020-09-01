@@ -10,15 +10,15 @@
     <div id="main-layout" class="container">
       <div class="row center">
         <div class="row" ng-controller="db">
-          <table class="table loaded" id="t1">
+          <table class="table hover loaded" id="t1">
             <tr>
-              <th>Collection Names</th>
+              <th>Collections Names</th>
 
               <th>Actions</th>
             </tr>
             <tr ng-repeat="collection in collection_list">
               <td>
-                <p class="center"> {{collection.en}} </p>
+                <p class="center"> {{collection.##session.lang##}} </p>
               </td>
               <td class="center">
                 <form class="form text-center pointer">

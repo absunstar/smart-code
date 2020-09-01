@@ -2,9 +2,7 @@ module.exports = function init(site) {
 
   const $stores_dismantle = site.connectCollection("stores_dismantle")
 
-
   site.on('[stores_items][item_name][change]', objectDismantle => {
-
 
     let barcode = objectDismantle.sizes_list.map(_obj => _obj.barcode)
 

@@ -1,6 +1,5 @@
 module.exports = function init(site) {
 
-
   const $amounts_out = site.connectCollection("amounts_out")
 
   site.get({
