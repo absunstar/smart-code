@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" data-ng-app="myApp">
+  <head x-import="head.html"> </head>
+
+  <body class="##session.lang##">
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar"></nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom"></nav>
+
+    <div id="main-layout" class="container">
+      <div class="row center">
+        <div class="row" ng-controller="db">
+          <table class="table loaded" id="t1">
+            <tr>
+              <th>Collection Names</th>
+
+              <th>Actions</th>
+            </tr>
+            <tr ng-repeat="collection in collection_list">
+              <td>
+                <p class="center"> {{collection.en}} </p>
+              </td>
+              <td class="center">
+                <form class="form text-center pointer">
+                  <input id="input_{{collection.name}}" class="hidden" type="file" name="collectionFile" ng-model="collection.path"  />
+                  <a class="btn add" ng-click="do_click(collection)"> Import </a>
+                  <p>{{uploadStatus}}</p>
+                </form>
+
+                <i-button type="delete" label="export" ng-click="export(collection)"></i-button>
+              </td>
+            </tr>
+          </table>
+          
+        </div>
+      </div>
+    </div>
+
+    <div x-import="scripts.html"></div>
+
+    <script x-import="db/index.js"></script>
+  </body>
+</html>

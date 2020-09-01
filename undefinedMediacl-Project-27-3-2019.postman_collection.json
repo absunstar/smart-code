@@ -1,0 +1,3571 @@
+{
+	"info": {
+		"_postman_id": "5badc98a-3bac-47fa-94a7-90e94f68fc07",
+		"name": "Mediacl Project copy copy",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Register",
+			"item": [
+				{
+					"name": "new hospital",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"hospital_name\" : \"hospital1\",\n\t\"hospital_mobile\" : \"123\",\n\t\"hospital_user_name\" : \"h1\",\n\t\"hospital_user_name\" : \"h1\"\n}"
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/api/register/add",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"register",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "new patient",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"patient_name\" : \"hospital1\",\n\t\"patient_mobile\" : \"123\",\n\t\"patient_user_name\" : \"h1\",\n\t\"patient_user_name\" : \"h1\"\n}"
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/api/register/add",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"register",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "new pharmacy",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "pharmacy_name",
+									"value": "pharmacy 1",
+									"type": "text"
+								},
+								{
+									"key": "pharmacy_mobile",
+									"value": "123",
+									"type": "text"
+								},
+								{
+									"key": "pharmacy_user_name",
+									"value": "ph1",
+									"type": "text"
+								},
+								{
+									"key": "pharmacy_password",
+									"value": "ph1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/api/register/add",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"register",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "new clinic",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "clinic_name",
+									"value": "clinic1",
+									"type": "text"
+								},
+								{
+									"key": "clinic_mobile",
+									"value": "123",
+									"type": "text"
+								},
+								{
+									"key": "clinic_user_name",
+									"value": "c1",
+									"type": "text"
+								},
+								{
+									"key": "clinic_password",
+									"value": "c1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/api/register/add",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"register",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "new scan center",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "scan_center_name",
+									"value": "scan center 1",
+									"type": "text"
+								},
+								{
+									"key": "scan_center_mobile",
+									"value": "123",
+									"type": "text"
+								},
+								{
+									"key": "scan_center_user_name",
+									"value": "sc1",
+									"type": "text"
+								},
+								{
+									"key": "scan_center_password",
+									"value": "sc1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/api/register/add",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"register",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "new analyzes center",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "analyses_center_name",
+									"value": "analyses center 1",
+									"type": "text"
+								},
+								{
+									"key": "analyses_center_mobile",
+									"value": "123",
+									"type": "text"
+								},
+								{
+									"key": "analyses_center_user_name",
+									"value": "ac1",
+									"type": "text"
+								},
+								{
+									"key": "analyses_center_password",
+									"value": "ac1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/api/register/add",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"register",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "new insurance company",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "insurance_company_name",
+									"value": "insurance company 1",
+									"type": "text"
+								},
+								{
+									"key": "insurance_company_mobile",
+									"value": "123",
+									"type": "text"
+								},
+								{
+									"key": "insurance_company_user_name",
+									"value": "ic1",
+									"type": "text"
+								},
+								{
+									"key": "insurance_company_password",
+									"value": "ic1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/api/register/add",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"register",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "new doctor",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "doctor_name",
+									"value": "doctor 1",
+									"type": "text"
+								},
+								{
+									"key": "doctor_mobile",
+									"value": "123",
+									"type": "text"
+								},
+								{
+									"key": "doctor_user_name",
+									"value": "d1",
+									"type": "text"
+								},
+								{
+									"key": "doctor_password",
+									"value": "d1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/api/register/add",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"register",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "new nurse",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "nurse_name",
+									"value": "nurse 1",
+									"type": "text"
+								},
+								{
+									"key": "nurse_mobile",
+									"value": "123",
+									"type": "text"
+								},
+								{
+									"key": "nurse_user_name",
+									"value": "n1",
+									"type": "text"
+								},
+								{
+									"key": "nurse_password",
+									"value": "n1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/api/register/add",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"register",
+								"add"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "patient",
+			"item": [
+				{
+					"name": "add patient",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\" : \"Patient 1\",\n\t\"nathional_id\" : 123,\n\t\"active\" : true,\n\t\"insurance\" : {\"id\" : 1  , \"name\" : \"incurance1\" },\n\t\"birth_date\" : \"1910-11-10 22:00:00.000Z\",\n\t\"weight\" : 70,\n\t\"tall\" : 160,\n\t\"indentfy\" : {\"id\":1 , \"name\" : \"male\"},\n\t\"blood_type\" : {\"name\": \"A+\"},\n\t\"job\" : \"Accounting\",\n\t\"gov\" : {\"id\" : 1 , \"name\" : \"Cairo\"},\n\t\"city\" : {\"id\" : 1 , \"name\" : \"Nasr City\"},\n\t\"address\" : \"Abbas Elakad\",\n\t\"phone\" : \"02234346\",\n\t\"mobile\" : \"0116464646\",\n\t\"whatsapp\" : \"011115111\",\n\t\"email\" : \"patient@gmail.com\",\n\t\"notes\" : \"Patient Notes\",\n\t\"image_url\" : \"/images/Patients.png\",\n\t\"username\" : \"p1\",\n\t\"password\" : \"p1\"\n}"
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/api/patients/add",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"patients",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update patient",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\" : 10,\n\t\"name\" : \"patient2\"\n}"
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/api/patients/update",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"patients",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "view patient",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\" : 10\n}"
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/api/patients/view",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"patients",
+								"view"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete patient",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\" : 10\n}"
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/api/patients/delete",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"patients",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "all patient",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"search\" : \"z\"\n}"
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/api/patients/all",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"patients",
+								"all"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "pharmacy",
+			"item": [
+				{
+					"name": "add pharmacy",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\" : \"Pharmacy 1\",\n\t\"active\" : true,\n\t\"gov\" : {\"id\" : 1 , \"name\" : \"Cairo\"},\n\t\"city\" : {\"id\" : 1 , \"name\" : \"Nasr City\"},\n\t\"address\" : \"Abbas Elakad\",\n\t\"phone\" : \"02234346\",\n\t\"fax\" : \"2266\",\n\t\"hotline\" : \"6622\",\n\t\"mobile\" : \"0116464646\",\n\t\"website\" : \"www.pharmacy1.com\",\n\t\"whatsapp\" : \"011115111\",\n\t\"email\" : \"patient@gmail.com\",\n\t\"notes\" : \"Patient Notes\",\n\t\"image_url\" : \"/images/Patients.png\",\n\t\"insurance_company_list\" : [{\"insurance_company\": { \"id\":1 , \"name\": \"incurance1\"} }],\t\n\t\"username\" : \"p1\",\n\t\"password\" : \"p1\"\n}"
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/api/pharmacies/add",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"pharmacies",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update pharmacy",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": 15,\n\t\"name\" : \"pharmacy\"\n}"
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/api/pharmacies/update",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"pharmacies",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "view pharmacy",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": 15\n}"
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/api/pharmacies/view",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"pharmacies",
+								"view"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete pharmacy",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": 15\n}"
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/pharmacies/delete",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"pharmacies",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "all pharmacy",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"where\" :{\n\t\"name\" : \"s\"\n}\n}"
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/api/pharmacies/all",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"pharmacies",
+								"all"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "hospital",
+			"item": [
+				{
+					"name": "add hospital",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\" : \"hospital 1\",\n\t\"active\" : true,\n\t\"gov\" : {\"id\" : 1 , \"name\" : \"Cairo\"},\n\t\"city\" : {\"id\" : 1 , \"name\" : \"Nasr City\"},\n\t\"address\" : \"Abbas Elakad\",\n\t\"hotline\" : \"6622\"\n\t\"phone\" : \"02234346\",\n\t\"mobile\" : \"0116464646\",\n\t\"fax\" : \"2266\",\n\t\"website\" : \"www.pharmacy1.com\",\n\t\"facebook\" : \"hospital1@facebook.com\",\n\t\"twitter\" : \"hospital1@twitter.com\",\n\t\"whatsapp\" : \"011115111\",\n\t\"email\" : \"patient@gmail.com\",\n\t\"notes\" : \"Patient Notes\",\n\t\"image_url\" : \"/images/Patients.png\",\n\t\"insurance_company_list\" : [{\"insurance_company\":{ \"id\":1 , \"name\": \"incurance1\" } }],\n\t\"doctor_list\" : [{\"doctor\":{\"id\": 1 , \"name\": \"doc1\" , \"specialty\":{\"id\": 1 , \"name\":\"spicialty1\"} } }],\n\t\"nurse_list\" : [{\"nurse\":{\"id\": 1 , \"name\": \"doc1\" , \"specialty\":{\"id\": 1 , \"name\":\"spicialty1\"} } }],\n\t\"username\" : \"h1\",\n\t\"password\" : \"h1\"\n}"
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/api/hospitals/add",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"hospitals",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update hospital",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\" : 11,\n\t\"name\" : \"hospital\"\n}"
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/api/hospitals/update",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"hospitals",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "view hospital",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\" : 11\n}"
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/api/hospitals/view",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"hospitals",
+								"view"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete hospital",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\" : 11\n}"
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/api/hospitals/delete",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"hospitals",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "all hospital",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"where\" :{\n\t\"name\" : \"g\"\n\t}\n}"
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/api/hospitals/all",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"hospitals",
+								"all"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "clinic",
+			"item": [
+				{
+					"name": "add clinic",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\" : \"Clinic 1\",\n\t\"active\" : true,\n\t\"hospital\": {\"id\": 1 , \"name\" : \"Hospi1\",  \"gov\" : { \"id\" : 1 , \"name\" : \"Cairo\" },\"city\" : {\"id\" : 1 , \"name\" : \"Nasr City\"},\n\t\"address\" : \"Abbas Elakad\",\n\t\"hotline\" : \"6622\"\n\t\"phone\" : \"02234346\",\n\t\"mobile\" : \"0116464646\",\n\t\"fax\" : \"2266\",\n\t\"website\" : \"www.pharmacy1.com\",\n\t\"facebook\" : \"hospital1@facebook.com\",\n\t\"twitter\" : \"hospital1@twitter.com\",\n\t\"whatsapp\" : \"011115111\",\n\t\"email\" : \"patient@gmail.com\",\n\t\"notes\" : \"Patient Notes\",\n\t\"image_url\" : \"/images/Patients.png\",\n\t\"insurance_company_list\" : [{\"insurance_company\":{ \"id\":1 , \"name\": \"incurance1\" } }],\n\t\"doctor_list\" : [{\"doctor\": {\"id\": 1 , \"name\": \"doc1\" , \"specialty\":{\"id\": 1 , \"name\":\"spicialty1\"} },\"detection_Duration\" : 20 , \"shift\" : {\"name\" : \"shift 1\" , \"times_list\": [{ \"day\" :{ \"id\" : 1 , \"code\" : 2 ,\"name\" : \"monday\" , \"en\" : \"monday\" , \"ar\" :\"monday\"}, \"from\" :{ \"hour\" : 2 , \"minute\" : 10 } , \"to\" :{ \"hour\" : 4 , \"minute\" : 10 }] } } ],\n\t\"nurse_list\" : [{\"nurse\":{\"id\": 1 , \"name\": \"doc1\" , \"specialty\":{\"id\": 1 , \"name\":\"spicialty1\"} } }],\n\t\"username\" : \"h1\",\n\t\"password\" : \"h1\"\n}"
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/api/clinics/add",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"clinics",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update clinic",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\" : 24,\n\t\"name\" : \"Clinic\"\n}"
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/api/clinics/update",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"clinics",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "view clinic",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\" : 24\n}"
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/api/clinics/view",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"clinics",
+								"view"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete clinic",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\" : 24\n}"
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/api/clinics/delete",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"clinics",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "all clinic",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"where\" :{\n\t\"name\" : \"ak\"\n\t}\n}"
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/api/clinics/all",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"clinics",
+								"all"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "doctor",
+			"item": [
+				{
+					"name": "add doctor",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\" : \"doc 1\",\n\t\"nathional_id\" : 123,\n\t\"active\" : true,\n\t\"specialty\" : {\"id\" : 1 , \"name\" : \"spicialty1\"},\n\t\"gov\" : {\"id\" : 1 , \"name\" : \"Cairo\"},\n\t\"city\" : {\"id\" : 1 , \"name\" : \"Nasr City\"},\n\t\"address\" : \"Abbas Elakad\",\n\t\"phone\" : \"02234346\",\n\t\"mobile\" : \"0116464646\",\n\t\"whatsapp\" : \"011115111\",\n\t\"email\" : \"doc@gmail.com\",\n\t\"notes\" : \"doc Notes\",\n\t\"image_url\" : \"/images/doctors.png\",\n\t\"username\" : \"do1\",\n\t\"password\" : \"do1\"\n}"
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/api/doctors/add",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"doctors",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update doctor",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\" : 10,\n\t\"name\" : \"doc\"\n}"
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/api/doctors/update",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"doctors",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "view doctor",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\" : 10\n}"
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/api/doctors/view",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"doctors",
+								"view"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete doctor",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\" : 10\n}"
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/api/doctors/delete",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"doctors",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "all doctor",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"search\" : \"f\"}"
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/api/doctors/all",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"doctors",
+								"all"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "nurse",
+			"item": [
+				{
+					"name": "add nurse",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\" : \"nurse 1\",\n\t\"nathional_id\" : 123,\n\t\"active\" : true,\n\t\"specialty\" : {\"id\" : 1 , \"name\" : \"spicialty1\"},\n\t\"gov\" : {\"id\" : 1 , \"name\" : \"Cairo\"},\n\t\"city\" : {\"id\" : 1 , \"name\" : \"Nasr City\"},\n\t\"address\" : \"Abbas Elakad\",\n\t\"phone\" : \"02234346\",\n\t\"mobile\" : \"0116464646\",\n\t\"whatsapp\" : \"011115111\",\n\t\"email\" : \"nurse@gmail.com\",\n\t\"notes\" : \"nurse Notes\",\n\t\"image_url\" : \"/images/nursing.png\",\n\t\"username\" : \"nurse1\",\n\t\"password\" : \"nurse1\"\n}"
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/api/nursing/add",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"nursing",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update nurse",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": 5,\n\t\"name\" : \"nurse\"\n}"
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/api/nursing/update",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"nursing",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "view nurse",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": 5\n}"
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/api/nursing/view",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"nursing",
+								"view"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete nurse",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": 5\n}"
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/api/nursing/delete",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"nursing",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "all nurse",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\"search\" : \"nur\"\n"
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/api/nursing/all",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"nursing",
+								"all"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "scan center",
+			"item": [
+				{
+					"name": "add scan center",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\" : \"Scan Center 1\",\n\t\"active\" : true,\n\t\"gov\" : {\"id\" : 1 , \"name\" : \"Cairo\"},\n\t\"city\" : {\"id\" : 1 , \"name\" : \"Nasr City\"},\n\t\"address\" : \"Abbas Elakad\",\n\t\"hotline\" : \"123\",\n\t\"phone\" : \"02234346\",\n\t\"mobile\" : \"0116464646\",\n\t\"fax\" : \"123\",\n\t\"whatsapp\" : \"011115111\",\n\t\"website\" : \"www.scancenter1.com\",\n\t\"email\" : \"scan1@gmail.com\",\n\t\"notes\" : \"scan1 Notes\",\n\t\"scan_list\" : [{\"active\" : true, \"scan\" : {\"id\" : 1 , \"name\" : \"XXX\" } }],\n\t\"image_url\" : \"/images/scan_center.png\",\n\t\"username\" : \"scan1\",\n\t\"password\" : \"scan1\"\n}"
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/api/scan_centers/add",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"scan_centers",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update scan center",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\" : 6,\n\t\"name\" : \"Scan Center\"\n}"
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/api/scan_centers/update",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"scan_centers",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "view scan center",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\" : 6\n}"
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/api/scan_centers/view",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"scan_centers",
+								"view"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete scan center",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\" : 6\n}"
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/api/scan_centers/delete",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"scan_centers",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "all scan center",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"where\" : {\n\t\t\"name\" : \"bv\"\n\t}\n}"
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/api/scan_centers/all",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"scan_centers",
+								"all"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "analyses center",
+			"item": [
+				{
+					"name": "add analyses center",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\" : \"Analyses Center 1\",\n\t\"active\" : true,\n\t\"gov\" : {\"id\" : 1 , \"name\" : \"Cairo\"},\n\t\"city\" : {\"id\" : 1 , \"name\" : \"Nasr City\"},\n\t\"address\" : \"Abbas Elakad\",\n\t\"hotline\" : \"123\",\n\t\"phone\" : \"02234346\",\n\t\"mobile\" : \"0116464646\",\n\t\"fax\" : \"123\",\n\t\"whatsapp\" : \"011115111\",\n\t\"website\" : \"www.AnalysesCenter1.com\",\n\t\"email\" : \"analyses@gmail.com\",\n\t\"notes\" : \"analyses Notes\",\n\t\"analyses_list\" : [{\"active\" : true, \"analyses\" : {\"id\" : 1 , \"name\" : \"sugar\" } }],\n\t\"image_url\" : \"/images/analyses_center.png\",\n\t\"username\" : \"analyses1\",\n\t\"password\" : \"analyses1\"\n}"
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/api/analyses_centers/add",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"analyses_centers",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update analyses center",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\" : 2,\n\t\"name\" : \"Analyses Center\"\n}"
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/api/analyses_centers/update",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"analyses_centers",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "view analyses center",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\" : 2\n}"
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/api/analyses_centers/view",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"analyses_centers",
+								"view"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete analyses center",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\" : 2\n}"
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/api/analyses_centers/delete",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"analyses_centers",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "all analyses center",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"where\" : \n\t{\n\t\"name\" : \"a\"\n\t\t\n\t}\n}"
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/api/analyses_centers/all",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"analyses_centers",
+								"all"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "medical insurance company",
+			"item": [
+				{
+					"name": "add medical insurance company",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\" : \"Incurance 1\",\n\t\"active\" : true,\n\t\"gov\" : {\"id\" : 1 , \"name\" : \"Cairo\"},\n\t\"city\" : {\"id\" : 1 , \"name\" : \"Nasr City\"},\n\t\"address\" : \"Abbas Elakad\",\n\t\"hotline\" : \"6622\",\n\t\"phone\" : \"02234346\",\n\t\"mobile\" : \"0116464646\",\n\t\"fax\" : \"2266\",\n\t\"website\" : \"www.Insurance1.com\",\n\t\"facebook\" : \"insurance1@facebook.com\",\n\t\"twitter\" : \"insurance1@twitter.com\",\n\t\"email\" : \"insurance1@gmail.com\",\n\t\"notes\" : \"Incurance1 Notes\",\n\t\"image_url\" : \"/images/insurance.png\",\n\t\"insurance_slides_list\" : [{\"name\" : \"slide1\" , \"value\" : 1 , \"customer_will_pay\" : 1 , \"per_year\" : true , \"need_approve\" : true}],\n\t\"black_analyse_list\" : [{\"analyse\" : {\"id\" : 1 , \"name\" : \"Sugar\"} }],\n\t\"black_scan_list\" : [{\"scan\" : {\"id\" : 2 , \"name\" : \"XX\"} }],\n\t\"black_drug_list\" : [{\"drug\" : {\"id\" : 3 , \"name\" : \"Ansolyne\"} }],\n\t\"black_operation_list\" : [{\"operation\" : {\"id\" : 4 , \"name\" : \"Operat\"} }],\n\t\"approve_analyse_list\" : [{\"analyse\" : {\"id\" : 5 , \"name\" : \"Sug\"} }],\n\t\"approve_scan_list\" : [{\"scan\" : {\"id\" : 6 , \"name\" : \"Xray\"} }],\n\t\"approve_drug_list\" : [{\"drug\" : {\"id\" : 7 , \"name\" : \"Ansu\"} }],\n\t\"approve_operation_list\" : [{\"operation\" : {\"id\" : 7 , \"name\" : \"Ope\"} }],\n\t\"username\" : \"Insurance1\",\n\t\"password\" : \"Insurance1\"\n}"
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/api/medical_insurance_companies/add",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"medical_insurance_companies",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update medical insurance company",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\" : 12 ,\n\t\"name\" : \"Insurance\"\n}"
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/api/medical_insurance_companies/update",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"medical_insurance_companies",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "view medical insurance company",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\" : 12\n}"
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/api/medical_insurance_companies/view",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"medical_insurance_companies",
+								"view"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete medical insurance company",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\" : 12\n}"
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/api/medical_insurance_companies/delete",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"medical_insurance_companies",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "all medical insurance company",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"where\" : \n\t{\n\t\"name\" : \"uu\"\n\t\t\n\t}\n}"
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/api/medical_insurance_companies/all",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"medical_insurance_companies",
+								"all"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ticket",
+			"item": [
+				{
+					"name": "add ticket",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"status\" : {\"id\" : 1 , \"name_en\" : \"projects\"},\n\t\"drugs_list\" : [{\"id\" : 1  , \"name\" : \"d1\" },{\"id\" : 2  , \"name\" : \"d2\" }],\n\t\"scans_list\" : [{\"id\" : 3  , \"name\" : \"s1\" },{\"id\" : 2  , \"name\" : \"s2\" }],\n\t\"analyses_list\" : [{\"id\" : 4  , \"name\" : \"a1\" },{\"id\" : 2  , \"name\" : \"a2\" }],\n\t\"operation_list\" : [{\"id\" : 5  , \"name\" : \"o1\" },{\"id\" : 2  , \"name\" : \"o2\" }],\n\t\"selected_hospital\" : {\"id\" : 6  , \"name\" : \"h1\" },\n\t\"selected_specialty\" : {\"id\" : 7  , \"name\" : \"s1\" },\n\t\"selected_doctor\" : {\"id\" : 8  , \"name\" : \"d1\" },\n\t\"selected_shift\" : {\"name\" : \"sh1\" },\n\t\"selected_time\" : { day :{\"id\" : 1  , \"en\" : \"Tuesday\" }, from :{\"id\" : 2  , \"en\" : \"2:30 pm\" }, to :{\"id\" : 3  , \"en\" : \"4:30 pm\" }, },\n\t\"diagnosis\" : {\"id\": 1 , \"name_en\" : \"Sell Order\"},\n\t\"code\" : \"2222222\",\n\t\"notes\" : \"Notes\",\n\t\"notes_before\" : \"Notes Before\",\n\t\"patient\" : {\n\t    \"name\" : \"Patient 1\",\n       \t\"nathional_id\" : 123,\n\t    \"active\" : true,\n    \t\"insurance\" : {\"id\" : 1  , \"name\" : \"incurance1\" },\n\t    \"birth_date\" : \"1910-11-10 22:00:00.000Z\",\n\t    \"weight\" : 70,\n\t    \"tall\" : 160,\n\t    \"indentfy\" : {\"id\":1 , \"name\" : \"male\"},\n\t    \"blood_type\" : {\"name\": \"A+\"},\n\t    \"job\" : \"Accounting\",\n\t    \"gov\" : {\"id\" : 1 , \"name\" : \"Cairo\"},\n\t    \"city\" : {\"id\" : 1 , \"name\" : \"Nasr City\"},\n\t    \"address\" : \"Abbas Elakad\",\n\t    \"phone\" : \"02234346\",\n\t    \"mobile\" : \"0116464646\",\n\t    \"whatsapp\" : \"011115111\",\n\t    \"email\" : \"patient@gmail.com\",\n\t    \"notes\" : \"Patient Notes\",\n    },\n}"
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/api/tickets/add",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"tickets",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update ticket",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\" : 132 ,\n\t\"notes\" : \"Note1\"\n}"
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/api/tickets/update",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"tickets",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "view ticket",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\" : 60\n}"
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/api/tickets/view",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"tickets",
+								"view"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete ticket",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/javascript",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\" : 60\n}"
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/api/tickets/delete",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"tickets",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "all ticket",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"where\" : \n\t{\n\t\"code\" : \"18L300026\"\n\t\t\n\t}\n}"
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/api/tickets/all",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"tickets",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add all ticket",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"status\": {\r\n        \"id\": 5,\r\n        \"name\": \"dont_book\",\r\n        \"en\": \"dont_book\",\r\n        \"ar\": \"dont_book\"\r\n    },\r\n    \"drugs_list\": [],\r\n    \"scans_list\": [],\r\n    \"analyses_list\": [],\r\n    \"operation_list\": [],\r\n    \"notes\": \"Notes\",\r\n    \"notes_before\": \"Notes Before\",\r\n    \"clinic_ticket\": {\r\n        \"id\": 1,\r\n        \"name\": \"Clinic 1\",\r\n        \"active\": true,\r\n        \"hospital\": {\r\n            \"id\": 1,\r\n            \"name\": \"Hospi1\",\r\n            \"gov\": {\r\n                \"id\": 1,\r\n                \"name\": \"Cairo\"\r\n            },\r\n            \"city\": {\r\n                \"id\": 1,\r\n                \"name\": \"Nasr City\"\r\n            },\r\n            \"address\": \"Abbas Elakad\",\r\n            \"hotline\": \"6622\",\r\n            \"phone\": \"02234346\",\r\n            \"mobile\": \"0116464646\",\r\n            \"fax\": \"2266\",\r\n            \"website\": \"www.pharmacy1.com\",\r\n            \"facebook\": \"hospital1@facebook.com\",\r\n            \"twitter\": \"hospital1@twitter.com\",\r\n            \"whatsapp\": \"011115111\",\r\n            \"email\": \"patient@gmail.com\",\r\n            \"notes\": \"Patient Notes\",\r\n            \"image_url\": \"/images/Patients.png\",\r\n            \"insurance_company_list\": [\r\n                {\r\n                    \"insurance_company\": {\r\n                        \"id\": 1,\r\n                        \"name\": \"incurance1\"\r\n                    }\r\n                }\r\n            ],\r\n            \"doctor_list\": [\r\n                {\r\n                    \"doctor\": {\r\n                        \"id\": 1,\r\n                        \"name\": \"doc1\",\r\n                        \"specialty\": {\r\n                            \"id\": 1,\r\n                            \"name\": \"spicialty1\"\r\n                        }\r\n                    },\r\n                    \"detection_Duration\": 20,\r\n                    \"shift\": {\r\n                        \"name\": \"shift 1\",\r\n                        \"times_list\": [\r\n                            {\r\n                                \"day\": {\r\n                                    \"id\": 1,\r\n                                    \"code\": 2,\r\n                                    \"name\": \"monday\",\r\n                                    \"en\": \"monday\",\r\n                                    \"ar\": \"monday\"\r\n                                },\r\n                                \"from\": {\r\n                                    \"hour\": 2,\r\n                                    \"minute\": 10\r\n                                },\r\n                                \"to\": {\r\n                                    \"hour\": 4,\r\n                                    \"minute\": 10\r\n                                }\r\n                            }\r\n                        ]\r\n                    },\r\n                    \"nurse_list\": [\r\n                        {\r\n                            \"nurse\": {\r\n                                \"id\": 1,\r\n                                \"name\": \"doc1\",\r\n                                \"specialty\": {\r\n                                    \"id\": 1,\r\n                                    \"name\": \"spicialty1\"\r\n                                }\r\n                            }\r\n                        }\r\n                    ],\r\n                    \"username\": \"h1\",\r\n                    \"password\": \"h1\"\r\n                }\r\n            ],\r\n            \"period_ticket\": 2\r\n        }\r\n    },\r\n    \"doctor_ticket\": {\r\n        \"doctor\": {\r\n            \"id\": 1,\r\n            \"name\": \"doc1\",\r\n            \"specialty\": {\r\n                \"id\": 1,\r\n                \"name\": \"spicialty1\"\r\n            }\r\n        },\r\n        \"detection_Duration\": 20,\r\n        \"shift\": {\r\n            \"name\": \"shift 1\",\r\n            \"times_list\": [\r\n                {\r\n                    \"day\": {\r\n                        \"id\": 1,\r\n                        \"code\": 2,\r\n                        \"name\": \"monday\",\r\n                        \"en\": \"monday\",\r\n                        \"ar\": \"monday\"\r\n                    },\r\n                    \"from\": {\r\n                        \"hour\": 2,\r\n                        \"minute\": 10\r\n                    },\r\n                    \"to\": {\r\n                        \"hour\": 4,\r\n                        \"minute\": 10\r\n                    }\r\n                }\r\n            ]\r\n        }\r\n    },\r\n    \"period_ticket\": 3,\r\n    \"selected_time_slot\": {\r\n        \"day\": {\r\n            \"id\": 1,\r\n            \"code\": 2,\r\n            \"name\": \"monday\",\r\n            \"en\": \"monday\",\r\n            \"ar\": \"monday\"\r\n        },\r\n        \"from\": {\r\n            \"hour\": 2,\r\n            \"minute\": 10\r\n        },\r\n        \"to\": {\r\n            \"hour\": 4,\r\n            \"minute\": 10\r\n        }\r\n    },\r\n    \"date\" : \"2019-06-10 21:55:47.700Z\"\r\n}"
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/api/tickets/ticket_add",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"tickets",
+								"ticket_add"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "scan",
+			"item": [
+				{
+					"name": "add scan",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\" : \"Scan1\",\n\t\"active\" : true,\n\t\"price\" : 20,\n\t\"delivery_time\" : 30,\n\t\"time_period\" : 10,\n\t\"period\" : {\"id\" : 2 , \"name_en\" :\"Hour\" }\n}"
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/api/scans/add?=",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"scans",
+								"add"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update scan",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\" : 5 ,\n\t\"name\" : \"scan0\"\n}"
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/api/scans/update",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"scans",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "view scan",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\" : 5\n}"
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/api/scans/view",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"scans",
+								"view"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete scan",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\" : 5\n}"
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/api/scans/delete",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"scans",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "all scan",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"where\" : {\n\t\t\"name\" : \"tyuty\"\n\t}\n}"
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/api/scans/all",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"scans",
+								"all"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "analyses",
+			"item": [
+				{
+					"name": "add analyses",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\" : \"Analyses1\",\n\t\"active\" : true,\n\t\"price\" : 20,\n\t\"delivery_time\" : 30,\n\t\"time_period\" : 10,\n\t\"period\" : {\"id\" : 2 , \"en\" :\"Hour\" }\n}"
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/api/analyses/add?=",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"analyses",
+								"add"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update analyses",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\" : 6 ,\n\t\"name\" : \"Analyses0\"\n}"
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/api/analyses/update",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"analyses",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "view analyses",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\" : 6\n}"
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/api/analyses/view",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"analyses",
+								"view"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete analyses",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\" : 6\n}"
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/api/analyses/delete",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"analyses",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "all analyses",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"where\" : {\n\t\t\"name\" : \"11\"\n\t}\n}"
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/api/analyses/all",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"analyses",
+								"all"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "operation",
+			"item": [
+				{
+					"name": "add operation",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\" : \"operation 1\",\n\t\"active\" : true,\n\t\"price\" : 200\n\n\n}"
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/api/operation/add?=",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"operation",
+								"add"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update operation",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": 1,\n\t\"name\": \"operation\"\n}"
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/api/operation/update",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"operation",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "view operation",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\" : 1\n}"
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/api/operation/view",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"operation",
+								"view"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete operation",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\" : 1\n}"
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/api/operation/delete",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"operation",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "all operation",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"where\" : {\n\t\t\"name\" : \"operation\"\n\t}\n}"
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/api/operation/all",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"operation",
+								"all"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "drugs",
+			"item": [
+				{
+					"name": "add drugs",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\" : \"drugs 1\",\n\t\"active\" : true,\n\t\"price\" : 200\n\n\n}"
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/api/drugs/add?=",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"drugs",
+								"add"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update drugs",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\" : 2,\n\t\"name\" : \"drugs\"\n}"
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/api/drugs/update",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"drugs",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "view drugs",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\" : 2\n}"
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/api/drugs/view",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"drugs",
+								"view"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete drugs",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\" : 2\n}"
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/api/drugs/delete",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"drugs",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "all drugs",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\" : \"dru\"\n}"
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/api/drugs/all",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"drugs",
+								"all"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "medical specialty",
+			"item": [
+				{
+					"name": "add medical specialty",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\n\t\"name\" : \"specialties 1\",\n\t\"active\" : true\n\n}"
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/api/medical_specialties/add",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"medical_specialties",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update medical specialty",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\" : 9,\n\t\"name\" : \"specialties\"\n}"
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/api/medical_specialties/update",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"medical_specialties",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "view medical specialty",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\" : 9\n}"
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/api/medical_specialties/view",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"medical_specialties",
+								"view"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete medical specialty",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\" : 9\n}"
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/api/medical_specialties/delete",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"medical_specialties",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "all medical specialty",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"where\" : \n\t{\n\t\"name\" : \"spe\"\n\t\t\n\t}\n}"
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/api/medical_specialties/all",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"medical_specialties",
+								"all"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "governorate",
+			"item": [
+				{
+					"name": "add governorate",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\" : \"gov1\"\n}"
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/api/goves/add",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"goves",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update governorate",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\" : 4,\n\t\"name\" : \"gov\"\n}"
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/api/goves/update",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"goves",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "view governorate",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\" : 4\n}"
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/api/goves/view",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"goves",
+								"view"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete governorate",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\" : 4\n}"
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/api/goves/delete",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"goves",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "all governorate",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"where\" : \n\t{\n\t\"name\" : \"go\"\n\t\t\n\t}\n}"
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/api/goves/all",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"goves",
+								"all"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "city",
+			"item": [
+				{
+					"name": "add city",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\" : \"cities1\",\n\t\"gov\" : {\"id\" : 1 , \"name\" : \"gov\"}\n}"
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/api/cities/add",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"cities",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update city",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\" : 11,\n\t\"name\" : \" city\"\n}"
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/api/cities/update",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"cities",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "view city",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\" : 11\n}"
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/api/cities/view",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"cities",
+								"view"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete city",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\" : 11\n}"
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/api/cities/delete?=",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"cities",
+								"delete"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "all city",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"where\" : \n\t{\n\t\"name\" : \"ci\"\n\t\t\n\t}\n}"
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/api/cities/all",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"cities",
+								"all"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"item": [
+				{
+					"name": "login as any user",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\" : \"user1\",\n\t\"password\" : \"user1\"\n}"
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/api/user/login",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"user",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "logout",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://microtec1.egytag.com:30001/api/user/logout",
+							"protocol": "http",
+							"host": [
+								"microtec1",
+								"egytag",
+								"com"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"user",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
