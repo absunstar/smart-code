@@ -376,7 +376,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         $http({
           method: "POST",
           url: "/api/stores_out/add",
-          data: $scope.store_out
+          data: angular.copy($scope.store_out)
         }).then(
           function (response) {
             if (response.data.done) {
@@ -408,7 +408,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
                 };
                 $scope.addAccountInvoice(account_invoices)
               }
-              $scope.store_out = {};
+              /*$scope.store_out = {};*/
               site.hideModal('#addStoreOutModal');
               $timeout(() => {
                 document.querySelector('#clickNew').click();
