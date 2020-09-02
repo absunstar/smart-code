@@ -1,6 +1,10 @@
 app.controller("db", function ($scope, $http) {
 
     $scope.collection_list = [{
+        name: 'users_info',
+        ar: 'المستخدمين',
+        en: 'Users'
+    },{
         name: 'companies',
         ar: 'الشركات',
         en: 'Companies'
