@@ -124,8 +124,8 @@ module.exports = function init(site) {
         response.done = true;
         response.doc = doc;
 
-        if (doc.source_type.id == 1) site.call('[store_in][account_invoice][invoice]', doc.invoice_id)
-        else if (doc.source_type.id == 2) site.call('[store_out][account_invoice][invoice]', doc.invoice_id)
+        if (doc.source_type.id == 1) site.quee('[store_in][account_invoice][invoice]', doc.invoice_id)
+        else if (doc.source_type.id == 2) site.quee('[store_out][account_invoice][invoice]', doc.invoice_id)
 
 
         if (doc.posting) {
@@ -227,7 +227,7 @@ module.exports = function init(site) {
             site.quee('[customer][account_invoice][balance]', Object.assign({}, customerBalance))
           }
 
-          if (doc.safe) site.call('[amounts][safes][+]', Object.assign({}, paid_value))
+          if (doc.safe) site.quee('[amounts][safes][+]', Object.assign({}, paid_value))
         }
 
       } else {
@@ -357,7 +357,7 @@ module.exports = function init(site) {
           site.quee('[customer][account_invoice][balance]', Object.assign({}, customerBalance))
 
         }
-        site.call('[amounts][safes][+]', Object.assign({}, paid_value))
+        site.quee('[amounts][safes][+]', Object.assign({}, paid_value))
       }
 
     })
@@ -584,7 +584,7 @@ module.exports = function init(site) {
             site.quee('[customer][account_invoice][balance]', Object.assign({}, customerBalance))
           }
         }
-        if (obj.safe) site.call('[amounts][safes][+]', Object.assign({}, obj))
+        if (obj.safe) site.quee('[amounts][safes][+]', Object.assign({}, obj))
       })
 
     account_invoices_doc.remain_amount = site.toNumber(account_invoices_doc.net_value) - site.toNumber(account_invoices_doc.total_paid_up)
@@ -758,7 +758,7 @@ module.exports = function init(site) {
               }
 
 
-              if (obj.safe) site.call('[amounts][safes][+]', Object.assign({}, obj))
+              if (obj.safe) site.quee('[amounts][safes][+]', Object.assign({}, obj))
 
             })
 

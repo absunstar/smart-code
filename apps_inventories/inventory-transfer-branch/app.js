@@ -233,9 +233,6 @@ module.exports = function init(site) {
             branch: result.doc.branch,
             notes: result.doc.notes
           }
-          if (Obj.value && Obj.safe && Obj.date && Obj.number) {
-            site.call('[transfer_branch][safes][+]', Obj)
-          }
 
           result.doc.items.forEach(itm => {
 

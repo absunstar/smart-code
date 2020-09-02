@@ -52,7 +52,7 @@ module.exports = function init(site) {
           branch: doc.branch
         }
 
-        site.call('[amounts][safes][+]', obj)
+        site.quee('[amounts][safes][+]', obj)
 
         response.done = true
         response.doc = doc2

@@ -12,7 +12,9 @@ module.exports = function init(site) {
     });
   })
 
-  site.on('[safes][safes_payments][+]', obj => {
+
+
+  site.on('[safes][safes_payments][+]', (obj, callback, next) => {
 
     let info = {
       safe: obj.safe,
@@ -39,7 +41,9 @@ module.exports = function init(site) {
     info.pre_balance = site.toNumber(info.pre_balance)
     info.balance = site.toNumber(info.balance)
 
-    $safes_payments.add(info, () => { });
+    $safes_payments.add(info, () => { 
+      next()
+    });
 
   })
 

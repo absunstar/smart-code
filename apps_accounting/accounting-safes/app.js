@@ -45,26 +45,7 @@ module.exports = function init(site) {
     })
   })
 
-
-
-  s_balance_list = []
-  site.on('[amounts][safes][+]', obj => {
-    s_balance_list.push(Object.assign({}, obj))
-  })
-
-  function s_balance_handle(obj) {
-    if (obj == null) {
-      if (s_balance_list.length > 0) {
-        obj = s_balance_list[0]
-        s_balance_handle(obj)
-        s_balance_list.splice(0, 1)
-      } else {
-        setTimeout(() => {
-          s_balance_handle(null)
-        }, 1000);
-      }
-      return
-    }
+  site.on('[amounts][safes][+]', (obj, callback, next) => {
 
     $safes.find({
       id: obj.safe.id,
@@ -88,17 +69,16 @@ module.exports = function init(site) {
               obj.branch = doc.branch
               obj.balance = doc.balance
 
-              site.call('[safes][safes_payments][+]', obj)
+              site.quee('[safes][safes_payments][+]', Object.assign({}, obj))
             })
           }
-          s_balance_handle(null)
+          next()
         })
+      } else {
+        next()
       }
     })
-  }
-
-  s_balance_handle(null)
-
+  })
 
 
   $safes.deleteDuplicate({
@@ -175,7 +155,7 @@ module.exports = function init(site) {
             name: doc.shift.name
           }
         }
-        site.call('[safes][safes_payments][+]', obj)
+        site.quee('[safes][safes_payments][+]', obj)
         response.done = true
       } else {
         response.error = err.message
@@ -252,7 +232,7 @@ module.exports = function init(site) {
   site.post("/api/safes/view", (req, res) => {
     let response = {}
     response.done = false
-              
+
     if (!req.session.user) {
       response.error = 'Please Login First'
       res.json(response)
@@ -274,7 +254,7 @@ module.exports = function init(site) {
     })
   })
 
-  
+
   site.post("/api/safes/reset", (req, res) => {
     let response = {}
     response.done = false
@@ -306,7 +286,7 @@ module.exports = function init(site) {
   site.post("/api/safes/all", (req, res) => {
     let response = {}
     response.done = false
-              
+
     if (!req.session.user) {
       response.error = 'Please Login First'
       res.json(response)

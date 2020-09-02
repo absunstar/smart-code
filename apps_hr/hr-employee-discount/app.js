@@ -112,7 +112,7 @@ module.exports = function init(site) {
             sourceName: result.doc.employee.name
           }
           if (Obj.value && Obj.safe && Obj.date && Obj.sourceName) {
-            site.call('[amounts][safes][+]', Obj)
+            site.quee('[amounts][safes][+]', Obj)
           }
 
           response.done = true

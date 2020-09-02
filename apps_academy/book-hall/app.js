@@ -196,7 +196,7 @@ module.exports = function init(site) {
             operation: 'دفعة حجز قاعة',
             safe: response.doc.safe
           }
-          site.call('[amounts][safes][+]', paid_value)
+          site.quee('[amounts][safes][+]', paid_value)
 
         } else {
           response.error = 'Code Already Exist'

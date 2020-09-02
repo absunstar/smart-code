@@ -68,7 +68,7 @@ module.exports = function init(site) {
           branch: doc.branch
         }
         if (Obj.value && Obj.safe && Obj.date && Obj.sourceName) {
-          site.call('[amounts][safes][+]', Obj)
+          site.quee('[amounts][safes][+]', Obj)
         }
 
         site.call('[employees_advances][employees_advances_fin][+]', doc)
@@ -154,7 +154,7 @@ module.exports = function init(site) {
             transition_type: 'in'
           }
           if (Obj.value && Obj.safe && Obj.date && Obj.sourceName) {
-            site.call('[amounts][safes][+]', Obj)
+            site.quee('[amounts][safes][+]', Obj)
           }
 
           response.done = true

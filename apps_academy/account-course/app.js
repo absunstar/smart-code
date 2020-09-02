@@ -149,7 +149,7 @@ module.exports = function init(site) {
               operation: 'دفعة حساب مدرب',
               safe: response.doc.safe
             }
-            site.call('[amounts][safes][+]', paid_value)
+            site.quee('[amounts][safes][+]', paid_value)
           }
 
         } else {

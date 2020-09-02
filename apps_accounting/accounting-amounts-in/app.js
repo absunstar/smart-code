@@ -79,7 +79,7 @@ module.exports = function init(site) {
             transition_type: 'in'
           }
           if (obj.value && obj.safe && obj.date && obj.sourceName) {
-            site.call('[amounts][safes][+]', obj)
+            site.quee('[amounts][safes][+]', obj)
           }
         }
 
@@ -186,7 +186,7 @@ module.exports = function init(site) {
           }
 
           if (obj.value && obj.safe && obj.date)
-            site.call('[amounts][safes][+]', obj)
+            site.quee('[amounts][safes][+]', obj)
 
         } else {
           response.error = err.message
@@ -238,7 +238,7 @@ module.exports = function init(site) {
               transition_type: 'in'
             }
             if (obj.value && obj.safe && obj.date && obj.sourceName) {
-              site.call('[amounts][safes][+]', obj)
+              site.quee('[amounts][safes][+]', obj)
             }
           }
 
