@@ -139,7 +139,7 @@ module.exports = function init(site) {
                 _itm.store = doc.store_from
                 site.quee('item_transaction - items', Object.assign({}, _itm))
                 _itm.type = 'minus'
-                site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _itm))
+                site.quee('[transfer_branch][stores_items][add_balance]', Object.assign({}, _itm))
 
               })
 
@@ -153,7 +153,7 @@ module.exports = function init(site) {
                 _itm.store = doc.store_to
                 site.quee('item_transaction + items', Object.assign({}, _itm))
                 _itm.type = 'sum'
-                site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _itm))
+                site.quee('[transfer_branch][stores_items][add_balance]', Object.assign({}, _itm))
               })
 
             } else {
@@ -504,7 +504,7 @@ module.exports = function init(site) {
                   _itm.store = doc.store_from
                   site.quee('item_transaction - items', Object.assign({}, _itm))
                   _itm.type = 'minus'
-                  site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _itm))
+                  site.quee('[transfer_branch][stores_items][add_balance]', Object.assign({}, _itm))
   
                 })
   
@@ -518,7 +518,7 @@ module.exports = function init(site) {
                   _itm.store = doc.store_to
                   site.quee('item_transaction + items', Object.assign({}, _itm))
                   _itm.type = 'sum'
-                  site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _itm))
+                  site.quee('[transfer_branch][stores_items][add_balance]', Object.assign({}, _itm))
                 })
   
               } else {

@@ -169,7 +169,7 @@ module.exports = function init(site) {
                 }
 
                 _itm.count = Math.abs(_itm.count)
-                site.call('[transfer_branch][stores_items][add_balance]', _itm)
+                site.quee('[transfer_branch][stores_items][add_balance]', _itm)
               })
             }
 
@@ -339,7 +339,7 @@ module.exports = function init(site) {
                   }
                 }
                 _itm.count = Math.abs(_itm.count)
-                site.call('[transfer_branch][stores_items][add_balance]', _itm)
+                site.quee('[transfer_branch][stores_items][add_balance]', _itm)
 
               })
 
@@ -424,7 +424,7 @@ module.exports = function init(site) {
                   }
 
                   _itm.count = Math.abs(_itm.count)
-                  site.call('[transfer_branch][stores_items][add_balance]', _itm)
+                  site.quee('[transfer_branch][stores_items][add_balance]', _itm)
 
 
                 });
@@ -887,7 +887,7 @@ module.exports = function init(site) {
                   }
 
                   _itm.count = Math.abs(_itm.count)
-                  site.call('[transfer_branch][stores_items][add_balance]', _itm)
+                  site.quee('[transfer_branch][stores_items][add_balance]', _itm)
 
                 })
 

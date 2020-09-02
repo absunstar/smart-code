@@ -172,7 +172,7 @@ module.exports = function init(site) {
                   paid_up: customerPay,
                   sum: true
                 }
-                site.call('[customer][account_invoice][balance]', Object.assign({}, customerBalance))
+                site.quee('[customer][account_invoice][balance]', Object.assign({}, customerBalance))
               }
 
             } else {
@@ -185,7 +185,7 @@ module.exports = function init(site) {
                   paid_up: customerPay,
                   minus: true
                 }
-                site.call('[customer][account_invoice][balance]', Object.assign({}, customerBalance))
+                site.quee('[customer][account_invoice][balance]', Object.assign({}, customerBalance))
 
               }
             }
@@ -224,7 +224,7 @@ module.exports = function init(site) {
               paid_up: customerPay,
               sum: true
             }
-            site.call('[customer][account_invoice][balance]', Object.assign({}, customerBalance))
+            site.quee('[customer][account_invoice][balance]', Object.assign({}, customerBalance))
           }
 
           if (doc.safe) site.call('[amounts][safes][+]', Object.assign({}, paid_value))
@@ -310,7 +310,7 @@ module.exports = function init(site) {
                 paid_up: customerPay,
                 sum: true
               }
-              site.call('[customer][account_invoice][balance]', Object.assign({}, customerBalance))
+              site.quee('[customer][account_invoice][balance]', Object.assign({}, customerBalance))
             }
 
           } else {
@@ -324,7 +324,7 @@ module.exports = function init(site) {
                 paid_up: customerPay,
                 minus: true
               }
-              site.call('[customer][account_invoice][balance]', Object.assign({}, customerBalance))
+              site.quee('[customer][account_invoice][balance]', Object.assign({}, customerBalance))
             }
           }
 
@@ -354,7 +354,7 @@ module.exports = function init(site) {
             sum: true
           }
 
-          site.call('[customer][account_invoice][balance]', Object.assign({}, customerBalance))
+          site.quee('[customer][account_invoice][balance]', Object.assign({}, customerBalance))
 
         }
         site.call('[amounts][safes][+]', Object.assign({}, paid_value))
@@ -461,7 +461,7 @@ module.exports = function init(site) {
                   paid_up: customerPay,
                   sum: true
                 }
-                site.call('[customer][account_invoice][balance]', Object.assign({}, customerBalance))
+                site.quee('[customer][account_invoice][balance]', Object.assign({}, customerBalance))
               }
 
             } else {
@@ -475,7 +475,7 @@ module.exports = function init(site) {
                   paid_up: customerPay,
                   minus: true
                 }
-                site.call('[customer][account_invoice][balance]', Object.assign({}, customerBalance))
+                site.quee('[customer][account_invoice][balance]', Object.assign({}, customerBalance))
               }
             }
 
@@ -504,7 +504,7 @@ module.exports = function init(site) {
               paid_up: customerPay,
               sum: true
             }
-            site.call('[customer][account_invoice][balance]', Object.assign({}, customerBalance))
+            site.quee('[customer][account_invoice][balance]', Object.assign({}, customerBalance))
           }
 
 
@@ -535,7 +535,7 @@ module.exports = function init(site) {
                   paid_up: customerPay,
                   minus: true
                 }
-                site.call('[customer][account_invoice][balance]', Object.assign({}, customerBalance))
+                site.quee('[customer][account_invoice][balance]', Object.assign({}, customerBalance))
               }
 
             } else {
@@ -549,7 +549,7 @@ module.exports = function init(site) {
                   paid_up: customerPay,
                   sum: true
                 }
-                site.call('[customer][account_invoice][balance]', Object.assign({}, customerBalance))
+                site.quee('[customer][account_invoice][balance]', Object.assign({}, customerBalance))
               }
 
             }
@@ -581,7 +581,7 @@ module.exports = function init(site) {
               paid_up: customerPay,
               minus: true
             }
-            site.call('[customer][account_invoice][balance]', Object.assign({}, customerBalance))
+            site.quee('[customer][account_invoice][balance]', Object.assign({}, customerBalance))
           }
         }
         if (obj.safe) site.call('[amounts][safes][+]', Object.assign({}, obj))
@@ -706,7 +706,7 @@ module.exports = function init(site) {
                       paid_up: customerPay,
                       minus: true
                     }
-                    site.call('[customer][account_invoice][balance]', Object.assign({}, customerBalance))
+                    site.quee('[customer][account_invoice][balance]', Object.assign({}, customerBalance))
                   }
 
                 } else {
@@ -720,7 +720,7 @@ module.exports = function init(site) {
                       paid_up: customerPay,
                       sum: true
                     }
-                    site.call('[customer][account_invoice][balance]', Object.assign({}, customerBalance))
+                    site.quee('[customer][account_invoice][balance]', Object.assign({}, customerBalance))
                   }
                 }
 
@@ -754,7 +754,7 @@ module.exports = function init(site) {
                   paid_up: customerPay,
                   minus: true
                 }
-                site.call('[customer][account_invoice][balance]', Object.assign({}, customerBalance))
+                site.quee('[customer][account_invoice][balance]', Object.assign({}, customerBalance))
               }
 
 

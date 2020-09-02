@@ -1,33 +1,4 @@
 module.exports = function init(site) {
-  const $amounts_in = site.connectCollection("amounts_in")
-  const $amounts_out = site.connectCollection("amounts_out")
-  const $safes = site.connectCollection("safes")
-  const $in_out_names = site.connectCollection("in_out_names")
-  const $employee_offer = site.connectCollection("employee_offer")
-  const $employee_discount = site.connectCollection("employee_discount")
-  const $employees_advances = site.connectCollection("employees_advances")
-  const $employees_insurances = site.connectCollection("employees_insurances")
-  const $insurances_slides = site.connectCollection("insurances_slides")
-  const $customers = site.connectCollection('customers')
-  const $stores = site.connectCollection("stores")
-  const $stores_items = site.connectCollection("stores_items")
-  const $stores_in = site.connectCollection("stores_in")
-  const $stores_out = site.connectCollection("stores_out")
-  const $transfer_branch = site.connectCollection("transfer_branch")
-
-  const $tax_types = site.connectCollection("tax_types")
-  const $discount_types = site.connectCollection("discount_types")
-
-  const $goves = site.connectCollection("goves")
-  const $cities = site.connectCollection("cities")
-  const $vendors = site.connectCollection("vendors")
-  const $employees = site.connectCollection("employees")
-  const $jobs = site.connectCollection("jobs")
-  const $employees_degrees = site.connectCollection("employees_degrees")
-  const $militaries_status = site.connectCollection("militaries_status")
-  const $maritals_status = site.connectCollection("maritals_status")
-
-
 
   site.get({
     name: "db",

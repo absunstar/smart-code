@@ -62,49 +62,36 @@ module.exports = function init(site) {
 
 
 
+  site.on('[customer][account_invoice][balance]', (obj, callback, next) => {
 
-  let balance_customer_list = []
-  let balance_customer_list_busy = false
 
-  site.on('[customer][account_invoice][balance]', obj => {
-    balance_customer_list.push(obj)
-  })
-
-  function balance_customer_list_action(obj) {
-    balance_customer_list_busy = true
     $customers.findOne({ id: obj.id }, (err, doc) => {
       if (doc) {
 
         if (obj.sum) {
           if (!doc.balance) doc.balance = 0
           doc.balance += obj.paid_up
-          $customers.update(doc);
+          $customers.update(doc, () => {
+            next()
+          });
 
         } else if (obj.minus) {
           doc.balance -= obj.paid_up
           $customers.update(doc, () => {
-            balance_customer_list_busy = false
+            next()
+
           });
 
         }
 
-      } else balance_customer_list_busy = false
+      } else {
+
+        next()
+      }
+
 
     });
-  };
-
-  function balance_customer_list_handle() {
-    if (!balance_customer_list_busy && balance_customer_list.length > 0) {
-      let obj = balance_customer_list.shift()
-      balance_customer_list_action(obj)
-    }
-    setTimeout(() => {
-      balance_customer_list_handle()
-    }, 100);
-
-  }
-  balance_customer_list_handle()
-
+  })
 
 
   site.on('[company][created]', doc => {

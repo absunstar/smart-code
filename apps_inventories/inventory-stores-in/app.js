@@ -168,7 +168,7 @@ module.exports = function init(site) {
 
                 _itm.count = Math.abs(_itm.count)
 
-                site.call('[transfer_branch][stores_items][add_balance]', _itm)
+                site.quee('[transfer_branch][stores_items][add_balance]', _itm)
               })
 
             }
@@ -334,7 +334,7 @@ module.exports = function init(site) {
                 }
                 _itm.count = Math.abs(_itm.count) // amr
 
-                site.call('[transfer_branch][stores_items][add_balance]', _itm)
+                site.quee('[transfer_branch][stores_items][add_balance]', _itm)
 
               })
 
@@ -417,7 +417,7 @@ module.exports = function init(site) {
                     site.quee('item_transaction + items', Object.assign({}, _itm))
                   }
                   _itm.count = Math.abs(_itm.count)
-                  site.call('[transfer_branch][stores_items][add_balance]', _itm)
+                  site.quee('[transfer_branch][stores_items][add_balance]', _itm)
 
                 });
 
@@ -906,7 +906,7 @@ module.exports = function init(site) {
                     _itm.transaction_type = 'in'
                     site.quee('item_transaction + items', Object.assign({}, _itm))
                   }
-                  site.call('[transfer_branch][stores_items][add_balance]', _itm)
+                  site.quee('[transfer_branch][stores_items][add_balance]', _itm)
                 })
 
               }
@@ -988,7 +988,7 @@ module.exports = function init(site) {
 
                   _itm.count = Math.abs(_itm.count) // amr
 
-                  site.call('[transfer_branch][stores_items][add_balance]', _itm)
+                  site.quee('[transfer_branch][stores_items][add_balance]', _itm)
 
                 })
 

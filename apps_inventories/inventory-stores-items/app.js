@@ -1,21 +1,14 @@
 module.exports = function init(site) {
   const $stores_items = site.connectCollection("stores_items")
 
-  let add_balance_list = []
-  let add_balance_list_busy = false
 
-  site.on('[transfer_branch][stores_items][add_balance]', obj => {
-    add_balance_list.push(obj)
+  site.on('[transfer_branch][stores_items][add_balance]', (obj, callback, next) => {
     // console.log(new Date().getTime() + ' : [transfer_branch][stores_items][add_balance]')
-  })
 
-  function add_balance_list_action(obj) {
     // console.log(new Date().getTime() + ' : add_balance_list_action()')
     if (obj.unit && obj.unit.id) {
-      add_balance_list_busy = true
 
       let total_unit = 0
-
 
       total_unit = obj.count * obj.unit.convert;
 
@@ -463,35 +456,25 @@ module.exports = function init(site) {
             // if (_size.item_complex) {
             //   _size.complex_items.forEach(_complex_item => {
             //     _complex_item.count = _complex_item.count * obj.count
-            //     site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _complex_item))
+            //     site.quee('[transfer_branch][stores_items][add_balance]', Object.assign({}, _complex_item))
             //   })
             // }
           });
 
           $stores_items.update(doc, () => {
-            add_balance_list_busy = false
+            next()
           });
 
         } else {
-          add_balance_list_busy = false
+          next()
         }
 
       })
+    } else {
+      next()
     }
 
-  }
-
-  function add_balance_list_handle() {
-    if (!add_balance_list_busy && add_balance_list.length > 0) {
-      let obj = add_balance_list.shift()
-      add_balance_list_action(obj)
-    }
-    setTimeout(() => {
-      add_balance_list_handle()
-    }, 100);
-
-  }
-  add_balance_list_handle()
+  })
 
 
   site.on('holding items', function (obj) {

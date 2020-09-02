@@ -1,6 +1,11 @@
 app.controller("db", function ($scope, $http) {
 
     $scope.collection_list = [{
+        name: 'companies',
+        ar: 'الشركات',
+        en: 'Companies'
+    },
+    {
         name: 'stores_items',
         ar: 'الأصناف المخزنية',
         en: 'Store Items'
@@ -20,7 +25,7 @@ app.controller("db", function ($scope, $http) {
         en: "Stores Transfer",
         ar: "التحويلات المخزنية"
     },
-  
+
     {
         name: "stores_assemble",
         en: "Items Assemble",

@@ -113,7 +113,7 @@ module.exports = function init(site) {
                 _itm.company = doc.company
                 _itm.branch = doc.branch
 
-                site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _itm))
+                site.quee('[transfer_branch][stores_items][add_balance]', Object.assign({}, _itm))
 
                 _itm.code = doc.code
                 _itm.date = doc.date
@@ -151,7 +151,7 @@ module.exports = function init(site) {
               })
 
               complex_list.forEach((_complex, i) => {
-                site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _complex))
+                site.quee('[transfer_branch][stores_items][add_balance]', Object.assign({}, _complex))
 
                 site.quee('item_transaction + items', Object.assign({}, _complex))
               });
@@ -334,7 +334,7 @@ module.exports = function init(site) {
 
                 site.quee('item_transaction - items', Object.assign({}, _itm))
                 _itm.count = Math.abs(_itm.count)
-                site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _itm))
+                site.quee('[transfer_branch][stores_items][add_balance]', Object.assign({}, _itm))
 
               })
 
@@ -342,7 +342,7 @@ module.exports = function init(site) {
                 site.quee('item_transaction + items', Object.assign({}, _complex1))
                 _complex1.count = Math.abs(_complex1.count)
 
-                site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _complex1))
+                site.quee('[transfer_branch][stores_items][add_balance]', Object.assign({}, _complex1))
               });
 
 
@@ -449,14 +449,14 @@ module.exports = function init(site) {
 
                   _itm.count = Math.abs(_itm.count)
 
-                  site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _itm))
+                  site.quee('[transfer_branch][stores_items][add_balance]', Object.assign({}, _itm))
                 })
 
                 complex_list.forEach((_complex1, i) => {
                   site.quee('item_transaction + items', Object.assign({}, _complex1))
 
                   _complex1.count = Math.abs(_complex1.count)
-                  site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _complex1))
+                  site.quee('[transfer_branch][stores_items][add_balance]', Object.assign({}, _complex1))
 
                 });
 
