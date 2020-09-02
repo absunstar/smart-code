@@ -158,14 +158,14 @@ module.exports = function init(site) {
                   _itm.type = 'sum'
                   _itm.count = (-Math.abs(_itm.count))
                   _itm.transaction_type = 'out'
-                  site.call('item_transaction - items', Object.assign({}, _itm))
+                  site.quee('item_transaction - items', Object.assign({}, _itm))
                   site.returnStoresOut(doc, res => { })
                 } else {
                   if (doc.type.id == 5) _itm.set_average = 'minus_average'
 
                   _itm.type = 'minus'
                   _itm.transaction_type = 'out'
-                  site.call('item_transaction - items', Object.assign({}, _itm))
+                  site.quee('item_transaction - items', Object.assign({}, _itm))
                 }
 
                 _itm.count = Math.abs(_itm.count)
@@ -307,7 +307,7 @@ module.exports = function init(site) {
                     _itm.type = 'sum'
                     _itm.count = (-Math.abs(_itm.count))
                     _itm.transaction_type = 'out'
-                    site.call('item_transaction - items', Object.assign({}, _itm))
+                    site.quee('item_transaction - items', Object.assign({}, _itm))
                   } else {
 
                     if (result.doc.type.id == 5) {
@@ -316,7 +316,7 @@ module.exports = function init(site) {
 
                     _itm.type = 'minus'
                     _itm.transaction_type = 'out'
-                    site.call('item_transaction - items', Object.assign({}, _itm))
+                    site.quee('item_transaction - items', Object.assign({}, _itm))
                   }
 
                 } else {
@@ -325,7 +325,7 @@ module.exports = function init(site) {
                   if (result.doc.type.id == 6) {
                     _itm.type = 'minus'
                     _itm.transaction_type = 'out'
-                    site.call('item_transaction - items', Object.assign({}, _itm))
+                    site.quee('item_transaction - items', Object.assign({}, _itm))
                   } else {
                     if (result.doc.type.id == 5) {
                       _itm.set_average = 'sum_average'
@@ -335,7 +335,7 @@ module.exports = function init(site) {
                     _itm.type = 'sum'
                     _itm.count = (-Math.abs(_itm.count))
                     _itm.transaction_type = 'out'
-                    site.call('item_transaction - items', Object.assign({}, _itm))
+                    site.quee('item_transaction - items', Object.assign({}, _itm))
                   }
                 }
                 _itm.count = Math.abs(_itm.count)
@@ -412,7 +412,7 @@ module.exports = function init(site) {
                     _itm.type = 'minus'
                     _itm.transaction_type = 'out'
                     _itm.count = (-Math.abs(_itm.count))
-                    site.call('item_transaction - items', Object.assign({}, _itm))
+                    site.quee('item_transaction - items', Object.assign({}, _itm))
                   } else {
                     if (result.doc.type.id == 5)
                       _itm.set_average = 'sum_average'
@@ -420,7 +420,7 @@ module.exports = function init(site) {
 
                     _itm.type = 'sum'
                     _itm.transaction_type = 'out'
-                    site.call('item_transaction - items', Object.assign({}, _itm))
+                    site.quee('item_transaction - items', Object.assign({}, _itm))
                   }
 
                   _itm.count = Math.abs(_itm.count)
@@ -874,7 +874,7 @@ module.exports = function init(site) {
                     _itm.type = 'sum'
                     _itm.count = (-Math.abs(_itm.count))
                     _itm.transaction_type = 'out'
-                    site.call('item_transaction - items', Object.assign({}, _itm))
+                    site.quee('item_transaction - items', Object.assign({}, _itm))
                   } else {
 
                     if (result.doc.type.id == 5) {
@@ -883,7 +883,7 @@ module.exports = function init(site) {
 
                     _itm.type = 'minus'
                     _itm.transaction_type = 'out'
-                    site.call('item_transaction - items', Object.assign({}, _itm))
+                    site.quee('item_transaction - items', Object.assign({}, _itm))
                   }
 
                   _itm.count = Math.abs(_itm.count)

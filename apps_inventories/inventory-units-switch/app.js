@@ -131,7 +131,7 @@ module.exports = function init(site) {
                   code: units_switch_doc.shift.code,
                   name: units_switch_doc.shift.name
                 }
-                site.call('item_transaction + items', Object.assign({}, _isDoc))
+                site.quee('item_transaction + items', Object.assign({}, _isDoc))
 
               })
 
@@ -154,7 +154,7 @@ module.exports = function init(site) {
                   name: doc.shift.name
                 }
 
-                site.call('item_transaction - items', Object.assign({}, _isDoc2))
+                site.quee('item_transaction - items', Object.assign({}, _isDoc2))
 
               })
 
@@ -287,7 +287,7 @@ module.exports = function init(site) {
                   code: units_switch_doc.shift.code,
                   name: units_switch_doc.shift.name
                 }
-                site.call('item_transaction + items', Object.assign({}, _isDoc))
+                site.quee('item_transaction + items', Object.assign({}, _isDoc))
 
                 _isDoc.count = Math.abs(_isDoc.count)
 
@@ -326,7 +326,7 @@ module.exports = function init(site) {
                   name: result.doc.shift.name
                 }
 
-                site.call('item_transaction - items', Object.assign({}, _isDoc2))
+                site.quee('item_transaction - items', Object.assign({}, _isDoc2))
 
                 _isDoc2.count = Math.abs(_isDoc2.count)
 
@@ -400,7 +400,7 @@ module.exports = function init(site) {
                     code: units_switch_doc.shift.code,
                     name: units_switch_doc.shift.name
                   }
-                  site.call('item_transaction - items', Object.assign({}, _isDoc))
+                  site.quee('item_transaction - items', Object.assign({}, _isDoc))
 
                 })
 
@@ -423,7 +423,7 @@ module.exports = function init(site) {
                     name: result.doc.shift.name
                   }
 
-                  site.call('item_transaction + items', Object.assign({}, _isDoc2))
+                  site.quee('item_transaction + items', Object.assign({}, _isDoc2))
 
                 })
 

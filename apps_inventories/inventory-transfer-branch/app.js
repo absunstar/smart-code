@@ -137,7 +137,7 @@ module.exports = function init(site) {
                 _itm.date = doc.date
                 _itm.transaction_type = 'out'
                 _itm.store = doc.store_from
-                site.call('item_transaction - items', Object.assign({}, _itm))
+                site.quee('item_transaction - items', Object.assign({}, _itm))
                 _itm.type = 'minus'
                 site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _itm))
 
@@ -151,7 +151,7 @@ module.exports = function init(site) {
                 _itm.date = doc.date
                 _itm.transaction_type = 'in'
                 _itm.store = doc.store_to
-                site.call('item_transaction + items', Object.assign({}, _itm))
+                site.quee('item_transaction + items', Object.assign({}, _itm))
                 _itm.type = 'sum'
                 site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _itm))
               })
@@ -255,7 +255,7 @@ module.exports = function init(site) {
             }
 
             site.call('[transfer_branch][stores_items][+]', delObj)
-            site.call('item_transaction - items', Object.assign({ date: new Date() }, itm))
+            site.quee('item_transaction - items', Object.assign({ date: new Date() }, itm))
 
           });
 
@@ -502,7 +502,7 @@ module.exports = function init(site) {
                   _itm.date = doc.date
                   _itm.transaction_type = 'out'
                   _itm.store = doc.store_from
-                  site.call('item_transaction - items', Object.assign({}, _itm))
+                  site.quee('item_transaction - items', Object.assign({}, _itm))
                   _itm.type = 'minus'
                   site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _itm))
   
@@ -516,7 +516,7 @@ module.exports = function init(site) {
                   _itm.date = doc.date
                   _itm.transaction_type = 'in'
                   _itm.store = doc.store_to
-                  site.call('item_transaction + items', Object.assign({}, _itm))
+                  site.quee('item_transaction + items', Object.assign({}, _itm))
                   _itm.type = 'sum'
                   site.call('[transfer_branch][stores_items][add_balance]', Object.assign({}, _itm))
                 })

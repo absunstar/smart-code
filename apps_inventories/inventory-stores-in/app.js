@@ -156,14 +156,14 @@ module.exports = function init(site) {
                   _itm.count = (-Math.abs(_itm.count))
                   _itm.transaction_type = 'in'
                   site.returnStoresIn(doc, res => { })
-                  site.call('item_transaction + items', Object.assign({}, _itm))
+                  site.quee('item_transaction + items', Object.assign({}, _itm))
                 } else {
                   if (doc.type.id == 1)
                     _itm.set_average = 'sum_average'
 
                   _itm.type = 'sum'
                   _itm.transaction_type = 'in'
-                  site.call('item_transaction + items', Object.assign({}, _itm))
+                  site.quee('item_transaction + items', Object.assign({}, _itm))
                 }
 
                 _itm.count = Math.abs(_itm.count)
@@ -305,13 +305,13 @@ module.exports = function init(site) {
                     _itm.type = 'minus'
                     _itm.count = (-Math.abs(_itm.count))
                     _itm.transaction_type = 'in'
-                    site.call('item_transaction + items', Object.assign({}, _itm))
+                    site.quee('item_transaction + items', Object.assign({}, _itm))
                   } else {
                     if (result.doc.type.id == 1)
                       _itm.set_average = 'sum_average'
                     _itm.type = 'sum'
                     _itm.transaction_type = 'in'
-                    site.call('item_transaction + items', Object.assign({}, _itm))
+                    site.quee('item_transaction + items', Object.assign({}, _itm))
                   }
 
 
@@ -322,14 +322,14 @@ module.exports = function init(site) {
                     _itm.set_average = 'sum_average'
                     _itm.type = 'sum'
                     _itm.transaction_type = 'in'
-                    site.call('item_transaction + items', Object.assign({}, _itm))
+                    site.quee('item_transaction + items', Object.assign({}, _itm))
                   } else {
                     if (result.doc.type.id == 1)
                       _itm.set_average = 'minus_average'
                     _itm.type = 'minus'
                     _itm.count = (-Math.abs(_itm.count))
                     _itm.transaction_type = 'in'
-                    site.call('item_transaction + items', Object.assign({}, _itm))
+                    site.quee('item_transaction + items', Object.assign({}, _itm))
                   }
                 }
                 _itm.count = Math.abs(_itm.count) // amr
@@ -407,14 +407,14 @@ module.exports = function init(site) {
                     _itm.set_average = 'sum_average'
                     _itm.type = 'sum'
                     _itm.transaction_type = 'in'
-                    site.call('item_transaction + items', Object.assign({}, _itm))
+                    site.quee('item_transaction + items', Object.assign({}, _itm))
                   } else {
                     if (result.doc.type.id == 1)
                       _itm.set_average = 'minus_average'
                     _itm.type = 'minus'
                     _itm.count = (-Math.abs(_itm.count))
                     _itm.transaction_type = 'in'
-                    site.call('item_transaction + items', Object.assign({}, _itm))
+                    site.quee('item_transaction + items', Object.assign({}, _itm))
                   }
                   _itm.count = Math.abs(_itm.count)
                   site.call('[transfer_branch][stores_items][add_balance]', _itm)
@@ -897,14 +897,14 @@ module.exports = function init(site) {
                     _itm.type = 'minus'
                     _itm.transaction_type = 'out'
                     site.returnStoresIn(doc, res => { })
-                    site.call('item_transaction - items', Object.assign({}, _itm))
+                    site.quee('item_transaction - items', Object.assign({}, _itm))
                   } else {
                     if (doc.type.id == 1)
                       _itm.set_average = 'sum_average'
 
                     _itm.type = 'sum'
                     _itm.transaction_type = 'in'
-                    site.call('item_transaction + items', Object.assign({}, _itm))
+                    site.quee('item_transaction + items', Object.assign({}, _itm))
                   }
                   site.call('[transfer_branch][stores_items][add_balance]', _itm)
                 })
@@ -977,13 +977,13 @@ module.exports = function init(site) {
                     _itm.type = 'minus'
                     _itm.count = (-Math.abs(_itm.count))
                     _itm.transaction_type = 'in'
-                    site.call('item_transaction + items', Object.assign({}, _itm))
+                    site.quee('item_transaction + items', Object.assign({}, _itm))
                   } else {
                     if (result.doc.type.id == 1)
                       _itm.set_average = 'sum_average'
                     _itm.type = 'sum'
                     _itm.transaction_type = 'in'
-                    site.call('item_transaction + items', Object.assign({}, _itm))
+                    site.quee('item_transaction + items', Object.assign({}, _itm))
                   }
 
                   _itm.count = Math.abs(_itm.count) // amr

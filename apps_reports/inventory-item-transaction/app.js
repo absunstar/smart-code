@@ -7,7 +7,10 @@ module.exports = function init(site) {
 
     let barcode = objectTransaction.sizes_list.map(_obj => _obj.barcode)
 
-    $item_transaction.findMany({ 'company.id': objectTransaction.company.id, 'barcode': barcode }, (err, docs) => {
+    $item_transaction.findMany({
+      'company.id': objectTransaction.company.id,
+      'barcode': barcode
+    }, (err, docs) => {
       if (!err && docs) docs.forEach(_items => {
         if (objectTransaction.sizes_list) objectTransaction.sizes_list.forEach(_size => {
           if (_items.barcode == _size.barcode) {
@@ -20,102 +23,67 @@ module.exports = function init(site) {
     })
   })
 
-
-  let item_transaction_sum = []
-  let item_transaction_sum_busy = false
-
-  site.on('item_transaction + items', itm => {
-    item_transaction_sum.push(itm)
-  })
-
-  function item_transaction_sum_action(itm) {
-    item_transaction_sum_busy = true
-
+  site.on('item_transaction + items', (itm, callback, next) => {
 
     if (itm && itm.store && itm.unit) {
-      $item_transaction.findMany({ sort: { id: -1 }, where: { 'barcode': itm.barcode, name: itm.name, 'branch.code': itm.branch.code, 'company.id': itm.company.id, 'store.id': itm.store.id, 'unit.id': itm.unit.id } }, (err, docs) => {
+      $item_transaction.findMany({
+        sort: {
+          id: -1
+        },
+        where: {
+          'barcode': itm.barcode,
+          name: itm.name,
+          'branch.code': itm.branch.code,
+          'company.id': itm.company.id,
+          'store.id': itm.store.id,
+          'unit.id': itm.unit.id
+        }
+      }, (err, docs) => {
 
         delete itm._id
         delete itm.id
-        // delete itm.type
-        // delete itm.units_list
-
-        // if (itm.current_status == 'damaged') {
-        //   $item_transaction.update(itm)
-        // }
-
-        // if (itm.current_status == 'debt') {
-        //   $item_transaction.update(itm)
-        // }
-
-        // if (itm.current_status == 'transferred') {
-        //   $item_transaction.update(itm)
-        // }
 
         if (docs && docs.length > 0) {
           itm.last_count = docs[0].current_count
           itm.current_count = itm.last_count + itm.count
-          // itm.last_price = docs[0].price
           itm.count = itm.count
           itm.current_status = itm.current_status
           $item_transaction.add(itm, () => {
-            item_transaction_sum_busy = false
+            next()
           });
-
         } else {
-
-          // itm.last_count = (itm.current_count || 0)  -  itm.count 
           itm.last_count = 0
           itm.current_count = itm.count
-          // itm.last_price = itm.price
           itm.count = itm.count
           itm.current_status = itm.current_status
           $item_transaction.add(itm, () => {
-            item_transaction_sum_busy = false
+            next()
           });
-
         }
       })
-    } else item_transaction_sum_busy = false
-  }
-
-
-  function item_transaction_sum_handle() {
-    if (!item_transaction_sum_busy && item_transaction_sum.length > 0) {
-      let itm = item_transaction_sum.shift()
-      item_transaction_sum_action(itm)
+    } else {
+      next()
     }
-    setTimeout(() => {
-      item_transaction_sum_handle()
-    }, 100);
-
-  }
-  item_transaction_sum_handle()
-
-
-
-
-
-
-  let item_transaction_minus = []
-  let item_transaction_minus_busy = false
-
-  site.on('item_transaction - items', itm => {
-    item_transaction_minus.push(itm)
   })
 
-  function item_transaction_minus_action(itm) {
-    item_transaction_minus_busy = true
-
+  site.on('item_transaction - items', (itm, callback, next) => {
 
     delete itm.id
     delete itm._id
-    // delete itm.type
-    // delete itm.units_list
     if (itm.branch && itm.store && itm.unit) {
-
-
-      $item_transaction.findMany({ sort: { id: -1 }, where: { 'barcode': itm.barcode, name: itm.name, 'branch.code': itm.branch.code, 'company.id': itm.company.id, 'store.id': itm.store.id, 'unit.id': itm.unit.id } }, (err, docs) => {
+      $item_transaction.findMany({
+        sort: {
+          id: -1
+        },
+        where: {
+          'barcode': itm.barcode,
+          name: itm.name,
+          'branch.code': itm.branch.code,
+          'company.id': itm.company.id,
+          'store.id': itm.store.id,
+          'unit.id': itm.unit.id
+        }
+      }, (err, docs) => {
 
         if (docs && docs.length > 0) {
 
@@ -126,43 +94,24 @@ module.exports = function init(site) {
             itm.average_cost = docs[0].average_cost
             itm.discount = docs[0].discount
           }
-          // itm.last_price = docs[0].price
           itm.count = itm.count
           $item_transaction.add(itm, () => {
-            item_transaction_minus_busy = false
+            next()
           });
         } else {
 
           itm.last_count = itm.current_count || 0
           itm.current_count = itm.last_count - itm.count
           itm.count = itm.count
-          // itm.last_price = itm.price
           $item_transaction.add(itm, () => {
-            item_transaction_minus_busy = false
+            next()
           });
         }
       })
-    } else item_transaction_minus_busy = false
-
-  }
-
-
-  function item_transaction_minus_handle() {
-    if (!item_transaction_minus_busy && item_transaction_minus.length > 0) {
-      let itm = item_transaction_minus.shift()
-      item_transaction_minus_action(itm)
+    } else {
+      next()
     }
-    setTimeout(() => {
-      item_transaction_minus_handle()
-    }, 100);
-
-  }
-  item_transaction_minus_handle()
-
-
-
-
-
+  })
 
   site.post({
     name: '/api/item_transaction/transaction_type/all',
@@ -187,7 +136,11 @@ module.exports = function init(site) {
 
 
     if (_id) {
-      $item_transaction.delete({ _id: $item_transaction.ObjectID(_id), $req: req, $res: res }, (err, result) => {
+      $item_transaction.delete({
+        _id: $item_transaction.ObjectID(_id),
+        $req: req,
+        $res: res
+      }, (err, result) => {
         if (!err) {
           response.done = true
         }
@@ -297,15 +250,13 @@ module.exports = function init(site) {
           where['source_type.id'] = where['t_status'].id;
           delete where['t_status']
         }
-      }
-      else if (where['t_type'].id == 2) {
+      } else if (where['t_type'].id == 2) {
         where['current_status'] = 'sold'
         if (where['t_status']) {
           where['source_type.id'] = where['t_status'].id;
           delete where['t_status']
         }
-      }
-      else if (where['t_type'].id == 3) where['current_status'] = 'Assembling'
+      } else if (where['t_type'].id == 3) where['current_status'] = 'Assembling'
       else if (where['t_type'].id == 4) where['current_status'] = 'Dismantling'
       else if (where['t_type'].id == 5) where['current_status'] = 'transferred'
       else if (where['t_type'].id == 6) where['current_status'] = 'stock'
@@ -387,7 +338,9 @@ module.exports = function init(site) {
     $item_transaction.findMany({
       select: req.body.select || {},
       limit: req.body.limit,
-      sort: req.body.sort || { id: -1 },
+      sort: req.body.sort || {
+        id: -1
+      },
       where: where
     }, (err, docs, count) => {
       if (!err) {
@@ -425,7 +378,9 @@ module.exports = function init(site) {
   site.getItemToDelete = function (data, callback) {
     let where = {};
     where['company.id'] = data.company_id
-    where['barcode'] = { $in: data.barcodes }
+    where['barcode'] = {
+      $in: data.barcodes
+    }
     $item_transaction.findOne({
       where: where,
     }, (err, docs, count) => {
