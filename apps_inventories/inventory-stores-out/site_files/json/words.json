@@ -390,11 +390,6 @@
         "ar": "نوع الاذن"
     },
     {
-        "name": "serial",
-        "en": "S",
-        "ar": "م"
-    },
-    {
         "name": "stores_out",
         "en": "Store Out / Sales Invoice",
         "ar": "إذن صرف / فاتورة مبيعات"

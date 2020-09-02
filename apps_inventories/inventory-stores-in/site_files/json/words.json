@@ -381,8 +381,8 @@
     },
     {
         "name": "serial",
-        "en": "S",
-        "ar": "م"
+        "en": "N",
+        "ar": "م / N"
     },
     {
         "name": "stores_in",

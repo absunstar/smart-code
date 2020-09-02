@@ -22,7 +22,10 @@
     font-weight :bold;
     font-size: 20px;
 }
-
+.indigoD,
+.indigoD {
+    color: #3b0066  !important;
+}
 .r_brown,
 .r_brown input {
     color: brown;
@@ -113,12 +116,11 @@ img {
 @media print {
   
     .table th {
-    
-        border-color: black !important;
+        border-style: outset !important;
     }
     .table td {
+        border-style: outset !important;
     
-        border-color: black !important;
     }
     
 }
@@ -131,8 +133,9 @@ img {
 }
 
 .small_t {
-    width: 11%;
+    width: 9px !important;
 }
+
 
 .table td {
     border-radius: 25px;
