@@ -10,7 +10,7 @@
         </div>
 
         <div class="col8 center">
-            <img class="logoPrint " ng-src="{{defaultSettings.printer_program.invoice_logo}}">
+            <img class="logoPrint" ng-src="{{defaultSettings.printer_program.invoice_logo}}">
         </div>
 
         <div class="col2">
@@ -34,11 +34,9 @@
                 </td>
 
                 <td>
-
                     <b class="indigoD">##word.stores_out_id## :</b>
                     <b class="blue">{{store_out.number}}</b>
                     <h3 class="red bold center">{{store_out.retured_number}}</h3>
-
                 </td>
             </tr>
 
@@ -112,14 +110,17 @@
             </tr>
 
 
-            <tr ng-show="store_out.total_discount">
-                <td><b class="indigoD">##word.total_discount##:</b> </td>
-                <td class="center ">{{store_out.total_discount}} $</td>
-            </tr>
+            <tr>
 
-            <tr ng-show="store_out.total_tax">
-                <td><b class="indigoD">##word.total_tax## :</b> </td>
-                <td class="center ">{{store_out.total_tax}} $</td>
+                <td>
+                    <b class="indigoD">##word.total_discount## : </b>
+                    <b>{{store_out.total_discount}} $</b>
+                </td>
+
+                <td>
+                    <b class="indigoD">##word.total_tax## : </b>
+                    <b>{{store_out.total_tax}} $</b>
+                </td>
             </tr>
 
             <tr>
@@ -153,8 +154,8 @@
                     ##word.stores_out_item_total##</th>
             </tr>
             <tr ng-repeat="itm in store_out.items">
-                <td  class="center small_t blue">
-                    <p >{{$index + 1}}</p>
+                <td class="center small_t blue">
+                    <p>{{$index + 1}}</p>
                     <i-button label="##word.patch##" ng-show="itm.work_patch" type="view"
                         ng-click="viewPatchesList(itm)">
                     </i-button>
@@ -181,7 +182,8 @@
                 <td x-permissions="stores_out_details_values || stores_out_manage" class="center small_t red">
                     {{itm.total_v_a}}</td>
 
-                <td class="center small_t" x-permissions="stores_out_details_values || stores_out_manage" class="center">
+                <td class="center small_t" x-permissions="stores_out_details_values || stores_out_manage"
+                    class="center">
                     {{itm.total}}</td>
 
 

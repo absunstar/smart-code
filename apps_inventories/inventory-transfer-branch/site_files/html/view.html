@@ -1,22 +1,21 @@
 <div ng-hide="busy" class="row" fixed>
 
-
     <div class="row hide">
         <br>
-        <div class="col3">
+        <div class="col2">
             <h2 class="right red">##session.company.name_ar##</h2>
-            <div class="row " ng-repeat="i in defaultSettings.printer_program.invoice_header">
+            <div class="row" ng-repeat="i in defaultSettings.printer_program.invoice_header">
                 <h3 class="black right">{{i.name}}</h3>
             </div>
         </div>
 
-        <div class="col6 center">
-            <img class="logoPrint " ng-src="{{defaultSettings.printer_program.invoice_logo}}">
+        <div class="col8 center">
+            <img class="logoPrint" ng-src="{{defaultSettings.printer_program.invoice_logo}}">
         </div>
 
-        <div class="col3">
+        <div class="col2">
             <h2 class="left red">##session.company.name_en##</h2>
-            <div class="row " ng-repeat="i in defaultSettings.printer_program.invoice_header2">
+            <div class="row" ng-repeat="i in defaultSettings.printer_program.invoice_header2">
                 <h3 class="black left">{{i.name}}</h3>
             </div>
         </div>
@@ -29,27 +28,47 @@
         <table class="table hover bold">
 
             <tr>
-                <td class="title">##word.transfer_branch_date##</td>
-                <td class="center brown">{{transfer_branch.date |date:"dd - MM - yyyy" }}</td>
+                <td>
+                    <b class="indigoD"> ##word.transfer_branch_date## :</b>
+                    <b class="center brown">{{transfer_branch.date |date:"dd - MM - yyyy" }}
+                    </b>
+                </td>
+                <td>
+
+                    <b class="indigoD">##word.transfer_branch_number## :</b>
+                    <b class="blue">{{transfer_branch.number}}</b>
+
+                </td>
             </tr>
 
             <tr>
-                <td class="title">##word.transfer_branch_number##</td>
-                <td class="center blue">{{transfer_branch.number}}</td>
+                <td>
+                    <b class="indigoD">##word.branch_from## : </b>
+                    <b>{{transfer_branch.branch_from.name_##session.lang##}}</b>
+                </td>
+
+                <td>
+
+                    <b class="indigoD">##word.store_from## : </b>
+                    <b>{{transfer_branch.store_from.name}}</b>
+                </td>
             </tr>
 
             <tr>
-                <td class="title">##word.branch_from## / ##word.store_from##</td>
-                <td class="center">{{transfer_branch.branch_from.name_##session.lang##}} /
-                    {{transfer_branch.store_from.name}}</td>
+                <td>
+                    <b class="indigoD">##word.branch_to## : </b>
+                    <b>{{transfer_branch.branch_to.name_##session.lang##}}</b>
+                </td>
+
+                <td>
+
+                    <b class="indigoD">##word.store_to## : </b>
+                    <b>{{transfer_branch.store_to.name}}</b>
+                </td>
             </tr>
+
             <tr>
-                <td class="title">##word.branch_to## / ##word.store_to##</td>
-                <td class="center">{{transfer_branch.branch_to.name_##session.lang##}} /
-                    {{transfer_branch.store_to.name}}</td>
-            </tr>
-            <tr>
-                <td class="title">##word.transfer_branch_notes##</td>
+                <td class="title">##word.transfer_branch_notes## :</td>
                 <td class="center">{{transfer_branch.notes}}</td>
             </tr>
 
@@ -60,26 +79,26 @@
     <div class="row">
         <table class="table bold hover">
             <tr>
-                <th>##word.serial##</th>
+                <th class="small_t">##word.serial##</th>
                 <th>##word.barcode##</th>
                 <th>##word.transfer_branch_item_name##</th>
                 <th>##word.name_size##</th>
-                <th>##word.unit##</th>
-                <th>##word.transfer_branch_item_count##</th>
-                <!-- <th class="hide">##word.total_price##</th> -->
+                <th class="small_t">##word.unit##</th>
+                <th class="small_t">##word.transfer_branch_item_count##</th>
+                <th class="hide small_t">##word.total_price##</th> -
             </tr>
 
             <tr ng-repeat="itm in transfer_branch.items">
-                <td class="center blue">{{$index + 1}}</td>
+                <td class="center small_t blue">{{$index + 1}}</td>
                 <td class="center">{{itm.barcode}}</td>
                 <td class="center">{{itm.name}}</td>
                 <td class="center">
                     <p>{{itm.size}}</p>
                     <p>{{itm.size_en}}</p>
                 </td>
-                <td class="center">{{itm.unit.name}}</td>
-                <td class="center">{{itm.count}}</td>
-                <!-- <td class="center hide">{{itm.total_price}}</td> -->
+                <td class="center small_t">{{itm.unit.name}}</td>
+                <td class="center small_t">{{itm.count}}</td>
+                <td class="center small_t hide">{{itm.total_price}}</td>
             </tr>
         </table>
     </div>
@@ -106,7 +125,7 @@
     <br>
 
     <div class="row hide" ng-repeat="i in defaultSettings.printer_program.invoice_footer">
-        <h3 class="black center">{{i.name}}</h3>
+        <h1 class="black center">{{i.name}}</h1>
     </div>
 
 
