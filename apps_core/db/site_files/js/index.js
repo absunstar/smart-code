@@ -4,7 +4,7 @@ app.controller("db", function ($scope, $http) {
         name: 'users_info',
         ar: 'المستخدمين',
         en: 'Users'
-    },{
+    }, {
         name: 'companies',
         ar: 'الشركات',
         en: 'Companies'
@@ -41,9 +41,9 @@ app.controller("db", function ($scope, $http) {
         ar: "تفكيك الأصناف"
     },
     {
-        name: "stores_dismantle",
-        en: "Items Dismantle",
-        ar: "تفكيك الأصناف"
+        name: "items_group",
+        en: "Items Groups",
+        ar: "مجموعات الأصناف"
     },
     {
         name: "stores",

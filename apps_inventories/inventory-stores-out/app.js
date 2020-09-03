@@ -274,9 +274,7 @@ module.exports = function init(site) {
         response.error = 'OverDraft Not Active'
         res.json(response)
 
-
       } else {
-
 
         if (stores_out_doc._id) {
           $stores_out.edit({
@@ -844,71 +842,83 @@ module.exports = function init(site) {
       if (!err) {
 
         docs.forEach(stores_out_doc => {
-          stores_out_doc.posting = true
 
-          if (stores_out_doc._id) {
-            $stores_out.edit({
-              where: {
-                _id: stores_out_doc._id
-              },
-              set: stores_out_doc,
-              $req: req,
-              $res: res
-            }, (err, result) => {
-              if (!err) {
-                response.done = true
-                response.doc = result.doc
+          req.body.store = stores_out_doc.store
+          req.body.branch = stores_out_doc.branch
+          site.isAllowOverDraft(Object.assign({}, req), stores_out_doc.items, cbOverDraft => {
 
-                result.doc.items.forEach((_itm, i) => {
-                  _itm.store = result.doc.store
-                  _itm.company = result.doc.company
-                  _itm.branch = result.doc.branch
-                  _itm.source_type = result.doc.type
-                  _itm.number = result.doc.number
-                  _itm.customer = result.doc.customer
-                  _itm.date = result.doc.date
-                  _itm.shift = {
-                    id: result.doc.shift.id,
-                    code: result.doc.shift.code,
-                    name: result.doc.shift.name
-                  }
-                  _itm.current_status = 'sold'
-                  if (result.doc.type.id == 6) {
-                    _itm.returnSell = true
-                    _itm.type = 'sum'
-                    _itm.count = (-Math.abs(_itm.count))
-                    _itm.transaction_type = 'out'
-                    site.quee('item_transaction - items', Object.assign({}, _itm))
-                  } else {
+            if (!cbOverDraft.overdraft && cbOverDraft.value && stores_out_doc.type.id != 6) {
+              response.error = 'OverDraft Not Active'
+              res.json(response)
 
-                    if (result.doc.type.id == 5) {
-                      _itm.set_average = 'minus_average'
+            } else {
+              stores_out_doc.posting = true
+
+              if (stores_out_doc._id) {
+                $stores_out.edit({
+                  where: {
+                    _id: stores_out_doc._id
+                  },
+                  set: stores_out_doc,
+                  $req: req,
+                  $res: res
+                }, (err, result) => {
+                  if (!err) {
+                    response.done = true
+                    response.doc = result.doc
+
+                    result.doc.items.forEach((_itm, i) => {
+                      _itm.store = result.doc.store
+                      _itm.company = result.doc.company
+                      _itm.branch = result.doc.branch
+                      _itm.source_type = result.doc.type
+                      _itm.number = result.doc.number
+                      _itm.customer = result.doc.customer
+                      _itm.date = result.doc.date
+                      _itm.shift = {
+                        id: result.doc.shift.id,
+                        code: result.doc.shift.code,
+                        name: result.doc.shift.name
+                      }
+                      _itm.current_status = 'sold'
+                      if (result.doc.type.id == 6) {
+                        _itm.returnSell = true
+                        _itm.type = 'sum'
+                        _itm.count = (-Math.abs(_itm.count))
+                        _itm.transaction_type = 'out'
+                        site.quee('item_transaction - items', Object.assign({}, _itm))
+                      } else {
+
+                        if (result.doc.type.id == 5) {
+                          _itm.set_average = 'minus_average'
+                        }
+
+                        _itm.type = 'minus'
+                        _itm.transaction_type = 'out'
+                        site.quee('item_transaction - items', Object.assign({}, _itm))
+                      }
+
+                      _itm.count = Math.abs(_itm.count)
+                      site.quee('[transfer_branch][stores_items][add_balance]', Object.assign({}, _itm))
+
+                    })
+
+                    if (result.doc.type && result.doc.type.id == 6) {
+                      if (!result.doc.posting)
+                        result.doc.return = true
+                      site.returnStoresOut(result.doc, res => { })
                     }
 
-                    _itm.type = 'minus'
-                    _itm.transaction_type = 'out'
-                    site.quee('item_transaction - items', Object.assign({}, _itm))
+                  } else {
+                    response.error = err.message
                   }
-
-                  _itm.count = Math.abs(_itm.count)
-                  site.quee('[transfer_branch][stores_items][add_balance]', _itm)
-
+                  res.json(response)
                 })
-
-                if (result.doc.type && result.doc.type.id == 6) {
-                  if (!result.doc.posting)
-                    result.doc.return = true
-                  site.returnStoresOut(result.doc, res => { })
-                }
-
               } else {
-                response.error = err.message
+                res.json(response)
               }
-              res.json(response)
-            })
-          } else {
-            res.json(response)
-          }
+            }
+          })
 
         });
 

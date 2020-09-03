@@ -1572,7 +1572,6 @@ module.exports = function init(site) {
     }
 
     site.getDefaultSetting(req, cbSetting => {
-
       if (cbSetting.inventory && cbSetting.inventory.overdraft == true) {
         cbObj.overdraft = true
       } else {
@@ -1588,7 +1587,6 @@ module.exports = function init(site) {
       }, (err, docs) => {
         if (!err) {
           if (docs && docs.length > 0) {
-
             docs.forEach(_item => {
               if (_item.sizes && _item.sizes.length > 0) {
 
@@ -1601,7 +1599,6 @@ module.exports = function init(site) {
                       let foundUnit = false
                       let foundStores = false
                       let foundBranch = false
-
 
                       if (currentSize.branches_list && currentSize.branches_list.length > 0) {
                         currentSize.branches_list.forEach(branchesList => {
@@ -1620,9 +1617,9 @@ module.exports = function init(site) {
                                         foundUnit = true
                                         objFound.current.push({ unit: cbSize.unit, store: storesList.store, barcode: currentSize.barcode })
                                         objFound.cb.push({ cbSize })
-                                        let over = site.toNumber(sizeUnits.current_count) - site.toNumber(cbSize.count)
-
-                                        if (over < 0) {
+                                        let over = 0
+                                        over = site.toNumber(sizeUnits.current_count) - site.toNumber(cbSize.count)
+                                        if (site.toNumber(over) < 0) {
                                           cbObj.value = true
                                         }
                                       }
