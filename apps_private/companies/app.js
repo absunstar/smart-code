@@ -164,12 +164,22 @@ module.exports = function init(site) {
             response.done = true
             response.doc = result.doc
 
+
+            let branch_list =  []
+            companies_doc.branch_list.forEach(b=>{
+              branch_list.push({
+                company : companies_doc,
+                branch : b
+              })
+            })
+
             site.call('[user][update]', {
               id: companies_doc.user_id,
               email: companies_doc.username,
               password: companies_doc.password,
               company_id: companies_doc.id,
               is_company: true,
+              branch_list : branch_list,
               profile: {
                 name: companies_doc.name_ar,
                 mobile: companies_doc.mobile,
@@ -188,10 +198,7 @@ module.exports = function init(site) {
                   roles: [{
                     name: "companies_admin"
                   }],
-                  branch_list: [{
-                    company: companies_doc,
-                    branch: companies_doc.branch_list[0]
-                  }],
+                  branch_list: branch_list,
                   profile: {
                     name: companies_doc.name_ar,
                     mobile: companies_doc.mobile,
