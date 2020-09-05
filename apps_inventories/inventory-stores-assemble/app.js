@@ -90,9 +90,10 @@ module.exports = function init(site) {
     let assembleItems = []
     stores_assemble_doc.items.forEach(assembleDocItems => {
       assembleDocItems.complex_items.forEach(aDiCoplex => {
-        aDiCoplex.count = aDiCoplex.count + assembleDocItems.count
-
-        assembleItems.push(aDiCoplex)
+        if (assembleDocItems.barcode === aDiCoplex.barcode) {
+          aDiCoplex.count = aDiCoplex.count + assembleDocItems.count
+          assembleItems.push(aDiCoplex)
+        }
       });
     });
 
@@ -245,14 +246,16 @@ module.exports = function init(site) {
 
         stores_assemble_doc.items.forEach(assembleDocItems => {
           assembleDocItems.complex_items.forEach(aDiCoplex => {
-            aDiCoplex.count = aDiCoplex.count + assembleDocItems.count
 
-            assembleItems.push(aDiCoplex)
+            if (assembleDocItems.barcode === aDiCoplex.barcode) {
+              aDiCoplex.count = aDiCoplex.count + assembleDocItems.count
+              assembleItems.push(aDiCoplex)
+            }
           });
         });
 
       } else {
-        assembleItems = Object.assign({}, stores_assemble_doc.items)
+        assembleItems = stores_assemble_doc.items
       }
 
 

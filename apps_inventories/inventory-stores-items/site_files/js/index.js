@@ -44,7 +44,7 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
     $scope.item.current_count = 0;
     $scope.item.total_sell_price = 0;
     $scope.item.total_sell_count = 0;
-    $scope.item.total_buy_price = 0;
+    $scope.item.total_buy_cost = 0;
     $scope.item.total_buy_count = 0;
 
     if (!$scope.item.average_cost)

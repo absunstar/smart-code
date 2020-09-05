@@ -216,7 +216,7 @@ module.exports = function init(site) {
 
   site.post("/api/stores_dismantle/posting", (req, res) => {
     let response = {}
-    
+
     if (!req.session.user) {
       response.error = 'Please Login First'
       res.json(response)
@@ -236,14 +236,17 @@ module.exports = function init(site) {
 
       if (stores_dismantle_doc.posting) {
 
-        disAssembleItems = Object.assign({}, stores_assemble_doc.items)
+        disAssembleItems = stores_assemble_doc.items
 
       } else {
 
         stores_assemble_doc.items.forEach(disAssembleDocItems => {
           disAssembleDocItems.complex_items.forEach(dAdIcoplex => {
-            dAdIcoplex.count = dAdIcoplex.count + disAssembleDocItems.count
-            disAssembleItems.push(dAdIcoplex)
+            if (disAssembleDocItems.barcode === dAdIcoplex.barcode) {
+
+              dAdIcoplex.count = dAdIcoplex.count + disAssembleDocItems.count
+              disAssembleItems.push(dAdIcoplex)
+            }
           });
         });
 
@@ -375,9 +378,13 @@ module.exports = function init(site) {
       let disAssembleItems = []
       stores_dismantle_doc.items.forEach(disAssembleDocItems => {
         disAssembleDocItems.complex_items.forEach(dAdIcoplex => {
-          dAdIcoplex.count = dAdIcoplex.count + disAssembleDocItems.count
+          
+          if (disAssembleDocItems.barcode === dAdIcoplex.barcode) {
 
-          disAssembleItems.push(dAdIcoplex)
+            dAdIcoplex.count = dAdIcoplex.count + disAssembleDocItems.count
+            disAssembleItems.push(dAdIcoplex)
+          }
+
         });
       });
 
