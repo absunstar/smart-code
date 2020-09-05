@@ -16,7 +16,7 @@ module.exports = function init(site) {
   site.on('[company][created]', doc => {
 
     $tables_group.add({
-      code: "1" ,
+      code: "1",
       name: "مجموعة طاولات إفتراضية",
 
       image_url: '/images/tables_group.png',
@@ -59,13 +59,13 @@ module.exports = function init(site) {
     }
 
     tables_group_doc.company = site.get_company(req)
-     tables_group_doc.branch = site.get_branch(req)
- 
+    tables_group_doc.branch = site.get_branch(req)
+
     $tables_group.find({
       where: {
         'company.id': site.get_company(req).id,
-         'branch.code': site.get_branch(req).code,
-         'name': tables_group_doc.name
+        'branch.code': site.get_branch(req).code,
+        'name': tables_group_doc.name
       }
     }, (err, doc) => {
       if (!err && doc) {
@@ -187,7 +187,7 @@ module.exports = function init(site) {
     let response = {
       done: false
     }
-          
+
     if (!req.session.user) {
       response.error = 'Please Login First'
       res.json(response)
@@ -203,7 +203,7 @@ module.exports = function init(site) {
     if (where['code']) {
       where['code'] = site.get_RegExp(where['code'], "i");
     }
-    
+
     if (where.search && where.search.salary) {
 
       where['salary'] = where.search.salary
@@ -212,8 +212,8 @@ module.exports = function init(site) {
     delete where.search
 
     where['company.id'] = site.get_company(req).id
-     where['branch.code'] = site.get_branch(req).code
- 
+    where['branch.code'] = site.get_branch(req).code
+
     $tables_group.findMany({
       select: req.body.select || {},
       where: where,

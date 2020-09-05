@@ -122,7 +122,9 @@ img {
         border-style: outset !important;
     
     }
-    
+    .table th.small_t {
+        width: 9px !important;
+    }
 }
 
 
