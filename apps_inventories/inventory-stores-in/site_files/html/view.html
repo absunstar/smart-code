@@ -1,27 +1,38 @@
 <div ng-hide="busy" class="row" fixed>
 
     <div class="row hide">
+        <div class="col2"></div>
+        <div class="col8 center">
+            <img class="logoPrint" ng-src="{{defaultSettings.printer_program.invoice_logo}}">
+        </div>
+
+    </div>
+
+    <div class="row hide">
         <br>
 
-        <div class="col2">
+        <div class="col4">
             <h2 class="right red">##session.company.name_ar##</h2>
             <div class="row " ng-repeat="i in defaultSettings.printer_program.invoice_header">
-                <h3 class="black right">{{i.name}}</h3>
+                <h2 class="black right">{{i.name}}</h2>
             </div>
         </div>
 
-        <div class="col8 center">
-            <img class="logoPrint " ng-src="{{defaultSettings.printer_program.invoice_logo}}">
+        <div class="col4">
         </div>
 
-        <div class="col2">
+        <div class="col4">
             <h2 class="left red">##session.company.name_en##</h2>
             <div class="row " ng-repeat="i in defaultSettings.printer_program.invoice_header2">
-                <h3 class="black left">{{i.name}}</h3>
+                <h2 class="black left">{{i.name}}</h2>
             </div>
         </div>
 
     </div>
+
+    <br>
+    <br>
+    <br>
 
     <div class="row">
         <br>
@@ -30,7 +41,7 @@
             <tr>
                 <td class="title">
                     <b class="indigoD">##word.stores_in_date## :</b>
-                    <b class="brown">{{store_in.date |date:"dd - MM - yyyy" }} 
+                    <b class="brown">{{store_in.date |date:"dd - MM - yyyy" }}
                     </b>
 
 
@@ -130,6 +141,7 @@
 
     <br>
     <br>
+    <br>
 
     <div class="row">
         <table class="table bold hover">
@@ -142,8 +154,8 @@
                 <th class="small_t">##word.stores_in_item_count##</th>
                 <th class="not-print small_t">##word.price##</th>
                 <th class="small_t">##word.discount##</th>
-                <th class="small_t">##word.value_added##</th>
-                <th class="small_t">##word.total_v_a##</th>
+                <th ng-show="defaultSettings.inventory.value_added > 0" class="small_t">##word.value_added##</th>
+                <th ng-show="defaultSettings.inventory.value_added > 0" class="small_t">##word.total_v_a##</th>
                 <th class="small_t">##word.stores_in_item_total##</th>
 
             </tr>
@@ -170,14 +182,23 @@
                     <b class="red" ng-show="itm.discount.type =='number'">$</b>
                     <b class="red" ng-show="itm.discount.type =='percent'">%</b>
                 </td>
-                <td class="center small_t"> {{itm.value_added}}</td>
-                <td class="center small_t red"> {{itm.total_v_a}}</td>
+                <td ng-show="defaultSettings.inventory.value_added > 0" class="center small_t">
+                    {{itm.value_added}}
+                </td>
+                <td ng-show="defaultSettings.inventory.value_added > 0" class="center small_t red">
+                    {{itm.total_v_a}}
+                </td>
 
                 <td class="center small_t">{{itm.total}}</td>
 
             </tr>
         </table>
     </div>
+
+
+    <br>
+    <br>
+    <br>
 
     <div class="row">
         <div class="row">
@@ -188,8 +209,9 @@
         </div>
         <div class="row">
 
-            <i-control ng-show="store_in.total_value_added" class="col2 r_darkRed" ng-model="store_in.total_value_added"
-                label="##word.total_value_added##" type="number" disabled>
+            <i-control ng-show="store_in.total_value_added && defaultSettings.inventory.value_added > 0"
+                class="col2 r_darkRed" ng-model="store_in.total_value_added" label="##word.total_value_added##"
+                type="number" disabled>
             </i-control>
         </div>
         <div class="row">
@@ -200,6 +222,11 @@
         </div>
     </div>
 
+    <br>
+    <br>
+    <br>
+    <br>
+
     <div class="row hide">
         <br>
         <br>
@@ -208,9 +235,11 @@
             <h2 class="black">##word.recipient_signature## : </h2>
         </div>
     </div>
+
     <br>
     <br>
     <br>
+
     <div class="row hide" ng-repeat="i in defaultSettings.printer_program.invoice_footer">
         <h1 class="black center">{{i.name}}</h1>
     </div>

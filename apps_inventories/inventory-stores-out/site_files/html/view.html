@@ -1,26 +1,37 @@
 <div ng-hide="busy" class="row" fixed>
 
     <div class="row hide">
-        <br>
-        <div class="col2">
-            <h2 class="right red">##session.company.name_ar##</h2>
-            <div class="row" ng-repeat="i in defaultSettings.printer_program.invoice_header">
-                <h3 class="black right">{{i.name}}</h3>
-            </div>
-        </div>
-
+        <div class="col2"></div>
         <div class="col8 center">
             <img class="logoPrint" ng-src="{{defaultSettings.printer_program.invoice_logo}}">
         </div>
 
-        <div class="col2">
+    </div>
+
+    <div class="row hide">
+        <br>
+        <div class="col4">
+            <h2 class="right red">##session.company.name_ar##</h2>
+            <div class="row" ng-repeat="i in defaultSettings.printer_program.invoice_header">
+                <h2 class="black right">{{i.name}}</h2>
+            </div>
+        </div>
+
+        <div class="col4">
+        </div>
+
+        <div class="col4">
             <h2 class="left red">##session.company.name_en##</h2>
             <div class="row" ng-repeat="i in defaultSettings.printer_program.invoice_header2">
-                <h3 class="black left">{{i.name}}</h3>
+                <h2 class="black left">{{i.name}}</h2>
             </div>
         </div>
 
     </div>
+
+    <br>
+    <br>
+    <br>
 
     <div class="row">
         <br>
@@ -133,28 +144,30 @@
 
     <br>
     <br>
+    <br>
 
     <div class="row">
 
         <table class="table bold hover details">
             <tr>
-                <th class="">##word.serial##</th>
+                <th class="small_t">##word.serial##</th>
                 <th class="">##word.barcode##</th>
                 <th class="">##word.stores_out_item_name##</th>
                 <th class="">##word.name_size##</th>
-                <th class="">##word.unit##</th>
-                <th class="">##word.stores_out_item_count##</th>
-                <th class="" ng-hide="store_out.type.id ==5"
+                <th class="small_t">##word.unit##</th>
+                <th class="small_t">##word.stores_out_item_count##</th>
+                <th class="small_t" ng-hide="store_out.type.id ==5"
                     x-permissions="stores_out_details_values || stores_out_manage">##word.price##</th>
-                <th class="" ng-hide="store_out.type.id ==5">##word.discount##</th>
-                <th class="">##word.value_added##</th>
-                <th class="" x-permissions="stores_out_details_values || stores_out_manage">##word.total_v_a##
+                <th class="small_t" ng-hide="store_out.type.id ==5">##word.discount##</th>
+                <th ng-show="defaultSettings.inventory.value_added > 0" class="small_t">##word.value_added##</th>
+                <th class="small_t" ng-show="defaultSettings.inventory.value_added > 0"
+                    x-permissions="stores_out_details_values || stores_out_manage">##word.total_v_a##
                 </th>
-                <th class="" x-permissions="stores_out_details_values || stores_out_manage">
+                <th class="small_t" x-permissions="stores_out_details_values || stores_out_manage">
                     ##word.stores_out_item_total##</th>
             </tr>
             <tr ng-repeat="itm in store_out.items">
-                <td class="center  blue">
+                <td class="center small_t blue">
                     <p>{{$index + 1}}</p>
                     <i-button label="##word.patch##" ng-show="itm.work_patch" type="view"
                         ng-click="viewPatchesList(itm)">
@@ -167,22 +180,24 @@
                     <p>{{itm.size_en}}</p>
                 </td>
 
-                <td class="center ">{{itm.unit.name}}</td>
-                <td class="center ">{{itm.count}}</td>
-                <td class="center " x-permissions="stores_out_details_values || stores_out_manage"
+                <td class="center small_t">{{itm.unit.name}}</td>
+                <td class="center small_t">{{itm.count}}</td>
+                <td class="center small_t" x-permissions="stores_out_details_values || stores_out_manage"
                     ng-hide="store_out.type.id ==5">{{itm.price}}</td>
 
-                <td class="center " ng-hide="store_out.type.id ==5">
+                <td class="center small_t" ng-hide="store_out.type.id ==5">
                     {{itm.discount.value}}
                     <b class="red" ng-show="itm.discount.type =='number'">$</b>
                     <b class="red" ng-show="itm.discount.type =='percent'">%</b>
                 </td>
 
-                <td class="center "> {{itm.value_added}}</td>
-                <td x-permissions="stores_out_details_values || stores_out_manage" class="center  red">
-                    {{itm.total_v_a}}</td>
+                <td ng-show="defaultSettings.inventory.value_added > 0" class="center small_t"> {{itm.value_added}}</td>
+                <td x-permissions="stores_out_details_values || stores_out_manage"
+                    ng-show="defaultSettings.inventory.value_added > 0" class="center small_t red">
+                    {{itm.total_v_a}}
+                </td>
 
-                <td class="center " x-permissions="stores_out_details_values || stores_out_manage"
+                <td class="center small_t" x-permissions="stores_out_details_values || stores_out_manage"
                     class="center">
                     {{itm.total}}</td>
 
@@ -192,6 +207,10 @@
         </table>
 
     </div>
+
+    <br>
+    <br>
+    <br>
 
     <div class="row" x-permissions="stores_out_details_values || stores_out_manage">
 
@@ -203,8 +222,9 @@
         </div>
         <div class="row">
 
-            <i-control ng-show="store_out.total_value_added" class="col2 r_darkRed"
-                ng-model="store_out.total_value_added" label="##word.total_value_added##" type="number" disabled>
+            <i-control ng-show="store_out.total_value_added && defaultSettings.inventory.value_added > 0"
+                class="col2 r_darkRed" ng-model="store_out.total_value_added" label="##word.total_value_added##"
+                type="number" disabled>
             </i-control>
         </div>
         <div class="row">
@@ -214,6 +234,11 @@
             </i-control>
         </div>
     </div>
+
+    <br>
+    <br>
+    <br>
+    <br>
 
     <div class="row hide">
         <br>

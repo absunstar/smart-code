@@ -1,27 +1,37 @@
 <div ng-hide="busy" class="row" fixed>
 
     <div class="row hide">
-        <br>
-        <div class="col2">
-            <h2 class="right red">##session.company.name_ar##</h2>
-            <div class="row" ng-repeat="i in defaultSettings.printer_program.invoice_header">
-                <h3 class="black right">{{i.name}}</h3>
-            </div>
-        </div>
-
+        <div class="col2"></div>
         <div class="col8 center">
             <img class="logoPrint" ng-src="{{defaultSettings.printer_program.invoice_logo}}">
         </div>
 
-        <div class="col2">
+    </div>
+
+    <div class="row hide">
+        <br>
+        <div class="col4">
+            <h2 class="right red">##session.company.name_ar##</h2>
+            <div class="row" ng-repeat="i in defaultSettings.printer_program.invoice_header">
+                <h2 class="black right">{{i.name}}</h2>
+            </div>
+        </div>
+
+        <div class="col4">
+        </div>
+
+        <div class="col4">
             <h2 class="left red">##session.company.name_en##</h2>
             <div class="row" ng-repeat="i in defaultSettings.printer_program.invoice_header2">
-                <h3 class="black left">{{i.name}}</h3>
+                <h2 class="black left">{{i.name}}</h2>
             </div>
         </div>
 
     </div>
 
+    <br>
+    <br>
+    <br>
 
     <div class="row">
 
@@ -74,8 +84,11 @@
 
         </table>
     </div>
+
     <br>
     <br>
+    <br>
+
     <div class="row">
         <table class="table bold hover">
             <tr>
@@ -103,7 +116,12 @@
         </table>
     </div>
 
+
     <br>
+    <br>
+    <br>
+    <br>
+
     <!-- 
     <div class="row hide">
         <i-control class="col2 r_green" ng-model="total_price" label="##word.total_price##" type="number" disabled>
@@ -114,10 +132,15 @@
         <br>
         <h1 class="red center">##word.received_honesty##</h1>
         <br>
-        <div class="row">
-            <div class="col2"></div>
-            <h2 class="black">##word.recipient_signature## : </h2>
-        </div>
+       
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="row hide">
+        <div class="col2"></div>
+        <h2 class="black">##word.recipient_signature## : </h2>
     </div>
 
     <br>
