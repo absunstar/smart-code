@@ -129,9 +129,9 @@ img {
 
 
 .table th {
-    border-width: 5px;
+    border-width: 3px;
     border-radius: 30px;
-    border-color: #fbfbfb;
+    border-color: #ffffff;
 }
 
 .small_t {
@@ -141,6 +141,6 @@ img {
 
 .table td {
     border-radius: 25px;
-    border-width: 5px;
-    border-color: #fbfbfb;
+    border-width: 1px;
+    border-color: #ddd;
 }
