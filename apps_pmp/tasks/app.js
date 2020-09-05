@@ -867,7 +867,7 @@ module.exports = function init(site) {
     let where = req.body.where || {}
 
     if (where['name']) {
-      where['name'] = new RegExp(where['name'], "i");
+      where['name'] = site.get_RegExp(where['name'], "i");
     }
 
     if (req.session.user && req.session.user.roles[0].name == 'tasks_developer') {

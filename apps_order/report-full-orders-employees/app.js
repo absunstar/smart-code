@@ -28,15 +28,15 @@ module.exports = function init(site) {
     let employee = where.employee
 
     if (where['code']) {
-      where['code'] = new RegExp(where['code'], 'i')
+      where['code'] = site.get_RegExp(where['code'], 'i')
     };
 
     if (where['name']) {
-      where['name'] = new RegExp(where['name'], 'i')
+      where['name'] = site.get_RegExp(where['name'], 'i')
     };
 
     if (where['shift_code']) {
-      where['shift.code'] = new RegExp(where['shift_code'], 'i')
+      where['shift.code'] = site.get_RegExp(where['shift_code'], 'i')
       delete where['shift_code']
     }
 

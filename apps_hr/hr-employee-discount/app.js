@@ -201,7 +201,7 @@ module.exports = function init(site) {
     }
 
     if (where['description']) {
-      where['description'] = new RegExp(where['description'], 'i')
+      where['description'] = site.get_RegExp(where['description'], 'i')
     }
 
     if (where.search && where.search.value) {
