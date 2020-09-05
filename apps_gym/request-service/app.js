@@ -239,21 +239,21 @@ module.exports = function init(site) {
     if (search) {
       where.$or = []
       where.$or.push({
-        'service.name': new RegExp(search, "i")
+        'service.name': site.get_RegExp(search, "i")
       })
       where.$or.push({
-        'customer.name_ar': new RegExp(search, "i")
+        'customer.name_ar': site.get_RegExp(search, "i")
       })
       where.$or.push({
-        'trainer.name': new RegExp(search, "i")
+        'trainer.name': site.get_RegExp(search, "i")
       })
       where.$or.push({
-        'hall.name': new RegExp(search, "i")
+        'hall.name': site.get_RegExp(search, "i")
       })
     }
     
     if (where['shift_code']) {
-      where['shift.code'] = new RegExp(where['shift_code'], 'i')
+      where['shift.code'] = site.get_RegExp(where['shift_code'], 'i')
       delete where['shift_code']
     }
 
@@ -306,13 +306,13 @@ module.exports = function init(site) {
       delete where['hall']
     }
 
-    if (where['service_name']) where['service_name'] = new RegExp(where['service_name'], 'i')
+    if (where['service_name']) where['service_name'] = site.get_RegExp(where['service_name'], 'i')
 
-    if (where['customer']) where['customer.name_ar'] = new RegExp(where['customer'], 'i')
+    if (where['customer']) where['customer.name_ar'] = site.get_RegExp(where['customer'], 'i')
 
-    if (where['trainer']) where['trainer.name'] = new RegExp(where['trainer'], 'i')
+    if (where['trainer']) where['trainer.name'] = site.get_RegExp(where['trainer'], 'i')
 
-    if (where['code']) where['code'] = new RegExp(where['code'], "i");
+    if (where['code']) where['code'] = site.get_RegExp(where['code'], "i");
 
     where['company.id'] = site.get_company(req).id
     where['branch.code'] = site.get_branch(req).code

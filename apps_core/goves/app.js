@@ -195,7 +195,7 @@ module.exports = function init(site) {
     let where = req.body.where || {}
 
     if (where['name']) {
-      where['name'] = new RegExp(where['name'], "i");
+      where['name'] = site.get_RegExp(where['name'], "i");
     }
 
     if (site.get_company(req) && site.get_company(req).id)

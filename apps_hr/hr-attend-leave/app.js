@@ -236,7 +236,7 @@ module.exports = function init(site) {
     let where = req.body.where || {}
 
     if (where['name']) {
-      where['employee.name'] = new RegExp(where['name'], "i");
+      where['employee.name'] = site.get_RegExp(where['name'], "i");
     }
 
     if (where.attend_date_to && where.attend_date_from) {

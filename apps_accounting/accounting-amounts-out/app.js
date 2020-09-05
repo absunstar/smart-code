@@ -330,11 +330,11 @@ module.exports = function init(site) {
 
 
     if (where['description']) {
-      where['description'] = new RegExp(where['description'], 'i')
+      where['description'] = site.get_RegExp(where['description'], 'i')
     }
 
     if (where['shift_code']) {
-      where['shift.code'] = new RegExp(where['shift_code'], 'i')
+      where['shift.code'] = site.get_RegExp(where['shift_code'], 'i')
       delete where['shift_code']
     }
 

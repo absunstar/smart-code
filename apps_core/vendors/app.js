@@ -192,11 +192,11 @@ module.exports = function init(site) {
     let where = req.data.where || {}
 
     if (where['name_ar']) {
-      where['name_ar'] = new RegExp(where['name_ar'], 'i')
+      where['name_ar'] = site.get_RegExp(where['name_ar'], 'i')
     }
 
     if (where['name_en']) {
-      where['name_en'] = new RegExp(where['name_en'], 'i')
+      where['name_en'] = site.get_RegExp(where['name_en'], 'i')
     }
     if (where['active'] !== 'all') {
       where['active'] = true

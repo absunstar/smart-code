@@ -230,7 +230,7 @@ module.exports = function init(site) {
     let where = req.body.where || {}
 
     if (where['name_ar']) {
-      where['customer.name_ar'] = new RegExp(where['name_ar'], "i");
+      where['customer.name_ar'] = site.get_RegExp(where['name_ar'], "i");
     }
 
     if (where.attend_date_to && where.attend_date_from) {

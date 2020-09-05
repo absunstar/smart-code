@@ -124,15 +124,15 @@ module.exports = function init(site) {
     let where = req.body.where || {}
 
     if (where['name']) {
-      where['name'] = new RegExp(where['name'], "i");
+      where['name'] = site.get_RegExp(where['name'], "i");
     }
 
     if (where['customer_service']) {
-      where['customer_service'] = new RegExp(where['customer_service'], "i");
+      where['customer_service'] = site.get_RegExp(where['customer_service'], "i");
     }
 
     if (where['online_chat']) {
-      where['online_chat'] = new RegExp(where['online_chat'], "i");
+      where['online_chat'] = site.get_RegExp(where['online_chat'], "i");
     }
 
 

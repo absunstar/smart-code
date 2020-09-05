@@ -826,11 +826,11 @@ module.exports = function init(site) {
       where.$or = []
 
       where.$or.push({
-        'sizes.size': new RegExp(search, 'i')
+        'sizes.size': site.get_RegExp(search, 'i')
       })
 
       where.$or.push({
-        'sizes.size_en': new RegExp(search, 'i')
+        'sizes.size_en': site.get_RegExp(search, 'i')
       })
 
       where.$or.push({
@@ -842,7 +842,7 @@ module.exports = function init(site) {
       })
 
       where.$or.push({
-        'name': new RegExp(search, 'i')
+        'name': site.get_RegExp(search, 'i')
       })
 
       where.$or.push({
@@ -864,21 +864,21 @@ module.exports = function init(site) {
     // } 
 
     if (where && where['name']) {
-      where['name'] = new RegExp(where['name'], 'i')
+      where['name'] = site.get_RegExp(where['name'], 'i')
     }
 
     if (where && where['size']) {
-      where['sizes.size'] = new RegExp(where['size'], 'i')
+      where['sizes.size'] = site.get_RegExp(where['size'], 'i')
       delete where['size']
     }
 
     if (where['size_en']) {
-      where['sizes.size_en'] = new RegExp(where['size_en'], 'i')
+      where['sizes.size_en'] = site.get_RegExp(where['size_en'], 'i')
       delete where['size_en']
     }
 
     if (where && where['barcode']) {
-      where['sizes.barcode'] = new RegExp(where['barcode'], 'i')
+      where['sizes.barcode'] = site.get_RegExp(where['barcode'], 'i')
       delete where['barcode']
     }
 
