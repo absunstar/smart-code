@@ -206,10 +206,10 @@ module.exports = function init(site) {
     let where = req.body.where || {}
 
     if (where['name']) {
-      where['name'] = site.get_RegExp(where['name'], "i");
+      where['name'] = new RegExp(where['name'], "i");
     }
     if (where['code']) {
-      where['code'] = site.get_RegExp(where['code'], "i");
+      where['code'] = new RegExp(where['code'], "i");
     }
     delete where.search
     where['company.id'] = site.get_company(req).id

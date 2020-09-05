@@ -179,11 +179,11 @@ module.exports = function init(site) {
     response.done = false
 
     if (where['name']) {
-      where['name'] = site.get_RegExp(where['name'], 'i')
+      where['name'] = new RegExp(where['name'], 'i')
     }
 
     if (where['details']) {
-      where['details'] = site.get_RegExp(where['details'], 'i')
+      where['details'] = new RegExp(where['details'], 'i')
     }
 
     if (where['in']) {

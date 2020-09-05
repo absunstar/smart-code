@@ -238,11 +238,11 @@ module.exports = function init(site) {
     }
 
     if (where['lawsuit_topic']) {
-      where['lawsuit_topic'] = site.get_RegExp(where['lawsuit_topic'], 'i')
+      where['lawsuit_topic'] = new RegExp(where['lawsuit_topic'], 'i')
     }
 
     if (where['notes']) {
-      where['notes'] = site.get_RegExp(where['notes'], 'i')
+      where['notes'] = new RegExp(where['notes'], 'i')
     }
 
 

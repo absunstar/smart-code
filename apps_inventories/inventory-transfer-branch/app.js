@@ -312,23 +312,23 @@ module.exports = function init(site) {
     }
 
     if (where['shift_code']) {
-      where['shift.code'] = site.get_RegExp(where['shift_code'], 'i')
+      where['shift.code'] = new RegExp(where['shift_code'], 'i')
       delete where['shift_code']
     }
 
     if (where && where['notes']) {
-      where['notes'] = site.get_RegExp(where['notes'], 'i')
+      where['notes'] = new RegExp(where['notes'], 'i')
     }
     if (where && where['number']) {
-      where['number'] = site.get_RegExp(where['number'], 'i')
+      where['number'] = new RegExp(where['number'], 'i')
     }
 
     if (where && where['supply_number']) {
-      where['supply_number'] = site.get_RegExp(where['supply_number'], 'i')
+      where['supply_number'] = new RegExp(where['supply_number'], 'i')
     }
 
     if (where && where['items.ticket_code']) {
-      where['items.ticket_code'] = site.get_RegExp(where['items.ticket_code'], 'i')
+      where['items.ticket_code'] = new RegExp(where['items.ticket_code'], 'i')
     }
 
     if (where.date) {
@@ -352,22 +352,22 @@ module.exports = function init(site) {
     }
 
     if (where['name']) {
-      where['items.name'] = site.get_RegExp(where['name'], 'i')
+      where['items.name'] = new RegExp(where['name'], 'i')
       delete where['name']
     }
 
     if (where['size']) {
-      where['items.size'] = site.get_RegExp(where['size'], 'i')
+      where['items.size'] = new RegExp(where['size'], 'i')
       delete where['size']
     }
 
     if (where['size_en']) {
-      where['items.size_en'] = site.get_RegExp(where['size_en'], 'i')
+      where['items.size_en'] = new RegExp(where['size_en'], 'i')
       delete where['size_en']
     }
 
     if (where['barcode']) {
-      where['items.barcode'] = site.get_RegExp(where['barcode'], 'i')
+      where['items.barcode'] = new RegExp(where['barcode'], 'i')
       delete where['barcode']
     }
 

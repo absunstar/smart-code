@@ -512,39 +512,39 @@ module.exports = function init(site) {
       where.$or = []
 
       where.$or.push({
-        'vendor.name': site.get_RegExp(search, "i")
+        'vendor.name': new RegExp(search, "i")
       })
 
       where.$or.push({
-        'vendor.mobile': site.get_RegExp(search, "i")
+        'vendor.mobile': new RegExp(search, "i")
       })
 
       where.$or.push({
-        'vendor.phone': site.get_RegExp(search, "i")
+        'vendor.phone': new RegExp(search, "i")
       })
 
       where.$or.push({
-        'vendor.national_id': site.get_RegExp(search, "i")
+        'vendor.national_id': new RegExp(search, "i")
       })
 
       where.$or.push({
-        'vendor.email': site.get_RegExp(search, "i")
+        'vendor.email': new RegExp(search, "i")
       })
 
       where.$or.push({
-        'store.name': site.get_RegExp(search, "i")
+        'store.name': new RegExp(search, "i")
       })
 
       where.$or.push({
-        'store.number': site.get_RegExp(search, "i")
+        'store.number': new RegExp(search, "i")
       })
 
       where.$or.push({
-        'store.payment_method.ar': site.get_RegExp(search, "i")
+        'store.payment_method.ar': new RegExp(search, "i")
       })
 
       where.$or.push({
-        'store.payment_method.en': site.get_RegExp(search, "i")
+        'store.payment_method.en': new RegExp(search, "i")
       })
 
     }
@@ -554,15 +554,15 @@ module.exports = function init(site) {
 
 
     if (where && where['notes']) {
-      where['notes'] = site.get_RegExp(where['notes'], 'i')
+      where['notes'] = new RegExp(where['notes'], 'i')
     }
 
     if (where && where['number']) {
-      where['number'] = site.get_RegExp(where['number'], 'i')
+      where['number'] = new RegExp(where['number'], 'i')
     }
 
     if (where && where['supply_number']) {
-      where['supply_number'] = site.get_RegExp(where['supply_number'], 'i')
+      where['supply_number'] = new RegExp(where['supply_number'], 'i')
     }
 
 
@@ -608,7 +608,7 @@ module.exports = function init(site) {
     }
 
     if (where['description']) {
-      where['description'] = site.get_RegExp(where['description'], 'i')
+      where['description'] = new RegExp(where['description'], 'i')
     }
 
     delete where.search

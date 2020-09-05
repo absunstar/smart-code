@@ -48,7 +48,7 @@ module.exports = function init(site) {
     }
 
     if (where['name']) {
-      where['items.name'] = site.get_RegExp(where['name'], 'i')
+      where['items.name'] = new RegExp(where['name'], 'i')
       delete where['name']
     }
 
@@ -63,12 +63,12 @@ module.exports = function init(site) {
     }
 
     if (where['size']) {
-      where['items.size'] = site.get_RegExp(where['size'], 'i')
+      where['items.size'] = new RegExp(where['size'], 'i')
       delete where['size']
     }
 
     if (where['barcode']) {
-      where['items.barcode'] = site.get_RegExp(where['barcode'], 'i')
+      where['items.barcode'] = new RegExp(where['barcode'], 'i')
       delete where['barcode']
     }
 

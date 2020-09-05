@@ -187,35 +187,35 @@ module.exports = function init(site) {
     if (search) {
       where.$or = []
       where.$or.push({
-        'name_ar': site.get_RegExp(search, "i")
+        'name_ar': new RegExp(search, "i")
       })
       where.$or.push({
-        'name_en': site.get_RegExp(search, "i")
+        'name_en': new RegExp(search, "i")
       })
       where.$or.push({
-        'mobile': site.get_RegExp(search, "i")
-      })
-
-      where.$or.push({
-        'phone': site.get_RegExp(search, "i")
+        'mobile': new RegExp(search, "i")
       })
 
       where.$or.push({
-        'national_id': site.get_RegExp(search, "i")
+        'phone': new RegExp(search, "i")
       })
 
       where.$or.push({
-        'email': site.get_RegExp(search, "i")
+        'national_id': new RegExp(search, "i")
+      })
+
+      where.$or.push({
+        'email': new RegExp(search, "i")
       })
 
     }
 
     if (where['name_ar']) {
-      where['name_ar'] = site.get_RegExp(where['name_ar'], 'i')
+      where['name_ar'] = new RegExp(where['name_ar'], 'i')
     }
 
     if (where['name_en']) {
-      where['name_en'] = site.get_RegExp(where['name_en'], 'i')
+      where['name_en'] = new RegExp(where['name_en'], 'i')
     }
     if (where['active'] !== 'all') {
       where['active'] = true

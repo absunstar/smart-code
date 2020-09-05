@@ -171,15 +171,15 @@ module.exports = function init(site) {
     let where = req.body.where || {}
 
     if (where && where.name) {
-      where['name'] = site.get_RegExp(where['name'], 'i');
+      where['name'] = new RegExp(where['name'], 'i');
     }
 
     if (where && where.type) {
-      where['type.ar'] = site.get_RegExp(where['type.ar'], 'i');
+      where['type.ar'] = new RegExp(where['type.ar'], 'i');
     }
 
     if (where && where.note) {
-      where['note'] = site.get_RegExp(where['note'], 'i');
+      where['note'] = new RegExp(where['note'], 'i');
     }
     response.done = false
 

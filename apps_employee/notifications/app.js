@@ -150,11 +150,11 @@ module.exports = function init(site) {
 
 
     if (where['message.ar']) {
-      where['message.ar'] = site.get_RegExp(where['message.ar'], 'i')
+      where['message.ar'] = new RegExp(where['message.ar'], 'i')
     }
 
     if (where['value.ar']) {
-      where['value.ar'] = site.get_RegExp(where['value.ar'], 'i')
+      where['value.ar'] = new RegExp(where['value.ar'], 'i')
     }
 
     $notifications.findMany({

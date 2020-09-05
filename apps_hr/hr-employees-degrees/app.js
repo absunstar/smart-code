@@ -150,11 +150,11 @@ module.exports = function init(site) {
     let where = req.data.where || {}
 
     if (where['name']) {
-      where['name'] = site.get_RegExp(where['name'], 'i')
+      where['name'] = new RegExp(where['name'], 'i')
     }
 
     if (where['name']) {
-      where['name'] = site.get_RegExp(where['name'], 'i')
+      where['name'] = new RegExp(where['name'], 'i')
     }
     
     if (where['salary']) {
