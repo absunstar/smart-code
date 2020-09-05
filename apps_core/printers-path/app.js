@@ -180,13 +180,13 @@ module.exports = function init(site) {
     let where = req.data.where || {}    
 
     if (where['name']) {
-      where['name'] = new RegExp(where['name'], 'i')
+      where['name'] = site.get_RegExp(where['name'], 'i')
     }
     if (where['type']) {
-      where['type'] = new RegExp(where['type'], 'i')
+      where['type'] = site.get_RegExp(where['type'], 'i')
     }
     if (where['ip']) {
-      where['ip'] = new RegExp(where['ip'], 'i')
+      where['ip'] = site.get_RegExp(where['ip'], 'i')
     }
 
     if (where['active'] !== 'all') {

@@ -188,7 +188,7 @@ module.exports = function init(site) {
     where['branch.code'] = site.get_branch(req).code
 
     if (where['name']) {
-      where['name'] = new RegExp(where['name'], "i");
+      where['name'] = site.get_RegExp(where['name'], "i");
     }
 
 

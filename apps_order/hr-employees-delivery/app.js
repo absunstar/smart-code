@@ -333,23 +333,23 @@ module.exports = function init(site) {
     if (search) {
       where.$or = []
       where.$or.push({
-        'name': new RegExp(search, "i")
+        'name': site.get_RegExp(search, "i")
       })
 
       where.$or.push({
-        'mobile': new RegExp(search, "i")
+        'mobile': site.get_RegExp(search, "i")
       })
 
       where.$or.push({
-        'phone': new RegExp(search, "i")
+        'phone': site.get_RegExp(search, "i")
       })
 
       where.$or.push({
-        'national_id': new RegExp(search, "i")
+        'national_id': site.get_RegExp(search, "i")
       })
 
       where.$or.push({
-        'email': new RegExp(search, "i")
+        'email': site.get_RegExp(search, "i")
       })
 
     }
@@ -378,33 +378,33 @@ module.exports = function init(site) {
     }
 
     if (where['name']) {
-      where['name'] = new RegExp(where['name'], "i");
+      where['name'] = site.get_RegExp(where['name'], "i");
     }
     if (where['address']) {
-      where['address'] = new RegExp(where['address'], "i");
+      where['address'] = site.get_RegExp(where['address'], "i");
     }
     if (where['national_id']) {
-      where['national_id'] = new RegExp(where['national_id'], "i");
+      where['national_id'] = site.get_RegExp(where['national_id'], "i");
     }
     if (where['phone']) {
-      where['phone'] = new RegExp(where['phone'], "i");
+      where['phone'] = site.get_RegExp(where['phone'], "i");
     }
     if (where['mobile']) {
-      where['mobile'] = new RegExp(where['mobile'], "i");
+      where['mobile'] = site.get_RegExp(where['mobile'], "i");
     }
 
     if (where['email']) {
-      where['email'] = new RegExp(where['email'], "i");
+      where['email'] = site.get_RegExp(where['email'], "i");
     }
 
     if (where['whatsapp']) {
-      where['whatsapp'] = new RegExp(where['whatsapp'], "i");
+      where['whatsapp'] = site.get_RegExp(where['whatsapp'], "i");
     }
     if (where['facebook']) {
-      where['facebook'] = new RegExp(where['facebook'], "i");
+      where['facebook'] = site.get_RegExp(where['facebook'], "i");
     }
     if (where['twitter']) {
-      where['twitter'] = new RegExp(where['twitter'], "i");
+      where['twitter'] = site.get_RegExp(where['twitter'], "i");
     }
 
     if (req.session.user.roles[0].name === 'delivery_employee_admin') {

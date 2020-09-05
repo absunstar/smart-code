@@ -267,28 +267,28 @@ module.exports = function init(site) {
 
     // if (where['delete']) {
     //   let _d = 'd_'
-    //   where['current_status'] = new RegExp(_d, 'i')
+    //   where['current_status'] = site.get_RegExp(_d, 'i')
 
     //   delete where['delete']
     // }
 
     // if (where['un_post']) {
     //   let _r = 'r_'
-    //   where['current_status'] = new RegExp(_r, 'i')
+    //   where['current_status'] = site.get_RegExp(_r, 'i')
     //   delete where['un_post']
     // }
 
 
     if (where['name']) {
-      where['name'] = new RegExp(where['name'], 'i')
+      where['name'] = site.get_RegExp(where['name'], 'i')
     }
 
     if (where['barcode']) {
-      where['barcode'] = new RegExp(where['barcode'], 'i')
+      where['barcode'] = site.get_RegExp(where['barcode'], 'i')
     }
 
     if (where['size']) {
-      where['size'] = new RegExp(where['size'], 'i')
+      where['size'] = site.get_RegExp(where['size'], 'i')
     }
 
     if (where['vendor']) {
@@ -313,7 +313,7 @@ module.exports = function init(site) {
     }
 
     if (where['shift_code']) {
-      where['shift.code'] = new RegExp(where['shift_code'], 'i')
+      where['shift.code'] = site.get_RegExp(where['shift_code'], 'i')
       delete where['shift_code']
     }
 

@@ -488,39 +488,39 @@ module.exports = function init(site) {
       where.$or = []
 
       where.$or.push({
-        'vendor.name': new RegExp(search, "i")
+        'vendor.name': site.get_RegExp(search, "i")
       })
 
       where.$or.push({
-        'vendor.mobile': new RegExp(search, "i")
+        'vendor.mobile': site.get_RegExp(search, "i")
       })
 
       where.$or.push({
-        'vendor.phone': new RegExp(search, "i")
+        'vendor.phone': site.get_RegExp(search, "i")
       })
 
       where.$or.push({
-        'vendor.national_id': new RegExp(search, "i")
+        'vendor.national_id': site.get_RegExp(search, "i")
       })
 
       where.$or.push({
-        'vendor.email': new RegExp(search, "i")
+        'vendor.email': site.get_RegExp(search, "i")
       })
 
       where.$or.push({
-        'store.name': new RegExp(search, "i")
+        'store.name': site.get_RegExp(search, "i")
       })
 
       where.$or.push({
-        'store.number': new RegExp(search, "i")
+        'store.number': site.get_RegExp(search, "i")
       })
 
       where.$or.push({
-        'store.payment_method.ar': new RegExp(search, "i")
+        'store.payment_method.ar': site.get_RegExp(search, "i")
       })
 
       where.$or.push({
-        'store.payment_method.en': new RegExp(search, "i")
+        'store.payment_method.en': site.get_RegExp(search, "i")
       })
 
     }
@@ -530,15 +530,15 @@ module.exports = function init(site) {
 
 
     if (where && where['notes']) {
-      where['notes'] = new RegExp(where['notes'], 'i')
+      where['notes'] = site.get_RegExp(where['notes'], 'i')
     }
 
     if (where && where['number']) {
-      where['number'] = new RegExp(where['number'], 'i')
+      where['number'] = site.get_RegExp(where['number'], 'i')
     }
 
     if (where && where['supply_number']) {
-      where['supply_number'] = new RegExp(where['supply_number'], 'i')
+      where['supply_number'] = site.get_RegExp(where['supply_number'], 'i')
     }
 
 
@@ -563,22 +563,22 @@ module.exports = function init(site) {
     }
 
     if (where['name']) {
-      where['items.name'] = new RegExp(where['name'], 'i')
+      where['items.name'] = site.get_RegExp(where['name'], 'i')
       delete where['name']
     }
 
     if (where['size']) {
-      where['items.size'] = new RegExp(where['size'], 'i')
+      where['items.size'] = site.get_RegExp(where['size'], 'i')
       delete where['size']
     }
 
     if (where['size_en']) {
-      where['items.size_en'] = new RegExp(where['size_en'], 'i')
+      where['items.size_en'] = site.get_RegExp(where['size_en'], 'i')
       delete where['size_en']
     }
 
     if (where['barcode']) {
-      where['items.barcode'] = new RegExp(where['barcode'], 'i')
+      where['items.barcode'] = site.get_RegExp(where['barcode'], 'i')
       delete where['barcode']
     }
 
@@ -644,7 +644,7 @@ module.exports = function init(site) {
 
 
     if (where['description']) {
-      where['description'] = new RegExp(where['description'], 'i')
+      where['description'] = site.get_RegExp(where['description'], 'i')
     }
 
     delete where.search

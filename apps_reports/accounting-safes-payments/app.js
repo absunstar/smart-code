@@ -74,11 +74,11 @@ module.exports = function init(site) {
 
     if (where['transition_type']) {
 
-      where['transition_type'] = new RegExp(where['transition_type.type'], 'i');
+      where['transition_type'] = site.get_RegExp(where['transition_type.type'], 'i');
     }
 
     if (where['shift_code']) {
-      where['shift.code'] = new RegExp(where['shift_code'], 'i')
+      where['shift.code'] = site.get_RegExp(where['shift_code'], 'i')
       delete where['shift_code']
     }
 
@@ -104,7 +104,7 @@ module.exports = function init(site) {
     }
 
     if (where['source']) {
-      where['source'] = new RegExp(where['source'], 'i')
+      where['source'] = site.get_RegExp(where['source'], 'i')
     }
 
 

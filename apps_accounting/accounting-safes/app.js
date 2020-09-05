@@ -297,10 +297,10 @@ module.exports = function init(site) {
 
 
     if (where['name']) {
-      where['name'] = new RegExp(where['name'], 'i')
+      where['name'] = site.get_RegExp(where['name'], 'i')
     }
     if (where['description']) {
-      where['description'] = new RegExp(where['description'], 'i')
+      where['description'] = site.get_RegExp(where['description'], 'i')
     }
 
     where['company.id'] = site.get_company(req).id

@@ -438,7 +438,7 @@ module.exports = function init(site) {
     let where = req.body.where || {}
 
     if (where['name']) {
-      where['name'] = new RegExp(where['name'], "i");
+      where['name'] = site.get_RegExp(where['name'], "i");
     }
 
     where['company.id'] = site.get_company(req).id
@@ -516,7 +516,7 @@ module.exports = function init(site) {
     let where = req.body.where || {}
 
     if (where['name']) {
-      where['name'] = new RegExp(where['name'], "i");
+      where['name'] = site.get_RegExp(where['name'], "i");
     }
 
     where['company.id'] = site.get_company(req).id
@@ -559,13 +559,13 @@ module.exports = function init(site) {
     if (search) {
       where.$or = []
       where.$or.push({
-        'table.name': new RegExp(search, "i")
+        'table.name': site.get_RegExp(search, "i")
       })
       where.$or.push({
-        'customer.name_ar': new RegExp(search, "i")
+        'customer.name_ar': site.get_RegExp(search, "i")
       })
       where.$or.push({
-        'tables_group.name': new RegExp(search, "i")
+        'tables_group.name': site.get_RegExp(search, "i")
       })
     }
 
