@@ -148,8 +148,8 @@
             <tr>
                 <th class="small_t">##word.serial##</th>
                 <th>##word.barcode##</th>
-                <th>##word.stores_in_item_name##</th>
-                <th>##word.name_size##</th>
+                <th class="mXw">##word.stores_in_item_name##</th>
+                <th class="mXw">##word.name_size##</th>
                 <th class="small_t">##word.unit##</th>
                 <th class="small_t">##word.stores_in_item_count##</th>
                 <th class="not-print small_t">##word.price##</th>
@@ -168,11 +168,12 @@
                         ng-click="viewPatchesList(itm)">
                     </i-button>
                 </td>
-                <td class="center">{{itm.barcode}}</td>
-                <td class="center">{{itm.name}}</td>
-                <td class="center">
-                    <p>{{itm.size}}</p>
-                    <p>{{itm.size_en}}</p>
+                <td class="center"> {{itm.barcode}} </td>
+                <td class="center"><p  class="mXw">{{itm.name}}</p> </td>
+
+                <td class="center" >
+                    <p class="mXw">{{itm.size}}</p>
+                    <p class="mXw">{{itm.size_en}}</p>
                 </td>
                 <td class="center small_t">{{itm.unit.name}}</td>
                 <td class="center small_t">{{itm.count}}</td>
@@ -226,6 +227,10 @@
     <br>
     <br>
     <br>
+
+    <div class="row ">
+        <h2 class="black center bg_sf">##word.just## {{store_in.net_value2}} -  {{defaultSettings.accounting.currency.name}} - ##word.Just_no_other##</h2>
+    </div>
 
     <div class="row hide">
         <br>

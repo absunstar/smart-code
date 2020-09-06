@@ -152,7 +152,7 @@
             <tr>
                 <th class="small_t">##word.serial##</th>
                 <th class="">##word.barcode##</th>
-                <th class="">##word.stores_out_item_name##</th>
+                <th >##word.stores_out_item_name##</th>
                 <th class="">##word.name_size##</th>
                 <th class="small_t">##word.unit##</th>
                 <th class="small_t">##word.stores_out_item_count##</th>
@@ -174,7 +174,7 @@
                     </i-button>
                 </td>
                 <td class="center ">{{itm.barcode}}</td>
-                <td class="center w0">{{itm.name}}</td>
+                <td class="center w0"><p  class="w300">{{itm.name}}</p> </td>
                 <td class="center w0">
                     <p>{{itm.size}}</p>
                     <p>{{itm.size_en}}</p>
@@ -237,6 +237,12 @@
 
     <br>
     <br>
+    <br>
+    <br>
+
+    <div class="row ">
+        <h2 class="black center bg_sf">##word.just## {{store_out.net_value2}} -  {{defaultSettings.accounting.currency.name}} - ##word.Just_no_other##</h2>
+    </div>
     <br>
     <br>
 

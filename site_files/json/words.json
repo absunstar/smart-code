@@ -10,6 +10,16 @@
         "ar": "الاسم"
     },
     {
+        "name": "just",
+        "en": "Just",
+        "ar": "فقط"
+    },
+    {
+        "name": "Just_no_other",
+        "en": "Just No Other",
+        "ar": "فقط لا غير"
+    },
+    {
         "name": "date_exceed",
         "en": "The transaction date cannot exceed today's date",
         "ar": "تاريخ المعاملة لا يمكن أن يتجاوز تاريخ اليوم"

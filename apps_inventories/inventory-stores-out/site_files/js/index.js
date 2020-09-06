@@ -467,6 +467,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
             }
           });
           $scope.store_out.total_value = $scope.store_out.total_value - $scope.store_out.total_value_added;
+          $scope.store_out.net_value2 = site.stringfiy($scope.store_out.net_value);
 
         } else $scope.error = response.data.error;
       },

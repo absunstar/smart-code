@@ -825,11 +825,12 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
           $scope.store_in = response.data.doc;
           $scope.store_in.items.forEach(_item => {
             if (!_item.total_v_a) {
+
               _item.total_v_a = site.toNumber(_item.value_added) * (_item.price * _item.count) / 100;
             }
           });
           $scope.store_in.total_value = $scope.store_in.total_value - $scope.store_in.total_value_added;
-
+          $scope.store_in.net_value2 = site.stringfiy($scope.store_in.net_value);
         } else $scope.error = response.data.error;
       },
       function (err) {

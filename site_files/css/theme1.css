@@ -125,22 +125,40 @@ img {
     .table th.small_t {
         width: 9px !important;
     }
+    .table th.small_t {
+        width: 9px !important;
+    }
+
+    .mXw {
+        max-width: 250px;
+  
+        white-space: pre-wrap;
+    }
+
+    .bg_sf {
+        background-color: #0000b82e !important;
+    }
+    
 }
 
 
 .table th {
-    border-width: 3px;
+    border-width: 5px;
     border-radius: 30px;
-    border-color: #ffffff;
+    border-color: #fbfbfb;
 }
 
 .small_t {
     width: 9px !important;
 }
 
+.bg_sf {
+    background-color: #0000b82e;
+}
+
 
 .table td {
     border-radius: 25px;
-    border-width: 1px;
-    border-color: #ddd;
+    border-width: 5px;
+    border-color: #fbfbfb;
 }
