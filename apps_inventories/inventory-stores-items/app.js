@@ -711,8 +711,11 @@ module.exports = function init(site) {
           response.done = true
           let obj = { sizes_list: [] }
           let exist = false
+          let foundName = false;
 
           obj.company = item_doc.doc.company
+
+          if (item_doc.doc.name === item_doc.old_doc.name) foundName = true
 
           item_doc.doc.sizes.forEach(_size => {
             let foundSize = false;
@@ -722,17 +725,19 @@ module.exports = function init(site) {
               if (_size.size_en === old_size.size_en) foundNameEn = true
             })
 
-            if (!foundSize || !foundNameEn) {
+            if (!foundSize || !foundNameEn || !foundName) {
               obj.sizes_list.push({
                 size: _size.size,
                 barcode: _size.barcode,
-                size_en: _size.size_en
+                size_en: _size.size_en,
+                name: item_doc.doc.name
               })
               exist = true
             }
           });
 
-          if (exist) site.call('[stores_items][item_name][change]', obj)
+
+          if (exist) site.quee('[stores_items][item_name][change]', obj)
         } else response.error = err.message
         res.json(response)
       });
