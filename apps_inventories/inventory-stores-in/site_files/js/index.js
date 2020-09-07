@@ -828,11 +828,12 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
               _item.total_v_a = site.toNumber(_item.value_added) * (_item.price * _item.count) / 100;
             }
           });
+
           $scope.store_in.total_value = $scope.store_in.total_value - $scope.store_in.total_value_added;
           if($scope.currencySetting){
 
-            site.strings['currency'].ar = $scope.currencySetting.name;
-            site.strings['from100'].ar = $scope.currencySetting.minor_currency;
+            site.strings['currency'].ar = ' ' + $scope.currencySetting.name + ' ';
+            site.strings['from100'].ar = ' ' + $scope.currencySetting.minor_currency + ' ';
           }
           $scope.store_in.net_value2 = site.stringfiy($scope.store_in.net_value);
         } else $scope.error = response.data.error;

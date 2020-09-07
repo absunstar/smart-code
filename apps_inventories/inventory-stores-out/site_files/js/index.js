@@ -1,6 +1,6 @@
 window.addEventListener('keydown', (e) => {
 
-  if (e.keyCode == 113 /*f12*/ ) {
+  if (e.keyCode == 113 /*f12*/) {
     scope().add()
   }
 
@@ -209,11 +209,11 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
             $scope.store_out.currency = $scope.currencySetting;
             if ($scope.defaultSettings.accounting.payment_method) {
               $scope.store_out.payment_method = $scope.defaultSettings.accounting.payment_method;
-              $scope.loadSafes($scope.store_out.payment_method, $scope.store_out.currency , ()=>{
-                if ($scope.store_out.payment_method.id == 1){
+              $scope.loadSafes($scope.store_out.payment_method, $scope.store_out.currency, () => {
+                if ($scope.store_out.payment_method.id == 1) {
                   $scope.store_out.safe = $scope.defaultSettings.accounting.safe_box;
-                }else {
-                $scope.store_out.safe = $scope.defaultSettings.accounting.safe_bank;
+                } else {
+                  $scope.store_out.safe = $scope.defaultSettings.accounting.safe_bank;
                 }
               });
             }
@@ -467,10 +467,10 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
             }
           });
           $scope.store_out.total_value = $scope.store_out.total_value - $scope.store_out.total_value_added;
-          if($scope.currencySetting){
+          if ($scope.currencySetting) {
 
-            site.strings['currency'].ar = $scope.currencySetting.name;
-            site.strings['from100'].ar = $scope.currencySetting.minor_currency;
+            site.strings['currency'].ar = ' ' + $scope.currencySetting.name + ' ';
+            site.strings['from100'].ar = ' ' + $scope.currencySetting.minor_currency + ' ';
           }
           $scope.store_out.net_value2 = site.stringfiy($scope.store_out.net_value);
 
@@ -1172,8 +1172,8 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
     }
   };
 
-  $scope.loadSafes = function (method, currency , callback) {
-    callback = callback || function(){};
+  $scope.loadSafes = function (method, currency, callback) {
+    callback = callback || function () { };
     $scope.error = '';
     $scope.busy = true;
 
@@ -1201,9 +1201,9 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done){
+        if (response.data.done) {
           $scope.safesList = response.data.list;
-        } 
+        }
         callback($scope.safesList)
       },
       function (err) {
@@ -2025,7 +2025,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
                   data: _store_out_all[i]
                 }).then(
                   function (response) {
-                    if (response.data.done) {} else {
+                    if (response.data.done) { } else {
                       $scope.error = '##word.error##';
                       if (response.data.error.like('*OverDraft Not*')) {
                         $scope.error = "##word.overdraft_not_active##"
