@@ -47,8 +47,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
         };
 
         if ($scope.defaultSettings.accounting) {
-          $scope.account_invoices.currency = $scope.defaultSettings.accounting.currency;
-
+          $scope.account_invoices.currency = $scope.currencySetting;
           if ($scope.defaultSettings.accounting.payment_method) {
             $scope.account_invoices.payment_method = $scope.defaultSettings.accounting.payment_method;
             $scope.loadSafes($scope.account_invoices.payment_method, $scope.account_invoices.currency);
@@ -600,7 +599,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
 
             if ($scope.defaultSettings.accounting) {
               if (($scope.store_in.type.id == 1 || $scope.store_in.type.id == 4) && $scope.defaultSettings.accounting.create_invoice_auto) {
-                $scope.store_in.currency = $scope.defaultSettings.accounting.currency;
+                $scope.store_in.currency = $scope.currencySetting;
                 if ($scope.defaultSettings.accounting.payment_method) {
                   $scope.store_in.payment_method = $scope.defaultSettings.accounting.payment_method;
                   $scope.loadSafes($scope.store_in.payment_method, $scope.store_in.currency);
@@ -830,6 +829,11 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
             }
           });
           $scope.store_in.total_value = $scope.store_in.total_value - $scope.store_in.total_value_added;
+          if($scope.currencySetting){
+
+            site.strings['currency'].ar = $scope.currencySetting.name;
+            site.strings['from100'].ar = $scope.currencySetting.minor_currency;
+          }
           $scope.store_in.net_value2 = site.stringfiy($scope.store_in.net_value);
         } else $scope.error = response.data.error;
       },
@@ -1542,6 +1546,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
         select: {
           id: 1,
           name: 1,
+          minor_currency: 1,
           ex_rate: 1
         },
         where: {
@@ -1553,6 +1558,11 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.currenciesList = response.data.list;
+          $scope.currenciesList.forEach(_c => {
+            if ($scope.defaultSettings && $scope.defaultSettings.accounting && $scope.defaultSettings.accounting.currency && $scope.defaultSettings.accounting.currency.id == _c.id) {
+              $scope.currencySetting = _c
+            }
+          });
         }
       },
       function (err) {
@@ -1945,11 +1955,11 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
   $scope.loadVendors();
   $scope.loadStores();
   $scope.loadCategories();
-  $scope.loadCurrencies();
   $scope.getPaymentMethodList();
   $scope.loadTax_Types();
   $scope.loadDiscount_Types();
   $scope.getDefaultSettings();
+  $scope.loadCurrencies();
   $scope.loadAll({
     date: new Date()
   });

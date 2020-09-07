@@ -110,6 +110,7 @@ app.controller("default_setting", function ($scope, $http) {
         select: {
           id: 1,
           name: 1,
+          minor_currency: 1,
           ex_rate: 1
         },
         where: {

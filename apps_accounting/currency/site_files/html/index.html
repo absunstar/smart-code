@@ -40,6 +40,7 @@
                     <tr>
                         <th class="not-print">##word.logo##</th>
                         <th>##word.currency_name##</th>
+                        <th>##word.minor_currency##</th>
                         <th>##word.ex_rate##</th>
                         <th>##word.status##</th>
                         <th class="not-print">##word.actions##</th>
@@ -49,6 +50,7 @@
                             <img class="logo" ng-src="{{c.image_url}}">
                         </td>
                         <td class="center title">{{c.name}}</td>
+                        <td class="center title">{{c.minor_currency}}</td>
                         <td class="center blue">{{c.ex_rate}}</td>
                         <td class="center">
                             <p ng-show="c.active ==true" class="green"> ##word.active## </p>

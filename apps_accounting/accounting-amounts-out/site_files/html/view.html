@@ -43,12 +43,22 @@
                 <td class="center red">{{amount_out.value}}</td>
             </tr>
 
-            <tr ng-show="fromeng">
-                <td class="title">##word.amounts_out_employees##</td>
-                <td class="center">{{amount_out.employee.name}}</td>
+        
+            <tr ng-show="amount_out.employee">
+                <td class="title">##word.employee##</td>
+                <td class="center">
+                    {{amount_out.employee.name}}
+
+                </td>
             </tr>
 
+            <tr ng-show="amount_out.delegate">
+                <td class="title">##word.delegate##</td>
+                <td class="center">
+                    {{amount_out.delegate.name}}
 
+                </td>
+            </tr>
             <tr>
                 <td class="title">##word.amounts_out_description##</td>
                 <td class="center">{{amount_out.description}}</td>

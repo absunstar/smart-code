@@ -169,9 +169,11 @@
                     </i-button>
                 </td>
                 <td class="center"> {{itm.barcode}} </td>
-                <td class="center"><p  class="mXw">{{itm.name}}</p> </td>
+                <td class="center">
+                    <p class="mXw">{{itm.name}}</p>
+                </td>
 
-                <td class="center" >
+                <td class="center">
                     <p class="mXw">{{itm.size}}</p>
                     <p class="mXw">{{itm.size_en}}</p>
                 </td>
@@ -220,6 +222,15 @@
             <i-control class="col2 r_green" ng-model="store_in.net_value" label="##word.stores_in_net_value##"
                 type="number" disabled>
             </i-control>
+            <div class="col1"></div>
+            <div class="col6">
+                <div class="row">
+                    <br>
+                    <br>
+                    <h2 class="black bg_sf">{{store_in.net_value2}}</h2>
+                </div>
+            </div>
+
         </div>
     </div>
 
@@ -227,10 +238,6 @@
     <br>
     <br>
     <br>
-
-    <div class="row ">
-        <h2 class="black center bg_sf">{{store_in.net_value2}}</h2>
-    </div>
 
     <div class="row hide">
         <br>

@@ -25,7 +25,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
             if ($scope.defaultSettings.accounting.source_type.id == 3)
               $scope.getTransactionTypeList();
           }
-          $scope.account_invoices.currency = $scope.defaultSettings.accounting.currency;
+          $scope.account_invoices.currency = $scope.currencySetting;
 
           if ($scope.defaultSettings.accounting.payment_method) {
             $scope.account_invoices.payment_method = $scope.defaultSettings.accounting.payment_method;
@@ -540,6 +540,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
         select: {
           id: 1,
           name: 1,
+          minor_currency: 1,
           ex_rate: 1
         },
         where: {
@@ -551,6 +552,11 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.currenciesList = response.data.list;
+          $scope.currenciesList.forEach(_c => {
+            if ($scope.defaultSettings && $scope.defaultSettings.accounting && $scope.defaultSettings.accounting.currency && $scope.defaultSettings.accounting.currency.id == _c.id) {
+              $scope.currencySetting = _c
+            }
+          });
         }
       },
       function (err) {
@@ -673,7 +679,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
         $scope.paid_invoice.payment_paid_up = 0;
 
         if ($scope.defaultSettings.accounting) {
-          $scope.paid_invoice.currency = $scope.defaultSettings.accounting.currency;
+          $scope.paid_invoice.currency = $scope.currencySetting;
           if ($scope.defaultSettings.accounting.payment_method) {
             $scope.paid_invoice.payment_method = $scope.defaultSettings.accounting.payment_method;
             $scope.loadSafes($scope.paid_invoice.payment_method, $scope.paid_invoice.currency);

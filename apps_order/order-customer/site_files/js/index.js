@@ -81,7 +81,7 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
 
         $scope.error = "##word.date_exceed##";
         return;
-  
+
       };
 
       if ($scope.defaultSettings.inventory && $scope.defaultSettings.inventory.dont_max_discount_items) {
@@ -208,7 +208,7 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
       }
 
 
-      
+
 
       _kitchen.data.push({
         type: 'text2',
@@ -790,6 +790,7 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
         select: {
           id: 1,
           name: 1,
+          minor_currency: 1,
           ex_rate: 1
         },
         where: {
@@ -801,6 +802,11 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.currenciesList = response.data.list;
+          $scope.currenciesList.forEach(_c => {
+            if ($scope.defaultSettings && $scope.defaultSettings.accounting && $scope.defaultSettings.accounting.currency && $scope.defaultSettings.accounting.currency.id == _c.id) {
+              $scope.currencySetting = _c
+            }
+          });
         }
       },
       function (err) {
@@ -1566,11 +1572,11 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
   $scope.getOrderCustomerList();
   $scope.loadItemsGroups();
   $scope.loadDiscountTypes();
-  $scope.loadCurrencies();
   $scope.loadTaxTypes();
   $scope.getDeliveryEmployeesList();
   $scope.getOpenShiftList();
   $scope.getGovList();
+  $scope.loadCurrencies();
   $scope.getPrintersPath();
   $scope.getPaymentMethodList();
 

@@ -53,11 +53,8 @@
                                 </div>
 
                                 <div class="row">
-                                    <i-list class="col7" ng-search="_search.$currency_search"
-                                        ng-model="itinerary.currency" items="currenciesList" label="##word.currency##">
-                                    </i-list>
-                                    <div class="col1"></div>
-                                    <i-control class="col3" ng-model="itinerary.amount" label="##word.the_amount##"
+                                
+                                    <i-control class="col4" ng-model="itinerary.amount" label="##word.the_amount##"
                                         type="number">
                                     </i-control>
                                 </div>
@@ -104,7 +101,7 @@
                         <td class="center title">
                             {{c.mission_type.##session.lang##}}
                         </td>
-                        <td class="center green">{{c.amount}} / {{c.currency.name}}</td>
+                        <td class="center green">{{c.amount}}</td>
                         <td class="center title">{{c.required}}</td>
                         <td class="center">
                             <i-button type="delete" ng-click="itinerary.itinerary_list.splice($index,1)">

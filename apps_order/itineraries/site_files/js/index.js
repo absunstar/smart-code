@@ -12,9 +12,7 @@ app.controller("itineraries", function ($scope, $http, $timeout) {
       active: true
     };
 
-    if ($scope.defaultSettings.accounting) {
-      $scope.itinerary.currency = $scope.defaultSettings.accounting.currency;
-    };
+
     site.showModal('#itineraryAddModal');
   };
 
@@ -193,7 +191,7 @@ app.controller("itineraries", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/vendors/all",
       data: {
-       
+
       }
     }).then(
       function (response) {
@@ -278,13 +276,12 @@ app.controller("itineraries", function ($scope, $http, $timeout) {
       $scope.itinerary.vendor = {};
 
     };
-    
+
     obj.status = 1;
     obj.required = $scope.itinerary.required;
     obj.mission_type = $scope.itinerary.mission_type;
     obj.amount = $scope.itinerary.amount;
     obj.collected_paid = 0;
-    obj.currency = $scope.itinerary.currency;
     $scope.itinerary.amount = 0;
     $scope.itinerary.required = '';
 
@@ -321,6 +318,204 @@ app.controller("itineraries", function ($scope, $http, $timeout) {
 
   };
 
+  $scope.displayAccountInvoice = function (itinerary) {
+    $scope.get_open_shift((shift) => {
+      if (shift) {
+
+        $scope.itinerary_i = itinerary;
+
+        $scope.amount_invoices = {
+          date: new Date(),
+          invoice_id: itinerary.id,
+          vendor: itinerary.vendor,
+          delegate: itinerary.delegate,
+          mission_type: itinerary.mission_type,
+          customer: itinerary.customer,
+          invoice_type: itinerary.type,
+          shift: shift,
+          net_value: itinerary.amount,
+          value: 0,
+          active: true
+        };
+
+        if ($scope.defaultSettings.accounting) {
+          $scope.amount_invoices.currency = $scope.currencySetting;
+          if ($scope.defaultSettings.accounting.payment_method) {
+            $scope.amount_invoices.payment_method = $scope.defaultSettings.accounting.payment_method;
+            $scope.loadSafes($scope.amount_invoices.payment_method, $scope.amount_invoices.currency);
+
+            if ($scope.amount_invoices.payment_method.id == 1)
+              $scope.amount_invoices.safe = $scope.defaultSettings.accounting.safe_box;
+            else $scope.amount_invoices.safe = $scope.defaultSettings.accounting.safe_bank;
+          }
+        }
+        if ($scope.amount_invoices.currency) {
+          $scope.amount_currency = site.toNumber($scope.amount_invoices.net_value) / site.toNumber($scope.amount_invoices.currency.ex_rate);
+          $scope.amount_currency = site.toNumber($scope.amount_currency);
+          $scope.amount_invoices.value = $scope.amount_currency;
+
+        }
+
+        $scope.calc($scope.amount_invoices);
+
+        site.showModal('#amountInvoiceModal');
+      } else $scope.error = '##word.open_shift_not_found##';
+    });
+  };
+
+
+  $scope.addAmountInvoice = function (amount_invoices) {
+    $scope.error = '';
+    $scope.busy = true;
+    $scope.detailsCustomer((customer) => {
+
+      if (amount_invoices.value > 0 && !amount_invoices.safe) {
+        $scope.error = "##word.should_select_safe##";
+        return;
+
+      } else if (amount_invoices.value > $scope.amount_currency) {
+        $scope.error = "##word.err_net_value##";
+        return;
+      }
+
+      if (amount_invoices.customer && amount_invoices.payment_method && amount_invoices.payment_method.id == 5) {
+        let totalCustomerBalance = 0;
+        totalCustomerBalance = customer.balance + (customer.credit_limit || 0);
+
+        let customerPay = amount_invoices.value * amount_invoices.currency.ex_rate;
+
+        if (customerPay > totalCustomerBalance) {
+          $scope.error = "##word.cannot_exceeded_customer##";
+          return;
+        }
+      }
+
+      if ($scope.defaultSettings.general_Settings && $scope.defaultSettings.general_Settings.work_posting)
+        amount_invoices.posting = false;
+      else amount_invoices.posting = true;
+
+      let url = "/api/amounts_in/add";
+
+      if (amount_invoices.mission_type && amount_invoices.mission_type.id === 1) {
+
+        url = "/api/amounts_in/add";
+        amount_invoices.image_url = '/images/amount_in.png';
+
+      } else if (amount_invoices.mission_type && amount_invoices.mission_type.id === 2) {
+
+        url = "/api/amounts_out/add";
+        amount_invoices.image_url = '/images/amount_out.png';
+      }
+
+
+      $http({
+        method: "POST",
+        url: url,
+        data: amount_invoices
+      }).then(
+        function (response) {
+          $scope.busy = false;
+          if (response) {
+            $scope.itinerary_i.invoice = true;
+            site.hideModal('#amountInvoiceModal');
+          } else $scope.error = response.data.error;
+        },
+        function (err) {
+          console.log(err);
+        }
+      )
+    })
+  };
+
+
+
+  $scope.calc = function (obj) {
+    $scope.error = '';
+    $timeout(() => {
+
+      $scope.amount_currency = site.toNumber(obj.net_value) / site.toNumber(obj.currency.ex_rate);
+      $scope.amount_currency = site.toNumber($scope.amount_currency);
+
+    }, 250);
+  };
+
+  $scope.loadSafes = function (method, currency) {
+    $scope.error = '';
+    $scope.busy = true;
+
+
+    let where = {
+      'currency.id': currency.id
+    };
+
+    if (method.id == 1)
+      where['type.id'] = 1;
+    else where['type.id'] = 2;
+
+    $http({
+      method: "POST",
+      url: "/api/safes/all",
+      data: {
+        select: {
+          id: 1,
+          name: 1,
+          commission: 1,
+          currency: 1,
+          type: 1
+        },
+        where: where
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) $scope.safesList = response.data.list;
+
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.get_open_shift = function (callback) {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/shifts/get_open_shift",
+      data: {
+        where: {
+          active: true
+        },
+        select: {
+          id: 1,
+          name: 1,
+          code: 1,
+          from_date: 1,
+          from_time: 1,
+          to_date: 1,
+          to_time: 1
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.doc) {
+          $scope.shift = response.data.doc;
+          callback(response.data.doc);
+        } else {
+          callback(null);
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+        callback(null);
+      }
+    )
+  };
+
   $scope.loadCurrencies = function () {
     $scope.busy = true;
     $http({
@@ -330,6 +525,7 @@ app.controller("itineraries", function ($scope, $http, $timeout) {
         select: {
           id: 1,
           name: 1,
+          minor_currency: 1,
           ex_rate: 1
         },
         where: {
@@ -341,6 +537,11 @@ app.controller("itineraries", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.currenciesList = response.data.list;
+          $scope.currenciesList.forEach(_c => {
+            if ($scope.defaultSettings && $scope.defaultSettings.accounting && $scope.defaultSettings.accounting.currency && $scope.defaultSettings.accounting.currency.id == _c.id) {
+              $scope.currencySetting = _c
+            }
+          });
         }
       },
       function (err) {
@@ -350,6 +551,25 @@ app.controller("itineraries", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.getPaymentMethodList = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $scope.paymentMethodList = [];
+    $http({
+      method: "POST",
+      url: "/api/payment_method/all"
+
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.paymentMethodList = response.data;
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
 
   $scope.loadItinerariesTypes = function () {
     $scope.error = '';
@@ -368,6 +588,20 @@ app.controller("itineraries", function ($scope, $http, $timeout) {
         $scope.error = err;
       }
     )
+  };
+
+  $scope.getSafeByType = function (obj) {
+    $scope.error = '';
+    if ($scope.defaultSettings.accounting && obj.payment_method) {
+      $scope.loadSafes(obj.payment_method, obj.currency);
+      if (obj.payment_method.id == 1) {
+        if ($scope.defaultSettings.accounting.safe_box)
+          obj.safe = $scope.defaultSettings.accounting.safe_box
+      } else {
+        if ($scope.defaultSettings.accounting.safe_bank)
+          obj.safe = $scope.defaultSettings.accounting.safe_bank
+      }
+    }
   };
 
   $scope.getDefaultSettings = function () {
@@ -393,6 +627,40 @@ app.controller("itineraries", function ($scope, $http, $timeout) {
 
   };
 
+
+  $scope.detailsCustomer = function (callback) {
+    $scope.error = '';
+    $scope.busy = true;
+
+    let customer = '';
+    if ($scope.amount_invoices && $scope.amount_invoices.customer) {
+      customer = $scope.amount_invoices.customer
+    } else if ($scope.store_out && $scope.store_out.customer) {
+      customer = $scope.store_out.customer
+    }
+
+    $http({
+      method: "POST",
+      url: "/api/customers/view",
+      data: {
+        id: customer.id
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.customer = response.data.doc;
+          callback(response.data.doc);
+        } else {
+          callback(null);
+        }
+      },
+      function (err) {
+        console.log(err);
+      }
+    )
+  };
+
   $scope.displaySearchModal = function () {
     $scope.error = '';
     site.showModal('#itinerarySearchModal');
@@ -405,10 +673,11 @@ app.controller("itineraries", function ($scope, $http, $timeout) {
     $scope.search = {};
   };
 
-  $scope.getItineraryList({ date: new Date() });
+  $scope.getDefaultSettings();
   $scope.loadDelegates();
   $scope.loadVendors();
   $scope.loadItinerariesTypes();
+  $scope.getPaymentMethodList();
   $scope.loadCurrencies();
-  $scope.getDefaultSettings();
+  $scope.getItineraryList({ date: new Date() });
 });

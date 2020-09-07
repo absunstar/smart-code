@@ -52,7 +52,7 @@
                         <th>##word.currency##</th>
                         <th>##word.amounts_out_safe##</th>
                         <th>##word.amounts_out_value##</th>
-                        <th>##word.amounts_in_employees##</th>
+                        <th>##word.employee## / ##word.delegate##</th>
                         <th class="not-print">##word.actions##</th>
                     </tr>
                     <tr class="bold" ng-repeat="c in list">
@@ -90,10 +90,13 @@
                         <td>
                             <p class="center red"> {{c.value}} </p>
                         </td>
+                      
                         <td>
-                            <p class="center"> {{c.employee.name}} </p>
+                            <p class="center">
+                                {{c.employee.name}}
+                                {{c.delegate.name}}
+                            </p>
                         </td>
-
 
                         <td class="not-print center">
                             <i-button x-permissions="amounts_out_view ||amounts_out_manage" type="details"

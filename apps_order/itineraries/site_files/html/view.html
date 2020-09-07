@@ -84,7 +84,8 @@
                             <td class="center title">
                                 {{c.mission_type.##session.lang##}}
                             </td>
-                            <td class="center green">{{c.amount}} / {{c.currency.name}}</td>
+
+                            <td class="center green">{{c.amount}}</td>
 
                             <td class="center blue">
 
@@ -107,10 +108,16 @@
                                         ng-click="targetDetails(c.target)">
                                     </i-button>
                                 </div> -->
+
+                                <i-button type="save" label="##word.create_an_invoice##"
+                                    ng-show="c.status == 2 && !c.invoice" ng-click="displayAccountInvoice(c)">
+                                </i-button>
+
                                 <div class="row center " x-permissions="itineraries_confirm || itineraries_manage"
                                     ng-show="c.status == 1">
 
-                                    <i-button type="fa fa-check true default" ng-click="c.status = 2">
+                                    <i-button type="fa fa-check true default"
+                                        ng-click="c.status = 2 ; displayAccountInvoice(c)">
                                     </i-button>
 
                                     <i-button type="close default" ng-click="c.status = 3">

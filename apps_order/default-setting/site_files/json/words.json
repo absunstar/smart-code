@@ -19,6 +19,11 @@
         "ar": "نوع الطلب"
     },
     {
+        "name": "end_num_to_str",
+        "en": "End Num To Str",
+        "ar": "نهاية التفقيط"
+    },
+    {
         "name": "default_settings",
         "en": "Default Settings",
         "ar": "الاعدادت الافتراضية"

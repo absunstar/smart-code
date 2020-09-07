@@ -26,7 +26,7 @@ app.controller("amounts_in", function ($scope, $http, $timeout) {
 
 
           if ($scope.defaultSettings.accounting) {
-            $scope.amount_in.currency = $scope.defaultSettings.accounting.currency;
+            $scope.amount_in.currency = $scope.currencySetting;
             if ($scope.defaultSettings.accounting.payment_method) {
 
               $scope.amount_in.payment_method = $scope.defaultSettings.accounting.payment_method;
@@ -283,6 +283,7 @@ app.controller("amounts_in", function ($scope, $http, $timeout) {
         select: {
           id: 1,
           name: 1,
+          minor_currency: 1,
           ex_rate: 1
         },
         where: {
@@ -294,6 +295,11 @@ app.controller("amounts_in", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.currenciesList = response.data.list;
+          $scope.currenciesList.forEach(_c => {
+            if ($scope.defaultSettings && $scope.defaultSettings.accounting && $scope.defaultSettings.accounting.currency && $scope.defaultSettings.accounting.currency.id == _c.id) {
+              $scope.currencySetting = _c
+            }
+          });
         }
       },
       function (err) {
@@ -379,7 +385,6 @@ app.controller("amounts_in", function ($scope, $http, $timeout) {
   };
 
 
-
   $scope.loadInOutNames = function () {
     $scope.busy = true;
     $http({
@@ -408,7 +413,6 @@ app.controller("amounts_in", function ($scope, $http, $timeout) {
       $scope.amount_in.value = $scope.amount_in.currency_value * $scope.amount_in.currency.ex_rate
     }, 250)
   };
-
 
   $scope.loadEmployees = function () {
     $scope.busy = true;

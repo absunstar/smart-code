@@ -246,7 +246,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
 
         $scope.error = "##word.date_exceed##";
         return;
-  
+
       };
 
       if ($scope.order_invoice.transaction_type.id != 2 && $scope.order_invoice.delivery_employee)
@@ -849,7 +849,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         };
 
         if ($scope.defaultSettings.accounting) {
-          $scope.account_invoices.currency = $scope.defaultSettings.accounting.currency;
+          $scope.account_invoices.currency = $scope.currencySetting;
           if ($scope.defaultSettings.accounting.payment_method) {
             $scope.account_invoices.payment_method = $scope.defaultSettings.accounting.payment_method;
             $scope.loadSafes($scope.account_invoices.payment_method, $scope.account_invoices.currency);
@@ -1010,6 +1010,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         select: {
           id: 1,
           name: 1,
+          minor_currency: 1,
           ex_rate: 1
         },
         where: {
@@ -1021,6 +1022,11 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.currenciesList = response.data.list;
+          $scope.currenciesList.forEach(_c => {
+            if ($scope.defaultSettings && $scope.defaultSettings.accounting && $scope.defaultSettings.accounting.currency && $scope.defaultSettings.accounting.currency.id == _c.id) {
+              $scope.currencySetting = _c
+            }
+          });
         }
       },
       function (err) {
@@ -2054,15 +2060,15 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
   $scope.loadItemsGroups();
   $scope.loadDiscountTypes();
   $scope.getTransactionTypeList();
-  $scope.loadCurrencies();
   $scope.loadTaxTypes();
   $scope.getDeliveryEmployeesList();
   $scope.getOpenShiftList();
   $scope.getGovList();
+  $scope.getDefaultSettingsList();
   $scope.getPrintersPath();
   $scope.getPaymentMethodList();
-  $scope.getDefaultSettingsList();
   $scope.getCustomerGroupList();
+  $scope.loadCurrencies();
 
   if (site.feature('restaurant')) {
     $scope.loadKitchenList();

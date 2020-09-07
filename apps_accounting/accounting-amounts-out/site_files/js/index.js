@@ -42,12 +42,18 @@ app.controller("amounts_out", function ($scope, $http, $timeout) {
           date: new Date(),
           value: 0
         };
+
+        if ('##user.type##' == 'delegate') {
+          $scope.amount_out.delegate = $scope.delegatesList[0];
+
+        }
+
         if ($scope.defaultSettings) {
           if ($scope.defaultSettings.general_Settings && !$scope.defaultSettings.general_Settings.work_posting)
             $scope.amount_out.posting = true;
 
           if ($scope.defaultSettings.accounting) {
-            $scope.amount_out.currency = $scope.defaultSettings.accounting.currency;
+            $scope.amount_out.currency = $scope.currencySetting;
             if ($scope.defaultSettings.accounting.payment_method) {
 
               $scope.amount_out.payment_method = $scope.defaultSettings.accounting.payment_method;
@@ -348,6 +354,7 @@ app.controller("amounts_out", function ($scope, $http, $timeout) {
         select: {
           id: 1,
           name: 1,
+          minor_currency: 1,
           ex_rate: 1
         },
         where: {
@@ -359,6 +366,11 @@ app.controller("amounts_out", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.currenciesList = response.data.list;
+          $scope.currenciesList.forEach(_c => {
+            if ($scope.defaultSettings && $scope.defaultSettings.accounting && $scope.defaultSettings.accounting.currency && $scope.defaultSettings.accounting.currency.id == _c.id) {
+              $scope.currencySetting = _c
+            }
+          });
         }
       },
       function (err) {
@@ -399,6 +411,31 @@ app.controller("amounts_out", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.loadDelegates = function () {
+    $scope.busy = true;
+    $scope.delegatesList = [];
+    $http({
+      method: "POST",
+      url: "/api/delegates/all",
+      data: {
+        where: {
+          active: true
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.delegatesList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
   $scope.get_open_shift = function (callback) {
     $scope.error = '';
     $scope.busy = true;
@@ -430,6 +467,7 @@ app.controller("amounts_out", function ($scope, $http, $timeout) {
   $scope.loadInOutNames();
   $scope.loadCurrencies();
   $scope.getPaymentMethodList();
+  $scope.loadDelegates();
   $scope.loadEmployees();
   $scope.loadAll({ date: new Date() });
 });

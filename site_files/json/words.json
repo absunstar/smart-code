@@ -10,6 +10,16 @@
         "ar": "الاسم"
     },
     {
+        "name": "delegate",
+        "en": "Delegate",
+        "ar": "المندوب"
+    },
+    {
+        "name": "employee",
+        "en": "Employee",
+        "ar": "الموظف"
+    },
+    {
         "name": "just",
         "en": "Just",
         "ar": "فقط"
