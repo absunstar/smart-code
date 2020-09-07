@@ -132,15 +132,13 @@
         <th class="w100">##word.serial##</th>
         <th class="w100">##word.barcode##</th>
         <th>##word.stores_out_item_name##</th>
-        <th class="">##word.name_size##</th>
         <th class="w100">##word.unit##</th>
         <th class="w100">##word.stores_out_item_count##</th>
         <th class="w100" ng-hide="store_out.type.id ==5" x-permissions="stores_out_details_values || stores_out_manage">
           ##word.price##</th>
         <th class="w100" ng-hide="store_out.type.id ==5">##word.discount##</th>
         <th ng-show="defaultSettings.inventory.value_added > 0" class="w100">##word.value_added##</th>
-        <th class="w100" ng-show="defaultSettings.inventory.value_added > 0"
-          x-permissions="stores_out_details_values || stores_out_manage">##word.total_v_a##</th>
+      
         <th class="w100" x-permissions="stores_out_details_values || stores_out_manage">##word.stores_out_item_total##
         </th>
       </tr>
@@ -154,10 +152,6 @@
         <td class="center ww">
           <p>{{itm.name}}</p>
         </td>
-        <td class="center ww">
-          <p>{{itm.size}}</p>
-          <p>{{itm.size_en}}</p>
-        </td>
 
         <td class="center">{{itm.unit.name}}</td>
         <td class="center">{{itm.count}}</td>
@@ -170,7 +164,6 @@
           <b class="red" ng-show="itm.discount.type =='percent'">%</b>
         </td>
 
-        <td ng-show="defaultSettings.inventory.value_added > 0" class="center small_t">{{itm.value_added}}</td>
         <td x-permissions="stores_out_details_values || stores_out_manage"
           ng-show="defaultSettings.inventory.value_added > 0" class="center small_t red">{{itm.total_v_a}}</td>
 
