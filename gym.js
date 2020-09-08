@@ -1,7 +1,7 @@
 const site = require('isite')({
     port: [80 , 40006],
     lang: 'ar',
-    version : '1.0.3',
+    version : '1.0.4',
     name: 'gym',
     theme: 'theme_paper',
     https: {

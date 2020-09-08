@@ -1,7 +1,7 @@
 const site = require('isite')({
     port: [80, 40010],
     lang: 'ar',
-    version : '1.0.3',
+    version : '1.0.4',
     name: 'employee',
     theme: 'theme_paper',
     mongodb: {
