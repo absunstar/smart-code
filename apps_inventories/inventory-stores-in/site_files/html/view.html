@@ -1,34 +1,25 @@
 <div ng-hide="busy" class="row" fixed>
 
     <div class="row hide">
-        <div class="col2"></div>
-        <div class="col8 center">
-            <img class="logoPrint" ng-src="{{defaultSettings.printer_program.invoice_logo}}">
-        </div>
-
-    </div>
-
-    <div class="row hide">
-        <br>
-
-        <div class="col4">
-            <h2 class="right red">##session.company.name_ar##</h2>
-            <div class="row " ng-repeat="i in defaultSettings.printer_program.invoice_header">
+        <div class="col4 right">
+            <h2 class="red right">##session.company.name_ar##</h2>
+            <div class="row right" ng-repeat="i in defaultSettings.printer_program.invoice_header">
                 <h2 class="black right">{{i.name}}</h2>
             </div>
         </div>
 
-        <div class="col4">
+        <div class="col4 center">
+            <img class="logoPrint" ng-src="{{defaultSettings.printer_program.invoice_logo}}" />
         </div>
 
-        <div class="col4">
-            <h2 class="left red">##session.company.name_en##</h2>
-            <div class="row " ng-repeat="i in defaultSettings.printer_program.invoice_header2">
+        <div class="col4 left">
+            <h2 class="red left">##session.company.name_en##</h2>
+            <div class="row left" ng-repeat="i in defaultSettings.printer_program.invoice_header2">
                 <h2 class="black left">{{i.name}}</h2>
             </div>
         </div>
-
     </div>
+
 
     <br>
     <br>
@@ -47,7 +38,7 @@
 
                 </td>
 
-                <td>
+                <td class="center">
                     <b class="indigoD">##word.stores_in_id## : </b>
                     <b class=" blue">{{store_in.number}}</b>
                     <h3 class="blue bold">{{store_in.retured_number}}</h3>
@@ -61,7 +52,7 @@
                     <b>{{store_in.store.name}}</b>
                 </td>
 
-                <td>
+                <td class="center">
                     <b class="indigoD">##word.stores_in_Company_name## : </b>
                     <b>{{store_in.vendor.name_##session.lang##}} </b>
                 </td>
@@ -119,13 +110,12 @@
             </tr>
 
             <tr>
-
                 <td>
                     <b class="indigoD">##word.total_discount## : </b>
                     <b>{{store_in.total_discount}} $</b>
                 </td>
 
-                <td>
+                <td class="center">
                     <b class="indigoD">##word.total_tax## : </b>
                     <b>{{store_in.total_tax}} $</b>
                 </td>
@@ -166,7 +156,7 @@
                         ng-click="viewPatchesList(itm)">
                     </i-button>
                 </td>
-                <td class="center w150"> <br>
+                <td class="center w150">
                     <p>{{itm.barcode}}</p>
                 </td>
                 <td class="center w300">
@@ -174,27 +164,26 @@
                 </td>
 
 
-                <td class="center w100"><br>
+                <td class="center w100">
                     <p>{{itm.unit.name}}</p>
                 </td>
-                <td class="center w50"> <br>
+                <td class="center w50">
                     <p>{{itm.count}}</p>
                 </td>
-                <td class="not-print w50 center"><br>
+                <td class="not-print w50 center">
                     <p>{{itm.cost}}</p>
                 </td>
-            
+
 
                 <td class="center w50">
-                    <p>{{itm.discount.value}}</p>
-
-                    <s class="red" ng-show="itm.discount.type =='number'">$</s>
-                    <s class="red" ng-show="itm.discount.type =='percent'">%</s>
+                    {{itm.discount.value}}
+                    <b class="red" ng-show="itm.discount.type =='number'">$</b>
+                    <b class="red" ng-show="itm.discount.type =='percent'">%</b>
                 </td>
                 <td ng-show="defaultSettings.inventory.value_added > 0" class="center w50">
                     <p>{{itm.total_v_a}}</p>
                 </td>
-                <td class="center w100"><br>
+                <td class="center w100">
                     <p>{{itm.total}}</p>
                 </td>
 
@@ -231,7 +220,7 @@
                 <div class="row">
                     <br>
                     <br>
-                    <h2 class="black bg_sf">{{store_in.net_value2}}</h2>
+                    <h2 class="black bg_sf">{{store_in.net_value2}} {{defaultSettings.accounting.end_num_to_str}}</h2>
                 </div>
             </div>
 
@@ -242,8 +231,6 @@
     <br>
     <br>
     <br>
-
-
 
     <div class="row hide" ng-repeat="i in defaultSettings.printer_program.invoice_footer">
         <h1 class="black center">{{i.name}}</h1>
