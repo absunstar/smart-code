@@ -35,7 +35,7 @@
 
     <div class="row">
 
-        <table class="table hover bold">
+        <table class="table hover bold border-none">
 
             <tr>
                 <td>
@@ -92,26 +92,26 @@
     <div class="row">
         <table class="table bold hover">
             <tr>
-                <th class="small_t">##word.serial##</th>
-                <th>##word.barcode##</th>
-                <th>##word.transfer_branch_item_name##</th>
-                <th>##word.name_size##</th>
-                <th class="small_t">##word.unit##</th>
-                <th class="small_t">##word.transfer_branch_item_count##</th>
-                <th class="hide small_t">##word.total_price##</th> -
+                <th class="w50">##word.serial##</th>
+                <th class="w150">##word.barcode##</th>
+                <th class="w300">##word.transfer_branch_item_name##</th>
+                 <th class="w250">##word.name_size##</th> 
+                <th class="w100">##word.unit##</th>
+                <th class="w50">##word.transfer_branch_item_count##</th>
+                <th class="hide w100">##word.total_price##</th>
             </tr>
 
             <tr ng-repeat="itm in transfer_branch.items">
-                <td class="center small_t blue">{{$index + 1}}</td>
-                <td class="center">{{itm.barcode}}</td>
-                <td class="center">{{itm.name}}</td>
-                <td class="center">
+                <td class="center w50 blue">{{$index + 1}}</td>
+                <td class="center w150">{{itm.barcode}}</td>
+                <td class="center w300">{{itm.name}}</td>
+                <td class="center 250">
                     <p>{{itm.size}}</p>
                     <p>{{itm.size_en}}</p>
                 </td>
-                <td class="center small_t">{{itm.unit.name}}</td>
-                <td class="center small_t">{{itm.count}}</td>
-                <td class="center small_t hide">{{itm.total_price}}</td>
+                <td class="center w100">{{itm.unit.name}}</td>
+                <td class="center w50">{{itm.count}}</td>
+                <td class="center w100 hide">{{itm.total_price}}</td>
             </tr>
         </table>
     </div>
@@ -134,15 +134,9 @@
         <br>
        
     </div>
+   
     <br>
     <br>
-    <br>
-    <br>
-    <div class="row hide">
-        <div class="col2"></div>
-        <h2 class="black">##word.recipient_signature## : </h2>
-    </div>
-
     <br>
     <br>
     <br>
@@ -151,6 +145,13 @@
         <h1 class="black center">{{i.name}}</h1>
     </div>
 
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="row hide">
+        <h2 class="black">##word.recipient_signature## : </h2>
+    </div>
 
 
     <!-- <div class="col3">

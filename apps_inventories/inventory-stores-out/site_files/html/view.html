@@ -129,37 +129,56 @@
       <tr>
         <th class="w50">##word.serial##</th>
         <th class="w150">##word.barcode##</th>
-        <th class="center w300">##word.stores_out_item_name##</th>
-        <th>##word.unit##</th>
-        <th>##word.stores_out_item_count##</th>
-        <th ng-hide="store_out.type.id ==5" x-permissions="stores_out_details_values || stores_out_manage">##word.price##</th>
-        <th ng-hide="store_out.type.id ==5">##word.discount##</th>
-        <th x-permissions="stores_out_details_values || stores_out_manage" ng-show="defaultSettings.inventory.value_added > 0">##word.value_added##</th>
-        <th x-permissions="stores_out_details_values || stores_out_manage">##word.stores_out_item_total##</th>
+        <th class="w300">##word.stores_out_item_name##</th>
+        <th class="w100">##word.unit##</th>
+        <th class="w50">##word.stores_out_item_count##</th>
+        <th class="w50" ng-hide="store_out.type.id ==5" x-permissions="stores_out_details_values || stores_out_manage">
+          ##word.price##</th>
+        <th class="w50" ng-hide="store_out.type.id ==5">##word.discount##</th>
+        <th class="w50" x-permissions="stores_out_details_values || stores_out_manage"
+          ng-show="defaultSettings.inventory.value_added > 0">##word.total_v_a##</th>
+        <th class="w100" x-permissions="stores_out_details_values || stores_out_manage">##word.stores_out_item_total##
+        </th>
       </tr>
+
       <tr ng-repeat="itm in store_out.items">
         <td class="center blue w50">
           <p>{{$index + 1}}</p>
-          <i-button label="##word.patch##" ng-show="itm.work_patch" type="view" ng-click="viewPatchesList(itm)"> </i-button>
+          <i-button label="##word.patch##" ng-show="itm.work_patch" type="view" ng-click="viewPatchesList(itm)">
+          </i-button>
         </td>
-        <td class="center w150">{{itm.barcode}}</td>
+        <td class="center w150"><br>
+          <p>{{itm.barcode}}</p>
+        </td>
         <td class="center w300">
+          <br>
           <p>{{itm.name}}</p>
         </td>
 
-        <td class="center">{{itm.unit.name}}</td>
-        <td class="center">{{itm.count}}</td>
-        <td class="center" x-permissions="stores_out_details_values || stores_out_manage" ng-hide="store_out.type.id ==5">{{itm.price}}</td>
+        <td class="center w100"><br>
+          <p>{{itm.unit.name}}</p>
+        </td>
+        <td class="center w50"><br>
+          <p>{{itm.count}}</p>
+        </td>
+        <td class="center w50" x-permissions="stores_out_details_values || stores_out_manage"
+          ng-hide="store_out.type.id ==5"><br>
+          <p>{{itm.price}}</p>
+        </td>
 
-        <td class="center" ng-hide="store_out.type.id ==5">
-          {{itm.discount.value}}
+        <td class="center w50" ng-hide="store_out.type.id ==5">
+          <p>{{itm.discount.value}}</p>
           <b class="red" ng-show="itm.discount.type =='number'">$</b>
           <b class="red" ng-show="itm.discount.type =='percent'">%</b>
         </td>
 
-        <td x-permissions="stores_out_details_values || stores_out_manage" ng-show="defaultSettings.inventory.value_added > 0" class="center small_t red">{{itm.total_v_a}}</td>
+        <td x-permissions="stores_out_details_values || stores_out_manage"
+          ng-show="defaultSettings.inventory.value_added > 0" class="center w50 red">
+          <p>{{itm.total_v_a}}</p>
+        </td>
 
-        <td class="center" x-permissions="stores_out_details_values || stores_out_manage" class="center">{{itm.total}}</td>
+        <td class="center w100" x-permissions="stores_out_details_values || stores_out_manage" class="center">
+          {{itm.total}}</td>
       </tr>
     </table>
   </div>
@@ -170,13 +189,17 @@
 
   <div class="row" x-permissions="stores_out_details_values || stores_out_manage">
     <div class="row">
-      <i-control ng-show="store_out.type.id != 5" class="col2 r_black" ng-model="store_out.total_value" label="##word.stores_out_total_value##" type="number" disabled> </i-control>
+      <i-control ng-show="store_out.type.id != 5" class="col2 r_black" ng-model="store_out.total_value"
+        label="##word.stores_out_total_value##" type="number" disabled> </i-control>
     </div>
     <div class="row">
-      <i-control ng-show="store_out.total_value_added && defaultSettings.inventory.value_added > 0" class="col2 r_darkRed" ng-model="store_out.total_value_added" label="##word.total_value_added##" type="number" disabled> </i-control>
+      <i-control ng-show="store_out.total_value_added && defaultSettings.inventory.value_added > 0"
+        class="col2 r_darkRed" ng-model="store_out.total_value_added" label="##word.total_value_added##" type="number"
+        disabled> </i-control>
     </div>
     <div class="row">
-      <i-control ng-show="store_out.type.id != 5" class="col2 r_green" ng-model="store_out.net_value" label="##word.stores_out_net_value##" type="number" disabled> </i-control>
+      <i-control ng-show="store_out.type.id != 5" class="col2 r_green" ng-model="store_out.net_value"
+        label="##word.stores_out_net_value##" type="number" disabled> </i-control>
       <div class="col1"></div>
       <div class="col6">
         <div class="row">
@@ -190,11 +213,16 @@
 
 
   <br />
+  <br />
+  <br />
+  <br />
+  <br />
 
   <div class="row hide" ng-repeat="i in defaultSettings.printer_program.invoice_footer">
     <h1 class="black center">{{i.name}}</h1>
   </div>
 
+  <br />
   <br />
   <br />
   <br />

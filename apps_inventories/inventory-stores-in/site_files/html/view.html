@@ -36,7 +36,7 @@
 
     <div class="row">
         <br>
-        <table class="table hover bold">
+        <table class="table hover bold border-none">
 
             <tr>
                 <td class="title">
@@ -144,55 +144,59 @@
     <br>
 
     <div class="row">
-        <table class="table bold hover">
+        <table class="table bold hover details">
             <tr>
-                <th class="small_t">##word.serial##</th>
-                <th>##word.barcode##</th>
-                <th class="mXw">##word.stores_in_item_name##</th>
-                <th class="mXw">##word.name_size##</th>
-                <th class="small_t">##word.unit##</th>
-                <th class="small_t">##word.stores_in_item_count##</th>
-                <th class="not-print small_t">##word.price##</th>
-                <th class="small_t">##word.discount##</th>
-                <th ng-show="defaultSettings.inventory.value_added > 0" class="small_t">##word.value_added##</th>
-                <th ng-show="defaultSettings.inventory.value_added > 0" class="small_t">##word.total_v_a##</th>
-                <th class="small_t">##word.stores_in_item_total##</th>
+                <th class="w50">##word.serial##</th>
+                <th class="w150">##word.barcode##</th>
+                <th class="w300">##word.stores_in_item_name##</th>
+                <th class="w100">##word.unit##</th>
+                <th class="w50">##word.stores_in_item_count##</th>
+                <th class="not-print w50">##word.price##</th>
+                <th class="w50">##word.discount##</th>
+                <th ng-show="defaultSettings.inventory.value_added > 0" class="w50">##word.total_v_a##</th>
+                <th class="w100">##word.stores_in_item_total##</th>
 
             </tr>
 
             <tr ng-repeat="itm in store_in.items">
-                <td class="center small_t blue">
+                <td class="center w50 blue">
                     <p>{{$index + 1}}</p>
 
                     <i-button label="##word.patch##" ng-show="itm.work_patch" type="view"
                         ng-click="viewPatchesList(itm)">
                     </i-button>
                 </td>
-                <td class="center"> {{itm.barcode}} </td>
-                <td class="center">
-                    <p class="mXw">{{itm.name}}</p>
+                <td class="center w150"> <br>
+                    <p>{{itm.barcode}}</p>
+                </td>
+                <td class="center w300">
+                    <p>{{itm.name}}</p>
                 </td>
 
-                <td class="center">
-                    <p class="mXw">{{itm.size}}</p>
-                    <p class="mXw">{{itm.size_en}}</p>
-                </td>
-                <td class="center small_t">{{itm.unit.name}}</td>
-                <td class="center small_t">{{itm.count}}</td>
-                <td class="not-print small_t center">{{itm.cost}}</td>
-                <td class="center small_t">
-                    {{itm.discount.value}}
-                    <b class="red" ng-show="itm.discount.type =='number'">$</b>
-                    <b class="red" ng-show="itm.discount.type =='percent'">%</b>
-                </td>
-                <td ng-show="defaultSettings.inventory.value_added > 0" class="center small_t">
-                    {{itm.value_added}}
-                </td>
-                <td ng-show="defaultSettings.inventory.value_added > 0" class="center small_t red">
-                    {{itm.total_v_a}}
-                </td>
 
-                <td class="center small_t">{{itm.total}}</td>
+                <td class="center w100"><br>
+                    <p>{{itm.unit.name}}</p>
+                </td>
+                <td class="center w50"> <br>
+                    <p>{{itm.count}}</p>
+                </td>
+                <td class="not-print w50 center"><br>
+                    <p>{{itm.cost}}</p>
+                </td>
+            
+
+                <td class="center w50">
+                    <p>{{itm.discount.value}}</p>
+
+                    <s class="red" ng-show="itm.discount.type =='number'">$</s>
+                    <s class="red" ng-show="itm.discount.type =='percent'">%</s>
+                </td>
+                <td ng-show="defaultSettings.inventory.value_added > 0" class="center w50">
+                    <p>{{itm.total_v_a}}</p>
+                </td>
+                <td class="center w100"><br>
+                    <p>{{itm.total}}</p>
+                </td>
 
             </tr>
         </table>
@@ -239,21 +243,19 @@
     <br>
     <br>
 
-    <div class="row hide">
-        <br>
-        <br>
-        <div class="row">
-            <div class="col2"></div>
-            <h2 class="black">##word.recipient_signature## : </h2>
-        </div>
-    </div>
 
-    <br>
-    <br>
-    <br>
 
     <div class="row hide" ng-repeat="i in defaultSettings.printer_program.invoice_footer">
         <h1 class="black center">{{i.name}}</h1>
+    </div>
+
+
+    <br>
+    <br>
+    <br>
+
+    <div class="row hide">
+        <h2 class="black">##word.recipient_signature## : </h2>
     </div>
 
     <!-- <div class="col3">
