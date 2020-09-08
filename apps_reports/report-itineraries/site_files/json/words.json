@@ -5,19 +5,39 @@
         "ar": "إضافة عميل"
     },
     {
-        "name": "report_employees_delegate_informations",
-        "en": "Report Commissions Delegate Informations",
-        "ar": "بيانات تقرير المناديب"
+        "name": "report_itineraries_informations",
+        "en": "Report Itineraries Informations",
+        "ar": "بيانات تقرير خطوط السير"
     },
     {
-        "name": "report_employees_delegate_name",
-        "en": "Report Commissions Delegate",
-        "ar": "تقرير عمولات المناديب"
+        "name": "report_itineraries_name",
+        "en": "Report Itineraries",
+        "ar": "تقرير خطوط السير"
     },
     {
-        "name": "report_employees_delegate_menus",
+        "name": "report_itineraries_menus",
         "en": "Report Invoices Menu",
         "ar": "قائمة تقرير فاتورة"
+    },
+    {
+        "name": "number_missions",
+        "en": "Number Of Missions",
+        "ar": "عدد المهمات"
+    },
+    {
+        "name": "missions_completed",
+        "en": "Missions Completed",
+        "ar": "المهمات المنجزة"
+    },
+    {
+        "name": "missions_canceled",
+        "en": "Canceled Completed",
+        "ar": "المهمات الملغاه"
+    },
+    {
+        "name": "missions_existing",
+        "en": "Existing Completed",
+        "ar": "المهمات القائمة"
     },
     {
         "name": "invoices_code",

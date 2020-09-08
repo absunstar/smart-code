@@ -1,9 +1,5 @@
 [
     { "module_name" : "accounting" , "screen_name" : "report-invoices-vendors" , "name":"report_invoices_vendors_manage" , "en":"Manage" , "ar":"إدارة"},
-    { "module_name" : "accounting" , "screen_name" : "report-invoices-vendors" , "name":"report_invoices_vendors_add" , "en":"Add" , "ar":"إضافة"},
-    { "module_name" : "accounting" , "screen_name" : "report-invoices-vendors" , "name":"report_invoices_vendors_edit" , "en":"Edit" , "ar":"تعديل"},
-    { "module_name" : "accounting" , "screen_name" : "report-invoices-vendors" , "name":"report_invoices_vendors_delete" , "en":"Delete" , "ar":"حذف"},
-    { "module_name" : "accounting" , "screen_name" : "report-invoices-vendors" , "name":"report_invoices_vendors_view" , "en":"View" , "ar":"عرض"},
     { "module_name" : "accounting" , "screen_name" : "report-invoices-vendors" , "name":"report_invoices_vendors_search" , "en":"Search" , "ar":"بحث"},
     { "module_name" : "accounting" , "screen_name" : "report-invoices-vendors" , "name":"report_invoices_vendors_export" , "en":"Export" , "ar":"تصدير"},
     { "module_name" : "accounting" , "screen_name" : "report-invoices-vendors" , "name":"report_invoices_vendors_print" , "en":"Print" , "ar":"طباعة"},

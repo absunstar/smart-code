@@ -1,7 +1,7 @@
 [{
     "module_name" : "accounting" ,
-    "name": "report_employee_delegate_admin",
-    "en": "Report Employee Delegate  Admin",
-    "ar": "تقرير المناديب",
-    "permissions": ["report_employee_delegate_manage"]
+    "name": "report_itineraries_admin",
+    "en": "Report Itineraries Admin",
+    "ar": "تقرير خطوط السير",
+    "permissions": ["report_itineraries_manage"]
 }]

@@ -41,24 +41,20 @@ app.controller("report_itineraries", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done && response.data.list.length > 0) {
           $scope.list = response.data.list;
-          $scope.count = response.data.count;
-          /* $scope.net_total_return = 0; */
-          $scope.total_value = 0;
-          $scope.net_value = 0;
-          $scope.total_tax = 0;
-          $scope.total_discount = 0;
-          $scope.list.forEach(_invoice => {
-            $scope.total_tax += _invoice.total_tax;
-            $scope.total_discount += _invoice.total_discount;
-            $scope.total_value += _invoice.total_value;
-            $scope.net_value += _invoice.net_value;
+          $scope.count = $scope.list.length;
 
-           /*  if (_invoice.type.id == 6)
-              $scope.net_total_return += _invoice.net_value;
- */
+          $scope.missions_completed = 0;
+          $scope.missions_canceled = 0;
+          $scope.missions_existing = 0;
+
+          $scope.list.forEach(_itinerary => {
+
+            if (_itinerary.status == 1) $scope.missions_existing = $scope.missions_existing + 1;
+            if (_itinerary.status == 2) $scope.missions_completed = $scope.missions_completed + 1;
+            if (_itinerary.status == 3) $scope.missions_canceled = $scope.missions_canceled + 1;
+
           });
-          $scope.total_value = site.toNumber($scope.total_value);
-          $scope.net_value = site.toNumber($scope.net_value);
+
         }
       },
       function (err) {

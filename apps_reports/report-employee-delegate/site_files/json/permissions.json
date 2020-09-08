@@ -1,9 +1,5 @@
 [
     { "module_name" : "accounting" , "screen_name" : "report-employee-delegate" , "name":"report_employee_delegate_manage" , "en":"Manage" , "ar":"إدارة"},
-    { "module_name" : "accounting" , "screen_name" : "report-employee-delegate" , "name":"report_employee_delegate_add" , "en":"Add" , "ar":"إضافة"},
-    { "module_name" : "accounting" , "screen_name" : "report-employee-delegate" , "name":"report_employee_delegate_edit" , "en":"Edit" , "ar":"تعديل"},
-    { "module_name" : "accounting" , "screen_name" : "report-employee-delegate" , "name":"report_employee_delegate_delete" , "en":"Delete" , "ar":"حذف"},
-    { "module_name" : "accounting" , "screen_name" : "report-employee-delegate" , "name":"report_employee_delegate_view" , "en":"View" , "ar":"عرض"},
     { "module_name" : "accounting" , "screen_name" : "report-employee-delegate" , "name":"report_employee_delegate_search" , "en":"Search" , "ar":"بحث"},
     { "module_name" : "accounting" , "screen_name" : "report-employee-delegate" , "name":"report_employee_delegate_export" , "en":"Export" , "ar":"تصدير"},
     { "module_name" : "accounting" , "screen_name" : "report-employee-delegate" , "name":"report_employee_delegate_print" , "en":"Print" , "ar":"طباعة"},

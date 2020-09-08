@@ -62,10 +62,8 @@ module.exports = function init(site) {
     if (where['delegate']) {
       where['delegate.id'] = where['delegate'].id;
       delete where['delegate']
-      
-    } else where['delegate.id'] = { $gte: 1 }
 
-    where['$or'] = [{ 'type.id': 1 }, { 'type.id': 3 }, { 'type.id': 7 }]
+    } else where['delegate.id'] = { $gte: 1 }
 
     where['company.id'] = site.get_company(req).id
     where['branch.code'] = site.get_branch(req).code
@@ -77,9 +75,18 @@ module.exports = function init(site) {
       limit: req.body.limit
     }, (err, docs, count) => {
       if (!err) {
+        let itineraryList = []
+
+        docs.forEach(_doc => {
+          _doc.itinerary_list.forEach(_itinerary => {
+            _itinerary.date = _doc.date
+            _itinerary.delegate = _doc.delegate
+            itineraryList.push(_itinerary)
+          });
+        });
 
         response.done = true
-        response.list = docs
+        response.list = itineraryList
         response.count = count
       } else {
         response.error = err.message
