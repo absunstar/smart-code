@@ -1,34 +1,24 @@
 <div ng-hide="busy" class="row" fixed>
 
     <div class="row hide">
-        <div class="col2"></div>
-        <div class="col8 center">
-            <img class="logoPrint" ng-src="{{defaultSettings.printer_program.invoice_logo}}">
+        <div class="col4 right">
+          <h2 class="red right">##session.company.name_ar##</h2>
+          <div class="row right" ng-repeat="i in defaultSettings.printer_program.invoice_header">
+            <h2 class="black right">{{i.name}}</h2>
+          </div>
         </div>
-
-    </div>
-
-    <div class="row hide">
-        <br>
-        <div class="col4">
-            <h2 class="right red">##session.company.name_ar##</h2>
-            <div class="row" ng-repeat="i in defaultSettings.printer_program.invoice_header">
-                <h2 class="black right">{{i.name}}</h2>
-            </div>
+    
+        <div class="col4 center">
+          <img class="logoPrint" ng-src="{{defaultSettings.printer_program.invoice_logo}}" />
         </div>
-
-        <div class="col4">
+    
+        <div class="col4 left">
+          <h2 class="red left">##session.company.name_en##</h2>
+          <div class="row left" ng-repeat="i in defaultSettings.printer_program.invoice_header2">
+            <h2 class="black left">{{i.name}}</h2>
+          </div>
         </div>
-
-        <div class="col4">
-            <h2 class="left red">##session.company.name_en##</h2>
-            <div class="row" ng-repeat="i in defaultSettings.printer_program.invoice_header2">
-                <h2 class="black left">{{i.name}}</h2>
-            </div>
-        </div>
-
-    </div>
-
+      </div>
     <br>
     <br>
     <br>
@@ -43,7 +33,7 @@
                     <b class="center brown">{{transfer_branch.date |date:"dd - MM - yyyy" }}
                     </b>
                 </td>
-                <td>
+                <td class="center">
 
                     <b class="indigoD">##word.transfer_branch_number## :</b>
                     <b class="blue">{{transfer_branch.number}}</b>
@@ -57,7 +47,7 @@
                     <b>{{transfer_branch.branch_from.name_##session.lang##}}</b>
                 </td>
 
-                <td>
+                <td class="center">
 
                     <b class="indigoD">##word.store_from## : </b>
                     <b>{{transfer_branch.store_from.name}}</b>
@@ -70,7 +60,7 @@
                     <b>{{transfer_branch.branch_to.name_##session.lang##}}</b>
                 </td>
 
-                <td>
+                <td class="center">
 
                     <b class="indigoD">##word.store_to## : </b>
                     <b>{{transfer_branch.store_to.name}}</b>
