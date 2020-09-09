@@ -29,8 +29,8 @@
                                 ng-model="search_customer" label="##word.search##" type="text"></i-control>
 
                             <i-list ng-search="_search.$customer" class="col4" display="name_##session.lang##"
-                                ng-model="itinerary.customer" ng-change="itinerary.vendor = {}"
-                                label="##word.customer##" items="customersList">
+                                space=" - " display2="code" ng-model="itinerary.customer"
+                                ng-change="itinerary.vendor = {}" label="##word.customer##" items="customersList">
                             </i-list>
 
                             <div class="col1"></div>
@@ -53,7 +53,7 @@
                                 </div>
 
                                 <div class="row">
-                                
+
                                     <i-control class="col4" ng-model="itinerary.amount" label="##word.the_amount##"
                                         type="number">
                                     </i-control>
@@ -104,7 +104,10 @@
                         <td class="center green">{{c.amount}}</td>
                         <td class="center title">{{c.required}}</td>
                         <td class="center">
-                            <i-button type="delete" ng-click="itinerary.itinerary_list.splice($index,1)">
+                            <i-button type="delete" ng-show="c.status === 1" ng-click="itinerary.itinerary_list.splice($index,1)">
+                            </i-button>
+
+                            <i-button type="save" ng-show="c.status === 1 && itinerary.id" label="##word.mission_transfer##" ng-click="showMissionTransfer(c,$index)">
                             </i-button>
                         </td>
                     </tr>

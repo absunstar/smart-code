@@ -1,73 +1,22 @@
-<div id="itineraryTargetViewModal" class="modal " >
+<div id="missionTransferViewModal" class="modal" >
     <div class="modal-content small">
         <div class="modal-header">
             <span class="close">&times;</span>
             <h2>
-                ##word.target_details##
+                ##word.mission_transfer##
                 <i class="fa fa-file"></i>
             </h2>
         </div>
 
         <div class="modal-body">
             <div class="row">
-                <table class="table hover center bold">
-                    <tr>
-                        <td class="title">##word.target##</td>
-                        <td class="center"> {{target_details.name}} {{target_details.name_##session.lang##}}</td>
-                    </tr>
+             
+                <i-date2 class="col6" ng-model="mission_transfer.date" label="##word.date##"></i-date2>
 
+                <i-list class="col5" ng-model="mission_transfer.delegate" ng-search="_search.$items_group_search" v="r"
+                    label="##word.delegate##" items="delegatesList">
+                </i-list>
 
-                    <tr>
-                        <td class="title"> ##word.phone## </td>
-                        <td class="center">
-                            <a ng-show="target_details.phone" href="tel:{{target_details.phone}}">
-                                {{target_details.phone}}
-                                <i class="fa fa-phone" aria-hidden="true"></i>
-                            </a>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td class="title"> ##word.mobile## </td>
-                        <td class="center">
-                            <a ng-show="target_details.mobile" href="tel:{{target_details.mobile}}">
-                                {{target_details.mobile}}
-                                <i class="fa fa-mobile" aria-hidden="true"></i>
-                            </a>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td class="title"> ##word.whatsapp## </td>
-                        <td class="center">
-                            <a ng-show="target_details.whatsapp" href="tel:{{target_details.whatsapp}}">
-                                {{target_details.whatsapp}}
-                                <i class="fa fa-whatsapp" aria-hidden="true"></i>
-                            </a>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td class="title">##word.gov##</td>
-                        <td class="center">{{target_details.gov.name}}</td>
-                    </tr>
-                    <tr>
-                        <td class="title">##word.city##</td>
-                        <td class="center">{{target_details.city.name}}</td>
-                    </tr>
-
-                    <tr>
-                        <td class="title"> ##word.area## </td>
-                        <td class="center"> {{target_details.area.name}} </td>
-                    </tr>
-                    <tr>
-                        <td class="title">##word.address##</td>
-                        <td class="center">{{target_details.address}}</td>
-                    </tr>
-
-
-
-                </table>
             </div>
 
         </div>
@@ -75,7 +24,8 @@
         <h2 class="error"> {{error}} </h2>
 
         <div class="modal-footer center">
-            <i-button type="close" label="##word.close##" onclick="site.hideModal('#itineraryTargetViewModal')">
+            <i-button type="add" label="##word.add##" ng-click="missionTransfer(mission_transfer)"></i-button>
+            <i-button type="close" label="##word.close##" onclick="site.hideModal('#missionTransferViewModal')">
             </i-button>
         </div>
     </div>

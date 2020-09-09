@@ -45,6 +45,11 @@
         "ar": "نوع المهمة"
     },
     {
+        "name": "mission_transfer",
+        "en": "Mission Transfer",
+        "ar": "تحويل مهمة"
+    },
+    {
         "name": "target_type",
         "en": "Target Type",
         "ar": "نوع الهدف"

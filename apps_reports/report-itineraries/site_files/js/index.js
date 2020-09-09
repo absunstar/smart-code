@@ -43,9 +43,9 @@ app.controller("report_itineraries", function ($scope, $http, $timeout) {
           $scope.list = response.data.list;
           $scope.count = $scope.list.length;
 
+          $scope.missions_existing = 0;
           $scope.missions_completed = 0;
           $scope.missions_canceled = 0;
-          $scope.missions_existing = 0;
 
           $scope.list.forEach(_itinerary => {
 
@@ -75,6 +75,5 @@ app.controller("report_itineraries", function ($scope, $http, $timeout) {
     $scope.search = {}
   };
 
-  $scope.getReportItinerariesList({ date: new Date() });
   $scope.getDelegateList();
 });

@@ -34,10 +34,11 @@
 
                     <table class="table hover bold loaded">
                         <tr>
+                            <th>##word.serial##</th>
                             <th>##word.status##</th>
                             <th>##word.target##</th>
                             <th>##word.phone##</th>
-                            <th>##word.addresses##</th>
+                            <th class="w250">##word.addresses##</th>
                             <th>##word.required##</th>
                             <th>##word.mission_type##</th>
                             <th>##word.the_amount##</th>
@@ -47,15 +48,21 @@
                         </tr>
 
                         <tr ng-repeat="c in itinerary.itinerary_list">
+                            <td class="center blue">
+                                <p>{{$index + 1}}</p>
+                            </td>
                             <td class="center">
-                                <span ng-show="c.status == 1" class="blueDot"><p class="white">{{$index + 1}}</p></span>
-                                <span ng-show="c.status == 2" class="greenDot"><p class="white">{{$index + 1}}</p></span>
-                                <span ng-show="c.status == 3" class="redDot"><p class="white">{{$index + 1}}</p></span>
+                                <span ng-show="c.status == 1" class="blueDot">
+                                </span>
+                                <span ng-show="c.status == 2" class="greenDot">
+                                </span>
+                                <span ng-show="c.status == 3" class="redDot">
+                                </span>
                             </td>
 
                             <td class="center title">
                                 <p class="blue">{{c.target_type.##session.lang##}} :</p>
-                                <p >{{c.target.name_##session.lang##}} {{c.target.name}}</p>
+                                <p>{{c.target.name_##session.lang##}} {{c.target.name}}</p>
                             </td>
 
                             <td class="center title">
@@ -74,7 +81,7 @@
                                 </p>
                             </td>
 
-                            <td class="center title">
+                            <td class="center w250 title">
                                 <p>{{c.target.gov.name}} - {{c.target.city.name}} - {{c.target.area.name}}</p>
                                 <p>{{c.target.address}}</p>
                             </td>
@@ -98,8 +105,7 @@
 
                             <td class="center title w200">
                                 <p ng-hide="'##user.type##' == 'delegate'">{{c.delegate_notes}}</p>
-                                <i-textarea ng-show="'##user.type##' == 'delegate'" ng-model="c.delegate_notes"
-                                    label="##word.delegate_notes##">
+                                <i-textarea ng-show="'##user.type##' == 'delegate'" ng-model="c.delegate_notes">
                                 </i-textarea>
                             </td>
                             <td class="not-print">

@@ -16,7 +16,7 @@ app.controller("itineraries", function ($scope, $http, $timeout) {
     site.showModal('#itineraryAddModal');
   };
 
-  $scope.addItinerary = function () {
+  $scope.addItinerary = function (itinerary) {
     $scope.error = '';
     const v = site.validated('#itineraryAddModal');
     if (!v.ok) {
@@ -24,7 +24,7 @@ app.controller("itineraries", function ($scope, $http, $timeout) {
       return;
     }
 
-    if (new Date($scope.itinerary.date) > new Date()) {
+    if (new Date(itinerary.date) > new Date()) {
       $scope.error = "##word.date_exceed##";
       return;
     };
@@ -33,7 +33,7 @@ app.controller("itineraries", function ($scope, $http, $timeout) {
     $http({
       method: "POST",
       url: "/api/itineraries/add",
-      data: $scope.itinerary
+      data: itinerary
     }).then(
       function (response) {
         $scope.busy = false;
@@ -326,9 +326,15 @@ app.controller("itineraries", function ($scope, $http, $timeout) {
 
         $scope.amount_invoices = {
           date: new Date(),
-          invoice_id: itinerary.id,
+          invoice_id: $scope.itinerary.id,
           vendor: itinerary.vendor,
-          delegate: itinerary.delegate,
+          show_delegate: true,
+          delegate: $scope.itinerary.delegate,
+          source: {
+            name: itinerary.target_type.ar + ' : ' + itinerary.target.name_ar,
+            name_en: itinerary.target_type.en + ' : ' + itinerary.target.name_en,
+            id: itinerary.target.id,
+          },
           mission_type: itinerary.mission_type,
           customer: itinerary.customer,
           invoice_type: itinerary.type,
@@ -635,8 +641,6 @@ app.controller("itineraries", function ($scope, $http, $timeout) {
     let customer = '';
     if ($scope.amount_invoices && $scope.amount_invoices.customer) {
       customer = $scope.amount_invoices.customer
-    } else if ($scope.store_out && $scope.store_out.customer) {
-      customer = $scope.store_out.customer
     }
 
     $http({
@@ -664,6 +668,29 @@ app.controller("itineraries", function ($scope, $http, $timeout) {
   $scope.displaySearchModal = function () {
     $scope.error = '';
     site.showModal('#itinerarySearchModal');
+  };
+
+  $scope.showMissionTransfer = function (itiner, i) {
+    $scope.error = '';
+    $scope.missionIndex = i;
+    $scope.mission_transfer = {
+      date: new Date(),
+      active: true,
+      image_url: '/images/itinerary.png',
+      itinerary_list: [itiner]
+    };
+
+    site.showModal('#missionTransferViewModal');
+  };
+
+  $scope.missionTransfer = function (mission_transfer) {
+    $scope.error = '';
+
+    $scope.itinerary.itinerary_list.splice($scope.missionIndex, 1);
+
+    $scope.addItinerary(mission_transfer);
+
+    site.hideModal('#missionTransferViewModal');
   };
 
   $scope.searchAll = function () {
