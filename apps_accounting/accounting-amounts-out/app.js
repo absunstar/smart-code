@@ -59,13 +59,12 @@ module.exports = function init(site) {
     $amounts_out.add(amounts_out_doc, (err, doc) => {
       if (!err) {
         if (doc.posting) {
-          let Obj = {
-            value: (-Math.abs(doc.value)),
+          let obj = {
+            value: doc.value,
             safe: doc.safe,
             company: doc.company,
             branch: doc.branch,
             date: doc.date,
-            sourceName: doc.source.name,
             payment_method: doc.payment_method,
             currency: doc.currency,
             description: doc.description,
@@ -78,8 +77,17 @@ module.exports = function init(site) {
             operation: { ar: 'فاتورة منصرف', en: 'Invoice Out' },
             transition_type: 'out'
           }
-          if (Obj.value && Obj.safe && Obj.date && Obj.sourceName) {
-            site.quee('[amounts][safes][+]', Obj)
+
+          if (doc.source && doc.source.id) {
+
+            obj.sourceName = doc.source.name
+
+          } else if (doc.vendor && doc.vendor.id) {
+            obj.sourceName = 'مورد' + ' : ' + doc.vendor.name_ar
+          }
+
+          if (obj.value && obj.safe) {
+            site.quee('[amounts][safes][+]', obj)
           }
         }
         response.done = true
@@ -154,7 +162,6 @@ module.exports = function init(site) {
             date: result.doc.date,
             company: result.doc.company,
             branch: result.doc.branch,
-            sourceName: result.doc.source.name,
             currency: result.doc.currency,
             code: result.doc.code,
             shift: {
@@ -166,11 +173,20 @@ module.exports = function init(site) {
             description: result.doc.description,
           }
 
+          if (result.doc.source && result.doc.source.id) {
+
+            obj.sourceName = result.doc.source.name
+
+          } else if (result.doc.vendor && result.doc.vendor.id) {
+            obj.sourceName = 'مورد' + ' : ' + result.doc.vendor.name_ar
+          }
+
           if (result.doc.posting) {
             obj.operation = { ar: 'فاتورة منصرف', en: 'Invoice Out' }
             obj.transition_type = 'out'
 
           } else {
+            obj.value = (-Math.abs(obj.value))
             obj.operation = { ar: 'فك ترحيل فاتورة منصرف', en: 'Un Post Invoice Out' }
             obj.transition_type = 'out'
           }
@@ -197,7 +213,7 @@ module.exports = function init(site) {
       res.json(response)
       return
     }
-    
+
     let id = req.body.id
     if (id) {
       $amounts_out.delete({
@@ -209,13 +225,12 @@ module.exports = function init(site) {
 
         if (!err && result) {
           if (result.doc.posting) {
-            let Obj = {
+            let obj = {
               value: (-Math.abs(result.doc.value)),
               safe: result.doc.safe,
               company: result.doc.company,
               branch: result.doc.branch,
               date: result.doc.date,
-              sourceName: result.doc.source.name,
               payment_method: result.doc.payment_method,
               currency: result.doc.currency,
               description: result.doc.description,
@@ -228,8 +243,18 @@ module.exports = function init(site) {
               operation: { ar: 'حذف فاتورة منصرف', en: 'Delete Invoice Out' },
               transition_type: 'out'
             }
-            if (Obj.value && Obj.safe && Obj.date && Obj.sourceName) {
-              site.quee('[amounts][safes][+]', Obj)
+
+
+            if (result.doc.source && result.doc.source.id) {
+
+              obj.sourceName = result.doc.source.name
+
+            } else if (result.doc.vendor && result.doc.vendor.id) {
+              obj.sourceName = 'مورد' + ' : ' + result.doc.vendor.name_ar
+            }
+
+            if (obj.value && obj.safe) {
+              site.quee('[amounts][safes][+]', obj)
             }
           }
           response.done = true
@@ -244,7 +269,7 @@ module.exports = function init(site) {
   site.post("/api/amounts_out/view", (req, res) => {
     let response = {}
     response.done = false
-              
+
     if (!req.session.user) {
       response.error = 'Please Login First'
       res.json(response)
@@ -270,7 +295,7 @@ module.exports = function init(site) {
   site.post("/api/amounts_out/all", (req, res) => {
     let response = {}
     response.done = false
-          
+
     if (!req.session.user) {
       response.error = 'Please Login First'
       res.json(response)

@@ -60,12 +60,11 @@ module.exports = function init(site) {
         if (doc.posting) {
 
           let obj = {
-            value: (-Math.abs(doc.value)),
+            value: doc.value,
             safe: doc.safe,
             date: doc.date,
             company: doc.company,
             branch: doc.branch,
-            sourceName: doc.source.name,
             payment_method: doc.payment_method,
             currency: doc.currency,
             description: doc.description,
@@ -78,7 +77,16 @@ module.exports = function init(site) {
             operation: { ar: 'فاتورة وارد', en: 'Invoice In' },
             transition_type: 'in'
           }
-          if (obj.value && obj.safe && obj.date && obj.sourceName) {
+          
+          if (result.doc.source && result.doc.source.id) {
+
+            obj.sourceName = result.doc.source.name
+
+          } else if (result.doc.customer && result.doc.customer.id) {
+            obj.sourceName = 'عميل' + ' : ' + result.doc.customer.name_ar
+          }
+
+          if (obj.value && obj.safe) {
             site.quee('[amounts][safes][+]', obj)
           }
         }
@@ -163,7 +171,6 @@ module.exports = function init(site) {
             company: result.doc.company,
             currency: result.doc.currency,
             branch: result.doc.branch,
-            sourceName: result.doc.source.name,
             code: result.doc.code,
             shift: {
               id: result.doc.shift.id,
@@ -172,6 +179,14 @@ module.exports = function init(site) {
             },
             payment_method: result.doc.payment_method,
             description: result.doc.description,
+          }
+
+          if (result.doc.source && result.doc.source.id) {
+
+            obj.sourceName = result.doc.source.name
+
+          } else if (result.doc.customer && result.doc.customer.id) {
+            obj.sourceName = 'عميل' + ' : ' + result.doc.customer.name_ar
           }
 
           if (result.doc.posting) {
@@ -225,7 +240,6 @@ module.exports = function init(site) {
               company: result.doc.company,
               currency: result.doc.currency,
               branch: result.doc.branch,
-              sourceName: result.doc.source.name,
               code: result.doc.code,
               description: result.doc.description,
               shift: {
@@ -237,7 +251,16 @@ module.exports = function init(site) {
               operation: { ar: 'حذف فاتورة وارد', en: 'Delete Invoice In' },
               transition_type: 'in'
             }
-            if (obj.value && obj.safe && obj.date && obj.sourceName) {
+
+            if (result.doc.source && result.doc.source.id) {
+
+              obj.sourceName = result.doc.source.name
+  
+            } else if (result.doc.customer && result.doc.customer.id) {
+              obj.sourceName = 'عميل' + ' : ' + result.doc.customer.name_ar
+            }
+
+            if (obj.value && obj.safe) {
               site.quee('[amounts][safes][+]', obj)
             }
           }

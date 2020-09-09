@@ -289,38 +289,40 @@ app.controller("amounts_out", function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.busy = true;
 
-    let where = { 'currency.id': currency.id };
+    if (currency && currency.id && method && method.id) {
 
-    if (method.id == 1)
-      where['type.id'] = 1;
-    else where['type.id'] = 2;
+      let where = { 'currency.id': currency.id };
 
-    $http({
-      method: "POST",
-      url: "/api/safes/all",
-      data: {
-        select: {
-          id: 1,
-          name: 1,
-          commission: 1,
-          currency: 1,
-          type: 1
+      if (method.id == 1)
+        where['type.id'] = 1;
+      else where['type.id'] = 2;
+
+      $http({
+        method: "POST",
+        url: "/api/safes/all",
+        data: {
+          select: {
+            id: 1,
+            name: 1,
+            commission: 1,
+            currency: 1,
+            type: 1
+          },
+          where: where
+        }
+      }).then(
+        function (response) {
+          $scope.busy = false;
+          if (response.data.done) $scope.safesList = response.data.list;
+
         },
-        where: where
-      }
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) $scope.safesList = response.data.list;
-
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
+        function (err) {
+          $scope.busy = false;
+          $scope.error = err;
+        }
+      )
+    }
   };
-
 
   $scope.loadInOutNames = function () {
     $scope.busy = true;
@@ -436,6 +438,30 @@ app.controller("amounts_out", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.loadVendors = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/vendors/all",
+      data: {
+
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.vendorsList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+
   $scope.get_open_shift = function (callback) {
     $scope.error = '';
     $scope.busy = true;
@@ -466,6 +492,7 @@ app.controller("amounts_out", function ($scope, $http, $timeout) {
   $scope.getDefaultSettings();
   $scope.loadInOutNames();
   $scope.loadCurrencies();
+  $scope.loadVendors();
   $scope.getPaymentMethodList();
   $scope.loadDelegates();
   $scope.loadEmployees();

@@ -15,9 +15,15 @@
                 </td>
             </tr>
 
-            <tr>
+            <tr ng-show="amount_in.source.id">
                 <td class="title">##word.amounts_in_source##</td>
-                <td class="center">{{amount_in.source.name}}</td><br>
+                <td class="center">{{amount_in.source.name}}</td>
+
+            </tr>
+
+            <tr ng-show="amount_in.customer.id">
+                <td class="title">##word.customer##</td>
+                <td class="center">{{amount_in.customer.name_##session.lang##}}</td>
 
             </tr>
 

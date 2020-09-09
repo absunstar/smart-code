@@ -327,22 +327,26 @@ app.controller("itineraries", function ($scope, $http, $timeout) {
         $scope.amount_invoices = {
           date: new Date(),
           invoice_id: $scope.itinerary.id,
-          vendor: itinerary.vendor,
           show_delegate: true,
           delegate: $scope.itinerary.delegate,
-          source: {
-            name: itinerary.target_type.ar + ' : ' + itinerary.target.name_ar,
-            name_en: itinerary.target_type.en + ' : ' + itinerary.target.name_en,
-            id: itinerary.target.id,
-          },
           mission_type: itinerary.mission_type,
-          customer: itinerary.customer,
           invoice_type: itinerary.type,
           shift: shift,
           net_value: itinerary.amount,
           value: 0,
           active: true
         };
+
+        if (itinerary.mission_type) {
+          if (itinerary.mission_type.id == 1) {
+            $scope.amount_invoices.show_customer;
+            $scope.amount_invoices.customer = itinerary.target;
+
+          } else if (itinerary.mission_type.id == 2) {
+            $scope.amount_invoices.show_vendor;
+            $scope.amount_invoices.vendor = itinerary.target
+          }
+        }
 
         if ($scope.defaultSettings.accounting) {
           $scope.amount_invoices.currency = $scope.currencySetting;
@@ -449,39 +453,39 @@ app.controller("itineraries", function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.busy = true;
 
+    if (currency && currency.id && method && method.id) {
 
-    let where = {
-      'currency.id': currency.id
-    };
+      let where = { 'currency.id': currency.id };
 
-    if (method.id == 1)
-      where['type.id'] = 1;
-    else where['type.id'] = 2;
+      if (method.id == 1)
+        where['type.id'] = 1;
+      else where['type.id'] = 2;
 
-    $http({
-      method: "POST",
-      url: "/api/safes/all",
-      data: {
-        select: {
-          id: 1,
-          name: 1,
-          commission: 1,
-          currency: 1,
-          type: 1
+      $http({
+        method: "POST",
+        url: "/api/safes/all",
+        data: {
+          select: {
+            id: 1,
+            name: 1,
+            commission: 1,
+            currency: 1,
+            type: 1
+          },
+          where: where
+        }
+      }).then(
+        function (response) {
+          $scope.busy = false;
+          if (response.data.done) $scope.safesList = response.data.list;
+
         },
-        where: where
-      }
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) $scope.safesList = response.data.list;
-
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
+        function (err) {
+          $scope.busy = false;
+          $scope.error = err;
+        }
+      )
+    }
   };
 
   $scope.get_open_shift = function (callback) {
