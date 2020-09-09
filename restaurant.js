@@ -2,7 +2,7 @@
 const site = require('isite')({
     port: [80 , 40004],
     lang: 'ar',
-    version : '1.0.4',
+    version : '1.0.5',
     name: "restaurant",
     theme: 'theme_paper',
     mongodb: {
@@ -41,8 +41,8 @@ site.words.add({
 
 site.ready = false
 site.loadLocalApp('client-side')
+site.loadLocalApp('ui-print')
 site.importApp(__dirname + '/apps_private/cloud_security', 'security')
-site.importApp(__dirname + '/apps_private/ui-print')
 site.importApp(__dirname + '/apps_private/ui-help')
 site.importApps(__dirname + '/apps_core')
 site.importApps(__dirname + '/apps_accounting')
