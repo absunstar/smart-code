@@ -17,7 +17,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "isite": "^1.14.18",
+    "isite": "^1.14.19",
     "zklib": "^0.2.11"
   }
 }
