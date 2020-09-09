@@ -1,7 +1,7 @@
 const site = require('isite')({
     port: [80 , 40008],
     lang: 'ar',
-    version : '1.0.4',
+    version : '1.0.5',
     name: 'pmp',
     theme: 'theme_paper',
     mongodb: {
@@ -28,11 +28,11 @@ site.get({
 })
 
 site.loadLocalApp('client-side')
+site.loadLocalApp('ui-print')
 site.importApp(__dirname + '/shared_apps/cloud_security', 'security')
 site.importApps(__dirname + '/pmp_apps')
 setTimeout(() => {
     site.importApp(__dirname + '/shared_apps/companies')
-    site.importApp(__dirname + '/shared_apps/ui-print')
     site.importApp(__dirname + '/shared_apps/ui-help')
 }, 1000);
 
