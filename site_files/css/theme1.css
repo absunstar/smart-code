@@ -13,14 +13,14 @@
 .r_blue input {
     color: blue;
     font-weight :bold;
-    font-size: 20px;
+    font-size: 18px;
 }
 
 .r_black,
 .r_black input {
     color: black;
     font-weight :bold;
-    font-size: 20px;
+    font-size: 18px;
 }
 .indigoD,
 .indigoD {
@@ -30,21 +30,21 @@
 .r_brown input {
     color: brown;
     font-weight :bold;
-    font-size: 20px;
+    font-size: 18px;
 }
 
 .r_orange,
 .r_orange input {
     color: OrangeRed;
     font-weight :bold;
-    font-size: 20px;
+    font-size: 18px;
 }
 
 .r_darkRed,
 .r_darkRed input {
     color: DarkRed;
     font-weight :bold;
-    font-size: 20px;
+    font-size: 18px;
 }
 
 .bg_Gold,
@@ -129,16 +129,32 @@ img {
         width: 9px !important;
     }
 
-    .mXw {
-        max-width: 250px;
-  
-        white-space: pre-wrap;
-    }
+    .table {
+        font-size: 8pt !important;
+      }
 
     .bg_sf {
         background-color: #0000b82e !important;
     }
     
+}
+
+
+.p_header {
+    font-size: 16px !important;
+}
+
+.p_footer {
+    font-size: 19px !important;
+}
+
+.px14 {
+    font-size: 14px !important;
+}
+
+.num_str {
+    font-size: 15px !important;
+    font-style: italic;
 }
 
 

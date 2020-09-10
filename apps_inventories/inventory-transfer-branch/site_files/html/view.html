@@ -2,23 +2,24 @@
 
     <div class="row hide">
         <div class="col4 right">
-          <h2 class="red right">##session.company.name_ar##</h2>
-          <div class="row right" ng-repeat="i in defaultSettings.printer_program.invoice_header">
-            <h2 class="black right">{{i.name}}</h2>
-          </div>
+            <p class=" p_header red right">##session.company.name_ar##</p>
+            <div class="row right" ng-repeat="i in defaultSettings.printer_program.invoice_header">
+                <p class=" p_header right">{{i.name}}</p>
+            </div>
         </div>
-    
+
         <div class="col4 center">
-          <img class="logoPrint" ng-src="{{defaultSettings.printer_program.invoice_logo}}" />
+            <img class="logoPrint" ng-src="{{defaultSettings.printer_program.invoice_logo}}" />
         </div>
-    
+
         <div class="col4 left">
-          <h2 class="red left">##session.company.name_en##</h2>
-          <div class="row left" ng-repeat="i in defaultSettings.printer_program.invoice_header2">
-            <h2 class="black left">{{i.name}}</h2>
-          </div>
+            <p class=" p_header red left">##session.company.name_en##</p>
+            <div class="row left" ng-repeat="i in defaultSettings.printer_program.invoice_header2">
+                <p class=" p_header left">{{i.name}}</p>
+            </div>
         </div>
-      </div>
+    </div>
+
     <br>
     <br>
     <br>
@@ -84,8 +85,8 @@
             <tr>
                 <th class="w50">##word.serial##</th>
                 <th class="w150">##word.barcode##</th>
-                <th class="w300">##word.transfer_branch_item_name##</th>
-                 <th class="w250">##word.name_size##</th> 
+                <th class="w250">##word.transfer_branch_item_name##</th>
+                <th class="w200">##word.name_size##</th>
                 <th class="w100">##word.unit##</th>
                 <th class="w50">##word.transfer_branch_item_count##</th>
                 <th class="hide w100">##word.total_price##</th>
@@ -94,8 +95,8 @@
             <tr ng-repeat="itm in transfer_branch.items">
                 <td class="center w50 blue">{{$index + 1}}</td>
                 <td class="center w150">{{itm.barcode}}</td>
-                <td class="center w300">{{itm.name}}</td>
-                <td class="center 250">
+                <td class="center w250">{{itm.name}}</td>
+                <td class="center 200">
                     <p>{{itm.size}}</p>
                     <p>{{itm.size_en}}</p>
                 </td>
@@ -120,11 +121,11 @@
 
     <div class="row hide">
         <br>
-        <h1 class="red center">##word.received_honesty##</h1>
+        <p class="red p_footer center">##word.received_honesty##</p>
         <br>
-       
+
     </div>
-   
+
     <br>
     <br>
     <br>
@@ -132,16 +133,17 @@
     <br>
 
     <div class="row hide" ng-repeat="i in defaultSettings.printer_program.invoice_footer">
-        <h1 class="black center">{{i.name}}</h1>
+        <p class="p_footer center">{{i.name}}</p>
     </div>
 
-    <br>
-    <br>
-    <br>
-    <br>
+    <br />
+    <br />
+    <br />
+
     <div class="row hide">
-        <h2 class="black">##word.recipient_signature## : </h2>
+        <p class="p_footer ">##word.recipient_signature## : </p>
     </div>
+
 
 
     <!-- <div class="col3">

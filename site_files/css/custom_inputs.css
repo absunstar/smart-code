@@ -4,18 +4,18 @@
 .r_red input {
     color: red;
     font-weight: bold;
-    font-size: 20px;
+    font-size: 18px;
 }
 .r_green,
 .r_green input {
     color: green;
     font-weight :bold;
-    font-size: 20px;
+    font-size: 18px;
 }
 
 .r_indigo,
 .r_indigo input {
     color:Indigo;
     font-weight :bold;
-    font-size: 20px;
+    font-size: 18px;
 }
