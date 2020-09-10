@@ -93,6 +93,7 @@ app.controller("default_setting", function ($scope, $http) {
       }
     )
   };
+
   $scope.loadSafes = function () {
     $scope.error = '';
     $scope.busy = true;
@@ -120,6 +121,7 @@ app.controller("default_setting", function ($scope, $http) {
       }
     )
   };
+  
   $scope.getSourceType = function () {
     $scope.error = '';
     $scope.busy = true;

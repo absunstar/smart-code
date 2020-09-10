@@ -609,10 +609,16 @@
         "en": "Invoice Source",
         "ar": "مصدر الفاتورة"
     },
+
     {
         "name": "print_invoice",
         "en": "Print Invoice",
         "ar": "طباعة فاتورة"
+    },
+    {
+        "name": "source",
+        "en": "Source",
+        "ar": "مصدر"
     },
     {
         "name": "create_an_invoice",

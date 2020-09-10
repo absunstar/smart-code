@@ -95,38 +95,43 @@ app.controller("safes_payments", function ($scope, $http) {
     }
   };
 
-  $scope.loadSafes = function (method) {
+  $scope.loadSafes = function (method, currency) {
     $scope.error = '';
     $scope.busy = true;
-    let where = {};
 
-    if (method.id == 1)
-      where = { 'type.id': 1 };
-    else where = { 'type.id': 2 };
+    if (currency && currency.id && method && method.id) {
 
-    $http({
-      method: "POST",
-      url: "/api/safes/all",
-      data: {
-        select: {
-          id: 1,
-          name: 1,
-          commission: 1,
-          type: 1
+      let where = { 'currency.id': currency.id };
+
+      if (method.id == 1)
+        where['type.id'] = 1;
+      else where['type.id'] = 2;
+
+      $http({
+        method: "POST",
+        url: "/api/safes/all",
+        data: {
+          select: {
+            id: 1,
+            name: 1,
+            commission: 1,
+            currency: 1,
+            type: 1
+          },
+          where: where
+        }
+      }).then(
+        function (response) {
+          $scope.busy = false;
+          if (response.data.done) $scope.safesList = response.data.list;
+
         },
-        where: where
-      }
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) $scope.safesList = response.data.list;
-
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
+        function (err) {
+          $scope.busy = false;
+          $scope.error = err;
+        }
+      )
+    }
   };
 
   $scope.getDefaultSetting = function () {
