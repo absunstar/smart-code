@@ -1,24 +1,25 @@
 <div ng-hide="busy" class="row" fixed>
 
+    <div class="row hide center">
+        <img class="logoPrint" ng-src="{{defaultSettings.printer_program.invoice_logo}}" />
+    </div>
+
     <div class="row hide">
-        <div class="col4 right">
+        <div class="col6 right">
             <p class=" p_header red right">##session.company.name_ar##</p>
             <div class="row right" ng-repeat="i in defaultSettings.printer_program.invoice_header">
                 <p class=" p_header right">{{i.name}}</p>
             </div>
         </div>
 
-        <div class="col4 center">
-            <img class="logoPrint" ng-src="{{defaultSettings.printer_program.invoice_logo}}" />
-        </div>
-
-        <div class="col4 left">
+        <div class="col6 left">
             <p class=" p_header red left">##session.company.name_en##</p>
             <div class="row left" ng-repeat="i in defaultSettings.printer_program.invoice_header2">
                 <p class=" p_header left">{{i.name}}</p>
             </div>
         </div>
     </div>
+
 
     <br>
     <br>

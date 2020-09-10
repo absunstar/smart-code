@@ -1,25 +1,25 @@
 <div ng-hide="busy" class="row" fixed>
 
+  <div class="row hide center">
+    <img class="logoPrint" ng-src="{{defaultSettings.printer_program.invoice_logo}}" />
+  </div>
+
   <div class="row hide">
-    
-    <div class="col4 right">
+    <div class="col6 right">
       <p class=" p_header red right">##session.company.name_ar##</p>
       <div class="row right" ng-repeat="i in defaultSettings.printer_program.invoice_header">
         <p class=" p_header right">{{i.name}}</p>
       </div>
     </div>
 
-    <div class="col4 center">
-      <img class="logoPrint" ng-src="{{defaultSettings.printer_program.invoice_logo}}" />
-    </div>
-
-    <div class="col4 left">
+    <div class="col6 left">
       <p class=" p_header red left">##session.company.name_en##</p>
       <div class="row left" ng-repeat="i in defaultSettings.printer_program.invoice_header2">
         <p class=" p_header left">{{i.name}}</p>
       </div>
     </div>
   </div>
+
 
   <br />
   <br />
@@ -135,7 +135,8 @@
         <th class="w250">##word.stores_out_item_name##</th>
         <th class="w100">##word.unit##</th>
         <th class="w50">##word.stores_out_item_count##</th>
-        <th class="w50" ng-hide="store_out.type.id ==5" x-permissions="stores_out_details_values || stores_out_manage">##word.price##</th>
+        <th class="w50" ng-hide="store_out.type.id ==5" x-permissions="stores_out_details_values || stores_out_manage">
+          ##word.price##</th>
         <th class="w50" x-permissions="stores_out_details_values || stores_out_manage"
           ng-show="defaultSettings.inventory.value_added > 0">##word.total_v_a##</th>
         <th class="w100" x-permissions="stores_out_details_values || stores_out_manage">##word.stores_out_item_total##
@@ -164,11 +165,13 @@
         <td class="center w50" x-permissions="stores_out_details_values || stores_out_manage"
           ng-hide="store_out.type.id ==5">
           <p>{{itm.price}}</p>
-          <del class="red px14" ng-show="itm.discount.type =='number' && itm.discount.value > 0">{{itm.discount.value}} $</del>
-          <del class="red px14" ng-show="itm.discount.type =='percent' && itm.discount.value > 0">{{itm.discount.value}} %</del>
+          <del class="red px14" ng-show="itm.discount.type =='number' && itm.discount.value > 0">{{itm.discount.value}}
+            $</del>
+          <del class="red px14" ng-show="itm.discount.type =='percent' && itm.discount.value > 0">{{itm.discount.value}}
+            %</del>
         </td>
 
-       
+
         <td x-permissions="stores_out_details_values || stores_out_manage"
           ng-show="defaultSettings.inventory.value_added > 0" class="center w50 red">
           <p>{{itm.total_v_a}}</p>
@@ -193,7 +196,7 @@
         class="col3 r_darkRed" ng-model="store_out.total_value_added" label="##word.total_value_added##" type="number"
         disabled> </i-control>
     </div>
-  
+
     <div class="row">
 
       <i-control class="col3 r_green" ng-model="store_out.net_value" label="##word.stores_in_net_value##" type="number"
