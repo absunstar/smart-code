@@ -87,7 +87,6 @@
                 <th class="w50">##word.serial##</th>
                 <th class="w150">##word.barcode##</th>
                 <th class="w250">##word.transfer_branch_item_name##</th>
-                <th class="w200">##word.name_size##</th>
                 <th class="w100">##word.unit##</th>
                 <th class="w50">##word.transfer_branch_item_count##</th>
                 <th class="hide w100">##word.total_price##</th>
@@ -97,10 +96,6 @@
                 <td class="center w50 blue">{{$index + 1}}</td>
                 <td class="center w150">{{itm.barcode}}</td>
                 <td class="center w250">{{itm.name}}</td>
-                <td class="center 200">
-                    <p>{{itm.size}}</p>
-                    <p>{{itm.size_en}}</p>
-                </td>
                 <td class="center w100">{{itm.unit.name}}</td>
                 <td class="center w50">{{itm.count}}</td>
                 <td class="center w100 hide">{{itm.total_price}}</td>
