@@ -1,28 +1,23 @@
 <div ng-hide="busy" class="row" fixed>
 
-    <div class="row hide center">
-        <img class="logoPrint" ng-src="{{defaultSettings.printer_program.invoice_logo}}" />
-    </div>
-
     <div class="row hide">
         <div class="col6 right">
-            <p class=" p_header red right">##session.company.name_ar##</p>
             <div class="row right" ng-repeat="i in defaultSettings.printer_program.invoice_header">
                 <p class=" p_header right">{{i.name}}</p>
             </div>
         </div>
 
         <div class="col6 left">
-            <p class=" p_header red left">##session.company.name_en##</p>
             <div class="row left" ng-repeat="i in defaultSettings.printer_program.invoice_header2">
                 <p class=" p_header left">{{i.name}}</p>
             </div>
         </div>
     </div>
 
-    <br>
-    <br>
-    <br>
+    <div class="row hide center">
+        <img class="logoPrint" ng-src="{{defaultSettings.printer_program.invoice_logo}}" />
+    </div>
+
 
     <div class="row">
         <br>
@@ -56,18 +51,8 @@
                 </td>
             </tr>
 
-            <tr>
-                <td class="title">
-                    <b class="indigoD">##word.transaction_type## : </b>
-                    <b>{{store_in.type.##session.lang##}}</b>
-                </td>
-                <td>
 
-                </td>
-            </tr>
-
-
-            <tr ng-show="store_in.taxes.length > 0">
+            <tr class="not-print" ng-show="store_in.taxes.length > 0">
                 <td class="title">##word.stores_in_taxes##</td>
                 <td>
                     <table class="table hover margin">
@@ -87,7 +72,7 @@
                 </td>
             </tr>
 
-            <tr ng-show="store_in.discountes.length > 0">
+            <tr class="not-print" ng-show="store_in.discountes.length > 0">
                 <td class="title">##word.stores_in_discountes##</td>
                 <td>
                     <table class="table hover margin">
@@ -107,7 +92,7 @@
                 </td>
             </tr>
 
-            <tr>
+            <tr class="not-print">
                 <td>
                     <b class="indigoD">##word.total_discount## : </b>
                     <b>{{store_in.total_discount}} $</b>
@@ -122,9 +107,13 @@
             <tr>
                 <td class="title">
                     <b class="indigoD">##word.stores_in_notes## : </b>
+                    <b>{{store_in.notes}}</b>
 
                 </td>
-                <td class="center">{{store_in.notes}}</td>
+                <td class="center">
+                    <b class="indigoD">##word.transaction_type## : </b>
+                    <b>{{store_in.type.##session.lang##}}</b>
+                </td>
             </tr>
 
         </table>
@@ -132,15 +121,14 @@
 
     <br>
     <br>
-    <br>
 
     <div class="row">
         <table class="table bold hover details">
             <tr>
                 <th class="w50">##word.serial##</th>
-                <th class="w150">##word.barcode##</th>
-                <th class="w250">##word.stores_in_item_name##</th>
-                <th class="w100">##word.unit##</th>
+                <th class="w100">##word.barcode##</th>
+                <th class="w300">##word.stores_in_item_name##</th>
+                <th class="w50">##word.unit##</th>
                 <th class="w50">##word.stores_in_item_count##</th>
                 <th class="w50">##word.price##</th>
                 <th ng-show="defaultSettings.inventory.value_added > 0" class="w50">##word.total_v_a##</th>
@@ -150,31 +138,31 @@
 
             <tr ng-repeat="itm in store_in.items">
                 <td class="center w50 blue">
-                    <p>{{$index + 1}}</p>
+                    {{$index + 1}}
 
                     <i-button label="##word.patch##" ng-show="itm.work_patch" type="view"
                         ng-click="viewPatchesList(itm)">
                     </i-button>
                 </td>
 
-                <td class="center w150">
-                    <p>{{itm.barcode}}</p>
-                </td>
-
-                <td class="center w250">
-                    <p>{{itm.name}}</p>
-                </td>
-
                 <td class="center w100">
-                    <p>{{itm.unit.name}}</p>
+                    {{itm.barcode}}
+                </td>
+
+                <td class="center w300">
+                    {{itm.name}}
                 </td>
 
                 <td class="center w50">
-                    <p>{{itm.count}}</p>
+                    {{itm.unit.name}}
+                </td>
+
+                <td class="center w50">
+                    {{itm.count}}
                 </td>
 
                 <td class=" w50 center">
-                    <p>{{itm.cost}}</p>
+                    {{itm.cost}}
                     <del class="red px14"
                         ng-show="itm.discount.type =='number' && itm.discount.value > 0">{{itm.discount.value}} $</del>
                     <del class="red px14"
@@ -188,18 +176,16 @@
                     <b class="red" ng-show="itm.discount.type =='percent'">%</b>
                 </td> -->
                 <td ng-show="defaultSettings.inventory.value_added > 0" class="center w50">
-                    <p>{{itm.total_v_a}}</p>
+                    {{itm.total_v_a}}
                 </td>
                 <td class="center w100">
-                    <p>{{itm.total}}</p>
+                    {{itm.total}}
                 </td>
 
             </tr>
         </table>
     </div>
 
-
-    <br>
     <br>
     <br>
 

@@ -1,29 +1,23 @@
 <div ng-hide="busy" class="row" fixed>
 
-  <div class="row hide center">
-    <img class="logoPrint" ng-src="{{defaultSettings.printer_program.invoice_logo}}" />
-  </div>
 
   <div class="row hide">
     <div class="col6 right">
-      <p class=" p_header red right">##session.company.name_ar##</p>
       <div class="row right" ng-repeat="i in defaultSettings.printer_program.invoice_header">
         <p class=" p_header right">{{i.name}}</p>
       </div>
     </div>
 
     <div class="col6 left">
-      <p class=" p_header red left">##session.company.name_en##</p>
       <div class="row left" ng-repeat="i in defaultSettings.printer_program.invoice_header2">
         <p class=" p_header left">{{i.name}}</p>
       </div>
     </div>
   </div>
 
-
-  <br />
-  <br />
-  <br />
+  <div class="row hide center">
+    <img class="logoPrint" ng-src="{{defaultSettings.printer_program.invoice_logo}}" />
+  </div>
 
   <div class="row">
     <br />
@@ -65,7 +59,7 @@
         </td>
       </tr>
 
-      <tr ng-show="store_out.taxes.length > 0">
+      <tr class="not-print" ng-show="store_out.taxes.length > 0">
         <td class="indigoD">##word.stores_out_taxes##</td>
         <td>
           <table class="table hover margin">
@@ -85,7 +79,7 @@
         </td>
       </tr>
 
-      <tr ng-show="store_out.discountes.length > 0">
+      <tr class="not-print" ng-show="store_out.discountes.length > 0">
         <td class="indigoD">##word.stores_out_discountes##</td>
         <td>
           <table class="table hover margin">
@@ -104,7 +98,7 @@
         </td>
       </tr>
 
-      <tr>
+      <tr class="not-print">
         <td>
           <b class="indigoD">##word.total_discount## : </b>
           <b>{{store_out.total_discount}} $</b>
@@ -125,15 +119,14 @@
 
   <br />
   <br />
-  <br />
 
   <div class="row">
     <table class="table bold hover details">
       <tr>
         <th class="w50">##word.serial##</th>
-        <th class="w150">##word.barcode##</th>
+        <th class="w100">##word.barcode##</th>
         <th class="w250">##word.stores_out_item_name##</th>
-        <th class="w100">##word.unit##</th>
+        <th class="w50">##word.unit##</th>
         <th class="w50">##word.stores_out_item_count##</th>
         <th class="w50" ng-hide="store_out.type.id ==5" x-permissions="stores_out_details_values || stores_out_manage">
           ##word.price##</th>
@@ -145,26 +138,26 @@
 
       <tr ng-repeat="itm in store_out.items">
         <td class="center blue w50">
-          <p>{{$index + 1}}</p>
+          {{$index + 1}}
           <i-button label="##word.patch##" ng-show="itm.work_patch" type="view" ng-click="viewPatchesList(itm)">
           </i-button>
         </td>
-        <td class="center w150">
-          <p>{{itm.barcode}}</p>
+        <td class="center w100">
+          {{itm.barcode}}
         </td>
         <td class="center w250">
-          <p>{{itm.name}}</p>
+          {{itm.name}}
         </td>
 
-        <td class="center w100">
-          <p>{{itm.unit.name}}</p>
+        <td class="center w50">
+          {{itm.unit.name}}
         </td>
         <td class="center w50">
-          <p>{{itm.count}}</p>
+          {{itm.count}}
         </td>
         <td class="center w50" x-permissions="stores_out_details_values || stores_out_manage"
           ng-hide="store_out.type.id ==5">
-          <p>{{itm.price}}</p>
+          {{itm.price}}
           <del class="red px14" ng-show="itm.discount.type =='number' && itm.discount.value > 0">{{itm.discount.value}}
             $</del>
           <del class="red px14" ng-show="itm.discount.type =='percent' && itm.discount.value > 0">{{itm.discount.value}}
@@ -174,7 +167,7 @@
 
         <td x-permissions="stores_out_details_values || stores_out_manage"
           ng-show="defaultSettings.inventory.value_added > 0" class="center w50 red">
-          <p>{{itm.total_v_a}}</p>
+          {{itm.total_v_a}}
         </td>
 
         <td class="center w100" x-permissions="stores_out_details_values || stores_out_manage" class="center">
@@ -183,7 +176,6 @@
     </table>
   </div>
 
-  <br />
   <br />
   <br />
 
