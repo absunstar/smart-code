@@ -231,13 +231,62 @@
     <div id="accounting_tabs" class="tabs">
         <div class="tabs-header">
 
-            <a x-features="restaurant || pos || academy || gym" class="tab-link" href="/account_invoices"
+            <a class="tab-link" x-features="gym" href="/account_invoices?type=4"
+                x-permissions="account_invoices_ui || account_invoices_manage">
+                <img src="/images/order_invoice.png">
+                <span>##word.orders_service_invoice## </span>
+            </a>
+
+            <a class="tab-link" href="/account_invoices?type=1"
+                x-permissions="account_invoices_ui || account_invoices_manage">
+                <img src="/images/pic_money_in.png">
+                <span>##word.purchase_invoice## </span>
+            </a>
+
+            <a class="tab-link" href="/account_invoices?type=2"
+                x-permissions="account_invoices_ui || account_invoices_manage">
+                <img src="/images/store_out.png">
+                <span>##word.sales_invoice## </span>
+            </a>
+
+            <a class="tab-link" href="/account_invoices?type=3"
+                x-permissions="account_invoices_ui || account_invoices_manage">
+                <img src="/images/order_invoice.png">
+                <span>##word.orders_screen_invoice## </span>
+            </a>
+
+            <a class="tab-link" href="/account_invoices?type=8"
+                x-permissions="account_invoices_ui || account_invoices_manage">
+                <img src="/images/amount_in.png">
+                <span>##word.amount_in_invoice## </span>
+            </a>
+
+            <a class="tab-link" href="/account_invoices?type=9"
+                x-permissions="account_invoices_ui || account_invoices_manage">
+                <img src="/images/amount_out.png">
+                <span>##word.amount_out_invoice## </span>
+            </a>
+
+            <a class="tab-link" href="/account_invoices?type=10"
+                x-permissions="account_invoices_ui || account_invoices_manage">
+                <img src="/images/recharge_customer_balance.png">
+                <span>##word.recharge_customer_balance## </span>
+            </a>
+
+
+            <!-- <a x-features="restaurant || pos || academy || gym" class="tab-link" href="/account_invoices"
                 x-permissions="account_invoices_ui || account_invoices_manage">
                 <img src="/images/account_invoices.png">
                 <span>##word.account_invoices_menu## </span>
+            </a> -->
+
+
+            <!--  <a class="tab-link"   href="/account_invoices?type=amont_in" x-permissions="amounts_in_ui || amounts_in_manage">
+                <img src="/images/amount_in.png">
+                <span>##word.system_amounts_in_menus##</span>
             </a>
 
-            <a class="tab-link" href="/amounts_in" x-permissions="amounts_in_ui || amounts_in_manage">
+             <a class="tab-link" href="/amounts_in" x-permissions="amounts_in_ui || amounts_in_manage">
                 <img src="/images/amount_in.png">
                 <span>##word.system_amounts_in_menus##</span>
             </a>
@@ -245,7 +294,7 @@
             <a class="tab-link" href="/amounts_out" x-permissions="amounts_out_ui ||amounts_out_manage">
                 <img src="/images/pic_out.png">
                 <span>##word.system_amounts_out_menus##</span>
-            </a>
+            </a> -->
 
             <a class="tab-link" href="/safes" x-permissions="safes_ui || safes_manage">
                 <img src="/images/safe.png">
@@ -315,10 +364,10 @@
                 <span>##word.stores_dismantle##</span>
             </a>
 
-            <!-- <a class="tab-link" href="/units_switch" x-permissions="units_switch_ui || units_switch_manage">
+            <a class="tab-link" href="/units_switch" x-permissions="units_switch_ui || units_switch_manage">
                 <img src="/images/units_switch.png">
                 <span>##word.units_switch##</span>
-            </a> -->
+            </a>
 
             <a class="tab-link" href="/stores_stock" x-permissions="stores_stock_ui || stores_stock_manage">
                 <img src="/images/store_stock.png">
@@ -555,10 +604,16 @@
             </a>
 
 
-            <a class="tab-link" href="/report_stores_movement"
-                x-permissions="report_stores_movement_ui || report_stores_movement_manage">
-                <img src="/images/report_stores_movement.png">
-                <span>##word.report_stores_movement_name##</span>
+            <a class="tab-link" href="/report_itineraries"
+                x-permissions="report_itineraries_ui || report_itineraries_manage">
+                <img src="/images/report_itineraries.png">
+                <span>##word.report_itineraries_name##</span>
+            </a>
+
+            
+            <a class="tab-link" href="/safes_payments" x-permissions="safes_payments_ui || safes_payments_manage">
+                <img src="/images/safes_payments.png">
+                <span>##word.safes_payments##</span>
             </a>
 
 
@@ -905,11 +960,11 @@
                 <span>##word.system_stores_out_menus##</span>
             </a>
 
-            <a class="tab-link" ng-show="'##user.type##' == 'delegate'" href="/amounts_in"
+            <!-- <a class="tab-link" ng-show="'##user.type##' == 'delegate'" href="/amounts_in"
                 x-permissions="amounts_in_ui || amounts_in_manage">
                 <img src="/images/amount_in.png">
                 <span>##word.system_amounts_in_menus##</span>
-            </a>
+            </a> -->
 
             <a class="tab-link" ng-show="'##user.type##' == 'delegate'" href="/itineraries"
                 x-permissions="itineraries_ui || itineraries_manage">

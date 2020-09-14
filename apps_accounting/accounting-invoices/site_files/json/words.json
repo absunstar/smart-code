@@ -117,8 +117,8 @@
     },
     {
         "name": "account_invoices_new",
-        "en": "NewAccount Invoices",
-        "ar": "فواتير الحسابات جديدة"
+        "en": "New Account Invoices",
+        "ar": "فاتورة حسابات جديدة"
     },
     {
         "name": "account_invoices_details",

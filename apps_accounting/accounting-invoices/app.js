@@ -95,15 +95,15 @@ module.exports = function init(site) {
     })
 
     if (account_invoices_doc.paid_up && account_invoices_doc.safe) {
-      if (!account_invoices_doc.payment_list || (account_invoices_doc.payment_list && account_invoices_doc.payment_list.length < 1))
-        account_invoices_doc.payment_list = [{
-          date: account_invoices_doc.date,
-          posting: account_invoices_doc.posting ? true : false,
-          safe: account_invoices_doc.safe,
-          payment_method: account_invoices_doc.payment_method,
-          currency: account_invoices_doc.currency,
-          paid_up: account_invoices_doc.paid_up
-        }]
+      account_invoices_doc.payment_list = [{
+        date: account_invoices_doc.date,
+        posting: account_invoices_doc.posting ? true : false,
+        safe: account_invoices_doc.safe,
+        shift: account_invoices_doc.shift,
+        payment_method: account_invoices_doc.payment_method,
+        currency: account_invoices_doc.currency,
+        paid_up: account_invoices_doc.paid_up
+      }]
     };
 
     account_invoices_doc.total_paid_up = 0
@@ -117,7 +117,7 @@ module.exports = function init(site) {
     } else account_invoices_doc.remain_amount = site.toNumber(account_invoices_doc.net_value)
     account_invoices_doc.remain_amount = site.toNumber(account_invoices_doc.remain_amount)
 
-    if (account_invoices_doc.source_type.id == 8) account_invoices_doc.remain_amount = 0
+    if (account_invoices_doc.source_type.id == 10) account_invoices_doc.remain_amount = 0
 
     $account_invoices.add(account_invoices_doc, (err, doc) => {
 
@@ -217,6 +217,15 @@ module.exports = function init(site) {
             site.call('[account_invoices][book_hall][+]', Object.assign({}, doc.invoice_id))
 
           } else if (doc.source_type.id == 8) {
+            paid_value.operation = { ar: 'سند قبض', en: 'Amount In' }
+            paid_value.transition_type = 'in'
+
+          } else if (doc.source_type.id == 9) {
+            paid_value.operation = { ar: 'سند صرف', en: 'Amount Out' }
+            paid_value.transition_type = 'out'
+
+
+          } else if (doc.source_type.id == 10) {
             paid_value.operation = { ar: 'شحن رصيد عميل', en: 'Recharge Customer Balance' }
             paid_value.transition_type = 'in'
             let customerPay = doc.paid_up * doc.currency.ex_rate
@@ -344,7 +353,17 @@ module.exports = function init(site) {
           paid_value.operation = { ar: 'دفعة فاتورة حجز قاعة', en: 'Pay Book Hall' }
           paid_value.transition_type = 'in'
 
+
         } else if (account_invoices_doc.source_type.id == 8) {
+          paid_value.operation = { ar: 'دفعة سند قبض', en: 'Pay Amount In' }
+          paid_value.transition_type = 'in'
+
+        } else if (account_invoices_doc.source_type.id == 9) {
+          paid_value.operation = { ar: 'دفعة سند صرف', en: 'Pay Amount Out' }
+          paid_value.transition_type = 'out'
+
+
+        } else if (account_invoices_doc.source_type.id == 10) {
           paid_value.operation = { ar: 'دفعة شحن رصيد عميل', en: 'Pay Recharge Customer Balance' }
           paid_value.transition_type = 'in'
 
@@ -365,7 +384,7 @@ module.exports = function init(site) {
 
     account_invoices_doc.remain_amount = site.toNumber(account_invoices_doc.net_value) - site.toNumber(account_invoices_doc.total_paid_up)
     account_invoices_doc.remain_amount = site.toNumber(account_invoices_doc.remain_amount)
-    if (account_invoices_doc.source_type.id == 8) account_invoices_doc.remain_amount = 0
+    if (account_invoices_doc.source_type.id == 10) account_invoices_doc.remain_amount = 0
 
     if (account_invoices_doc.id) {
       $account_invoices.edit({
@@ -394,8 +413,6 @@ module.exports = function init(site) {
     }
   })
 
-
-
   site.post("/api/account_invoices/posting", (req, res) => {
     let response = {}
     if (!req.session.user) {
@@ -410,7 +427,18 @@ module.exports = function init(site) {
     account_invoices_doc.edit_user_info = site.security.getUserFinger({ $req: req, $res: res })
     account_invoices_doc.total_paid_up = 0
 
-    if (account_invoices_doc.payment_list && account_invoices_doc.payment_list.length > 0)
+    if (account_invoices_doc.payment_list && account_invoices_doc.payment_list.length == 1){
+      account_invoices_doc.payment_list = [{
+        date: account_invoices_doc.date,
+        posting: account_invoices_doc.posting ? true : false,
+        safe: account_invoices_doc.safe,
+        shift: account_invoices_doc.shift,
+        payment_method: account_invoices_doc.payment_method,
+        currency: account_invoices_doc.currency,
+        paid_up: account_invoices_doc.paid_up
+      }]
+    }
+
       account_invoices_doc.payment_list.forEach(_payment_list => {
         if (_payment_list.currency)
           account_invoices_doc.total_paid_up += (_payment_list.paid_up * _payment_list.currency.ex_rate)
@@ -497,6 +525,14 @@ module.exports = function init(site) {
             site.call('[account_invoices][book_hall][+]', Object.assign({}, account_invoices_doc.invoice_id))
 
           } else if (account_invoices_doc.source_type.id == 8) {
+            obj.operation = { ar: 'سند قبض', en: 'Amount In' }
+            obj.transition_type = 'in'
+
+          } else if (account_invoices_doc.source_type.id == 9) {
+            obj.operation = { ar: 'سند صرف', en: 'Amount Out' }
+            obj.transition_type = 'out'
+
+          } else if (account_invoices_doc.source_type.id == 10) {
             obj.operation = { ar: 'شحن رصيد عميل', en: 'Recharge Customer Balance' }
             obj.transition_type = 'in'
             let customerPay = _payment_list.paid_up * _payment_list.currency.ex_rate
@@ -573,6 +609,16 @@ module.exports = function init(site) {
             obj.value = (-Math.abs(obj.value))
 
           } else if (account_invoices_doc.source_type.id == 8) {
+            obj.operation = { ar: 'فك ترحيل سند قبض', en: 'Un Post Amount In' }
+            obj.transition_type = 'in'
+            obj.value = (-Math.abs(obj.value))
+
+          } else if (account_invoices_doc.source_type.id == 9) {
+            obj.operation = { ar: 'فك ترحيل سند صرف', en: 'Un Post Amount Out' }
+            obj.transition_type = 'out'
+            obj.value = (-Math.abs(obj.value))
+
+          } else if (account_invoices_doc.source_type.id == 10) {
             obj.operation = { ar: 'فك ترحيل شحن رصيد عميل', en: 'Un Post Recharge Customer Balance' }
             obj.transition_type = 'in'
             obj.value = (-Math.abs(obj.value))
@@ -590,7 +636,7 @@ module.exports = function init(site) {
 
     account_invoices_doc.remain_amount = site.toNumber(account_invoices_doc.net_value) - site.toNumber(account_invoices_doc.total_paid_up)
     account_invoices_doc.remain_amount = site.toNumber(account_invoices_doc.remain_amount)
-    if (account_invoices_doc.source_type.id == 8) account_invoices_doc.remain_amount = 0
+    if (account_invoices_doc.source_type.id == 10) account_invoices_doc.remain_amount = 0
 
 
     if (account_invoices_doc.source_type.id == 3) {
@@ -745,6 +791,16 @@ module.exports = function init(site) {
                 obj.value = (-Math.abs(obj.value))
 
               } else if (response.doc.source_type.id == 8) {
+                obj.operation = { ar: 'حذف سند قبض', en: 'Delete Amount In' }
+                obj.transition_type = 'in'
+                obj.value = (-Math.abs(obj.value))
+
+              } else if (response.doc.source_type.id == 9) {
+                obj.operation = { ar: 'حذف سند صرف', en: 'Delete Amount Out' }
+                obj.transition_type = 'out'
+                obj.value = (-Math.abs(obj.value))
+
+              } else if (response.doc.source_type.id == 10) {
 
                 obj.operation = { ar: 'حذف شحن رصيد عميل', en: 'Recharge Customer Balance' }
                 obj.transition_type = 'in'
@@ -765,9 +821,6 @@ module.exports = function init(site) {
 
             result.doc.remain_amount = site.toNumber(result.doc.net_value) - site.toNumber(result.doc.total_paid_up)
             result.doc.remain_amount = site.toNumber(result.doc.remain_amount)
-
-            if (response.doc.source_type.id == 8) result.doc.remain_amount = 0
-
 
             if (result.doc.source_type.id == 3) {
 
@@ -978,7 +1031,7 @@ module.exports = function init(site) {
       d2.setDate(d2.getDate() + 1)
       where.date = {
         '$gte': d1,
-        '$lt': d2
+        '$lte': d2
       }
     } else if (where && where.date_from) {
       let d1 = site.toDate(where.date_from)
@@ -986,7 +1039,7 @@ module.exports = function init(site) {
       d2.setDate(d2.getDate() + 1);
       where.date = {
         '$gte': d1,
-        '$lt': d2
+        '$lte': d2
       }
       delete where.date_from
       delete where.date_to

@@ -510,7 +510,7 @@ module.exports = function init(site) {
 
     where['status.id'] = {
       '$gte': 2,
-      '$lt': 5
+      '$lte': 5
     }
 
     if (req.data.order_customers_type && req.data.order_customers_type.id) {

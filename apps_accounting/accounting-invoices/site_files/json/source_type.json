@@ -36,6 +36,16 @@
     },
     {
         "id": 8,
+        "en": "Amount In",
+        "ar": "سند قبض"
+    },
+    {
+        "id": 9,
+        "en": "Amount Out",
+        "ar": "سند صرف"
+    },
+    {
+        "id": 10,
         "en": "Recharge Customer Balance",
         "ar": "شحن رصيد عميل"
     }

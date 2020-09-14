@@ -1,0 +1,174 @@
+[
+    {
+        "name": "report_daily_add",
+        "en": "Add Customer",
+        "ar": "إضافة عميل"
+    },
+    {
+        "name": "report_daily_informations",
+        "en": "Report Daily Informations",
+        "ar": "بيانات تقرير فاتورة"
+    },
+    {
+        "name": "report_daily_name",
+        "en": "Report Daily",
+        "ar": "تقرير الفواتير"
+    },
+    {
+        "name": "report_daily_menus",
+        "en": "Report Daily Menu",
+        "ar": "قائمة تقرير فاتورة"
+    },
+    {
+        "name": "daily_code",
+        "en": "Report Daily Code",
+        "ar": "كود الفاتورة"
+    },
+    {
+        "name": "total_items_price",
+        "en": "Total Items Price",
+        "ar": "مجموع سعر الأصناف"
+    },
+    {
+        "name": "report_daily_name",
+        "en": "Report Daily Name",
+        "ar": "اسم تقرير فاتورة"
+    },
+    {
+        "name": "source_type",
+        "en": "Source Type",
+        "ar": "نوع المصدر"
+    },
+    {
+        "name": "order_daily_type",
+        "en": "Order Daily Type",
+        "ar": "نوع أمر الفاتورة"
+    },
+    {
+        "name": "order_sale",
+        "en": "Order Sale",
+        "ar": "أمر بيع"
+    },
+    {
+        "name": "payable",
+        "en": "Payable",
+        "ar": "مستحق الدفع"
+    },
+    {
+        "name": "invoice_type",
+        "en": "Invoice Type",
+        "ar": "نوع الفاتورة"
+    },
+    {
+        "name": "payment",
+        "en": "Payment",
+        "ar": "تسديد"
+    },
+    {
+        "name": "remain_amount",
+        "en": "Remain Amount",
+        "ar": "المبلغ المتبقي"
+    },
+    {
+        "name": "detailes_amounts_paid",
+        "en": "Detailes Amounts Paid",
+        "ar": "تفاصيل المدفوعات"
+    },
+    {
+        "name": "accept",
+        "en": "Accept",
+        "ar": "تأكيد"
+    },
+    {
+        "name": "services",
+        "en": "Services",
+        "ar": "الخدمات"
+    },
+    {
+        "name": "date_from",
+        "en": "Date From",
+        "ar": "تاريخ من"
+    },
+    {
+        "name": "date_to",
+        "en": "Date To",
+        "ar": "تاريخ إلى"
+    },
+    {
+        "name": "err_paid_up",
+        "en": "Must Enter Paid",
+        "ar": "يجب إدخال مبلغ "
+    },
+    
+    {
+        "name": "paid_up",
+        "en": "Paid Up",
+        "ar": "المدفوع"
+    },
+    {
+        "name": "err_total_tax",
+        "en": "Total Taxes Greater Than Required",
+        "ar": "مجموع الضرائب أكبر من المطلوب"
+    },
+    {
+        "name": "err_total_discount",
+        "en": "Total Discount Greater Than Required",
+        "ar": "مجموع الخصومات أكبر من المطلوب"
+    },
+    {
+        "name": "err_service",
+        "en": "Service Greater Than Required",
+        "ar": "مبلغ الخدمة أكبر من المطلوب"
+    },
+    {
+        "name": "err_net_value",
+        "en": "Net Value Greater Than Required",
+        "ar": "صافي المبلغ أكبر من المطلوب"
+    },
+    {
+        "name": "err_price_delivery_service",
+        "en": "Price Delivery Service Greater Than Required",
+        "ar": "مبلغ خدمة التوصيل أكبر من المطلوب"
+    },
+    {
+        "name": "report_daily_new",
+        "en": "New Report Daily",
+        "ar": "تقرير فاتورة جديدة"
+    },
+    {
+        "name": "report_daily_details",
+        "en": "Report Daily Details",
+        "ar": "تفاصيل تقرير فاتورة"
+    },
+    {
+        "name": "report_daily_update",
+        "en": "Edit Report Daily",
+        "ar": "تعديل تقرير فاتورة"
+    },
+    {
+        "name": "report_daily_delete",
+        "en": "Delte Report Daily",
+        "ar": "حذف تقرير فاتورة"
+    },
+    {
+        "name": "report_daily_total_required",
+        "en": "Total Required",
+        "ar": "إجمالي المطلوب"
+    },
+    {
+        "name": "total_paid_up",
+        "en": "Total Rest",
+        "ar": "إجمالي المدفوع"
+    },
+  
+    {
+        "name": "total_remain",
+        "en": "Total Remain",
+        "ar": "إجمالي الباقي"
+    },
+    {
+        "name": "report_daily_add_name",
+        "en": "Add Report Daily",
+        "ar": "إضافة تقرير فاتورة"
+    }
+]

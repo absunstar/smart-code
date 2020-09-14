@@ -1,0 +1,7 @@
+[{
+    "module_name" : "accounting" ,
+    "name": "report_daily_admin",
+    "en": "Report Invoices  Admin",
+    "ar": "إدارة تقرير اليومية",
+    "permissions": ["report_daily_manage"]
+}]

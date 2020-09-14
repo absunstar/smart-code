@@ -576,7 +576,7 @@ module.exports = function init(site) {
 
     where['status.id'] = {
       '$gte': 2,
-      '$lt': 5
+      '$lte': 5
     }
     
     if (req.data.order_invoices_type && req.data.order_invoices_type.id) {
@@ -596,7 +596,6 @@ module.exports = function init(site) {
         response.done = true
         response.list = docs
         response.count = count
-        console.log(count);
         
       } else {
         response.error = err.message

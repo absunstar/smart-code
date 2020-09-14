@@ -315,7 +315,6 @@ app.controller("itineraries", function ($scope, $http, $timeout) {
         console.log(err);
       }
     )
-
   };
 
   $scope.displayAccountInvoice = function (itinerary) {
@@ -323,6 +322,7 @@ app.controller("itineraries", function ($scope, $http, $timeout) {
       if (shift) {
 
         $scope.itinerary_i = itinerary;
+        $scope.itinerary_i.date = new Date();
 
         $scope.amount_invoices = {
           date: new Date(),
@@ -330,10 +330,11 @@ app.controller("itineraries", function ($scope, $http, $timeout) {
           show_delegate: true,
           delegate: $scope.itinerary.delegate,
           mission_type: itinerary.mission_type,
+          image_url: '/images/account_invoices.png',
           invoice_type: itinerary.type,
           shift: shift,
           net_value: itinerary.amount,
-          value: 0,
+          paid_up: itinerary.amount,
           active: true
         };
 
@@ -359,6 +360,7 @@ app.controller("itineraries", function ($scope, $http, $timeout) {
             else $scope.amount_invoices.safe = $scope.defaultSettings.accounting.safe_bank;
           }
         }
+
         if ($scope.amount_invoices.currency) {
           $scope.amount_currency = site.toNumber($scope.amount_invoices.net_value) / site.toNumber($scope.amount_invoices.currency.ex_rate);
           $scope.amount_currency = site.toNumber($scope.amount_currency);
@@ -404,23 +406,26 @@ app.controller("itineraries", function ($scope, $http, $timeout) {
         amount_invoices.posting = false;
       else amount_invoices.posting = true;
 
-      let url = "/api/amounts_in/add";
-
       if (amount_invoices.mission_type && amount_invoices.mission_type.id === 1) {
 
-        url = "/api/amounts_in/add";
-        amount_invoices.image_url = '/images/amount_in.png';
+        amount_invoices.source_type = {
+          id: 8,
+          en: "Amount in",
+          ar: "سند قبض"
+        }
 
       } else if (amount_invoices.mission_type && amount_invoices.mission_type.id === 2) {
 
-        url = "/api/amounts_out/add";
-        amount_invoices.image_url = '/images/amount_out.png';
+        amount_invoices.source_type = {
+          id: 9,
+          en: "Amount Out",
+          ar: "سند صرف"
+        }
       }
-
 
       $http({
         method: "POST",
-        url: url,
+        url: "/api/account_invoices/add",
         data: amount_invoices
       }).then(
         function (response) {

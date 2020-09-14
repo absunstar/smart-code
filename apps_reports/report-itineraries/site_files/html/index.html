@@ -57,7 +57,6 @@
                         <div class="col5">
                             <div class="row">
 
-
                                 <div class="col4">
                                     <div class="row">
                                         <br>
@@ -67,7 +66,6 @@
                                         </div>
                                         <div class="col3">
                                             <h3 class="bold">{{missions_existing}}</h3>
-
                                         </div>
                                     </div>
 
@@ -81,7 +79,6 @@
                                         </div>
                                         <div class="col3">
                                             <h3 class="bold">{{missions_completed}}</h3>
-
                                         </div>
                                     </div>
                                 </div>
@@ -98,7 +95,6 @@
                                         </div>
                                     </div>
                                 </div>
-
 
                             </div>
 
@@ -120,6 +116,7 @@
                             <th> ##word.mission_type## </th>
                             <th>##word.the_amount##</th>
                             <th>##word.collected_paid##</th>
+                            <th>##word.execution_time_mission##</th>
                         </tr>
 
                         <tr ng-repeat="c in list | orderBy : '-id'">
@@ -130,7 +127,7 @@
                                 <span ng-show="c.status == 3" class="redDot"></span>
                             </td>
 
-                            <td class="brown"> {{c.date | date : 'dd - MM - yyyy'}} </td>
+                            <td class="brown"> {{c.itinerary_date | date : 'dd - MM - yyyy'}} </td>
                             <td>
                                 <p class="blue">{{c.target_type.##session.lang##}} :</p>
                                 <p>{{c.target.name_##session.lang##}} {{c.target.name}}</p>
@@ -141,6 +138,12 @@
 
                             <td class="center green">{{c.amount}}</td>
                             <td class="center">{{c.collected_paid}}</td>
+                            <td>
+                                <b class="center">
+                                    <p brown>{{c.date | date : 'yyyy - MM - dd'}}</p>
+                                    <small class="green">{{c.date | date : 'mm : hh'}}</small>
+                                </b>
+                            </td>
                         </tr>
                     </table>
 

@@ -47,7 +47,7 @@ module.exports = function init(site) {
       d2.setDate(d2.getDate() + 1)
       where.date = {
         '$gte': d1,
-        '$lt': d2
+        '$lte': d2
       }
     } else if (where && where.date_from) {
       let d1 = site.toDate(where.date_from)
@@ -55,7 +55,7 @@ module.exports = function init(site) {
       d2.setDate(d2.getDate() + 1);
       where.date = {
         '$gte': d1,
-        '$lt': d2
+        '$lte': d2
       }
       delete where.date_from
       delete where.date_to
@@ -85,7 +85,7 @@ module.exports = function init(site) {
           docs.forEach(_doc => {
             if(_doc.itinerary_list && _doc.itinerary_list.length > 0)
             _doc.itinerary_list.forEach(_itinerary => {
-              _itinerary.date = _doc.date
+              _itinerary.itinerary_date = _doc.date
               _itinerary.delegate = _doc.delegate
               itineraryList.push(_itinerary)
 
@@ -99,7 +99,6 @@ module.exports = function init(site) {
             let exist = false
             if(_doc.itinerary_list && _doc.itinerary_list.length > 0)
             _doc.itinerary_list.forEach(_itinerary => {
-              _itinerary.date = _doc.date
               _itinerary.delegate = _doc.delegate
 
               if (itineraryList && itineraryList.length > 0) {

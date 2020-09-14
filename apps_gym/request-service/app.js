@@ -263,7 +263,7 @@ module.exports = function init(site) {
       d2.setDate(d2.getDate() + 1);
       where.date_from = {
         '$gte': d1,
-        '$lt': d2
+        '$lte': d2
       }
       delete where.date_from_from
       delete where.date_from_to
@@ -275,7 +275,7 @@ module.exports = function init(site) {
       d2.setDate(d2.getDate() + 1);
       where.date_to = {
         '$gte': d1,
-        '$lt': d2
+        '$lte': d2
       }
       delete where.date_to_from
       delete where.date_to_to
@@ -287,7 +287,7 @@ module.exports = function init(site) {
       d2.setDate(d2.getDate() + 1)
       where.date_from = {
         '$gte': d1,
-        '$lt': d2
+        '$lte': d2
       }
     }
 
@@ -297,7 +297,7 @@ module.exports = function init(site) {
       d2.setDate(d2.getDate() + 1)
       where.date_to = {
         '$gte': d1,
-        '$lt': d2
+        '$lte': d2
       }
     }
 

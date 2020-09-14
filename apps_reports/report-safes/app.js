@@ -44,7 +44,7 @@ module.exports = function init(site) {
       d2.setDate(d2.getDate() + 1)
       where.date = {
         '$gte': d1,
-        '$lt': d2
+        '$lte': d2
       }
     } else if (where && where.date_from) {
       let d1 = site.toDate(where.date_from)
@@ -52,7 +52,7 @@ module.exports = function init(site) {
       d2.setDate(d2.getDate() + 1);
       where.date = {
         '$gte': d1,
-        '$lt': d2
+        '$lte': d2
       }
       delete where.date_from
       delete where.date_to

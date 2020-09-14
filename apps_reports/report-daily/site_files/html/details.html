@@ -1,0 +1,43 @@
+<div id="detailsModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>
+                ##word.patches_list## <i class="fa fa-plus"></i>
+            </h2>
+        </div>
+
+        <div class="modal-body">
+
+            <table class="table loaded center bold hover">
+                <tr>
+                    <th>##word.code##</th>
+                    <th>##word.delegate## / ##word.employee## </th>
+                    <th>##word.customer##</th>
+                    <th>##word.vendor##</th>
+                    <th>##word.payment_method##</th>
+                    <th>##word.currency##</th>
+                    <th>##word.safe##</th>
+                    <th>##word.paid_up##</th>
+                </tr>
+
+                <tr ng-repeat="c in details.invoices_list">
+
+                    <td>{{c.code}}</td>
+                    <td>{{c.delegate.name}} {{c.employee.name}}</td>
+                    <td>{{c.customer_##session.lang##}}</td>
+                    <td>{{c.vendor_##session.lang##}}</td>
+                    <td class="center">{{c.payment_method.##session.lang##}}</td>
+                    <td class="center">{{c.currency.name}} - <b class="blue">{{c.currency.ex_rate}}</b></td>
+                    <td class="center blue">{{c.safe.name}}</td>
+                    <td class="center green">{{c.paid_up}}</td>
+                </tr>
+
+            </table>
+
+        </div>
+        <h2 class="error center bold">{{error}}</h2>
+        <div class="modal-footer center">
+            <i-button type="close" label="##word.close##" onclick="site.hideModal('#detailsModal')"></i-button>
+        </div>
+    </div>
+</div>

@@ -15,6 +15,56 @@
         "ar": "تهيئة"
     },
     {
+        "name": "purchase_invoice",
+        "en": "Purchase Invoice",
+        "ar": "فواتير المشتريات"
+    },
+    {
+        "name": "sales_invoice",
+        "en": "Sales Invoice",
+        "ar": "فواتير المبيعات"
+    },
+    {
+        "name": "orders_screen_invoice",
+        "en": "Orders Screen Invoice",
+        "ar": "فواتير شاشة الطلبات"
+    },
+    {
+        "name": "orders_service_invoice",
+        "en": "Orders Service Invoice",
+        "ar": "فواتير طلب الخدمة"
+    },
+    {
+        "name": "booking_hall_invoice",
+        "en": "Booking A Hall Invoice",
+        "ar": "فواتير حجز القاعات"
+    },
+    {
+        "name": "trainer_account_invoice",
+        "en": "Trainer Account Invoice",
+        "ar": "فواتير حساب المدربين"
+    },
+    {
+        "name": "form_course_booking_invoice",
+        "en": "Form Course Booking Invoice",
+        "ar": "فواتير إستمارة حجز كورس"
+    },
+    {
+        "name": "amount_in_invoice",
+        "en": "Amounts In Invoice",
+        "ar": "فواتير سندات القبض"
+    },
+    {
+        "name": "amount_out_invoice",
+        "en": "Amounts Out Invoice",
+        "ar": "فواتير سندات الصرف"
+    },
+    {
+        "name": "recharge_customer_balance",
+        "en": "Recharge Customer Balance",
+        "ar": "شحن رصيد عميل"
+    },
+    {
         "name": "security_system",
         "en": "Security System",
         "ar": "نظام الحماية"

@@ -35,6 +35,11 @@
         "ar": "المهمات الملغاه"
     },
     {
+        "name": "execution_time_mission",
+        "en": "Execution Time Mission",
+        "ar": "وقت تنفيذ المهمة"
+    },
+    {
         "name": "missions_existing",
         "en": "Existing Completed",
         "ar": "المهمات القائمة"

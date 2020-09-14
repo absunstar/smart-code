@@ -245,7 +245,7 @@ module.exports = function init(site) {
       d2.setDate(d2.getDate() + 1);
       where.attend_date = {
         '$gte': d1,
-        '$lt': d2
+        '$lte': d2
       }
       delete where.attend_date_from
       delete where.attend_date_to
@@ -257,7 +257,7 @@ module.exports = function init(site) {
       d2.setDate(d2.getDate() + 1);
       where.leave_date = {
         '$gte': d1,
-        '$lt': d2
+        '$lte': d2
       }
       delete where.leave_date_from
       delete where.leave_date_to
@@ -269,7 +269,7 @@ module.exports = function init(site) {
       d2.setDate(d2.getDate() + 1)
       where.attend_date = {
         '$gte': d1,
-        '$lt': d2
+        '$lte': d2
       }
     }
 
@@ -279,7 +279,7 @@ module.exports = function init(site) {
       d2.setDate(d2.getDate() + 1)
       where.leave_date = {
         '$gte': d1,
-        '$lt': d2
+        '$lte': d2
       }
     }
 

@@ -44,7 +44,7 @@
                             <th>##word.the_amount##</th>
                             <th>##word.collected_paid##</th>
                             <th>##word.delegate_notes##</th>
-                            <th class="not-print">##word.actions##</th>
+                            <th>##word.actions##</th>
                         </tr>
 
                         <tr ng-repeat="c in itinerary.itinerary_list">
@@ -108,19 +108,22 @@
                                 <i-textarea ng-show="'##user.type##' == 'delegate'" ng-model="c.delegate_notes">
                                 </i-textarea>
                             </td>
-                            <td class="not-print">
+                            <td class="center">
                                 <!--    <div class="row center">
                                     <i-button type="view" label="##word.target_details##"
                                         ng-click="targetDetails(c.target)">
                                     </i-button>
                                 </div> -->
-
-                                <i-button type="save" label="##word.create_an_invoice##"
+                                <b class="center">
+                                    <p brown>{{c.date | date : 'yyyy - MM - dd'}}</p>
+                                    <small class="green">{{c.date | date : 'mm : hh'}}</small>
+                                </b>
+                                <i-button type="save" class="not-print" label="##word.create_an_invoice##"
                                     ng-show="c.status == 2 && !c.invoice" ng-click="displayAccountInvoice(c)">
                                 </i-button>
 
-                                <div class="row center " x-permissions="itineraries_confirm || itineraries_manage"
-                                    ng-show="c.status == 1">
+                                <div class="row not-print center "
+                                    x-permissions="itineraries_confirm || itineraries_manage" ng-show="c.status == 1">
 
                                     <i-button type="fa fa-check true default"
                                         ng-click="c.status = 2 ; displayAccountInvoice(c)">

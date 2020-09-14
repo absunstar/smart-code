@@ -204,7 +204,7 @@ module.exports = function init(site) {
       d2.setDate(d2.getDate() + 1);
       where.date = {
         '$gte': d1,
-        '$lt': d2
+        '$lte': d2
       }
     }
 

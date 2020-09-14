@@ -17,14 +17,12 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
           date: new Date(),
           shift: shift,
           active: true,
+          source_type: $scope.source_type
         };
 
         if ($scope.defaultSettings.accounting) {
-          if ($scope.defaultSettings.accounting.source_type) {
-            $scope.account_invoices.source_type = $scope.defaultSettings.accounting.source_type;
-            if ($scope.defaultSettings.accounting.source_type.id == 3)
-              $scope.getTransactionTypeList();
-          }
+          if ($scope.account_invoices.source_type && $scope.account_invoices.source_type.id == 3)
+            $scope.getTransactionTypeList();
           $scope.account_invoices.currency = $scope.currencySetting;
 
           if ($scope.defaultSettings.accounting.payment_method) {
@@ -83,7 +81,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
         $scope.error = "##word.date_exceed##";
         return;
 
-      } else if ($scope.account_invoices.customer && $scope.account_invoices.payment_method && $scope.account_invoices.payment_method.id == 5) {
+      } else if ($scope.account_invoices.customer && $scope.account_invoices.payment_method && $scope.account_invoices.payment_method.id == 10) {
         if (customer) {
           let totalCustomerBalance = 0;
           let customerPay = $scope.account_invoices.paid_up * $scope.account_invoices.currency.ex_rate;
@@ -94,6 +92,12 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
             $scope.error = "##word.cannot_exceeded_customer##";
             return;
           }
+        }
+      }
+
+      if ($scope.account_invoices.source_type) {
+        if ($scope.account_invoices.source_type.id == 8 || $scope.account_invoices.source_type.id == 9 || $scope.account_invoices.source_type.id == 10) {
+          $scope.account_invoices.net_value = $scope.account_invoices.paid_up;
         }
       }
 
@@ -144,6 +148,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
       }
     );
   };
+
 
   $scope.postingAll = function (account_invoices_all) {
     $scope.error = '';
@@ -196,47 +201,84 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
   };
 
   $scope.updateAccountInvoices = function () {
+    $scope.error = '';
+
     if ($scope.busy) {
       return;
     }
-    $scope.error = '';
-    $scope.busy = true;
 
-    const v = site.validated('#accountInvoicesUpdateModal');
-    if (!v.ok) {
-      $scope.error = v.messages[0].ar;
-      return;
-    }
+    $scope.detailsCustomer((customer) => {
 
-    if (new Date($scope.account_invoices.date) > new Date()) {
+      const v = site.validated('#accountInvoicesAddModal');
+      if (!v.ok) {
+        $scope.error = v.messages[0].ar;
+        return;
+      } else if ($scope.account_invoices.paid_up > 0 && !$scope.account_invoices.safe) {
+        $scope.error = "##word.should_select_safe##";
+        return;
+      } else if ($scope.account_invoices.total_tax > $scope.total_tax) {
+        $scope.error = "##word.err_total_tax##";
+        return;
+      } else if ($scope.account_invoices.total_discount > $scope.total_discount) {
+        $scope.error = "##word.err_total_discount##";
+        return;
+      } else if ($scope.account_invoices.price_delivery_service > $scope.price_delivery_service) {
+        $scope.error = "##word.err_price_delivery_service##";
+        return;
+      } else if ($scope.account_invoices.service > $scope.service) {
+        $scope.error = "##word.err_service##";
+        return;
+      } else if ($scope.account_invoices.paid_up > $scope.amount_currency) {
+        $scope.error = "##word.err_net_value##";
+        return;
+      } else if (new Date($scope.account_invoices.date) > new Date()) {
+        $scope.error = "##word.date_exceed##";
+        return;
 
-      $scope.error = "##word.date_exceed##";
-      return;
+      } else if ($scope.account_invoices.customer && $scope.account_invoices.payment_method && $scope.account_invoices.payment_method.id == 10) {
+        if (customer) {
+          let totalCustomerBalance = 0;
+          let customerPay = $scope.account_invoices.paid_up * $scope.account_invoices.currency.ex_rate;
 
-    };
+          totalCustomerBalance = ($scope.customer.balance || 0) + ($scope.customer.credit_limit || 0);
 
-    $http({
-      method: "POST",
-      url: "/api/account_invoices/update",
-      data: $scope.account_invoices
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          site.hideModal('#accountInvoicesUpdateModal');
-          $scope.list.forEach((b, i) => {
-            if (b.id == response.data.doc.id) {
-              $scope.list[i] = response.data.doc;
-            }
-          });
-        } else {
-          $scope.error = response.data.error;
+          if (customerPay > totalCustomerBalance) {
+            $scope.error = "##word.cannot_exceeded_customer##";
+            return;
+          }
         }
-      },
-      function (err) {
-        console.log(err);
       }
-    )
+
+      if ($scope.account_invoices.source_type) {
+        if ($scope.account_invoices.source_type.id == 8 || $scope.account_invoices.source_type.id == 9 || $scope.account_invoices.source_type.id == 10) {
+          $scope.account_invoices.net_value = $scope.account_invoices.paid_up;
+        }
+      }
+
+
+      $http({
+        method: "POST",
+        url: "/api/account_invoices/update",
+        data: $scope.account_invoices
+      }).then(
+        function (response) {
+          $scope.busy = false;
+          if (response.data.done) {
+            site.hideModal('#accountInvoicesUpdateModal');
+            $scope.list.forEach((b, i) => {
+              if (b.id == response.data.doc.id) {
+                $scope.list[i] = response.data.doc;
+              }
+            });
+          } else {
+            $scope.error = response.data.error;
+          }
+        },
+        function (err) {
+          console.log(err);
+        }
+      )
+    })
   };
 
   $scope.displayDetailsAccountInvoices = function (account_invoices) {
@@ -321,6 +363,16 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
     $scope.list = [];
     $scope.count = 0;
 
+    if (where) {
+      where.source_type = { id: site.toNumber("##query.type##") };
+
+    } else {
+      where = {
+        source_type: { id: site.toNumber("##query.type##") }
+      }
+    }
+
+
     $http({
       method: "POST",
       url: "/api/account_invoices/all",
@@ -389,7 +441,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
         return;
       }
 
-      if ($scope.paid_invoice.customer && $scope.paid_invoice.payment_method && $scope.paid_invoice.payment_method.id == 5) {
+      if ($scope.paid_invoice.customer && $scope.paid_invoice.payment_method && $scope.paid_invoice.payment_method.id == 10) {
         if (customer) {
 
           let totalCustomerBalance = 0;
@@ -409,6 +461,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
         paid_up: $scope.paid_invoice.payment_paid_up,
         payment_method: $scope.paid_invoice.payment_method,
         currency: $scope.paid_invoice.currency,
+        shift: $scope.shift,
         safe: $scope.paid_invoice.safe,
         date: $scope.payment_date,
       });
@@ -789,6 +842,11 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
         else if (site.feature('restaurant') || site.feature('pos')) $scope.sourceTypeList = response.data.filter(i => i.id != 4 && i.id != 5 && i.id != 6 && i.id != 7);
         else if (site.feature('academy')) $scope.sourceTypeList = response.data.filter(i => i.id != 4 && i.id != 3);
         else $scope.sourceTypeList = response.data;
+
+        $scope.sourceTypeList.forEach(_t => {
+          if (_t.id == site.toNumber("##query.type##"))
+            $scope.source_type = _t;
+        })
       },
       function (err) {
         $scope.busy = false;
@@ -1099,6 +1157,125 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.loadEmployees = function () {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/employees/all",
+      data: {
+        where: {
+          'trainer': { $ne: true },
+          'delivery': { $ne: true },
+          active: true
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.employeesList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.loadInNames = function () {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/in_out_names/all",
+      data: {
+        where: { in: true },
+        select: { id: 1, name: 1 }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.namesInList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+  $scope.loadOutNames = function () {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/in_out_names/all",
+      data: {
+        where: { out: true },
+        select: { id: 1, name: 1 }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.namesOutList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.loadVendors = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/vendors/all",
+      data: {
+
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.vendorsList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.loadDelegates = function () {
+    $scope.busy = true;
+    $scope.delegatesList = [];
+    $http({
+      method: "POST",
+      url: "/api/delegates/all",
+      data: {
+        where: {
+          active: true
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.delegatesList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
   $scope.get_open_shift = function (callback) {
     $scope.busy = true;
     $http({
@@ -1130,5 +1307,10 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
   $scope.getAccountInvoicesList({ date: new Date() });
   $scope.getSourceType();
   $scope.loadCurrencies();
+  $scope.loadInNames();
+  $scope.loadOutNames();
+  $scope.loadEmployees();
+  $scope.loadVendors();
+  $scope.loadDelegates();
   $scope.getPaymentMethodList();
 });
