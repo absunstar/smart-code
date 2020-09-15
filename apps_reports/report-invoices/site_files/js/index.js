@@ -90,7 +90,7 @@ app.controller("report_invoices", function ($scope, $http, $timeout) {
           $scope.bank = 0;
 
           $scope.list.forEach(_invoice => {
-           
+
             _invoice.net_value = site.toNumber(_invoice.net_value);
             _invoice.paid_up = site.toNumber(_invoice.paid_up);
             _invoice.remain_amount = site.toNumber(_invoice.remain_amount);
@@ -101,7 +101,7 @@ app.controller("report_invoices", function ($scope, $http, $timeout) {
             $scope.net_value += site.toNumber(_invoice.net_value);
             $scope.total_tax += site.toNumber(_invoice.total_tax);
             $scope.total_discount += site.toNumber(_invoice.total_discount);
-        
+
             if (_invoice.payment_method) {
               if (_invoice.payment_method.id === 1)
                 $scope.cash += site.toNumber(_invoice.paid_up);
@@ -148,14 +148,46 @@ app.controller("report_invoices", function ($scope, $http, $timeout) {
 
     let obj_print = { data: [] };
 
-    if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.printer_path)
-      obj_print.printer = $scope.defaultSettings.printer_program.printer_path.ip.trim();
+    if ($scope.defaultSettings.printer_program) {
 
-    if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.invoice_header)
-      obj_print.data.push({
-        type: 'header',
-        value: $scope.defaultSettings.printer_program.invoice_header
-      });
+      if ($scope.defaultSettings.printer_program.printer_path)
+        obj_print.printer = $scope.defaultSettings.printer_program.printer_path.ip.trim();
+
+
+      if ($scope.defaultSettings.printer_program.invoice_top_title) {
+        obj_print.data.push({
+          type: 'invoice-top-title',
+          name: $scope.defaultSettings.printer_program.invoice_top_title
+        });
+      } else {
+        obj_print.data.push({
+          type: 'invoice-top-title',
+          name: "Smart Code"
+        });
+      }
+
+      if ($scope.defaultSettings.printer_program.invoice_logo) {
+
+        obj_print.data.push({
+          type: 'invoice-logo',
+          url: document.location.origin + $scope.defaultSettings.printer_program.invoice_logo
+        });
+      } else {
+        obj_print.data.push({
+          type: 'invoice-logo',
+          url: "http://127.0.0.1/images/logo.png"
+        });
+      }
+
+      if ($scope.defaultSettings.printer_program.invoice_header && $scope.defaultSettings.printer_program.invoice_header.length > 0) {
+        $scope.defaultSettings.printer_program.invoice_header.forEach(_ih => {
+          obj_print.data.push({
+            type: 'header',
+            value: _ih.name
+          });
+        });
+      }
+    }
 
     obj_print.data.push(
       {
@@ -214,14 +246,14 @@ app.controller("report_invoices", function ($scope, $http, $timeout) {
     });
 
 
-    if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.invoice_footer) {
-
-      obj_print.data.push({
-        type: 'space'
-      }, {
-        type: 'footer',
-        value: $scope.defaultSettings.printer_program.invoice_footer
+    if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.invoice_footer && $scope.defaultSettings.printer_program.invoice_footer.length > 0) {
+      $scope.defaultSettings.printer_program.invoice_footer.forEach(_if => {
+        obj_print.data.push({
+          type: 'header',
+          value: _if.name
+        });
       });
+
     }
 
     $http({

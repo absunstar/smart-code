@@ -88,9 +88,12 @@ app.controller("report_daily", function ($scope, $http, $timeout) {
           $scope.total_discount = 0;
           $scope.cash = 0;
           $scope.bank = 0;
+          if (!site.feature('academy')) $scope.list.splice(4, 3);
+          if (!site.feature('gym')) $scope.list.splice(3, 1);
+          if (!site.feature('pos') && !site.feature('restaurant')) $scope.list.splice(2, 1);
 
           $scope.list.forEach(_invoice => {
-           
+
             _invoice.net_value = site.toNumber(_invoice.net_value);
             _invoice.paid_up = site.toNumber(_invoice.paid_up);
             _invoice.remain_amount = site.toNumber(_invoice.remain_amount);
@@ -101,7 +104,7 @@ app.controller("report_daily", function ($scope, $http, $timeout) {
             $scope.net_value += site.toNumber(_invoice.net_value);
             $scope.total_tax += site.toNumber(_invoice.total_tax);
             $scope.total_discount += site.toNumber(_invoice.total_discount);
-        
+
             if (_invoice.payment_method) {
               if (_invoice.payment_method.id === 1)
                 $scope.cash += site.toNumber(_invoice.paid_up);
@@ -134,12 +137,9 @@ app.controller("report_daily", function ($scope, $http, $timeout) {
 
     let ip = '127.0.0.1';
     let port = '11111';
+    let lang = '##session.lang';
 
     let InvoiceDate = new Date();
-
-
-
-
 
     if ($scope.defaultSettings.printer_program) {
       ip = $scope.defaultSettings.printer_program.ip || '127.0.0.1';
@@ -148,19 +148,51 @@ app.controller("report_daily", function ($scope, $http, $timeout) {
 
     let obj_print = { data: [] };
 
-    if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.printer_path)
-      obj_print.printer = $scope.defaultSettings.printer_program.printer_path.ip.trim();
+    if ($scope.defaultSettings.printer_program) {
 
-    if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.invoice_header)
-      obj_print.data.push({
-        type: 'header',
-        value: $scope.defaultSettings.printer_program.invoice_header
-      });
+      if ($scope.defaultSettings.printer_program.printer_path)
+        obj_print.printer = $scope.defaultSettings.printer_program.printer_path.ip.trim();
+
+
+      if ($scope.defaultSettings.printer_program.invoice_top_title) {
+        obj_print.data.push({
+          type: 'invoice-top-title',
+          name: $scope.defaultSettings.printer_program.invoice_top_title
+        });
+      } else {
+        obj_print.data.push({
+          type: 'invoice-top-title',
+          name: "Smart Code"
+        });
+      }
+
+      if ($scope.defaultSettings.printer_program.invoice_logo) {
+
+        obj_print.data.push({
+          type: 'invoice-logo',
+          url: document.location.origin + $scope.defaultSettings.printer_program.invoice_logo
+        });
+      } else {
+        obj_print.data.push({
+          type: 'invoice-logo',
+          url: "http://127.0.0.1/images/logo.png"
+        });
+      }
+
+      if ($scope.defaultSettings.printer_program.invoice_header && $scope.defaultSettings.printer_program.invoice_header.length > 0) {
+        $scope.defaultSettings.printer_program.invoice_header.forEach(_ih => {
+          obj_print.data.push({
+            type: 'header',
+            value: _ih.name
+          });
+        });
+      }
+    }
 
     obj_print.data.push(
       {
         type: 'title',
-        value: 'Total  Accounts Daily'
+        value: 'Total Accounts Daily'
       }, {
       type: 'space'
     }, {
@@ -171,58 +203,27 @@ app.controller("report_daily", function ($scope, $http, $timeout) {
       type: 'line'
     }, {
       type: 'space'
-    }, {
-      type: 'text2',
-      value: 'Required',
-      value2: $scope.net_value
-    }, {
-      type: 'space'
-    }, {
-      type: 'text2',
-      value: 'Paid Up',
-      value2: $scope.paid_up
-    }, {
-      type: 'space'
-    }, {
-      type: 'text2',
-      value: 'Remain',
-      value2: $scope.remain_amount
-    }, {
-      type: 'space'
-    }, {
-      type: 'text2',
-      value: 'Tax',
-      value2: $scope.total_tax
-    }, {
-      type: 'space'
-    }, {
-      type: 'text2',
-      value: 'Discount',
-      value2: $scope.total_discount
-    }, {
-      type: 'space'
-    }, {
-      type: 'text2',
-      value: 'Cash',
-      value2: $scope.cash
-    }, {
-      type: 'space'
-    }, {
-      type: 'text2',
-      value: 'Bank',
-      value2: $scope.bank
     });
 
-
-    if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.invoice_footer) {
-
+    $scope.list.forEach(_l => {
       obj_print.data.push({
-        type: 'space'
-      }, {
-        type: 'footer',
-        value: $scope.defaultSettings.printer_program.invoice_footer
+        type: 'text2',
+        value2: _l.paid_up,
+        value: _l.source_type + lang
       });
-    }
+    });
+
+    obj_print.data.push({ type: 'space' });
+
+    if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.invoice_footer && $scope.defaultSettings.printer_program.invoice_footer.length > 0) {
+      $scope.defaultSettings.printer_program.invoice_footer.forEach(_if => {
+        obj_print.data.push({
+          type: 'header',
+          value: _if.name
+        });
+      });
+
+    };
 
     $http({
       method: "POST",
@@ -261,14 +262,61 @@ app.controller("report_daily", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.loadCurrencies = function () {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/currency/all",
+      data: {
+        select: {
+          id: 1,
+          name: 1,
+          minor_currency: 1,
+          ex_rate: 1
+        },
+        where: {
+          active: true
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.currenciesList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
   $scope.showDetails = function (c) {
     $scope.details = c;
     site.showModal('#detailsModal');
   };
 
   $scope.searchAll = function () {
+
+    $scope.error = '';
+
+    const v = site.validated('#reportDailySearchModal');
+    if (!v.ok) {
+      $scope.error = v.messages[0].ar;
+      return;
+    }
+
     $scope._search = {};
     $scope.getReportDailyList($scope.search);
+    if ($scope.search) {
+
+      $scope.date = $scope.search.date;
+      $scope.date_from = $scope.search.date_from;
+      $scope.date_to = $scope.search.date_to;
+      $scope.shift_code = $scope.search.shift_code;
+      $scope.currency = $scope.search.currency;
+    }
     site.hideModal('#reportDailySearchModal');
     $scope.search = {}
   };
@@ -278,6 +326,7 @@ app.controller("report_daily", function ($scope, $http, $timeout) {
   if (site.feature('restaurant') || site.feature('pos'))
     $scope.getTransactionTypeList();
   $scope.getPaymentMethodList();
+  $scope.loadCurrencies();
   $scope.getDefaultSettings();
   $scope.getSourceType();
 

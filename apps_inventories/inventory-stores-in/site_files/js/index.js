@@ -135,7 +135,6 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
       $scope.account_invoices.paid_up = site.toNumber($scope.account_invoices.paid_up)
       $scope.account_invoices.payment_paid_up = site.toNumber($scope.account_invoices.payment_paid_up)
 
-
       let obj_print = {
         data: []
       };

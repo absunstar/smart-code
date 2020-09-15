@@ -24,7 +24,9 @@ module.exports = function init(site) {
       res.json(response)
       return
     }
+
     let where = req.data.where || {}
+    let currency = where.currency || {}
     let date1 = undefined
     let date_from = undefined
     let date_to = undefined
@@ -53,17 +55,21 @@ module.exports = function init(site) {
         '$gte': d1,
         '$lte': d2
       }
+      delete where.date
     } else if (where && where.date_from) {
       let d1 = site.toDate(where.date_from)
       let d2 = site.toDate(where.date_to)
       d2.setDate(d2.getDate() + 1);
-      where['payment_list.date']  = {
+      where['payment_list.date'] = {
         '$gte': d1,
         '$lte': d2
       }
       delete where.date_from
       delete where.date_to
     }
+
+    delete where['currency']
+
 
     if (where['shift_code']) {
       where['payment_list.shift.code'] = site.get_RegExp(where['shift_code'], 'i')
@@ -85,8 +91,7 @@ module.exports = function init(site) {
       delete where['order_daily_type']
     }
 
-    // where['posting'] = true
-
+    where['posting'] = true
     where['company.id'] = site.get_company(req).id
     where['branch.code'] = site.get_branch(req).code
 
@@ -107,7 +112,6 @@ module.exports = function init(site) {
           },
           paid_up: 0,
           invoices_list: []
-
         },
         {
           source_type: {
@@ -189,67 +193,121 @@ module.exports = function init(site) {
           },
           paid_up: 0,
           invoices_list: []
+        }, {
+          source_type: {
+            id: 11,
+            en: "Cash In",
+            ar: "كاش وارد"
+          },
+          paid_up: 0,
+        },
+        {
+          source_type: {
+            id: 12,
+            en: "Cash Out",
+            ar: "كاش منصرف"
+          },
+          paid_up: 0,
+        },
+        {
+          source_type: {
+            id: 13,
+            en: "Bank In",
+            ar: "بنك وارد"
+          },
+          paid_up: 0,
+        },
+        {
+          source_type: {
+            id: 14,
+            en: "Bank Out",
+            ar: "بنك منصرف"
+          },
+          paid_up: 0,
         }]
+
 
         docs.forEach(_doc => {
           _doc.payment_list.forEach(_p_l => {
-         
+            if (_p_l.payment_method && _p_l.currency && currency.id == _p_l.currency.id) {
 
-            if ((_p_l.shift && shift_code == _p_l.shift.code) || (date1 && new Date(date1) == new Date(_p_l.date)) || new Date(_p_l.date) <= new Date(date_to) && new Date(_p_l.date) >= new Date(date_from)) {
-              _doc.shift = _p_l.shift
-              _doc.date = _p_l.date
-              _doc.safe = _p_l.safe
-              _doc.payment_method = _p_l.payment_method
-              _doc.currency = _p_l.currency
-              _doc.paid_up = _p_l.paid_up
-              if (_doc.source_type) {
-                if (_doc.source_type.id == 1) {
+              let numIn = 0
+              let numOut = 0
+              if (_p_l.payment_method.id == 1) {
+                numIn = 10
+                numOut = 11
 
-                  if (_doc.invoice_type && _doc.invoice_type.id == 4) {
-                    list[0].paid_up = list[0].paid_up - _p_l.paid_up
-                  } else {
-                    list[0].paid_up = list[0].paid_up + _p_l.paid_up
+              } else {
+                numIn = 12
+                numOut = 13
+              }
+
+              if ((_p_l.shift && shift_code == _p_l.shift.code) || (date1 && new Date(_p_l.date) >= new Date(date1) && new Date(_p_l.date) <= date1.setDate(date1.getDate() + 1)) || new Date(_p_l.date) <= new Date(date_to) && new Date(_p_l.date) >= new Date(date_from)) {
+
+                _doc.shift = _p_l.shift
+                _doc.date = _p_l.date
+                _doc.safe = _p_l.safe
+                _doc.payment_method = _p_l.payment_method
+                _doc.currency = _p_l.currency
+                _doc.paid_up = _p_l.paid_up
+                if (_doc.source_type) {
+                  if (_doc.source_type.id == 1) {
+
+                    if (_doc.invoice_type && _doc.invoice_type.id == 4) {
+                      list[0].paid_up = list[0].paid_up - _p_l.paid_up
+                      list[numIn].paid_up = list[numIn].paid_up - _p_l.paid_up
+                    } else {
+                      list[0].paid_up = list[0].paid_up + _p_l.paid_up
+                      list[numIn].paid_up = list[numIn].paid_up + _p_l.paid_up
+                    }
+                    list[0].invoices_list.push(_doc)
+
+                  } else if (_doc.source_type.id == 2) {
+
+                    if (_doc.invoice_type && _doc.invoice_type.id == 6) {
+                      list[1].paid_up = list[1].paid_up - _p_l.paid_up
+                      list[numOut].paid_up = list[numOut].paid_up - _p_l.paid_up
+                    } else {
+                      list[1].paid_up = list[1].paid_up + _p_l.paid_up
+                      list[numOut].paid_up = list[numOut].paid_up + _p_l.paid_up
+                    }
+                    list[1].invoices_list.push(_doc)
+
+                  } else if (_doc.source_type.id == 3) {
+                    list[numIn].paid_up = list[numIn].paid_up + _p_l.paid_up
+
+                    list[2].paid_up = list[2].paid_up + _p_l.paid_up
+                    list[2].invoices_list.push(_doc)
+
+                  } else if (_doc.source_type.id == 4) {
+
+                    list[numIn].paid_up = list[numIn].paid_up + _p_l.paid_up
+                    list[3].paid_up = list[3].paid_up + _p_l.paid_up
+                    list[3].invoices_list.push(_doc)
+
+                  } else if (_doc.source_type.id == 8) {
+
+                    list[numIn].paid_up = list[numIn].paid_up + _p_l.paid_up
+                    list[7].paid_up = list[7].paid_up + _p_l.paid_up
+                    list[7].invoices_list.push(_doc)
+
+                  } else if (_doc.source_type.id == 9) {
+
+                    list[numIn].paid_up = list[numIn].paid_up + _p_l.paid_up
+                    list[8].paid_up = list[8].paid_up + _p_l.paid_up
+                    list[8].invoices_list.push(_doc)
+
+                  } else if (_doc.source_type.id == 10) {
+
+                    list[numIn].paid_up = list[numIn].paid_up + _p_l.paid_up
+                    list[9].paid_up = list[9].paid_up + _p_l.paid_up
+                    list[9].invoices_list.push(_doc)
+
                   }
-                  list[0].invoices_list.push(_doc)
 
-                } else if (_doc.source_type.id == 2) {
 
-                  if (_doc.invoice_type && _doc.invoice_type.id == 6) {
-                    list[1].paid_up = list[1].paid_up - _p_l.paid_up
-                  } else {
-                    list[1].paid_up = list[1].paid_up + _p_l.paid_up
-                  }
-                  list[1].invoices_list.push(_doc)
-
-                } else if (_doc.source_type.id == 3) {
-
-                  list[2].paid_up = list[2].paid_up + _p_l.paid_up
-                  list[2].invoices_list.push(_doc)
-
-                } else if (_doc.source_type.id == 4) {
-
-                  list[3].paid_up = list[3].paid_up + _p_l.paid_up
-                  list[3].invoices_list.push(_doc)
-
-                } else if (_doc.source_type.id == 8) {
-
-                  list[7].paid_up = list[7].paid_up + _p_l.paid_up
-                  list[7].invoices_list.push(_doc)
-
-                } else if (_doc.source_type.id == 9) {
-
-                  list[8].paid_up = list[8].paid_up + _p_l.paid_up
-                  list[8].invoices_list.push(_doc)
-
-                } else if (_doc.source_type.id == 10) {
-
-                  list[9].paid_up = list[9].paid_up + _p_l.paid_up
-                  list[9].invoices_list.push(_doc)
 
                 }
-
-
-
               }
             }
 
