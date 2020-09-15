@@ -2,6 +2,6 @@
     "module_name" : "inventory" ,
     "name": "units_switch_admin",
     "en": "Units Switch Admin",
-    "ar": "إدارة تبديل الوحدات",
+    "ar": "إدارة تحويل الوحدات",
     "permissions": ["units_switch_manage"]
 }]

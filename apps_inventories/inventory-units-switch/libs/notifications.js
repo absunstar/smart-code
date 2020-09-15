@@ -8,9 +8,9 @@ module.exports = function init(site) {
   }
 
   let image_url = '/images/store_assemble.png'
-  let add_message = {name : 'New Unit Switch Added' , ar : 'تم إضافة تبديل وحدة جديد'}
-  let update_message =  {name : ' Unit Switch updated' , ar : 'تم تعديل تبديل وحدة' }
-  let delete_message =  {name : ' Unit Switch dleteted' , ar : 'تم حذف تبديل وحدة'}
+  let add_message = {name : 'New Unit Switch Added' , ar : 'تم إضافة تحويل وحدة جديد'}
+  let update_message =  {name : ' Unit Switch updated' , ar : 'تم تعديل تحويل وحدة' }
+  let delete_message =  {name : ' Unit Switch dleteted' , ar : 'تم حذف تحويل وحدة'}
 
 
   site.on('mongodb after insert', function (result) {
