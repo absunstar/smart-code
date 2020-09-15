@@ -137,7 +137,6 @@ app.controller("report_daily", function ($scope, $http, $timeout) {
 
     let ip = '127.0.0.1';
     let port = '11111';
-    let lang = '##session.lang';
 
     let InvoiceDate = new Date();
 
@@ -209,7 +208,7 @@ app.controller("report_daily", function ($scope, $http, $timeout) {
       obj_print.data.push({
         type: 'text2',
         value2: _l.paid_up,
-        value: _l.source_type + lang
+        value: '##session.lang##' == 'ar' ? _l.source_type.ar : _l.source_type.en
       });
     });
 
