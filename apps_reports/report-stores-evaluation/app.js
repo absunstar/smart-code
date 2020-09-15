@@ -30,10 +30,9 @@ module.exports = function init(site) {
 
 
 
-      let size = where.size;
-      let size_en = where.size_en;
-      let barcode = where.barcode;
-      let item_group = where.item_group;
+      let size = where.size || '';
+      let size_en = where.size_en || '';
+      let barcode = where.barcode || '';
 
       if (where.store) store_id = where.store.id
       // let branch_code = null
@@ -92,7 +91,7 @@ module.exports = function init(site) {
           docs.forEach(_doc => {
             if (_doc.sizes && _doc.sizes.length > 0)
               _doc.sizes.forEach(_sizes => {
-                if (_sizes && ( ((_sizes.size && _sizes.size.contains(size)) || (_sizes.size_en && _sizes.size_en.contains(size_en)) || (_sizes.barcode && _sizes.barcode.contains(barcode)) ) || (!size && !size_en && !barcode) )   ) {
+                if (_sizes && (((_sizes.size && _sizes.size.contains(size)) || (_sizes.size_en && _sizes.size_en.contains(size_en)) || (_sizes.barcode && _sizes.barcode.contains(barcode))) || (!size && !size_en && !barcode))) {
 
                   if (_sizes.branches_list && _sizes.branches_list.length > 0)
                     _sizes.branches_list.forEach(_branch => {

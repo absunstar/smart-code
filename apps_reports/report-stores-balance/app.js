@@ -28,9 +28,9 @@ module.exports = function init(site) {
 
     if (where) {
 
-      let size = where.size;
-      let size_en = where.size_en;
-      let barcode = where.barcode;
+      let size = where.size || '';
+      let size_en = where.size_en || '';
+      let barcode = where.barcode || '';
 
       where['company.id'] = site.get_company(req).id
 
