@@ -553,13 +553,12 @@ module.exports = function init(site) {
     }
 
     if (where && where['number']) {
-      where['number'] = site.get_RegExp(where['number'], 'i')
+      where['number'] = where['number']
     }
 
     if (where && where['supply_number']) {
       where['supply_number'] = site.get_RegExp(where['supply_number'], 'i')
     }
-
 
     if (where.date) {
       let d1 = site.toDate(where.date)

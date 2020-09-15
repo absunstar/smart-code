@@ -44,9 +44,11 @@
                             <i-control class="col3 r_indigo" type="text" label="##word.shift##"
                                 ng-model="search.shift_code">
                             </i-control>
-                            <i-control class="col3" ng-model="search.value" type="number"
-                                label="##word.amounts_in_value##">
+                        
+                            <i-control class="col3" ng-model="search.number"
+                                label="##word.stores_out_id##">
                             </i-control>
+
                             <!-- <i-list help-id="" ng-search="_search.$payment_method_search" class="col2"
                                 label="##word.payment_method##" ng-model="search.payment_method"
                                 items="paymentMethodList" ng-change="getSafeByType(search)" display="##session.lang##">
@@ -80,7 +82,7 @@
                                 items="delegatesList">
                             </i-list>
                         </div>
-                        <div class="row">
+                     <!--    <div class="row">
                             <i-control class="col2" ng-model="search.total_discount" type="number"
                                 label="##word.stores_in_total_discount##"></i-control>
                             <i-control class="col2" ng-model="search.total_tax" type="number"
@@ -91,7 +93,7 @@
                                 label="##word.stores_in_net_value##"></i-control>
                             <i-control class="col2" ng-model="search.paid_up" label="##word.paid_up##" type="number">
                             </i-control>
-                        </div>
+                        </div> -->
 
                         <div class="row">
                             <i-textarea ng-model="search.description" class="col6" type="text"

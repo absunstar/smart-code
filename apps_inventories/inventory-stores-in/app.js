@@ -546,7 +546,7 @@ module.exports = function init(site) {
     }
 
     if (where && where['number']) {
-      where['number'] = site.get_RegExp(where['number'], 'i')
+      where['number'] = where['number']
     }
 
     if (where && where['supply_number']) {
