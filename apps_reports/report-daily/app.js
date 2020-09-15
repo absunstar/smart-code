@@ -189,7 +189,7 @@ module.exports = function init(site) {
           source_type: {
             id: 10,
             en: "Recharge Customer Balance",
-            ar: "شحن رصيد عميل"
+            ar: "دفعة عميل مقدمة"
           },
           paid_up: 0,
           invoices_list: []

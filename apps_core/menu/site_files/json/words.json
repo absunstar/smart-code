@@ -51,18 +51,18 @@
     },
     {
         "name": "amount_in_invoice",
-        "en": "Amounts In Invoice",
-        "ar": "فواتير سندات القبض"
+        "en": "Amounts In",
+        "ar": "سندات القبض"
     },
     {
         "name": "amount_out_invoice",
-        "en": "Amounts Out Invoice",
-        "ar": "فواتير سندات الصرف"
+        "en": "Amounts Out",
+        "ar": "سندات الصرف"
     },
     {
         "name": "recharge_customer_balance",
         "en": "Recharge Customer Balance",
-        "ar": "شحن رصيد عميل"
+        "ar": "دفعة عميل مقدمة"
     },
     {
         "name": "security_system",
@@ -88,6 +88,11 @@
         "name": "accounting",
         "en": "Accounting",
         "ar": "الحسابات"
+    },
+    {
+        "name": "financial_transactions",
+        "en": "Financial Transactions",
+        "ar": "المعاملات المالية"
     },
     {
         "name": "employees",
