@@ -260,6 +260,17 @@ module.exports = function init(site) {
 
     stores_in_doc.edit_user_info = site.security.getUserFinger({ $req: req, $res: res })
 
+    if (stores_in_doc.type.id == 1) {
+
+      stores_in_doc.return_paid = {
+        items: stores_in_doc.items,
+        total_discount: stores_in_doc.total_discount,
+        total_value_added: stores_in_doc.total_value_added,
+        total_tax: stores_in_doc.total_tax,
+        total_value: stores_in_doc.total_value,
+        net_value: stores_in_doc.net_value,
+      }
+    }
 
     site.isAllowOverDraft(req, stores_in_doc.items, cbOverDraft => {
 

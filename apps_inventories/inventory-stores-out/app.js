@@ -261,6 +261,16 @@ module.exports = function init(site) {
 
     let stores_out_doc = req.body
 
+    if (stores_out_doc.type.id !== 5 && stores_out_doc.type.id !== 6)
+      stores_out_doc.return_paid = {
+        items: stores_out_doc.items,
+        total_discount: stores_out_doc.total_discount,
+        total_value_added: stores_out_doc.total_value_added,
+        total_tax: stores_out_doc.total_tax,
+        total_value: stores_out_doc.total_value,
+        net_value: stores_out_doc.net_value,
+      }
+
     stores_out_doc.edit_user_info = site.security.getUserFinger({ $req: req, $res: res })
 
     site.isAllowOverDraft(req, stores_out_doc.items, cbOverDraft => {

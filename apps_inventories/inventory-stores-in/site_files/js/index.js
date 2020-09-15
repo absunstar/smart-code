@@ -829,7 +829,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
           });
 
           $scope.store_in.total_value = $scope.store_in.total_value - $scope.store_in.total_value_added;
-          if($scope.currencySetting){
+          if ($scope.currencySetting) {
 
             site.strings['currency'].ar = ' ' + $scope.currencySetting.name + ' ';
             site.strings['from100'].ar = ' ' + $scope.currencySetting.minor_currency + ' ';
@@ -1770,7 +1770,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
           search: $scope.storesInSearch,
           where: {
             'posting': true,
-            'type.id': 1
+            'return_paid.net_value': { $gt: 0 }
           }
         }
       }).then(

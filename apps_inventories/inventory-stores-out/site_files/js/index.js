@@ -2169,9 +2169,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
           search: $scope.storesOutSearch,
           where: {
             'posting': true,
-            'return_paid.net_value': {
-              $gt: 0
-            }
+            'return_paid.net_value': { $gt: 0 }
           }
         }
       }).then(
