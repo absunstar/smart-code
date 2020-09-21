@@ -264,13 +264,17 @@ app.controller("stores_dismantle", function ($scope, $http, $timeout) {
         url: "/api/stores_items/all",
         data: {
           search: $scope.item.search_item_name,
-          where: { 'sizes.item_complex': true }
+          where: {
+            'sizes.item_complex': true,
+            'sizes.work_patch': { $ne: true },
+            'sizes.work_serial': { $ne: true }
+          }
         }
       }).then(
         function (response) {
           $scope.busy = false;
           if (response.data.done) {
-            if (response.data.list.length > 0) {
+            if (response.data.list.length > 0 && $scope.item.search_item_name) {
               let foundSize = false;
               $scope.item.sizes = $scope.item.sizes || [];
               response.data.list.forEach(_item => {
@@ -426,7 +430,11 @@ app.controller("stores_dismantle", function ($scope, $http, $timeout) {
         url: "/api/stores_items/all",
         data: {
           search: $scope.search_barcode,
-          where: { 'sizes.item_complex': true }
+          where: {
+            'sizes.item_complex': true,
+            'sizes.work_patch': { $ne: true },
+            'sizes.work_serial': { $ne: true }
+          }
         }
       }).then(
         function (response) {

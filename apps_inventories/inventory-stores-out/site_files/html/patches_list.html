@@ -23,6 +23,7 @@
 
                     <table class="table loaded center bold hover">
                         <tr>
+                            <th>##word.serial##</th>
                             <th>##word.patch_number##</th>
                             <th ng-hide="item_patch.work_serial">##word.production_date##</th>
                             <th ng-hide="item_patch.work_serial">##word.expiry_date##</th>
@@ -35,9 +36,12 @@
                         </tr>
 
                         <tr ng-repeat="c in item_patch.patch_list">
-                          
+
+                            <td class="blue">
+                                {{$index + 1}}
+                            </td>
                             <td><br> {{c.patch}}</td>
-                         
+
                             <td class="green" ng-hide="item_patch.work_serial">
                                 <br>
                                 {{c.production_date  | date : 'dd - MM - yyyy'}}
@@ -102,15 +106,19 @@
 
             <table class="table loaded center bold hover">
                 <tr>
-                    <th >##word.patch_number##</th>
+                    <th>##word.serial##</th>
+                    <th>##word.patch_number##</th>
                     <th ng-hide="item_patch.work_serial">##word.production_date##</th>
                     <th ng-hide="item_patch.work_serial">##word.expiry_date##</th>
-                    <th  ng-hide="item_patch.work_serial">##word.validit##</th>
-                    <th >##word.quantity##</th>
+                    <th ng-hide="item_patch.work_serial">##word.validit##</th>
+                    <th>##word.quantity##</th>
                 </tr>
 
                 <tr ng-repeat="c in item_patch.patch_list" ng-show="c.count">
 
+                    <td class="blue">
+                        {{$index + 1}}
+                    </td>
                     <td>{{c.patch}}</td>
                     <td class="green" ng-hide="item_patch.work_serial">
                         {{c.production_date  | date : 'dd - MM - yyyy'}}

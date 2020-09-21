@@ -236,11 +236,11 @@ module.exports = function init(site) {
 
       if (stores_dismantle_doc.posting) {
 
-        disAssembleItems = stores_assemble_doc.items
+        disAssembleItems = stores_dismantle_doc.items
 
       } else {
 
-        stores_assemble_doc.items.forEach(disAssembleDocItems => {
+        stores_dismantle_doc.items.forEach(disAssembleDocItems => {
           disAssembleDocItems.complex_items.forEach(dAdIcoplex => {
             if (disAssembleDocItems.barcode === dAdIcoplex.barcode) {
 

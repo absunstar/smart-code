@@ -313,7 +313,7 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
         function (response) {
           $scope.busy = false;
           if (response.data.done) {
-            if (response.data.list.length > 0) {
+            if (response.data.list.length > 0 && $scope.item.search_item_name) {
               let foundSize = false;
               $scope.item.sizes = $scope.item.sizes || [];
 

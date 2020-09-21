@@ -22,6 +22,7 @@
 
                     <table class="table loaded center bold hover details">
                         <tr>
+                            <th>##word.serial##</th>
                             <th class="w250">##word.patch_number##</th>
                             <th ng-hide="item_patch.work_serial" class="w300">##word.production_date##</th>
                             <th ng-hide="item_patch.work_serial" class="w300">##word.expiry_date##</th>
@@ -32,6 +33,9 @@
 
                         <tr ng-repeat="c in item_patch.patch_list">
 
+                            <td class="blue">
+                                {{$index + 1}}
+                            </td>
                             <td>
                                 <i-control ng-model="c.patch"></i-control>
                             </td>
@@ -91,6 +95,7 @@
 
             <table class="table loaded center bold hover">
                 <tr>
+                    <th>##word.serial##</th>
                     <th>##word.patch_number##</th>
                     <th ng-hide="item_patch.work_serial">##word.production_date##</th>
                     <th ng-hide="item_patch.work_serial">##word.expiry_date##</th>
@@ -99,7 +104,9 @@
                 </tr>
 
                 <tr ng-repeat="c in item_patch.patch_list" ng-show="c.count > 0">
-                
+                    <td class="blue">
+                        {{$index + 1}}
+                    </td>
                     <td>{{c.patch}}</td>
 
                     <td class="green" ng-hide="item_patch.work_serial">

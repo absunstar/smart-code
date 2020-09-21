@@ -21,6 +21,7 @@
 
                     <table class="table loaded center bold hover details">
                         <tr>
+                            <th>##word.serial##</th>
                             <th>##word.patch_number##</th>
                             <th ng-hide="item_patch.work_serial">##word.production_date##</th>
                             <th ng-hide="item_patch.work_serial">##word.expiry_date##</th>
@@ -31,7 +32,10 @@
                         </tr>
 
                         <tr ng-repeat="c in item_patch.patch_list">
-
+                            
+                            <td class="blue">
+                                {{$index + 1}}
+                            </td>
                             <td>{{c.patch}}</td>
 
                             <td class="green" ng-hide="item_patch.work_serial">

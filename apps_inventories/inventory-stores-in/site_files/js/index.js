@@ -1037,13 +1037,13 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
         method: "POST",
         url: "/api/stores_items/all",
         data: {
-          search: $scope.search_item_name
+          search: $scope.item.search_item_name
         }
       }).then(
         function (response) {
           $scope.busy = false;
           if (response.data.done) {
-            if (response.data.list.length > 0) {
+            if (response.data.list.length > 0 && $scope.item.search_item_name) {
               let foundSize = false;
               $scope.item.sizes = $scope.item.sizes || [];
               response.data.list.forEach(_item => {
@@ -1062,6 +1062,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
                         if (_unit.id == _item.main_unit.id)
                           indxUnit = i;
                       });
+
 
                     if ((_size.barcode === $scope.item.search_item_name) || (_size.size_en && _size.size_en.contains($scope.item.search_item_name)) || (_size.size && _size.size.contains($scope.item.search_item_name)) || foundUnit) {
                       _size.name = _item.name;
