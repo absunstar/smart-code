@@ -44,9 +44,6 @@
                     <td>{{store_out.type.##session.lang##}}</td>
                 </tr>
     
-    
-    
-    
                 <tr>
                     <td class="title">##word.stores_out_items##</td>
                     <td>
@@ -60,8 +57,8 @@
                                 <th class="not-print">##word.stores_out_item_price##</th>
                                 <th>##word.stores_out_item_total##</th>
                                 <th>##word.stores_out_ticket_code##</th>
-    
                             </tr>
+
                             <tr ng-repeat="itm in store_out.items">
                                 <td>{{$index + 1}}</td>
                                 <td>{{itm.name}}</td>
@@ -71,8 +68,6 @@
                                 <td class="not-print">{{itm.price}}</td>
                                 <td>{{itm.total}}</td>
                                 <td>{{itm.ticket_code}}</td>
-    
-                                
     
                             </tr>
                         </table>

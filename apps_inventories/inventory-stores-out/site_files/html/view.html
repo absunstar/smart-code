@@ -124,38 +124,38 @@
     <table class="table bold hover details">
       <tr>
         <th class="w50">##word.serial##</th>
-        <th class="w100">##word.barcode##</th>
+        <th class="w150">##word.barcode##</th>
         <th class="w250">##word.stores_out_item_name##</th>
         <th class="w50">##word.unit##</th>
         <th class="w50">##word.stores_out_item_count##</th>
-        <th class="w50" ng-hide="store_out.type.id ==5" x-permissions="stores_out_details_values || stores_out_manage">
-          ##word.price##</th>
-        <th class="w50" x-permissions="stores_out_details_values || stores_out_manage"
-          ng-show="defaultSettings.inventory.value_added > 0">##word.total_v_a##</th>
-        <th class="w100" x-permissions="stores_out_details_values || stores_out_manage">##word.stores_out_item_total##
+        <th class="w50" x-permissions="stores_out_details_values || stores_out_manage" ng-hide="store_out.type.id ==5">##word.price##</th>
+        <th class="w50" x-permissions="stores_out_details_values || stores_out_manage" ng-show="defaultSettings.inventory.value_added > 0">##word.total_v_a##</th>
+
+        <th class="w50" x-permissions="stores_out_details_values || stores_out_manage">##word.stores_out_item_total##
         </th>
       </tr>
 
       <tr ng-repeat="itm in store_out.items">
-        <td class="center blue w50">
+        <td class="center blue">
           {{$index + 1}}
-          <i-button label="##word.patch##" ng-show="itm.work_patch" type="view" ng-click="viewPatchesList(itm)">
+          <i-button label="##word.patch##" class="not-print" ng-show="itm.work_patch || itm.work_serial" type="view"
+            ng-click="viewPatchesList(itm)">
           </i-button>
         </td>
-        <td class="center w100">
+        <td class="center">
           {{itm.barcode}}
         </td>
-        <td class="center w250">
+        <td class="center">
           {{itm.name}}
         </td>
 
-        <td class="center w50">
+        <td class="center">
           {{itm.unit.name}}
         </td>
-        <td class="center w50">
+        <td class="center">
           {{itm.count}}
         </td>
-        <td class="center w50" x-permissions="stores_out_details_values || stores_out_manage"
+        <td class="center" x-permissions="stores_out_details_values || stores_out_manage"
           ng-hide="store_out.type.id ==5">
           {{itm.price}}
           <del class="red px14" ng-show="itm.discount.type =='number' && itm.discount.value > 0">{{itm.discount.value}}

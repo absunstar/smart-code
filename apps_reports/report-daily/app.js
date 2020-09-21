@@ -227,6 +227,8 @@ module.exports = function init(site) {
         }]
 
 
+
+
         docs.forEach(_doc => {
           _doc.payment_list.forEach(_p_l => {
             if (_p_l.payment_method && _p_l.currency && currency.id == _p_l.currency.id) {

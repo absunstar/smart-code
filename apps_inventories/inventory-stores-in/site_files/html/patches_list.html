@@ -20,38 +20,37 @@
                 </div>
                 <div class="col10">
 
-                    <table class="table loaded center bold hover">
+                    <table class="table loaded center bold hover details">
                         <tr>
-                            <th>##word.production_date##</th>
-                            <th>##word.expiry_date##</th>
-                            <th class="small_t">##word.validit##</th>
-                            <th>##word.patch_number##</th>
-                            <th class="small_t">##word.quantity##</th>
+                            <th class="w250">##word.patch_number##</th>
+                            <th ng-hide="item_patch.work_serial" class="w300">##word.production_date##</th>
+                            <th ng-hide="item_patch.work_serial" class="w300">##word.expiry_date##</th>
+                            <th ng-hide="item_patch.work_serial">##word.validit##</th>
+                            <th>##word.quantity##</th>
                             <th>##word.actions##</th>
                         </tr>
 
                         <tr ng-repeat="c in item_patch.patch_list">
 
                             <td>
-                                <i-date2 ng-click="changeDate(c)" ng-model="c.production_date"></i-date2>
-                            </td>
-
-                            <td>
-                                <i-date2 ng-click="changeDate(c)" ng-model="c.expiry_date"></i-date2>
-                            </td>
-
-                            <td class="small_t">
-                                <i-control ng-change="changeDate(c)" ng-model="c.validit"></i-control>
-                            </td>
-
-                            <td>
                                 <i-control ng-model="c.patch"></i-control>
-                            </td >
+                            </td>
 
-                            <td class="small_t">
-                                <p>
-                                    <i-control type="number" ng-model="c.count"></i-control>
-                                </p>
+                            <td ng-hide="item_patch.work_serial">
+                                <i-date2 ng-click="changeDate(c,'pro')" ng-model="c.production_date"></i-date2>
+                            </td>
+
+                            <td ng-hide="item_patch.work_serial">
+                                <i-date2 ng-click="changeDate(c,'exp')" ng-model="c.expiry_date"></i-date2>
+                            </td>
+
+                            <td ng-hide="item_patch.work_serial">
+                                <i-control ng-change="changeDate(c,'pro')" ng-model="c.validit"></i-control>
+                            </td>
+
+                            <td>
+                                <i-control type="number" ng-disabled="item_patch.work_serial" ng-model="c.count">
+                                </i-control>
                             </td>
                             <td>
                                 <p>
@@ -92,26 +91,26 @@
 
             <table class="table loaded center bold hover">
                 <tr>
-                    <th>##word.production_date##</th>
-                    <th>##word.expiry_date##</th>
-                    <th>##word.validit##</th>
                     <th>##word.patch_number##</th>
+                    <th ng-hide="item_patch.work_serial">##word.production_date##</th>
+                    <th ng-hide="item_patch.work_serial">##word.expiry_date##</th>
+                    <th ng-hide="item_patch.work_serial">##word.validit##</th>
                     <th>##word.quantity##</th>
                 </tr>
 
-                <tr ng-repeat="c in item_patch.patch_list">
+                <tr ng-repeat="c in item_patch.patch_list" ng-show="c.count > 0">
+                
+                    <td>{{c.patch}}</td>
 
-                    <td class="green">
+                    <td class="green" ng-hide="item_patch.work_serial">
                         {{c.production_date  | date : 'dd - MM - yyyy'}}
                     </td>
 
-                    <td class="red">
+                    <td class="red" ng-hide="item_patch.work_serial">
                         {{c.expiry_date  | date : 'dd - MM - yyyy'}}
                     </td>
 
-                    <td>{{c.validit}}</td>
-
-                    <td>{{c.patch}}</td>
+                    <td ng-hide="item_patch.work_serial">{{c.validit}}</td>
 
                     <td class="blue">{{c.count}}</td>
 

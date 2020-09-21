@@ -27,7 +27,8 @@
                 <tr ng-repeat="c in details.invoices_list">
 
                     <td>{{c.code}}</td>
-                    <td>{{c.invoice_type.##session.lang##}}</td>
+                    <td ng-show="details.source_type.id == 1 || details.source_type.id == 2">
+                        {{c.invoice_type.##session.lang##}}</td>
                     <td ng-show="details.source_type.id == 3">{{c.order_invoices_type.##session.lang##}}</td>
                     <td
                         ng-show="details.source_type.id == 2 || details.source_type.id == 8 || details.source_type.id == 9">

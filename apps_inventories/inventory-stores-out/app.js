@@ -112,6 +112,11 @@ module.exports = function init(site) {
       _itm.price = site.toNumber(_itm.price)
       _itm.total = site.toNumber(_itm.total)
       delete _itm.show_max_dis
+
+      if (_itm.patch_list && _itm.patch_list.length > 0) {
+        let filter_patch = _itm.patch_list.filter(_p => _p.count !== 0)
+        _itm.patch_list = filter_patch
+      }
     })
 
     stores_out_doc.total_value = site.toNumber(stores_out_doc.total_value)
@@ -197,6 +202,7 @@ module.exports = function init(site) {
       res.json(response)
       return
     }
+
     let stores_out_doc = req.body
     stores_out_doc.edit_user_info = site.security.getUserFinger({ $req: req, $res: res })
 
@@ -208,11 +214,16 @@ module.exports = function init(site) {
       delete stores_out_doc.delegate
     }
 
-    stores_out_doc.items.forEach(itm => {
-      itm.count = site.toNumber(itm.count)
-      itm.cost = site.toNumber(itm.cost)
-      itm.price = site.toNumber(itm.price)
-      itm.total = site.toNumber(itm.total)
+    stores_out_doc.items.forEach(_itm => {
+      _itm.count = site.toNumber(_itm.count)
+      _itm.cost = site.toNumber(_itm.cost)
+      _itm.price = site.toNumber(_itm.price)
+      _itm.total = site.toNumber(_itm.total)
+
+      if (_itm.patch_list && _itm.patch_list.length > 0) {
+        let filter_patch = _itm.patch_list.filter(_p => _p.count !== 0)
+        _itm.patch_list = filter_patch
+      }
     })
 
     if (stores_out_doc.type.id !== 5 && stores_out_doc.type.id !== 6)

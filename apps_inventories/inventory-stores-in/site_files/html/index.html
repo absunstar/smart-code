@@ -55,7 +55,6 @@
                     <i-button x-permissions="stores_in_search || stores_in_manage" type="search"
                         label="##word.search_all##" onclick="site.showModal('#StoresInSearchModal')"></i-button>
 
-                    <h2 class="bold red text-center"> {{error}}</h2>
 
                     <i-button class="left" ng-hide="stores_in_post_all" x-permissions="stores_in_post_all"
                         label="##word.posting_all##" ng-click="postingAll(list);stores_in_post_all= true"></i-button>
@@ -64,6 +63,7 @@
 
                     <!-- <i-button class="left" x-permissions="stores_in_handle" label="##word.handle##"
                         ng-click="handelStoreIn()"></i-button> -->
+                    <h2 class="bold red text-center"> {{error}}</h2>
 
                     <h3 class="bold text-center"> ##word.count## : {{count}}</h3>
                 </div>

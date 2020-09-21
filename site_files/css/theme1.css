@@ -122,12 +122,6 @@ img {
         border-style: outset !important;
     
     }
-    .table th.small_t {
-        width: 9px !important;
-    }
-    .table th.small_t {
-        width: 9px !important;
-    }
 
     .table {
         font-size: 8pt !important;
@@ -164,7 +158,7 @@ img {
     border-color: #fbfbfb;
 }
 
-.small_t {
+.w100 {
     width: 9px !important;
 }
 

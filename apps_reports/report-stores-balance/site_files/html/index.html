@@ -17,6 +17,7 @@
             <div class="row" ng-controller="report_stores_balance" x-permissions="login">
 
                 <div x-import="report-stores-balance/search_all_modal.html"></div>
+                <div x-import="report-stores-balance/patches_list.html"></div>
 
                 <div class="row">
                     <h1 class="bold text-center"> ##word.report_stores_balance_name## </h1>
@@ -84,13 +85,16 @@
                         </tr>
 
                         <tr ng-repeat="c in list | orderBy : '-id'">
-                            <td> {{c.item_group.name}} </td>
-                            <td> {{c.name}} </td>
+                            <td> <br> {{c.item_group.name}} </td>
+                            <td> <br> {{c.name}} </td>
                             <td>
+                                <br>
                                 <p>{{c.size}}</p>
                                 <p>{{c.size_en}}</p>
                             </td>
-                            <td> {{c.barcode}} </td>
+                            <td> <br>
+                                <p class="blue">{{c.barcode}}</p>
+                            </td>
                             <td>
                                 <table class="table center hover bold">
                                     <tr>
@@ -98,7 +102,7 @@
                                         <th> ##word.stores_in_item_store_balance## </th>
                                     </tr>
                                     <tr ng-repeat="b in c.branches_list">
-                                        <td> {{b.name_ar}} </td>
+                                        <td> <br> {{b.name_ar}} </td>
                                         <td>
                                             <table class="table center hover bold">
                                                 <tr>
@@ -106,12 +110,14 @@
                                                     <th> ##word.units## </th>
                                                 </tr>
                                                 <tr ng-repeat="s in b.stores_list">
-                                                    <td> {{s.store.name}} </td>
+                                                    <td> <br> {{s.store.name}} </td>
                                                     <td>
                                                         <table class="table center hover bold">
                                                             <tr>
                                                                 <th> ##word.unit## </th>
                                                                 <th> ##word.balance## </th>
+                                                                <th ng-show="c.work_patch || c.work_serial">
+                                                                    ##word.patch## </th>
                                                             </tr>
                                                             <tr ng-repeat="u in s.size_units_list">
 
@@ -121,7 +127,18 @@
                                                                 </td>
 
                                                                 <td>
-                                                                    {{u.current_count}}
+                                                                    <p class="center bold green"
+                                                                        ng-show="u.current_count > 0">
+                                                                        {{u.current_count}} </p>
+                                                                    <p class="bold red center"
+                                                                        ng-show="u.current_count == 0 ||u.current_count < 0">
+                                                                        {{u.current_count}} </p>
+                                                                </td>
+
+                                                                <td ng-show="c.work_patch || c.work_serial">
+                                                                    <i-button class="not-print" type="view"
+                                                                        ng-click="viewPatchesList(u,c)">
+                                                                    </i-button>
                                                                 </td>
 
                                                             </tr>

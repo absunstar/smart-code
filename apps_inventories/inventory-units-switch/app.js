@@ -183,7 +183,6 @@ module.exports = function init(site) {
     units_switch_doc.edit_user_info = site.security.getUserFinger({ $req: req, $res: res })
 
     units_switch_doc.vendor = site.fromJson(units_switch_doc.vendor)
-    units_switch_doc.seasonName = units_switch_doc.seasonName
     units_switch_doc.type = site.fromJson(units_switch_doc.type)
     units_switch_doc.date = new Date(units_switch_doc.date)
 

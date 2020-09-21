@@ -98,6 +98,59 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
     };
 
     if ($scope.transfer_branch.items.length > 0) {
+
+      let patchCount = false;
+      let patch_list = [];
+
+      $scope.transfer_branch.items.forEach(_itemSize => {
+
+        if (_itemSize.work_patch || _itemSize.work_serial) {
+
+          if (_itemSize.patch_list && _itemSize.patch_list.length > 0) {
+
+            let c = 0;
+            _itemSize.patch_list.map(p => c += p.count);
+
+            let difference = _itemSize.count - c;
+
+            if (_itemSize.count < c) {
+              patchCount = true;
+              patch_list.push(_itemSize.barcode)
+
+            } else if (_itemSize.count > c) {
+              _itemSize.patch_list = _itemSize.patch_list.slice().sort((a, b) => new Date(b.expiry_date) - new Date(a.expiry_date)).reverse();
+              _itemSize.patch_list.forEach(_pl => {
+                if (difference > 0 && _pl.count == 0) {
+
+                  if (_pl.current_count < difference || _pl.current_count == difference) {
+
+                    _pl.count = _pl.current_count;
+                    difference = difference - _pl.count;
+
+
+                  } else if (_pl.current_count > difference) {
+
+                    _pl.count = difference;
+                    difference = 0;
+                  }
+
+                  if (_itemSize.work_serial && _pl.count === 1) _pl.select = true;
+
+                }
+              });
+            }
+
+          }
+        }
+      });
+
+
+      if (patchCount) {
+        $scope.error = `##word.err_patch_count##   ( ${patch_list.join('-')} )`;
+        return;
+      };
+
+
       $scope.busy = true;
       $http({
         method: "POST",
@@ -213,6 +266,9 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
             size_units_list: _size.size_units_list,
             unit: _size.unit,
             barcode: _size.barcode,
+            work_patch: _size.work_patch,
+            work_serial: _size.work_serial,
+            patch_list: _size.patch_list,
             average_cost: _size.average_cost,
             count: _size.count,
             cost: _size.cost,
@@ -300,6 +356,7 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
                               let indxStore = 0;
                               _size.branches_list[indxBranch].stores_list.map((_store, i) => {
                                 if (_store.store.id == $scope.transfer_branch.store_from.id) {
+                                  _size.store_units_list = _store.size_units_list;
                                   foundStore = true;
                                   indxStore = i;
                                   if (_store.hold) foundHold = true;
@@ -318,6 +375,19 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
                         } else _size.store_count = 0;
                       } else _size.store_count = 0;
                       foundSize = $scope.item.sizes.some(_itemSize => _itemSize.barcode === _size.barcode);
+
+                      if (_size.store_units_list && _size.store_units_list.length > 0) {
+                        _size.store_units_list.forEach(_ul => {
+                          if (_ul.id == _size.unit.id) {
+                            if (_ul.patch_list && _ul.patch_list.length > 0)
+                              _ul.patch_list.forEach(_p => {
+                                _p.current_count = _p.count
+                                _p.count = 0
+                              });
+                            _size.patch_list = _ul.patch_list
+                          }
+                        });
+                      };
 
                       if (!foundSize && !foundHold) $scope.item.sizes.push(_size);
                     };
@@ -379,6 +449,7 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
                 let indxStore = 0
                 _item.branches_list[indxBranch].stores_list.map((_store, i) => {
                   if (_store.store.id == $scope.transfer_branch.store_from.id) {
+                    _item.store_units_list = _store.size_units_list;
                     foundStore = true
                     indxStore = i
                     if (_store.hold) foundHold = true;
@@ -396,6 +467,19 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
 
         } else _item.store_count = 0
         foundSize = $scope.item.sizes.some(_itemSize => _itemSize.barcode === _item.barcode);
+
+        if (_item.store_units_list && _item.store_units_list.length > 0) {
+          _item.store_units_list.forEach(_ul => {
+            if (_ul.id == _item.unit.id) {
+              if (_ul.patch_list && _ul.patch_list.length > 0)
+                _ul.patch_list.forEach(_p => {
+                  _p.current_count = _p.count
+                  _p.count = 0
+                });
+              _item.patch_list = _ul.patch_list
+            }
+          });
+        };
         if (!foundSize && !foundHold) $scope.item.sizes.push(_item);
       });
   };
@@ -455,6 +539,7 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
                               if (_store.store.id == $scope.transfer_branch.store_from.id) {
                                 foundStore = true
                                 indxStore = i
+                                _size.store_units_list = _store.size_units_list;
                                 if (_store.hold) foundHold = true;
                               }
                             });
@@ -470,7 +555,21 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
 
                     } else _size.store_count = 0
                     foundSize = $scope.transfer_branch.items.some(_itemSize => _itemSize.barcode === _size.barcode);
-                    if (!foundSize && !foundHold) $scope.transfer_branch.items.unshift(_size);
+
+                    if (_size.store_units_list && _size.store_units_list.length > 0) {
+                      _size.store_units_list.forEach(_ul => {
+                        if (_ul.id == _size.unit.id) {
+                          if (_ul.patch_list && _ul.patch_list.length > 0)
+                            _ul.patch_list.forEach(_p => {
+                              _p.current_count = _p.count
+                              _p.count = 0
+                            });
+                          _size.patch_list = _ul.patch_list
+                        }
+                      });
+                    };
+
+                    if (!foundSize && !foundHold) $scope.transfer_branch.items.unshift(_size)
                     else if (foundSize) {
                       $scope.transfer_branch.items.forEach(_item => {
                         if (_item.barcode === _size.barcode) {
@@ -518,37 +617,99 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
       return;
     }
 
-    let notExistCount = $scope.transfer_branch.items.some(_iz => _iz.count < 1);
 
-    if (notExistCount) {
-      $scope.error = "##word.err_exist_count##";
-      return;
-    };
 
     if (new Date($scope.transfer_branch.date) > new Date()) {
       $scope.error = "##word.date_exceed##";
       return;
     };
 
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/transfer_branch/update",
-      data: $scope.transfer_branch
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          site.hideModal('#updateTransferBranchModal');
-          $scope.loadAll();
-        } else {
-          $scope.error = '##word.error##';
+    if ($scope.transfer_branch.items.length > 0) {
+
+      let notExistCount = $scope.transfer_branch.items.some(_iz => _iz.count < 1);
+
+      if (notExistCount) {
+        $scope.error = "##word.err_exist_count##";
+        return;
+      };
+
+
+      let patchCount = false;
+      let patch_list = [];
+
+
+      $scope.transfer_branch.items.forEach(_itemSize => {
+
+        if (_itemSize.work_patch || _itemSize.work_serial) {
+
+          if (_itemSize.patch_list && _itemSize.patch_list.length > 0) {
+
+            let c = 0;
+            _itemSize.patch_list.map(p => c += p.count);
+
+            let difference = _itemSize.count - c;
+
+            if (_itemSize.count < c) {
+              patchCount = true;
+              patch_list.push(_itemSize.barcode)
+
+            } else if (_itemSize.count > c) {
+              _itemSize.patch_list = _itemSize.patch_list.slice().sort((a, b) => new Date(b.expiry_date) - new Date(a.expiry_date)).reverse();
+              _itemSize.patch_list.forEach(_pl => {
+                if (difference > 0 && _pl.count == 0) {
+
+                  if (_pl.current_count < difference || _pl.current_count == difference) {
+
+                    _pl.count = _pl.current_count;
+                    difference = difference - _pl.count;
+
+
+                  } else if (_pl.current_count > difference) {
+
+                    _pl.count = difference;
+                    difference = 0;
+                  }
+
+                  if (_itemSize.work_serial && _pl.count === 1) _pl.select = true;
+
+                }
+              });
+            }
+
+          }
         }
-      },
-      function (err) {
-        console.log(err);
-      }
-    )
+      });
+
+
+      if (patchCount) {
+        $scope.error = `##word.err_patch_count##   ( ${patch_list.join('-')} )`;
+        return;
+      };
+
+      $scope.busy = true;
+      $http({
+        method: "POST",
+        url: "/api/transfer_branch/update",
+        data: $scope.transfer_branch
+      }).then(
+        function (response) {
+          $scope.busy = false;
+          if (response.data.done) {
+            site.hideModal('#updateTransferBranchModal');
+            $scope.loadAll();
+          } else {
+            $scope.error = '##word.error##';
+          }
+        },
+        function (err) {
+          console.log(err);
+        }
+      )
+
+    } else {
+      $scope.error = "##word.must_enter_quantity##";
+      return;
+    }
   };
 
   $scope.confirmTransfer = function (transfer_branch) {
@@ -796,6 +957,51 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
 
   /*   $scope.loadStores_Out();
    */
+
+  $scope.exitPatchModal = function (itm) {
+    let bigger = false;
+    let count = 0;
+
+    itm.patch_list.forEach(_pl => {
+      if (_pl.count > _pl.current_count) bigger = true;
+      if (itm.work_serial) {
+        if (_pl.select) _pl.count = 1
+        else _pl.count = 0
+      }
+    });
+
+
+    itm.patch_list.map(p => count += p.count)
+
+    if (itm.count != count) {
+      $scope.error = '##word.err_patch_count##';
+      return;
+    };
+
+    if (bigger) {
+      $scope.error = '##word.err_patch_current_count##';
+      return;
+    };
+
+    site.hideModal('#patchesListModal');
+    $scope.error = '';
+  };
+
+  
+  $scope.patchesList = function (itm) {
+    $scope.error = '';
+    $scope.item_patch = itm;
+    site.showModal('#patchesListModal');
+  };
+
+  $scope.viewPatchesList = function (itm) {
+    $scope.error = '';
+    $scope.item_patch = itm;
+
+    site.showModal('#patchesListViewModal');
+
+  };
+
 
   $scope.getSafeBySetting = function () {
     $scope.error = '';

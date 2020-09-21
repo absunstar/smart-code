@@ -30,7 +30,7 @@
                             <th ng-show="item_patch.work_serial" class="w100">##word.select##</th>
                         </tr>
 
-                        <tr ng-repeat="c in item_patch.patch_list">
+                        <tr ng-repeat="c in item_patch.patch_list" ng-show="c.current_count > 0">
 
                             <td>{{c.patch}}</td>
 

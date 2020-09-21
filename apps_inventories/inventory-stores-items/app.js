@@ -8,6 +8,13 @@ module.exports = function init(site) {
     // console.log(new Date().getTime() + ' : add_balance_list_action()')
     if (obj.unit && obj.unit.id) {
 
+      if (obj.patch_list && obj.patch_list.length > 0) {
+        obj.patch_list.forEach(_pl => {
+          delete _pl.select
+        });
+      }
+
+
       let total_unit = obj.count * obj.unit.convert;
       total_unit = site.toNumber(total_unit)
 
@@ -365,12 +372,12 @@ module.exports = function init(site) {
                               let foundPatshList = []
 
                               obj.patch_list.forEach(_patch => {
-                                let foundPatsh = _unitStore.patch_list.some(_p1 => _patch.patch == _p1.patch && _patch.validit == _p1.validit)
+                                let foundPatsh = _unitStore.patch_list.some(_p1 => _patch.patch === _p1.patch && _patch.validit === _p1.validit)
 
                                 if (!foundPatsh) foundPatshList.push(_patch)
 
                                 _unitStore.patch_list.forEach(_patchStore => {
-                                  if (_patch.patch == _patchStore.patch && _patch.validit == _patchStore.validit) {
+                                  if (_patch.patch === _patchStore.patch && _patch.validit === _patchStore.validit) {
                                     if (obj.type == 'sum') {
                                       _patchStore.count = _patchStore.count + _patch.count
                                     } else if (obj.type == 'minus') {
@@ -387,12 +394,12 @@ module.exports = function init(site) {
                                 _unitStore.patch_list.push(fP)
                               });
 
-                              _unitStore.patch_list.forEach((_p, _ipatch) => {
-                                if (_p.count == 0) {
-                                  _unitStore.patch_list.splice(_ipatch, 1);
-                                }
-                              })
 
+                              let filter_patch = _unitStore.patch_list.filter(_p => _p.count !== 0)
+                              _unitStore.patch_list = filter_patch
+
+                              if (_unitStore.patch_list.length === 1 && _unitStore.patch_list[0].count === 0)
+                                _unitStore.patch_list = []
                             }
 
                           } else {

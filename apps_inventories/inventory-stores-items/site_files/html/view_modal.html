@@ -45,8 +45,8 @@
                         <tr>
                             <th>##word.unit##</th>
                             <th>##word.unit_barcode##</th>
-                            <th>##word.stores_start_balance##</th>
                             <th>##word.stores_current_balance##</th>
+                            <th>##word.stores_start_balance##</th>
                             <th>##word.stores_items_cost##</th>
                             <th>##word.stores_items_price##</th>
                             <th>##word.average_cost##</th>
@@ -67,15 +67,18 @@
                                 <i-control ng-disabled="defaultSettings.inventory.auto_unit_barcode_generation"
                                     ng-model="s.barcode"></i-control>
                             </td>
+                           
+                            <td>
+                                <br>
+                                <p class="center bold green" ng-show="s.current_count > 0">
+                                    {{s.current_count}} </p>
+                                <p class="bold red center" ng-show="s.current_count == 0 ||s.current_count < 0">
+                                    {{s.current_count}} </p>
+                            </td>
                             <td>
                                 <br>
                                 <p class="bold center"> {{s.start_count}} </p>
                             </td>
-                            <td>
-                                <br>
-                                <p class="bold blue center"> {{s.current_count}} </p>
-                            </td>
-
 
                             <td ng-show="_view">
                                 <br>

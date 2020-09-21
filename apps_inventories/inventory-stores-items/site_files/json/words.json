@@ -15,6 +15,11 @@
         "ar": "يعمل بالتشغيلة"
     },
     {
+        "name": "work_serial",
+        "en": "Works Serial",
+        "ar": "يعمل بالسيريال"
+    },
+    {
         "name": "patch",
         "en": "Patch",
         "ar": "التشغيلة"

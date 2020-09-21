@@ -450,6 +450,16 @@
         "ar": "إختيار الأصناف"
     },
     {
+        "name": "select_all",
+        "en": "Select All",
+        "ar": "تحديد الكل"
+    },
+    {
+        "name": "select",
+        "en": "Select",
+        "ar": "تحديد"
+    },
+    {
         "name": "total_value",
         "en": "Total Value",
         "ar": "القيمة الإجمالية"

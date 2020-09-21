@@ -58,7 +58,7 @@
             </div>
             <br>
             <br>
-            <h2 ng-show="store_out.retured_number" class="blue bold center">##word.stores_in## :
+            <h2 ng-show="store_out.retured_number" class="blue bold center">##word.stores_out## :
                 {{store_out.retured_number}}</h2>
             <br>
             <div class="row margin padding">
@@ -83,10 +83,10 @@
                         </tr>
 
                         <tr ng-repeat="itm in store_out.items">
-                            <td> <br ng-show="itm.work_patch"> {{$index + 1}}
+                            <td> <br ng-hide="itm.work_patch || itm.work_serial"> {{$index + 1}}
                                 <div class="row">
-                                    <i-button label="##word.patch##" ng-show="itm.work_patch" type="view"
-                                        ng-click="patchesList(itm)">
+                                    <i-button label="##word.patch##" ng-show="itm.work_patch || itm.work_serial"
+                                        type="view" ng-click="patchesList(itm)">
                                     </i-button>
                                 </div>
                             </td>
@@ -138,7 +138,7 @@
                                 </i-control>
                             </td>
 
-                            <td > <br> {{itm.total_v_a}}</td>
+                            <td> <br> {{itm.total_v_a}}</td>
                             <td class="green"> <br> {{itm.total}}</td>
 
                             <td>

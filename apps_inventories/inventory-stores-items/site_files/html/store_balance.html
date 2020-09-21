@@ -27,7 +27,12 @@
                                     ##word.under_stock##</p>
                             </td>
                             <td class="center red">{{item.average_cost}}</td>
-                            <td class="center blue">{{item.current_count}}</td>
+                            <td>
+                                <p class="center bold green" ng-show="item.current_count > 0">
+                                    {{item.current_count}} </p>
+                                <p class="bold red center" ng-show="item.current_count == 0 ||item.current_count < 0">
+                                    {{item.current_count}} </p>
+                            </td>
                             <td class="center blue">{{item.start_count}}</td>
                             <td class="center">
                                 <i-button type="view" label="##word.units##" ng-click="viewStoreUnits(item)">
@@ -75,8 +80,8 @@
                         <tr>
                             <th>##word.unit##</th>
                             <th>##word.unit_barcode##</th>
-                            <th>##word.stores_start_balance##</th>
                             <th>##word.stores_current_balance##</th>
+                            <th>##word.stores_start_balance##</th>
                             <th>##word.average_cost##</th>
                             <th>##word.actions##</th>
                         </tr>
@@ -90,10 +95,13 @@
                                 <p class="bold center"> {{c.barcode}} </p>
                             </td>
                             <td>
-                                <p class="bold center"> {{c.start_count}} </p>
+                                <p class="center bold green" ng-show="c.current_count > 0">
+                                    {{c.current_count}} </p>
+                                <p class="bold red center" ng-show="c.current_count == 0 ||c.current_count < 0">
+                                    {{c.current_count}} </p>
                             </td>
                             <td>
-                                <p class="bold blue center"> {{c.current_count}} </p>
+                                <p class="bold center"> {{c.start_count}} </p>
                             </td>
                             <td>
                                 <p class="bold center"> {{c.average_cost}} </p>
@@ -132,26 +140,26 @@
 
             <table class="table loaded center bold hover">
                 <tr>
-                    <th>##word.production_date##</th>
-                    <th>##word.expiry_date##</th>
-                    <th>##word.validit##</th>
-                    <th>##word.patch_number##</th>
+                    <th> ##word.patch_number##</th>
+                    <th ng-hide="branchesBalance.work_serial">##word.production_date##</th>
+                    <th ng-hide="branchesBalance.work_serial">##word.expiry_date##</th>
+                    <th ng-hide="branchesBalance.work_serial">##word.validit##</th>
                     <th>##word.quantity##</th>
                 </tr>
 
                 <tr ng-repeat="c in item_patch.patch_list">
 
-                    <td class="green">
+                    <td>{{c.patch}}</td>
+
+                    <td class="green" ng-hide="branchesBalance.work_serial">
                         {{c.production_date  | date : 'dd - MM - yyyy'}}
                     </td>
 
-                    <td class="red">
+                    <td class="red" ng-hide="branchesBalance.work_serial">
                         {{c.expiry_date  | date : 'dd - MM - yyyy'}}
                     </td>
 
-                    <td>{{c.validit}}</td>
-
-                    <td>{{c.patch}}</td>
+                    <td ng-hide="branchesBalance.work_serial">{{c.validit}}</td>
 
                     <td class="blue">{{c.count}}</td>
 

@@ -99,12 +99,16 @@ module.exports = function init(site) {
 
     stores_in_doc.date = site.toDateTime(stores_in_doc.date)
 
-    stores_in_doc.items.forEach(itm => {
-      itm.current_count = site.toNumber(itm.current_count)
-      itm.count = site.toNumber(itm.count)
-      itm.cost = site.toNumber(itm.cost)
-      itm.price = site.toNumber(itm.price)
-      itm.total = site.toNumber(itm.total)
+    stores_in_doc.items.forEach(_itm => {
+      _itm.current_count = site.toNumber(_itm.current_count)
+      _itm.count = site.toNumber(_itm.count)
+      _itm.cost = site.toNumber(_itm.cost)
+      _itm.price = site.toNumber(_itm.price)
+      _itm.total = site.toNumber(_itm.total)
+      if (_itm.patch_list && _itm.patch_list.length > 0) {
+        let filter_patch = _itm.patch_list.filter(_p => _p.count !== 0)
+        _itm.patch_list = filter_patch
+      }
     })
 
     stores_in_doc.total_value = site.toNumber(stores_in_doc.total_value)
@@ -202,15 +206,18 @@ module.exports = function init(site) {
     stores_in_doc.edit_user_info = site.security.getUserFinger({ $req: req, $res: res })
 
     stores_in_doc.vendor = site.fromJson(stores_in_doc.vendor)
-    stores_in_doc.seasonName = stores_in_doc.seasonName
     stores_in_doc.type = site.fromJson(stores_in_doc.type)
     stores_in_doc.date = new Date(stores_in_doc.date)
 
-    stores_in_doc.items.forEach(itm => {
-      itm.count = site.toNumber(itm.count)
-      itm.cost = site.toNumber(itm.cost)
-      itm.price = site.toNumber(itm.price)
-      itm.total = site.toNumber(itm.total)
+    stores_in_doc.items.forEach(_itm => {
+      _itm.count = site.toNumber(_itm.count)
+      _itm.cost = site.toNumber(_itm.cost)
+      _itm.price = site.toNumber(_itm.price)
+      _itm.total = site.toNumber(_itm.total)
+      if (_itm.patch_list && _itm.patch_list.length > 0) {
+        let filter_patch = _itm.patch_list.filter(_p => _p.count !== 0)
+        _itm.patch_list = filter_patch
+      }
     })
 
     stores_in_doc.total_value = site.toNumber(stores_in_doc.total_value)

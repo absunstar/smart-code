@@ -948,7 +948,6 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
     site.showModal('#branchUnitsModal');
   };
 
-
   $scope.viewStoreUnits = function (storeUnitBalance) {
     $scope.error = '';
     $scope.storeUnitBalance = storeUnitBalance;
@@ -958,9 +957,7 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
   $scope.viewPatchesList = function (itm) {
     $scope.error = '';
     $scope.item_patch = itm;
-
     site.showModal('#patchesListViewModal');
-
   };
 
 

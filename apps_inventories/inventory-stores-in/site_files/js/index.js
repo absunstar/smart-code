@@ -15,9 +15,10 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
   let d = new Date().getDate().toString()
 
 
-  function addDays(date, days) {
+
+  $scope.addDays = function (date, days) {
     var result = new Date(date);
-    result.setDate(result.getDate() + days);
+    result.setTime(result.getTime() + (days * 24 * 60 * 60 * 1000));
     return result;
   }
 
@@ -465,16 +466,30 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
   };
 
 
+  $scope.selectAll = function () {
+    $scope.item_patch.patch_list.forEach(element => {
+      if ($scope.item_patch.$select_all) {
+        element.select = true
+      } else if (!$scope.item_patch.$select_all) {
+        element.select = false
+      }
+    });
+  };
+
+
   $scope.exitPatchReturnModal = function (itm) {
     let bigger = false;
     let count = 0;
 
     itm.patch_list.forEach(_pl => {
+      if (itm.work_serial) {
+        if (_pl.select) _pl.count = 1
+        else _pl.count = 0
+      }
       if (_pl.count > _pl.current_count) bigger = true;
+      count += _pl.count;
     });
 
-
-    itm.patch_list.map(p => count += p.count)
     if (itm.count != count) {
       $scope.error = '##word.err_patch_count##';
       return;
@@ -489,7 +504,6 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
     $scope.error = '';
   };
 
-
   $scope.patchesList = function (itm) {
     $scope.error = '';
 
@@ -497,26 +511,53 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
 
     if ($scope.store_in.type && $scope.store_in.type.id == 4) {
 
-
-
       site.showModal('#patchesListReturnModal');
 
     } else {
 
-
+      let mini_code = $scope.item_patch.barcode.slice(-3);
+      let r_code = Math.floor((Math.random() * 1000) + 1);
       if (!$scope.item_patch.patch_list) {
 
-        $scope.item_patch.patch_list = [{
-          patch: y + m + d + '001' + itm.validit,
-          production_date: new Date(),
-          expiry_date: new Date(addDays(new Date(), itm.validit)),
-          count: itm.count,
-          validit: itm.validit
+        if ($scope.item_patch.work_serial) {
+          $scope.item_patch.patch_list = [];
+          for (let i = 0; i < $scope.item_patch.count; i++) {
+            let r_code2 = Math.floor((Math.random() * 1000) + 1);
 
-        }];
+            $scope.item_patch.patch_list.push({
+              patch: mini_code + r_code2 + ($scope.item_patch.patch_list.length + i),
+              count: 1
+            })
+          }
 
-      } else if ($scope.item_patch.patch_list && $scope.item_patch.patch_list.length == 1) {
+        } else {
+          $scope.item_patch.patch_list = [{
+            patch: mini_code + r_code + (itm.validit || '00') + 1,
+            production_date: new Date(),
+            expiry_date: new Date($scope.addDays(new Date(), (itm.validit || 0))),
+            count: itm.count,
+            validit: (itm.validit || 0)
+          }];
+        }
+
+
+      } else if ($scope.item_patch.patch_list && $scope.item_patch.patch_list.length == 1 && $scope.item_patch.work_patch) {
         $scope.item_patch.patch_list[0].count = itm.count
+
+      } else {
+
+        if ($scope.item_patch.work_serial) {
+          let count = $scope.item_patch.count - $scope.item_patch.patch_list.length;
+          let r_code2 = Math.floor((Math.random() * 1000) + 1);
+          for (let i = 0; i < count; i++) {
+            $scope.item_patch.patch_list.unshift({
+              patch: mini_code + r_code2 + i,
+              count: 1
+            })
+          }
+
+        }
+
       }
 
       site.showModal('#patchesListModal');
@@ -533,25 +574,52 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
   };
 
   $scope.addNewPAtch = function (itm) {
+    let mini_code = itm.barcode.slice(-3);
+    let r_code = Math.floor((Math.random() * 1000) + 1);
+
     itm.patch_list.unshift({
-      patch: y + m + d + '00' + (itm.patch_list.length + 1) + itm.validit.toString(),
+      patch: mini_code + r_code + (itm.patch_list.length + 1) + (itm.validit || '00'),
       production_date: new Date(),
-      expiry_date: new Date(addDays(new Date(), itm.validit)),
-      validit: itm.validit,
-      count: 0
+      expiry_date: new Date($scope.addDays(new Date(), (itm.validit || 0))),
+      validit: (itm.validit || 0),
+      count: itm.work_serial ? 1 : 0
     })
   };
 
-  $scope.changeDate = function (i) {
-    i.expiry_date = new Date(addDays(i.production_date, i.validit))
+
+  $scope.changeDate = function (i, str) {
+    $timeout(() => {
+      $scope.error = '';
+
+      if (str == 'exp') {
+
+        let diffTime = Math.abs(new Date(i.expiry_date) - new Date(i.production_date));
+        i.validit = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+      } else if (str == 'pro') {
+
+        i.expiry_date = new Date($scope.addDays(i.production_date, (i.validit || 0)))
+      }
+    }, 250);
   };
+
 
   $scope.exitPatchModal = function (itm) {
     let count = 0;
+    let errDate = false;
 
-    itm.patch_list.map(p => count += p.count)
+    itm.patch_list.forEach(_p => {
+      count += _p.count;
 
-    if (itm.count == count) {
+      if (new Date(_p.expiry_date) < new Date(_p.production_date)) {
+        errDate = true
+      }
+
+    });
+
+    if (errDate) {
+      $scope.error = '##word.err_patch_date##'
+    } else if (itm.count == count) {
       site.hideModal('#patchesListModal');
       $scope.error = '';
 
@@ -681,8 +749,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
           max_discount = true;
         if (_itemSize.count > _itemSize.r_count) returned_count = true;
 
-
-        if (_itemSize.work_patch) {
+        if (_itemSize.work_patch || _itemSize.work_serial) {
 
           if (_itemSize.patch_list && _itemSize.patch_list.length > 0) {
 
@@ -695,13 +762,31 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
             }
 
           } else {
-            _itemSize.patch_list = [{
-              patch: y + m + d + '001' + _itemSize.validit,
-              production_date: new Date(),
-              expiry_date: new Date(addDays(new Date(), _itemSize.validit)),
-              count: _itemSize.count,
-              validit: _itemSize.validit
-            }];
+
+            let mini_code = _itemSize.barcode.slice(-3);
+            let r_code = Math.floor((Math.random() * 1000) + 1);
+
+            if (_itemSize.work_serial) {
+              _itemSize.patch_list = [];
+              for (let i = 0; i < _itemSize.count; i++) {
+
+                let r_code2 = Math.floor((Math.random() * 1000) + 1);
+                _itemSize.patch_list.push({
+                  patch: mini_code + r_code2 + (_itemSize.patch_list.length + i),
+                  count: 1,
+                  select: true
+                })
+              }
+
+            } else {
+              _itemSize.patch_list = [{
+                patch: mini_code + r_code + (_itemSize.validit || '00'),
+                production_date: new Date(),
+                expiry_date: new Date($scope.addDays(new Date(), (_itemSize.validit || 0))),
+                count: _itemSize.count,
+                validit: (_itemSize.validit || 0)
+              }];
+            }
           }
         }
 
@@ -884,7 +969,8 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
               item_group: _size.item_group,
               size_en: _size.size_en,
               work_patch: _size.work_patch,
-              validit: _size.validit,
+              work_serial: _size.work_serial,
+              validit: (_size.validit || 0),
               size_units_list: _size.size_units_list,
               unit: _size.unit,
               cost: _size.unit.cost,
@@ -1249,7 +1335,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
         if (_itemSize.count > _itemSize.r_count) returned_count = true;
 
 
-        if (_itemSize.work_patch) {
+        if (_itemSize.work_patch || _itemSize.work_serial) {
 
           if (_itemSize.patch_list && _itemSize.patch_list.length > 0) {
 
@@ -1262,13 +1348,30 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
             }
 
           } else {
-            _itemSize.patch_list = [{
-              patch: y + m + d + '001' + _itemSize.validit,
-              production_date: new Date(),
-              expiry_date: new Date(addDays(new Date(), _itemSize.validit)),
-              count: _itemSize.count,
-              validit: _itemSize.validit
-            }];
+            let mini_code = _itemSize.barcode.slice(-3);
+            let r_code = Math.floor((Math.random() * 1000) + 1);
+
+            if (_itemSize.work_serial) {
+              _itemSize.patch_list = [];
+              for (let i = 0; i < _itemSize.count; i++) {
+
+                let r_code2 = Math.floor((Math.random() * 1000) + 1);
+                _itemSize.patch_list.push({
+                  patch: mini_code + r_code2 + (_itemSize.patch_list.length + i),
+                  count: 1,
+                  select: true
+                })
+              }
+
+            } else {
+              _itemSize.patch_list = [{
+                patch: mini_code + r_code + (_itemSize.validit || '00'),
+                production_date: new Date(),
+                expiry_date: new Date($scope.addDays(new Date(), (_itemSize.validit || 0))),
+                count: _itemSize.count,
+                validit: (_itemSize.validit || 0)
+              }];
+            }
           }
         }
 

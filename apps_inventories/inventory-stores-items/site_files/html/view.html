@@ -137,18 +137,27 @@
                         <tr ng-repeat="item in category_item.sizes" ng-hide="item.$hide">
 
                             <td>
+                                <br>
                                 <i-image view class="logo" ng-model="item.image_url"></i-image>
                             </td>
 
                             <td class="center bold">
+                                <br>
                                 <p>{{item.size}}</p>
                                 <p>{{item.size_en}}</p>
                             </td>
                             <td class="center bold blue"> <br>{{item.barcode}}</td>
 
-                            <td class="center bold"><br>{{item.current_count}}</td>
-                            <td class="center bold"><br>{{item.start_count}}</td>
-
+                            <td><br>
+                                <p class="center bold green" ng-show="item.current_count > 0">
+                                    {{item.current_count}} </p>
+                                <p class="bold red center" ng-show="item.current_count == 0 ||item.current_count < 0">
+                                    {{item.current_count}} </p>
+                            </td>
+                            <td>
+                                <br>
+                                <p class="bold center"> {{item.start_count}} </p>
+                            </td>
                             <td>
                                 <div class="row center">
                                     <p>

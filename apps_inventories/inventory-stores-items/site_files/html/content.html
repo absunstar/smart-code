@@ -141,14 +141,14 @@
                                 <tr>
                                     <th>##word.logo##</th>
                                     <th>##word.stores_items_sizes##</th>
-                                    <th>##word.item_code##
-                                    </th>
+                                    <th>##word.item_code##</th>
                                     <th>##word.stores_current_balance##</th>
                                     <th>##word.stores_items_start_count##</th>
                                     <th>##word.actions##</th>
                                 </tr>
 
-                                <tr class="bold" ng-repeat="itm in category_item.sizes track by $index"  ng-hide="itm.$hide">
+                                <tr class="bold" ng-repeat="itm in category_item.sizes track by $index"
+                                    ng-hide="itm.$hide">
                                     <td class="not-print center">
                                         <i-image class="logo" ng-model="itm.image_url"></i-image>
                                     </td>
@@ -166,7 +166,11 @@
 
                                     <td>
                                         <br>
-                                        <p class="center green">{{itm.current_count}}</p>
+                                        <p class="center bold green" ng-show="itm.current_count > 0">
+                                            {{itm.current_count}} </p>
+                                        <p class="bold red center"
+                                            ng-show="itm.current_count == 0 ||itm.current_count < 0">
+                                            {{itm.current_count}} </p>
                                     </td>
 
                                     <td>
@@ -184,14 +188,16 @@
                                                     </i-control>
                                                 </div>
                                                 <div class="row center">
-
-                                                    <i-checkbox label="##word.work_patch##" ng-model="itm.work_patch">
+                                                    <i-checkbox ng-hide="itm.work_serial" label="##word.work_patch##" ng-model="itm.work_patch">
+                                                    </i-checkbox>
+                                                    <i-checkbox ng-hide="itm.work_patch" label="##word.work_serial##" ng-model="itm.work_serial">
                                                     </i-checkbox>
                                                 </div>
 
                                                 <div class="row center">
 
-                                                    <i-checkbox label="##word.not_value_added##" ng-model="itm.not_value_added">
+                                                    <i-checkbox label="##word.not_value_added##"
+                                                        ng-model="itm.not_value_added">
                                                     </i-checkbox>
                                                 </div>
 

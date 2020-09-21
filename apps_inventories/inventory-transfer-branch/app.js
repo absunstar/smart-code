@@ -82,6 +82,11 @@ module.exports = function init(site) {
       _itm.cost = site.toNumber(_itm.cost)
       _itm.price = site.toNumber(_itm.price)
       _itm.total = site.toNumber(_itm.total)
+
+      if (_itm.patch_list && _itm.patch_list.length > 0) {
+        let filter_patch = _itm.patch_list.filter(_p => _p.count !== 0)
+        _itm.patch_list = filter_patch
+      }
     })
 
     $transfer_branch.add(branch_ransfer_doc, (err, doc) => {
@@ -182,11 +187,16 @@ module.exports = function init(site) {
 
     branch_ransfer_doc.date = new Date(branch_ransfer_doc.date)
 
-    branch_ransfer_doc.items.forEach(itm => {
-      itm.count = site.toNumber(itm.count)
-      itm.cost = site.toNumber(itm.cost)
-      itm.price = site.toNumber(itm.price)
-      itm.total = site.toNumber(itm.total)
+    branch_ransfer_doc.items.forEach(_itm => {
+      _itm.count = site.toNumber(_itm.count)
+      _itm.cost = site.toNumber(_itm.cost)
+      _itm.price = site.toNumber(_itm.price)
+      _itm.total = site.toNumber(_itm.total)
+
+      if (_itm.patch_list && _itm.patch_list.length > 0) {
+        let filter_patch = _itm.patch_list.filter(_p => _p.count !== 0)
+        _itm.patch_list = filter_patch
+      }
     })
 
 
@@ -290,7 +300,7 @@ module.exports = function init(site) {
 
     where['company.id'] = site.get_company(req).id
 
-     where['$or'] = [{ 'branch_from.code': site.get_branch(req).code }, { 'branch_to.code': site.get_branch(req).code }]
+    where['$or'] = [{ 'branch_from.code': site.get_branch(req).code }, { 'branch_to.code': site.get_branch(req).code }]
 
     if (where['branch_from']) {
       where['branch_from.id'] = where['branch_from'].id;
@@ -503,9 +513,9 @@ module.exports = function init(site) {
                   site.quee('item_transaction - items', Object.assign({}, _itm))
                   _itm.type = 'minus'
                   site.quee('[transfer_branch][stores_items][add_balance]', Object.assign({}, _itm))
-  
+
                 })
-  
+
                 doc.items.forEach((_itm, i) => {
                   _itm.company = doc.company
                   _itm.branch = doc.branch_to
@@ -518,7 +528,7 @@ module.exports = function init(site) {
                   _itm.type = 'sum'
                   site.quee('[transfer_branch][stores_items][add_balance]', Object.assign({}, _itm))
                 })
-  
+
               } else {
                 response.error = err.message
               }

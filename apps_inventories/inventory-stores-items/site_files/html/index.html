@@ -110,7 +110,14 @@
                                             <p>{{_size.size_en}}</p>
                                         </td>
                                         <td class="center blue">{{_size.barcode}}</td>
-                                        <td class="center blue">{{_size.current_count}}</td>
+                                        <td class="center">
+                                            <p class="center bold green"
+                                                ng-show="_size.current_count > 0">
+                                                {{_size.current_count}} </p>
+                                            <p class="bold red center"
+                                                ng-show="_size.current_count == 0 ||_size.current_count < 0">
+                                                {{_size.current_count}} </p>
+                                        </td>
                                         <td class="center blue">{{_size.start_count}}</td>
 
                                     </tr>

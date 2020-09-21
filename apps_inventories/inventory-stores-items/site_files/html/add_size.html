@@ -66,7 +66,13 @@
                                     ng-model="item.validit">
                                 </i-control>
 
-                                <i-checkbox label="##word.work_patch##" ng-model="item.work_patch">
+                                <i-checkbox ng-hide="item.work_serial" label="##word.work_patch##" ng-model="item.work_patch">
+                                </i-checkbox>
+                            </div>
+
+                            <div class="col2">
+
+                                <i-checkbox ng-hide="item.work_patch" label="##word.work_serial##" ng-model="item.work_serial">
                                 </i-checkbox>
                             </div>
 

@@ -279,6 +279,15 @@ app.controller("report_stores_balance", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.viewPatchesList = function (itm,b) {
+    $scope.error = '';
+    $scope.item_barcode = b;
+    $scope.item_patch = itm;
+
+    site.showModal('#patchesListViewModal');
+
+  };
+
   $scope.searchAll = function () {
 
     $scope._search = {};

@@ -276,8 +276,8 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
 
       let max_discount = false;
       let returned_count = false;
-      let patchCount = false;
       let notExistCount = false;
+      let patchCount = false;
       let patch_list = [];
 
       if ($scope.store_out.items && $scope.store_out.items.length > 0) {
@@ -288,7 +288,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
           if (_itemSize.discount.value > _itemSize.discount.max) max_discount = true;
           if (_itemSize.count > _itemSize.r_count) returned_count = true;
 
-          if (_itemSize.work_patch) {
+          if (_itemSize.work_patch || _itemSize.work_serial) {
 
             if (_itemSize.patch_list && _itemSize.patch_list.length > 0) {
 
@@ -317,6 +317,9 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
                       _pl.count = difference;
                       difference = 0;
                     }
+
+                    if (_itemSize.work_serial && _pl.count === 1) _pl.select = true;
+
                   }
                 });
               }
@@ -596,6 +599,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
               total_v_a: _size.total_v_a,
               item_group: _size.item_group,
               work_patch: _size.work_patch,
+              work_serial: _size.work_serial,
               validit: _size.validit,
               size_en: _size.size_en,
               size_units_list: _size.size_units_list,
@@ -924,7 +928,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
                       });
                     };
                     _size.branches_list = [];
-                    if (!foundSize && !foundHold) $scope.store_out.items.unshift(_size);
+                    if (!foundSize && !foundHold) $scope.store_out.items.unshift(_size)
                     else if (foundSize) {
                       $scope.store_out.items.forEach(_item => {
                         if (_item.barcode === _size.barcode) {
@@ -1007,7 +1011,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         if (_itemSize.discount.value > _itemSize.discount.max) max_discount = true;
         if (_itemSize.count > _itemSize.r_count) returned_count = true;
 
-        if (_itemSize.work_patch) {
+        if (_itemSize.work_patch || _itemSize.work_serial) {
 
           if (_itemSize.patch_list && _itemSize.patch_list.length > 0) {
 
@@ -1037,6 +1041,9 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
                     _pl.count = difference;
                     difference = 0;
                   }
+
+                  if (_itemSize.work_serial && _pl.count === 1) _pl.select = true;
+
                 }
               });
             }
@@ -2092,11 +2099,15 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
 
   $scope.patchesList = function (itm) {
     $scope.error = '';
-
     $scope.item_patch = itm;
+    if ($scope.store_out.type && $scope.store_out.type.id == 6) {
 
-    site.showModal('#patchesListModal');
+      site.showModal('#patchesListReturnModal');
 
+    } else {
+
+      site.showModal('#patchesListModal');
+    }
   };
 
   $scope.viewPatchesList = function (itm) {
@@ -2108,6 +2119,42 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
   };
 
 
+  $scope.selectAll = function () {
+    $scope.item_patch.patch_list.forEach(element => {
+      if ($scope.item_patch.$select_all) {
+        element.select = true
+      } else if (!$scope.item_patch.$select_all) {
+        element.select = false
+      }
+    });
+  };
+
+  $scope.exitPatchReturnModal = function (itm) {
+    let bigger = false;
+    let count = 0;
+
+    itm.patch_list.forEach(_pl => {
+      if (itm.work_serial) {
+        if (_pl.select) _pl.count = 1
+        else _pl.count = 0
+      }
+      if (_pl.count > _pl.current_count) bigger = true;
+      count += _pl.count;
+    });
+
+    if (itm.count != count) {
+      $scope.error = '##word.err_patch_count##';
+      return;
+    };
+
+    if (bigger) {
+      $scope.error = '##word.err_patch_current_count##';
+      return;
+    };
+
+    site.hideModal('#patchesListReturnModal');
+    $scope.error = '';
+  };
 
   $scope.exitPatchModal = function (itm) {
     let bigger = false;
@@ -2115,6 +2162,10 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
 
     itm.patch_list.forEach(_pl => {
       if (_pl.count > _pl.current_count) bigger = true;
+      if (itm.work_serial) {
+        if (_pl.select) _pl.count = 1
+        else _pl.count = 0
+      }
     });
 
 
@@ -2203,6 +2254,13 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
       if (i.return_paid.items && i.return_paid.items.length > 0)
         i.return_paid.items.forEach(_item => {
           _item.r_count = _item.count;
+          if (_item.patch_list && _item.patch_list.length > 0) {
+
+            _item.patch_list.forEach(_p => {
+              _p.current_count = _p.count;
+              _p.count = 0;
+            });
+          };
           if (_item.count > 0) $scope.store_out.items.push(_item);
         });
 
@@ -2212,6 +2270,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         $scope.store_out.paid_up = $scope.amount_currency;
 
       }
+      console.log($scope.store_out);
       site.hideModal('#returnedViewModal');
     };
 

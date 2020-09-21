@@ -181,7 +181,6 @@ module.exports = function init(site) {
     stores_dismantle_doc.edit_user_info = site.security.getUserFinger({ $req: req, $res: res })
 
     stores_dismantle_doc.vendor = site.fromJson(stores_dismantle_doc.vendor)
-    stores_dismantle_doc.seasonName = stores_dismantle_doc.seasonName
     stores_dismantle_doc.type = site.fromJson(stores_dismantle_doc.type)
     stores_dismantle_doc.date = new Date(stores_dismantle_doc.date)
 

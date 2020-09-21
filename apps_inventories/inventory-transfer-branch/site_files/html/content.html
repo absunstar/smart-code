@@ -60,7 +60,13 @@
                             </tr>
 
                             <tr ng-repeat="itm in transfer_branch.items">
-                                <td> <br> {{$index + 1}}</td>
+                                <td> <br ng-hide="itm.work_patch || itm.work_serial"> {{$index + 1}}
+                                    <div class="row">
+                                        <i-button label="##word.patch##" ng-show="itm.work_patch || itm.work_serial"
+                                            type="view" ng-click="patchesList(itm)">
+                                        </i-button>
+                                    </div>
+                                </td>
                                 <td> <br> {{itm.name}}</td>
                                 <td> <br> {{itm.barcode}}</td>
                                 <td>

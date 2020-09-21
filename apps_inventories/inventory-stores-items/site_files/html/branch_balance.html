@@ -35,7 +35,13 @@
 
                             </td>
                             <td class="center red">{{item.average_cost}}</td>
-                            <td class="center blue">{{item.current_count}}</td>
+                            <td class="center">
+                                <p class="center bold green" ng-show="item.current_count > 0">
+                                    {{item.current_count}} </p>
+                                <p class="bold red center" ng-show="item.current_count == 0 ||item.current_count < 0">
+                                    {{item.current_count}} </p>
+                            </td>
+
                             <td class="center blue">{{item.start_count}}</td>
                             <td class="center">
                                 <div class="row">
@@ -92,8 +98,8 @@
                         <tr>
                             <th>##word.unit##</th>
                             <th>##word.unit_barcode##</th>
-                            <th>##word.stores_start_balance##</th>
                             <th>##word.stores_current_balance##</th>
+                            <th>##word.stores_start_balance##</th>
                             <th>##word.average_cost##</th>
                         </tr>
 
@@ -105,11 +111,14 @@
                             <td>
                                 <p class="bold center"> {{c.barcode}} </p>
                             </td>
+
                             <td>
-                                <p class="bold center"> {{c.start_count}} </p>
+                                <p class="center bold green" ng-show="c.current_count > 0"> {{c.current_count}} </p>
+                                <p class="bold blue center" ng-show="c.current_count = 0 || c.current_count < 0">
+                                    {{c.current_count}} </p>
                             </td>
                             <td>
-                                <p class="bold blue center"> {{c.current_count}} </p>
+                                <p class="bold center"> {{c.start_count}} </p>
                             </td>
                             <td>
                                 <p class="bold center"> {{c.average_cost}} </p>

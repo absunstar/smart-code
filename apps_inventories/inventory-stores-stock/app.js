@@ -120,7 +120,6 @@ module.exports = function init(site) {
     stores_stock_doc.edit_user_info = site.security.getUserFinger({ $req: req, $res: res })
 
     // stores_stock_doc.vendor = site.fromJson(stores_stock_doc.vendor)
-    // stores_stock_doc.seasonName = stores_stock_doc.seasonName
     // stores_stock_doc.type = site.fromJson(stores_stock_doc.type)
     // stores_stock_doc.date = new Date(stores_stock_doc.date)
 

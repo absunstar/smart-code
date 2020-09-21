@@ -430,6 +430,11 @@
         "ar": "عدد الباتشات لا تساوي عدد الصنف"
     },
     {
+        "name": "err_patch_date",
+        "en": "Expiry date must be greater than or equal to production date",
+        "ar": "تاريخ الإنتهاء يجب أن يكون أكبر من أو يساوي تاريخ الإنتاج"
+    },
+    {
         "name": "patch_number",
         "en": "Patch Number",
         "ar": "رقم التشغيلة"

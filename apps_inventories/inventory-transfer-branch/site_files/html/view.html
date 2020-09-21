@@ -1,6 +1,6 @@
 <div ng-hide="busy" class="row" fixed>
 
-   
+
     <div class="row hide">
         <div class="col6 right">
             <div class="row right" ng-repeat="i in defaultSettings.printer_program.invoice_header">
@@ -14,7 +14,7 @@
             </div>
         </div>
     </div>
-    
+
     <div class="row hide center">
         <img class="logoPrint" ng-src="{{defaultSettings.printer_program.invoice_logo}}" />
     </div>
@@ -90,12 +90,16 @@
             </tr>
 
             <tr ng-repeat="itm in transfer_branch.items">
-                <td class="center w50 blue">{{$index + 1}}</td>
-                <td class="center w150">{{itm.barcode}}</td>
-                <td class="center w250">{{itm.name}}</td>
-                <td class="center w100">{{itm.unit.name}}</td>
-                <td class="center w50">{{itm.count}}</td>
-                <td class="center w100 hide">{{itm.total_price}}</td>
+                <td class="center blue">{{$index + 1}}
+                    <i-button label="##word.patch##" class="not-print" ng-show="itm.work_patch || itm.work_serial"
+                        type="view" ng-click="viewPatchesList(itm)">
+                    </i-button>
+                </td>
+                <td class="center">{{itm.barcode}}</td>
+                <td class="center">{{itm.name}}</td>
+                <td class="center">{{itm.unit.name}}</td>
+                <td class="center">{{itm.count}}</td>
+                <td class="center hide">{{itm.total_price}}</td>
             </tr>
         </table>
     </div>
