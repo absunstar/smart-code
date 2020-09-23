@@ -754,6 +754,8 @@ module.exports = function init(site) {
   site.post("/api/stores_items/delete", (req, res) => {
     let response = {}
     response.done = false
+
+
     if (!req.session.user) {
       response.error = 'Please Login First'
       res.json(response)
@@ -775,7 +777,7 @@ module.exports = function init(site) {
       if (callback == true) {
         response.error = 'Cant Delete Its Exist In Other Transaction'
         res.json(response)
-
+        return
       } else {
         if (id) {
           $stores_items.delete({
@@ -822,7 +824,6 @@ module.exports = function init(site) {
   })
 
   site.post("/api/stores_items/all", (req, res) => {
-    //  let data = {};
     let response = {}
 
     if (!req.session.user) {
@@ -832,7 +833,12 @@ module.exports = function init(site) {
     }
 
     let where = req.body.where || {}
+    let store_id = where['store_id']
+    let unit_id = where['unit_id']
+    let batcode = where['barcode']
     let search = req.body.search
+    let limit = where.limit || undefined
+
 
     if (search) {
       where.$or = []
@@ -894,6 +900,10 @@ module.exports = function init(site) {
       delete where['barcode']
     }
 
+    if (where && where['store_id']) {
+      delete where['store_id']
+    }
+
     if (where['item_group']) {
       where['item_group.id'] = where['item_group'].id;
       delete where['item_group']
@@ -904,6 +914,10 @@ module.exports = function init(site) {
       delete where.price
     }
 
+    if (where && where['limit']) {
+      delete where['limit']
+    }
+
     if (where && where.cost) {
       where['sizes.cost'] = site.toNumber(where.cost)
       delete where.cost
@@ -912,7 +926,7 @@ module.exports = function init(site) {
     response.done = false
     $stores_items.findMany({
       select: req.body.select,
-      limit: req.body.limit,
+      limit: limit,
       where: where,
       sort: {
         id: -1
@@ -921,9 +935,29 @@ module.exports = function init(site) {
     }, (err, docs, count) => {
       if (!err) {
         response.done = true
+        let patch_list = []
+        if (store_id && batcode && docs && docs.length === 1) {
+          if (docs[0].sizes && docs[0].sizes.length > 0)
+            docs[0].sizes.forEach(_size => {
+              if (_size.branches_list && _size.branches_list.length > 0)
+                _size.branches_list.forEach(_branch => {
+                  if (_branch.stores_list && _branch.stores_list.length > 0)
+                    _branch.stores_list.forEach(_store => {
+                      if (_store.store && _store.store.id == store_id)
+                        size_units_list.forEach(_unit => {
+                          if (_unit.id == unit_id) {
+                            patch_list = _unit.patch_list
+                          }
+
+                        });
+                    });
+                });
+            });
+        }
 
         response.list = docs
-        response.count = count
+        response.patch_list = patch_list
+        response.count = docs.length
       } else {
         response.error = err.message
       }

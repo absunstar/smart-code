@@ -505,9 +505,8 @@ module.exports = function init(site) {
     }
 
     let where = req.body.where || {}
-
+    let limit = where.limit || undefined
     let search = req.body.search || ''
-
 
     if (search) {
       where.$or = []
@@ -566,6 +565,11 @@ module.exports = function init(site) {
     if (where && where['number']) {
       where['number'] = where['number']
     }
+
+    if (where && where['limit']) {
+      delete where['limit']
+    }
+
 
     if (where && where['supply_number']) {
       where['supply_number'] = site.get_RegExp(where['supply_number'], 'i')
@@ -684,14 +688,14 @@ module.exports = function init(site) {
 
     $stores_out.findMany({
       select: req.body.select || {},
-      limit: req.body.limit,
+      limit: limit,
       where: where,
       sort: { id: -1 }
     }, (err, docs, count) => {
       if (!err) {
         response.done = true
         response.list = docs
-        response.count = count
+        response.count = docs.length
 
       } else {
         response.error = err.message

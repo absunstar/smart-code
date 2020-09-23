@@ -184,7 +184,7 @@ app.controller("safes_payments", function ($scope, $http) {
   };
 
   $scope.loadAll = function (where) {
-    $scope.list = {};
+    $scope.list = [];
     $scope.busy = true;
     $http({
       method: "POST",

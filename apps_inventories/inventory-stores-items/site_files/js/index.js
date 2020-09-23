@@ -108,6 +108,11 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
   $scope.loadAll = function (where) {
     $scope.busy = true;
     $scope.list = [];
+    
+    if (!where) {
+      where = { limit: 100 }
+    }
+
     $http({
       method: "POST",
       url: "/api/stores_items/all",
@@ -120,7 +125,7 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
         if (response.data.done && response.data.list.length > 0) {
           $scope.list = response.data.list;
           $scope.count = response.data.count;
-          if (where) {
+          if (where && (where.barcode || where.size || where.size_en)) {
 
             $scope.hideObj = {
               barcode: where.barcode,

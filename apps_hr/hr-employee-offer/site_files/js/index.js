@@ -32,7 +32,6 @@ app.controller("employee_offer", function ($scope, $http) {
 
 
   $scope.loadSafes = function () {
-    $scope.list = {};
     $scope.busy = true;
     $http({
       method: "POST",

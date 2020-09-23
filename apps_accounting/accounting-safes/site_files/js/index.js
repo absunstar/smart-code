@@ -31,7 +31,7 @@ app.controller("safes", function ($scope, $http) {
 
 
   $scope.loadAll = function (where, limit) {
-    $scope.list = {};
+    $scope.list = [];
     $scope.busy = true;
     $http({
       method: "POST",

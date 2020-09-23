@@ -742,7 +742,7 @@ app.controller("units_switch", function ($scope, $http, $timeout) {
 
   $scope.loadAll = function (where) {
     $scope.error = '';
-    $scope.list = {};
+    $scope.list = [];
     $scope.busy = true;
     $http({
       method: "POST",

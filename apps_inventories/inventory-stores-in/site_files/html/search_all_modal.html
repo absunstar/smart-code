@@ -19,7 +19,10 @@
                             <i-date2 class="col3" ng-model="search.dateTo" type="date"
                                 label="##word.amounts_in_date_to##">
                             </i-date2>
-<!-- 
+
+                            <i-control class="col2" ng-model="search.limit" label="##word.limit##" type="number">
+                            </i-control>
+                            <!-- 
                             <i-date2 class="col3" ng-model="search.supply_date" label="##word.stores_in_supply_date##">
                             </i-date2> -->
                         </div>
@@ -45,8 +48,7 @@
                                 ng-model="search.shift_code">
                             </i-control>
 
-                            <i-control class="col3" ng-model="search.number"
-                                label="##word.stores_in_id##">
+                            <i-control class="col3" ng-model="search.number" label="##word.stores_in_id##">
                             </i-control>
 
                         </div>
@@ -66,7 +68,7 @@
                             </i-list>
 
                         </div>
-                      <!--   <div class="row">
+                        <!--   <div class="row">
                             <i-control class="col2" ng-model="search.total_discount" type="number"
                                 label="##word.stores_in_total_discount##"></i-control>
                             <i-control class="col2" ng-model="search.total_tax" type="number"

@@ -167,6 +167,7 @@ module.exports = function init(site) {
       return
     }
 
+    response.done = false
 
     let where = req.body.where || {}
 
@@ -181,9 +182,7 @@ module.exports = function init(site) {
     if (where && where.note) {
       where['note'] = site.get_RegExp(where['note'], 'i');
     }
-    response.done = false
 
-    
     where['company.id'] = site.get_company(req).id
 
     if (req.body.branchTo) {

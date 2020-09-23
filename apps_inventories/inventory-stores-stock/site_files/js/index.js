@@ -738,7 +738,7 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
 
   $scope.loadAll = function (where) {
     $scope.error = '';
-    $scope.list = {};
+    $scope.list = [];
     $scope.busy = true;
     $http({
       method: "POST",

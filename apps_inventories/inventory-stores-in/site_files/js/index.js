@@ -102,7 +102,6 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
           $scope.account_invoices = response.data.doc;
           site.hideModal('#accountInvoiceModal');
           $scope.printAccountInvoive();
-          $scope.loadAll();
         } else $scope.error = response.data.error;
       },
       function (err) {
@@ -858,7 +857,6 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
               $scope.addAccountInvoice(account_invoices)
             }
 
-            $scope.loadAll();
             $scope.newStoreIn();
 
           } else {
@@ -1414,7 +1412,6 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           site.hideModal('#updateStoreInModal');
-          $scope.loadAll();
         } else {
           $scope.error = '##word.error##';
         }
@@ -1499,7 +1496,6 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
           function (response) {
             $scope.busy = false;
             if (response.data.done) {
-              $scope.loadAll();
             } else {
               $scope.error = '##word.error##';
               if (response.data.error.like('*OverDraft Not*')) {
@@ -1864,7 +1860,6 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
 
   $scope.showReturnedStoreIn = function (ev) {
     $scope.error = '';
-    $scope.list = {};
     if (ev.which === 13) {
       $scope.busy = true;
       $http({
@@ -1933,7 +1928,13 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
 
   $scope.loadAll = function (where) {
     $scope.error = '';
-    $scope.list = {};
+    $scope.list = [];
+
+
+    if (!where) {
+      where = { limit: 100 }
+    }
+
     $scope.busy = true;
     $http({
       method: "POST",

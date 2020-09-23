@@ -680,7 +680,6 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
             if (response.data.list.length > 0 && $scope.item.search_item_name) {
               let foundSize = false;
               $scope.item.sizes = $scope.item.sizes || [];
-
               response.data.list.forEach(_item => {
 
                 if (_item.sizes && _item.sizes.length > 0)
@@ -1093,7 +1092,6 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           site.hideModal('#updateStoreOutModal');
-          $scope.loadAll();
         } else {
           $scope.error = '##word.error##';
         }
@@ -1329,7 +1327,12 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
 
   $scope.loadAll = function (where) {
     $scope.error = '';
-    $scope.list = {};
+    $scope.list = [];
+
+    if (!where) {
+      where = { limit: 100 }
+    }
+
     $scope.busy = true;
     $http({
       method: "POST",
@@ -1446,7 +1449,6 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
             site.hideModal('#accountInvoiceModal');
             $scope.account_invoices = response.data.doc;
             $scope.printAccountInvoive();
-            $scope.loadAll();
           } else $scope.error = response.data.error;
         },
         function (err) {
@@ -1766,7 +1768,6 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           site.hideModal('#customerAddModal');
-          $scope.count = $scope.list.length;
         } else {
           $scope.error = 'Please Login First';
         }
@@ -1969,7 +1970,6 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
           function (response) {
             $scope.busy = false;
             if (response.data.done) {
-              $scope.loadAll();
             } else {
               $scope.error = '##word.error##';
               if (response.data.error.like('*OverDraft Not*')) {
@@ -2210,7 +2210,6 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
 
   $scope.showReturnedStoreOut = function (ev) {
     $scope.error = '';
-    $scope.list = {};
     if (ev.which === 13) {
       $scope.busy = true;
       $http({
