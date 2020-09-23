@@ -161,7 +161,6 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
           $scope.busy = false;
           if (response.data.done) {
             site.hideModal('#addTransferBranchModal');
-            $scope.loadAll();
 
           } else $scope.error = response.data.error;
 
@@ -696,7 +695,6 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
           $scope.busy = false;
           if (response.data.done) {
             site.hideModal('#updateTransferBranchModal');
-            $scope.loadAll();
           } else {
             $scope.error = '##word.error##';
           }
@@ -728,7 +726,6 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
           function (response) {
             $scope.busy = false;
             if (response.data.done) {
-              $scope.loadAll();
             } else {
               $scope.error = '##word.error##';
               if (response.data.error.like('*OverDraft Not*')) {
@@ -933,6 +930,12 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
   $scope.loadAll = function (where) {
     $scope.error = '';
     $scope.list = [];
+
+    if (!where || !Object.keys(where).length) {
+      where = { limit: 100 }
+    }
+
+
     $scope.busy = true;
     $http({
       method: "POST",
@@ -987,7 +990,7 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
     $scope.error = '';
   };
 
-  
+
   $scope.patchesList = function (itm) {
     $scope.error = '';
     $scope.item_patch = itm;

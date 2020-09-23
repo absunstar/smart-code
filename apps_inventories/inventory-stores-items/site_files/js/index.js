@@ -108,8 +108,8 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
   $scope.loadAll = function (where) {
     $scope.busy = true;
     $scope.list = [];
-    
-    if (!where) {
+
+    if (!where || !Object.keys(where).length) {
       where = { limit: 100 }
     }
 

@@ -297,6 +297,7 @@ module.exports = function init(site) {
     let response = {}
     response.done = false
     let where = req.body.where || {}
+    let limit = where.limit || undefined
 
     where['company.id'] = site.get_company(req).id
 
@@ -342,6 +343,11 @@ module.exports = function init(site) {
       where['items.ticket_code'] = site.get_RegExp(where['items.ticket_code'], 'i')
     }
 
+    if (where && where['limit']) {
+      delete where['limit']
+    }
+
+
     if (where.date) {
       let d1 = site.toDate(where.date)
       let d2 = site.toDate(where.date)
@@ -382,16 +388,17 @@ module.exports = function init(site) {
       delete where['barcode']
     }
 
+
     $transfer_branch.findMany({
       select: req.body.select || {},
-      limit: req.body.limit,
+      limit: limit,
       where: where,
       sort: { id: -1 }
     }, (err, docs, count) => {
       if (!err) {
         response.done = true
         response.list = docs
-        response.count = count
+        response.count = docs.length
 
       } else {
         response.error = err.message

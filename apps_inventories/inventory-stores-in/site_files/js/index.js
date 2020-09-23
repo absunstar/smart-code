@@ -1931,7 +1931,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
     $scope.list = [];
 
 
-    if (!where) {
+    if (!where || !Object.keys(where).length) {
       where = { limit: 100 }
     }
 

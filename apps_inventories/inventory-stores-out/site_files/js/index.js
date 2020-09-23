@@ -1329,7 +1329,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.list = [];
 
-    if (!where) {
+    if (!where || !Object.keys(where).length) {
       where = { limit: 100 }
     }
 
@@ -2100,14 +2100,42 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
   $scope.patchesList = function (itm) {
     $scope.error = '';
     $scope.item_patch = itm;
-    if ($scope.store_out.type && $scope.store_out.type.id == 6) {
 
-      site.showModal('#patchesListReturnModal');
+    $http({
+      method: "POST",
+      url: "/api/stores_items/all",
+      data: {
+        where: {
+          store_id: $scope.store_out.store.id,
+          unit_id: itm.unit.id,
+          barcode: itm.barcode
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
 
-    } else {
+          if ($scope.store_out.type && $scope.store_out.type.id == 6) {
 
-      site.showModal('#patchesListModal');
-    }
+            site.showModal('#patchesListReturnModal');
+
+          } else {
+
+            if (response.data.patch_list.length > 0 && $scope.item_patch.patch_list && $scope.item_patch.patch_list.length > 0) {
+
+              $scope.item_patch.patch_list.forEach(_patch1 => {
+                
+              });
+
+              site.showModal('#patchesListModal');
+            }
+
+          }
+        }
+      })
+
+
   };
 
   $scope.viewPatchesList = function (itm) {
