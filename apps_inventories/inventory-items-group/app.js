@@ -182,16 +182,17 @@ module.exports = function init(site) {
 
 
   site.post("/api/items_group/all", (req, res) => {
-  
+    let response = {
+      done: false
+    }
+
     if (!req.session.user) {
       response.error = 'Please Login First'
       res.json(response)
       return
     }
   
-    let response = {
-      done: false
-    }
+  
     
     let where = req.body.where || {}
 

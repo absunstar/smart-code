@@ -634,12 +634,12 @@ module.exports = function init(site) {
 
   site.post("/api/stores_assemble/un_post", (req, res) => {
     let response = {}
-    response.done = false
     if (!req.session.user) {
       response.error = 'Please Login First'
       res.json(response)
       return
     }
+    response.done = false
     $stores_assemble.findMany({
       select: req.body.select || {},
       where: { 'company.id': site.get_company(req).id },
