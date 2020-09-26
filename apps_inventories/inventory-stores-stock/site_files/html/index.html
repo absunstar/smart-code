@@ -17,6 +17,7 @@
     <div id="main-layout" class="container">
         <div class="row ">
             <div class="row" ng-controller="stores_stock">
+
                 <div x-permissions="stores_stock_add || stores_stock_manage"
                     x-import="inventory-stores-stock/add_modal.html"></div>
 
@@ -37,6 +38,9 @@
 
                 <div x-permissions="stores_stock_settlement || stores_stock_manage"
                     x-import="inventory-stores-stock/settlement_items.html"></div>
+
+                <div x-import="inventory-stores-stock/patches_list.html"></div>
+
                 <div class="row">
                     <h1 class="bold text-center"> ##word.stores_stock## </h1>
                 </div>
@@ -84,7 +88,7 @@
                                 type="edit" label="##word.update##" ng-click="edit(c)"></i-button>
 
                             <i-button x-permissions=" stores_stock_hold || stores_stock_manage" ng-show="c.status == 1"
-                                label="##word.stores_stock_holding##" ng-click="c.status = 2 ; update(c)"></i-button>
+                                label="##word.stores_stock_holding##" ng-click="c.status = 2 ; update(c,'hold')"></i-button>
 
                             <i-button x-permissions="stores_stock_settlement || stores_stock_manage"
                                 ng-show="c.status == 2 || c.status == 3" type="edit"

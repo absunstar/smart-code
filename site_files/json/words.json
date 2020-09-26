@@ -416,13 +416,13 @@
     },
     {
         "name": "system_transfer_items_menus",
-        "en": "Transfer Items Between Branches",
-        "ar": "تحويل أصناف بين الفروع"
+        "en": "Transfer Items Branches",
+        "ar": "تحويل أصناف"
     },
     {
         "name": "system_register_transfer_items",
-        "en": "Add Transfer Items Between Branches",
-        "ar": " إضافة تحويل أصناف بين الفروع"
+        "en": "Add Transfer Items Branches",
+        "ar": " إضافة تحويل أصناف"
     },
     {
         "name": "transaction_type",

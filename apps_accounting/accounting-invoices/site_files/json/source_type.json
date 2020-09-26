@@ -48,5 +48,10 @@
         "id": 10,
         "en": "Recharge Customer Balance",
         "ar": "دفعة عميل مقدمة"
+    },
+    {
+        "id": 11,
+        "en": "Reward Employees",
+        "ar": "مكافاّت الموظفين"
     }
 ]

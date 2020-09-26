@@ -1046,20 +1046,44 @@ module.exports = function init(site) {
   })
 
 
-  //  site.getStoresIn = function (req, callback) {
-  //   callback = callback || {};
+  site.getStoresIn = function (req, callback) {
+    callback = callback || {};
 
-  //   let where = req.data.where || {};
-  //   where['company.id'] = site.get_company(req).id
-  //   where['branch.code'] = site.get_branch(req).code
-  //   where['invoice'] = false
-  //   $stores_in.findOne({
-  //     where: where
-  //   }, (err, doc) => {
-  //     if (!err && doc)
-  //       callback(doc)
-  //     else callback(false)
-  //   })
-  // } 
+    where['company.id'] = req.companyId
+    where['branch.code'] = req.branchCode
+
+    if (where.date) {
+      let d1 = site.toDate(where.date)
+      let d2 = site.toDate(where.date)
+      d2.setDate(d2.getDate() + 1)
+      where.date = {
+        '$gte': d1,
+        '$lte': d2
+      }
+    } else if (where && where.date_from) {
+      let d1 = site.toDate(where.date_from)
+      let d2 = site.toDate(where.date_to)
+      d2.setDate(d2.getDate() + 1);
+      where.date = {
+        '$gte': d1,
+        '$lte': d2
+      }
+      delete where.date_from
+      delete where.date_to
+    }
+
+    if (where['shift_code']) {
+      where['shift.code'] = where['shift_code']
+      delete where['shift_code']
+    }
+
+    $stores_in.findOne({
+      where: where
+    }, (err, doc) => {
+      if (!err && doc)
+        callback(doc)
+      else callback(false)
+    })
+  }
 
 }

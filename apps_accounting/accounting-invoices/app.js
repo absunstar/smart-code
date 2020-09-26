@@ -234,6 +234,11 @@ module.exports = function init(site) {
               sum: true
             }
             site.quee('[customer][account_invoice][balance]', Object.assign({}, customerBalance))
+
+          } else if (doc.source_type.id == 11) {
+            paid_value.operation = { ar: 'مكافأة موظف', en: 'Reward Employees' }
+            paid_value.transition_type = 'out'
+
           }
 
           if (doc.safe) site.quee('[amounts][safes][+]', Object.assign({}, paid_value))
@@ -426,7 +431,7 @@ module.exports = function init(site) {
     account_invoices_doc.edit_user_info = site.security.getUserFinger({ $req: req, $res: res })
     account_invoices_doc.total_paid_up = 0
 
-    if (account_invoices_doc.payment_list && account_invoices_doc.payment_list.length == 1){
+    if (account_invoices_doc.payment_list && account_invoices_doc.payment_list.length == 1) {
       account_invoices_doc.payment_list = [{
         date: account_invoices_doc.date,
         posting: account_invoices_doc.posting ? true : false,
@@ -438,200 +443,210 @@ module.exports = function init(site) {
       }]
     }
 
-      account_invoices_doc.payment_list.forEach(_payment_list => {
-        if (_payment_list.currency)
-          account_invoices_doc.total_paid_up += (_payment_list.paid_up * _payment_list.currency.ex_rate)
+    account_invoices_doc.payment_list.forEach(_payment_list => {
+      if (_payment_list.currency)
+        account_invoices_doc.total_paid_up += (_payment_list.paid_up * _payment_list.currency.ex_rate)
 
-        let obj = {
-          value: _payment_list.paid_up,
-          safe: _payment_list.safe,
-          date: _payment_list.date,
-          company: account_invoices_doc.company,
-          branch: account_invoices_doc.branch,
-          code: account_invoices_doc.code,
-          description: account_invoices_doc.description,
-          payment_method: _payment_list.payment_method,
-          currency: _payment_list.currency,
-          shift: {
-            id: account_invoices_doc.shift.id,
-            code: account_invoices_doc.shift.code,
-            name: account_invoices_doc.shift.name
+      let obj = {
+        value: _payment_list.paid_up,
+        safe: _payment_list.safe,
+        date: _payment_list.date,
+        company: account_invoices_doc.company,
+        branch: account_invoices_doc.branch,
+        code: account_invoices_doc.code,
+        description: account_invoices_doc.description,
+        payment_method: _payment_list.payment_method,
+        currency: _payment_list.currency,
+        shift: {
+          id: account_invoices_doc.shift.id,
+          code: account_invoices_doc.shift.code,
+          name: account_invoices_doc.shift.name
+        }
+      }
+
+      if (account_invoices_doc.posting) {
+
+        _payment_list.posting = true
+
+        if (account_invoices_doc.source_type.id == 1) {
+
+          if (account_invoices_doc.invoice_type && account_invoices_doc.invoice_type.id == 4) {
+
+            obj.operation = { ar: 'مرتجع فاتورة مشتريات', en: 'Return Purchase Invoice' }
+            obj.value = (-Math.abs(obj.value))
+          } else {
+
+            obj.operation = { ar: 'فاتورة مشتريات', en: 'Purchase Invoice' }
           }
+
+          obj.transition_type = 'out'
+
+        } else if (account_invoices_doc.source_type.id == 2) {
+          if (account_invoices_doc.invoice_type && account_invoices_doc.invoice_type.id == 6) {
+
+            obj.value = (-Math.abs(obj.value))
+            obj.operation = { ar: 'مرتجع فاتورة مبيعات', en: 'Return Sales Invoice' }
+            if (_payment_list.payment_method && _payment_list.payment_method.id == 5) {
+
+              let customerPay = _payment_list.paid_up * _payment_list.currency.ex_rate
+              let customerBalance = {
+                id: account_invoices_doc.customer.id,
+                paid_up: customerPay,
+                sum: true
+              }
+              site.quee('[customer][account_invoice][balance]', Object.assign({}, customerBalance))
+            }
+
+          } else {
+
+            obj.operation = { ar: 'فاتورة مبيعات', en: 'Sales Invoice' }
+            if (_payment_list.payment_method && _payment_list.payment_method.id == 5) {
+
+              let customerPay = _payment_list.paid_up * _payment_list.currency.ex_rate
+              let customerBalance = {
+                id: account_invoices_doc.customer.id,
+                paid_up: customerPay,
+                minus: true
+              }
+              site.quee('[customer][account_invoice][balance]', Object.assign({}, customerBalance))
+            }
+          }
+
+          obj.transition_type = 'in'
+
+        } else if (account_invoices_doc.source_type.id == 3) {
+          obj.operation = { ar: 'فاتورة شاشة الطلبات', en: 'Orders Screen Invoice' }
+          obj.transition_type = 'in'
+
+        } else if (account_invoices_doc.source_type.id == 4) {
+          obj.operation = { ar: 'فاتورة طلب خدمة', en: 'Request Service Invoice' }
+          obj.transition_type = 'in'
+          site.call('[account_invoices][request_service][+]', Object.assign({}, account_invoices_doc.invoice_id))
+
+        } else if (account_invoices_doc.source_type.id == 5) {
+          obj.operation = { ar: 'فاتورة حجز قاعة', en: 'Book Hall Invoice' }
+          obj.transition_type = 'in'
+          site.call('[account_invoices][book_hall][+]', Object.assign({}, account_invoices_doc.invoice_id))
+
+        } else if (account_invoices_doc.source_type.id == 8) {
+          obj.operation = { ar: 'سند قبض', en: 'Amount In' }
+          obj.transition_type = 'in'
+
+        } else if (account_invoices_doc.source_type.id == 9) {
+          obj.operation = { ar: 'سند صرف', en: 'Amount Out' }
+          obj.transition_type = 'out'
+
+        } else if (account_invoices_doc.source_type.id == 10) {
+          obj.operation = { ar: 'دفعة عميل مقدمة', en: 'Recharge Customer Balance' }
+          obj.transition_type = 'in'
+          let customerPay = _payment_list.paid_up * _payment_list.currency.ex_rate
+          let customerBalance = {
+            id: account_invoices_doc.customer.id,
+            paid_up: customerPay,
+            sum: true
+          }
+          site.quee('[customer][account_invoice][balance]', Object.assign({}, customerBalance))
+
+        } else if (account_invoices_doc.source_type.id == 11) {
+          obj.operation = { ar: 'مكافأة موظف', en: 'Reward Employees' }
+          obj.transition_type = 'out'
+
         }
 
-        if (account_invoices_doc.posting) {
 
-          _payment_list.posting = true
+      } else {
+        _payment_list.posting = false
 
-          if (account_invoices_doc.source_type.id == 1) {
+        if (account_invoices_doc.source_type.id == 1) {
 
-            if (account_invoices_doc.invoice_type && account_invoices_doc.invoice_type.id == 4) {
+          if (account_invoices_doc.invoice_type && account_invoices_doc.invoice_type.id == 4) {
+            obj.operation = { ar: 'فك ترحيل مرتجع فاتورة مشتريات', en: 'Un Post Return Purchase Invoice' }
 
-              obj.operation = { ar: 'مرتجع فاتورة مشتريات', en: 'Return Purchase Invoice' }
-              obj.value = (-Math.abs(obj.value))
-            } else {
+          } else {
 
-              obj.operation = { ar: 'فاتورة مشتريات', en: 'Purchase Invoice' }
-            }
-
-            obj.transition_type = 'out'
-
-          } else if (account_invoices_doc.source_type.id == 2) {
-            if (account_invoices_doc.invoice_type && account_invoices_doc.invoice_type.id == 6) {
-
-              obj.value = (-Math.abs(obj.value))
-              obj.operation = { ar: 'مرتجع فاتورة مبيعات', en: 'Return Sales Invoice' }
-              if (_payment_list.payment_method && _payment_list.payment_method.id == 5) {
-
-                let customerPay = _payment_list.paid_up * _payment_list.currency.ex_rate
-                let customerBalance = {
-                  id: account_invoices_doc.customer.id,
-                  paid_up: customerPay,
-                  sum: true
-                }
-                site.quee('[customer][account_invoice][balance]', Object.assign({}, customerBalance))
-              }
-
-            } else {
-
-              obj.operation = { ar: 'فاتورة مبيعات', en: 'Sales Invoice' }
-              if (_payment_list.payment_method && _payment_list.payment_method.id == 5) {
-
-                let customerPay = _payment_list.paid_up * _payment_list.currency.ex_rate
-                let customerBalance = {
-                  id: account_invoices_doc.customer.id,
-                  paid_up: customerPay,
-                  minus: true
-                }
-                site.quee('[customer][account_invoice][balance]', Object.assign({}, customerBalance))
-              }
-            }
-
-            obj.transition_type = 'in'
-
-          } else if (account_invoices_doc.source_type.id == 3) {
-            obj.operation = { ar: 'فاتورة شاشة الطلبات', en: 'Orders Screen Invoice' }
-            obj.transition_type = 'in'
-
-          } else if (account_invoices_doc.source_type.id == 4) {
-            obj.operation = { ar: 'فاتورة طلب خدمة', en: 'Request Service Invoice' }
-            obj.transition_type = 'in'
-            site.call('[account_invoices][request_service][+]', Object.assign({}, account_invoices_doc.invoice_id))
-
-          } else if (account_invoices_doc.source_type.id == 5) {
-            obj.operation = { ar: 'فاتورة حجز قاعة', en: 'Book Hall Invoice' }
-            obj.transition_type = 'in'
-            site.call('[account_invoices][book_hall][+]', Object.assign({}, account_invoices_doc.invoice_id))
-
-          } else if (account_invoices_doc.source_type.id == 8) {
-            obj.operation = { ar: 'سند قبض', en: 'Amount In' }
-            obj.transition_type = 'in'
-
-          } else if (account_invoices_doc.source_type.id == 9) {
-            obj.operation = { ar: 'سند صرف', en: 'Amount Out' }
-            obj.transition_type = 'out'
-
-          } else if (account_invoices_doc.source_type.id == 10) {
-            obj.operation = { ar: 'دفعة عميل مقدمة', en: 'Recharge Customer Balance' }
-            obj.transition_type = 'in'
-            let customerPay = _payment_list.paid_up * _payment_list.currency.ex_rate
-            let customerBalance = {
-              id: account_invoices_doc.customer.id,
-              paid_up: customerPay,
-              sum: true
-            }
-            site.quee('[customer][account_invoice][balance]', Object.assign({}, customerBalance))
+            obj.value = (-Math.abs(obj.value))
+            obj.operation = { ar: 'فك ترحيل فاتورة مشتريات', en: 'Un Post Purchase Invoice' }
           }
 
+          obj.transition_type = 'out'
 
-        } else {
-          _payment_list.posting = false
+        } else if (account_invoices_doc.source_type.id == 2) {
+          if (account_invoices_doc.invoice_type && account_invoices_doc.invoice_type.id == 6) {
 
-          if (account_invoices_doc.source_type.id == 1) {
-
-            if (account_invoices_doc.invoice_type && account_invoices_doc.invoice_type.id == 4) {
-              obj.operation = { ar: 'فك ترحيل مرتجع فاتورة مشتريات', en: 'Un Post Return Purchase Invoice' }
-
-            } else {
-
-              obj.value = (-Math.abs(obj.value))
-              obj.operation = { ar: 'فك ترحيل فاتورة مشتريات', en: 'Un Post Purchase Invoice' }
-            }
-
-            obj.transition_type = 'out'
-
-          } else if (account_invoices_doc.source_type.id == 2) {
-            if (account_invoices_doc.invoice_type && account_invoices_doc.invoice_type.id == 6) {
-
-              obj.operation = { ar: 'فك ترحيل مرتجع فاتورة مبيعات', en: 'Un Post Return Sales Invoice' }
-              if (_payment_list.payment_method && _payment_list.payment_method.id == 5) {
-                let customerPay = _payment_list.paid_up * _payment_list.currency.ex_rate
-                let customerBalance = {
-                  id: account_invoices_doc.customer.id,
-                  paid_up: customerPay,
-                  minus: true
-                }
-                site.quee('[customer][account_invoice][balance]', Object.assign({}, customerBalance))
+            obj.operation = { ar: 'فك ترحيل مرتجع فاتورة مبيعات', en: 'Un Post Return Sales Invoice' }
+            if (_payment_list.payment_method && _payment_list.payment_method.id == 5) {
+              let customerPay = _payment_list.paid_up * _payment_list.currency.ex_rate
+              let customerBalance = {
+                id: account_invoices_doc.customer.id,
+                paid_up: customerPay,
+                minus: true
               }
+              site.quee('[customer][account_invoice][balance]', Object.assign({}, customerBalance))
+            }
 
-            } else {
-              obj.value = (-Math.abs(obj.value))
-              obj.operation = { ar: 'فك ترحيل فاتورة مبيعات', en: 'Un Post Sales Invoice' }
-              if (_payment_list.payment_method && _payment_list.payment_method.id == 5) {
+          } else {
+            obj.value = (-Math.abs(obj.value))
+            obj.operation = { ar: 'فك ترحيل فاتورة مبيعات', en: 'Un Post Sales Invoice' }
+            if (_payment_list.payment_method && _payment_list.payment_method.id == 5) {
 
-                let customerPay = _payment_list.paid_up * _payment_list.currency.ex_rate
-                let customerBalance = {
-                  id: account_invoices_doc.customer.id,
-                  paid_up: customerPay,
-                  sum: true
-                }
-                site.quee('[customer][account_invoice][balance]', Object.assign({}, customerBalance))
+              let customerPay = _payment_list.paid_up * _payment_list.currency.ex_rate
+              let customerBalance = {
+                id: account_invoices_doc.customer.id,
+                paid_up: customerPay,
+                sum: true
               }
-
+              site.quee('[customer][account_invoice][balance]', Object.assign({}, customerBalance))
             }
 
-            obj.transition_type = 'in'
-
-          } else if (account_invoices_doc.source_type.id == 3) {
-            obj.transition_type = 'in'
-            obj.value = (-Math.abs(obj.value))
-            obj.operation = { ar: 'فك ترحيل فاتورة شاشة الطلبات', en: 'Un Post Orders Screen Invoice' }
-
-          } else if (account_invoices_doc.source_type.id == 4) {
-            obj.transition_type = 'in'
-            obj.value = (-Math.abs(obj.value))
-            obj.operation = { ar: 'فك ترحيل فاتورة طلب خدمة', en: 'Un Post Request Service Invoice' }
-
-          } else if (account_invoices_doc.source_type.id == 5) {
-            obj.operation = { ar: 'فك ترحيل فاتورة حجز قاعة', en: 'Un Post Book Hall Invoice' }
-            obj.transition_type = 'in'
-            obj.value = (-Math.abs(obj.value))
-
-          } else if (account_invoices_doc.source_type.id == 8) {
-            obj.operation = { ar: 'فك ترحيل سند قبض', en: 'Un Post Amount In' }
-            obj.transition_type = 'in'
-            obj.value = (-Math.abs(obj.value))
-
-          } else if (account_invoices_doc.source_type.id == 9) {
-            obj.operation = { ar: 'فك ترحيل سند صرف', en: 'Un Post Amount Out' }
-            obj.transition_type = 'out'
-            obj.value = (-Math.abs(obj.value))
-
-          } else if (account_invoices_doc.source_type.id == 10) {
-            obj.operation = { ar: 'فك ترحيل دفعة عميل مقدمة', en: 'Un Post Recharge Customer Balance' }
-            obj.transition_type = 'in'
-            obj.value = (-Math.abs(obj.value))
-            let customerPay = _payment_list.paid_up * _payment_list.currency.ex_rate
-            let customerBalance = {
-              id: account_invoices_doc.customer.id,
-              paid_up: customerPay,
-              minus: true
-            }
-            site.quee('[customer][account_invoice][balance]', Object.assign({}, customerBalance))
           }
+
+          obj.transition_type = 'in'
+
+        } else if (account_invoices_doc.source_type.id == 3) {
+          obj.transition_type = 'in'
+          obj.value = (-Math.abs(obj.value))
+          obj.operation = { ar: 'فك ترحيل فاتورة شاشة الطلبات', en: 'Un Post Orders Screen Invoice' }
+
+        } else if (account_invoices_doc.source_type.id == 4) {
+          obj.transition_type = 'in'
+          obj.value = (-Math.abs(obj.value))
+          obj.operation = { ar: 'فك ترحيل فاتورة طلب خدمة', en: 'Un Post Request Service Invoice' }
+
+        } else if (account_invoices_doc.source_type.id == 5) {
+          obj.operation = { ar: 'فك ترحيل فاتورة حجز قاعة', en: 'Un Post Book Hall Invoice' }
+          obj.transition_type = 'in'
+          obj.value = (-Math.abs(obj.value))
+
+        } else if (account_invoices_doc.source_type.id == 8) {
+          obj.operation = { ar: 'فك ترحيل سند قبض', en: 'Un Post Amount In' }
+          obj.transition_type = 'in'
+          obj.value = (-Math.abs(obj.value))
+
+        } else if (account_invoices_doc.source_type.id == 9) {
+          obj.operation = { ar: 'فك ترحيل سند صرف', en: 'Un Post Amount Out' }
+          obj.transition_type = 'out'
+          obj.value = (-Math.abs(obj.value))
+
+        } else if (account_invoices_doc.source_type.id == 10) {
+          obj.operation = { ar: 'فك ترحيل دفعة عميل مقدمة', en: 'Un Post Recharge Customer Balance' }
+          obj.transition_type = 'in'
+          obj.value = (-Math.abs(obj.value))
+          let customerPay = _payment_list.paid_up * _payment_list.currency.ex_rate
+          let customerBalance = {
+            id: account_invoices_doc.customer.id,
+            paid_up: customerPay,
+            minus: true
+          }
+          site.quee('[customer][account_invoice][balance]', Object.assign({}, customerBalance))
+
+        } else if (account_invoices_doc.source_type.id == 11) {
+          obj.operation = { ar: 'فك ترحيل مكافأة موظف', en: 'Un Post Reward Employees' }
+          obj.transition_type = 'in'
+
         }
-        if (obj.safe) site.quee('[amounts][safes][+]', Object.assign({}, obj))
-      })
+      }
+      if (obj.safe) site.quee('[amounts][safes][+]', Object.assign({}, obj))
+    })
 
     account_invoices_doc.remain_amount = site.toNumber(account_invoices_doc.net_value) - site.toNumber(account_invoices_doc.total_paid_up)
     account_invoices_doc.remain_amount = site.toNumber(account_invoices_doc.remain_amount)
@@ -801,7 +816,7 @@ module.exports = function init(site) {
 
               } else if (response.doc.source_type.id == 10) {
 
-                obj.operation = { ar: 'حذف دفعة عميل مقدمة', en: 'Recharge Customer Balance' }
+                obj.operation = { ar: 'حذف دفعة عميل مقدمة', en: 'Delete Recharge Customer Balance' }
                 obj.transition_type = 'in'
                 obj.value = (-Math.abs(obj.value))
                 let customerPay = _payment_list.paid_up * _payment_list.currency.ex_rate
@@ -811,6 +826,11 @@ module.exports = function init(site) {
                   minus: true
                 }
                 site.quee('[customer][account_invoice][balance]', Object.assign({}, customerBalance))
+
+              } else if (response.doc.source_type.id == 11) {
+                obj.operation = { ar: 'حذف مكافأة موظف', en: 'Delete Reward Employees' }
+                obj.transition_type = 'in'
+
               }
 
 

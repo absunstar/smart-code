@@ -19,7 +19,7 @@
 
                     <div class="row">
                         <div class="row">
-                           <!--  <i-list help-id="" ng-search="_search.$source_type_search" class="col4"
+                            <!--  <i-list help-id="" ng-search="_search.$source_type_search" class="col4"
                                 ng-change="orderInvoicesTypeList = [] ; account_invoices.current_book_list = []; getOrderTypeSetting();getTransactionType(account_invoices.source_type)"
                                 label="##word.source_type##" ng-model="account_invoices.source_type"
                                 items="sourceTypeList" display="##session.lang##"></i-list> -->
@@ -32,8 +32,8 @@
                             </i-list>
 
                             <i-control ng-keydown="loadOrderInvoicesType($event)" id="item_name" class="col3"
-                                ng-hide="account_invoices.source_type.id ==10 || account_invoices.source_type.id ==9 || account_invoices.source_type.id ==8" ng-model="search_order"
-                                label="##word.search##" type="text"></i-control>
+                                ng-hide="account_invoices.source_type.id ==11 || account_invoices.source_type.id ==10 || account_invoices.source_type.id ==9 || account_invoices.source_type.id ==8"
+                                ng-model="search_order" label="##word.search##" type="text"></i-control>
                         </div>
 
                         <div class="row" ng-show="orderInvoicesTypeList.length > 0">
@@ -397,7 +397,13 @@
                             </i-list>
                         </div>
 
-                        <div class="row" >
+                        <div class="row" ng-show="account_invoices.source_type.id ==11">
+                            <i-list label="##word.amounts_in_employees##" ng-search="_search.$eng_account_invoices"
+                                class="col4" ng-model="account_invoices.employee" display="name" items="employeesList">
+                            </i-list>
+                        </div>
+
+                        <div class="row">
                             <i-list help-id="" ng-search="_search.$payment_method_search" class="col2"
                                 label="##word.payment_method##" ng-model="account_invoices.payment_method"
                                 items="paymentMethodList" ng-change="getSafeByType(account_invoices)"
@@ -433,7 +439,7 @@
                         </div>
 
                         <div class="row"
-                            ng-show="account_invoices.source_type.id == 10 || account_invoices.source_type.id == 9 || account_invoices.source_type.id == 8">
+                            ng-show="account_invoices.source_type.id == 11 || account_invoices.source_type.id == 10 || account_invoices.source_type.id == 9 || account_invoices.source_type.id == 8">
 
                             <i-control class="col2" ng-model="account_invoices.paid_up" label="##word.paid_up##"
                                 type="number">

@@ -239,6 +239,15 @@ module.exports = function init(site) {
           response.done = true
           result.doc.items.forEach(_itm => {
             if (_itm.size_units_list && _itm.size_units_list.length > 0)
+              _itm.size_units_list.forEach(_sl => {
+                if (_sl.patch_list && _sl.patch_list.length > 0)
+                  _sl.patch_list.forEach(_pl => {
+                    delete _pl.new
+                  })
+              });
+
+            if (_itm.size_units_list && _itm.size_units_list.length > 0) {
+
               _itm.size_units_list.forEach((_unit, i) => {
                 _unit.barcode = _itm.barcode
                 _unit.name = _itm.name
@@ -284,11 +293,12 @@ module.exports = function init(site) {
                   _unit.type = 'sum'
                   _unit.transaction_type = 'in'
                   site.quee('item_transaction + items', Object.assign({}, _unit))
-                  
                   site.quee('[transfer_branch][stores_items][add_balance]', Object.assign({}, _unit))
                 }
 
               });
+            }
+
           });
           result.doc.hold = false
           site.call('holding items', Object.assign({}, result.doc))

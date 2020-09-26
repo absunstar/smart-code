@@ -72,7 +72,7 @@ module.exports = function init(site) {
 
 
     if (where['shift_code']) {
-      where['payment_list.shift.code'] = site.get_RegExp(where['shift_code'], 'i')
+      where['payment_list.shift.code'] = where['shift_code']
       delete where['shift_code']
     }
 
@@ -102,224 +102,219 @@ module.exports = function init(site) {
       limit: req.body.limit
     }, (err, docs, count) => {
       if (!err) {
-        response.done = true
-
-        let list = [{
-          source_type: {
-            id: 1,
-            en: "Store In / Purchase Invoice",
-            ar: "إذن وارد / فاتورة شراء"
-          },
-          paid_up: 0,
-          invoices_list: []
-        },
-        {
-          source_type: {
-            id: 2,
-            en: "Store In / Sales Invoice",
-            ar: "إذن صرف / فاتورة مبيعات"
-          },
-          paid_up: 0,
-          invoices_list: []
-        },
-        {
-          source_type: {
-            id: 3,
-            en: "Orders Screen",
-            ar: "شاشة الطلبات"
-          },
-          paid_up: 0,
-          invoices_list: []
-        },
-        {
-          source_type: {
-            id: 4,
-            en: "Orders Service",
-            ar: "طلب خدمة"
-          },
-          paid_up: 0,
-          invoices_list: []
-        },
-        {
-          source_type: {
-            id: 5,
-            en: "Booking A Hall",
-            ar: "حجز قاعة"
-          },
-          paid_up: 0,
-          invoices_list: []
-        },
-        {
-          source_type: {
-            id: 6,
-            en: "Trainer Account",
-            ar: "حساب مدرب"
-          },
-          paid_up: 0,
-          invoices_list: []
-        },
-        {
-          source_type: {
-            id: 7,
-            en: "Form Course Booking",
-            ar: "إستمارة حجز كورس"
-          },
-          paid_up: 0,
-          invoices_list: []
-        },
-        {
-          source_type: {
-            id: 8,
-            en: "Amount In",
-            ar: "سند قبض"
-          },
-          paid_up: 0,
-          invoices_list: []
-        },
-        {
-          source_type: {
-            id: 9,
-            en: "Amount Out",
-            ar: "سند صرف"
-          },
-          paid_up: 0,
-          invoices_list: []
-        },
-        {
-          source_type: {
-            id: 10,
-            en: "Recharge Customer Balance",
-            ar: "دفعة عميل مقدمة"
-          },
-          paid_up: 0,
-          invoices_list: []
-        }, {
-          source_type: {
-            id: 11,
-            en: "Cash In",
-            ar: "كاش وارد"
-          },
-          paid_up: 0,
-        },
-        {
-          source_type: {
-            id: 12,
-            en: "Cash Out",
-            ar: "كاش منصرف"
-          },
-          paid_up: 0,
-        },
-        {
-          source_type: {
-            id: 13,
-            en: "Bank In",
-            ar: "بنك وارد"
-          },
-          paid_up: 0,
-        },
-        {
-          source_type: {
-            id: 14,
-            en: "Bank Out",
-            ar: "بنك منصرف"
-          },
-          paid_up: 0,
-        }]
 
 
+          response.done = true
+
+          let list = [{
+            source_type: {
+              id: 1,
+              en: "Store In / Purchase Invoice",
+              ar: "إذن وارد / فاتورة شراء"
+            },
+            paid_up: 0,
+            invoices_list: []
+          },
+          {
+            source_type: {
+              id: 2,
+              en: "Store In / Sales Invoice",
+              ar: "إذن صرف / فاتورة مبيعات"
+            },
+            paid_up: 0,
+            invoices_list: []
+          },
+          {
+            source_type: {
+              id: 3,
+              en: "Orders Screen",
+              ar: "شاشة الطلبات"
+            },
+            paid_up: 0,
+            invoices_list: []
+          },
+          {
+            source_type: {
+              id: 4,
+              en: "Orders Service",
+              ar: "طلب خدمة"
+            },
+            paid_up: 0,
+            invoices_list: []
+          },
+          {
+            source_type: {
+              id: 5,
+              en: "Booking A Hall",
+              ar: "حجز قاعة"
+            },
+            paid_up: 0,
+            invoices_list: []
+          },
+          {
+            source_type: {
+              id: 6,
+              en: "Trainer Account",
+              ar: "حساب مدرب"
+            },
+            paid_up: 0,
+            invoices_list: []
+          },
+          {
+            source_type: {
+              id: 7,
+              en: "Form Course Booking",
+              ar: "إستمارة حجز كورس"
+            },
+            paid_up: 0,
+            invoices_list: []
+          },
+          {
+            source_type: {
+              id: 8,
+              en: "Amount In",
+              ar: "سند قبض"
+            },
+            paid_up: 0,
+            invoices_list: []
+          },
+          {
+            source_type: {
+              id: 9,
+              en: "Amount Out",
+              ar: "سند صرف"
+            },
+            paid_up: 0,
+            invoices_list: []
+          },
+          {
+            source_type: {
+              id: 10,
+              en: "Recharge Customer Balance",
+              ar: "دفعة عميل مقدمة"
+            },
+            paid_up: 0,
+            invoices_list: []
+          }, {
+            source_type: {
+              id: 11,
+              en: "Cash In",
+              ar: "كاش وارد"
+            },
+            paid_up: 0,
+          },
+          {
+            source_type: {
+              id: 12,
+              en: "Cash Out",
+              ar: "كاش منصرف"
+            },
+            paid_up: 0,
+          },
+          {
+            source_type: {
+              id: 13,
+              en: "Bank In",
+              ar: "بنك وارد"
+            },
+            paid_up: 0,
+          },
+          {
+            source_type: {
+              id: 14,
+              en: "Bank Out",
+              ar: "بنك منصرف"
+            },
+            paid_up: 0,
+          }]
 
 
-        docs.forEach(_doc => {
-          _doc.payment_list.forEach(_p_l => {
-            if (_p_l.payment_method && _p_l.currency && currency.id == _p_l.currency.id) {
+          docs.forEach(_doc => {
+            _doc.payment_list.forEach(_p_l => {
+              if (_p_l.payment_method && _p_l.currency && currency.id == _p_l.currency.id) {
 
-              let numIn = 0
-              let numOut = 0
-              if (_p_l.payment_method.id == 1) {
-                numIn = 10
-                numOut = 11
+                let numIn = 0
+                let numOut = 0
+                if (_p_l.payment_method.id == 1) {
+                  numIn = 10
+                  numOut = 11
 
-              } else {
-                numIn = 12
-                numOut = 13
-              }
+                } else {
+                  numIn = 12
+                  numOut = 13
+                }
 
-              if ((_p_l.shift && shift_code == _p_l.shift.code) || (date1 && new Date(_p_l.date) >= new Date(date1) && new Date(_p_l.date) <= date1.setDate(date1.getDate() + 1)) || new Date(_p_l.date) <= new Date(date_to) && new Date(_p_l.date) >= new Date(date_from)) {
+                if ((_p_l.shift && shift_code == _p_l.shift.code) || (date1 && new Date(_p_l.date) >= new Date(date1) && new Date(_p_l.date) <= date1.setDate(date1.getDate() + 1)) || new Date(_p_l.date) <= new Date(date_to) && new Date(_p_l.date) >= new Date(date_from)) {
 
-                _doc.shift = _p_l.shift
-                _doc.date = _p_l.date
-                _doc.safe = _p_l.safe
-                _doc.payment_method = _p_l.payment_method
-                _doc.currency = _p_l.currency
-                _doc.paid_up = _p_l.paid_up
-                if (_doc.source_type) {
-                  if (_doc.source_type.id == 1) {
+                  _doc.shift = _p_l.shift
+                  _doc.date = _p_l.date
+                  _doc.safe = _p_l.safe
+                  _doc.payment_method = _p_l.payment_method
+                  _doc.currency = _p_l.currency
+                  _doc.paid_up = _p_l.paid_up
+                  if (_doc.source_type) {
+                    if (_doc.source_type.id == 1) {
 
-                    if (_doc.invoice_type && _doc.invoice_type.id == 4) {
-                      list[0].paid_up = list[0].paid_up - _p_l.paid_up
-                      list[numIn].paid_up = list[numIn].paid_up - _p_l.paid_up
-                    } else {
-                      list[0].paid_up = list[0].paid_up + _p_l.paid_up
+                      if (_doc.invoice_type && _doc.invoice_type.id == 4) {
+                        list[0].paid_up = list[0].paid_up - _p_l.paid_up
+                        list[numIn].paid_up = list[numIn].paid_up - _p_l.paid_up
+                      } else {
+                        list[0].paid_up = list[0].paid_up + _p_l.paid_up
+                        list[numIn].paid_up = list[numIn].paid_up + _p_l.paid_up
+                      }
+                      list[0].invoices_list.push(_doc)
+
+                    } else if (_doc.source_type.id == 2) {
+
+                      if (_doc.invoice_type && _doc.invoice_type.id == 6) {
+                        list[1].paid_up = list[1].paid_up - _p_l.paid_up
+                        list[numOut].paid_up = list[numOut].paid_up - _p_l.paid_up
+                      } else {
+                        list[1].paid_up = list[1].paid_up + _p_l.paid_up
+                        list[numOut].paid_up = list[numOut].paid_up + _p_l.paid_up
+                      }
+                      list[1].invoices_list.push(_doc)
+
+                    } else if (_doc.source_type.id == 3) {
                       list[numIn].paid_up = list[numIn].paid_up + _p_l.paid_up
+
+                      list[2].paid_up = list[2].paid_up + _p_l.paid_up
+                      list[2].invoices_list.push(_doc)
+
+                    } else if (_doc.source_type.id == 4) {
+
+                      list[numIn].paid_up = list[numIn].paid_up + _p_l.paid_up
+                      list[3].paid_up = list[3].paid_up + _p_l.paid_up
+                      list[3].invoices_list.push(_doc)
+
+                    } else if (_doc.source_type.id == 8) {
+
+                      list[numIn].paid_up = list[numIn].paid_up + _p_l.paid_up
+                      list[7].paid_up = list[7].paid_up + _p_l.paid_up
+                      list[7].invoices_list.push(_doc)
+
+                    } else if (_doc.source_type.id == 9) {
+
+                      list[numIn].paid_up = list[numIn].paid_up + _p_l.paid_up
+                      list[8].paid_up = list[8].paid_up + _p_l.paid_up
+                      list[8].invoices_list.push(_doc)
+
+                    } else if (_doc.source_type.id == 10) {
+
+                      list[numIn].paid_up = list[numIn].paid_up + _p_l.paid_up
+                      list[9].paid_up = list[9].paid_up + _p_l.paid_up
+                      list[9].invoices_list.push(_doc)
+
                     }
-                    list[0].invoices_list.push(_doc)
-
-                  } else if (_doc.source_type.id == 2) {
-
-                    if (_doc.invoice_type && _doc.invoice_type.id == 6) {
-                      list[1].paid_up = list[1].paid_up - _p_l.paid_up
-                      list[numOut].paid_up = list[numOut].paid_up - _p_l.paid_up
-                    } else {
-                      list[1].paid_up = list[1].paid_up + _p_l.paid_up
-                      list[numOut].paid_up = list[numOut].paid_up + _p_l.paid_up
-                    }
-                    list[1].invoices_list.push(_doc)
-
-                  } else if (_doc.source_type.id == 3) {
-                    list[numIn].paid_up = list[numIn].paid_up + _p_l.paid_up
-
-                    list[2].paid_up = list[2].paid_up + _p_l.paid_up
-                    list[2].invoices_list.push(_doc)
-
-                  } else if (_doc.source_type.id == 4) {
-
-                    list[numIn].paid_up = list[numIn].paid_up + _p_l.paid_up
-                    list[3].paid_up = list[3].paid_up + _p_l.paid_up
-                    list[3].invoices_list.push(_doc)
-
-                  } else if (_doc.source_type.id == 8) {
-
-                    list[numIn].paid_up = list[numIn].paid_up + _p_l.paid_up
-                    list[7].paid_up = list[7].paid_up + _p_l.paid_up
-                    list[7].invoices_list.push(_doc)
-
-                  } else if (_doc.source_type.id == 9) {
-
-                    list[numIn].paid_up = list[numIn].paid_up + _p_l.paid_up
-                    list[8].paid_up = list[8].paid_up + _p_l.paid_up
-                    list[8].invoices_list.push(_doc)
-
-                  } else if (_doc.source_type.id == 10) {
-
-                    list[numIn].paid_up = list[numIn].paid_up + _p_l.paid_up
-                    list[9].paid_up = list[9].paid_up + _p_l.paid_up
-                    list[9].invoices_list.push(_doc)
-
                   }
-
-
-
                 }
               }
-            }
 
-          });
+            });
+          })
 
-        });
-
-
-        response.list = list
-        response.count = count
+          response.list = list
+          response.count = count
       } else {
         response.error = err.message
       }

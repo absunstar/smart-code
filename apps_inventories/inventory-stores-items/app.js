@@ -508,7 +508,6 @@ module.exports = function init(site) {
             //   })
             // }
           });
-
           $stores_items.update(doc, () => {
             next()
           });
@@ -835,7 +834,7 @@ module.exports = function init(site) {
     let where = req.body.where || {}
     let store_id = where['store_id']
     let unit_id = where['unit_id']
-    let batcode = where['barcode']
+    let barcode = where['barcode']
     let search = req.body.search
     let limit = where.limit || undefined
 
@@ -902,6 +901,7 @@ module.exports = function init(site) {
 
     if (where && where['store_id']) {
       delete where['store_id']
+      delete where['unit_id']
     }
 
     if (where['item_group']) {
@@ -936,15 +936,17 @@ module.exports = function init(site) {
       if (!err) {
         response.done = true
         let patch_list = []
-        if (store_id && batcode && docs && docs.length === 1) {
+
+        if (store_id && barcode && docs && docs.length === 1) {
+
           if (docs[0].sizes && docs[0].sizes.length > 0)
             docs[0].sizes.forEach(_size => {
-              if (_size.branches_list && _size.branches_list.length > 0)
+              if (_size.branches_list && _size.branches_list.length > 0 && _size.barcode == barcode)
                 _size.branches_list.forEach(_branch => {
                   if (_branch.stores_list && _branch.stores_list.length > 0)
                     _branch.stores_list.forEach(_store => {
                       if (_store.store && _store.store.id == store_id)
-                        size_units_list.forEach(_unit => {
+                        _store.size_units_list.forEach(_unit => {
                           if (_unit.id == unit_id) {
                             patch_list = _unit.patch_list
                           }
@@ -954,7 +956,7 @@ module.exports = function init(site) {
                 });
             });
         }
-
+    
         response.list = docs
         response.patch_list = patch_list
         response.count = docs.length
@@ -1061,6 +1063,7 @@ module.exports = function init(site) {
     }, (err, docs) => {
       if (!err) {
         response.done = true
+
 
 
         // site.getDefaultSetting(req, callback => {

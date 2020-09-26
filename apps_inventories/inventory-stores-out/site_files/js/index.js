@@ -247,6 +247,45 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
 
   };
 
+  $scope.testPatches = function (storeOut, callback) {
+
+    let obj = {
+      patchCount: false,
+      patch_list: []
+    }
+
+    storeOut.items.forEach(_item => {
+      if (_item.size_units_list && _item.size_units_list.length > 0) {
+
+        let count = 0;
+        if (_item.patch_list && _item.patch_list.length > 0) {
+          _item.patch_list.forEach(_pl => {
+            if (typeof _pl.count === 'number') {
+           
+              count += _pl.count;
+
+         
+            } else {
+              obj.patchCount = true;
+              obj.patch_list.push(_item.barcode)
+            }
+          });
+        } else if (_item.work_serial || _item.work_patch) {
+          obj.patchCount = true;
+          obj.patch_list.push(_item.barcode)
+        }
+        if (count != _item.count && (_item.work_serial || _item.work_patch)) {
+          obj.patchCount = true;
+          obj.patch_list.push(_item.barcode)
+        }
+
+      }
+    });
+
+    callback(obj)
+  };
+
+
   $scope.add = function () {
     $scope.error = '';
     const v = site.validated('#addStoreOutModal');
@@ -277,8 +316,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
       let max_discount = false;
       let returned_count = false;
       let notExistCount = false;
-      let patchCount = false;
-      let patch_list = [];
+
 
       if ($scope.store_out.items && $scope.store_out.items.length > 0) {
         notExistCount = $scope.store_out.items.some(_iz => _iz.count < 1);
@@ -288,45 +326,11 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
           if (_itemSize.discount.value > _itemSize.discount.max) max_discount = true;
           if (_itemSize.count > _itemSize.r_count) returned_count = true;
 
-          if (_itemSize.work_patch || _itemSize.work_serial) {
 
-            if (_itemSize.patch_list && _itemSize.patch_list.length > 0) {
-
-              let c = 0;
-              _itemSize.patch_list.map(p => c += p.count);
-
-              let difference = _itemSize.count - c;
-
-              if (_itemSize.count < c) {
-                patchCount = true;
-                patch_list.push(_itemSize.barcode)
-
-              } else if (_itemSize.count > c) {
-                _itemSize.patch_list = _itemSize.patch_list.slice().sort((a, b) => new Date(b.expiry_date) - new Date(a.expiry_date)).reverse();
-                _itemSize.patch_list.forEach(_pl => {
-                  if (difference > 0 && _pl.count == 0) {
-
-                    if (_pl.current_count < difference || _pl.current_count == difference) {
-
-                      _pl.count = _pl.current_count;
-                      difference = difference - _pl.count;
-
-
-                    } else if (_pl.current_count > difference) {
-
-                      _pl.count = difference;
-                      difference = 0;
-                    }
-
-                    if (_itemSize.work_serial && _pl.count === 1) _pl.select = true;
-
-                  }
-                });
-              }
-
-            }
-          }
         });
+      } else {
+        $scope.error = "##word.must_enter_quantity##";
+        return;
       }
 
       if ($scope.defaultSettings.inventory && $scope.defaultSettings.inventory.dont_max_discount_items) {
@@ -345,11 +349,6 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
 
       if (notExistCount) {
         $scope.error = "##word.err_exist_count##";
-        return;
-      };
-
-      if (patchCount) {
-        $scope.error = `##word.err_patch_count##   ( ${patch_list.join('-')} )`;
         return;
       };
 
@@ -375,61 +374,71 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
 
 
       if ($scope.store_out.items.length > 0 && !$scope.busy) {
-        $scope.busy = true;
-        $http({
-          method: "POST",
-          url: "/api/stores_out/add",
-          data: angular.copy($scope.store_out)
-        }).then(
-          function (response) {
-            if (response.data.done) {
-              if ($scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto && $scope.store_out.type && $scope.store_out.type.id != 5) {
 
-                let account_invoices = {
-                  image_url: '/images/account_invoices.png',
-                  date: response.data.doc.date,
-                  invoice_id: response.data.doc.id,
-                  customer: response.data.doc.customer,
-                  total_value_added: response.data.doc.total_value_added,
-                  invoice_type: response.data.doc.type,
-                  currency: response.data.doc.currency,
-                  shift: response.data.doc.shift,
-                  net_value: response.data.doc.net_value,
-                  paid_up: response.data.doc.paid_up || 0,
-                  payment_method: response.data.doc.payment_method,
-                  safe: response.data.doc.safe,
-                  invoice_code: response.data.doc.number,
-                  total_discount: response.data.doc.total_discount,
-                  total_tax: response.data.doc.total_tax,
-                  current_book_list: response.data.doc.items,
-                  source_type: {
-                    id: 2,
-                    en: "Stores Out / Sales Invoice",
-                    ar: "إذن صرف / فاتورة مبيعات"
-                  },
-                  active: true
-                };
-                $scope.addAccountInvoice(account_invoices)
-              }
-              $scope.store_out = {};
-              site.hideModal('#addStoreOutModal');
-              $timeout(() => {
-                document.querySelector('#clickNew').click();
-                $scope.busy = false;
 
-              }, 250);
-            } else {
-              $scope.error = response.data.error;
-              if (response.data.error.like('*OverDraft Not*')) {
-                $scope.error = "##word.overdraft_not_active##"
+        $scope.testPatches($scope.store_out, callback => {
+
+          if (callback.patchCount) {
+            $scope.error = `##word.err_patch_count##   ( ${callback.patch_list.join('-')} )`;
+            return;
+          };
+
+          $scope.busy = true;
+          $http({
+            method: "POST",
+            url: "/api/stores_out/add",
+            data: angular.copy($scope.store_out)
+          }).then(
+            function (response) {
+              if (response.data.done) {
+                if ($scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto && $scope.store_out.type && $scope.store_out.type.id != 5) {
+
+                  let account_invoices = {
+                    image_url: '/images/account_invoices.png',
+                    date: response.data.doc.date,
+                    invoice_id: response.data.doc.id,
+                    customer: response.data.doc.customer,
+                    total_value_added: response.data.doc.total_value_added,
+                    invoice_type: response.data.doc.type,
+                    currency: response.data.doc.currency,
+                    shift: response.data.doc.shift,
+                    net_value: response.data.doc.net_value,
+                    paid_up: response.data.doc.paid_up || 0,
+                    payment_method: response.data.doc.payment_method,
+                    safe: response.data.doc.safe,
+                    invoice_code: response.data.doc.number,
+                    total_discount: response.data.doc.total_discount,
+                    total_tax: response.data.doc.total_tax,
+                    current_book_list: response.data.doc.items,
+                    source_type: {
+                      id: 2,
+                      en: "Stores Out / Sales Invoice",
+                      ar: "إذن صرف / فاتورة مبيعات"
+                    },
+                    active: true
+                  };
+                  $scope.addAccountInvoice(account_invoices)
+                }
+                $scope.store_out = {};
+                site.hideModal('#addStoreOutModal');
+                $timeout(() => {
+                  document.querySelector('#clickNew').click();
+                  $scope.busy = false;
+
+                }, 250);
+              } else {
+                $scope.error = response.data.error;
+                if (response.data.error.like('*OverDraft Not*')) {
+                  $scope.error = "##word.overdraft_not_active##"
+                }
               }
+
+            },
+            function (err) {
+              $scope.error = err.message;
             }
-
-          },
-          function (err) {
-            $scope.error = err.message;
-          }
-        )
+          )
+        })
       } else {
         $scope.error = "##word.must_enter_quantity##";
         return;
@@ -697,7 +706,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
                           indxUnit = i;
                       });
 
-                    if ((_size.barcode === $scope.item.search_item_name) || (_size.size_en && _size.size_en.contains($scope.item.search_item_name)) || (_size.size && _size.size.contains($scope.item.search_item_name)) || foundUnit) {
+                    if ((_size.barcode === $scope.item.search_item_name) || foundUnit) {
                       _size.name = _item.name;
                       _size.item_group = _item.item_group;
                       _size.store = $scope.store_out.store;
@@ -747,12 +756,14 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
                       if (_size.store_units_list && _size.store_units_list.length > 0) {
                         _size.store_units_list.forEach(_ul => {
                           if (_ul.id == _size.unit.id) {
-                            if (_ul.patch_list && _ul.patch_list.length > 0)
+                            if (_ul.patch_list && _ul.patch_list.length > 0) {
+
                               _ul.patch_list.forEach(_p => {
                                 _p.current_count = _p.count
                                 _p.count = 0
                               });
-                            _size.patch_list = _ul.patch_list
+                              _size.patch_list = _ul.patch_list
+                            }
                           }
                         });
                       };
@@ -843,12 +854,14 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         if (_item.store_units_list && _item.store_units_list.length > 0) {
           _item.store_units_list.forEach(_ul => {
             if (_ul.id == _item.unit.id) {
-              if (_ul.patch_list && _ul.patch_list.length > 0)
+              if (_ul.patch_list && _ul.patch_list.length > 0) {
+
                 _ul.patch_list.forEach(_p => {
                   _p.current_count = _p.count
                   _p.count = 0
                 });
-              _item.patch_list = _ul.patch_list
+                _item.patch_list = _ul.patch_list
+              }
             }
           });
         };
@@ -917,12 +930,14 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
                     if (_size.store_units_list && _size.store_units_list.length > 0) {
                       _size.store_units_list.forEach(_ul => {
                         if (_ul.id == _size.unit.id) {
-                          if (_ul.patch_list && _ul.patch_list.length > 0)
+                          if (_ul.patch_list && _ul.patch_list.length > 0) {
+
                             _ul.patch_list.forEach(_p => {
                               _p.current_count = _p.count
                               _p.count = 0
                             });
-                          _size.patch_list = _ul.patch_list
+                            _size.patch_list = _ul.patch_list
+                          }
                         }
                       });
                     };
@@ -998,8 +1013,6 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
     let max_discount = false;
     let returned_count = false;
     let patchCount = false;
-    let notExistCount = false;
-    let patch_list = [];
 
     if ($scope.store_out.items && $scope.store_out.items.length > 0) {
 
@@ -1010,47 +1023,12 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         if (_itemSize.discount.value > _itemSize.discount.max) max_discount = true;
         if (_itemSize.count > _itemSize.r_count) returned_count = true;
 
-        if (_itemSize.work_patch || _itemSize.work_serial) {
-
-          if (_itemSize.patch_list && _itemSize.patch_list.length > 0) {
-
-            let c = 0;
-            _itemSize.patch_list.map(p => c += p.count);
-
-            let difference = _itemSize.count - c;
-
-            if (_itemSize.count < c) {
-              patchCount = true;
-              patch_list.push(_itemSize.barcode)
-
-            } else if (_itemSize.count > c) {
-              _itemSize.patch_list = _itemSize.patch_list.slice().sort((a, b) => new Date(b.expiry_date) + new Date(a.expiry_date)).reverse();
-
-              _itemSize.patch_list.forEach(_pl => {
-                if (difference > 0 && _pl.count == 0) {
-
-                  if (_pl.current_count < difference || _pl.current_count == difference) {
-
-                    _pl.count = _pl.current_count;
-                    difference = difference - _pl.count;
-
-
-                  } else if (_pl.current_count > difference) {
-
-                    _pl.count = difference;
-                    difference = 0;
-                  }
-
-                  if (_itemSize.work_serial && _pl.count === 1) _pl.select = true;
-
-                }
-              });
-            }
-
-          }
-        }
       });
+    } else {
+      $scope.error = "##word.must_enter_quantity##";
+      return;
     }
+
     if ($scope.defaultSettings.inventory && $scope.defaultSettings.inventory.dont_max_discount_items) {
       if (max_discount) {
         $scope.error = "##word.err_maximum_discount##";
@@ -1082,24 +1060,32 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
       }
     }
 
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/stores_out/update",
-      data: $scope.store_out
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          site.hideModal('#updateStoreOutModal');
-        } else {
-          $scope.error = '##word.error##';
+    $scope.testPatches($scope.store_out, callback => {
+
+      if (callback.patchCount) {
+        $scope.error = `##word.err_patch_count##   ( ${callback.patch_list.join('-')} )`;
+        return;
+      };
+
+      $scope.busy = true;
+      $http({
+        method: "POST",
+        url: "/api/stores_out/update",
+        data: $scope.store_out
+      }).then(
+        function (response) {
+          $scope.busy = false;
+          if (response.data.done) {
+            site.hideModal('#updateStoreOutModal');
+          } else {
+            $scope.error = '##word.error##';
+          }
+        },
+        function (err) {
+          console.log(err);
         }
-      },
-      function (err) {
-        console.log(err);
-      }
-    )
+      )
+    })
   };
 
   $scope.loadStores = function () {
@@ -2121,13 +2107,22 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
             site.showModal('#patchesListReturnModal');
 
           } else {
-
             if (response.data.patch_list.length > 0 && $scope.item_patch.patch_list && $scope.item_patch.patch_list.length > 0) {
+              response.data.patch_list.forEach(_resPatch => {
 
-              $scope.item_patch.patch_list.forEach(_patch1 => {
-                
+                _resPatch.current_count = _resPatch.count
+                _resPatch.count = 0
+                $scope.item_patch.patch_list.forEach(_itemPatch => {
+
+                  if (_resPatch.patch == _itemPatch.patch) {
+                    _resPatch.count = _itemPatch.count
+                    _resPatch.current_count = _itemPatch.current_count
+                    if (_itemPatch.select) _resPatch.select = _itemPatch.select
+                  }
+
+                });
               });
-
+              $scope.item_patch.patch_list = response.data.patch_list
               site.showModal('#patchesListModal');
             }
 
@@ -2297,7 +2292,6 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         $scope.store_out.paid_up = $scope.amount_currency;
 
       }
-      console.log($scope.store_out);
       site.hideModal('#returnedViewModal');
     };
 

@@ -70,6 +70,45 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
 
   };
 
+
+  $scope.testPatches = function (transferBranch, callback) {
+
+    let obj = {
+      patchCount: false,
+      patch_list: []
+    }
+
+    transferBranch.items.forEach(_item => {
+      if (_item.size_units_list && _item.size_units_list.length > 0) {
+
+        let count = 0;
+        if (_item.patch_list && _item.patch_list.length > 0) {
+          _item.patch_list.forEach(_pl => {
+            if (typeof _pl.count === 'number') {
+
+              count += _pl.count;
+
+
+            } else {
+              obj.patchCount = true;
+              obj.patch_list.push(_item.barcode)
+            }
+          });
+        } else if (_item.work_serial || _item.work_patch) {
+          obj.patchCount = true;
+          obj.patch_list.push(_item.barcode)
+        }
+        if (count != _item.count && (_item.work_serial || _item.work_patch)) {
+          obj.patchCount = true;
+          obj.patch_list.push(_item.barcode)
+        }
+
+      }
+    });
+
+    callback(obj)
+  };
+
   $scope.add = function () {
     $scope.error = '';
     const v = site.validated('#addTransferBranchModal');
@@ -99,76 +138,33 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
 
     if ($scope.transfer_branch.items.length > 0) {
 
-      let patchCount = false;
-      let patch_list = [];
+      $scope.testPatches($scope.transfer_branch, callback => {
 
-      $scope.transfer_branch.items.forEach(_itemSize => {
-
-        if (_itemSize.work_patch || _itemSize.work_serial) {
-
-          if (_itemSize.patch_list && _itemSize.patch_list.length > 0) {
-
-            let c = 0;
-            _itemSize.patch_list.map(p => c += p.count);
-
-            let difference = _itemSize.count - c;
-
-            if (_itemSize.count < c) {
-              patchCount = true;
-              patch_list.push(_itemSize.barcode)
-
-            } else if (_itemSize.count > c) {
-              _itemSize.patch_list = _itemSize.patch_list.slice().sort((a, b) => new Date(b.expiry_date) - new Date(a.expiry_date)).reverse();
-              _itemSize.patch_list.forEach(_pl => {
-                if (difference > 0 && _pl.count == 0) {
-
-                  if (_pl.current_count < difference || _pl.current_count == difference) {
-
-                    _pl.count = _pl.current_count;
-                    difference = difference - _pl.count;
+        if (callback.patchCount) {
+          $scope.error = `##word.err_patch_count##   ( ${callback.patch_list.join('-')} )`;
+          return;
+        };
 
 
-                  } else if (_pl.current_count > difference) {
+        $scope.busy = true;
+        $http({
+          method: "POST",
+          url: "/api/transfer_branch/add",
+          data: $scope.transfer_branch
+        }).then(
+          function (response) {
+            $scope.busy = false;
+            if (response.data.done) {
+              site.hideModal('#addTransferBranchModal');
 
-                    _pl.count = difference;
-                    difference = 0;
-                  }
+            } else $scope.error = response.data.error;
 
-                  if (_itemSize.work_serial && _pl.count === 1) _pl.select = true;
-
-                }
-              });
-            }
-
+          },
+          function (err) {
+            $scope.error = err.message;
           }
-        }
-      });
-
-
-      if (patchCount) {
-        $scope.error = `##word.err_patch_count##   ( ${patch_list.join('-')} )`;
-        return;
-      };
-
-
-      $scope.busy = true;
-      $http({
-        method: "POST",
-        url: "/api/transfer_branch/add",
-        data: $scope.transfer_branch
-      }).then(
-        function (response) {
-          $scope.busy = false;
-          if (response.data.done) {
-            site.hideModal('#addTransferBranchModal');
-
-          } else $scope.error = response.data.error;
-
-        },
-        function (err) {
-          $scope.error = err.message;
-        }
-      )
+        )
+      })
     } else {
       $scope.error = "##word.must_enter_quantity##";
       return;
@@ -331,7 +327,7 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
                         }
                         if (_unit.id == _item.main_unit.id) indxUnit = i;
                       });
-                    if ((_size.barcode === $scope.item.search_item_name) || (_size.size_en && _size.size_en.contains($scope.item.search_item_name)) || (_size.size && _size.size.contains($scope.item.search_item_name)) || foundUnit) {
+                    if ((_size.barcode === $scope.item.search_item_name) || foundUnit) {
                       _size.name = _item.name;
                       _size.item_group = _item.item_group;
                       _size.store_from = $scope.transfer_branch.store_from;
@@ -616,8 +612,6 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
       return;
     }
 
-
-
     if (new Date($scope.transfer_branch.date) > new Date()) {
       $scope.error = "##word.date_exceed##";
       return;
@@ -632,78 +626,33 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
         return;
       };
 
+      $scope.testPatches($scope.transfer_branch, callback => {
 
-      let patchCount = false;
-      let patch_list = [];
-
-
-      $scope.transfer_branch.items.forEach(_itemSize => {
-
-        if (_itemSize.work_patch || _itemSize.work_serial) {
-
-          if (_itemSize.patch_list && _itemSize.patch_list.length > 0) {
-
-            let c = 0;
-            _itemSize.patch_list.map(p => c += p.count);
-
-            let difference = _itemSize.count - c;
-
-            if (_itemSize.count < c) {
-              patchCount = true;
-              patch_list.push(_itemSize.barcode)
-
-            } else if (_itemSize.count > c) {
-              _itemSize.patch_list = _itemSize.patch_list.slice().sort((a, b) => new Date(b.expiry_date) - new Date(a.expiry_date)).reverse();
-              _itemSize.patch_list.forEach(_pl => {
-                if (difference > 0 && _pl.count == 0) {
-
-                  if (_pl.current_count < difference || _pl.current_count == difference) {
-
-                    _pl.count = _pl.current_count;
-                    difference = difference - _pl.count;
+        if (callback.patchCount) {
+          $scope.error = `##word.err_patch_count##   ( ${callback.patch_list.join('-')} )`;
+          return;
+        };
 
 
-                  } else if (_pl.current_count > difference) {
-
-                    _pl.count = difference;
-                    difference = 0;
-                  }
-
-                  if (_itemSize.work_serial && _pl.count === 1) _pl.select = true;
-
-                }
-              });
+        $scope.busy = true;
+        $http({
+          method: "POST",
+          url: "/api/transfer_branch/update",
+          data: $scope.transfer_branch
+        }).then(
+          function (response) {
+            $scope.busy = false;
+            if (response.data.done) {
+              site.hideModal('#updateTransferBranchModal');
+            } else {
+              $scope.error = '##word.error##';
             }
-
+          },
+          function (err) {
+            console.log(err);
           }
-        }
-      });
-
-
-      if (patchCount) {
-        $scope.error = `##word.err_patch_count##   ( ${patch_list.join('-')} )`;
-        return;
-      };
-
-      $scope.busy = true;
-      $http({
-        method: "POST",
-        url: "/api/transfer_branch/update",
-        data: $scope.transfer_branch
-      }).then(
-        function (response) {
-          $scope.busy = false;
-          if (response.data.done) {
-            site.hideModal('#updateTransferBranchModal');
-          } else {
-            $scope.error = '##word.error##';
-          }
-        },
-        function (err) {
-          console.log(err);
-        }
-      )
-
+        )
+      })
     } else {
       $scope.error = "##word.must_enter_quantity##";
       return;
@@ -994,6 +943,46 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
   $scope.patchesList = function (itm) {
     $scope.error = '';
     $scope.item_patch = itm;
+
+    $http({
+      method: "POST",
+      url: "/api/stores_items/all",
+      data: {
+        where: {
+          store_id: $scope.transfer_branch.store_from.id,
+          unit_id: itm.unit.id,
+          barcode: itm.barcode
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+
+          if (response.data.patch_list.length > 0 && $scope.item_patch.patch_list && $scope.item_patch.patch_list.length > 0) {
+            response.data.patch_list.forEach(_resPatch => {
+
+              _resPatch.current_count = _resPatch.count
+              _resPatch.count = 0
+              $scope.item_patch.patch_list.forEach(_itemPatch => {
+
+                if (_resPatch.patch == _itemPatch.patch) {
+                  _resPatch.count = _itemPatch.count
+                  _resPatch.current_count = _itemPatch.current_count
+                  if (_itemPatch.select) _resPatch.select = _itemPatch.select
+                }
+
+              });
+            });
+            $scope.item_patch.patch_list = response.data.patch_list
+            site.showModal('#patchesListModal');
+          }
+
+        }
+      })
+
+
+
     site.showModal('#patchesListModal');
   };
 

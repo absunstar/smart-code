@@ -259,6 +259,7 @@ module.exports = function init(site) {
     }
   })
 
+
   site.post("/api/stores_out/posting", (req, res) => {
     let response = {}
 
@@ -384,6 +385,7 @@ module.exports = function init(site) {
       }
     })
   })
+
 
   site.post("/api/stores_out/delete", (req, res) => {
     let response = {}
@@ -703,7 +705,6 @@ module.exports = function init(site) {
       res.json(response)
     })
   })
-
 
 
   site.post("/api/stores_out/handel_store_out", (req, res) => {

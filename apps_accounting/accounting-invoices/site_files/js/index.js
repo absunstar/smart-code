@@ -96,7 +96,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
       }
 
       if ($scope.account_invoices.source_type) {
-        if ($scope.account_invoices.source_type.id == 8 || $scope.account_invoices.source_type.id == 9 || $scope.account_invoices.source_type.id == 10) {
+        if ($scope.account_invoices.source_type.id == 8 || $scope.account_invoices.source_type.id == 9 || $scope.account_invoices.source_type.id == 10 || $scope.account_invoices.source_type.id == 11) {
           $scope.account_invoices.net_value = $scope.account_invoices.paid_up;
         }
       }
@@ -250,7 +250,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
       }
 
       if ($scope.account_invoices.source_type) {
-        if ($scope.account_invoices.source_type.id == 8 || $scope.account_invoices.source_type.id == 9 || $scope.account_invoices.source_type.id == 10) {
+        if ($scope.account_invoices.source_type.id == 8 || $scope.account_invoices.source_type.id == 9 || $scope.account_invoices.source_type.id == 10 || $scope.account_invoices.source_type.id == 11) {
           $scope.account_invoices.net_value = $scope.account_invoices.paid_up;
         }
       }

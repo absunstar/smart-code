@@ -7,6 +7,14 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
     sizes: []
   };
 
+
+  $scope.addDays = function (date, days) {
+    var result = new Date(date);
+    result.setTime(result.getTime() + (days * 24 * 60 * 60 * 1000));
+    return result;
+  }
+
+
   $scope.deleteRow = function (itm) {
     $scope.error = '';
     $scope.store_stock.items.splice($scope.store_stock.items.indexOf(itm), 1);
@@ -79,9 +87,8 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
 
     }
 
-    $scope.store_stock.status = 1;
-
     if ($scope.store_stock.items.length > 0) {
+      $scope.store_stock.status = 1;
       $scope.busy = true;
       $http({
         method: "POST",
@@ -184,7 +191,11 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
             name: _size.name,
             size: _size.size,
             item_group: _size.item_group,
+            work_patch: _size.work_patch,
+            work_serial: _size.work_serial,
+            validit: (_size.validit || 0),
             size_en: _size.size_en,
+            validate: _size.validate,
             size_units_list: _size.size_units_list,
             barcode: _size.barcode,
             complex_items: _size.complex_items,
@@ -221,7 +232,9 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
 
                     if (_size.size_units_list && _size.size_units_list.length > 0)
                       _size.size_units_list.forEach(_unit => {
-                        if ((_unit.barcode == $scope.item.search_item_name) && typeof _unit.barcode == 'string') {
+                        _unit.validate = _item.validate;
+
+                        if ((_unit.barcode === $scope.item.search_item_name) && typeof _unit.barcode == 'string') {
                           foundUnit = true;
                         }
 
@@ -249,17 +262,20 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
                                 });
                                 _size.branches_list[indxBranch].stores_list[indxStore].size_units_list.forEach(_unitStore => {
 
-                                  if (foundStore && _unitStore.id == _unit.id)
+                                  if (foundStore && _unitStore.id == _unit.id) {
+
                                     _unit.store_count = _unitStore.current_count || 0;
+                                  }
                                 });
                               }
                             }
                           }
                         }
                       });
-                    if ((_size.barcode == $scope.item.search_item_name) || (_size.size_en && _size.size_en.contains($scope.item.search_item_name)) || (_size.size && _size.size.contains($scope.item.search_item_name)) || foundUnit) {
+                    if ((_size.barcode == $scope.item.search_item_name) || foundUnit) {
                       _size.name = _item.name;
                       _size.item_group = _item.item_group;
+
                       foundSize = $scope.item.sizes.some(_itemSize => _itemSize.barcode == _size.barcode);
                       if (!foundSize && !foundHold) $scope.item.sizes.unshift(_size);
                     };
@@ -295,6 +311,7 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
 
         if (_item.size_units_list && _item.size_units_list.length > 0)
           _item.size_units_list.forEach(_unit => {
+            _unit.validate = _item.validate;
 
             if (_item.branches_list && _item.branches_list.length > 0) {
               let foundBranch = false;
@@ -321,8 +338,11 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
                     });
                     _item.branches_list[indxBranch].stores_list[indxStore].size_units_list.forEach(_unitStore => {
 
-                      if (foundStore && _unitStore.id == _unit.id)
+                      if (foundStore && _unitStore.id == _unit.id) {
+
                         _unit.store_count = _unitStore.current_count || 0;
+
+                      }
                     });
                   }
                 }
@@ -358,6 +378,7 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
 
                   if (_size.size_units_list && _size.size_units_list.length > 0)
                     _size.size_units_list.forEach(_unit => {
+                      _unit.validate = _size.validate;
 
                       if (_size.branches_list && _size.branches_list.length > 0) {
                         let foundBranch = false;
@@ -384,8 +405,11 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
                               });
                               _size.branches_list[indxBranch].stores_list[indxStore].size_units_list.forEach(_unitStore => {
 
-                                if (foundStore && _unitStore.id == _unit.id)
+                                if (foundStore && _unitStore.id == _unit.id) {
+
                                   _unit.store_count = _unitStore.current_count || 0
+
+                                }
                               });
                             }
                           }
@@ -436,6 +460,7 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
 
                   if (_size.size_units_list && _size.size_units_list.length > 0)
                     _size.size_units_list.forEach(_unit => {
+                      _unit.validate = _size.validate;
 
                       if (_size.branches_list && _size.branches_list.length > 0) {
                         let foundBranch = false;
@@ -462,8 +487,11 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
                               });
                               _size.branches_list[indxBranch].stores_list[indxStore].size_units_list.forEach(_unitStore => {
 
-                                if (foundStore && _unitStore.id == _unit.id)
+                                if (foundStore && _unitStore.id == _unit.id) {
+
                                   _unit.store_count = _unitStore.current_count || 0
+
+                                }
                               });
                             }
                           }
@@ -515,6 +543,8 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
 
                   if (_size.size_units_list && _size.size_units_list.length > 0)
                     _size.size_units_list.forEach(_unit => {
+                      _unit.validate = _size.validate;
+
                       if ((_unit.barcode == $scope.search_barcode) && typeof _unit.barcode == 'string') {
                         foundUnit = true;
                       }
@@ -544,8 +574,11 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
                               });
                               _size.branches_list[indxBranch].stores_list[indxStore].size_units_list.forEach(_unitStore => {
 
-                                if (foundStore && _unitStore.id == _unit.id)
-                                  _unit.store_count = _unitStore.current_count || 0
+                                if (foundStore && _unitStore.id == _unit.id) {
+
+                                  _unit.store_count = _unitStore.current_count || 0;
+
+                                }
                               });
                             }
                           }
@@ -600,7 +633,7 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
     });
   };
 
-  $scope.update = function (store_stock) {
+  $scope.update = function (store_stock, hold) {
     $scope.error = '';
     $scope.busy = true;
 
@@ -611,47 +644,130 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
 
     };
 
+    if (store_stock.items && store_stock.items.length > 0) {
 
-    $http({
-      method: "POST",
-      url: "/api/stores_stock/update",
-      data: store_stock
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
+      $scope.testPatches(store_stock, callback => {
+        if (hold !== 'hold') {
 
-          if (store_stock.status == 1) site.hideModal('#updateStoreStockModal');
-          else site.hideModal('#settlementItemsModal');
+          if (callback.patchCount) {
+            $scope.error = `##word.err_patch_count##   ( ${callback.patch_list.join('-')} )`;
+            return;
+          }
 
-          $scope.loadAll();
-        } else {
-          $scope.error = '##word.error##';
+          if (callback.errDate) {
+            $scope.error = '##word.err_patch_date##'
+            return;
+          }
         }
-      },
-      function (err) {
-        console.log(err);
+
+        $http({
+          method: "POST",
+          url: "/api/stores_stock/update",
+          data: store_stock
+        }).then(
+          function (response) {
+            $scope.busy = false;
+            if (response.data.done) {
+
+              if (store_stock.status == 1) site.hideModal('#updateStoreStockModal');
+              else site.hideModal('#settlementItemsModal');
+
+              $scope.loadAll();
+            } else {
+              $scope.error = '##word.error##';
+            }
+          },
+          function (err) {
+            console.log(err);
+          }
+        )
+      })
+    } else {
+      $scope.error = "##word.must_enter_quantity##";
+      return;
+    }
+  };
+
+  $scope.testPatches = function (store_stock, callback) {
+
+    let obj = {
+      patchCount: false,
+      errDate: false,
+      patch_list: []
+    }
+
+    store_stock.items.forEach(_item => {
+      if (_item.size_units_list && _item.size_units_list.length > 0) {
+
+        _item.size_units_list.forEach(_sizeUnit => {
+          let count = 0;
+          if (_sizeUnit.patch_list && _sizeUnit.patch_list.length > 0) {
+            _sizeUnit.patch_list.forEach(_pl => {
+              if (typeof _pl.count === 'number') {
+                if (new Date(_pl.expiry_date) < new Date(_pl.production_date)) {
+                  obj.errDate = true
+                }
+                count += _pl.count;
+
+                if (_pl.count > _pl.current_count && !_pl.new) {
+                  obj.patchCount = true;
+                  obj.patch_list.push(_item.barcode)
+                }
+
+              } else {
+                obj.patchCount = true;
+                obj.patch_list.push(_item.barcode)
+              }
+            });
+          } else if (_item.work_serial || _item.work_patch) {
+            obj.patchCount = true;
+            obj.patch_list.push(_item.barcode)
+          }
+          if (count != _sizeUnit.stock_count && (_item.work_serial || _item.work_patch)) {
+            obj.patchCount = true;
+            obj.patch_list.push(_item.barcode)
+          }
+        });
+
       }
-    )
+    });
+
+    callback(obj)
   };
 
   $scope.approve = function (store_stock) {
     $scope.error = '';
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/stores_stock/approve",
-      data: store_stock
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) $scope.loadAll();
-        else $scope.error = '##word.error##';
-      },
-      function (err) {
-        console.log(err);
+
+    $scope.testPatches(store_stock, callback => {
+
+      if (callback.patchCount) {
+        $scope.error = `##word.err_patch_count##   ( ${callback.patch_list.join('-')} )`;
+        return;
+      };
+
+      if (callback.errDate) {
+        $scope.error = '##word.err_patch_date##'
+        return;
       }
-    )
+
+      $scope.busy = true;
+
+      $http({
+        method: "POST",
+        url: "/api/stores_stock/approve",
+        data: store_stock
+      }).then(
+        function (response) {
+          $scope.busy = false;
+          if (response.data.done) $scope.loadAll();
+          else $scope.error = '##word.error##';
+        },
+        function (err) {
+          console.log(err);
+        }
+      )
+    })
+
   };
 
 
@@ -713,15 +829,12 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
       stock.total_difference_cost = 0;
       stock.items.forEach(_itm => {
         _itm.size_units_list.forEach(_itmUnit => {
-          if(_itmUnit.stock_count){
-            let remain = (_itmUnit.stock_count) - _itmUnit.store_count;
-            _itmUnit.difference_cost = remain * _itmUnit.average_cost;
-            stock.total_difference_cost += _itmUnit.difference_cost
-          }
+          let remain = (_itmUnit.stock_count) - _itmUnit.store_count;
+          _itmUnit.difference_cost = remain * _itmUnit.average_cost;
+          stock.total_difference_cost += _itmUnit.difference_cost
 
         });
       });
-
 
     }, 150);
   };
@@ -731,7 +844,6 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.loadAll($scope.search);
     $scope.search = {};
-
     site.hideModal('#StoresStockSearchModal');
 
   };
@@ -761,7 +873,151 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.exitPatchModal = function (itm) {
 
+    $scope.error = '';
+
+    let bigger = false;
+    let count = 0;
+    let errDate = false;
+
+    itm.patch_list.forEach(_pl => {
+      if (new Date(_pl.expiry_date) < new Date(_pl.production_date)) {
+        errDate = true
+      }
+      if (_pl.count > _pl.current_count && !_pl.new) bigger = true;
+      if (itm.work_serial) {
+        if (_pl.select) _pl.count = 1
+        else _pl.count = 0
+      }
+    });
+
+    itm.patch_list.map(p => count += p.count)
+
+    if (itm.stock_count != count) {
+      $scope.error = '##word.err_patch_count##';
+      return;
+    };
+
+    if (errDate) {
+      $scope.error = '##word.err_patch_date##'
+      return;
+    }
+
+    if (bigger) {
+      $scope.error = '##word.err_patch_current_count##';
+      return;
+    };
+
+    site.hideModal('#patchesListModal');
+  };
+
+  $scope.patchesList = function (itm, size) {
+    $scope.error = '';
+    itm.work_serial = size.work_serial;
+    itm.work_patch = size.work_patch;
+    itm.validate = size.validate;
+    $scope.patch_count = 0;
+
+    $http({
+      method: "POST",
+      url: "/api/stores_items/all",
+      data: {
+        where: {
+          store_id: $scope.store_stock.store.id,
+          unit_id: itm.id,
+          barcode: size.barcode
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.patch_list.length > 0) {
+          let patch_list = response.data.patch_list;
+
+          patch_list.forEach(_resPatch => {
+            _resPatch.current_count = _resPatch.count;
+            _resPatch.count = 0;
+            $scope.patch_count += _resPatch.current_count;
+            if (itm.patch_list && itm.patch_list.length > 0) {
+              itm.patch_list.forEach(_itemPatch => {
+
+                if (_resPatch.patch === _itemPatch.patch) {
+                  _resPatch.count = _itemPatch.count;
+                  _resPatch.current_count = _itemPatch.current_count;
+
+                  if (_itemPatch.select) _resPatch.select = _itemPatch.select;
+
+                }
+              });
+            }
+          });
+          if (itm.patch_list && itm.patch_list.length > 0) {
+
+            itm.patch_list.forEach(_itemP => {
+              let found = patch_list.some(s => s.patch === _itemP.patch);
+              if (!found) patch_list.unshift(_itemP);
+            })
+          }
+
+
+          itm.patch_list = patch_list
+
+          $scope.item_patch = itm;
+
+
+          site.showModal('#patchesListModal');
+
+        }
+      })
+  };
+
+  $scope.changeDate = function (i, str) {
+    $timeout(() => {
+      $scope.error = '';
+
+      if (str == 'exp') {
+
+        let diffTime = Math.abs(new Date(i.expiry_date) - new Date(i.production_date));
+        i.validit = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+      } else if (str == 'pro') {
+
+        i.expiry_date = new Date($scope.addDays(i.production_date, (i.validit || 0)))
+      }
+    }, 250);
+  };
+
+  $scope.viewPatchesList = function (itm) {
+    $scope.error = '';
+    $scope.item_patch = itm;
+    site.showModal('#patchesListViewModal');
+
+  };
+
+  $scope.selectAll = function () {
+    $scope.item_patch.patch_list.forEach(element => {
+      if ($scope.item_patch.$select_all) {
+        element.select = true
+      } else if (!$scope.item_patch.$select_all) {
+        element.select = false
+      }
+    });
+  };
+
+  $scope.addNewPAtch = function (itm) {
+    let mini_code = itm.barcode.slice(-3);
+    let r_code = Math.floor((Math.random() * 1000) + 1);
+    itm.patch_list.unshift({
+      patch: mini_code + r_code + (itm.patch_list.length + 1) + (itm.validit || '00'),
+      production_date: new Date(),
+      expiry_date: new Date($scope.addDays(new Date(), (itm.validit || 0))),
+      validit: (itm.validit || 0),
+      current_count: 0,
+      count: 0,
+      new: true
+    })
+  };
 
   $scope.get_open_shift = function (callback) {
     $scope.error = '';

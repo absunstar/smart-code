@@ -65,6 +65,11 @@
         "ar": "دفعة عميل مقدمة"
     },
     {
+        "name": "reward_employees",
+        "en": "Reward Employees",
+        "ar": "مكافاّت الموظفين"
+    },
+    {
         "name": "security_system",
         "en": "Security System",
         "ar": "نظام الحماية"
