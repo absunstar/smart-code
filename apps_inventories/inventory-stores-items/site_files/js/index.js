@@ -134,8 +134,7 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
             };
             $scope.list.forEach(_item => {
               _item.sizes.forEach(_sizes => {
-                if (_sizes && ((_sizes.size && _sizes.size.contains(where.size)) || (_sizes.size_en && _sizes.size_en.contains(where.size_en)) || (_sizes.barcode && _sizes.barcode.contains(where.barcode)))) {
-
+                if (_sizes && ((_sizes.size && _sizes.size === $scope.hideObj.size) || (_sizes.size_en && _sizes.size_en.contains($scope.hideObj.size_en)) || (_sizes.barcode && _sizes.barcode.contains($scope.hideObj.barcode)))) {
                   _sizes.$hide = false
                 } else {
                   _sizes.$hide = true
@@ -422,7 +421,7 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
           $scope.category_item = response.data.doc;
           if ($scope.hideObj) {
             $scope.category_item.sizes.forEach(_sizes => {
-              if (_sizes && ((_sizes.size && _sizes.size.contains($scope.hideObj.size)) || (_sizes.size_en && _sizes.size_en.contains($scope.hideObj.size_en)) || (_sizes.barcode && _sizes.barcode.contains($scope.hideObj.barcode)))) {
+              if (_sizes && ((_sizes.size && _sizes.size === $scope.hideObj.size) || (_sizes.size_en && _sizes.size_en.contains($scope.hideObj.size_en)) || (_sizes.barcode && _sizes.barcode.contains($scope.hideObj.barcode)))) {
 
                 _sizes.$hide = false;
               } else {

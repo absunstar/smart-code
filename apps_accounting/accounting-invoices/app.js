@@ -239,6 +239,14 @@ module.exports = function init(site) {
             paid_value.operation = { ar: 'مكافأة موظف', en: 'Reward Employees' }
             paid_value.transition_type = 'out'
 
+          } else if (doc.source_type.id == 12) {
+            paid_value.operation = { ar: 'سلفة موظف', en: 'Employee Advance' }
+            paid_value.transition_type = 'out'
+
+          } else if (doc.source_type.id == 13) {
+            paid_value.operation = { ar: ' تسديد سلفة موظف', en: 'Payment Employee Advance' }
+            paid_value.transition_type = 'in'
+
           }
 
           if (doc.safe) site.quee('[amounts][safes][+]', Object.assign({}, paid_value))
@@ -551,6 +559,14 @@ module.exports = function init(site) {
           obj.operation = { ar: 'مكافأة موظف', en: 'Reward Employees' }
           obj.transition_type = 'out'
 
+        } else if (doc.source_type.id == 12) {
+          paid_value.operation = { ar: 'سلفة موظف', en: 'Employee Advance' }
+          paid_value.transition_type = 'out'
+
+        } else if (doc.source_type.id == 13) {
+          paid_value.operation = { ar: ' تسديد سلفة موظف', en: 'Payment Employee Advance' }
+          paid_value.transition_type = 'in'
+
         }
 
 
@@ -643,7 +659,16 @@ module.exports = function init(site) {
           obj.operation = { ar: 'فك ترحيل مكافأة موظف', en: 'Un Post Reward Employees' }
           obj.transition_type = 'in'
 
+        } else if (doc.source_type.id == 12) {
+          paid_value.operation = { ar: 'فك ترحيل سلفة موظف', en: 'Un Post Employee Advance' }
+          paid_value.transition_type = 'in'
+
+        } else if (doc.source_type.id == 13) {
+          paid_value.operation = { ar: 'فك ترحيل تسديد سلفة موظف', en: 'Un Post Payment Employee Advance' }
+          paid_value.transition_type = 'Out'
+
         }
+
       }
       if (obj.safe) site.quee('[amounts][safes][+]', Object.assign({}, obj))
     })
@@ -831,7 +856,16 @@ module.exports = function init(site) {
                 obj.operation = { ar: 'حذف مكافأة موظف', en: 'Delete Reward Employees' }
                 obj.transition_type = 'in'
 
+              } else if (doc.source_type.id == 12) {
+                paid_value.operation = { ar: 'حذف سلفة موظف', en: 'Delete Employee Advance' }
+                paid_value.transition_type = 'in'
+
+              } else if (doc.source_type.id == 13) {
+                paid_value.operation = { ar: 'حذف تسديد سلفة موظف', en: 'Delete Payment Employee Advance' }
+                paid_value.transition_type = 'Out'
+      
               }
+
 
 
               if (obj.safe) site.quee('[amounts][safes][+]', Object.assign({}, obj))
