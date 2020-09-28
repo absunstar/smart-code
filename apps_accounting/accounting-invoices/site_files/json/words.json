@@ -50,6 +50,11 @@
         "ar": "القيمة"
     },
     {
+        "name": "value",
+        "en": "Value",
+        "ar": "القيمة"
+    },
+    {
         "name": "payable",
         "en": "Payable",
         "ar": "مستحق الدفع"

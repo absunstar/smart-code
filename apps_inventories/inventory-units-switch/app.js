@@ -616,4 +616,43 @@ module.exports = function init(site) {
     })
   })
 
+
+  site.getUnitSwitch = function (whereObj, callback) {
+    callback = callback || {};
+    let where = whereObj || {}
+   
+    if (where.date) {
+      let d1 = site.toDate(where.date)
+      let d2 = site.toDate(where.date)
+      d2.setDate(d2.getDate() + 1)
+      where.date = {
+        '$gte': d1,
+        '$lte': d2
+      }
+    } else if (where && where.date_from) {
+      let d1 = site.toDate(where.date_from)
+      let d2 = site.toDate(where.date_to)
+      d2.setDate(d2.getDate() + 1);
+      where.date = {
+        '$gte': d1,
+        '$lte': d2
+      }
+      delete where.date_from
+      delete where.date_to
+    }
+
+    if (where['shift_code']) {
+      where['shift.code'] = where['shift_code']
+      delete where['shift_code']
+    }
+    
+    $units_switch.findMany({
+      where: where
+    }, (err, doc) => {
+      if (!err && doc)
+        callback(doc)
+      else callback(false)
+    })
+  }
+
 }

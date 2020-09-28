@@ -557,9 +557,21 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
 
         else if ($scope.account_invoices.source_type.id == 5)
           url = "/api/book_hall/all";
-      }
 
-      where.invoice = false || undefined;
+        else if ($scope.account_invoices.source_type.id == 12) {
+          url = "/api/account_invoices/all";
+
+
+          if ($scope.account_invoices.employee && $scope.account_invoices.employee.id) {
+            where.source_type = { id: 11 };
+            where.employee = $scope.account_invoices.employee;
+          } else {
+            return;
+          }
+        }
+      }
+      
+      where.invoice = { $ne: true };
 
       $http({
         method: "POST",

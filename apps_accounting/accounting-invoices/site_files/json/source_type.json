@@ -51,7 +51,12 @@
     },
     {
         "id": 11,
-        "en": "Reward Employees",
-        "ar": "مكافاّت الموظفين"
+        "en": "Employee Advance",
+        "ar": "سلفة موظف"
+    },
+    {
+        "id": 12,
+        "en": "Payment Employee Advance",
+        "ar": "تسديد سلفة موظف"
     }
 ]

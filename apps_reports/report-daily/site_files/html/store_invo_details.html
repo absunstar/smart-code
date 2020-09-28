@@ -1,0 +1,67 @@
+<div id="storeInvoDetailsModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>
+                ##word.details## <i class="fa fa-file"></i>
+            </h2>
+        </div>
+
+        <div class="modal-body">
+
+            <table class="table loaded center bold hover">
+                <tr>
+                    <th class="not-print"> ##word.logo## </th>
+                    <th>##word.stores_in_date##</th>
+                    <th>##word.stores_in_id##</th>
+                    <th>##word.stores_in_Company_name##</th>
+                    <th>##word.store##</th>
+                    <th>##word.stores_in_total_value##</th>
+                    <th>##word.stores_in_net_value##</th>
+                    <th> ##word.transaction_type##</th>
+                </tr>
+                <tr ng-repeat="c in storeInvoList.list">
+
+                    <td class="not-print">
+                        <img class="logo" ng-src="{{c.image_url}}">
+                    </td>
+
+                    <td>
+                        <p class="text-center brown"> <br> {{c.date | date : 'yyyy - MM - dd'}} </p>
+                    </td>
+
+                    <td>
+                        <p class="bold  text-center"> <br> {{c.number}} </p>
+                    </td>
+
+                    <td>
+                        <p class="text-center blue"> <br> {{c.vendor.name_##session.lang##}} </p>
+                    </td>
+
+                    <td>
+                        <p class="text-center blue"> <br> {{c.store.name}} </p>
+                    </td>
+
+                    <td>
+                        <p class="bold text-center"> <br> {{c.total_value}} </p>
+                    </td>
+
+                    <td>
+                        <p class="bold text-center green"> <br> {{c.net_value}} </p>
+                    </td>
+
+                    <td>
+                        <p class="bold text-center"> <br> {{c.type.##session.lang##}} </p>
+                        <h3 class="blue bold center">{{c.retured_number}}</h3>
+                    </td>
+
+                </tr>
+
+            </table>
+
+        </div>
+        <h2 class="error center bold">{{error}}</h2>
+        <div class="modal-footer center">
+            <i-button type="close" label="##word.close##" onclick="site.hideModal('#storeInvoDetailsModal')"></i-button>
+        </div>
+    </div>
+</div>

@@ -66,60 +66,25 @@ app.controller("report_daily", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.getReportDailyList = function (where) {
+  $scope.getAccInvoList = function (currency) {
     $scope.busy = true;
-    $scope.list = [];
-    $scope.count = 0;
+    $scope.accInvoList = [];
+    if ($scope.search) $scope.search.currency = currency;
     $http({
       method: "POST",
-      url: "/api/report_daily/all",
+      url: "/api/report_daily/acc_invo",
       data: {
-        where: where
+        where: $scope.search
       }
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done && response.data.list.length > 0) {
-          $scope.list = response.data.list;
-          $scope.count = response.data.count;
-          $scope.remain_amount = 0;
-          $scope.net_value = 0;
-          $scope.total_tax = 0;
-          $scope.total_discount = 0;
-          $scope.cash = 0;
-          $scope.bank = 0;
-          if (!site.feature('academy')) $scope.list.splice(4, 3);
-          if (!site.feature('gym')) $scope.list.splice(3, 1);
-          if (!site.feature('pos') && !site.feature('restaurant')) $scope.list.splice(2, 1);
+          $scope.accInvoList = response.data.list;
 
-          $scope.list.forEach(_invoice => {
-
-            _invoice.net_value = site.toNumber(_invoice.net_value);
-            _invoice.paid_up = site.toNumber(_invoice.paid_up);
-            _invoice.remain_amount = site.toNumber(_invoice.remain_amount);
-            _invoice.total_discount = site.toNumber(_invoice.total_discount);
-            _invoice.total_tax = site.toNumber(_invoice.total_tax);
-
-            $scope.remain_amount += site.toNumber(_invoice.remain_amount);
-            $scope.net_value += site.toNumber(_invoice.net_value);
-            $scope.total_tax += site.toNumber(_invoice.total_tax);
-            $scope.total_discount += site.toNumber(_invoice.total_discount);
-
-            if (_invoice.payment_method) {
-              if (_invoice.payment_method.id === 1)
-                $scope.cash += site.toNumber(_invoice.paid_up);
-              else $scope.bank += site.toNumber(_invoice.paid_up);
-            }
-
-          });
-
-          $scope.remain_amount = site.toNumber($scope.remain_amount);
-          $scope.net_value = site.toNumber($scope.net_value);
-          $scope.total_tax = site.toNumber($scope.total_tax);
-          $scope.total_discount = site.toNumber($scope.total_discount);
-
-          $scope.paid_up = $scope.net_value - $scope.remain_amount;
-          $scope.paid_up = site.toNumber($scope.paid_up);
+          if (!site.feature('academy')) $scope.accInvoList.splice(4, 3);
+          if (!site.feature('gym')) $scope.accInvoList.splice(3, 1);
+          if (!site.feature('pos') && !site.feature('restaurant')) $scope.accInvoList.splice(2, 1);
         }
       },
       function (err) {
@@ -128,6 +93,31 @@ app.controller("report_daily", function ($scope, $http, $timeout) {
       }
     )
   };
+
+
+  $scope.getStoreInvoList = function (where) {
+    $scope.busy = true;
+    $scope.storeInvoList = [];
+    $http({
+      method: "POST",
+      url: "/api/report_daily/store_invo",
+      data: {
+        where: where
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.storeInvoList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
 
 
   $scope.printAccountInvoive = function (_itemsList) {
@@ -204,7 +194,7 @@ app.controller("report_daily", function ($scope, $http, $timeout) {
       type: 'space'
     });
 
-    $scope.list.forEach(_l => {
+    $scope.accInvoList.forEach(_l => {
       obj_print.data.push({
         type: 'text2',
         value2: _l.paid_up,
@@ -292,9 +282,17 @@ app.controller("report_daily", function ($scope, $http, $timeout) {
   };
 
   $scope.showDetails = function (c) {
-    $scope.details = c;
-    site.showModal('#detailsModal');
+    $scope.accInvoDetails = c;
+    site.showModal('#accInvoDetailsModal');
   };
+
+
+  $scope.inventoryTransactions = function () {
+
+    $scope.getStoreInvoList($scope.search);
+    site.showTabContent(event, '#inventory_transactions')
+  };
+
 
   $scope.searchAll = function () {
 
@@ -307,7 +305,6 @@ app.controller("report_daily", function ($scope, $http, $timeout) {
     }
 
     $scope._search = {};
-    $scope.getReportDailyList($scope.search);
     if ($scope.search) {
 
       $scope.date = $scope.search.date;
@@ -317,13 +314,9 @@ app.controller("report_daily", function ($scope, $http, $timeout) {
       $scope.currency = $scope.search.currency;
     }
     site.hideModal('#reportDailySearchModal');
-    $scope.search = {}
   };
 
 
-  $scope.getReportDailyList({ date: new Date() });
-  if (site.feature('restaurant') || site.feature('pos'))
-    $scope.getTransactionTypeList();
   $scope.getPaymentMethodList();
   $scope.loadCurrencies();
   $scope.getDefaultSettings();

@@ -236,18 +236,18 @@ module.exports = function init(site) {
             site.quee('[customer][account_invoice][balance]', Object.assign({}, customerBalance))
 
           } else if (doc.source_type.id == 11) {
-            paid_value.operation = { ar: 'مكافأة موظف', en: 'Reward Employees' }
-            paid_value.transition_type = 'out'
-
-          } else if (doc.source_type.id == 12) {
             paid_value.operation = { ar: 'سلفة موظف', en: 'Employee Advance' }
             paid_value.transition_type = 'out'
 
-          } else if (doc.source_type.id == 13) {
-            paid_value.operation = { ar: ' تسديد سلفة موظف', en: 'Payment Employee Advance' }
+          } else if (doc.source_type.id == 12) {
+            paid_value.operation = { ar: 'تسديد سلفة موظف', en: 'Payment Employee Advance' }
             paid_value.transition_type = 'in'
+            site.accountInvoiceAccept(doc.invoice_id)
 
           }
+
+          if (doc.employee && doc.employee.id) paid_value.sourceName = doc.employee.name
+          if (doc.delegate && doc.delegate.id) paid_value.sourceName = doc.delegate.name
 
           if (doc.safe) site.quee('[amounts][safes][+]', Object.assign({}, paid_value))
         }
@@ -389,6 +389,11 @@ module.exports = function init(site) {
           site.quee('[customer][account_invoice][balance]', Object.assign({}, customerBalance))
 
         }
+
+
+        if (account_invoices_doc.employee && account_invoices_doc.employee.id) paid_value.sourceName = account_invoices_doc.employee.name
+        if (account_invoices_doc.delegate && account_invoices_doc.delegate.id) paid_value.sourceName = account_invoices_doc.delegate.name
+
         site.quee('[amounts][safes][+]', Object.assign({}, paid_value))
       }
 
@@ -556,17 +561,13 @@ module.exports = function init(site) {
           site.quee('[customer][account_invoice][balance]', Object.assign({}, customerBalance))
 
         } else if (account_invoices_doc.source_type.id == 11) {
-          obj.operation = { ar: 'مكافأة موظف', en: 'Reward Employees' }
+          obj.operation = { ar: 'سلفة موظف', en: 'Employee Advance' }
           obj.transition_type = 'out'
 
-        } else if (doc.source_type.id == 12) {
-          paid_value.operation = { ar: 'سلفة موظف', en: 'Employee Advance' }
-          paid_value.transition_type = 'out'
-
-        } else if (doc.source_type.id == 13) {
-          paid_value.operation = { ar: ' تسديد سلفة موظف', en: 'Payment Employee Advance' }
-          paid_value.transition_type = 'in'
-
+        } else if (account_invoices_doc.source_type.id == 12) {
+          obj.operation = { ar: 'تسديد سلفة موظف', en: 'Payment Employee Advance' }
+          obj.transition_type = 'in'
+          site.accountInvoiceAccept(account_invoices_doc.invoice_id)
         }
 
 
@@ -656,20 +657,21 @@ module.exports = function init(site) {
           site.quee('[customer][account_invoice][balance]', Object.assign({}, customerBalance))
 
         } else if (account_invoices_doc.source_type.id == 11) {
-          obj.operation = { ar: 'فك ترحيل مكافأة موظف', en: 'Un Post Reward Employees' }
+          obj.operation = { ar: 'فك ترحيل سلفة موظف', en: 'Un Post Employee Advance' }
           obj.transition_type = 'in'
 
-        } else if (doc.source_type.id == 12) {
-          paid_value.operation = { ar: 'فك ترحيل سلفة موظف', en: 'Un Post Employee Advance' }
-          paid_value.transition_type = 'in'
-
-        } else if (doc.source_type.id == 13) {
-          paid_value.operation = { ar: 'فك ترحيل تسديد سلفة موظف', en: 'Un Post Payment Employee Advance' }
-          paid_value.transition_type = 'Out'
+        } else if (account_invoices_doc.source_type.id == 12) {
+          obj.operation = { ar: 'فك ترحيل تسديد سلفة موظف', en: 'Un Post Payment Employee Advance' }
+          obj.transition_type = 'Out'
 
         }
 
       }
+
+
+      if (account_invoices_doc.employee && account_invoices_doc.employee.id) obj.sourceName = account_invoices_doc.employee.name
+      if (account_invoices_doc.delegate && account_invoices_doc.delegate.id) obj.sourceName = account_invoices_doc.delegate.name
+
       if (obj.safe) site.quee('[amounts][safes][+]', Object.assign({}, obj))
     })
 
@@ -853,20 +855,17 @@ module.exports = function init(site) {
                 site.quee('[customer][account_invoice][balance]', Object.assign({}, customerBalance))
 
               } else if (response.doc.source_type.id == 11) {
-                obj.operation = { ar: 'حذف مكافأة موظف', en: 'Delete Reward Employees' }
+                obj.operation = { ar: 'حذف سلفة موظف', en: 'Delete Employee Advance' }
                 obj.transition_type = 'in'
 
-              } else if (doc.source_type.id == 12) {
-                paid_value.operation = { ar: 'حذف سلفة موظف', en: 'Delete Employee Advance' }
-                paid_value.transition_type = 'in'
+              } else if (response.doc.source_type.id == 12) {
+                obj.operation = { ar: 'حذف تسديد سلفة موظف', en: 'Delete Payment Employee Advance' }
+                obj.transition_type = 'Out'
 
-              } else if (doc.source_type.id == 13) {
-                paid_value.operation = { ar: 'حذف تسديد سلفة موظف', en: 'Delete Payment Employee Advance' }
-                paid_value.transition_type = 'Out'
-      
               }
 
-
+              if (response.doc.employee && response.doc.employee.id) obj.sourceName = response.doc.employee.name
+              if (response.doc.delegate && response.doc.delegate.id) obj.sourceName = response.doc.delegate.name
 
               if (obj.safe) site.quee('[amounts][safes][+]', Object.assign({}, obj))
 
@@ -1049,7 +1048,6 @@ module.exports = function init(site) {
 
     let where = req.data.where || {}
 
-
     if (where['code'])
       where['code'] = site.get_RegExp(where['code'], 'i')
 
@@ -1065,18 +1063,20 @@ module.exports = function init(site) {
       where['source_type.id'] = where['source_type'].id;
       delete where['source_type']
     }
-
     if (where['payment_method']) {
       where['payment_method.id'] = where['payment_method'].id;
       delete where['payment_method']
     }
-
 
     if (where['safe']) {
       where['safe.id'] = where['safe'].id;
       delete where['safe']
     }
 
+    if (where['employee']) {
+      where['employee.id'] = where['employee'].id;
+      delete where['employee']
+    }
 
     if (where.date) {
       let d1 = site.toDate(where.date)
@@ -1196,6 +1196,19 @@ module.exports = function init(site) {
 
         callback(obj)
       } else callback(null)
+    })
+  }
+
+
+
+  site.accountInvoiceAccept = function (invoiceId) {
+    $account_invoices.findOne({
+      where: { id: invoiceId },
+    }, (err, doc) => {
+      if (!err && doc) {
+        doc.invoice = true
+        $account_invoices.update(doc);
+      }
     })
   }
 

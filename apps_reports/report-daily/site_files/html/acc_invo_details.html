@@ -1,0 +1,57 @@
+<div id="accInvoDetailsModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>
+                ##word.details## <i class="fa fa-file"></i>
+            </h2>
+        </div>
+
+        <div class="modal-body">
+
+            <table class="table loaded center bold hover">
+                <tr>
+                    <th>##word.code##</th>
+                    <th ng-show="accInvoDetails.source_type.id == 1 || accInvoDetails.source_type.id == 2">##word.invoice_type##</th>
+                    <th ng-show="accInvoDetails.source_type.id == 3">##word.order_type##</th>
+                    <th
+                        ng-show="accInvoDetails.source_type.id == 2 || accInvoDetails.source_type.id == 8 || accInvoDetails.source_type.id == 9 || accInvoDetails.source_type.id == 11|| accInvoDetails.source_type.id == 12">
+                        ##word.delegate## / ##word.employee## </th>
+                    <th ng-hide="accInvoDetails.source_type.id == 1 || accInvoDetails.source_type.id == 9 ">##word.customer##</th>
+                    <th ng-show="accInvoDetails.source_type.id == 1 || accInvoDetails.source_type.id == 9">##word.vendor##</th>
+                    <th>##word.payment_method##</th>
+                    <th>##word.currency##</th>
+                    <th>##word.safe##</th>
+                    <th>##word.paid_up##</th>
+                </tr>
+
+                <tr ng-repeat="c in accInvoDetails.invoices_list">
+
+                    <td>{{c.code}}</td>
+                    <td ng-show="accInvoDetails.source_type.id == 1 || accInvoDetails.source_type.id == 2">
+                        {{c.invoice_type.##session.lang##}}</td>
+                    <td ng-show="accInvoDetails.source_type.id == 3">{{c.order_invoices_type.##session.lang##}}</td>
+                    <td
+                        ng-show="accInvoDetails.source_type.id == 2 || accInvoDetails.source_type.id == 8 || accInvoDetails.source_type.id == 9 || accInvoDetails.source_type.id == 11|| accInvoDetails.source_type.id == 12">
+                        {{c.delegate.name}} {{c.employee.name}}
+                    </td>
+                    <td ng-hide="accInvoDetails.source_type.id == 1 || accInvoDetails.source_type.id == 9 ">
+                        {{c.customer.name_##session.lang##}}
+                    </td>
+                    <td ng-show="accInvoDetails.source_type.id == 1 || accInvoDetails.source_type.id == 9">
+                        {{c.vendor.name_##session.lang##}}
+                    </td>
+                    <td class="center">{{c.payment_method.##session.lang##}}</td>
+                    <td class="center">{{c.currency.name}} - <b class="blue">{{c.currency.ex_rate}}</b></td>
+                    <td class="center blue">{{c.safe.name}}</td>
+                    <td class="center green">{{c.paid_up}}</td>
+                </tr>
+
+            </table>
+
+        </div>
+        <h2 class="error center bold">{{error}}</h2>
+        <div class="modal-footer center">
+            <i-button type="close" label="##word.close##" onclick="site.hideModal('#accInvoDetailsModal')"></i-button>
+        </div>
+    </div>
+</div>

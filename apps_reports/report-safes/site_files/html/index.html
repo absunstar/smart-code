@@ -72,14 +72,11 @@
                             <th> ##word.source_type## </th>
                             <th x-feature="restaurant"> ##word.order_type## </th>
                             <th> ##word.payment_method## </th>
-                            <!--  <th> ##word.total_items_price## </th> -->
-                            <!--  <th> ##word.stores_out_total_tax## </th>
-                            <th> ##word.stores_out_total_discount## </th> -->
+
                             <th x-feature="restaurant"> ##word.services## </th>
                             <th> ##word.net_value## </th>
                             <th> ##word.paid_up## </th>
                             <th ng-show="search.safe.type.id == 2"> ##word.commission## </th>
-                            <!--   <th> ##word.remain_amount## </th> -->
                             <th> ##word.status## </th>
                         </tr>
 
@@ -96,9 +93,7 @@
                             </td>
                             <td x-feature="restaurant"> {{c.order_invoices_type.##session.lang##}} </td>
                             <td> {{c.payment_method.##session.lang##}} </td>
-                            <!-- <td> {{c.items_price ||0}} </td> -->
-                            <!--   <td class="red"> {{c.total_tax ||0}} </td>
-                            <td class="red"> {{c.total_discount ||0}} </td> -->
+                      
                             <td x-feature="restaurant">
                                 <p ng-show="c.service"> ##word.service## </p>
                                 <p ng-show="c.service">{{c.service}}</p>
@@ -108,7 +103,6 @@
                             <td> {{c.net_value}} </td>
                             <td class="green"> {{c.paid ||0}} </td>
                             <td ng-show="search.safe.type.id == 2" class="red"> {{c.commission ||0}} </td>
-                            <!--  <td class="blue"> {{c.remain_amount ||0}} </td> -->
                             <td>
                                 <p ng-show="c.active == true" class="green"> ##word.active## </p>
                                 <p ng-show="c.active == false" class="red"> ##word.not_active## </p>

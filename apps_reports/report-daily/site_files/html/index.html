@@ -9,6 +9,7 @@
 
     <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
     </nav>
+
     <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
     </nav>
 
@@ -17,7 +18,8 @@
             <div class="row" ng-controller="report_daily" x-permissions="login">
 
                 <div x-import="report-daily/search_all_modal.html"></div>
-                <div x-import="report-daily/details.html"></div>
+                <div x-import="report-daily/acc_invo_details.html"></div>
+                <div x-import="report-daily/store_invo_details.html"></div>
                 <div class="row">
                     <h1 class="bold text-center"> ##word.report_daily_name## </h1>
                 </div>
@@ -32,54 +34,116 @@
                     <span ng-show="busy">
                         <span class="sr-only">Loading...</span>
                     </span>
-                    <h3 class="bold text-center"> ##word.count## : {{count}} </h3>
                     <br>
                 </div>
 
-                <div class="row" id="t1">
+                <br>
+                <br>
+                <hr>
+                <br>
 
-                    <i-control class="col2 r_black" disabled ng-model="currency.name" label="##word.currency##">
-                    </i-control>
+                <div class="tabs inline-block">
+                    <div class="tabs-header">
+                        <a class="tab-link"
+                            onclick="site.showTabContent(event, '#financial_transactions')">##word.financial_transactions##
+                        </a>
+                        <a class="tab-link" ng-click="inventoryTransactions()">##word.inventory_transactions## </a>
+                    </div>
 
-                    <i-control class="col2 r_green" disabled ng-model="currency.ex_rate" type="number"
-                        label="##word.exchange_rate##"></i-control>
-                </div>
+                    <div class="tabs-content">
+                        <div id="financial_transactions" class="tab-content">
+                            <fieldset>
+                                <legend> ##word.financial_transactions## </legend>
 
+                                <div class="row" id="t1">
 
-                <i-button type="save" x-permissions="report_daily_print || report_daily_manage" label="##word.print##"
-                    ng-click="printAccountInvoive(list)">
-                </i-button>
-                <div class="row">
+                                    <i-list class="col3" ng-click="getAccInvoList(currency)"
+                                        ng-search="_search.$currency_search" ng-model="currency" items="currenciesList"
+                                        label="##word.currency##">
+                                    </i-list>
 
-                    <table class="table loaded center hover bold" id="t1">
-                        <tr>
-                            <th> ##word.source_type## </th>
-                            <th> ##word.paid_up## </th>
-                            <th class="not-print"> ##word.actions## </th>
+                                    <i-control class="col2 r_green" disabled ng-model="currency.ex_rate" type="number"
+                                        label="##word.exchange_rate##"></i-control>
+                                </div>
 
-                            <th x-feature="restaurant"> ##word.services## </th>
-                        </tr>
-
-                        <tr ng-repeat="c in list | orderBy : '-id'">
-
-                            <td> {{c.source_type.##session.lang##}} </td>
-                            <td> {{c.paid_up}} </td>
-
-                            <td class="not-print">
-                                <i-button type="details" label="##word.details##" ng-click="showDetails(c)">
+                                <i-button type="save" x-permissions="report_daily_print || report_daily_manage"
+                                    label="##word.print##" ng-click="printAccountInvoive(accInvoList)">
                                 </i-button>
-                            </td>
-                        </tr>
-                    </table>
+                                <div class="row">
+
+                                    <table class="table loaded center hover bold" id="t1">
+                                        <tr>
+                                            <th> ##word.source_type## </th>
+                                            <th> ##word.paid_up## </th>
+                                            <th class="not-print"> ##word.actions## </th>
+
+                                            <th x-feature="restaurant"> ##word.services## </th>
+                                        </tr>
+
+                                        <tr ng-repeat="c in accInvoList | orderBy : '-id'">
+
+                                            <td> {{c.source_type.##session.lang##}} </td>
+                                            <td>
+                                                <h3 class="bold" ng-class="{
+                                                green : c.source_type.id  == 13 || c.source_type.id  == 15,
+                                                red : c.source_type.id  == 14 || c.source_type.id  == 16,
+                                                }">{{c.paid_up}}</h3>
+                                            </td>
+
+                                            <td class="not-print">
+                                                <i-button type="details" ng-hide="c.source_type.id > 12"
+                                                    label="##word.details##" ng-click="showDetails(c)">
+                                                </i-button>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+
+                                <div class="row">
+                                    <i-button x-permissions="report_daily_print || report_daily_manage" type="print"
+                                        label="##word.print##" onclick="site.print('#t1')"></i-button>
+                                    <i-button x-permissions="report_daily_export || report_daily_manage" type="export"
+                                        label="##word.export_to_excel##"
+                                        onclick="export_to_xlsx('t1' , 'report_daily.xlsx')">
+                                    </i-button>
+                                </div>
+
+
+                            </fieldset>
+                        </div>
+
+                        <div id="inventory_transactions" class="tab-content">
+                            <fieldset>
+                                <legend> ##word.inventory_transactions## </legend>
+                                <table class="table loaded center hover bold">
+                                    <tr>
+                                        <th> ##word.source_type## </th>
+                                        <th> ##word.count## </th>
+                                        <th class="not-print"> ##word.actions## </th>
+
+                                        <th x-feature="restaurant"> ##word.services## </th>
+                                    </tr>
+
+                                    <tr ng-repeat="c in storeInvoList | orderBy : '-id'">
+
+                                        <td> {{c.source_type.##session.lang##}} </td>
+                                        <td> {{c.list.length}} </td>
+
+                                        <td class="not-print">
+                                            <i-button type="details" label="##word.details##" ng-click="showDetails(c)">
+                                            </i-button>
+                                        </td>
+                                    </tr>
+                                </table>
+
+                            </fieldset>
+                        </div>
+                    </div>
+
+
+
                 </div>
 
-                <div class="row">
-                    <i-button x-permissions="report_daily_print || report_daily_manage" type="print"
-                        label="##word.print##" onclick="site.print('#t1')"></i-button>
-                    <i-button x-permissions="report_daily_export || report_daily_manage" type="export"
-                        label="##word.export_to_excel##" onclick="export_to_xlsx('t1' , 'report_daily.xlsx')">
-                    </i-button>
-                </div>
 
             </div>
         </div>

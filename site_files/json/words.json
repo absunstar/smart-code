@@ -10,6 +10,11 @@
         "ar": "الاسم"
     },
     {
+        "name": "source_code",
+        "en": "Source Code",
+        "ar": "كود المصدر"
+    },
+    {
         "name": "delegate",
         "en": "Delegate",
         "ar": "المندوب"

@@ -70,6 +70,16 @@
         "ar": "مكافاّت الموظفين"
     },
     {
+        "name": "employee_advance",
+        "en": "Employee Advance",
+        "ar": "سلفة موظف"
+    },
+    {
+        "name": "payment_employee_advance",
+        "en": "Payment Employee Advance",
+        "ar": "تسديد سلفة موظف"
+    },
+    {
         "name": "security_system",
         "en": "Security System",
         "ar": "نظام الحماية"
@@ -98,6 +108,11 @@
         "name": "financial_transactions",
         "en": "Financial Transactions",
         "ar": "المعاملات المالية"
+    },
+    {
+        "name": "inventory_transactions",
+        "en": "Inventory Transactions",
+        "ar": "المعاملات المخزنية"
     },
     {
         "name": "employees",
@@ -844,7 +859,6 @@
         "en": "Add Amount in",
         "ar": "إضافة بنود الوارد "
     },
-  
     {
         "name": "system_add_amounts_out",
         "en": "Add Amount out",
@@ -1294,7 +1308,8 @@
         "name": "kitchen_management",
         "en": "Kitchen Management",
         "ar": "إدارة المطابخ"
-    },{
+    },
+    {
         "name": "menu_shift",
         "en": "Shifts Menu",
         "ar": "قائمة الشيفتات"

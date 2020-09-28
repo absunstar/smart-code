@@ -1046,12 +1046,10 @@ module.exports = function init(site) {
   })
 
 
-  site.getStoresIn = function (req, callback) {
+  site.getStoresIn = function (whereObj, callback) {
     callback = callback || {};
-
-    where['company.id'] = req.companyId
-    where['branch.code'] = req.branchCode
-
+    let where = whereObj || {}
+   
     if (where.date) {
       let d1 = site.toDate(where.date)
       let d2 = site.toDate(where.date)
@@ -1077,12 +1075,16 @@ module.exports = function init(site) {
       delete where['shift_code']
     }
 
-    $stores_in.findOne({
+    console.log();
+
+
+    $stores_in.findMany({
       where: where
-    }, (err, doc) => {
-      if (!err && doc)
-        callback(doc)
+    }, (err, docs) => {
+      if (!err && docs)
+        callback(docs)
       else callback(false)
+
     })
   }
 
