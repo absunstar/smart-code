@@ -93,11 +93,7 @@
         "en": "Attend",
         "ar": "حضور"
     },
-    {
-        "name": "absence",
-        "en": "Absence",
-        "ar": "غياب"
-    },
+   
     {
         "name": "trainer_account",
         "en": "Trainer Account",

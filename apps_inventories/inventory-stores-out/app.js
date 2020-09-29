@@ -993,7 +993,6 @@ module.exports = function init(site) {
         callback(docs)
       else callback(false)
 
-      console.log(docs);
     })
   }
 

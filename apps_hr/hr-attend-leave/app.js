@@ -28,45 +28,48 @@ module.exports = function init(site) {
         let employeeDoc = null
 
         if (!err && docs.length == 1) employeeDoc = docs[0]
+        site.getOpenShift({ companyId: employeeCb.company.id, branchCode: employeeCb.branch.code }, shiftCb => {
 
-        let attend_time = {
-          hour: new Date(attend.date).getHours(),
-          minute: new Date(attend.date).getMinutes()
-        }
-
-        let can_check_in = false
-        let can_check_out = false
-
-        if (employeeDoc == null) can_check_in = true
-        if (employeeDoc && employeeDoc.leave_date) can_check_in = true
-        if (employeeDoc && employeeDoc.attend_date) can_check_out = true
-        $attend_leave.trackBusy = true
-
-        if (attend.check_status == "check_in" && can_check_in) {
-
-          $attend_leave.add({
-            image_url: '/images/attend_leave.png',
-            employee: employeeCb,
-            active: true,
-            attend_date: new Date(attend.date),
-            attend: attend_time,
-            company: employeeCb.company,
-            branch: employeeCb.branch
-          });
-
-        } else if (attend.check_status == "check_out" && can_check_out) {
-
-          let leave_time = {
+          let attend_time = {
             hour: new Date(attend.date).getHours(),
             minute: new Date(attend.date).getMinutes()
           }
 
-          employeeDoc.leave_date = new Date(attend.date)
-          employeeDoc.leave = leave_time
-          $attend_leave.update(employeeDoc, () => {
-            $attend_leave.trackBusy = false
-          });
-        }
+          let can_check_in = false
+          let can_check_out = false
+
+          if (employeeDoc == null) can_check_in = true
+          if (employeeDoc && employeeDoc.leave_date) can_check_in = true
+          if (employeeDoc && employeeDoc.attend_date) can_check_out = true
+          $attend_leave.trackBusy = true
+
+          if (attend.check_status == "check_in" && can_check_in) {
+
+            $attend_leave.add({
+              image_url: '/images/attend_leave.png',
+              employee: employeeCb,
+              active: true,
+              attend_date: new Date(attend.date),
+              attend: attend_time,
+              shift: shiftCb,
+              company: employeeCb.company,
+              branch: employeeCb.branch
+            });
+
+          } else if (attend.check_status == "check_out" && can_check_out) {
+
+            let leave_time = {
+              hour: new Date(attend.date).getHours(),
+              minute: new Date(attend.date).getMinutes()
+            }
+
+            employeeDoc.leave_date = new Date(attend.date)
+            employeeDoc.leave = leave_time
+            $attend_leave.update(employeeDoc, () => {
+              $attend_leave.trackBusy = false
+            });
+          }
+        })
       })
     })
   })
@@ -225,7 +228,7 @@ module.exports = function init(site) {
       done: false
     }
 
-              
+
     if (!req.session.user) {
       response.error = 'Please Login First'
       res.json(response)
@@ -310,5 +313,45 @@ module.exports = function init(site) {
       res.json(response)
     })
   })
+
+
+  site.getAttendLeave = function (whereObj, callback) {
+    callback = callback || {};
+    let where = whereObj || {}
+    if (where.date) {
+      let d1 = site.toDate(where.date)
+      let d2 = site.toDate(where.date)
+      d2.setDate(d2.getDate() + 1)
+      where.attend_date = {
+        '$gte': d1,
+        '$lte': d2
+      }
+      delete where.date
+    } else if (where && where.date_from) {
+      let d1 = site.toDate(where.date_from)
+      let d2 = site.toDate(where.date_to)
+      d2.setDate(d2.getDate() + 1);
+      where.attend_date = {
+        '$gte': d1,
+        '$lte': d2
+      }
+      delete where.date_from
+      delete where.date_to
+    }
+
+    if (where['shift_code']) {
+      where['shift.code'] = where['shift_code']
+      delete where['shift_code']
+    }
+
+    $attend_leave.findMany({
+      where: where
+    }, (err, docs) => {
+      if (!err && docs)
+        callback(docs)
+      else callback(false)
+
+    })
+  }
 
 }

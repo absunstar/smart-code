@@ -58,14 +58,14 @@ app.controller('register', function ($scope, $http) {
 
     if ($scope.Gender) {
       if ($scope.Gender.type == 'male') {
-        $scope.customer.indentfy = {
+        $scope.customer.gender = {
           name: 'male',
           ar: 'ذكر',
           en: 'Male',
         }
 
       } else if ($scope.Gender.type == 'female') {
-        $scope.customer.indentfy = {
+        $scope.customer.gender = {
           name: 'female',
           ar: 'أنثى',
           en: 'Female',

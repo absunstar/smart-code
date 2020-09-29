@@ -1,12 +1,18 @@
 <div ng-hide="busy" class="row">
     <div class="col8">
         <br>
-        <table class="table bold">
+        <table class="table bold hover">
             <tr>
                 <td class="title">##word.employee_offer_value##</td>
-                <td class="center">{{employee_offer.value}}</td>
+                <td class="center green">{{employee_offer.value }}</td>
             </tr>
 
+            <tr>
+                <td class="title">##word.currency##</td>
+                <td class="center">{{employee_offer.currency.name}} <p class="blue">{{employee_offer.currency.ex_rate}}
+                    </p>
+                </td>
+            </tr>
 
             <tr>
                 <td class="title">##word.employee_offer_employees##</td>
@@ -16,7 +22,7 @@
 
             <tr>
                 <td class="title">##word.employee_offer_date##</td>
-                <td class="center">{{employee_offer.date | date : 'dd - MM - yyyy'}}</td>
+                <td class="center brown">{{employee_offer.date | date : 'dd - MM - yyyy'}}</td>
             </tr>
 
             <tr>

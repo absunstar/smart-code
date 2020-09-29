@@ -642,7 +642,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
         $scope.edit_price = false;
         $scope.store_in = {
           image_url: '/images/store_in.png',
-          shift: $scope.shift,
+          shift: shift,
           items: [],
           invoice: false,
           discountes: [],

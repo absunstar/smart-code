@@ -1,0 +1,51 @@
+<div id="personnelDetailsModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>
+                ##word.details## <i class="fa fa-file"></i>
+            </h2>
+        </div>
+
+        <div class="modal-body">
+
+            <table x-permissions="login" class="table bold loaded hover">
+                <tr>
+                    <th ng-show="personnelDetails.source_type.id != 3">##word.date##</th>
+                    <th>##word.leave_name##</th>
+                    <th ng-show="personnelDetails.source_type.id == 3">##word.attend_leave_attend##</th>
+                    <th ng-show="personnelDetails.source_type.id == 3">##word.attend_leave_leave##</th>
+                    <th ng-show="personnelDetails.source_type.id != 3">##word.value##</th>
+                    <th ng-show="personnelDetails.source_type.id != 3">##word.currency##</th>
+                </tr>
+
+                <tr ng-repeat="c in personnelDetails.list">
+
+                    <td class="center brown" ng-show="personnelDetails.source_type.id != 3">{{c.date  |date:'dd - MM - yyyy'}}</td>
+                    <td class="center title">{{c.employee.name}}</td>
+
+                    <td class="center green" ng-show="personnelDetails.source_type.id == 3">
+                        <p class="red" ng-show="c.absence">##word.absence##</p>
+
+                        {{c.attend_date |date:'dd - MM - yyyy'}}
+                        <p class="center green"> {{c.attend.minute}} : {{c.attend.hour}}</p>
+                    </td>
+
+                    <td class="center" ng-show="personnelDetails.source_type.id == 3">
+                        <p class="red" ng-show="c.absence">##word.absence##</p>
+                        <p ng-show="c.leave_date" class="center red">{{c.leave_date |date:'dd - MM - yyyy'}}</p>
+                        <p ng-show="c.leave_date" class="center red"> {{c.leave.minute}} : {{c.leave.hour}}</p>
+                    </td>
+                    <td class="center green" ng-show="personnelDetails.source_type.id != 3">{{c.value}}</td>
+                    <td class="center title" ng-show="personnelDetails.source_type.id != 3">{{c.currency.name}} / <b
+                            class="blue">{{c.currency.ex_rate}}</b></td>
+
+                </tr>
+            </table>
+
+        </div>
+        <h2 class="error center bold">{{error}}</h2>
+        <div class="modal-footer center">
+            <i-button type="close" label="##word.close##" onclick="site.hideModal('#personnelDetailsModal')"></i-button>
+        </div>
+    </div>
+</div>

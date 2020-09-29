@@ -554,7 +554,7 @@ module.exports = function init(site) {
   })
 
 
-  site.gettransferBranch = function (whereObj, callback) {
+  site.getTransferBranch = function (whereObj, callback) {
     callback = callback || {};
     let where = whereObj || {}
    

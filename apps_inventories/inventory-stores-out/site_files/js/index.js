@@ -1679,18 +1679,18 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.getIndentfy = function () {
+  $scope.getGender = function () {
     $scope.error = '';
     $scope.busy = true;
-    $scope.indentfyList = [];
+    $scope.genderList = [];
     $http({
       method: "POST",
-      url: "/api/indentfy_employee/all"
+      url: "/api/gender/all"
 
     }).then(
       function (response) {
         $scope.busy = false;
-        $scope.indentfyList = response.data;
+        $scope.genderList = response.data;
       },
       function (err) {
         $scope.busy = false;
@@ -2344,7 +2344,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
   $scope.getDefaultSettings();
   $scope.getGovList();
   $scope.loadTaxTypes();
-  $scope.getIndentfy();
+  $scope.getGender();
   $scope.getCustomerGroupList();
   $scope.loadDelegates();
   $scope.loadDiscountTypes();

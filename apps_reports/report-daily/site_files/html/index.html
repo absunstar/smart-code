@@ -20,6 +20,9 @@
                 <div x-import="report-daily/search_all_modal.html"></div>
                 <div x-import="report-daily/acc_invo_details.html"></div>
                 <div x-import="report-daily/store_invo_details.html"></div>
+                <div x-import="report-daily/personnel.html"></div>
+                <div x-import="report-daily/patches_list.html"></div>
+
                 <div class="row">
                     <h1 class="bold text-center"> ##word.report_daily_name## </h1>
                 </div>
@@ -29,7 +32,7 @@
                         label="##word.report_daily_new##" ng-click="displayAddReportDaily()"></i-button>-->
 
                     <i-button type="search" x-permissions="report_daily_search || report_daily_manage"
-                        label="##word.search_all##" onclick="site.showModal('#reportDailySearchModal')"></i-button>
+                        label="##word.search_all##" ng-click="showSearchAll()"></i-button>
 
                     <span ng-show="busy">
                         <span class="sr-only">Loading...</span>
@@ -48,6 +51,8 @@
                             onclick="site.showTabContent(event, '#financial_transactions')">##word.financial_transactions##
                         </a>
                         <a class="tab-link" ng-click="inventoryTransactions()">##word.inventory_transactions## </a>
+                        <a class="tab-link" ng-click="personnel()">##word.personnel## </a>
+
                     </div>
 
                     <div class="tabs-content">
@@ -80,19 +85,19 @@
                                             <th x-feature="restaurant"> ##word.services## </th>
                                         </tr>
 
-                                        <tr ng-repeat="c in accInvoList | orderBy : '-id'">
+                                        <tr ng-repeat="a in accInvoList | orderBy : '-id'">
 
-                                            <td> {{c.source_type.##session.lang##}} </td>
+                                            <td> {{a.source_type.##session.lang##}} </td>
                                             <td>
                                                 <h3 class="bold" ng-class="{
-                                                green : c.source_type.id  == 13 || c.source_type.id  == 15,
-                                                red : c.source_type.id  == 14 || c.source_type.id  == 16,
-                                                }">{{c.paid_up}}</h3>
+                                                green : a.source_type.id  == 13 || a.source_type.id  == 15,
+                                                red : a.source_type.id  == 14 || a.source_type.id  == 16,
+                                                }">{{a.paid_up}}</h3>
                                             </td>
 
                                             <td class="not-print">
-                                                <i-button type="details" ng-hide="c.source_type.id > 12"
-                                                    label="##word.details##" ng-click="showDetails(c)">
+                                                <i-button type="details" ng-hide="a.source_type.id > 12"
+                                                    label="##word.details##" ng-click="showAccInvoDetails(a)">
                                                 </i-button>
                                             </td>
                                         </tr>
@@ -124,13 +129,47 @@
                                         <th x-feature="restaurant"> ##word.services## </th>
                                     </tr>
 
-                                    <tr ng-repeat="c in storeInvoList | orderBy : '-id'">
+                                    <tr ng-repeat="s in storeInvoList | orderBy : '-id'">
 
-                                        <td> {{c.source_type.##session.lang##}} </td>
-                                        <td> {{c.list.length}} </td>
+                                        <td> {{s.source_type.##session.lang##}} </td>
+                                        <td> {{s.list.length}} </td>
 
                                         <td class="not-print">
-                                            <i-button type="details" label="##word.details##" ng-click="showDetails(c)">
+                                            <i-button type="details" label="##word.details##"
+                                                ng-click="showStoreInvoDetails(s)">
+                                            </i-button>
+                                        </td>
+                                    </tr>
+                                </table>
+
+                            </fieldset>
+                        </div>
+
+                        <div id="personnel" class="tab-content">
+                            <fieldset>
+                                <legend> ##word.personnel## </legend>
+                                <table class="table loaded center hover bold">
+                                    <tr>
+                                        <th> ##word.source_type## </th>
+                                        <th> ##word.paid_up## </th>
+                                        <th class="not-print"> ##word.actions## </th>
+
+                                        <th x-feature="restaurant"> ##word.services## </th>
+                                    </tr>
+
+                                    <tr ng-repeat="p in personnelList | orderBy : '-id'">
+
+                                        <td> {{p.source_type.##session.lang##}} </td>
+                                        <td>
+                                            <p ng-class="{
+                                            green : p.source_type.id  == 1,
+                                            red : p.source_type.id  == 2,
+                                            }">{{p.paid_up}}</p>
+                                        </td>
+
+                                        <td class="not-print">
+                                            <i-button type="details" label="##word.details##"
+                                                ng-click="showPersonnelDetails(p)">
                                             </i-button>
                                         </td>
                                     </tr>

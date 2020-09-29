@@ -5,12 +5,18 @@ app.controller("attend_leave", function ($scope, $http, $timeout, $interval) {
 
   $scope.displayAddAttendLeave = function () {
     $scope.error = '';
-    $scope.attend_leave = {
-      image_url: '/images/attend_leave.png',
-      active: true,
-      date: new Date()
-    };
-    site.showModal('#attendLeaveAddModal');
+    $scope.get_open_shift((shift) => {
+
+      if (shift) {
+        $scope.attend_leave = {
+          image_url: '/images/attend_leave.png',
+          active: true,
+          shift: shift,
+          date: new Date()
+        };
+        site.showModal('#attendLeaveAddModal');
+      } else $scope.error = '##word.open_shift_not_found##';
+    })
   };
 
   $scope.addAttendLeave = function () {
@@ -45,9 +51,14 @@ app.controller("attend_leave", function ($scope, $http, $timeout, $interval) {
 
   $scope.displayUpdateAttendLeave = function (attend_leave) {
     $scope.error = '';
-    $scope.viewAttendLeave(attend_leave);
-    $scope.attend_leave = {};
-    site.showModal('#attendLeaveUpdateModal');
+    $scope.get_open_shift((shift) => {
+
+      if (shift) {
+        $scope.viewAttendLeave(attend_leave);
+        $scope.attend_leave = {};
+        site.showModal('#attendLeaveUpdateModal');
+      } else $scope.error = '##word.open_shift_not_found##';
+    })
   };
 
   $scope.updateAttendLeave = function () {
@@ -111,9 +122,14 @@ app.controller("attend_leave", function ($scope, $http, $timeout, $interval) {
 
   $scope.displayDeleteAttendLeave = function (attend_leave) {
     $scope.error = '';
-    $scope.viewAttendLeave(attend_leave);
-    $scope.attend_leave = {};
-    site.showModal('#attendLeaveDeleteModal');
+    $scope.get_open_shift((shift) => {
+
+      if (shift) {
+        $scope.viewAttendLeave(attend_leave);
+        $scope.attend_leave = {};
+        site.showModal('#attendLeaveDeleteModal');
+      } else $scope.error = '##word.open_shift_not_found##';
+    })
 
   };
 
@@ -121,7 +137,7 @@ app.controller("attend_leave", function ($scope, $http, $timeout, $interval) {
     $scope.busy = true;
     $scope.error = '';
     let id = $scope.attend_leave ? $scope.attend_leave.id : null;
-    if(!id){
+    if (!id) {
       return false;
     }
     $http({
@@ -149,34 +165,34 @@ app.controller("attend_leave", function ($scope, $http, $timeout, $interval) {
   $scope.list = [];
   $scope.getAttendLeaveList = function (where) {
     $scope.busy = true;
-    
+
     $http({
       method: "POST",
       url: "/api/attend_leave/all",
       data: {
         where: where,
-        limit : 10
+        limit: 10
       }
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done && response.data.list.length > 0) {
-          if($scope.list.length == response.data.list.length){
-            response.data.list.forEach((d , i) => {
-              if(!$scope.list[i].leave_date && d.leave_date){
+          if ($scope.list.length == response.data.list.length) {
+            response.data.list.forEach((d, i) => {
+              if (!$scope.list[i].leave_date && d.leave_date) {
                 $scope.list[i].leave_date = d.leave_date;
                 $scope.list[i].leave = d.leave;
               }
-              
+
             });
-          }else{
+          } else {
             $scope.list = response.data.list;
             $scope.count = response.data.count;
             site.hideModal('#attendLeaveSearchModal');
             $scope.search = {};
           }
-          
-        }else{
+
+        } else {
           $scope.list = [];
         }
       },
@@ -196,7 +212,7 @@ app.controller("attend_leave", function ($scope, $http, $timeout, $interval) {
         url: "/api/employees/all",
         data: {
           search: $scope.search_employee,
-          
+
           /*  select: {
             id: 1,
             name_ar: 1,
@@ -232,6 +248,24 @@ app.controller("attend_leave", function ($scope, $http, $timeout, $interval) {
     };
   };
 
+
+
+$scope.absence = function () {
+    $scope.attend_leave.attend_date = new Date();
+    $scope.attend_leave.attend = {
+      hour: new Date().getHours(),
+      minute: new Date().getMinutes()
+    };
+
+    $scope.attend_leave.leave_date = new Date();
+    $scope.attend_leave.leave = {
+      hour: new Date().getHours(),
+      minute: new Date().getMinutes()
+    };
+  };
+
+
+
   $scope.leaveNow = function (attend_leave) {
     attend_leave.leave_date = new Date();
     attend_leave.leave = {
@@ -255,6 +289,44 @@ app.controller("attend_leave", function ($scope, $http, $timeout, $interval) {
       },
       function (err) {
         console.log(err);
+      }
+    )
+  };
+
+  $scope.get_open_shift = function (callback) {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/shifts/get_open_shift",
+      data: {
+        where: {
+          active: true
+        },
+        select: {
+          id: 1,
+          name: 1,
+          code: 1,
+          from_date: 1,
+          from_time: 1,
+          to_date: 1,
+          to_time: 1
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.doc) {
+          $scope.shift = response.data.doc;
+          callback(response.data.doc);
+        } else {
+          callback(null);
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+        callback(null);
       }
     )
   };

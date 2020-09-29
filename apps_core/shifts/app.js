@@ -60,7 +60,7 @@ module.exports = function init(site) {
         minute: new Date().getMinutes()
       },
       active: true
-    }, (err, doc) => {})
+    }, (err, doc) => { })
   })
 
 
@@ -218,7 +218,7 @@ module.exports = function init(site) {
     let response = {
       done: false
     }
-          
+
     if (!req.session.user) {
       response.error = 'Please Login First'
       res.json(response)
@@ -246,7 +246,7 @@ module.exports = function init(site) {
     let response = {
       is_open: true
     }
-          
+
     if (!req.session.user) {
       response.error = 'Please Login First'
       res.json(response)
@@ -274,7 +274,7 @@ module.exports = function init(site) {
     let response = {
       done: false
     }
-          
+
     if (!req.session.user) {
       response.error = 'Please Login First'
       res.json(response)
@@ -322,7 +322,7 @@ module.exports = function init(site) {
     let response = {
       done: false
     }
-          
+
     if (!req.session.user) {
       response.error = 'Please Login First'
       res.json(response)
@@ -361,4 +361,45 @@ module.exports = function init(site) {
     })
   })
 
+
+  site.getOpenShift = function (whereObj, callback) {
+    callback = callback || {};
+    let where = whereObj || {}
+
+    where['company.id'] = where.companyId
+    where['branch.code'] = where.branchCode
+    where['active'] = true
+
+    $shifts.findOne({
+      select: {
+        id: 1,
+        name: 1,
+        code: 1,
+        from_date: 1,
+        from_time: 1,
+        to_date: 1,
+        to_time: 1
+      },
+      where: where,
+    }, (err, doc) => {
+      if (!err && doc) {
+        response.done = true
+        let obj = {
+          id: doc.id,
+          name: doc.name,
+          code: doc.code,
+          from_date: doc.from_date,
+          from_time: doc.from_time,
+          to_date: doc.to_date,
+          to_time: doc.to_time
+        }
+        response.doc = obj
+
+        callback(obj)
+      }
+      else callback(false)
+      res.json(response)
+    })
+
+  }
 }

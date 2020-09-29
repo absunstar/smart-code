@@ -7,26 +7,27 @@ app.controller("employee_discount", function ($scope, $http) {
 
   $scope.loadAll = function (where) {
     $scope.busy = true;
-    
+
     $http({
       method: "POST",
       url: "/api/employee_discount/all",
-      data: {where : where
+      data: {
+        where: where
       }
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.list = response.data.list;
-          
-         site.hideModal('#amountsInSearchModal');
+
+          site.hideModal('#amountsInSearchModal');
         }
       },
       function (err) {
         $scope.busy = false;
         $scope.error = err;
       }
-      )
+    )
   };
 
 
@@ -40,7 +41,7 @@ app.controller("employee_discount", function ($scope, $http) {
           id: 1,
           name: 1,
           commission: 1,
-          type : 1
+          type: 1
         }
       }
     }).then(
@@ -59,15 +60,24 @@ app.controller("employee_discount", function ($scope, $http) {
 
   $scope.newemployee_discount = function () {
     $scope.error = '';
-    $scope.employee_discount = { image_url: '/images/discount.png', date: new Date() , from_eng : false , from_company : false };
-    site.showModal('#addEmployeeDiscountModal');
+    $scope.get_open_shift((shift) => {
+
+      if (shift) {
+        $scope.employee_discount = {
+          image_url: '/images/discount.png',
+          date: new Date(),
+          shift: shift
+        };
+        site.showModal('#addEmployeeDiscountModal');
+      } else $scope.error = '##word.open_shift_not_found##';
+    })
   };
 
 
   $scope.searchAll = function () {
     let where = {};
 
-    
+
     if ($scope.search.date) {
       where['date'] = $scope.search.date;
     }
@@ -110,51 +120,10 @@ app.controller("employee_discount", function ($scope, $http) {
     $scope.loadAll(where);
   };
 
-  $scope.loadCities = function (gov) {
-    if ($scope.townBusy == true) {
-      return;
-    }
-    var where = {};
-
-    if (typeof gov === 'string') {
-      gov = JSON.parse(gov);
-    } else {
-      gov = gov || {};
-    }
-    if (gov && gov.id) {
-      where = {
-        'gov.id': gov.id
-      };
-    }
-
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/cities/all",
-      data: {
-        where: where,
-        select: {
-          id: 1,
-          name: 1
-        }
-      }
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          $scope.cities = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
-  };
 
   $scope.add = function () {
 
-     $scope.error = '';
+    $scope.error = '';
     let v = site.validated('#addEmployeeDiscountModal');
 
     if (!v.ok) {
@@ -162,13 +131,13 @@ app.controller("employee_discount", function ($scope, $http) {
       return;
     }
 
-    
+
     $scope.busy = true;
     $http({
       method: "POST",
       url: "/api/employee_discount/add",
       data: $scope.employee_discount
-     
+
     }).then(
       function (response) {
         $scope.busy = false;
@@ -182,16 +151,21 @@ app.controller("employee_discount", function ($scope, $http) {
       function (err) {
         console.log(err);
       }
-      )
+    )
   };
 
 
 
   $scope.edit = function (employee_discount) {
     $scope.error = '';
-    $scope.view(employee_discount);
-    $scope.employee_discount = {};
-    site.showModal('#updateEmployeeDiscountModal');
+    $scope.get_open_shift((shift) => {
+
+      if (shift) {
+        $scope.view(employee_discount);
+        $scope.employee_discount = {};
+        site.showModal('#updateEmployeeDiscountModal');
+      } else $scope.error = '##word.open_shift_not_found##';
+    })
   };
   $scope.update = function () {
     $scope.busy = true;
@@ -212,13 +186,18 @@ app.controller("employee_discount", function ($scope, $http) {
       function (err) {
         console.log(err);
       }
-      )
+    )
   };
 
   $scope.remove = function (employee_discount) {
-    $scope.view(employee_discount);
-    $scope.employee_discount = {};
-    site.showModal('#deleteEmployeeDiscountModal');
+    $scope.get_open_shift((shift) => {
+
+      if (shift) {
+        $scope.view(employee_discount);
+        $scope.employee_discount = {};
+        site.showModal('#deleteEmployeeDiscountModal');
+      } else $scope.error = '##word.open_shift_not_found##';
+    })
   };
 
   $scope.view = function (employee_discount) {
@@ -240,7 +219,7 @@ app.controller("employee_discount", function ($scope, $http) {
       function (err) {
         console.log(err);
       }
-      )
+    )
   };
   $scope.details = function (employee_discount) {
     $scope.view(employee_discount);
@@ -266,7 +245,7 @@ app.controller("employee_discount", function ($scope, $http) {
       function (err) {
         console.log(err);
       }
-      )
+    )
   };
 
   $scope.loadEmployees = function () {
@@ -288,8 +267,78 @@ app.controller("employee_discount", function ($scope, $http) {
       }
     )
   };
-   
+
+  $scope.get_open_shift = function (callback) {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/shifts/get_open_shift",
+      data: {
+        where: {
+          active: true
+        },
+        select: {
+          id: 1,
+          name: 1,
+          code: 1,
+          from_date: 1,
+          from_time: 1,
+          to_date: 1,
+          to_time: 1
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.doc) {
+          $scope.shift = response.data.doc;
+          callback(response.data.doc);
+        } else {
+          callback(null);
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+        callback(null);
+      }
+    )
+  };
+
+  $scope.loadCurrencies = function () {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/currency/all",
+      data: {
+        select: {
+          id: 1,
+          name: 1,
+          minor_currency: 1,
+          ex_rate: 1
+        },
+        where: {
+          active: true
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.currenciesList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+
   $scope.loadSafes();
+  $scope.loadCurrencies();
   $scope.loadEmployees();
-  $scope.loadAll({date : new Date()});
+  $scope.loadAll({ date: new Date() });
 });

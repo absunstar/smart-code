@@ -19,8 +19,8 @@ module.exports = function init(site) {
   })
 
   site.post({
-    name: "/api/indentfy_employee/all",
-    path: __dirname + "/site_files/json/indentfy_employee.json"
+    name: "/api/gender/all",
+    path: __dirname + "/site_files/json/gender.json"
   })
 
   site.post({
@@ -448,7 +448,7 @@ module.exports = function init(site) {
     let select = {
       id: 1, name: 1,
       active: 1, finger_code: 1,
-      indentfy: 1,
+      gender: 1,
       company: 1, branch: 1
     }
 

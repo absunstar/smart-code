@@ -546,7 +546,7 @@ module.exports = function init(site) {
     let select = {
       id: 1, name_ar: 1,
       active: 1, finger_code: 1,
-      busy: 1, child: 1, indentfy: 1,
+      busy: 1, child: 1, gender: 1,
       address: 1, mobile: 1, phone: 1,
       gov: 1, city: 1, area: 1,
       company: 1, branch: 1,
@@ -573,7 +573,7 @@ module.exports = function init(site) {
     let select = {
       id: 1, name_ar: 1,
       active: 1, finger_code: 1,
-      busy: 1, child: 1, indentfy: 1,
+      busy: 1, child: 1, gender: 1,
       address: 1, mobile: 1, phone: 1,
       gov: 1, city: 1, area: 1,
       company: 1, branch: 1,

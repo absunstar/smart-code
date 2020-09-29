@@ -25,11 +25,6 @@
         "ar": "وقت المغادرة"
     },
     {
-        "name": "attend_now",
-        "en": "Attend Now",
-        "ar": "حضور الأن"
-    },
-    {
         "name": "leave_now",
         "en": "Leave Now",
         "ar": "مغادرة الأن"

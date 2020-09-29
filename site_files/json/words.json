@@ -15,6 +15,16 @@
         "ar": "كود المصدر"
     },
     {
+        "name": "attend_now",
+        "en": "Attend Now",
+        "ar": "حضور الأن"
+    },
+    {
+        "name": "gender",
+        "en": "Gender",
+        "ar": "الجنس"
+    },
+    {
         "name": "delegate",
         "en": "Delegate",
         "ar": "المندوب"
@@ -55,9 +65,19 @@
         "ar": "الكمية"
     },
     {
+        "name": "absence",
+        "en": "Absence",
+        "ar": "غياب"
+    },
+    {
         "name": "total_quantity",
         "en": "Total Quantity",
         "ar": "إجمالي الكمية"
+    },
+    {
+        "name": "personnel",
+        "en": "Personnel",
+        "ar": "شئون الموظفين"
     },
     {
         "name": "overdraft",
@@ -624,7 +644,6 @@
         "en": "Invoice Source",
         "ar": "مصدر الفاتورة"
     },
-
     {
         "name": "print_invoice",
         "en": "Print Invoice",

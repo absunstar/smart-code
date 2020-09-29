@@ -1,5 +1,6 @@
 app.controller("report_daily", function ($scope, $http, $timeout) {
   $scope._search = {};
+  $scope.search = { date: new Date() };
 
   $scope.report_daily = {};
 
@@ -69,12 +70,13 @@ app.controller("report_daily", function ($scope, $http, $timeout) {
   $scope.getAccInvoList = function (currency) {
     $scope.busy = true;
     $scope.accInvoList = [];
-    if ($scope.search) $scope.search.currency = currency;
+    let where = $scope.search || {};
+    where.currency = currency;
     $http({
       method: "POST",
       url: "/api/report_daily/acc_invo",
       data: {
-        where: $scope.search
+        where: where
       }
     }).then(
       function (response) {
@@ -117,6 +119,30 @@ app.controller("report_daily", function ($scope, $http, $timeout) {
       }
     )
   };
+
+  $scope.getPersonnelList = function (where) {
+    $scope.busy = true;
+    $scope.personnelList = [];
+    $http({
+      method: "POST",
+      url: "/api/report_daily/personnel",
+      data: {
+        where: where
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.personnelList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
 
 
 
@@ -281,11 +307,19 @@ app.controller("report_daily", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.showDetails = function (c) {
+  $scope.showAccInvoDetails = function (c) {
     $scope.accInvoDetails = c;
     site.showModal('#accInvoDetailsModal');
   };
+  $scope.showStoreInvoDetails = function (c) {
+    $scope.storeInvoDetails = c;
+    site.showModal('#storeInvoDetailsModal');
+  };
 
+  $scope.showPersonnelDetails = function (c) {
+    $scope.personnelDetails = c;
+    site.showModal('#personnelDetailsModal');
+  };
 
   $scope.inventoryTransactions = function () {
 
@@ -293,27 +327,27 @@ app.controller("report_daily", function ($scope, $http, $timeout) {
     site.showTabContent(event, '#inventory_transactions')
   };
 
+  $scope.personnel = function () {
+
+    $scope.getPersonnelList($scope.search);
+    site.showTabContent(event, '#personnel')
+  };
+
 
   $scope.searchAll = function () {
 
     $scope.error = '';
-
-    const v = site.validated('#reportDailySearchModal');
-    if (!v.ok) {
-      $scope.error = v.messages[0].ar;
-      return;
-    }
-
     $scope._search = {};
-    if ($scope.search) {
 
-      $scope.date = $scope.search.date;
-      $scope.date_from = $scope.search.date_from;
-      $scope.date_to = $scope.search.date_to;
-      $scope.shift_code = $scope.search.shift_code;
-      $scope.currency = $scope.search.currency;
-    }
     site.hideModal('#reportDailySearchModal');
+  };
+
+  $scope.showSearchAll = function () {
+
+    $scope.error = '';
+    $scope.search = {};
+
+    site.showModal('#reportDailySearchModal');
   };
 
 

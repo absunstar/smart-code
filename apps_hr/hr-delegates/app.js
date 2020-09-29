@@ -519,7 +519,7 @@ module.exports = function init(site) {
     let select = {
       id: 1, name: 1,
       active: 1, finger_code: 1,
-      indentfy: 1,
+      gender: 1,
       company: 1, branch: 1
     }
 

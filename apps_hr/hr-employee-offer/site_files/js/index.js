@@ -5,7 +5,7 @@ app.controller("employee_offer", function ($scope, $http) {
   $scope.search = {};
 
   $scope.loadAll = function (where) {
-   
+
     $scope.busy = true;
 
     $http({
@@ -41,7 +41,7 @@ app.controller("employee_offer", function ($scope, $http) {
           id: 1,
           name: 1,
           commission: 1,
-          type : 1
+          type: 1
         }
       }
     }).then(
@@ -63,13 +63,17 @@ app.controller("employee_offer", function ($scope, $http) {
 
   $scope.newemployee_offer = function () {
     $scope.error = '';
-    $scope.employee_offer = {
-      image_url: '/images/offer.png',
-      date: new Date(),
-      from_eng: false,
-      from_company: false
-    };
-    site.showModal('#addemployeeOfferModal');
+    $scope.get_open_shift((shift) => {
+
+      if (shift) {
+        $scope.employee_offer = {
+          image_url: '/images/offer.png',
+          date: new Date(),
+          shift: shift
+        };
+        site.showModal('#addemployeeOfferModal');
+      } else $scope.error = '##word.open_shift_not_found##';
+    })
   };
 
 
@@ -142,9 +146,14 @@ app.controller("employee_offer", function ($scope, $http) {
   };
 
   $scope.remove = function (employee_offer) {
-    $scope.view(employee_offer);
-    $scope.employee_offer = {};
-    site.showModal('#deleteemployeeOfferModal');
+    $scope.get_open_shift((shift) => {
+
+      if (shift) {
+        $scope.view(employee_offer);
+        $scope.employee_offer = {};
+        site.showModal('#deleteemployeeOfferModal');
+      } else $scope.error = '##word.open_shift_not_found##';
+    })
   };
 
   $scope.view = function (employee_offer) {
@@ -221,7 +230,78 @@ app.controller("employee_offer", function ($scope, $http) {
     )
   };
 
+  $scope.loadCurrencies = function () {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/currency/all",
+      data: {
+        select: {
+          id: 1,
+          name: 1,
+          minor_currency: 1,
+          ex_rate: 1
+        },
+        where: {
+          active: true
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.currenciesList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+
+  $scope.get_open_shift = function (callback) {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/shifts/get_open_shift",
+      data: {
+        where: {
+          active: true
+        },
+        select: {
+          id: 1,
+          name: 1,
+          code: 1,
+          from_date: 1,
+          from_time: 1,
+          to_date: 1,
+          to_time: 1
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.doc) {
+          $scope.shift = response.data.doc;
+          callback(response.data.doc);
+        } else {
+          callback(null);
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+        callback(null);
+      }
+    )
+  };
+
+
   $scope.loadSafes();
+  $scope.loadCurrencies();
   $scope.loadEmployees();
-  $scope.loadAll({date : new Date()});
+  $scope.loadAll({ date: new Date() });
 });

@@ -27,8 +27,8 @@
                                 <td colspan="7" class="center"> {{request_service.customer.name_##session.lang##}}</td>
                             </tr>
                             <tr>
-                                <td class="blue"> ##word.customers_indentfy## </td>
-                                <td colspan="2" class="center"> {{request_service.customer.indentfy.##session.lang##}}
+                                <td class="blue"> ##word.gender## </td>
+                                <td colspan="2" class="center"> {{request_service.customer.gender.##session.lang##}}
                                 </td>
                                 <td class="blue"> ##word.child## </td>
                                 <td colspan="2" ng-show="request_service.customer.child == true">
@@ -247,7 +247,7 @@
                             display="##session.lang##">
                         </i-list>
 
-                        <i-list class="col3 control padding" ng-search="_search.$currency_search"
+                        <i-list class="col3 padding" ng-search="_search.$currency_search"
                             ng-model="request_service.currency"
                             ng-change="getSafeByType(request_service) ; calc(request_service)" items="currenciesList"
                             label="##word.currency##">

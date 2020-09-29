@@ -249,18 +249,18 @@ app.controller("customers", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.getIndentfy = function () {
+  $scope.Gender = function () {
     $scope.error = '';
     $scope.busy = true;
-    $scope.indentfyList = [];
+    $scope.genderList = [];
     $http({
       method: "POST",
-      url: "/api/indentfy_employee/all"
+      url: "/api/gender/all"
 
     }).then(
       function (response) {
         $scope.busy = false;
-        $scope.indentfyList = response.data;
+        $scope.genderList = response.data;
       },
       function (err) {
         $scope.busy = false;
@@ -482,7 +482,7 @@ app.controller("customers", function ($scope, $http, $timeout) {
   $scope.getCustomersList();
   $scope.getHost();
   $scope.getCustomerGroupList();
-  $scope.getIndentfy();
+  $scope.Gender();
   $scope.getGovList();
   $scope.getBloodType();
   $scope.loadMaritalsStatus();

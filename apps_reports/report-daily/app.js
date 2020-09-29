@@ -368,11 +368,12 @@ module.exports = function init(site) {
 
     where['company.id'] = site.get_company(req).id
     where['branch.code'] = site.get_branch(req).code
+    delete where.currency
 
-    
+
     site.getStoresIn(Object.assign({}, where), storeInList => {
       site.getStoresOut(Object.assign({}, where), storeOutList => {
-        site.gettransferBranch(Object.assign({}, where), transBranchList => {
+        site.getTransferBranch(Object.assign({}, where), transBranchList => {
           site.getStoresAssemble(Object.assign({}, where), storesAssembleList => {
             site.getStoresDismantle(Object.assign({}, where), storesDismantleList => {
               site.getUnitSwitch(Object.assign({}, where), unitSwitchList => {
@@ -443,6 +444,80 @@ module.exports = function init(site) {
     })
 
   })
+
+
+
+  site.post("/api/report_daily/personnel", (req, res) => {
+    let response = {
+      done: false
+    }
+
+    if (!req.session.user) {
+      response.error = 'Please Login First'
+      res.json(response)
+      return
+    }
+
+    let where = req.data.where || {}
+
+    where['company.id'] = site.get_company(req).id
+    where['branch.code'] = site.get_branch(req).code
+    delete where.currency
+
+    site.getEmployeesOffers(Object.assign({}, where), employeesOffersList => {
+      site.getEmployeesDiscounts(Object.assign({}, where), employeesDiscountsList => {
+        site.getAttendLeave(Object.assign({}, where), attendLeaveList => {
+
+          response.done = true
+          empOfferPay = 0
+          empDisPay = 0
+          if (employeesOffersList && employeesOffersList.length > 0) {
+            employeesOffersList.forEach(_empOffer => {
+              empOfferPay += _empOffer.value
+            });
+          }
+
+          if (employeesDiscountsList && employeesDiscountsList.length > 0) {
+            employeesDiscountsList.forEach(_empDis => {
+              empDisPay += _empDis.value
+            });
+          }
+
+          let list = [{
+            list: employeesOffersList,
+            paid_up: empOfferPay,
+            source_type: {
+              id: 1,
+              en: "Employees Offers",
+              ar: "مكافاّت الموظفين"
+            }
+          }, {
+            list: employeesDiscountsList,
+            paid_up: empDisPay,
+            source_type: {
+              id: 2,
+              en: "Employees Discounts",
+              ar: "خصومات الموظفين"
+            }
+          }, {
+
+            list: attendLeaveList,
+            source_type: {
+              id: 3,
+              en: "Attend & Leave",
+              ar: "حضور و إنصراف"
+            }
+          }]
+
+          response.list = list
+          res.json(response)
+        })
+      })
+    })
+
+  })
+
+
 
 
 }

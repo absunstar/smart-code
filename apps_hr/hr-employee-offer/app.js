@@ -97,26 +97,6 @@ module.exports = function init(site) {
       }, (err, result) => {
         if (!err && result.ok) {
 
-          let Obj = {
-            value: result.doc.value,
-            safe: result.doc.safe,
-            company: result.doc.company,
-            branch: result.doc.branch,
-            date: result.doc.date,
-            shift: {
-              id: result.doc.shift.id,
-              code: result.doc.shift.code,
-              name: result.doc.shift.name
-            },
-            transition_type: 'in',
-            operation: 'حذف مكافأة موظف',
-            sourceName: result.doc.employee.name
-          }
-          if (Obj.value && Obj.safe && Obj.date && Obj.sourceName) {
-            site.quee('[amounts][safes][+]', Obj)
-          }
-
-
           response.done = true
         }
         res.json(response)
@@ -240,5 +220,44 @@ module.exports = function init(site) {
     })
   })
 
+
+  site.getEmployeesOffers = function (whereObj, callback) {
+    callback = callback || {};
+    let where = whereObj || {}
+   
+    if (where.date) {
+      let d1 = site.toDate(where.date)
+      let d2 = site.toDate(where.date)
+      d2.setDate(d2.getDate() + 1)
+      where.date = {
+        '$gte': d1,
+        '$lte': d2
+      }
+    } else if (where && where.date_from) {
+      let d1 = site.toDate(where.date_from)
+      let d2 = site.toDate(where.date_to)
+      d2.setDate(d2.getDate() + 1);
+      where.date = {
+        '$gte': d1,
+        '$lte': d2
+      }
+      delete where.date_from
+      delete where.date_to
+    }
+
+    if (where['shift_code']) {
+      where['shift.code'] = where['shift_code']
+      delete where['shift_code']
+    }
+
+    $employee_offer.findMany({
+      where: where
+    }, (err, docs) => {
+      if (!err && docs)
+        callback(docs)
+      else callback(false)
+
+    })
+  }
 
 }

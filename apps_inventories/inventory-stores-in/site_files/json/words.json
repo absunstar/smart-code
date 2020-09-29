@@ -426,8 +426,8 @@
     },
     {
         "name": "err_patch_count",
-        "en": "The number of patches is uncontrolled",
-        "ar": "عدد الباتشات غير منضبط"
+        "en": "The number of Serial is uncontrolled",
+        "ar": "عدد السيريلات غير منضبط"
     },
     {
         "name": "err_patch_date",

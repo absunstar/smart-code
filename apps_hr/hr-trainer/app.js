@@ -39,11 +39,6 @@ module.exports = function init(site) {
   })
 
 
-  site.post({
-    name: "/api/indentfy_trainer/all",
-    path: __dirname + "/site_files/json/indentfy_trainer.json"
-
-  })
 
   site.get({
     name: 'images',

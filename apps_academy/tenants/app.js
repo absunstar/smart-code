@@ -24,12 +24,6 @@ module.exports = function init(site) {
 
   })
 
-  site.post({
-    name: "/api/indentfy_tenant/all",
-    path: __dirname + "/site_files/json/indentfy_tenant.json"
-
-  })
-
   site.get({
     name: 'images',
     path: __dirname + '/site_files/images/'

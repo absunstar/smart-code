@@ -1075,9 +1075,6 @@ module.exports = function init(site) {
       delete where['shift_code']
     }
 
-    console.log();
-
-
     $stores_in.findMany({
       where: where
     }, (err, docs) => {

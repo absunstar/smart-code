@@ -18,8 +18,8 @@
     <div id="main-layout" class="container">
         <div class="row">
             <div class="row" ng-controller="attend_leave">
-                <div x-permissions="attend_leave_add || attend_leave_manage"
-                    x-import="hr-attend-leave/add_modal.html"></div>
+                <div x-permissions="attend_leave_add || attend_leave_manage" x-import="hr-attend-leave/add_modal.html">
+                </div>
                 <div x-permissions="attend_leave_update || attend_leave_manage"
                     x-import="hr-attend-leave/update_modal.html"></div>
                 <div x-permissions="attend_leave_delete || attend_leave_manage"
@@ -61,30 +61,34 @@
 
                         <td class="center title">{{c.employee.name}}</td>
 
-                        <td class="center green">{{c.attend_date |date:'dd - MM - yyyy'}}
+                        <td class="center green">
+                            <p class="red" ng-show="c.absence">##word.absence##</p>
+
+                            {{c.attend_date |date:'dd - MM - yyyy'}}
                             <p class="center green"> {{c.attend.minute}} : {{c.attend.hour}}</p>
                         </td>
                         <td class="center">
-                            <i-button type="exit" ng-hide="c.leave_date" label="##word.leave_now##"
+                            <p class="red" ng-show="c.absence">##word.absence##</p>
+                            <i-button type="exit" ng-hide="c.leave_date || c.absence" label="##word.leave_now##"
                                 ng-click="leaveNow(c)">
                             </i-button>
                             <p ng-show="c.leave_date" class="center red">{{c.leave_date |date:'dd - MM - yyyy'}}</p>
                             <p ng-show="c.leave_date" class="center red"> {{c.leave.minute}} : {{c.leave.hour}}</p>
                         </td>
-                      
+
                         <td class="center not-print">
 
                             <i-button x-permissions="attend_leave_view || attend_leave_manage" type="view"
                                 label="##word.details##" ng-click="displayDetailsAttendLeave(c)"></i-button>
 
-                            <i-button x-permissions="attend_leave_delete || attend_leave_manage"
-                                type="delete" label="##word.delete##" ng-click="displayDeleteAttendLeave(c)">
+                            <i-button x-permissions="attend_leave_delete || attend_leave_manage" type="delete"
+                                label="##word.delete##" ng-click="displayDeleteAttendLeave(c)">
                             </i-button>
 
                         </td>
                     </tr>
                 </table>
-            
+
             </div>
         </div>
     </div>

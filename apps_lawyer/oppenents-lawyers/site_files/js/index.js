@@ -231,18 +231,18 @@ app.controller("oppenents_lawyers", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.getIndentfy = function () {
+  $scope.getGender = function () {
     $scope.error = '';
     $scope.busy = true;
-    $scope.indentfyList = [];
+    $scope.genderList = [];
     $http({
       method: "POST",
-      url: "/api/indentfy_employee/all"
+      url: "/api/gender/all"
 
     }).then(
       function (response) {
         $scope.busy = false;
-        $scope.indentfyList = response.data;
+        $scope.genderList = response.data;
       },
       function (err) {
         $scope.busy = false;
@@ -423,7 +423,7 @@ app.controller("oppenents_lawyers", function ($scope, $http, $timeout) {
 
   $scope.getOppenentsLawyersList();
   $scope.getGovList();
-  $scope.getIndentfy();
+  $scope.getGender();
   $scope.loadMaritalsStatus();
   $scope.loadMilitariesStatus();
 });
