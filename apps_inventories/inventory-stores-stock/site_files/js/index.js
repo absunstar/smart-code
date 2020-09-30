@@ -654,8 +654,14 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
             return;
           }
 
+
+          if (callback.not_patch) {
+            $scope.error = `##word.err_find_serial##   ( ${callback.patch_list.join('-')} )`;
+            return;
+          };
+
           if (callback.exist_serial) {
-            $scope.error = `##word.serial_pre_existing##   ( ${callback.serial_list.join('-')} )`;
+            $scope.error = `##word.serial_pre_existing##   ( ${callback.patch_list.join('-')} )`;
             return;
           };
 
@@ -700,8 +706,8 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
         patchCount: false,
         errDate: false,
         exist_serial: false,
-        patch_list: [],
-        serial_list: []
+        not_patch: false,
+        patch_list: []
       }
 
       store_stock.items.forEach(_item => {
@@ -732,12 +738,16 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
                   serial_list.forEach(_s => {
                     if (_s === _pl.patch && _item.work_serial) {
                       obj.exist_serial = true;
-                      obj.serial_list.push(_pl.patch);
+                      obj.patch_list.push(_pl.patch);
                     }
                   });
 
                 }
 
+                if (!_pl.patch) {
+                  obj.not_patch = true
+                  obj.patch_list.push(_item.barcode);
+                }
               });
             } else if (_item.work_serial || _item.work_patch) {
               obj.patchCount = true;
@@ -751,6 +761,8 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
 
         }
       });
+
+
 
       callback(obj)
     });
@@ -790,8 +802,13 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
         return;
       };
 
+      if (callback.not_patch) {
+        $scope.error = `##word.err_find_serial##   ( ${callback.patch_list.join('-')} )`;
+        return;
+      };
+
       if (callback.exist_serial) {
-        $scope.error = `##word.serial_pre_existing##   ( ${callback.serial_list.join('-')} )`;
+        $scope.error = `##word.serial_pre_existing##   ( ${callback.patch_list.join('-')} )`;
         return;
       };
 

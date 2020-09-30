@@ -2,10 +2,10 @@ module.exports = function init(site) {
 
   const $safes = site.connectCollection("safes")
 
-  site.on('[company][created]', doc => {
+  site.on('[currency][safe][add]', doc => {
 
     $safes.add({
-      name: "خزينة إفتراضي",
+      name: "خزينة كاش إفتراضي",
       balance: 0,
       type: {
         id: 1,
@@ -13,13 +13,18 @@ module.exports = function init(site) {
         ar: "كاش"
       },
       image_url: '/images/safe.png',
-      company: {
+      currency: {
         id: doc.id,
-        name_ar: doc.name_ar
+        name: doc.name,
+        ex_rate: doc.ex_rate
+      },
+      company: {
+        id: doc.company.id,
+        name_ar: doc.company.name_ar
       },
       branch: {
-        code: doc.branch_list[0].code,
-        name_ar: doc.branch_list[0].name_ar
+        code: doc.branch.code,
+        name_ar: doc.branch.name_ar
       },
       active: true
     }, (err, _doc) => {
@@ -32,13 +37,18 @@ module.exports = function init(site) {
           ar: "بنك"
         },
         image_url: '/images/safe.png',
-        company: {
+        currency: {
           id: doc.id,
-          name_ar: doc.name_ar
+          name: doc.name,
+          ex_rate: doc.ex_rate
+        },
+        company: {
+          id: doc.company.id,
+          name_ar: doc.company.name_ar
         },
         branch: {
-          code: doc.branch_list[0].code,
-          name_ar: doc.branch_list[0].name_ar
+          code: doc.branch.code,
+          name_ar: doc.branch.name_ar
         },
         active: true
       })

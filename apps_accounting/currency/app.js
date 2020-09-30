@@ -29,7 +29,9 @@ module.exports = function init(site) {
         name_ar: doc.branch_list[0].name_ar
       },
       active: true
-    }, (err, doc) => { })
+    }, (err, doc) => {
+      site.call('[currency][safe][add]', doc)
+    })
   })
 
 
@@ -185,7 +187,7 @@ module.exports = function init(site) {
     let response = {
       done: false
     }
-          
+
     if (!req.session.user) {
       response.error = 'Please Login First'
       res.json(response)

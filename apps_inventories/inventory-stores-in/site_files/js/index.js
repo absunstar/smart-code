@@ -712,8 +712,8 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
         patchCount: false,
         errDate: false,
         exist_serial: false,
-        patch_list: [],
-        serial_list: []
+        not_patch: false,
+        patch_list: []
       }
 
       storeIn.items.forEach(_item => {
@@ -738,12 +738,15 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
                 serial_list.forEach(_s => {
                   if (_s === _pl.patch && _item.work_serial) {
                     obj.exist_serial = true;
-                    obj.serial_list.push(_pl.patch);
+                    obj.patch_list.push(_pl.patch);
                   }
                 });
 
               }
-
+              if (!_pl.patch) {
+                obj.not_patch = true
+                obj.patch_list.push(_item.barcode);
+              }
             });
           } else if (_item.work_serial || _item.work_patch) {
             obj.patchCount = true;
@@ -832,8 +835,14 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
           return;
         };
 
+        
+      if (callback.not_patch) {
+        $scope.error = `##word.err_find_serial##   ( ${callback.patch_list.join('-')} )`;
+        return;
+      };
+
         if (callback.exist_serial && $scope.store_in.type.id !== 4) {
-          $scope.error = `##word.serial_pre_existing##   ( ${callback.serial_list.join('-')} )`;
+          $scope.error = `##word.serial_pre_existing##   ( ${callback.patch_list.join('-')} )`;
           return;
         };
 
@@ -1392,8 +1401,14 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
         return;
       };
 
+      
+      if (callback.not_patch) {
+        $scope.error = `##word.err_find_serial##   ( ${callback.patch_list.join('-')} )`;
+        return;
+      };
+
       if (callback.exist_serial && $scope.store_in.type.id !== 4) {
-        $scope.error = `##word.serial_pre_existing##   ( ${callback.serial_list.join('-')} )`;
+        $scope.error = `##word.serial_pre_existing##   ( ${callback.patch_list.join('-')} )`;
         return;
       };
 
@@ -1494,8 +1509,14 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
           return;
         };
 
+        
+      if (callback.not_patch) {
+        $scope.error = `##word.err_find_serial##   ( ${callback.patch_list.join('-')} )`;
+        return;
+      };
+
         if (testCallback.exist_serial && store_in.type.id !== 4) {
-          $scope.error = `##word.serial_pre_existing##   ( ${testCallback.serial_list.join('-')} )`;
+          $scope.error = `##word.serial_pre_existing##   ( ${testCallback.patch_list.join('-')} )`;
           store_in.posting = false;
           return;
         };
@@ -1565,7 +1586,6 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
         setTimeout(() => {
           if (!_store_in_all[i].posting) {
 
-
             $scope.getStockItems(_store_in_all[i].items, callback => {
               $scope.testPatches(_store_in_all[i], testCallback => {
 
@@ -1573,7 +1593,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
                   $scope.error = `##word.err_patch_count##   ( ${testCallback.patch_list.join('-')} )`;
                   _store_in_all[i].posting = false;
                 } else if (testCallback.exist_serial&& _store_in_all[i].type.id !== 4) {
-                  $scope.error = `##word.serial_pre_existing##   ( ${testCallback.serial_list.join('-')} )`;
+                  $scope.error = `##word.serial_pre_existing##   ( ${testCallback.patch_list.join('-')} )`;
                   _store_in_all[i].posting = false;
                 } else if (testCallback.errDate) {
                   $scope.error = '##word.err_patch_date##'

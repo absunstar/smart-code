@@ -24,6 +24,9 @@
     {"name" : "stores_stock_settlement" , "en" : "Settlement Stock" , "ar" : "تسوية الجرد"},
 
     {"name" : "err_barcode_exist" , "en" : "The barcode is exist" , "ar" : "الباركود مسجل من قبل"},
+
+    {"name" : "err_find_serial" , "en" : "Must Enter Serial Number" , "ar" : "يجب إدخال رقم السيريال"},
+    
     {"name" : "edit_purchase_price" , "en" : "Edit Purchase Price" , "ar" : "تعديل سعر الشراء"},
 
     {"name" : "permission_detailes" , "en" : "Permission Detailes" , "ar" : "تفاصيل الإذن"},
