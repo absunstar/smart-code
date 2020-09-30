@@ -466,17 +466,6 @@ module.exports = function init(site) {
       where.$or.push({
         'name_en': site.get_RegExp(search, "i")
       })
-      // where.$or.push({
-      //   'mobile': site.get_RegExp(search, "i")
-      // })
-
-      // where.$or.push({
-      //   'phone': site.get_RegExp(search, "i")
-      // })
-
-      // where.$or.push({
-      //   'national_id': site.get_RegExp(search, "i")
-      // })
 
       where.$or.push({
         'code': search

@@ -30,6 +30,11 @@
                             </i-control>
                             <i-control class="col2" ng-model="search.barcode" label="##word.barcode##" type="text">
                             </i-control>
+
+                            <i-control class="col3 r_indigo" type="text" label="##word.shift##"
+                                ng-model="search.shift_code">
+                            </i-control>
+
                         </div>
 
                         <div class="row">
@@ -41,12 +46,13 @@
                             <i-list ng-search="_search.$store" class="col3" display="name" ng-model="search.store"
                                 label="##word.store##" items="storesList"></i-list>
 
-                            <i-list ng-search="_search.$vendor" class="col3" display="name_##session.lang##" ng-model="search.vendor"
-                                label="##word.vendor##" items="vendorsList"></i-list>
+                            <i-control ng-keydown="loadvendors($event)" class="col2" ng-model="search_vendor"
+                                label="##word.search##" type="text"></i-control>
 
-                            <i-control class="col3 r_indigo" type="text" label="##word.shift##"
-                                ng-model="search.shift_code">
-                            </i-control>
+                            <i-list ng-search="_search.$vendor" class="col3" display="name_##session.lang##" space=" - "
+                                display2="code" ng-model="search.vendor" label="##word.vendor##" items="vendorsList">
+                            </i-list>
+
 
                         </div>
 

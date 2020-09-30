@@ -69,13 +69,16 @@ app.controller("default_setting", function ($scope, $http) {
     };
   };
 
-  $scope.loadVendors = function () {
+  $scope.loadVendors = function (ev) {
     $scope.error = '';
     $scope.busy = true;
-    $http({
+    if (ev.which === 13) {
+      $http({
       method: "POST",
       url: "/api/vendors/all",
-      data: {}
+      data: {
+        search: $scope.search_vendor
+      }
     }).then(
       function (response) {
         $scope.busy = false;
@@ -88,7 +91,8 @@ app.controller("default_setting", function ($scope, $http) {
         $scope.error = err;
       }
     )
-  };
+  }
+};
 
   $scope.getTransactionTypeList = function () {
     $scope.error = '';
@@ -551,7 +555,6 @@ app.controller("default_setting", function ($scope, $http) {
   };
 
   $scope.loadStores();
-  $scope.loadVendors();
   $scope.getPaymentMethodList();
   $scope.getDiscountMethodList();
   $scope.getPlaceProgramList();

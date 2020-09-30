@@ -22,12 +22,14 @@
                 </div>
 
                 <div class="row">
+                    <i-control ng-keydown="loadVendors($event)" class="col2" ng-model="search_vendor"
+                        label="##word.search##" type="text"></i-control>
                     <i-list class="col3" ng-model="store_in.vendor" items="vendorsList" display="name_##session.lang##"
-                        ng-search="_search.$search_vendor" label="##word.stores_in_Company_name##"></i-list>
+                        space=" - " display2="code" ng-search="_search.$search_vendor"
+                        label="##word.stores_in_Company_name##"></i-list>
 
                     <i-list class="col3" ng-model="store_in.store" items="storesList" ng-search="_search.$search_stores"
                         label="##word.store##" v="r"></i-list>
-
                 </div>
 
             </div>
@@ -126,8 +128,8 @@
 
                             <td>
                                 <div class="row">
-                                    <i-button label="##word.patch##" ng-show="itm.work_patch || itm.work_serial" type="view"
-                                        ng-click="patchesList(itm)">
+                                    <i-button label="##word.patch##" ng-show="itm.work_patch || itm.work_serial"
+                                        type="view" ng-click="patchesList(itm)">
                                     </i-button>
                                     <i-button type="delete" ng-click="deleteRow(itm)"></i-button>
                                 </div>

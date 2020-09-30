@@ -347,16 +347,14 @@
                                     ng-click="account_invoices.show_source = false; account_invoices.source = {}"
                                     label="##word.customer##">
                                 </i-checkbox>
-                                <div class="row">
+                                <div class="row" ng-show="account_invoices.show_customer">
 
-                                    <i-control ng-keydown="getCustomerList($event)" id="service" class="col4"
-                                        ng-show="account_invoices.show_customer" ng-model="search_customer"
-                                        label="##word.search##" type="text"></i-control>
+                                    <i-control ng-keydown="getCustomerList($event)" id="service" class="col3"
+                                        ng-model="search_customer" label="##word.search##" type="text"></i-control>
 
-                                    <i-list ng-search="_search.$customer" class="col8" display="name_##session.lang##"
-                                        space=" - " ng-show="account_invoices.show_customer" display2="code"
-                                        ng-model="account_invoices.customer" label="##word.customer##"
-                                        items="customersList">
+                                    <i-list ng-search="_search.$customer" class="col6" display="name_##session.lang##"
+                                        space=" - " display2="code" ng-model="account_invoices.customer"
+                                        label="##word.customer##" items="customersList">
                                     </i-list>
                                 </div>
                             </div>
@@ -377,15 +375,20 @@
                                 </i-list>
                             </div>
 
-                            <div class="col4 control">
+                            <div class="col7 control">
                                 <i-checkbox ng-model="account_invoices.show_vendor"
                                     ng-click="account_invoices.show_source = false; account_invoices.source = {}"
                                     label="##word.vendor##">
                                 </i-checkbox>
+                                <div class="row" ng-show="account_invoices.show_vendor">
 
-                                <i-list ng-model="account_invoices.vendor" items="vendorsList"
-                                    ng-show="account_invoices.show_vendor" display="name_##session.lang##"
-                                    ng-search="_search.$search_vendor" label="##word.stores_in_Company_name##"></i-list>
+                                    <i-control ng-keydown="loadVendors($event)" class="col3" ng-model="search_vendor"
+                                        label="##word.search##" type="text"></i-control>
+                                    <i-list ng-model="account_invoices.vendor" class="col6" items="vendorsList"
+                                        space=" - " display2="code" display="name_##session.lang##"
+                                        ng-search="_search.$search_vendor" label="##word.stores_in_Company_name##">
+                                    </i-list>
+                                </div>
                             </div>
 
                         </div>

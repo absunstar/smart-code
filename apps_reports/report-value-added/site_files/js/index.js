@@ -278,33 +278,37 @@ app.controller("report_value_added", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.loadVendors = function () {
+  $scope.loadVendors = function (ev) {
     $scope.error = '';
     $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/vendors/all",
-      data: {
-        select: {
-          id: 1,
-          name_ar: 1,
-          name_en: 1,
-          balance: 1,
-          tax_identification_number: 1
+    if (ev.which === 13) {
+      $http({
+        method: "POST",
+        url: "/api/vendors/all",
+        data: {
+          search: $scope.search_vendor
+
+          /*    select: {
+               id: 1,
+               name_ar: 1,
+               name_en: 1,
+               balance: 1,
+               tax_identification_number: 1
+             } */
         }
-      }
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          $scope.vendorsList = response.data.list;
+      }).then(
+        function (response) {
+          $scope.busy = false;
+          if (response.data.done) {
+            $scope.vendorsList = response.data.list;
+          }
+        },
+        function (err) {
+          $scope.busy = false;
+          $scope.error = err;
         }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
+      )
+    }
   };
 
 
@@ -313,7 +317,7 @@ app.controller("report_value_added", function ($scope, $http, $timeout) {
     $scope._search = {};
     $scope.getReportInvoicesList($scope.search);
     site.hideModal('#reportValueAddedSearchModal');
-    $scope.search = { safe: $scope.search.safe };
+    $scope.search = {};
   };
 
 
@@ -321,7 +325,6 @@ app.controller("report_value_added", function ($scope, $http, $timeout) {
   $scope.getSafesList();
   $scope.getDefaultSettings();
   $scope.getSourceType();
-  $scope.loadVendors();
   if (site.feature('restaurant') || site.feature('pos'))
     $scope.getTransactionTypeList();
 

@@ -15,17 +15,14 @@ app.controller("item_transaction", function ($scope, $http, $timeout) {
     { name: "##word.item_transaction_current_status_6##", value: "storein" }
   ]
 
-  $scope.loadvendors = function () {
+  $scope.loadvendors = function (ev) {
     $scope.busy = true;
-    $http({
+    if (ev.which === 13) {
+      $http({
       method: "POST",
       url: "/api/vendors/all",
       data: {
-        select: {
-          id: 1,
-          name_ar: 1,
-          name_en: 1
-        }
+        search: $scope.search_vendor
       }
     }).then(
       function (response) {
@@ -39,7 +36,8 @@ app.controller("item_transaction", function ($scope, $http, $timeout) {
         $scope.error = err;
       }
     )
-  };
+  }
+};
 
   $scope.loadStores = function () {
     $scope.busy = true;
@@ -250,7 +248,6 @@ app.controller("item_transaction", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.loadvendors();
   $scope.loadStores();
   $scope.loadItemsGroups();
   $scope.loadTransactionTypes();

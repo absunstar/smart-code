@@ -570,7 +570,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
           }
         }
       }
-      
+
       where.invoice = { $ne: true };
 
       $http({
@@ -1240,27 +1240,29 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.loadVendors = function () {
+  $scope.loadVendors = function (ev) {
     $scope.error = '';
     $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/vendors/all",
-      data: {
+    if (ev.which === 13) {
+      $http({
+        method: "POST",
+        url: "/api/vendors/all",
+        data: {
 
-      }
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          $scope.vendorsList = response.data.list;
         }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
+      }).then(
+        function (response) {
+          $scope.busy = false;
+          if (response.data.done) {
+            $scope.vendorsList = response.data.list;
+          }
+        },
+        function (err) {
+          $scope.busy = false;
+          $scope.error = err;
+        }
+      )
+    }
   };
 
   $scope.loadDelegates = function () {
@@ -1322,7 +1324,6 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
   $scope.loadInNames();
   $scope.loadOutNames();
   $scope.loadEmployees();
-  $scope.loadVendors();
   $scope.loadDelegates();
   $scope.getPaymentMethodList();
 });
