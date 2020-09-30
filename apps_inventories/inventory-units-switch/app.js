@@ -115,8 +115,8 @@ module.exports = function init(site) {
                 _isDoc.store = units_switch_doc.store
                 _isDoc.company = units_switch_doc.company
                 _isDoc.branch = units_switch_doc.branch
-                _isDoc.unit = _isDoc.Units_trans
-                _isDoc.count = (_isDoc.unit.convert * _isDoc.count) / _isDoc.Units_trans.convert
+                _isDoc.unit = _isDoc.units_trans
+                _isDoc.count = (_isDoc.unit.convert * _isDoc.count) / _isDoc.units_trans.convert
                 _isDoc.count = site.toNumber(_isDoc.count)
 
 
@@ -262,8 +262,8 @@ module.exports = function init(site) {
                 _isDoc.store = units_switch_doc.store
                 _isDoc.company = units_switch_doc.company
                 _isDoc.branch = units_switch_doc.branch
-                _isDoc.unit = _isDoc.Units_trans
-                _isDoc.count = (_isDoc.unit.convert * _isDoc.count) / _isDoc.Units_trans.convert
+                _isDoc.unit = _isDoc.units_trans
+                _isDoc.count = (_isDoc.unit.convert * _isDoc.count) / _isDoc.units_trans.convert
                 _isDoc.count = site.toNumber(_isDoc.count)
 
                 if (units_switch_doc.posting) {
@@ -385,8 +385,8 @@ module.exports = function init(site) {
                   _isDoc.store = units_switch_doc.store
                   _isDoc.company = units_switch_doc.company
                   _isDoc.branch = units_switch_doc.branch
-                  _isDoc.unit = _isDoc.Units_trans
-                  _isDoc.count = (_isDoc.unit.convert * _isDoc.count) / _isDoc.Units_trans.convert
+                  _isDoc.unit = _isDoc.units_trans
+                  _isDoc.count = (_isDoc.unit.convert * _isDoc.count) / _isDoc.units_trans.convert
 
                   site.quee('[transfer_branch][stores_items][add_balance]', Object.assign({}, _isDoc))
 
@@ -513,8 +513,8 @@ module.exports = function init(site) {
       where['notes'] = site.get_RegExp(where['notes'], 'i')
     }
 
-    if (where && where['number']) {
-      where['number'] = site.get_RegExp(where['number'], 'i')
+    if (where && where['code']) {
+      where['code'] = where['code']
     }
 
     if (where && where['supply_number']) {
@@ -620,7 +620,7 @@ module.exports = function init(site) {
   site.getUnitSwitch = function (whereObj, callback) {
     callback = callback || {};
     let where = whereObj || {}
-   
+
     if (where.date) {
       let d1 = site.toDate(where.date)
       let d2 = site.toDate(where.date)
@@ -645,9 +645,12 @@ module.exports = function init(site) {
       where['shift.code'] = where['shift_code']
       delete where['shift_code']
     }
-    
+    where['posting'] = true
+
     $units_switch.findMany({
-      where: where
+      where: where,
+      sort: { id: -1 }
+
     }, (err, doc) => {
       if (!err && doc)
         callback(doc)

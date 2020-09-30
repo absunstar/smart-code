@@ -177,7 +177,7 @@ app.controller("stores_dismantle", function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.getStockItems(store_dismantle.items, callback => {
 
-      if (!callback || !store_dismantle.posting) {
+      if (!callback) {
 
         $scope.busy = true;
         $http({

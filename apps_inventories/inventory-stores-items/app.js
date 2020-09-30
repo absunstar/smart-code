@@ -14,7 +14,6 @@ module.exports = function init(site) {
         });
       }
 
-
       let total_unit = obj.count * obj.unit.convert;
       total_unit = site.toNumber(total_unit)
 
@@ -372,7 +371,7 @@ module.exports = function init(site) {
                               let foundPatshList = []
 
                               obj.patch_list.forEach(_patch => {
-                                let foundPatsh = _unitStore.patch_list.some(_p1 => _patch.patch === _p1.patch && _patch.validit === _p1.validit)
+                                let foundPatsh = _unitStore.patch_list.some(_p1 => _patch.patch === _p1.patch)
 
                                 if (!foundPatsh) foundPatshList.push(_patch)
 
@@ -880,11 +879,11 @@ module.exports = function init(site) {
     //   }
     // } 
 
-    if (where && where['name']) {
+    if (where['name']) {
       where['name'] = site.get_RegExp(where['name'], 'i')
     }
 
-    if (where && where['size']) {
+    if (where['size']) {
       where['sizes.size'] = site.get_RegExp(where['size'], 'i')
       delete where['size']
     }
@@ -894,12 +893,12 @@ module.exports = function init(site) {
       delete where['size_en']
     }
 
-    if (where && where['barcode']) {
+    if (where['barcode']) {
       where['sizes.barcode'] = site.get_RegExp(where['barcode'], 'i')
       delete where['barcode']
     }
 
-    if (where && where['store_id']) {
+    if (where['store_id']) {
       delete where['store_id']
       delete where['unit_id']
     }
@@ -909,18 +908,23 @@ module.exports = function init(site) {
       delete where['item_group']
     }
 
-    if (where && where.price) {
-      where['sizes.price'] = site.toNumber(where.price)
-      delete where.price
-    }
-
-    if (where && where['limit']) {
+    if (where['limit']) {
       delete where['limit']
     }
 
-    if (where && where.cost) {
-      where['sizes.cost'] = site.toNumber(where.cost)
-      delete where.cost
+    if (where.work_patch) {
+      where['sizes.work_patch'] = true
+      delete where['work_patch']
+    }
+
+    if (where.work_serial) {
+      where['sizes.work_serial'] = true
+      delete where['work_serial']
+    }
+
+    if (where.item_complex) {
+      where['sizes.item_complex'] = true
+      delete where['item_complex']
     }
 
     response.done = false
@@ -956,7 +960,7 @@ module.exports = function init(site) {
                 });
             });
         }
-    
+
         response.list = docs
         response.patch_list = patch_list
         response.count = docs.length
@@ -1417,21 +1421,42 @@ module.exports = function init(site) {
     }, (err, docs, count) => {
       if (!err) {
         response.done = true
-        let arr = [];
+        let barcodeArr = [];
+        let serialArr = [];
         if (docs && docs.length > 0) {
           docs.forEach(item => {
             if (item.sizes && item.sizes.length > 0)
               item.sizes.forEach(size => {
+                
                 if (size.size_units_list && size.size_units_list.length > 0)
                   size.size_units_list.forEach(_unit => {
                     if (_unit.barcode)
-                      arr.push(_unit.barcode)
+                      barcodeArr.push(_unit.barcode)
                   });
+
+                  if(size.branches_list && size.branches_list.length > 0){
+                    size.branches_list.forEach(_branch => {
+                      if(_branch.stores_list && _branch.stores_list.length > 0){
+                        _branch.stores_list.forEach(_store => {
+                          if(_store.size_units_list && _store.size_units_list.length > 0){
+                            _store.size_units_list.forEach(_sizeUnit => {
+                              if(_sizeUnit.patch_list && _sizeUnit.patch_list.length > 0){
+                                _sizeUnit.patch_list.forEach(_p => {
+                                  serialArr.push(_p.patch)
+                                });
+                              }
+                            });
+                          }
+                        });
+                      }
+                    });
+                  }
               })
           })
         }
         response.count = count
-        response.list = arr
+        response.list = barcodeArr
+        response.serial_list = serialArr
       } else {
         response.error = err.message
       }

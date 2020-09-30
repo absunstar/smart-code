@@ -307,6 +307,13 @@ app.controller("report_daily", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.viewPatchesList = function (itm) {
+    $scope.error = '';
+    $scope.item_patch = itm;
+    site.showModal('#patchesListViewModal');
+
+  };
+
   $scope.showAccInvoDetails = function (c) {
     $scope.accInvoDetails = c;
     site.showModal('#accInvoDetailsModal');
@@ -320,6 +327,15 @@ app.controller("report_daily", function ($scope, $http, $timeout) {
     $scope.personnelDetails = c;
     site.showModal('#personnelDetailsModal');
   };
+
+
+  $scope.showStoreView = function (c) {
+    $scope.storeView = c;
+    $scope.storeView.net_value2 = site.stringfiy($scope.storeView.net_value);
+    site.showModal('#storeViewModal');
+  };
+
+
 
   $scope.inventoryTransactions = function () {
 

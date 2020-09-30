@@ -251,7 +251,9 @@ module.exports = function init(site) {
     }
 
     $employee_offer.findMany({
-      where: where
+      where: where,
+      sort: { id: -1 }
+
     }, (err, docs) => {
       if (!err && docs)
         callback(docs)

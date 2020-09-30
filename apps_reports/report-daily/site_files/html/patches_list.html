@@ -12,9 +12,9 @@
                 <tr>
                     <th>##word.serial##</th>
                     <th>##word.patch_number##</th>
-                    <th ng-hide="item_barcode.work_serial">##word.production_date##</th>
-                    <th ng-hide="item_barcode.work_serial">##word.expiry_date##</th>
-                    <th ng-hide="item_barcode.work_serial">##word.validit##</th>
+                    <th ng-hide="item_patch.work_serial">##word.production_date##</th>
+                    <th ng-hide="item_patch.work_serial">##word.expiry_date##</th>
+                    <th ng-hide="item_patch.work_serial">##word.validit##</th>
                     <th>##word.quantity##</th>
                 </tr>
 
@@ -26,15 +26,15 @@
 
                     <td>{{c.patch}}</td>
 
-                    <td class="green" ng-hide="item_barcode.work_serial">
+                    <td class="green" ng-hide="item_patch.work_serial">
                         {{c.production_date  | date : 'dd - MM - yyyy'}}
                     </td>
 
-                    <td class="red" ng-hide="item_barcode.work_serial">
+                    <td class="red" ng-hide="item_patch.work_serial">
                         {{c.expiry_date  | date : 'dd - MM - yyyy'}}
                     </td>
 
-                    <td ng-hide="item_barcode.work_serial">{{c.validit}}</td>
+                    <td ng-hide="item_patch.work_serial">{{c.validit}}</td>
 
                     <td class="blue">{{c.count}}</td>
 

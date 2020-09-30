@@ -17,9 +17,9 @@
     {"name" : "units_switch_supply_number_date" , "en" : "supply number date" , "ar" : " تاريخ تحويل وحدات"},
 
     {"name" : "units_switch_store_name" , "en" : "Units Switch" , "ar" : "  إسم المخزن "},
-    {"name" : "Units_trans" , "en" : "Unit to trans" , "ar" : "الوحدة م. لها"},
+    {"name" : "units_trans" , "en" : "Unit to trans" , "ar" : "الوحدة م. لها"},
     {"name" : "Unit_switch" , "en" : "Unit Switch" , "ar" : "تحويل وحدة"},
-    {"name" : "Units_trans_err" , "en" : "It is not possible to convert to the same unit" , "ar" : "لا يمكن التحويل لنفس الوحدة"},
+    {"name" : "units_trans_err" , "en" : "It is not possible to convert to the same unit" , "ar" : "لا يمكن التحويل لنفس الوحدة"},
 
     {"name" : "err_barcode_exist" , "en" : "The barcode is exist" , "ar" : "الباركود مسجل من قبل"},
     {"name" : "edit_purchase_price" , "en" : "Edit Purchase Price" , "ar" : "تعديل سعر الشراء"},

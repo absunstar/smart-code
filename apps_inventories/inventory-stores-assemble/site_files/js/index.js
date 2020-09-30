@@ -175,7 +175,7 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.getStockItems(store_assemble.items, callback => {
 
-      if (!callback || !store_assemble.posting) {
+      if (!callback) {
 
         $scope.busy = true;
         $http({

@@ -511,7 +511,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
 
     $scope.getStockItems(store_out.items, callback => {
 
-      if (!callback || !store_out.posting) {
+      if (!callback) {
 
         $scope.busy = true;
         $http({

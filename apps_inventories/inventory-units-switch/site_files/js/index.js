@@ -101,7 +101,7 @@ app.controller("units_switch", function ($scope, $http, $timeout) {
 
     if ($scope.units_switch.items && $scope.units_switch.items.length > 0) {
       $scope.units_switch.items.forEach(_sW_i => {
-        if (_sW_i.unit && _sW_i.Units_trans && _sW_i.unit.id == _sW_i.Units_trans.id) {
+        if (_sW_i.unit && _sW_i.units_trans && _sW_i.unit.id == _sW_i.units_trans.id) {
           sameUnit = true;
         }
       });
@@ -111,7 +111,7 @@ app.controller("units_switch", function ($scope, $http, $timeout) {
     };
 
     if (sameUnit) {
-      $scope.error = "##word.Units_trans_err##";
+      $scope.error = "##word.units_trans_err##";
       return;
     };
 
@@ -194,7 +194,7 @@ app.controller("units_switch", function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.getStockItems(units_switch.items, callback => {
 
-      if (!callback || !units_switch.posting) {
+      if (!callback) {
 
         $scope.busy = true;
         $http({
@@ -579,7 +579,7 @@ app.controller("units_switch", function ($scope, $http, $timeout) {
     if ($scope.units_switch.items && $scope.units_switch.items.length > 0) {
 
       $scope.units_switch.items.forEach(_sW_i => {
-        if (_sW_i.unit && _sW_i.Units_trans && _sW_i.unit.id == _sW_i.Units_trans.id) {
+        if (_sW_i.unit && _sW_i.units_trans && _sW_i.unit.id == _sW_i.units_trans.id) {
           sameUnit = true;
         }
       });
@@ -589,7 +589,7 @@ app.controller("units_switch", function ($scope, $http, $timeout) {
     };
 
     if (sameUnit) {
-      $scope.error = "##word.Units_trans_err##";
+      $scope.error = "##word.units_trans_err##";
       return;
     };
 

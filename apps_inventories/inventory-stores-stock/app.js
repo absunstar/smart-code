@@ -566,8 +566,12 @@ module.exports = function init(site) {
       delete where['shift_code']
     }
 
+    where['status'] = 4
+
     $stores_stock.findMany({
-      where: where
+      where: where,
+      sort: { id: -1 }
+
     }, (err, doc) => {
       if (!err && doc)
         callback(doc)

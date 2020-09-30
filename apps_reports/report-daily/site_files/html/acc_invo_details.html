@@ -2,7 +2,7 @@
     <div class="modal-content">
         <div class="modal-header">
             <h2>
-                ##word.details## <i class="fa fa-file"></i>
+                ##word.details## {{accInvoDetails.source_type.##session.lang##}} <i class="fa fa-file"></i>
             </h2>
         </div>
 
@@ -11,13 +11,16 @@
             <table class="table loaded center bold hover">
                 <tr>
                     <th>##word.code##</th>
-                    <th ng-show="accInvoDetails.source_type.id == 1 || accInvoDetails.source_type.id == 2">##word.invoice_type##</th>
+                    <th ng-show="accInvoDetails.source_type.id == 1 || accInvoDetails.source_type.id == 2">
+                        ##word.invoice_type##</th>
                     <th ng-show="accInvoDetails.source_type.id == 3">##word.order_type##</th>
                     <th
                         ng-show="accInvoDetails.source_type.id == 2 || accInvoDetails.source_type.id == 8 || accInvoDetails.source_type.id == 9 || accInvoDetails.source_type.id == 11|| accInvoDetails.source_type.id == 12">
                         ##word.delegate## / ##word.employee## </th>
-                    <th ng-hide="accInvoDetails.source_type.id == 1 || accInvoDetails.source_type.id == 9 ">##word.customer##</th>
-                    <th ng-show="accInvoDetails.source_type.id == 1 || accInvoDetails.source_type.id == 9">##word.vendor##</th>
+                    <th ng-hide="accInvoDetails.source_type.id == 1 || accInvoDetails.source_type.id == 9 || accInvoDetails.source_type.id == 11 || accInvoDetails.source_type.id == 12"">
+                        ##word.customer##</th>
+                    <th ng-show="accInvoDetails.source_type.id == 1 || accInvoDetails.source_type.id == 9">
+                        ##word.vendor##</th>
                     <th>##word.payment_method##</th>
                     <th>##word.currency##</th>
                     <th>##word.safe##</th>
@@ -34,7 +37,7 @@
                         ng-show="accInvoDetails.source_type.id == 2 || accInvoDetails.source_type.id == 8 || accInvoDetails.source_type.id == 9 || accInvoDetails.source_type.id == 11|| accInvoDetails.source_type.id == 12">
                         {{c.delegate.name}} {{c.employee.name}}
                     </td>
-                    <td ng-hide="accInvoDetails.source_type.id == 1 || accInvoDetails.source_type.id == 9 ">
+                    <td ng-hide="accInvoDetails.source_type.id == 1 || accInvoDetails.source_type.id == 9 || accInvoDetails.source_type.id == 11 || accInvoDetails.source_type.id == 12">
                         {{c.customer.name_##session.lang##}}
                     </td>
                     <td ng-show="accInvoDetails.source_type.id == 1 || accInvoDetails.source_type.id == 9">

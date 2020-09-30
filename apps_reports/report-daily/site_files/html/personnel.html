@@ -2,13 +2,14 @@
     <div class="modal-content">
         <div class="modal-header">
             <h2>
-                ##word.details## <i class="fa fa-file"></i>
+                ##word.details## {{personnelDetails.source_type.##session.lang##}} <i class="fa fa-file"></i>
             </h2>
         </div>
 
         <div class="modal-body">
 
             <table x-permissions="login" class="table bold loaded hover">
+
                 <tr>
                     <th ng-show="personnelDetails.source_type.id != 3">##word.date##</th>
                     <th>##word.leave_name##</th>

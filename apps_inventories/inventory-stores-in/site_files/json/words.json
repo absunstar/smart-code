@@ -425,6 +425,11 @@
         "ar": "الملفات"
     },
     {
+        "name": "serial_pre_existing",
+        "en": "Serial Pre Existing",
+        "ar": "السيريال مسجل من قبل"
+    },
+    {
         "name": "err_patch_count",
         "en": "The number of Serial is uncontrolled",
         "ar": "عدد السيريلات غير منضبط"

@@ -10,17 +10,12 @@
 
             <tr>
                 <td class="title">##word.units_switch_id##</td>
-                <td class="center">{{units_switch.number}}</td>
+                <td class="center">{{units_switch.code}}</td>
             </tr>
 
             <tr>
                 <td class="title">##word.store##</td>
                 <td class="center">{{units_switch.store.name}}</td>
-            </tr>
-
-            <tr>
-                <td class="title">##word.transaction_type##</td>
-                <td class="center">{{units_switch.type.##session.lang##}}</td>
             </tr>
 
             <tr>
@@ -33,6 +28,7 @@
                             <th>##word.units_switch_item_size##</th>
                             <th>##word.barcode##</th>
                             <th>##word.unit##</th>
+                            <th>##word.units_trans##</th>
                             <th>##word.units_switch_item_count##</th>
                         </tr>
                         <tr ng-repeat="itm in units_switch.items">
@@ -44,6 +40,7 @@
                             </td>
                             <td class="center">{{itm.barcode}}</td>
                             <td class="center">{{itm.unit.name}}</td>
+                            <td class="center">{{itm.units_trans.name}}</td>
                             <td class="center">{{itm.count}}</td>
 
                         </tr>

@@ -582,9 +582,12 @@ module.exports = function init(site) {
       where['shift.code'] = where['shift_code']
       delete where['shift_code']
     }
-
+    where['transfer'] = true
+    
     $transfer_branch.findMany({
-      where: where
+      where: where,
+      sort: { id: -1 }
+
     }, (err, docs) => {
       if (!err && docs)
         callback(docs)

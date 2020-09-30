@@ -22,6 +22,7 @@
                 <div x-import="report-daily/store_invo_details.html"></div>
                 <div x-import="report-daily/personnel.html"></div>
                 <div x-import="report-daily/patches_list.html"></div>
+                <div x-import="report-daily/stores_view.html"></div>
 
                 <div class="row">
                     <h1 class="bold text-center"> ##word.report_daily_name## </h1>
@@ -132,7 +133,7 @@
                                     <tr ng-repeat="s in storeInvoList | orderBy : '-id'">
 
                                         <td> {{s.source_type.##session.lang##}} </td>
-                                        <td> {{s.list.length}} </td>
+                                        <td class="blue"> {{s.list.length}} </td>
 
                                         <td class="not-print">
                                             <i-button type="details" label="##word.details##"

@@ -654,6 +654,11 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
             return;
           }
 
+          if (callback.exist_serial) {
+            $scope.error = `##word.serial_pre_existing##   ( ${callback.serial_list.join('-')} )`;
+            return;
+          };
+
           if (callback.errDate) {
             $scope.error = '##word.err_patch_date##'
             return;
@@ -689,50 +694,90 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
   };
 
   $scope.testPatches = function (store_stock, callback) {
+    $scope.getSerialList((serial_list) => {
 
-    let obj = {
-      patchCount: false,
-      errDate: false,
-      patch_list: []
-    }
+      let obj = {
+        patchCount: false,
+        errDate: false,
+        exist_serial: false,
+        patch_list: [],
+        serial_list: []
+      }
 
-    store_stock.items.forEach(_item => {
-      if (_item.size_units_list && _item.size_units_list.length > 0) {
+      store_stock.items.forEach(_item => {
+        if (_item.size_units_list && _item.size_units_list.length > 0) {
 
-        _item.size_units_list.forEach(_sizeUnit => {
-          let count = 0;
-          if (_sizeUnit.patch_list && _sizeUnit.patch_list.length > 0) {
-            _sizeUnit.patch_list.forEach(_pl => {
-              if (typeof _pl.count === 'number') {
-                if (new Date(_pl.expiry_date) < new Date(_pl.production_date)) {
-                  obj.errDate = true
-                }
-                count += _pl.count;
+          _item.size_units_list.forEach(_sizeUnit => {
+            let count = 0;
+            if (_sizeUnit.patch_list && _sizeUnit.patch_list.length > 0) {
+              _sizeUnit.patch_list.forEach(_pl => {
+                if (typeof _pl.count === 'number') {
+                  if (new Date(_pl.expiry_date) < new Date(_pl.production_date)) {
+                    obj.errDate = true
+                  }
+                  count += _pl.count;
 
-                if (_pl.count > _pl.current_count && !_pl.new) {
+                  if (_pl.count > _pl.current_count && !_pl.new) {
+                    obj.patchCount = true;
+                    obj.patch_list.push(_item.barcode)
+                  }
+
+                } else {
                   obj.patchCount = true;
                   obj.patch_list.push(_item.barcode)
                 }
 
-              } else {
-                obj.patchCount = true;
-                obj.patch_list.push(_item.barcode)
-              }
-            });
-          } else if (_item.work_serial || _item.work_patch) {
-            obj.patchCount = true;
-            obj.patch_list.push(_item.barcode)
-          }
-          if (count != _sizeUnit.stock_count && (_item.work_serial || _item.work_patch)) {
-            obj.patchCount = true;
-            obj.patch_list.push(_item.barcode)
-          }
-        });
+                if (serial_list && serial_list.length > 0) {
 
-      }
+                  serial_list.forEach(_s => {
+                    if (_s === _pl.patch && _item.work_serial) {
+                      obj.exist_serial = true;
+                      obj.serial_list.push(_pl.patch);
+                    }
+                  });
+
+                }
+
+              });
+            } else if (_item.work_serial || _item.work_patch) {
+              obj.patchCount = true;
+              obj.patch_list.push(_item.barcode)
+            }
+            if (count != _sizeUnit.stock_count && (_item.work_serial || _item.work_patch)) {
+              obj.patchCount = true;
+              obj.patch_list.push(_item.barcode)
+            }
+          });
+
+        }
+      });
+
+      callback(obj)
     });
+  };
 
-    callback(obj)
+  $scope.getSerialList = function (callback) {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/stores_items/barcode_unit"
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.serial_list) {
+          $scope.serial_list = response.data.serial_list;
+          callback(response.data.serial_list);
+        } else {
+          callback(null);
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+        callback(null);
+      }
+    )
   };
 
   $scope.approve = function (store_stock) {
@@ -744,6 +789,12 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
         $scope.error = `##word.err_patch_count##   ( ${callback.patch_list.join('-')} )`;
         return;
       };
+
+      if (callback.exist_serial) {
+        $scope.error = `##word.serial_pre_existing##   ( ${callback.serial_list.join('-')} )`;
+        return;
+      };
+
 
       if (callback.errDate) {
         $scope.error = '##word.err_patch_date##'

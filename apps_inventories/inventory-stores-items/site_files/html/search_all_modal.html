@@ -28,24 +28,16 @@
                             </i-control>
                         </div>
 
+                        <br><br>
                         <div class="row">
-                            <i-control class="col1" type="number" ng-model="search.cost"
-                                label="##word.stores_items_cost##" type="text"></i-control>
-                            <i-control class="col1" type="number" ng-model="search.price"
-                                label="##word.stores_items_price##" type="text"></i-control>
-
-                        </div>
-                        <div class="row">
-                            <i-control class="col1" ng-model="search.current_count" label="##word.balance##"
-                                type="number"></i-control>
-                            <i-control class="col2" ng-model="search.current_countGt"
-                                label="##word.stores_items_balance_Gt##" type="number"></i-control>
-                            <i-control class="col2" ng-model="search.current_countLt"
-                                label="##word.stores_items_balance_Lt##" type="number"></i-control>
-
                             <i-control class="col2" label="##word.limit##" type="number" ng-model="search.limit">
                             </i-control>
-
+                            <i-checkbox label="##word.stores_items_complex##" ng-model="search.item_complex">
+                            </i-checkbox>
+                            <i-checkbox label="##word.work_patch##" ng-model="search.work_patch">
+                            </i-checkbox>
+                            <i-checkbox label="##word.work_serial##" ng-model="search.work_serial">
+                            </i-checkbox>
                         </div>
                     </fieldset>
 

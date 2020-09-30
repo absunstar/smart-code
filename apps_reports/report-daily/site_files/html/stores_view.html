@@ -1,0 +1,310 @@
+<div id="storeViewModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>
+                ##word.details## <i class="fa fa-file"></i>
+            </h2>
+        </div>
+
+        <div class="modal-body">
+
+
+            <div class="row">
+                <br>
+                <table class="table hover bold border-none">
+
+                    <tr>
+                        <td class="title">
+                            <b class="indigoD">##word.stores_in_date## :</b>
+                            <b class="brown">{{storeView.date |date:"dd - MM - yyyy" }}
+                            </b>
+
+                        </td>
+
+                        <td class="center">
+                            <b class="indigoD">##word.stores_in_id## : </b>
+                            <b class=" blue">{{storeView.number}} {{storeView.code}}</b>
+                            <b class="red">{{storeView.retured_number}}</b>
+                        </td>
+                    </tr>
+
+                    <tr ng-hide="storeInvoDetails.source_type.id == 3">
+                        <td>
+                            <b class="indigoD"> ##word.store## : </b>
+                            <b>{{storeView.store.name}}</b>
+                        </td>
+                        <td class="center"
+                            ng-show="storeInvoDetails.source_type.id == 1 || storeInvoDetails.source_type.id == 2">
+                            <b class="indigoD">##word.transaction_type## : </b>
+                            <b>{{storeView.type.##session.lang##}}</b>
+                        </td>
+
+                    </tr>
+
+
+                    <tr ng-show="storeInvoDetails.source_type.id == 3">
+                        <td>
+                            <b class="indigoD">##word.branch_from## : </b>
+                            <b>{{storeView.branch_from.name_##session.lang##}}</b>
+                        </td>
+
+                        <td class="center">
+
+                            <b class="indigoD">##word.store_from## : </b>
+                            <b>{{storeView.store_from.name}}</b>
+                        </td>
+                    </tr>
+
+                    <tr ng-show="storeInvoDetails.source_type.id == 3">
+                        <td>
+                            <b class="indigoD">##word.branch_to## : </b>
+                            <b>{{storeView.branch_to.name_##session.lang##}}</b>
+                        </td>
+
+                        <td class="center">
+
+                            <b class="indigoD">##word.store_to## : </b>
+                            <b>{{storeView.store_to.name}}</b>
+                        </td>
+                    </tr>
+
+                    <tr ng-show="storeView.vendor.id">
+                        <td>
+                            <b class="indigoD">##word.stores_in_Company_name## : </b>
+                            <b>{{storeView.vendor.name_##session.lang##}} </b>
+                        </td>
+                    </tr>
+
+                    <tr ng-show="storeView.customer.id || storeView.delegate.id">
+
+                        <td class="title">
+                            <b class="indigoD">##word.customer## :</b>
+                            <b class="center">{{storeView.customer.name_##session.lang##}} </b>
+                        </td>
+
+                        <td class="center">
+                            <b class="indigoD">##word.delegate## :</b>
+                            <b class="center">{{storeView.delegate.name}} </b>
+                        </td>
+                    </tr>
+
+                    <tr class="not-print" ng-show="storeView.taxes.length > 0">
+                        <td class="title">##word.stores_in_taxes##</td>
+                        <td>
+                            <table class="table hover margin">
+                                <tr>
+                                    <th>##word.stores_in_tax_name##</th>
+                                    <th>##word.stores_in_tax_value##</th>
+                                </tr>
+                                <tr ng-repeat="tax in storeView.taxes">
+                                    <td>
+                                        <p class="text-center"> {{tax.name}} </p>
+                                    </td>
+                                    <td>
+                                        <p class="text-center"> {{tax.value}} % </p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <tr class="not-print" ng-show="storeView.discountes.length > 0">
+                        <td class="title">##word.stores_in_discountes##</td>
+                        <td>
+                            <table class="table hover margin">
+                                <tr>
+                                    <th>##word.stores_in_discount_name##</th>
+                                    <th>##word.stores_in_discount_value##</th>
+                                </tr>
+                                <tr ng-repeat="discount in storeView.discountes">
+                                    <td>{{discount.name}}</td>
+                                    <td>
+                                        <p class="text-center" ng-show="discount.type == 'number'"> {{discount.value}} %
+                                        </p>
+                                        <p class="text-center" ng-show="discount.type == 'percent'"> {{discount.value}}
+                                            $ </p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <tr class="not-print"
+                        ng-show="storeInvoDetails.source_type.id == 1 || storeInvoDetails.source_type.id == 2">
+                        <td>
+                            <b class="indigoD">##word.total_discount## : </b>
+                            <b>{{storeView.total_discount}} $</b>
+                        </td>
+
+                        <td class="center">
+                            <b class="center indigoD">##word.total_tax## : </b>
+                            <b>{{storeView.total_tax}} $</b>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="title">
+                            <b class="indigoD">##word.stores_in_notes## : </b>
+                            <b>{{storeView.notes}}</b>
+
+                        </td>
+
+                    </tr>
+
+                </table>
+            </div>
+
+            <br>
+            <br>
+
+            <div class="row">
+                <table class="table bold hover details" ng-hide="storeInvoDetails.source_type.id == 7">
+                    <tr>
+                        <th class="w50">##word.serial##</th>
+                        <th class="w150">##word.barcode##</th>
+                        <th class="w300">##word.stores_in_item_name##</th>
+                        <th class="w50">##word.unit##</th>
+                        <th class="w50" ng-show="storeInvoDetails.source_type.id == 6">##word.units_trans##</th>
+                        <th class="w50">##word.stores_in_item_count##</th>
+                        <th class="w50"
+                            ng-show="storeInvoDetails.source_type.id == 1 || storeInvoDetails.source_type.id == 2">
+                            ##word.price##</th>
+                        <th ng-show="defaultSettings.inventory.value_added > 0 &&(storeInvoDetails.source_type.id == 1 || storeInvoDetails.source_type.id == 2)"
+                            class="w50">##word.total_v_a##</th>
+                        <th class="w50" ng-hide="storeInvoDetails.source_type.id == 3">##word.stores_in_item_total##
+                        </th>
+                        <th class="w50" ng-show="storeInvoDetails.source_type.id == 3">##word.total_price##
+                        </th>
+                    </tr>
+
+                    <tr ng-repeat="itm in storeView.items">
+                        <td class="center  blue">
+                            {{$index + 1}}
+                            <i-button class="not-print" label="##word.patch##"
+                                ng-show="itm.work_patch || itm.work_serial" type="view" ng-click="viewPatchesList(itm)">
+                            </i-button>
+                        </td>
+
+                        <td class="center">{{itm.barcode}}</td>
+
+                        <td class="center">{{itm.name}}</td>
+
+                        <td class="center">{{itm.unit.name}}</td>
+
+                        <td class="center" ng-show="storeInvoDetails.source_type.id == 6">{{itm.units_trans.name}}</td>
+
+                        <td class="center ">{{itm.count}}</td>
+
+                        <td class=" center"
+                            ng-show="storeInvoDetails.source_type.id == 1 || storeInvoDetails.source_type.id == 2">
+                            <p ng-show="storeInvoDetails.source_type.id == 1">{{itm.cost}}</p>
+                            <p ng-show="storeInvoDetails.source_type.id == 2">{{itm.price}}</p>
+                            <del class="red px14"
+                                ng-show="itm.discount.type =='number' && itm.discount.value > 0">{{itm.discount.value}}
+                                $</del>
+                            <del class="red px14"
+                                ng-show="itm.discount.type =='percent' && itm.discount.value > 0">{{itm.discount.value}}
+                                %</del>
+                        </td>
+
+                        <td ng-show="defaultSettings.inventory.value_added > 0  && (storeInvoDetails.source_type.id == 1 || storeInvoDetails.source_type.id == 2)"
+                            class="center">
+                            {{itm.total_v_a}}
+                        </td>
+                        <td class="center" ng-hide="storeInvoDetails.source_type.id == 3">
+                            {{itm.total}}
+                        </td>
+                        <td class="center" ng-show="storeInvoDetails.source_type.id == 3">{{itm.total_price}}</td>
+
+
+                    </tr>
+                </table>
+
+                <table class="table center bold hover" ng-show="storeInvoDetails.source_type.id == 7">
+                    <tr>
+                        <th>##word.serial##</th>
+                        <th>##word.stores_stock_item_name##</th>
+                        <th>##word.barcode##</th>
+                        <th>##word.stores_stock_item_size##</th>
+                        <th>##word.units##</th>
+                    </tr>
+
+                    <tr ng-repeat="itm in storeView.items">
+                        <td> <br> {{$index + 1}}</td>
+                        <td> <br> {{itm.name}}</td>
+                        <td> <br> {{itm.barcode}}</td>
+                        <td>
+                            <p>{{itm.size}}</p>
+                            <p>{{itm.size_en}}</p>
+                        </td>
+
+                        <td>
+                            <table class="table center bold hover">
+                                <tr>
+                                    <th>##word.unit##</th>
+                                    <th>##word.transfer_branch_item_store_balance##</th>
+                                    <th>##word.safes_payments_safe_balance##</th>
+                                    <th>##word.difference_cost##</th>
+                                    <th ng-show="itm.work_patch || itm.work_serial">##word.patch##</th>
+                                </tr>
+
+                                <tr ng-repeat="i in itm.size_units_list">
+                                    <td> {{i.name}} <b ng-show="i.barcode"> - </b> <b class="blue">{{i.barcode}}</b>
+                                    </td>
+                                    <td class="green"> {{i.store_count}}</td>
+                                    <td> {{i.stock_count}}</td>
+                                    <td class="red"> {{i.difference_cost}}</td>
+                                    <td ng-show="itm.work_patch || itm.work_serial">
+                                        <i-button class="not-print"
+                                             type="view"
+                                            ng-click="viewPatchesList(i)">
+                                        </i-button>
+                                    </td>
+                                </tr>
+                            </table>
+
+                        </td>
+
+                    </tr>
+                </table>
+            </div>
+
+            <br>
+            <br>
+
+            <div class="row" ng-show="storeInvoDetails.source_type.id == 1 || storeInvoDetails.source_type.id == 2">
+                <div class="row">
+
+                    <i-control class="col3 r_black" ng-model="storeView.total_value"
+                        label="##word.stores_in_total_value##" type="number" disabled>
+                    </i-control>
+                    <i-control ng-show="storeView.total_value_added && defaultSettings.inventory.value_added > 0"
+                        class="col3 r_darkRed" ng-model="storeView.total_value_added" label="##word.total_value_added##"
+                        type="number" disabled>
+                    </i-control>
+                </div>
+
+                <div class="row">
+
+                    <i-control class="col3 r_green" ng-model="storeView.net_value" label="##word.stores_in_net_value##"
+                        type="number" disabled>
+                    </i-control>
+                    <div class="col9">
+                        <div class="row">
+                            <br>
+                            <br>
+                            <p class="num_str black">{{storeView.net_value2}}
+                                {{defaultSettings.accounting.end_num_to_str}}</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <h2 class="error center bold">{{error}}</h2>
+        <div class="modal-footer center">
+            <i-button type="close" label="##word.close##" onclick="site.hideModal('#storeViewModal')"></i-button>
+        </div>
+    </div>
+</div>

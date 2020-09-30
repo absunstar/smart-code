@@ -345,7 +345,9 @@ module.exports = function init(site) {
     }
 
     $attend_leave.findMany({
-      where: where
+      where: where,
+      sort: { id: -1 }
+
     }, (err, docs) => {
       if (!err && docs)
         callback(docs)

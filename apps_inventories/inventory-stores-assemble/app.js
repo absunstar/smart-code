@@ -689,9 +689,10 @@ module.exports = function init(site) {
       where['shift.code'] = where['shift_code']
       delete where['shift_code']
     }
-    
+    where['posting'] = true
     $stores_assemble.findMany({
-      where: where
+      where: where,
+      sort: { id: -1 }
     }, (err, doc) => {
       if (!err && doc)
         callback(doc)

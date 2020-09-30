@@ -707,43 +707,59 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
   };
 
   $scope.testPatches = function (storeIn, callback) {
-
-    let obj = {
-      patchCount: false,
-      errDate: false,
-      patch_list: []
-    }
-
-    storeIn.items.forEach(_item => {
-      if (_item.size_units_list && _item.size_units_list.length > 0) {
-
-        let count = 0;
-        if (_item.patch_list && _item.patch_list.length > 0) {
-          _item.patch_list.forEach(_pl => {
-            if (typeof _pl.count === 'number') {
-              if (new Date(_pl.expiry_date) < new Date(_pl.production_date)) {
-                obj.errDate = true
-              }
-              count += _pl.count;
-
-            } else {
-              obj.patchCount = true;
-              obj.patch_list.push(_item.barcode)
-            }
-          });
-        } else if (_item.work_serial || _item.work_patch) {
-          obj.patchCount = true;
-          obj.patch_list.push(_item.barcode)
-        }
-        if (count != _item.count && (_item.work_serial || _item.work_patch)) {
-          obj.patchCount = true;
-          obj.patch_list.push(_item.barcode)
-        }
-
+    $scope.getSerialList((serial_list) => {
+      let obj = {
+        patchCount: false,
+        errDate: false,
+        exist_serial: false,
+        patch_list: [],
+        serial_list: []
       }
+
+      storeIn.items.forEach(_item => {
+        if (_item.size_units_list && _item.size_units_list.length > 0) {
+
+          let count = 0;
+          if (_item.patch_list && _item.patch_list.length > 0) {
+            _item.patch_list.forEach(_pl => {
+              if (typeof _pl.count === 'number') {
+                if (new Date(_pl.expiry_date) < new Date(_pl.production_date)) {
+                  obj.errDate = true;
+                }
+                count += _pl.count;
+
+              } else {
+                obj.patchCount = true;
+                obj.patch_list.push(_item.barcode);
+              }
+
+              if (serial_list && serial_list.length > 0) {
+
+                serial_list.forEach(_s => {
+                  if (_s === _pl.patch && _item.work_serial) {
+                    obj.exist_serial = true;
+                    obj.serial_list.push(_pl.patch);
+                  }
+                });
+
+              }
+
+            });
+          } else if (_item.work_serial || _item.work_patch) {
+            obj.patchCount = true;
+            obj.patch_list.push(_item.barcode)
+          }
+          if (count != _item.count && (_item.work_serial || _item.work_patch)) {
+            obj.patchCount = true;
+            obj.patch_list.push(_item.barcode)
+          }
+
+        }
+
+      });
+      callback(obj)
     });
 
-    callback(obj)
   };
 
   $scope.add = function () {
@@ -813,6 +829,11 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
 
         if (callback.patchCount) {
           $scope.error = `##word.err_patch_count##   ( ${callback.patch_list.join('-')} )`;
+          return;
+        };
+
+        if (callback.exist_serial && $scope.store_in.type.id !== 4) {
+          $scope.error = `##word.serial_pre_existing##   ( ${callback.serial_list.join('-')} )`;
           return;
         };
 
@@ -1371,6 +1392,11 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
         return;
       };
 
+      if (callback.exist_serial && $scope.store_in.type.id !== 4) {
+        $scope.error = `##word.serial_pre_existing##   ( ${callback.serial_list.join('-')} )`;
+        return;
+      };
+
       if (callback.errDate) {
         $scope.error = '##word.err_patch_date##'
         return;
@@ -1406,7 +1432,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
     };
     $scope.getStockItems(store_in.items, callback => {
 
-      if (!callback || !store_in.posting) {
+      if (!callback) {
 
         $scope.busy = true;
         $http({
@@ -1460,33 +1486,54 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
 
     $scope.getStockItems(store_in.items, callback => {
 
-      if (!callback) {
+      $scope.testPatches(store_in, testCallback => {
 
-        $scope.busy = true;
-        $http({
-          method: "POST",
-          url: "/api/stores_in/posting",
-          data: store_in
-        }).then(
-          function (response) {
-            $scope.busy = false;
-            if (response.data.done) {
-            } else {
-              $scope.error = '##word.error##';
-              if (response.data.error.like('*OverDraft Not*')) {
-                $scope.error = "##word.overdraft_not_active##"
-                store_in.posting = !store_in.posting;
+        if (testCallback.patchCount) {
+          $scope.error = `##word.err_patch_count##   ( ${testCallback.patch_list.join('-')} )`;
+          store_in.posting = false;
+          return;
+        };
+
+        if (testCallback.exist_serial && store_in.type.id !== 4) {
+          $scope.error = `##word.serial_pre_existing##   ( ${testCallback.serial_list.join('-')} )`;
+          store_in.posting = false;
+          return;
+        };
+
+        if (testCallback.errDate) {
+          $scope.error = '##word.err_patch_date##'
+          store_in.posting = false;
+          return;
+        }
+
+        if (!callback) {
+
+          $scope.busy = true;
+          $http({
+            method: "POST",
+            url: "/api/stores_in/posting",
+            data: store_in
+          }).then(
+            function (response) {
+              $scope.busy = false;
+              if (response.data.done) {
+              } else {
+                $scope.error = '##word.error##';
+                if (response.data.error.like('*OverDraft Not*')) {
+                  $scope.error = "##word.overdraft_not_active##"
+                  store_in.posting = false;
+                }
               }
+            },
+            function (err) {
+              console.log(err);
             }
-          },
-          function (err) {
-            console.log(err);
-          }
-        )
-      } else {
-        store_in.posting = !store_in.posting;
-        $scope.error = '##word.err_stock_item##';
-      }
+          )
+        } else {
+          store_in.posting = false;
+          $scope.error = '##word.err_stock_item##';
+        }
+      })
     })
   };
 
@@ -1520,35 +1567,47 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
 
 
             $scope.getStockItems(_store_in_all[i].items, callback => {
+              $scope.testPatches(_store_in_all[i], testCallback => {
 
-              if (!callback) {
+                if (testCallback.patchCount) {
+                  $scope.error = `##word.err_patch_count##   ( ${testCallback.patch_list.join('-')} )`;
+                  _store_in_all[i].posting = false;
+                } else if (testCallback.exist_serial&& _store_in_all[i].type.id !== 4) {
+                  $scope.error = `##word.serial_pre_existing##   ( ${testCallback.serial_list.join('-')} )`;
+                  _store_in_all[i].posting = false;
+                } else if (testCallback.errDate) {
+                  $scope.error = '##word.err_patch_date##'
+                  _store_in_all[i].posting = false;
+                } else if (!callback) {
 
-                _store_in_all[i].posting = true;
+                  _store_in_all[i].posting = true;
 
-                $http({
-                  method: "POST",
-                  url: "/api/stores_in/posting",
-                  data: _store_in_all[i]
-                }).then(
-                  function (response) {
-                    if (response.data.done) {
+                  $http({
+                    method: "POST",
+                    url: "/api/stores_in/posting",
+                    data: _store_in_all[i]
+                  }).then(
+                    function (response) {
+                      if (response.data.done) {
 
-                    } else {
-                      $scope.error = '##word.error##';
-                      if (response.data.error.like('*OverDraft Not*')) {
-                        $scope.error = "##word.overdraft_not_active##"
-                        _store_in_all[i].posting = false;
+                      } else {
+                        $scope.error = '##word.error##';
+                        if (response.data.error.like('*OverDraft Not*')) {
+                          $scope.error = "##word.overdraft_not_active##"
+                          _store_in_all[i].posting = false;
+                        }
                       }
+                    },
+                    function (err) {
+                      console.log(err);
                     }
-                  },
-                  function (err) {
-                    console.log(err);
-                  }
-                )
-              } else {
-                $scope.error = '##word.err_stock_item##';
-              }
+                  )
+                } else {
+                  $scope.error = '##word.err_stock_item##';
+                  _store_in_all[i].posting = false;
+                }
 
+              });
             });
 
           };
@@ -1988,6 +2047,30 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
       function (err) {
         $scope.busy = false;
         $scope.error = err;
+      }
+    )
+  };
+
+  $scope.getSerialList = function (callback) {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/stores_items/barcode_unit"
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.serial_list) {
+          $scope.serial_list = response.data.serial_list;
+          callback(response.data.serial_list);
+        } else {
+          callback(null);
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+        callback(null);
       }
     )
   };

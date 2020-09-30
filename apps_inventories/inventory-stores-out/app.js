@@ -780,6 +780,48 @@ module.exports = function init(site) {
           doc.return_paid.items.forEach(_itemsDoc => {
 
             if (_itemsObj.barcode === _itemsDoc.barcode && _itemsObj.size === _itemsDoc.size) {
+
+
+              if (_itemsObj.patch_list && _itemsObj.patch_list.length > 0) {
+
+                if (_itemsDoc.patch_list && _itemsDoc.patch_list.length > 0) {
+                  let foundPatshList = []
+
+                  _itemsObj.patch_list.forEach(objPatch => {
+                    let foundPatsh = _itemsDoc.patch_list.some(_p1 => objPatch.patch === _p1.patch)
+
+                    if (!foundPatsh) foundPatshList.push(objPatch)
+
+                    _itemsDoc.patch_list.forEach(docPatch => {
+
+                      if (objPatch.patch === docPatch.patch) {
+                        if (obj.return) {
+                          docPatch.count = docPatch.count + objPatch.count
+
+                        } else {
+                          docPatch.count = docPatch.count - objPatch.count
+                        }
+                      }
+
+                    });
+                  });
+                  if (obj.return) {
+                    foundPatshList.forEach(fP => {
+                      _itemsDoc.patch_list.push(fP)
+                    });
+                  } else {
+                    let filter_patch = _itemsDoc.patch_list.filter(_p => _p.count !== 0)
+                    _itemsDoc.patch_list = filter_patch
+
+                    if (_itemsDoc.patch_list.length === 1 && _itemsDoc.patch_list[0].count === 0)
+                      _itemsDoc.patch_list = []
+
+                  }
+                }
+              }
+
+
+
               if (obj.return) _itemsDoc.count = _itemsDoc.count + _itemsObj.count
 
               else _itemsDoc.count = _itemsDoc.count - _itemsObj.count
@@ -985,9 +1027,12 @@ module.exports = function init(site) {
       where['shift.code'] = where['shift_code']
       delete where['shift_code']
     }
+    where['posting'] = true
 
     $stores_out.findMany({
-      where: where
+      where: where,
+      sort: { id: -1 }
+
     }, (err, docs) => {
       if (!err && docs)
         callback(docs)

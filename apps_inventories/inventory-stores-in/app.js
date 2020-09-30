@@ -763,23 +763,44 @@ module.exports = function init(site) {
               if (_itemsObj.patch_list && _itemsObj.patch_list.length > 0) {
 
                 if (_itemsDoc.patch_list && _itemsDoc.patch_list.length > 0) {
+                  let foundPatshList = []
 
                   _itemsObj.patch_list.forEach(objPatch => {
+                    let foundPatsh = _itemsDoc.patch_list.some(_p1 => objPatch.patch === _p1.patch)
+
+                    if (!foundPatsh) foundPatshList.push(objPatch)
+
                     _itemsDoc.patch_list.forEach(docPatch => {
 
-                      if (objPatch.patch == docPatch.patch) {
+                      if (objPatch.patch === docPatch.patch) {
+                        if (obj.return) {
+                          docPatch.count = docPatch.count + objPatch.count
 
+                        } else {
+                          docPatch.count = docPatch.count - objPatch.count
+                        }
                       }
 
                     });
                   });
+                  if (obj.return) {
+                    foundPatshList.forEach(fP => {
+                      _itemsDoc.patch_list.push(fP)
+                    });
+                  } else {
+                    let filter_patch = _itemsDoc.patch_list.filter(_p => _p.count !== 0)
+                    _itemsDoc.patch_list = filter_patch
 
+                    if (_itemsDoc.patch_list.length === 1 && _itemsDoc.patch_list[0].count === 0)
+                      _itemsDoc.patch_list = []
+
+                  }
                 }
               }
 
 
-              if (obj.return) _itemsDoc.count = _itemsDoc.count + _itemsObj.count
 
+              if (obj.return) _itemsDoc.count = _itemsDoc.count + _itemsObj.count
               else _itemsDoc.count = _itemsDoc.count - _itemsObj.count
 
               let discount = 0;
@@ -794,6 +815,8 @@ module.exports = function init(site) {
 
             }
           });
+
+
         });
         if (obj.return) {
           doc.return_paid.total_discount = doc.return_paid.total_discount + obj.total_discount
@@ -1049,7 +1072,7 @@ module.exports = function init(site) {
   site.getStoresIn = function (whereObj, callback) {
     callback = callback || {};
     let where = whereObj || {}
-   
+
     if (where.date) {
       let d1 = site.toDate(where.date)
       let d2 = site.toDate(where.date)
@@ -1074,9 +1097,11 @@ module.exports = function init(site) {
       where['shift.code'] = where['shift_code']
       delete where['shift_code']
     }
+    where['posting'] = true
 
     $stores_in.findMany({
-      where: where
+      where: where,
+      sort: { id: -1 }
     }, (err, docs) => {
       if (!err && docs)
         callback(docs)
