@@ -1068,9 +1068,35 @@ module.exports = function init(site) {
       delete where['payment_method']
     }
 
+    if (where['post']) {
+      where['posting'] = true
+      delete where['post']
+
+    }
+    if (where['un_post']) {
+      where['$or'] = [{ 'posting': false }, { 'posting': undefined }]
+      delete where['un_post']
+    }
+
+    if (where['payment_made']) {
+      where['remain_amount'] = 0
+      delete where['payment_made']
+    }
+
+    if (where['under_payment']) {
+      where['remain_amount'] = { '$gt': 0 }
+      delete where['under_payment']
+
+    }
+
     if (where['safe']) {
       where['safe.id'] = where['safe'].id;
       delete where['safe']
+    }
+
+    if (where['customer']) {
+      where['customer.id'] = where['customer'].id;
+      delete where['customer']
     }
 
     if (where['employee']) {

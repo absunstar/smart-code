@@ -17,6 +17,7 @@
     {"name" : "stores_assemble_supply_number_date" , "en" : "supply number date" , "ar" : " تاريخ تجميع الصنف"},
 
     {"name" : "stores_assemble_store_name" , "en" : "Store Assemble" , "ar" : "  إسم المخزن "},
+    {"name" : "i_complex" , "en" : "I. Complex" , "ar" : "ص. مجمع"},
 
     {"name" : "err_barcode_exist" , "en" : "The barcode is exist" , "ar" : "الباركود مسجل من قبل"},
     {"name" : "edit_purchase_price" , "en" : "Edit Purchase Price" , "ar" : "تعديل سعر الشراء"},

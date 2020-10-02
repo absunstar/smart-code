@@ -479,7 +479,6 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
   $scope.exitPatchReturnModal = function (itm) {
     let bigger = false;
     let count = 0;
-
     itm.patch_list.forEach(_pl => {
       if (itm.work_serial) {
         if (_pl.select) _pl.count = 1
@@ -487,6 +486,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
       }
       if (_pl.count > _pl.current_count) bigger = true;
       count += _pl.count;
+
     });
 
     if (itm.count != count) {
@@ -608,6 +608,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
 
     let count = 0;
     let errDate = false;
+    let err_find_serial = false;
 
     itm.patch_list.forEach(_p => {
       count += _p.count;
@@ -615,10 +616,13 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
       if (new Date(_p.expiry_date) < new Date(_p.production_date)) {
         errDate = true
       }
+      if (!_p.patch) err_find_serial = true
 
     });
 
-    if (errDate) {
+    if (err_find_serial) {
+      $scope.error = '##word.err_find_serial##'
+    } else if (errDate) {
       $scope.error = '##word.err_patch_date##'
     } else if (itm.count === count) {
       site.hideModal('#patchesListModal');
@@ -707,7 +711,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
   };
 
   $scope.testPatches = function (storeIn, callback) {
-    $scope.getSerialList((serial_list) => {
+    $scope.getSerialList(storeIn.items, serial_list => {
       let obj = {
         patchCount: false,
         errDate: false,
@@ -2067,12 +2071,22 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.getSerialList = function (callback) {
+  $scope.getSerialList = function (items,callback) {
     $scope.error = '';
     $scope.busy = true;
+    let barcodes = [];
+    if (items && items.length > 0)
+      barcodes = items.map(_item => _item.barcode)
+
+    let where = { serial: true, barcodes: barcodes };
+
     $http({
       method: "POST",
-      url: "/api/stores_items/barcode_unit"
+      url: "/api/stores_items/barcode_unit",
+      data: {
+        where: where
+
+      }
     }).then(
       function (response) {
         $scope.busy = false;

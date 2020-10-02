@@ -837,7 +837,6 @@ module.exports = function init(site) {
     let search = req.body.search
     let limit = where.limit || undefined
 
-
     if (search) {
       where.$or = []
 
@@ -1411,6 +1410,19 @@ module.exports = function init(site) {
 
     where['company.id'] = site.get_company(req).id
 
+    if (where.serial) {
+      where['$or'] = [{ 'sizes.work_patch': true }, { 'sizes.work_serial': true }]
+
+      where['company.id'] = site.get_company(req).id
+      where['sizes.barcode'] = {
+        $in: where.barcodes
+      }
+
+      delete where.serial
+      delete where.barcodes
+
+    }
+
     $stores_items.findMany({
       select: req.body.select || {},
       where: where,
@@ -1420,6 +1432,7 @@ module.exports = function init(site) {
       limit: req.body.limit
     }, (err, docs, count) => {
       if (!err) {
+
         response.done = true
         let barcodeArr = [];
         let serialArr = [];
@@ -1427,33 +1440,34 @@ module.exports = function init(site) {
           docs.forEach(item => {
             if (item.sizes && item.sizes.length > 0)
               item.sizes.forEach(size => {
-                
+
                 if (size.size_units_list && size.size_units_list.length > 0)
                   size.size_units_list.forEach(_unit => {
                     if (_unit.barcode)
                       barcodeArr.push(_unit.barcode)
                   });
 
-                  if(size.branches_list && size.branches_list.length > 0){
-                    size.branches_list.forEach(_branch => {
-                      if(_branch.stores_list && _branch.stores_list.length > 0){
-                        _branch.stores_list.forEach(_store => {
-                          if(_store.size_units_list && _store.size_units_list.length > 0){
-                            _store.size_units_list.forEach(_sizeUnit => {
-                              if(_sizeUnit.patch_list && _sizeUnit.patch_list.length > 0){
-                                _sizeUnit.patch_list.forEach(_p => {
-                                  serialArr.push(_p.patch)
-                                });
-                              }
-                            });
-                          }
-                        });
-                      }
-                    });
-                  }
+                if (size.branches_list && size.branches_list.length > 0) {
+                  size.branches_list.forEach(_branch => {
+                    if (_branch.stores_list && _branch.stores_list.length > 0) {
+                      _branch.stores_list.forEach(_store => {
+                        if (_store.size_units_list && _store.size_units_list.length > 0) {
+                          _store.size_units_list.forEach(_sizeUnit => {
+                            if (_sizeUnit.patch_list && _sizeUnit.patch_list.length > 0) {
+                              _sizeUnit.patch_list.forEach(_p => {
+                                serialArr.push(_p.patch)
+                              });
+                            }
+                          });
+                        }
+                      });
+                    }
+                  });
+                }
               })
           })
         }
+
         response.count = count
         response.list = barcodeArr
         response.serial_list = serialArr

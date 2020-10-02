@@ -2208,9 +2208,6 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
     $scope.error = '';
   };
 
-
-
-
   $scope.handeStoreOut = function () {
     $scope.error = '';
     $scope.busy = true;

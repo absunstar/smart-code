@@ -435,6 +435,11 @@
         "ar": "عدد السيريلات غير منضبط"
     },
     {
+        "name": "err_patch_count_comp",
+        "en": "The number of Serial is uncontrolled I. Complex",
+        "ar": "عدد السيريلات غير منضبط ص. مجمع"
+    },
+    {
         "name": "err_patch_date",
         "en": "Expiry date must be greater than or equal to production date",
         "ar": "تاريخ الإنتهاء يجب أن يكون أكبر من أو يساوي تاريخ الإنتاج"

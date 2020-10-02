@@ -1,0 +1,80 @@
+<div id="patchesListModal" class="modal" fixed>
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.patches_list## <i class="fa fa-plus"></i>
+            </h2>
+        </div>
+
+        <div class="modal-body">
+
+            <div class="row">
+                <div class="col2 center">
+                    <i-button type="add" label="##word.add_patch##" ng-click="addNewPAtch(item_patch)"></i-button>
+                    <br>
+                    <br>
+                    <h3 class="black bold center">##word.total_quantity##</h3>
+                    <h2 class="blue bold center">{{item_patch.count}}</h2>
+
+                    <!-- <i-control type="number" class="col10" disabled label="##word.total_quantity##" ng-model="item_patch.count"></i-control> -->
+                </div>
+                <div class="col10">
+
+                    <table class="table loaded center bold hover details">
+                        <tr>
+                            <th>##word.serial##</th>
+                            <th class="w250">##word.patch_number##</th>
+                            <th ng-hide="item_patch.work_serial" class="w300">##word.production_date##</th>
+                            <th ng-hide="item_patch.work_serial" class="w300">##word.expiry_date##</th>
+                            <th ng-hide="item_patch.work_serial">##word.validit##</th>
+                            <th>##word.quantity##</th>
+                            <th>##word.actions##</th>
+                        </tr>
+
+                        <tr ng-repeat="c in item_patch.patch_list">
+
+                            <td class="blue">
+                                {{$index + 1}}
+                            </td>
+                            <td>
+                                <i-control ng-model="c.patch"></i-control>
+                            </td>
+
+                            <td ng-hide="item_patch.work_serial">
+                                <i-date2 ng-click="changeDate(c,'pro')" ng-model="c.production_date"></i-date2>
+                            </td>
+
+                            <td ng-hide="item_patch.work_serial">
+                                <i-date2 ng-click="changeDate(c,'exp')" ng-model="c.expiry_date"></i-date2>
+                            </td>
+
+                            <td ng-hide="item_patch.work_serial">
+                                <i-control ng-change="changeDate(c,'pro')" ng-model="c.validit"></i-control>
+                            </td>
+
+                            <td>
+                                <i-control type="number" ng-disabled="item_patch.work_serial" ng-model="c.count">
+                                </i-control>
+                            </td>
+                            <td>
+                                <p>
+                                    <i-button type="delete"
+                                        ng-click="item_patch.patch_list.length ===1 ||item_patch.patch_list.splice($index,1)">
+                                    </i-button>
+                                </p>
+                            </td>
+                        </tr>
+
+                    </table>
+
+                </div>
+            </div>
+
+        </div>
+        <h2 class="error center bold">{{error}}</h2>
+        <div class="modal-footer center">
+            <i-button label=" ##word.accept##" type="save" ng-click="exitPatchModal(item_patch)"></i-button>
+        </div>
+    </div>
+</div>

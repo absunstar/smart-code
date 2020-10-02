@@ -12,7 +12,6 @@
                 <div class="row">
                     <i-list class="col3" ng-model="store_assemble.store" items="storesList"
                         ng-search="_search.$search_stores" label="##word.store##" v="r"></i-list>
-
                 </div>
 
             </div>
@@ -26,8 +25,10 @@
                 <div class="col1"></div>
 
             </div>
+
             <br>
             <br>
+
             <div class="row margin padding">
                 <fieldset class="col8" ng-show="store_assemble.items.length > 0">
                     <legend> ##word.permission_detailes## </legend>
@@ -45,28 +46,42 @@
                         </tr>
 
                         <tr ng-repeat="itm in store_assemble.items">
-                            <td> <br> {{$index + 1}}</td>
+                            <td> <br ng-hide="itm.work_patch || itm.work_serial"> {{$index + 1}}
+                                <div class="row">
+                                    <i-button label="##word.patch##" ng-show="itm.work_patch || itm.work_serial"
+                                        type="view" ng-click="patchesList(itm)">
+                                    </i-button>
+                                </div>
+                            </td>
+
                             <td> <br> {{itm.name}}</td>
+
                             <td> <br> {{itm.barcode}}</td>
+
                             <td>
                                 <p>{{itm.size}}</p>
                                 <p>{{itm.size_en}}</p>
                             </td>
+
                             <td>
                                 <i-list ng-model="itm.unit" ng-search="_search.$category_item.$unit_search"
                                     ng-change="itm.store_count = itm.unit.current_count ;calcSize(itm)"
                                     display2="barcode" items="itm.size_units_list"></i-list>
                             </td>
+
                             <td class="blue"> <br> {{itm.store_count}}</td>
 
                             <td>
                                 <i-control type="number" ng-model="itm.count"></i-control>
                             </td>
 
-
                             <td>
+                                <i-button label="##word.i_complex##" ng-show="itm.item_complex"
+                                    ng-click="showComplexItems(itm)">
+                                </i-button>
                                 <i-button type="delete" ng-click="deleteRow(itm)"></i-button>
                             </td>
+
                         </tr>
                     </table>
                 </fieldset>

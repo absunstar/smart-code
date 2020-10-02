@@ -767,6 +767,9 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
           barcode: $scope.items_size.barcode,
           unit: $scope.items_size.unit,
           price: $scope.items_size.price,
+          work_patch: $scope.items_size.work_patch,
+          work_serial: $scope.items_size.work_serial,
+          size_units_list: $scope.items_size.size_units_list,
           count: 0
         });
       } else $scope.error = "##word.dublicate_item##"
@@ -1019,6 +1022,7 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
       }).then(
         function (response) {
           $scope.busy = false;
+
           if (response.data.done) {
             if (response.data.list.length > 0) {
               let foundSize = false;

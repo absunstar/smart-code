@@ -5,6 +5,16 @@
         "ar": "عميل جديد"
     },
     {
+        "name": "post",
+        "en": "Post",
+        "ar": "مرحل"
+    },
+    {
+        "name": "un_post",
+        "en": "Un Post",
+        "ar": "غير مرحل"
+    },
+    {
         "name": "name",
         "en": "Name",
         "ar": "الاسم"

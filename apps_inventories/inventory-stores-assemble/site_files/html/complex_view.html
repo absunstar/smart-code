@@ -1,0 +1,88 @@
+<div id="complexViewModal" class="modal" fixed>
+
+    <div class="col2"></div>
+    <div class="modal-content col8">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.complex_items## <i class="fa fa-pencil"></i>
+            </h2>
+        </div>
+        <div class="modal-body">
+            <form class="form">
+
+                <div class="row" ng-show="complexView.complex_items.length > 0">
+                    <table class="table hover">
+                        <tr>
+                            <th>##word.item_name##</th>
+                            <th>##word.stores_items_sizes##</th>
+                            <th>##word.item_code##</th>
+                            <th>##word.average_cost##</th>
+                            <th>##word.unit##</th>
+                            <th>##word.price##</th>
+                            <th>##word.item_count##</th>
+                            <th>##word.quantity##</th>
+                            <th>##word.patch##</th>
+                        </tr>
+
+                        <tr class="bold" ng-repeat="i in complexView.complex_items">
+                            <td>
+                                <br>
+                                <p class="center bold blue">{{i.name}}</p>
+                            </td>
+                            <td>
+                                <br>
+                                <p class="center bold">{{i.size}}</p>
+                            </td>
+                            <td>
+                                <br>
+                                <p class="center bold blue">{{i.barcode}}</p>
+                            </td>
+                            <td>
+                                <br>
+                                <p class="center bold ">{{i.unit.average_cost}}</p>
+                            </td>
+                            <td>
+                                <br>
+                                <p class="center bold">{{i.unit.name}} -
+                                    {{i.unit.barcode}}</p>
+
+                            </td>
+                            <td>
+                                <br>
+                                <p class="center bold green">{{i.price}}</p>
+                            </td>
+
+                            <td>
+                                <br>
+                                <p class="center bold">{{i.count}}</p>
+                            </td>
+
+                            <td>
+                                <br>
+                                <p class="center bold">{{i.patches_count}}</p>
+                            </td>
+
+                            <td class="center">
+                                <i-button label="##word.patch##" ng-show="complexView.work_patch || complexView.work_serial" type="view"
+                                    ng-click="patchesComplexList(i)">
+                                </i-button>
+                            </td>
+
+                        </tr>
+
+                    </table>
+                </div>
+
+            </form>
+        </div>
+        <h2 class="error">{{error}}</h2>
+        <div class="modal-footer center">
+            <i-button type="close" onclick="site.hideModal('#complexViewModal')" label="##word.close##">
+            </i-button>
+
+        </div>
+    </div>
+
+
+</div>

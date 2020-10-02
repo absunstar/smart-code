@@ -27,6 +27,18 @@ module.exports = function init(site) {
     let where = req.data.where || {};
     let employee = where.employee
 
+
+    if (where['employee']) {
+      where = {
+        $or: [
+          { 'add_user_info.id': where['employee'].user_info.id },
+          { 'edit_user_info.id': where['employee'].user_info.id }
+        ]
+      }
+      delete where['employee']
+    }
+
+
     if (where['code']) {
       where['code'] = site.get_RegExp(where['code'], 'i')
     };
@@ -70,15 +82,6 @@ module.exports = function init(site) {
       delete where.date_to
     }
 
-    if (where['employee']) {
-      where = {
-        $or: [
-          { 'add_user_info.id': where['employee'].user_info.id },
-          { 'edit_user_info.id': where['employee'].user_info.id }
-        ]
-      }
-      delete where['employee']
-    }
 
     where['company.id'] = site.get_company(req).id
     where['branch.code'] = site.get_branch(req).code

@@ -13,11 +13,21 @@
         "name": "account_invoices_name",
         "en": "Account Invoices",
         "ar": " فواتير الحسابات"
-    },
+    }, 
     {
         "name": "account_invoices_menus",
         "en": "Account Invoices Menu",
         "ar": "قائمة فواتير الحسابات"
+    },
+    {
+        "name": "payment_made",
+        "en": "Payment Was Made",
+        "ar": "تم الدفع"
+    },
+    {
+        "name": "under_payment",
+        "en": "Under Payment",
+        "ar": "تحت الدفع"
     },
     {
         "name": "account_invoices_name",

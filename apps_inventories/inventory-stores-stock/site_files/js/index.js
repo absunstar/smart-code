@@ -700,7 +700,7 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
   };
 
   $scope.testPatches = function (store_stock, callback) {
-    $scope.getSerialList((serial_list) => {
+    $scope.getSerialList(store_stock.items, serial_list => {
 
       let obj = {
         patchCount: false,
@@ -768,12 +768,23 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
     });
   };
 
-  $scope.getSerialList = function (callback) {
+  $scope.getSerialList = function (items, callback) {
     $scope.error = '';
     $scope.busy = true;
+
+    let barcodes = [];
+    if (items && items.length > 0)
+      barcodes = items.map(_item => _item.barcode)
+
+    let where = { serial: true, barcodes: barcodes };
+
     $http({
       method: "POST",
-      url: "/api/stores_items/barcode_unit"
+      url: "/api/stores_items/barcode_unit",
+      data: {
+        where: where
+
+      }
     }).then(
       function (response) {
         $scope.busy = false;

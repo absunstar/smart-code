@@ -5,11 +5,6 @@
         "ar": "إضافة عميل"
     },
     {
-        "name": "post",
-        "en": "Post",
-        "ar": "ترحيل"
-    },
-    {
         "name": "handel_orders",
         "en": "Handel Orders",
         "ar": "هندلة الطلبات"

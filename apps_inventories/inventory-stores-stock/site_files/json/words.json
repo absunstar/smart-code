@@ -26,6 +26,7 @@
     {"name" : "err_barcode_exist" , "en" : "The barcode is exist" , "ar" : "الباركود مسجل من قبل"},
 
     {"name" : "err_find_serial" , "en" : "Must Enter Serial Number" , "ar" : "يجب إدخال رقم السيريال"},
+    {"name" : "err_find_serial_comp" , "en" : "Must Enter Serial Number I. Complex" , "ar" : "يجب إدخال رقم السيريال ص. مجمع"},
     
     {"name" : "edit_purchase_price" , "en" : "Edit Purchase Price" , "ar" : "تعديل سعر الشراء"},
 
