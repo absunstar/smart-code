@@ -1,8 +1,12 @@
 const site = require('isite')({
-    port: [80  , 40007],
+    port: [80, 40007],
     lang: 'ar',
-    version : '1.0.6',
+    version: '1.0.6',
     name: 'pos',
+    require: {
+        features: [],
+        permissions: []
+    },
     theme: 'theme_paper',
     mongodb: {
         db: 'smart_code_pos',
@@ -67,14 +71,14 @@ setTimeout(() => {
     // }, (err, attendance_array) => {
     //     console.log(attendance_array || err)
     // })
-    
+
 }, 1000)
 
 setTimeout(() => {
     site.ready = true
 }, 1000 * 2);
 
-if(process.platform == "win32"){
+if (process.platform == "win32") {
     site.exe(process.cwd() + '/applications/PrinterManager.exe')
 }
 

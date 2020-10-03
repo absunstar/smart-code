@@ -4,6 +4,10 @@ const site = require('isite')({
     version : '1.0.6',
     name: 'lawyer',
     theme: 'theme_paper',
+    require: {
+        features: [],
+        permissions: []
+    },
     mongodb: {
         db: 'smart_code_lawyers',
         limit: 100000

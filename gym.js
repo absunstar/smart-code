@@ -4,6 +4,10 @@ const site = require('isite')({
     version : '1.0.6',
     name: 'gym',
     theme: 'theme_paper',
+    require: {
+        features: [],
+        permissions: []
+    },
     https: {
         enabled: true,
         port: 5050

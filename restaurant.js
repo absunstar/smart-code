@@ -5,6 +5,10 @@ const site = require('isite')({
     version : '1.0.6',
     name: "restaurant",
     theme: 'theme_paper',
+    require: {
+        features: [],
+        permissions: []
+    },
     mongodb: {
         db: 'smart_code_restaurants',
         limit: 100000
