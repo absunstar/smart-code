@@ -1,22 +1,22 @@
-app.controller("report_invoices_vendors", function ($scope, $http, $timeout) {
+app.controller("report_invoices_customers", function ($scope, $http, $timeout) {
   $scope._search = {};
 
-  $scope.report_invoices_vendors = {};
+  $scope.report_invoices_customers = {};
 
-  $scope.getVendorsList = function (ev) {
+  $scope.getCustomersList = function (ev) {
     $scope.busy = true;
     if (ev.which === 13) {
       $http({
         method: "POST",
-        url: "/api/vendors/all",
+        url: "/api/customers/all",
         data: {
-          search: $scope.search_vendor
+          search: $scope.search_customer
         }
       }).then(
         function (response) {
           $scope.busy = false;
           if (response.data.done && response.data.list.length > 0) {
-            $scope.vendorsList = response.data.list;
+            $scope.customersList = response.data.list;
           }
         },
         function (err) {
@@ -27,13 +27,13 @@ app.controller("report_invoices_vendors", function ($scope, $http, $timeout) {
     }
   };
 
-  $scope.getReportInvoicesvendorsList = function (where) {
+  $scope.getReportInvoicescustomersList = function (where) {
     $scope.busy = true;
     $scope.list = [];
     $scope.count = 0;
     $http({
       method: "POST",
-      url: "/api/report_invoices_vendors/all",
+      url: "/api/report_invoices_customers/all",
       data: {
         where: where,
         select: {
@@ -77,12 +77,12 @@ app.controller("report_invoices_vendors", function ($scope, $http, $timeout) {
     $scope._search = {};
 
     if ($scope.search)
-      $scope.vendor = $scope.search.vendor;
+      $scope.customer = $scope.search.customer;
 
-    $scope.getReportInvoicesvendorsList($scope.search);
-    site.hideModal('#reportInvoicesVendorsSearchModal');
+    $scope.getReportInvoicescustomersList($scope.search);
+    site.hideModal('#reportInvoicesCustomersSearchModal');
     $scope.search = {}
   };
 
-  $scope.getReportInvoicesvendorsList({ date: new Date() });
+  $scope.getReportInvoicescustomersList({ date: new Date() });
 });

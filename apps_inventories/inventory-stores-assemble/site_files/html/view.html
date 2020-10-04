@@ -10,7 +10,7 @@
 
             <tr>
                 <td class="title">##word.stores_assemble_id##</td>
-                <td class="center">{{store_assemble.number}}</td>
+                <td class="center blue">{{store_assemble.code}}</td>
             </tr>
 
             <tr>
@@ -47,9 +47,9 @@
                                 <p>{{itm.size}}</p>
                                 <p>{{itm.size_en}}</p>
                             </td>
-                            <td class="center">{{itm.barcode}}</td>
+                            <td class="center blue">{{itm.barcode}}</td>
                             <td class="center">{{itm.unit.name}}</td>
-                            <td class="center">{{itm.count}}</td>
+                            <td class="center green">{{itm.count}}</td>
                             <td class="center">
                                 <i-button class="not-print" label="##word.patch##"
                                     ng-show="itm.work_patch || itm.work_serial" type="view"

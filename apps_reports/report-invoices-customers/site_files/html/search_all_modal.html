@@ -1,4 +1,4 @@
-<div id="reportInvoicesVendorsSearchModal" class="modal" fixed>
+<div id="reportInvoicesCustomersSearchModal" class="modal" fixed>
     <div class="modal-content">
         <div class="modal-header">
             <span class="close">&times;</span>
@@ -20,10 +20,10 @@
                                 ng-model="search.shift_code">
                             </i-control>
 
-                            <i-control ng-keydown="getVendorsList($event)" class="col2" ng-model="search_vendor"
+                            <i-control ng-keydown="getCustomersList($event)" class="col2" ng-model="search_customer"
                                 label="##word.search##" type="text"></i-control>
-                            <i-list help-id="" ng-search="_search.$vendor_search" class="col3" label="##word.vendor##"
-                                space=" - " display2="code" ng-model="search.vendor" items="vendorsList"
+                            <i-list help-id="" ng-search="_search.$customer_search" class="col3" label="##word.customer##"
+                                space=" - " display2="code" ng-model="search.customer" items="customersList"
                                 display="name_##session.lang##"></i-list>
                         </div>
                     </fieldset>
@@ -34,7 +34,7 @@
             <div class="modal-footer center">
                 <i-button type="search" ng-click="searchAll()" label="##word.search##"></i-button>
                 <i-button type="clear" ng-click="search = {}" label="##word.empty_search##"></i-button>
-                <i-button type="close" onclick="hideModal('reportInvoicesVendorsSearchModal')" label="##word.close##">
+                <i-button type="close" onclick="hideModal('reportInvoicesCustomersSearchModal')" label="##word.close##">
                 </i-button>
             </div>
         </div>

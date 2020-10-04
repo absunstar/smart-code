@@ -92,35 +92,71 @@ app.controller("report_safes", function ($scope, $http, $timeout) {
           $scope.total_outgoing_comm = 0;
 
           $scope.list.forEach(_invoice => {
+            if (_invoice.source_type) {
 
-            if (_invoice.source_type && _invoice.source_type.id == 1) {
-              if (_invoice.invoice_type && _invoice.invoice_type.id != 4) {
+              if (_invoice.source_type.id == 1) {
+                if (_invoice.invoice_type && _invoice.invoice_type.id != 4) {
+                  $scope.total_outgoing += _invoice.paid;
+                  $scope.total_outgoing_comm += _invoice.commission;
+
+                } else if (_invoice.invoice_type && _invoice.invoice_type.id == 4) {
+                  $scope.total_incoming += _invoice.paid;
+                  $scope.total_incoming_comm += _invoice.commission;
+                }
+
+              } else if (_invoice.source_type.id == 2) {
+
+                if (_invoice.invoice_type && _invoice.invoice_type.id != 6) {
+                  $scope.total_incoming += _invoice.paid;
+                  $scope.total_incoming_comm += _invoice.commission;
+                } else if (_invoice.invoice_type && _invoice.invoice_type.id == 6) {
+                  $scope.total_outgoing += _invoice.paid;
+                  $scope.total_outgoing_comm += _invoice.commission;
+                }
+
+              } else if (_invoice.source_type.id == 3) {
+                $scope.total_incoming += _invoice.paid;
+                $scope.total_incoming_comm += _invoice.commission;
+
+              } else if (_invoice.source_type.id == 4) {
+                $scope.total_incoming += _invoice.paid;
+                $scope.total_incoming_comm += _invoice.commission;
+
+              } else if (_invoice.source_type.id == 5) {
+                $scope.total_incoming += _invoice.paid;
+                $scope.total_incoming_comm += _invoice.commission;
+
+              } else if (_invoice.source_type.id == 6) {
                 $scope.total_outgoing += _invoice.paid;
                 $scope.total_outgoing_comm += _invoice.commission;
 
-              } else if (_invoice.invoice_type && _invoice.invoice_type.id == 4) {
+              } else if (_invoice.source_type.id == 7) {
                 $scope.total_incoming += _invoice.paid;
                 $scope.total_incoming_comm += _invoice.commission;
 
-              }
-
-            } else {
-
-              if (_invoice.invoice_type && _invoice.invoice_type.id != 6) {
+              } else if (_invoice.source_type.id == 8) {
                 $scope.total_incoming += _invoice.paid;
                 $scope.total_incoming_comm += _invoice.commission;
-              } else if (_invoice.invoice_type && _invoice.invoice_type.id == 6) {
+
+              } else if (_invoice.source_type.id == 9) {
                 $scope.total_outgoing += _invoice.paid;
                 $scope.total_outgoing_comm += _invoice.commission;
 
-              } else {
+              } else if (_invoice.source_type.id == 10) {
                 $scope.total_incoming += _invoice.paid;
                 $scope.total_incoming_comm += _invoice.commission;
+
+              } else if (_invoice.source_type.id == 11) {
+                $scope.total_outgoing += _invoice.paid;
+                $scope.total_outgoing_comm += _invoice.commission;
+
+              } else if (_invoice.source_type.id == 12) {
+                $scope.total_outgoing += _invoice.paid;
+                $scope.total_outgoing_comm += _invoice.commission;
+
 
               }
             }
-
-
 
           });
         }

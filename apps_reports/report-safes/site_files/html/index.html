@@ -93,7 +93,7 @@
                             </td>
                             <td x-feature="restaurant"> {{c.order_invoices_type.##session.lang##}} </td>
                             <td> {{c.payment_method.##session.lang##}} </td>
-                      
+
                             <td x-feature="restaurant">
                                 <p ng-show="c.service"> ##word.service## </p>
                                 <p ng-show="c.service">{{c.service}}</p>
@@ -120,7 +120,7 @@
 
                 </div>
 
-                <div class="row" id="t1">
+                <div class="row" id="t1" ng-show="search.safe.type.id == 2">
 
                     <i-control class="col2 r_darkRed" ng-model="total_outgoing" label="##word.total_outgoing##"
                         type="number" disabled></i-control>

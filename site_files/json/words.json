@@ -201,8 +201,8 @@
     },
     {
         "name": "report_invoices_vendors_name",
-        "en": "Report Invoices Vendors",
-        "ar": "تقرير فواتير الموردين "
+        "en": "Account Statement Vendors",
+        "ar": "كشف حساب الموردين "
     },
     {
         "name": "order_customer_menus",

@@ -22,7 +22,7 @@
                             <th>##word.price##</th>
                             <th>##word.item_count##</th>
                             <th>##word.quantity##</th>
-                            <th>##word.patch##</th>
+                            <th ng-show="complexView.work_patch || complexView.work_serial">##word.patch##</th>
                         </tr>
 
                         <tr class="bold" ng-repeat="i in complexView.complex_items">
@@ -63,7 +63,7 @@
                                 <p class="center bold">{{i.patches_count}}</p>
                             </td>
 
-                            <td class="center">
+                            <td class="center" ng-show="complexView.work_patch || complexView.work_serial">
                                 <i-button label="##word.patch##"
                                     ng-show="!store_assemble.$view && (complexView.work_patch || complexView.work_serial) " type="view"
                                     ng-click="patchesComplexList(i)">

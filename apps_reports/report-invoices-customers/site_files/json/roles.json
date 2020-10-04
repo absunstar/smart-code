@@ -1,0 +1,7 @@
+[{
+    "module_name" : "accounting" ,
+    "name": "report_invoices_customers_admin",
+    "en": "Account Statement Customers  Admin",
+    "ar": "كشف حساب العملاء",
+    "permissions": ["report_invoices_customers_manage"]
+}]

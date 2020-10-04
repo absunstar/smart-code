@@ -2,7 +2,7 @@ module.exports = function init(site) {
   const $account_invoices = site.connectCollection("account_invoices")
 
   site.get({
-    name: "report_invoices_vendors",
+    name: "report_invoices_customers",
     path: __dirname + "/site_files/html/index.html",
     parser: "html",
     compress: true
@@ -13,7 +13,7 @@ module.exports = function init(site) {
     path: __dirname + '/site_files/images/'
   })
 
-  site.post("/api/report_invoices_vendors/all", (req, res) => {
+  site.post("/api/report_invoices_customers/all", (req, res) => {
     let response = {
       done: false
     };
@@ -59,13 +59,13 @@ module.exports = function init(site) {
       delete where.date_to
     }
 
-    if (where['vendor']) {
-      where['vendor.id'] = where['vendor'].id;
-      delete where['vendor']
+    if (where['customer']) {
+      where['customer.id'] = where['customer'].id;
+      delete where['customer']
 
-    } else where['vendor.id'] = { $gte: 1 }
+    } else where['customer.id'] = { $gte: 1 }
 
-    where['source_type.id'] = 1
+    where['$or'] = [{ 'source_type.id': 2 }, { 'source_type.id': 3 }, { 'source_type.id': 4 }, { 'source_type.id': 7 }]
 
     where['company.id'] = site.get_company(req).id
     where['branch.code'] = site.get_branch(req).code

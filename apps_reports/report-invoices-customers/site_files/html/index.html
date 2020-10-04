@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="report_invoices_customers_ui || report_invoices_customers_manage" data-ng-app="myApp">
+
+<head x-import="head.html">
+
+</head>
+
+<body class="##session.lang##">
+
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+    </nav>
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+    </nav>
+
+    <div id="main-layout" class="container">
+        <div class="row">
+            <div class="row" ng-controller="report_invoices_customers" x-permissions="login">
+
+                <div x-import="report-invoices-customers/search_all_modal.html"></div>
+                <div class="row">
+                    <h1 class="bold text-center"> ##word.report_invoices_customers_name## </h1>
+                </div>
+
+                <div class="top-actions">
+                    <i-button type="search"
+                        x-permissions="report_invoices_customers_search || report_invoices_customers_manage"
+                        label="##word.search_all##" onclick="site.showModal('#reportInvoicesCustomersSearchModal')">
+                    </i-button>
+
+                    <div ng-show="customer.id" class="row margin padding dashed">
+                        <div class="col6 padding">
+
+                            <table class="table hover bold" id="t1">
+
+                                <tr>
+                                    <td class="title">##word.customer##</td>
+                                    <td>
+                                        <h3 class="center bold">{{customer.name_##session.lang##}}</h3>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title">##word.requests_count##</td>
+                                    <td>
+                                        <h3 class="center bold blue">{{count}}</h3>
+                                    </td>
+
+                                </tr>
+
+                            </table>
+                        </div>
+
+                    </div>
+
+                    <span ng-show="busy">
+                        <span class="sr-only">Loading...</span>
+                    </span>
+                    <h3 class="bold text-center" ng-hide="customer.id"> ##word.count## : {{count}} </h3>
+                    <br>
+                </div>
+
+                <div class="row">
+
+                    <i-control id="item_name" class="col2 r_blue" ng-model="net_value"
+                        label="##word.stores_out_net_value##" type="number" disabled></i-control>
+
+                    <i-control id="item_name" class="col2 r_green" ng-model="total_paid_up"
+                        label="##word.total_paid_up##" type="number" disabled></i-control>
+
+                    <i-control id="item_name" class="col2 r_darkRed" ng-model="remain_amount"
+                        label="##word.total_remain##" type="number" disabled></i-control>
+
+                    <!--  <i-control id="item_name" class="col2 r_darkRed" ng-model="net_total_return"
+                        label="##word.net_total_return##" type="number" disabled></i-control> -->
+                </div>
+
+                <!--     <div class="row">
+                    <i-control id="item_name" class="col2 r_darkRed" ng-model="total_tax" label="##word.total_tax##" type="number"
+                        disabled></i-control>
+                    <i-control id="item_name" class="col2 r_darkRed" ng-model="total_discount" label="##word.total_discount##"
+                        type="number" disabled></i-control>
+                </div>
+ -->
+
+                <table class="table loaded center hover bold" id="t1">
+                    <tr>
+                        <th class="not-print"> ##word.logo## </th>
+                        <th> ##word.date## </th>
+                        <th> ##word.shift## </th>
+                        <th> ##word.stores_out_id## </th>
+                        <th ng-hide="customer.id"> ##word.customer## </th>
+                        <th> ##word.stores_out_total_tax## </th>
+                        <th> ##word.stores_out_total_discount## </th>
+                        <th> ##word.stores_out_net_value## </th>
+                        <th> ##word.total_paid_up## </th>
+                        <th> ##word.remain_amount## </th>
+                    </tr>
+
+                    <tr ng-repeat="c in list | orderBy : '-id'">
+                        <td class="not-print">
+                            <img class="logo" ng-src="{{c.image_url}}">
+                        </td>
+                        <td class="brown"> {{c.date | date : 'dd - MM - yyyy'}} </td>
+                        <td class="blue"> {{c.shift.code}} </td>
+                        <td class="blue"> {{c.code}} </td>
+
+                        <td ng-hide="customer.id"> {{c.customer.name_##session.lang##}} </td>
+                        <td> {{c.total_tax ||0}} </td>
+                        <td> {{c.total_discount ||0}} </td>
+                        <td class="green"> {{c.net_value}} </td>
+                        <td class="blue"> {{c.total_paid_up || 0}} </td>
+                        <td class="red"> {{c.remain_amount || 0}} </td>
+                    </tr>
+                </table>
+
+                <div class="row">
+                    <i-button x-permissions="report_invoices_customers_print || report_invoices_customers_manage"
+                        type="print" label="##word.print##" onclick="site.print('#t1')"></i-button>
+                    <i-button x-permissions="report_invoices_customers_export || report_invoices_customers_manage"
+                        type="export" label="##word.export_to_excel##"
+                        onclick="export_to_xlsx('t1' , 'report_invoices_customers.xlsx')">
+                    </i-button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div x-import="scripts.html"></div>
+
+    <script x-permissions="login" x-import="report-invoices-customers/index.js"></script>
+</body>
+
+</html>

@@ -1099,6 +1099,11 @@ module.exports = function init(site) {
       delete where['customer']
     }
 
+    if (where['vendor']) {
+      where['vendor.id'] = where['vendor'].id;
+      delete where['vendor']
+    }
+
     if (where['employee']) {
       where['employee.id'] = where['employee'].id;
       delete where['employee']
