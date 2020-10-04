@@ -106,6 +106,10 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
       }
     });
 
+    obj.patch_list = obj.patch_list.filter(function (item, pos) {
+      return obj.patch_list.indexOf(item) === pos;
+    });
+
     callback(obj)
   };
 
@@ -268,6 +272,8 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
             count: _size.count,
             cost: _size.cost,
             price: _size.price,
+            item_complex: _size.item_complex,
+            complex_items: _size.complex_items,
             store_count: _size.store_count,
             total: _size.total,
             current_count: _size.current_count,
@@ -662,34 +668,40 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
   $scope.confirmTransfer = function (transfer_branch) {
     $scope.error = '';
     $scope.getStockItems(transfer_branch.items, callback => {
+      $scope.testPatches(transfer_branch, callbackTest => {
 
-      if (!callback) {
+        if (callbackTest.patchCount) {
+          $scope.error = `##word.err_patch_count##   ( ${callbackTest.patch_list.join('-')} )`;
+          return;
+        };
+        if (!callback) {
 
-        transfer_branch.transfer = true;
-        $scope.busy = true;
-        $http({
-          method: "POST",
-          url: "/api/transfer_branch/confirm",
-          data: transfer_branch
-        }).then(
-          function (response) {
-            $scope.busy = false;
-            if (response.data.done) {
-            } else {
-              $scope.error = '##word.error##';
-              if (response.data.error.like('*OverDraft Not*')) {
-                transfer_branch.transfer = false;
-                $scope.error = "##word.overdraft_not_active##";
+          transfer_branch.transfer = true;
+          $scope.busy = true;
+          $http({
+            method: "POST",
+            url: "/api/transfer_branch/confirm",
+            data: transfer_branch
+          }).then(
+            function (response) {
+              $scope.busy = false;
+              if (response.data.done) {
+              } else {
+                $scope.error = '##word.error##';
+                if (response.data.error.like('*OverDraft Not*')) {
+                  transfer_branch.transfer = false;
+                  $scope.error = "##word.overdraft_not_active##";
+                }
               }
+            },
+            function (err) {
+              console.log(err);
             }
-          },
-          function (err) {
-            console.log(err);
-          }
-        )
-      } else {
-        $scope.error = '##word.err_stock_item##';
-      }
+          )
+        } else {
+          $scope.error = '##word.err_stock_item##';
+        }
+      })
     })
   };
 
@@ -705,35 +717,41 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
         if (!_transfer_branch_all[i].transfer && _transfer_branch_all[i].branch_to.code == '##session.branch.code##') {
 
           $scope.getStockItems(_transfer_branch_all[i].items, callback => {
+            $scope.testPatches(_transfer_branch_all[i], callbackTest => {
 
-            if (!callback && !stopLoop) {
+              if (callbackTest.patchCount) {
+                $scope.error = `##word.err_patch_count##   ( ${callbackTest.patch_list.join('-')} )`;
+                return;
+              };
+              if (!callback && !stopLoop) {
 
-              _transfer_branch_all[i].transfer = true;
+                _transfer_branch_all[i].transfer = true;
 
-              $http({
-                method: "POST",
-                url: "/api/transfer_branch/confirm",
-                data: _transfer_branch_all[i]
-              }).then(
-                function (response) {
-                  if (response.data.done) {
+                $http({
+                  method: "POST",
+                  url: "/api/transfer_branch/confirm",
+                  data: _transfer_branch_all[i]
+                }).then(
+                  function (response) {
+                    if (response.data.done) {
 
-                  } else {
-                    $scope.error = '##word.error##';
-                    if (response.data.error.like('*OverDraft Not*')) {
-                      $scope.error = "##word.overdraft_not_active##"
-                      _transfer_branch_all[i].transfer = false;
+                    } else {
+                      $scope.error = '##word.error##';
+                      if (response.data.error.like('*OverDraft Not*')) {
+                        $scope.error = "##word.overdraft_not_active##"
+                        _transfer_branch_all[i].transfer = false;
+                      }
                     }
+                  },
+                  function (err) {
+                    console.log(err);
                   }
-                },
-                function (err) {
-                  console.log(err);
-                }
-              )
-            } else {
-              stopLoop = true;
-            }
+                )
+              } else {
+                stopLoop = true;
+              }
 
+            })
           })
         };
       }, 1000 * i);

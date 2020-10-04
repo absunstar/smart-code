@@ -24,6 +24,7 @@
                         </tr>
 
                         <tr ng-repeat="item in branchesBalance.branches_list">
+
                             <td class="center">{{item.name_##session.lang##}}</td>
 
                             <td class="center" x-feature="restaurant">
@@ -32,16 +33,17 @@
                                     ng-search="_search.$kitchen_search" items="itemsKitchenList">
                                 </i-list>
 
-
                             </td>
+
                             <td class="center red">{{item.average_cost}}</td>
-                            <td class="center">
+
+                            <td>
                                 <p class="center bold green" ng-show="item.current_count > 0">
                                     {{item.current_count}} </p>
                                 <p class="bold red center" ng-show="item.current_count == 0 ||item.current_count < 0">
                                     {{item.current_count}} </p>
                             </td>
-
+                            
                             <td class="center blue">{{item.start_count}}</td>
                             <td class="center">
                                 <div class="row">
@@ -113,8 +115,9 @@
                             </td>
 
                             <td>
-                                <p class="center bold green" ng-show="c.current_count > 0"> {{c.current_count}} </p>
-                                <p class="bold blue center" ng-show="c.current_count = 0 || c.current_count < 0">
+                                <p class="center bold green" ng-show="c.current_count > 0">
+                                    {{c.current_count}} </p>
+                                <p class="bold red center" ng-show="c.current_count == 0 ||c.current_count < 0">
                                     {{c.current_count}} </p>
                             </td>
                             <td>

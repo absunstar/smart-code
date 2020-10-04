@@ -465,16 +465,15 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
   };
 
 
-  $scope.selectAll = function () {
-    $scope.item_patch.patch_list.forEach(element => {
-      if ($scope.item_patch.$select_all) {
+  $scope.selectAll = function (item_patch) {
+    item_patch.patch_list.forEach(element => {
+      if (item_patch.$select_all) {
         element.select = true
-      } else if (!$scope.item_patch.$select_all) {
+      } else if (!item_patch.$select_all) {
         element.select = false
       }
     });
   };
-
 
   $scope.exitPatchReturnModal = function (itm) {
     let bigger = false;
@@ -764,6 +763,12 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
         }
 
       });
+
+      
+      obj.patch_list = obj.patch_list.filter(function(item, pos) {
+        return obj.patch_list.indexOf(item) === pos;
+    });
+
       callback(obj)
     });
 
@@ -1014,7 +1019,8 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
               cost: _size.unit.cost,
               price: _size.unit.price,
               average_cost: _size.unit.average_cost,
-              item_complex: _size.item_complex,
+              item_complex : _size.item_complex,
+              complex_items: _size.complex_items,
               discount: _size.unit.discount,
               barcode: _size.barcode,
               count: _size.count,

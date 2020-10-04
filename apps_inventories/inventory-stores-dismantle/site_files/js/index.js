@@ -213,7 +213,7 @@ app.controller("stores_dismantle", function ($scope, $http, $timeout) {
     let foundSize = false;
     if ($scope.item.sizes && $scope.item.sizes.length > 0)
       $scope.item.sizes.forEach(_size => {
-        foundSize = $scope.store_dismantle.items.some(_itemSize => _itemSize.barcode == _size.barcode);
+        foundSize = $scope.store_dismantle.items.some(_itemSize => _itemSize.barcode === _size.barcode);
         if (_size.count > 0 && !foundSize) {
           $scope.store_dismantle.items.unshift({
             image_url: $scope.item.image_url,
@@ -224,6 +224,9 @@ app.controller("stores_dismantle", function ($scope, $http, $timeout) {
             barcode: _size.barcode,
             size_units_list: _size.size_units_list,
             unit: _size.unit,
+            work_patch: _size.work_patch,
+            work_serial: _size.work_serial,
+            item_complex: _size.item_complex,
             complex_items: _size.complex_items,
             average_cost: _size.average_cost,
             count: _size.count,
@@ -265,9 +268,7 @@ app.controller("stores_dismantle", function ($scope, $http, $timeout) {
         data: {
           search: $scope.item.search_item_name,
           where: {
-            'sizes.item_complex': true,
-            'sizes.work_patch': { $ne: true },
-            'sizes.work_serial': { $ne: true }
+            'sizes.item_complex': true
           }
         }
       }).then(
@@ -285,7 +286,7 @@ app.controller("stores_dismantle", function ($scope, $http, $timeout) {
                     let indxUnit = 0;
                     if (_size.size_units_list && _size.size_units_list.length > 0)
                       _size.size_units_list.forEach((_unit, i) => {
-                        if ((_unit.barcode == $scope.item.search_item_name) && typeof _unit.barcode == 'string') {
+                        if ((_unit.barcode === $scope.item.search_item_name) && typeof _unit.barcode == 'string') {
                           foundUnit = true;
                         }
                         if (_unit.id === _item.main_unit.id) indxUnit = i;
@@ -335,7 +336,7 @@ app.controller("stores_dismantle", function ($scope, $http, $timeout) {
 
                       } else _size.store_count = 0;
 
-                      foundSize = $scope.item.sizes.some(_itemSize => _itemSize.barcode == _size.barcode);
+                      foundSize = $scope.item.sizes.some(_itemSize => _itemSize.barcode === _size.barcode);
 
                       if (!foundSize && _size.item_complex && !foundHold) $scope.item.sizes.unshift(_size);
                     };
@@ -416,7 +417,7 @@ app.controller("stores_dismantle", function ($scope, $http, $timeout) {
           } else _item.store_count = 0;
 
         } else _item.store_count = 0;
-        foundSize = $scope.item.sizes.some(_itemSize => _itemSize.barcode == _item.barcode);
+        foundSize = $scope.item.sizes.some(_itemSize => _itemSize.barcode === _item.barcode);
         if (!foundSize && _item.item_complex && !foundHold)
           $scope.item.sizes.unshift(_item);
       });
@@ -431,9 +432,7 @@ app.controller("stores_dismantle", function ($scope, $http, $timeout) {
         data: {
           search: $scope.search_barcode,
           where: {
-            'sizes.item_complex': true,
-            'sizes.work_patch': { $ne: true },
-            'sizes.work_serial': { $ne: true }
+            'sizes.item_complex': true
           }
         }
       }).then(
@@ -449,14 +448,14 @@ app.controller("stores_dismantle", function ($scope, $http, $timeout) {
                   let indxUnit = 0;
                   if (_size.size_units_list && _size.size_units_list.length > 0)
                     _size.size_units_list.forEach((_unit, i) => {
-                      if ((_unit.barcode == $scope.search_barcode) && typeof _unit.barcode == 'string') {
+                      if ((_unit.barcode === $scope.search_barcode) && typeof _unit.barcode == 'string') {
                         foundUnit = true;
                       }
                       if (_unit.id == response.data.list[0].main_unit.id) indxUnit = i;
 
                     });
 
-                  if ((_size.barcode == $scope.search_barcode) || foundUnit) {
+                  if ((_size.barcode === $scope.search_barcode) || foundUnit) {
                     _size.name = response.data.list[0].name;
                     _size.item_group = response.data.list[0].item_group;
                     _size.store = $scope.store_dismantle.store;
@@ -499,12 +498,12 @@ app.controller("stores_dismantle", function ($scope, $http, $timeout) {
                       } else _size.store_count = 0
 
                     } else _size.store_count = 0
-                    foundSize = $scope.store_dismantle.items.some(_itemSize => _itemSize.barcode == _size.barcode);
+                    foundSize = $scope.store_dismantle.items.some(_itemSize => _itemSize.barcode === _size.barcode);
                     if (!foundSize && _size.item_complex && !foundHold)
                       $scope.store_dismantle.items.unshift(_size);
                     else if (foundSize) {
                       $scope.store_dismantle.items.forEach(_item => {
-                        if (_item.barcode == _size.barcode) {
+                        if (_item.barcode === _size.barcode) {
                           _item.count = _item.count + 1;
 
                         }
@@ -731,6 +730,122 @@ app.controller("stores_dismantle", function ($scope, $http, $timeout) {
         $scope.error = err;
       }
     )
+  };
+
+  $scope.viewPatchesList = function (itm) {
+    $scope.error = '';
+    $scope.item_patch = itm;
+
+    site.showModal('#patchesListViewModal');
+
+  };
+
+  $scope.showComplexItems = function (itm) {
+    $scope.error = '';
+    if (itm.complex_items && itm.complex_items.length > 0) {
+      itm.complex_items.forEach(_comp => {
+        _comp.patches_count = _comp.count * itm.count
+      });
+    }
+    $scope.complexView = itm;
+
+    site.showModal('#complexViewModal');
+
+  };
+
+  $scope.patchesList = function (itm) {
+    $scope.error = '';
+    $scope.item_patch = itm;
+
+    $http({
+      method: "POST",
+      url: "/api/stores_items/all",
+      data: {
+        where: {
+          store_id: $scope.store_dismantle.store.id,
+          unit_id: itm.unit.id,
+          barcode: itm.barcode
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+
+          if (response.data.patch_list.length > 0) {
+            response.data.patch_list.forEach(_resPatch => {
+
+              _resPatch.current_count = _resPatch.count
+              _resPatch.count = 0
+
+              if ($scope.item_patch.patch_list && $scope.item_patch.patch_list.length > 0)
+                $scope.item_patch.patch_list.forEach(_itemPatch => {
+
+                  if (_resPatch.patch == _itemPatch.patch) {
+                    _resPatch.count = _itemPatch.count
+                    _resPatch.current_count = _itemPatch.current_count
+                    if (_itemPatch.select) _resPatch.select = _itemPatch.select
+                  }
+
+                });
+            });
+            $scope.item_patch.patch_list = response.data.patch_list
+            site.showModal('#patchesListModal');
+          }
+
+        }
+      })
+
+
+  };
+
+  $scope.selectAll = function (item_patch) {
+    item_patch.patch_list.forEach(element => {
+      if (item_patch.$select_all) {
+        element.select = true
+      } else if (!item_patch.$select_all) {
+        element.select = false
+      }
+    });
+  };
+
+  $scope.exitPatchModal = function (itm) {
+    let bigger = false;
+    let count = 0;
+
+    itm.patch_list.forEach(_pl => {
+      if (_pl.count > _pl.current_count) bigger = true;
+      if (itm.work_serial) {
+        if (_pl.select) _pl.count = 1
+        else _pl.count = 0
+      }
+    });
+
+
+    itm.patch_list.map(p => count += p.count)
+
+    if (itm.count != count) {
+      $scope.error = '##word.err_patch_count##';
+      return;
+    };
+
+    if (bigger) {
+      $scope.error = '##word.err_patch_current_count##';
+      return;
+    };
+
+    site.hideModal('#patchesListModal');
+    $scope.error = '';
+  };
+
+  $scope.selectAll = function (item_patch) {
+    item_patch.patch_list.forEach(element => {
+      if (item_patch.$select_all) {
+        element.select = true
+      } else if (!item_patch.$select_all) {
+        element.select = false
+      }
+    });
   };
 
 

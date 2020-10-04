@@ -91,23 +91,30 @@
                             <td>
                                 <p class="bold center"> {{c.name}} </p>
                             </td>
+
                             <td>
                                 <p class="bold center"> {{c.barcode}} </p>
                             </td>
+
                             <td>
                                 <p class="center bold green" ng-show="c.current_count > 0">
                                     {{c.current_count}} </p>
                                 <p class="bold red center" ng-show="c.current_count == 0 ||c.current_count < 0">
                                     {{c.current_count}} </p>
                             </td>
+
                             <td>
                                 <p class="bold center"> {{c.start_count}} </p>
                             </td>
+
                             <td>
                                 <p class="bold center"> {{c.average_cost}} </p>
                             </td>
+
                             <td class="center">
-                                <i-button label="##word.patch##" type="view" ng-click="viewPatchesList(c)">
+                                <i-button label="##word.patch##"
+                                    ng-show="branchesBalance.work_serial || branchesBalance.work_patch" type="view"
+                                    ng-click="viewPatchesList(c)">
                                 </i-button>
                                 <i-button label="##word.Unit_switch##" type="add" ng-click="newUnitsSwitch(c)">
                                 </i-button>
