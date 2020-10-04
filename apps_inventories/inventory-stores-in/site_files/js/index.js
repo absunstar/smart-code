@@ -764,10 +764,10 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
 
       });
 
-      
-      obj.patch_list = obj.patch_list.filter(function(item, pos) {
+
+      obj.patch_list = obj.patch_list.filter(function (item, pos) {
         return obj.patch_list.indexOf(item) === pos;
-    });
+      });
 
       callback(obj)
     });
@@ -1019,7 +1019,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
               cost: _size.unit.cost,
               price: _size.unit.price,
               average_cost: _size.unit.average_cost,
-              item_complex : _size.item_complex,
+              item_complex: _size.item_complex,
               complex_items: _size.complex_items,
               discount: _size.unit.discount,
               barcode: _size.barcode,
@@ -1244,7 +1244,8 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
         method: "POST",
         url: "/api/stores_items/all",
         data: {
-          search: $scope.search_barcode
+          where: { barcode: $scope.search_barcode }
+
         }
       }).then(
         function (response) {
@@ -1252,7 +1253,6 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
           if (response.data.done) {
             if (response.data.list.length > 0) {
               let foundSize = false;
-
               if (response.data.list[0].sizes && response.data.list[0].sizes.length > 0)
                 response.data.list[0].sizes.forEach(_size => {
                   let foundHold = false;
@@ -2077,7 +2077,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.getSerialList = function (items,callback) {
+  $scope.getSerialList = function (items, callback) {
     $scope.error = '';
     $scope.busy = true;
     let barcodes = [];

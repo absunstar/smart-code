@@ -14,7 +14,8 @@
                     <br>
                     <br>
                     <h3 class="black bold center">##word.total_quantity##</h3>
-                    <h2 class="blue bold center">{{item_patch.patches_count}}</h2>
+                    <h2 class="blue bold center" ng-show="item_patch.$comp">{{item_patch.patches_count}}</h2>
+                    <h2 class="blue bold center" ng-hide="item_patch.$comp">{{item_patch.count}}</h2>
                     <i-checkbox ng-show="item_patch.work_serial" ng-model="item_patch.$select_all"
                         ng-click="selectAll(item_patch)" label="##word.select_all##"></i-checkbox>
 

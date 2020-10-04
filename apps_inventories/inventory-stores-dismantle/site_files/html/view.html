@@ -34,7 +34,9 @@
                             <th>##word.barcode##</th>
                             <th>##word.unit##</th>
                             <th>##word.stores_dismantle_item_count##</th>
+                            <th>##word.actions##</th>
                         </tr>
+
                         <tr ng-repeat="itm in store_dismantle.items">
                             <td class="center blue">{{$index + 1}}</td>
                             <td class="center">{{itm.name}}</td>
@@ -45,7 +47,15 @@
                             <td class="center">{{itm.barcode}}</td>
                             <td class="center">{{itm.unit.name}}</td>
                             <td class="center">{{itm.count}}</td>
-
+                            <td class="center">
+                                <i-button class="not-print" label="##word.patch##"
+                                    ng-show="itm.work_patch || itm.work_serial" type="view"
+                                    ng-click="viewPatchesList(itm)">
+                                </i-button>
+                                <i-button label="##word.i_complex##" 
+                                    ng-click="showComplexItems(itm)">
+                                </i-button>
+                            </td>
 
                         </tr>
                     </table>

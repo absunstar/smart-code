@@ -65,10 +65,10 @@
 
                             <td class="center">
                                 <i-button label="##word.patch##"
-                                    ng-show="!store_assemble.$view && (complexView.work_patch || complexView.work_serial) " type="view"
-                                    ng-click="patchesComplexList(i)">
+                                    ng-show="!store_dismantle.$view && (complexView.work_patch || complexView.work_serial) " type="view"
+                                    ng-click="patchesList(i)">
                                 </i-button>
-                                <i-button label="##word.patch##" type="view" ng-show="store_assemble.$view"
+                                <i-button label="##word.patch##" type="view" ng-show="store_dismantle.$view"
                                     ng-click="viewPatchesList(i)">
                                 </i-button>
                             </td>

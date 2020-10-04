@@ -135,7 +135,7 @@ module.exports = function init(site) {
                     _complex.store = doc.store
                     _complex.company = doc.company
                     _complex.branch = doc.branch
-                    _complex.count = _complex.count * _itm.count
+                    _complex.count = _complex.patches_count
                     _complex.transaction_type = 'in'
                     _complex.current_status = 'Dismantling'
                     _complex.shift = {
@@ -313,7 +313,7 @@ module.exports = function init(site) {
                     _complex.store = result.doc.store
                     _complex.company = result.doc.company
                     _complex.branch = result.doc.branch
-                    _complex.count = _complex.count * _itm.count
+                    _complex.count = _complex.patches_count
                     _complex.transaction_type = 'in'
 
                     if (result.doc.posting) {
@@ -440,7 +440,7 @@ module.exports = function init(site) {
                       _complex.store = result.doc.store
                       _complex.company = result.doc.company
                       _complex.branch = result.doc.branch
-                      _complex.count = _complex.count * _itm.count
+                      _complex.count = _complex.patches_count
                       _complex.count = (-Math.abs(_complex.count))
                       _complex.transaction_type = 'in'
                       _complex.current_status = 'd_Dismantling'

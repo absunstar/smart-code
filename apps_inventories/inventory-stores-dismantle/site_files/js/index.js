@@ -102,30 +102,81 @@ app.controller("stores_dismantle", function ($scope, $http, $timeout) {
 
 
     if ($scope.store_dismantle.items.length > 0) {
-      $scope.busy = true;
-      $http({
-        method: "POST",
-        url: "/api/stores_dismantle/add",
-        data: $scope.store_dismantle
-      }).then(
-        function (response) {
-          $scope.busy = false;
-          if (response.data.done) {
-            site.hideModal('#addStoreDismantleModal');
-            $scope.loadAll();
 
-          } else {
-            $scope.error = response.data.error;
-            if (response.data.error.like('*OverDraft Not*')) {
-              $scope.error = "##word.overdraft_not_active##"
-            }
-          }
+      $scope.testPatches($scope.store_dismantle, callback => {
 
-        },
-        function (err) {
-          $scope.error = err.message;
+        if (callback.patchCount) {
+          $scope.error = `##word.err_patch_count##   ( ${callback.patch_list.join('-')} )`;
+          return;
+        };
+
+
+        let obj = {
+          patchCount: false,
+          patch_list: []
         }
-      )
+  
+        $scope.store_dismantle.items.forEach(_itm => {
+          if (_itm.complex_items && _itm.complex_items.length > 0) {
+            _itm.complex_items.forEach(_comp => {
+              let count = 0;
+              _comp.patches_count = _comp.count * _itm.count;
+  
+              if (_comp.patch_list && _comp.patch_list.length > 0) {
+                _comp.patch_list.forEach(_pl => {
+                  if (typeof _pl.count === 'number') {
+                    count += _pl.count;
+                  } else {
+                    obj.patchCount = true;
+                    obj.patch_list.push(_itm.barcode);
+                  }
+                });
+              } else if (_itm.work_serial || _itm.work_patch) {
+                obj.patchCount = true;
+                obj.patch_list.push(_itm.barcode)
+              }
+              if (count != _comp.patches_count && (_itm.work_serial || _itm.work_patch)) {
+                obj.patchCount = true;
+                obj.patch_list.push(_itm.barcode)
+              }
+            });
+          }
+        });
+  
+        obj.patch_list = obj.patch_list.filter(function (item, pos) {
+          return obj.patch_list.indexOf(item) === pos;
+        });
+  
+        if (obj.patchCount) {
+          $scope.error = `##word.err_patch_count_comp##   ( ${obj.patch_list.join('-')} )`;
+          return;
+        };
+  
+        $scope.busy = true;
+        $http({
+          method: "POST",
+          url: "/api/stores_dismantle/add",
+          data: $scope.store_dismantle
+        }).then(
+          function (response) {
+            $scope.busy = false;
+            if (response.data.done) {
+              site.hideModal('#addStoreDismantleModal');
+              $scope.loadAll();
+
+            } else {
+              $scope.error = response.data.error;
+              if (response.data.error.like('*OverDraft Not*')) {
+                $scope.error = "##word.overdraft_not_active##"
+              }
+            }
+
+          },
+          function (err) {
+            $scope.error = err.message;
+          }
+        )
+      })
     } else {
       $scope.error = "##word.must_enter_quantity##";
       return;
@@ -143,7 +194,7 @@ app.controller("stores_dismantle", function ($scope, $http, $timeout) {
     });
   };
 
-  $scope.view = function (store_dismantle) {
+  $scope.view = function (store_dismantle, view) {
     $scope.error = '';
     $scope.busy = true;
     $http({
@@ -158,6 +209,7 @@ app.controller("stores_dismantle", function ($scope, $http, $timeout) {
         if (response.data.done) {
           response.data.doc.date = new Date(response.data.doc.date);
           $scope.store_dismantle = response.data.doc;
+          if (view == 'view') $scope.store_dismantle.$view = true;
         } else $scope.error = response.data.error;
       },
       function (err) {
@@ -168,7 +220,7 @@ app.controller("stores_dismantle", function ($scope, $http, $timeout) {
 
   $scope.details = function (store_dismantle) {
     $scope.error = '';
-    $scope.view(store_dismantle);
+    $scope.view(store_dismantle, 'view');
     $scope.store_dismantle = {};
     site.showModal('#viewStoreDismantleModal');
   };
@@ -430,9 +482,9 @@ app.controller("stores_dismantle", function ($scope, $http, $timeout) {
         method: "POST",
         url: "/api/stores_items/all",
         data: {
-          search: $scope.search_barcode,
           where: {
-            'sizes.item_complex': true
+            'sizes.item_complex': true,
+            barcode: $scope.search_barcode
           }
         }
       }).then(
@@ -559,26 +611,77 @@ app.controller("stores_dismantle", function ($scope, $http, $timeout) {
       return;
     };
 
+    $scope.testPatches($scope.store_dismantle, callback => {
 
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/stores_dismantle/update",
-      data: $scope.store_dismantle
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          site.hideModal('#updateStoreDismantleModal');
-          $scope.loadAll();
-        } else {
-          $scope.error = '##word.error##';
-        }
-      },
-      function (err) {
-        console.log(err);
+      if (callback.patchCount) {
+        $scope.error = `##word.err_patch_count##   ( ${callback.patch_list.join('-')} )`;
+        return;
+      };
+
+
+      let obj = {
+        patchCount: false,
+        patch_list: []
       }
-    )
+
+      $scope.store_dismantle.items.forEach(_itm => {
+        if (_itm.complex_items && _itm.complex_items.length > 0) {
+          _itm.complex_items.forEach(_comp => {
+            let count = 0;
+            _comp.patches_count = _comp.count * _itm.count;
+
+            if (_comp.patch_list && _comp.patch_list.length > 0) {
+              _comp.patch_list.forEach(_pl => {
+                if (typeof _pl.count === 'number') {
+                  count += _pl.count;
+                } else {
+                  obj.patchCount = true;
+                  obj.patch_list.push(_itm.barcode);
+                }
+              });
+            } else if (_itm.work_serial || _itm.work_patch) {
+              obj.patchCount = true;
+              obj.patch_list.push(_itm.barcode)
+            }
+            if (count != _comp.patches_count && (_itm.work_serial || _itm.work_patch)) {
+              obj.patchCount = true;
+              obj.patch_list.push(_itm.barcode)
+            }
+          });
+        }
+      });
+
+      obj.patch_list = obj.patch_list.filter(function (item, pos) {
+        return obj.patch_list.indexOf(item) === pos;
+      });
+
+      if (obj.patchCount) {
+        $scope.error = `##word.err_patch_count_comp##   ( ${obj.patch_list.join('-')} )`;
+        return;
+      };
+
+    
+
+      $scope.busy = true;
+      $http({
+        method: "POST",
+        url: "/api/stores_dismantle/update",
+        data: $scope.store_dismantle
+      }).then(
+        function (response) {
+          $scope.busy = false;
+          if (response.data.done) {
+            site.hideModal('#updateStoreDismantleModal');
+            $scope.loadAll();
+          } else {
+            $scope.error = '##word.error##';
+          }
+        },
+        function (err) {
+          console.log(err);
+        }
+      )
+    })
   };
 
   $scope.posting = function (store_dismantle) {
@@ -745,6 +848,7 @@ app.controller("stores_dismantle", function ($scope, $http, $timeout) {
     if (itm.complex_items && itm.complex_items.length > 0) {
       itm.complex_items.forEach(_comp => {
         _comp.patches_count = _comp.count * itm.count
+        _comp.$comp = true;
       });
     }
     $scope.complexView = itm;
@@ -821,10 +925,9 @@ app.controller("stores_dismantle", function ($scope, $http, $timeout) {
       }
     });
 
-
     itm.patch_list.map(p => count += p.count)
 
-    if (itm.count != count) {
+    if ((itm.$comp && itm.patches_count != count) || (!itm.$comp && itm.count != count)) {
       $scope.error = '##word.err_patch_count##';
       return;
     };
@@ -846,6 +949,48 @@ app.controller("stores_dismantle", function ($scope, $http, $timeout) {
         element.select = false
       }
     });
+  };
+
+
+  $scope.testPatches = function (store_dismantle, callback) {
+
+    let obj = {
+      patchCount: false,
+      patch_list: []
+    }
+
+    store_dismantle.items.forEach(_item => {
+      if (_item.size_units_list && _item.size_units_list.length > 0) {
+
+        let count = 0;
+        if (_item.patch_list && _item.patch_list.length > 0) {
+          _item.patch_list.forEach(_pl => {
+            if (typeof _pl.count === 'number') {
+
+              count += _pl.count;
+
+            } else {
+              obj.patchCount = true;
+              obj.patch_list.push(_item.barcode)
+            }
+          });
+        } else if (_item.work_serial || _item.work_patch) {
+          obj.patchCount = true;
+          obj.patch_list.push(_item.barcode)
+        }
+        if (count != _item.count && (_item.work_serial || _item.work_patch)) {
+          obj.patchCount = true;
+          obj.patch_list.push(_item.barcode)
+        }
+
+      }
+    });
+
+    obj.patch_list = obj.patch_list.filter(function (item, pos) {
+      return obj.patch_list.indexOf(item) === pos;
+    });
+
+    callback(obj)
   };
 
 

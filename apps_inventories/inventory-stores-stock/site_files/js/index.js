@@ -528,7 +528,7 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
         method: "POST",
         url: "/api/stores_items/all",
         data: {
-          search: $scope.search_barcode
+          where: { barcode: $scope.search_barcode }
         }
       }).then(
         function (response) {

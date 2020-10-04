@@ -132,7 +132,6 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
 
         let obj = {
           patchCount: false,
-          not_patch: false,
           patch_list: []
         }
 
@@ -171,12 +170,6 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
           return;
         };
 
-
-
-        if (obj.not_patch) {
-          $scope.error = `##word.err_find_serial_comp##   ( ${obj.patch_list.join('-')} )`;
-          return;
-        };
 
 
         $scope.busy = true;
@@ -521,9 +514,9 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
         method: "POST",
         url: "/api/stores_items/all",
         data: {
-          search: $scope.search_barcode,
           where: {
-            'sizes.item_complex': true
+            'sizes.item_complex': true,
+            barcode: $scope.search_barcode
           }
         }
       }).then(
@@ -679,7 +672,6 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
 
       let obj = {
         patchCount: false,
-        not_patch: false,
         patch_list: []
       }
 
@@ -719,12 +711,6 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
         return;
       };
 
-
-
-      if (obj.not_patch) {
-        $scope.error = `##word.err_find_serial_comp##   ( ${obj.patch_list.join('-')} )`;
-        return;
-      };
 
       $scope.busy = true;
       $http({
