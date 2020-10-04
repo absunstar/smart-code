@@ -8,7 +8,7 @@
     {"name" : "stores_stock_details" , "en" : "Store Stock Details" , "ar" : "تفاصيل جرد صنف"},
     {"name" : "stores_stock_edit" , "en" : "Edit Store Stock" , "ar" : "تعديل بيانات جرد صنف"},
     {"name" : "stores_stock_delete" , "en" : "Delete Store Stock" , "ar" : "حذف جرد صنف"},
-    {"name" : "stores_stock_name" , "en" : "Store Stock Name" , "ar" : "إسم اذن الجرد"},   
+    {"name" : "stores_stock_name" , "en" : "Store Stock Name" , "ar" : "إسم إذن الجرد"},   
     {"name" : "stores_stock_number" , "en" : "Number" , "ar" : "رقم جرد المخزني"},   
     {"name" : "stores_stock_date" , "en" : "Store Date" , "ar" : "تاربخ اﻷذن"},
     {"name" : "stores_stock_supply_date" , "en" : "Supply store Date" , "ar" : "تاريخ جرد المخزني"}, 

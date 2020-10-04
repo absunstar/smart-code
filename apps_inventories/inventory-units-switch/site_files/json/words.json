@@ -8,7 +8,7 @@
     {"name" : "units_switch_details" , "en" : "Units Switch Details" , "ar" : "تفاصيل تحويل وحدات"},
     {"name" : "units_switch_edit" , "en" : "Edit Units Switch" , "ar" : "تعديل بيانات تحويل وحدات"},
     {"name" : "units_switch_delete" , "en" : "Delete Units Switch" , "ar" : "حذف تحويل وحدات"},
-    {"name" : "units_switch_name" , "en" : "Units Switch Name" , "ar" : "إسم اذن التجميع"},   
+    {"name" : "units_switch_name" , "en" : "Units Switch Name" , "ar" : "إسم إذن التجميع"},   
     {"name" : "units_switch_number" , "en" : "Number" , "ar" : "رقم تحويل وحدات"},   
     {"name" : "units_switch_date" , "en" : "Store Date" , "ar" : "تاربخ اﻷذن"},
     {"name" : "units_switch_supply_date" , "en" : "Supply store Date" , "ar" : "تاريخ تحويل وحدات"}, 

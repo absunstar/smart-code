@@ -32,37 +32,37 @@
     {
         "name": "stores_in_add",
         "en": "Add Store In",
-        "ar": "إضافة اذن وارد"
+        "ar": "إضافة إذن وارد"
     },
     {
         "name": "stores_in_new",
         "en": "New Store In",
-        "ar": "اذن وارد جديد"
+        "ar": "إذن وارد جديد"
     },
     {
         "name": "stores_in_details",
         "en": "Store In Details",
-        "ar": "تفاصيل اذن وارد"
+        "ar": "تفاصيل إذن وارد"
     },
     {
         "name": "stores_in_edit",
         "en": "Edit Store In",
-        "ar": "تعديل بيانات اذن وارد"
+        "ar": "تعديل بيانات إذن وارد"
     },
     {
         "name": "stores_in_delete",
         "en": "Delete Store In",
-        "ar": "حذف اذن وارد"
+        "ar": "حذف إذن وارد"
     },
     {
         "name": "stores_in_name",
         "en": "Store In Name",
-        "ar": "إسم اذن الوارد"
+        "ar": "إسم إذن الوارد"
     },
     {
         "name": "stores_in_number",
         "en": "Number",
-        "ar": "رقم الاذن"
+        "ar": "رقم الإذن"
     },
     {
         "name": "stores_in_date",
@@ -247,7 +247,7 @@
     {
         "name": "stores_in_add_to_items",
         "en": "Add To Items",
-        "ar": "اضف الى الاذن"
+        "ar": "اضف الى الإذن"
     },
     {
         "name": "stores_in_id",
@@ -377,7 +377,7 @@
     {
         "name": "stores_in_type",
         "en": "Type",
-        "ar": "نوع الاذن"
+        "ar": "نوع الإذن"
     },
     {
         "name": "serial",
@@ -397,12 +397,12 @@
     {
         "name": "stores_in_total_value_gt",
         "en": "Total Value Greater Than",
-        "ar": "اجمالي الاذن اكبر من"
+        "ar": "اجمالي الإذن اكبر من"
     },
     {
         "name": "stores_in_total_value_lt",
         "en": "Total Value Lower Than",
-        "ar": "اجمالي الاذن اقل من"
+        "ar": "اجمالي الإذن اقل من"
     },
     {
         "name": "stores_in_result_count",

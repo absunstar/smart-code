@@ -8,7 +8,7 @@
     {"name" : "stores_assemble_details" , "en" : "Store Assemble Details" , "ar" : "تفاصيل تجميع صنف"},
     {"name" : "stores_assemble_edit" , "en" : "Edit Store Assemble" , "ar" : "تعديل بيانات تجميع صنف"},
     {"name" : "stores_assemble_delete" , "en" : "Delete Store Assemble" , "ar" : "حذف تجميع صنف"},
-    {"name" : "stores_assemble_name" , "en" : "Store Assemble Name" , "ar" : "إسم اذن التجميع"},   
+    {"name" : "stores_assemble_name" , "en" : "Store Assemble Name" , "ar" : "إسم إذن التجميع"},   
     {"name" : "stores_assemble_number" , "en" : "Number" , "ar" : "رقم تجميع الصنف"},   
     {"name" : "stores_assemble_date" , "en" : "Store Date" , "ar" : "تاربخ اﻷذن"},
     {"name" : "stores_assemble_supply_date" , "en" : "Supply store Date" , "ar" : "تاريخ تجميع الصنف"}, 

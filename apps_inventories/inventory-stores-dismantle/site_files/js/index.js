@@ -131,11 +131,11 @@ app.controller("stores_dismantle", function ($scope, $http, $timeout) {
                     obj.patch_list.push(_itm.barcode);
                   }
                 });
-              } else if (_itm.work_serial || _itm.work_patch) {
+              } else if (_comp.work_serial || _comp.work_patch) {
                 obj.patchCount = true;
                 obj.patch_list.push(_itm.barcode)
               }
-              if (count != _comp.patches_count && (_itm.work_serial || _itm.work_patch)) {
+              if (count != _comp.patches_count && (_comp.work_serial || _comp.work_patch)) {
                 obj.patchCount = true;
                 obj.patch_list.push(_itm.barcode)
               }
@@ -639,11 +639,11 @@ app.controller("stores_dismantle", function ($scope, $http, $timeout) {
                   obj.patch_list.push(_itm.barcode);
                 }
               });
-            } else if (_itm.work_serial || _itm.work_patch) {
+            } else if (_comp.work_serial || _comp.work_patch) {
               obj.patchCount = true;
               obj.patch_list.push(_itm.barcode)
             }
-            if (count != _comp.patches_count && (_itm.work_serial || _itm.work_patch)) {
+            if (count != _comp.patches_count && (_comp.work_serial || _comp.work_patch)) {
               obj.patchCount = true;
               obj.patch_list.push(_itm.barcode)
             }

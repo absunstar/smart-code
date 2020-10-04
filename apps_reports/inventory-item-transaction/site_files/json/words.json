@@ -271,7 +271,7 @@
     },
     {
         "name": "item_transaction_current_status_4",
-        "ar": "اذن صرف / مبيعات ",
+        "ar": "إذن صرف / مبيعات ",
         "en": "storeout "
     },
     {
@@ -281,7 +281,7 @@
     },
     {
         "name": "item_transaction_current_status_6",
-        "ar": "اذن وارد  ",
+        "ar": "إذن وارد  ",
         "en": "storein"
     },
     {
@@ -327,7 +327,7 @@
     {
         "name": "item_transaction_type_in",
         "en": "Items transactions In",
-        "ar": "اذن إضافة"
+        "ar": "إذن إضافة"
     },
     {
         "name": "item_transaction_type_out",

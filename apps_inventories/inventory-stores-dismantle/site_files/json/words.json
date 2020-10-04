@@ -8,7 +8,7 @@
     {"name" : "stores_dismantle_details" , "en" : "Store Dismantle Details" , "ar" : "تفاصيل تفكيك صنف"},
     {"name" : "stores_dismantle_edit" , "en" : "Edit Store Dismantle" , "ar" : "تعديل بيانات تفكيك صنف"},
     {"name" : "stores_dismantle_delete" , "en" : "Delete Store Dismantle" , "ar" : "حذف تفكيك صنف"},
-    {"name" : "stores_dismantle_name" , "en" : "Store Dismantle Name" , "ar" : "إسم اذن التفكيك"},   
+    {"name" : "stores_dismantle_name" , "en" : "Store Dismantle Name" , "ar" : "إسم إذن التفكيك"},   
     {"name" : "stores_dismantle_number" , "en" : "Number" , "ar" : "رقم تفكيك الصنف"},   
     {"name" : "stores_dismantle_date" , "en" : "Store Date" , "ar" : "تاربخ اﻷذن"},
     {"name" : "stores_dismantle_supply_date" , "en" : "Supply store Date" , "ar" : "تاريخ تفكيك الصنف"}, 

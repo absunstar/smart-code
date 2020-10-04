@@ -422,7 +422,7 @@
     {
         "name": "warning_message",
         "en": "Waring ! if you delete that item there will a supply out will be created automatically",
-        "ar": "  تحذير هام ! فى حالة حذف الصنف سوف يتم عمل اذن خروج تلقائيا  "
+        "ar": "  تحذير هام ! فى حالة حذف الصنف سوف يتم عمل إذن خروج تلقائيا  "
     },
     {
         "name": "stores_items_store_name",

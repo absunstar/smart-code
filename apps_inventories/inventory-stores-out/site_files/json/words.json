@@ -42,32 +42,32 @@
     {
         "name": "stores_out_add",
         "en": "Add Store Out",
-        "ar": "إضافة اذن صرف"
+        "ar": "إضافة إذن صرف"
     },
     {
         "name": "stores_out_new",
         "en": "New Store Out",
-        "ar": "اذن صرف جديد"
+        "ar": "إذن صرف جديد"
     },
     {
         "name": "stores_out_details",
         "en": "Store Out Details",
-        "ar": "تفاصيل اذن صرف"
+        "ar": "تفاصيل إذن صرف"
     },
     {
         "name": "stores_out_edit",
         "en": "Edit Store Out",
-        "ar": "تعديل بيانات اذن صرف"
+        "ar": "تعديل بيانات إذن صرف"
     },
     {
         "name": "stores_out_delete",
         "en": "Delete Store Out",
-        "ar": "حذف اذن صرف"
+        "ar": "حذف إذن صرف"
     },
     {
         "name": "stores_out_name",
         "en": "Store Out Name",
-        "ar": "إسم اذن الصرف"
+        "ar": "إسم إذن الصرف"
     },
     {
         "name": "stores_out_number",
@@ -247,7 +247,7 @@
     {
         "name": "stores_out_add_to_items",
         "en": "Add To Items",
-        "ar": "اضف الى الاذن"
+        "ar": "اضف الى الإذن"
     },
     {
         "name": "stores_out_id",
@@ -387,7 +387,7 @@
     {
         "name": "stores_out_type",
         "en": "Type",
-        "ar": "نوع الاذن"
+        "ar": "نوع الإذن"
     },
     {
         "name": "stores_out",
@@ -407,12 +407,12 @@
     {
         "name": "stores_out_total_value_gt",
         "en": "Total Value Greater Than",
-        "ar": "اجمالي الاذن اكبر من"
+        "ar": "اجمالي الإذن اكبر من"
     },
     {
         "name": "stores_out_total_value_lt",
         "en": "Total Value Lower Than",
-        "ar": "اجمالي الاذن اقل من"
+        "ar": "اجمالي الإذن اقل من"
     },
     {
         "name": "stores_out_result_count",
