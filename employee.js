@@ -76,9 +76,6 @@ setTimeout(() => {
 }, 1000 * 2);
 
 
-if (process.platform == "win32") {
-    site.exe(process.cwd() + '/applications/PrinterManager.exe')
-}
 
 site.run()
 
