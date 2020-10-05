@@ -627,8 +627,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
               barcode: _size.barcode,
               count: _size.count,
               total: _size.total,
-              store_count: _size.store_count,
-              ticket_code: _size.ticket_code,
+              store_count: _size.store_count
             });
           }
         });
@@ -2131,17 +2130,18 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
             if (response.data.patch_list.length > 0 && $scope.item_patch.patch_list && $scope.item_patch.patch_list.length > 0) {
               response.data.patch_list.forEach(_resPatch => {
 
-                _resPatch.current_count = _resPatch.count
-                _resPatch.count = 0
-                $scope.item_patch.patch_list.forEach(_itemPatch => {
+                _resPatch.current_count = _resPatch.count;
+                _resPatch.count = 0;
+                if ($scope.item_patch.patch_list && $scope.item_patch.patch_list.length > 0)
+                  $scope.item_patch.patch_list.forEach(_itemPatch => {
 
-                  if (_resPatch.patch == _itemPatch.patch) {
-                    _resPatch.count = _itemPatch.count
-                    _resPatch.current_count = _itemPatch.current_count
-                    if (_itemPatch.select) _resPatch.select = _itemPatch.select
-                  }
+                    if (_resPatch.patch == _itemPatch.patch) {
+                      _resPatch.count = _itemPatch.count;
+                      _resPatch.current_count = _itemPatch.current_count;
+                      if (_itemPatch.select) _resPatch.select = _itemPatch.select;
+                    }
 
-                });
+                  });
               });
               $scope.item_patch.patch_list = response.data.patch_list
               site.showModal('#patchesListModal');

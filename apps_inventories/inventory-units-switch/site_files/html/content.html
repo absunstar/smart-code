@@ -43,11 +43,20 @@
                             <th>##word.units_trans##</th>
                             <th>##word.transfer_branch_item_store_balance##</th>
                             <th>##word.quantity##</th>
+                            <th>##word.count_trans##</th>
                             <th>##word.actions##</th>
                         </tr>
 
                         <tr ng-repeat="itm in units_switch.items">
-                            <td> <br> {{$index + 1}}</td>
+
+                            <td> <br ng-hide="itm.work_patch || itm.work_serial"> {{$index + 1}}
+                                <div class="row">
+                                    <i-button label="##word.patch##" ng-show="itm.work_patch || itm.work_serial"
+                                        type="view" ng-click="patchesList(itm)">
+                                    </i-button>
+                                </div>
+                            </td>
+
                             <td> <br> {{itm.name}}</td>
                             <td> <br> {{itm.barcode}}</td>
                             <td>
@@ -61,17 +70,22 @@
                             </td>
                             <td>
                                 <i-list ng-model="itm.units_trans" items="itm.size_units_list" v="r"
-                                    ng-search="_search.$category_item.$units_trans_search" display2="barcode">
+                                    ng-change="calc(itm)" ng-search="_search.$category_item.$units_trans_search"
+                                    display2="barcode">
                                 </i-list>
                             </td>
                             <td class="blue"> <br> {{itm.store_count}}</td>
 
                             <td>
-                                <i-control type="number" ng-model="itm.count"></i-control>
+                                <i-control type="number" ng-change="calc(itm)" ng-model="itm.count"></i-control>
                             </td>
 
+                            <td class="green"> <br> {{itm.count_trans}}</td>
 
                             <td>
+                                <i-button label="##word.patch_trans##" ng-show="itm.work_patch || itm.work_serial"
+                                    type="view" ng-click="patchesListSwitch(itm)">
+                                </i-button>
                                 <i-button type="delete" ng-click="deleteRow(itm)"></i-button>
                             </td>
                         </tr>

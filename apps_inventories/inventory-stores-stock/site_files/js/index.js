@@ -195,7 +195,6 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
             work_serial: _size.work_serial,
             validit: (_size.validit || 0),
             size_en: _size.size_en,
-            validate: _size.validate,
             size_units_list: _size.size_units_list,
             item_complex : _size.item_complex,
             complex_items: _size.complex_items,
@@ -233,7 +232,7 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
 
                     if (_size.size_units_list && _size.size_units_list.length > 0)
                       _size.size_units_list.forEach(_unit => {
-                        _unit.validate = _item.validate;
+                        _unit.validit = _item.validit;
 
                         if ((_unit.barcode === $scope.item.search_item_name) && typeof _unit.barcode == 'string') {
                           foundUnit = true;
@@ -312,7 +311,7 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
 
         if (_item.size_units_list && _item.size_units_list.length > 0)
           _item.size_units_list.forEach(_unit => {
-            _unit.validate = _item.validate;
+            _unit.validit = _item.validit;
 
             if (_item.branches_list && _item.branches_list.length > 0) {
               let foundBranch = false;
@@ -379,7 +378,7 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
 
                   if (_size.size_units_list && _size.size_units_list.length > 0)
                     _size.size_units_list.forEach(_unit => {
-                      _unit.validate = _size.validate;
+                      _unit.validit = _size.validit;
 
                       if (_size.branches_list && _size.branches_list.length > 0) {
                         let foundBranch = false;
@@ -461,7 +460,7 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
 
                   if (_size.size_units_list && _size.size_units_list.length > 0)
                     _size.size_units_list.forEach(_unit => {
-                      _unit.validate = _size.validate;
+                      _unit.validit = _size.validit;
 
                       if (_size.branches_list && _size.branches_list.length > 0) {
                         let foundBranch = false;
@@ -544,7 +543,7 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
 
                   if (_size.size_units_list && _size.size_units_list.length > 0)
                     _size.size_units_list.forEach(_unit => {
-                      _unit.validate = _size.validate;
+                      _unit.validit = _size.validit;
 
                       if ((_unit.barcode === $scope.search_barcode) && typeof _unit.barcode == 'string') {
                         foundUnit = true;
@@ -1000,7 +999,7 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
     $scope.error = '';
     itm.work_serial = size.work_serial;
     itm.work_patch = size.work_patch;
-    itm.validate = size.validate;
+    itm.validit = size.validit;
     $scope.patch_count = 0;
 
     $http({

@@ -275,10 +275,10 @@ module.exports = function init(site) {
 
                     if (_doc.invoice_type && _doc.invoice_type.id == 4) {
                       list[0].paid_up = list[0].paid_up - _p_l.paid_up
-                      list[numIn].paid_up = list[numIn].paid_up - _p_l.paid_up
+                      list[numOut].paid_up = list[numOut].paid_up - _p_l.paid_up
                     } else {
                       list[0].paid_up = list[0].paid_up + _p_l.paid_up
-                      list[numIn].paid_up = list[numIn].paid_up + _p_l.paid_up
+                      list[numOut].paid_up = list[numOut].paid_up + _p_l.paid_up
                     }
                     list[0].invoices_list.push(_doc)
 
@@ -286,10 +286,10 @@ module.exports = function init(site) {
 
                     if (_doc.invoice_type && _doc.invoice_type.id == 6) {
                       list[1].paid_up = list[1].paid_up - _p_l.paid_up
-                      list[numOut].paid_up = list[numOut].paid_up - _p_l.paid_up
+                      list[numIn].paid_up = list[numIn].paid_up - _p_l.paid_up
                     } else {
                       list[1].paid_up = list[1].paid_up + _p_l.paid_up
-                      list[numOut].paid_up = list[numOut].paid_up + _p_l.paid_up
+                      list[numIn].paid_up = list[numIn].paid_up + _p_l.paid_up
                     }
                     list[1].invoices_list.push(_doc)
 
@@ -313,7 +313,7 @@ module.exports = function init(site) {
 
                   } else if (_doc.source_type.id == 9) {
 
-                    list[numIn].paid_up = list[numIn].paid_up + _p_l.paid_up
+                    list[numOut].paid_up = list[numOut].paid_up + _p_l.paid_up
                     list[8].paid_up = list[8].paid_up + _p_l.paid_up
                     list[8].invoices_list.push(_doc)
 

@@ -29,8 +29,9 @@
                     x-import="inventory-units-switch/search_all_modal.html"></div>
                 <div x-permissions="units_switch_update || units_switch_manage"
                     x-import="inventory-units-switch/update_modal.html"></div>
-                <div
-                    x-import="inventory-units-switch/select_items_modal.html"></div>
+                <div x-import="inventory-units-switch/select_items_modal.html"></div>
+                <div x-import="inventory-units-switch/patches_list.html"></div>
+                <div x-import="inventory-units-switch/patches_list_switch.html"></div>
 
                 <div class="row">
                     <h1 class="bold text-center"> ##word.units_switch## </h1>
@@ -75,8 +76,7 @@
                             <i-button x-permissions="units_switch_view || units_switch_manage" type="details"
                                 label="##word.details##" ng-click="details(c)"></i-button>
 
-                            <i-button x-permissions="units_switch_post || units_switch_manage"
-                                label="##word.posting##"
+                            <i-button x-permissions="units_switch_post || units_switch_manage" label="##word.posting##"
                                 ng-show="defaultSettings.general_Settings.work_posting && !c.posting"
                                 ng-click="c.posting = true ; posting(c)"></i-button>
 
@@ -89,15 +89,16 @@
                                 ng-show="!c.posting" label="##word.edit##" ng-click="edit(c)"></i-button>
 
                             <i-button x-permissions="units_switch_delete || units_switch_manage" type="delete"
-                            ng-hide="c.posting && defaultSettings.general_Settings.work_unposting" label="##word.delete##" ng-click="remove(c)"></i-button>
+                                ng-hide="c.posting && defaultSettings.general_Settings.work_unposting"
+                                label="##word.delete##" ng-click="remove(c)"></i-button>
                         </td>
                         <!-- ng-hide="c.posting && defaultSettings.general_Settings.work_unposting" -->
                     </tr>
 
                 </table>
 
-                <i-button x-permissions="units_switch_print || units_switch_manage" type="print"
-                    label="##word.print##" onclick="site.print('#t1')"></i-button>
+                <i-button x-permissions="units_switch_print || units_switch_manage" type="print" label="##word.print##"
+                    onclick="site.print('#t1')"></i-button>
 
             </div>
         </div>

@@ -119,7 +119,6 @@ module.exports = function init(site) {
                 _isDoc.count = (_isDoc.unit.convert * _isDoc.count) / _isDoc.units_trans.convert
                 _isDoc.count = site.toNumber(_isDoc.count)
 
-
                 site.quee('[transfer_branch][stores_items][add_balance]', Object.assign({}, _isDoc))
 
                 _isDoc.code = units_switch_doc.code
@@ -132,8 +131,8 @@ module.exports = function init(site) {
                   code: units_switch_doc.shift.code,
                   name: units_switch_doc.shift.name
                 }
-                site.quee('item_transaction + items', Object.assign({}, _isDoc))
 
+                site.quee('item_transaction + items', Object.assign({}, _isDoc))
               })
 
               doc.items.forEach((_isDoc2, i) => {
@@ -156,10 +155,7 @@ module.exports = function init(site) {
                 }
 
                 site.quee('item_transaction - items', Object.assign({}, _isDoc2))
-
               })
-
-
             }
 
           } else {
