@@ -31,7 +31,7 @@
                             <th>##word.actions##</th>
                         </tr>
 
-                        <tr ng-repeat="c in item_patch.patch_list">
+                        <tr ng-repeat="c in item_patch.patch_trans_list">
 
                             <td class="blue">
                                 {{$index + 1}}
@@ -59,7 +59,7 @@
                             <td>
                                 <p>
                                     <i-button type="delete"
-                                        ng-click="item_patch.patch_list.length ===1 ||item_patch.patch_list.splice($index,1)">
+                                        ng-click="item_patch.patch_trans_list.splice($index,1)">
                                     </i-button>
                                 </p>
                             </td>

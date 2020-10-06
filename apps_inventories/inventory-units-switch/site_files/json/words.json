@@ -35,6 +35,7 @@
     {"name" : "err_transaction_type" , "en" : "You should select transaction type" , "ar" : "  يرجى التأكد من اختيار نوع المعاملة"},
     {"name" : "units_switch_categry" , "en" : "Classfication" , "ar" : "  التصنيف "},
     {"name" : "edit_ticket" , "en" : "Edit ticket" , "ar" : "  تعديل الطلب "},
+    {"name" : "must_unit_trans" , "en" : "You must choose the unit to be converted to" , "ar" : "يجب إختيار الوحدة المحول لها"},
     
     {"name" : "units_switch_Company_code" , "en" : "vendor Code" , "ar" : "كود المورد"},   
     {"name" : "units_switch_Company_name" , "en" : "vendor Name" , "ar" : "إسم المورد"},   

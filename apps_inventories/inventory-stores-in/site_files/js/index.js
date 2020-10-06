@@ -613,16 +613,16 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
       count += _p.count;
 
       if (new Date(_p.expiry_date) < new Date(_p.production_date)) {
-        errDate = true
+        errDate = true;
       }
-      if (!_p.patch) err_find_serial = true
+      if (!_p.patch) err_find_serial = true;
 
     });
 
     if (err_find_serial) {
-      $scope.error = '##word.err_find_serial##'
+      $scope.error = '##word.err_find_serial##';
     } else if (errDate) {
-      $scope.error = '##word.err_patch_date##'
+      $scope.error = '##word.err_patch_date##';
     } else if (itm.count === count) {
       site.hideModal('#patchesListModal');
 
@@ -717,7 +717,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
         exist_serial: false,
         not_patch: false,
         patch_list: []
-      }
+      };
 
       storeIn.items.forEach(_item => {
         if (_item.size_units_list && _item.size_units_list.length > 0) {
@@ -747,7 +747,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
 
               }
               if (!_pl.patch) {
-                obj.not_patch = true
+                obj.not_patch = true;
                 obj.patch_list.push(_item.barcode);
               }
             });
@@ -856,7 +856,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
         };
 
         if (callback.errDate) {
-          $scope.error = '##word.err_patch_date##'
+          $scope.error = '##word.err_patch_date##';
           return;
         }
 
@@ -1423,7 +1423,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
       };
 
       if (callback.errDate) {
-        $scope.error = '##word.err_patch_date##'
+        $scope.error = '##word.err_patch_date##';
         return;
       }
 
@@ -1532,7 +1532,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
         };
 
         if (testCallback.errDate) {
-          $scope.error = '##word.err_patch_date##'
+          $scope.error = '##word.err_patch_date##';
           store_in.posting = false;
           return;
         }
@@ -1606,7 +1606,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
                   $scope.error = `##word.serial_pre_existing##   ( ${testCallback.patch_list.join('-')} )`;
                   _store_in_all[i].posting = false;
                 } else if (testCallback.errDate) {
-                  $scope.error = '##word.err_patch_date##'
+                  $scope.error = '##word.err_patch_date##';
                   _store_in_all[i].posting = false;
                 } else if (!callback) {
 

@@ -124,7 +124,7 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
         };
 
         if (callback.errDate) {
-          $scope.error = '##word.err_patch_date##'
+          $scope.error = '##word.err_patch_date##';
           return;
         }
 
@@ -133,7 +133,7 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
         let obj = {
           patchCount: false,
           patch_list: []
-        }
+        };
 
         $scope.store_assemble.items.forEach(_itm => {
           if (_itm.complex_items && _itm.complex_items.length > 0) {
@@ -665,7 +665,7 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
       };
 
       if (callback.errDate) {
-        $scope.error = '##word.err_patch_date##'
+        $scope.error = '##word.err_patch_date##';
         return;
       }
 
@@ -673,7 +673,7 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
       let obj = {
         patchCount: false,
         patch_list: []
-      }
+      };
 
       $scope.store_assemble.items.forEach(_itm => {
         if (_itm.complex_items && _itm.complex_items.length > 0) {
@@ -755,7 +755,7 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
         };
 
         if (callbackTest.errDate) {
-          $scope.error = '##word.err_patch_date##'
+          $scope.error = '##word.err_patch_date##';
           return;
         }
 
@@ -972,7 +972,7 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
                 });
               }
             });
-            $scope.item_patch.patch_list = response.data.patch_list
+            $scope.item_patch.patch_list = response.data.patch_list;
             site.showModal('#patchesComplexListModal');
           }
 
@@ -1042,7 +1042,7 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
         exist_serial: false,
         not_patch: false,
         patch_list: []
-      }
+      };
 
       if (storeAssemble.items && storeAssemble.items.length > 0)
         storeAssemble.items.forEach(_item => {
@@ -1073,7 +1073,7 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
 
                 }
                 if (!_pl.patch) {
-                  obj.not_patch = true
+                  obj.not_patch = true;
                   obj.patch_list.push(_item.barcode);
                 }
               });
@@ -1148,7 +1148,7 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
     });
 
 
-    itm.patch_list.map(p => count += p.count)
+    itm.patch_list.map(p => count += p.count);
 
     if (itm.patches_count != count) {
       $scope.error = '##word.err_patch_count##';
@@ -1183,9 +1183,9 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
     });
 
     if (err_find_serial) {
-      $scope.error = '##word.err_find_serial##'
+      $scope.error = '##word.err_find_serial##';
     } else if (errDate) {
-      $scope.error = '##word.err_patch_date##'
+      $scope.error = '##word.err_patch_date##';
     } else if (itm.count === count) {
       site.hideModal('#patchesListModal');
 

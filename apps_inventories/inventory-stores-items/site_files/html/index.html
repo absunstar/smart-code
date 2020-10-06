@@ -37,6 +37,8 @@
                 <div x-permissions="stores_items_search || stores_items_manage"
                     x-import="inventory-stores-items/search_all_modal.html"></div>
 
+                <div x-import="inventory-units-switch/patches_list.html"></div>
+                <div x-import="inventory-units-switch/patches_list_switch.html"></div>
                 <div x-import="inventory-units-switch/add_modal.html">
                 </div>
 
@@ -111,8 +113,7 @@
                                         </td>
                                         <td class="center blue">{{_size.barcode}}</td>
                                         <td class="center">
-                                            <p class="center bold green"
-                                                ng-show="_size.current_count > 0">
+                                            <p class="center bold green" ng-show="_size.current_count > 0">
                                                 {{_size.current_count}} </p>
                                             <p class="bold red center"
                                                 ng-show="_size.current_count == 0 ||_size.current_count < 0">

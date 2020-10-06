@@ -116,7 +116,8 @@ module.exports = function init(site) {
                 _isDoc.company = units_switch_doc.company
                 _isDoc.branch = units_switch_doc.branch
                 _isDoc.unit = _isDoc.units_trans
-                _isDoc.count = (_isDoc.unit.convert * _isDoc.count) / _isDoc.units_trans.convert
+                _isDoc.patch_list = _isDoc.patch_trans_list
+                _isDoc.count = _isDoc.count_trans
                 _isDoc.count = site.toNumber(_isDoc.count)
 
                 site.quee('[transfer_branch][stores_items][add_balance]', Object.assign({}, _isDoc))
@@ -259,7 +260,8 @@ module.exports = function init(site) {
                 _isDoc.company = units_switch_doc.company
                 _isDoc.branch = units_switch_doc.branch
                 _isDoc.unit = _isDoc.units_trans
-                _isDoc.count = (_isDoc.unit.convert * _isDoc.count) / _isDoc.units_trans.convert
+                _isDoc.patch_list = _isDoc.patch_trans_list
+                _isDoc.count = _isDoc.count_trans
                 _isDoc.count = site.toNumber(_isDoc.count)
 
                 if (units_switch_doc.posting) {
@@ -364,7 +366,6 @@ module.exports = function init(site) {
 
         } else {
 
-
           $units_switch.delete({
             where: {
               _id: units_switch_doc._id
@@ -382,7 +383,8 @@ module.exports = function init(site) {
                   _isDoc.company = units_switch_doc.company
                   _isDoc.branch = units_switch_doc.branch
                   _isDoc.unit = _isDoc.units_trans
-                  _isDoc.count = (_isDoc.unit.convert * _isDoc.count) / _isDoc.units_trans.convert
+                  _isDoc.patch_list = _isDoc.patch_trans_list
+                  _isDoc.count = _isDoc.count_trans
 
                   site.quee('[transfer_branch][stores_items][add_balance]', Object.assign({}, _isDoc))
 

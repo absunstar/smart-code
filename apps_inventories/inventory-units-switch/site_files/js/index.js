@@ -15,7 +15,7 @@ app.controller("units_switch", function ($scope, $http, $timeout) {
     var result = new Date(date);
     result.setTime(result.getTime() + (days * 24 * 60 * 60 * 1000));
     return result;
-  }
+  };
 
   $scope.deleteRow = function (itm) {
     $scope.error = '';
@@ -103,52 +103,111 @@ app.controller("units_switch", function ($scope, $http, $timeout) {
       return;
     };
 
-    let sameUnit = false;
-
-    if ($scope.units_switch.items && $scope.units_switch.items.length > 0) {
-      $scope.units_switch.items.forEach(_sW_i => {
-        if (_sW_i.unit && _sW_i.units_trans && _sW_i.unit.id == _sW_i.units_trans.id) {
-          sameUnit = true;
-        }
-      });
-    } else {
-      $scope.error = "##word.should_add_items##";
-      return;
-    };
-
-    if (sameUnit) {
-      $scope.error = "##word.units_trans_err##";
-      return;
-    };
 
 
 
     if ($scope.units_switch.items.length > 0) {
-      $scope.busy = true;
-      $http({
-        method: "POST",
-        url: "/api/units_switch/add",
-        data: $scope.units_switch
-      }).then(
-        function (response) {
-          $scope.busy = false;
-          if (response.data.done) {
-            site.hideModal('#addUnitsSwitchModal');
-            $scope.loadAll();
 
-          } else {
+      let obj = {
+        patchCount: false,
+        patch_list: []
+      };
 
-            $scope.error = response.data.error;
-            if (response.data.error.like('*OverDraft Not*')) {
-              $scope.error = "##word.overdraft_not_active##"
-            }
+      let sameUnit = false;
+
+      $scope.units_switch.items.forEach(_sW_i => {
+        if (_sW_i.unit && _sW_i.units_trans && _sW_i.unit.id == _sW_i.units_trans.id) {
+          sameUnit = true;
+        }
+
+        if (_sW_i.size_units_list && _sW_i.size_units_list.length > 0) {
+
+          let count = 0;
+          if (_sW_i.patch_list && _sW_i.patch_list.length > 0) {
+            _sW_i.patch_list.forEach(_pl => {
+              if (typeof _pl.count === 'number') {
+                count += _pl.count;
+              } else {
+                obj.patchCount = true;
+                obj.patch_list.push(_sW_i.barcode);
+              }
+
+            });
+          } else if (_sW_i.work_serial || _sW_i.work_patch) {
+            obj.patchCount = true;
+            obj.patch_list.push(_sW_i.barcode)
           }
-        },
-        function (err) {
-          $scope.error = err.message;
+          if (count != _sW_i.count && (_sW_i.work_serial || _sW_i.work_patch)) {
+            obj.patchCount = true;
+            obj.patch_list.push(_sW_i.barcode)
+          }
 
         }
-      )
+
+      });
+      obj.patch_list = obj.patch_list.filter(function (item, pos) {
+        return obj.patch_list.indexOf(item) === pos;
+      });
+
+      if (obj.patchCount) {
+        $scope.error = `##word.err_patch_count## ( ${obj.patch_list.join('-')} )`;
+        return;
+      };
+      if (sameUnit) {
+        $scope.error = "##word.units_trans_err##";
+        return;
+      };
+
+
+
+      $scope.testPatches($scope.units_switch, callback => {
+
+        if (callback.patchCount) {
+          $scope.error = `##word.err_patch_count## ##word.patch_trans##   ( ${callback.patch_list.join('-')} )`;
+          return;
+        };
+
+        if (callback.not_patch) {
+          $scope.error = `##word.err_find_serial## ##word.patch_trans##   ( ${callback.patch_list.join('-')} )`;
+          return;
+        };
+
+        if (callback.exist_serial) {
+          $scope.error = `##word.serial_pre_existing##  ##word.patch_trans##  ( ${callback.patch_list.join('-')} )`;
+          return;
+        };
+
+        if (callback.errDate) {
+          $scope.error = '##word.err_patch_date##';
+          return;
+        }
+
+        $scope.busy = true;
+        $http({
+          method: "POST",
+          url: "/api/units_switch/add",
+          data: $scope.units_switch
+        }).then(
+          function (response) {
+            $scope.busy = false;
+            if (response.data.done) {
+              site.hideModal('#addUnitsSwitchModal');
+              $scope.loadAll();
+
+            } else {
+
+              $scope.error = response.data.error;
+              if (response.data.error.like('*OverDraft Not*')) {
+                $scope.error = "##word.overdraft_not_active##"
+              }
+            }
+          },
+          function (err) {
+            $scope.error = err.message;
+
+          }
+        )
+      })
     } else {
       $scope.error = "##word.must_enter_quantity##";
       return;
@@ -575,88 +634,225 @@ app.controller("units_switch", function ($scope, $http, $timeout) {
 
     };
 
-    let notExistCount = $scope.units_switch.items.some(_iz => _iz.count < 1);
-
-    if (notExistCount) {
-      $scope.error = "##word.err_exist_count##";
-      return;
-    };
+    if ($scope.units_switch.items.length > 0) {
 
 
-    let sameUnit = false;
+      let notExistCount = $scope.units_switch.items.some(_iz => _iz.count < 1);
 
-    if ($scope.units_switch.items && $scope.units_switch.items.length > 0) {
+      if (notExistCount) {
+        $scope.error = "##word.err_exist_count##";
+        return;
+      };
+
+      let obj = {
+        patchCount: false,
+        patch_list: []
+      };
+
+      let sameUnit = false;
 
       $scope.units_switch.items.forEach(_sW_i => {
         if (_sW_i.unit && _sW_i.units_trans && _sW_i.unit.id == _sW_i.units_trans.id) {
           sameUnit = true;
         }
-      });
-    } else {
-      $scope.error = "##word.should_add_items##";
-      return;
-    };
 
-    if (sameUnit) {
-      $scope.error = "##word.units_trans_err##";
-      return;
-    };
+        if (_sW_i.size_units_list && _sW_i.size_units_list.length > 0) {
 
+          let count = 0;
 
+          if (_sW_i.patch_list && _sW_i.patch_list.length > 0) {
+            _sW_i.patch_list.forEach(_pl => {
+              if (typeof _pl.count === 'number') {
+                count += _pl.count;
+              } else {
+                obj.patchCount = true;
+                obj.patch_list.push(_sW_i.barcode);
+              }
 
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/units_switch/update",
-      data: $scope.units_switch
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          site.hideModal('#updateUnitsSwitchModal');
-          $scope.loadAll();
-        } else {
-          $scope.error = '##word.error##';
+            });
+
+          } else if (_sW_i.work_serial || _sW_i.work_patch) {
+            obj.patchCount = true;
+            obj.patch_list.push(_sW_i.barcode)
+          }
+          if (count != _sW_i.count && (_sW_i.work_serial || _sW_i.work_patch)) {
+            obj.patchCount = true;
+            obj.patch_list.push(_sW_i.barcode)
+          }
         }
-      },
-      function (err) {
-        console.log(err);
-      }
-    )
-  };
+      });
 
-  $scope.posting = function (units_switch) {
-    $scope.error = '';
-    $scope.getStockItems(units_switch.items, callback => {
+      obj.patch_list = obj.patch_list.filter(function (item, pos) {
+        return obj.patch_list.indexOf(item) === pos;
+      });
 
-      if (!callback) {
+      if (obj.patchCount) {
+        $scope.error = `##word.err_patch_count## ( ${obj.patch_list.join('-')} )`;
+        return;
+      };
+
+      if (sameUnit) {
+        $scope.error = "##word.units_trans_err##";
+        return;
+      };
+
+      $scope.testPatches($scope.units_switch, callback => {
+
+        if (callback.patchCount) {
+          $scope.error = `##word.err_patch_count## ##word.patch_trans##   ( ${callback.patch_list.join('-')} )`;
+          return;
+        };
+
+        if (callback.not_patch) {
+          $scope.error = `##word.err_find_serial## ##word.patch_trans##   ( ${callback.patch_list.join('-')} )`;
+          return;
+        };
+
+        if (callback.exist_serial) {
+          $scope.error = `##word.serial_pre_existing##  ##word.patch_trans##  ( ${callback.patch_list.join('-')} )`;
+          return;
+        };
+
+        if (callback.errDate) {
+          $scope.error = '##word.err_patch_date##';
+          return;
+        }
+
+
         $scope.busy = true;
         $http({
           method: "POST",
-          url: "/api/units_switch/posting",
-          data: units_switch
+          url: "/api/units_switch/update",
+          data: $scope.units_switch
         }).then(
           function (response) {
             $scope.busy = false;
             if (response.data.done) {
+              site.hideModal('#updateUnitsSwitchModal');
               $scope.loadAll();
             } else {
               $scope.error = '##word.error##';
-              if (response.data.error.like('*OverDraft Not*')) {
-                $scope.error = "##word.overdraft_not_active##"
-              }
             }
           },
           function (err) {
             console.log(err);
           }
         )
-      } else {
-        if (units_switch.posting)
-          units_switch.posting = false;
-        else units_switch.posting = true;
-        $scope.error = '##word.err_stock_item##';
-      }
+      })
+    } else {
+      $scope.error = "##word.must_enter_quantity##";
+      return;
+    }
+  };
+
+  $scope.posting = function (units_switch) {
+    $scope.error = '';
+    $scope.getStockItems(units_switch.items, callback => {
+
+      let obj = {
+        patchCount: false,
+        patch_list: []
+      };
+
+      let sameUnit = false;
+
+      units_switch.items.forEach(_sW_i => {
+        if (_sW_i.unit && _sW_i.units_trans && _sW_i.unit.id == _sW_i.units_trans.id) {
+          sameUnit = true;
+        }
+
+        if (_sW_i.size_units_list && _sW_i.size_units_list.length > 0) {
+
+          let count = 0;
+
+          if (_sW_i.patch_list && _sW_i.patch_list.length > 0) {
+            _sW_i.patch_list.forEach(_pl => {
+              if (typeof _pl.count === 'number') {
+                count += _pl.count;
+              } else {
+                obj.patchCount = true;
+                obj.patch_list.push(_sW_i.barcode);
+              }
+
+            });
+
+          } else if (_sW_i.work_serial || _sW_i.work_patch) {
+            obj.patchCount = true;
+            obj.patch_list.push(_sW_i.barcode)
+          }
+          if (count != _sW_i.count && (_sW_i.work_serial || _sW_i.work_patch)) {
+            obj.patchCount = true;
+            obj.patch_list.push(_sW_i.barcode)
+          }
+        }
+      });
+
+      obj.patch_list = obj.patch_list.filter(function (item, pos) {
+        return obj.patch_list.indexOf(item) === pos;
+      });
+
+      if (obj.patchCount) {
+        $scope.error = `##word.err_patch_count## ( ${obj.patch_list.join('-')} )`;
+        return;
+      };
+
+      if (sameUnit) {
+        $scope.error = "##word.units_trans_err##";
+        return;
+      };
+
+      $scope.testPatches(units_switch, callbackTest => {
+
+        if (callbackTest.patchCount) {
+          $scope.error = `##word.err_patch_count## ##word.patch_trans##   ( ${callbackTest.patch_list.join('-')} )`;
+          return;
+        };
+
+        if (callbackTest.not_patch) {
+          $scope.error = `##word.err_find_serial## ##word.patch_trans##   ( ${callbackTest.patch_list.join('-')} )`;
+          return;
+        };
+
+        if (callbackTest.exist_serial) {
+          $scope.error = `##word.serial_pre_existing##  ##word.patch_trans##  ( ${callbackTest.patch_list.join('-')} )`;
+          return;
+        };
+
+        if (callbackTest.errDate) {
+          $scope.error = '##word.err_patch_date##';
+          return;
+        }
+
+
+        if (!callback) {
+          $scope.busy = true;
+          $http({
+            method: "POST",
+            url: "/api/units_switch/posting",
+            data: units_switch
+          }).then(
+            function (response) {
+              $scope.busy = false;
+              if (response.data.done) {
+                $scope.loadAll();
+              } else {
+                $scope.error = '##word.error##';
+                if (response.data.error.like('*OverDraft Not*')) {
+                  $scope.error = "##word.overdraft_not_active##"
+                }
+              }
+            },
+            function (err) {
+              console.log(err);
+            }
+          )
+        } else {
+          if (units_switch.posting)
+            units_switch.posting = false;
+          else units_switch.posting = true;
+          $scope.error = '##word.err_stock_item##';
+        }
+      })
     })
   };
 
@@ -781,58 +977,73 @@ app.controller("units_switch", function ($scope, $http, $timeout) {
     }, 250);
   };
 
-  $scope.patchesListSwitch = function (itm) {
+  
+  $scope.viewPatchesList = function (itm, value) {
     $scope.error = '';
     $scope.item_patch = itm;
 
-    let mini_code = $scope.item_patch.barcode.slice(-3);
-    let r_code = Math.floor((Math.random() * 1000) + 1);
-    if (!$scope.item_patch.patch_list) {
-
-      if ($scope.item_patch.work_serial) {
-        $scope.item_patch.patch_list = [];
-        for (let i = 0; i < $scope.item_patch.count_trans; i++) {
-          let r_code2 = Math.floor((Math.random() * 1000) + 1);
-
-          $scope.item_patch.patch_list.push({
-            patch: mini_code + r_code2 + ($scope.item_patch.patch_list.length + i),
-            count: 1
-          })
-        }
-
-      } else {
-        $scope.item_patch.patch_list = [{
-          patch: mini_code + r_code + (itm.validit || '00') + 1,
-          production_date: new Date(),
-          expiry_date: new Date($scope.addDays(new Date(), (itm.validit || 0))),
-          validit: (itm.validit || 0),
-          count: itm.count_trans
-        }];
-      }
-
-    } else if ($scope.item_patch.patch_list && $scope.item_patch.patch_list.length == 1 && $scope.item_patch.work_patch) {
-      $scope.item_patch.patch_list[0].count = itm.count_trans
-
-    } else {
-
-      if ($scope.item_patch.work_serial) {
-        let count = $scope.item_patch.count_trans - $scope.item_patch.patch_list.length;
-        let r_code2 = Math.floor((Math.random() * 1000) + 1);
-        for (let i = 0; i < count; i++) {
-          $scope.item_patch.patch_list.unshift({
-            patch: mini_code + r_code2 + i,
-            count: 1
-          })
-        }
-
-      }
-
-    }
-
-    site.showModal('#patchesListSwitchModal');
+    if (value === 'patch') site.showModal('#patchesListViewModal');
+    else if (value === 'patch_trans') site.showModal('#patchesTransListViewModal');
 
   };
 
+
+  $scope.patchesListSwitch = function (itm) {
+    $scope.error = '';
+    if (itm.units_trans && itm.units_trans.id) {
+
+      $scope.item_patch = itm;
+
+      let mini_code = $scope.item_patch.barcode.slice(-3);
+      let r_code = Math.floor((Math.random() * 1000) + 1);
+      if (!$scope.item_patch.patch_trans_list) {
+
+        if ($scope.item_patch.work_serial) {
+          $scope.item_patch.patch_trans_list = [];
+          for (let i = 0; i < $scope.item_patch.count_trans; i++) {
+            let r_code2 = Math.floor((Math.random() * 1000) + 1);
+
+            $scope.item_patch.patch_trans_list.push({
+              patch: mini_code + r_code2 + ($scope.item_patch.patch_trans_list.length + i),
+              count: 1
+            })
+          }
+
+        } else {
+          $scope.item_patch.patch_trans_list = [{
+            patch: mini_code + r_code + (itm.validit || '00') + 1,
+            production_date: new Date(),
+            expiry_date: new Date($scope.addDays(new Date(), (itm.validit || 0))),
+            validit: (itm.validit || 0),
+            count: itm.count_trans
+          }];
+        }
+
+      } else if ($scope.item_patch.patch_trans_list && $scope.item_patch.patch_trans_list.length == 1 && $scope.item_patch.work_patch) {
+        $scope.item_patch.patch_trans_list[0].count = itm.count_trans
+
+      } else {
+
+        if ($scope.item_patch.work_serial) {
+          let count = $scope.item_patch.count_trans - $scope.item_patch.patch_trans_list.length;
+          let r_code2 = Math.floor((Math.random() * 1000) + 1);
+          for (let i = 0; i < count; i++) {
+            $scope.item_patch.patch_trans_list.unshift({
+              patch: mini_code + r_code2 + i,
+              count: 1
+            })
+          }
+
+        }
+
+      }
+
+      site.showModal('#patchesListSwitchModal');
+    } else {
+      $scope.error = '##word.must_unit_trans##'
+    }
+
+  };
 
   $scope.patchesList = function (itm) {
     $scope.error = '';
@@ -869,7 +1080,7 @@ app.controller("units_switch", function ($scope, $http, $timeout) {
 
                 });
             });
-            $scope.item_patch.patch_list = response.data.patch_list
+            $scope.item_patch.patch_list = response.data.patch_list;
             site.showModal('#patchesListModal');
           }
 
@@ -879,39 +1090,43 @@ app.controller("units_switch", function ($scope, $http, $timeout) {
 
   };
 
-  $scope.viewPatchesList = function (itm) {
-    $scope.error = '';
-    $scope.item_patch = itm;
+  $scope.selectAll = function (item_patch, value) {
 
-    site.showModal('#patchesListViewModal');
+    if (value === 'patch') {
 
+      item_patch.patch_list.forEach(element => {
+        if (item_patch.$select_all) {
+          element.select = true
+        } else if (!item_patch.$select_all) {
+          element.select = false
+        }
+      });
+
+    } else if (value === 'patch_trans') {
+
+      item_patch.patch_trans_list.forEach(element => {
+        if (item_patch.$select_all) {
+          element.select = true
+        } else if (!item_patch.$select_all) {
+          element.select = false
+        }
+
+      });
+    }
   };
-
-
-  $scope.selectAll = function (item_patch) {
-    item_patch.patch_list.forEach(element => {
-      if (item_patch.$select_all) {
-        element.select = true
-      } else if (!item_patch.$select_all) {
-        element.select = false
-      }
-    });
-  };
-
 
   $scope.addNewPAtch = function (itm) {
     let mini_code = itm.barcode.slice(-3);
     let r_code = Math.floor((Math.random() * 1000) + 1);
 
-    itm.patch_list.unshift({
-      patch: mini_code + r_code + (itm.patch_list.length + 1) + (itm.validit || '00'),
+    itm.patch_trans_list.unshift({
+      patch: mini_code + r_code + (itm.patch_trans_list.length + 1) + (itm.validit || '00'),
       production_date: new Date(),
       expiry_date: new Date($scope.addDays(new Date(), (itm.validit || 0))),
       validit: (itm.validit || 0),
       count: itm.work_serial ? 1 : 0
     })
   };
-
 
   $scope.changeDate = function (i, str) {
     $timeout(() => {
@@ -929,7 +1144,6 @@ app.controller("units_switch", function ($scope, $http, $timeout) {
     }, 250);
   };
 
-
   $scope.exitPatchModal = function (itm) {
     let bigger = false;
     let count = 0;
@@ -943,7 +1157,7 @@ app.controller("units_switch", function ($scope, $http, $timeout) {
     });
 
 
-    itm.patch_list.map(p => count += p.count)
+    itm.patch_list.map(p => count += p.count);
 
     if (itm.count != count) {
       $scope.error = '##word.err_patch_count##';
@@ -966,7 +1180,7 @@ app.controller("units_switch", function ($scope, $http, $timeout) {
     let errDate = false;
     let err_find_serial = false;
 
-    itm.patch_list.forEach(_p => {
+    itm.patch_trans_list.forEach(_p => {
       count += _p.count;
 
       if (new Date(_p.expiry_date) < new Date(_p.production_date)) {
@@ -977,14 +1191,113 @@ app.controller("units_switch", function ($scope, $http, $timeout) {
     });
 
     if (err_find_serial) {
-      $scope.error = '##word.err_find_serial##'
+      $scope.error = '##word.err_find_serial##';
     } else if (errDate) {
-      $scope.error = '##word.err_patch_date##'
+      $scope.error = '##word.err_patch_date##';
     } else if (itm.count_trans === count) {
       site.hideModal('#patchesListSwitchModal');
 
     } else $scope.error = '##word.err_patch_count##';
 
+  };
+
+  $scope.testPatches = function (unitsSwitch, callback) {
+    $scope.getSerialList(unitsSwitch.items, serial_list => {
+      let obj = {
+        patchCount: false,
+        errDate: false,
+        exist_serial: false,
+        not_patch: false,
+        patch_list: []
+      };
+
+      unitsSwitch.items.forEach(_item => {
+        if (_item.size_units_list && _item.size_units_list.length > 0) {
+
+          let count = 0;
+          if (_item.patch_trans_list && _item.patch_trans_list.length > 0) {
+            _item.patch_trans_list.forEach(_pl => {
+              if (typeof _pl.count === 'number') {
+                if (new Date(_pl.expiry_date) < new Date(_pl.production_date)) {
+                  obj.errDate = true;
+                }
+                count += _pl.count;
+
+              } else {
+                obj.patchCount = true;
+                obj.patch_list.push(_item.barcode);
+              }
+
+              if (serial_list && serial_list.length > 0) {
+
+                serial_list.forEach(_s => {
+                  if (_s === _pl.patch && _item.work_serial) {
+                    obj.exist_serial = true;
+                    obj.patch_list.push(_pl.patch);
+                  }
+                });
+
+              }
+              if (!_pl.patch) {
+                obj.not_patch = true;
+                obj.patch_list.push(_item.barcode);
+              }
+            });
+          } else if (_item.work_serial || _item.work_patch) {
+            obj.patchCount = true;
+            obj.patch_list.push(_item.barcode)
+          }
+          if (count != _item.count_trans && (_item.work_serial || _item.work_patch)) {
+            obj.patchCount = true;
+            obj.patch_list.push(_item.barcode)
+          }
+
+        }
+
+      });
+
+
+      obj.patch_list = obj.patch_list.filter(function (item, pos) {
+        return obj.patch_list.indexOf(item) === pos;
+      });
+
+      callback(obj)
+    });
+
+  };
+
+  $scope.getSerialList = function (items, callback) {
+    $scope.error = '';
+    $scope.busy = true;
+    let barcodes = [];
+    if (items && items.length > 0)
+      barcodes = items.map(_item => _item.barcode)
+
+    let where = { serial: true, barcodes: barcodes };
+
+    $http({
+      method: "POST",
+      url: "/api/stores_items/barcode_unit",
+      data: {
+        where: where
+
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.serial_list) {
+          $scope.serial_list = response.data.serial_list;
+          callback(response.data.serial_list);
+        } else {
+          callback(null);
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+        callback(null);
+      }
+    )
   };
 
 

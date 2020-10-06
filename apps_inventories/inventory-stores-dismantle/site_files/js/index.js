@@ -11,6 +11,11 @@ app.controller("stores_dismantle", function ($scope, $http, $timeout) {
   };
 
 
+  $scope.addDays = function (date, days) {
+    var result = new Date(date);
+    result.setTime(result.getTime() + (days * 24 * 60 * 60 * 1000));
+    return result;
+  }
 
 
   $scope.deleteRow = function (itm) {
@@ -114,14 +119,14 @@ app.controller("stores_dismantle", function ($scope, $http, $timeout) {
         let obj = {
           patchCount: false,
           patch_list: []
-        }
-  
+        };
+
         $scope.store_dismantle.items.forEach(_itm => {
           if (_itm.complex_items && _itm.complex_items.length > 0) {
             _itm.complex_items.forEach(_comp => {
               let count = 0;
               _comp.patches_count = _comp.count * _itm.count;
-  
+
               if (_comp.patch_list && _comp.patch_list.length > 0) {
                 _comp.patch_list.forEach(_pl => {
                   if (typeof _pl.count === 'number') {
@@ -142,16 +147,16 @@ app.controller("stores_dismantle", function ($scope, $http, $timeout) {
             });
           }
         });
-  
+
         obj.patch_list = obj.patch_list.filter(function (item, pos) {
           return obj.patch_list.indexOf(item) === pos;
         });
-  
+
         if (obj.patchCount) {
           $scope.error = `##word.err_patch_count_comp##   ( ${obj.patch_list.join('-')} )`;
           return;
         };
-  
+
         $scope.busy = true;
         $http({
           method: "POST",
@@ -622,7 +627,7 @@ app.controller("stores_dismantle", function ($scope, $http, $timeout) {
       let obj = {
         patchCount: false,
         patch_list: []
-      }
+      };
 
       $scope.store_dismantle.items.forEach(_itm => {
         if (_itm.complex_items && _itm.complex_items.length > 0) {
@@ -660,7 +665,7 @@ app.controller("stores_dismantle", function ($scope, $http, $timeout) {
         return;
       };
 
-    
+
 
       $scope.busy = true;
       $http({
@@ -857,6 +862,60 @@ app.controller("stores_dismantle", function ($scope, $http, $timeout) {
 
   };
 
+  $scope.patchesCompList = function (itm) {
+    $scope.error = '';
+
+    $scope.item_patch = itm;
+
+    let mini_code = $scope.item_patch.barcode.slice(-3);
+    let r_code = Math.floor((Math.random() * 1000) + 1);
+    if (!$scope.item_patch.patch_list) {
+
+      if ($scope.item_patch.work_serial) {
+        $scope.item_patch.patch_list = [];
+        for (let i = 0; i < $scope.item_patch.count; i++) {
+          let r_code2 = Math.floor((Math.random() * 1000) + 1);
+
+          $scope.item_patch.patch_list.push({
+            patch: mini_code + r_code2 + ($scope.item_patch.patch_list.length + i),
+            count: 1
+          })
+        }
+
+      } else {
+        $scope.item_patch.patch_list = [{
+          patch: mini_code + r_code + (itm.validit || '00') + 1,
+          production_date: new Date(),
+          expiry_date: new Date($scope.addDays(new Date(), (itm.validit || 0))),
+          count: itm.count,
+          validit: (itm.validit || 0)
+        }];
+      }
+
+
+    } else if ($scope.item_patch.patch_list && $scope.item_patch.patch_list.length == 1 && $scope.item_patch.work_patch) {
+      $scope.item_patch.patch_list[0].count = itm.count
+
+    } else {
+
+      if ($scope.item_patch.work_serial) {
+        let count = $scope.item_patch.count - $scope.item_patch.patch_list.length;
+        let r_code2 = Math.floor((Math.random() * 1000) + 1);
+        for (let i = 0; i < count; i++) {
+          $scope.item_patch.patch_list.unshift({
+            patch: mini_code + r_code2 + i,
+            count: 1
+          })
+        }
+
+      }
+
+    }
+
+    site.showModal('#patchesCompListModal');
+
+  };
+
   $scope.patchesList = function (itm) {
     $scope.error = '';
     $scope.item_patch = itm;
@@ -893,7 +952,7 @@ app.controller("stores_dismantle", function ($scope, $http, $timeout) {
 
                 });
             });
-            $scope.item_patch.patch_list = response.data.patch_list
+            $scope.item_patch.patch_list = response.data.patch_list;
             site.showModal('#patchesListModal');
           }
 
@@ -913,6 +972,66 @@ app.controller("stores_dismantle", function ($scope, $http, $timeout) {
     });
   };
 
+  $scope.addNewPAtch = function (itm) {
+    let mini_code = itm.barcode.slice(-3);
+    let r_code = Math.floor((Math.random() * 1000) + 1);
+
+    itm.patch_list.unshift({
+      patch: mini_code + r_code + (itm.patch_list.length + 1) + (itm.validit || '00'),
+      production_date: new Date(),
+      expiry_date: new Date($scope.addDays(new Date(), (itm.validit || 0))),
+      validit: (itm.validit || 0),
+      count: itm.work_serial ? 1 : 0
+    })
+  };
+
+
+  $scope.changeDate = function (i, str) {
+    $timeout(() => {
+      $scope.error = '';
+
+      if (str == 'exp') {
+
+        let diffTime = Math.abs(new Date(i.expiry_date) - new Date(i.production_date));
+        i.validit = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+      } else if (str == 'pro') {
+
+        i.expiry_date = new Date($scope.addDays(i.production_date, (i.validit || 0)))
+      }
+    }, 250);
+  };
+
+
+  $scope.exitPatchCompModal = function (itm) {
+    $scope.error = '';
+
+    let count = 0;
+    let errDate = false;
+    let err_find_serial = false;
+
+    itm.patch_list.forEach(_p => {
+      count += _p.count;
+
+      if (new Date(_p.expiry_date) < new Date(_p.production_date)) {
+        errDate = true
+      }
+      if (!_p.patch) err_find_serial = true
+
+    });
+
+    if (err_find_serial) {
+      $scope.error = '##word.err_find_serial##';
+    } else if (errDate) {
+      $scope.error = '##word.err_patch_date##';
+    } else if (itm.count === count) {
+      site.hideModal('#patchesCompListModal');
+
+    } else $scope.error = '##word.err_patch_count##';
+
+  };
+
+
   $scope.exitPatchModal = function (itm) {
     let bigger = false;
     let count = 0;
@@ -925,7 +1044,7 @@ app.controller("stores_dismantle", function ($scope, $http, $timeout) {
       }
     });
 
-    itm.patch_list.map(p => count += p.count)
+    itm.patch_list.map(p => count += p.count);
 
     if ((itm.$comp && itm.patches_count != count) || (!itm.$comp && itm.count != count)) {
       $scope.error = '##word.err_patch_count##';
@@ -957,7 +1076,7 @@ app.controller("stores_dismantle", function ($scope, $http, $timeout) {
     let obj = {
       patchCount: false,
       patch_list: []
-    }
+    };
 
     store_dismantle.items.forEach(_item => {
       if (_item.size_units_list && _item.size_units_list.length > 0) {

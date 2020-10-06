@@ -30,6 +30,8 @@
                             <th>##word.unit##</th>
                             <th>##word.units_trans##</th>
                             <th>##word.units_switch_item_count##</th>
+                            <th>##word.count_trans##</th>
+                            <th>##word.actions##</th>
                         </tr>
                         <tr ng-repeat="itm in units_switch.items">
                             <td class="center blue">{{$index + 1}}</td>
@@ -42,6 +44,15 @@
                             <td class="center">{{itm.unit.name}}</td>
                             <td class="center">{{itm.units_trans.name}}</td>
                             <td class="center">{{itm.count}}</td>
+                            <td class="center">{{itm.count_trans}}</td>
+                            <td class="center">
+                                <i-button label="##word.patch##" ng-show="itm.work_patch || itm.work_serial" type="view"
+                                    ng-click="viewPatchesList(itm,'patch')">
+                                </i-button>
+                                <i-button label="##word.patch_trans##" ng-show="itm.work_patch || itm.work_serial"
+                                    type="view" ng-click="viewPatchesList(itm,'patch_trans')">
+                                </i-button>
+                            </td>
 
                         </tr>
                     </table>

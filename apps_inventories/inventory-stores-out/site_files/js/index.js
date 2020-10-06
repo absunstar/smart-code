@@ -252,7 +252,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
     let obj = {
       patchCount: false,
       patch_list: []
-    }
+    };
 
     storeOut.items.forEach(_item => {
       if (_item.size_units_list && _item.size_units_list.length > 0) {
@@ -2143,7 +2143,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
 
                   });
               });
-              $scope.item_patch.patch_list = response.data.patch_list
+              $scope.item_patch.patch_list = response.data.patch_list;
               site.showModal('#patchesListModal');
             }
 
@@ -2213,7 +2213,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
     });
 
 
-    itm.patch_list.map(p => count += p.count)
+    itm.patch_list.map(p => count += p.count);
 
     if (itm.count != count) {
       $scope.error = '##word.err_patch_count##';

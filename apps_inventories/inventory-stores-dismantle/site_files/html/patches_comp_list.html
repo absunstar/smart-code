@@ -1,4 +1,4 @@
-<div id="patchesListModal" class="modal" fixed>
+<div id="patchesCompListModal" class="modal" fixed>
     <div class="modal-content">
         <div class="modal-header">
             <span class="close">&times;</span>
@@ -74,64 +74,7 @@
         </div>
         <h2 class="error center bold">{{error}}</h2>
         <div class="modal-footer center">
-            <i-button label=" ##word.accept##" type="save" ng-click="exitPatchModal(item_patch)"></i-button>
-        </div>
-    </div>
-</div>
-
-
-
-
-
-
-<div id="patchesListViewModal" class="modal">
-    <div class="modal-content">
-        <div class="modal-header">
-            <span class="close">&times;</span>
-            <h2>
-                ##word.patches_list## <i class="fa fa-plus"></i>
-            </h2>
-        </div>
-
-        <div class="modal-body">
-
-            <table class="table loaded center bold hover">
-                <tr>
-                    <th>##word.serial##</th>
-                    <th>##word.patch_number##</th>
-                    <th ng-hide="item_patch.work_serial">##word.production_date##</th>
-                    <th ng-hide="item_patch.work_serial">##word.expiry_date##</th>
-                    <th ng-hide="item_patch.work_serial">##word.validit##</th>
-                    <th>##word.quantity##</th>
-                </tr>
-
-                <tr ng-repeat="c in item_patch.patch_list" ng-show="c.count > 0">
-                    <td class="blue">
-                        {{$index + 1}}
-                    </td>
-                    <td>{{c.patch}}</td>
-
-                    <td class="green" ng-hide="item_patch.work_serial">
-                        {{c.production_date  | date : 'dd - MM - yyyy'}}
-                    </td>
-
-                    <td class="red" ng-hide="item_patch.work_serial">
-                        {{c.expiry_date  | date : 'dd - MM - yyyy'}}
-                    </td>
-
-                    <td ng-hide="item_patch.work_serial">{{c.validit}}</td>
-
-                    <td class="blue">{{c.count}}</td>
-
-                </tr>
-
-            </table>
-
-
-        </div>
-        <h2 class="error center bold">{{error}}</h2>
-        <div class="modal-footer center">
-            <i-button type="close" label="##word.close##" onclick="site.hideModal('#patchesListViewModal')"></i-button>
+            <i-button label=" ##word.accept##" type="save" ng-click="exitPatchCompModal(item_patch)"></i-button>
         </div>
     </div>
 </div>

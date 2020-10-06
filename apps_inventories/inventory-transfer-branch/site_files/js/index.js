@@ -76,7 +76,7 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
     let obj = {
       patchCount: false,
       patch_list: []
-    }
+    };
 
     transferBranch.items.forEach(_item => {
       if (_item.size_units_list && _item.size_units_list.length > 0) {
@@ -941,7 +941,7 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
     });
 
 
-    itm.patch_list.map(p => count += p.count)
+    itm.patch_list.map(p => count += p.count);
 
     if (itm.count != count) {
       $scope.error = '##word.err_patch_count##';
@@ -992,7 +992,7 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
 
               });
             });
-            $scope.item_patch.patch_list = response.data.patch_list
+            $scope.item_patch.patch_list = response.data.patch_list;
             site.showModal('#patchesListModal');
           }
 
