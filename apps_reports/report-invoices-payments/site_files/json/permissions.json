@@ -1,0 +1,7 @@
+[
+    { "module_name" : "accounting" , "screen_name" : "report-invoices-payments" , "name":"report_invoices_payments_manage" , "en":"Manage" , "ar":"إدارة"},
+    { "module_name" : "accounting" , "screen_name" : "report-invoices-payments" , "name":"report_invoices_payments_search" , "en":"Search" , "ar":"بحث"},
+    { "module_name" : "accounting" , "screen_name" : "report-invoices-payments" , "name":"report_invoices_payments_export" , "en":"Export" , "ar":"تصدير"},
+    { "module_name" : "accounting" , "screen_name" : "report-invoices-payments" , "name":"report_invoices_payments_print" , "en":"Print" , "ar":"طباعة"},
+    { "module_name" : "accounting" , "screen_name" : "report-invoices-payments" , "name":"report_invoices_payments_ui" , "en":"UI" , "ar":"الواجهة الرسومية"}
+]

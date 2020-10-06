@@ -647,6 +647,16 @@ module.exports = function init(site) {
       where['paid_up'] = where['paid_up'];
     }
 
+    if (where['post']) {
+      where['posting'] = true
+      delete where['post']
+
+    }
+    if (where['un_post']) {
+      where['$or'] = [{ 'posting': false }, { 'posting': undefined }]
+      delete where['un_post']
+    }
+
     if (where['vendor']) {
       where['vendor.id'] = where['vendor'].id;
       delete where['vendor']

@@ -633,7 +633,16 @@ module.exports = function init(site) {
       where['delegate.id'] = where['delegate'].id;
       delete where['delegate']
     }
+    
+    if (where['post']) {
+      where['posting'] = true
+      delete where['post']
 
+    }
+    if (where['un_post']) {
+      where['$or'] = [{ 'posting': false }, { 'posting': undefined }]
+      delete where['un_post']
+    }
 
     if (where['type']) {
       where['type.id'] = where['type'].id;

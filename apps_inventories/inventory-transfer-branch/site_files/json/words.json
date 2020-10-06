@@ -18,6 +18,8 @@
     {"name": "total_price","en": "Total Price","ar": "إجمالي سعر البيع"},
     {"name" : "err_maximum_discount" , "en" : "The item I discount must be less than or equal to the maximum discount" , "ar" : "يجب أن يكون الخصم على الصنف أقل من أو يساوي أقصى خصم"},
     {"name" : "received_honesty" , "en" : "I, the undersigned, received the goods above after the negative inspection from ignorance, intact, free of defects and as safe." , "ar" : "إستلمت أنا الموقع البضاعه أعلاه بعد  المعاينه  النافيه  من الجهاله سليمه خاليه من العيوب وبصفة أمانه"},
+    {"name" : "confirmed" , "en" : "Confirmed" , "ar" : "معتمد"},
+    {"name" : "un_confirmed" , "en" : "Un Confirmed" , "ar" : "غير معتمد"},
 
     {"name" : "transfer_branch_store_name" , "en" : "Transfer Branch" , "ar" : "إسم المخزن"},
     {"name" : "transfer_branch_items" , "en" : "Transfer Branch Items" , "ar" : "تحويل أصناف"},

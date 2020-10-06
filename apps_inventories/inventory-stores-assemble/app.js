@@ -603,6 +603,16 @@ module.exports = function init(site) {
       delete where['type']
     }
 
+    if (where['post']) {
+      where['posting'] = true
+      delete where['post']
+
+    }
+    if (where['un_post']) {
+      where['$or'] = [{ 'posting': false }, { 'posting': undefined }]
+      delete where['un_post']
+    }
+
     if (where['source']) {
       where['source.id'] = where['source'].id;
       delete where['source']

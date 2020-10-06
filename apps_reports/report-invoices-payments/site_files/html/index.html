@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="report_invoices_payments_ui || report_invoices_payments_manage" data-ng-app="myApp">
+
+<head x-import="head.html">
+
+</head>
+
+<body class="##session.lang##">
+
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+    </nav>
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+    </nav>
+
+    <div id="main-layout" class="container">
+        <div class="row">
+            <div class="row" ng-controller="report_invoices_payments" x-permissions="login">
+
+                <div x-import="report-invoices-payments/search_all_modal.html"></div>
+                <div class="row">
+                    <h1 class="bold text-center"> ##word.report_invoices_payments_name## </h1>
+                </div>
+
+                <div class="top-actions">
+                    <i-button type="search"
+                        x-permissions="report_invoices_payments_search || report_invoices_payments_manage"
+                        label="##word.search_all##" onclick="site.showModal('#reportInvoicesPaymentsSearchModal')">
+                    </i-button>
+
+                    <div ng-show="vendor.id || customer.id" class="row margin padding dashed">
+                        <div class="col6 padding">
+
+                            <table class="table hover bold" id="t1">
+
+                                <tr ng-show="vendor.id">
+                                    <td class="title">##word.vendor##</td>
+                                    <td>
+                                        <h3 class="center bold">{{vendor.name_##session.lang##}}</h3>
+                                    </td>
+                                </tr>
+
+                                <tr ng-show="customer.id">
+                                    <td class="title">##word.customer##</td>
+                                    <td>
+                                        <h3 class="center bold">{{customer.name_##session.lang##}}</h3>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title">##word.requests_count##</td>
+                                    <td>
+                                        <h3 class="center bold blue">{{count}}</h3>
+                                    </td>
+
+                                </tr>
+
+                            </table>
+                        </div>
+
+                    </div>
+
+                    <span ng-show="busy">
+                        <span class="sr-only">Loading...</span>
+                    </span>
+                    <h3 class="bold text-center" ng-hide="vendor.id"> ##word.count## : {{count}} </h3>
+                    <br>
+                </div>
+
+                <table class="table loaded center hover bold" id="t1">
+                    <tr>
+                        <th> ##word.date## </th>
+                        <th> ##word.shift## </th>
+                        <th> ##word.stores_out_id## </th>
+                        <th ng-hide="vendor.id || customer.id"> ##word.vendor## / ##word.customer## </th>
+
+                        <th> ##word.payment_method## </th>
+                        <th> ##word.safe## </th>
+                        <th> ##word.currency## </th>
+                        <th> ##word.paid_up## </th>
+                    </tr>
+
+                    <tr ng-repeat="c in list | orderBy : '-id'">
+                        <td class="brown"> {{c.date | date : 'dd - MM - yyyy'}} </td>
+                        <td class=""> {{c.shift.code}} </td>
+                        <td class="blue"> {{c.code}} </td>
+
+                        <td ng-hide="vendor.id || customer.id"> {{c.vendor.name_##session.lang##}}
+                            {{c.customer.name_##session.lang##}} </td>
+                        <td class=""> {{c.payment_method.##session.lang##}} </td>
+                        <td class=""> {{c.safe.name}} </td>
+                        <td class=""> {{c.currency.name}} / <b class="blue">{{c.currency.ex_rate}}</b> </td>
+
+                        <td class="green"> {{c.paid_up || 0}} </td>
+                    </tr>
+                </table>
+
+                <div class="row">
+                    <i-button x-permissions="report_invoices_payments_print || report_invoices_payments_manage"
+                        type="print" label="##word.print##" onclick="site.print('#t1')"></i-button>
+                    <i-button x-permissions="report_invoices_payments_export || report_invoices_payments_manage"
+                        type="export" label="##word.export_to_excel##"
+                        onclick="export_to_xlsx('t1' , 'report_invoices_payments.xlsx')">
+                    </i-button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div x-import="scripts.html"></div>
+
+    <script x-permissions="login" x-import="report-invoices-payments/index.js"></script>
+</body>
+
+</html>

@@ -49,8 +49,9 @@
                             <i-control class="col2" ng-model="search.supply_number"
                                 label="##word.stores_in_supply_number##" type="text"></i-control>
 
-                            <i-list class="col3" ng-model="search.vendor" items="vendorsList" display="name_##session.lang##"
-                                ng-search="_search.$search_vendor" label="##word.stores_in_Company_name##" v="r">
+                            <i-list class="col3" ng-model="search.vendor" items="vendorsList"
+                                display="name_##session.lang##" ng-search="_search.$search_vendor"
+                                label="##word.stores_in_Company_name##" v="r">
                             </i-list>
 
                         </div>
@@ -67,10 +68,16 @@
                             </i-control>
                         </div>
 
-                        <div class="row">
+                        <!-- <div class="row">
                             <i-textarea ng-model="search.description" class="col6" type="text"
                                 label="##word.amounts_in_description##"></i-textarea>
+                        </div> -->
+
+                        <div class="row">
+                            <i-checkbox class="col1" label="##word.post##" ng-model="search.post"></i-checkbox>
+                            <i-checkbox class="col1" label="##word.un_post##" ng-model="search.un_post"></i-checkbox>
                         </div>
+
                     </fieldset>
                 </form>
             </div>

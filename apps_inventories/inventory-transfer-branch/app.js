@@ -388,6 +388,16 @@ module.exports = function init(site) {
       delete where['barcode']
     }
 
+    if (where['confirmed']) {
+      where['transfer'] = true
+      delete where['confirmed']
+
+    }
+    if (where['un_confirmed']) {
+      where['$or'] = [{ 'transfer': false }, { 'transfer': undefined }]
+      delete where['un_confirmed']
+    }
+
 
     $transfer_branch.findMany({
       select: req.body.select || {},

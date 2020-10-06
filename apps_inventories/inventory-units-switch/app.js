@@ -559,6 +559,16 @@ module.exports = function init(site) {
       delete where['source']
     }
 
+    if (where['post']) {
+      where['posting'] = true
+      delete where['post']
+
+    }
+    if (where['un_post']) {
+      where['$or'] = [{ 'posting': false }, { 'posting': undefined }]
+      delete where['un_post']
+    }
+
     if (where['description']) {
       where['description'] = site.get_RegExp(where['description'], 'i')
     }
