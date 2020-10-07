@@ -1721,7 +1721,7 @@ module.exports = function init(site) {
 
                   itemsCb.forEach(cbSize => {
 
-                    if (currentSize.barcode === cbSize.barcode && currentSize.size == cbSize.size) {
+                    if (currentSize.barcode === cbSize.barcode && currentSize.size === cbSize.size) {
 
                       let foundUnit = false
                       let foundStores = false
@@ -1730,17 +1730,17 @@ module.exports = function init(site) {
                       if (currentSize.branches_list && currentSize.branches_list.length > 0) {
                         currentSize.branches_list.forEach(branchesList => {
                           if (branchesList.stores_list && branchesList.stores_list.length > 0) {
-                            if (branchesList.code == req.body.branch.code) {
+                            if (branchesList.code === req.body.branch.code) {
                               foundBranch = true
                               branchesList.stores_list.forEach(storesList => {
 
                                 if (storesList.size_units_list && storesList.size_units_list.length > 0) {
-                                  if (storesList.store && store.id == storesList.store.id) {
+                                  if (storesList.store && store.id === storesList.store.id) {
                                     foundStores = true
 
                                     storesList.size_units_list.forEach(sizeUnits => {
 
-                                      if (cbSize.unit && sizeUnits.id == cbSize.unit.id) {
+                                      if (cbSize.unit && sizeUnits.id === cbSize.unit.id) {
                                         foundUnit = true
                                         objFound.current.push({ unit: cbSize.unit, store: storesList.store, barcode: currentSize.barcode })
                                         objFound.cb.push({ cbSize })

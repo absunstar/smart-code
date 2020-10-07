@@ -66,12 +66,9 @@ app.controller("item_transaction", function ($scope, $http, $timeout) {
       url: "/api/employees/all",
       data: {
         where: {
-          'trainer': { $ne: true },
-          'delivery': { $ne: true }
-        },
-        select: {
-          name: 1,
-          id: 1
+          trainer: { $ne: true },
+          delivery: { $ne: true },
+          active: true
         }
       }
     }).then(

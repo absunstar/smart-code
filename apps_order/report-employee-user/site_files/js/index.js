@@ -10,8 +10,9 @@ app.controller("report_employee_user", function ($scope, $http, $timeout) {
       url: "/api/employees/all",
       data: {
         where: {
-          'trainer': { $ne: true },
-          'delivery': { $ne: true }
+          trainer: { $ne: true },
+          delivery: { $ne: true },
+          active: true
         }
       }
     }).then(

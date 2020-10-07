@@ -1121,6 +1121,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
   };
 
   $scope.getOrderTypeSetting = function () {
+    $scope.error = '';
     $scope.account_invoices.order_invoices_type = {};
     if ($scope.account_invoices.source_type && $scope.account_invoices.source_type.id == 3 && $scope.defaultSettings.general_Settings && $scope.defaultSettings.general_Settings.order_type) {
       $scope.getTransactionTypeList();
@@ -1129,7 +1130,6 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
   };
 
   $scope.getDefaultSetting = function () {
-
     $scope.busy = true;
     $http({
       method: "POST",
@@ -1170,14 +1170,15 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
   };
 
   $scope.loadEmployees = function () {
+    $scope.error = '';
     $scope.busy = true;
     $http({
       method: "POST",
       url: "/api/employees/all",
       data: {
         where: {
-          'trainer': { $ne: true },
-          'delivery': { $ne: true },
+          trainer: { $ne: true },
+          delivery: { $ne: true },
           active: true
         }
       }
@@ -1196,6 +1197,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
   };
 
   $scope.loadInNames = function () {
+    $scope.error = '';
     $scope.busy = true;
     $http({
       method: "POST",

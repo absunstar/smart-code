@@ -1502,7 +1502,6 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
 
       });
 
-
       obj.patch_list = obj.patch_list.filter(function (item, pos) {
         return obj.patch_list.indexOf(item) === pos;
       });
