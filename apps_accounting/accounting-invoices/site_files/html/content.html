@@ -189,19 +189,19 @@
                                         </td>
                                     </tr>
 
-                                    <tr>
+                                    <tr ng-show="account_invoices.invoice_code">
                                         <td class="title">##word.code##</td>
                                         <td class="center blue">{{account_invoices.invoice_code}}</td>
                                     </tr>
 
-                                    <tr>
+                                    <tr ng-show="account_invoices.employee.id">
                                         <td class="title">##word.employee##</td>
                                         <td class="center">{{account_invoices.employee.name}}</td>
                                     </tr>
 
                                     <tr>
                                         <td class="title">##word.value##</td>
-                                        <td class="center">{{account_invoices.value.name}}</td>
+                                        <td class="center green">{{account_invoices.net_value}}</td>
                                     </tr>
 
                                     <tr ng-show="account_invoices.customer.id">
