@@ -613,6 +613,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
               item_group: _size.item_group,
               work_patch: _size.work_patch,
               work_serial: _size.work_serial,
+              service_item: _size.service_item,
               validit: _size.validit,
               size_en: _size.size_en,
               size_units_list: _size.size_units_list,

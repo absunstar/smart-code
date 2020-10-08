@@ -1081,6 +1081,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
         method: "POST",
         url: "/api/stores_items/all",
         data: {
+          where: { service_item: { $ne: true } },
           search: $scope.item.search_item_name
         }
       }).then(
@@ -1244,7 +1245,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
         method: "POST",
         url: "/api/stores_items/all",
         data: {
-          where: { barcode: $scope.search_barcode }
+          where: { barcode: $scope.search_barcode, service_item: { $ne: true } }
 
         }
       }).then(

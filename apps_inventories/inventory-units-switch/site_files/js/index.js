@@ -348,6 +348,7 @@ app.controller("units_switch", function ($scope, $http, $timeout) {
         method: "POST",
         url: "/api/stores_items/all",
         data: {
+          where: { service_item: { $ne: true } },
           search: $scope.item.search_item_name
         }
       }).then(
@@ -520,7 +521,7 @@ app.controller("units_switch", function ($scope, $http, $timeout) {
         method: "POST",
         url: "/api/stores_items/all",
         data: {
-          where: { barcode: $scope.search_barcode }
+          where: { barcode: $scope.search_barcode, service_item: { $ne: true } }
         }
       }).then(
         function (response) {
@@ -972,9 +973,30 @@ app.controller("units_switch", function ($scope, $http, $timeout) {
 
   $scope.calc = function (obj) {
     $timeout(() => {
-      obj.count_trans = (obj.unit.convert * obj.count) / obj.units_trans.convert
+      $scope.error = '';
+      if (obj.units_trans && obj.units_trans.id) {
+        obj.count_trans = (obj.unit.convert * obj.count) / obj.units_trans.convert
+      } else {
+        obj.count = 0;
+        obj.count_trans = 0;
+        $scope.error = '##word.err_units_trans##';
+      }
     }, 250);
   };
+
+  $scope.calcTrance = function (obj) {
+    $timeout(() => {
+      $scope.error = '';
+      if (obj.units_trans && obj.units_trans.id) {
+        obj.count = (obj.units_trans.convert * obj.count_trans) / obj.unit.convert
+      } else {
+        obj.count = 0;
+        obj.count_trans = 0;
+        $scope.error = '##word.err_units_trans##'
+      }
+    }, 250);
+  };
+
 
 
   $scope.viewPatchesList = function (itm, value) {

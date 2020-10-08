@@ -222,6 +222,7 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
       let existBarcodeUnit_list = [];
 
       $scope.category_item.sizes.forEach(_size => {
+        if ($scope.category_item.service_item) _size.service_item = true;
         let total_complex_av = 0;
 
         if (_size.item_complex && _size.complex_items && _size.complex_items.length > 0) {
@@ -306,7 +307,7 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
       image_url: '/images/sizes_img.png',
     };
     $scope.items_size = {};
-    $scope.view(category_item);
+    $scope.view(category_item, 'edit');
     if ($scope.defaultSettings.general_Settings) {
     }
     site.showModal('#updateCategoryItemModal');
@@ -320,6 +321,14 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
       $scope.error = v.messages[0].ar;
       return;
     }
+
+    $scope.category_item.sizes.forEach(_size => {
+
+      if ($scope.category_item.service_item) {
+        _size.service_item = true;
+      }
+
+    });
 
     /*  if ($scope.category_item.sizes && $scope.category_item.sizes.length > 0) {
  
@@ -374,6 +383,7 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
        };
      };
   */
+
     $scope.busy = true;
     $http({
       method: "POST",
@@ -406,7 +416,7 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
      */
   };
 
-  $scope.view = function (category_item) {
+  $scope.view = function (category_item, value) {
     $scope.busy = true;
     $http({
       method: "POST",
@@ -419,6 +429,12 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.category_item = response.data.doc;
+
+          if (value === 'edit') {
+            $scope.category_item.$edit = true;
+            $scope.category_item.units_list.map(_u => _u.$edit = true)
+          };
+
           if ($scope.hideObj) {
             $scope.category_item.sizes.forEach(_sizes => {
               if (_sizes && ((_sizes.size && _sizes.size.contains($scope.hideObj.size)) || (_sizes.size_en && _sizes.size_en.contains($scope.hideObj.size_en)) || (_sizes.barcode && _sizes.barcode === $scope.hideObj.barcode))) {
@@ -1553,10 +1569,29 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
 
   $scope.calc = function (obj) {
     $timeout(() => {
-      obj.count_trans = (obj.unit.convert * obj.count) / obj.units_trans.convert
+      $scope.error = '';
+      if (obj.units_trans && obj.units_trans.id) {
+        obj.count_trans = (obj.unit.convert * obj.count) / obj.units_trans.convert
+      } else {
+        obj.count = 0;
+        obj.count_trans = 0;
+        $scope.error = '##word.err_units_trans##';
+      }
     }, 250);
   };
 
+  $scope.calcTrance = function (obj) {
+    $timeout(() => {
+      $scope.error = '';
+      if (obj.units_trans && obj.units_trans.id) {
+        obj.count = (obj.units_trans.convert * obj.count_trans) / obj.unit.convert
+      } else {
+        obj.count = 0;
+        obj.count_trans = 0;
+        $scope.error = '##word.err_units_trans##'
+      }
+    }, 250);
+  };
 
   $scope.get_open_shift = function (callback) {
     $scope.error = '';

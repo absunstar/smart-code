@@ -33,7 +33,8 @@
                                     <td class="title bold">##word.item_group##</td>
                                     <td class="center bold">{{category_item.item_group.name}}</td>
                                 </tr>
-                                <tr>
+
+                                <tr ng-hide="category_item.service_item">
                                     <td class="title bold">##word.main_unit##</td>
                                     <td class="center bold">{{category_item.main_unit.name}}</td>
                                 </tr>
@@ -46,22 +47,30 @@
                                     </td>
                                 </tr>
 
-                                <td class="title">##word.stores_items_allow_buy##</td>
-                                <td ng-show="category_item.allow_buy == true" class="green center"> ##word.yes##
-                                </td>
-                                <td ng-show="category_item.allow_buy == false" class="red center"> ##word.not##
-                                </td>
+                                <tr ng-hide="category_item.service_item">
+
+                                    <td class="title">##word.stores_items_allow_buy##</td>
+                                    <td ng-show="category_item.allow_buy == true" class="green center"> ##word.yes##
+                                    </td>
+                                    <td ng-show="category_item.allow_buy == false" class="red center"> ##word.not##
+                                    </td>
                                 </tr>
 
 
-                                <tr>
+                                <tr ng-hide="category_item.service_item">
                                     <td class="title">##word.stores_items_is_pos##</td>
                                     <td ng-show="category_item.is_pos == true" class="green center"> ##word.yes##
                                     </td>
                                     <td ng-show="category_item.is_pos == false" class="red center"> ##word.not##
                                     </td>
                                 </tr>
-
+                                <tr ng-show="category_item.service_item">
+                                    <td class="title">##word.service_item##</td>
+                                    <td ng-show="category_item.is_pos == true" class="green center"> ##word.yes##
+                                    </td>
+                                    <td ng-show="category_item.is_pos == false" class="red center"> ##word.not##
+                                    </td>
+                                </tr>
 
                             </table>
                         </div>
@@ -128,8 +137,8 @@
                             <th>##word.stores_items_sizes##</th>
                             <th>##word.item_code##</th>
 
-                            <th>##word.stores_current_balance##</th>
-                            <th>##word.stores_start_balance##</th>
+                            <th ng-hide="category_item.service_item">##word.stores_current_balance##</th>
+                            <th ng-hide="category_item.service_item">##word.stores_start_balance##</th>
                             <th>##word.actions##</th>
                         </tr>
 
@@ -147,13 +156,14 @@
                             </td>
                             <td class="center bold blue"> <br>{{item.barcode}}</td>
 
-                            <td><br>
+                            <td ng-hide="category_item.service_item">
+                                <br>
                                 <p class="center bold green" ng-show="item.current_count > 0">
                                     {{item.current_count}} </p>
                                 <p class="bold red center" ng-show="item.current_count == 0 ||item.current_count < 0">
                                     {{item.current_count}} </p>
                             </td>
-                            <td>
+                            <td ng-hide="category_item.service_item">
                                 <br>
                                 <p class="bold center"> {{item.start_count}} </p>
                             </td>
@@ -168,7 +178,7 @@
                                     </p>
                                 </div>
 
-                                <div class="row center">
+                                <div class="row center" ng-hide="category_item.service_item">
                                     <i-button type="view" label="##word.branches_balances##"
                                         ng-click=" item.view = true ; branchesBalances(item)">
                                     </i-button>

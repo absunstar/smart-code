@@ -105,9 +105,8 @@
 
                             <td>
                                 <i-control ng-change="calcSize(itm)" type="number" ng-model="itm.count"></i-control>
-                                <hr>
-                                <br>
-                                <p class="center green">{{itm.store_count}}</p>
+                                <hr ng-hide="itm.service_item">
+                                <p class="center green" ng-hide="itm.service_item">{{itm.store_count}}</p>
                             </td>
 
                             <td ng-hide="store_out.type.id ==5">

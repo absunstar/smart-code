@@ -196,7 +196,7 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
             validit: (_size.validit || 0),
             size_en: _size.size_en,
             size_units_list: _size.size_units_list,
-            item_complex : _size.item_complex,
+            item_complex: _size.item_complex,
             complex_items: _size.complex_items,
             barcode: _size.barcode,
             ticket_code: _size.ticket_code,
@@ -214,6 +214,8 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
         method: "POST",
         url: "/api/stores_items/all",
         data: {
+          where: { service_item: { $ne: true } },
+
           search: $scope.item.search_item_name
         }
       }).then(
@@ -359,7 +361,8 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
   $scope.stockItemsGroup = function (item_group) {
     $scope.error = '';
     $scope.store_stock.items = [];
-    where = { item_group: item_group }
+
+    where = { item_group: item_group, service_item: { $ne: true } }
     $http({
       method: "POST",
       url: "/api/stores_items/all",
@@ -445,7 +448,9 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
     $http({
       method: "POST",
       url: "/api/stores_items/all",
-      data: {}
+      data: {
+        where: { service_item: { $ne: true } },
+      }
     }).then(
       function (response) {
         $scope.busy = false;
@@ -519,6 +524,7 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
       }
     );
   }
+  
 
   $scope.getBarcode = function (ev) {
     $scope.error = '';
@@ -527,7 +533,7 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
         method: "POST",
         url: "/api/stores_items/all",
         data: {
-          where: { barcode: $scope.search_barcode }
+          where: { barcode: $scope.search_barcode, service_item: { $ne: true } }
         }
       }).then(
         function (response) {
@@ -1001,7 +1007,7 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
     itm.work_patch = size.work_patch;
     itm.validit = size.validit;
     $scope.patch_count = 0;
-
+    
     $http({
       method: "POST",
       url: "/api/stores_items/all",

@@ -25,6 +25,11 @@
         "ar": "التشغيلة"
     },
     {
+        "name": "service_item",
+        "en": "Service Item",
+        "ar": "صنف خدمي"
+    },
+    {
         "name": "patches_list",
         "en": "Serials List",
         "ar": "قائمة السيريالات"

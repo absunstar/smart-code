@@ -18,8 +18,9 @@
 
     {"name" : "units_switch_store_name" , "en" : "Units Switch" , "ar" : "  إسم المخزن "},
     {"name" : "units_trans" , "en" : "Unit To Trans" , "ar" : "الوحدة م. لها"},
-    {"name" : "patch_trans" , "en" : "Patch To Trans" , "ar" : "التشغيلة م. له"},
-    {"name" : "count_trans" , "en" : "Count To Trans" , "ar" : "كمية م. له"},
+    {"name" : "err_units_trans" , "en" : "Must Select Unit To Trans" , "ar" : "يجب تحديد الوحدة م. لها"},
+    {"name" : "patch_trans" , "en" : "Patch To Trans" , "ar" : "التشغيلة م. لها"},
+    {"name" : "count_trans" , "en" : "Count To Trans" , "ar" : "كمية م. لها"},
     {"name" : "Unit_switch" , "en" : "Unit Switch" , "ar" : "تحويل وحدة"},
     {"name" : "units_trans_err" , "en" : "It is not possible to convert to the same unit" , "ar" : "لا يمكن التحويل لنفس الوحدة"},
 

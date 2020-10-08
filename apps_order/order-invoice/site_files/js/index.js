@@ -1692,6 +1692,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         data: {
           where: {
             "item_group.id": group.id,
+            service_item: { $ne: true },
             "is_pos": true
           }
         }

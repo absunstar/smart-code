@@ -30,7 +30,7 @@
 
                 </div>
                 <br>
-            
+
             </div>
             <div class="col3">
                 <i-image category="units_switch" ng-model="units_switch.image_url"> </i-image>
@@ -61,8 +61,8 @@
 
                     <td> <br ng-hide="itm.work_patch || itm.work_serial"> {{$index + 1}}
                         <div class="row">
-                            <i-button label="##word.patch##" ng-show="itm.work_patch || itm.work_serial"
-                                type="view" ng-click="patchesList(itm)">
+                            <i-button label="##word.patch##" ng-show="itm.work_patch || itm.work_serial" type="view"
+                                ng-click="patchesList(itm)">
                             </i-button>
                         </div>
                     </td>
@@ -75,13 +75,12 @@
                     </td>
                     <td>
                         <i-list ng-model="itm.unit" ng-search="_search.$category_item.$unit_search"
-                            ng-change="itm.store_count = itm.unit.current_count ;calcSize(itm)"
-                            display2="barcode" items="itm.size_units_list"></i-list>
+                            ng-change="itm.store_count = itm.unit.current_count ;calcSize(itm)" display2="barcode"
+                            items="itm.size_units_list"></i-list>
                     </td>
                     <td>
-                        <i-list ng-model="itm.units_trans" items="itm.size_units_list" v="r"
-                            ng-change="calc(itm)" ng-search="_search.$category_item.$units_trans_search"
-                            display2="barcode">
+                        <i-list ng-model="itm.units_trans" items="itm.size_units_list" v="r" ng-change="calc(itm)"
+                            ng-search="_search.$category_item.$units_trans_search" display2="barcode">
                         </i-list>
                     </td>
                     <td class="blue"> <br> {{itm.store_count}}</td>
@@ -90,11 +89,13 @@
                         <i-control type="number" ng-change="calc(itm)" ng-model="itm.count"></i-control>
                     </td>
 
-                    <td class="green"> <br> {{itm.count_trans}}</td>
+                    <td class="">
+                        <i-control type="number" ng-change="calcTrance(itm)" ng-model="itm.count_trans"></i-control>
+                    </td>
 
                     <td>
-                        <i-button label="##word.patch_trans##" ng-show="itm.work_patch || itm.work_serial"
-                            type="view" ng-click="patchesListSwitch(itm)">
+                        <i-button label="##word.patch_trans##" ng-show="itm.work_patch || itm.work_serial" type="view"
+                            ng-click="patchesListSwitch(itm)">
                         </i-button>
                         <i-button type="delete" ng-click="deleteRow(itm)"></i-button>
                     </td>

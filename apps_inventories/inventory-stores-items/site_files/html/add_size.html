@@ -30,13 +30,13 @@
 
                         <div class="row">
                             <i-control class="col3" ng-model="item.cost" label="##word.stores_items_cost##"
-                                type="number">
+                            ng-hide="category_item.service_item"  type="number">
                             </i-control>
                             <i-control class="col3" ng-model="item.price" label="##word.stores_items_price##"
                                 type="number">
                             </i-control>
                             <i-control class="col3" ng-model="item.average_cost" label="##word.average_cost##"
-                                type="number">
+                               ng-hide="category_item.service_item" type="number">
                             </i-control>
                         </div>
 
@@ -61,7 +61,7 @@
                                 </div>
                             </div>
 
-                            <div class="col2">
+                            <div class="col2" ng-hide="category_item.service_item">
                                 <i-control ng-show="item.work_patch" type="number" label="##word.validit##"
                                     ng-model="item.validit">
                                 </i-control>
@@ -70,7 +70,7 @@
                                 </i-checkbox>
                             </div>
 
-                            <div class="col2">
+                            <div class="col2" ng-hide="category_item.service_item">
 
                                 <i-checkbox ng-hide="item.work_patch" label="##word.work_serial##" ng-model="item.work_serial">
                                 </i-checkbox>
@@ -86,7 +86,7 @@
                     </div>
 
                 </div>
-                <div class="col3">
+                <div class="col3" ng-hide="category_item.service_item">
 
                     <i-checkbox label="##word.stores_items_complex##" ng-model="item.item_complex">
                     </i-checkbox>
