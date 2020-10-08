@@ -192,7 +192,7 @@ app.controller("units_switch", function ($scope, $http, $timeout) {
             $scope.busy = false;
             if (response.data.done) {
               site.hideModal('#addUnitsSwitchModal');
-              $scope.loadAll();
+              $scope.loadAll({ date: new Date() });
 
             } else {
 
@@ -834,7 +834,6 @@ app.controller("units_switch", function ($scope, $http, $timeout) {
             function (response) {
               $scope.busy = false;
               if (response.data.done) {
-                $scope.loadAll();
               } else {
                 $scope.error = '##word.error##';
                 if (response.data.error.like('*OverDraft Not*')) {
@@ -977,7 +976,7 @@ app.controller("units_switch", function ($scope, $http, $timeout) {
     }, 250);
   };
 
-  
+
   $scope.viewPatchesList = function (itm, value) {
     $scope.error = '';
     $scope.item_patch = itm;

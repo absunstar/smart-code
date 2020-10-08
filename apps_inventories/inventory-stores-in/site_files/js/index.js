@@ -898,7 +898,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
 
                 $scope.addAccountInvoice(account_invoices)
               }
-
+              $scope.loadAll({ date: new Date() });
               $scope.newStoreIn();
 
             } else {
@@ -1504,7 +1504,6 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
     if (notExistCount) {
       if (store_in.posting) store_in.posting = false;
       else store_in.posting = true;
-
       $scope.error = "##word.err_exist_count##";
       return;
     };
@@ -1519,15 +1518,15 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
           return;
         };
 
-
         if (callback.not_patch) {
           $scope.error = `##word.err_find_serial##   ( ${callback.patch_list.join('-')} )`;
+          store_in.posting = false;
           return;
         };
 
-        if (testCallback.exist_serial && store_in.type.id !== 4) {
+        if (store_in.posting && testCallback.exist_serial && store_in.type.id !== 4) {
           $scope.error = `##word.serial_pre_existing##   ( ${testCallback.patch_list.join('-')} )`;
-          store_in.posting = false;
+          store_in.posting = true;
           return;
         };
 

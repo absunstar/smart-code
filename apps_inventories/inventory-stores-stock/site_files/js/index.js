@@ -100,7 +100,7 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
           if (response.data.done) {
             site.hideModal('#addStoreStockModal');
 
-            $scope.loadAll();
+            $scope.loadAll({ date: new Date() });
 
           } else $scope.error = response.data.error;
 

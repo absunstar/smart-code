@@ -160,7 +160,7 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
             $scope.busy = false;
             if (response.data.done) {
               site.hideModal('#addTransferBranchModal');
-
+              $scope.loadAll({ date: new Date() });
             } else $scope.error = response.data.error;
 
           },

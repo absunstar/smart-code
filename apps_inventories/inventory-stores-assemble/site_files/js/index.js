@@ -182,7 +182,7 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
             $scope.busy = false;
             if (response.data.done) {
               site.hideModal('#addStoreAssembleModal');
-              $scope.loadAll();
+              $scope.loadAll({ date: new Date() });
 
             } else {
 
@@ -740,24 +740,76 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
       $scope.testPatches(store_assemble, callbackTest => {
 
         if (callbackTest.patchCount) {
+          if (store_assemble.posting) store_assemble.posting = false;
+          else store_assemble.posting = true;
           $scope.error = `##word.err_patch_count##   ( ${callbackTest.patch_list.join('-')} )`;
           return;
         };
 
         if (callbackTest.not_patch) {
+          if (store_assemble.posting) store_assemble.posting = false;
+          else store_assemble.posting = true;
           $scope.error = `##word.err_find_serial##   ( ${callbackTest.patch_list.join('-')} )`;
           return;
         };
 
         if (callbackTest.exist_serial && store_assemble.posting) {
+          if (store_assemble.posting) store_assemble.posting = false;
+          else store_assemble.posting = true;
           $scope.error = `##word.serial_pre_existing##   ( ${callbackTest.patch_list.join('-')} )`;
           return;
         };
 
         if (callbackTest.errDate) {
+          if (store_assemble.posting) store_assemble.posting = false;
+          else store_assemble.posting = true;
           $scope.error = '##word.err_patch_date##';
           return;
-        }
+        };
+
+
+        let obj = {
+          patchCount: false,
+          patch_list: []
+        };
+
+        store_assemble.items.forEach(_itm => {
+          if (_itm.complex_items && _itm.complex_items.length > 0) {
+            _itm.complex_items.forEach(_comp => {
+              let count = 0;
+              _comp.patches_count = _comp.count * _itm.count;
+              if (_comp.patch_list && _comp.patch_list.length > 0) {
+                _comp.patch_list.forEach(_pl => {
+                  if (typeof _pl.count === 'number') {
+                    count += _pl.count;
+                  } else {
+                    obj.patchCount = true;
+                    obj.patch_list.push(_itm.barcode);
+                  }
+                });
+              } else if (_comp.work_serial || _comp.work_patch) {
+                obj.patchCount = true;
+                obj.patch_list.push(_itm.barcode)
+              }
+              if (count != _comp.patches_count && (_comp.work_serial || _comp.work_patch)) {
+                obj.patchCount = true;
+                obj.patch_list.push(_itm.barcode)
+              }
+            });
+          }
+        });
+
+        obj.patch_list = obj.patch_list.filter(function (item, pos) {
+          return obj.patch_list.indexOf(item) === pos;
+        });
+
+        if (obj.patchCount) {
+          if (store_assemble.posting) store_assemble.posting = false;
+          else store_assemble.posting = true;
+          $scope.error = `##word.err_patch_count_comp##   ( ${obj.patch_list.join('-')} )`;
+          return;
+        };
+
 
         if (!callback) {
           $scope.busy = true;
@@ -769,7 +821,6 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
             function (response) {
               $scope.busy = false;
               if (response.data.done) {
-                $scope.loadAll();
               } else {
                 $scope.error = '##word.error##';
                 if (response.data.error.like('*OverDraft Not*')) {
@@ -782,8 +833,7 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
             }
           )
         } else {
-          if (store_assemble.posting)
-            store_assemble.posting = false;
+          if (store_assemble.posting) store_assemble.posting = false;
           else store_assemble.posting = true;
           $scope.error = '##word.err_stock_item##';
         }

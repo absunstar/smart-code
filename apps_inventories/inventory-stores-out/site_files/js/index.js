@@ -423,6 +423,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
                   $scope.addAccountInvoice(account_invoices)
                 }
                 $scope.store_out = {};
+                $scope.loadAll({date: new Date()});
                 site.hideModal('#addStoreOutModal');
                 $timeout(() => {
                   document.querySelector('#clickNew').click();
@@ -1952,6 +1953,9 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
 
         if (callbackTest.patchCount) {
           $scope.error = `##word.err_patch_count##   ( ${callbackTest.patch_list.join('-')} )`;
+          if (store_out.posting) store_out.posting = false;
+          else store_out.posting = true;
+    
           return;
         };
 
@@ -2024,6 +2028,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
 
                 if (callbackTest.patchCount) {
                   $scope.error = `##word.err_patch_count##   ( ${callbackTest.patch_list.join('-')} )`;
+                  _store_out_all[i].posting = false;
                   return;
                 };
 
@@ -2367,8 +2372,6 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
   $scope.loadDelegates();
   $scope.loadDiscountTypes();
   $scope.loadCurrencies();
-  $scope.loadAll({
-    date: new Date()
-  });
+  $scope.loadAll({date: new Date()});
 
 });
