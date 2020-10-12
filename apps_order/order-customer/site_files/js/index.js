@@ -763,6 +763,7 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
         select: {
           id: 1,
           name: 1,
+          discount : 1,
           image_url: 1
         }
       }

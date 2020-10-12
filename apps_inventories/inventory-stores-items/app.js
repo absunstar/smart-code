@@ -852,7 +852,10 @@ module.exports = function init(site) {
         'sizes.barcode': search
       })
 
-    
+      where.$or.push({
+        'sizes.size_units_list.barcode': search
+      })
+
       where.$or.push({
         'name': site.get_RegExp(search, 'i')
       })
@@ -890,7 +893,9 @@ module.exports = function init(site) {
     }
 
     if (where['barcode']) {
-      where['sizes.barcode'] = where['barcode']
+
+      where['$or'] = [{ 'sizes.barcode': where['barcode'] }, { 'sizes.size_units_list.barcode': where['barcode'] }]
+
       delete where['barcode']
     }
 
@@ -936,7 +941,6 @@ module.exports = function init(site) {
       if (!err) {
         response.done = true
         let patch_list = []
-
         if (store_id && barcode && docs && docs.length === 1) {
 
           if (docs[0].sizes && docs[0].sizes.length > 0)

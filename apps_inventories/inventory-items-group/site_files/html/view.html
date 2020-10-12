@@ -3,17 +3,22 @@
         <fieldset>
             <legend> ##word.basic_information##</legend>
             <div class="col9">
-                <table id="basicInformationTable" class="table bold">
+                <table id="basicInformationTable" class="table hover bold">
 
                     <tr>
                         <td class="title">##word.items_group_code##</td>
-                        <td class="center">{{items_group.code}}</td>
+                        <td class="center blue">{{items_group.code}}</td>
                     </tr>
 
 
                     <tr>
                         <td class="title">##word.items_group_name##</td>
                         <td class="center">{{items_group.name}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="title">##word.discount##</td>
+                        <td class="center red">{{items_group.discount.value}} %</td>
                     </tr>
 
                     <tr>

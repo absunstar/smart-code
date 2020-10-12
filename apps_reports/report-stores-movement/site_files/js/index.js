@@ -191,7 +191,8 @@ app.controller("report_stores_movement", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name: 1
+          name: 1,
+          discount : 1
         }
       }
     }).then(

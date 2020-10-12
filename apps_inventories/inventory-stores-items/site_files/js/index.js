@@ -523,7 +523,8 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name: 1
+          name: 1,
+          discount : 1
         }
       }
     }).then(
@@ -1573,7 +1574,7 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
       if (obj.units_trans && obj.units_trans.id) {
         obj.count_trans = (obj.unit.convert * obj.count) / obj.units_trans.convert
       } else {
-        obj.count = 0;
+        obj.count = 1;
         obj.count_trans = 0;
         $scope.error = '##word.err_units_trans##';
       }
@@ -1586,7 +1587,7 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
       if (obj.units_trans && obj.units_trans.id) {
         obj.count = (obj.units_trans.convert * obj.count_trans) / obj.unit.convert
       } else {
-        obj.count = 0;
+        obj.count = 1;
         obj.count_trans = 0;
         $scope.error = '##word.err_units_trans##'
       }

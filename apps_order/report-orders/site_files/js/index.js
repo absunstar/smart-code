@@ -39,7 +39,8 @@ app.controller("report_orders", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name: 1
+          name: 1,
+          discount : 1
         }
       }
     }).then(

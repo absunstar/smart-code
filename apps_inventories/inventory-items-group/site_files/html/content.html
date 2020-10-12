@@ -10,7 +10,9 @@
                     <div class="row">
                         <i-control help-id="items_group_code" v="r" class="col2" label="##word.items_group_code##" ng-model="items_group.code"></i-control>
                         <i-control help-id="items_group_name" v="r ll2" class="col4" label="##word.items_group_name##" ng-model="items_group.name"></i-control>
-                        <i-checkbox help-id="items_group_active" class="col3" label="##word.active##" ng-model="items_group.active"></i-checkbox>
+                        <i-control type="number" class="col2" label="##word.discount##" ng-model="items_group.discount.value"></i-control>
+                        <div class="col2"></div>
+                        <i-checkbox help-id="items_group_active" class="col2" label="##word.active##" ng-model="items_group.active"></i-checkbox>
                     </div>
 
                 </div>

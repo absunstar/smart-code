@@ -423,7 +423,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
                   $scope.addAccountInvoice(account_invoices)
                 }
                 $scope.store_out = {};
-                $scope.loadAll({date: new Date()});
+                $scope.loadAll({ date: new Date() });
                 site.hideModal('#addStoreOutModal');
                 $timeout(() => {
                   document.querySelector('#clickNew').click();
@@ -625,7 +625,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
               average_cost: _size.unit.average_cost,
               cost: _size.unit.cost,
               price: _size.unit.price,
-              discount: _size.unit.discount,
+              discount: _size.discount,
               barcode: _size.barcode,
               count: _size.count,
               total: _size.total,
@@ -699,24 +699,26 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
                 if (_item.sizes && _item.sizes.length > 0)
                   _item.sizes.forEach(_size => {
                     let foundHold = false;
-                    let foundUnit = false;
                     let indxUnit = 0;
 
                     if (_size.size_units_list && _size.size_units_list.length > 0)
                       _size.size_units_list.forEach((_unit, i) => {
-                        if ((_unit.barcode === $scope.item.search_item_name) && typeof _unit.barcode == 'string') {
-                          foundUnit = true;
-                        }
+
                         if (_unit.id == _item.main_unit.id)
                           indxUnit = i;
                       });
 
-                    if ((_size.barcode === $scope.item.search_item_name) || foundUnit) {
+                    if ((_size.barcode === $scope.item.search_item_name) || (_size.size_units_list[indxUnit].barcode === $scope.item.search_item_name)) {
                       _size.name = _item.name;
                       _size.item_group = _item.item_group;
                       _size.store = $scope.store_out.store;
                       _size.unit = _size.size_units_list[indxUnit];
-                      _size.discount = _size.size_units_list[indxUnit].discount;
+                      $scope.categories.forEach(_category => {
+                        if (_category.id === _size.item_group.id) {
+                          if (_category.discount && _category.discount.value) _size.discount = _category.discount
+                          else _size.discount = _size.size_units_list[indxUnit].discount;
+                        }
+                      });
                       _size.average_cost = _size.size_units_list[indxUnit].average_cost;
                       _size.price = _size.size_units_list[indxUnit].price;
                       _size.cost = _size.size_units_list[indxUnit].cost;
@@ -893,14 +895,11 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
               if (response.data.list[0].sizes && response.data.list[0].sizes.length > 0)
                 response.data.list[0].sizes.forEach(_size => {
                   let foundHold = false;
-                  let foundUnit = false;
                   let indxUnit = 0;
 
                   if (_size.size_units_list && _size.size_units_list.length > 0)
                     _size.size_units_list.forEach((_unit, i) => {
-                      if ((_unit.barcode === $scope.search_barcode) && typeof _unit.barcode == 'string') {
-                        foundUnit = true;
-                      }
+
                       if (_unit.id == response.data.list[0].main_unit.id)
                         indxUnit = i;
                     });
@@ -919,12 +918,17 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
                         });
                     });
 
-                  if ((_size.barcode === $scope.search_barcode) || foundUnit) {
+                  if ((_size.barcode === $scope.search_barcode) || _size.size_units_list[indxUnit].barcode === $scope.search_barcode) {
                     _size.name = response.data.list[0].name;
                     _size.item_group = response.data.list[0].item_group;
                     _size.store = $scope.store_out.store;
                     _size.unit = _size.size_units_list[indxUnit];
-                    _size.discount = _size.size_units_list[indxUnit].discount;
+                    $scope.categories.forEach(_category => {
+                      if (_category.id === _size.item_group.id) {
+                        if (_category.discount && _category.discount.value) _size.discount = _category.discount
+                        else _size.discount = _size.size_units_list[indxUnit].discount;
+                      }
+                    });
                     _size.average_cost = _size.size_units_list[indxUnit].average_cost;
                     _size.price = _size.size_units_list[indxUnit].price;
                     _size.cost = _size.size_units_list[indxUnit].cost;
@@ -1239,7 +1243,8 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name: 1
+          name: 1,
+          discount: 1
         }
       }
     }).then(
@@ -1956,7 +1961,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
           $scope.error = `##word.err_patch_count##   ( ${callbackTest.patch_list.join('-')} )`;
           if (store_out.posting) store_out.posting = false;
           else store_out.posting = true;
-    
+
           return;
         };
 
@@ -2373,6 +2378,6 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
   $scope.loadDelegates();
   $scope.loadDiscountTypes();
   $scope.loadCurrencies();
-  $scope.loadAll({date: new Date()});
+  $scope.loadAll({ date: new Date() });
 
 });

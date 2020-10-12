@@ -362,19 +362,16 @@ app.controller("units_switch", function ($scope, $http, $timeout) {
                 if (_item.sizes && _item.sizes.length > 0)
                   _item.sizes.forEach(_size => {
                     let foundHold = false;
-                    let foundUnit = false;
                     let indxUnit = 0;
 
                     if (_size.size_units_list && _size.size_units_list.length > 0)
                       _size.size_units_list.forEach((_unit, i) => {
-                        if ((_unit.barcode == $scope.item.search_item_name) && typeof _unit.barcode == 'string') {
-                          foundUnit = true;
-                        }
+                   
                         if (_unit.id == _item.main_unit.id)
                           indxUnit = i;
                       });
 
-                    if ((_size.barcode == $scope.item.search_item_name) || foundUnit) {
+                    if ((_size.barcode == $scope.item.search_item_name) || (_size.size_units_list[indxUnit].barcode === $scope.item.search_item_name)) {
                       _size.name = _item.name;
                       _size.item_group = _item.item_group;
                       _size.store = $scope.units_switch.store;
@@ -532,20 +529,16 @@ app.controller("units_switch", function ($scope, $http, $timeout) {
               if (response.data.list[0].sizes && response.data.list[0].sizes.length > 0)
                 response.data.list[0].sizes.forEach(_size => {
                   let foundHold = false;
-                  let foundUnit = false;
                   let indxUnit = 0;
 
                   if (_size.size_units_list && _size.size_units_list.length > 0)
                     _size.size_units_list.forEach((_unit, i) => {
-                      if ((_unit.barcode == $scope.search_barcode) && typeof _unit.barcode == 'string') {
-                        foundUnit = true;
-                      }
+
                       if (_unit.id == response.data.list[0].main_unit.id)
                         indxUnit = i;
 
-
                     });
-                  if ((_size.barcode == $scope.search_barcode) || foundUnit) {
+                  if ((_size.barcode == $scope.search_barcode) || _size.size_units_list[indxUnit].barcode === $scope.search_barcode) {
                     _size.name = response.data.list[0].name;
                     _size.item_group = response.data.list[0].item_group;
                     _size.store = $scope.units_switch.store;
@@ -919,7 +912,8 @@ app.controller("units_switch", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name: 1
+          name: 1,
+          discount : 1
         }
       }
     }).then(
@@ -977,7 +971,7 @@ app.controller("units_switch", function ($scope, $http, $timeout) {
       if (obj.units_trans && obj.units_trans.id) {
         obj.count_trans = (obj.unit.convert * obj.count) / obj.units_trans.convert
       } else {
-        obj.count = 0;
+        obj.count = 1;
         obj.count_trans = 0;
         $scope.error = '##word.err_units_trans##';
       }
@@ -990,7 +984,7 @@ app.controller("units_switch", function ($scope, $http, $timeout) {
       if (obj.units_trans && obj.units_trans.id) {
         obj.count = (obj.units_trans.convert * obj.count_trans) / obj.unit.convert
       } else {
-        obj.count = 0;
+        obj.count = 1;
         obj.count_trans = 0;
         $scope.error = '##word.err_units_trans##'
       }
