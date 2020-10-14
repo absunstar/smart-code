@@ -627,7 +627,12 @@
     {
         "name": "store_stock_menu",
         "en": "Stores Stocktaking Menu",
-        "ar": "قائمة الجرد المخزني"
+        "ar": "الجرد المخزني"
+    },
+    {
+        "name": "store_offer_menu",
+        "en": "Items Offers",
+        "ar": "عروض الأصناف"
     },
     {
         "name": "store_stock_management",

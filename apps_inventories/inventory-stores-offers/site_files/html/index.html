@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="stores_offer_ui || stores_offer_manage" data-ng-app="myApp">
+
+<head x-import="head.html">
+
+</head>
+
+<body class="##session.lang##">
+
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+
+    </nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+
+    </nav>
+    <div id="main-layout" class="container">
+        <div class="row ">
+            <div class="row" ng-controller="stores_offer">
+
+                <div x-permissions="stores_offer_add || stores_offer_manage"
+                    x-import="inventory-stores-offers/add_modal.html"></div>
+
+                <div x-permissions="stores_offer_delete || stores_offer_manage"
+                    x-import="inventory-stores-offers/delete_modal.html"></div>
+
+                <div x-permissions="stores_offer_view || stores_offer_manage"
+                    x-import="inventory-stores-offers/view_modal.html"></div>
+
+                <div x-permissions="stores_offer_search || stores_offer_manage"
+                    x-import="inventory-stores-offers/search_all_modal.html"></div>
+
+                <div x-permissions="stores_offer_update || stores_offer_manage"
+                    x-import="inventory-stores-offers/update_modal.html"></div>
+
+                <div x-permissions="stores_offer_add || stores_offer_update || stores_offer_manage"
+                    x-import="inventory-stores-offers/select_items_modal.html"></div>
+
+                <div class="row">
+                    <h1 class="bold text-center"> ##word.stores_offer## </h1>
+                </div>
+                <div class="top-actions">
+
+                    <i-button x-permissions="stores_offer_add || stores_offer_manage" type="add"
+                        label="##word.stores_offer_new##" ng-click="newStoreOffer()"></i-button>
+
+                    <i-button x-permissions="stores_offer_search || stores_offer_manage" type="search"
+                        label="##word.search_all##" onclick="site.showModal('#StoresOfferSearchModal')"></i-button>
+
+                    <h2 class="bold red text-center"> {{error}}</h2>
+                    <h3 class="bold text-center"> ##word.count## : {{count}}</h3>
+                </div>
+                <table id="t1" class="table loaded center bold hover">
+                    <tr>
+                        <th class="not-print"> ##word.logo## </th>
+                        <th>##word.startup_date##</th>
+                        <th>##word.deadline_date##</th>
+                        <th>##word.stores_offer_id##</th>
+                        <th>##word.offer_ratio##</th>
+                        <th class="not-print">##word.actions##</th>
+                    </tr>
+                    <tr ng-repeat="c in list">
+                        <td class="not-print">
+                            <img class="logo" ng-src="{{c.image_url}}">
+                        </td>
+
+                        <td>
+                            <p class="text-center green"> <br> {{c.startup_date | date : 'yyyy - MM - dd'}} </p>
+                        </td>
+
+                        <td>
+                            <p class="text-center red"> <br> {{c.deadline_date | date : 'yyyy - MM - dd'}} </p>
+                        </td>
+
+                        <td>
+                            <p class="bold blue text-center"> <br> {{c.code}} </p>
+                        </td>
+
+                        <td>
+                            <p class="text-center red"> <br> {{c.offer_ratio}} %</p>
+                        </td>
+
+                        <td class="center not-print">
+                            <i-button x-permissions="stores_offer_view || stores_offer_manage" type="details"
+                                label="##word.details##" ng-click="details(c)"></i-button>
+
+                            <i-button x-permissions="stores_offer_update || stores_offer_manage" type="edit"
+                                label="##word.update##" ng-click="edit(c)"></i-button>
+
+                            <i-button x-permissions="stores_offer_delete || stores_offer_manage" type="delete"
+                                label="##word.delete##" ng-click="remove(c)"></i-button>
+                        </td>
+                    </tr>
+
+                </table>
+
+                <i-button x-permissions="stores_offer_print || stores_offer_manage" type="print" label="##word.print##"
+                    onclick="site.print('#t1')"></i-button>
+
+            </div>
+        </div>
+    </div>
+
+    <div x-import="scripts.html"></div>
+    <script x-import="inventory-stores-offers/index.js"></script>
+
+</body>
+
+</html>

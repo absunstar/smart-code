@@ -1,0 +1,13 @@
+[
+    { "module_name" : "inventory" , "screen_name" : "inventory-stores-offer" , "name":"stores_offer_manage" , "en":"Manage" , "ar":"إدارة"},
+    { "module_name" : "inventory" , "screen_name" : "inventory-stores-offer" , "name":"stores_offer_add" , "en":"Add" , "ar":"إضافة"},
+    { "module_name" : "inventory" , "screen_name" : "inventory-stores-offer" , "name":"stores_offer_update" , "en":"Edit" , "ar":"تعديل"},
+    { "module_name" : "inventory" , "screen_name" : "inventory-stores-offer" , "name":"stores_offer_delete" , "en":"Delete" , "ar":"حذف"},
+    { "module_name" : "inventory" , "screen_name" : "inventory-stores-offer" , "name":"stores_offer_view" , "en":"View" , "ar":"عرض"},
+    { "module_name" : "inventory" , "screen_name" : "inventory-stores-offer" , "name":"stores_offer_search" , "en":"Search" , "ar":"بحث"},
+    { "module_name" : "inventory" , "screen_name" : "inventory-stores-offer" , "name":"stores_offer_export" , "en":"Export" , "ar":"تصدير"},
+    { "module_name" : "inventory" , "screen_name" : "inventory-stores-offer" , "name":"stores_offer_print" , "en":"Print" , "ar":"طباعة"},
+    { "module_name" : "inventory" , "screen_name" : "inventory-stores-offer" , "name":"stores_offer_hold" , "en":"Hold" , "ar":"تعليق"},
+    { "module_name" : "inventory" , "screen_name" : "inventory-stores-offer" , "name":"stores_offer_settlement" , "en":"Settlement Stock" , "ar":"تسوية الجرد"},
+    { "module_name" : "inventory" , "screen_name" : "inventory-stores-offer" , "name":"stores_offer_ui" , "en":"UI" , "ar":"الواجهة الرسومية"}
+]

@@ -1,0 +1,7 @@
+[{
+    "module_name" : "inventory" ,
+    "name": "stores_offer_admin",
+    "en": "Stores Offers Admin",
+    "ar": "إدارة العروض",
+    "permissions": ["stores_offer_manage"]
+}]

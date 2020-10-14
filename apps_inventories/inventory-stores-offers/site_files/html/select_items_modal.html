@@ -1,0 +1,74 @@
+<div id="selectItemsModal" class="modal" fixed>
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.stores_in_items##
+            </h2>
+        </div>
+        <div class="modal-body">
+            <form>
+                <div class="row">
+                    <i-control ng-keydown="getItemsName($event)" id="item_name" class="col3" ng-model="item.search_item_name"
+                        label="##word.search##" type="text"></i-control>
+                    <i-list class="col4" label="##word.stores_in_item_name##" ng-model="item.name" display="name"
+                        items="itemsNameList" ng-change="itemsStoresOffer()" ng-search="item_searching"></i-list>
+                </div>
+                <div class="row">
+
+
+                    <fieldset class="col8" ng-show="item.sizes.length > 0">
+                        <legend> ##word.stores_items_sizes## </legend>
+
+                        <table class="table center bold hover">
+                            <tr>
+                                <th>##word.serial##</th>
+                                <th>##word.stores_offer_item_name##</th>
+                                <th>##word.barcode##</th>
+                                <th>##word.stores_offer_item_size##</th>
+                                <th>##word.units##</th>
+                                <th>##word.actions##</th>
+                            </tr>
+
+                            <tr ng-repeat="itm in item.sizes track by $index">
+                                <td> <br> {{$index + 1}}</td>
+                                <td> <br> {{itm.name}}</td>
+                                <td> <br> {{itm.barcode}}</td>
+                                <td> <br> {{itm.size}}</td>
+
+                                <td>
+
+                                    <table class="table center bold hover">
+                                        <tr>
+                                            <th>##word.unit##</th>
+                                            <th>##word.transfer_branch_item_store_balance##</th>
+                                        </tr>
+
+                                        <tr ng-repeat="i in itm.size_units_list">
+                                            <td> {{i.name}} <b ng-show="i.barcode"> - </b> <b
+                                                    class="blue">{{i.barcode}}</b> </td>
+                                            <td> {{i.store_count}}</td>
+
+                                        </tr>
+                                    </table>
+
+                                </td>
+
+
+                                <td>
+                                    <i-button type="delete" ng-click="deleteitem(itm)"></i-button>
+                                </td>
+                            </tr>
+                        </table>
+                    </fieldset>
+
+                </div>
+            </form>
+        </div>
+        <h2 class="error center bold">{{error}}</h2>
+        <div class="modal-footer center">
+            <i-button type="add" label="##word.stores_in_add_to_items##" ng-click="addToItems()"></i-button>
+            <i-button type="close" label=" ##word.close##" onclick="site.hideModal('#selectItemsModal')"></i-button>
+        </div>
+    </div>
+</div>
