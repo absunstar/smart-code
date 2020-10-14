@@ -1,81 +1,89 @@
 <div ng-hide="busy" class="row" fixed>
-    <div class="col9">
-        <br>
-        <table class="table hover bold">
 
-            <tr>
-                <td class="title">##word.startup_date##</td>
-                <td class="center green">{{store_offer.startup_date |date:"dd - MM - yyyy" }}</td>
-            </tr>
+    <br>
+    <table class="table hover bold">
 
-            <tr>
-                <td class="title">##word.deadline_date##</td>
-                <td class="center red">{{store_offer.deadline_date |date:"dd - MM - yyyy" }}</td>
-            </tr>
+        <tr>
+            <td class="title">##word.startup_date##</td>
+            <td class="center green">{{store_offer.startup_date |date:"dd - MM - yyyy" }}</td>
+        </tr>
 
-            <tr>
-                <td class="title">##word.shift##</td>
-                <td class="center">{{store_offer.shift.code}} - {{store_offer.shift.name}}</td>
-            </tr>
+        <tr>
+            <td class="title">##word.deadline_date##</td>
+            <td class="center red">{{store_offer.deadline_date |date:"dd - MM - yyyy" }}</td>
+        </tr>
 
-            <tr>
-                <td class="title">##word.offer_ratio##</td>
-                <td class="center red">{{store_offer.offer_ratio}} %</td>
-            </tr>
+        <tr>
+            <td class="title">##word.shift##</td>
+            <td class="center">{{store_offer.shift.code}} - {{store_offer.shift.name}}</td>
+        </tr>
 
-            <tr>
-                <td class="title">##word.stores_offer_items##</td>
-                <td>
-                    <table class="table center bold hover">
-                        <tr>
-                            <th>##word.serial##</th>
-                            <th>##word.stores_offer_item_name##</th>
-                            <th>##word.barcode##</th>
-                            <th>##word.stores_offer_item_size##</th>
-                            <th>##word.units##</th>
-                        </tr>
-
-                        <tr ng-repeat="itm in store_offer.items">
-                            <td> <br> {{$index + 1}}</td>
-                            <td> <br> {{itm.name}}</td>
-                            <td> <br> {{itm.barcode}}</td>
-                            <td>
-                                <p>{{itm.size}}</p>
-                                <p>{{itm.size_en}}</p>
-                            </td>
-
-                            <td>
-                                <table class="table center bold hover">
-                                    <tr>
-                                        <th>##word.unit##</th>
-                                        <th>##word.offer_ratio##</th>
-                                    </tr>
-
-                                    <tr ng-repeat="i in itm.size_units_list">
-                                        <td> {{i.name}} <b ng-show="i.barcode"> - </b> <b class="blue">{{i.barcode}}</b>
-                                        </td>
-                                        <td class="red"> {{i.discount.value}} %</td>
-
-                                    </tr>
-                                </table>
-
-                            </td>
-
-                        </tr>
-                    </table>
-                </td>
-            </tr>
+        <tr>
+            <td class="title">##word.offer_value##</td>
+            <td class="center red">{{store_offer.offer_value.value}}
+                <b class="red" ng-show="store_offer.offer_value.type == 'number'">
+                    $</b>
+                <b class="red" ng-show="store_offer.offer_value.type == 'percent'"> % </b>
+            </td>
+        </tr>
 
 
+        <tr>
+            <td class="title">##word.status##</td>
+            <td ng-show="store_offer.active == true" class="center green"> ##word.active## </td>
+            <td ng-show="store_offer.active == false" class="center red"> ##word.not_active## </td>
+        </tr>
 
-        </table>
-    </div>
-    <div class="col3">
-        <br>
-        <i-image view category="stores_images" class="not-print" ng-model="store_offer.image_url"></i-image>
-        <br>
-        <i-files view ng-model="store_offer.files"></i-files>
-    </div>
+        <tr>
+            <td class="title">##word.stores_offer_items##</td>
+            <td>
+                <table class="table center bold hover">
+                    <tr>
+                        <th>##word.serial##</th>
+                        <th>##word.stores_offer_item_name##</th>
+                        <th>##word.barcode##</th>
+                        <th>##word.stores_offer_item_size##</th>
+                        <th>##word.units##</th>
+                    </tr>
+
+                    <tr ng-repeat="itm in store_offer.items">
+                        <td> <br> {{$index + 1}}</td>
+                        <td> <br> {{itm.name}}</td>
+                        <td> <br> {{itm.barcode}}</td>
+                        <td>
+                            <p>{{itm.size}}</p>
+                            <p>{{itm.size_en}}</p>
+                        </td>
+
+                        <td>
+                            <table class="table center bold hover">
+                                <tr>
+                                    <th>##word.unit##</th>
+                                    <th>##word.offer_value##</th>
+                                </tr>
+
+                                <tr ng-repeat="i in itm.size_units_list">
+                                    <td> {{i.name}} <b ng-show="i.barcode"> - </b> <b class="blue">{{i.barcode}}</b>
+                                    </td>
+                                    <td class="red bold">
+                                        <p>##word.discount## : <b class="red">{{i.discount.value}} </b></p>
+                                        </p> <b class="red" ng-show="i.discount.type == 'number'">
+                                            $</b>
+                                        <b class="red" ng-show="i.discount.type == 'percent'"> % </b>
+                                    </td>
+                                </tr>
+                            </table>
+
+                        </td>
+
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+
+
+    </table>
 
 </div>
 <div class="not-print" x-import="inventory-stores-offers/action_info.html"></div>

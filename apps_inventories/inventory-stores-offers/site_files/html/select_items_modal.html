@@ -9,10 +9,15 @@
         <div class="modal-body">
             <form>
                 <div class="row">
-                    <i-control ng-keydown="getItemsName($event)" id="item_name" class="col3" ng-model="item.search_item_name"
-                        label="##word.search##" type="text"></i-control>
-                    <i-list class="col4" label="##word.stores_in_item_name##" ng-model="item.name" display="name"
+                    <i-control ng-keydown="getItemsName($event)" id="item_name" class="col2"
+                        ng-model="item.search_item_name" label="##word.search##" type="text"></i-control>
+                    <i-list class="col3" label="##word.stores_in_item_name##" ng-model="item.name" display="name"
                         items="itemsNameList" ng-change="itemsStoresOffer()" ng-search="item_searching"></i-list>
+
+                    <div class="col1"></div>
+                    <i-list class="col3" ng-model="item_group" ng-change="offerItemsGroup(item_group)"
+                        ng-search="_search.$items_group_search" label="##word.item_group##" items="categories">
+                    </i-list>
                 </div>
                 <div class="row">
 

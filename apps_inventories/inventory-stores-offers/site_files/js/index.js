@@ -27,6 +27,13 @@ app.controller("stores_offer", function ($scope, $http, $timeout) {
         $scope.store_offer = {
           image_url: '/images/store_offer.png',
           shift: $scope.shift,
+          active: true,
+          offer_value: {
+            value: 0,
+            max: 0,
+            type: 'percent',
+
+          },
           items: [],
           startup_date: new Date(),
         };
@@ -72,7 +79,7 @@ app.controller("stores_offer", function ($scope, $http, $timeout) {
       return;
     }
 
-    
+
     if (new Date($scope.store_offer.startup_date) > new Date($scope.store_offer.deadline_date)) {
 
       $scope.error = "##word.stores_offer_err_date##";
@@ -219,11 +226,8 @@ app.controller("stores_offer", function ($scope, $http, $timeout) {
 
                     if (_size.size_units_list && _size.size_units_list.length > 0)
                       _size.size_units_list.forEach(_unit => {
-                        _unit.discount = {
-                          type: 'percent',
-                          value: $scope.store_offer.offer_ratio || 0,
-                          max: 0
-                        };
+
+                        _unit.discount = Object.assign({}, $scope.store_offer.offer_value);
                         if ((_unit.barcode === $scope.item.search_item_name) && typeof _unit.barcode == 'string') {
                           foundUnit = true;
                         }
@@ -264,7 +268,7 @@ app.controller("stores_offer", function ($scope, $http, $timeout) {
                     if ((_size.barcode === $scope.item.search_item_name) || foundUnit) {
                       _size.name = _item.name;
                       _size.item_group = _item.item_group;
-                    
+
                       foundSize = $scope.item.sizes.some(_itemSize => _itemSize.barcode === _size.barcode);
                       if (!foundSize) $scope.item.sizes.unshift(_size);
                     };
@@ -344,9 +348,9 @@ app.controller("stores_offer", function ($scope, $http, $timeout) {
 
   $scope.offerItemsGroup = function (item_group) {
     $scope.error = '';
-    $scope.store_offer.items = [];
+    $scope.item.sizes = $scope.item.sizes || [];
 
-    where = { item_group: item_group}
+    where = { item_group: item_group }
     $http({
       method: "POST",
       url: "/api/stores_items/all",
@@ -364,11 +368,7 @@ app.controller("stores_offer", function ($scope, $http, $timeout) {
 
                   if (_size.size_units_list && _size.size_units_list.length > 0)
                     _size.size_units_list.forEach(_unit => {
-                      _unit.discount = {
-                        type: 'percent',
-                        value: $scope.store_offer.offer_ratio || 0,
-                        max: 0
-                      };
+                      _unit.discount = Object.assign({}, $scope.store_offer.offer_value);
                       if (_size.branches_list && _size.branches_list.length > 0) {
                         let foundBranch = false;
                         let indxBranch = 0;
@@ -404,11 +404,11 @@ app.controller("stores_offer", function ($scope, $http, $timeout) {
                         }
                       }
                     });
-                  
+
                   _size.name = _list.name;
                   _size.item_group = _list.item_group;
-                  foundSize = $scope.store_offer.items.some(_itemSize => _itemSize.barcode === _size.barcode);
-                  if (!foundSize) $scope.store_offer.items.unshift(_size);
+                  foundSize = $scope.item.sizes.some(_itemSize => _itemSize.barcode === _size.barcode);
+                  if (!foundSize) $scope.item.sizes.unshift(_size);
 
                 });
             });
@@ -425,90 +425,6 @@ app.controller("stores_offer", function ($scope, $http, $timeout) {
       }
     );
   }
-
-
-  $scope.offerGeneral = function () {
-    $scope.error = '';
-    $scope.store_offer.items = [];
-    $http({
-      method: "POST",
-      url: "/api/stores_items/all",
-      data: {
-      }
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          if (response.data.list.length > 0) {
-            let foundSize = false;
-            response.data.list.forEach(_list => {
-
-              if (_list.sizes && _list.sizes.length > 0)
-                _list.sizes.forEach(_size => {
-                  if (_size.size_units_list && _size.size_units_list.length > 0)
-                    _size.size_units_list.forEach(_unit => {
-                      _unit.discount = {
-                        type: 'percent',
-                        value: $scope.store_offer.offer_ratio || 0,
-                        max: 0
-                      };
-                      if (_size.branches_list && _size.branches_list.length > 0) {
-                        let foundBranch = false;
-                        let indxBranch = 0;
-                        _size.branches_list.map((_branch, i) => {
-                          if (_branch.code == '##session.branch.code##') {
-                            foundBranch = true;
-                            indxBranch = i;
-                          }
-                        });
-                        if (foundBranch) {
-
-                          if (_size.branches_list[indxBranch].code == '##session.branch.code##') {
-                            if (_size.branches_list[indxBranch].stores_list && _size.branches_list[indxBranch].stores_list.length > 0) {
-
-                              let foundStore = false;
-                              let indxStore = 0;
-                              _size.branches_list[indxBranch].stores_list.map((_store, i) => {
-                                if (_store.store.id == $scope.store_offer.store.id) {
-                                  foundStore = true;
-                                  indxStore = i;
-                                }
-                              });
-                              _size.branches_list[indxBranch].stores_list[indxStore].size_units_list.forEach(_unitStore => {
-
-                                if (foundStore && _unitStore.id == _unit.id) {
-
-                                  _unit.store_count = _unitStore.current_count || 0
-
-                                }
-                              });
-                            }
-                          }
-                        }
-                      }
-                    });
-                 
-                  _size.name = _list.name;
-                  _size.item_group = _list.item_group;
-                  foundSize = $scope.store_offer.items.some(_itemSize => _itemSize.barcode === _size.barcode);
-                  if (!foundSize) $scope.store_offer.items.unshift(_size);
-
-                });
-            });
-
-            if (foundSize) $scope.error = '##word.dublicate_item##';
-          }
-
-        } else {
-          $scope.error = response.data.error;
-        };
-      },
-      function (err) {
-        console.log(err);
-      }
-    );
-  }
-
 
   $scope.getBarcode = function (ev) {
     $scope.error = '';
@@ -532,11 +448,7 @@ app.controller("stores_offer", function ($scope, $http, $timeout) {
 
                   if (_size.size_units_list && _size.size_units_list.length > 0)
                     _size.size_units_list.forEach(_unit => {
-                      _unit.discount = {
-                        type: 'percent',
-                        value: $scope.store_offer.offer_ratio || 0,
-                        max: 0
-                      };
+                      _unit.discount = Object.assign({}, $scope.store_offer.offer_value);
                       if ((_unit.barcode === $scope.search_barcode) && typeof _unit.barcode == 'string') {
                         foundUnit = true;
                       }
@@ -578,7 +490,7 @@ app.controller("stores_offer", function ($scope, $http, $timeout) {
                     });
 
                   if ((_size.barcode === $scope.search_barcode) || foundUnit) {
-                  
+
                     _size.name = response.data.list[0].name;
                     _size.item_group = response.data.list[0].item_group;
 
@@ -623,7 +535,7 @@ app.controller("stores_offer", function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.busy = true;
 
-        
+
     if (new Date($scope.store_offer.startup_date) > new Date($scope.store_offer.deadline_date)) {
       $scope.error = "##word.stores_offer_err_date##";
       return;
@@ -728,15 +640,11 @@ app.controller("stores_offer", function ($scope, $http, $timeout) {
         $scope.store_offer.items.forEach(_item => {
           if (_item.size_units_list && _item.size_units_list.length > 0)
             _item.size_units_list.forEach(_itmUnit => {
-              _itmUnit.discount = {
-                type: 'percent',
-                value: $scope.store_offer.offer_ratio || 0,
-                max: 0
-              };
+              _itmUnit.discount = Object.assign({}, $scope.store_offer.offer_value);
             });
         });
 
-    }, 250);
+    }, 300);
   };
 
   $scope.get_open_shift = function (callback) {
