@@ -1723,9 +1723,21 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
 
   $scope.ChangeUnitPatch = function (itm) {
     $scope.error = '';
-    itm.discount = itm.unit.discount;
     itm.price = itm.unit.price;
     itm.average_cost = itm.unit.average_cost;
+
+    $scope.getOfferActive(itm.barcode, offer_active => {
+      if (offer_active) {
+
+        offer_active.size_units_list.forEach(_offerUnit => {
+          if (_offerUnit.id === itm.unit.id) {
+            itm.discount = _offerUnit.discount
+          }
+        });
+
+      } else itm.discount = itm.unit.discount;
+    });
+
 
     if (itm.store_units_list && itm.store_units_list.length > 0) {
       itm.store_units_list.forEach(_store_unit => {
