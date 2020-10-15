@@ -66,23 +66,23 @@
                         </td>
 
                         <td>
-                            <p class="text-center green"> <br> {{c.startup_date | date : 'yyyy - MM - dd'}} </p>
+                            <p class="text-center green"> {{c.startup_date | date : 'yyyy - MM - dd'}} </p>
                         </td>
 
                         <td>
-                            <p class="text-center red"> <br> {{c.deadline_date | date : 'yyyy - MM - dd'}} </p>
+                            <p class="text-center red"> {{c.deadline_date | date : 'yyyy - MM - dd'}} </p>
                         </td>
 
                         <td>
-                            <p class="bold blue text-center"> <br> {{c.code}} </p>
+                            <p class="bold blue text-center"> {{c.code}} </p>
                         </td>
 
                         <td>
                             <p class="text-center red">
-                                {{c.offer_value.value}}
+                                
                                 <b class="red" ng-show="c.offer_value.type == 'number'">
-                                    $</b>
-                                <b class="red" ng-show="c.offer_value.type == 'percent'"> % </b>
+                                    {{c.offer_value.value}} $</b>
+                                <b class="red" ng-show="c.offer_value.type == 'percent'"> {{c.offer_value.value}} % </b>
                             </p>
                         </td>
 

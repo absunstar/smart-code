@@ -13,7 +13,7 @@
     {"name" : "stores_offer_date" , "en" : "Store Date" , "ar" : "تاربخ اﻷذن"},
     {"name" : "stores_offer_supply_date" , "en" : "Supply store Date" , "ar" : "تاريخ عرض "}, 
     {"name" : "stores_offer_number" , "en" : "Store Offer Number" , "ar" : "رقم اﻷذن"},
-    {"name" : "stores_offer_supply_number" , "en" : "Store Offer supply number" , "ar" : " رقم عرض "},
+    {"name" : "stores_offer_supply_number" , "en" : "Offer Code" , "ar" : " كود العرض "},
     {"name" : "stores_offer_supply_number_date" , "en" : "supply number date" , "ar" : " تاريخ عرض "},
     {"name" : "difference_cost" , "en" : "Difference Cost" , "ar" : "فرق التكلفة"},
     {"name" : "total_difference_cost" , "en" : "Total Difference Cost" , "ar" : "إجمالي فرق التكلفة"},

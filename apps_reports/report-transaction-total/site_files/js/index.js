@@ -38,8 +38,7 @@ app.controller("report_transaction_total", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name: 1,
-          discount : 1
+          name: 1
         }
       }
     }).then(

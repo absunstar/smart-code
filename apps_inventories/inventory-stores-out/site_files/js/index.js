@@ -713,12 +713,18 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
                       _size.item_group = _item.item_group;
                       _size.store = $scope.store_out.store;
                       _size.unit = _size.size_units_list[indxUnit];
-                      $scope.categories.forEach(_category => {
-                        if (_category.id === _size.item_group.id) {
-                          if (_category.discount && _category.discount.value) _size.discount = _category.discount
-                          else _size.discount = _size.size_units_list[indxUnit].discount;
-                        }
+                      $scope.getOfferActive(_size.barcode, offer_active => {
+                        if (offer_active) {
+
+                          offer_active.size_units_list.forEach(_offerUnit => {
+                            if (_offerUnit.id === _size.unit.id) {
+                              _size.discount = _offerUnit.discount
+                            }
+                          });
+
+                        } else _size.discount = _size.size_units_list[indxUnit].discount;
                       });
+
                       _size.average_cost = _size.size_units_list[indxUnit].average_cost;
                       _size.price = _size.size_units_list[indxUnit].price;
                       _size.cost = _size.size_units_list[indxUnit].cost;
@@ -923,12 +929,19 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
                     _size.item_group = response.data.list[0].item_group;
                     _size.store = $scope.store_out.store;
                     _size.unit = _size.size_units_list[indxUnit];
-                    $scope.categories.forEach(_category => {
-                      if (_category.id === _size.item_group.id) {
-                        if (_category.discount && _category.discount.value) _size.discount = _category.discount
-                        else _size.discount = _size.size_units_list[indxUnit].discount;
-                      }
+                    
+                    $scope.getOfferActive(_size.barcode, offer_active => {
+                      if (offer_active) {
+
+                        offer_active.size_units_list.forEach(_offerUnit => {
+                          if (_offerUnit.id === _size.unit.id) {
+                            _size.discount = _offerUnit.discount
+                          }
+                        });
+
+                      } else _size.discount = _size.size_units_list[indxUnit].discount;
                     });
+
                     _size.average_cost = _size.size_units_list[indxUnit].average_cost;
                     _size.price = _size.size_units_list[indxUnit].price;
                     _size.cost = _size.size_units_list[indxUnit].cost;
@@ -1243,8 +1256,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name: 1,
-          discount: 1
+          name: 1
         }
       }
     }).then(
@@ -2365,6 +2377,33 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
       }
     )
   };
+
+  $scope.getOfferActive = function (barcode, callback) {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/stores_offer/offer_active",
+      data: {
+        where: { date: new Date($scope.store_out.date), barcode: barcode },
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.doc) {
+          callback(response.data.doc);
+        } else {
+          callback(null);
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+        callback(null);
+      }
+    )
+  };
+
 
   $scope.loadStoresOutTypes();
   $scope.loadStores();

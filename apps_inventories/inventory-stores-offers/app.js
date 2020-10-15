@@ -127,12 +127,12 @@ module.exports = function init(site) {
     stores_offer_doc.edit_user_info = site.security.getUserFinger({ $req: req, $res: res })
 
     if (stores_offer_doc.items && stores_offer_doc.items.length > 0)
-    stores_offer_doc.items.forEach(_item => {
-      if (_item.size_units_list && _item.size_units_list.length > 0)
-        _item.size_units_list.forEach(_itmUnit => {
-          _itmUnit.discount.max = _itmUnit.discount.value
-        });
-    });
+      stores_offer_doc.items.forEach(_item => {
+        if (_item.size_units_list && _item.size_units_list.length > 0)
+          _item.size_units_list.forEach(_itmUnit => {
+            _itmUnit.discount.max = _itmUnit.discount.value
+          });
+      });
 
     if (stores_offer_doc._id) {
       $stores_offer.edit({
@@ -274,23 +274,23 @@ module.exports = function init(site) {
 
 
     if (where.startup_date) {
-      let d1 = site.toDate(where.date)
-      let d2 = site.toDate(where.date)
+      let d1 = site.toDate(where.startup_date)
+      let d2 = site.toDate(where.startup_date)
       d2.setDate(d2.getDate() + 1)
       where.startup_date = {
         '$gte': d1,
         '$lte': d2
       }
-    } else if (where && where.date_from) {
-      let d1 = site.toDate(where.date_from)
-      let d2 = site.toDate(where.date_to)
+    } else if (where && where.startup_date) {
+      let d1 = site.toDate(where.startup_date)
+      let d2 = site.toDate(where.deadline_date)
       d2.setDate(d2.getDate() + 1);
       where.startup_date = {
         '$gte': d1,
         '$lte': d2
       }
       delete where.date_from
-      delete where.date_to
+      delete where.deadline_date
     }
 
 
@@ -337,47 +337,62 @@ module.exports = function init(site) {
     })
   })
 
+  site.post("/api/stores_offer/offer_active", (req, res) => {
+    let response = {}
+    response.done = false
 
-  site.getStoreStock = function (whereObj, callback) {
-    callback = callback || {};
-    let where = whereObj || {}
+    if (!req.session.user) {
+      response.error = 'Please Login First'
+      res.json(response)
+      return
+    }
+
+    let where = req.body.where || {}
+
+    let barcode = where['barcode']
 
     if (where.date) {
       let d1 = site.toDate(where.date)
       let d2 = site.toDate(where.date)
       d2.setDate(d2.getDate() + 1)
-      where.date = {
-        '$gte': d1,
+      where.startup_date = {
         '$lte': d2
       }
-    } else if (where && where.date_from) {
-      let d1 = site.toDate(where.date_from)
-      let d2 = site.toDate(where.date_to)
-      d2.setDate(d2.getDate() + 1);
-      where.date = {
+
+      where.deadline_date = {
         '$gte': d1,
-        '$lte': d2
       }
-      delete where.date_from
-      delete where.date_to
+      delete where['date']
+
     }
 
-    if (where['shift_code']) {
-      where['shift.code'] = where['shift_code']
-      delete where['shift_code']
+    if (where['barcode']) {
+      where['items.barcode'] = where['barcode']
+      delete where['barcode']
     }
 
-    where['status'] = 4
+    where['active'] = true
 
-    $stores_offer.findMany({
+
+    $stores_offer.findOne({
       where: where,
       sort: { id: -1 }
-
     }, (err, doc) => {
-      if (!err && doc)
-        callback(doc)
-      else callback(false)
+      if (!err && doc) {
+
+        response.done = true
+        let item = {}
+        doc.items.forEach(_itm => {
+
+          if (_itm.barcode == barcode)item = _itm 
+        });
+
+        response.doc = item
+      } else {
+        response.error = err
+      }
+      res.json(response)
     })
-  }
+  })
 
 }

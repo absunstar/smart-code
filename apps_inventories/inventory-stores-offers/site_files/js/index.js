@@ -579,8 +579,7 @@ app.controller("stores_offer", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name: 1,
-          discount: 1
+          name: 1
         }
       }
     }).then(
@@ -675,6 +674,7 @@ app.controller("stores_offer", function ($scope, $http, $timeout) {
     )
   };
 
+ 
   $scope.loadCategories();
   $scope.getDefaultSettings();
   $scope.loadAll({ startup_date: new Date() });

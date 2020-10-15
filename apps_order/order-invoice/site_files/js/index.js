@@ -983,8 +983,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         select: {
           id: 1,
           name: 1,
-          image_url: 1,
-          discount : 1
+          image_url: 1
         }
       }
     }).then(

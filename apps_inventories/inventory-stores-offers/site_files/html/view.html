@@ -66,10 +66,10 @@
                                     <td> {{i.name}} <b ng-show="i.barcode"> - </b> <b class="blue">{{i.barcode}}</b>
                                     </td>
                                     <td class="red bold">
-                                        <p>##word.discount## : <b class="red">{{i.discount.value}} </b></p>
+                                        <p> </p>
                                         </p> <b class="red" ng-show="i.discount.type == 'number'">
-                                            $</b>
-                                        <b class="red" ng-show="i.discount.type == 'percent'"> % </b>
+                                            ##word.discount## : {{i.discount.value}}  $</b>
+                                        <b class="red" ng-show="i.discount.type == 'percent'"> ##word.discount## : {{i.discount.value}}  % </b>
                                     </td>
                                 </tr>
                             </table>

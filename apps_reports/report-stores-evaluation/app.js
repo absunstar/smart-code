@@ -58,7 +58,7 @@ module.exports = function init(site) {
       }
 
       if (where && where['barcode']) {
-        where['sizes.barcode'] = site.get_RegExp(where['barcode'], 'i')
+        where['sizes.barcode'] = where['barcode']
         delete where['barcode']
       }
 

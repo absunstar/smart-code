@@ -285,7 +285,7 @@ module.exports = function init(site) {
     }
 
     if (where['barcode']) {
-      where['barcode'] = site.get_RegExp(where['barcode'], 'i')
+      where['barcode'] =  where['barcode']
     }
 
     if (where['size']) {

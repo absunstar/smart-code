@@ -7,12 +7,7 @@ app.controller("items_group", function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.items_group = {
       image_url: '/images/items_group.png',
-      active: true,
-      discount: {
-        type: 'percent',
-        value: 0,
-        max: 0
-      }
+      active: true
 
     };
     site.showModal('#itemsGroupAddModal');
@@ -26,7 +21,6 @@ app.controller("items_group", function ($scope, $http, $timeout) {
       $scope.error = v.messages[0].ar;
       return;
     }
-    $scope.items_group.discount.max = $scope.items_group.discount.value;
 
     $scope.busy = true;
     $http({
@@ -63,7 +57,6 @@ app.controller("items_group", function ($scope, $http, $timeout) {
       $scope.error = v.messages[0].ar;
       return;
     }
-    $scope.items_group.discount.max = $scope.items_group.discount.value;
     $scope.busy = true;
     $http({
       method: "POST",
@@ -106,13 +99,7 @@ app.controller("items_group", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.items_group = response.data.doc;
-          if (!$scope.items_group.discount) {
-            $scope.items_group.discount = {
-              type: 'percent',
-              value: 0,
-              max: 0
-            }
-          }
+        
         } else {
           $scope.error = response.data.error;
         }

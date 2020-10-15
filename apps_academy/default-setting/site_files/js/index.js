@@ -478,8 +478,7 @@ app.controller("default_setting", function ($scope, $http) {
       data: {
         select: {
           id: 1,
-          name: 1,
-          discount : 1
+          name: 1
         }
       }
     }).then(
