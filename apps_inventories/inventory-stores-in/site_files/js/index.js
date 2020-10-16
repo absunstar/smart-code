@@ -1462,7 +1462,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
             $scope.busy = false;
             if (response.data.done) {
               site.hideModal('#deleteStoreInModal');
-              $scope.loadAll();
+              $scope.loadAll({ date: new Date() });
             } else {
               $scope.error = response.data.error;
               if (response.data.error.like('*OverDraft Not*')) {
@@ -2059,7 +2059,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          $scope.loadAll();
+          $scope.loadAll({ date: new Date() });
         }
       },
       function (err) {

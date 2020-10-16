@@ -378,8 +378,37 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
 
       if ($scope.store_out.items.length > 0 && !$scope.busy) {
 
+        $scope.store_out.items.forEach(_itemSize => {
+          if (_itemSize.work_patch && _itemSize.patch_list && _itemSize.patch_list.length > 0) {
+            let c = 0;
+            _itemSize.patch_list.map(p => c += p.count);
+
+            let difference = _itemSize.count - c;
+            if (_itemSize.count > c) {
+              _itemSize.patch_list = _itemSize.patch_list.slice().sort((a, b) => new Date(b.expiry_date) - new Date(a.expiry_date)).reverse();
+              _itemSize.patch_list.forEach(_pl => {
+                if (difference > 0 && _pl.count == 0) {
+
+                  if (_pl.current_count < difference || _pl.current_count == difference) {
+
+                    _pl.count = _pl.current_count;
+                    difference = difference - _pl.count;
+
+
+                  } else if (_pl.current_count > difference) {
+
+                    _pl.count = difference;
+                    difference = 0;
+                  }
+                }
+              });
+            }
+          }
+        });
 
         $scope.testPatches($scope.store_out, callback => {
+
+
 
           if (callback.patchCount) {
             $scope.error = `##word.err_patch_count##   ( ${callback.patch_list.join('-')} )`;
@@ -527,7 +556,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
             $scope.busy = false;
             if (response.data.done) {
               site.hideModal('#deleteStoreOutModal');
-              $scope.loadAll();
+              $scope.loadAll({ date: new Date() });
             } else {
               $scope.error = response.data.error;
               if (response.data.error.like('*OverDraft Not*')) {
@@ -929,7 +958,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
                     _size.item_group = response.data.list[0].item_group;
                     _size.store = $scope.store_out.store;
                     _size.unit = _size.size_units_list[indxUnit];
-                    
+
                     $scope.getOfferActive(_size.barcode, offer_active => {
                       if (offer_active) {
 
@@ -1081,6 +1110,34 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         return;
       }
     }
+
+    $scope.store_out.items.forEach(_itemSize => {
+      if (_itemSize.work_patch && _itemSize.patch_list && _itemSize.patch_list.length > 0) {
+        let c = 0;
+        _itemSize.patch_list.map(p => c += p.count);
+
+        let difference = _itemSize.count - c;
+        if (_itemSize.count > c) {
+          _itemSize.patch_list = _itemSize.patch_list.slice().sort((a, b) => new Date(b.expiry_date) - new Date(a.expiry_date)).reverse();
+          _itemSize.patch_list.forEach(_pl => {
+            if (difference > 0 && _pl.count == 0) {
+
+              if (_pl.current_count < difference || _pl.current_count == difference) {
+
+                _pl.count = _pl.current_count;
+                difference = difference - _pl.count;
+
+
+              } else if (_pl.current_count > difference) {
+
+                _pl.count = difference;
+                difference = 0;
+              }
+            }
+          });
+        }
+      }
+    });
 
     $scope.testPatches($scope.store_out, callback => {
 
@@ -2274,7 +2331,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          $scope.loadAll();
+          $scope.loadAll({ date: new Date() });
         }
       },
       function (err) {
