@@ -297,7 +297,7 @@ app.controller("accounting_guide_accounts", function ($scope, $http, $timeout) {
     $scope.currencyList = [];
     $http({
       method: "POST",
-      url: "/api/currencies/all",
+      url: "/api/currency/all",
       data: {
         where: {
           active: true
