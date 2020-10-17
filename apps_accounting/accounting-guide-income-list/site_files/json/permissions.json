@@ -1,0 +1,14 @@
+[
+    { "module_name" : "accounting" , "screen_name" : "accounting-guide-income-list" , "name":"accounting_guide_income_list_manage" , "en":"Manage" , "ar":"إدارة"},
+    { "module_name" : "accounting" , "screen_name" : "accounting-guide-income-list" , "name":"accounting_guide_income_list_add" , "en":"Add" , "ar":"إضافة"},
+    { "module_name" : "accounting" , "screen_name" : "accounting-guide-income-list" , "name":"accounting_guide_income_list_edit" , "en":"Edit" , "ar":"تعديل"},
+    { "module_name" : "accounting" , "screen_name" : "accounting-guide-income-list" , "name":"accounting_guide_income_list_delete" , "en":"Delete" , "ar":"حذف"},
+    { "module_name" : "accounting" , "screen_name" : "accounting-guide-income-list" , "name":"accounting_guide_income_list_view" , "en":"View" , "ar":"عرض"},
+    { "module_name" : "accounting" , "screen_name" : "accounting-guide-income-list" , "name":"accounting_guide_income_list_search" , "en":"Search" , "ar":"بحث"},
+    { "module_name" : "accounting" , "screen_name" : "accounting-guide-income-list" , "name":"accounting_guide_income_list_export" , "en":"Export" , "ar":"تصدير"},
+    { "module_name" : "accounting" , "screen_name" : "accounting-guide-income-list" , "name":"accounting_guide_income_list_print" , "en":"Print" , "ar":"طباعة"},
+    { "module_name" : "accounting" , "screen_name" : "accounting-guide-income-list" , "name":"accounting_guide_income_list_done" , "en":"Done" , "ar":"ترحيل"},
+    { "module_name" : "accounting" , "screen_name" : "accounting-guide-income-list" , "name":"accounting_guide_income_list_ui" , "en":"UI" , "ar":"الواجهة الرسومية"},
+    { "module_name" : "accounting" , "screen_name" : "accounting-guide-income-list" , "name":"accounting_guide_income_list_unpacking" , "en":"Unpacking" , "ar":"فك ترحيل"}
+
+]

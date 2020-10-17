@@ -1,0 +1,51 @@
+<div id="guideBudgetSearchModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.search_all## <i class="fa fa-search"></i>
+                <i ng-show="busy" class="fa fa-spinner white fa-pulse fa-3x fa-fw"></i>
+            </h2>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <form class="form">
+                    <div class="row">
+                            <i-control class="col2" label="##word.accounting_guide_budget_code##"
+                            ng-model="search.code"></i-control>
+                        <i-control class="col5" label="##word.accounting_guide_budget_name##" ng-model="search.name"></i-control>
+                    </div>
+                    <div class="col4">
+                        <div class="control">
+                            <label> ##word.accounting_guide_income_list_type## </label>
+                            <select ng-model="search.type">
+                                <option value="detailed"> ##word.accounting_guide_income_list_detailed## </option>
+                                <option value="result"> ##word.accounting_guide_income_list_result## </option>
+                                <option value="address"> ##word.accounting_guide_income_list_address## </option>
+                               
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col4">
+                        <div class="control">
+                            <label> ##word.accounting_guide_income_list_side## </label>
+                            <select ng-model="search.side">
+                                <option value="creditor"> ##word.accounting_guide_income_list_creditor## </option>
+                                <option value="debtor"> ##word.accounting_guide_income_list_debtor## </option>
+                              
+                               
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <h2 class="error"> {{error}} </h2>
+            <div class="modal-footer center">
+                <i-button type="search" ng-click="searchAll()" label="##word.search##"></i-button>
+                <i-button type="clear" ng-click="search = {}" label="##word.empty_search##"></i-button>
+                <i-button type="close" onclick="hideModal('guideBudgetSearchModal')" label="##word.close##"></i-button>
+            </div>
+        </div>
+    </div>
+</div>

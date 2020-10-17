@@ -15,6 +15,11 @@
         "ar": "الى تاريخ"
     },
     {
+        "name": "link_gl_accounts_with_income_statement_and_budget",
+        "en": "Link gl_Accounts With Income Statement And Budget",
+        "ar": "ربط الحسابات بتصنيفات قائمة الدخل والميزانية"
+    },
+    {
         "name": "order_type",
         "en": "Order Type",
         "ar": "نوع الطلب"

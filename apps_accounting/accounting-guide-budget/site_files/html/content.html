@@ -1,0 +1,73 @@
+<div class="form">
+    <div id="guideBudgetAddModal" class="tab-content">
+        <fieldset>
+            <legend> ##word.accounting_guide_budget_informations## </legend>
+            <div class="col9">
+                <div class="row">
+                    <i-control class="col2" label="##word.accounting_guide_budget_code##"
+                        ng-model="accounting_guide_budget.code"></i-control>
+                    <i-control class="col5" v="r ll3" label="##word.accounting_guide_budget_name##" ng-model="accounting_guide_budget.name"></i-control>
+                    <div class="col3"></div>
+                    <i-checkbox class="col2" label="##word.active##" ng-model="accounting_guide_budget.active"></i-checkbox>
+                </div>
+                <br>
+                <br>
+                <br>
+                <div class="row">
+                    <h2 class="brown col2">##word.accounting_guide_budget_side## :</h2>
+
+                    <div id=side_{{print.id}}>
+
+                        <i-radio class="col2" ng-value="debtor" label="##word.accounting_guide_budget_debtor##"
+                            ng-model="accounting_guide_budget.side">
+                        </i-radio>
+
+                        <i-radio class="col2" ng-value="creditor" label="##word.accounting_guide_budget_creditor##"
+                            ng-model="accounting_guide_budget.side">
+                        </i-radio>
+
+                    </div>
+                </div>
+                <br>
+                <br>
+                <br>
+                <div class="row">
+                    <h2 class="brown col2">##word.accounting_guide_budget_type## :</h2>
+
+                    <div id=type_{{print.id}}>
+
+                        <i-radio class="col2" ng-value="detailed" label="##word.accounting_guide_budget_detailed##"
+                            ng-model="accounting_guide_budget.type">
+                        </i-radio>
+
+                        <i-radio class="col2" ng-value="result" label="##word.accounting_guide_budget_result##"
+                            ng-model="accounting_guide_budget.type">
+                        </i-radio>
+
+                        <i-radio class="col2" ng-value="address" label="##word.accounting_guide_budget_address##"
+                            ng-model="accounting_guide_budget.type">
+                        </i-radio>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col4"></div>
+                        <i-control ng-show="accounting_guide_budget.type == 'result'" class="col3"
+                            label="##word.accounting_guide_budget_resulting##" ng-model="accounting_guide_budget.resulting"></i-control>
+
+                    </div>
+                </div>
+
+                <div class="row">
+                    <i-checkbox class="col4" label="##word.accounting_guide_budget_delete_count##" ng-model="accounting_guide_budget.count">
+                    </i-checkbox>
+                </div>
+
+            </div>
+            <div class="col3">
+                <i-image category="accounting_guide_budgets" ng-model="accounting_guide_budget.image_url"></i-image>
+            </div>
+
+        </fieldset>
+    </div>
+</div>

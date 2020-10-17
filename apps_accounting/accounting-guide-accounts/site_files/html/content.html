@@ -79,8 +79,8 @@
                 <br>
 
                 <div class="row">
-                    <i-list ng-show="settingList.link_gl_accounts_with_income_statement_and_budget == true" class="col4"
-                        ng-search="_search.$accounting_guide_accounts.$category_search" items="categoryList"
+                    <i-list ng-show="defaultSettings.accounting.link_gl_accounts_with_income_statement_and_budget == true" class="col4"
+                      display2="code"  ng-search="_search.$accounting_guide_accounts.$category_search" items="categoryList"
                         label="##word.accounting_guide_accounts_category##" ng-model="accounting_guide_accounts.category"></i-list>
                 </div>
 

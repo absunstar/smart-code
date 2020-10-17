@@ -65,7 +65,7 @@ app.controller("accounting_guide_accounts", function ($scope, $http, $timeout) {
       }
     };
 
-    if ($scope.settingList.link_gl_accounts_with_income_statement_and_budget == true && $scope.accounting_guide_accounts.type == 'detailed') {
+    if ($scope.defaultSettings.accounting.link_gl_accounts_with_income_statement_and_budget == true && $scope.accounting_guide_accounts.type == 'detailed') {
       if (!$scope.accounting_guide_accounts.category) {
         $scope.error = "##word.accounting_guide_accounts_category_err##";
         return;
@@ -346,7 +346,7 @@ app.controller("accounting_guide_accounts", function ($scope, $http, $timeout) {
   $scope.getDefaultSetting = function () {
     $scope.error = '';
     $scope.busy = true;
-    $scope.settingList = [];
+    $scope.defaultSettings = [];
     $http({
       method: "POST",
       url: "/api/default_setting/get",
@@ -355,7 +355,7 @@ app.controller("accounting_guide_accounts", function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done && response.data.doc) {
-          $scope.settingList = response.data.doc;
+          $scope.defaultSettings = response.data.doc;
         }
       },
       function (err) {
@@ -483,7 +483,7 @@ app.controller("accounting_guide_accounts", function ($scope, $http, $timeout) {
   };
 
   $scope.getCodeType();
-
+  $scope.getCategoryList();
   $scope.getGuideAccountsList();
   $scope.getCurrencyList();
   $scope.getDefaultSetting();

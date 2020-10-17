@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="accounting_guide_budget_ui || accounting_guide_budget_manage" data-ng-app="myApp">
+
+<head x-import="head.html">
+
+</head>
+
+<body class="##session.lang##">
+
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+
+    </nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+
+    </nav>
+
+    <div id="main-layout" class="container">
+        <div class="row">
+            <div class="row" ng-controller="accounting_guide_budget" x-permission="login">
+                <div x-permissions="accounting_guide_budget_add || accounting_guide_budget_manage"
+                    x-import="accounting-guide-budget/add_modal.html"></div>
+                <div x-permissions="accounting_guide_budget_edit || accounting_guide_budget_manage"
+                    x-import="accounting-guide-budget/update_modal.html"></div>
+                <div x-permissions="accounting_guide_budget_delete || accounting_guide_budget_manage"
+                    x-import="accounting-guide-budget/delete_modal.html"></div>
+                <div x-permissions="accounting_guide_budget_view || accounting_guide_budget_manage"
+                    x-import="accounting-guide-budget/view_modal.html"></div>
+                <div x-permissions="accounting_guide_budget_search || accounting_guide_budget_manage"
+                    x-import="accounting-guide-budget/search_all_modal.html"></div>
+
+                <div class="row">
+                    <h1 class="bold text-center"> ##word.guide_categories_accounting_guide_budget## </h1>
+                </div>
+
+                <div class="top-actions">
+                    <i-button x-permissions="accounting_guide_budget_add || accounting_guide_budget_manage" type="add"
+                        label="##word.accounting_guide_budget_new##" ng-click="displayAddGuideBudget()"></i-button>
+
+                    <i-button x-permissions="accounting_guide_budget_search || accounting_guide_budget_manage"
+                        type="search" label="##word.search_all##" onclick="site.showModal('#guideBudgetSearchModal')">
+                    </i-button>
+
+                    <span ng-show="busy">
+                        <span class="sr-only"> Loading...</span>
+                    </span>
+                    <h3 class="bold text-center"> ##word.count## : {{count}} </h3>
+                    <br>
+                </div>
+
+                <table x-permissions="login" class="table loaded hover center bold" id="t1">
+                    <tr>
+                        <th class="not-print"> ##word.logo## </th>
+                        <th> ##word.accounting_guide_budget_code## </th>
+                        <th>##word.accounting_guide_budget_name##</th>
+                        <th>##word.accounting_guide_budget_side##</th>
+                        <th>##word.accounting_guide_budget_type##</th>
+                        <th>##word.accounting_guide_budget_delete_count##</th>
+                        <th> ##word.status## </th>
+                        <th class="not-print"> ##word.actions## </th>
+                    </tr>
+
+                    <tr ng-repeat="c in list ">
+                        <td class="not-print">
+                            <img class="logo" ng-src="{{c.image_url}}">
+                        </td>
+                        <td class="blue"> {{c.code}} </td>
+                        <td class="center"> {{c.name}} </td>
+
+                        <td class="center">
+                            <p ng-show="c.side=='debtor'">##word.accounting_guide_budget_debtor##</p>
+                            <p ng-show="c.side=='creditor'">##word.accounting_guide_budget_creditor##</p>
+                        </td>
+
+                        <td class="center">
+                            <p ng-show="c.type=='detailed'">##word.accounting_guide_budget_detailed##</p>
+                            <p ng-show="c.type=='result'">##word.accounting_guide_budget_result##
+                            <p ng-show="c.type=='result'" class="blue">{{c.resulting}}</p>
+                            </p>
+                            <p ng-show="c.type=='address'">##word.accounting_guide_budget_address##</p>
+
+                        </td>
+
+                        <td>
+                            <p ng-show="c.count ==true" class="green center"> ##word.yes## </p>
+                            <p ng-show="c.count ==false" class="red center"> ##word.no## </p>
+                        </td>
+
+                        <td>
+                            <p ng-show="c.active ==true" class="green"> ##word.active## </p>
+                            <p ng-show="c.active ==false" class="red"> ##word.not_active## </p>
+                        </td>
+
+                        <td class="center not-print">
+                            <i-button x-permissions="accounting_guide_budget_view || accounting_guide_budget_manage"
+                                type="details" label="##word.details##" ng-click="displayViewGuideBudget(c)"></i-button>
+
+                            <i-button x-permissions="accounting_guide_budget_edit || accounting_guide_budget_manage"
+                                type="update" label="##word.update##" ng-click="displayUpdateGuideBudget(c)"></i-button>
+
+                            <i-button x-permissions="accounting_guide_budget_delete || accounting_guide_budget_manage"
+                                type="delete" label="##word.delete##" ng-click="displayDeleteGuideBudget(c)"></i-button>
+                        </td>
+                    </tr>
+                </table>
+
+                <div class="row">
+                    <i-button x-permissions="accounting_guide_budget_print || accounting_guide_budget_manage"
+                        type="print" label="##word.print##" onclick="site.print('#t1')"></i-button>
+
+                    <i-button x-permissions="accounting_guide_budget_export || accounting_guide_budget_manage"
+                        type="export" label="##word.export_to_excel##"
+                        onclick="export_to_xlsx('t1' , 'accounting_banks.xlsx')"></i-button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div x-import="scripts.html"></div>
+
+    <script x-permission="login" x-import="accounting-guide-budget/index.js"></script>
+</body>
+
+</html>

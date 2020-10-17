@@ -1,0 +1,71 @@
+<div ng-hide="busy" class="row">
+    <fieldset>
+        <legend> ##word.accounting_guide_budget_informations## </legend>
+        <div class="row">
+            <div class="col9">
+
+                <div class="row">
+
+                    <div class="row">
+                        <table id="GuideBudgetInformation" class="table bold">
+                            <tr>
+                                <td class="title"> ##word.accounting_guide_budget_the_code## </td>
+                                <td class="center blue"> {{accounting_guide_budget.code}} </td>
+                            </tr>
+
+                            <tr>
+                                <td class="title"> ##word.accounting_guide_budget_name## </td>
+                                <td class="center"> {{accounting_guide_budget.name}} </td>
+                            </tr>
+                            <tr>
+                                <td class="title"> ##word.accounting_guide_budget_side## </td>
+                                <td class="center" ng-show="accounting_guide_budget.side=='debtor'">##word.accounting_guide_budget_debtor##
+                                </td>
+                                <td class="center" ng-show="accounting_guide_budget.side=='creditor'">
+                                    ##word.accounting_guide_budget_creditor##</td>
+
+                            </tr>
+                            <tr>
+                                <td class="title"> ##word.accounting_guide_budget_type## </td>
+                                <td class="center" ng-show="accounting_guide_budget.type=='detailed'">
+                                    ##word.accounting_guide_budget_detailed##
+                                </td>
+                                <td class="center" ng-show="accounting_guide_budget.type=='result'">##word.accounting_guide_budget_result##
+                                    <p ng-show="accounting_guide_budget.type=='result'" class="blue">{{accounting_guide_budget.resulting}}
+                                </td>
+                                <td class="center" ng-show="accounting_guide_budget.type=='address'">##word.accounting_guide_budget_address##
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="title">##word.status##</td>
+                                <td>
+                                    <p ng-show="accounting_guide_budget.active ==true" class="green center"> ##word.active## </p>
+                                    <p ng-show="accounting_guide_budget.active ==false" class="red center"> ##word.not_active##
+                                    </p>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="title">##word.accounting_guide_budget_delete_count##</td>
+                                <td>
+                                    <p ng-show="accounting_guide_budget.count ==true" class="green center"> ##word.yes## </p>
+                                    <p ng-show="accounting_guide_budget.count ==false" class="red center"> ##word.no## </p>
+                                </td>
+                            </tr>
+
+                        </table>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col3">
+                <i-image view ng-model="accounting_guide_budget.image_url"></i-image>
+            </div>
+
+        </div>
+    </fieldset>
+</div>
+
+<div x-import="accounting-guide-budget/action_info.html"></div>

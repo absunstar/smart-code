@@ -1,0 +1,29 @@
+[
+    {"name" : "accounting_guide_budget_informations" , "en" : "Guide Budget" , "ar" : "بيانات تصنيفات الميزانية"},
+    {"name" : "accounting_guide_budget_delete" , "en" : "Delete Guide Budget" , "ar" : "حذف تصنيفات الميزانية"},
+    {"name" : "accounting_guide_budget_edit" , "en" : "Edit Guide Budget" , "ar" : "تعديل تصنيفات الميزانية"},
+    {"name" : "accounting_guide_budget_details" , "en" : "Guide Budget Deteails" , "ar" : "تفاصيل تصنيفات الميزانية"},
+    {"name" : "accounting_guide_budget_delete" , "en" : "Delete Guide Budget" , "ar" : "حذف تصنيفات الميزانية"},
+    {"name" : "accounting_guide_budget_new" , "en" : "New Guide Budget" , "ar" : "تصنيف ميزانية جديدة"},
+    {"name" : "guide_categories_accounting_guide_budget" , "en" : "Guide Categories Budget" , "ar" : "دليل تصنيفات الميزانية"},
+
+    {"name" : "accounting_guide_budget_confirm_delete" , "en" : "Confirm Delete Category" , "ar" : "تأكيد حذف التصنيف !"},
+    {"name" : "accounting_guide_budget_delete_side" , "en" : "Delete Category" , "ar" : "حذف تصنيف"},
+    {"name" : "accounting_guide_budget_delete_count" , "en" : " Count" , "ar" : "حساب صافي الأرباح و الخسائر"},
+
+    {"name" : "accounting_guide_budget_side" , "en" : "Category Side" , "ar" : "جانب التصنيف"},
+    {"name" : "accounting_guide_budget_debtor" , "en" : "Debtor" , "ar" : "مدين"},
+    {"name" : "accounting_guide_budget_creditor" , "en" : "Creditor" , "ar" : "دائن"},
+
+    {"name" : "accounting_guide_budget_type" , "en" : "Category Type" , "ar" : "نوع التصنيف"},
+    {"name" : "accounting_guide_budget_detailed" , "en" : "Detailed" , "ar" : "تفصيلي"},
+    {"name" : "accounting_guide_budget_result" , "en" : "Result" , "ar" : "نتيجة"},
+    {"name" : "accounting_guide_budget_address" , "en" : "Address" , "ar" : "عنوان"},
+    {"name" : "accounting_guide_budget_resulting" , "en" : "Resulting" , "ar" : "الناتج"},
+  
+    {"name" : "accounting_guide_budget_the_code" , "en" : "The Code" , "ar" : "الكود"},
+    {"name" : "accounting_guide_budget_code" , "en" : "Category Code" , "ar" : "كود التصنيف"},
+
+    {"name" : "accounting_guide_budget_code" , "en" : "Category Code" , "ar" : "كود التصنيف"},
+    {"name" : "accounting_guide_budget_name" , "en" : "Category Name" , "ar" : "اسم التصنيف"}   
+]
