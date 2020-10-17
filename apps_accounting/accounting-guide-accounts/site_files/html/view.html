@@ -1,0 +1,128 @@
+<div ng-hide="busy" class="row">
+    <fieldset>
+        <legend> ##word.accounting_guide_accounts_informations## </legend>
+        <div class="row">
+            <div class="col9">
+
+                <div class="row">
+
+                    <div class="row">
+                        <table id="guideAccountsInformation" class="table hover bold">
+                            <tr>
+                                <td class="title"> ##word.accounting_guide_accounts_code## </td>
+                                <td class="center blue"> {{accounting_guide_accounts_view.code}} </td>
+                            </tr>
+
+                            <tr>
+                                <td class="title"> ##word.accounting_guide_accounts_name_ar## </td>
+                                <td class="center"> {{accounting_guide_accounts_view.name_ar}} </td>
+                            </tr>
+
+                            <tr>
+                                <td class="title"> ##word.accounting_guide_accounts_name_en## </td>
+                                <td class="center"> {{accounting_guide_accounts_view.name_en}} </td>
+                            </tr>
+
+                            <tr>
+                                <td class="title"> ##word.accounting_guide_accounts_currency## </td>
+                                <td class="center"> {{accounting_guide_accounts_view.currency.name_ar}} </td>
+                            </tr>
+
+                            <tr>
+                                <td class="title"> ##word.accounting_guide_accounts_type## </td>
+                                <td class="center" ng-show="accounting_guide_accounts_view.type=='primary'">##word.accounting_guide_accounts_primary##
+                                </td>
+                                <td class="center" ng-show="accounting_guide_accounts_view.type=='detailed'">##word.accounting_guide_accounts_detailed##</td>
+
+                            </tr>
+
+                            <tr>
+                                <td class="title"> ##word.accounting_guide_accounts_side## </td>
+                                <td class="center" ng-show="accounting_guide_accounts_view.side=='debtor'">##word.accounting_guide_accounts_debtor##
+                                </td>
+                                <td class="center" ng-show="accounting_guide_accounts_view.side=='creditor'">##word.accounting_guide_accounts_creditor##</td>
+
+                            </tr>
+
+                            <tr>
+                                <td class="title"> ##word.accounting_guide_accounts_report_type## </td>
+                                <td class="center" ng-show="accounting_guide_accounts_view.report=='budget'">##word.accounting_guide_accounts_budget##</td>
+                                <td class="center" ng-show="accounting_guide_accounts_view.report=='income_list'">##word.accounting_guide_accounts_income_list##</td>
+
+                            </tr>
+
+                            <tr ng-show="settingList.link_gl_accounts_with_income_statement_and_budget == true">
+                                <td class="title"> ##word.accounting_guide_accounts_category## </td>
+                                <td class="center"> {{accounting_guide_accounts_view.category.name}} </td>
+                            </tr>
+
+                            <tr>
+                                <td class="title"> ##word.accounting_guide_accounts_Type_of_cost_center## </td>
+                                <td class="center" ng-show="accounting_guide_accounts_view.cost=='mandatory'">##word.accounting_guide_accounts_mandatory##
+                                </td>
+                                <td class="center" ng-show="accounting_guide_accounts_view.cost=='choice'">##word.accounting_guide_accounts_choice##</td>
+                                <td class="center" ng-show="accounting_guide_accounts_view.cost=='without'">##word.accounting_guide_accounts_without##</td>
+
+                            </tr>
+
+                            <tr>
+                                <td class="title"> ##word.accounting_guide_accounts_cash_flow## </td>
+                                <td class="center" ng-show="accounting_guide_accounts_view.cash_flow=='mandatory'">##word.accounting_guide_accounts_mandatory##
+                                </td>
+                                <td class="center" ng-show="accounting_guide_accounts_view.cash_flow=='choice'">##word.accounting_guide_accounts_choice##</td>
+                                <td class="center" ng-show="accounting_guide_accounts_view.cash_flow=='without'">##word.accounting_guide_accounts_without##</td>
+
+                            </tr>
+
+                            <tr>
+                                <td class="title"> ##word.accounting_guide_accounts_status## </td>
+                                <td class="center green" ng-show="accounting_guide_accounts_view.status=='active'">##word.accounting_guide_accounts_active##
+                                </td>
+                                <td class="center green" ng-show="accounting_guide_accounts_view.status=='disactive'">##word.accounting_guide_accounts_disactive##
+                                </td>
+
+                            </tr>
+
+                            <tr>
+                                <td class="title"> ##word.users## </td>
+                                <td class="center"> {{accounting_guide_accounts_view.users}} </td>
+                            </tr>
+
+                        </table>
+                    </div>
+
+                    <br>
+                    <br>
+                    <br>
+
+                    <div class="row" ng-show="accounting_guide_accounts_view.cost_list.length > 0">
+                        <div class="row">
+                            <h2 class="brown col4">##word.accounting_guide_accounts_accounting_cost_centers## :</h2>
+                        </div>
+
+                        <table class="table loaded center bold" id="t1">
+                            <tr>
+                                <th>##word.accounting_guide_accounts_cost_center##</th>
+                                <th>##word.accounting_guide_accounts_cost_center_name##</th>
+                                <th>##word.accounting_guide_accounts_rate##</th>
+                            </tr>
+                            <tr ng-repeat="cost in accounting_guide_accounts_view.cost_list">
+                                <td>{{cost.code}}</td>
+                                <td>{{cost.name_ar}}</td>
+                                <td class="blue">{{cost.rate}}</td>
+                            </tr>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col3">
+                <i-image view ng-model="accounting_guide_accounts_view.image_url"></i-image>
+            </div>
+            
+        </div>
+        <i-button label="##word.print##" type="print  " onclick="site.print('#guideAccountsDetailsModal #guideAccountsInformation')"></i-button>
+    </fieldset>
+</div>
+<div x-import="accounting-guide-accounts/action_info.html"></div>

@@ -78,27 +78,38 @@ module.exports = function init(site) {
 
     stores_assemble_doc.date = site.toDateTime(stores_assemble_doc.date)
 
-    stores_assemble_doc.items.forEach(itm => {
-      itm.current_count = site.toNumber(itm.current_count)
-      itm.count = site.toNumber(itm.count)
-      itm.cost = site.toNumber(itm.cost)
-      itm.price = site.toNumber(itm.price)
-      itm.total = site.toNumber(itm.total)
-    })
-
     stores_assemble_doc.total_value = site.toNumber(stores_assemble_doc.total_value)
     stores_assemble_doc.net_value = site.toNumber(stores_assemble_doc.net_value)
 
     let assembleItems = []
+
     stores_assemble_doc.items.forEach(assembleDocItems => {
+      assembleDocItems.current_count = site.toNumber(assembleDocItems.current_count)
+      assembleDocItems.count = site.toNumber(assembleDocItems.count)
+      assembleDocItems.cost = site.toNumber(assembleDocItems.cost)
+      assembleDocItems.price = site.toNumber(assembleDocItems.price)
+      assembleDocItems.total = site.toNumber(assembleDocItems.total)
+
+      if (assembleDocItems.patch_list && assembleDocItems.patch_list.length === 1) {
+
+        assembleDocItems.patch_list[0].complex_items = assembleDocItems.complex_items
+
+      }
+
       assembleDocItems.complex_items.forEach(aDiCoplex => {
-        if (assembleDocItems.barcode === aDiCoplex.barcode) {
-          aDiCoplex.count = aDiCoplex.count + assembleDocItems.count
-          assembleItems.push(aDiCoplex)
+
+        if (aDiCoplex.patch_list && aDiCoplex.patch_list.length > 0) {
+
+          let filter_a_patch = aDiCoplex.patch_list.filter(_p => _p.count !== 0)
+          aDiCoplex.patch_list = filter_a_patch
         }
+
+        assembleItems.push(aDiCoplex)
+        // if (assembleDocItems.barcode === aDiCoplex.barcode) {
+        //   aDiCoplex.count = aDiCoplex.count + assembleDocItems.count
+        // }
       });
     });
-
 
     site.isAllowOverDraft(req, assembleItems, cbOverDraft => {
 
@@ -108,7 +119,6 @@ module.exports = function init(site) {
         res.json(response)
 
       } else {
-
 
         $stores_assemble.add(stores_assemble_doc, (err, doc) => {
 
@@ -121,6 +131,7 @@ module.exports = function init(site) {
               let complex_list = [];
 
               doc.items.forEach((_itm, i) => {
+
                 _itm.type = 'sum'
                 _itm.assemble = true
                 _itm.store = doc.store
@@ -188,6 +199,7 @@ module.exports = function init(site) {
       res.json(response)
       return
     }
+
     let stores_assemble_doc = req.body
     stores_assemble_doc.edit_user_info = site.security.getUserFinger({ $req: req, $res: res })
 
@@ -195,12 +207,33 @@ module.exports = function init(site) {
     stores_assemble_doc.type = site.fromJson(stores_assemble_doc.type)
     stores_assemble_doc.date = new Date(stores_assemble_doc.date)
 
-    stores_assemble_doc.items.forEach(itm => {
-      itm.count = site.toNumber(itm.count)
-      itm.cost = site.toNumber(itm.cost)
-      itm.price = site.toNumber(itm.price)
-      itm.total = site.toNumber(itm.total)
-    })
+    stores_assemble_doc.items.forEach(assembleDocItems => {
+      assembleDocItems.current_count = site.toNumber(assembleDocItems.current_count)
+      assembleDocItems.count = site.toNumber(assembleDocItems.count)
+      assembleDocItems.cost = site.toNumber(assembleDocItems.cost)
+      assembleDocItems.price = site.toNumber(assembleDocItems.price)
+      assembleDocItems.total = site.toNumber(assembleDocItems.total)
+
+      if (assembleDocItems.patch_list && assembleDocItems.patch_list.length === 1) {
+
+        assembleDocItems.patch_list[0].complex_items = complex_items
+
+      }
+
+      assembleDocItems.complex_items.forEach(aDiCoplex => {
+
+        if (aDiCoplex.patch_list && aDiCoplex.patch_list.length > 0) {
+
+          let filter_a_patch = aDiCoplex.patch_list.filter(_p => _p.count !== 0)
+          aDiCoplex.patch_list = filter_a_patch
+        }
+
+        assembleItems.push(aDiCoplex)
+        // if (assembleDocItems.barcode === aDiCoplex.barcode) {
+        //   aDiCoplex.count = aDiCoplex.count + assembleDocItems.count
+        // }
+      });
+    });
 
     stores_assemble_doc.total_value = site.toNumber(stores_assemble_doc.total_value)
 
@@ -240,7 +273,6 @@ module.exports = function init(site) {
 
     if (stores_assemble_doc._id) {
 
-
       let assembleItems = []
 
       if (stores_assemble_doc.posting) {
@@ -248,10 +280,10 @@ module.exports = function init(site) {
         stores_assemble_doc.items.forEach(assembleDocItems => {
           assembleDocItems.complex_items.forEach(aDiCoplex => {
 
-            if (assembleDocItems.barcode === aDiCoplex.barcode) {
-              aDiCoplex.count = aDiCoplex.count + assembleDocItems.count
-              assembleItems.push(aDiCoplex)
-            }
+            assembleItems.push(aDiCoplex)
+            // if (assembleDocItems.barcode === aDiCoplex.barcode) {
+            //   aDiCoplex.count = aDiCoplex.count + assembleDocItems.count
+            // }
           });
         });
 
@@ -674,7 +706,7 @@ module.exports = function init(site) {
   site.getStoresAssemble = function (whereObj, callback) {
     callback = callback || {};
     let where = whereObj || {}
-   
+
     if (where.date) {
       let d1 = site.toDate(where.date)
       let d2 = site.toDate(where.date)

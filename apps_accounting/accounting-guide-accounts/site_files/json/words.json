@@ -1,0 +1,64 @@
+[
+    {"name" : "accounting_guide_accounts_informations" , "en" : "Guide Accounts" , "ar" : "بيانات دليل الحسابات"},
+    {"name" : "accounting_guide_accounts_delete" , "en" : "Delete Guide Accounts" , "ar" : "حذف دليل حساب"},
+    {"name" : "accounting_guide_accounts_edit" , "en" : "Edit Guide Accounts" , "ar" : "تعديل دليل حساب"},
+    {"name" : "accounting_guide_accounts_details" , "en" : "Guide Accounts Deteails" , "ar" : "تفاصيل دليل حساب"},
+    {"name" : "cost_center_delete" , "en" : "Confirm Delete Cost Center !!" , "ar" : "تأكيد حذف مركز تكلفة !!"},
+    {"name" : "cost_center_details_delete" , "en" : "Details Delete Cost Center" , "ar" : " تفاصيل حذف مركز تكلفة"},
+    {"name" : "accounting_guide_accounts_new" , "en" : "New Guide Accounts" , "ar" : "دليل حساب جديد"},
+    {"name" : "accounting_guide_accounts" , "en" : "Guide Accounts" , "ar" : "دليل الحسابات"},
+    {"name" : "accounting_guide_accounts_code_err" , "en" : "Code Exists" , "ar" : "الكود مكرر"},
+    {"name" : "detailed_err" , "en" : "Can't Change" , "ar" : "لا يمكن تحويله يحتوي على حسابات فرعية"},
+    {"name" : "cant_delete" , "en" : "Can't Delete" , "ar" : "لا يمكن حذفه يحتوي على حسابات فرعية"},
+    {"name" : "enter_code_tree" , "en" : "Please Enter Code" , "ar" : "من فضلك أدخل الكود"},
+
+    {"name" : "accounting_guide_accounts_delete_side" , "en" : "Delete Category" , "ar" : "حذف تصنيف"},
+    {"name" : "accounting_guide_accounts_delete_count" , "en" : " Count" , "ar" : "حساب صافي الأرباح و الخسائر"},
+ 
+    {"name" : "accounting_guide_accounts_currency" , "en" : "Currency" , "ar" : "العملة"},
+    {"name" : "accounting_guide_accounts_cost_center_err" , "en" : "You Should Select Cost Center" , "ar" : "يجب إختيار مركز تكلفة"},
+    {"name" : "accounting_guide_accounts_category_err" , "en" : "You Should Select Category" , "ar" : "يجب إختيار تصنيف"},
+
+    {"name" : "add_cost_center" , "en" : "Add Cost Center" , "ar" : "إضافة مركز تكلفة"},
+
+    {"name" : "accounting_guide_accounts_total_rate" , "en" : "Total cost center ratios should be equal 100%" , "ar" : "مجموع نسب مركز التكلفة يجب أن يساوي 100%"},
+
+    {"name" : "accounting_guide_accounts_side" , "en" : "Account Side" , "ar" : "جانب الحساب"},
+    {"name" : "accounting_guide_accounts_debtor" , "en" : "Debtor" , "ar" : "مدين"},
+    {"name" : "accounting_guide_accounts_creditor" , "en" : "Creditor" , "ar" : "دائن"},
+
+    {"name" : "accounting_guide_accounts_report_type" , "en" : "Report Type" , "ar" : "نوع التقرير"},
+    {"name" : "accounting_guide_accounts_budget" , "en" : "Budget" , "ar" : "ميزانية"},
+    {"name" : "accounting_guide_accounts_income_list" , "en" : "Income List" , "ar" : "قائمة الدخل"},
+
+    {"name" : "accounting_guide_accounts_category" , "en" : "Category" , "ar" : "التصنيف"},
+    
+    {"name" : "accounting_guide_accounts_cash_flow" , "en" : "Cash Flow" , "ar" : "الظهور بالتدفقات النقدية"},
+    {"name" : "accounting_guide_accounts_Type_of_cost_center" , "en" : "Type Of Cost Center" , "ar" : "نوع مركز التكلفة"},
+    {"name" : "accounting_guide_accounts_mandatory" , "en" : "Mandatory" , "ar" : "إجباري"},
+    {"name" : "accounting_guide_accounts_choice" , "en" : "choice" , "ar" : "إختياري"},
+    {"name" : "accounting_guide_accounts_without" , "en" : "Without" , "ar" : "بدون"},
+
+   
+    
+    {"name" : "accounting_guide_accounts_type" , "en" : "Account Type" , "ar" : "نوع الحساب"},
+    {"name" : "accounting_guide_accounts_primary" , "en" : "primary" , "ar" : "رئيسي"},
+    {"name" : "accounting_guide_accounts_detailed" , "en" : "Detailed" , "ar" : "تفصيلي"},
+
+    {"name" : "accounting_guide_accounts_status" , "en" : "Account Status" , "ar" : "حالة الحساب"},
+    {"name" : "accounting_guide_accounts_active" , "en" : "Active" , "ar" : "نشط"},
+    {"name" : "accounting_guide_accounts_disactive" , "en" : "Dis Active" , "ar" : "معطل"},
+
+    {"name" : "accounting_guide_accounts_accounting_cost_centers" , "en" : "Cost Senters" , "ar" : "مراكز التكلفة"},
+    {"name" : "accounting_guide_accounts_cost_center" , "en" : "Cost Senter" , "ar" : "م.التكلفة"},
+    {"name" : "accounting_guide_accounts_cost_center_name" , "en" : "Cost Senter Name" , "ar" : "اسم مركز التكلفة"},
+    {"name" : "accounting_guide_accounts_rate" , "en" : "Cost Senter Rate %" , "ar" : "نسبة مركز التكلفة %"},
+
+  
+    {"name" : "accounting_guide_accounts_the_code" , "en" : "The Code" , "ar" : "الكود"},
+    {"name" : "accounting_guide_accounts_code" , "en" : "Account Code" , "ar" : "كود الحساب"},
+
+    {"name" : "accounting_guide_accounts_code" , "en" : "Category Code" , "ar" : "كود التصنيف"},
+    {"name" : "accounting_guide_accounts_name_ar" , "en" : "ِAccount Name Arabic" , "ar" : "اسم الحساب عربي"}, 
+    {"name" : "accounting_guide_accounts_name_en" , "en" : "ِAccount Name English" , "ar" : "اسم الحساب إنجليزي"}   
+]

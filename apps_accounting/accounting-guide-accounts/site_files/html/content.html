@@ -1,0 +1,208 @@
+<div class="form">
+    <div id="guideAccountsAddModal" class="tab-content">
+        <fieldset>
+            <legend> ##word.accounting_guide_accounts_informations## </legend>
+            <div class="col9">
+                <div class="row">
+                    <i-control class="col2" ng-disabled="disabledCode" label="##word.accounting_guide_accounts_code##" ng-model="accounting_guide_accounts.code">
+                    </i-control>
+                    <i-control class="col4" v="r" label="##word.accounting_guide_accounts_name_ar##"
+                        ng-model="accounting_guide_accounts.name_ar"></i-control>
+                    <i-control class="col4" label="##word.accounting_guide_accounts_name_en##" ng-model="accounting_guide_accounts.name_en">
+                    </i-control>
+                </div>
+
+                <div class="row">
+                    <i-list class="col4" v="r" label="##word.accounting_guide_accounts_currency##"
+                        ng-model="accounting_guide_accounts.currency" items="currencyList" display="name_ar"
+                        ng-search="_search.$accounting_guide_accounts_currency"></i-list>
+                </div>
+
+                <br>
+                <br>
+
+                <div class="row">
+                    <h2 class="brown col4">##word.accounting_guide_accounts_type## :</h2>
+
+                    <div id=type_{{type.id}}>
+
+                        <i-radio class="col2" ng-value="primary" label="##word.accounting_guide_accounts_primary##"
+                            ng-model="accounting_guide_accounts.type">
+                        </i-radio>
+
+                        <i-radio class="col2" ng-value="detailed" label="##word.accounting_guide_accounts_detailed##"
+                            ng-model="accounting_guide_accounts.type">
+                        </i-radio>
+
+                    </div>
+                </div>
+
+                <br>
+                <br>
+
+                <div class="row">
+                    <h2 class="brown col4">##word.accounting_guide_accounts_side## :</h2>
+
+                    <div id=side_{{side.id}}>
+
+                        <i-radio class="col2" ng-value="debtor" label="##word.accounting_guide_accounts_debtor##"
+                            ng-model="accounting_guide_accounts.side">
+                        </i-radio>
+
+                        <i-radio class="col2" ng-value="creditor" label="##word.accounting_guide_accounts_creditor##"
+                            ng-model="accounting_guide_accounts.side">
+                        </i-radio>
+
+                    </div>
+                </div>
+
+                <br>
+                <br>
+
+                <div class="row">
+                    <h2 class="brown col4">##word.accounting_guide_accounts_report_type## :</h2>
+
+                    <div id=report_{{report.id}}>
+
+                        <i-radio class="col2" ng-value="budget" ng-click="getCategoryList(accounting_guide_accounts.report)"
+                            label="##word.accounting_guide_accounts_budget##" ng-model="accounting_guide_accounts.report">
+                        </i-radio>
+
+                        <i-radio class="col2" ng-value="income_list" ng-click="getCategoryList(accounting_guide_accounts.report)"
+                            label="##word.accounting_guide_accounts_income_list##" ng-model="accounting_guide_accounts.report">
+                        </i-radio>
+
+                    </div>
+                </div>
+
+                <br>
+                <br>
+
+                <div class="row">
+                    <i-list ng-show="settingList.link_gl_accounts_with_income_statement_and_budget == true" class="col4"
+                        ng-search="_search.$accounting_guide_accounts.$category_search" items="categoryList"
+                        label="##word.accounting_guide_accounts_category##" ng-model="accounting_guide_accounts.category"></i-list>
+                </div>
+
+                <br>
+                <br>
+                <div class="row">
+                    <h2 class="brown col4">##word.accounting_guide_accounts_cash_flow## :</h2>
+
+                    <div id=cash_flow_{{cash.id}}>
+
+                        <i-radio class="col2" ng-value="mandatory" label="##word.accounting_guide_accounts_mandatory##"
+                            ng-model="accounting_guide_accounts.cash_flow">
+                        </i-radio>
+
+                        <i-radio class="col2" ng-value="choice" label="##word.accounting_guide_accounts_choice##"
+                            ng-model="accounting_guide_accounts.cash_flow">
+                        </i-radio>
+
+                        <i-radio class="col2" ng-value="without" label="##word.accounting_guide_accounts_without##"
+                            ng-model="accounting_guide_accounts.cash_flow">
+                        </i-radio>
+
+                    </div>
+                </div>
+
+                <br>
+                <br>
+                <div class="row">
+                    <h2 class="brown col4">##word.accounting_guide_accounts_Type_of_cost_center## :</h2>
+
+                    <div id=cost_{{cost.id}}>
+
+                        <i-radio class="col2" ng-value="mandatory" label="##word.accounting_guide_accounts_mandatory##"
+                            ng-model="accounting_guide_accounts.cost"></i-radio>
+
+                        <i-radio class="col2" ng-value="choice" label="##word.accounting_guide_accounts_choice##"
+                            ng-model="accounting_guide_accounts.cost"></i-radio>
+
+                        <i-radio class="col2" ng-value="without" label="##word.accounting_guide_accounts_without##"
+                            ng-model="accounting_guide_accounts.cost"></i-radio>
+
+                    </div>
+                </div>
+
+                <br>
+                <br>
+
+                <div class="row">
+                    <h2 class="brown col4">##word.accounting_guide_accounts_status## :</h2>
+
+                    <div id=status_{{status.id}}>
+
+                        <i-radio class="col2" ng-value="active" label="##word.accounting_guide_accounts_active##"
+                            ng-model="accounting_guide_accounts.status">
+                        </i-radio>
+
+                        <i-radio class="col2" ng-value="disactive" label="##word.accounting_guide_accounts_disactive##"
+                            ng-model="accounting_guide_accounts.status">
+                        </i-radio>
+
+                    </div>
+                </div>
+
+                <br>
+                <br>
+
+                <div ng-hide="accounting_guide_accounts.cost=='without'" class="row">
+                    <div class="row">
+                        <i-list items="costCentersList" class="col4" label="##word.accounting_guide_accounts_accounting_cost_centers##"
+                            ng-search="_search.$accounting_guide_accounts.$cost_center" display="name_ar" ng-model="accounting_guide_accounts.cost_center">
+                        </i-list>
+
+                        <i-button type="add" class="col2" label="##word.add##" ng-click="pushCostCenters()"></i-button>
+
+                        <a class="btn left col2 bg-green" target="blank" href="/accounting_cost_centers">
+                            ##word.add_cost_center##</a>
+
+                    </div>
+                    <div class="row" ng-show="accounting_guide_accounts.cost_list.length > 0">
+
+                        <table class="table loaded center bold" id="t1">
+                            <tr>
+                                <th>##word.accounting_guide_accounts_cost_center##</th>
+                                <th>##word.accounting_guide_accounts_cost_center_name##</th>
+                                <th>##word.accounting_guide_accounts_rate##</th>
+                                <th>##word.actions##</th>
+
+                            </tr>
+                            <tr ng-repeat="cost in accounting_guide_accounts.cost_list">
+                                <td>
+                                    <i-control disabled ng-model="cost.code"></i-control>
+                                </td>
+                                <td>
+                                    <i-control disabled ng-model="cost.name_ar"></i-control>
+                                </td>
+                                <td>
+                                    <i-control ng-model="cost.rate" type="number"></i-control>
+                                </td>
+                                <td class="center">
+                                    <i-button type="delete" ng-click="displayDeleteItemModal($index)"></i-button>
+                                </td>
+
+                            </tr>
+
+                        </table>
+                    </div>
+
+                </div>
+
+                <br>
+                <br>
+
+                <!--    <div class="row">
+                    <i-list class="col4" label="##word.users##" ng-model="accounting_guide_accounts.users"></i-list>
+
+                </div> -->
+
+            </div>
+            <div class="col3">
+                <i-image category="accounting_guide_accounts" ng-model="accounting_guide_accounts.image_url"></i-image>
+            </div>
+
+        </fieldset>
+    </div>
+</div>

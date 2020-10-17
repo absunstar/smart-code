@@ -1,0 +1,24 @@
+<div id="guideAccountsAddModal" class="modal" fixed>
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.accounting_guide_accounts_new##
+                <i class="fa fa-plus"></i>
+            </h2>
+
+        </div>
+
+        <div class="modal-body">
+            <div x-import="accounting-guide-accounts/content.html"></div>
+        </div>
+
+        <div class="modal-footer center">
+            <h2 class="error"> {{error}} </h2>
+            <h2 class="green center"> {{success}} </h2>
+            <i-button type="add" label="##word.add##" ng-click="addGuideAccounts()"></i-button>
+            
+            <i-button type="close" label="##word.close##" onclick="site.hideModal( '#guideAccountsAddModal')"></i-button>
+        </div>
+    </div>
+</div>

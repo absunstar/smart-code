@@ -262,7 +262,7 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
             $scope.busy = false;
             if (response.data.done) {
               site.hideModal('#deleteStoreAssembleModal');
-              $scope.loadAll();
+              $scope.loadAll({ date: new Date() });
             } else {
               $scope.error = response.data.error;
               if (response.data.error.like('*OverDraft Not*')) {
@@ -287,7 +287,7 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
 
     if ($scope.item.sizes && $scope.item.sizes.length > 0)
       $scope.item.sizes.forEach(_size => {
-        foundSize = $scope.store_assemble.items.some(_itemSize => _itemSize.barcode == _size.barcode);
+        foundSize = $scope.store_assemble.items.some(_itemSize => _itemSize.barcode === _size.barcode);
         if (_size.count > 0 && !foundSize) {
           $scope.store_assemble.items.unshift({
             image_url: $scope.item.image_url,
@@ -584,7 +584,7 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
                       $scope.store_assemble.items.unshift(_size);
                     else if (foundSize) {
                       $scope.store_assemble.items.forEach(_item => {
-                        if (_item.barcode == _size.barcode) {
+                        if (_item.barcode === _size.barcode && !size.work_patch && !size.work_serial) {
                           _item.count = _item.count + 1;
 
                         }
@@ -715,8 +715,8 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
         function (response) {
           $scope.busy = false;
           if (response.data.done) {
+            $scope.loadAll({ date: new Date() });
             site.hideModal('#updateStoreAssembleModal');
-            $scope.loadAll();
           } else {
             $scope.error = '##word.error##';
           }
@@ -1007,7 +1007,7 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
 
                 $scope.item_patch.patch_list.forEach(_itemPatch => {
 
-                  if (_resPatch.patch == _itemPatch.patch) {
+                  if (_resPatch.patch === _itemPatch.patch) {
                     _resPatch.count = _itemPatch.count
                     _resPatch.current_count = _itemPatch.current_count
                     if (_itemPatch.select) _resPatch.select = _itemPatch.select

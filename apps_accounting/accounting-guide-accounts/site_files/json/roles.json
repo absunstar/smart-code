@@ -1,0 +1,7 @@
+[{
+    "module_name" : "accounting" ,
+    "name": "accounting_guide_accounts_admin",
+    "en": "Guide Accounts Notes Admin",
+    "ar": "ادارة دليل الحسابات",
+    "permissions": ["accounting_guide_accounts_manage"]
+}]

@@ -1,0 +1,31 @@
+[
+    {"name" : "accounting_cost_centers_informations" , "en" : "Guide Budget" , "ar" : "بيانات مركز تكلفة"},
+    {"name" : "accounting_cost_centers_delete" , "en" : "Delete Guide Budget" , "ar" : "حذف مركز تكلفة"},
+    {"name" : "accounting_cost_centers_edit" , "en" : "Edit Guide Budget" , "ar" : "تعديل مركز تكلفة"},
+    {"name" : "accounting_cost_centers_details" , "en" : "Guide Budget Deteails" , "ar" : "تفاصيل مركز تكلفة"},
+    {"name" : "accounting_cost_centers_delete" , "en" : "Delete Guide Budget" , "ar" : "حذف مركز تكلفة"},
+    {"name" : "accounting_cost_centers_new" , "en" : "New Guide Budget" , "ar" : "مركز تكلفة جديد"},
+    {"name" : "accounting_cost_centers" , "en" : "Guide Categories Budget" , "ar" : "مراكز التكلفة"},
+    {"name" : "accounting_cost_centers_code_err" , "en" : "Code Exist" , "ar" : "الكود مكرر"},
+    {"name" : "detailed_err" , "en" : "Can't Change" , "ar" : "لا يمكن تحويله يحتوي على حسابات فرعية"},
+    {"name" : "cant_delete" , "en" : "Can't Delete" , "ar" : "لا يمكن حذفه يحتوي على حسابات فرعية"},
+
+    {"name" : "accounting_cost_centers_confirm_delete" , "en" : "Confirm Delete Category" , "ar" : "تأكيد حذف التصنيف !"},
+    {"name" : "accounting_cost_centers_delete_side" , "en" : "Delete Category" , "ar" : "حذف تصنيف"},
+    {"name" : "accounting_cost_centers_delete_count" , "en" : " Count" , "ar" : "حساب صافي الأرباح و الخسائر"},
+
+    {"name" : "accounting_cost_centers_type" , "en" : "Cost Centers Type" , "ar" : "نوع مركز التكلفة"},
+    {"name" : "accounting_cost_centers_primary" , "en" : "primary" , "ar" : "رئيسي"},
+    {"name" : "accounting_cost_centers_detailed" , "en" : "Detailed" , "ar" : "تفصيلي"},
+
+    {"name" : "accounting_cost_centers_status" , "en" : "Category status" , "ar" : "حالة مركز التكلفة"},
+    {"name" : "accounting_cost_centers_active" , "en" : "Active" , "ar" : "نشط"},
+    {"name" : "accounting_cost_centers_disactive" , "en" : "Dis Active" , "ar" : "معطل"},
+  
+    {"name" : "accounting_cost_centers_the_code" , "en" : "The Code" , "ar" : "الكود"},
+    {"name" : "accounting_cost_centers_code" , "en" : "Centers Code" , "ar" : "كود المركز"},
+
+    {"name" : "accounting_cost_centers_code" , "en" : "Category Code" , "ar" : "كود التصنيف"},
+    {"name" : "accounting_cost_centers_name_ar" , "en" : "Category Name Arabic" , "ar" : "اسم مركز التكلفة عربي"}, 
+    {"name" : "accounting_cost_centers_name_en" , "en" : "Category Name English" , "ar" : "اسم مركز التكلفة إنجليزي"}   
+]

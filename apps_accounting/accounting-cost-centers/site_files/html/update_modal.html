@@ -1,0 +1,24 @@
+<div id="costCentersUpdateModal" class="modal" fixed>
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.accounting_cost_centers_edit##
+                <i class="fa fa-pencil"></i>
+            </h2>
+        </div>
+
+        <div class="modal-body">
+
+            <div x-import="accounting-cost-centers/content.html"></div>
+            <div x-import="accounting-cost-centers/action_info.html"></div>
+        </div>
+
+        <div class="modal-footer center">
+            <h2 class="error"> {{error}} </h2>
+            <i-button type="save" label="##word.save##" ng-click="updateCostCenters()"></i-button>
+
+            <i-button type="close" label="##word.close##" onclick="site.hideModal( '#costCentersUpdateModal')"></i-button>
+        </div>
+    </div>
+</div>

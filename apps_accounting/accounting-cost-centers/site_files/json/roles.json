@@ -1,0 +1,7 @@
+[{
+    "module_name" : "accounting" ,
+    "name": "accounting_cost_centers_admin",
+    "en": "Cost Centers Notes Admin",
+    "ar": "إدارة  مراكز التكلفة",
+    "permissions": ["accounting_cost_centers_manage"]
+}]

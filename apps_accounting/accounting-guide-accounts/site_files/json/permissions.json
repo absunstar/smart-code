@@ -1,0 +1,14 @@
+[
+    { "module_name" : "accounting" , "screen_name" : "accounting-guide-accounts" , "name":"accounting_guide_accounts_manage" , "en":"Manage" , "ar":"إدارة"},
+    { "module_name" : "accounting" , "screen_name" : "accounting-guide-accounts" , "name":"accounting_guide_accounts_add" , "en":"Add" , "ar":"إضافة"},
+    { "module_name" : "accounting" , "screen_name" : "accounting-guide-accounts" , "name":"accounting_guide_accounts_edit" , "en":"Edit" , "ar":"تعديل"},
+    { "module_name" : "accounting" , "screen_name" : "accounting-guide-accounts" , "name":"accounting_guide_accounts_delete" , "en":"Delete" , "ar":"حذف"},
+    { "module_name" : "accounting" , "screen_name" : "accounting-guide-accounts" , "name":"accounting_guide_accounts_view" , "en":"View" , "ar":"عرض"},
+    { "module_name" : "accounting" , "screen_name" : "accounting-guide-accounts" , "name":"accounting_guide_accounts_search" , "en":"Search" , "ar":"بحث"},
+    { "module_name" : "accounting" , "screen_name" : "accounting-guide-accounts" , "name":"accounting_guide_accounts_export" , "en":"Export" , "ar":"تصدير"},
+    { "module_name" : "accounting" , "screen_name" : "accounting-guide-accounts" , "name":"accounting_guide_accounts_print" , "en":"Print" , "ar":"طباعة"},
+    { "module_name" : "accounting" , "screen_name" : "accounting-guide-accounts" , "name":"accounting_guide_accounts_done" , "en":"Done" , "ar":"ترحيل"},
+    { "module_name" : "accounting" , "screen_name" : "accounting-guide-accounts" , "name":"accounting_guide_accounts_ui" , "en":"UI " , "ar":"الواجهة الرسومية"},
+    { "module_name" : "accounting" , "screen_name" : "accounting-guide-accounts" , "name":"accounting_guide_accounts_unpacking" , "en":"Unpacking" , "ar":"فك ترحيل"}
+
+]

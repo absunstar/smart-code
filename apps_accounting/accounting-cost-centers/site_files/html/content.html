@@ -1,0 +1,61 @@
+<div class="form">
+    <div id="costCentersAddModal" class="tab-content">
+        <fieldset>
+            <legend> ##word.accounting_cost_centers_informations## </legend>
+            <div class="col9">
+                <div class="row">
+                    <i-control ng-disabled="disabledCode" class="col2" label="##word.accounting_cost_centers_code##" ng-model="accounting_cost_centers.code"></i-control>
+                    <i-control v="r" class="col4" label="##word.accounting_cost_centers_name_ar##" ng-model="accounting_cost_centers.name_ar"></i-control>
+                    <i-control class="col4" label="##word.accounting_cost_centers_name_en##" ng-model="accounting_cost_centers.name_en"></i-control>
+                </div>
+
+                <br>
+                <br>
+                <br>
+                
+                <div class="row">
+                    <h2 class="brown col3">##word.accounting_cost_centers_type## :</h2>
+
+                    <div id=type_{{print.id}}>
+
+                        <i-radio class="col2" ng-value="primary" label="##word.accounting_cost_centers_primary##"
+                            ng-model="accounting_cost_centers.type">
+                        </i-radio>
+
+                        <i-radio class="col2" ng-value="detailed" label="##word.accounting_cost_centers_detailed##"
+                            ng-model="accounting_cost_centers.type">
+                        </i-radio>
+
+                    </div>
+                </div>
+                <br>
+                <br>
+                <br>
+                <div class="row">
+                    <h2 class="brown col3">##word.accounting_cost_centers_status## :</h2>
+
+                    <div id=status_{{print.id}}>
+
+                        <i-radio class="col2" ng-value="active" label="##word.accounting_cost_centers_active##"
+                            ng-model="accounting_cost_centers.status">
+                        </i-radio>
+
+                        <i-radio class="col2" ng-value="disactive" label="##word.accounting_cost_centers_disactive##"
+                            ng-model="accounting_cost_centers.status">
+                        </i-radio>
+
+                    
+
+                    </div>
+
+                </div>
+
+
+            </div>
+            <div class="col3">
+                <i-image category="accounting_cost_centerss" ng-model="accounting_cost_centers.image_url"></i-image>
+            </div>
+
+        </fieldset>
+    </div>
+</div>

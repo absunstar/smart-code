@@ -72,7 +72,8 @@
                             <td class="blue"> <br> {{itm.store_count}}</td>
 
                             <td>
-                                <i-control type="number" ng-model="itm.count"></i-control>
+                                <i-control ng-disabled="itm.work_serial || itm.work_patch" type="number"
+                                    ng-model="itm.count"></i-control>
                             </td>
 
                             <td>

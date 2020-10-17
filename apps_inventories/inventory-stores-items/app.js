@@ -949,9 +949,9 @@ module.exports = function init(site) {
                 _size.branches_list.forEach(_branch => {
                   if (_branch.stores_list && _branch.stores_list.length > 0)
                     _branch.stores_list.forEach(_store => {
-                      if (_store.store && _store.store.id == store_id)
+                      if (_store.store && _store.store.id === store_id)
                         _store.size_units_list.forEach(_unit => {
-                          if (_unit.id == unit_id) {
+                          if (_unit.id === unit_id) {
                             patch_list = _unit.patch_list
                           }
 
