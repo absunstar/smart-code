@@ -22,6 +22,7 @@ app.controller("accounting_cost_centers", function ($scope, $http, $timeout) {
       $scope.accounting_cost_centers.parent_id = parent_cost_center.id;
       $scope.accounting_cost_centers.top_parent_id = parent_cost_center.top_parent_id || parent_cost_center.id;
     };
+  
 
     if ($scope.accounting_cost_centers.top_parent_id) {
 
@@ -34,6 +35,10 @@ app.controller("accounting_cost_centers", function ($scope, $http, $timeout) {
 
       $scope.accounting_cost_centers.parent_id = parent_cost_center.id;
       $scope.accounting_cost_centers.top_parent_id = parent_cost_center.top_parent_id || parent_cost_center.id;
+    };
+
+    if($scope.default_setting.accounting && $scope.default_setting.accounting.auto_generate_account_code_and_cost_center){
+      $scope.accounting_cost_centers.length_level = $scope.default_setting.accounting.length_level || 0;
     };
 
     site.showModal('#costCentersAddModal');
@@ -309,6 +314,7 @@ app.controller("accounting_cost_centers", function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data) {
+          $scope.default_setting = response.data.doc;
           $scope.disabledCode = response.data.doc.accounting.auto_generate_account_code_and_cost_center == true ? true : false;
         }
       },

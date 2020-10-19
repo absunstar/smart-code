@@ -67,7 +67,7 @@ module.exports = function init(site) {
       if (settingDoc) {
 
 
-        l = settingDoc.accounting.length_level || 0
+        l = accounting_guide_accounts_doc.length_level || 0
         $accounting_guide_accounts.findMany({
           where: where
         }, (err, docs, count) => {

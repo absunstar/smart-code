@@ -63,7 +63,7 @@ module.exports = function init(site) {
 
       if (settingDoc) {
 
-        l = settingDoc.accounting.length_level || 0
+        l = accounting_cost_centers_doc.length_level || 0
         $accounting_cost_centers.findMany({
           where: where
         }, (err, docs, count) => {
