@@ -115,6 +115,21 @@
         "ar": "المعاملات المخزنية"
     },
     {
+        "name": "purchase_store",
+        "en": "Purchase Store",
+        "ar": "المشتريات المخزنية"
+    },
+    {
+        "name": "sales_store",
+        "en": "Sales Store",
+        "ar": "المبيعات المخزنية"
+    },
+    {
+        "name": "purchase_store",
+        "en": "Purchase Store",
+        "ar": "المشتريات المخزنية"
+    },
+    {
         "name": "employees",
         "en": "Employees",
         "ar": "الموظفين"

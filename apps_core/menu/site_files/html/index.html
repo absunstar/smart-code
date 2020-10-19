@@ -152,29 +152,6 @@
             </a>
 
 
-            <a class="tab-link" href="/customers" x-permissions="customers_ui || customers_manage">
-                <img src="/images/customer.png">
-                <span> ##word.customers## </span>
-            </a>
-
-            <a x-features="restaurant || pos || academy || gym" class="tab-link" href="/vendors"
-                x-permissions="vendors_ui || vendors_manage">
-                <img src="/images/vendor.png">
-                <span> ##word.vendors## </span>
-            </a>
-
-            <a class="tab-link" href="/customers_group"
-                x-permissions="sales_customers_group_ui || sales_customers_group_manage">
-                <img src="/images/vendor_group.png">
-                <span> ##word.customers_groups## </span>
-            </a>
-
-            <a x-features="restaurant || pos || academy || gym" class="tab-link" href="/vendors_group"
-                x-permissions="vendors_group_ui || vendors_group_manage">
-                <img src="/images/vendor_group.png">
-                <span> ##word.vendors_group## </span>
-            </a>
-
             <a x-features="pos" class="tab-link" href="/itineraries"
                 x-permissions="itineraries_ui || itineraries_manage">
                 <img src="/images/itinerary.png">
@@ -358,20 +335,72 @@
     <div id="inventory_tabs" class="tabs">
         <div class="tabs-header">
 
+
+            <a class="tab-link" onclick="site.showTabs(event, '#purchase_store')">
+                <img src="/images/purchase_store.png">
+                <span>##word.purchase_store##</span>
+            </a>
+
+            <a class="tab-link" onclick="site.showTabs(event, '#sales_store')">
+                <img src="/images/sales_store.png">
+                <span>##word.sales_store##</span>
+            </a>
+
+            <a class="tab-link" onclick="site.showTabs(event, '#inventories')">
+                <img src="/images/inventories.png">
+                <span>##word.inventories##</span>
+            </a>
+
+            <a class="tab-link" onclick="site.showTabs(event, '#main_tabs')">
+                <img src="/images/back.png">
+                <span> ##word.main_menu##</span>
+            </a>
+
+        </div>
+    </div>
+
+    <div id="purchase_store" class="tabs">
+        <div class="tabs-header">
+
             <a class="tab-link" href="/stores_in?type=1" x-permissions="stores_in_ui || stores_in_manage">
                 <img src="/images/purchases_invoice.png">
                 <span>##word.stores_ins## </span>
-            </a>
-
-            <a class="tab-link" href="/stores_out?type=3" x-permissions="stores_out_ui || stores_out_manage">
-                <img src="/images/sales_invoice_store.png">
-                <span>##word.sales_invoice_store##</span>
             </a>
 
             <a class="tab-link" href="/stores_in?type=4" x-permissions="stores_in_ui || stores_in_manage">
                 <img src="/images/return_purchase_invoice.png">
                 <span>##word.returns_purchase_invoices## </span>
             </a>
+
+            <a x-features="restaurant || pos || academy || gym" class="tab-link" href="/vendors"
+                x-permissions="vendors_ui || vendors_manage">
+                <img src="/images/vendor.png">
+                <span> ##word.vendors## </span>
+            </a>
+
+
+            <a x-features="restaurant || pos || academy || gym" class="tab-link" href="/vendors_group"
+                x-permissions="vendors_group_ui || vendors_group_manage">
+                <img src="/images/vendor_group.png">
+                <span> ##word.vendors_group## </span>
+            </a>
+
+            <a class="tab-link" onclick="site.showTabs(event, '#inventory_tabs')">
+                <img src="/images/back.png">
+                <span> ##word.inventory_transactions##</span>
+            </a>
+        </div>
+    </div>
+
+    <div id="sales_store" class="tabs">
+        <div class="tabs-header">
+
+
+            <a class="tab-link" href="/stores_out?type=3" x-permissions="stores_out_ui || stores_out_manage">
+                <img src="/images/sales_invoice_store.png">
+                <span>##word.sales_invoice_store##</span>
+            </a>
+
 
             <a class="tab-link" href="/stores_out?type=6" x-permissions="stores_out_ui || stores_out_manage">
                 <img src="/images/return_sales_invoice.png">
@@ -383,33 +412,44 @@
                 <span>##word.orders_screen_store##</span>
             </a>
 
-            <a class="tab-link" href="/stores_in?type=2" x-permissions="stores_in_ui || stores_in_manage">
-                <img src="/images/dept_store.png">
-                <span>##word.depts_store## </span>
+
+            <a class="tab-link" href="/customers" x-permissions="customers_ui || customers_manage">
+                <img src="/images/customer.png">
+                <span> ##word.customers## </span>
             </a>
+
+            <a class="tab-link" href="/customers_group"
+                x-permissions="sales_customers_group_ui || sales_customers_group_manage">
+                <img src="/images/vendor_group.png">
+                <span> ##word.customers_groups## </span>
+            </a>
+
+            <a class="tab-link" onclick="site.showTabs(event, '#inventory_tabs')">
+                <img src="/images/back.png">
+                <span> ##word.inventory_transactions##</span>
+            </a>
+        </div>
+    </div>
+
+    <div id="inventories" class="tabs">
+        <div class="tabs-header">
+
 
             <a class="tab-link" href="/stores_in?type=3" x-permissions="stores_in_ui || stores_in_manage">
                 <img src="/images/opening_balance.png">
                 <span>##word.opening_balances_store## </span>
             </a>
 
-
-
-            <!--     <a class="tab-link" href="/stores_in" x-permissions="stores_in_ui || stores_in_manage">
-                <img src="/images/pic_money_in.png">
-                <span>##word.system_stores_in_menus##</span>
-            </a> -->
-
-
-
-
-
-
             <a class="tab-link" href="/stores_out?type=5" x-permissions="stores_out_ui || stores_out_manage">
                 <img src="/images/damage_store.png">
                 <span>##word.damage_store##</span>
             </a>
 
+
+            <a class="tab-link" href="/stores_in?type=2" x-permissions="stores_in_ui || stores_in_manage">
+                <img src="/images/dept_store.png">
+                <span>##word.depts_store## </span>
+            </a>
 
 
             <a class="tab-link" href="/transfer_branch" x-permissions="transfer_branch_ui || transfer_branch_manage">
@@ -472,11 +512,12 @@
                 <img src="/images/discount_type.png">
                 <span>##word.system_add_discount_menus##</span>
             </a>
-            <a class="tab-link" onclick="site.showTabs(event, '#main_tabs')">
-                <img src="/images/back.png">
-                <span> ##word.main_menu##</span>
-            </a>
 
+
+            <a class="tab-link" onclick="site.showTabs(event, '#inventory_tabs')">
+                <img src="/images/back.png">
+                <span> ##word.inventory_transactions##</span>
+            </a>
         </div>
     </div>
 
@@ -1006,7 +1047,7 @@
                 <a x-features="restaurant || pos || academy || gym" class="tab-link"
                     onclick="site.showTabs(event, '#inventory_tabs')">
                     <img src="/images/pic_store2.png">
-                    <span>##word.inventories##</span>
+                    <span>##word.inventory_transactions##</span>
                 </a>
                 <a class="tab-link" onclick="site.showTabs(event, '#accounting_tabs')">
                     <img src="/images/safe.png">
