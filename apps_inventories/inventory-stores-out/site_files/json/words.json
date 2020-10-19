@@ -441,8 +441,8 @@
     },
     {
         "name": "sales_invoice_store",
-        "en": "Sales Invoice Store",
-        "ar": "فاتورة مبيعات مخزنية"
+        "en": "Sales Invoices Store",
+        "ar": "فواتير مبيعات مخزنية"
     },
     {
         "name": "orders_screen_store",
@@ -456,7 +456,7 @@
     },
     {
         "name": "return_sales_invoice",
-        "en": "Return Sales Invoice",
-        "ar": "مرتجع فاتورة مبيعات"
+        "en": "Returns Sales Invoices",
+        "ar": "مرتجعات فواتير مبيعات"
     }
 ]

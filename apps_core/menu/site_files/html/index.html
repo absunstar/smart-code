@@ -285,8 +285,7 @@
                 <span>##word.payment_employee_advance## </span>
             </a>
 
-            <a class="tab-link" href="/financial_years"
-                x-permissions="financial_years_ui || financial_years_manage">
+            <a class="tab-link" href="/financial_years" x-permissions="financial_years_ui || financial_years_manage">
                 <img src="/images/financial_years.png">
                 <span> ##word.financial_years## </span>
             </a>
@@ -364,29 +363,19 @@
                 <span>##word.stores_ins## </span>
             </a>
 
+            <a class="tab-link" href="/stores_out?type=3" x-permissions="stores_out_ui || stores_out_manage">
+                <img src="/images/sales_invoice_store.png">
+                <span>##word.sales_invoice_store##</span>
+            </a>
+
             <a class="tab-link" href="/stores_in?type=4" x-permissions="stores_in_ui || stores_in_manage">
                 <img src="/images/return_purchase_invoice.png">
                 <span>##word.returns_purchase_invoices## </span>
             </a>
 
-            <a class="tab-link" href="/stores_in?type=3" x-permissions="stores_in_ui || stores_in_manage">
-                <img src="/images/opening_balance.png">
-                <span>##word.opening_balances_store## </span>
-            </a>
-
-            <a class="tab-link" href="/stores_in?type=2" x-permissions="stores_in_ui || stores_in_manage">
-                <img src="/images/dept_store.png">
-                <span>##word.depts_store## </span>
-            </a>
-
-            <!--     <a class="tab-link" href="/stores_in" x-permissions="stores_in_ui || stores_in_manage">
-                <img src="/images/pic_money_in.png">
-                <span>##word.system_stores_in_menus##</span>
-            </a> -->
-
-            <a class="tab-link" href="/stores_out?type=3" x-permissions="stores_out_ui || stores_out_manage">
-                <img src="/images/sales_invoice_store.png">
-                <span>##word.sales_invoice_store##</span>
+            <a class="tab-link" href="/stores_out?type=6" x-permissions="stores_out_ui || stores_out_manage">
+                <img src="/images/return_sales_invoice.png">
+                <span>##word.return_sales_invoice##</span>
             </a>
 
             <a class="tab-link" href="/stores_out?type=4" x-permissions="stores_out_ui || stores_out_manage">
@@ -394,15 +383,33 @@
                 <span>##word.orders_screen_store##</span>
             </a>
 
+            <a class="tab-link" href="/stores_in?type=2" x-permissions="stores_in_ui || stores_in_manage">
+                <img src="/images/dept_store.png">
+                <span>##word.depts_store## </span>
+            </a>
+
+            <a class="tab-link" href="/stores_in?type=3" x-permissions="stores_in_ui || stores_in_manage">
+                <img src="/images/opening_balance.png">
+                <span>##word.opening_balances_store## </span>
+            </a>
+
+
+
+            <!--     <a class="tab-link" href="/stores_in" x-permissions="stores_in_ui || stores_in_manage">
+                <img src="/images/pic_money_in.png">
+                <span>##word.system_stores_in_menus##</span>
+            </a> -->
+
+
+
+
+
+
             <a class="tab-link" href="/stores_out?type=5" x-permissions="stores_out_ui || stores_out_manage">
                 <img src="/images/damage_store.png">
                 <span>##word.damage_store##</span>
             </a>
 
-            <a class="tab-link" href="/stores_out?type=6" x-permissions="stores_out_ui || stores_out_manage">
-                <img src="/images/return_sales_invoice.png">
-                <span>##word.return_sales_invoice##</span>
-            </a>
 
 
             <a class="tab-link" href="/transfer_branch" x-permissions="transfer_branch_ui || transfer_branch_manage">
