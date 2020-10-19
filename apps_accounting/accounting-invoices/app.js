@@ -1047,6 +1047,7 @@ module.exports = function init(site) {
     }
 
     let where = req.data.where || {}
+    let limit = where.limit || undefined
 
     if (where['code'])
       where['code'] = site.get_RegExp(where['code'], 'i')
@@ -1063,6 +1064,7 @@ module.exports = function init(site) {
       where['source_type.id'] = where['source_type'].id;
       delete where['source_type']
     }
+    
     if (where['payment_method']) {
       where['payment_method.id'] = where['payment_method'].id;
       delete where['payment_method']
@@ -1117,6 +1119,7 @@ module.exports = function init(site) {
         '$gte': d1,
         '$lt': d2
       }
+
     } else if (where && where.date_from) {
       let d1 = site.toDate(where.date_from)
       let d2 = site.toDate(where.date_to)
@@ -1125,10 +1128,16 @@ module.exports = function init(site) {
         '$gte': d1,
         '$lt': d2
       }
+
       delete where.date_from
       delete where.date_to
 
     }
+
+    if (where && where['limit']) {
+      delete where['limit']
+    }
+
 
     // if (where['active'] !== 'all') {
     //   where['active'] = true
@@ -1138,12 +1147,13 @@ module.exports = function init(site) {
 
     where['company.id'] = site.get_company(req).id
     where['branch.code'] = site.get_branch(req).code
+    console.log(where);
 
     $account_invoices.findMany({
       select: req.body.select || {},
       where: where,
       sort: req.body.sort || { id: -1 },
-      limit: req.body.limit
+      limit: limit
     }, (err, docs, count) => {
       if (!err) {
         response.done = true
