@@ -45,7 +45,7 @@ module.exports = function init(site) {
       d2.setDate(d2.getDate() + 1)
       where.date_to = {
         '$gte': d1,
-        '$lte': d2
+        '$lt': d2
       }
       delete where['count_ex']
 

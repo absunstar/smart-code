@@ -279,7 +279,7 @@ module.exports = function init(site) {
       d2.setDate(d2.getDate() + 1)
       where.startup_date = {
         '$gte': d1,
-        '$lte': d2
+        '$lt': d2
       }
     } else if (where && where.startup_date) {
       let d1 = site.toDate(where.startup_date)
@@ -287,7 +287,7 @@ module.exports = function init(site) {
       d2.setDate(d2.getDate() + 1);
       where.startup_date = {
         '$gte': d1,
-        '$lte': d2
+        '$lt': d2
       }
       delete where.date_from
       delete where.deadline_date
@@ -356,7 +356,7 @@ module.exports = function init(site) {
       let d2 = site.toDate(where.date)
       d2.setDate(d2.getDate() + 1)
       where.startup_date = {
-        '$lte': d2
+        '$lt': d2
       }
 
       where.deadline_date = {
