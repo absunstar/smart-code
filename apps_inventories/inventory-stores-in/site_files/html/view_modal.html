@@ -3,9 +3,19 @@
     <div class="modal-content">
         <div class="modal-header">
             <span class="close">&times;</span>
-            <h2>
-                ##word.stores_in_details## <i class="fa fa-file"></i>
+            <h2 ng-show="##query.type## == 1">
+                ##word.stores_in_edit## <i class="fa fa-file"></i>  
             </h2>
+            <h2 ng-show="##query.type## == 2">
+                ##word.dept_edit## <i class="fa fa-file"></i>  
+            </h2>
+            <h2 ng-show="##query.type## == 3">
+                ##word.opening_balance_edit## <i class="fa fa-file"></i>  
+            </h2>
+            <h2 ng-show="##query.type## == 4">
+                ##word.return_purchase_invoice_edit## <i class="fa fa-file"></i>  
+            </h2>
+
         </div>
         <div class="modal-body">
 

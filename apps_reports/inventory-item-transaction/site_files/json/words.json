@@ -105,12 +105,12 @@
         "ar": "القسم"
     },
     {
-        "name": "return_purchase_invoice",
+        "name": "unpost_purchase_invoice",
         "en": "UnPost Purchase Invoice",
         "ar": "فك ترحيل إذن وارد"
     },
     {
-        "name": "return_sales_invoice",
+        "name": "unpost_sales_invoice",
         "en": "UnPost Sales Invoice",
         "ar": "فك ترحيل إذن منصرف"
     },

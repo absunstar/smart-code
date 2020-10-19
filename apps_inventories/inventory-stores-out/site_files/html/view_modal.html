@@ -3,9 +3,19 @@
     <div class="modal-content">
         <div class="modal-header">
             <span class="close">&times;</span>
-            <h2>
-                ##word.stores_out_details## <i class="fa fa-file"></i>
+            <h2 ng-show="##query.type## == 3">
+                ##word.sales_invoice_store## <i class="fa fa-file"></i>
             </h2>
+            <h2 ng-show="##query.type## == 4">
+                ##word.orders_screen_store## <i class="fa fa-file"></i>
+            </h2>
+            <h2 ng-show="##query.type## == 5">
+                ##word.damage_store## <i class="fa fa-file"></i>
+            </h2>
+            <h2 ng-show="##query.type## == 6">
+                ##word.return_sales_invoice## <i class="fa fa-file"></i>
+            </h2>
+
         </div>
         <div class="modal-body">
 
@@ -15,7 +25,8 @@
         </div>
         <h2 class="center">{{error}}</h2>
         <div class="modal-footer center">
-            <i-button type="print" x-permissions="stores_out_print || stores_out_manage" label="##word.print##" onclick="site.print('#v1')"></i-button>
+            <i-button type="print" x-permissions="stores_out_print || stores_out_manage" label="##word.print##"
+                onclick="site.print('#v1')"></i-button>
             <i-button type="close" label="##word.close##" onclick="site.hideModal('#viewStoreOutModal')"></i-button>
         </div>
     </div>

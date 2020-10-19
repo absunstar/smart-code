@@ -686,6 +686,7 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
                 if (response.data.error.like('*OverDraft Not*')) {
                   transfer_branch.transfer = false;
                   $scope.error = "##word.overdraft_not_active##";
+                  
                 }
               }
             },

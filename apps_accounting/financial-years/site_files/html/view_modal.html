@@ -1,0 +1,28 @@
+<div id="financialYearDetailsModal" class="modal">
+ 
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.financial_years_details##
+                <i class="fa fa-file"></i>
+            </h2>
+        </div>
+        <div class="modal-body">
+            <span ng-show="busy">
+                <span class="sr-only">Loading...</span>
+            </span>
+            <div x-import="financial-years/view.html"></div>
+
+        </div>
+        <h2 class="error"> {{error}} </h2>
+        <div class="modal-footer center">
+            
+            <i-button type="close" label="##word.close##" onclick="site.hideModal('#financialYearDetailsModal')"></i-button>
+            <i-button type="print" label="##word.print##" onclick="site.print('#financialYearDetailsModal #financialYearViewModal')"></i-button>
+
+        </div>
+    </div>
+ 
+</div>

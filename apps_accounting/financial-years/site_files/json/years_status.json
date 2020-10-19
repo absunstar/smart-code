@@ -1,0 +1,20 @@
+[{
+        "id": 1,
+        "name": "planned",
+        "en": "Planned",
+        "ar": "مخططة"
+    },
+    {
+        "id": 2,
+        "name": "opend",
+        "en": "Opend",
+        "ar": "مفتوحة"
+    },
+    {
+        "id": 3,
+        "name": "closed",
+        "en": "Closed",
+        "ar": "مغلقة"
+    }
+
+]

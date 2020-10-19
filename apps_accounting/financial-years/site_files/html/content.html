@@ -1,0 +1,87 @@
+<div class="form">
+    <fieldset>
+        <legend>
+            ##word.financial_years##
+        </legend>
+
+        <fieldset>
+            <legend> ##word.financial_years_basic_informations## </legend>
+            <div class="row">
+                <div class="col9">
+                    <div class="row">
+                        <i-control v="r" class="col2" label="##word.financial_years_code##" ng-model="financial_year.code"></i-control>
+
+                        <i-control class="col4" label="##word.financial_years_name##" ng-model="financial_year.name"></i-control>
+
+                        <i-control v="r" class="col2" label="##word.financial_years_period_count##" ng-model="financial_year.period"
+                            type="number"></i-control>
+
+                        <i-list v="r" class="col2" label="##word.status##" ng-model="financial_year.status" items="yearStatusList"
+                            disabled display="##session.lang##">
+                        </i-list>
+
+                        <i-checkbox class="col2" label="##word.active##" ng-model="financial_year.active"></i-checkbox>
+                    </div>
+
+                    <div class="row">
+                        <i-fulldate label1="##word.financia_years_period_start_gregorian##" label2="##word.financia_years_period_start_hijri##"
+                            ng-model="financial_year.period_start"></i-fulldate>
+                    </div>
+
+                    <div class="row">
+                        <i-fulldate label1="##word.financia_years_period_end_gregorian##" label2="##word.financia_years_period_end_hijri##"
+                            ng-model="financial_year.period_end"></i-fulldate>
+
+                    </div>
+
+                    <div class="row">
+                        <i-button class="col2" type="add" lable="##word.financial_years_create_periods##" ng-click="addFinancialYearsIntervals()"></i-button>
+                    </div>
+
+                </div>
+
+                <div class="col3">
+                    <i-image category="financial_years" ng-model="financial_year.image_url"> </i-image>
+                </div>
+
+            </div>
+        </fieldset>
+
+        <fieldset ng-repeat="period in financial_year.accounting_period_list">
+            <legend>
+
+                <i-button type="add default" ng-click="financial_year.accounting_period_list.push({})"></i-button>
+                ##word.financial_years_accounting_period##
+                <i-button type="delete default" ng-click="financial_year.accounting_period_list.length ===1 ||financial_year.accounting_period_list.splice($index,1)"></i-button>
+            </legend>
+            <div class="row">
+                <i-control class="col3" ng-model="period.code" label="##word.financial_years_period_code##"></i-control>
+
+                <i-button ng-show=" period.showButton==true" class="col2" ng-click="openPeriod($index)" type="add"
+                    label="##word.financial_years_Period_open##">
+                </i-button>
+
+                <i-button ng-show=" period.showButtonUp==true" class="col2" ng-click="openPeriodUp($index)" type="add"
+                    label="##word.financial_years_Period_open##">
+                </i-button>
+
+                <i-list v="r" class="col2" label="##word.financial_years_period_status##" ng-model="period.status"
+                    items="yearStatusList" display="##session.lang##" disabled>
+                </i-list>
+
+                <i-button class="col2" ng-show="period.showButtonClose==true" type="close" ng-click="closePeriod($index) "
+                    label="##word.financial_years_Period_Close##">
+                </i-button>
+            </div>
+
+            <div class="row">
+                <i-fulldate class="col6" label1="##word.financia_years_period_start_gregorian##" label2="##word.financia_years_period_start_hijri##"
+                    ng-model="period.start"></i-fulldate>
+
+                <i-fulldate class="col6" label1="##word.financia_years_period_end_gregorian##" label2="##word.financia_years_period_end_hijri##"
+                    ng-model="period.end"></i-fulldate>
+            </div>
+
+        </fieldset>
+    </fieldset>
+</div>

@@ -363,15 +363,11 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
     $scope.list = [];
     $scope.count = 0;
 
-    if (where) {
-      where.source_type = { id: site.toNumber("##query.type##") };
-
+    if (!where || !Object.keys(where).length) {
+      where = { limit: 100, source_type: { id: site.toNumber("##query.type##") } }
     } else {
-      where = {
-        source_type: { id: site.toNumber("##query.type##") }
-      }
+      where.source_type = { id: site.toNumber("##query.type##") };
     }
-
 
     $http({
       method: "POST",

@@ -1,18 +1,13 @@
 [
     {
-        "id": 1,
-        "en": "Damage",
-        "ar": "بيع طرف المالك"
-    },
-    {
         "id": 3,
-        "en": "gomla",
-        "ar": "بيع"
+        "en": "Sale Invoice Store",
+        "ar": "فاتورة مبيعات مخزنية"
     },
     {
         "id": 4,
-        "en": "Orders Screen",
-        "ar": "شاشة الطلبات"
+        "en": "Orders Screen Store",
+        "ar": "شاشة الطلبات المخزنية"
     },
     {
         "id": 5,
@@ -21,12 +16,7 @@
     },
     {
         "id": 6,
-        "en": "Return Sales",
-        "ar": "مرتجع مبيعات"
-    },
-    {
-        "id": 7,
-        "en": "Others",
-        "ar": "أخرى"
+        "en": "Return Sales Invoice",
+        "ar": "مرتجع فاتورة مبيعات"
     }
 ]

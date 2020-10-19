@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="financial_years_ui || financial_years_manage" data-ng-app="myApp">
+
+<head x-import="head.html">
+
+</head>
+
+<body class="##session.lang##">
+
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+
+    </nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+
+    </nav>
+
+    <div id="main-layout" class="container">
+        <div class="row">
+            <div class="row" ng-controller="financial_years" x-permission="login">
+                <div x-permissions="financial_years_add || financial_years_manage"
+                    x-import="financial-years/add_modal.html"></div>
+                <div x-permissions="financial_years_edit || financial_years_manage"
+                    x-import="financial-years/update_modal.html"></div>
+                <div x-permissions="financial_years_delete || financial_years_manage"
+                    x-import="financial-years/delete_modal.html"></div>
+                <div x-permissions="financial_years_view || financial_years_manage"
+                    x-import="financial-years/view_modal.html"></div>
+                <div x-permissions="financial_years_search || financial_years_manage"
+                    x-import="financial-years/search_all_modal.html"></div>
+
+                <div class="row">
+                    <h1 class="bold text-center"> ##word.financial_years## </h1>
+                </div>
+
+                <div class="top-actions">
+                    <i-button x-permissions="financial_years_add || financial_years_manage" type="add"
+                        label="##word.financial_years_new##" ng-click="displayAddFinancialYear()"></i-button>
+
+                    <i-button x-permissions="financial_years_search || financial_years_manage" type="search"
+                        label="##word.search_all##" onclick="site.showModal('#FinancialYearSearchModal')"></i-button>
+
+                    <span ng-show="busy">
+                        <span class="sr-only">Loading...</span>
+                    </span>
+                    <h3 class="bold text-center"> ##word.count## : {{count}} </h3>
+                    <br>
+                </div>
+
+                <table class="table loaded center bold" id="t1">
+                    <tr>
+                        <th class="not-print"> ##word.logo## </th>
+                        <th> ##word.financial_years_code## </th>
+                        <th> ##word.financial_years_name## </th>
+                        <th> ##word.financial_years_status## </th>
+                        <th> ##word.status## </th>
+
+                        <th class="not-print"> ##word.actions## </th>
+                    </tr>
+                    <tr ng-repeat="c in list | orderBy : '-id'">
+                        <td class="not-print">
+                            <img class="logo" ng-src="{{c.image_url}}">
+                        </td>
+
+                        <td class="blue"> {{c.code}} </td>
+                        <td> {{c.name}} </td>
+                        <td> {{c.status.ar}} </td>
+
+                        <td>
+                            <p ng-show="c.active == true" class="green"> ##word.active## </p>
+                            <p ng-show="c.active == false" class="red"> ##word.not_active## </p>
+                        </td>
+
+                        <td class="center not-print">
+                            <i-button x-permissions="financial_years_view || financial_years_manage" type="details"
+                                label="##word.details##" ng-click="displayViewFinancialYear(c)"></i-button>
+
+                            <i-button x-permissions="financial_years_edit || financial_years_manage" type="update"
+                                label="##word.update##" ng-click="displayUpdateFinancialYear(c,$index)"></i-button>
+
+                            <i-button x-permissions="financial_years_delete || financial_years_manage" type="delete"
+                                label="##word.delete##" ng-click="displayDeleteFinancialYear(c)"></i-button>
+                        </td>
+                    </tr>
+                </table>
+
+                <div class="row">
+                    <i-button x-permissions="financial_years_print || financial_years_manage" x-permission="print"
+                        type="print" label="##word.print##" onclick="site.print('#t1')"></i-button>
+
+                    <i-button x-permissions="financial_years_export || financial_years_manage" x-permission="export"
+                        type="export" label="##word.export_to_excel##"
+                        onclick="export_to_xlsx('t1' , 'years_status.xlsx')"></i-button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div x-import="scripts.html"></div>
+
+    <script x-permission="login" x-import="financial-years/index.js"></script>
+</body>
+
+</html>

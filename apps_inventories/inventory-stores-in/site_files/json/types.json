@@ -1,22 +1,22 @@
 [
     {
         "id": 1,
-        "en": "Buy",
-        "ar": "شراء"
+        "en": "Purchase Invoice",
+        "ar": "فاتورة شراء"
     },
     {
         "id": 2,
-        "en": "Debt",
-        "ar": "عهدة"
+        "en": "Debt Store",
+        "ar": "عهدة مخزنية"
     },
     {
         "id": 3,
-        "en": "Opening Balance",
-        "ar": "رصيد إفتتاحي"
+        "en": "Opening Balance Store",
+        "ar": "رصيد إفتتاحي مخزني"
     },
     {
         "id": 4,
-        "en": "Return Purchase",
-        "ar": "مرتجع شراء"
+        "en": "Return Purchase Invoice",
+        "ar": "مرتجع فاتورة شراء"
     }
 ]

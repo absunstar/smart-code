@@ -438,5 +438,25 @@
         "name": "stores_out_img",
         "en": "Images",
         "ar": "الملفات"
+    },
+    {
+        "name": "sales_invoice_store",
+        "en": "Sales Invoice Store",
+        "ar": "فاتورة مبيعات مخزنية"
+    },
+    {
+        "name": "orders_screen_store",
+        "en": "Orders Screen Store",
+        "ar": "شاشة الطلبات المخزنية"
+    },
+    {
+        "name": "damage_store",
+        "en": "Damage Store",
+        "ar": "إتلاف / إهلاك مخزني"
+    },
+    {
+        "name": "return_sales_invoice",
+        "en": "Return Sales Invoice",
+        "ar": "مرتجع فاتورة مبيعات"
     }
 ]

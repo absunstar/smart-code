@@ -832,6 +832,8 @@ app.controller("units_switch", function ($scope, $http, $timeout) {
                 $scope.error = '##word.error##';
                 if (response.data.error.like('*OverDraft Not*')) {
                   $scope.error = "##word.overdraft_not_active##"
+                  if (units_switch.posting) units_switch.posting = false;
+                  else units_switch.posting = true;
                 }
               }
             },

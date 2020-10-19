@@ -284,13 +284,8 @@
                         <i-list class="col3" ng-model="default_setting.inventory.store" items="storesList"
                             ng-search="_search.$_store" label="##word.store##"></i-list>
 
-                        <i-list v="r" ng-search="_search.$storein_type" display="##session.lang##" class="col3"
-                            ng-model="default_setting.inventory.type_in" items="storesInTypes"
-                            label="##word.purchases_invoice_type##"></i-list>
-
-                        <i-list display="##session.lang##" ng-search="_search.$search_in_out" class="col3"
-                            ng-model="default_setting.inventory.type_out" items="storesOutTypes"
-                            label="##word.sales_invoice_type##">
+                        <i-list class="col4" ng-model="default_setting.inventory.unit" ng-search="_search.$search_unit"
+                            label="##word.unit##" items="unitsList">
                         </i-list>
 
                     </div>
@@ -298,12 +293,8 @@
 
                     <div class="row">
 
-                        <i-list class="col4" ng-model="default_setting.inventory.unit" ng-search="_search.$search_unit"
-                            label="##word.unit##" items="unitsList">
-                        </i-list>
-
                         <i-list class="col3" ng-model="default_setting.inventory.delegate"
-                            ng-search="_search.$$items_group_search" label="##word.delegate##" items="delegatesList">
+                            ng-search="_search.$items_group_search" label="##word.delegate##" items="delegatesList">
                         </i-list>
 
                         <i-control class="col2" type="number" label="##word.value_added##"

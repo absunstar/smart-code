@@ -175,6 +175,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
           invoice: false,
           discountes: [],
           taxes: [],
+          type: $scope.source_type,
           date: new Date(),
           supply_date: new Date()
         };
@@ -193,9 +194,6 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
             $scope.store_out.store = JSON.parse('##user.store##');
           } else if ($scope.defaultSettings.inventory.store)
             $scope.store_out.store = $scope.defaultSettings.inventory.store;
-
-          if ($scope.defaultSettings.inventory.type_out)
-            $scope.store_out.type = $scope.defaultSettings.inventory.type_out;
 
           if ('##user.type##' == 'delegate') {
             $scope.store_out.delegate = $scope.delegatesList[0];
@@ -444,7 +442,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
                     current_book_list: response.data.doc.items,
                     source_type: {
                       id: 2,
-                      en: "Stores Out / Sales Invoice",
+                      en: "Sales Store",
                       ar: "إذن صرف / فاتورة مبيعات"
                     },
                     active: true
@@ -1295,6 +1293,10 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         $scope.storesOutTypes = response.data;
+        $scope.storesOutTypes.forEach(_t => {
+          if (_t.id == site.toNumber("##query.type##"))
+            $scope.source_type = _t;
+        })
       },
       function (err) {
         $scope.busy = false;
@@ -1395,7 +1397,9 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
     $scope.list = [];
 
     if (!where || !Object.keys(where).length) {
-      where = { limit: 100 }
+      where = { limit: 100, type: { id: site.toNumber("##query.type##") } }
+    } else {
+      where.type = { id: site.toNumber("##query.type##") };
     }
 
     $scope.busy = true;
@@ -1444,8 +1448,8 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
           current_book_list: store_out.items,
           source_type: {
             id: 2,
-            en: "Stores Out / Sales Invoice",
-            ar: "إذن صرف / فاتورة بيع"
+            en: "Sales Store",
+            ar: "المبيعات المخزنية"
           },
           active: true
         };
@@ -2062,7 +2066,8 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
                 $scope.error = '##word.error##';
                 if (response.data.error.like('*OverDraft Not*')) {
                   $scope.error = "##word.overdraft_not_active##"
-                  store_out.posting = false;
+                  if (store_out.posting) store_out.posting = false;
+                  else store_out.posting = true;
                 }
               }
             },

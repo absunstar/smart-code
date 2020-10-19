@@ -3,12 +3,22 @@
     <div class="modal-content">
         <div class="modal-header">
             <span class="close">&times;</span>
-            <h2>
+            <h2 ng-show="##query.type## == 1">
                 ##word.stores_in_delete## <i class="fa fa-trash"></i>  
             </h2>
+            <h2 ng-show="##query.type## == 2">
+                ##word.dept_delete## <i class="fa fa-trash"></i>  
+            </h2>
+            <h2 ng-show="##query.type## == 3">
+                ##word.opening_balance_delete## <i class="fa fa-trash"></i>  
+            </h2>
+            <h2 ng-show="##query.type## == 4">
+                ##word.return_purchase_invoice_delete## <i class="fa fa-trash"></i>  
+            </h2>
         </div>
+
         <div class="modal-body">
-            
+
             <div x-import="inventory-stores-in/view.html"></div>
 
         </div>

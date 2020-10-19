@@ -1,11 +1,18 @@
-
-
 <div id="addStoreOutModal" class="modal" fixed>
     <div class="modal-content">
         <div class="modal-header">
             <span class="close">&times;</span>
-            <h2>
-                 ##word.stores_out##  <i class="fa fa-plus"></i>
+            <h2 ng-show="##query.type## == 3">
+                ##word.sales_invoice_store## <i class="fa fa-plus"></i>
+            </h2>
+            <h2 ng-show="##query.type## == 4">
+                ##word.orders_screen_store## <i class="fa fa-plus"></i>
+            </h2>
+            <h2 ng-show="##query.type## == 5">
+                ##word.damage_store## <i class="fa fa-plus"></i>
+            </h2>
+            <h2 ng-show="##query.type## == 6">
+                ##word.return_sales_invoice## <i class="fa fa-plus"></i>
             </h2>
         </div>
         <div class="modal-body">
@@ -14,8 +21,8 @@
         </div>
         <h2 class="error center bold">{{error}}</h2>
         <div class="modal-footer center">
-            <i-button ng-hide="busy" type="add" label="##word.add##" ng-click="add()" ></i-button>
-            <i-button  type="close" label=" ##word.close##" onclick="site.hideModal('#addStoreOutModal')" ></i-button>
+            <i-button ng-hide="busy" type="add" label="##word.add##" ng-click="add()"></i-button>
+            <i-button type="close" label=" ##word.close##" onclick="site.hideModal('#addStoreOutModal')"></i-button>
         </div>
     </div>
 </div>

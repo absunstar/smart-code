@@ -7,10 +7,20 @@
         <div class="modal-content">
             <div class="modal-header">
                 <span class="close">&times;</span>
-                <h2>
-                    ##word.stores_out_edit## <i class="fa fa-pencil"></i>
-                     
+
+                <h2 ng-show="##query.type## == 3">
+                    ##word.sales_invoice_store## <i class="fa fa-pencil"></i>
                 </h2>
+                <h2 ng-show="##query.type## == 4">
+                    ##word.orders_screen_store## <i class="fa fa-pencil"></i>
+                </h2>
+                <h2 ng-show="##query.type## == 5">
+                    ##word.damage_store## <i class="fa fa-pencil"></i>
+                </h2>
+                <h2 ng-show="##query.type## == 6">
+                    ##word.return_sales_invoice## <i class="fa fa-pencil"></i>
+                </h2>
+            
             </div>
             <div class="modal-body">
     

@@ -52,6 +52,10 @@
                             <i-control class="col3" ng-model="search.number" label="##word.stores_out_id##">
                             </i-control>
 
+                            <i-control class="col2" ng-model="search.supply_number"
+                                label="##word.stores_in_supply_number##" type="text"></i-control>
+
+
                             <!-- <i-list help-id="" ng-search="_search.$payment_method_search" class="col2"
                                 label="##word.payment_method##" ng-model="search.payment_method"
                                 items="paymentMethodList" ng-change="getSafeByType(search)" display="##session.lang##">
@@ -60,15 +64,13 @@
                         </div>
 
                         <div class="row">
-                            <i-list v="r" ng-search="_search.$storein_type" display="##session.lang##" class="col2"
+                            <!-- <i-list v="r" ng-search="_search.$storein_type" display="##session.lang##" class="col2"
                                 ng-model="search.type" items="storesOutTypes" label="##word.transaction_type##">
-                            </i-list>
+                            </i-list> -->
 
                             <!-- <i-list class="col3" ng-search="_search.$safe_search" ng-model="search.safe" items="safes"
                                 label="##word.amounts_in_safe##"></i-list> -->
 
-                            <i-control class="col2" ng-model="search.supply_number"
-                                label="##word.stores_in_supply_number##" type="text"></i-control>
 
                         </div>
 

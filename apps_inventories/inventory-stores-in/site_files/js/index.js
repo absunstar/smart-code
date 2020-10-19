@@ -41,8 +41,8 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
           current_book_list: store_in.items,
           source_type: {
             id: 1,
-            en: "Stores In / Purchase Invoice",
-            ar: "إذن وارد / فاتورة شراء"
+            en: "Purchases Store",
+            ar: "المشتريات المخزنية"
           },
           active: true
         };
@@ -648,6 +648,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
           shift: shift,
           items: [],
           invoice: false,
+          type: $scope.source_type,
           discountes: [],
           taxes: [],
           date: new Date(),
@@ -664,22 +665,20 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
         if ($scope.defaultSettings.inventory) {
           if ($scope.defaultSettings.inventory.store)
             $scope.store_in.store = $scope.defaultSettings.inventory.store
-          if ($scope.defaultSettings.inventory.type_in) {
-            $scope.store_in.type = $scope.defaultSettings.inventory.type_in
 
-            if ($scope.defaultSettings.accounting) {
-              if (($scope.store_in.type.id == 1 || $scope.store_in.type.id == 4) && $scope.defaultSettings.accounting.create_invoice_auto) {
-                $scope.store_in.currency = $scope.currencySetting;
-                if ($scope.defaultSettings.accounting.payment_method) {
-                  $scope.store_in.payment_method = $scope.defaultSettings.accounting.payment_method;
-                  $scope.loadSafes($scope.store_in.payment_method, $scope.store_in.currency);
-                  if ($scope.store_in.payment_method && $scope.store_in.payment_method.id == 1)
-                    $scope.store_in.safe = $scope.defaultSettings.accounting.safe_box;
-                  else $scope.store_in.safe = $scope.defaultSettings.accounting.safe_bank;
-                }
+          if ($scope.defaultSettings.accounting) {
+            if (($scope.store_in.type.id == 1 || $scope.store_in.type.id == 4) && $scope.defaultSettings.accounting.create_invoice_auto) {
+              $scope.store_in.currency = $scope.currencySetting;
+              if ($scope.defaultSettings.accounting.payment_method) {
+                $scope.store_in.payment_method = $scope.defaultSettings.accounting.payment_method;
+                $scope.loadSafes($scope.store_in.payment_method, $scope.store_in.currency);
+                if ($scope.store_in.payment_method && $scope.store_in.payment_method.id == 1)
+                  $scope.store_in.safe = $scope.defaultSettings.accounting.safe_box;
+                else $scope.store_in.safe = $scope.defaultSettings.accounting.safe_bank;
               }
             }
           }
+
         }
         site.showModal('#addStoreInModal');
       } else $scope.error = '##word.open_shift_not_found##';
@@ -890,8 +889,8 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
                   current_book_list: response.data.doc.items,
                   source_type: {
                     id: 1,
-                    en: "Stores In / Purchase Invoice",
-                    ar: "إذن وارد / فاتورة شراء"
+                    en: "Purchases Store",
+                    ar: "المشتريات المخزنية"
                   },
                   active: true
                 };
@@ -1544,7 +1543,8 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
                 $scope.error = '##word.error##';
                 if (response.data.error.like('*OverDraft Not*')) {
                   $scope.error = "##word.overdraft_not_active##"
-                  store_in.posting = false;
+                  if (store_in.posting) store_in.posting = false;
+                  else store_in.posting = true;
                 }
               }
             },
@@ -1792,6 +1792,10 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         $scope.storesInTypes = response.data;
+        $scope.storesInTypes.forEach(_t => {
+          if (_t.id == site.toNumber("##query.type##"))
+            $scope.source_type = _t;
+        })
       },
       function (err) {
         $scope.busy = false;
@@ -1977,14 +1981,14 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
 
   };
 
-
   $scope.loadAll = function (where) {
     $scope.error = '';
     $scope.list = [];
 
-
     if (!where || !Object.keys(where).length) {
-      where = { limit: 100 }
+      where = { limit: 100, type: { id: site.toNumber("##query.type##") } }
+    } else {
+      where.type = { id: site.toNumber("##query.type##") };
     }
 
     $scope.busy = true;

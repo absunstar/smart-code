@@ -10,6 +10,26 @@
         "ar": "بحث"
     },
     {
+        "name": "purchase",
+        "en": "Purchase",
+        "ar": "شراء"
+    },
+    {
+        "name": "debt_store",
+        "en": "Debt Store",
+        "ar": "عهدة مخزنية"
+    },
+    {
+        "name": "opening_balance_store",
+        "en": "Opening Balance Store",
+        "ar": "رصيد إفتتاحي مخزني"
+    },
+    {
+        "name": "return_purchase_invoice",
+        "en": "Return Purchase Invoice",
+        "ar": "مرتجع فاتورة شراء"
+    },
+    {
         "name": "stores_in_store",
         "en": "Store",
         "ar": "المخزن"
@@ -29,34 +49,209 @@
         "en": "Empty Search",
         "ar": "تفريغ الحقول"
     },
+
+
+
+
+
+
+
+
+
+  
     {
         "name": "stores_in_add",
-        "en": "Add Store In",
-        "ar": "إضافة إذن وارد"
+        "en": "Add Purchase Invoice",
+        "ar": "إضافة فاتورة مشتريات"
     },
     {
         "name": "stores_in_new",
-        "en": "New Store In",
-        "ar": "إذن وارد جديد"
+        "en": "New Purchase Invoice",
+        "ar": "فاتورة مشتريات جديدة"
     },
     {
         "name": "stores_in_details",
-        "en": "Store In Details",
-        "ar": "تفاصيل إذن وارد"
+        "en": "Purchase Invoice Details",
+        "ar": "تفاصيل فاتورة مشتريات"
     },
     {
         "name": "stores_in_edit",
-        "en": "Edit Store In",
-        "ar": "تعديل بيانات إذن وارد"
+        "en": "Edit Purchase Invoice",
+        "ar": "تعديل فاتورة مشتريات"
     },
     {
         "name": "stores_in_delete",
-        "en": "Delete Store In",
-        "ar": "حذف إذن وارد"
+        "en": "Delete Purchase Invoice",
+        "ar": "حذف فاتورة مشتريات"
     },
     {
+        "name": "stores_ins",
+        "en": "Purchase Invoices",
+        "ar": "فواتير مشتريات"
+    },
+    {
+        "name": "stores_in",
+        "en": "Purchase Invoice",
+        "ar": "فاتورة مشتريات"
+    },
+    {
+        "name": "inventory_stores_in",
+        "en": "Stores In",
+        "ar": "فاتورة مشتريات"
+    },
+
+
+
+
+
+
+
+
+
+
+    {
+        "name": "opening_balance_add",
+        "en": "Add Opening Balance",
+        "ar": "إضافة رصيد إفتتاحي"
+    },
+   
+    {
+        "name": "opening_balance_new",
+        "en": "New Opening Balance",
+        "ar": "رصيد إفتتاحي جديد"
+    },
+    {
+        "name": "opening_balance_details",
+        "en": "Opening Balance Details",
+        "ar": "تفاصيل رصيد إفتتاحي"
+    },
+    {
+        "name": "opening_balance_edit",
+        "en": "Edit Opening Balance",
+        "ar": "تعديل رصيد إفتتاحي"
+    },
+    {
+        "name": "opening_balance_delete",
+        "en": "Delete Opening Balance",
+        "ar": "حذف رصيد إفتتاحي"
+    },
+    {
+        "name": "opening_balances_store",
+        "en": "Opening Balances Store",
+        "ar": "أرصدة إفتتاحية مخزنية"
+    },
+    {
+        "name": "opening_balance",
+        "en": "Opening Balance Store",
+        "ar": "رصيد إفتتاحي مخزني"
+    },
+    {
+        "name": "inventory_opening_balance",
+        "en": "Opening Balance Store",
+        "ar": "رصيد إفتتاحي مخزني"
+    },
+
+
+
+
+
+
+
+
+
+
+  
+    {
+        "name": "dept_new",
+        "en": "New Dept",
+        "ar": "هعدة مخزنية جديدة"
+    },
+    {
+        "name": "dept_add",
+        "en": "Add Dept",
+        "ar": "إضافة هعدة مخزنية"
+    },
+    {
+        "name": "dept_details",
+        "en": "Dept Details",
+        "ar": "تفاصيل هعدة مخزنية"
+    },
+    {
+        "name": "dept_edit",
+        "en": "Edit Dept",
+        "ar": "تعديل هعدة مخزنية"
+    },
+    {
+        "name": "dept_delete",
+        "en": "Delete Dept",
+        "ar": "حذف هعدة مخزنية"
+    },
+    {
+        "name": "depts_store",
+        "en": "Depts Store",
+        "ar": "هعد مخزنية"
+    },
+    {
+        "name": "dept",
+        "en": "Dept Store",
+        "ar": "هعدة مخزنية مخزني"
+    },
+    {
+        "name": "inventory_dept",
+        "en": "Dept Store",
+        "ar": "هعدة مخزنية مخزني"
+    },
+
+
+
+
+
+
+    {
+        "name": "return_purchase_invoice_add",
+        "en": "Add Return Purchase",
+        "ar": "إضافة مرتجع شراء"
+    },
+    {
+        "name": "return_purchase_invoice_new",
+        "en": "New Return Purchase",
+        "ar": "مرتجع شراء جديد"
+    },
+    {
+        "name": "return_purchase_invoice_details",
+        "en": "Return Purchase Details",
+        "ar": "تفاصيل مرتجع شراء"
+    },
+    {
+        "name": "return_purchase_invoice_edit",
+        "en": "Edit Return Purchase",
+        "ar": "تعديل مرتجع شراء"
+    },
+    {
+        "name": "return_purchase_invoice_delete",
+        "en": "Delete Return Purchase",
+        "ar": "حذف مرتجع شراء"
+    },
+    {
+        "name": "returns_purchase_invoices",
+        "en": "Returns Purchases Store",
+        "ar": "مرتجعات فواتير شراء"
+    },
+    {
+        "name": "return_purchase_invoice",
+        "en": "Return Purchase Store",
+        "ar": "مرتجع فاتورة شراء"
+    },
+    {
+        "name": "inventory_return_purchase_invoice",
+        "en": "Return Purchase Store",
+        "ar": "مرتجع فاتورة شراء"
+    },
+
+
+    {
         "name": "stores_in_name",
-        "en": "Store In Name",
+        "en": "Purchase Invoice Name",
         "ar": "إسم إذن الوارد"
     },
     {
@@ -90,18 +285,13 @@
         "ar": " تاريخ أذن التوريد"
     },
     {
-        "name": "stores_ins",
-        "en": "Stores In / Purchase Invoices",
-        "ar": "أذونات وارد / فواتير مشتريات"
-    },
-    {
         "name": "stores_in_store_name",
-        "en": "Store In",
+        "en": "Purchase Invoice",
         "ar": "  إسم المخزن "
     },
     {
         "name": "return_item_err",
-        "en": "Store In",
+        "en": "Purchase Invoice",
         "ar": "لا يمكن أن يكون عدد الأصناف أكبر من الموجود في مرتجع المبيعات"
     },
     {
@@ -383,16 +573,6 @@
         "name": "serial",
         "en": "N",
         "ar": "م / N"
-    },
-    {
-        "name": "stores_in",
-        "en": "Stores In / Purchase Invoice",
-        "ar": "إذن وارد / فاتورة شراء"
-    },
-    {
-        "name": "inventory_stores_in",
-        "en": "Stores In",
-        "ar": "إذن وارد / فاتورة شراء"
     },
     {
         "name": "stores_in_total_value_gt",

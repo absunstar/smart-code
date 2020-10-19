@@ -1,0 +1,111 @@
+<div ng-hide="busy" id="v1">
+    <div class="form">
+        <div id="financialYearViewModal">
+            <fieldset>
+                <legend> ##word.financial_years_informations## </legend>
+                <div class="row">
+                    <div class="row">
+                        <div class="col9">
+                            <table class="table bold">
+                                <tr>
+                                    <td class="title"> ##word.financial_years_code## </td>
+                                    <td class="center blue"> {{financial_year.code}} </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title"> ##word.financial_years_name## </td>
+                                    <td class="center"> {{financial_year.name}} </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title"> ##word.financial_years_period_count## </td>
+                                    <td class="center blue"> {{financial_year.period}} </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title"> ##word.financial_years_status## </td>
+                                    <td class="center"> {{financial_year.status.ar}} </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title"> ##word.financia_years_period_start_gregorian## </td>
+                                    <td class="center"> {{financial_year.period_start |xdate}} </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title"> ##word.financia_years_period_end_gregorian## </td>
+                                    <td class="center"> {{financial_year.period_end |xdate}} </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title"> ##word.status## </td>
+                                    <td ng-show="financial_year.active == true" class="center green"> ##word.active##
+                                    </td>
+                                    <td ng-show="financial_year.active == false" class="center red">
+                                        ##word.not_active##
+                                    </td>
+                                </tr>
+
+                            </table>
+                        </div>
+
+                        <div class="not-print col3">
+                            <i-image view ng-model="financial_year.image_url"> </i-image>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="row">
+                        <table class="table center bold">
+                            <tr>
+                                <th> ##word.financial_years_period_code## </th>
+                                <th> ##word.financial_years_period_status## </th>
+                                <th> ##word.financia_years_period_start## </th>
+                                <th> ##word.financia_years_period_end## </th>
+                            </tr>
+
+                            <tr ng-repeat="period in financial_year.accounting_period_list">
+
+                                <td class="blue"> {{period.code}} </td>
+                                <td> {{period.status.ar}} </td>
+                                <td> {{period.start | xdate}} </td>
+                                <td> {{period.end | xdate}} </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="row">
+                        <i-button class="col2 left" x-permission="print" type="print " onclick="site.print('#financialYearViewModal')"></i-button>
+                    </div>
+                </div>
+
+                <fieldset ng-repeat="period in financialYear.accounting_period_list">
+                    <legend>##word.financial_years_accounting_period##</legend>
+                    <table class="table bold">
+                        <tr>
+                            <td class="title"> ##word.financial_years_period_code##</td>
+                            <td class="center blue">{{period.code}}</td>
+                        </tr>
+
+                        <tr>
+                            <td class="title"> ##word.financial_years_status##</td>
+                            <td class="center">{{period.status.ar}}</td>
+                        </tr>
+
+                        <tr>
+                            <td class="title"> ##word.financia_years_period_start_gregorian##</td>
+                            <td class="center brown">{{period.start|xdate}}</td>
+                        </tr>
+
+                        <tr>
+                            <td class="title"> ##word.financia_years_period_end_gregorian##</td>
+                            <td class="center brown">{{period.end|xdate}}</td>
+                        </tr>
+
+                    </table>
+                </fieldset>
+            </fieldset>
+        </div>
+    </div>
+</div>
+<div x-import="financial-years/action_info.html"></div>

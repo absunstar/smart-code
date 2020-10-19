@@ -668,6 +668,8 @@ app.controller("stores_dismantle", function ($scope, $http, $timeout) {
                 $scope.error = '##word.error##';
                 if (response.data.error.like('*OverDraft Not*')) {
                   $scope.error = "##word.overdraft_not_active##"
+                  if (store_dismantle.posting) store_dismantle.posting = false;
+                  else store_dismantle.posting = true;
                 }
               }
             },

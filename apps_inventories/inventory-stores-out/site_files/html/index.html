@@ -43,12 +43,16 @@
                 <div x-import="inventory-stores-out/patches_list_re.html"></div>
                 <div x-import="inventory-stores-out/returned.html"></div>
                 <div class="row">
-                    <h1 class="bold text-center"> ##word.stores_out## </h1>
+                    <h1 class="bold text-center" ng-show="##query.type## == 3"> ##word.sales_invoice_store## </h1>
+                    <h1 class="bold text-center" ng-show="##query.type## == 4"> ##word.orders_screen_store## </h1>
+                    <h1 class="bold text-center" ng-show="##query.type## == 5"> ##word.damage_store## </h1>
+                    <h1 class="bold text-center" ng-show="##query.type## == 6"> ##word.return_sales_invoice## </h1>
                 </div>
+
                 <div class="top-actions">
 
                     <i-button x-permissions="stores_out_add || stores_out_manage" type="add"
-                        label="##word.stores_out_new##" id="clickNew" ng-click="newStoreOut()"></i-button>
+                        label="##word.new##" ng-hide="##query.type## == 4" id="clickNew" ng-click="newStoreOut()"></i-button>
 
                     <i-button x-permissions="stores_out_search || stores_out_manage" type="search"
                         label="##word.search_all##" onclick="site.showModal('#StoresOutSearchModal')"></i-button>

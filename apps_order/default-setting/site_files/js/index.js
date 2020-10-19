@@ -320,43 +320,6 @@ app.controller("default_setting", function ($scope, $http) {
     )
   };
 
-  $scope.loadStoresOutTypes = function () {
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: '/api/stores_out/types/all',
-      data: {}
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        $scope.storesOutTypes = response.data;
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
-  };
-
-  $scope.loadStoresInTypes = function () {
-    $scope.error = '';
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: '/api/stores_in/types/all',
-      data: {}
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        $scope.storesInTypes = response.data;
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
-  };
-
   $scope.loadItemsGroups = function () {
     $scope.busy = true;
     $scope.itemsGroupList = [];
@@ -558,7 +521,6 @@ app.controller("default_setting", function ($scope, $http) {
   $scope.getPaymentMethodList();
   $scope.getDiscountMethodList();
   $scope.getPlaceProgramList();
-  $scope.loadStoresOutTypes();
   $scope.loadItemsGroups();
   $scope.loadDelegates();
   $scope.getSourceType();
@@ -566,7 +528,6 @@ app.controller("default_setting", function ($scope, $http) {
   $scope.loadUnits();
   $scope.loadCurrencies();
   $scope.loadSafesBox();
-  $scope.loadStoresInTypes();
   $scope.loadSetting();
   $scope.getPrintersPath();
   $scope.getTransactionTypeList();

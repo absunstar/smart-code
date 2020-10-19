@@ -1,21 +1,27 @@
-
-
 <div id="addStoreInModal" class="modal" fixed>
     <div class="modal-content">
         <div class="modal-header">
             <span class="close">&times;</span>
-            <h2>
-                 ##word.stores_in##  <i class="fa fa-plus"></i>
+            <h2 ng-show="##query.type## == 1">
+                ##word.stores_in_new## <i class="fa fa-plus"></i>
+            </h2>
+            <h2 ng-show="##query.type## == 2">
+                ##word.dept_new## <i class="fa fa-plus"></i>
+            </h2>
+            <h2 ng-show="##query.type## == 3">
+                ##word.opening_balance_new## <i class="fa fa-plus"></i>
+            </h2>
+            <h2 ng-show="##query.type## == 4">
+                ##word.return_purchase_invoice_new## <i class="fa fa-plus"></i>
             </h2>
         </div>
         <div class="modal-body">
             <div x-import="inventory-stores-in/content.html"></div>
-
         </div>
         <h2 class="error center bold">{{error}}</h2>
         <div class="modal-footer center">
-            <i-button ng-hide="busy" type="add" label="##word.add##" ng-click="add()" ></i-button>
-            <i-button  type="close" label=" ##word.close##" onclick="site.hideModal('#addStoreInModal')" ></i-button>
+            <i-button ng-hide="busy" type="add" label="##word.add##" ng-click="add()"></i-button>
+            <i-button type="close" label=" ##word.close##" onclick="site.hideModal('#addStoreInModal')"></i-button>
         </div>
     </div>
 </div>
