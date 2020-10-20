@@ -74,25 +74,25 @@ app.controller("default_setting", function ($scope, $http) {
     $scope.busy = true;
     if (ev.which === 13) {
       $http({
-      method: "POST",
-      url: "/api/vendors/all",
-      data: {
-        search: $scope.search_vendor
-      }
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          $scope.vendorsList = response.data.list;
+        method: "POST",
+        url: "/api/vendors/all",
+        data: {
+          search: $scope.search_vendor
         }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
-  }
-};
+      }).then(
+        function (response) {
+          $scope.busy = false;
+          if (response.data.done) {
+            $scope.vendorsList = response.data.list;
+          }
+        },
+        function (err) {
+          $scope.busy = false;
+          $scope.error = err;
+        }
+      )
+    }
+  };
 
   $scope.getTransactionTypeList = function () {
     $scope.error = '';
@@ -243,7 +243,7 @@ app.controller("default_setting", function ($scope, $http) {
         $scope.busy = false;
 
         if (site.feature('gym')) $scope.sourceTypeList = response.data.filter(i => i.id != 3 && i.id != 5 && i.id != 6 && i.id != 7);
-        else if (site.feature('restaurant') || site.feature('pos')) $scope.sourceTypeList = response.data.filter(i => i.id != 4 && i.id != 5 && i.id != 6 && i.id != 7);
+        else if (site.feature('restaurant') || site.feature('pos') || site.feature('erp')) $scope.sourceTypeList = response.data.filter(i => i.id != 4 && i.id != 5 && i.id != 6 && i.id != 7);
         else if (site.feature('academy')) $scope.sourceTypeList = response.data.filter(i => i.id != 4 && i.id != 3);
         else $scope.sourceTypeList = response.data;
       },
@@ -531,7 +531,7 @@ app.controller("default_setting", function ($scope, $http) {
   $scope.loadSetting();
   $scope.getPrintersPath();
   $scope.getTransactionTypeList();
-  if (site.feature('restaurant') || site.feature('pos')) {
+  if (site.feature('restaurant') || site.feature('pos') || site.feature('erp')) {
     $scope.getDeliveryEmployeesList();
   }
   if (site.feature('restaurant')) {

@@ -2152,22 +2152,25 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
   };
 
   $scope.financialYear = function (date, callback) {
+    if (site.feature('erp')) {
 
-    $scope.busy = true;
-    $scope.error = '';
-    $http({
-      method: "POST",
-      url: "/api/financial_years/is_allowed_date",
-      data: {
-        date: new Date(date)
-      }
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        is_allowed_date = response.data.doc;
-        callback(is_allowed_date);
-      }
-    );
+      $scope.busy = true;
+      $scope.error = '';
+      $http({
+        method: "POST",
+        url: "/api/financial_years/is_allowed_date",
+        data: {
+          date: new Date(date)
+        }
+      }).then(
+        function (response) {
+          $scope.busy = false;
+          is_allowed_date = response.data.doc;
+          callback(is_allowed_date);
+        }
+      );
+    } else callback(true);
+
   };
 
 

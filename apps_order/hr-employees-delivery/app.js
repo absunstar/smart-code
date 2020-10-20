@@ -3,7 +3,7 @@ module.exports = function init(site) {
 
   site.on('[company][created]', doc => {
 
-    if (site.feature('restaurant') || site.feature('pos')) {
+    if (site.feature('restaurant') || site.feature('pos') || site.feature('erp')) {
       $delivery_employee_list.add({
         name: "موظف توصيل إفتراضي",
         image_url: '/images/delivery_employee_list.png',
@@ -318,7 +318,7 @@ module.exports = function init(site) {
     let response = {
       done: false
     }
-          
+
     if (!req.session.user) {
       response.error = 'Please Login First'
       res.json(response)

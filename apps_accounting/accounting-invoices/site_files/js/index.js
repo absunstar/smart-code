@@ -294,11 +294,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
               $scope.busy = false;
               if (response.data.done) {
                 site.hideModal('#accountInvoicesUpdateModal');
-                $scope.list.forEach((b, i) => {
-                  if (b.id == response.data.doc.id) {
-                    $scope.list[i] = response.data.doc;
-                  }
-                });
+                $scope.getAccountInvoicesList({ date: new Date() });
               } else {
                 $scope.error = response.data.error;
               }
@@ -848,7 +844,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
-        if (site.feature('pos')) $scope.transactionTypeList = response.data.filter(i => i.id != 1);
+        if (site.feature('pos') || site.feature('erp')) $scope.transactionTypeList = response.data.filter(i => i.id != 1);
         else $scope.transactionTypeList = response.data;
       },
       function (err) {
@@ -889,7 +885,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
         $scope.busy = false;
 
         if (site.feature('gym')) $scope.sourceTypeList = response.data.filter(i => i.id != 3 && i.id != 5 && i.id != 6 && i.id != 7);
-        else if (site.feature('restaurant') || site.feature('pos')) $scope.sourceTypeList = response.data.filter(i => i.id != 4 && i.id != 5 && i.id != 6 && i.id != 7);
+        else if (site.feature('restaurant') || site.feature('pos') || site.feature('erp')) $scope.sourceTypeList = response.data.filter(i => i.id != 4 && i.id != 5 && i.id != 6 && i.id != 7);
         else if (site.feature('academy')) $scope.sourceTypeList = response.data.filter(i => i.id != 4 && i.id != 3);
         else $scope.sourceTypeList = response.data;
 
@@ -1331,22 +1327,26 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
   };
 
   $scope.financialYear = function (date, callback) {
+    if (site.feature('erp')) {
 
-    $scope.busy = true;
-    $scope.error = '';
-    $http({
-      method: "POST",
-      url: "/api/financial_years/is_allowed_date",
-      data: {
-        date: new Date(date)
-      }
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        is_allowed_date = response.data.doc;
-        callback(is_allowed_date);
-      }
-    );
+      $scope.busy = true;
+      $scope.error = '';
+      $http({
+        method: "POST",
+        url: "/api/financial_years/is_allowed_date",
+        data: {
+          date: new Date(date)
+        }
+      }).then(
+        function (response) {
+          $scope.busy = false;
+          is_allowed_date = response.data.doc;
+          callback(is_allowed_date);
+        }
+      );
+    } else callback(true);
+
+
   };
 
   $scope.get_open_shift = function (callback) {

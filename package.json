@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node server.js",
     "pos": "node pos.js",
+    "erp": "node erp.js",
     "restaurant": "node restaurant.js",
     "gym": "node gym.js",
     "lawyer": "node lawyer.js",

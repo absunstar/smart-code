@@ -830,10 +830,10 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
           $scope.financialYear(store_assemble.date, is_allowed_date => {
             if (!is_allowed_date) {
               $scope.error = '##word.should_open_period##';
-              
+
               if (store_assemble.posting) store_assemble.posting = false;
               else store_assemble.posting = true;
-              
+
             } else {
 
 
@@ -1300,22 +1300,23 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
   };
 
   $scope.financialYear = function (date, callback) {
-
-    $scope.busy = true;
-    $scope.error = '';
-    $http({
-      method: "POST",
-      url: "/api/financial_years/is_allowed_date",
-      data: {
-        date: new Date(date)
-      }
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        is_allowed_date = response.data.doc;
-        callback(is_allowed_date);
-      }
-    );
+    if (site.feature('erp')) {
+      $scope.busy = true;
+      $scope.error = '';
+      $http({
+        method: "POST",
+        url: "/api/financial_years/is_allowed_date",
+        data: {
+          date: new Date(date)
+        }
+      }).then(
+        function (response) {
+          $scope.busy = false;
+          is_allowed_date = response.data.doc;
+          callback(is_allowed_date);
+        }
+      );
+    } else callback(true);
   };
 
   $scope.get_open_shift = function (callback) {

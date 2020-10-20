@@ -216,7 +216,7 @@ app.controller("request_service", function ($scope, $http, $timeout) {
             else $scope.account_invoices.safe = $scope.defaultSettings.accounting.safe_bank;
           }
         }
-        if ($scope.account_invoices.currency){
+        if ($scope.account_invoices.currency) {
           $scope.amount_currency = site.toNumber($scope.account_invoices.net_value) / site.toNumber($scope.account_invoices.currency.ex_rate);
           $scope.amount_currency = site.toNumber($scope.amount_currency);
         }
@@ -930,7 +930,7 @@ app.controller("request_service", function ($scope, $http, $timeout) {
         type: 'number'
       };
 
-      if (obj.currency){
+      if (obj.currency) {
         $scope.amount_currency = obj.paid_require / obj.currency.ex_rate;
         $scope.amount_currency = site.toNumber($scope.amount_currency);
 
@@ -1022,7 +1022,7 @@ app.controller("request_service", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (site.feature('gym')) $scope.sourceTypeList = response.data.filter(i => i.id != 3 && i.id != 5 && i.id != 6 && i.id != 7);
         else if (site.feature('restaurant')) $scope.sourceTypeList = response.data.filter(i => i.id != 4 && i.id != 5 && i.id != 6 && i.id != 7);
-        else if (site.feature('pos')) $scope.sourceTypeList = response.data.filter(i => i.id != 4 && i.id != 3 && i.id != 5 && i.id != 6 && i.id != 7);
+        else if (site.feature('pos') || site.feature('erp')) $scope.sourceTypeList = response.data.filter(i => i.id != 4 && i.id != 3 && i.id != 5 && i.id != 6 && i.id != 7);
         else if (site.feature('academy')) $scope.sourceTypeList = response.data.filter(i => i.id != 4 && i.id != 3);
         else $scope.sourceTypeList = response.data;
       },

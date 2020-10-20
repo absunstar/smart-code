@@ -1601,7 +1601,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
-        if (site.feature('pos')) $scope.transactionTypeList = response.data.filter(i => i.id == 2 || i.id == 3);
+        if (site.feature('pos') || site.feature('erp')) $scope.transactionTypeList = response.data.filter(i => i.id == 2 || i.id == 3);
         else $scope.transactionTypeList = response.data;
 
       },

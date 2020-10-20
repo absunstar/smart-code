@@ -59,13 +59,13 @@
 
     <div id="general_tabs" class="tabs">
         <div class="tabs-header">
-            <a x-features="restaurant || pos || academy || gym" class="tab-link" href="/default_setting"
+            <a x-features="restaurant || pos || academy || gym || erp" class="tab-link" href="/default_setting"
                 x-permissions="default_setting_ui || default_setting_manage">
                 <img src="/images/default_setting.png">
                 <span>##word.default_setting_menus## </span>
             </a>
 
-            <a x-features="restaurant || pos || academy || gym" class="tab-link" href="/shifts"
+            <a x-features="restaurant || pos || academy || gym || erp" class="tab-link" href="/shifts"
                 x-permissions="shifts_ui || shifts_manage">
                 <img src="/images/shift.png">
                 <span> ##word.menu_shift## </span>
@@ -152,7 +152,7 @@
             </a>
 
 
-            <a x-features="pos" class="tab-link" href="/itineraries"
+            <a x-features="pos || erp" class="tab-link" href="/itineraries"
                 x-permissions="itineraries_ui || itineraries_manage">
                 <img src="/images/itinerary.png">
                 <span> ##word.itineraries## </span>
@@ -226,7 +226,7 @@
                 <span>##word.sales_invoice## </span>
             </a>
 
-            <a class="tab-link" href="/account_invoices?type=3"
+            <a class="tab-link" x-features="pos || restaurant || erp" href="/account_invoices?type=3"
                 x-permissions="account_invoices_ui || account_invoices_manage">
                 <img src="/images/order_invoice.png">
                 <span>##word.orders_screen_invoice## </span>
@@ -262,55 +262,34 @@
                 <span>##word.payment_employee_advance## </span>
             </a>
 
-            <a class="tab-link" href="/financial_years" x-permissions="financial_years_ui || financial_years_manage">
+            <a class="tab-link" x-features="erp" href="/financial_years" x-permissions="financial_years_ui || financial_years_manage">
                 <img src="/images/financial_years.png">
                 <span> ##word.financial_years## </span>
             </a>
 
-            <a class="tab-link" href="/accounting_guide_accounts"
+            <a class="tab-link" x-features="erp" href="/accounting_guide_accounts"
                 x-permissions="accounting_guide_accounts_ui || accounting_guide_accounts_manage">
                 <img src="/images/accounting_guide_accounts.png">
                 <span> ##word.accounting_guide_accounts## </span>
             </a>
 
-            <a class="tab-link" href="/accounting_cost_centers"
+            <a class="tab-link" x-features="erp" href="/accounting_cost_centers"
                 x-permissions="accounting_cost_centers_ui || accounting_cost_centers_manage">
                 <img src="/images/accounting_cost_centers.png">
                 <span> ##word.accounting_cost_centers## </span>
             </a>
 
-            <a class="tab-link" href="/accounting_guide_budget"
+            <a class="tab-link" x-features="erp" href="/accounting_guide_budget"
                 x-permissions="accounting_guide_budget_ui || accounting_guide_budget_manage">
                 <img src="/images/accounting_guide_budget.png">
                 <span> ##word.guide_categories_accounting_guide_budget## </span>
             </a>
 
-            <a class="tab-link" href="/accounting_guide_income_list"
+            <a class="tab-link" x-features="erp" href="/accounting_guide_income_list"
                 x-permissions="accounting_guide_income_list_ui || accounting_guide_income_list_manage">
                 <img src="/images/accounting_guide_income_list.png">
                 <span> ##word.guide_categories_accounting_guide_income_list## </span>
             </a>
-
-            <!-- <a x-features="restaurant || pos || academy || gym" class="tab-link" href="/account_invoices"
-                x-permissions="account_invoices_ui || account_invoices_manage">
-                <img src="/images/account_invoices.png">
-                <span>##word.account_invoices_menu## </span>
-            </a> -->
-
-            <!--  <a class="tab-link"   href="/account_invoices?type=amont_in" x-permissions="amounts_in_ui || amounts_in_manage">
-                <img src="/images/amount_in.png">
-                <span>##word.system_amounts_in_menus##</span>
-            </a>
-
-             <a class="tab-link" href="/amounts_in" x-permissions="amounts_in_ui || amounts_in_manage">
-                <img src="/images/amount_in.png">
-                <span>##word.system_amounts_in_menus##</span>
-            </a>
-
-            <a class="tab-link" href="/amounts_out" x-permissions="amounts_out_ui ||amounts_out_manage">
-                <img src="/images/pic_out.png">
-                <span>##word.system_amounts_out_menus##</span>
-            </a> -->
 
             <a class="tab-link" href="/safes" x-permissions="safes_ui || safes_manage">
                 <img src="/images/safe.png">
@@ -372,14 +351,14 @@
                 <span>##word.returns_purchase_invoices## </span>
             </a>
 
-            <a x-features="restaurant || pos || academy || gym" class="tab-link" href="/vendors"
+            <a x-features="restaurant || pos || academy || gym || erp" class="tab-link" href="/vendors"
                 x-permissions="vendors_ui || vendors_manage">
                 <img src="/images/vendor.png">
                 <span> ##word.vendors## </span>
             </a>
 
 
-            <a x-features="restaurant || pos || academy || gym" class="tab-link" href="/vendors_group"
+            <a x-features="restaurant || pos || academy || gym || erp" class="tab-link" href="/vendors_group"
                 x-permissions="vendors_group_ui || vendors_group_manage">
                 <img src="/images/vendor_group.png">
                 <span> ##word.vendors_group## </span>
@@ -534,7 +513,7 @@
                 <span> ##word.trainer##</span>
             </a>
 
-            <div class="row" x-features="restaurant || pos">
+            <div class="row" x-features="restaurant || pos || erp">
 
                 <a class="tab-link" href="/delegates" x-permissions="delegate_ui || delegate_manage">
                     <img src="/images/delegate.png">
@@ -756,7 +735,7 @@
                 <span>##word.report_safes_name##</span>
             </a>
 
-            <a class="tab-link" x-features="restaurant || pos" href="/report_employee_delegate"
+            <a class="tab-link" x-features="restaurant || pos || erp" href="/report_employee_delegate"
                 x-permissions="report_employee_delegate_ui || report_employee_delegate_manage">
                 <img src="/images/report_employee_delegate.png">
                 <span>##word.report_employees_delegate_name##</span>
@@ -780,26 +759,26 @@
                 <span>##word.report_invoices_payments_name##</span>
             </a>
 
-            <a x-features="restaurant || pos" class="tab-link" href="/report_orders"
+            <a x-features="restaurant || pos || erp" class="tab-link" href="/report_orders"
                 x-permissions="report_orders_ui || report_orders_manage">
                 <img src="/images/report_orders.png">
                 <span>##word.report_orders_name##</span>
             </a>
 
-            <a x-features="restaurant || pos" class="tab-link" href="/report_employee_user"
+            <a x-features="restaurant || pos || erp" class="tab-link" href="/report_employee_user"
                 x-permissions="report_employee_user_ui || report_employee_user_manage">
                 <img src="/images/report_employee_user.png">
                 <span>##word.report_employee_user_name##</span>
             </a>
 
-            <a x-features="restaurant || pos" class="tab-link" href="/report_full_employees"
+            <a x-features="restaurant || pos || erp" class="tab-link" href="/report_full_employees"
                 x-permissions="report_full_employees_ui || report_full_employees_manage">
                 <img src="/images/report_full_employees.png">
                 <span>##word.report_full_employees_name##</span>
             </a>
 
 
-            <a x-features="restaurant || pos" class="tab-link" href="/report_employee_delivery"
+            <a x-features="restaurant || pos || erp" class="tab-link" href="/report_employee_delivery"
                 x-permissions="report_employee_delivery_ui || report_employee_delivery_manage">
                 <img src="/images/report_employee_delivery.png">
                 <span>##word.report_employees_delivery_name##</span>
@@ -951,7 +930,7 @@
             </div>
 
 
-            <div class="row" x-features="restaurant || pos">
+            <div class="row" x-features="restaurant || pos || erp">
                 <a class="tab-link" href="/order_invoice" x-permissions="order_invoice_ui || order_invoice_manage">
                     <img src="/images/order_invoice.png">
                     <span> ##word.order_invoice_menus## </span>
@@ -1044,7 +1023,7 @@
                     <img src="/images/users.png">
                     <span> ##word.security_system##</span>
                 </a>
-                <a x-features="restaurant || pos || academy || gym" class="tab-link"
+                <a x-features="restaurant || pos || academy || gym || erp" class="tab-link"
                     onclick="site.showTabs(event, '#inventory_tabs')">
                     <img src="/images/pic_store2.png">
                     <span>##word.inventory_transactions##</span>
@@ -1063,7 +1042,7 @@
                     <span>##word.employees## </span>
                 </a>
 
-                <a x-features="restaurant || pos || academy || gym" class="tab-link"
+                <a x-features="restaurant || pos || academy || gym || erp" class="tab-link"
                     onclick="site.showTabs(event, '#reporting_tabs')">
                     <img src="/images/item_transaction.png">
                     <span>##word.reports## </span>

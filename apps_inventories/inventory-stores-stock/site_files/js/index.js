@@ -698,7 +698,7 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
         $scope.financialYear(store_stock.date, is_allowed_date => {
           if (!is_allowed_date) {
             $scope.error = '##word.should_open_period##';
-            if (hold == 'hold'){
+            if (hold == 'hold') {
               store_stock.status = 1
             }
           } else {
@@ -712,7 +712,7 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
                 $scope.busy = false;
                 if (response.data.done) {
 
-                  if (store_stock.status == 1){
+                  if (store_stock.status == 1) {
                     site.hideModal('#updateStoreStockModal');
                   } else {
                     site.hideModal('#settlementItemsModal');
@@ -1147,22 +1147,25 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
   };
 
   $scope.financialYear = function (date, callback) {
+    if (site.feature('erp')) {
 
-    $scope.busy = true;
-    $scope.error = '';
-    $http({
-      method: "POST",
-      url: "/api/financial_years/is_allowed_date",
-      data: {
-        date: new Date(date)
-      }
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        is_allowed_date = response.data.doc;
-        callback(is_allowed_date);
-      }
-    );
+      $scope.busy = true;
+      $scope.error = '';
+      $http({
+        method: "POST",
+        url: "/api/financial_years/is_allowed_date",
+        data: {
+          date: new Date(date)
+        }
+      }).then(
+        function (response) {
+          $scope.busy = false;
+          is_allowed_date = response.data.doc;
+          callback(is_allowed_date);
+        }
+      );
+    } else callback(true);
+
   };
 
   $scope.get_open_shift = function (callback) {

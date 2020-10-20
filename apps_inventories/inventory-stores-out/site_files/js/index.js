@@ -2450,6 +2450,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
   };
 
   $scope.financialYear = function (date, callback) {
+    if (site.feature('erp')) {
 
     $scope.busy = true;
     $scope.error = '';
@@ -2466,6 +2467,8 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         callback(is_allowed_date);
       }
     );
+  } else callback(true);
+
   };
 
   $scope.get_open_shift = function (callback) {

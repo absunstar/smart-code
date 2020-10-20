@@ -559,7 +559,7 @@ app.controller("stores_offer", function ($scope, $http, $timeout) {
     };
 
     if (store_offer.items && store_offer.items.length > 0) {
-      
+
       $scope.financialYear(store_offer.date, is_allowed_date => {
         if (!is_allowed_date) {
           $scope.error = '##word.should_open_period##';
@@ -670,22 +670,25 @@ app.controller("stores_offer", function ($scope, $http, $timeout) {
   };
 
   $scope.financialYear = function (date, callback) {
+    if (site.feature('erp')) {
 
-    $scope.busy = true;
-    $scope.error = '';
-    $http({
-      method: "POST",
-      url: "/api/financial_years/is_allowed_date",
-      data: {
-        date: new Date(date)
-      }
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        is_allowed_date = response.data.doc;
-        callback(is_allowed_date);
-      }
-    );
+      $scope.busy = true;
+      $scope.error = '';
+      $http({
+        method: "POST",
+        url: "/api/financial_years/is_allowed_date",
+        data: {
+          date: new Date(date)
+        }
+      }).then(
+        function (response) {
+          $scope.busy = false;
+          is_allowed_date = response.data.doc;
+          callback(is_allowed_date);
+        }
+      );
+    } else callback(true);
+
   };
 
   $scope.get_open_shift = function (callback) {
