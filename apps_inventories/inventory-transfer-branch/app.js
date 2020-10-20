@@ -2,7 +2,6 @@ module.exports = function init(site) {
 
   const $transfer_branch = site.connectCollection("transfer_branch")
 
-
   site.on('[stores_items][item_name][change]', objectStoreOut => {
 
     let barcode = objectStoreOut.sizes_list.map(_obj => _obj.barcode)
