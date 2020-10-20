@@ -132,7 +132,8 @@ module.exports = function init(site) {
 
     stores_stock_doc.total_value = site.toNumber(stores_stock_doc.total_value)
     site.getItemsSizes(req, callback => {
-      if (callback && callback.length > 0)
+      if (callback && callback.length > 0) {
+
         stores_stock_doc.items.forEach(_item => {
           callback.forEach(_size => {
             if (_size.barcode == _item.barcode) {
@@ -158,6 +159,7 @@ module.exports = function init(site) {
             }
           });
         });
+      }
 
 
       if (stores_stock_doc._id) {
@@ -170,6 +172,7 @@ module.exports = function init(site) {
           $res: res
         }, (err, result) => {
           if (!err) {
+
             response.done = true
             if (result.doc.status == 2) {
               result.doc.hold = true
@@ -540,7 +543,7 @@ module.exports = function init(site) {
   site.getStoreStock = function (whereObj, callback) {
     callback = callback || {};
     let where = whereObj || {}
-   
+
     if (where.date) {
       let d1 = site.toDate(where.date)
       let d2 = site.toDate(where.date)

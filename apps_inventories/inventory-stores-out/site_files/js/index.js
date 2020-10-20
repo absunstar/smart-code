@@ -413,62 +413,69 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
             return;
           };
 
-          $scope.busy = true;
-          $http({
-            method: "POST",
-            url: "/api/stores_out/add",
-            data: angular.copy($scope.store_out)
-          }).then(
-            function (response) {
-              if (response.data.done) {
-                if ($scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto && $scope.store_out.type && $scope.store_out.type.id != 5) {
+          $scope.financialYear($scope.store_out.date, is_allowed_date => {
+            if (!is_allowed_date) {
+              $scope.error = '##word.should_open_period##';
+            } else {
 
-                  let account_invoices = {
-                    image_url: '/images/account_invoices.png',
-                    date: response.data.doc.date,
-                    invoice_id: response.data.doc.id,
-                    customer: response.data.doc.customer,
-                    total_value_added: response.data.doc.total_value_added,
-                    invoice_type: response.data.doc.type,
-                    currency: response.data.doc.currency,
-                    shift: response.data.doc.shift,
-                    net_value: response.data.doc.net_value,
-                    paid_up: response.data.doc.paid_up || 0,
-                    payment_method: response.data.doc.payment_method,
-                    safe: response.data.doc.safe,
-                    invoice_code: response.data.doc.number,
-                    total_discount: response.data.doc.total_discount,
-                    total_tax: response.data.doc.total_tax,
-                    current_book_list: response.data.doc.items,
-                    source_type: {
-                      id: 2,
-                      en: "Sales Store",
-                      ar: "إذن صرف / فاتورة مبيعات"
-                    },
-                    active: true
-                  };
-                  $scope.addAccountInvoice(account_invoices)
+              $scope.busy = true;
+              $http({
+                method: "POST",
+                url: "/api/stores_out/add",
+                data: angular.copy($scope.store_out)
+              }).then(
+                function (response) {
+                  if (response.data.done) {
+                    if ($scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto && $scope.store_out.type && $scope.store_out.type.id != 5) {
+
+                      let account_invoices = {
+                        image_url: '/images/account_invoices.png',
+                        date: response.data.doc.date,
+                        invoice_id: response.data.doc.id,
+                        customer: response.data.doc.customer,
+                        total_value_added: response.data.doc.total_value_added,
+                        invoice_type: response.data.doc.type,
+                        currency: response.data.doc.currency,
+                        shift: response.data.doc.shift,
+                        net_value: response.data.doc.net_value,
+                        paid_up: response.data.doc.paid_up || 0,
+                        payment_method: response.data.doc.payment_method,
+                        safe: response.data.doc.safe,
+                        invoice_code: response.data.doc.number,
+                        total_discount: response.data.doc.total_discount,
+                        total_tax: response.data.doc.total_tax,
+                        current_book_list: response.data.doc.items,
+                        source_type: {
+                          id: 2,
+                          en: "Sales Store",
+                          ar: "إذن صرف / فاتورة مبيعات"
+                        },
+                        active: true
+                      };
+                      $scope.addAccountInvoice(account_invoices)
+                    }
+                    $scope.store_out = {};
+                    $scope.loadAll({ date: new Date() });
+                    site.hideModal('#addStoreOutModal');
+                    $timeout(() => {
+                      document.querySelector('#clickNew').click();
+                      $scope.busy = false;
+
+                    }, 250);
+                  } else {
+                    $scope.error = response.data.error;
+                    if (response.data.error.like('*OverDraft Not*')) {
+                      $scope.error = "##word.overdraft_not_active##"
+                    }
+                  }
+
+                },
+                function (err) {
+                  $scope.error = err.message;
                 }
-                $scope.store_out = {};
-                $scope.loadAll({ date: new Date() });
-                site.hideModal('#addStoreOutModal');
-                $timeout(() => {
-                  document.querySelector('#clickNew').click();
-                  $scope.busy = false;
-
-                }, 250);
-              } else {
-                $scope.error = response.data.error;
-                if (response.data.error.like('*OverDraft Not*')) {
-                  $scope.error = "##word.overdraft_not_active##"
-                }
-              }
-
-            },
-            function (err) {
-              $scope.error = err.message;
+              )
             }
-          )
+          })
         })
       } else {
         $scope.error = "##word.must_enter_quantity##";
@@ -544,29 +551,36 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
 
       if (!callback) {
 
-        $scope.busy = true;
-        $http({
-          method: "POST",
-          url: "/api/stores_out/delete",
-          data: store_out
-        }).then(
-          function (response) {
-            $scope.busy = false;
-            if (response.data.done) {
-              site.hideModal('#deleteStoreOutModal');
-              $scope.loadAll({ date: new Date() });
-            } else {
-              $scope.error = response.data.error;
-              if (response.data.error.like('*OverDraft Not*')) {
-                $scope.error = "##word.overdraft_not_active##"
-              }
-            };
+        $scope.financialYear(store_out.date, is_allowed_date => {
+          if (!is_allowed_date) {
+            $scope.error = '##word.should_open_period##';
+          } else {
 
-          },
-          function (err) {
-            console.log(err);
+            $scope.busy = true;
+            $http({
+              method: "POST",
+              url: "/api/stores_out/delete",
+              data: store_out
+            }).then(
+              function (response) {
+                $scope.busy = false;
+                if (response.data.done) {
+                  site.hideModal('#deleteStoreOutModal');
+                  $scope.loadAll({ date: new Date() });
+                } else {
+                  $scope.error = response.data.error;
+                  if (response.data.error.like('*OverDraft Not*')) {
+                    $scope.error = "##word.overdraft_not_active##"
+                  }
+                };
+
+              },
+              function (err) {
+                console.log(err);
+              }
+            )
           }
-        )
+        })
       } else {
         $scope.error = '##word.err_stock_item##';
       }
@@ -1144,24 +1158,31 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         return;
       };
 
-      $scope.busy = true;
-      $http({
-        method: "POST",
-        url: "/api/stores_out/update",
-        data: $scope.store_out
-      }).then(
-        function (response) {
-          $scope.busy = false;
-          if (response.data.done) {
-            site.hideModal('#updateStoreOutModal');
-          } else {
-            $scope.error = '##word.error##';
-          }
-        },
-        function (err) {
-          console.log(err);
+      $scope.financialYear($scope.store_out.date, is_allowed_date => {
+        if (!is_allowed_date) {
+          $scope.error = '##word.should_open_period##';
+        } else {
+
+          $scope.busy = true;
+          $http({
+            method: "POST",
+            url: "/api/stores_out/update",
+            data: $scope.store_out
+          }).then(
+            function (response) {
+              $scope.busy = false;
+              if (response.data.done) {
+                site.hideModal('#updateStoreOutModal');
+              } else {
+                $scope.error = '##word.error##';
+              }
+            },
+            function (err) {
+              console.log(err);
+            }
+          )
         }
-      )
+      })
     })
   };
 
@@ -2050,31 +2071,39 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
           return;
         };
 
-
         if (!callback) {
 
-          $scope.busy = true;
-          $http({
-            method: "POST",
-            url: "/api/stores_out/posting",
-            data: store_out
-          }).then(
-            function (response) {
-              $scope.busy = false;
-              if (response.data.done) {
-              } else {
-                $scope.error = '##word.error##';
-                if (response.data.error.like('*OverDraft Not*')) {
-                  $scope.error = "##word.overdraft_not_active##"
-                  if (store_out.posting) store_out.posting = false;
-                  else store_out.posting = true;
+          $scope.financialYear(store_out.date, is_allowed_date => {
+            if (!is_allowed_date) {
+              $scope.error = '##word.should_open_period##';
+              if (store_out.posting) store_out.posting = false;
+              else store_out.posting = true;
+            } else {
+
+              $scope.busy = true;
+              $http({
+                method: "POST",
+                url: "/api/stores_out/posting",
+                data: store_out
+              }).then(
+                function (response) {
+                  $scope.busy = false;
+                  if (response.data.done) {
+                  } else {
+                    $scope.error = '##word.error##';
+                    if (response.data.error.like('*OverDraft Not*')) {
+                      $scope.error = "##word.overdraft_not_active##"
+                      if (store_out.posting) store_out.posting = false;
+                      else store_out.posting = true;
+                    }
+                  }
+                },
+                function (err) {
+                  console.log(err);
                 }
-              }
-            },
-            function (err) {
-              console.log(err);
+              )
             }
-          )
+          })
         } else {
           if (store_out.posting)
             store_out.posting = false;
@@ -2126,26 +2155,34 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
 
                 if (!callback && !stopLoop) {
 
-                  _store_out_all[i].posting = true;
+                  $scope.financialYear(_store_out_all[i].date, is_allowed_date => {
+                    if (!is_allowed_date) {
+                      $scope.error = '##word.should_open_period##';
+                    } else {
 
-                  $http({
-                    method: "POST",
-                    url: "/api/stores_out/posting",
-                    data: _store_out_all[i]
-                  }).then(
-                    function (response) {
-                      if (response.data.done) { } else {
-                        $scope.error = '##word.error##';
-                        if (response.data.error.like('*OverDraft Not*')) {
-                          $scope.error = "##word.overdraft_not_active##"
-                          _store_out_all[i].posting = false;
+                      _store_out_all[i].posting = true;
+
+                      $http({
+                        method: "POST",
+                        url: "/api/stores_out/posting",
+                        data: _store_out_all[i]
+                      }).then(
+                        function (response) {
+                          if (response.data.done) { } else {
+                            $scope.error = '##word.error##';
+                            if (response.data.error.like('*OverDraft Not*')) {
+                              $scope.error = "##word.overdraft_not_active##"
+                              _store_out_all[i].posting = false;
+                            }
+                          }
+                        },
+                        function (err) {
+                          console.log(err);
                         }
-                      }
-                    },
-                    function (err) {
-                      console.log(err);
+                      )
                     }
-                  )
+
+                  })
                 } else {
                   stopLoop = true;
                 }
@@ -2412,7 +2449,24 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
 
   };
 
+  $scope.financialYear = function (date, callback) {
 
+    $scope.busy = true;
+    $scope.error = '';
+    $http({
+      method: "POST",
+      url: "/api/financial_years/is_allowed_date",
+      data: {
+        date: new Date(date)
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        is_allowed_date = response.data.doc;
+        callback(is_allowed_date);
+      }
+    );
+  };
 
   $scope.get_open_shift = function (callback) {
     $scope.error = '';

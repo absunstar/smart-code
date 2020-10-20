@@ -115,31 +115,37 @@ app.controller("stores_dismantle", function ($scope, $http, $timeout) {
           return;
         };
 
+        $scope.financialYear($scope.store_dismantle.date, is_allowed_date => {
+          if (!is_allowed_date) {
+            $scope.error = '##word.should_open_period##';
+          } else {
 
-        $scope.busy = true;
-        $http({
-          method: "POST",
-          url: "/api/stores_dismantle/add",
-          data: $scope.store_dismantle
-        }).then(
-          function (response) {
-            $scope.busy = false;
-            if (response.data.done) {
-              site.hideModal('#addStoreDismantleModal');
-              $scope.loadAll({ date: new Date() });
+            $scope.busy = true;
+            $http({
+              method: "POST",
+              url: "/api/stores_dismantle/add",
+              data: $scope.store_dismantle
+            }).then(
+              function (response) {
+                $scope.busy = false;
+                if (response.data.done) {
+                  site.hideModal('#addStoreDismantleModal');
+                  $scope.loadAll({ date: new Date() });
 
-            } else {
-              $scope.error = response.data.error;
-              if (response.data.error.like('*OverDraft Not*')) {
-                $scope.error = "##word.overdraft_not_active##"
+                } else {
+                  $scope.error = response.data.error;
+                  if (response.data.error.like('*OverDraft Not*')) {
+                    $scope.error = "##word.overdraft_not_active##"
+                  }
+                }
+
+              },
+              function (err) {
+                $scope.error = err.message;
               }
-            }
-
-          },
-          function (err) {
-            $scope.error = err.message;
+            )
           }
-        )
+        })
       })
     } else {
       $scope.error = "##word.must_enter_quantity##";
@@ -195,29 +201,36 @@ app.controller("stores_dismantle", function ($scope, $http, $timeout) {
 
       if (!callback) {
 
-        $scope.busy = true;
-        $http({
-          method: "POST",
-          url: "/api/stores_dismantle/delete",
-          data: store_dismantle
-        }).then(
-          function (response) {
-            $scope.busy = false;
-            if (response.data.done) {
-              site.hideModal('#deleteStoreDismantleModal');
-              $scope.loadAll({ date: new Date() });
-            } else {
-              $scope.error = response.data.error;
-              if (response.data.error.like('*OverDraft Not*')) {
-                $scope.error = "##word.overdraft_not_active##"
-              }
-            }
+        $scope.financialYear(store_dismantle.date, is_allowed_date => {
+          if (!is_allowed_date) {
+            $scope.error = '##word.should_open_period##';
+          } else {
 
-          },
-          function (err) {
-            console.log(err);
+            $scope.busy = true;
+            $http({
+              method: "POST",
+              url: "/api/stores_dismantle/delete",
+              data: store_dismantle
+            }).then(
+              function (response) {
+                $scope.busy = false;
+                if (response.data.done) {
+                  site.hideModal('#deleteStoreDismantleModal');
+                  $scope.loadAll({ date: new Date() });
+                } else {
+                  $scope.error = response.data.error;
+                  if (response.data.error.like('*OverDraft Not*')) {
+                    $scope.error = "##word.overdraft_not_active##"
+                  }
+                }
+
+              },
+              function (err) {
+                console.log(err);
+              }
+            )
           }
-        )
+        })
       } else {
         $scope.error = '##word.err_stock_item##';
       }
@@ -574,25 +587,32 @@ app.controller("stores_dismantle", function ($scope, $http, $timeout) {
         return;
       };
 
-      $scope.busy = true;
-      $http({
-        method: "POST",
-        url: "/api/stores_dismantle/update",
-        data: $scope.store_dismantle
-      }).then(
-        function (response) {
-          $scope.busy = false;
-          if (response.data.done) {
-            $scope.loadAll({ date: new Date() });
-            site.hideModal('#updateStoreDismantleModal');
-          } else {
-            $scope.error = '##word.error##';
-          }
-        },
-        function (err) {
-          console.log(err);
+      $scope.financialYear($scope.store_dismantle.date, is_allowed_date => {
+        if (!is_allowed_date) {
+          $scope.error = '##word.should_open_period##';
+        } else {
+
+          $scope.busy = true;
+          $http({
+            method: "POST",
+            url: "/api/stores_dismantle/update",
+            data: $scope.store_dismantle
+          }).then(
+            function (response) {
+              $scope.busy = false;
+              if (response.data.done) {
+                $scope.loadAll({ date: new Date() });
+                site.hideModal('#updateStoreDismantleModal');
+              } else {
+                $scope.error = '##word.error##';
+              }
+            },
+            function (err) {
+              console.log(err);
+            }
+          )
         }
-      )
+      })
     })
   };
 
@@ -655,28 +675,37 @@ app.controller("stores_dismantle", function ($scope, $http, $timeout) {
 
         if (!callback) {
 
-          $scope.busy = true;
-          $http({
-            method: "POST",
-            url: "/api/stores_dismantle/posting",
-            data: store_dismantle
-          }).then(
-            function (response) {
-              $scope.busy = false;
-              if (response.data.done) {
-              } else {
-                $scope.error = '##word.error##';
-                if (response.data.error.like('*OverDraft Not*')) {
-                  $scope.error = "##word.overdraft_not_active##"
-                  if (store_dismantle.posting) store_dismantle.posting = false;
-                  else store_dismantle.posting = true;
+          $scope.financialYear(store_dismantle.date, is_allowed_date => {
+            if (!is_allowed_date) {
+              $scope.error = '##word.should_open_period##';
+              if (store_dismantle.posting) store_dismantle.posting = false;
+              else store_dismantle.posting = true;
+            } else {
+
+              $scope.busy = true;
+              $http({
+                method: "POST",
+                url: "/api/stores_dismantle/posting",
+                data: store_dismantle
+              }).then(
+                function (response) {
+                  $scope.busy = false;
+                  if (response.data.done) {
+                  } else {
+                    $scope.error = '##word.error##';
+                    if (response.data.error.like('*OverDraft Not*')) {
+                      $scope.error = "##word.overdraft_not_active##"
+                      if (store_dismantle.posting) store_dismantle.posting = false;
+                      else store_dismantle.posting = true;
+                    }
+                  }
+                },
+                function (err) {
+                  console.log(err);
                 }
-              }
-            },
-            function (err) {
-              console.log(err);
+              )
             }
-          )
+          })
 
         } else {
           if (store_dismantle.posting) store_dismantle.posting = false;
@@ -999,6 +1028,24 @@ app.controller("stores_dismantle", function ($scope, $http, $timeout) {
     callback(obj)
   };
 
+  $scope.financialYear = function (date, callback) {
+
+    $scope.busy = true;
+    $scope.error = '';
+    $http({
+      method: "POST",
+      url: "/api/financial_years/is_allowed_date",
+      data: {
+        date: new Date(date)
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        is_allowed_date = response.data.doc;
+        callback(is_allowed_date);
+      }
+    );
+  };
 
   $scope.get_open_shift = function (callback) {
     $scope.error = '';

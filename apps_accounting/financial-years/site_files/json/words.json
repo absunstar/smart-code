@@ -14,13 +14,17 @@
     {"name" : "financia_years_period_start_gregorian" , "en" : "Period Start Gregorian" , "ar" : "تاريخ بداية الفترة ميلادي"},
     {"name" : "financia_years_period_start_hijri" , "en" : "Period Start Hijri" , "ar" : "تاريخ بداية الفترة هجري"},
     {"name" : "financia_years_period_end" , "en" : "Period End" , "ar" : "تاريخ نهاية الفترة "},
-
+    {
+        "name": "should_open_period",
+        "en": "The transaction cannot be completed before the period is opened",
+        "ar": "لا يمكن إتمام العملية قبل فتح الفترة"
+    },
     {"name" : "financia_years_period_end_gregorian" , "en" : "Period End Gregorian" , "ar" : "تاريخ نهاية الفترة ميلادي"},
     {"name" : "financia_years_period_end_hijri" , "en" : "Period End Hijri" , "ar" : "تاريخ نهاية الفترة هجري"},
   
     {"name" : "financial_years_create_periods" , "en" : "Create Periods" , "ar" : "انشاء الفترات"},
     {"name" : "financial_years_accounting_period" , "en" : "Accounting Period" , "ar" : "الفترات المحاسبية"},
-    {"name" : "financial_years_status" , "en" : "FinancialYear Status" , "ar" : "حالة سنة مالية"},
+    {"name" : "financial_years_status" , "en" : "FinancialYear Status" , "ar" : "حالة السنة المالية"},
     {"name" : "financial_years_period_status" , "en" : "Financial Period Status" , "ar" : "حالة الفترة "},
 
 

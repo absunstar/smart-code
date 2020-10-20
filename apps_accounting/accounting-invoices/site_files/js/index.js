@@ -101,28 +101,35 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
         }
       }
 
-      $http({
-        method: "POST",
-        url: "/api/account_invoices/add",
-        data: $scope.account_invoices
-      }).then(
-        function (response) {
-          if (response.data.done) {
-            site.hideModal('#accountInvoicesAddModal');
-            $scope.getAccountInvoicesList();
-          } else {
-            $scope.error = response.data.error;
-            if (response.data.error.like('*duplicate key error*')) {
-              $scope.error = "##word.code_exisit##"
-            } else if (response.data.error.like('*Please write code*')) {
-              $scope.error = "##word.enter_code_inventory##"
+      $scope.financialYear($scope.account_invoices.date, is_allowed_date => {
+        if (!is_allowed_date) {
+          $scope.error = '##word.should_open_period##';
+        } else {
+
+          $http({
+            method: "POST",
+            url: "/api/account_invoices/add",
+            data: $scope.account_invoices
+          }).then(
+            function (response) {
+              if (response.data.done) {
+                site.hideModal('#accountInvoicesAddModal');
+                $scope.getAccountInvoicesList({ date: new Date() });
+              } else {
+                $scope.error = response.data.error;
+                if (response.data.error.like('*duplicate key error*')) {
+                  $scope.error = "##word.code_exisit##"
+                } else if (response.data.error.like('*Please write code*')) {
+                  $scope.error = "##word.enter_code_inventory##"
+                }
+              }
+            },
+            function (err) {
+              console.log(err);
             }
-          }
-        },
-        function (err) {
-          console.log(err);
+          )
         }
-      )
+      })
     })
   };
 
@@ -130,23 +137,32 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
     $scope.error = '';
 
     $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/account_invoices/posting",
-      data: account_invoices
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          $scope.getAccountInvoicesList();
-        } else {
-          $scope.error = '##word.error##';
-        }
-      },
-      function (err) {
-        console.log(err);
+    $scope.financialYear(account_invoices.date, is_allowed_date => {
+      if (!is_allowed_date) {
+        $scope.error = '##word.should_open_period##';
+        if (account_invoices.posting) account_invoices.posting = false;
+        else account_invoices.posting = true;
+
+      } else {
+
+        $http({
+          method: "POST",
+          url: "/api/account_invoices/posting",
+          data: account_invoices
+        }).then(
+          function (response) {
+            $scope.busy = false;
+            if (response.data.done) {
+            } else {
+              $scope.error = '##word.error##';
+            }
+          },
+          function (err) {
+            console.log(err);
+          }
+        );
       }
-    );
+    })
   };
 
 
@@ -160,26 +176,33 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
         let _account_invoices = _account_invoices_all[i];
 
         if (!_account_invoices.posting) {
+          $scope.financialYear(_account_invoices.date, is_allowed_date => {
+            if (!is_allowed_date) {
+              $scope.error = '##word.should_open_period##';
 
-          _account_invoices.posting = true;
+            } else {
 
-          $http({
-            method: "POST",
-            url: "/api/account_invoices/posting",
-            data: _account_invoices
-          }).then(
-            function (response) {
-              if (response.data.done) {
+              _account_invoices.posting = true;
 
-              } else {
-                $scope.error = '##word.error##';
-              }
-            },
-            function (err) {
-              console.log(err);
+              $http({
+                method: "POST",
+                url: "/api/account_invoices/posting",
+                data: _account_invoices
+              }).then(
+                function (response) {
+                  if (response.data.done) {
+
+                  } else {
+                    $scope.error = '##word.error##';
+                  }
+                },
+                function (err) {
+                  console.log(err);
+                }
+              )
+
             }
-          )
-
+          })
         };
       }, 100 * 1 * i);
 
@@ -256,28 +279,36 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
       }
 
 
-      $http({
-        method: "POST",
-        url: "/api/account_invoices/update",
-        data: $scope.account_invoices
-      }).then(
-        function (response) {
-          $scope.busy = false;
-          if (response.data.done) {
-            site.hideModal('#accountInvoicesUpdateModal');
-            $scope.list.forEach((b, i) => {
-              if (b.id == response.data.doc.id) {
-                $scope.list[i] = response.data.doc;
+      $scope.financialYear($scope.account_invoices.date, is_allowed_date => {
+        if (!is_allowed_date) {
+          $scope.error = '##word.should_open_period##';
+
+        } else {
+
+          $http({
+            method: "POST",
+            url: "/api/account_invoices/update",
+            data: $scope.account_invoices
+          }).then(
+            function (response) {
+              $scope.busy = false;
+              if (response.data.done) {
+                site.hideModal('#accountInvoicesUpdateModal');
+                $scope.list.forEach((b, i) => {
+                  if (b.id == response.data.doc.id) {
+                    $scope.list[i] = response.data.doc;
+                  }
+                });
+              } else {
+                $scope.error = response.data.error;
               }
-            });
-          } else {
-            $scope.error = response.data.error;
-          }
-        },
-        function (err) {
-          console.log(err);
+            },
+            function (err) {
+              console.log(err);
+            }
+          )
         }
-      )
+      })
     })
   };
 
@@ -330,31 +361,42 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
   $scope.deleteAccountInvoices = function () {
     $scope.error = '';
     $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/account_invoices/delete",
-      data: {
-        id: $scope.account_invoices.id
-      }
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          site.hideModal('#accountInvoicesDeleteModal');
-          $scope.list.forEach((b, i) => {
-            if (b.id == response.data.doc.id) {
-              $scope.list.splice(i, 1);
-              $scope.count -= 1;
+
+
+    $scope.financialYear($scope.account_invoices.date, is_allowed_date => {
+      if (!is_allowed_date) {
+        $scope.error = '##word.should_open_period##';
+
+      } else {
+
+
+        $http({
+          method: "POST",
+          url: "/api/account_invoices/delete",
+          data: {
+            id: $scope.account_invoices.id
+          }
+        }).then(
+          function (response) {
+            $scope.busy = false;
+            if (response.data.done) {
+              site.hideModal('#accountInvoicesDeleteModal');
+              $scope.list.forEach((b, i) => {
+                if (b.id == response.data.doc.id) {
+                  $scope.list.splice(i, 1);
+                  $scope.count -= 1;
+                }
+              });
+            } else {
+              $scope.error = response.data.error;
             }
-          });
-        } else {
-          $scope.error = response.data.error;
-        }
-      },
-      function (err) {
-        console.log(err);
+          },
+          function (err) {
+            console.log(err);
+          }
+        )
       }
-    )
+    })
   };
 
   $scope.getAccountInvoicesList = function (where) {
@@ -472,7 +514,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
           $scope.busy = false;
 
           if (response.data.done) {
-            $scope.getAccountInvoicesList();
+            $scope.getAccountInvoicesList({ date: new Date() });
 
             site.hideModal('#invoicesPaymentModal');
           } else {
@@ -1286,6 +1328,25 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
         $scope.error = err;
       }
     )
+  };
+
+  $scope.financialYear = function (date, callback) {
+
+    $scope.busy = true;
+    $scope.error = '';
+    $http({
+      method: "POST",
+      url: "/api/financial_years/is_allowed_date",
+      data: {
+        date: new Date(date)
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        is_allowed_date = response.data.doc;
+        callback(is_allowed_date);
+      }
+    );
   };
 
   $scope.get_open_shift = function (callback) {

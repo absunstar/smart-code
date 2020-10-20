@@ -88,27 +88,36 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
     }
 
     if ($scope.store_stock.items.length > 0) {
-      $scope.store_stock.status = 1;
-      $scope.busy = true;
-      $http({
-        method: "POST",
-        url: "/api/stores_stock/add",
-        data: $scope.store_stock
-      }).then(
-        function (response) {
-          $scope.busy = false;
-          if (response.data.done) {
-            site.hideModal('#addStoreStockModal');
 
-            $scope.loadAll({ date: new Date() });
+      $scope.financialYear($scope.store_stock.date, is_allowed_date => {
+        if (!is_allowed_date) {
+          $scope.error = '##word.should_open_period##';
+        } else {
 
-          } else $scope.error = response.data.error;
+          $scope.store_stock.status = 1;
 
-        },
-        function (err) {
-          $scope.error = err.message;
+          $scope.busy = true;
+          $http({
+            method: "POST",
+            url: "/api/stores_stock/add",
+            data: $scope.store_stock
+          }).then(
+            function (response) {
+              $scope.busy = false;
+              if (response.data.done) {
+                site.hideModal('#addStoreStockModal');
+
+                $scope.loadAll({ date: new Date() });
+
+              } else $scope.error = response.data.error;
+
+            },
+            function (err) {
+              $scope.error = err.message;
+            }
+          )
         }
-      )
+      })
     } else {
       $scope.error = "##word.must_enter_quantity##";
       return;
@@ -158,24 +167,33 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
 
   $scope.delete = function (store_stock) {
     $scope.error = '';
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/stores_stock/delete",
-      data: store_stock
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          site.hideModal('#deleteStoreStockModal');
-          $scope.loadAll({ date: new Date() });
-        } else $scope.error = response.data.error;
 
-      },
-      function (err) {
-        console.log(err);
+    $scope.financialYear(store_stock.date, is_allowed_date => {
+      if (!is_allowed_date) {
+        $scope.error = '##word.should_open_period##';
+
+      } else {
+
+        $scope.busy = true;
+        $http({
+          method: "POST",
+          url: "/api/stores_stock/delete",
+          data: store_stock
+        }).then(
+          function (response) {
+            $scope.busy = false;
+            if (response.data.done) {
+              site.hideModal('#deleteStoreStockModal');
+              $scope.loadAll({ date: new Date() });
+            } else $scope.error = response.data.error;
+
+          },
+          function (err) {
+            console.log(err);
+          }
+        )
       }
-    )
+    })
   };
 
   $scope.addToItems = function () {
@@ -524,7 +542,7 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
       }
     );
   }
-  
+
 
   $scope.getBarcode = function (ev) {
     $scope.error = '';
@@ -677,27 +695,40 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
           }
         }
 
-        $http({
-          method: "POST",
-          url: "/api/stores_stock/update",
-          data: store_stock
-        }).then(
-          function (response) {
-            $scope.busy = false;
-            if (response.data.done) {
-
-              if (store_stock.status == 1) site.hideModal('#updateStoreStockModal');
-              else site.hideModal('#settlementItemsModal');
-
-              $scope.loadAll({ date: new Date() });
-            } else {
-              $scope.error = '##word.error##';
+        $scope.financialYear(store_stock.date, is_allowed_date => {
+          if (!is_allowed_date) {
+            $scope.error = '##word.should_open_period##';
+            if (hold == 'hold'){
+              store_stock.status = 1
             }
-          },
-          function (err) {
-            console.log(err);
+          } else {
+
+            $http({
+              method: "POST",
+              url: "/api/stores_stock/update",
+              data: store_stock
+            }).then(
+              function (response) {
+                $scope.busy = false;
+                if (response.data.done) {
+
+                  if (store_stock.status == 1){
+                    site.hideModal('#updateStoreStockModal');
+                  } else {
+                    site.hideModal('#settlementItemsModal');
+                  }
+
+                  $scope.loadAll({ date: new Date() });
+                } else {
+                  $scope.error = '##word.error##';
+                }
+              },
+              function (err) {
+                console.log(err);
+              }
+            )
           }
-        )
+        })
       })
     } else {
       $scope.error = "##word.must_enter_quantity##";
@@ -839,22 +870,29 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
         return;
       }
 
-      $scope.busy = true;
+      $scope.financialYear(store_stock.date, is_allowed_date => {
+        if (!is_allowed_date) {
+          $scope.error = '##word.should_open_period##';
+        } else {
 
-      $http({
-        method: "POST",
-        url: "/api/stores_stock/approve",
-        data: store_stock
-      }).then(
-        function (response) {
-          $scope.busy = false;
-          if (response.data.done) $scope.loadAll({ date: new Date() });
-          else $scope.error = '##word.error##';
-        },
-        function (err) {
-          console.log(err);
+          $scope.busy = true;
+
+          $http({
+            method: "POST",
+            url: "/api/stores_stock/approve",
+            data: store_stock
+          }).then(
+            function (response) {
+              $scope.busy = false;
+              if (response.data.done) $scope.loadAll({ date: new Date() });
+              else $scope.error = '##word.error##';
+            },
+            function (err) {
+              console.log(err);
+            }
+          )
         }
-      )
+      })
     })
 
   };
@@ -1007,7 +1045,7 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
     itm.work_patch = size.work_patch;
     itm.validit = size.validit;
     $scope.patch_count = 0;
-    
+
     $http({
       method: "POST",
       url: "/api/stores_items/all",
@@ -1106,6 +1144,25 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
       count: 0,
       new: true
     })
+  };
+
+  $scope.financialYear = function (date, callback) {
+
+    $scope.busy = true;
+    $scope.error = '';
+    $http({
+      method: "POST",
+      url: "/api/financial_years/is_allowed_date",
+      data: {
+        date: new Date(date)
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        is_allowed_date = response.data.doc;
+        callback(is_allowed_date);
+      }
+    );
   };
 
   $scope.get_open_shift = function (callback) {

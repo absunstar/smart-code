@@ -170,33 +170,38 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
           return;
         };
 
+        $scope.financialYear($scope.store_assemble.date, is_allowed_date => {
+          if (!is_allowed_date) {
+            $scope.error = '##word.should_open_period##';
+          } else {
 
+            $scope.busy = true;
+            $http({
+              method: "POST",
+              url: "/api/stores_assemble/add",
+              data: $scope.store_assemble
+            }).then(
+              function (response) {
+                $scope.busy = false;
+                if (response.data.done) {
+                  site.hideModal('#addStoreAssembleModal');
+                  $scope.loadAll({ date: new Date() });
 
-        $scope.busy = true;
-        $http({
-          method: "POST",
-          url: "/api/stores_assemble/add",
-          data: $scope.store_assemble
-        }).then(
-          function (response) {
-            $scope.busy = false;
-            if (response.data.done) {
-              site.hideModal('#addStoreAssembleModal');
-              $scope.loadAll({ date: new Date() });
+                } else {
 
-            } else {
+                  $scope.error = response.data.error;
+                  if (response.data.error.like('*OverDraft Not*')) {
+                    $scope.error = "##word.overdraft_not_active##"
+                  }
+                }
+              },
+              function (err) {
+                $scope.error = err.message;
 
-              $scope.error = response.data.error;
-              if (response.data.error.like('*OverDraft Not*')) {
-                $scope.error = "##word.overdraft_not_active##"
               }
-            }
-          },
-          function (err) {
-            $scope.error = err.message;
-
+            )
           }
-        )
+        })
       })
     } else {
       $scope.error = "##word.must_enter_quantity##";
@@ -252,29 +257,37 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
 
       if (!callback) {
 
-        $scope.busy = true;
-        $http({
-          method: "POST",
-          url: "/api/stores_assemble/delete",
-          data: store_assemble
-        }).then(
-          function (response) {
-            $scope.busy = false;
-            if (response.data.done) {
-              site.hideModal('#deleteStoreAssembleModal');
-              $scope.loadAll({ date: new Date() });
-            } else {
-              $scope.error = response.data.error;
-              if (response.data.error.like('*OverDraft Not*')) {
-                $scope.error = "##word.overdraft_not_active##"
-              }
-            }
 
-          },
-          function (err) {
-            console.log(err);
+        $scope.financialYear(store_assemble.date, is_allowed_date => {
+          if (!is_allowed_date) {
+            $scope.error = '##word.should_open_period##';
+          } else {
+
+            $scope.busy = true;
+            $http({
+              method: "POST",
+              url: "/api/stores_assemble/delete",
+              data: store_assemble
+            }).then(
+              function (response) {
+                $scope.busy = false;
+                if (response.data.done) {
+                  site.hideModal('#deleteStoreAssembleModal');
+                  $scope.loadAll({ date: new Date() });
+                } else {
+                  $scope.error = response.data.error;
+                  if (response.data.error.like('*OverDraft Not*')) {
+                    $scope.error = "##word.overdraft_not_active##"
+                  }
+                }
+
+              },
+              function (err) {
+                console.log(err);
+              }
+            )
           }
-        )
+        })
       } else {
         $scope.error = '##word.err_stock_item##';
       }
@@ -705,26 +718,33 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
         return;
       };
 
+      $scope.financialYear($scope.store_assemble.date, is_allowed_date => {
+        if (!is_allowed_date) {
+          $scope.error = '##word.should_open_period##';
+        } else {
 
-      $scope.busy = true;
-      $http({
-        method: "POST",
-        url: "/api/stores_assemble/update",
-        data: $scope.store_assemble
-      }).then(
-        function (response) {
-          $scope.busy = false;
-          if (response.data.done) {
-            $scope.loadAll({ date: new Date() });
-            site.hideModal('#updateStoreAssembleModal');
-          } else {
-            $scope.error = '##word.error##';
-          }
-        },
-        function (err) {
-          console.log(err);
+
+          $scope.busy = true;
+          $http({
+            method: "POST",
+            url: "/api/stores_assemble/update",
+            data: $scope.store_assemble
+          }).then(
+            function (response) {
+              $scope.busy = false;
+              if (response.data.done) {
+                $scope.loadAll({ date: new Date() });
+                site.hideModal('#updateStoreAssembleModal');
+              } else {
+                $scope.error = '##word.error##';
+              }
+            },
+            function (err) {
+              console.log(err);
+            }
+          )
         }
-      )
+      })
     })
   };
 
@@ -806,28 +826,41 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
 
 
         if (!callback) {
-          $scope.busy = true;
-          $http({
-            method: "POST",
-            url: "/api/stores_assemble/posting",
-            data: store_assemble
-          }).then(
-            function (response) {
-              $scope.busy = false;
-              if (response.data.done) {
-              } else {
-                $scope.error = '##word.error##';
-                if (response.data.error.like('*OverDraft Not*')) {
-                  $scope.error = "##word.overdraft_not_active##"
-                  if (store_assemble.posting) store_assemble.posting = false;
-                  else store_assemble.posting = true;
+
+          $scope.financialYear(store_assemble.date, is_allowed_date => {
+            if (!is_allowed_date) {
+              $scope.error = '##word.should_open_period##';
+              
+              if (store_assemble.posting) store_assemble.posting = false;
+              else store_assemble.posting = true;
+              
+            } else {
+
+
+              $scope.busy = true;
+              $http({
+                method: "POST",
+                url: "/api/stores_assemble/posting",
+                data: store_assemble
+              }).then(
+                function (response) {
+                  $scope.busy = false;
+                  if (response.data.done) {
+                  } else {
+                    $scope.error = '##word.error##';
+                    if (response.data.error.like('*OverDraft Not*')) {
+                      $scope.error = "##word.overdraft_not_active##"
+                      if (store_assemble.posting) store_assemble.posting = false;
+                      else store_assemble.posting = true;
+                    }
+                  }
+                },
+                function (err) {
+                  console.log(err);
                 }
-              }
-            },
-            function (err) {
-              console.log(err);
+              )
             }
-          )
+          })
         } else {
           if (store_assemble.posting) store_assemble.posting = false;
           else store_assemble.posting = true;
@@ -1266,6 +1299,24 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
     });
   };
 
+  $scope.financialYear = function (date, callback) {
+
+    $scope.busy = true;
+    $scope.error = '';
+    $http({
+      method: "POST",
+      url: "/api/financial_years/is_allowed_date",
+      data: {
+        date: new Date(date)
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        is_allowed_date = response.data.doc;
+        callback(is_allowed_date);
+      }
+    );
+  };
 
   $scope.get_open_shift = function (callback) {
     $scope.error = '';

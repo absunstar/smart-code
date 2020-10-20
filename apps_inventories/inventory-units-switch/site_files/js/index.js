@@ -182,31 +182,38 @@ app.controller("units_switch", function ($scope, $http, $timeout) {
           return;
         }
 
-        $scope.busy = true;
-        $http({
-          method: "POST",
-          url: "/api/units_switch/add",
-          data: $scope.units_switch
-        }).then(
-          function (response) {
-            $scope.busy = false;
-            if (response.data.done) {
-              site.hideModal('#addUnitsSwitchModal');
-              $scope.loadAll({ date: new Date() });
+        $scope.financialYear($scope.units_switch.date, is_allowed_date => {
+          if (!is_allowed_date) {
+            $scope.error = '##word.should_open_period##';
+          } else {
 
-            } else {
+            $scope.busy = true;
+            $http({
+              method: "POST",
+              url: "/api/units_switch/add",
+              data: $scope.units_switch
+            }).then(
+              function (response) {
+                $scope.busy = false;
+                if (response.data.done) {
+                  site.hideModal('#addUnitsSwitchModal');
+                  $scope.loadAll({ date: new Date() });
 
-              $scope.error = response.data.error;
-              if (response.data.error.like('*OverDraft Not*')) {
-                $scope.error = "##word.overdraft_not_active##"
+                } else {
+
+                  $scope.error = response.data.error;
+                  if (response.data.error.like('*OverDraft Not*')) {
+                    $scope.error = "##word.overdraft_not_active##"
+                  }
+                }
+              },
+              function (err) {
+                $scope.error = err.message;
+
               }
-            }
-          },
-          function (err) {
-            $scope.error = err.message;
-
+            )
           }
-        )
+        })
       })
     } else {
       $scope.error = "##word.must_enter_quantity##";
@@ -261,29 +268,37 @@ app.controller("units_switch", function ($scope, $http, $timeout) {
 
       if (!callback) {
 
-        $scope.busy = true;
-        $http({
-          method: "POST",
-          url: "/api/units_switch/delete",
-          data: units_switch
-        }).then(
-          function (response) {
-            $scope.busy = false;
-            if (response.data.done) {
-              site.hideModal('#deleteUnitsSwitchModal');
-              $scope.loadAll();
-            } else {
-              $scope.error = response.data.error;
-              if (response.data.error.like('*OverDraft Not*')) {
-                $scope.error = "##word.overdraft_not_active##"
-              }
-            }
+        $scope.financialYear(units_switch.date, is_allowed_date => {
+          if (!is_allowed_date) {
+            $scope.error = '##word.should_open_period##';
+          } else {
 
-          },
-          function (err) {
-            console.log(err);
+
+            $scope.busy = true;
+            $http({
+              method: "POST",
+              url: "/api/units_switch/delete",
+              data: units_switch
+            }).then(
+              function (response) {
+                $scope.busy = false;
+                if (response.data.done) {
+                  site.hideModal('#deleteUnitsSwitchModal');
+                  $scope.loadAll();
+                } else {
+                  $scope.error = response.data.error;
+                  if (response.data.error.like('*OverDraft Not*')) {
+                    $scope.error = "##word.overdraft_not_active##"
+                  }
+                }
+
+              },
+              function (err) {
+                console.log(err);
+              }
+            )
           }
-        )
+        })
       } else {
         $scope.error = '##word.err_stock_item##';
       }
@@ -366,7 +381,7 @@ app.controller("units_switch", function ($scope, $http, $timeout) {
 
                     if (_size.size_units_list && _size.size_units_list.length > 0)
                       _size.size_units_list.forEach((_unit, i) => {
-                   
+
                         if (_unit.id == _item.main_unit.id)
                           indxUnit = i;
                       });
@@ -711,27 +726,33 @@ app.controller("units_switch", function ($scope, $http, $timeout) {
           $scope.error = '##word.err_patch_date##';
           return;
         }
+        $scope.financialYear($scope.units_switch.date, is_allowed_date => {
+          if (!is_allowed_date) {
+            $scope.error = '##word.should_open_period##';
+          } else {
 
 
-        $scope.busy = true;
-        $http({
-          method: "POST",
-          url: "/api/units_switch/update",
-          data: $scope.units_switch
-        }).then(
-          function (response) {
-            $scope.busy = false;
-            if (response.data.done) {
-              site.hideModal('#updateUnitsSwitchModal');
-              $scope.loadAll();
-            } else {
-              $scope.error = '##word.error##';
-            }
-          },
-          function (err) {
-            console.log(err);
+            $scope.busy = true;
+            $http({
+              method: "POST",
+              url: "/api/units_switch/update",
+              data: $scope.units_switch
+            }).then(
+              function (response) {
+                $scope.busy = false;
+                if (response.data.done) {
+                  site.hideModal('#updateUnitsSwitchModal');
+                  $scope.loadAll();
+                } else {
+                  $scope.error = '##word.error##';
+                }
+              },
+              function (err) {
+                console.log(err);
+              }
+            )
           }
-        )
+        })
       })
     } else {
       $scope.error = "##word.must_enter_quantity##";
@@ -819,28 +840,40 @@ app.controller("units_switch", function ($scope, $http, $timeout) {
 
 
         if (!callback) {
-          $scope.busy = true;
-          $http({
-            method: "POST",
-            url: "/api/units_switch/posting",
-            data: units_switch
-          }).then(
-            function (response) {
-              $scope.busy = false;
-              if (response.data.done) {
-              } else {
-                $scope.error = '##word.error##';
-                if (response.data.error.like('*OverDraft Not*')) {
-                  $scope.error = "##word.overdraft_not_active##"
-                  if (units_switch.posting) units_switch.posting = false;
-                  else units_switch.posting = true;
+
+
+          $scope.financialYear(units_switch.date, is_allowed_date => {
+            if (!is_allowed_date) {
+              $scope.error = '##word.should_open_period##';
+              if (units_switch.posting) units_switch.posting = false;
+              else units_switch.posting = true;
+            } else {
+
+
+              $scope.busy = true;
+              $http({
+                method: "POST",
+                url: "/api/units_switch/posting",
+                data: units_switch
+              }).then(
+                function (response) {
+                  $scope.busy = false;
+                  if (response.data.done) {
+                  } else {
+                    $scope.error = '##word.error##';
+                    if (response.data.error.like('*OverDraft Not*')) {
+                      $scope.error = "##word.overdraft_not_active##"
+                      if (units_switch.posting) units_switch.posting = false;
+                      else units_switch.posting = true;
+                    }
+                  }
+                },
+                function (err) {
+                  console.log(err);
                 }
-              }
-            },
-            function (err) {
-              console.log(err);
+              )
             }
-          )
+          })
         } else {
           if (units_switch.posting)
             units_switch.posting = false;
@@ -1316,6 +1349,24 @@ app.controller("units_switch", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.financialYear = function (date, callback) {
+
+    $scope.busy = true;
+    $scope.error = '';
+    $http({
+      method: "POST",
+      url: "/api/financial_years/is_allowed_date",
+      data: {
+        date: new Date(date)
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        is_allowed_date = response.data.doc;
+        callback(is_allowed_date);
+      }
+    );
+  };
 
   $scope.get_open_shift = function (callback) {
     $scope.error = '';

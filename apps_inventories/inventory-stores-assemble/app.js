@@ -207,6 +207,8 @@ module.exports = function init(site) {
     stores_assemble_doc.type = site.fromJson(stores_assemble_doc.type)
     stores_assemble_doc.date = new Date(stores_assemble_doc.date)
 
+    let assembleItems = []
+
     stores_assemble_doc.items.forEach(assembleDocItems => {
       assembleDocItems.current_count = site.toNumber(assembleDocItems.current_count)
       assembleDocItems.count = site.toNumber(assembleDocItems.count)
@@ -216,7 +218,7 @@ module.exports = function init(site) {
 
       if (assembleDocItems.patch_list && assembleDocItems.patch_list.length === 1) {
 
-        assembleDocItems.patch_list[0].complex_items = complex_items
+        assembleDocItems.patch_list[0].complex_items = assembleDocItems.complex_items
 
       }
 
@@ -235,27 +237,38 @@ module.exports = function init(site) {
       });
     });
 
-    stores_assemble_doc.total_value = site.toNumber(stores_assemble_doc.total_value)
+    site.isAllowOverDraft(req, assembleItems, cbOverDraft => {
 
-    if (stores_assemble_doc._id) {
-      $stores_assemble.edit({
-        where: {
-          _id: stores_assemble_doc._id
-        },
-        set: stores_assemble_doc,
-        $req: req,
-        $res: res
-      }, err => {
-        if (!err) {
-          response.done = true
-        } else {
-          response.error = err.message
-        }
+      if (!cbOverDraft.overdraft && cbOverDraft.value) {
+
+        response.error = 'OverDraft Not Active'
         res.json(response)
-      })
-    } else {
-      res.json(response)
-    }
+
+      } else {
+
+        stores_assemble_doc.total_value = site.toNumber(stores_assemble_doc.total_value)
+
+        if (stores_assemble_doc._id) {
+          $stores_assemble.edit({
+            where: {
+              _id: stores_assemble_doc._id
+            },
+            set: stores_assemble_doc,
+            $req: req,
+            $res: res
+          }, err => {
+            if (!err) {
+              response.done = true
+            } else {
+              response.error = err.message
+            }
+            res.json(response)
+          })
+        } else {
+          res.json(response)
+        }
+      }
+    })
   })
 
   site.post("/api/stores_assemble/posting", (req, res) => {

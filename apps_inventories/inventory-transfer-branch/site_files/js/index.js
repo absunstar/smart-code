@@ -149,25 +149,31 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
           return;
         };
 
+        $scope.financialYear($scope.transfer_branch.date, is_allowed_date => {
+          if (!is_allowed_date) {
+            $scope.error = '##word.should_open_period##';
+          } else {
 
-        $scope.busy = true;
-        $http({
-          method: "POST",
-          url: "/api/transfer_branch/add",
-          data: $scope.transfer_branch
-        }).then(
-          function (response) {
-            $scope.busy = false;
-            if (response.data.done) {
-              site.hideModal('#addTransferBranchModal');
-              $scope.loadAll({ date: new Date() });
-            } else $scope.error = response.data.error;
+            $scope.busy = true;
+            $http({
+              method: "POST",
+              url: "/api/transfer_branch/add",
+              data: $scope.transfer_branch
+            }).then(
+              function (response) {
+                $scope.busy = false;
+                if (response.data.done) {
+                  site.hideModal('#addTransferBranchModal');
+                  $scope.loadAll({ date: new Date() });
+                } else $scope.error = response.data.error;
 
-          },
-          function (err) {
-            $scope.error = err.message;
+              },
+              function (err) {
+                $scope.error = err.message;
+              }
+            )
           }
-        )
+        })
       })
     } else {
       $scope.error = "##word.must_enter_quantity##";
@@ -225,27 +231,35 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
 
   $scope.delete = function () {
     $scope.error = '';
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/transfer_branch/delete",
-      data: {
-        _id: $scope.transfer_branch._id,
-        name: $scope.transfer_branch.name
-      }
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          site.hideModal('#deleteTransferBranchModal');
-          $scope.loadAll();
-        } else $scope.error = response.data.error;
 
-      },
-      function (err) {
-        console.log(err);
+    $scope.financialYear($scope.transfer_branch.date, is_allowed_date => {
+      if (!is_allowed_date) {
+        $scope.error = '##word.should_open_period##';
+      } else {
+
+        $scope.busy = true;
+        $http({
+          method: "POST",
+          url: "/api/transfer_branch/delete",
+          data: {
+            _id: $scope.transfer_branch._id,
+            name: $scope.transfer_branch.name
+          }
+        }).then(
+          function (response) {
+            $scope.busy = false;
+            if (response.data.done) {
+              site.hideModal('#deleteTransferBranchModal');
+              $scope.loadAll();
+            } else $scope.error = response.data.error;
+
+          },
+          function (err) {
+            console.log(err);
+          }
+        )
       }
-    )
+    })
   };
 
   $scope.addToItems = function () {
@@ -634,25 +648,31 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
           return;
         };
 
+        $scope.financialYear($scope.transfer_branch.date, is_allowed_date => {
+          if (!is_allowed_date) {
+            $scope.error = '##word.should_open_period##';
+          } else {
 
-        $scope.busy = true;
-        $http({
-          method: "POST",
-          url: "/api/transfer_branch/update",
-          data: $scope.transfer_branch
-        }).then(
-          function (response) {
-            $scope.busy = false;
-            if (response.data.done) {
-              site.hideModal('#updateTransferBranchModal');
-            } else {
-              $scope.error = '##word.error##';
-            }
-          },
-          function (err) {
-            console.log(err);
+            $scope.busy = true;
+            $http({
+              method: "POST",
+              url: "/api/transfer_branch/update",
+              data: $scope.transfer_branch
+            }).then(
+              function (response) {
+                $scope.busy = false;
+                if (response.data.done) {
+                  site.hideModal('#updateTransferBranchModal');
+                } else {
+                  $scope.error = '##word.error##';
+                }
+              },
+              function (err) {
+                console.log(err);
+              }
+            )
           }
-        )
+        })
       })
     } else {
       $scope.error = "##word.must_enter_quantity##";
@@ -671,29 +691,36 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
         };
         if (!callback) {
 
-          transfer_branch.transfer = true;
-          $scope.busy = true;
-          $http({
-            method: "POST",
-            url: "/api/transfer_branch/confirm",
-            data: transfer_branch
-          }).then(
-            function (response) {
-              $scope.busy = false;
-              if (response.data.done) {
-              } else {
-                $scope.error = '##word.error##';
-                if (response.data.error.like('*OverDraft Not*')) {
-                  transfer_branch.transfer = false;
-                  $scope.error = "##word.overdraft_not_active##";
-                  
+          $scope.financialYear(transfer_branch.date, is_allowed_date => {
+            if (!is_allowed_date) {
+              $scope.error = '##word.should_open_period##';
+            } else {
+
+              transfer_branch.transfer = true;
+              $scope.busy = true;
+              $http({
+                method: "POST",
+                url: "/api/transfer_branch/confirm",
+                data: transfer_branch
+              }).then(
+                function (response) {
+                  $scope.busy = false;
+                  if (response.data.done) {
+                  } else {
+                    $scope.error = '##word.error##';
+                    if (response.data.error.like('*OverDraft Not*')) {
+                      transfer_branch.transfer = false;
+                      $scope.error = "##word.overdraft_not_active##";
+
+                    }
+                  }
+                },
+                function (err) {
+                  console.log(err);
                 }
-              }
-            },
-            function (err) {
-              console.log(err);
+              )
             }
-          )
+          })
         } else {
           $scope.error = '##word.err_stock_item##';
         }
@@ -721,28 +748,35 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
               };
               if (!callback && !stopLoop) {
 
-                _transfer_branch_all[i].transfer = true;
+                $scope.financialYear(_transfer_branch_all[i].date, is_allowed_date => {
+                  if (!is_allowed_date) {
+                    $scope.error = '##word.should_open_period##';
+                  } else {
 
-                $http({
-                  method: "POST",
-                  url: "/api/transfer_branch/confirm",
-                  data: _transfer_branch_all[i]
-                }).then(
-                  function (response) {
-                    if (response.data.done) {
+                    _transfer_branch_all[i].transfer = true;
 
-                    } else {
-                      $scope.error = '##word.error##';
-                      if (response.data.error.like('*OverDraft Not*')) {
-                        $scope.error = "##word.overdraft_not_active##"
-                        _transfer_branch_all[i].transfer = false;
+                    $http({
+                      method: "POST",
+                      url: "/api/transfer_branch/confirm",
+                      data: _transfer_branch_all[i]
+                    }).then(
+                      function (response) {
+                        if (response.data.done) {
+
+                        } else {
+                          $scope.error = '##word.error##';
+                          if (response.data.error.like('*OverDraft Not*')) {
+                            $scope.error = "##word.overdraft_not_active##"
+                            _transfer_branch_all[i].transfer = false;
+                          }
+                        }
+                      },
+                      function (err) {
+                        console.log(err);
                       }
-                    }
-                  },
-                  function (err) {
-                    console.log(err);
+                    )
                   }
-                )
+                })
               } else {
                 stopLoop = true;
               }
@@ -1014,6 +1048,25 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
         $scope.transfer_branch.safe = $scope.defaultSettings.accounting.safe
       }
     }
+  };
+
+  $scope.financialYear = function (date, callback) {
+
+    $scope.busy = true;
+    $scope.error = '';
+    $http({
+      method: "POST",
+      url: "/api/financial_years/is_allowed_date",
+      data: {
+        date: new Date(date)
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        is_allowed_date = response.data.doc;
+        callback(is_allowed_date);
+      }
+    );
   };
 
   $scope.get_open_shift = function (callback) {

@@ -54,7 +54,6 @@ module.exports = function init(site) {
       if (!err) {
         response.done = true
         response.doc = doc
-        site.reload_numbering(req);
       } else {
         response.error = err.message
       }
@@ -91,8 +90,6 @@ module.exports = function init(site) {
         if (!err) {
           response.done = true
           response.doc = result.doc
-          site.changeNumberFinancial({req:req,code:result.doc.code,accounting_period_list:result.doc.accounting_period_list});
-          site.reload_numbering(req);
         } else {
           response.error = err.message
         }
@@ -153,7 +150,6 @@ module.exports = function init(site) {
         if (!err) {
           response.done = true
           response.doc = result.doc
-          site.reload_numbering(req);
         } else {
           response.error = err.message
         }

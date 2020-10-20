@@ -9,7 +9,7 @@ app.controller("financial_years", function ($scope, $http, $timeout) {
     };
 
     $scope.error = '';
-    $scope._search ={};
+    $scope._search = {};
     $scope.edit = true;
     $scope.financial_year = {
       image_url: '/images/financial_years.png',
@@ -92,14 +92,14 @@ app.controller("financial_years", function ($scope, $http, $timeout) {
 
 
   $scope.displayUpdateFinancialYear = function (financial_year, index) {
-   
- 
-   if ($scope.busy) {
+
+
+    if ($scope.busy) {
       return
     };
-    
+
     $scope.error = '';
-    $scope._search ={};
+    $scope._search = {};
 
 
     $scope.viewFinancialYear(financial_year, index);
@@ -153,7 +153,7 @@ app.controller("financial_years", function ($scope, $http, $timeout) {
 
   $scope.displayViewFinancialYear = function (financial_year) {
     $scope.error = '';
-    $scope.viewFinancialYear(financial_year);
+    $scope.viewFinancialYear(financial_year, null);
     $scope.financial_year = {};
     site.showModal('#financialYearDetailsModal');
   };
@@ -174,13 +174,16 @@ app.controller("financial_years", function ($scope, $http, $timeout) {
           response.data.doc.date = new Date(response.data.doc.date);
           $scope.financial_year = response.data.doc;
 
-          $scope.financial_year.accounting_period_list[0].showButtonClose = $scope.allowClose5(index);
+          if ($scope.financial_year.accounting_period_list && $scope.financial_year.accounting_period_list[0] && index) {
 
-          $scope.financial_year.accounting_period_list.forEach((itm, i) => {
-            if (itm.showButton == true) {
-              $scope.financial_year.accounting_period_list[i - 1].showButtonClose = true
-            }
-          });
+            $scope.financial_year.accounting_period_list[0].showButtonClose = $scope.allowClose5(index);
+
+            $scope.financial_year.accounting_period_list.forEach((itm, i) => {
+              if (itm.showButton) {
+                $scope.financial_year.accounting_period_list[i - 1].showButtonClose = true
+              }
+            });
+          }
 
         } else {
           $scope.error = response.data.error;
@@ -194,7 +197,7 @@ app.controller("financial_years", function ($scope, $http, $timeout) {
 
   $scope.displayDeleteFinancialYear = function (financial_year) {
     $scope.error = '';
-    $scope.viewFinancialYear(financial_year);
+    $scope.viewFinancialYear(financial_year,null);
     $scope.financial_year = {};
     site.showModal('#financialYearDeleteModal');
   };

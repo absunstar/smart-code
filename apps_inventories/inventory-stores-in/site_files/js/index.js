@@ -859,59 +859,68 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
           return;
         }
 
-        $scope.busy = true;
-        $http({
-          method: "POST",
-          url: "/api/stores_in/add",
-          data: $scope.store_in
-        }).then(
-          function (response) {
-            $scope.busy = false;
-            if (response.data.done) {
-              if (($scope.store_in.type.id == 1 || $scope.store_in.type.id == 4) && $scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto) {
 
-                let account_invoices = {
-                  image_url: '/images/account_invoices.png',
-                  date: response.data.doc.date,
-                  invoice_id: response.data.doc.id,
-                  invoice_type: response.data.doc.type,
-                  vendor: response.data.doc.vendor,
-                  total_value_added: response.data.doc.total_value_added,
-                  shift: response.data.doc.shift,
-                  net_value: response.data.doc.net_value,
-                  currency: response.data.doc.currency,
-                  paid_up: response.data.doc.paid_up || 0,
-                  payment_method: response.data.doc.payment_method,
-                  safe: response.data.doc.safe,
-                  invoice_code: response.data.doc.number,
-                  total_discount: response.data.doc.total_discount,
-                  total_tax: response.data.doc.total_tax,
-                  current_book_list: response.data.doc.items,
-                  source_type: {
-                    id: 1,
-                    en: "Purchases Store",
-                    ar: "المشتريات المخزنية"
-                  },
-                  active: true
-                };
+        $scope.financialYear($scope.store_in.date, is_allowed_date => {
+          if (!is_allowed_date) {
+            $scope.error = '##word.should_open_period##';
+          } else {
 
-                $scope.addAccountInvoice(account_invoices)
+            $scope.busy = true;
+            $http({
+              method: "POST",
+              url: "/api/stores_in/add",
+              data: $scope.store_in
+            }).then(
+              function (response) {
+                $scope.busy = false;
+                if (response.data.done) {
+                  if (($scope.store_in.type.id == 1 || $scope.store_in.type.id == 4) && $scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto) {
+
+                    let account_invoices = {
+                      image_url: '/images/account_invoices.png',
+                      date: response.data.doc.date,
+                      invoice_id: response.data.doc.id,
+                      invoice_type: response.data.doc.type,
+                      vendor: response.data.doc.vendor,
+                      total_value_added: response.data.doc.total_value_added,
+                      shift: response.data.doc.shift,
+                      net_value: response.data.doc.net_value,
+                      currency: response.data.doc.currency,
+                      paid_up: response.data.doc.paid_up || 0,
+                      payment_method: response.data.doc.payment_method,
+                      safe: response.data.doc.safe,
+                      invoice_code: response.data.doc.number,
+                      total_discount: response.data.doc.total_discount,
+                      total_tax: response.data.doc.total_tax,
+                      current_book_list: response.data.doc.items,
+                      source_type: {
+                        id: 1,
+                        en: "Purchases Store",
+                        ar: "المشتريات المخزنية"
+                      },
+                      active: true
+                    };
+
+                    $scope.addAccountInvoice(account_invoices)
+                  }
+                  $scope.loadAll({ date: new Date() });
+                  $scope.newStoreIn();
+
+                } else {
+                  $scope.error = response.data.error;
+                  if (response.data.error.like('*OverDraft Not*')) {
+                    $scope.error = "##word.overdraft_not_active##"
+                  }
+                }
+
+              },
+              function (err) {
+                $scope.error = err.message;
               }
-              $scope.loadAll({ date: new Date() });
-              $scope.newStoreIn();
-
-            } else {
-              $scope.error = response.data.error;
-              if (response.data.error.like('*OverDraft Not*')) {
-                $scope.error = "##word.overdraft_not_active##"
-              }
-            }
-
-          },
-          function (err) {
-            $scope.error = err.message;
+            )
           }
-        )
+        })
+
       })
 
     } else {
@@ -1419,24 +1428,32 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
         return;
       }
 
-      $scope.busy = true;
-      $http({
-        method: "POST",
-        url: "/api/stores_in/update",
-        data: $scope.store_in
-      }).then(
-        function (response) {
-          $scope.busy = false;
-          if (response.data.done) {
-            site.hideModal('#updateStoreInModal');
-          } else {
-            $scope.error = '##word.error##';
-          }
-        },
-        function (err) {
-          console.log(err);
+      $scope.financialYear($scope.store_in.date, is_allowed_date => {
+        if (!is_allowed_date) {
+          $scope.error = '##word.should_open_period##';
+        } else {
+
+          $scope.busy = true;
+          $http({
+            method: "POST",
+            url: "/api/stores_in/update",
+            data: $scope.store_in
+          }).then(
+            function (response) {
+              $scope.busy = false;
+              if (response.data.done) {
+                site.hideModal('#updateStoreInModal');
+              } else {
+                $scope.error = '##word.error##';
+              }
+            },
+            function (err) {
+              console.log(err);
+            }
+          )
         }
-      )
+      })
+
     })
   };
 
@@ -1451,29 +1468,37 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
 
       if (!callback) {
 
-        $scope.busy = true;
-        $http({
-          method: "POST",
-          url: "/api/stores_in/delete",
-          data: store_in
-        }).then(
-          function (response) {
-            $scope.busy = false;
-            if (response.data.done) {
-              site.hideModal('#deleteStoreInModal');
-              $scope.loadAll({ date: new Date() });
-            } else {
-              $scope.error = response.data.error;
-              if (response.data.error.like('*OverDraft Not*')) {
-                $scope.error = "##word.overdraft_not_active##"
-              }
-            };
+        $scope.financialYear(store_in.date, is_allowed_date => {
+          if (!is_allowed_date) {
+            $scope.error = '##word.should_open_period##';
+          } else {
 
-          },
-          function (err) {
-            console.log(err);
+
+            $scope.busy = true;
+            $http({
+              method: "POST",
+              url: "/api/stores_in/delete",
+              data: store_in
+            }).then(
+              function (response) {
+                $scope.busy = false;
+                if (response.data.done) {
+                  site.hideModal('#deleteStoreInModal');
+                  $scope.loadAll({ date: new Date() });
+                } else {
+                  $scope.error = response.data.error;
+                  if (response.data.error.like('*OverDraft Not*')) {
+                    $scope.error = "##word.overdraft_not_active##"
+                  }
+                };
+
+              },
+              function (err) {
+                console.log(err);
+              }
+            )
           }
-        )
+        })
       } else {
         $scope.error = '##word.err_stock_item##';
       }
@@ -1530,28 +1555,40 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
 
         if (!callback) {
 
-          $scope.busy = true;
-          $http({
-            method: "POST",
-            url: "/api/stores_in/posting",
-            data: store_in
-          }).then(
-            function (response) {
-              $scope.busy = false;
-              if (response.data.done) {
-              } else {
-                $scope.error = '##word.error##';
-                if (response.data.error.like('*OverDraft Not*')) {
-                  $scope.error = "##word.overdraft_not_active##"
-                  if (store_in.posting) store_in.posting = false;
-                  else store_in.posting = true;
+          $scope.financialYear(store_in.date, is_allowed_date => {
+            if (!is_allowed_date) {
+              $scope.error = '##word.should_open_period##';
+
+              if (store_in.posting) store_in.posting = false;
+              else store_in.posting = true;
+
+            } else {
+
+
+              $scope.busy = true;
+              $http({
+                method: "POST",
+                url: "/api/stores_in/posting",
+                data: store_in
+              }).then(
+                function (response) {
+                  $scope.busy = false;
+                  if (response.data.done) {
+                  } else {
+                    $scope.error = '##word.error##';
+                    if (response.data.error.like('*OverDraft Not*')) {
+                      $scope.error = "##word.overdraft_not_active##"
+                      if (store_in.posting) store_in.posting = false;
+                      else store_in.posting = true;
+                    }
+                  }
+                },
+                function (err) {
+                  console.log(err);
                 }
-              }
-            },
-            function (err) {
-              console.log(err);
+              )
             }
-          )
+          })
         } else {
           store_in.posting = false;
           $scope.error = '##word.err_stock_item##';
@@ -1602,28 +1639,35 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
                   _store_in_all[i].posting = false;
                 } else if (!callback) {
 
-                  _store_in_all[i].posting = true;
+                  $scope.financialYear(_store_in_all[i].date, is_allowed_date => {
+                    if (!is_allowed_date) {
+                      $scope.error = '##word.should_open_period##';
+                    } else {
 
-                  $http({
-                    method: "POST",
-                    url: "/api/stores_in/posting",
-                    data: _store_in_all[i]
-                  }).then(
-                    function (response) {
-                      if (response.data.done) {
+                      _store_in_all[i].posting = true;
 
-                      } else {
-                        $scope.error = '##word.error##';
-                        if (response.data.error.like('*OverDraft Not*')) {
-                          $scope.error = "##word.overdraft_not_active##"
-                          _store_in_all[i].posting = false;
+                      $http({
+                        method: "POST",
+                        url: "/api/stores_in/posting",
+                        data: _store_in_all[i]
+                      }).then(
+                        function (response) {
+                          if (response.data.done) {
+
+                          } else {
+                            $scope.error = '##word.error##';
+                            if (response.data.error.like('*OverDraft Not*')) {
+                              $scope.error = "##word.overdraft_not_active##"
+                              _store_in_all[i].posting = false;
+                            }
+                          }
+                        },
+                        function (err) {
+                          console.log(err);
                         }
-                      }
-                    },
-                    function (err) {
-                      console.log(err);
+                      )
                     }
-                  )
+                  });
                 } else {
                   $scope.error = '##word.err_stock_item##';
                   _store_in_all[i].posting = false;
@@ -2105,6 +2149,25 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
         callback(null);
       }
     )
+  };
+
+  $scope.financialYear = function (date, callback) {
+
+    $scope.busy = true;
+    $scope.error = '';
+    $http({
+      method: "POST",
+      url: "/api/financial_years/is_allowed_date",
+      data: {
+        date: new Date(date)
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        is_allowed_date = response.data.doc;
+        callback(is_allowed_date);
+      }
+    );
   };
 
 

@@ -56,7 +56,7 @@
                     <br>
                     <br>
                     <div class="row">
-                        <table class="table center bold">
+                        <table class="table center hover bold">
                             <tr>
                                 <th> ##word.financial_years_period_code## </th>
                                 <th> ##word.financial_years_period_status## </th>
@@ -67,15 +67,20 @@
                             <tr ng-repeat="period in financial_year.accounting_period_list">
 
                                 <td class="blue"> {{period.code}} </td>
-                                <td> {{period.status.ar}} </td>
-                                <td> {{period.start | xdate}} </td>
-                                <td> {{period.end | xdate}} </td>
+                                <td>
+                                    <p ng-show="period.status.id == 1" class="blue">{{period.status.ar}}</p>
+                                    <p ng-show="period.status.id == 2" class="green">{{period.status.ar}}</p>
+                                    <p ng-show="period.status.id == 3" class="red">{{period.status.ar}}</p>
+                                </td>
+                                <td class="green"> {{period.start | xdate}} </td>
+                                <td class="red"> {{period.end | xdate}} </td>
                             </tr>
                         </table>
                     </div>
 
                     <div class="row">
-                        <i-button class="col2 left" x-permission="print" type="print " onclick="site.print('#financialYearViewModal')"></i-button>
+                        <i-button class="col2 left" x-permission="print" type="print "
+                            onclick="site.print('#financialYearViewModal')"></i-button>
                     </div>
                 </div>
 

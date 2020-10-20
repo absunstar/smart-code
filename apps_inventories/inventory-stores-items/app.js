@@ -1480,7 +1480,6 @@ module.exports = function init(site) {
   })
 
   site.getItemsSizes = function (req, callback) {
-
     let where = {}
     let barcodes = [];
 
@@ -1513,10 +1512,9 @@ module.exports = function init(site) {
               })
           })
           callback(arr_sizes)
-
         }
       } else {
-
+        callback(null)
       }
     })
   }
