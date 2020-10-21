@@ -99,97 +99,114 @@ module.exports = function init(site) {
 
     stores_out_doc.date = site.toDateTime(stores_out_doc.date)
 
+    site.getOpenShift({ companyId: stores_out_doc.company.id, branchCode: stores_out_doc.branch.code }, shiftCb => {
+      if (shiftCb) {
 
-    if (stores_out_doc.type.id == 5) {
-      delete stores_out_doc.customer
-      delete stores_out_doc.delegate
-    }
+        site.isAllowedDate(req, allowDate => {
+          if (!allowDate) {
 
-    stores_out_doc.items.forEach(_itm => {
-      _itm.current_count = site.toNumber(_itm.current_count)
-      _itm.count = site.toNumber(_itm.count)
-      _itm.cost = site.toNumber(_itm.cost)
-      _itm.price = site.toNumber(_itm.price)
-      _itm.total = site.toNumber(_itm.total)
-      delete _itm.show_max_dis
+            response.error = 'Don`t Open Period'
+            res.json(response)
+          } else {
 
-      if (_itm.patch_list && _itm.patch_list.length > 0) {
-        let filter_patch = _itm.patch_list.filter(_p => _p.count !== 0)
-        _itm.patch_list = filter_patch
-      }
-    })
 
-    stores_out_doc.total_value = site.toNumber(stores_out_doc.total_value)
-    stores_out_doc.net_value = site.toNumber(stores_out_doc.net_value)
-
-    if (stores_out_doc.type.id != 5 && stores_out_doc.type.id != 6)
-      stores_out_doc.return_paid = {
-        items: stores_out_doc.items,
-        total_discount: stores_out_doc.total_discount,
-        total_value_added: stores_out_doc.total_value_added,
-        total_tax: stores_out_doc.total_tax,
-        total_value: stores_out_doc.total_value,
-        net_value: stores_out_doc.net_value,
-      }
-
-    site.isAllowOverDraft(req, stores_out_doc.items, cbOverDraft => {
-
-      if (!cbOverDraft.overdraft && cbOverDraft.value && stores_out_doc.posting && stores_out_doc.type.id != 6) {
-
-        response.error = 'OverDraft Not Active'
-        res.json(response)
-
-      } else {
-
-        $stores_out.add(stores_out_doc, (err, doc) => {
-          if (!err) {
-            response.done = true
-            response.doc = doc
-
-            if (doc.posting) {
-
-              doc.items.forEach((_itm, i) => {
-
-                _itm.store = doc.store
-                _itm.company = doc.company
-                _itm.branch = doc.branch
-                _itm.source_type = doc.type
-                _itm.number = doc.number
-                _itm.current_status = 'sold'
-                _itm.date = doc.date
-                _itm.customer = doc.customer
-                _itm.shift = {
-                  id: doc.shift.id,
-                  code: doc.shift.code,
-                  name: doc.shift.name
-                }
-                if (doc.type.id == 6) {
-                  _itm.returnSell = true
-                  _itm.type = 'sum'
-                  _itm.count = (-Math.abs(_itm.count))
-                  _itm.transaction_type = 'out'
-                  site.quee('item_transaction - items', Object.assign({}, _itm))
-                  site.returnStoresOut(doc, res => { })
-                } else {
-                  if (doc.type.id == 5) _itm.set_average = 'minus_average'
-
-                  _itm.type = 'minus'
-                  _itm.transaction_type = 'out'
-                  site.quee('item_transaction - items', Object.assign({}, _itm))
-                }
-
-                _itm.count = Math.abs(_itm.count)
-                site.quee('[transfer_branch][stores_items][add_balance]', _itm)
-              })
+            if (stores_out_doc.type.id == 5) {
+              delete stores_out_doc.customer
+              delete stores_out_doc.delegate
             }
 
-          } else {
-            response.error = err.message
-          }
-          res.json(response)
-        })
-      }
+            stores_out_doc.items.forEach(_itm => {
+              _itm.current_count = site.toNumber(_itm.current_count)
+              _itm.count = site.toNumber(_itm.count)
+              _itm.cost = site.toNumber(_itm.cost)
+              _itm.price = site.toNumber(_itm.price)
+              _itm.total = site.toNumber(_itm.total)
+              delete _itm.show_max_dis
 
+              if (_itm.patch_list && _itm.patch_list.length > 0) {
+                let filter_patch = _itm.patch_list.filter(_p => _p.count !== 0)
+                _itm.patch_list = filter_patch
+              }
+            })
+
+            stores_out_doc.total_value = site.toNumber(stores_out_doc.total_value)
+            stores_out_doc.net_value = site.toNumber(stores_out_doc.net_value)
+
+            if (stores_out_doc.type.id != 5 && stores_out_doc.type.id != 6)
+              stores_out_doc.return_paid = {
+                items: stores_out_doc.items,
+                total_discount: stores_out_doc.total_discount,
+                total_value_added: stores_out_doc.total_value_added,
+                total_tax: stores_out_doc.total_tax,
+                total_value: stores_out_doc.total_value,
+                net_value: stores_out_doc.net_value,
+              }
+
+            site.isAllowOverDraft(req, stores_out_doc.items, cbOverDraft => {
+
+              if (!cbOverDraft.overdraft && cbOverDraft.value && stores_out_doc.posting && stores_out_doc.type.id != 6) {
+
+                response.error = 'OverDraft Not Active'
+                res.json(response)
+
+              } else {
+
+                $stores_out.add(stores_out_doc, (err, doc) => {
+                  if (!err) {
+                    response.done = true
+                    response.doc = doc
+
+                    if (doc.posting) {
+
+                      doc.items.forEach((_itm, i) => {
+
+                        _itm.store = doc.store
+                        _itm.company = doc.company
+                        _itm.branch = doc.branch
+                        _itm.source_type = doc.type
+                        _itm.number = doc.number
+                        _itm.current_status = 'sold'
+                        _itm.date = doc.date
+                        _itm.customer = doc.customer
+                        _itm.shift = {
+                          id: doc.shift.id,
+                          code: doc.shift.code,
+                          name: doc.shift.name
+                        }
+                        if (doc.type.id == 6) {
+                          _itm.returnSell = true
+                          _itm.type = 'sum'
+                          _itm.count = (-Math.abs(_itm.count))
+                          _itm.transaction_type = 'out'
+                          site.quee('item_transaction - items', Object.assign({}, _itm))
+                          site.returnStoresOut(doc, res => { })
+                        } else {
+                          if (doc.type.id == 5) _itm.set_average = 'minus_average'
+
+                          _itm.type = 'minus'
+                          _itm.transaction_type = 'out'
+                          site.quee('item_transaction - items', Object.assign({}, _itm))
+                        }
+
+                        _itm.count = Math.abs(_itm.count)
+                        site.quee('[transfer_branch][stores_items][add_balance]', _itm)
+                      })
+                    }
+
+                  } else {
+                    response.error = err.message
+                  }
+                  res.json(response)
+                })
+              }
+
+            })
+          }
+        })
+      } else {
+        response.error = 'Don`t Found Open Shift'
+        res.json(response)
+      }
     })
   })
 
@@ -209,54 +226,72 @@ module.exports = function init(site) {
     stores_out_doc.type = site.fromJson(stores_out_doc.type)
     stores_out_doc.date = new Date(stores_out_doc.date)
 
-    if (stores_out_doc.type.id == 5) {
-      delete stores_out_doc.customer
-      delete stores_out_doc.delegate
-    }
+    site.getOpenShift({ companyId: stores_out_doc.company.id, branchCode: stores_out_doc.branch.code }, shiftCb => {
+      if (shiftCb) {
 
-    stores_out_doc.items.forEach(_itm => {
-      _itm.count = site.toNumber(_itm.count)
-      _itm.cost = site.toNumber(_itm.cost)
-      _itm.price = site.toNumber(_itm.price)
-      _itm.total = site.toNumber(_itm.total)
+        site.isAllowedDate(req, allowDate => {
+          if (!allowDate) {
 
-      if (_itm.patch_list && _itm.patch_list.length > 0) {
-        let filter_patch = _itm.patch_list.filter(_p => _p.count !== 0)
-        _itm.patch_list = filter_patch
+            response.error = 'Don`t Open Period'
+            res.json(response)
+          } else {
+
+
+            if (stores_out_doc.type.id == 5) {
+              delete stores_out_doc.customer
+              delete stores_out_doc.delegate
+            }
+
+            stores_out_doc.items.forEach(_itm => {
+              _itm.count = site.toNumber(_itm.count)
+              _itm.cost = site.toNumber(_itm.cost)
+              _itm.price = site.toNumber(_itm.price)
+              _itm.total = site.toNumber(_itm.total)
+
+              if (_itm.patch_list && _itm.patch_list.length > 0) {
+                let filter_patch = _itm.patch_list.filter(_p => _p.count !== 0)
+                _itm.patch_list = filter_patch
+              }
+            })
+
+            if (stores_out_doc.type.id !== 5 && stores_out_doc.type.id !== 6)
+              stores_out_doc.return_paid = {
+                items: stores_out_doc.items,
+                total_discount: stores_out_doc.total_discount,
+                total_value_added: stores_out_doc.total_value_added,
+                total_tax: stores_out_doc.total_tax,
+                total_value: stores_out_doc.total_value,
+                net_value: stores_out_doc.net_value,
+              }
+
+            stores_out_doc.total_value = site.toNumber(stores_out_doc.total_value)
+
+            if (stores_out_doc._id) {
+              $stores_out.edit({
+                where: {
+                  _id: stores_out_doc._id
+                },
+                set: stores_out_doc,
+                $req: req,
+                $res: res
+              }, err => {
+                if (!err) {
+                  response.done = true
+                } else {
+                  response.error = err.message
+                }
+                res.json(response)
+              })
+            } else {
+              res.json(response)
+            }
+          }
+        })
+      } else {
+        response.error = 'Don`t Found Open Shift'
+        res.json(response)
       }
     })
-
-    if (stores_out_doc.type.id !== 5 && stores_out_doc.type.id !== 6)
-      stores_out_doc.return_paid = {
-        items: stores_out_doc.items,
-        total_discount: stores_out_doc.total_discount,
-        total_value_added: stores_out_doc.total_value_added,
-        total_tax: stores_out_doc.total_tax,
-        total_value: stores_out_doc.total_value,
-        net_value: stores_out_doc.net_value,
-      }
-
-    stores_out_doc.total_value = site.toNumber(stores_out_doc.total_value)
-
-    if (stores_out_doc._id) {
-      $stores_out.edit({
-        where: {
-          _id: stores_out_doc._id
-        },
-        set: stores_out_doc,
-        $req: req,
-        $res: res
-      }, err => {
-        if (!err) {
-          response.done = true
-        } else {
-          response.error = err.message
-        }
-        res.json(response)
-      })
-    } else {
-      res.json(response)
-    }
   })
 
 
@@ -272,116 +307,132 @@ module.exports = function init(site) {
     response.done = false
 
     let stores_out_doc = req.body
+    site.getOpenShift({ companyId: stores_out_doc.company.id, branchCode: stores_out_doc.branch.code }, shiftCb => {
+      if (shiftCb) {
 
-    if (stores_out_doc.type.id !== 5 && stores_out_doc.type.id !== 6)
-      stores_out_doc.return_paid = {
-        items: stores_out_doc.items,
-        total_discount: stores_out_doc.total_discount,
-        total_value_added: stores_out_doc.total_value_added,
-        total_tax: stores_out_doc.total_tax,
-        total_value: stores_out_doc.total_value,
-        net_value: stores_out_doc.net_value,
-      }
+        site.isAllowedDate(req, allowDate => {
+          if (!allowDate) {
 
-    stores_out_doc.edit_user_info = site.security.getUserFinger({ $req: req, $res: res })
+            response.error = 'Don`t Open Period'
+            res.json(response)
+          } else {
 
-    site.isAllowOverDraft(req, stores_out_doc.items, cbOverDraft => {
-
-      if (!cbOverDraft.overdraft && cbOverDraft.value && stores_out_doc.posting && stores_out_doc.type.id != 6) {
-
-        response.error = 'OverDraft Not Active'
-        res.json(response)
-
-      } else if (!cbOverDraft.overdraft && cbOverDraft.value && !stores_out_doc.posting && stores_out_doc.type.id == 6) {
-
-        response.error = 'OverDraft Not Active'
-        res.json(response)
-
-      } else {
-
-        if (stores_out_doc._id) {
-          $stores_out.edit({
-            where: {
-              _id: stores_out_doc._id
-            },
-            set: stores_out_doc,
-            $req: req,
-            $res: res
-          }, (err, result) => {
-            if (!err) {
-              response.done = true
-              response.doc = result.doc
-
-              result.doc.items.forEach((_itm, i) => {
-                _itm.store = result.doc.store
-                _itm.company = result.doc.company
-                _itm.branch = result.doc.branch
-                _itm.source_type = result.doc.type
-                _itm.number = result.doc.number
-                _itm.customer = result.doc.customer
-                _itm.date = result.doc.date
-                _itm.shift = {
-                  id: result.doc.shift.id,
-                  code: result.doc.shift.code,
-                  name: result.doc.shift.name
-                }
-                if (result.doc.posting) {
-                  _itm.current_status = 'sold'
-                  if (result.doc.type.id == 6) {
-                    _itm.returnSell = true
-                    _itm.type = 'sum'
-                    _itm.count = (-Math.abs(_itm.count))
-                    _itm.transaction_type = 'out'
-                    site.quee('item_transaction - items', Object.assign({}, _itm))
-                  } else {
-
-                    if (result.doc.type.id == 5) {
-                      _itm.set_average = 'minus_average'
-                    }
-
-                    _itm.type = 'minus'
-                    _itm.transaction_type = 'out'
-                    site.quee('item_transaction - items', Object.assign({}, _itm))
-                  }
-
-                } else {
-
-                  _itm.current_status = 'r_sold'
-                  if (result.doc.type.id == 6) {
-                    _itm.type = 'minus'
-                    _itm.transaction_type = 'out'
-                    site.quee('item_transaction - items', Object.assign({}, _itm))
-                  } else {
-                    if (result.doc.type.id == 5) {
-                      _itm.set_average = 'sum_average'
-                    } else {
-                      _itm.returnSell = true
-                    }
-                    _itm.type = 'sum'
-                    _itm.count = (-Math.abs(_itm.count))
-                    _itm.transaction_type = 'out'
-                    site.quee('item_transaction - items', Object.assign({}, _itm))
-                  }
-                }
-                _itm.count = Math.abs(_itm.count)
-                site.quee('[transfer_branch][stores_items][add_balance]', _itm)
-
-              })
-
-              if (result.doc.type && result.doc.type.id == 6) {
-                if (!result.doc.posting)
-                  result.doc.return = true
-                site.returnStoresOut(result.doc, res => { })
+            if (stores_out_doc.type.id !== 5 && stores_out_doc.type.id !== 6)
+              stores_out_doc.return_paid = {
+                items: stores_out_doc.items,
+                total_discount: stores_out_doc.total_discount,
+                total_value_added: stores_out_doc.total_value_added,
+                total_tax: stores_out_doc.total_tax,
+                total_value: stores_out_doc.total_value,
+                net_value: stores_out_doc.net_value,
               }
 
-            } else {
-              response.error = err.message
-            }
-            res.json(response)
-          })
-        } else {
-          res.json(response)
-        }
+            stores_out_doc.edit_user_info = site.security.getUserFinger({ $req: req, $res: res })
+
+            site.isAllowOverDraft(req, stores_out_doc.items, cbOverDraft => {
+
+              if (!cbOverDraft.overdraft && cbOverDraft.value && stores_out_doc.posting && stores_out_doc.type.id != 6) {
+
+                response.error = 'OverDraft Not Active'
+                res.json(response)
+
+              } else if (!cbOverDraft.overdraft && cbOverDraft.value && !stores_out_doc.posting && stores_out_doc.type.id == 6) {
+
+                response.error = 'OverDraft Not Active'
+                res.json(response)
+
+              } else {
+
+                if (stores_out_doc._id) {
+                  $stores_out.edit({
+                    where: {
+                      _id: stores_out_doc._id
+                    },
+                    set: stores_out_doc,
+                    $req: req,
+                    $res: res
+                  }, (err, result) => {
+                    if (!err) {
+                      response.done = true
+                      response.doc = result.doc
+
+                      result.doc.items.forEach((_itm, i) => {
+                        _itm.store = result.doc.store
+                        _itm.company = result.doc.company
+                        _itm.branch = result.doc.branch
+                        _itm.source_type = result.doc.type
+                        _itm.number = result.doc.number
+                        _itm.customer = result.doc.customer
+                        _itm.date = result.doc.date
+                        _itm.shift = {
+                          id: result.doc.shift.id,
+                          code: result.doc.shift.code,
+                          name: result.doc.shift.name
+                        }
+                        if (result.doc.posting) {
+                          _itm.current_status = 'sold'
+                          if (result.doc.type.id == 6) {
+                            _itm.returnSell = true
+                            _itm.type = 'sum'
+                            _itm.count = (-Math.abs(_itm.count))
+                            _itm.transaction_type = 'out'
+                            site.quee('item_transaction - items', Object.assign({}, _itm))
+                          } else {
+
+                            if (result.doc.type.id == 5) {
+                              _itm.set_average = 'minus_average'
+                            }
+
+                            _itm.type = 'minus'
+                            _itm.transaction_type = 'out'
+                            site.quee('item_transaction - items', Object.assign({}, _itm))
+                          }
+
+                        } else {
+
+                          _itm.current_status = 'r_sold'
+                          if (result.doc.type.id == 6) {
+                            _itm.type = 'minus'
+                            _itm.transaction_type = 'out'
+                            site.quee('item_transaction - items', Object.assign({}, _itm))
+                          } else {
+                            if (result.doc.type.id == 5) {
+                              _itm.set_average = 'sum_average'
+                            } else {
+                              _itm.returnSell = true
+                            }
+                            _itm.type = 'sum'
+                            _itm.count = (-Math.abs(_itm.count))
+                            _itm.transaction_type = 'out'
+                            site.quee('item_transaction - items', Object.assign({}, _itm))
+                          }
+                        }
+                        _itm.count = Math.abs(_itm.count)
+                        site.quee('[transfer_branch][stores_items][add_balance]', _itm)
+
+                      })
+
+                      if (result.doc.type && result.doc.type.id == 6) {
+                        if (!result.doc.posting)
+                          result.doc.return = true
+                        site.returnStoresOut(result.doc, res => { })
+                      }
+
+                    } else {
+                      response.error = err.message
+                    }
+                    res.json(response)
+                  })
+                } else {
+                  res.json(response)
+                }
+              }
+            })
+          }
+        })
+      } else {
+        response.error = 'Don`t Found Open Shift'
+        res.json(response)
       }
     })
   })
@@ -398,77 +449,93 @@ module.exports = function init(site) {
     }
 
     let stores_out_doc = req.body
+    site.getOpenShift({ companyId: stores_out_doc.company.id, branchCode: stores_out_doc.branch.code }, shiftCb => {
+      if (shiftCb) {
 
-    site.isAllowOverDraft(req, stores_out_doc.items, cbOverDraft => {
+        site.isAllowedDate(req, allowDate => {
+          if (!allowDate) {
 
-      if (!cbOverDraft.overdraft && cbOverDraft.value && stores_out_doc.posting && stores_out_doc.type.id == 6) {
-
-        response.error = 'OverDraft Not Active'
-        res.json(response)
-
-      } else {
-
-        if (stores_out_doc._id) {
-          $stores_out.delete({
-            where: {
-              _id: stores_out_doc._id
-            },
-            $req: req,
-            $res: res
-          }, (err, result) => {
-            if (!err) {
-              response.done = true
-              if (stores_out_doc.posting) {
-
-                stores_out_doc.items.forEach((_itm, i) => {
-                  _itm.source_type = stores_out_doc.type
-                  _itm.store = stores_out_doc.store
-                  _itm.company = stores_out_doc.company
-                  _itm.branch = stores_out_doc.branch
-                  _itm.number = stores_out_doc.number
-                  _itm.customer = stores_out_doc.customer
-                  _itm.date = stores_out_doc.date
-                  _itm.current_status = 'd_sold'
-                  _itm.shift = {
-                    id: stores_out_doc.shift.id,
-                    code: stores_out_doc.shift.code,
-                    name: stores_out_doc.shift.name
-                  }
-                  if (result.doc.type.id == 6) {
-                    _itm.type = 'minus'
-                    _itm.transaction_type = 'out'
-                    _itm.count = (-Math.abs(_itm.count))
-                    site.quee('item_transaction - items', Object.assign({}, _itm))
-                  } else {
-                    if (result.doc.type.id == 5)
-                      _itm.set_average = 'sum_average'
-                    else _itm.returnSell = true
-
-                    _itm.type = 'sum'
-                    _itm.transaction_type = 'out'
-                    site.quee('item_transaction - items', Object.assign({}, _itm))
-                  }
-
-                  _itm.count = Math.abs(_itm.count)
-                  site.quee('[transfer_branch][stores_items][add_balance]', _itm)
+            response.error = 'Don`t Open Period'
+            res.json(response)
+          } else {
 
 
-                });
-                if (result.doc.type && result.doc.type.id == 6) {
-                  result.doc.return = true
-                  site.returnStoresOut(result.doc, res => { })
+            site.isAllowOverDraft(req, stores_out_doc.items, cbOverDraft => {
+
+              if (!cbOverDraft.overdraft && cbOverDraft.value && stores_out_doc.posting && stores_out_doc.type.id == 6) {
+
+                response.error = 'OverDraft Not Active'
+                res.json(response)
+
+              } else {
+
+                if (stores_out_doc._id) {
+                  $stores_out.delete({
+                    where: {
+                      _id: stores_out_doc._id
+                    },
+                    $req: req,
+                    $res: res
+                  }, (err, result) => {
+                    if (!err) {
+                      response.done = true
+                      if (stores_out_doc.posting) {
+
+                        stores_out_doc.items.forEach((_itm, i) => {
+                          _itm.source_type = stores_out_doc.type
+                          _itm.store = stores_out_doc.store
+                          _itm.company = stores_out_doc.company
+                          _itm.branch = stores_out_doc.branch
+                          _itm.number = stores_out_doc.number
+                          _itm.customer = stores_out_doc.customer
+                          _itm.date = stores_out_doc.date
+                          _itm.current_status = 'd_sold'
+                          _itm.shift = {
+                            id: stores_out_doc.shift.id,
+                            code: stores_out_doc.shift.code,
+                            name: stores_out_doc.shift.name
+                          }
+                          if (result.doc.type.id == 6) {
+                            _itm.type = 'minus'
+                            _itm.transaction_type = 'out'
+                            _itm.count = (-Math.abs(_itm.count))
+                            site.quee('item_transaction - items', Object.assign({}, _itm))
+                          } else {
+                            if (result.doc.type.id == 5)
+                              _itm.set_average = 'sum_average'
+                            else _itm.returnSell = true
+
+                            _itm.type = 'sum'
+                            _itm.transaction_type = 'out'
+                            site.quee('item_transaction - items', Object.assign({}, _itm))
+                          }
+
+                          _itm.count = Math.abs(_itm.count)
+                          site.quee('[transfer_branch][stores_items][add_balance]', _itm)
+
+
+                        });
+                        if (result.doc.type && result.doc.type.id == 6) {
+                          result.doc.return = true
+                          site.returnStoresOut(result.doc, res => { })
+                        }
+                      }
+
+                    }
+                    res.json(response)
+                  })
+                } else {
+                  res.json(response)
                 }
               }
-
-            }
-            res.json(response)
-          })
-        } else {
-          res.json(response)
-        }
+            })
+          }
+        })
+      } else {
+        response.error = 'Don`t Found Open Shift'
+        res.json(response)
       }
     })
-
   })
 
   site.post("/api/stores_out/view", (req, res) => {
@@ -614,7 +681,7 @@ module.exports = function init(site) {
     }
 
     if (where['barcode']) {
-      where['items.barcode'] =  where['barcode']
+      where['items.barcode'] = where['barcode']
       delete where['barcode']
     }
 
@@ -633,7 +700,7 @@ module.exports = function init(site) {
       where['delegate.id'] = where['delegate'].id;
       delete where['delegate']
     }
-    
+
     if (where['post']) {
       where['posting'] = true
       delete where['post']
@@ -1005,13 +1072,13 @@ module.exports = function init(site) {
     })
   })
 
-  
+
 
   site.getStoresOut = function (whereObj, callback) {
 
     callback = callback || {};
     let where = whereObj || {}
-   
+
     if (where.date) {
       let d1 = site.toDate(where.date)
       let d2 = site.toDate(where.date)

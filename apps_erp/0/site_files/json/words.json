@@ -161,13 +161,13 @@
     },
     {
         "name": "companies_name_ar",
-        "en": "Point Of Sale Name Arabic",
-        "ar": "إسم نقطة البيع"
+        "en": "ERP Name Arabic",
+        "ar": "إسم نظام إدارة الموارد"
     },
     {
         "name": "companies_name_en",
-        "en": "Point Of Sale Name English",
-        "ar": "إسم نقطة البيع بالانجليزية"
+        "en": "ERP Name English",
+        "ar": "إسم نظام إدارة الموارد بالانجليزية"
     },
     {
         "name": "companies_excahange_price",
@@ -181,8 +181,8 @@
     },
     {
         "name": "companies_new",
-        "en": "New Point Of Sale",
-        "ar": "نقطة بيع جديدة"
+        "en": "New ERP",
+        "ar": "نظام إدارة موارد جديد"
     },
     {
         "name": "companies_country",

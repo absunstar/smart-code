@@ -67,34 +67,52 @@ module.exports = function init(site) {
     branch_ransfer_doc.$req = req
     branch_ransfer_doc.$res = res
 
-    branch_ransfer_doc.company = site.get_company(req)
-    branch_ransfer_doc.branch = site.get_branch(req)
-    branch_ransfer_doc.number = $transfer_branch.newCode();
+    site.getOpenShift({ companyId: branch_ransfer_doc.company.id, branchCode: branch_ransfer_doc.branch.code }, shiftCb => {
+      if (shiftCb) {
 
-    branch_ransfer_doc.add_user_info = site.security.getUserFinger({ $req: req, $res: res })
+        site.isAllowedDate(req, allowDate => {
+          if (!allowDate) {
 
-    branch_ransfer_doc.date = site.toDateTime(branch_ransfer_doc.date)
+            response.error = 'Don`t Open Period'
+            res.json(response)
+          } else {
 
-    branch_ransfer_doc.items.forEach(_itm => {
-      _itm.current_count = site.toNumber(_itm.current_count)
-      _itm.count = site.toNumber(_itm.count)
-      _itm.cost = site.toNumber(_itm.cost)
-      _itm.price = site.toNumber(_itm.price)
-      _itm.total = site.toNumber(_itm.total)
 
-      if (_itm.patch_list && _itm.patch_list.length > 0) {
-        let filter_patch = _itm.patch_list.filter(_p => _p.count !== 0)
-        _itm.patch_list = filter_patch
-      }
-    })
+            branch_ransfer_doc.company = site.get_company(req)
+            branch_ransfer_doc.branch = site.get_branch(req)
+            branch_ransfer_doc.number = $transfer_branch.newCode();
 
-    $transfer_branch.add(branch_ransfer_doc, (err, doc) => {
-      if (!err) {
-        response.done = true
+            branch_ransfer_doc.add_user_info = site.security.getUserFinger({ $req: req, $res: res })
+
+            branch_ransfer_doc.date = site.toDateTime(branch_ransfer_doc.date)
+
+            branch_ransfer_doc.items.forEach(_itm => {
+              _itm.current_count = site.toNumber(_itm.current_count)
+              _itm.count = site.toNumber(_itm.count)
+              _itm.cost = site.toNumber(_itm.cost)
+              _itm.price = site.toNumber(_itm.price)
+              _itm.total = site.toNumber(_itm.total)
+
+              if (_itm.patch_list && _itm.patch_list.length > 0) {
+                let filter_patch = _itm.patch_list.filter(_p => _p.count !== 0)
+                _itm.patch_list = filter_patch
+              }
+            })
+
+            $transfer_branch.add(branch_ransfer_doc, (err, doc) => {
+              if (!err) {
+                response.done = true
+              } else {
+                response.error = err.message
+              }
+              res.json(response)
+            })
+          }
+        })
       } else {
-        response.error = err.message
+        response.error = 'Don`t Found Open Shift'
+        res.json(response)
       }
-      res.json(response)
     })
   })
 
@@ -110,65 +128,83 @@ module.exports = function init(site) {
     let branch_ransfer_doc = req.body
     branch_ransfer_doc.edit_user_info = site.security.getUserFinger({ $req: req, $res: res })
 
-    branch_ransfer_doc.date = new Date(branch_ransfer_doc.date)
-    req.body.store = req.body.store_from;
-    site.isAllowOverDraft(req, branch_ransfer_doc.items, cbOverDraft => {
-      response.overObj = cbOverDraft.overObj
+    site.getOpenShift({ companyId: branch_ransfer_doc.company.id, branchCode: branch_ransfer_doc.branch.code }, shiftCb => {
+      if (shiftCb) {
 
-      if (!cbOverDraft.overdraft && cbOverDraft.value) {
+        site.isAllowedDate(req, allowDate => {
+          if (!allowDate) {
 
-        response.error = 'OverDraft Not Active'
-        res.json(response)
-
-      } else {
-
-        if (branch_ransfer_doc._id) {
-          $transfer_branch.edit({
-            where: {
-              _id: branch_ransfer_doc._id
-            },
-            set: branch_ransfer_doc,
-            $req: req,
-            $res: res
-          }, (err, document) => {
-            if (!err) {
-              response.done = true
-              let doc = document.doc
-              doc.items.forEach((_itm, i) => {
-                _itm.company = doc.company
-                _itm.branch = doc.branch_from
-                _itm.number = doc.number
-                _itm.current_status = 'transferred'
-                _itm.date = doc.date
-                _itm.transaction_type = 'out'
-                _itm.store = doc.store_from
-                site.quee('item_transaction - items', Object.assign({}, _itm))
-                _itm.type = 'minus'
-                site.quee('[transfer_branch][stores_items][add_balance]', Object.assign({}, _itm))
-
-              })
-
-              doc.items.forEach((_itm, i) => {
-                _itm.company = doc.company
-                _itm.branch = doc.branch_to
-                _itm.number = doc.number
-                _itm.current_status = 'transferred'
-                _itm.date = doc.date
-                _itm.transaction_type = 'in'
-                _itm.store = doc.store_to
-                site.quee('item_transaction + items', Object.assign({}, _itm))
-                _itm.type = 'sum'
-                site.quee('[transfer_branch][stores_items][add_balance]', Object.assign({}, _itm))
-              })
-
-            } else {
-              response.error = err.message
-            }
+            response.error = 'Don`t Open Period'
             res.json(response)
-          })
-        } else {
-          res.json(response)
-        }
+          } else {
+
+
+            branch_ransfer_doc.date = new Date(branch_ransfer_doc.date)
+            req.body.store = req.body.store_from;
+            site.isAllowOverDraft(req, branch_ransfer_doc.items, cbOverDraft => {
+              response.overObj = cbOverDraft.overObj
+
+              if (!cbOverDraft.overdraft && cbOverDraft.value) {
+
+                response.error = 'OverDraft Not Active'
+                res.json(response)
+
+              } else {
+
+                if (branch_ransfer_doc._id) {
+                  $transfer_branch.edit({
+                    where: {
+                      _id: branch_ransfer_doc._id
+                    },
+                    set: branch_ransfer_doc,
+                    $req: req,
+                    $res: res
+                  }, (err, document) => {
+                    if (!err) {
+                      response.done = true
+                      let doc = document.doc
+                      doc.items.forEach((_itm, i) => {
+                        _itm.company = doc.company
+                        _itm.branch = doc.branch_from
+                        _itm.number = doc.number
+                        _itm.current_status = 'transferred'
+                        _itm.date = doc.date
+                        _itm.transaction_type = 'out'
+                        _itm.store = doc.store_from
+                        site.quee('item_transaction - items', Object.assign({}, _itm))
+                        _itm.type = 'minus'
+                        site.quee('[transfer_branch][stores_items][add_balance]', Object.assign({}, _itm))
+
+                      })
+
+                      doc.items.forEach((_itm, i) => {
+                        _itm.company = doc.company
+                        _itm.branch = doc.branch_to
+                        _itm.number = doc.number
+                        _itm.current_status = 'transferred'
+                        _itm.date = doc.date
+                        _itm.transaction_type = 'in'
+                        _itm.store = doc.store_to
+                        site.quee('item_transaction + items', Object.assign({}, _itm))
+                        _itm.type = 'sum'
+                        site.quee('[transfer_branch][stores_items][add_balance]', Object.assign({}, _itm))
+                      })
+
+                    } else {
+                      response.error = err.message
+                    }
+                    res.json(response)
+                  })
+                } else {
+                  res.json(response)
+                }
+              }
+            })
+          }
+        })
+      } else {
+        response.error = 'Don`t Found Open Shift'
+        res.json(response)
       }
     })
   })
@@ -184,41 +220,59 @@ module.exports = function init(site) {
     let branch_ransfer_doc = req.body
     branch_ransfer_doc.edit_user_info = site.security.getUserFinger({ $req: req, $res: res })
 
-    branch_ransfer_doc.date = new Date(branch_ransfer_doc.date)
+    site.getOpenShift({ companyId: branch_ransfer_doc.company.id, branchCode: branch_ransfer_doc.branch.code }, shiftCb => {
+      if (shiftCb) {
 
-    branch_ransfer_doc.items.forEach(_itm => {
-      _itm.count = site.toNumber(_itm.count)
-      _itm.cost = site.toNumber(_itm.cost)
-      _itm.price = site.toNumber(_itm.price)
-      _itm.total = site.toNumber(_itm.total)
+        site.isAllowedDate(req, allowDate => {
+          if (!allowDate) {
 
-      if (_itm.patch_list && _itm.patch_list.length > 0) {
-        let filter_patch = _itm.patch_list.filter(_p => _p.count !== 0)
-        _itm.patch_list = filter_patch
+            response.error = 'Don`t Open Period'
+            res.json(response)
+          } else {
+
+
+            branch_ransfer_doc.date = new Date(branch_ransfer_doc.date)
+
+            branch_ransfer_doc.items.forEach(_itm => {
+              _itm.count = site.toNumber(_itm.count)
+              _itm.cost = site.toNumber(_itm.cost)
+              _itm.price = site.toNumber(_itm.price)
+              _itm.total = site.toNumber(_itm.total)
+
+              if (_itm.patch_list && _itm.patch_list.length > 0) {
+                let filter_patch = _itm.patch_list.filter(_p => _p.count !== 0)
+                _itm.patch_list = filter_patch
+              }
+            })
+
+
+
+            if (branch_ransfer_doc._id) {
+              $transfer_branch.edit({
+                where: {
+                  _id: branch_ransfer_doc._id
+                },
+                set: branch_ransfer_doc,
+                $req: req,
+                $res: res
+              }, err => {
+                if (!err) {
+                  response.done = true
+                } else {
+                  response.error = err.message
+                }
+                res.json(response)
+              })
+            } else {
+              res.json(response)
+            }
+          }
+        })
+      } else {
+        response.error = 'Don`t Found Open Shift'
+        res.json(response)
       }
     })
-
-
-
-    if (branch_ransfer_doc._id) {
-      $transfer_branch.edit({
-        where: {
-          _id: branch_ransfer_doc._id
-        },
-        set: branch_ransfer_doc,
-        $req: req,
-        $res: res
-      }, err => {
-        if (!err) {
-          response.done = true
-        } else {
-          response.error = err.message
-        }
-        res.json(response)
-      })
-    } else {
-      res.json(response)
-    }
   })
 
   site.post("/api/transfer_branch/delete", (req, res) => {
@@ -230,48 +284,67 @@ module.exports = function init(site) {
       return
     }
     let _id = req.body._id
-    if (_id) {
-      $transfer_branch.delete({ _id: $transfer_branch.ObjectID(_id), $req: req, $res: res }, (err, result) => {
-        if (!err) {
-          response.done = true
-          let Obj = {
-            value: result.doc.net_value,
-            safe: result.doc.safe,
-            date: result.doc.date,
-            number: result.doc.number,
-            company: result.doc.company,
-            branch: result.doc.branch,
-            notes: result.doc.notes
-          }
 
-          result.doc.items.forEach(itm => {
+    site.getOpenShift({ companyId: req.body.company.id, branchCode: req.body.branch.code }, shiftCb => {
+      if (shiftCb) {
 
-            itm.number = result.doc.number
-            itm.vendor = result.doc.vendor
-            itm.date = result.doc.date
-            itm.transaction_type = 'out'
-            itm.current_status = 'transferred'
-            itm.store = result.doc.store
+        site.isAllowedDate(req, allowDate => {
+          if (!allowDate) {
 
-            let delObj = {
-              name: itm.name,
-              size: itm.size,
-              store: result.doc.store,
-              vendor: result.doc.vendor,
-              item: itm
+            response.error = 'Don`t Open Period'
+            res.json(response)
+          } else {
+
+
+            if (_id) {
+              $transfer_branch.delete({ _id: $transfer_branch.ObjectID(_id), $req: req, $res: res }, (err, result) => {
+                if (!err) {
+                  response.done = true
+                  let Obj = {
+                    value: result.doc.net_value,
+                    safe: result.doc.safe,
+                    date: result.doc.date,
+                    number: result.doc.number,
+                    company: result.doc.company,
+                    branch: result.doc.branch,
+                    notes: result.doc.notes
+                  }
+
+                  result.doc.items.forEach(itm => {
+
+                    itm.number = result.doc.number
+                    itm.vendor = result.doc.vendor
+                    itm.date = result.doc.date
+                    itm.transaction_type = 'out'
+                    itm.current_status = 'transferred'
+                    itm.store = result.doc.store
+
+                    let delObj = {
+                      name: itm.name,
+                      size: itm.size,
+                      store: result.doc.store,
+                      vendor: result.doc.vendor,
+                      item: itm
+                    }
+
+                    site.call('[transfer_branch][stores_items][+]', delObj)
+                    site.quee('item_transaction - items', Object.assign({ date: new Date() }, itm))
+
+                  });
+
+                }
+                res.json(response)
+              })
+            } else {
+              res.json(response)
             }
-
-            site.call('[transfer_branch][stores_items][+]', delObj)
-            site.quee('item_transaction - items', Object.assign({ date: new Date() }, itm))
-
-          });
-
-        }
+          }
+        })
+      } else {
+        response.error = 'Don`t Found Open Shift'
         res.json(response)
-      })
-    } else {
-      res.json(response)
-    }
+      }
+    })
   })
 
   site.post("/api/transfer_branch/view", (req, res) => {
@@ -383,7 +456,7 @@ module.exports = function init(site) {
     }
 
     if (where['barcode']) {
-      where['items.barcode'] =  where['barcode']
+      where['items.barcode'] = where['barcode']
       delete where['barcode']
     }
 
@@ -566,7 +639,7 @@ module.exports = function init(site) {
   site.getTransferBranch = function (whereObj, callback) {
     callback = callback || {};
     let where = whereObj || {}
-   
+
     if (where.date) {
       let d1 = site.toDate(where.date)
       let d2 = site.toDate(where.date)
@@ -592,7 +665,7 @@ module.exports = function init(site) {
       delete where['shift_code']
     }
     where['transfer'] = true
-    
+
     $transfer_branch.findMany({
       where: where,
       sort: { id: -1 }

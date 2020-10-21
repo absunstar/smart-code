@@ -72,46 +72,53 @@ module.exports = function init(site) {
 
     let stores_offer_doc = req.body
 
-    stores_offer_doc.company = site.get_company(req)
-    stores_offer_doc.branch = site.get_branch(req)
-    stores_offer_doc.code = $stores_offer.newCode();
-    stores_offer_doc.add_user_info = site.security.getUserFinger({ $req: req, $res: res })
 
-    stores_offer_doc.$req = req
-    stores_offer_doc.$res = res
+    site.getOpenShift({ companyId: stores_offer_doc.company.id, branchCode: stores_offer_doc.branch.code }, shiftCb => {
+      if (shiftCb) {
 
+        site.isAllowedDate(req, allowDate => {
+          if (!allowDate) {
 
-    if (stores_offer_doc.items && stores_offer_doc.items.length > 0)
-      stores_offer_doc.items.forEach(_item => {
-        if (_item.size_units_list && _item.size_units_list.length > 0)
-          _item.size_units_list.forEach(_itmUnit => {
-            _itmUnit.discount.max = _itmUnit.discount.value
-          });
-      });
+            response.error = 'Don`t Open Period'
+            res.json(response)
+          } else {
 
 
-    // stores_offer_doc.items.forEach(itm => {
-    //   itm.current_count = site.toNumber(itm.current_count)
-    //   itm.count = site.toNumber(itm.count)
-    //   itm.cost = site.toNumber(itm.cost)
-    //   itm.price = site.toNumber(itm.price)
-    //   itm.total = site.toNumber(itm.total)
-    // })
+            stores_offer_doc.company = site.get_company(req)
+            stores_offer_doc.branch = site.get_branch(req)
+            stores_offer_doc.code = $stores_offer.newCode();
+            stores_offer_doc.add_user_info = site.security.getUserFinger({ $req: req, $res: res })
 
-    // stores_offer_doc.total_value = site.toNumber(stores_offer_doc.total_value)
-    // stores_offer_doc.net_value = site.toNumber(stores_offer_doc.net_value)
+            stores_offer_doc.$req = req
+            stores_offer_doc.$res = res
 
-    $stores_offer.add(stores_offer_doc, (err, doc) => {
 
-      if (!err) {
+            if (stores_offer_doc.items && stores_offer_doc.items.length > 0)
+              stores_offer_doc.items.forEach(_item => {
+                if (_item.size_units_list && _item.size_units_list.length > 0)
+                  _item.size_units_list.forEach(_itmUnit => {
+                    _itmUnit.discount.max = _itmUnit.discount.value
+                  });
+              });
 
-        response.done = true
-        response.doc = doc
+            $stores_offer.add(stores_offer_doc, (err, doc) => {
 
+              if (!err) {
+
+                response.done = true
+                response.doc = doc
+
+              } else {
+                response.error = err.message
+              }
+              res.json(response)
+            })
+          }
+        })
       } else {
-        response.error = err.message
+        response.error = 'Don`t Found Open Shift'
+        res.json(response)
       }
-      res.json(response)
     })
   })
 
@@ -126,35 +133,53 @@ module.exports = function init(site) {
     let stores_offer_doc = req.body
     stores_offer_doc.edit_user_info = site.security.getUserFinger({ $req: req, $res: res })
 
-    if (stores_offer_doc.items && stores_offer_doc.items.length > 0)
-      stores_offer_doc.items.forEach(_item => {
-        if (_item.size_units_list && _item.size_units_list.length > 0)
-          _item.size_units_list.forEach(_itmUnit => {
-            _itmUnit.discount.max = _itmUnit.discount.value
-          });
-      });
+    site.getOpenShift({ companyId: stores_offer_doc.company.id, branchCode: stores_offer_doc.branch.code }, shiftCb => {
+      if (shiftCb) {
 
-    if (stores_offer_doc._id) {
-      $stores_offer.edit({
-        where: {
-          _id: stores_offer_doc._id
-        },
-        set: stores_offer_doc,
-        $req: req,
-        $res: res
-      }, (err, result) => {
-        if (!err) {
-          response.done = true
+        site.isAllowedDate(req, allowDate => {
+          if (!allowDate) {
 
-        } else {
-          response.error = err.message
-        }
+            response.error = 'Don`t Open Period'
+            res.json(response)
+          } else {
+
+
+            if (stores_offer_doc.items && stores_offer_doc.items.length > 0)
+              stores_offer_doc.items.forEach(_item => {
+                if (_item.size_units_list && _item.size_units_list.length > 0)
+                  _item.size_units_list.forEach(_itmUnit => {
+                    _itmUnit.discount.max = _itmUnit.discount.value
+                  });
+              });
+
+            if (stores_offer_doc._id) {
+              $stores_offer.edit({
+                where: {
+                  _id: stores_offer_doc._id
+                },
+                set: stores_offer_doc,
+                $req: req,
+                $res: res
+              }, (err, result) => {
+                if (!err) {
+                  response.done = true
+
+                } else {
+                  response.error = err.message
+                }
+                res.json(response)
+              })
+
+            } else {
+              res.json(response)
+            }
+          }
+        })
+      } else {
+        response.error = 'Don`t Found Open Shift'
         res.json(response)
-      })
-
-    } else {
-      res.json(response)
-    }
+      }
+    })
   })
 
   site.post("/api/stores_offer/delete", (req, res) => {
@@ -166,20 +191,39 @@ module.exports = function init(site) {
       return
     }
     let stores_offer_doc = req.body
-    if (stores_offer_doc._id) {
-      $stores_offer.delete({
-        where: {
-          _id: stores_offer_doc._id
-        },
-        $req: req,
-        $res: res
-      }, (err, result) => {
-        if (!err) {
-          response.done = true
-          res.json(response)
-        }
-      })
-    } else res.json(response)
+
+    site.getOpenShift({ companyId: stores_offer_doc.company.id, branchCode: stores_offer_doc.branch.code }, shiftCb => {
+      if (shiftCb) {
+
+        site.isAllowedDate(req, allowDate => {
+          if (!allowDate) {
+
+            response.error = 'Don`t Open Period'
+            res.json(response)
+          } else {
+
+
+            if (stores_offer_doc._id) {
+              $stores_offer.delete({
+                where: {
+                  _id: stores_offer_doc._id
+                },
+                $req: req,
+                $res: res
+              }, (err, result) => {
+                if (!err) {
+                  response.done = true
+                  res.json(response)
+                }
+              })
+            } else res.json(response)
+          }
+        })
+      } else {
+        response.error = 'Don`t Found Open Shift'
+        res.json(response)
+      }
+    })
   })
 
   site.post("/api/stores_offer/view", (req, res) => {
@@ -384,7 +428,7 @@ module.exports = function init(site) {
         let item = {}
         doc.items.forEach(_itm => {
 
-          if (_itm.barcode == barcode)item = _itm 
+          if (_itm.barcode == barcode) item = _itm
         });
 
         response.doc = item

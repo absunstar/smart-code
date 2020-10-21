@@ -66,104 +66,120 @@ module.exports = function init(site) {
     }
 
     let stores_dismantle_doc = req.body
+    site.getOpenShift({ companyId: stores_dismantle_doc.company.id, branchCode: stores_dismantle_doc.branch.code }, shiftCb => {
+      if (shiftCb) {
 
-    stores_dismantle_doc.company = site.get_company(req)
-    stores_dismantle_doc.branch = site.get_branch(req)
-    stores_dismantle_doc.code = $stores_dismantle.newCode();
-    stores_dismantle_doc.add_user_info = site.security.getUserFinger({ $req: req, $res: res })
+        site.isAllowedDate(req, allowDate => {
+          if (!allowDate) {
 
-    stores_dismantle_doc.$req = req
-    stores_dismantle_doc.$res = res
-
-    stores_dismantle_doc.date = site.toDateTime(stores_dismantle_doc.date)
-
-    stores_dismantle_doc.items.forEach(itm => {
-      itm.current_count = site.toNumber(itm.current_count)
-      itm.count = site.toNumber(itm.count)
-      itm.cost = site.toNumber(itm.cost)
-      itm.price = site.toNumber(itm.price)
-      itm.total = site.toNumber(itm.total)
-    })
-
-    stores_dismantle_doc.total_value = site.toNumber(stores_dismantle_doc.total_value)
-    stores_dismantle_doc.net_value = site.toNumber(stores_dismantle_doc.net_value)
-
-
-    site.isAllowOverDraft(req, stores_dismantle_doc.items, cbOverDraft => {
-
-      if (!cbOverDraft.overdraft && cbOverDraft.value) {
-
-        response.error = 'OverDraft Not Active'
-        res.json(response)
-
-      } else {
-
-        $stores_dismantle.add(stores_dismantle_doc, (err, doc) => {
-
-          if (!err) {
-
-            response.done = true
-            response.doc = doc
-
-            if (doc.posting) {
-              let complex_list = [];
-
-              doc.items.forEach((_itm, i) => {
-                _itm.type = 'minus'
-                _itm.store = doc.store
-                _itm.company = doc.company
-                _itm.branch = doc.branch
-
-                site.quee('[transfer_branch][stores_items][add_balance]', Object.assign({}, _itm))
-
-                _itm.code = doc.code
-                _itm.date = doc.date
-                _itm.source_type = doc.type
-                _itm.transaction_type = 'out'
-                _itm.current_status = 'Dismantling'
-                _itm.shift = {
-                  id: doc.shift.id,
-                  code: doc.shift.code,
-                  name: doc.shift.name
-                }
-
-                if (_itm.complex_items && _itm.complex_items.length > 0) {
-                  _itm.complex_items.forEach(_complex => {
-                    _complex.type = 'sum'
-                    _complex.code = doc.code
-                    _complex.date = doc.date
-                    _complex.store = doc.store
-                    _complex.company = doc.company
-                    _complex.branch = doc.branch
-                    _complex.count = _complex.patches_count
-                    _complex.transaction_type = 'in'
-                    _complex.current_status = 'Dismantling'
-                    _complex.shift = {
-                      id: doc.shift.id,
-                      code: doc.shift.code,
-                      name: doc.shift.name
-                    }
-                    complex_list.push(_complex)
-                  });
-                }
-
-                site.quee('item_transaction - items', Object.assign({}, _itm))
-
-              })
-
-              complex_list.forEach((_complex, i) => {
-                site.quee('[transfer_branch][stores_items][add_balance]', Object.assign({}, _complex))
-
-                site.quee('item_transaction + items', Object.assign({}, _complex))
-              });
-
-            }
-
+            response.error = 'Don`t Open Period'
+            res.json(response)
           } else {
-            response.error = err.message
+
+            stores_dismantle_doc.company = site.get_company(req)
+            stores_dismantle_doc.branch = site.get_branch(req)
+            stores_dismantle_doc.code = $stores_dismantle.newCode();
+            stores_dismantle_doc.add_user_info = site.security.getUserFinger({ $req: req, $res: res })
+
+            stores_dismantle_doc.$req = req
+            stores_dismantle_doc.$res = res
+
+            stores_dismantle_doc.date = site.toDateTime(stores_dismantle_doc.date)
+
+            stores_dismantle_doc.items.forEach(itm => {
+              itm.current_count = site.toNumber(itm.current_count)
+              itm.count = site.toNumber(itm.count)
+              itm.cost = site.toNumber(itm.cost)
+              itm.price = site.toNumber(itm.price)
+              itm.total = site.toNumber(itm.total)
+            })
+
+            stores_dismantle_doc.total_value = site.toNumber(stores_dismantle_doc.total_value)
+            stores_dismantle_doc.net_value = site.toNumber(stores_dismantle_doc.net_value)
+
+
+            site.isAllowOverDraft(req, stores_dismantle_doc.items, cbOverDraft => {
+
+              if (!cbOverDraft.overdraft && cbOverDraft.value) {
+
+                response.error = 'OverDraft Not Active'
+                res.json(response)
+
+              } else {
+
+                $stores_dismantle.add(stores_dismantle_doc, (err, doc) => {
+
+                  if (!err) {
+
+                    response.done = true
+                    response.doc = doc
+
+                    if (doc.posting) {
+                      let complex_list = [];
+
+                      doc.items.forEach((_itm, i) => {
+                        _itm.type = 'minus'
+                        _itm.store = doc.store
+                        _itm.company = doc.company
+                        _itm.branch = doc.branch
+
+                        site.quee('[transfer_branch][stores_items][add_balance]', Object.assign({}, _itm))
+
+                        _itm.code = doc.code
+                        _itm.date = doc.date
+                        _itm.source_type = doc.type
+                        _itm.transaction_type = 'out'
+                        _itm.current_status = 'Dismantling'
+                        _itm.shift = {
+                          id: doc.shift.id,
+                          code: doc.shift.code,
+                          name: doc.shift.name
+                        }
+
+                        if (_itm.complex_items && _itm.complex_items.length > 0) {
+                          _itm.complex_items.forEach(_complex => {
+                            _complex.type = 'sum'
+                            _complex.code = doc.code
+                            _complex.date = doc.date
+                            _complex.store = doc.store
+                            _complex.company = doc.company
+                            _complex.branch = doc.branch
+                            _complex.count = _complex.patches_count
+                            _complex.transaction_type = 'in'
+                            _complex.current_status = 'Dismantling'
+                            _complex.shift = {
+                              id: doc.shift.id,
+                              code: doc.shift.code,
+                              name: doc.shift.name
+                            }
+                            complex_list.push(_complex)
+                          });
+                        }
+
+                        site.quee('item_transaction - items', Object.assign({}, _itm))
+
+                      })
+
+                      complex_list.forEach((_complex, i) => {
+                        site.quee('[transfer_branch][stores_items][add_balance]', Object.assign({}, _complex))
+
+                        site.quee('item_transaction + items', Object.assign({}, _complex))
+                      });
+
+                    }
+
+                  } else {
+                    response.error = err.message
+                  }
+                  res.json(response)
+                })
+              }
+            })
           }
-          res.json(response)
         })
+      } else {
+        response.error = 'Don`t Found Open Shift'
+        res.json(response)
       }
     })
   })
@@ -180,38 +196,56 @@ module.exports = function init(site) {
     let stores_dismantle_doc = req.body
     stores_dismantle_doc.edit_user_info = site.security.getUserFinger({ $req: req, $res: res })
 
-    stores_dismantle_doc.vendor = site.fromJson(stores_dismantle_doc.vendor)
-    stores_dismantle_doc.type = site.fromJson(stores_dismantle_doc.type)
-    stores_dismantle_doc.date = new Date(stores_dismantle_doc.date)
+    site.getOpenShift({ companyId: stores_dismantle_doc.company.id, branchCode: stores_dismantle_doc.branch.code }, shiftCb => {
+      if (shiftCb) {
 
-    stores_dismantle_doc.items.forEach(itm => {
-      itm.count = site.toNumber(itm.count)
-      itm.cost = site.toNumber(itm.cost)
-      itm.price = site.toNumber(itm.price)
-      itm.total = site.toNumber(itm.total)
-    })
+        site.isAllowedDate(req, allowDate => {
+          if (!allowDate) {
 
-    stores_dismantle_doc.total_value = site.toNumber(stores_dismantle_doc.total_value)
+            response.error = 'Don`t Open Period'
+            res.json(response)
+          } else {
 
-    if (stores_dismantle_doc._id) {
-      $stores_dismantle.edit({
-        where: {
-          _id: stores_dismantle_doc._id
-        },
-        set: stores_dismantle_doc,
-        $req: req,
-        $res: res
-      }, err => {
-        if (!err) {
-          response.done = true
-        } else {
-          response.error = err.message
-        }
+
+            stores_dismantle_doc.vendor = site.fromJson(stores_dismantle_doc.vendor)
+            stores_dismantle_doc.type = site.fromJson(stores_dismantle_doc.type)
+            stores_dismantle_doc.date = new Date(stores_dismantle_doc.date)
+
+            stores_dismantle_doc.items.forEach(itm => {
+              itm.count = site.toNumber(itm.count)
+              itm.cost = site.toNumber(itm.cost)
+              itm.price = site.toNumber(itm.price)
+              itm.total = site.toNumber(itm.total)
+            })
+
+            stores_dismantle_doc.total_value = site.toNumber(stores_dismantle_doc.total_value)
+
+            if (stores_dismantle_doc._id) {
+              $stores_dismantle.edit({
+                where: {
+                  _id: stores_dismantle_doc._id
+                },
+                set: stores_dismantle_doc,
+                $req: req,
+                $res: res
+              }, err => {
+                if (!err) {
+                  response.done = true
+                } else {
+                  response.error = err.message
+                }
+                res.json(response)
+              })
+            } else {
+              res.json(response)
+            }
+          }
+        })
+      } else {
+        response.error = 'Don`t Found Open Shift'
         res.json(response)
-      })
-    } else {
-      res.json(response)
-    }
+      }
+    })
   })
 
   site.post("/api/stores_dismantle/posting", (req, res) => {
@@ -227,139 +261,157 @@ module.exports = function init(site) {
 
     let stores_dismantle_doc = req.body
 
-    stores_dismantle_doc.edit_user_info = site.security.getUserFinger({ $req: req, $res: res })
+    site.getOpenShift({ companyId: stores_dismantle_doc.company.id, branchCode: stores_dismantle_doc.branch.code }, shiftCb => {
+      if (shiftCb) {
 
-    if (stores_dismantle_doc._id) {
+        site.isAllowedDate(req, allowDate => {
+          if (!allowDate) {
 
-
-      let disAssembleItems = []
-
-      if (stores_dismantle_doc.posting) {
-
-        disAssembleItems = stores_dismantle_doc.items
-
-      } else {
-
-        stores_dismantle_doc.items.forEach(disAssembleDocItems => {
-          disAssembleDocItems.complex_items.forEach(dAdIcoplex => {
-            if (disAssembleDocItems.barcode === dAdIcoplex.barcode) {
-
-              dAdIcoplex.count = dAdIcoplex.count + disAssembleDocItems.count
-              disAssembleItems.push(dAdIcoplex)
-            }
-          });
-        });
-
-      }
-
-
-
-      site.isAllowOverDraft(req, disAssembleItems, cbOverDraft => {
-
-        if (!cbOverDraft.overdraft && cbOverDraft.value) {
-
-          response.error = 'OverDraft Not Active'
-          res.json(response)
-
-        } else {
-
-
-          $stores_dismantle.edit({
-            where: {
-              _id: stores_dismantle_doc._id
-            },
-            set: stores_dismantle_doc,
-            $req: req,
-            $res: res
-          }, (err, result) => {
-            if (!err) {
-              response.done = true
-              response.doc = result.doc
-
-              let complex_list = [];
-
-
-              result.doc.items.forEach((_itm, i) => {
-                if (result.doc.posting)
-                  _itm.type = 'minus'
-                else _itm.type = 'sum'
-
-                _itm.store = result.doc.store
-                _itm.company = result.doc.company
-                _itm.branch = result.doc.branch
-
-
-                _itm.code = result.doc.code
-                _itm.date = result.doc.date
-                _itm.source_type = result.doc.type
-                _itm.transaction_type = 'out'
-                if (result.doc.posting) {
-                  _itm.current_status = 'Dismantling'
-                }
-                else {
-                  _itm.count = (-Math.abs(_itm.count))
-                  _itm.current_status = 'r_Dismantling'
-                }
-                _itm.shift = {
-                  id: result.doc.shift.id,
-                  code: result.doc.shift.code,
-                  name: result.doc.shift.name
-                }
-
-                if (_itm.complex_items && _itm.complex_items.length > 0) {
-                  _itm.complex_items.forEach(_complex => {
-                    _complex.code = result.doc.code
-                    _complex.date = result.doc.date
-                    _complex.store = result.doc.store
-                    _complex.company = result.doc.company
-                    _complex.branch = result.doc.branch
-                    _complex.count = _complex.patches_count
-                    _complex.transaction_type = 'in'
-
-                    if (result.doc.posting) {
-                      _complex.type = 'sum'
-                      _complex.current_status = 'Dismantling'
-                    }
-                    else {
-                      _complex.count = (-Math.abs(_complex.count))
-                      _complex.current_status = 'r_Dismantling'
-                      _complex.type = 'minus'
-                    }
-
-                    _complex.shift = {
-                      id: result.doc.shift.id,
-                      code: result.doc.shift.code,
-                      name: result.doc.shift.name
-                    }
-                    complex_list.push(_complex)
-                  });
-                }
-
-                site.quee('item_transaction - items', Object.assign({}, _itm))
-                _itm.count = Math.abs(_itm.count)
-                site.quee('[transfer_branch][stores_items][add_balance]', Object.assign({}, _itm))
-
-              })
-
-              complex_list.forEach((_complex1, i) => {
-                site.quee('item_transaction + items', Object.assign({}, _complex1))
-                _complex1.count = Math.abs(_complex1.count)
-
-                site.quee('[transfer_branch][stores_items][add_balance]', Object.assign({}, _complex1))
-              });
-
-
-
-            } else {
-              response.error = err.message
-            }
+            response.error = 'Don`t Open Period'
             res.json(response)
-          })
-        }
-      })
-    } else {
-      res.json(response)
-    }
+          } else {
+
+
+            stores_dismantle_doc.edit_user_info = site.security.getUserFinger({ $req: req, $res: res })
+
+            if (stores_dismantle_doc._id) {
+
+
+              let disAssembleItems = []
+
+              if (stores_dismantle_doc.posting) {
+
+                disAssembleItems = stores_dismantle_doc.items
+
+              } else {
+
+                stores_dismantle_doc.items.forEach(disAssembleDocItems => {
+                  disAssembleDocItems.complex_items.forEach(dAdIcoplex => {
+                    if (disAssembleDocItems.barcode === dAdIcoplex.barcode) {
+
+                      dAdIcoplex.count = dAdIcoplex.count + disAssembleDocItems.count
+                      disAssembleItems.push(dAdIcoplex)
+                    }
+                  });
+                });
+
+              }
+
+
+
+              site.isAllowOverDraft(req, disAssembleItems, cbOverDraft => {
+
+                if (!cbOverDraft.overdraft && cbOverDraft.value) {
+
+                  response.error = 'OverDraft Not Active'
+                  res.json(response)
+
+                } else {
+
+
+                  $stores_dismantle.edit({
+                    where: {
+                      _id: stores_dismantle_doc._id
+                    },
+                    set: stores_dismantle_doc,
+                    $req: req,
+                    $res: res
+                  }, (err, result) => {
+                    if (!err) {
+                      response.done = true
+                      response.doc = result.doc
+
+                      let complex_list = [];
+
+
+                      result.doc.items.forEach((_itm, i) => {
+                        if (result.doc.posting)
+                          _itm.type = 'minus'
+                        else _itm.type = 'sum'
+
+                        _itm.store = result.doc.store
+                        _itm.company = result.doc.company
+                        _itm.branch = result.doc.branch
+
+
+                        _itm.code = result.doc.code
+                        _itm.date = result.doc.date
+                        _itm.source_type = result.doc.type
+                        _itm.transaction_type = 'out'
+                        if (result.doc.posting) {
+                          _itm.current_status = 'Dismantling'
+                        }
+                        else {
+                          _itm.count = (-Math.abs(_itm.count))
+                          _itm.current_status = 'r_Dismantling'
+                        }
+                        _itm.shift = {
+                          id: result.doc.shift.id,
+                          code: result.doc.shift.code,
+                          name: result.doc.shift.name
+                        }
+
+                        if (_itm.complex_items && _itm.complex_items.length > 0) {
+                          _itm.complex_items.forEach(_complex => {
+                            _complex.code = result.doc.code
+                            _complex.date = result.doc.date
+                            _complex.store = result.doc.store
+                            _complex.company = result.doc.company
+                            _complex.branch = result.doc.branch
+                            _complex.count = _complex.patches_count
+                            _complex.transaction_type = 'in'
+
+                            if (result.doc.posting) {
+                              _complex.type = 'sum'
+                              _complex.current_status = 'Dismantling'
+                            }
+                            else {
+                              _complex.count = (-Math.abs(_complex.count))
+                              _complex.current_status = 'r_Dismantling'
+                              _complex.type = 'minus'
+                            }
+
+                            _complex.shift = {
+                              id: result.doc.shift.id,
+                              code: result.doc.shift.code,
+                              name: result.doc.shift.name
+                            }
+                            complex_list.push(_complex)
+                          });
+                        }
+
+                        site.quee('item_transaction - items', Object.assign({}, _itm))
+                        _itm.count = Math.abs(_itm.count)
+                        site.quee('[transfer_branch][stores_items][add_balance]', Object.assign({}, _itm))
+
+                      })
+
+                      complex_list.forEach((_complex1, i) => {
+                        site.quee('item_transaction + items', Object.assign({}, _complex1))
+                        _complex1.count = Math.abs(_complex1.count)
+
+                        site.quee('[transfer_branch][stores_items][add_balance]', Object.assign({}, _complex1))
+                      });
+
+
+
+                    } else {
+                      response.error = err.message
+                    }
+                    res.json(response)
+                  })
+                }
+              })
+            } else {
+              res.json(response)
+            }
+          }
+        })
+      } else {
+        response.error = 'Don`t Found Open Shift'
+        res.json(response)
+      }
+    })
   })
 
   site.post("/api/stores_dismantle/delete", (req, res) => {
@@ -372,109 +424,130 @@ module.exports = function init(site) {
     }
 
     let stores_dismantle_doc = req.body
-    if (stores_dismantle_doc._id) {
+
+    site.getOpenShift({ companyId: stores_dismantle_doc.company.id, branchCode: stores_dismantle_doc.branch.code }, shiftCb => {
+      if (shiftCb) {
 
 
-      let disAssembleItems = []
-      stores_dismantle_doc.items.forEach(disAssembleDocItems => {
-        disAssembleDocItems.complex_items.forEach(dAdIcoplex => {
-          
-          if (disAssembleDocItems.barcode === dAdIcoplex.barcode) {
+        site.isAllowedDate(req, allowDate => {
+          if (!allowDate) {
 
-            dAdIcoplex.count = dAdIcoplex.count + disAssembleDocItems.count
-            disAssembleItems.push(dAdIcoplex)
+            response.error = 'Don`t Open Period'
+            res.json(response)
+          } else {
+
+
+            if (stores_dismantle_doc._id) {
+
+
+              let disAssembleItems = []
+              stores_dismantle_doc.items.forEach(disAssembleDocItems => {
+                disAssembleDocItems.complex_items.forEach(dAdIcoplex => {
+
+                  if (disAssembleDocItems.barcode === dAdIcoplex.barcode) {
+
+                    dAdIcoplex.count = dAdIcoplex.count + disAssembleDocItems.count
+                    disAssembleItems.push(dAdIcoplex)
+                  }
+
+                });
+              });
+
+
+              site.isAllowOverDraft(req, disAssembleItems, cbOverDraft => {
+
+                if (!cbOverDraft.overdraft && cbOverDraft.value) {
+
+                  response.error = 'OverDraft Not Active'
+                  res.json(response)
+
+                } else {
+
+
+                  $stores_dismantle.delete({
+                    where: {
+                      _id: stores_dismantle_doc._id
+                    },
+                    $req: req,
+                    $res: res
+                  }, (err, result) => {
+                    if (!err) {
+                      response.done = true
+                      if (stores_dismantle_doc.posting) {
+
+                        let complex_list = [];
+
+
+                        result.doc.items.forEach((_itm, i) => {
+                          _itm.type = 'sum'
+                          _itm.store = result.doc.store
+                          _itm.company = result.doc.company
+                          _itm.branch = result.doc.branch
+
+
+                          _itm.code = result.doc.code
+                          _itm.date = result.doc.date
+                          _itm.source_type = result.doc.type
+                          _itm.transaction_type = 'out'
+                          _itm.count = (-Math.abs(_itm.count))
+                          _itm.current_status = 'd_Dismantling'
+                          _itm.shift = {
+                            id: result.doc.shift.id,
+                            code: result.doc.shift.code,
+                            name: result.doc.shift.name
+                          }
+
+                          if (_itm.complex_items && _itm.complex_items.length > 0) {
+                            _itm.complex_items.forEach(_complex => {
+                              _complex.type = 'minus'
+                              _complex.code = result.doc.code
+                              _complex.date = result.doc.date
+                              _complex.store = result.doc.store
+                              _complex.company = result.doc.company
+                              _complex.branch = result.doc.branch
+                              _complex.count = _complex.patches_count
+                              _complex.count = (-Math.abs(_complex.count))
+                              _complex.transaction_type = 'in'
+                              _complex.current_status = 'd_Dismantling'
+                              _complex.shift = {
+                                id: result.doc.shift.id,
+                                code: result.doc.shift.code,
+                                name: result.doc.shift.name
+                              }
+                              complex_list.push(Object.assign({}, _complex))
+                            });
+                          }
+                          site.quee('item_transaction - items', Object.assign({}, _itm))
+
+                          _itm.count = Math.abs(_itm.count)
+
+                          site.quee('[transfer_branch][stores_items][add_balance]', Object.assign({}, _itm))
+                        })
+
+                        complex_list.forEach((_complex1, i) => {
+                          site.quee('item_transaction + items', Object.assign({}, _complex1))
+
+                          _complex1.count = Math.abs(_complex1.count)
+                          site.quee('[transfer_branch][stores_items][add_balance]', Object.assign({}, _complex1))
+
+                        });
+
+                      }
+                      res.json(response)
+                    }
+                  })
+                }
+              })
+
+            } else res.json(response)
           }
 
         });
-      });
-
-
-      site.isAllowOverDraft(req, disAssembleItems, cbOverDraft => {
-
-        if (!cbOverDraft.overdraft && cbOverDraft.value) {
-
-          response.error = 'OverDraft Not Active'
-          res.json(response)
-
-        } else {
-
-
-          $stores_dismantle.delete({
-            where: {
-              _id: stores_dismantle_doc._id
-            },
-            $req: req,
-            $res: res
-          }, (err, result) => {
-            if (!err) {
-              response.done = true
-              if (stores_dismantle_doc.posting) {
-
-                let complex_list = [];
-
-
-                result.doc.items.forEach((_itm, i) => {
-                  _itm.type = 'sum'
-                  _itm.store = result.doc.store
-                  _itm.company = result.doc.company
-                  _itm.branch = result.doc.branch
-
-
-                  _itm.code = result.doc.code
-                  _itm.date = result.doc.date
-                  _itm.source_type = result.doc.type
-                  _itm.transaction_type = 'out'
-                  _itm.count = (-Math.abs(_itm.count))
-                  _itm.current_status = 'd_Dismantling'
-                  _itm.shift = {
-                    id: result.doc.shift.id,
-                    code: result.doc.shift.code,
-                    name: result.doc.shift.name
-                  }
-
-                  if (_itm.complex_items && _itm.complex_items.length > 0) {
-                    _itm.complex_items.forEach(_complex => {
-                      _complex.type = 'minus'
-                      _complex.code = result.doc.code
-                      _complex.date = result.doc.date
-                      _complex.store = result.doc.store
-                      _complex.company = result.doc.company
-                      _complex.branch = result.doc.branch
-                      _complex.count = _complex.patches_count
-                      _complex.count = (-Math.abs(_complex.count))
-                      _complex.transaction_type = 'in'
-                      _complex.current_status = 'd_Dismantling'
-                      _complex.shift = {
-                        id: result.doc.shift.id,
-                        code: result.doc.shift.code,
-                        name: result.doc.shift.name
-                      }
-                      complex_list.push(Object.assign({}, _complex))
-                    });
-                  }
-                  site.quee('item_transaction - items', Object.assign({}, _itm))
-
-                  _itm.count = Math.abs(_itm.count)
-
-                  site.quee('[transfer_branch][stores_items][add_balance]', Object.assign({}, _itm))
-                })
-
-                complex_list.forEach((_complex1, i) => {
-                  site.quee('item_transaction + items', Object.assign({}, _complex1))
-
-                  _complex1.count = Math.abs(_complex1.count)
-                  site.quee('[transfer_branch][stores_items][add_balance]', Object.assign({}, _complex1))
-
-                });
-
-              }
-              res.json(response)
-            }
-          })
-        }
-      })
-
-    } else res.json(response)
+      } else {
+        response.error = 'Don`t Found Open Shift'
+        res.json(response)
+      }
+    })
   })
 
   site.post("/api/stores_dismantle/view", (req, res) => {
@@ -651,7 +724,7 @@ module.exports = function init(site) {
   site.getStoresDismantle = function (whereObj, callback) {
     callback = callback || {};
     let where = whereObj || {}
-   
+
     if (where.date) {
       let d1 = site.toDate(where.date)
       let d2 = site.toDate(where.date)
@@ -677,7 +750,7 @@ module.exports = function init(site) {
       delete where['shift_code']
     }
     where['posting'] = true
-    
+
     $stores_dismantle.findMany({
       where: where,
       sort: { id: -1 }

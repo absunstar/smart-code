@@ -13,7 +13,6 @@ module.exports = function init(site) {
       return
     }
 
-
     finger_id = attend.finger_id || 0
 
     site.getEmployeeAttend(finger_id.toString(), employeeCb => {

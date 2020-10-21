@@ -318,6 +318,54 @@ module.exports = function init(site) {
 
 
 
+  site.post("/api/shifts/get_open_shift", (req, res) => {
+    let response = {
+      done: false
+    }
+
+    if (!req.session.user) {
+      response.error = 'Please Login First'
+      res.json(response)
+      return
+    }
+
+    let where = {}
+
+    where['company.id'] = site.get_company(req).id
+    where['branch.code'] = site.get_branch(req).code
+    where['active'] = true
+
+    $shifts.findOne({
+      select: {
+        id: 1,
+        name: 1,
+        code: 1,
+        from_date: 1,
+        from_time: 1,
+        to_date: 1,
+        to_time: 1
+      },
+      where: where,
+    }, (err, doc) => {
+      if (!err && doc) {
+        response.done = true
+        let obj = {
+          id: doc.id,
+          name: doc.name,
+          code: doc.code,
+          from_date: doc.from_date,
+          from_time: doc.from_time,
+          to_date: doc.to_date,
+          to_time: doc.to_time
+        }
+        response.doc = obj
+      }
+      res.json(response)
+    })
+  })
+
+
+
   site.post("/api/shifts/all", (req, res) => {
     let response = {
       done: false
@@ -361,15 +409,14 @@ module.exports = function init(site) {
     })
   })
 
-
   site.getOpenShift = function (whereObj, callback) {
     callback = callback || {};
-    let where = whereObj || {}
 
-    where['company.id'] = where.companyId
-    where['branch.code'] = where.branchCode
-    where['active'] = true
-
+    whereObj['company.id'] = whereObj.companyId
+    whereObj['branch.code'] = whereObj.branchCode
+    whereObj['active'] = true
+    delete whereObj.companyId
+    delete whereObj.branchCode
     $shifts.findOne({
       select: {
         id: 1,
@@ -380,10 +427,9 @@ module.exports = function init(site) {
         to_date: 1,
         to_time: 1
       },
-      where: where,
+      where: whereObj,
     }, (err, doc) => {
       if (!err && doc) {
-        response.done = true
         let obj = {
           id: doc.id,
           name: doc.name,
@@ -393,12 +439,8 @@ module.exports = function init(site) {
           to_date: doc.to_date,
           to_time: doc.to_time
         }
-        response.doc = obj
-
         callback(obj)
-      }
-      else callback(false)
-      res.json(response)
+      } else callback(false)
     })
 
   }

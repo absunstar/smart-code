@@ -120,7 +120,6 @@ module.exports = function init(site) {
     }
     let _id = req.body._id
 
-
     if (_id) {
       $stores.delete({ _id: $stores.ObjectID(_id), $req: req, $res: res }, (err, result) => {
         if (!err) {

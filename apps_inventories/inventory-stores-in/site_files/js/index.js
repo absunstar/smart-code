@@ -910,6 +910,10 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
                   $scope.error = response.data.error;
                   if (response.data.error.like('*OverDraft Not*')) {
                     $scope.error = "##word.overdraft_not_active##"
+                  } else if (response.data.error.like('*n`t Found Open Shi*')) {
+                    $scope.error = "##word.open_shift_not_found##"
+                  } else if (response.data.error.like('*n`t Open Perio*')) {
+                    $scope.error = "##word.should_open_period##"
                   }
                 }
 
@@ -1444,7 +1448,12 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
               if (response.data.done) {
                 site.hideModal('#updateStoreInModal');
               } else {
-                $scope.error = '##word.error##';
+                $scope.error = response.data.error;
+                if (response.data.error.like('*n`t Found Open Shi*')) {
+                  $scope.error = "##word.open_shift_not_found##"
+                } else if (response.data.error.like('*n`t Open Perio*')) {
+                  $scope.error = "##word.should_open_period##"
+                }
               }
             },
             function (err) {
@@ -1489,6 +1498,10 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
                   $scope.error = response.data.error;
                   if (response.data.error.like('*OverDraft Not*')) {
                     $scope.error = "##word.overdraft_not_active##"
+                  } else if (response.data.error.like('*n`t Found Open Shi*')) {
+                    $scope.error = "##word.open_shift_not_found##"
+                  } else if (response.data.error.like('*n`t Open Perio*')) {
+                    $scope.error = "##word.should_open_period##"
                   }
                 };
 
@@ -1578,9 +1591,14 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
                     $scope.error = '##word.error##';
                     if (response.data.error.like('*OverDraft Not*')) {
                       $scope.error = "##word.overdraft_not_active##"
-                      if (store_in.posting) store_in.posting = false;
-                      else store_in.posting = true;
+                    } else if (response.data.error.like('*n`t Found Open Shi*')) {
+                      $scope.error = "##word.open_shift_not_found##"
+                    } else if (response.data.error.like('*n`t Open Perio*')) {
+                      $scope.error = "##word.should_open_period##"
                     }
+
+                    if (store_in.posting) store_in.posting = false;
+                    else store_in.posting = true;
                   }
                 },
                 function (err) {
@@ -1655,11 +1673,16 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
                           if (response.data.done) {
 
                           } else {
-                            $scope.error = '##word.error##';
+                            $scope.error = response.data.error;
                             if (response.data.error.like('*OverDraft Not*')) {
                               $scope.error = "##word.overdraft_not_active##"
-                              _store_in_all[i].posting = false;
+                            } else if (response.data.error.like('*n`t Found Open Shi*')) {
+                              $scope.error = "##word.open_shift_not_found##"
+                            } else if (response.data.error.like('*n`t Open Perio*')) {
+                              $scope.error = "##word.should_open_period##"
                             }
+                            _store_in_all[i].posting = false;
+
                           }
                         },
                         function (err) {

@@ -254,35 +254,38 @@ module.exports = function init(site) {
   })
 
 
-  site.is_allowed_date = function (option, callback) {
+  site.isAllowedDate = function (req, callback) {
 
     callback = callback || function () { }
+    if (site.feature('erp')) {
 
+      $financial_years.findMany({
+        where: {
 
-    $financial_years.findMany({
-      where: {
-
-        'status.id': 2, 
-        'company.id': site.get_company(req).id,
-        'branch.code': site.get_branch(req).code
-      }
-    }, (err, docs, count) => {
-
-      let response = false
-
-      docs.forEach(doc => {
-        if (new Date(doc.period_start.date).getTime() <= new Date(option.date).getTime() && new Date(doc.period_end.date).getTime() >= new Date(option.date).getTime()) {
-          doc.accounting_period_list.forEach(element => {
-            if (new Date(element.start.date).getTime() <= new Date(option.date).getTime() && new Date(element.end.date).getTime() >= new Date(option.date).getTime() && element.status.name == 'opend') {
-              response = true
-            }
-          })
+          'status.id': 2,
+          'company.id': site.get_company(req).id,
+          'branch.code': site.get_branch(req).code
         }
+      }, (err, docs, count) => {
+
+        let found = false
+
+        docs.forEach(doc => {
+          if (new Date(doc.period_start.date).getTime() <= new Date(req.body.date).getTime() && new Date(doc.period_end.date).getTime() >= new Date(req.body.date).getTime()) {
+            doc.accounting_period_list.forEach(element => {
+              if (new Date(element.start.date).getTime() <= new Date(req.body.date).getTime() && new Date(element.end.date).getTime() >= new Date(req.body.date).getTime() && element.status.name == 'opend') {
+                found = true
+              }
+            })
+          }
+        })
+
+        callback(found)
       })
-
-
-      callback(err, response)
-    })
+    } else {
+      let found = true
+      callback(found)
+    }
 
     return true
 

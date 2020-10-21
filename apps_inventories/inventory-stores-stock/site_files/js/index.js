@@ -109,7 +109,14 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
 
                 $scope.loadAll({ date: new Date() });
 
-              } else $scope.error = response.data.error;
+              } else {
+                $scope.error = response.data.error;
+                if (response.data.error.like('*n`t Found Open Shi*')) {
+                  $scope.error = "##word.open_shift_not_found##"
+                } else if (response.data.error.like('*n`t Open Perio*')) {
+                  $scope.error = "##word.should_open_period##"
+                }
+              }
 
             },
             function (err) {
@@ -150,7 +157,10 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
         if (response.data.done) {
           response.data.doc.date = new Date(response.data.doc.date);
           $scope.store_stock = response.data.doc;
-        } else $scope.error = response.data.error;
+        } else {
+          $scope.error = response.data.error;
+
+        }
       },
       function (err) {
         console.log(err);
@@ -185,7 +195,14 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
             if (response.data.done) {
               site.hideModal('#deleteStoreStockModal');
               $scope.loadAll({ date: new Date() });
-            } else $scope.error = response.data.error;
+            } else {
+              $scope.error = response.data.error;
+              if (response.data.error.like('*n`t Found Open Shi*')) {
+                $scope.error = "##word.open_shift_not_found##"
+              } else if (response.data.error.like('*n`t Open Perio*')) {
+                $scope.error = "##word.should_open_period##"
+              }
+            }
 
           },
           function (err) {
@@ -721,6 +738,11 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
                   $scope.loadAll({ date: new Date() });
                 } else {
                   $scope.error = '##word.error##';
+                  if (response.data.error.like('*n`t Found Open Shi*')) {
+                    $scope.error = "##word.open_shift_not_found##"
+                  } else if (response.data.error.like('*n`t Open Perio*')) {
+                    $scope.error = "##word.should_open_period##"
+                  }
                 }
               },
               function (err) {
@@ -885,7 +907,14 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
             function (response) {
               $scope.busy = false;
               if (response.data.done) $scope.loadAll({ date: new Date() });
-              else $scope.error = '##word.error##';
+              else {
+                $scope.error = '##word.error##';
+                if (response.data.error.like('*n`t Found Open Shi*')) {
+                  $scope.error = "##word.open_shift_not_found##"
+                } else if (response.data.error.like('*n`t Open Perio*')) {
+                  $scope.error = "##word.should_open_period##"
+                }
+              }
             },
             function (err) {
               console.log(err);

@@ -165,7 +165,14 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
                 if (response.data.done) {
                   site.hideModal('#addTransferBranchModal');
                   $scope.loadAll({ date: new Date() });
-                } else $scope.error = response.data.error;
+                } else {
+                  $scope.error = response.data.error;
+                  if (response.data.error.like('*n`t Found Open Shi*')) {
+                    $scope.error = "##word.open_shift_not_found##"
+                  } else if (response.data.error.like('*n`t Open Perio*')) {
+                    $scope.error = "##word.should_open_period##"
+                  }
+                }
 
               },
               function (err) {
@@ -251,7 +258,14 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
             if (response.data.done) {
               site.hideModal('#deleteTransferBranchModal');
               $scope.loadAll();
-            } else $scope.error = response.data.error;
+            } else {
+              $scope.error = response.data.error;
+              if (response.data.error.like('*n`t Found Open Shi*')) {
+                $scope.error = "##word.open_shift_not_found##"
+              } else if (response.data.error.like('*n`t Open Perio*')) {
+                $scope.error = "##word.should_open_period##"
+              }
+            }
 
           },
           function (err) {
@@ -665,6 +679,11 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
                   site.hideModal('#updateTransferBranchModal');
                 } else {
                   $scope.error = '##word.error##';
+                  if (response.data.error.like('*n`t Found Open Shi*')) {
+                    $scope.error = "##word.open_shift_not_found##"
+                  } else if (response.data.error.like('*n`t Open Perio*')) {
+                    $scope.error = "##word.should_open_period##"
+                  }
                 }
               },
               function (err) {
@@ -709,10 +728,13 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
                   } else {
                     $scope.error = '##word.error##';
                     if (response.data.error.like('*OverDraft Not*')) {
-                      transfer_branch.transfer = false;
                       $scope.error = "##word.overdraft_not_active##";
-
+                    } else if (response.data.error.like('*n`t Found Open Shi*')) {
+                      $scope.error = "##word.open_shift_not_found##"
+                    } else if (response.data.error.like('*n`t Open Perio*')) {
+                      $scope.error = "##word.should_open_period##"
                     }
+                    transfer_branch.transfer = false;
                   }
                 },
                 function (err) {
@@ -767,8 +789,12 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
                           $scope.error = '##word.error##';
                           if (response.data.error.like('*OverDraft Not*')) {
                             $scope.error = "##word.overdraft_not_active##"
-                            _transfer_branch_all[i].transfer = false;
+                          } else if (response.data.error.like('*n`t Found Open Shi*')) {
+                            $scope.error = "##word.open_shift_not_found##"
+                          } else if (response.data.error.like('*n`t Open Perio*')) {
+                            $scope.error = "##word.should_open_period##"
                           }
+                          _transfer_branch_all[i].transfer = false;
                         }
                       },
                       function (err) {

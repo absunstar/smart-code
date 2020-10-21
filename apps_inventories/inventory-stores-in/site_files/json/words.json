@@ -86,8 +86,8 @@
     },
     {
         "name": "stores_ins",
-        "en": "Purchase Invoices",
-        "ar": "فواتير مشتريات"
+        "en": "Purchase Invoices Store",
+        "ar": "فواتير مشتريات مخزنية"
     },
     {
         "name": "stores_in",

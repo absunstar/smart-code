@@ -74,7 +74,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
       } else if ($scope.account_invoices.service > $scope.service) {
         $scope.error = "##word.err_service##";
         return;
-      } else if ($scope.account_invoices.paid_up > $scope.amount_currency) {
+      } else if ($scope.account_invoices.paid_up > $scope.amount_currency && $scope.account_invoices.source_type.id != 8 && $scope.account_invoices.source_type.id != 9 && $scope.account_invoices.source_type.id != 10 && $scope.account_invoices.source_type.id != 11) {
         $scope.error = "##word.err_net_value##";
         return;
       } else if (new Date($scope.account_invoices.date) > new Date()) {
@@ -121,6 +121,10 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
                   $scope.error = "##word.code_exisit##"
                 } else if (response.data.error.like('*Please write code*')) {
                   $scope.error = "##word.enter_code_inventory##"
+                } else if (response.data.error.like('*n`t Found Open Shi*')) {
+                  $scope.error = "##word.open_shift_not_found##"
+                } else if (response.data.error.like('*n`t Open Perio*')) {
+                  $scope.error = "##word.should_open_period##"
                 }
               }
             },
@@ -154,7 +158,15 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
             $scope.busy = false;
             if (response.data.done) {
             } else {
-              $scope.error = '##word.error##';
+              $scope.error = response.data.error;
+              if (response.data.error.like('*n`t Found Open Shi*')) {
+                $scope.error = "##word.open_shift_not_found##"
+              } else if (response.data.error.like('*n`t Open Perio*')) {
+                $scope.error = "##word.should_open_period##"
+              }
+              if (account_invoices.posting) account_invoices.posting = false;
+              else account_invoices.posting = true;
+
             }
           },
           function (err) {
@@ -193,7 +205,12 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
                   if (response.data.done) {
 
                   } else {
-                    $scope.error = '##word.error##';
+                    $scope.error = response.data.error;
+                    if (response.data.error.like('*n`t Found Open Shi*')) {
+                      $scope.error = "##word.open_shift_not_found##"
+                    } else if (response.data.error.like('*n`t Open Perio*')) {
+                      $scope.error = "##word.should_open_period##"
+                    }
                   }
                 },
                 function (err) {
@@ -251,7 +268,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
       } else if ($scope.account_invoices.service > $scope.service) {
         $scope.error = "##word.err_service##";
         return;
-      } else if ($scope.account_invoices.paid_up > $scope.amount_currency) {
+      } else if ($scope.account_invoices.paid_up > $scope.amount_currency  && $scope.account_invoices.source_type.id != 8 && $scope.account_invoices.source_type.id != 9 && $scope.account_invoices.source_type.id != 10 && $scope.account_invoices.source_type.id != 11) {
         $scope.error = "##word.err_net_value##";
         return;
       } else if (new Date($scope.account_invoices.date) > new Date()) {
@@ -297,6 +314,11 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
                 $scope.getAccountInvoicesList({ date: new Date() });
               } else {
                 $scope.error = response.data.error;
+                if (response.data.error.like('*n`t Found Open Shi*')) {
+                  $scope.error = "##word.open_shift_not_found##"
+                } else if (response.data.error.like('*n`t Open Perio*')) {
+                  $scope.error = "##word.should_open_period##"
+                }
               }
             },
             function (err) {
@@ -385,6 +407,11 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
               });
             } else {
               $scope.error = response.data.error;
+              if (response.data.error.like('*n`t Found Open Shi*')) {
+                $scope.error = "##word.open_shift_not_found##"
+              } else if (response.data.error.like('*n`t Open Perio*')) {
+                $scope.error = "##word.should_open_period##"
+              }
             }
           },
           function (err) {
@@ -470,7 +497,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
       else if ($scope.paid_invoice.payment_paid_up > $scope.amount_currency) {
         $scope.error = "##word.err_paid_up_payment##";
         return;
-      } else if ($scope.paid_invoice.payment_paid_up > $scope.amount_currency) {
+      } else if ($scope.paid_invoice.payment_paid_up > $scope.amount_currency && $scope.paid_invoice.source_type.id != 8 && $scope.paid_invoice.source_type.id != 9 && $scope.paid_invoice.source_type.id != 10 && $scope.paid_invoice.source_type.id != 11) {
         $scope.error = "##word.err_net_value##";
         return;
       }
@@ -514,7 +541,12 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
 
             site.hideModal('#invoicesPaymentModal');
           } else {
-            $scope.error = 'Please Login First';
+            $scope.error = response.data.error;
+            if (response.data.error.like('*n`t Found Open Shi*')) {
+              $scope.error = "##word.open_shift_not_found##"
+            } else if (response.data.error.like('*n`t Open Perio*')) {
+              $scope.error = "##word.should_open_period##"
+            }
           }
         },
         function (err) {
