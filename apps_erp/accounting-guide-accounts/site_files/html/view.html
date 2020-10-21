@@ -25,7 +25,7 @@
 
                             <tr>
                                 <td class="title"> ##word.accounting_guide_accounts_currency## </td>
-                                <td class="center"> {{accounting_guide_accounts_view.currency.name_ar}} </td>
+                                <td class="center"> {{accounting_guide_accounts_view.currency.name}} </td>
                             </tr>
 
                             <tr>
@@ -78,15 +78,15 @@
                                 <td class="title"> ##word.accounting_guide_accounts_status## </td>
                                 <td class="center green" ng-show="accounting_guide_accounts_view.status=='active'">##word.accounting_guide_accounts_active##
                                 </td>
-                                <td class="center green" ng-show="accounting_guide_accounts_view.status=='disactive'">##word.accounting_guide_accounts_disactive##
+                                <td class="center red" ng-show="accounting_guide_accounts_view.status=='disactive'">##word.accounting_guide_accounts_disactive##
                                 </td>
 
                             </tr>
 
-                            <tr>
+                            <!-- <tr>
                                 <td class="title"> ##word.users## </td>
                                 <td class="center"> {{accounting_guide_accounts_view.users}} </td>
-                            </tr>
+                            </tr> -->
 
                         </table>
                     </div>

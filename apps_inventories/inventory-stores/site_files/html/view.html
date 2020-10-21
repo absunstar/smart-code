@@ -1,28 +1,172 @@
 <div ng-hide="busy" class="row" id="v1" fixed>
-    <div class="col8">
-        <br>
-        <table class="table hover bold">
-            <tr>
-                <td class="title center">##word.stores_name##</td>
-                <td class="center">{{store.name}}</td>
-            </tr>
+    <fieldset>
+        <legend> ##word.basic_information## </legend>
+        <div class="row">
 
-            <tr>
-                <td class="title center">##word.stores_type##</td>
-                <td class="center">{{store.type.##session.lang##}}</td>
-            </tr>
+            <div class="col9">
+                <br>
+                <div class="row">
 
-            <tr>
-                <td class="title center">##word.stores_note##</td>
-                <td class="center blue">{{store.note}}</td>
-            </tr>
-        </table>
+                    <table class="table hover bold">
+                        <tr>
+                            <td class="title center">##word.stores_name##</td>
+                            <td class="center">{{store.name}}</td>
+                        </tr>
 
-    </div>
-    <div class="col1"></div>
-    <div class="col3 center not-print">
-        <i-image ng-model="store.image_url" view></i-image>
-        <i-files ng-model="store.files" view></i-files>
-    </div>
+                        <tr>
+                            <td class="title center">##word.stores_type##</td>
+                            <td class="center">{{store.type.##session.lang##}}</td>
+                        </tr>
+
+                        <tr>
+                            <td class="title center">##word.stores_note##</td>
+                            <td class="center blue">{{store.note}}</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <fieldset x-features="erp">
+                    <legend> ##word.accounting## </legend>
+                    <div class="row">
+                        <div class="col6">
+
+                            <table class="table hover bold">
+                                <tr>
+                                    <td class="title">##word.ledger_account##</td>
+                                    <td class="center">{{store.ledger_account.name_##session.lang##}} - <b
+                                            class="blue">{{store.ledger_account.code}}</td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title">##word.sales_account##</td>
+                                    <td class="center">{{store.sales_account.name_##session.lang##}} - <b
+                                            class="blue">{{store.sales_account.code}}</td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title">##word.sales_return##</td>
+                                    <td class="center">{{store.sales_return.name_##session.lang##}} - <b
+                                            class="blue">{{store.sales_return.code}}</td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title">##word.sales_cost##</td>
+                                    <td class="center">{{store.sales_cost.name_##session.lang##}} - <b
+                                            class="blue">{{store.sales_cost.code}}</td>
+                                </tr>
+
+
+                                <tr>
+                                    <td class="title">##word.discount_allowed##</td>
+                                    <td class="center">{{store.discount_allowed.name_##session.lang##}} - <b
+                                            class="blue">{{store.discount_allowed.code}}</td>
+                                </tr>
+
+
+                            </table>
+
+                        </div>
+
+                        <div class="col6">
+
+                            <table class="table hover bold">
+
+                                <tr>
+                                    <td class="title">##word.damage_store##</td>
+                                    <td class="center">{{store.damage_store.name_##session.lang##}} - <b
+                                            class="blue">{{store.damage_store.code}}</td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title">##word.stock_adjustments##</td>
+                                    <td class="center">{{store.stock_adjustments.name_##session.lang##}} - <b
+                                            class="blue">{{store.stock_adjustments.code}}</td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title">##word.goods_received##</td>
+                                    <td class="center">{{store.goods_received.name_##session.lang##}} - <b
+                                            class="blue">{{store.goods_received.code}}</td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title">##word.delivered_goods##</td>
+                                    <td class="center">{{store.delivered_goods.name_##session.lang##}} - <b
+                                            class="blue">{{store.delivered_goods.code}}</td>
+                                </tr>
+
+                            </table>
+
+                        </div>
+
+                    </div>
+                </fieldset>
+
+
+                <fieldset x-features="erp">
+                    <legend> ##word.accounting_cost_centers## </legend>
+                    <div class="row">
+                        <div class="col6">
+
+                            <table class="table hover bold">
+                                <tr>
+                                    <td class="title">##word.c_s_sales##</td>
+                                    <td class="center">{{store.c_s_sales.name_##session.lang##}} - <b
+                                            class="blue">{{store.c_s_sales.code}}</td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title">##word.c_s_return_sales##</td>
+                                    <td class="center">{{store.c_s_return_sales.name_##session.lang##}} - <b
+                                            class="blue">{{store.c_s_return_sales.code}}</td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title">##word.c_s_sales_cost##</td>
+                                    <td class="center">{{store.c_s_sales_cost.name_##session.lang##}} - <b
+                                            class="blue">{{store.c_s_sales_cost.code}}</td>
+                                </tr>
+
+                            </table>
+
+                        </div>
+
+                        <div class="col6">
+
+                            <table class="table hover bold">
+
+                                <tr>
+                                    <td class="title">##word.c_s_discount_allowed##</td>
+                                    <td class="center">{{store.c_s_discount_allowed.name_##session.lang##}} - <b
+                                            class="blue">{{store.c_s_discount_allowed.code}}</td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title">##word.c_s_damage##</td>
+                                    <td class="center">{{store.c_s_damage.name_##session.lang##}} - <b
+                                            class="blue">{{store.c_s_damage.code}}</td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title">##word.c_s_adjustments##</td>
+                                    <td class="center">{{store.c_s_adjustments.name_##session.lang##}} - <b
+                                            class="blue">{{store.c_s_adjustments.code}}</td>
+                                </tr>
+
+                            </table>
+
+                        </div>
+
+                    </div>
+                </fieldset>
+
+            </div>
+            <div class="col3 center not-print">
+                <i-image ng-model="store.image_url" view></i-image>
+                <i-files ng-model="store.files" view></i-files>
+            </div>
+
+        </div>
+    </fieldset>
 </div>
 <div x-import="inventory-stores/action_info.html"></div>

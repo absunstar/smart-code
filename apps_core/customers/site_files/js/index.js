@@ -473,14 +473,42 @@ app.controller("customers", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.getGuideAccountList = function () {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/accounting_guide_accounts/all",
+      data: {
+        where: {
+          status: 'active',
+          type: 'detailed'
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.guideAccountList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
   $scope.searchAll = function () {
     $scope.getCustomersList($scope.search);
     site.hideModal('#customerSearchModal');
     $scope.search = {};
   };
 
+
+
   $scope.getCustomersList();
   $scope.getHost();
+  $scope.getGuideAccountList();
   $scope.getCustomerGroupList();
   $scope.Gender();
   $scope.getGovList();

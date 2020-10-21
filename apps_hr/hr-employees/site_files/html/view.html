@@ -6,6 +6,10 @@
                 ##word.basic_information##
             </a>
 
+            <a class="tab-link" x-features="erp" onclick="site.showTabContent(event,'#accountingInformation')">
+                ##word.accounting##
+            </a>
+
             <a class="tab-link" onclick="site.showTabContent(event,'#filesInformation')">
                 ##word.files##
             </a>
@@ -201,6 +205,68 @@
 
                 </fieldset>
             </div>
+
+            <div id="accountingInformation" class="tab-content">
+
+                <fieldset>
+                    <legend> ##word.accounting## </legend>
+
+                    <table class="table hover bold">
+                        <tr>
+                            <td class="title">##word.cost_center##</td>
+                            <td class="center">
+                                {{employee_list.cost_center.name_##session.lang##}} - <b
+                                    class="blue">{{employee_list.cost_center.code}}
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="title">##word.advance_account##</td>
+                            <td class="center">{{employee_list.advance_account.name_##session.lang##}} - <b
+                                    class="blue">{{employee_list.advance_account.code}}</b>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="title">##word.custody_account##</td>
+                            <td class="center">{{employee_list.custody_account.name_##session.lang##}} - <b
+                                    class="blue">{{employee_list.custody_account.code}}</td>
+                        </tr>
+
+                        <tr>
+                            <td class="title">##word.employee_payable##</td>
+                            <td class="center">{{employee_list.employee_payable.name_##session.lang##}} - <b
+                                    class="blue">{{employee_list.employee_payable.code}}</td>
+                        </tr>
+
+                        <tr>
+                            <td class="title">##word.payable_salaries##</td>
+                            <td class="center">{{employee_list.payable_salaries.name_##session.lang##}} - <b
+                                    class="blue">{{employee_list.payable_salaries.code}}</td>
+                        </tr>
+
+                        <tr>
+                            <td class="title">##word.vacation_salary_payable##</td>
+                            <td class="center">{{employee_list.vacation_salary_payable.name_##session.lang##}} - <b
+                                    class="blue">{{employee_list.vacation_salary_payable.code}}</td>
+                        </tr>
+
+                        <tr>
+                            <td class="title">##word.vacation_travel_payable##</td>
+                            <td class="center">{{employee_list.vacation_travel_payable.name_##session.lang##}} - <b
+                                    class="blue">{{employee_list.vacation_travel_payable.code}}</td>
+                        </tr>
+
+                        <tr>
+                            <td class="title">##word.vacation_service_payable##</td>
+                            <td class="center">{{employee_list.vacation_service_payable.name_##session.lang##}} - <b
+                                    class="blue">{{employee_list.vacation_service_payable.code}}</td>
+                        </tr>
+
+                    </table>
+                </fieldset>
+            </div>
+
 
             <div id="filesInformation" class="tab-content">
 

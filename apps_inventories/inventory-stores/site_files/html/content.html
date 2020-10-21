@@ -1,20 +1,147 @@
 <div class="row" fixed>
-    <div class="col9">
-        <form class="form">
+    <fieldset>
+        <legend> ##word.basic_information## </legend>
+        <div class="col9">
+            <form class="form">
 
-            <i-control class="col4" ng-model="store.name" label="##word.stores_name##" type="text" id="store_name" v="r"></i-control>
+                <i-control class="col4" ng-model="store.name" label="##word.stores_name##" type="text" id="store_name"
+                    v="r"></i-control>
 
-            <i-list display="##session.lang##" class="col4" ng-model="store.type" items="store_types" ng-search="_search.$serach_store_types"
-                label="##word.stores_type##" v="r"></i-list>
-            <i-textarea label="##word.stores_note##" class="col8" ng-model="store.note"></i-textarea>
-        </form>
+                <i-list display="##session.lang##" class="col4" ng-model="store.type" items="store_types"
+                    ng-search="_search.$serach_store_types" label="##word.stores_type##" v="r"></i-list>
+                <i-textarea label="##word.stores_note##" class="col8" ng-model="store.note"></i-textarea>
 
-    </div>
 
-    <div class="col3 center">
-        <i-image ng-model="store.image_url"></i-image>
-        <i-files ng-model="store.files"></i-files>
+                <div class="row" x-feature="erp">
+                    <br>
+                    <hr>
+                    <br>
+                    <fieldset>
+                        <legend> ##word.accounting## </legend>
 
-        <br>
-    </div>
+                        <div class="row">
+
+                            <i-list ng-search="$ledger_account" display="name_##session.lang##" space="-"
+                                display2="code" class="col4" items="guideAccountList" ng-model="store.ledger_account"
+                                label="##word.ledger_account##">
+                            </i-list>
+
+                            <i-list ng-search="$sales_account" display="name_##session.lang##" space="-" display2="code"
+                                class="col4" items="guideAccountList" ng-model="store.sales_account"
+                                label="##word.sales_account##">
+                            </i-list>
+
+
+                            <i-list ng-search="$sales_return" display="name_##session.lang##" space="-" display2="code"
+                                class="col4" items="guideAccountList" ng-model="store.sales_return"
+                                label="##word.sales_return##">
+                            </i-list>
+
+                        </div>
+
+
+                        <div class="row">
+
+                            <i-list ng-search="$sales_cost" display="name_##session.lang##" space="-" display2="code"
+                                class="col4" items="guideAccountList" ng-model="store.sales_cost"
+                                label="##word.sales_cost##">
+                            </i-list>
+
+                            <i-list ng-search="$discount_allowed" display="name_##session.lang##" space="-"
+                                display2="code" class="col4" items="guideAccountList" ng-model="store.discount_allowed"
+                                label="##word.discount_allowed##">
+                            </i-list>
+
+                            <i-list ng-search="$damage_store" display="name_##session.lang##" space="-" display2="code"
+                                class="col4" items="guideAccountList" ng-model="store.damage_store"
+                                label="##word.damage_store##">
+                            </i-list>
+
+
+                        </div>
+
+
+
+                        <div class="row">
+
+                            <i-list ng-search="$stock_adjustments" display="name_##session.lang##" space="-"
+                                display2="code" class="col4" items="guideAccountList" ng-model="store.stock_adjustments"
+                                label="##word.stock_adjustments##">
+                            </i-list>
+
+                            <i-list ng-search="$goods_received" display="name_##session.lang##" space="-"
+                                display2="code" class="col4" items="guideAccountList" ng-model="store.goods_received"
+                                label="##word.goods_received##">
+                            </i-list>
+
+                            <i-list ng-search="$delivered_goods" display="name_##session.lang##" space="-"
+                                display2="code" class="col4" items="guideAccountList" ng-model="store.delivered_goods"
+                                label="##word.delivered_goods##">
+                            </i-list>
+
+                        </div>
+
+
+                    </fieldset>
+
+                    <br>
+                    <hr>
+                    <br>
+                    <fieldset>
+                        <legend> ##word.accounting_cost_centers## </legend>
+
+                        <div class="row">
+
+                            <i-list ng-search="$c_s_sales" display="name_##session.lang##" space="-" display2="code"
+                                class="col4" items="costCenterList" ng-model="store.c_s_sales"
+                                label="##word.c_s_sales##">
+                            </i-list>
+
+                            <i-list ng-search="$c_s_return_sales" display="name_##session.lang##" space="-"
+                                display2="code" class="col4" items="costCenterList" ng-model="store.c_s_return_sales"
+                                label="##word.c_s_return_sales##">
+                            </i-list>
+
+                            <i-list ng-search="$c_s_sales_cost" display="name_##session.lang##" space="-"
+                                display2="code" class="col4" items="costCenterList" ng-model="store.c_s_sales_cost"
+                                label="##word.c_s_sales_cost##">
+                            </i-list>
+
+                        </div>
+
+                        <div class="row">
+
+                            <i-list ng-search="$c_s_discount_allowed" display="name_##session.lang##" space="-"
+                                display2="code" class="col4" items="costCenterList"
+                                ng-model="store.c_s_discount_allowed" label="##word.c_s_discount_allowed##">
+                            </i-list>
+
+                            <i-list ng-search="$c_s_damage" display="name_##session.lang##" space="-" display2="code"
+                                class="col4" items="costCenterList" ng-model="store.c_s_damage"
+                                label="##word.c_s_damage##">
+                            </i-list>
+
+                            <i-list ng-search="$c_s_adjustments" display="name_##session.lang##" space="-"
+                                display2="code" class="col4" items="costCenterList" ng-model="store.c_s_adjustments"
+                                label="##word.c_s_adjustments##">
+                            </i-list>
+
+                        </div>
+
+                    </fieldset>
+
+                </div>
+
+
+            </form>
+
+        </div>
+
+        <div class="col3 center">
+            <i-image ng-model="store.image_url"></i-image>
+            <i-files ng-model="store.files"></i-files>
+
+            <br>
+        </div>
+    </fieldset>
 </div>

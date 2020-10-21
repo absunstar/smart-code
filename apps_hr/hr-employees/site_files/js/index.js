@@ -438,6 +438,55 @@ app.controller("employee_list", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.getGuideAccountList = function () {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/accounting_guide_accounts/all",
+      data: {
+        where: {
+          status: 'active',
+          type: 'detailed'
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.guideAccountList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+  $scope.getCostCenterList = function () {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/accounting_cost_centers/all",
+      data: {
+        where: {
+          status: 'active',
+          type: 'detailed'
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.costCenterList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
   $scope.displaySearchModal = function () {
     $scope.error = '';
     site.showModal('#employeeSearchModal');
@@ -455,6 +504,8 @@ app.controller("employee_list", function ($scope, $http, $timeout) {
   $scope.getCoursesList();
   $scope.getJobsList();
   $scope.getDegree();
+  $scope.getGuideAccountList();
+  $scope.getCostCenterList();
   $scope.getGender();
   $scope.loadMaritalsStatus();
   $scope.loadMilitariesStatus();

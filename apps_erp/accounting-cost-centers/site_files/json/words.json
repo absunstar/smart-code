@@ -15,6 +15,7 @@
     {"name" : "accounting_cost_centers_delete_count" , "en" : " Count" , "ar" : "حساب صافي الأرباح و الخسائر"},
 
     {"name" : "accounting_cost_centers_type" , "en" : "Cost Centers Type" , "ar" : "نوع مركز التكلفة"},
+    {"name" : "cost_center" , "en" : "Cost Center" , "ar" : "مركز التكلفة"},
     {"name" : "accounting_cost_centers_primary" , "en" : "primary" , "ar" : "رئيسي"},
     {"name" : "accounting_cost_centers_detailed" , "en" : "Detailed" , "ar" : "تفصيلي"},
 

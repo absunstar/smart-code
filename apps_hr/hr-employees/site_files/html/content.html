@@ -6,6 +6,10 @@
                 ##word.basic_information##
             </a>
 
+            <a class="tab-link" x-features="erp" onclick="site.showTabContent(event,'#accountingInformation')">
+                ##word.accounting##
+            </a>
+
             <a class="tab-link" onclick="site.showTabContent(event,'#filesInformation')">
                 ##word.files##
             </a>
@@ -68,9 +72,8 @@
                         </div>
                         <div class="row">
 
-                            <i-list help-id="" ng-search="_search.$gender_search" class="col2"
-                                label="##word.gender##" ng-model="employee_list.gender"
-                                items="genderList" display="##session.lang##"></i-list>
+                            <i-list help-id="" ng-search="_search.$gender_search" class="col2" label="##word.gender##"
+                                ng-model="employee_list.gender" items="genderList" display="##session.lang##"></i-list>
 
                             <i-list help-id="" class="col3" items="degreeList"
                                 ng-search="_search.$employee.$degree_search" label="##word.employees_degrees##"
@@ -152,6 +155,67 @@
                 <div class="col3">
                     <i-image help-id="employee_logo" ng-model="employee_list.image_url"></i-image>
                 </div>
+            </div>
+
+            <div x-features="erp" id="accountingInformation" class="tab-content">
+                <fieldset>
+                    <legend> ##word.accounting## </legend>
+
+                    <div class="row">
+
+                        <i-list ng-search="$cost_center" display="name_##session.lang##" space="-" display2="code"
+                            class="col4" items="costCenterList" ng-model="employee_list.cost_center"
+                            label="##word.cost_center##">
+                        </i-list>
+
+                        <i-list ng-search="$advance_account" display="name_##session.lang##" space="-" display2="code"
+                            class="col4" items="guideAccountList" ng-model="employee_list.advance_account"
+                            label="##word.advance_account##">
+                        </i-list>
+
+                        <i-list ng-search="$custody_account" display="name_##session.lang##" space="-" display2="code"
+                            class="col4" items="guideAccountList" ng-model="employee_list.custody_account"
+                            label="##word.custody_account##">
+                        </i-list>
+
+                    </div>
+
+                    <div class="row">
+
+                        <i-list ng-search="$employee_payable" display="name_##session.lang##" space="-" display2="code"
+                            class="col4" items="guideAccountList" ng-model="employee_list.employee_payable"
+                            label="##word.employee_payable##">
+                        </i-list>
+
+                        <i-list ng-search="$payable_salaries" display="name_##session.lang##" space="-" display2="code"
+                            class="col4" items="guideAccountList" ng-model="employee_list.payable_salaries"
+                            label="##word.payable_salaries##">
+                        </i-list>
+
+                        <i-list ng-search="$vacation_salary_payable" display="name_##session.lang##" space="-"
+                            display2="code" class="col4" items="guideAccountList"
+                            ng-model="employee_list.vacation_salary_payable" label="##word.vacation_salary_payable##">
+                        </i-list>
+
+
+                    </div>
+
+                    <div class="row">
+                        
+                        <i-list ng-search="$vacation_travel_payable" display="name_##session.lang##" space="-"
+                            display2="code" class="col4" items="guideAccountList"
+                            ng-model="employee_list.vacation_travel_payable" label="##word.vacation_travel_payable##">
+                        </i-list>
+
+                        <i-list ng-search="$vacation_service_payable" display="name_##session.lang##" space="-"
+                            display2="code" class="col4" items="guideAccountList"
+                            ng-model="employee_list.vacation_service_payable" label="##word.vacation_service_payable##">
+                        </i-list>
+
+                    </div>
+
+
+                </fieldset>
             </div>
 
             <div id="filesInformation" class="tab-content">

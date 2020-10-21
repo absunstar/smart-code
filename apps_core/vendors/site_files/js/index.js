@@ -217,10 +217,8 @@ app.controller("vendors", function ($scope, $http, $timeout) {
 
   $scope.getVendorList = function (where) {
     $scope.error = '';
-    if ($scope.busy) {
-      return;
-    }
 
+    console.log(where);
     $scope.busy = true;
     $scope.list = [];
     $http({
@@ -344,52 +342,42 @@ app.controller("vendors", function ($scope, $http, $timeout) {
     )
   };
 
+
   $scope.searchAll = function () {
-
-    let where = {};
-
-    if ($scope.search.code) {
-
-      where['code'] = $scope.search.code;
-    }
-    if ($scope.search.name_ar) {
-
-      where['name_ar'] = $scope.search.name_ar;
-    }
-    if ($scope.search.name_en) {
-
-      where['name_en'] = $scope.search.name_en;
-    }
-    if ($scope.search.nationality) {
-
-      where['nationality'] = $scope.search.nationality;
-    }
-    if ($scope.search.gov) {
-
-      where['gov'] = $scope.search.gov;
-    }
-    if ($scope.search.city) {
-
-      where['city'] = $scope.search.city;
-    }
-    if ($scope.search.phone) {
-
-      where['phone'] = $scope.search.phone;
-    }
-    if ($scope.search.mobile) {
-
-      where['mobile'] = $scope.search.mobile;
-    }
-    where['active'] = 'all';
-
-    $scope.getVendorList(where);
-
+    $scope.error = '';
+    $scope.getVendorList($scope.search);
+    $scope.search = {};
     site.hideModal('#vendorSearchModal');
-    $scope.search = {}
-
   };
 
 
+  $scope.getGuideAccountList = function () {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/accounting_guide_accounts/all",
+      data: {
+        where: {
+          status: 'active',
+          type: 'detailed'
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.guideAccountList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+
+  $scope.getGuideAccountList();
   $scope.getVendorList();
   $scope.getVendorGroupList();
   $scope.getGovList();

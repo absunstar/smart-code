@@ -271,8 +271,15 @@
                         </tr>
 
                         <tr>
-                            <td class="title"> ##word.vendors_prof_account## </td>
-                            <td class="center"> {{openBalance.prof_account.name}} </td>
+                            <td class="title">##word.ledger_account##</td>
+                            <td class="center">{{vendor.ledger_account.name_##session.lang##}} - <b
+                                    class="blue">{{vendor.ledger_account.code}}</td>
+                        </tr>
+
+
+                        <tr>
+                            <td class="title"> ##word.vendors_currency_name## </td>
+                            <td class="center"> {{vendor.ledger_account.currency.name}} </td>
                         </tr>
 
                         <tr>
@@ -280,11 +287,7 @@
                             <td class="center blue"> {{'%'+vendor.discount}} </td>
                         </tr>
 
-                        <tr>
-                            <td class="title"> ##word.vendors_currency_name## </td>
-                            <td class="center"> {{vendor.currency.name_##session.lang##}} </td>
-                        </tr>
-
+                     
                         <tr>
                             <td class="title"> ##word.balance## </td>
                             <td class="center green"> {{vendor.balance}} </td>

@@ -14,6 +14,22 @@
     {"name" : "error11" , "en" : "Error Dublicate" , "ar" : "مكرر"},
     {"name" : "stores_type" , "en" : "store Type" , "ar" : "نوع المخزن "},
     {"name" : "stores_note" , "en" : " Notes" , "ar" : "ملاحظات "},
+    {"name" : "sales_account" , "en" : "Sales Account" , "ar" : "حساب المبيعات"},
+    {"name" : "sales_return" , "en" : "Sales Return" , "ar" : "مرتجع مبيعات"},
+    {"name" : "sales_cost" , "en" : "Sales Cost" , "ar" : "تكلفة المبيعات"},
+    {"name" : "discount_allowed" , "en" : "Discount Allowed" , "ar" : "الخصم المسموح"},
+    {"name" : "stock_adjustments" , "en" : "Stock Adjustments" , "ar" : "تسويات مخزون"},
+    {"name" : "goods_received" , "en" : "Goods Received" , "ar" : "بضاعة مستلمة"},
+    {"name" : "delivered_goods" , "en" : "Delivered Goods" , "ar" : "بضاعة مسلمة"},
+
+    {"name" : "c_s_sales" , "en" : "C . S Sales" , "ar" : "م . ت مبيعات"},
+    {"name" : "c_s_return_sales" , "en" : "C . S  Return Sales" , "ar" : "م . ت مرتجع مبيعات"},
+    {"name" : "c_s_sales_cost" , "en" : "C . S  Sales Cost" , "ar" : "م . ت تكلفة مبيعات"},
+    {"name" : "c_s_discount_allowed" , "en" : "C . S  Discount Allowed" , "ar" : "م . ت الخصم المسموح"},
+    {"name" : "c_s_damage" , "en" : "C . S Damage" , "ar" : "م . ت إهلاك"},
+    {"name" : "c_s_adjustments" , "en" : "C . S Adjustments" , "ar" : "م . ت تسويات"},  
+
+
     {"name" : "stores_in_ticket_code" , "en" : " Ticket Number" , "ar" : "رقم الطلب "}
 
 ]

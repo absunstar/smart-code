@@ -9,7 +9,41 @@
         "en": "New Employee",
         "ar": "موظف جديد"
     },
-  
+    {
+        "name": "advance_account",
+        "en": "Advance Account",
+        "ar": "حساب السلف"
+    },
+    {
+        "name": "custody_account",
+        "en": "custody Account",
+        "ar": "حساب العهد"
+    },
+    {
+        "name": "employee_payable",
+        "en": "Employee Payable",
+        "ar": "مستحقات موظف"
+    },
+    {
+        "name": "payable_salaries",
+        "en": "Payable Salaries",
+        "ar": "الرواتب المستحقة"
+    },
+    {
+        "name": "vacation_salary_payable",
+        "en": "Vacation Salary Payable",
+        "ar": "راتب أجازة مستحقة"
+    },
+    {
+        "name": "vacation_travel_payable",
+        "en": "Vacation Travel Payable",
+        "ar": "راتب سفر مستحق"
+    },
+    {
+        "name": "vacation_service_payable",
+        "en": "Vacation Service Payable",
+        "ar": "راتب خدمة مستحق"
+    },
     {
         "name": "employment_date",
         "en": "Employment Date",
