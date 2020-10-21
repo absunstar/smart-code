@@ -538,32 +538,32 @@ module.exports = function init(site) {
   })
 
 
-  site.getDataToDelete = function (data, callback) {
+  // site.getDataToDelete = function (data, callback) {
 
-    let where = {};
+  //   let where = {};
 
-    if (data.name == 'trainer') {
-      where = {
-        $or: [
-          { 'delivery_employee.id': data.id },
-          { 'add_user_info.id': data.id },
-          { 'edit_user_info.id': data.id }
-        ]
-      }
-    }
+  //   if (data.name == 'trainer') {
+  //     where = {
+  //       $or: [
+  //         { 'delivery_employee.id': data.id },
+  //         { 'add_user_info.id': data.id },
+  //         { 'edit_user_info.id': data.id }
+  //       ]
+  //     }
+  //   }
 
-    else if (data.name == 'customer') where['customer.id'] = data.id
-    else if (data.name == 'tables') where['table.id'] = data.id
+  //   else if (data.name == 'customer') where['customer.id'] = data.id
+  //   else if (data.name == 'tables') where['table.id'] = data.id
 
-    $order_customer.findOne({
-      where: where,
-    }, (err, docs, count) => {
+  //   $order_customer.findOne({
+  //     where: where,
+  //   }, (err, docs, count) => {
 
-      if (!err) {
-        if (docs) callback(true)
-        else callback(false)
-      }
-    })
-  }
+  //     if (!err) {
+  //       if (docs) callback(true)
+  //       else callback(false)
+  //     }
+  //   })
+  // }
 
 }

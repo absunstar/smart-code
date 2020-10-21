@@ -15,6 +15,11 @@
         "ar": "إسم العملة"
     },
     {
+        "name": "err_delete_currency",
+        "en": "The currency cannot be deleted for other transactions",
+        "ar": "لأ يمكن حذف العملة لإستخدامها في معاملات أخرى"
+    },
+    {
         "name": "minor_currency",
         "en": "Minor Currency",
         "ar": "العملة الصغرى"

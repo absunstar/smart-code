@@ -579,6 +579,8 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
                     $scope.error = "##word.open_shift_not_found##"
                   } else if (response.data.error.like('*n`t Open Perio*')) {
                     $scope.error = "##word.should_open_period##"
+                  } if (response.data.error.like('*t`s Have Account Invo*')) {
+                    $scope.error = "##word.cant_process_found_invoice##"
                   }
                 };
 
@@ -1188,7 +1190,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
                 } else if (response.data.error.like('*n`t Open Perio*')) {
                   $scope.error = "##word.should_open_period##"
                 }
-              } 
+              }
             },
             function (err) {
               console.log(err);
@@ -1552,6 +1554,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
             site.hideModal('#accountInvoiceModal');
             $scope.account_invoices = response.data.doc;
             $scope.printAccountInvoive();
+            $scope.loadAll({ date: new Date() });
           } else $scope.error = response.data.error;
         },
         function (err) {
@@ -2110,6 +2113,8 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
                       $scope.error = "##word.open_shift_not_found##"
                     } else if (response.data.error.like('*n`t Open Perio*')) {
                       $scope.error = "##word.should_open_period##"
+                    } if (response.data.error.like('*t`s Have Account Invo*')) {
+                      $scope.error = "##word.cant_process_found_invoice##"
                     }
                     if (store_out.posting) store_out.posting = false;
                     else store_out.posting = true;

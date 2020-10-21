@@ -387,13 +387,10 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
 
       } else {
 
-
         $http({
           method: "POST",
           url: "/api/account_invoices/delete",
-          data: {
-            id: $scope.account_invoices.id
-          }
+          data: $scope.account_invoices
         }).then(
           function (response) {
             $scope.busy = false;
@@ -748,6 +745,36 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
         }
       )
     }
+  };
+
+  $scope.getSafes = function () {
+    $scope.error = '';
+    $scope.busy = true;
+
+      $http({
+        method: "POST",
+        url: "/api/safes/all",
+        data: {
+          select: {
+            id: 1,
+            name: 1,
+            commission: 1,
+            currency: 1,
+            type: 1
+          }
+        }
+      }).then(
+        function (response) {
+          $scope.busy = false;
+          if (response.data.done) $scope.getSafesList = response.data.list;
+
+        },
+        function (err) {
+          $scope.busy = false;
+          $scope.error = err;
+        }
+      )
+    
   };
 
   $scope.selectOrderInvoices = function (item) {
@@ -1416,5 +1443,6 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
   $scope.loadOutNames();
   $scope.loadEmployees();
   $scope.loadDelegates();
+  $scope.getSafes();
   $scope.getPaymentMethodList();
 });

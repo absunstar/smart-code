@@ -183,12 +183,12 @@ app.controller("safes", function ($scope, $http) {
 
   $scope.delete = function (safe) {
     $scope.busy = true;
-    if (safe.balance == 0) {
+  
 
       $http({
         method: "POST",
         url: "/api/safes/delete",
-        data: { id: safe.id, name: safe.name }
+        data: safe
       }).then(
         function (response) {
           $scope.busy = false;
@@ -197,16 +197,19 @@ app.controller("safes", function ($scope, $http) {
             $scope.loadAll();
           } else {
             $scope.error = response.data.error;
+            if (response.data.error.like('*Delete Safe Its Exist In Other*')) {
+              $scope.error = "##word.err_delete_safe##"
+            }
           }
         },
         function (err) {
           console.log(err);
         }
       )
-    } else {
+    /* } else {
       $scope.busy = false;
       $scope.error = '##word.cannt_delete_safe##';
-    }
+    } */
   };
 
   $scope.getSafeTypeList = function () {

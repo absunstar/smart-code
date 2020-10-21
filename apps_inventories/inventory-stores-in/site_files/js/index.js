@@ -102,6 +102,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
           $scope.account_invoices = response.data.doc;
           site.hideModal('#accountInvoiceModal');
           $scope.printAccountInvoive();
+          $scope.loadAll({ date: new Date() });
         } else $scope.error = response.data.error;
       },
       function (err) {
@@ -1502,6 +1503,8 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
                     $scope.error = "##word.open_shift_not_found##"
                   } else if (response.data.error.like('*n`t Open Perio*')) {
                     $scope.error = "##word.should_open_period##"
+                  } else if (response.data.error.like('*t`s Have Account Invo*')) {
+                    $scope.error = "##word.cant_process_found_invoice##"
                   }
                 };
 
@@ -1595,6 +1598,8 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
                       $scope.error = "##word.open_shift_not_found##"
                     } else if (response.data.error.like('*n`t Open Perio*')) {
                       $scope.error = "##word.should_open_period##"
+                    } else if (response.data.error.like('*t`s Have Account Invo*')) {
+                      $scope.error = "##word.cant_process_found_invoice##"
                     }
 
                     if (store_in.posting) store_in.posting = false;

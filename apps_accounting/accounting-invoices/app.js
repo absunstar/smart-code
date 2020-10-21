@@ -117,7 +117,7 @@ module.exports = function init(site) {
     } else account_invoices_doc.remain_amount = site.toNumber(account_invoices_doc.net_value)
     account_invoices_doc.remain_amount = site.toNumber(account_invoices_doc.remain_amount)
 
-    if (account_invoices_doc.source_type.id == 10) account_invoices_doc.remain_amount = 0
+    if (account_invoices_doc.source_type.id == 8 || account_invoices_doc.source_type.id == 9 || account_invoices_doc.source_type.id == 10 || account_invoices_doc.source_type.id == 11) account_invoices_doc.remain_amount = 0
 
     site.getOpenShift({ companyId: account_invoices_doc.company.id, branchCode: account_invoices_doc.branch.code }, shiftCb => {
       if (shiftCb) {
@@ -136,8 +136,8 @@ module.exports = function init(site) {
                 response.done = true;
                 response.doc = doc;
 
-                if (doc.source_type.id == 1) site.quee('[store_in][account_invoice][invoice]', doc.invoice_id)
-                else if (doc.source_type.id == 2) site.quee('[store_out][account_invoice][invoice]', doc.invoice_id)
+                if (doc.source_type.id == 1) site.quee('[store_in][account_invoice][invoice]', doc.invoice_id, 'add')
+                else if (doc.source_type.id == 2) site.quee('[store_out][account_invoice][invoice]', doc.invoice_id, 'add')
 
 
                 if (doc.posting) {
@@ -811,6 +811,8 @@ module.exports = function init(site) {
                 if (!err) {
                   response.done = true
                   response.doc = result.doc
+                  if (response.doc.source_type.id == 1) site.quee('[store_in][account_invoice][invoice]', response.doc.invoice_id, 'delete')
+                  else if (response.doc.source_type.id == 2) site.quee('[store_out][account_invoice][invoice]', response.doc.invoice_id, 'delete')
 
                   if (result.doc.posting) {
                     result.doc.total_paid_up = 0
@@ -988,6 +990,28 @@ module.exports = function init(site) {
 
     let account_invoices_doc = req.body
 
+
+    if (account_invoices_doc.paid_up && account_invoices_doc.safe && account_invoices_doc.payment_list && account_invoices_doc.payment_list.length == 1) {
+      account_invoices_doc.payment_list = [{
+        date: account_invoices_doc.date,
+        posting: false,
+        safe: account_invoices_doc.safe,
+        shift: account_invoices_doc.shift,
+        payment_method: account_invoices_doc.payment_method,
+        currency: account_invoices_doc.currency,
+        paid_up: account_invoices_doc.paid_up
+      }]
+
+      account_invoices_doc.total_paid_up = 0
+
+      if (account_invoices_doc.paid_up) {
+        account_invoices_doc.total_paid_up = site.toNumber(account_invoices_doc.paid_up)
+      }
+    };
+
+
+
+    if (account_invoices_doc.source_type.id == 8 || account_invoices_doc.source_type.id == 9 || account_invoices_doc.source_type.id == 10 || account_invoices_doc.source_type.id == 11) account_invoices_doc.remain_amount = 0
     account_invoices_doc.edit_user_info = site.security.getUserFinger({ $req: req, $res: res })
     site.getOpenShift({ companyId: req.body.company.id, branchCode: req.body.branch.code }, shiftCb => {
       if (shiftCb) {
@@ -1157,6 +1181,10 @@ module.exports = function init(site) {
     if (where['payment_method']) {
       where['payment_method.id'] = where['payment_method'].id;
       delete where['payment_method']
+    }
+    if (where['source_code']) {
+      where['invoice_code'] = where['invoice_code'];
+      delete where['source_code']
     }
 
     if (where['post']) {

@@ -165,7 +165,8 @@ module.exports = function init(site) {
             name: doc.shift.name
           }
         }
-        site.quee('[safes][safes_payments][+]', obj)
+        if (doc.balance)
+          site.quee('[safes][safes_payments][+]', obj)
         response.done = true
       } else {
         response.error = err.message
@@ -218,25 +219,36 @@ module.exports = function init(site) {
       return
     }
 
-
     let id = req.body.id
-    if (id) {
-      $safes.delete({
-        id: id,
-        $req: req,
-        $res: res
-      }, (err, result) => {
-        if (!err) {
-          response.done = true
 
-          site.call('delete safe payment', id)
+    let data = { name: 'safe', id: id };
+    site.getAccountingDataToDelete(data, callback => {
 
-        }
+      if (callback == true) {
+        response.error = 'Cant Delete Safe Its Exist In Other Transaction'
         res.json(response)
-      })
-    } else {
-      res.json(response)
-    }
+
+      } else {
+
+        if (id) {
+          $safes.delete({
+            id: id,
+            $req: req,
+            $res: res
+          }, (err, result) => {
+            if (!err) {
+              response.done = true
+
+              site.call('delete safe payment', id)
+
+            }
+            res.json(response)
+          })
+        } else {
+          res.json(response)
+        }
+      }
+    })
   })
 
   site.post("/api/safes/view", (req, res) => {

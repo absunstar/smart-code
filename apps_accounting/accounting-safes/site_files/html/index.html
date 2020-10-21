@@ -33,8 +33,6 @@
                     <i-button x-permissions="safes_search || safes_manage" type="search" label="##word.search_all##"
                         onclick="site.showModal('#SafesSearchModal')"></i-button>
 
-
-
                 </div>
 
                 <table class="table hover bold loaded" id="t1">
@@ -57,7 +55,9 @@
 
                         <td class="center">{{c.employee.name}}</td>
 
-                        <td class="green center">{{c.balance }} <!-- <p class="green" ng-show="c.balance">$</p> -->
+                        <td class="center">
+                            <p class="green" ng-show="c.balance > 0">{{c.balance }}</p>
+                            <p class="red" ng-show="c.balance < 0 || c.balance == 0">{{c.balance }}</p>
                         </td>
                         <td class="center not-print">
                             <i-button x-permissions="safes_view || safes_manage" type="details" label="##word.details##"

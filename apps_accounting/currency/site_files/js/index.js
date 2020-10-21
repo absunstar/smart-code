@@ -120,9 +120,7 @@ app.controller("currency", function ($scope, $http, $timeout) {
     $http({
       method: "POST",
       url: "/api/currency/delete",
-      data: {
-        id: $scope.currency.id
-      }
+      data: $scope.currency
     }).then(
       function (response) {
         $scope.busy = false;
@@ -131,6 +129,9 @@ app.controller("currency", function ($scope, $http, $timeout) {
           $scope.getCurrencyList();
         } else {
           $scope.error = response.data.error;
+          if (response.data.error.like('*Delete Currency Its Exist In Other*')) {
+            $scope.error = "##word.err_delete_currency##"
+          }
         }
       },
       function (err) {
@@ -175,7 +176,7 @@ app.controller("currency", function ($scope, $http, $timeout) {
   };
 
   $scope.searchAll = function () {
- 
+
     $scope.getCurrencyList($scope.search);
     site.hideModal('#currencySearchModal');
     $scope.search = {};

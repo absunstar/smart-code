@@ -79,7 +79,9 @@
                         <tr ng-repeat="itm in store_in.items">
                             <td> <br> {{$index + 1}}</td>
                             <td> <br> {{itm.name}}</td>
-                            <td> <br> {{itm.barcode}}</td>
+                            <td> <br>
+                                <p class="userPrint">{{itm.barcode}}</p>
+                            </td>
                             <td>
                                 <br>
                                 <p>{{itm.size}}</p>

@@ -120,16 +120,26 @@ module.exports = function init(site) {
     }
     let _id = req.body._id
 
-    if (_id) {
-      $stores.delete({ _id: $stores.ObjectID(_id), $req: req, $res: res }, (err, result) => {
-        if (!err) {
-          response.done = true
-        }
+    site.getStoreToDelete(req.body.id, callback => {
+
+      if (callback == true) {
+        response.error = 'Cant Delete Store Its Exist In Other Transaction'
         res.json(response)
-      })
-    } else {
-      res.json(response)
-    }
+
+      } else {
+
+        if (_id) {
+          $stores.delete({ _id: $stores.ObjectID(_id), $req: req, $res: res }, (err, result) => {
+            if (!err) {
+              response.done = true
+            }
+            res.json(response)
+          })
+        } else {
+          res.json(response)
+        }
+      }
+    })
   })
 
   site.post("/api/stores/view", (req, res) => {

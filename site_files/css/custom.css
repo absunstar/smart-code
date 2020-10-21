@@ -73,6 +73,11 @@ fieldset legend {
   color: #ffffff;
 }
 
+
+.userPrint {
+  user-select: all;
+}
+
 popup item:hover {
   background: #3f51ff;
   color: #ffffff;

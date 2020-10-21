@@ -439,4 +439,19 @@ module.exports = function init(site) {
   })
 
 
+  site.getStoreToDelete = function (storeId, callback) {
+
+    let where = {};
+    where['store.id'] = storeId
+
+    $item_transaction.findOne({
+      where: where,
+    }, (err, doc, count) => {
+      if (!err) {
+        if (doc) callback(true)
+        else callback(false)
+      }
+    })
+  }
+
 }

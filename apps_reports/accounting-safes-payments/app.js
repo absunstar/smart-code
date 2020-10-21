@@ -41,7 +41,7 @@ module.exports = function init(site) {
     info.pre_balance = site.toNumber(info.pre_balance)
     info.balance = site.toNumber(info.balance)
 
-    $safes_payments.add(info, () => { 
+    $safes_payments.add(info, () => {
       next()
     });
 
@@ -198,11 +198,27 @@ module.exports = function init(site) {
       'company.id': site.get_company(req).id,
       $req: req,
       $res: res
-    } , ()=>{
+    }, () => {
       response.done = true
       res.json(response)
     });
   })
 
+
+  site.getAccountingDataToDelete = function (data, callback) {
+    let where = {}
+
+    if (data.name == 'safe') where['safe.id'] = data.id
+    else if (data.name == 'currency') where['currency.id'] = data.id
+    $safes_payments.findOne({
+      where: where,
+    }, (err, doc, count) => {
+      if (!err) {
+
+        if (doc) callback(true)
+        else callback(false)
+      }
+    })
+  }
 
 }

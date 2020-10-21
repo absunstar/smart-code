@@ -3,6 +3,7 @@
     {"name" : "inventory_stores" , "en" : "Stores" , "ar" : "المخازن"},
     {"name" : "stores_add" , "en" : "Add Store" , "ar" : "إضافة مخزن"},
     {"name" : "stores_new" , "en" : "New Store" , "ar" : "مخزن جديد"},
+    {"name" : "err_delete_store" , "en" : "The store cannot be deleted for other transactions" , "ar" : "لأ يمكن حذف المخزن لإستخدامه في معاملات أخرى"},
     {"name" : "stores_details" , "en" : "Store Details" , "ar" : "تفاصيل مخزن"},
     {"name" : "stores_edit" , "en" : "Edit Store" , "ar" : "تعديل بيانات مخزن"},
     {"name" : "stores_delete" , "en" : "Delete Store" , "ar" : "حذف مخزن"},

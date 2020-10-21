@@ -18,19 +18,30 @@
                         </div>
 
                         <div class="row">
+
                             <i-control class="col3" type="text" label="##word.code##" ng-model="search.code">
                             </i-control>
+
+                            <i-control ng-show="##query.type## == 1 || ##query.type## == 2" class="col3" type="text" label="##word.source_code##"
+                                ng-model="search.source_code">
+                            </i-control>
+
                             <i-control class="col3 r_indigo" type="text" label="##word.shift##"
                                 ng-model="search.shift_code">
                             </i-control>
 
+                        </div>
+                        <div class="row">
                             <i-list help-id="" ng-search="_search.$payment_method_search" class="col3"
-                                ng-change="getSafeByType(search)" label="##word.payment_method##"
-                                ng-model="search.payment_method" items="paymentMethodList" display="##session.lang##">
+                                label="##word.payment_method##" ng-model="search.payment_method"
+                                items="paymentMethodList" display="##session.lang##">
                             </i-list>
 
+                            <i-list ng-search="_search.$order_invoice.$currency_search" class="col3"
+                                ng-model="search.currency" label="##word.currency##" items="currenciesList"></i-list>
+
                             <i-list ng-search="_search.$order_invoice.$safes_search" class="col3" ng-model="search.safe"
-                                label="##word.safe##" items="safesList"></i-list>
+                                label="##word.safe##" items="getSafesList"></i-list>
                         </div>
 
                         <div class="row"

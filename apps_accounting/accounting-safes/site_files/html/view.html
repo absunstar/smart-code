@@ -25,7 +25,9 @@
 
             <tr>
                 <td class="title">##word.safes_balance##</td>
-                <td class="green center">{{safe.balance }}
+                <td class="center">
+                    <p class="green" ng-show="safe.balance > 0">{{safe.balance }}</p>
+                    <p class="red" ng-show="safe.balance < 0 || safe.balance == 0">{{safe.balance }}</p>
                     <!-- <p class="green" ng-show="safe.balance">$</p> -->
                 </td>
             </tr>

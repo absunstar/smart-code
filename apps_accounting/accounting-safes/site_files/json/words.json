@@ -15,6 +15,11 @@
         "ar": "تفاصيل خزينة"
     },
     {
+        "name": "err_delete_safe",
+        "en": "The safe cannot be deleted for other transactions",
+        "ar": "لأ يمكن حذف الخزنة لإستخدامها في معاملات أخرى"
+    },
+    {
         "name": "safes_edit",
         "en": "Edit Safe",
         "ar": "تعديل بيانات خزينة"

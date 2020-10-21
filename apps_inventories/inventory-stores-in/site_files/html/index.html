@@ -53,8 +53,8 @@
                 </div>
                 <div class="top-actions">
 
-                    <i-button x-permissions="stores_in_add || stores_in_manage" type="add"
-                        label="##word.new##" ng-click="newStoreIn()"></i-button>
+                    <i-button x-permissions="stores_in_add || stores_in_manage" type="add" label="##word.new##"
+                        ng-click="newStoreIn()"></i-button>
                     <i-button x-permissions="stores_in_search || stores_in_manage" type="search"
                         label="##word.search_all##" onclick="site.showModal('#StoresInSearchModal')"></i-button>
 
@@ -92,10 +92,12 @@
                             <p class="text-center brown"> <br> {{c.date | date : 'yyyy - MM - dd'}} </p>
                         </td>
                         <td>
-                            <p class="bold  text-center"> <br> {{c.number}} </p>
+                            <br>
+                            <p class="bold  text-center userPrint"> {{c.number}} </p>
                         </td>
                         <td>
-                            <p class="bold text-center blue"> <br> {{c.supply_number}} </p>
+                            <br>
+                            <p class="bold text-center blue"> {{c.supply_number}} </p>
                         </td>
                         <td>
                             <p class="text-center blue"> <br> {{c.vendor.name_##session.lang##}} </p>

@@ -15,11 +15,11 @@
 
                                 <tr>
                                     <td class="title"> ##word.shift## </td>
-                                    <td class="center blue"> {{account_invoices.shift.code}} </td>
+                                    <td class="center userPrint blue"> {{account_invoices.shift.code}} </td>
                                 </tr>
                                 <tr>
                                     <td class="title"> ##word.code## </td>
-                                    <td class="center blue"> {{account_invoices.code}} </td>
+                                    <td class="center "> <p class="userPrint blue">{{account_invoices.code}}</p>  </td>
                                 </tr>
                                 <tr>
                                     <td class="title"> ##word.source_type## </td>
@@ -160,7 +160,7 @@
                         <div class="row">
 
                             <h2 class="center black"> ##word.source_code##</h2>
-                            <h2 class="center blue"> {{account_invoices.invoice_code}}</h2>
+                            <h2 class="center blue userPrint"> {{account_invoices.invoice_code}}</h2>
                         </div>
 
                         <div class="row" ng-show="account_invoices.current_book_list.length > 0">
@@ -204,7 +204,7 @@
                                 <i-control disabled class="col2" ng-model="account_invoices.total_paid_up"
                                     label="##word.total_paid_up##" type="number"></i-control>
                                 <i-control disabled class="col2" ng-model="account_invoices.remain_amount"
-                                    label="##word.total_remain##" type="number"></i-control>
+                                ng-hide="account_invoices.source_type.id == 8 ||account_invoices.source_type.id == 9 || account_invoices.source_type.id == 10  || account_invoices.source_type.id == 11" label="##word.total_remain##" type="number"></i-control>
                                 <br>
                                 <table class="table bold hover loaded">
 

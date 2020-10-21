@@ -200,10 +200,7 @@ app.controller("stores", function ($scope, $http) {
     $http({
       method: "POST",
       url: "/api/stores/delete",
-      data: {
-        _id: $scope.store._id,
-        name: $scope.store.name
-      }
+      data: $scope.store
     }).then(
       function (response) {
         $scope.busy = false;
@@ -212,6 +209,9 @@ app.controller("stores", function ($scope, $http) {
           $scope.loadAll();
         } else {
           $scope.error = response.data.error;
+          if (response.data.error.like('*Delete Store Its Exist In Other*')) {
+            $scope.error = "##word.err_delete_store##"
+          }
         }
       },
       function (err) {
