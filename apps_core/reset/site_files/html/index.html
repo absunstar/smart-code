@@ -18,6 +18,9 @@
         <div class="row" ng-controller="reset">
             <div class="row">
                 <h1 class="bold text-center">##word.reset##</h1>
+                <br>
+                <br>
+                <h1 class="bold red text-center">{{error}}</h1>
             </div>
             <br><br><br>
 
@@ -122,31 +125,35 @@
 
                     <div class="row" ng-hide="reset_post_stores_in">
 
-                        <i-button x-permissions="reset_post_stores_in || reset_manage"
-                            label="##word.reset_post_stores_in##" ng-click="postStoreIn();reset_post_stores_in = true">
+                        <i-button class="col5" x-permissions="reset_post_stores_in || reset_manage"
+                            label="##word.reset_post_stores_in##"
+                            ng-click="postingStoreInAll();reset_post_stores_in = true">
                         </i-button>
+                        <h2 class="bold green">{{done_posting_store_in}}</h2>
+
                     </div>
                     <br><br><br>
-
-                    
-                    <div class="row" ng-hide="reset_post_stores_transfer">
-
-                        <i-button x-permissions="reset_post_stores_transfer || reset_manage"
-                            label="##word.reset_post_stores_transfer##"
-                            ng-click="postStoreTransfer();reset_post_stores_transfer = true">
-                        </i-button>
-                    </div>
-                    <br><br><br>
-
 
                     <div class="row" ng-hide="reset_post_stores_out">
 
                         <i-button x-permissions="reset_post_stores_out || reset_manage"
-                            label="##word.reset_post_stores_out##"
-                            ng-click="postStoreOut();reset_post_stores_out = true">
+                        class="col5"  label="##word.reset_post_stores_out##"
+                            ng-click="postingStoreOutAll();reset_post_stores_out = true">
                         </i-button>
+                        <h2 class="bold green">{{done_posting_store_out}}</h2>
                     </div>
                     <br><br><br>
+
+                    <div class="row" ng-hide="reset_post_stores_transfer">
+
+                        <i-button x-permissions="reset_post_stores_transfer || reset_manage"
+                        class="col5" label="##word.reset_post_stores_transfer##"
+                            ng-click="confirmTransferBranchAll();reset_post_stores_transfer = true">
+                        </i-button>
+                        <h2 class="bold green">{{done_confirm_transfer_branch}}</h2>
+                    </div>
+                    <br><br><br>
+
                 </div>
 
             </div>
