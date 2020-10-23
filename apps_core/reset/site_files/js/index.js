@@ -288,9 +288,10 @@ app.controller("reset", function ($scope, $http, $timeout) {
               };
 
               let iPlas = i + 1;
-              $scope.done_confirm_transfer_branch = iPlas + '------' + _transfer_branch_all.length;
-              console.log($scope.done_confirm_transfer_branch);
-              /* if ((i + 1) == _transfer_branch_all.length) $scope.done_confirm_transfer_branch = 'تم إعتماد التحويلات المخزنية' */
+              $scope.length_posting = _transfer_branch_all.length + ' ' + '<------>' + ' ' + iPlas;
+
+              if ((i + 1) == _transfer_branch_all.length) $scope.done_posting = 'تم إعتماد التحويلات المخزنية';
+
             }, 1000 * i);
 
           }
@@ -394,9 +395,11 @@ app.controller("reset", function ($scope, $http, $timeout) {
 
                   })
                 };
+
                 let iPlas = i + 1;
-                $scope.done_posting_store_out = iPlas + '------' + _store_out_all.length;
-                console.log($scope.done_posting_store_out);
+                $scope.length_posting = _store_out_all.length + ' ' + '<------>' + ' ' + iPlas;
+
+                if ((i + 1) == _store_out_all.length) $scope.done_posting = 'تم ترحيل فواتير المبيعات';
 
               }, 1000 * i);
 
@@ -425,10 +428,10 @@ app.controller("reset", function ($scope, $http, $timeout) {
       }
     }).then(
       function (response) {
+
         $scope.busy = false;
         if (response.data.done && response.data.list.length > 0) {
           let _store_in_all = response.data.list.reverse();
-
           let notExist = false;
           let notExistCountList = [];
           _store_in_all.forEach(_stIn => {
@@ -503,10 +506,12 @@ app.controller("reset", function ($scope, $http, $timeout) {
                   });
 
                 };
+
                 let iPlas = i + 1;
-                $scope.done_posting_store_in = iPlas + '------' + _store_in_all.length;
-                console.log($scope.done_posting_store_in);
-                /* if ((i + 1) == _store_in_all.length) $scope.done_posting_store_in = 'تم ترحيل فواتر المشتريات' */
+                $scope.length_posting = _store_in_all.length + ' ' + '<------>' + ' ' + iPlas;
+                if ((i + 1) == _store_in_all.length) $scope.done_posting = 'تم ترحيل فواتير المشتريات';
+
+
               }, 1000 * i);
 
             }
@@ -519,6 +524,79 @@ app.controller("reset", function ($scope, $http, $timeout) {
       }
     )
   };
+
+
+  $scope.postingAccountingAll = function () {
+    $scope.error = '';
+    let where = { branchAll: true };
+
+    $http({
+      method: "POST",
+      url: "/api/account_invoices/all",
+      data: {
+        where: where
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+
+          let _account_invoices_all = response.data.list.reverse();
+
+          for (let i = 0; i < _account_invoices_all.length; i++) {
+            setTimeout(() => {
+              let _account_invoices = _account_invoices_all[i];
+
+              if (!_account_invoices.posting) {
+                $scope.financialYear(_account_invoices.date, is_allowed_date => {
+                  if (!is_allowed_date) {
+                    $scope.error = '##word.should_open_period##';
+
+                  } else {
+
+                    _account_invoices.posting = true;
+
+                    $http({
+                      method: "POST",
+                      url: "/api/account_invoices/posting",
+                      data: _account_invoices
+                    }).then(
+                      function (response) {
+                        if (response.data.done) {
+
+                        } else {
+                          $scope.error = response.data.error;
+                          if (response.data.error.like('*n`t Found Open Shi*')) {
+                            $scope.error = "##word.open_shift_not_found##"
+                          } else if (response.data.error.like('*n`t Open Perio*')) {
+                            $scope.error = "##word.should_open_period##"
+                          }
+                        }
+                      },
+                      function (err) {
+                        console.log(err);
+                      }
+                    )
+
+                  }
+                })
+              };
+
+              let iPlas = i + 1;
+              $scope.length_posting = _account_invoices_all.length + ' ' + '<------>' + ' ' + iPlas;
+              if ((i + 1) == _account_invoices_all.length) $scope.done_posting = 'تم ترحيل فواتير الحسابات';
+            }, 100 * 1 * i);
+
+          };
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
 
 
   $scope.testTransferBranchPatches = function (transferBranch, callback) {
@@ -642,7 +720,6 @@ app.controller("reset", function ($scope, $http, $timeout) {
         }
 
       });
-
 
       obj.patch_list = obj.patch_list.filter(function (item, pos) {
         return obj.patch_list.indexOf(item) === pos;

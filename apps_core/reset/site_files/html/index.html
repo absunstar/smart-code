@@ -21,6 +21,8 @@
                 <br>
                 <br>
                 <h1 class="bold red text-center">{{error}}</h1>
+                <h1 class="bold blue text-center">{{length_posting}}</h1>
+                <h1 class="bold green text-center">{{done_posting}}</h1>
             </div>
             <br><br><br>
 
@@ -129,7 +131,6 @@
                             label="##word.reset_post_stores_in##"
                             ng-click="postingStoreInAll();reset_post_stores_in = true">
                         </i-button>
-                        <h2 class="bold green">{{done_posting_store_in}}</h2>
 
                     </div>
                     <br><br><br>
@@ -140,7 +141,6 @@
                         class="col5"  label="##word.reset_post_stores_out##"
                             ng-click="postingStoreOutAll();reset_post_stores_out = true">
                         </i-button>
-                        <h2 class="bold green">{{done_posting_store_out}}</h2>
                     </div>
                     <br><br><br>
 
@@ -150,7 +150,15 @@
                         class="col5" label="##word.reset_post_stores_transfer##"
                             ng-click="confirmTransferBranchAll();reset_post_stores_transfer = true">
                         </i-button>
-                        <h2 class="bold green">{{done_confirm_transfer_branch}}</h2>
+                    </div>
+                    <br><br><br>
+
+                    <div class="row" ng-hide="reset_post_account_invoice">
+
+                        <i-button x-permissions="reset_post_account_invoice || reset_manage"
+                        class="col5" label="##word.reset_post_account_invoice##"
+                            ng-click="postingAccountingAll();reset_post_account_invoice = true">
+                        </i-button>
                     </div>
                     <br><br><br>
 

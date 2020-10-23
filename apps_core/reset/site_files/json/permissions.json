@@ -12,7 +12,9 @@
     { "module_name" : "public" , "screen_name" : "reset" , "name":"reset_unpost_acc_invoice" , "en":"Un Post Account Invoice" , "ar":"فك ترحيل فواتير الحسابات"},
     { "module_name" : "public" , "screen_name" : "reset" , "name":"reset_post_stores_out" , "en":"Post Sales" , "ar":"ترحيل المبيعات"},
     { "module_name" : "public" , "screen_name" : "reset" , "name":"reset_post_stores_in" , "en":"Post Purchase" , "ar":"ترحيل المشتريات"},
-    { "module_name" : "public" , "screen_name" : "reset" , "name":"reset_post_stores_transfer" , "en":"Confirm Stores Transfer" , "ar":"ترحيل التحويلات المخزنية"},
+    { "module_name" : "public" , "screen_name" : "reset" , "name":"reset_post_stores_transfer" , "en":"Confirm Stores Transfer" , "ar":"إعتماد التحويلات المخزنية"},
+    { "module_name" : "public" , "screen_name" : "reset" , "name":"reset_post_account_invoice" , "en":"Post Account Invoice" , "ar":"ترحيل فواتير الحسابات"},
+
     { "module_name" : "public" , "screen_name" : "reset" , "name":"reset_print" , "en":"Print" , "ar":"طباعة"},
     { "module_name" : "public" , "screen_name" : "reset" , "name":"reset_ui" , "en":"UI" , "ar":"الواجهة الرسومية"}
 ]

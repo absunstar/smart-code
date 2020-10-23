@@ -40,6 +40,11 @@
         "ar": "ترحيل المشتريات"
     }, 
     {
+        "name": "reset_post_account_invoice",
+        "en": "Post Account Invoice",
+        "ar": "ترحيل فواتير الحسابات"
+    }, 
+    {
         "name": "reset_post_stores_transfer",
         "en": "Confirm Stores Transfer",
         "ar": "إعتماد التحويلات المخزنية"

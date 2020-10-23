@@ -27,21 +27,27 @@
                         <i-checkbox class="col1" label="##word.active##" ng-model="financial_year.active"></i-checkbox>
                     </div>
 
+                    <br>
+                    <br>
+
                     <div class="row">
                         <i-fulldate label1="##word.financia_years_period_start_gregorian##"
                             label2="##word.financia_years_period_start_hijri##" ng-model="financial_year.period_start">
                         </i-fulldate>
                     </div>
 
+                    <br>
+                    <br>
+
                     <div class="row">
-                        <i-fulldate label1="##word.financia_years_period_end_gregorian##"
+                        <i-fulldate disabled label1="##word.financia_years_period_end_gregorian##"
                             label2="##word.financia_years_period_end_hijri##" ng-model="financial_year.period_end">
                         </i-fulldate>
 
                     </div>
 
                     <div class="row">
-                        <i-button class="col2" type="add" lable="##word.financial_years_create_periods##"
+                        <i-button class="col2" type="add" label="##word.financial_years_create_periods##"
                             ng-click="addFinancialYearsIntervals()"></i-button>
                     </div>
 
@@ -65,7 +71,7 @@
             </legend>
             <div class="row">
                 <i-control class="col3" ng-model="period.code" label="##word.financial_years_period_code##"></i-control>
-
+                <div class="col3"></div>
                 <i-button ng-show=" period.showButton==true" class="col2" ng-click="openPeriod($index)" type="add"
                     label="##word.financial_years_Period_open##">
                 </i-button>
@@ -87,10 +93,10 @@
             <br>
 
             <div class="row">
-                <i-fulldate class="col5" label1="##word.financia_years_period_start_gregorian##"
+                <i-fulldate disabled class="col5" label1="##word.financia_years_period_start_gregorian##"
                     label2="##word.financia_years_period_start_hijri##" ng-model="period.start"></i-fulldate>
                 <div class="col2"></div>
-                <i-fulldate class="col5" label1="##word.financia_years_period_end_gregorian##"
+                <i-fulldate disabled class="col5" label1="##word.financia_years_period_end_gregorian##"
                     label2="##word.financia_years_period_end_hijri##" ng-model="period.end"></i-fulldate>
             </div>
 
