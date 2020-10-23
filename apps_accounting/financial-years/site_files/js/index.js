@@ -197,7 +197,7 @@ app.controller("financial_years", function ($scope, $http, $timeout) {
 
   $scope.displayDeleteFinancialYear = function (financial_year) {
     $scope.error = '';
-    $scope.viewFinancialYear(financial_year,null);
+    $scope.viewFinancialYear(financial_year, null);
     $scope.financial_year = {};
     site.showModal('#financialYearDeleteModal');
   };
@@ -317,7 +317,7 @@ app.controller("financial_years", function ($scope, $http, $timeout) {
         }
 
         $scope.financial_year.accounting_period_list.push({
-          code: $scope.financial_year.code + ' - ' + ($scope.financial_year.accounting_period_list.length + 1),
+          code: new Date(start_date).getFullYear().toString() + ' - ' + site.toNumber(new Date(start_date).getMonth() +1 ) ,
           start: {
             date: start_date
           },
