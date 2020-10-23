@@ -80,6 +80,7 @@ app.controller("customers", function ($scope, $http, $timeout) {
         }
       }
     }
+
     if ($scope.showOpeningBalance) {
       $scope.customer.balance = parseInt(num);
     }

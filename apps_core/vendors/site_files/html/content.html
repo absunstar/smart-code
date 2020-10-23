@@ -164,11 +164,12 @@
                     </legend>
 
                     <div class="row">
-                        <i-control class="col4" label="##word.vendors_initial_balance##"
+                        <i-control class="col3" label="##word.vendors_initial_balance##" type="number"
                             ng-model="openBalance.initial_balance"></i-control>
 
                         <i-list class="col4" label="##word.vendors_currency_name##" ng-model="openBalance.currency"
-                            items="currencyList" display="name_##session.lang##" ng-search="_search.$$currency_name">
+                            display2="minor_currency" space=" - " items="currenciesList" display="name"
+                            ng-search="_search.$$currency_name">
                         </i-list>
 
                         <i-radio class="col2" group="bt_{{$index}}" label="##word.vendors_debit##"
@@ -214,14 +215,14 @@
                             label="##word.ledger_account##">
                         </i-list>
                         <i-list class="col3" label="##word.customers_currency_name##" ng-model="vendor.ledger_account"
-                        disabled display="currency.name" ng-search="_search.$search_currency"></i-list>
+                            disabled display="currency.name" ng-search="_search.$search_currency"></i-list>
 
                         <i-control sign="%" class="col3" label="##word.vendors_discount##" ng-model="vendor.discount">
                         </i-control>
                     </div>
 
                     <div class="row">
-                     
+
 
                         <i-control class="col3" label="##word.balance##" ng-model="vendor.balance"></i-control>
 

@@ -218,7 +218,6 @@ app.controller("vendors", function ($scope, $http, $timeout) {
   $scope.getVendorList = function (where) {
     $scope.error = '';
 
-    console.log(where);
     $scope.busy = true;
     $scope.list = [];
     $http({
@@ -377,6 +376,38 @@ app.controller("vendors", function ($scope, $http, $timeout) {
   };
 
 
+  $scope.loadCurrencies = function () {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/currency/all",
+      data: {
+        select: {
+          id: 1,
+          name: 1,
+          minor_currency: 1,
+          ex_rate: 1
+        },
+        where: {
+          active: true
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.currenciesList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+
+  $scope.loadCurrencies();
   $scope.getGuideAccountList();
   $scope.getVendorList();
   $scope.getVendorGroupList();
