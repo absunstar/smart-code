@@ -13,6 +13,14 @@ app.controller("customers", function ($scope, $http, $timeout) {
       allergic_drink_list: [{}],
       medicine_list: [{}],
       disease_list: [{}],
+      balance: 0,
+      branch_list: [{
+        charge: [{}]
+      }],
+      currency_list: [],
+      opening_balance: [{ initial_balance: 0 }],
+      bank_list: [{}],
+      dealing_company: [{}]
     };
     site.showModal('#customerAddModal');
     document.querySelector('#customerAddModal .tab-link').click();
@@ -60,7 +68,6 @@ app.controller("customers", function ($scope, $http, $timeout) {
     $scope.detailsCustomer(customer);
     $scope.customer = {};
     site.showModal('#customerUpdateModal');
-    $scope.showOpeningBalance = false;
     document.querySelector('#customerUpdateModal .tab-link').click();
   };
 
@@ -81,9 +88,6 @@ app.controller("customers", function ($scope, $http, $timeout) {
       }
     }
 
-    if ($scope.showOpeningBalance) {
-      $scope.customer.balance = parseInt(num);
-    }
   };
 
 
@@ -178,7 +182,7 @@ app.controller("customers", function ($scope, $http, $timeout) {
     document.querySelector('#customerDetailsModal .tab-link').click();
   };
 
-  $scope.detailsCustomer = function (customer) {
+  $scope.detailsCustomer = function (customer, view) {
     $scope.error = '';
     $scope.busy = true;
     $http({
@@ -192,6 +196,10 @@ app.controller("customers", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.customer = response.data.doc;
+          if ($scope.customer.opening_balance && $scope.customer.opening_balance.length > 0)
+            $scope.customer.opening_balance.forEach(o_b => {
+              o_b.$view = true
+            });
         } else {
           $scope.error = response.data.error;
         }
@@ -499,6 +507,36 @@ app.controller("customers", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.loadCurrencies = function () {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/currency/all",
+      data: {
+        select: {
+          id: 1,
+          name: 1,
+          minor_currency: 1,
+          ex_rate: 1
+        },
+        where: {
+          active: true
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.currenciesList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
   $scope.searchAll = function () {
     $scope.getCustomersList($scope.search);
     site.hideModal('#customerSearchModal');
@@ -509,6 +547,7 @@ app.controller("customers", function ($scope, $http, $timeout) {
 
   $scope.getCustomersList();
   $scope.getHost();
+  $scope.loadCurrencies();
   $scope.getGuideAccountList();
   $scope.getCustomerGroupList();
   $scope.Gender();

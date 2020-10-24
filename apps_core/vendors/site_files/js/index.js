@@ -17,7 +17,6 @@ app.controller("vendors", function ($scope, $http, $timeout) {
       bank_list: [{}],
       dealing_company: [{}]
     };
-    $scope.showOpeningBalance=true;
     site.showModal('#vendorAddModal');
     document.querySelector('#vendorAddModal .tab-link').click();
   };
@@ -62,7 +61,6 @@ app.controller("vendors", function ($scope, $http, $timeout) {
     $scope.detailsVendor(vendor);
     $scope.vendor = {};
     site.showModal('#vendorUpdateModal');
-    $scope.showOpeningBalance=false;
     document.querySelector('#vendorUpdateModal .tab-link').click();
   };
 
@@ -86,13 +84,6 @@ app.controller("vendors", function ($scope, $http, $timeout) {
       }
 
     }
-
-    if($scope.showOpeningBalance ){
-
-      $scope.vendor.balance = parseInt(num);
-    }
-    
-
 
   };
 
@@ -200,6 +191,10 @@ app.controller("vendors", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.vendor = response.data.doc;
+          if ($scope.vendor.opening_balance && $scope.vendor.opening_balance.length > 0)
+          $scope.vendor.opening_balance.forEach(o_b => {
+            o_b.$view = true
+          });
         } else {
           $scope.error = response.data.error;
         }

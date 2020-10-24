@@ -213,30 +213,25 @@
 
                         <tr>
                             <td class="title"> ##word.vendors_currency_name## </td>
-                            <td class="center"> {{openBalance.currency.name_##session.lang##}} </td>
+                            <td class="center"> {{openBalance.currency.name}} </td>
                         </tr>
 
                         <tr>
                             <td class="title"> ##word.vendors_balance_type## </td>
-                            <td>
-                                <div class="row margin padding" ng-repeat="openBalance in vendor.opening_balance">
+                            <td class="center">
+                                <p ng-show="openBalance.balance_type == 'debit'" class="center">
+                                    ##word.vendors_debit##
+                                </p>
 
-                                    <div>
-                                        <p ng-show="openBalance.balance_type == 'debit'" class="center">
-                                            ##word.vendors_debit##
-                                        </p>
-
-                                        <p ng-show="openBalance.balance_type == 'credit'" class="center">
-                                            ##word.vendors_credit##
-                                        </p>
-                                    </div>
-
-                                </div>
+                                <p ng-show="openBalance.balance_type == 'credit'" class="center">
+                                    ##word.vendors_credit##
+                                </p>
                             </td>
+
                         </tr>
 
                         <tr>
-                            <td class="title"> ##word.date## </td>
+                            <td class="title"> ##word.vendors_due_date_gregorian## </td>
                             <td class="center brown"> {{openBalance.balance_date | xdate}} </td>
                         </tr>
 
@@ -287,7 +282,7 @@
                             <td class="center blue"> {{'%'+vendor.discount}} </td>
                         </tr>
 
-                     
+
                         <tr>
                             <td class="title"> ##word.balance## </td>
                             <td class="center green"> {{vendor.balance}} </td>

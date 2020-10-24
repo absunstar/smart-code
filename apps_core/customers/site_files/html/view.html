@@ -23,7 +23,7 @@
 
             <a class="tab-link hide" onclick="site.showTabContent(event, '#officialDocuments')">
                 ##word.customers_official_documents## </a>
-            <a class="tab-link hide" onclick="site.showTabContent(event, '#openingBalance')">
+            <a class="tab-link" onclick="site.showTabContent(event, '#openingBalance')">
                 ##word.customers_opening_balance## </a>
             <a class="tab-link" onclick="site.showTabContent(event, '#bankingAndAccounting')">
                 ##word.customers_banking_and_acounting## </a>
@@ -404,30 +404,24 @@
 
                         <tr>
                             <td class="title"> ##word.customers_currency_name## </td>
-                            <td class="center"> {{openBalance.currency.name_##session.lang##}} </td>
+                            <td class="center"> {{openBalance.currency.name}} </td>
                         </tr>
 
                         <tr>
                             <td class="title"> ##word.customers_balance_type## </td>
                             <td>
-                                <div class="row margin padding" ng-repeat="openBalance in customer.opening_balance">
+                                <p ng-show="openBalance.balance_type == 'debit'" class="center">
+                                    ##word.customers_debit##
+                                </p>
 
-                                    <div>
-                                        <p ng-show="openBalance.balance_type == 'debit'" class="center">
-                                            ##word.customers_debit##
-                                        </p>
-
-                                        <p ng-show="openBalance.balance_type == 'credit'" class="center">
-                                            ##word.customers_credit##
-                                        </p>
-                                    </div>
-
-                                </div>
+                                <p ng-show="openBalance.balance_type == 'credit'" class="center">
+                                    ##word.customers_credit##
+                                </p>
                             </td>
                         </tr>
 
                         <tr>
-                            <td class="title"> ##word.date## </td>
+                            <td class="title"> ##word.customers_due_date_gregorian## </td>
                             <td class="center brown"> {{openBalance.balance_date | xdate}} </td>
                         </tr>
 

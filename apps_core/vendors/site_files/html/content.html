@@ -5,7 +5,7 @@
                 ##word.vendors_personal_information## </a>
             <a class="tab-link" onclick="site.showTabContent(event, '#officialDocuments')">
                 ##word.vendors_official_documents## </a>
-            <a class="tab-link" ng-Show="showOpeningBalance" onclick="site.showTabContent(event, '#openingBalance')">
+            <a class="tab-link" onclick="site.showTabContent(event, '#openingBalance')">
                 ##word.vendors_opening_balance## </a>
             <a class="tab-link" ng-click="displaybankingAndAccounting(event)">
                 ##word.vendors_banking_and_acounting## </a>
@@ -159,34 +159,33 @@
                         <i-button type="add default" ng-click="vendor.opening_balance.push({})"></i-button>
                         ##word.vendors_opening_balance_informations##
                         <i-button type="delete default"
-                            ng-click="vendor.opening_balance.length === 1 || vendor.opening_balance.splice($index,1)">
+                        ng-hide="openBalance.$view" ng-click="vendor.opening_balance.length === 1 || vendor.opening_balance.splice($index,1)">
                         </i-button>
                     </legend>
 
                     <div class="row">
                         <i-control class="col3" label="##word.vendors_initial_balance##" type="number"
-                            ng-model="openBalance.initial_balance"></i-control>
+                        ng-disabled="openBalance.$view" ng-model="openBalance.initial_balance"></i-control>
 
                         <i-list class="col4" label="##word.vendors_currency_name##" ng-model="openBalance.currency"
-                            display2="minor_currency" space=" - " items="currenciesList" display="name"
+                        ng-disabled="openBalance.$view" display2="minor_currency" space=" - " items="currenciesList" display="name"
                             ng-search="_search.$$currency_name">
                         </i-list>
 
                         <i-radio class="col2" group="bt_{{$index}}" label="##word.vendors_debit##"
-                            ng-model="openBalance.balance_type" ng-value="debit"></i-radio>
+                        ng-disabled="openBalance.$view"  ng-model="openBalance.balance_type" ng-value="debit"></i-radio>
 
                         <i-radio class="col2" group="bt_{{$index}}" label="##word.vendors_credit##"
-                            ng-model="openBalance.balance_type" ng-value="credit"></i-radio>
-
+                        ng-disabled="openBalance.$view"  ng-model="openBalance.balance_type" ng-value="credit"></i-radio>
 
                     </div>
 
                     <div class="row">
                         <i-fullDate class="col6" label1="##word.vendors_due_date_gregorian##"
-                            label2="##word.vendors_due_date_hijri##" ng-model="openBalance.balance_date"></i-fullDate>
+                        ng-disabled="openBalance.$view"  label2="##word.vendors_due_date_hijri##" ng-model="openBalance.balance_date"></i-fullDate>
 
                         <i-control class="col6" label="##word.vendors_reference_number##"
-                            ng-model="openBalance.reference_number"></i-control>
+                        ng-disabled="openBalance.$view"  ng-model="openBalance.reference_number"></i-control>
                     </div>
 
                     <div class="row">
