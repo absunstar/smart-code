@@ -216,10 +216,7 @@ app.controller("request_service", function ($scope, $http, $timeout) {
             else $scope.account_invoices.safe = $scope.defaultSettings.accounting.safe_bank;
           }
         }
-        if ($scope.account_invoices.currency) {
-          $scope.amount_currency = site.toNumber($scope.account_invoices.net_value) / site.toNumber($scope.account_invoices.currency.ex_rate);
-          $scope.amount_currency = site.toNumber($scope.amount_currency);
-        }
+
 
         $scope.calc($scope.account_invoices);
 
@@ -918,20 +915,22 @@ app.controller("request_service", function ($scope, $http, $timeout) {
     $timeout(() => {
       obj.total_discount = 0;
       let total_attend_count = site.toNumber(obj.services_price) * obj.service_count;
-      obj.paid_require = site.toNumber(obj.services_price);
+
       if (obj.discountes && obj.discountes.length > 0) {
         obj.discountes.forEach(ds => {
           if (ds.type === "percent") obj.total_discount += total_attend_count * site.toNumber(ds.value) / 100;
           else obj.total_discount += site.toNumber(ds.value);
         });
       };
-      obj.paid_require = (site.toNumber(obj.services_price) * site.toNumber(obj.service_count)) - obj.total_discount;
+      if (!obj.source_type) {
+        obj.paid_require = (site.toNumber(obj.services_price) * site.toNumber(obj.service_count)) - obj.total_discount;
+      }
       $scope.discount = {
         type: 'number'
       };
 
       if (obj.currency) {
-        $scope.amount_currency = obj.paid_require / obj.currency.ex_rate;
+        $scope.amount_currency = (obj.paid_require || obj.net_value) / obj.currency.ex_rate;
         $scope.amount_currency = site.toNumber($scope.amount_currency);
 
       }

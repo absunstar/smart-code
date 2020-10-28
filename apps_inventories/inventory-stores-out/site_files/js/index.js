@@ -127,7 +127,11 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
       if (obj.currency) {
         $scope.amount_currency = site.toNumber(obj.net_value) / site.toNumber(obj.currency.ex_rate);
         $scope.amount_currency = site.toNumber($scope.amount_currency);
-        obj.paid_up = $scope.amount_currency;
+        if (obj.Paid_from_customer <= $scope.amount_currency) {
+          obj.paid_up = obj.Paid_from_customer;
+        } else if (obj.Paid_from_customer > $scope.amount_currency) {
+          obj.paid_up = $scope.amount_currency;
+        }
       }
 
 
@@ -438,6 +442,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
                         currency: response.data.doc.currency,
                         shift: response.data.doc.shift,
                         net_value: response.data.doc.net_value,
+                        Paid_from_customer: response.data.doc.Paid_from_customer,
                         paid_up: response.data.doc.paid_up || 0,
                         payment_method: response.data.doc.payment_method,
                         safe: response.data.doc.safe,
@@ -1634,7 +1639,6 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         }
       }
 
-
       obj_print.data.push({
         type: 'invoice-code',
         name: 'Purchase I',
@@ -1684,33 +1688,30 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
             name: _current_book_list.size,
             price: site.addSubZero(_current_book_list.total, 2)
           });
-          if (i < $scope.account_invoices.current_book_list.length - 1) {
-            obj_print.data.push({
-              type: 'line3'
-            });
-          }
 
         });
       };
 
-
-      if ($scope.account_invoices.total_discount)
+      if ($scope.account_invoices.total_discount) {
         obj_print.data.push({
           type: 'text2',
-          value2: $scope.account_invoices.total_discount,
+          value2: site.addSubZero($scope.account_invoices.total_discount, 2),
           value: 'Total Discount'
         });
+      }
 
-      if ($scope.account_invoices.total_tax)
+      if ($scope.account_invoices.total_tax) {
         obj_print.data.push({
           type: 'text2',
-          value2: $scope.account_invoices.total_tax,
+          value2: site.addSubZero($scope.account_invoices.total_tax, 2),
           value: 'Total Tax'
         });
+      }
 
       obj_print.data.push({
         type: 'space'
       });
+
       if ($scope.account_invoices.net_value) {
 
         obj_print.data.push({
@@ -1720,32 +1721,52 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         });
       }
 
-      if ($scope.account_invoices.paid_up)
+      if ($scope.account_invoices.paid_up) {
         obj_print.data.push({
           type: 'text2',
           value2: site.addSubZero($scope.account_invoices.paid_up, 2),
           value: "Paid Up"
         });
-
+      }
 
       obj_print.data.push({
         type: 'space'
       });
 
-      if ($scope.account_invoices.total_remain)
+      if ($scope.account_invoices.total_remain) {
         obj_print.data.push({
-          type: 'text2b',
-          value2: $scope.account_invoices.total_remain,
-          value: "Required to pay"
+          type: 'text2',
+          value2: site.addSubZero($scope.account_invoices.total_remain, 2),
+          value: "Remain Invoice"
         });
+      }
 
 
-      if ($scope.account_invoices.currency)
+      if ($scope.account_invoices.currency) {
         obj_print.data.push({
           type: 'text2',
           value2: $scope.account_invoices.currency.name,
           value: "Currency"
         });
+      }
+
+
+      if ($scope.account_invoices.Paid_from_customer) {
+        $scope.account_invoices.remain_to_customer = 0;
+
+        $scope.account_invoices.remain_to_customer = $scope.account_invoices.Paid_from_customer - $scope.account_invoices.paid_up;
+
+
+        obj_print.data.push({
+          type: 'text2',
+          value2: site.addSubZero($scope.account_invoices.Paid_from_customer, 2),
+          value: "Paid From Customer"
+        }, {
+          type: 'text2',
+          value2: site.addSubZero($scope.account_invoices.remain_to_customer, 2),
+          value: "Remain To Customer"
+        });
+      }
 
 
       if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.invoice_footer && $scope.defaultSettings.printer_program.invoice_footer.length > 0) {

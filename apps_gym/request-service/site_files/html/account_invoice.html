@@ -39,8 +39,8 @@
                         <i-control class="col2" disabled ng-model="account_invoices.currency.ex_rate" type="number"
                             label="##word.exchange_rate##"></i-control>
 
-                        <i-list ng-search="_search.$order_invoice.$safes_search"
-                            class="col4" ng-model="account_invoices.safe" label="##word.safe##" items="safesList">
+                        <i-list ng-search="_search.$order_invoice.$safes_search" class="col4"
+                            ng-model="account_invoices.safe" label="##word.safe##" items="safesList">
                         </i-list>
                     </div>
 
@@ -58,13 +58,13 @@
                             ng-model="account_invoices.net_value" label="##word.paid_require##" type="number">
                         </i-control>
 
+                        <i-control class="col3" disabled ng-model="amount_currency" label="##word.amount_currency##"
+                            type="number"></i-control>
+
                         <i-control class="col2" ng-show="account_invoices.net_value" ng-model="account_invoices.paid_up"
                             label="##word.paid_up##" type="number">
                         </i-control>
 
-                        <i-list ng-search="_search.$order_invoice.$safes_search" class="col4"
-                            ng-model="account_invoices.safe" label="##word.safe##" items="safesList">
-                        </i-list>
                     </div>
 
                     <div class="row">

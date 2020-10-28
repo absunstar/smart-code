@@ -34,7 +34,7 @@ module.exports = function init(site) {
 
       if (doc.selectedServicesList && doc.selectedServicesList.length > 0) {
         doc.selectedServicesList.forEach(attend_service => {
-          if(attend_service.id == obj.service.service_id){            
+          if (attend_service.id == obj.service.service_id) {
             attend_service.current_attendance = attend_service.current_attendance + 1;
             attend_service.remain = attend_service.remain - 1;
           }
@@ -57,11 +57,12 @@ module.exports = function init(site) {
     })
   })
 
-  site.on('[account_invoices][request_service][+]', function (obj) {
-    $request_service.findOne({ id: obj }, (err, doc) => {
-
-      doc.invoice = true
-      $request_service.update(doc);
+  site.on('[account_invoices][request_service][+]', function (objId) {
+    $request_service.findOne({ id: objId }, (err, doc) => {
+      if (doc) {
+        doc.invoice = true
+        $request_service.update(doc);
+      }
     });
   });
 
@@ -225,7 +226,7 @@ module.exports = function init(site) {
     let response = {
       done: false
     }
-          
+
     if (!req.session.user) {
       response.error = 'Please Login First'
       res.json(response)
@@ -251,7 +252,7 @@ module.exports = function init(site) {
         'hall.name': site.get_RegExp(search, "i")
       })
     }
-    
+
     if (where['shift_code']) {
       where['shift.code'] = site.get_RegExp(where['shift_code'], 'i')
       delete where['shift_code']

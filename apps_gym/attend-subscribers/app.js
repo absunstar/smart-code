@@ -184,7 +184,6 @@ module.exports = function init(site) {
         });
 
 
-
         request_services_list.forEach(_request_services => {
           if (_request_services.complex_service && _request_services.complex_service.length > 0) {
             let total_remain = 0;
@@ -201,6 +200,7 @@ module.exports = function init(site) {
           });
         });
         attend_subscribers_doc.service_list = request_services_list
+      
 
         $attend_subscribers.add(attend_subscribers_doc, (err, doc) => {
           if (!err) {

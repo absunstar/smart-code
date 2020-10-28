@@ -25,6 +25,16 @@
         "ar": "المخزن"
     },
     {
+        "name": "Paid_from_customer",
+        "en": "Paid From Customer",
+        "ar": "المدفوع من العميل"
+    },
+    {
+        "name": "remain_to_customer",
+        "en": "Remain To Customer",
+        "ar": "الباقي للعميل"
+    },
+    {
         "name": "view_maximum_discount",
         "en": "View Max.D",
         "ar": "عرض أ.خ"

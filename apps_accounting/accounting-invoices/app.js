@@ -110,10 +110,10 @@ module.exports = function init(site) {
     account_invoices_doc.remain_amount = 0
 
     if (account_invoices_doc.paid_up) {
-      account_invoices_doc.total_paid_up = site.toNumber(account_invoices_doc.paid_up)
+      account_invoices_doc.total_paid_up = site.toNumber(account_invoices_doc.paid_up) * site.toNumber(account_invoices_doc.currency.ex_rate)
 
       if (account_invoices_doc.currency)
-        account_invoices_doc.remain_amount = site.toNumber(account_invoices_doc.net_value) - (account_invoices_doc.total_paid_up * site.toNumber(account_invoices_doc.currency.ex_rate))
+        account_invoices_doc.remain_amount = site.toNumber(account_invoices_doc.net_value) - account_invoices_doc.total_paid_up
     } else account_invoices_doc.remain_amount = site.toNumber(account_invoices_doc.net_value)
     account_invoices_doc.remain_amount = site.toNumber(account_invoices_doc.remain_amount)
 
@@ -220,7 +220,6 @@ module.exports = function init(site) {
                   } else if (doc.source_type.id == 4) {
                     paid_value.operation = { ar: 'فاتورة طلب خدمة', en: 'Request Service Invoice' }
                     paid_value.transition_type = 'in'
-                    site.call('[account_invoices][request_service][+]', Object.assign({}, doc.invoice_id))
 
                   } else if (doc.source_type.id == 5) {
                     paid_value.operation = { ar: 'فاتورة حجز قاعة', en: 'Book Hall Invoice' }
@@ -262,6 +261,7 @@ module.exports = function init(site) {
 
                   if (doc.safe) site.quee('[amounts][safes][+]', Object.assign({}, paid_value))
                 }
+                site.call('[account_invoices][request_service][+]',  doc.invoice_id)
 
               } else {
                 response.error = err.message
@@ -584,7 +584,6 @@ module.exports = function init(site) {
                   } else if (account_invoices_doc.source_type.id == 4) {
                     obj.operation = { ar: 'فاتورة طلب خدمة', en: 'Request Service Invoice' }
                     obj.transition_type = 'in'
-                    site.call('[account_invoices][request_service][+]', Object.assign({}, account_invoices_doc.invoice_id))
 
                   } else if (account_invoices_doc.source_type.id == 5) {
                     obj.operation = { ar: 'فاتورة حجز قاعة', en: 'Book Hall Invoice' }
@@ -774,8 +773,8 @@ module.exports = function init(site) {
         })
       } else {
         response.error = 'Don`t Found Open Shift'
+        res.json(response)
       }
-      res.json(response)
     })
   })
 
