@@ -69,6 +69,11 @@ module.exports = function init(site) {
       return
     }
     let units_switch_doc = req.body
+
+    units_switch_doc.company = site.get_company(req)
+    units_switch_doc.branch = site.get_branch(req)
+    units_switch_doc.code = $units_switch.newCode();
+    
     site.getOpenShift({ companyId: units_switch_doc.company.id, branchCode: units_switch_doc.branch.code }, shiftCb => {
       if (shiftCb) {
 
@@ -80,9 +85,7 @@ module.exports = function init(site) {
           } else {
 
 
-            units_switch_doc.company = site.get_company(req)
-            units_switch_doc.branch = site.get_branch(req)
-            units_switch_doc.code = $units_switch.newCode();
+          
             units_switch_doc.add_user_info = site.security.getUserFinger({ $req: req, $res: res })
 
             units_switch_doc.$req = req

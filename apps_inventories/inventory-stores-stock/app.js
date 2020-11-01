@@ -72,6 +72,11 @@ module.exports = function init(site) {
     }
 
     let stores_stock_doc = req.body
+
+    stores_stock_doc.company = site.get_company(req)
+    stores_stock_doc.branch = site.get_branch(req)
+    stores_stock_doc.code = $stores_stock.newCode();
+    
     site.getOpenShift({ companyId: stores_stock_doc.company.id, branchCode: stores_stock_doc.branch.code }, shiftCb => {
       if (shiftCb) {
 
@@ -83,9 +88,7 @@ module.exports = function init(site) {
           } else {
 
 
-            stores_stock_doc.company = site.get_company(req)
-            stores_stock_doc.branch = site.get_branch(req)
-            stores_stock_doc.code = $stores_stock.newCode();
+        
             stores_stock_doc.add_user_info = site.security.getUserFinger({ $req: req, $res: res })
 
             stores_stock_doc.$req = req

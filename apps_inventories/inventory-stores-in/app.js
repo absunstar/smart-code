@@ -91,6 +91,8 @@ module.exports = function init(site) {
     let stores_in_doc = req.body
     stores_in_doc.company = site.get_company(req)
     stores_in_doc.branch = site.get_branch(req)
+
+    
     site.getOpenShift({ companyId: stores_in_doc.company.id, branchCode: stores_in_doc.branch.code }, shiftCb => {
       if (shiftCb) {
 

@@ -65,7 +65,14 @@ module.exports = function init(site) {
       return
     }
 
+
     let stores_dismantle_doc = req.body
+
+    stores_dismantle_doc.company = site.get_company(req)
+    stores_dismantle_doc.branch = site.get_branch(req)
+    stores_dismantle_doc.code = $stores_dismantle.newCode();
+    stores_dismantle_doc.add_user_info = site.security.getUserFinger({ $req: req, $res: res })
+
     site.getOpenShift({ companyId: stores_dismantle_doc.company.id, branchCode: stores_dismantle_doc.branch.code }, shiftCb => {
       if (shiftCb) {
 
@@ -76,10 +83,6 @@ module.exports = function init(site) {
             res.json(response)
           } else {
 
-            stores_dismantle_doc.company = site.get_company(req)
-            stores_dismantle_doc.branch = site.get_branch(req)
-            stores_dismantle_doc.code = $stores_dismantle.newCode();
-            stores_dismantle_doc.add_user_info = site.security.getUserFinger({ $req: req, $res: res })
 
             stores_dismantle_doc.$req = req
             stores_dismantle_doc.$res = res

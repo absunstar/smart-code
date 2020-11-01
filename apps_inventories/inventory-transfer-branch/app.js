@@ -64,8 +64,11 @@ module.exports = function init(site) {
       return
     }
     let branch_ransfer_doc = req.body
+
     branch_ransfer_doc.$req = req
     branch_ransfer_doc.$res = res
+    branch_ransfer_doc.company = site.get_company(req)
+    branch_ransfer_doc.branch = site.get_branch(req)
 
     site.getOpenShift({ companyId: branch_ransfer_doc.company.id, branchCode: branch_ransfer_doc.branch.code }, shiftCb => {
       if (shiftCb) {
@@ -78,8 +81,7 @@ module.exports = function init(site) {
           } else {
 
 
-            branch_ransfer_doc.company = site.get_company(req)
-            branch_ransfer_doc.branch = site.get_branch(req)
+         
             branch_ransfer_doc.number = $transfer_branch.newCode();
 
             branch_ransfer_doc.add_user_info = site.security.getUserFinger({ $req: req, $res: res })
