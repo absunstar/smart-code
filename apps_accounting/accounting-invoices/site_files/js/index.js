@@ -381,7 +381,6 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.busy = true;
 
-
     $scope.financialYear($scope.account_invoices.date, is_allowed_date => {
       if (!is_allowed_date) {
         $scope.error = '##word.should_open_period##';

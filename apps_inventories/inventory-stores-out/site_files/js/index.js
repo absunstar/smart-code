@@ -430,7 +430,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
               }).then(
                 function (response) {
                   if (response.data.done) {
-                    if ($scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto && $scope.store_out.type && $scope.store_out.type.id != 5) {
+                    if ($scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto && $scope.store_out.type && $scope.store_out.type.id != 5 && !$scope.defaultSettings.general_Settings.work_posting) {
 
                       let account_invoices = {
                         image_url: '/images/account_invoices.png',
@@ -575,6 +575,9 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
                 $scope.busy = false;
                 if (response.data.done) {
                   site.hideModal('#deleteStoreOutModal');
+                  if ($scope.defaultSettings.accounting && $scope.defaultSettings.accounting.link_warehouse_account_invoices) {
+                    $scope.deleteAccountInvoices(store_out);
+                  }
                   $scope.loadAll({ date: new Date() });
                 } else {
                   $scope.error = response.data.error;
@@ -601,6 +604,48 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
       }
     })
   };
+
+  $scope.deleteAccountInvoices = function (item) {
+    $scope.error = '';
+    $scope.busy = true;
+
+    $http({
+      method: "POST",
+      url: "/api/account_invoices/delete",
+      data: {
+        company: item.company,
+        branch: item.branch,
+        where: {
+          source_type_id: 2,
+          invoice_id: item.id
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          site.hideModal('#accountInvoicesDeleteModal');
+          $scope.list.forEach((b, i) => {
+            if (b.id == response.data.doc.id) {
+              $scope.list.splice(i, 1);
+              $scope.count -= 1;
+            }
+          });
+        } else {
+          $scope.error = response.data.error;
+          if (response.data.error.like('*n`t Found Open Shi*')) {
+            $scope.error = "##word.open_shift_not_found##"
+          } else if (response.data.error.like('*n`t Open Perio*')) {
+            $scope.error = "##word.should_open_period##"
+          }
+        }
+      },
+      function (err) {
+        console.log(err);
+      }
+    )
+  };
+
 
   $scope.detailsCustomer = function (callback) {
     $scope.error = '';
@@ -1544,9 +1589,8 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         }
       }
 
-      if ($scope.defaultSettings.general_Settings && $scope.defaultSettings.general_Settings.work_posting)
-        account_invoices.posting = false;
-      else account_invoices.posting = true;
+
+      account_invoices.posting = true;
 
       $http({
         method: "POST",
@@ -2126,6 +2170,38 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
                 function (response) {
                   $scope.busy = false;
                   if (response.data.done) {
+                    if (!store_out.posting && $scope.defaultSettings.accounting && $scope.defaultSettings.accounting.link_warehouse_account_invoices) {
+                      $scope.deleteAccountInvoices(store_out);
+                    } else if (store_out.posting && $scope.defaultSettings.accounting && $scope.defaultSettings.accounting.link_warehouse_account_invoices) {
+
+                      let account_invoices = {
+                        image_url: '/images/account_invoices.png',
+                        date: response.data.doc.date,
+                        invoice_id: response.data.doc.id,
+                        customer: response.data.doc.customer,
+                        total_value_added: response.data.doc.total_value_added,
+                        invoice_type: response.data.doc.type,
+                        currency: response.data.doc.currency,
+                        shift: response.data.doc.shift,
+                        net_value: response.data.doc.net_value,
+                        Paid_from_customer: response.data.doc.Paid_from_customer,
+                        paid_up: response.data.doc.paid_up || 0,
+                        payment_method: response.data.doc.payment_method,
+                        safe: response.data.doc.safe,
+                        invoice_code: response.data.doc.number,
+                        total_discount: response.data.doc.total_discount,
+                        total_tax: response.data.doc.total_tax,
+                        current_book_list: response.data.doc.items,
+                        source_type: {
+                          id: 2,
+                          en: "Sales Store",
+                          ar: "إذن صرف / فاتورة مبيعات"
+                        },
+                        active: true
+                      };
+                      $scope.addAccountInvoice(account_invoices)
+                    }
+
                   } else {
                     $scope.error = '##word.error##';
                     if (response.data.error.like('*OverDraft Not*')) {

@@ -261,7 +261,7 @@ module.exports = function init(site) {
 
                   if (doc.safe) site.quee('[amounts][safes][+]', Object.assign({}, paid_value))
                 }
-                site.call('[account_invoices][request_service][+]',  doc.invoice_id)
+                site.call('[account_invoices][request_service][+]', doc.invoice_id)
 
               } else {
                 response.error = err.message
@@ -790,9 +790,23 @@ module.exports = function init(site) {
       return
     }
 
-    let id = req.body.id
+    let account_invoices_doc = req.body
+    let where = req.body.where || {}
 
-    site.getOpenShift({ companyId: req.body.company.id, branchCode: req.body.branch.code }, shiftCb => {
+    if (where['source_type_id']) {
+      where['source_type.id'] = where['source_type_id'];
+      delete where['source_type_id']
+    }
+
+    if (where['invoice_id']) {
+      where['invoice_id'] = where['invoice_id'];
+
+    } else {
+
+      where['id'] = account_invoices_doc.id
+    }
+
+    site.getOpenShift({ companyId: account_invoices_doc.company.id, branchCode: account_invoices_doc.branch.code }, shiftCb => {
       if (shiftCb) {
 
         site.isAllowedDate(req, allowDate => {
@@ -802,20 +816,20 @@ module.exports = function init(site) {
             res.json(response)
           } else {
 
-            if (id) {
-              $account_invoices.delete({
-                id: id,
-                $req: req,
-                $res: res
-              }, (err, result) => {
-                if (!err) {
-                  response.done = true
-                  response.doc = result.doc
-                  if (response.doc.source_type.id == 1) site.quee('[store_in][account_invoice][invoice]', response.doc.invoice_id, 'delete')
-                  else if (response.doc.source_type.id == 2) site.quee('[store_out][account_invoice][invoice]', response.doc.invoice_id, 'delete')
+            $account_invoices.delete({
+              where: where,
+              $req: req,
+              $res: res
+            }, (err, result) => {
+              if (!err) {
+                response.done = true
+                response.doc = result.doc
+                if (response.doc.source_type.id == 1) site.quee('[store_in][account_invoice][invoice]', response.doc.invoice_id, 'delete')
+                else if (response.doc.source_type.id == 2) site.quee('[store_out][account_invoice][invoice]', response.doc.invoice_id, 'delete')
 
-                  if (result.doc.posting) {
-                    result.doc.total_paid_up = 0
+                if (result.doc.posting) {
+                  result.doc.total_paid_up = 0
+                  if (result.doc.payment_list && result.doc.payment_list.length > 0)
                     result.doc.payment_list.forEach(_payment_list => {
                       if (_payment_list.currency)
                         result.doc.total_paid_up += (_payment_list.paid_up * _payment_list.currency.ex_rate)
@@ -852,7 +866,7 @@ module.exports = function init(site) {
 
 
                       } else if (result.doc.source_type.id == 2) {
-                        if (account_invoices_doc.invoice_type && account_invoices_doc.invoice_type.id == 6) {
+                        if (result.doc.invoice_type && result.doc.invoice_type.id == 6) {
                           obj.operation = { ar: 'حذف مرتجع فاتورة مبيعات', en: 'Delete Return Sales Invoice' }
                           if (_payment_list.payment_method && _payment_list.payment_method.id == 5) {
 
@@ -939,37 +953,33 @@ module.exports = function init(site) {
 
                     })
 
-                    result.doc.remain_amount = site.toNumber(result.doc.net_value) - site.toNumber(result.doc.total_paid_up)
-                    result.doc.remain_amount = site.toNumber(result.doc.remain_amount)
+                  result.doc.remain_amount = site.toNumber(result.doc.net_value) - site.toNumber(result.doc.total_paid_up)
+                  result.doc.remain_amount = site.toNumber(result.doc.remain_amount)
 
-                    if (result.doc.source_type.id == 3) {
+                  if (result.doc.source_type.id == 3) {
 
-                      let under_paid = {
-                        book_list: result.doc.current_book_list,
-                        net_value: result.doc.net_value,
-                        total_tax: result.doc.total_tax,
-                        total_discount: result.doc.total_discount,
-                        price_delivery_service: result.doc.price_delivery_service,
-                        service: result.doc.service,
-                        invoice_id: result.doc.invoice_id
-                      }
-
-                      if (!account_invoices_doc.posting)
-                        under_paid.return = true
-
-                      site.call('[account_invoices][order_invoice][+]', Object.assign({}, under_paid))
+                    let under_paid = {
+                      book_list: result.doc.current_book_list,
+                      net_value: result.doc.net_value,
+                      total_tax: result.doc.total_tax,
+                      total_discount: result.doc.total_discount,
+                      price_delivery_service: result.doc.price_delivery_service,
+                      service: result.doc.service,
+                      invoice_id: result.doc.invoice_id
                     }
-                  }
 
-                } else {
-                  response.error = err.message
+                    if (!result.doc.posting)
+                      under_paid.return = true
+
+                    site.call('[account_invoices][order_invoice][+]', Object.assign({}, under_paid))
+                  }
                 }
-                res.json(response)
-              })
-            } else {
-              response.error = 'no id'
+
+              } else {
+                response.error = err.message
+              }
               res.json(response)
-            }
+            })
           }
         })
       } else {

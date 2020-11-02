@@ -105,6 +105,11 @@
         "ar": "إنصراف الساعة"
     },
     {
+        "name": "link_warehouse_account_invoices",
+        "en": "Linking inventory and accounting invoices",
+        "ar": "ربط الفواتير المخزنية و الحسابية"
+    },
+    {
         "name": "default_setting_serial",
         "en": "Serial",
         "ar": "رقم مسلسل"

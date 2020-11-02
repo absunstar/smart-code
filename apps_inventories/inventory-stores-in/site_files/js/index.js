@@ -86,10 +86,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
       return;
     }
 
-
-    if ($scope.defaultSettings.general_Settings && $scope.defaultSettings.general_Settings.work_posting)
-      account_invoices.posting = false;
-    else account_invoices.posting = true;
+    account_invoices.posting = true;
 
     $http({
       method: "POST",
@@ -875,7 +872,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
               function (response) {
                 $scope.busy = false;
                 if (response.data.done) {
-                  if (($scope.store_in.type.id == 1 || $scope.store_in.type.id == 4) && $scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto) {
+                  if (($scope.store_in.type.id == 1 || $scope.store_in.type.id == 4) && $scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto && !$scope.defaultSettings.general_Settings.work_posting) {
 
                     let account_invoices = {
                       image_url: '/images/account_invoices.png',
@@ -1483,7 +1480,6 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
             $scope.error = '##word.should_open_period##';
           } else {
 
-
             $scope.busy = true;
             $http({
               method: "POST",
@@ -1494,6 +1490,9 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
                 $scope.busy = false;
                 if (response.data.done) {
                   site.hideModal('#deleteStoreInModal');
+                  if ($scope.defaultSettings.accounting && $scope.defaultSettings.accounting.link_warehouse_account_invoices) {
+                    $scope.deleteAccountInvoices(store_in);
+                  }
                   $scope.loadAll({ date: new Date() });
                 } else {
                   $scope.error = response.data.error;
@@ -1507,7 +1506,6 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
                     $scope.error = "##word.cant_process_found_invoice##"
                   }
                 };
-
               },
               function (err) {
                 console.log(err);
@@ -1521,6 +1519,46 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
     })
   };
 
+  $scope.deleteAccountInvoices = function (item) {
+    $scope.error = '';
+    $scope.busy = true;
+
+    $http({
+      method: "POST",
+      url: "/api/account_invoices/delete",
+      data: {
+        company: item.company,
+        branch: item.branch,
+        where: {
+          source_type_id: 1,
+          invoice_id: item.id
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          site.hideModal('#accountInvoicesDeleteModal');
+          $scope.list.forEach((b, i) => {
+            if (b.id == response.data.doc.id) {
+              $scope.list.splice(i, 1);
+              $scope.count -= 1;
+            }
+          });
+        } else {
+          $scope.error = response.data.error;
+          if (response.data.error.like('*n`t Found Open Shi*')) {
+            $scope.error = "##word.open_shift_not_found##"
+          } else if (response.data.error.like('*n`t Open Perio*')) {
+            $scope.error = "##word.should_open_period##"
+          }
+        }
+      },
+      function (err) {
+        console.log(err);
+      }
+    )
+  };
 
   $scope.posting = function (store_in) {
     $scope.error = '';
@@ -1580,7 +1618,6 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
 
             } else {
 
-
               $scope.busy = true;
               $http({
                 method: "POST",
@@ -1590,6 +1627,39 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
                 function (response) {
                   $scope.busy = false;
                   if (response.data.done) {
+
+                    if (!store_in.posting && $scope.defaultSettings.accounting && $scope.defaultSettings.accounting.link_warehouse_account_invoices) {
+                      $scope.deleteAccountInvoices(store_in);
+
+                    } else if (store_in.posting && $scope.defaultSettings.accounting && $scope.defaultSettings.accounting.link_warehouse_account_invoices) {
+                      let account_invoices = {
+                        image_url: '/images/account_invoices.png',
+                        date: response.data.doc.date,
+                        invoice_id: response.data.doc.id,
+                        invoice_type: response.data.doc.type,
+                        vendor: response.data.doc.vendor,
+                        total_value_added: response.data.doc.total_value_added,
+                        shift: response.data.doc.shift,
+                        net_value: response.data.doc.net_value,
+                        currency: response.data.doc.currency,
+                        paid_up: response.data.doc.paid_up || 0,
+                        payment_method: response.data.doc.payment_method,
+                        safe: response.data.doc.safe,
+                        invoice_code: response.data.doc.number,
+                        total_discount: response.data.doc.total_discount,
+                        total_tax: response.data.doc.total_tax,
+                        current_book_list: response.data.doc.items,
+                        source_type: {
+                          id: 1,
+                          en: "Purchases Store",
+                          ar: "المشتريات المخزنية"
+                        },
+                        active: true
+                      };
+
+                      $scope.addAccountInvoice(account_invoices)
+                    }
+
                   } else {
                     $scope.error = '##word.error##';
                     if (response.data.error.like('*OverDraft Not*')) {

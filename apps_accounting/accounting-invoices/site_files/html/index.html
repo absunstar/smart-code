@@ -101,6 +101,7 @@
                             {{c.remain_amount}}
                         </td>
                         <td class="center not-print">
+
                             <i-button type="details" x-permissions="account_invoices_view || account_invoices_manage"
                                 label="##word.details##" ng-click="displayDetailsAccountInvoices(c)"></i-button>
 
@@ -115,7 +116,8 @@
                                 ng-click="c.posting = false ; posting(c)"></i-button>
 
                             <i-button x-permissions="account_invoices_update || account_invoices_manage" type="update"
-                                ng-show="!c.posting" label="##word.edit##" ng-click="displayUpdateAccountInvoices(c)">
+                                ng-show="!c.posting && c.source_type.id > 2" label="##word.edit##"
+                                ng-click="displayUpdateAccountInvoices(c)">
                             </i-button>
 
                             <i-button ng-show="c.remain_amount > 0 && c.posting "
@@ -125,6 +127,7 @@
                             <i-button type="delete" x-permissions="account_invoices_delete || account_invoices_manage"
                                 ng-hide="c.posting && defaultSettings.general_Settings.work_unposting"
                                 label="##word.delete##" ng-click="displayDeleteAccountInvoices(c)"></i-button>
+
                         </td>
                     </tr>
                 </table>

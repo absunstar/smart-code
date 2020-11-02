@@ -38,6 +38,14 @@ app.controller("default_setting", function ($scope, $http) {
     $scope.search = new Search();
   };
 
+  $scope.linkWarehouseAccountInvoices = function () {
+    if($scope.default_setting.accounting.link_warehouse_account_invoices){
+      $scope.default_setting.accounting.create_invoice_auto = true
+    }
+  };
+
+  
+
   $scope.getCustomerList = function (ev) {
     $scope.error = '';
     $scope.busy = true;
