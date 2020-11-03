@@ -24,7 +24,7 @@ module.exports = function init(site) {
     lastCode++
     site.storage('ticket_last_code', lastCode)
     site.storage('ticket_last_month', lastMonth)
-    return y + lastMonth + addZero(d, 2) + addZero(lastCode, 4)
+    return 'R-S' + y + lastMonth + addZero(d, 2) + addZero(lastCode, 4)
   }
 
   site.on('[attend_session][attend_request][+]', obj => {

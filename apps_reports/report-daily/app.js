@@ -103,7 +103,6 @@ module.exports = function init(site) {
     }, (err, docs, count) => {
       if (!err) {
 
-
         response.done = true
 
         let list = [{
@@ -249,98 +248,103 @@ module.exports = function init(site) {
 
 
         docs.forEach(_doc => {
-          _doc.payment_list.forEach(_p_l => {
-            if (_p_l.payment_method && _p_l.currency && currency.id == _p_l.currency.id) {
+          if (_doc.payment_list && _doc.payment_list.length > 0) {
 
-              let numIn = 0
-              let numOut = 0
-              if (_p_l.payment_method.id == 1) {
-                numIn = 12
-                numOut = 13
-              } else {
-                numIn = 14
-                numOut = 15
-              }
+            _doc.payment_list.forEach(_p_l => {
+              if (_p_l.payment_method && _p_l.currency && currency.id == _p_l.currency.id) {
 
-              if ((_p_l.shift && shift_code == _p_l.shift.code) || (date1 && new Date(_p_l.date) >= new Date(date1) && new Date(_p_l.date) <= date1.setDate(date1.getDate() + 1)) || new Date(_p_l.date) <= new Date(date_to) && new Date(_p_l.date) >= new Date(date_from)) {
+                let numIn = 0
+                let numOut = 0
+                if (_p_l.payment_method.id == 1) {
+                  numIn = 12
+                  numOut = 13
+                } else {
+                  numIn = 14
+                  numOut = 15
+                }
+                console.log(_doc.code, "dddddddddddddddddddddd");
 
-                _doc.shift = _p_l.shift
-                _doc.date = _p_l.date
-                _doc.safe = _p_l.safe
-                _doc.payment_method = _p_l.payment_method
-                _doc.currency = _p_l.currency
-                _doc.paid_up = _p_l.paid_up
-                if (_doc.source_type) {
-                  if (_doc.source_type.id == 1) {
+                if ((_p_l.shift && shift_code == _p_l.shift.code) || ((date1 && new Date(_p_l.date) >= new Date(date1) && new Date(_p_l.date) <= date1.setDate(date1.getDate() + 1))) || (new Date(_p_l.date) <= new Date(date_to) && new Date(_p_l.date) >= new Date(date_from))) {
 
-                    if (_doc.invoice_type && _doc.invoice_type.id == 4) {
-                      list[0].paid_up = list[0].paid_up - _p_l.paid_up
-                      list[numOut].paid_up = list[numOut].paid_up - _p_l.paid_up
-                    } else {
-                      list[0].paid_up = list[0].paid_up + _p_l.paid_up
-                      list[numOut].paid_up = list[numOut].paid_up + _p_l.paid_up
-                    }
-                    list[0].invoices_list.push(_doc)
+                  _doc.shift = _p_l.shift
+                  _doc.date = _p_l.date
+                  _doc.safe = _p_l.safe
+                  _doc.payment_method = _p_l.payment_method
+                  _doc.currency = _p_l.currency
+                  _doc.paid_up = _p_l.paid_up
+                  if (_doc.source_type) {
+                    if (_doc.source_type.id == 1) {
 
-                  } else if (_doc.source_type.id == 2) {
+                      if (_doc.invoice_type && _doc.invoice_type.id == 4) {
+                        list[0].paid_up = list[0].paid_up - _p_l.paid_up
+                        list[numOut].paid_up = list[numOut].paid_up - _p_l.paid_up
+                      } else {
+                        list[0].paid_up = list[0].paid_up + _p_l.paid_up
+                        list[numOut].paid_up = list[numOut].paid_up + _p_l.paid_up
+                      }
+                      list[0].invoices_list.push(_doc)
 
-                    if (_doc.invoice_type && _doc.invoice_type.id == 6) {
-                      list[1].paid_up = list[1].paid_up - _p_l.paid_up
-                      list[numIn].paid_up = list[numIn].paid_up - _p_l.paid_up
-                    } else {
-                      list[1].paid_up = list[1].paid_up + _p_l.paid_up
+                    } else if (_doc.source_type.id == 2) {
+
+                      if (_doc.invoice_type && _doc.invoice_type.id == 6) {
+                        list[1].paid_up = list[1].paid_up - _p_l.paid_up
+                        list[numIn].paid_up = list[numIn].paid_up - _p_l.paid_up
+                      } else {
+                        list[1].paid_up = list[1].paid_up + _p_l.paid_up
+                        list[numIn].paid_up = list[numIn].paid_up + _p_l.paid_up
+                      }
+                      list[1].invoices_list.push(_doc)
+
+                    } else if (_doc.source_type.id == 3) {
                       list[numIn].paid_up = list[numIn].paid_up + _p_l.paid_up
+
+                      list[2].paid_up = list[2].paid_up + _p_l.paid_up
+                      list[2].invoices_list.push(_doc)
+
+                    } else if (_doc.source_type.id == 4) {
+
+                      list[numIn].paid_up = list[numIn].paid_up + _p_l.paid_up
+                      list[3].paid_up = list[3].paid_up + _p_l.paid_up
+                      list[3].invoices_list.push(_doc)
+
+                    } else if (_doc.source_type.id == 8) {
+
+                      list[numIn].paid_up = list[numIn].paid_up + _p_l.paid_up
+                      list[7].paid_up = list[7].paid_up + _p_l.paid_up
+                      list[7].invoices_list.push(_doc)
+
+                    } else if (_doc.source_type.id == 9) {
+
+                      list[numOut].paid_up = list[numOut].paid_up + _p_l.paid_up
+                      list[8].paid_up = list[8].paid_up + _p_l.paid_up
+                      list[8].invoices_list.push(_doc)
+
+                    } else if (_doc.source_type.id == 10) {
+
+                      list[numIn].paid_up = list[numIn].paid_up + _p_l.paid_up
+                      list[9].paid_up = list[9].paid_up + _p_l.paid_up
+                      list[9].invoices_list.push(_doc)
+
+                    } else if (_doc.source_type.id == 11) {
+
+                      list[numOut].paid_up = list[numOut].paid_up + _p_l.paid_up
+                      list[10].paid_up = list[10].paid_up + _p_l.paid_up
+                      list[10].invoices_list.push(_doc)
+
+                    } else if (_doc.source_type.id == 12) {
+
+                      list[numIn].paid_up = list[numIn].paid_up + _p_l.paid_up
+                      list[11].paid_up = list[11].paid_up + _p_l.paid_up
+                      list[11].invoices_list.push(_doc)
+
                     }
-                    list[1].invoices_list.push(_doc)
-
-                  } else if (_doc.source_type.id == 3) {
-                    list[numIn].paid_up = list[numIn].paid_up + _p_l.paid_up
-
-                    list[2].paid_up = list[2].paid_up + _p_l.paid_up
-                    list[2].invoices_list.push(_doc)
-
-                  } else if (_doc.source_type.id == 4) {
-
-                    list[numIn].paid_up = list[numIn].paid_up + _p_l.paid_up
-                    list[3].paid_up = list[3].paid_up + _p_l.paid_up
-                    list[3].invoices_list.push(_doc)
-
-                  } else if (_doc.source_type.id == 8) {
-
-                    list[numIn].paid_up = list[numIn].paid_up + _p_l.paid_up
-                    list[7].paid_up = list[7].paid_up + _p_l.paid_up
-                    list[7].invoices_list.push(_doc)
-
-                  } else if (_doc.source_type.id == 9) {
-
-                    list[numOut].paid_up = list[numOut].paid_up + _p_l.paid_up
-                    list[8].paid_up = list[8].paid_up + _p_l.paid_up
-                    list[8].invoices_list.push(_doc)
-
-                  } else if (_doc.source_type.id == 10) {
-
-                    list[numIn].paid_up = list[numIn].paid_up + _p_l.paid_up
-                    list[9].paid_up = list[9].paid_up + _p_l.paid_up
-                    list[9].invoices_list.push(_doc)
-
-                  } else if (_doc.source_type.id == 11) {
-
-                    list[numOut].paid_up = list[numOut].paid_up + _p_l.paid_up
-                    list[10].paid_up = list[10].paid_up + _p_l.paid_up
-                    list[10].invoices_list.push(_doc)
-
-                  } else if (_doc.source_type.id == 12) {
-
-                    list[numIn].paid_up = list[numIn].paid_up + _p_l.paid_up
-                    list[11].paid_up = list[11].paid_up + _p_l.paid_up
-                    list[11].invoices_list.push(_doc)
-
                   }
                 }
               }
-            }
 
-          });
+            });
+          }
+
         })
 
         response.list = list

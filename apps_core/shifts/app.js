@@ -36,7 +36,7 @@ module.exports = function init(site) {
     lastCode++
     site.storage('shift_code', lastCode)
     site.storage('shift_month', lastMonth)
-    return y + lastMonth + addZero(d, 2) + addZero(lastCode, 4)
+    return 'S-H' + y + lastMonth + addZero(d, 2) + addZero(lastCode, 4)
   }
 
 

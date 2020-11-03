@@ -154,7 +154,7 @@ module.exports = function init(site) {
     lastCode++
     site.storage('order_last_code', lastCode)
     site.storage('order_last_month', lastMonth)
-    return 'order-' + y + lastMonth + addZero(d, 2) + addZero(lastCode, 4)
+    return 'O-C' + y + lastMonth + addZero(d, 2) + addZero(lastCode, 4)
   };
 
   site.get({

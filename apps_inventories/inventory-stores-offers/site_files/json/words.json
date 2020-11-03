@@ -63,7 +63,7 @@
     {"name" : "stores_offer_item_categories" , "en" : "Categories" , "ar" : "مجموعة "},   
     {"name" : "stores_offer_add_to_sizes" , "en" : "Add To Sizes" , "ar" : "اضف رقم جديد"},   
     {"name" : "stores_offer_add_to_items" , "en" : "Add To Items" , "ar" : "اضف الى عرض "},   
-    {"name" : "stores_offer_id" , "en" : "Id" , "ar" : "رقم عرض "},   
+    {"name" : "stores_offer_id" , "en" : "Offer Number" , "ar" : "رقم العرض "},   
     {"name" : "stores_offer_total_value" , "en" : "Total Value" , "ar" : "القيمة الاجمالية"},    
     {"name" : "stores_offer_total_tax" , "en" : "Total Tax" , "ar" : "اجمالى الضرائب"},    
     {"name" : "stores_offer_taxes" , "en" : "Taxes" , "ar" : " الضرائب"},    

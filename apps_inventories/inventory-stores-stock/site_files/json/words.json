@@ -61,7 +61,7 @@
     {"name" : "stores_stock_item_categories" , "en" : "Categories" , "ar" : "مجموعة المخزني"},   
     {"name" : "stores_stock_add_to_sizes" , "en" : "Add To Sizes" , "ar" : "اضف رقم جديد"},   
     {"name" : "stores_stock_add_to_items" , "en" : "Add To Items" , "ar" : "اضف الى جرد المخزني"},   
-    {"name" : "stores_stock_id" , "en" : "Id" , "ar" : "رقم جرد المخزني"},   
+    {"name" : "stores_stock_id" , "en" : "Stock Number" , "ar" : "رقم جرد المخزني"},   
     {"name" : "stores_stock_total_value" , "en" : "Total Value" , "ar" : "القيمة الاجمالية"},    
     {"name" : "stores_stock_total_tax" , "en" : "Total Tax" , "ar" : "اجمالى الضرائب"},    
     {"name" : "stores_stock_taxes" , "en" : "Taxes" , "ar" : " الضرائب"},    
@@ -94,6 +94,5 @@
     {"name" : "stores_stock_result_count" , "en" : "Result Count" , "ar" : "عدد نتائج البحث"},
     {"name" : "stores_stock_season" , "en" : "Season" , "ar" : "الموسم"},
     {"name" : "stores_stock_logo" , "en" : "Logo" , "ar" : "الشعار"},
-    {"name" : "stores_stock_id" , "en" : "ID" , "ar" : "المسلسل"},
     {"name" : "stores_stock_img" , "en" : "Images" , "ar" : "الملفات"}
 ]

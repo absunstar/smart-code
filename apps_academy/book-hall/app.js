@@ -63,7 +63,7 @@ module.exports = function init(site) {
     lastCode++
     site.storage('ticket_last_code', lastCode)
     site.storage('ticket_last_month', lastMonth)
-    return y + lastMonth + addZero(d, 2) + addZero(lastCode, 4)
+    return 'B-H' + y + lastMonth + addZero(d, 2) + addZero(lastCode, 4)
   }
 
   site.post("/api/book_hall/add", (req, res) => {

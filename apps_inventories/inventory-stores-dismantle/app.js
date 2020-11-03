@@ -53,7 +53,7 @@ module.exports = function init(site) {
     lastCode++
     site.storage('ticket_last_code', lastCode)
     site.storage('ticket_last_month', lastMonth)
-    return y + lastMonth + addZero(d, 2) + addZero(lastCode, 4)
+    return 'D-I'+ y + lastMonth + addZero(d, 2) + addZero(lastCode, 4)
   }
 
   site.post("/api/stores_dismantle/add", (req, res) => {
