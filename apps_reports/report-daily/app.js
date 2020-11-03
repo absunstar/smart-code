@@ -28,17 +28,22 @@ module.exports = function init(site) {
     let where = req.data.where || {}
     let currency = where.currency || {}
     let date1 = undefined
+    let get_date = undefined
     let date_from = undefined
     let date_to = undefined
     let shift_code = undefined
 
     if (req.data.where) {
-      if (req.data.where.date) date1 = new Date(req.data.where.date)
-      if (req.data.where.date_from) date_from = new Date(req.data.where.date_from)
-      if (req.data.where.date_to) date_to = new Date(req.data.where.date_to)
+      if (req.data.where.date){
+        date1 = site.toDate(req.data.where.date)
+        get_date = site.toDate(req.data.where.date)
+        get_date.setDate(get_date.getDate() + 1)
+      }
+
+      if (req.data.where.date_from) date_from = site.toDate(req.data.where.date_from)
+      if (req.data.where.date_to) date_to = site.toDate(req.data.where.date_to)
       if (req.data.where.shift_code) shift_code = req.data.where.shift_code
     }
-
     if (where['code']) {
       where['code'] = site.get_RegExp(where['code'], 'i')
     }
@@ -262,9 +267,7 @@ module.exports = function init(site) {
                   numIn = 14
                   numOut = 15
                 }
-                console.log(_doc.code, "dddddddddddddddddddddd");
-
-                if ((_p_l.shift && shift_code == _p_l.shift.code) || ((date1 && new Date(_p_l.date) >= new Date(date1) && new Date(_p_l.date) <= date1.setDate(date1.getDate() + 1))) || (new Date(_p_l.date) <= new Date(date_to) && new Date(_p_l.date) >= new Date(date_from))) {
+                if ((_p_l.shift && shift_code == _p_l.shift.code) || ((date1 && site.toDate(_p_l.date) >= site.toDate(date1) && site.toDate(_p_l.date) <= site.toDate(get_date) )) || (site.toDate(_p_l.date) <= site.toDate(date_to) && site.toDate(_p_l.date) >= site.toDate(date_from))) {
 
                   _doc.shift = _p_l.shift
                   _doc.date = _p_l.date
