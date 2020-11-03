@@ -27,15 +27,17 @@ module.exports = function init(site) {
     let where = req.data.where || {};
 
     let branchCode = 0;
+    let re_order_limit = 0;
 
     where['company.id'] = site.get_company(req).id
 
     if (where['branch'] && where['branch'].code) {
       branchCode = where['branch'].code
+      re_order_limit = where['re_order_limit']
       where['sizes.branches_list.code'] = where['branch'].code
       delete where['branch']
+      delete where['re_order_limit']
     }
-    console.log(where);
 
 
     $stores_items.findMany({
@@ -54,15 +56,19 @@ module.exports = function init(site) {
 
               _sizes.branches_list.forEach(_SizeBranch => {
                 if (_SizeBranch.code == branchCode) {
+                  let count = 0
 
-                  if (_SizeBranch.re_order_limit >= _SizeBranch.current_count) {
+                  if (re_order_limit) count = re_order_limit
+                  else count = _SizeBranch.re_order_limit
+
+                  if (count >= _SizeBranch.current_count) {
                     i_store_list.push({
                       name: _doc.name,
                       item_group: _doc.item_group,
                       size: _sizes.size,
                       size_en: _sizes.size_en,
                       barcode: _sizes.barcode,
-                      re_order_limit: _SizeBranch.re_order_limit,
+                      re_order_limit: count,
                       current_count: _SizeBranch.current_count,
                     })
                   }

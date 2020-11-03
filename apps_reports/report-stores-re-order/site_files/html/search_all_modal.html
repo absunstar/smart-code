@@ -11,53 +11,14 @@
                     <div class="row">
 
                         <i-list class="col3" ng-model="search.branch" display="name_##session.lang##"
-                            items="branchesList" v="r" ng-search="_search.$branch" label="##word.companies_branch##"></i-list>
-
-                        <!-- 
-                        <i-control class="col2" ng-model="search.count" label="##word.count##" type="number">
-                        </i-control>
-                        <i-list class="col3" ng-model="search.unit" ng-search="_search.$search_unit" v="r"
-                            label="##word.unit##" items="unitsList">
+                            items="branchesList" v="r" ng-search="_search.$branch" label="##word.companies_branch##">
                         </i-list>
 
-                        <div class="col1"></div>
-                        <i-radio class="col2" ng-model="search.type" ng-value="stagnant_items" group="type"
-                            label="##word.stagnant_items##"></i-radio>
-
-                        <i-radio class="col2" ng-model="search.type" group="type" ng-value="best_seller"
-                            label="##word.best_seller##">
-                        </i-radio> -->
+                        <i-control class="col2" ng-model="search.re_order_limit" label="##word.re_order_limit##"
+                            type="number">
+                        </i-control>
                     </div>
 
-
-                    <!-- <div class="row">
-
-                        <i-list class="col3" ng-model="search.branch" items="branchesList"
-                            display="name_##session.lang##" v="r" ng-change="loadStores(search.branch)"
-                            ng-search="_search.$branch" label="##word.companies_branch##">
-                        </i-list>
-
-                        <i-list ng-search="_search.$store" class="col3" display="name" ng-model="search.store" v="r"
-                            label="##word.store##" items="storesList">
-                        </i-list>
-
-                        <i-list class="col3" ng-model="search.unit" ng-search="_search.$search_unit" v="r"
-                            label="##word.unit##" items="unitsList">
-                        </i-list>
-
-                    </div>
-
-                   <div class="row">
-                         <i-control class="col2" ng-model="search.name" label="##word.stores_items_name##" type="text">
-                        </i-control>
-                        <i-control class="col2" ng-model="search.size" label="##word.stores_items_sizes##" type="text">
-                        </i-control>
-                        <i-control class="col2" ng-model="search.size_en" label="##word.size_en##" type="text">
-                        </i-control>
-
-                        <i-con trol class="col2" ng-model="search.barcode" label="##word.item_code##" type="text">
-                        </i-control>
-                    </div> -->
                 </form>
             </div>
 
