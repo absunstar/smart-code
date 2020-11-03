@@ -88,7 +88,8 @@
                                 ng-click="c.posting = false ; posting(c)"></i-button>
 
                             <i-button x-permissions="stores_assemble_update || stores_assemble_manage" type="update"
-                                ng-show="!c.posting" label="##word.edit##" ng-click="edit(c)"></i-button>
+                                ng-show="!c.posting && defaultSettings.general_Settings.work_posting"
+                                label="##word.edit##" ng-click="edit(c)"></i-button>
 
                             <i-button x-permissions="stores_assemble_delete || stores_assemble_manage" type="delete"
                                 ng-hide="c.posting && defaultSettings.general_Settings.work_unposting"

@@ -468,7 +468,7 @@
         "title_ar": "تعدد طرق الدفع",
         "title_en": "Multiple payment methods",
         "image_url": "/images/payment_methods.png",
-        "description_ar": "يتيح البرنامج أكثر من طريقة دفع أو تحصيل عن طريق الكاش أو الشيك أو الفيزا أو الماستر كارت.",
+        "description_ar": "يتيح البرنامج أكثر من طريقة دفع أو تحصيل عن طريق النقدي أو الشيك أو الفيزا أو الماستر كارت.",
         "description_en": "Our program provides you with more than one way to pay or collect by cash, check, visa or master card."
     },
     {

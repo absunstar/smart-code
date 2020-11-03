@@ -5,12 +5,12 @@ module.exports = function init(site) {
   site.on('[currency][safe][add]', doc => {
 
     $safes.add({
-      name: "خزينة كاش إفتراضي",
+      name: "خزينة نقدي إفتراضي",
       balance: 0,
       type: {
         id: 1,
         en: "Cash",
-        ar: "كاش"
+        ar: "نقدي"
       },
       image_url: '/images/safe.png',
       currency: {

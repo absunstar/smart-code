@@ -217,16 +217,16 @@ module.exports = function init(site) {
         {
           source_type: {
             id: 13,
-            en: "Cash In",
-            ar: "كاش وارد"
+            en: "Monetary In",
+            ar: "نقدي وارد"
           },
           paid_up: 0,
         },
         {
           source_type: {
             id: 14,
-            en: "Cash Out",
-            ar: "كاش منصرف"
+            en: "Monetary Out",
+            ar: "نقدي منصرف"
           },
           paid_up: 0,
         },

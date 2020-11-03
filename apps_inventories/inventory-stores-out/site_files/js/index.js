@@ -306,22 +306,35 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         return;
       }
 
-      if ($scope.store_out.type && $scope.store_out.type.id != 5 && $scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto) {
-        if (!$scope.store_out.safe) {
-          $scope.error = "##word.nosafe_warning##";
+      if ($scope.store_out.payment_type && $scope.store_out.payment_type.id == 1) {
+
+        if ($scope.store_out.type && $scope.store_out.type.id != 5 && $scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto) {
+          if (!$scope.store_out.safe) {
+            $scope.error = "##word.nosafe_warning##";
+            return;
+          }
+        }
+
+        if ($scope.store_out.paid_up > $scope.amount_currency) {
+          $scope.error = "##word.err_net_value##";
           return;
         }
-      }
 
-      if ($scope.store_out.paid_up > $scope.amount_currency) {
-        $scope.error = "##word.err_net_value##";
-        return;
+        if ($scope.store_out.paid_up < $scope.amount_currency) {
+          $scope.error = "##word.amount_must_paid_full##";
+          return;
+        }
+      } else {
+        $scope.store_out.paid_up = undefined;
+        $scope.store_out.safe = undefined;
+        $scope.store_out.Paid_from_customer = undefined;
+        $scope.store_out.payment_method = undefined;
+        $scope.store_out.currency = undefined;
       }
 
       let max_discount = false;
       let returned_count = false;
       let notExistCount = false;
-
 
       if ($scope.store_out.items && $scope.store_out.items.length > 0) {
         notExistCount = $scope.store_out.items.some(_iz => _iz.count < 1);
@@ -330,7 +343,6 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
 
           if (_itemSize.discount.value > _itemSize.discount.max) max_discount = true;
           if (_itemSize.count > _itemSize.r_count) returned_count = true;
-
 
         });
       } else {
@@ -356,13 +368,6 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         $scope.error = "##word.err_exist_count##";
         return;
       };
-
-      if ($scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto && $scope.store_out.type && $scope.store_out.type.id != 5) {
-        if (!$scope.store_out.safe) {
-          $scope.error = "##word.nosafe_warning##";
-          return;
-        }
-      }
 
       if ($scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto && $scope.store_out.type && $scope.store_out.type.id != 5) {
         let totalCustomerBalance = 0;
@@ -409,8 +414,6 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         });
 
         $scope.testPatches($scope.store_out, callback => {
-
-
 
           if (callback.patchCount) {
             $scope.error = `##word.err_patch_count##   ( ${callback.patch_list.join('-')} )`;
@@ -1121,16 +1124,31 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
 
     }
 
-    if ($scope.store_out.type && $scope.store_out.type.id != 5 && $scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto) {
-      if (!$scope.store_out.safe) {
-        $scope.error = "##word.nosafe_warning##";
+    if ($scope.store_out.payment_type && $scope.store_out.payment_type.id == 1) {
+
+
+      if ($scope.store_out.type && $scope.store_out.type.id != 5 && $scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto) {
+        if (!$scope.store_out.safe) {
+          $scope.error = "##word.nosafe_warning##";
+          return;
+        }
+      }
+
+      if ($scope.store_out.paid_up > $scope.amount_currency) {
+        $scope.error = "##word.err_net_value##";
         return;
       }
-    }
 
-    if ($scope.store_out.paid_up > $scope.amount_currency) {
-      $scope.error = "##word.err_net_value##";
-      return;
+      if ($scope.store_out.paid_up < $scope.amount_currency) {
+        $scope.error = "##word.amount_must_paid_full##";
+        return;
+      }
+    } else {
+      $scope.store_out.paid_up = undefined;
+      $scope.store_out.safe = undefined;
+      $scope.store_out.Paid_from_customer = undefined;
+      $scope.store_out.payment_method = undefined;
+      $scope.store_out.currency = undefined;
     }
 
     let max_discount = false;
@@ -1175,13 +1193,6 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
       $scope.error = `##word.err_patch_count##   ( ${patch_list.join('-')} )`;
       return;
     };
-
-    if ($scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto && $scope.store_out.type && $scope.store_out.type.id != 5) {
-      if (!$scope.store_out.safe) {
-        $scope.error = "##word.nosafe_warning##";
-        return;
-      }
-    }
 
     $scope.store_out.items.forEach(_itemSize => {
       if (_itemSize.work_patch && _itemSize.patch_list && _itemSize.patch_list.length > 0) {
@@ -2594,6 +2605,25 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
 
   };
 
+  $scope.loadPaymentTypes = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: '/api/payment_type/all',
+      data: {}
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.paymentTypesList = response.data;
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
   $scope.get_open_shift = function (callback) {
     $scope.error = '';
     $scope.busy = true;
@@ -2661,6 +2691,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
 
   $scope.loadStoresOutTypes();
   $scope.loadStores();
+  $scope.loadPaymentTypes();
   $scope.loadCategories();
   $scope.getPaymentMethodList();
   $scope.getDefaultSettings();

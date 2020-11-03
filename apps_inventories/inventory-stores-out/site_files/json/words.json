@@ -30,6 +30,11 @@
         "ar": "المدفوع من العميل"
     },
     {
+        "name": "amount_must_paid_full",
+        "en": "The amount must be paid in full",
+        "ar": "يجب دفع المبلغ بالكامل"
+    },
+    {
         "name": "remain_to_customer",
         "en": "Remain To Customer",
         "ar": "الباقي للعميل"

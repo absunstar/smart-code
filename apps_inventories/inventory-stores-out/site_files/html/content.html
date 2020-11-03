@@ -35,6 +35,10 @@
                         items="storesList" ng-search="_search.$stores_search" label="##word.stores_out_store##">
                     </i-list>
 
+                    <i-list class="col2" ng-model="store_out.payment_type" items="paymentTypesList"
+                    ng-hide="store_out.type.id ==5"  display="##session.lang##" ng-search="_search.$search_payment_types"
+                        label="##word.payment_type##" v="r"></i-list>
+
                 </div>
 
             </div>
@@ -279,7 +283,7 @@
 
             </div>
 
-            <div class="row" ng-show="store_out.type.id != 5 && defaultSettings.accounting.create_invoice_auto">
+            <div class="row" ng-show="store_out.type.id != 5 && defaultSettings.accounting.create_invoice_auto && store_out.payment_type.id == 1">
 
                 <i-list help-id="" ng-search="_search.$payment_method_search" class="col2"
                     label="##word.payment_method##" ng-model="store_out.payment_method"
@@ -305,16 +309,16 @@
                     label="##word.stores_out_net_value##"></i-control>
 
                 <i-control class="col3"
-                    ng-show="store_out.type.id != 5 && defaultSettings.accounting.create_invoice_auto" disabled
+                    ng-show="store_out.type.id != 5 && defaultSettings.accounting.create_invoice_auto && store_out.payment_type.id == 1" disabled
                     ng-model="amount_currency" label="##word.amount_currency##" type="number"></i-control>
 
                 <i-control class="col2"
-                    ng-show="store_out.type.id != 5 && defaultSettings.accounting.create_invoice_auto"
+                    ng-show="store_out.type.id != 5 && defaultSettings.accounting.create_invoice_auto && store_out.payment_type.id == 1"
                     ng-model="store_out.paid_up" label="##word.paid_up##" type="number">
                 </i-control>
 
                 <i-control class="col2"
-                    ng-show="store_out.type.id != 5 && defaultSettings.accounting.create_invoice_auto"
+                    ng-show="store_out.type.id != 5 && defaultSettings.accounting.create_invoice_auto && store_out.payment_type.id == 1"
                     ng-model="store_out.Paid_from_customer" ng-change="calc(store_out)"
                     label="##word.Paid_from_customer##" type="number">
                 </i-control>

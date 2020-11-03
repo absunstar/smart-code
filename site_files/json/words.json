@@ -170,6 +170,11 @@
         "ar": "بنك"
     },
     {
+        "name": "payment_type",
+        "en": "Payment Type",
+        "ar": "نوع الدفع"
+    },
+    {
         "name": "post_all",
         "en": "Post All",
         "ar": "ترحيل الكل"
