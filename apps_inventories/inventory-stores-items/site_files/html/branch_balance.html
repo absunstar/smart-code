@@ -20,6 +20,7 @@
                             <th>##word.average_cost##</th>
                             <th>##word.stores_current_balance##</th>
                             <th>##word.stores_start_balance##</th>
+                            <th>##word.re_order_limit##</th>
                             <th>##word.actions##</th>
                         </tr>
 
@@ -43,8 +44,13 @@
                                 <p class="bold red center" ng-show="item.current_count == 0 ||item.current_count < 0">
                                     {{item.current_count}} </p>
                             </td>
-                            
+
                             <td class="center blue">{{item.start_count}}</td>
+
+                            <td>
+                                <p ng-show="_view" class="center red">{{item.re_order_limit}}</p>
+                                <i-control ng-hide="_view" ng-model="item.re_order_limit" type="number"></i-control>
+                            </td>
                             <td class="center">
                                 <div class="row">
 

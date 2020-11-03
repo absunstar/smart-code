@@ -29,9 +29,11 @@ module.exports = function init(site) {
     let count = 0;
     let type = {};
 
-    if (where.unit) unit_id = where.unit.id
-    if (where.unit) type = where.type
-    if (where.unit) count = where.count
+    if (where.unit) {
+      unit_id = where.unit.id
+      type = where.type
+      count = where.count
+    }
 
     where['company.id'] = site.get_company(req).id
     delete where['unit']
@@ -53,7 +55,7 @@ module.exports = function init(site) {
     }
 
     if (where && where['barcode']) {
-      where['sizes.barcode'] =  where['barcode']
+      where['sizes.barcode'] = where['barcode']
       delete where['barcode']
     }
 

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="report_stores_re_order_ui || report_stores_re_order_manage" data-ng-app="myApp">
+
+<head x-import="head.html">
+
+</head>
+
+<body class="##session.lang##">
+
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+    </nav>
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+    </nav>
+
+    <div id="main-layout" class="container">
+        <div class="row">
+            <div class="row" ng-controller="report_stores_re_order" x-permissions="login">
+
+                <div x-import="report-stores-re-order/search_all_modal.html"></div>
+
+                <div class="row">
+                    <h1 class="bold text-center"> ##word.report_stores_re_order_name## </h1>
+                </div>
+
+                <div class="top-actions">
+
+                    <span ng-show="busy">
+                        <span class="sr-only">Loading...</span>
+                    </span>
+                    <br>
+                </div>
+                <div class="row">
+                    <i-button type="search" x-permissions="report_stores_re_order_search || report_stores_re_order_manage"
+                        label="##word.search_all##" ng-click="showSearchAll()">
+                    </i-button>
+
+                </div>
+
+                <br>
+                <hr>
+                <br>
+
+                <div class="row">
+
+                    <table class="table loaded center hover bold" id="t1">
+                        <tr>
+                            <th> ##word.item_group## </th>
+                            <th> ##word.stores_items_name## </th>
+                            <th> ##word.stores_size## </th>
+                            <th> ##word.barcode## </th>
+                            <th> ##word.stores_current_balance## </th>
+                            <th> ##word.re_order_limit## </th>
+
+                        </tr>
+
+                        <tr ng-repeat="c in list | orderBy : '-id'">
+                            <td> {{c.item_group.name}} </td>
+                            <td> {{c.name}} </td>
+                            <td>
+                                <p>{{c.size}}</p>
+                                <p>{{c.size_en}}</p>
+                            </td>
+                            <td > {{c.barcode}} </td>
+                            <td class="green"> {{c.current_count}} </td>
+                            <td class="red"> {{c.re_order_limit}} </td>
+                          
+                        </tr>
+                    </table>
+                </div>
+                <div class="row">
+                    <i-button x-permissions="report_stores_re_order_print || report_stores_re_order_manage" type="print"
+                        label="##word.print##" onclick="site.print('#t1')"></i-button>
+                    <i-button x-permissions="report_stores_re_order_export || report_stores_re_order_manage" type="export"
+                        label="##word.export_to_excel##" onclick="export_to_xlsx('t1' , 'report_stores_re_order.xlsx')">
+                    </i-button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div x-import="scripts.html"></div>
+
+    <script x-permissions="login" x-import="report-stores-re-order/index.js"></script>
+</body>
+
+</html>

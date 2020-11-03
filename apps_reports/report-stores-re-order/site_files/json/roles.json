@@ -1,0 +1,7 @@
+[{
+    "module_name" : "inventory" ,
+    "name": "report_stores_re_order_admin",
+    "en": "Report Stores Re Order Admin",
+    "ar": "تقرير إعادة الطلب",
+    "permissions": ["report_stores_re_order_manage"]
+}]

@@ -10,6 +10,11 @@
         "ar": "هندلة المطابخ"
     },
     {
+        "name": "re_order_limit",
+        "en": "Re-Order Limit",
+        "ar": "حد إعادة الطلب"
+    },
+    {
         "name": "work_patch",
         "en": "Works Patch",
         "ar": "يعمل بالتشغيلة"
