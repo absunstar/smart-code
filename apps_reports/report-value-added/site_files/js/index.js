@@ -129,17 +129,17 @@ app.controller("report_value_added", function ($scope, $http, $timeout) {
     $scope.error = '';
     if ($scope.busy) return;
     $scope.busy = true;
-
-    let ip = '127.0.0.1';
-    let port = '11111';
-
+    
     let InvoiceDate = new Date();
+    
+    let ip = '127.0.0.1';
+    let port = '60080';
 
-
-    if ($scope.defaultSettings.printer_program) {
-      ip = $scope.defaultSettings.printer_program.ip || '127.0.0.1';
-      port = $scope.defaultSettings.printer_program.port || '11111';
+    if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.printer_path) {
+      ip = $scope.defaultSettings.printer_program.printer_path.ip_device || '127.0.0.1';
+      port = $scope.defaultSettings.printer_program.printer_path.Port_device || '60080';
     };
+
 
     let obj_print = { data: [] };
 

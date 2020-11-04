@@ -508,6 +508,8 @@ app.controller("default_setting", function ($scope, $http) {
           id: 1,
           name: 1,
           type: 1,
+          ip_device: 1,
+          Port_device: 1,
           ip: 1,
         }
       }

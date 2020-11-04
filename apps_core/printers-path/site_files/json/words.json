@@ -1,21 +1,77 @@
 [
-    {"name" : "printers_path_informations" , "en" : "Printer Path Informations" , "ar" : "بيانات مسار الطابعة"},
-    {"name" : "printers_path_add" , "en" : "Add printers Path" , "ar" : "إضافة مسارات الطابعات"},
-
-    {"name" : "printers_path" , "en" : "printers Path" , "ar" : "مسار الطابعات"},
-    {"name" : "printers_path_menus" , "en" : "Printer Path Menu" , "ar" : "قائمة مسار الطابعة"},
-    {"name" : "printers_path_code" , "en" : "Printer Path Code" , "ar" : "كود مسار الطابعة"},
-    {"name" : "printers_path_name" , "en" : "Name" , "ar" : "الإسم"},
-    {"name" : "printers_path_type" , "en" : "Type" , "ar" : "النوع"},
-    {"name" : "printers_path_ip" , "en" : "Ip" , "ar" : "أي بي"},
-
-    {"name" : "printers_path_new" , "en" : "New Printer Path" , "ar" : "مسار الطابعة جديدة"},
-    {"name" : "printers_path_details" , "en" : "Printer Path Details" , "ar" : "تفاصيل مسار الطابعة"},
-    {"name" : "printers_path_update" , "en" : "Edit Printer Path" , "ar" : "تعديل مسار الطابعة"},
-    {"name" : "printers_path_delete" , "en" : "Delte Printer Path" , "ar" : "حذف مسار الطابعة"},
-    {"name" : "printers_path_add_name" , "en" : "Add Printer Path" , "ar" : "إضافة مسار الطابعة"}
-
-
-    
-    
+    {
+        "name": "printers_path_informations",
+        "en": "Printer Path Informations",
+        "ar": "بيانات مسار الطابعة"
+    },
+    {
+        "name": "printers_path_add",
+        "en": "Add printers Path",
+        "ar": "إضافة مسارات الطابعات"
+    },
+    {
+        "name": "printers_path",
+        "en": "printers Path",
+        "ar": "مسار الطابعات"
+    },
+    {
+        "name": "printers_path_menus",
+        "en": "Printer Path Menu",
+        "ar": "قائمة مسار الطابعة"
+    },
+    {
+        "name": "printers_path_code",
+        "en": "Printer Path Code",
+        "ar": "كود مسار الطابعة"
+    },
+    {
+        "name": "printers_path_name",
+        "en": "Name",
+        "ar": "الإسم"
+    },
+    {
+        "name": "printers_path_type",
+        "en": "Type",
+        "ar": "النوع"
+    },
+    {
+        "name": "printers_path_ip",
+        "en": "Ip",
+        "ar": "أي بي"
+    },
+    {
+        "name": "Port_device",
+        "en": "Port Device",
+        "ar": "بورت الجهاز"
+    },
+    {
+        "name": "ip_device",
+        "en": "Ip Device",
+        "ar": "أي بي الجهاز"
+    },
+    {
+        "name": "printers_path_new",
+        "en": "New Printer Path",
+        "ar": "مسار الطابعة جديدة"
+    },
+    {
+        "name": "printers_path_details",
+        "en": "Printer Path Details",
+        "ar": "تفاصيل مسار الطابعة"
+    },
+    {
+        "name": "printers_path_update",
+        "en": "Edit Printer Path",
+        "ar": "تعديل مسار الطابعة"
+    },
+    {
+        "name": "printers_path_delete",
+        "en": "Delte Printer Path",
+        "ar": "حذف مسار الطابعة"
+    },
+    {
+        "name": "printers_path_add_name",
+        "en": "Add Printer Path",
+        "ar": "إضافة مسار الطابعة"
+    }
 ]

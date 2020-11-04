@@ -183,12 +183,15 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
   };
 
   $scope.sendToKitchens = function (_order_customer) {
+    
     let ip = '127.0.0.1';
-    let port = '11111';
-    if ($scope.defaultSettings.printer_program) {
-      ip = $scope.defaultSettings.printer_program.ip || '127.0.0.1';
-      port = $scope.defaultSettings.printer_program.port || '11111';
-    }
+    let port = '60080';
+
+    if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.printer_path) {
+      ip = $scope.defaultSettings.printer_program.printer_path.ip_device || '127.0.0.1';
+      port = $scope.defaultSettings.printer_program.printer_path.Port_device || '60080';
+    };
+
 
     $scope.kitchensList.forEach(_kitchen => {
       _kitchen.data = [];
@@ -397,11 +400,13 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
     }
 
     let ip = '127.0.0.1';
-    let port = '11111';
-    if ($scope.defaultSettings.printer_program) {
-      ip = $scope.defaultSettings.printer_program.ip || '127.0.0.1';
-      port = $scope.defaultSettings.printer_program.port || '11111';
+    let port = '60080';
+
+    if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.printer_path) {
+      ip = $scope.defaultSettings.printer_program.printer_path.ip_device || '127.0.0.1';
+      port = $scope.defaultSettings.printer_program.printer_path.Port_device || '60080';
     };
+
 
     $scope.account_invoices.total_remain = $scope.account_invoices.net_value - $scope.account_invoices.paid_up;
 
@@ -879,6 +884,8 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
           id: 1,
           name: 1,
           type: 1,
+          ip_device: 1,
+          Port_device: 1,
           ip: 1,
         }
       }
