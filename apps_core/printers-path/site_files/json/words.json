@@ -40,6 +40,11 @@
         "ar": "أي بي"
     },
     {
+        "name": "print_code",
+        "en": "Print Code",
+        "ar": "كود الطابعة"
+    },
+    {
         "name": "Port_device",
         "en": "Port Device",
         "ar": "بورت الجهاز"

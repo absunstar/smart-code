@@ -51,7 +51,9 @@
                         <th class="not-print"> ##word.logo## </th>
                         <th> ##word.printers_path_name## </th>
                         <th> ##word.printers_path_type## </th>
-                        <th> ##word.printers_path_ip## </th>
+                        <th> ##word.print_code## </th>
+                        <th> ##word.ip_device## </th>
+                        <th> ##word.Port_device## </th>
                         <th> ##word.status## </th>
 
                         <th class="not-print"> ##word.actions## </th>
@@ -64,6 +66,8 @@
                         <td> {{c.name}} </td>
                         <td> {{c.type.##session.lang##}} </td>
                         <td class="blue"> {{c.ip}} </td>
+                        <td> {{c.ip_device}} </td>
+                        <td> {{c.Port_device}} </td>
 
                         <td>
                             <p ng-show="c.active == true" class="green"> ##word.active## </p>
