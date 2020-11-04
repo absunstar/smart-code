@@ -306,6 +306,11 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         return;
       }
 
+      if (!$scope.store_out.payment_type && $scope.store_out.type.id != 5) {
+        $scope.error = "##word.must_choose_payment_type##";
+        return;
+      };
+
       if ($scope.store_out.payment_type && $scope.store_out.payment_type.id == 1) {
 
         if ($scope.store_out.type && $scope.store_out.type.id != 5 && $scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto) {
@@ -1124,6 +1129,12 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
       return;
 
     }
+
+    if (!$scope.store_out.payment_type && $scope.store_out.type.id != 5) {
+      $scope.error = "##word.must_choose_payment_type##";
+      return;
+    };
+
 
     if ($scope.store_out.payment_type && $scope.store_out.payment_type.id == 1) {
 

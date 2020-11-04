@@ -787,6 +787,11 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
       return;
 
     };
+
+    if(!$scope.store_in.payment_type && ($scope.store_in.type.id == 1 || $scope.store_in.type.id == 4)){
+      $scope.error = "##word.must_choose_payment_type##";
+      return;
+    };
     
     if ($scope.store_in.payment_type && $scope.store_in.payment_type.id == 1) {
 
@@ -1369,6 +1374,12 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
       return;
 
     };
+
+    if(!$scope.store_in.payment_type && ($scope.store_in.type.id == 1 || $scope.store_in.type.id == 4)){
+      $scope.error = "##word.must_choose_payment_type##";
+      return;
+    };
+    
 
     if ($scope.store_in.payment_type && $scope.store_in.payment_type.id == 1) {
 

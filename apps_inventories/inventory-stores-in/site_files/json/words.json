@@ -15,6 +15,11 @@
         "ar": "شراء"
     },
     {
+        "name": "must_choose_payment_type",
+        "en": "Must Choose Payment Type",
+        "ar": "يجب إختيار نوع الدفع"
+    },
+    {
         "name": "debt_store",
         "en": "Debt Store",
         "ar": "عهدة مخزنية"
