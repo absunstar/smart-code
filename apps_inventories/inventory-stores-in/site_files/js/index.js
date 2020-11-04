@@ -117,15 +117,12 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
     let port = '60080';
 
     if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.printer_path) {
-
-      console.log($scope.defaultSettings.printer_program.printer_path.ip_device);
-      console.log($scope.defaultSettings.printer_program.printer_path.Port_device);
       ip = $scope.defaultSettings.printer_program.printer_path.ip_device || '127.0.0.1';
       port = $scope.defaultSettings.printer_program.printer_path.Port_device || '60080';
     };
 
 
-    if ($scope.account_invoices) {
+    if ($scope.account_invoices && $scope.account_invoices.currency) {
 
       $scope.account_invoices.total_remain = $scope.account_invoices.net_value - ($scope.account_invoices.paid_up * $scope.account_invoices.currency.ex_rate);
 
@@ -790,18 +787,33 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
       return;
 
     };
+    
+    if ($scope.store_in.payment_type && $scope.store_in.payment_type.id == 1) {
 
-    if ($scope.store_in.paid_up > $scope.amount_currency) {
-      $scope.error = "##word.err_net_value##";
-      return;
-    }
-
-    if ($scope.store_in.type && ($scope.store_in.type.id == 1 || $scope.store_in.type.id == 4) && $scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto) {
-      if (!$scope.store_in.safe) {
-        $scope.error = "##word.nosafe_warning##";
+      if ($scope.store_in.paid_up > $scope.amount_currency) {
+        $scope.error = "##word.err_net_value##";
         return;
       }
+
+      if ($scope.store_in.type && ($scope.store_in.type.id == 1 || $scope.store_in.type.id == 4) && $scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto) {
+        if (!$scope.store_in.safe) {
+          $scope.error = "##word.nosafe_warning##";
+          return;
+        }
+      }
+
+      if ($scope.store_in.paid_up < $scope.amount_currency) {
+        $scope.error = "##word.amount_must_paid_full##";
+        return;
+      }
+
+    } else {
+      $scope.store_in.paid_up = undefined;
+      $scope.store_in.safe = undefined;
+      $scope.store_in.payment_method = undefined;
+      $scope.store_in.currency = undefined;
     }
+
 
     let max_discount = false;
     let returned_count = false;
@@ -1358,17 +1370,30 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
 
     };
 
+    if ($scope.store_in.payment_type && $scope.store_in.payment_type.id == 1) {
 
-    if ($scope.store_in.type && ($scope.store_in.type.id == 1 || $scope.store_in.type.id == 4) && $scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto) {
-      if (!$scope.store_in.safe) {
-        $scope.error = "##word.nosafe_warning##";
+      if ($scope.store_in.paid_up > $scope.amount_currency) {
+        $scope.error = "##word.err_net_value##";
         return;
       }
-    }
 
-    if ($scope.store_in.paid_up > $scope.amount_currency) {
-      $scope.error = "##word.err_net_value##";
-      return;
+      if ($scope.store_in.type && ($scope.store_in.type.id == 1 || $scope.store_in.type.id == 4) && $scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto) {
+        if (!$scope.store_in.safe) {
+          $scope.error = "##word.nosafe_warning##";
+          return;
+        }
+      }
+
+      if ($scope.store_in.paid_up < $scope.amount_currency) {
+        $scope.error = "##word.amount_must_paid_full##";
+        return;
+      }
+
+    } else {
+      $scope.store_in.paid_up = undefined;
+      $scope.store_in.safe = undefined;
+      $scope.store_in.payment_method = undefined;
+      $scope.store_in.currency = undefined;
     }
 
     let max_discount = false;
@@ -1950,6 +1975,25 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.loadPaymentTypes = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: '/api/payment_type/all',
+      data: {}
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.paymentTypesList = response.data;
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
   $scope.loadCategories = function () {
     $scope.error = '';
     $scope.busy = true;
@@ -2316,6 +2360,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
 
   $scope.loadStoresInTypes();
   $scope.loadStores();
+  $scope.loadPaymentTypes();
   $scope.loadCategories();
   $scope.getPaymentMethodList();
   $scope.loadTax_Types();

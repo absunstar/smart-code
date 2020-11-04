@@ -324,6 +324,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
           $scope.error = "##word.amount_must_paid_full##";
           return;
         }
+
       } else {
         $scope.store_out.paid_up = undefined;
         $scope.store_out.safe = undefined;
@@ -1638,8 +1639,8 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
       port = $scope.defaultSettings.printer_program.printer_path.Port_device || '60080';
     };
 
-    
-    if ($scope.account_invoices) {
+
+    if ($scope.account_invoices && $scope.account_invoices.currency) {
 
       $scope.account_invoices.total_remain = $scope.account_invoices.net_value - ($scope.account_invoices.paid_up * $scope.account_invoices.currency.ex_rate);
 
