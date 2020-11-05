@@ -76,7 +76,7 @@ module.exports = function init(site) {
     lastCode++
     site.storage('ticket_last_code', lastCode)
     site.storage('ticket_last_month', lastMonth)
-    return 'I-N'+ y + lastMonth + addZero(d, 2) + addZero(lastCode, 4)
+    return 'I-N' + y + lastMonth + addZero(d, 2) + addZero(lastCode, 4)
   }
 
   site.post("/api/stores_in/add", (req, res) => {
@@ -101,7 +101,6 @@ module.exports = function init(site) {
             response.error = 'Don`t Open Period'
             res.json(response)
           } else {
-
 
             stores_in_doc.number = $stores_in.newCode();
             stores_in_doc.add_user_info = site.security.getUserFinger({ $req: req, $res: res })
@@ -138,7 +137,7 @@ module.exports = function init(site) {
               }
             }
 
-            site.isAllowOverDraft(req, stores_in_doc.items, cbOverDraft => {
+            site.isAllowOverDraft(req, req.body.items, cbOverDraft => {
 
               if (!cbOverDraft.overdraft && cbOverDraft.value && stores_in_doc.posting && stores_in_doc.type.id == 4) {
 
@@ -335,7 +334,7 @@ module.exports = function init(site) {
                   }
                 }
 
-                site.isAllowOverDraft(req, stores_in_doc.items, cbOverDraft => {
+                site.isAllowOverDraft(req, req.body.items, cbOverDraft => {
 
                   if (!cbOverDraft.overdraft && cbOverDraft.value && stores_in_doc.posting && stores_in_doc.type.id == 4) {
 
@@ -361,63 +360,66 @@ module.exports = function init(site) {
                         if (!err) {
                           response.done = true
                           response.doc = result.doc
+                          if (result.doc.items && result.doc.items.length > 0) {
 
-                          result.doc.items.forEach((_itm, i) => {
-                            _itm.store = result.doc.store
-                            _itm.company = result.doc.company
-                            _itm.branch = result.doc.branch
-                            _itm.source_type = result.doc.type
-                            _itm.store_in = true
-                            _itm.number = result.doc.number
-                            _itm.vendor = result.doc.vendor
-                            _itm.date = result.doc.date
-                            _itm.shift = {
-                              id: result.doc.shift.id,
-                              code: result.doc.shift.code,
-                              name: result.doc.shift.name
-                            }
-
-
-                            if (result.doc.posting) {
-                              _itm.current_status = 'storein'
-
-                              if (result.doc.type.id == 4) {
-                                _itm.set_average = 'minus_average'
-                                _itm.type = 'minus'
-                                _itm.count = (-Math.abs(_itm.count))
-                                _itm.transaction_type = 'in'
-                                site.quee('item_transaction + items', Object.assign({}, _itm))
-                              } else {
-                                if (result.doc.type.id == 1)
-                                  _itm.set_average = 'sum_average'
-                                _itm.type = 'sum'
-                                _itm.transaction_type = 'in'
-                                site.quee('item_transaction + items', Object.assign({}, _itm))
+                            result.doc.items.forEach((_itm, i) => {
+                              _itm.store = result.doc.store
+                              _itm.company = result.doc.company
+                              _itm.branch = result.doc.branch
+                              _itm.source_type = result.doc.type
+                              _itm.store_in = true
+                              _itm.number = result.doc.number
+                              _itm.vendor = result.doc.vendor
+                              _itm.date = result.doc.date
+                              _itm.shift = {
+                                id: result.doc.shift.id,
+                                code: result.doc.shift.code,
+                                name: result.doc.shift.name
                               }
 
 
 
-                            } else {
-                              _itm.current_status = 'r_storein'
-                              if (result.doc.type.id == 4) {
-                                _itm.set_average = 'sum_average'
-                                _itm.type = 'sum'
-                                _itm.transaction_type = 'in'
-                                site.quee('item_transaction + items', Object.assign({}, _itm))
-                              } else {
-                                if (result.doc.type.id == 1)
+                              if (result.doc.posting) {
+                                _itm.current_status = 'storein'
+
+                                if (result.doc.type.id == 4) {
                                   _itm.set_average = 'minus_average'
-                                _itm.type = 'minus'
-                                _itm.count = (-Math.abs(_itm.count))
-                                _itm.transaction_type = 'in'
-                                site.quee('item_transaction + items', Object.assign({}, _itm))
+                                  _itm.type = 'minus'
+                                  _itm.count = (-Math.abs(_itm.count))
+                                  _itm.transaction_type = 'in'
+                                  site.quee('item_transaction + items', Object.assign({}, _itm))
+                                } else {
+                                  if (result.doc.type.id == 1)
+                                    _itm.set_average = 'sum_average'
+                                  _itm.type = 'sum'
+                                  _itm.transaction_type = 'in'
+                                  site.quee('item_transaction + items', Object.assign({}, _itm))
+                                }
+
+
+
+                              } else {
+                                _itm.current_status = 'r_storein'
+                                if (result.doc.type.id == 4) {
+                                  _itm.set_average = 'sum_average'
+                                  _itm.type = 'sum'
+                                  _itm.transaction_type = 'in'
+                                  site.quee('item_transaction + items', Object.assign({}, _itm))
+                                } else {
+                                  if (result.doc.type.id == 1)
+                                    _itm.set_average = 'minus_average'
+                                  _itm.type = 'minus'
+                                  _itm.count = (-Math.abs(_itm.count))
+                                  _itm.transaction_type = 'in'
+                                  site.quee('item_transaction + items', Object.assign({}, _itm))
+                                }
                               }
-                            }
-                            _itm.count = Math.abs(_itm.count) // amr
+                              _itm.count = Math.abs(_itm.count) // amr
 
-                            site.quee('[transfer_branch][stores_items][add_balance]', _itm)
+                              site.quee('[transfer_branch][stores_items][add_balance]', _itm)
 
-                          })
+                            })
+                          }
 
                           if (result.doc.type && result.doc.type.id == 4) {
                             if (!result.doc.posting)
@@ -476,7 +478,7 @@ module.exports = function init(site) {
                 res.json(response)
               } else {
 
-                site.isAllowOverDraft(req, stores_in_doc.items, cbOverDraft => {
+                site.isAllowOverDraft(req, req.body.items, cbOverDraft => {
 
                   if (!cbOverDraft.overdraft && cbOverDraft.value && stores_in_doc.posting && stores_in_doc.type.id != 4) {
 

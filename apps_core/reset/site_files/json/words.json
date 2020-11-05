@@ -20,6 +20,16 @@
         "ar": "فك ترحيل المشتريات"
     }, 
     {
+        "name": "reset_account_invoice_store_out",
+        "en": "Handel Sales Account Invoice",
+        "ar": "هندلة فواتير المبيعات الحسابية"
+    },
+    {
+        "name": "reset_account_invoice_store_in",
+        "en": "Handel Purchase Account Invoice",
+        "ar": "هندلة فواتير المشتريات الحسابية"
+    },
+    {
         "name": "reset_safes",
         "en": "Reset Safes",
         "ar": "تصفير الخزن"

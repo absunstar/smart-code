@@ -493,7 +493,7 @@ module.exports = function init(site) {
 
             if (stores_assemble_doc._id) {
 
-              site.isAllowOverDraft(req, stores_assemble_doc.items, cbOverDraft => {
+              site.isAllowOverDraft(req, req.body.items, cbOverDraft => {
 
                 if (!cbOverDraft.overdraft && cbOverDraft.value) {
 

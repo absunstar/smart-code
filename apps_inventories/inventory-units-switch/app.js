@@ -105,7 +105,7 @@ module.exports = function init(site) {
             units_switch_doc.net_value = site.toNumber(units_switch_doc.net_value)
 
 
-            site.isAllowOverDraft(req, units_switch_doc.items, cbOverDraft => {
+            site.isAllowOverDraft(req, req.body.items, cbOverDraft => {
 
               if (!cbOverDraft.overdraft && cbOverDraft.value) {
 
@@ -279,7 +279,7 @@ module.exports = function init(site) {
 
             if (units_switch_doc._id) {
 
-              site.isAllowOverDraft(req, units_switch_doc.items, cbOverDraft => {
+              site.isAllowOverDraft(req, req.body.items, cbOverDraft => {
 
                 if (!cbOverDraft.overdraft && cbOverDraft.value) {
 
@@ -424,7 +424,7 @@ module.exports = function init(site) {
 
             if (units_switch_doc._id) {
 
-              site.isAllowOverDraft(req, units_switch_doc.items, cbOverDraft => {
+              site.isAllowOverDraft(req, req.body.items, cbOverDraft => {
 
                 if (!cbOverDraft.overdraft && cbOverDraft.value) {
 

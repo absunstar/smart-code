@@ -41,6 +41,44 @@ app.controller("reset", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.handelStoreInInvoice = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/stores_in/handel_invoices"
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.handelStoreOutInvoice = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/stores_out/handel_invoices"
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
   $scope.resetItemTransaction = function () {
     $scope.error = '';
     $scope.busy = true;

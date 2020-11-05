@@ -14,6 +14,8 @@
     { "module_name" : "public" , "screen_name" : "reset" , "name":"reset_post_stores_in" , "en":"Post Purchase" , "ar":"ترحيل المشتريات"},
     { "module_name" : "public" , "screen_name" : "reset" , "name":"reset_post_stores_transfer" , "en":"Confirm Stores Transfer" , "ar":"إعتماد التحويلات المخزنية"},
     { "module_name" : "public" , "screen_name" : "reset" , "name":"reset_post_account_invoice" , "en":"Post Account Invoice" , "ar":"ترحيل فواتير الحسابات"},
+    { "module_name" : "public" , "screen_name" : "reset" , "name":"reset_account_invoice_store_in" , "en":"Handel Purchase Account Invoice" , "ar":"هندلة فواتير المشتريات الحسابية"},
+    { "module_name" : "public" , "screen_name" : "reset" , "name":"reset_account_invoice_store_out" , "en":"Handel Sales Account Invoice" , "ar":"هندلة فواتير المبيعات الحسابية"},
 
     { "module_name" : "public" , "screen_name" : "reset" , "name":"reset_print" , "en":"Print" , "ar":"طباعة"},
     { "module_name" : "public" , "screen_name" : "reset" , "name":"reset_ui" , "en":"UI" , "ar":"الواجهة الرسومية"}

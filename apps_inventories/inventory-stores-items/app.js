@@ -689,7 +689,8 @@ module.exports = function init(site) {
         _size.barcode = stores_items_doc.company.id + stores_items_doc.id + d + h + m + i
 
       _size.size_units_list.forEach((_size_unit, _i) => {
-        let indx = stores_items_doc.units_list.findIndex(_unit1 => _unit1.id == _size_unit.id);
+        let indx = 0;
+        indx = stores_items_doc.units_list.findIndex(_unit1 => _unit1.id == _size_unit.id);
         _size_unit.convert = stores_items_doc.units_list[indx].convert
 
         if (!_size_unit.average_cost)

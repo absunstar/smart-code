@@ -101,7 +101,7 @@ module.exports = function init(site) {
             stores_dismantle_doc.net_value = site.toNumber(stores_dismantle_doc.net_value)
 
 
-            site.isAllowOverDraft(req, stores_dismantle_doc.items, cbOverDraft => {
+            site.isAllowOverDraft(req, req.body.items, cbOverDraft => {
 
               if (!cbOverDraft.overdraft && cbOverDraft.value) {
 

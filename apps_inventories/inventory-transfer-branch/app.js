@@ -143,7 +143,7 @@ module.exports = function init(site) {
 
             branch_ransfer_doc.date = new Date(branch_ransfer_doc.date)
             req.body.store = req.body.store_from;
-            site.isAllowOverDraft(req, branch_ransfer_doc.items, cbOverDraft => {
+            site.isAllowOverDraft(req, req.body.items, cbOverDraft => {
               response.overObj = cbOverDraft.overObj
 
               if (!cbOverDraft.overdraft && cbOverDraft.value) {

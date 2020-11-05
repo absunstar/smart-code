@@ -147,7 +147,7 @@ module.exports = function init(site) {
                 net_value: stores_out_doc.net_value,
               }
 
-            site.isAllowOverDraft(req, stores_out_doc.items, cbOverDraft => {
+            site.isAllowOverDraft(req, req.body.items, cbOverDraft => {
 
               if (!cbOverDraft.overdraft && cbOverDraft.value && stores_out_doc.posting && stores_out_doc.type.id != 6) {
 
@@ -342,7 +342,7 @@ module.exports = function init(site) {
 
                 stores_out_doc.edit_user_info = site.security.getUserFinger({ $req: req, $res: res })
 
-                site.isAllowOverDraft(req, stores_out_doc.items, cbOverDraft => {
+                site.isAllowOverDraft(req, req.body.items, cbOverDraft => {
 
                   if (!cbOverDraft.overdraft && cbOverDraft.value && stores_out_doc.posting && stores_out_doc.type.id != 6) {
 
@@ -482,7 +482,7 @@ module.exports = function init(site) {
               } else {
 
 
-                site.isAllowOverDraft(req, stores_out_doc.items, cbOverDraft => {
+                site.isAllowOverDraft(req, req.body.items, cbOverDraft => {
 
                   if (!cbOverDraft.overdraft && cbOverDraft.value && stores_out_doc.posting && stores_out_doc.type.id == 6) {
 
@@ -969,6 +969,7 @@ module.exports = function init(site) {
   };
 
 
+
   site.post("/api/stores_out/un_post", (req, res) => {
     let response = {}
     response.done = false
@@ -1018,7 +1019,7 @@ module.exports = function init(site) {
 
           req.body.store = stores_out_doc.store
           req.body.branch = stores_out_doc.branch
-          site.isAllowOverDraft(Object.assign({}, req), stores_out_doc.items, cbOverDraft => {
+          site.isAllowOverDraft(Object.assign({}, req), req.body.items, cbOverDraft => {
 
             if (!cbOverDraft.overdraft && cbOverDraft.value && stores_out_doc.type.id != 6) {
               response.error = 'OverDraft Not Active'
@@ -1096,6 +1097,7 @@ module.exports = function init(site) {
         });
 
       }
+
       response.done = true
       res.json(response)
     })

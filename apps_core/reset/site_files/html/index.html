@@ -137,8 +137,8 @@
 
                     <div class="row" ng-hide="reset_post_stores_out">
 
-                        <i-button x-permissions="reset_post_stores_out || reset_manage"
-                        class="col5"  label="##word.reset_post_stores_out##"
+                        <i-button x-permissions="reset_post_stores_out || reset_manage" class="col5"
+                            label="##word.reset_post_stores_out##"
                             ng-click="postingStoreOutAll();reset_post_stores_out = true">
                         </i-button>
                     </div>
@@ -146,8 +146,8 @@
 
                     <div class="row" ng-hide="reset_post_stores_transfer">
 
-                        <i-button x-permissions="reset_post_stores_transfer || reset_manage"
-                        class="col5" label="##word.reset_post_stores_transfer##"
+                        <i-button x-permissions="reset_post_stores_transfer || reset_manage" class="col5"
+                            label="##word.reset_post_stores_transfer##"
                             ng-click="confirmTransferBranchAll();reset_post_stores_transfer = true">
                         </i-button>
                     </div>
@@ -155,14 +155,37 @@
 
                     <div class="row" ng-hide="reset_post_account_invoice">
 
-                        <i-button x-permissions="reset_post_account_invoice || reset_manage"
-                        class="col5" label="##word.reset_post_account_invoice##"
+                        <i-button x-permissions="reset_post_account_invoice || reset_manage" class="col5"
+                            label="##word.reset_post_account_invoice##"
                             ng-click="postingAccountingAll();reset_post_account_invoice = true">
                         </i-button>
                     </div>
                     <br><br><br>
 
                 </div>
+
+            </div>
+
+            <div class="row">
+                <fieldset>
+
+                    <div class="row" ng-hide="reset_account_invoice_store_in">
+
+                        <i-button x-permissions="reset_account_invoice_store_in || reset_manage" class="col5"
+                            label="##word.reset_account_invoice_store_in##"
+                            ng-click="handelStoreInInvoice();reset_account_invoice_store_in = true">
+                        </i-button>
+                    </div>
+                    <br><br><br>
+                    <div class="row" ng-hide="reset_account_invoice_store_out">
+
+                        <i-button x-permissions="reset_account_invoice_store_out || reset_manage" class="col5"
+                            label="##word.reset_account_invoice_store_out##"
+                            ng-click="handelStoreOutInvoice();reset_account_invoice_store_out = true">
+                        </i-button>
+                    </div>
+                    <br><br><br>
+                </fieldset>
 
             </div>
 
