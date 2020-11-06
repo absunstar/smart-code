@@ -190,6 +190,9 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
           $scope.store_out.customer = $scope.defaultSettings.general_Settings.customer;
           if (!$scope.defaultSettings.general_Settings.work_posting)
             $scope.store_out.posting = true
+
+          if ($scope.defaultSettings.general_Settings.payment_type && $scope.store_out.type.id != 5)
+            $scope.store_out.payment_type = $scope.defaultSettings.general_Settings.payment_type;
         };
 
         if ($scope.defaultSettings.inventory) {

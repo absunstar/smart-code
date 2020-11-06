@@ -663,7 +663,10 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
 
         if ($scope.defaultSettings.inventory) {
           if ($scope.defaultSettings.inventory.store)
-            $scope.store_in.store = $scope.defaultSettings.inventory.store
+            $scope.store_in.store = $scope.defaultSettings.inventory.store;
+
+          if ($scope.defaultSettings.general_Settings.payment_type && ($scope.store_in.type.id == 1 || $scope.store_in.type.id == 4))
+            $scope.store_in.payment_type = $scope.defaultSettings.general_Settings.payment_type;
 
           if ($scope.defaultSettings.accounting) {
             if (($scope.store_in.type.id == 1 || $scope.store_in.type.id == 4) && $scope.defaultSettings.accounting.create_invoice_auto) {
@@ -788,11 +791,11 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
 
     };
 
-    if(!$scope.store_in.payment_type && ($scope.store_in.type.id == 1 || $scope.store_in.type.id == 4)){
+    if (!$scope.store_in.payment_type && ($scope.store_in.type.id == 1 || $scope.store_in.type.id == 4)) {
       $scope.error = "##word.must_choose_payment_type##";
       return;
     };
-    
+
     if ($scope.store_in.payment_type && $scope.store_in.payment_type.id == 1) {
 
       if ($scope.store_in.paid_up > $scope.amount_currency) {
@@ -1375,11 +1378,11 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
 
     };
 
-    if(!$scope.store_in.payment_type && ($scope.store_in.type.id == 1 || $scope.store_in.type.id == 4)){
+    if (!$scope.store_in.payment_type && ($scope.store_in.type.id == 1 || $scope.store_in.type.id == 4)) {
       $scope.error = "##word.must_choose_payment_type##";
       return;
     };
-    
+
 
     if ($scope.store_in.payment_type && $scope.store_in.payment_type.id == 1) {
 

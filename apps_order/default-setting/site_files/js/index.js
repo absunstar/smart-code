@@ -497,6 +497,25 @@ app.controller("default_setting", function ($scope, $http) {
     )
   };
 
+  $scope.loadPaymentTypes = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: '/api/payment_type/all',
+      data: {}
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.paymentTypesList = response.data;
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
 
   $scope.getPrintersPath = function () {
     $scope.busy = true;
@@ -531,6 +550,7 @@ app.controller("default_setting", function ($scope, $http) {
   $scope.getPaymentMethodList();
   $scope.getDiscountMethodList();
   $scope.getPlaceProgramList();
+  $scope.loadPaymentTypes();
   $scope.loadItemsGroups();
   $scope.loadDelegates();
   $scope.getSourceType();

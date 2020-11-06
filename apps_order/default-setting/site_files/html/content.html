@@ -41,14 +41,16 @@
                     <br>
                     <br>
                     <div class="row" x-features="restaurant || pos  || erp">
+
+                        <i-list help-id="" ng-search="_search.$payment_type_search" class="col2"
+                            label="##word.payment_type##" ng-model="default_setting.general_Settings.payment_type"
+                            items="paymentTypesList" display="##session.lang##">
+                        </i-list>
+
                         <i-list ng-search="_search.$order_invoice_employee" class="col3" display="name"
                             ng-model="default_setting.general_Settings.delivery_employee"
                             label="##word.delivery_employee##" items="deliveryEmployeesList"></i-list>
 
-                        <i-list help-id="" ng-search="_search.$discount_method_search" class="col2"
-                            label="##word.discount_method##" ng-model="default_setting.general_Settings.discount_method"
-                            items="discountMethodList" display="##session.lang##">
-                        </i-list>
 
                         <i-list ng-search="_search.$order_type" class="col2" display="##session.lang##"
                             ng-model="default_setting.general_Settings.order_type" label="##word.order_type##"
@@ -247,8 +249,8 @@
                     </div>
 
                     <div class="row">
-                        <i-checkbox label="##word.create_invoice_auto##"
-                        ng-click="linkWarehouseAccountInvoices()" ng-model="default_setting.accounting.create_invoice_auto"></i-checkbox>
+                        <i-checkbox label="##word.create_invoice_auto##" ng-click="linkWarehouseAccountInvoices()"
+                            ng-model="default_setting.accounting.create_invoice_auto"></i-checkbox>
 
                         <i-checkbox label="##word.auto_generate_account_code_and_cost_center##"
                             ng-model="default_setting.accounting.auto_generate_account_code_and_cost_center">
@@ -259,7 +261,8 @@
                         </i-checkbox>
 
                         <i-checkbox label="##word.link_warehouse_account_invoices##"
-                           ng-click="linkWarehouseAccountInvoices()" ng-model="default_setting.accounting.link_warehouse_account_invoices">
+                            ng-click="linkWarehouseAccountInvoices()"
+                            ng-model="default_setting.accounting.link_warehouse_account_invoices">
                         </i-checkbox>
 
                     </div>
@@ -298,6 +301,11 @@
 
 
                     <div class="row">
+
+                        <i-list help-id="" ng-search="_search.$discount_method_search" class="col2"
+                            label="##word.discount_method##" ng-model="default_setting.inventory.discount_method"
+                            items="discountMethodList" display="##session.lang##">
+                        </i-list>
 
                         <i-list class="col3" ng-model="default_setting.inventory.delegate"
                             ng-search="_search.$items_group_search" label="##word.delegate##" items="delegatesList">

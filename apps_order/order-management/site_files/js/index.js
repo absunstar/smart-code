@@ -50,7 +50,7 @@ app.controller("order_management", function ($scope, $http, $timeout) {
         if (response.data.done) {
           site.hideModal('#employeeDeliveryModal');
           if (order.post && $scope.post)
-            if ($scope.defaultSettings.general_Settings && $scope.defaultSettings.general_Settings.discount_method && $scope.defaultSettings.general_Settings.discount_method.id == 2 && order.status.id == 2) {
+            if ($scope.defaultSettings.inventory && $scope.defaultSettings.inventory.discount_method && $scope.defaultSettings.inventory.discount_method.id == 2 && order.status.id == 2) {
               let store_out = {
                 image_url: '/images/store_out.png',
                 supply_date: new Date(),
