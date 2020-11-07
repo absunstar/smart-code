@@ -80,7 +80,7 @@ module.exports = function init(site) {
     lastCode++
     site.storage('ticket_last_code', lastCode)
     site.storage('ticket_last_month', lastMonth)
-    return 'O-U'+ y + lastMonth + addZero(d, 2) + addZero(lastCode, 4)
+    return 'O-U' + y + lastMonth + addZero(d, 2) + addZero(lastCode, 4)
   }
 
   site.post("/api/stores_out/add", (req, res) => {
@@ -368,62 +368,63 @@ module.exports = function init(site) {
                         if (!err) {
                           response.done = true
                           response.doc = result.doc
-
-                          result.doc.items.forEach((_itm, i) => {
-                            _itm.store = result.doc.store
-                            _itm.company = result.doc.company
-                            _itm.branch = result.doc.branch
-                            _itm.source_type = result.doc.type
-                            _itm.number = result.doc.number
-                            _itm.customer = result.doc.customer
-                            _itm.date = result.doc.date
-                            _itm.shift = {
-                              id: result.doc.shift.id,
-                              code: result.doc.shift.code,
-                              name: result.doc.shift.name
-                            }
-                            if (result.doc.posting) {
-                              _itm.current_status = 'sold'
-                              if (result.doc.type.id == 6) {
-                                _itm.returnSell = true
-                                _itm.type = 'sum'
-                                _itm.count = (-Math.abs(_itm.count))
-                                _itm.transaction_type = 'out'
-                                site.quee('item_transaction - items', Object.assign({}, _itm))
-                              } else {
-
-                                if (result.doc.type.id == 5) {
-                                  _itm.set_average = 'minus_average'
-                                }
-
-                                _itm.type = 'minus'
-                                _itm.transaction_type = 'out'
-                                site.quee('item_transaction - items', Object.assign({}, _itm))
+                          if (result.doc.items && result.doc.items.length > 0) {
+                            result.doc.items.forEach((_itm, i) => {
+                              _itm.store = result.doc.store
+                              _itm.company = result.doc.company
+                              _itm.branch = result.doc.branch
+                              _itm.source_type = result.doc.type
+                              _itm.number = result.doc.number
+                              _itm.customer = result.doc.customer
+                              _itm.date = result.doc.date
+                              _itm.shift = {
+                                id: result.doc.shift.id,
+                                code: result.doc.shift.code,
+                                name: result.doc.shift.name
                               }
-
-                            } else {
-
-                              _itm.current_status = 'r_sold'
-                              if (result.doc.type.id == 6) {
-                                _itm.type = 'minus'
-                                _itm.transaction_type = 'out'
-                                site.quee('item_transaction - items', Object.assign({}, _itm))
-                              } else {
-                                if (result.doc.type.id == 5) {
-                                  _itm.set_average = 'sum_average'
-                                } else {
+                              if (result.doc.posting) {
+                                _itm.current_status = 'sold'
+                                if (result.doc.type.id == 6) {
                                   _itm.returnSell = true
-                                }
-                                _itm.type = 'sum'
-                                _itm.count = (-Math.abs(_itm.count))
-                                _itm.transaction_type = 'out'
-                                site.quee('item_transaction - items', Object.assign({}, _itm))
-                              }
-                            }
-                            _itm.count = Math.abs(_itm.count)
-                            site.quee('[transfer_branch][stores_items][add_balance]', _itm)
+                                  _itm.type = 'sum'
+                                  _itm.count = (-Math.abs(_itm.count))
+                                  _itm.transaction_type = 'out'
+                                  site.quee('item_transaction - items', Object.assign({}, _itm))
+                                } else {
 
-                          })
+                                  if (result.doc.type.id == 5) {
+                                    _itm.set_average = 'minus_average'
+                                  }
+
+                                  _itm.type = 'minus'
+                                  _itm.transaction_type = 'out'
+                                  site.quee('item_transaction - items', Object.assign({}, _itm))
+                                }
+
+                              } else {
+
+                                _itm.current_status = 'r_sold'
+                                if (result.doc.type.id == 6) {
+                                  _itm.type = 'minus'
+                                  _itm.transaction_type = 'out'
+                                  site.quee('item_transaction - items', Object.assign({}, _itm))
+                                } else {
+                                  if (result.doc.type.id == 5) {
+                                    _itm.set_average = 'sum_average'
+                                  } else {
+                                    _itm.returnSell = true
+                                  }
+                                  _itm.type = 'sum'
+                                  _itm.count = (-Math.abs(_itm.count))
+                                  _itm.transaction_type = 'out'
+                                  site.quee('item_transaction - items', Object.assign({}, _itm))
+                                }
+                              }
+                              _itm.count = Math.abs(_itm.count)
+                              site.quee('[transfer_branch][stores_items][add_balance]', _itm)
+
+                            })
+                          }
 
                           if (result.doc.type && result.doc.type.id == 6) {
                             if (!result.doc.posting)
