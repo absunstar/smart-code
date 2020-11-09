@@ -565,6 +565,11 @@
         "ar": "إجمالي الخصم"
     },
     {
+        "name": "total_items_discount",
+        "en": "ًTotal Items Discount",
+        "ar": "إجمالي خصم الأصناف"
+    },
+    {
         "name": "store_from",
         "en": "ًStore From",
         "ar": "من مخزن"

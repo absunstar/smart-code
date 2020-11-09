@@ -19,7 +19,9 @@
                                 </tr>
                                 <tr>
                                     <td class="title"> ##word.code## </td>
-                                    <td class="center "> <p class="userPrint blue">{{account_invoices.code}}</p>  </td>
+                                    <td class="center ">
+                                        <p class="userPrint blue">{{account_invoices.code}}</p>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td class="title"> ##word.source_type## </td>
@@ -167,6 +169,7 @@
                             <table x-permissions="login" class="table bold hover loaded" id="t1">
                                 <tr>
                                     <th>##word.stores_items_name##</th>
+                                    <th>##word.barcode##</th>
                                     <th>##word.items_count##</th>
                                     <th>##word.items_price##</th>
                                     <th>##word.discount##</th>
@@ -179,6 +182,7 @@
                                         <p>{{c.size}}</p>
                                         <p>{{c.size_en}}</p>
                                     </td>
+                                    <td class="center userPrint" >{{c.barcode}}</td>
                                     <td class="center blue">{{c.count}}</td>
                                     <td class="center">
                                         <p ng-hide="account_invoices.source_type.id ==1">{{c.price}}</p>
@@ -194,6 +198,19 @@
                             </table>
                         </div>
                         <br>
+
+                        <br>
+                        <div class="row">
+                            <i-control disabled class="col2" ng-model="account_invoices.total_items_discount"
+                                ng-show="account_invoices.total_items_discount" label="##word.total_items_discount##"
+                                type="number"></i-control>
+
+                            <i-control disabled class="col2" ng-model="account_invoices.total_value_added"
+                                ng-show="account_invoices.total_value_added" label="##word.total_value_added##"
+                                type="number"></i-control>
+
+                        </div>
+                        <br>
                         <br>
                         <div class="row">
                             <fieldset>
@@ -204,7 +221,8 @@
                                 <i-control disabled class="col2" ng-model="account_invoices.total_paid_up"
                                     label="##word.total_paid_up##" type="number"></i-control>
                                 <i-control disabled class="col2" ng-model="account_invoices.remain_amount"
-                                ng-hide="account_invoices.source_type.id == 8 ||account_invoices.source_type.id == 9 || account_invoices.source_type.id == 10  || account_invoices.source_type.id == 11" label="##word.total_remain##" type="number"></i-control>
+                                    ng-hide="account_invoices.source_type.id == 8 ||account_invoices.source_type.id == 9 || account_invoices.source_type.id == 10  || account_invoices.source_type.id == 11"
+                                    label="##word.total_remain##" type="number"></i-control>
                                 <br>
                                 <table class="table bold hover loaded">
 

@@ -48,7 +48,7 @@ module.exports = function init(site) {
     lastCode++
     site.storage('ticket_last_code', lastCode)
     site.storage('ticket_last_month', lastMonth)
-    return 'A-C'+ y + lastMonth + addZero(d, 2) + addZero(lastCode, 4)
+    return 'A-C' + y + lastMonth + addZero(d, 2) + addZero(lastCode, 4)
   }
 
   site.get({
@@ -93,6 +93,30 @@ module.exports = function init(site) {
       $req: req,
       $res: res
     })
+
+    if (account_invoices_doc.current_book_list && account_invoices_doc.current_book_list.length > 0) {
+      account_invoices_doc.total_items_discount = 0
+      account_invoices_doc.current_book_list.forEach(_c_b_list => {
+
+        if (account_invoices_doc.source_type.id == 1) {
+
+          if (_c_b_list.discount.type == 'number')
+            account_invoices_doc.total_items_discount += ((_c_b_list.discount.value || 0) * _c_b_list.count);
+          else if (_c_b_list.discount.type == 'percent')
+            account_invoices_doc.total_items_discount += ((_c_b_list.discount.value || 0) * (_c_b_list.cost * _c_b_list.count) / 100);
+
+        } else if (account_invoices_doc.source_type.id == 2) {
+
+          if (_c_b_list.discount.type == 'number')
+            account_invoices_doc.total_items_discount += ((_c_b_list.discount.value || 0) * _c_b_list.count);
+          else if (_c_b_list.discount.type == 'percent')
+            account_invoices_doc.total_items_discount += ((_c_b_list.discount.value || 0) * (_c_b_list.price * _c_b_list.count) / 100);
+        }
+
+      });
+      account_invoices_doc.total_items_discount = site.toNumber(account_invoices_doc.total_items_discount)
+
+    }
 
     if (account_invoices_doc.paid_up && account_invoices_doc.safe) {
       account_invoices_doc.payment_list = [{
