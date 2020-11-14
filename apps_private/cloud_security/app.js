@@ -224,7 +224,7 @@ module.exports = function init(site) {
         response.error = err ? err.message : 'no doc'
       }
 
-      if (req.data.where.email === site.options.security.admin.email) {
+      if (site.options.security.admin && req.data.where.email === site.options.security.admin.email) {
         response.done = true
         response.list = response.list || []
         response.list.push({
