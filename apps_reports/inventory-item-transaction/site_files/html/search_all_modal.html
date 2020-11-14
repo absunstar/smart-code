@@ -19,8 +19,6 @@
                             <i-date2 class="col3" ng-model="search.date_to" label="##word.date_to##"></i-date2>
                         </div>
 
-
-
                         <div class="row">
                             <i-control class="col2" ng-model="search.name" label="##word.stores_items_name##"
                                 type="text">
@@ -53,10 +51,12 @@
                                 display2="code" ng-model="search.vendor" label="##word.vendor##" items="vendorsList">
                             </i-list>
 
-
                         </div>
 
                         <div class="row">
+                            <i-control class="col3" type="text" label="##word.source_code##"
+                                ng-model="search.source_code">
+                            </i-control>
 
                             <i-list ng-search="_search.$transaction_type" class="col3" display="##session.lang##"
                                 ng-change="loadStoresStatusTypes()" ng-model="search.t_type"

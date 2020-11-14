@@ -231,7 +231,6 @@ module.exports = function init(site) {
       delete where.date_to
     }
 
-
     if (where['in']) {
       where['transaction_type'] = 'in'
       delete where['in']
@@ -265,6 +264,11 @@ module.exports = function init(site) {
       delete where['t_type']
     }
 
+    if (where['source_code']) {
+      where['$or'] = [{ 'code': where['source_code'] }, { 'number': where['source_code'] }]
+      delete where['source_code']
+    }
+
 
     // if (where['delete']) {
     //   let _d = 'd_'
@@ -285,7 +289,7 @@ module.exports = function init(site) {
     }
 
     if (where['barcode']) {
-      where['barcode'] =  where['barcode']
+      where['barcode'] = where['barcode']
     }
 
     if (where['size']) {
