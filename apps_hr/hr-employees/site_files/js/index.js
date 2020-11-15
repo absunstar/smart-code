@@ -504,10 +504,14 @@ app.controller("employee_list", function ($scope, $http, $timeout) {
   $scope.getCoursesList();
   $scope.getJobsList();
   $scope.getDegree();
-  $scope.getGuideAccountList();
-  $scope.getCostCenterList();
+
   $scope.getGender();
   $scope.loadMaritalsStatus();
   $scope.loadMilitariesStatus();
   $scope.getAccountingSystem();
+  if (site.feature('erp')) {
+    $scope.getGuideAccountList();
+    $scope.getCostCenterList();
+  }
+
 });

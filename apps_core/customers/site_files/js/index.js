@@ -548,13 +548,16 @@ app.controller("customers", function ($scope, $http, $timeout) {
   $scope.getCustomersList();
   $scope.getHost();
   $scope.loadCurrencies();
-  $scope.getGuideAccountList();
+
   $scope.getCustomerGroupList();
   $scope.Gender();
   $scope.getGovList();
   $scope.getBloodType();
   $scope.loadMaritalsStatus();
   $scope.loadMilitariesStatus();
+  if (site.feature('erp')) {
+    $scope.getGuideAccountList();
+  }
   if (site.feature('gym') || site.feature('academy')) {
     $scope.getDiseaseList();
     $scope.getMedicineList();

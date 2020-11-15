@@ -403,8 +403,10 @@ app.controller("vendors", function ($scope, $http, $timeout) {
 
 
   $scope.loadCurrencies();
-  $scope.getGuideAccountList();
   $scope.getVendorList();
   $scope.getVendorGroupList();
   $scope.getGovList();
+  if (site.feature('erp')) {
+    $scope.getGuideAccountList();
+  }
 });

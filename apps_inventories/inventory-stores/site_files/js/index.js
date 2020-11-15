@@ -1,7 +1,7 @@
 app.controller("stores", function ($scope, $http) {
 
   $scope._search = {};
-  
+
   $scope.id = 1;
 
   $scope.searchAll = function () {
@@ -13,14 +13,14 @@ app.controller("stores", function ($scope, $http) {
     }
 
     if ($scope.search.type) {
-     
+
       where['type.id'] = $scope.search.type.id;
     }
     if ($scope.search.note) {
       where['note'] = $scope.search.note;
     }
 
-    $scope.loadAll(where , $scope.search.limit);
+    $scope.loadAll(where, $scope.search.limit);
   };
 
   $scope.loadStores = function () {
@@ -29,7 +29,7 @@ app.controller("stores", function ($scope, $http) {
     $http({
       method: "POST",
       url: "/api/stores/all",
-      data: {where : {}}
+      data: { where: {} }
     }).then(
       function (response) {
         $scope.busy = false;
@@ -43,13 +43,13 @@ app.controller("stores", function ($scope, $http) {
       }
     )
   };
-  $scope.loadAll = function (where , limit) {
+  $scope.loadAll = function (where, limit) {
     $scope.error = '';
-     $scope.busy = true;
+    $scope.busy = true;
     $http({
       method: "POST",
       url: "/api/stores/all",
-      data: { where: where, limit : limit || 100000 }
+      data: { where: where, limit: limit || 100000 }
     }).then(
       function (response) {
         $scope.busy = false;
@@ -68,7 +68,7 @@ app.controller("stores", function ($scope, $http) {
 
   $scope.loadStoreTypes = function () {
     $scope.error = '';
-       $scope.busy = true;
+    $scope.busy = true;
     $http({
       method: "POST",
       url: '/api/stores/types/all',
@@ -76,7 +76,7 @@ app.controller("stores", function ($scope, $http) {
     }).then(
       function (response) {
         $scope.busy = false;
-          $scope.store_types = response.data;        
+        $scope.store_types = response.data;
       },
       function (err) {
         $scope.busy = false;
@@ -87,7 +87,7 @@ app.controller("stores", function ($scope, $http) {
 
   $scope.newStore = function () {
     $scope.error = '';
-    
+
     $scope.store = {
       image_url: '/images/store.png'
     };
@@ -117,7 +117,7 @@ app.controller("stores", function ($scope, $http) {
         } else {
           $scope.error = response.data.error;
         }
-       
+
       },
       function (err) {
         console.log(err);
@@ -244,7 +244,7 @@ app.controller("stores", function ($scope, $http) {
       }
     )
   };
-  
+
   $scope.getCostCenterList = function () {
     $scope.busy = true;
     $http({
@@ -271,11 +271,14 @@ app.controller("stores", function ($scope, $http) {
   };
 
 
-  $scope.getGuideAccountList();
-  $scope.getCostCenterList();
   $scope.loadStoreTypes();
-  $scope.loadStores ();
+  $scope.loadStores();
   $scope.loadAll();
+
+  if (site.feature('erp')) {
+    $scope.getGuideAccountList();
+    $scope.getCostCenterList();
+  }
 
 
 });
