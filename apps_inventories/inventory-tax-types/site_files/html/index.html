@@ -14,18 +14,23 @@
     <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
 
     </nav>
-    <div  id="main-layout" class="container">
+    <div id="main-layout" class="container">
         <div class="row center">
-            <div class="col12" ng-controller="tax_types">
-                <div x-permissions="tax_types_add || tax_types_manage" x-import="inventory-tax-types/add_modal.html"></div>
-                <div x-permissions="tax_types_update || tax_types_manage" x-import="inventory-tax-types/update_modal.html"></div>
-                <div x-permissions="tax_types_delete || tax_types_manage" x-import="inventory-tax-types/delete_modal.html"></div>
-                <div x-permissions="tax_types_view || tax_types_manage" x-import="inventory-tax-types/view_modal.html"></div>
+            <div ng-controller="tax_types">
+                <div x-permissions="tax_types_add || tax_types_manage" x-import="inventory-tax-types/add_modal.html">
+                </div>
+                <div x-permissions="tax_types_update || tax_types_manage"
+                    x-import="inventory-tax-types/update_modal.html"></div>
+                <div x-permissions="tax_types_delete || tax_types_manage"
+                    x-import="inventory-tax-types/delete_modal.html"></div>
+                <div x-permissions="tax_types_view || tax_types_manage" x-import="inventory-tax-types/view_modal.html">
+                </div>
                 <div class="row">
-                        <h1 class=" bold text-center"> ##word.inventory_tax_types## </h1>
-                    </div>
+                    <h1 class=" bold text-center"> ##word.inventory_tax_types## </h1>
+                </div>
                 <div class="top-actions">
-                    <i-button x-permissions="tax_types_add || tax_types_manage" type="add" label="##word.tax_types_new##" ng-click="newTax_Type()"></i-button>
+                    <i-button x-permissions="tax_types_add || tax_types_manage" type="add"
+                        label="##word.tax_types_new##" ng-click="newTax_Type()"></i-button>
                     <h3 class="bold text-center"> ##word.count## : {{count}}</h3>
                 </div>
 
@@ -46,9 +51,12 @@
                             <td class="center red">{{c.value}} % </td>
 
                             <td class="center not-print">
-                                <i-button x-permissions="tax_types_view || tax_types_manage" type="details" label="##word.details##" ng-click="details(c)"></i-button>
-                                <i-button x-permissions="tax_types_update || tax_types_manage" type="update" label="##word.update##" ng-click="edit(c)"></i-button>
-                                <i-button x-permissions="tax_types_delete || tax_types_manage" type="delete" label="##word.delete##" ng-click="remove(c)"></i-button>
+                                <i-button x-permissions="tax_types_view || tax_types_manage" type="details"
+                                    label="##word.details##" ng-click="details(c)"></i-button>
+                                <i-button x-permissions="tax_types_update || tax_types_manage" type="update"
+                                    label="##word.update##" ng-click="edit(c)"></i-button>
+                                <i-button x-permissions="tax_types_delete || tax_types_manage" type="delete"
+                                    label="##word.delete##" ng-click="remove(c)"></i-button>
 
                             </td>
                         </tr>
@@ -57,7 +65,8 @@
                 </div>
                 <div class="row">
 
-                    <i-button x-permissions="tax_types_print || tax_types_manage" type="print" label="##word.print##" onclick="site.print('#d1')"> </i-button>
+                    <i-button x-permissions="tax_types_print || tax_types_manage" type="print" label="##word.print##"
+                        onclick="site.print('#d1')"> </i-button>
 
 
                 </div>
@@ -70,7 +79,7 @@
 
 
     <div x-import="scripts.html"></div>
-    <script  x-import="inventory-tax-types/index.js"></script>
+    <script x-import="inventory-tax-types/index.js"></script>
 
 </body>
 

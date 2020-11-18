@@ -13,8 +13,8 @@
     </nav>
 
     <div id="main-layout" class="container">
-        <div class="row10 center">
-            <div class="col10" ng-controller="discount_types">
+        <div class="row center">
+            <div ng-controller="discount_types">
                 <div x-permissions="discount_types_add || discount_types_manage"
                     x-import="inventory-discount-types/add_modal.html"></div>
                 <div x-permissions="discount_types_update || discount_types_manage"
@@ -31,37 +31,45 @@
                     <h3 class="bold text-center"> ##word.count## : {{count}}</h3>
 
                 </div>
+                <div>
 
-                <table class="table center hover bold loaded" id="t1">
-                    <tr>
-                        <th>##word.discount_types_logo##</th>
-                        <th>##word.discount_types_name##</th>
-                        <th>##word.discount_types_value##</th>
-                        <th>##word.actions##</th>
-                    </tr>
+                    <table class="table center hover bold loaded" id="t1">
+                        <tr>
+                            <th>##word.discount_types_logo##</th>
+                            <th>##word.discount_types_name##</th>
+                            <th>##word.discount_types_value##</th>
+                            <th>##word.actions##</th>
+                        </tr>
 
-                    <tr ng-repeat="c in list">
-                        <td>
-                            <img class="logo" ng-src="{{c.image_url}}">
-                        </td>
-                        <td>{{c.name}}</td>
-                        <td class="red" ng-show="c.type === '%'">{{c.value}} % </td>
-                        <td class="red" ng-show="c.type !== '%'">{{c.value}} $</td>
+                        <tr ng-repeat="c in list">
+                            <td>
+                                <img class="logo" ng-src="{{c.image_url}}">
+                            </td>
+                            <td>{{c.name}}</td>
+                            <td class="red" ng-show="c.type === '%'">{{c.value}} % </td>
+                            <td class="red" ng-show="c.type !== '%'">{{c.value}} $</td>
 
-                        <td class="center">
-                            <i-button x-permissions="discount_types_view || discount_types_manage" type="details"
-                                label="##word.details##" ng-click="details(c)"></i-button>
-                            <i-button x-permissions="discount_types_update || discount_types_manage" type="update"
-                                label="##word.update##" ng-click="edit(c)"></i-button>
-                            <i-button x-permissions="discount_types_delete || discount_types_manage" type="delete"
-                                label="##word.delete##" ng-click="remove(c)"></i-button>
+                            <td class="center">
+                                <i-button x-permissions="discount_types_view || discount_types_manage" type="details"
+                                    label="##word.details##" ng-click="details(c)"></i-button>
+                                <i-button x-permissions="discount_types_update || discount_types_manage" type="update"
+                                    label="##word.update##" ng-click="edit(c)"></i-button>
+                                <i-button x-permissions="discount_types_delete || discount_types_manage" type="delete"
+                                    label="##word.delete##" ng-click="remove(c)"></i-button>
 
 
-                        </td>
-                    </tr>
+                            </td>
+                        </tr>
 
-                </table>
+                    </table>
+                </div>
+                <div class="row">
 
+                    <i-button x-permissions="tax_types_print || tax_types_manage" type="print" label="##word.print##"
+                        onclick="site.print('#d1')"> </i-button>
+
+
+                </div>
 
             </div>
 
