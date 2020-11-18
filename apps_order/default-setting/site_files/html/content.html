@@ -252,14 +252,6 @@
                         <i-checkbox label="##word.create_invoice_auto##" ng-click="linkWarehouseAccountInvoices()"
                             ng-model="default_setting.accounting.create_invoice_auto"></i-checkbox>
 
-                        <i-checkbox label="##word.auto_generate_account_code_and_cost_center##"
-                            ng-model="default_setting.accounting.auto_generate_account_code_and_cost_center">
-                        </i-checkbox>
-
-                        <i-checkbox label="##word.link_gl_accounts_with_income_statement_and_budget##"
-                            ng-model="default_setting.accounting.link_gl_accounts_with_income_statement_and_budget">
-                        </i-checkbox>
-
                         <i-checkbox label="##word.link_warehouse_account_invoices##"
                             ng-click="linkWarehouseAccountInvoices()"
                             ng-model="default_setting.accounting.link_warehouse_account_invoices">
@@ -268,7 +260,16 @@
                     </div>
 
                     <div class="row">
-                        <div class="col2"></div>
+                        <i-checkbox x-feature="erp" label="##word.auto_generate_account_code_and_cost_center##"
+                            ng-model="default_setting.accounting.auto_generate_account_code_and_cost_center">
+                        </i-checkbox>
+
+                        <i-checkbox x-feature="erp" label="##word.link_gl_accounts_with_income_statement_and_budget##"
+                            ng-model="default_setting.accounting.link_gl_accounts_with_income_statement_and_budget">
+                        </i-checkbox>
+                    </div>
+
+                    <div class="row">
                         <i-control ng-show="default_setting.accounting.auto_generate_account_code_and_cost_center"
                             class="col2" label="##word.length_level##" type="number"
                             ng-model="default_setting.accounting.length_level">

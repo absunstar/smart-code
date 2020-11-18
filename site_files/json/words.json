@@ -20,6 +20,12 @@
         "ar": "الاسم"
     },
     {
+        "name": "source_name",
+        "en": "Source Name",
+        "ar": "إسم المصدر"
+    },
+  
+    {
         "name": "ledger_account",
         "en": "Ledger Account",
         "ar": "حساب الأستاذ"

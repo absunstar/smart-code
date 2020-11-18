@@ -112,6 +112,7 @@
                     <table class="table bold center hover">
 
                         <tr>
+                            <th ng-hide="customer.id">##word.customer_name##</th>
                             <th>##word.service##</th>
                             <th>##word.date_from##</th>
                             <th>##word.expired_date##</th>
@@ -126,6 +127,11 @@
                             bg_Gold : service.ex_service == 4 || service.ex_service == 3,
                             bg_tomato : service.ex_service == 2 || service.ex_service == 1,
                             }">
+
+                            <td ng-hide="customer.id">
+                                {{service.customer.name_##session.lang##}}
+                            </td>
+
                             <td>
                                 <br ng-show="service.complex_service.length > 0">
                                 {{service.service_name}}

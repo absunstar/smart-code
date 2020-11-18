@@ -68,6 +68,7 @@ module.exports = function init(site) {
               request_docs.forEach(_request_service => {
                 if (new Date(_request_service.date_to) >= new Date()) {
                   request_services_list.unshift({
+                    customer: _request_service.customer,
                     service_name: _request_service.service_name,
                     complex_service: _request_service.selectedServicesList,
                     date_from: _request_service.date_from,

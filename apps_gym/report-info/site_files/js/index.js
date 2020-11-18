@@ -69,13 +69,13 @@ app.controller("report_info", function ($scope, $http, $timeout) {
 
 
   $scope.searchAll = function () {
+    if ($scope.search) $scope.customer = $scope.search.customer;
 
     $scope.getReportServicesList($scope.search);
 
-    if ($scope.search) $scope.customer = $scope.search.customer;
 
     site.hideModal('#reportInfoSearchModal')
-    
+
   };
 
 

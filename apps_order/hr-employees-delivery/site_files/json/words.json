@@ -19,11 +19,7 @@
         "en": "Delivery Difference",
         "ar": "فرق التوصيل"
     },
-    {
-        "name": "area",
-        "en": "Area",
-        "ar": "المنطقة"
-    },
+   
     {
         "name": "delivery_employee_add",
         "en": "Add Delivery Employee",

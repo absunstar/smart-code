@@ -470,6 +470,9 @@ module.exports = function init(site) {
       where.$or.push({
         'code': search
       })
+      where.$or.push({
+        'mobile': site.get_RegExp(search, "i")
+      })
 
     }
 
@@ -485,6 +488,7 @@ module.exports = function init(site) {
 
       where['code'] = where.code;
     }
+
     if (where.name_ar) {
 
       where['name_ar'] = site.get_RegExp(where['name_ar'], 'i')
