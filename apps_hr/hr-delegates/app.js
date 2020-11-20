@@ -1,11 +1,12 @@
 module.exports = function init(site) {
-  const $delegate_list = site.connectCollection("hr_delegate_list")
+  const $delegate_list = site.connectCollection("hr_employee_list")
 
   site.on('[company][created]', doc => {
 
     $delegate_list.add({
       name: "مندوب إفتراضي",
       image_url: '/images/delegate.png',
+      delegate: true,
       company: {
         id: doc.id,
         name_ar: doc.name_ar
@@ -55,6 +56,7 @@ module.exports = function init(site) {
 
     delegate_doc.company = site.get_company(req)
     delegate_doc.branch = site.get_branch(req)
+    delegate_doc.delegate = true;
 
     $delegate_list.find({
 
@@ -76,9 +78,7 @@ module.exports = function init(site) {
         res.json(response)
       } else {
 
-
         let user = {};
-
 
         user = {
           name: delegate_doc.name,
@@ -87,7 +87,8 @@ module.exports = function init(site) {
           email: delegate_doc.username,
           password: delegate_doc.password,
           image_url: delegate_doc.image_url,
-          type: 'delegate'
+          type: 'delegate',
+          is_employee: true
         }
 
         user.roles = [
@@ -493,6 +494,7 @@ module.exports = function init(site) {
       where['id'] = req.session.user.ref_info.id;
     }
 
+    where['delegate'] = true;
     where['company.id'] = site.get_company(req).id
 
     $delegate_list.findMany({

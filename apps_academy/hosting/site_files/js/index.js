@@ -219,6 +219,7 @@ app.controller("hosting", function ($scope, $http, $timeout) {
         where: {
           trainer: { $ne: true },
           delivery: { $ne: true },
+          delegate: { $ne: true },
           active: true
         }
       }

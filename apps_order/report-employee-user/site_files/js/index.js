@@ -12,6 +12,7 @@ app.controller("report_employee_user", function ($scope, $http, $timeout) {
         where: {
           trainer: { $ne: true },
           delivery: { $ne: true },
+          delegate: { $ne: true },
           active: true
         }
       }

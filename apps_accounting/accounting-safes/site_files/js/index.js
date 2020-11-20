@@ -12,6 +12,7 @@ app.controller("safes", function ($scope, $http) {
         where: {
           trainer: { $ne: true },
           delivery: { $ne: true },
+          delegate: { $ne: true },
           active: true
         }
       }

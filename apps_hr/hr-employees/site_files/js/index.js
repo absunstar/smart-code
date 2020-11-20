@@ -7,10 +7,10 @@ app.controller("employee_list", function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.employee_list = {
       image_url: '/images/employee_list.png',
-     /*  class_rooms_list : [{}],
-      courses_list : [{}], */
+      /*  class_rooms_list : [{}],
+       courses_list : [{}], */
       active: true
-      
+
     };
     site.showModal('#employeeAddModal');
     document.querySelector('#employeeAddModal .tab-link').click();
@@ -152,6 +152,20 @@ app.controller("employee_list", function ($scope, $http, $timeout) {
   $scope.getEmployeeList = function (where) {
     $scope.busy = true;
     $scope.list = [];
+    if (where) {
+      where.trainer = { $ne: true };
+      where.delivery = { $ne: true };
+      where.delegate = { $ne: true };
+      where.active = true;
+    } else {
+      where = {
+        trainer: { $ne: true },
+        delivery: { $ne: true },
+        delegate: { $ne: true },
+        active: true
+      };
+    }
+
     $http({
       method: "POST",
       url: "/api/employees/all",
@@ -165,7 +179,7 @@ app.controller("employee_list", function ($scope, $http, $timeout) {
           $scope.list = response.data.list;
           $scope.count = response.data.count;
           site.hideModal('#employeeSearchModal');
-          $scope.search ={};
+          $scope.search = {};
 
         }
       },
@@ -236,7 +250,7 @@ app.controller("employee_list", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/maritals_status/all",
       data: {
-        select : {id:1 , name : 1}
+        select: { id: 1, name: 1 }
       }
     }).then(
       function (response) {
@@ -258,7 +272,7 @@ app.controller("employee_list", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/militaries_status/all",
       data: {
-        select : {id:1 , name : 1}
+        select: { id: 1, name: 1 }
       }
     }).then(
       function (response) {
@@ -372,7 +386,7 @@ app.controller("employee_list", function ($scope, $http, $timeout) {
         where: {
           active: true
         },
-        select : {id : 1 , name : 1}
+        select: { id: 1, name: 1 }
       }
     }).then(
       function (response) {
@@ -412,7 +426,7 @@ app.controller("employee_list", function ($scope, $http, $timeout) {
       }
     )
   };
-  
+
   $scope.getAreaList = function (city) {
     $scope.busy = true;
     $http({
@@ -495,7 +509,7 @@ app.controller("employee_list", function ($scope, $http, $timeout) {
   $scope.searchAll = function () {
     $scope.getEmployeeList($scope.search);
     site.hideModal('#employeeSearchModal');
-    $scope.search ={};
+    $scope.search = {};
   };
 
   $scope.getEmployeeList();

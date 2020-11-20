@@ -142,7 +142,15 @@ app.controller("employees_report", function ($scope, $http) {
     $scope.busy = true;
     $http({
       method: "POST",
-      url: "/api/employees/all"
+      url: "/api/employees/all",
+      data: {
+        where: {
+          trainer: { $ne: true },
+          delivery: { $ne: true },
+          delegate: { $ne: true },
+          active: true
+        }
+      }
     }).then(
       function (response) {
         $scope.busy = false;

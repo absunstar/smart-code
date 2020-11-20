@@ -24,6 +24,7 @@ app.controller("safes_payments", function ($scope, $http) {
         where: {
           trainer: { $ne: true },
           delivery: { $ne: true },
+          delegate: { $ne: true },
           active: true
         }
       }
