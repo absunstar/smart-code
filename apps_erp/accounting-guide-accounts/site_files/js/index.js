@@ -43,7 +43,7 @@ app.controller("accounting_guide_accounts", function ($scope, $http, $timeout) {
       $scope.accounting_guide_accounts.top_parent_id = parent_guide_account.top_parent_id || parent_guide_account.id;
     };
 
-    if($scope.defaultSettings.accounting && $scope.defaultSettings.accounting.auto_generate_account_code_and_cost_center){
+    if ($scope.defaultSettings.accounting && $scope.defaultSettings.accounting.auto_generate_account_code_and_cost_center) {
       $scope.accounting_guide_accounts.length_level = $scope.defaultSettings.accounting.length_level || 0;
     };
 
@@ -400,7 +400,8 @@ app.controller("accounting_guide_accounts", function ($scope, $http, $timeout) {
 
       $scope.accounting_guide_accounts.cost_list.unshift({
         code: $scope.accounting_guide_accounts.cost_center.code,
-        name_ar: $scope.accounting_guide_accounts.cost_center.name_ar
+        name_ar: $scope.accounting_guide_accounts.cost_center.name_ar,
+        name_en: $scope.accounting_guide_accounts.cost_center.name_en
       });
     };
   };
@@ -467,7 +468,7 @@ app.controller("accounting_guide_accounts", function ($scope, $http, $timeout) {
 
   };
 
- 
+
   $scope.getCategoryList();
   $scope.getGuideAccountsList();
   $scope.getCurrencyList();

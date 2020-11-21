@@ -151,7 +151,7 @@
                 <div ng-hide="accounting_guide_accounts.cost=='without'" class="row">
                     <div class="row">
                         <i-list items="costCentersList" class="col4" label="##word.accounting_guide_accounts_accounting_cost_centers##"
-                            ng-search="_search.$accounting_guide_accounts.$cost_center" display="name_ar" ng-model="accounting_guide_accounts.cost_center">
+                            ng-search="_search.$accounting_guide_accounts.$cost_center" display="name_##session.lang##" ng-model="accounting_guide_accounts.cost_center">
                         </i-list>
 
                         <i-button type="add" class="col2" label="##word.add##" ng-click="pushCostCenters()"></i-button>
@@ -168,14 +168,14 @@
                                 <th>##word.accounting_guide_accounts_cost_center_name##</th>
                                 <th>##word.accounting_guide_accounts_rate##</th>
                                 <th>##word.actions##</th>
-
                             </tr>
+
                             <tr ng-repeat="cost in accounting_guide_accounts.cost_list">
                                 <td>
                                     <i-control disabled ng-model="cost.code"></i-control>
                                 </td>
                                 <td>
-                                    <i-control disabled ng-model="cost.name_ar"></i-control>
+                                    <i-control disabled ng-model="cost.name_##session.lang##"></i-control>
                                 </td>
                                 <td>
                                     <i-control ng-model="cost.rate" type="number"></i-control>

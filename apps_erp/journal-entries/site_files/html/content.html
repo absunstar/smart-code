@@ -41,9 +41,6 @@
                         <i-checkbox class="row" ng-model="journal_entries.create_entry_from_notice"
                             label="##word.create_entry_from_notice##"></i-checkbox>
 
-                        <br>
-                        <br>
-                        <i-button type="add" ng-click="journal_entries.accountingList.push({})"></i-button>
                     </div>
 
                 </div>
@@ -121,73 +118,101 @@
 
             <br>
             <br>
-            <div class="row">
+            <fieldset>
 
-                <table x-permissions="login" class="table bold hover loaded" id="t1">
+                <div class="row">
 
-                    <tr>
-                        <th>##word.serial##</th>
-                        <th>##word.companies_bank_account_number##</th>
-                        <th>##word.account_name##</th>
-                        <th>##word.currency_symbol##</th>
-                        <th>##word.statement##</th>
-                        <th>##word.local_debtor##</th>
-                        <th>##word.local_creditor##</th>
-                        <th>##word.cost_center##</th>
-                    </tr>
+                    <i-control class="col3" ng-keydown="getGuideAccountList($event,search_account)"
+                        label="##word.search_all##" ng-model="search_account">
+                    </i-control>
 
-                    <tr ng-repeat="c in journal_entries.accountingList">
+                    <i-list ng-search="_search.$document_type_journal_entries" class="col4" ng-model="guide_account"
+                        display="name_##session.lang##" display2="code" space="-"
+                        ng-change="selectGuideAccount(guide_account)" items="guideAccountList" label="##word.account##">
+                    </i-list>
 
-                        <td class="center w50 blue">{{$index + 1}}</td>
-                        <td class="center w100">
-                            <i-control ng-model="c.code" ng-keydown="getGuideAccountList($event,undefined,c)">
-                            </i-control>
-                        </td>
-                        <td class="center">{{c.name_##session.lang##}}</td>
-                        <td class="center">{{c.currency.name}}</td>
-                        <td class="center">
-                            <i-textarea ng-model="c.statement">
-                            </i-textarea>
-                        </td>
-                        <td class="w150">
-                            <i-control type="number" ng-disabled="c.side =='creditor'" ng-change="calcDifference()"
-                                ng-model="c.debtor">
-                            </i-control>
-                        </td>
-                        <td class="w150">
-                            <i-control type="number" ng-disabled="c.side =='debtor'" ng-change="calcDifference()"
-                                ng-model="c.creditor">
-                            </i-control>
-                        </td>
-                        <td class="center">{{c.count}}</td>
+                </div>
+                <br>
+                <br>
+                <div class="row">
 
-                    </tr>
-                </table>
-            </div>
-            <br>
-            <br>
-            <div class="row">
-                <div class="col4"></div>
-                <div class="col4">
-
-                    <table class="table hover center bold">
+                    <table x-permissions="login" class="table bold hover loaded" id="t1">
 
                         <tr>
-                            <td colspan="2"> ##word.accounting_guide_budget_creditor##</td>
-                            <td colspan="2"> ##word.accounting_guide_budget_debtor##</td>
-                            <td colspan="2"> ##word.the_difference##</td>
+                            <th>##word.serial##</th>
+                            <th>##word.companies_bank_account_number##</th>
+                            <th>##word.account_name##</th>
+                            <th>##word.currency_symbol##</th>
+                            <th>##word.statement##</th>
+                            <th>##word.accounting_guide_budget_debtor##</th>
+                            <th>##word.accounting_guide_budget_creditor##</th>
+                            <th>##word.actions##</th>
                         </tr>
 
-                        <tr>
-                            <td colspan="2" class="blue "> {{journal_entries.creditor ||0}} </td>
-                            <td colspan="2" class="blue "> {{journal_entries.debtor ||0}} </td>
-                            <td colspan="2" class="red "> {{journal_entries.difference ||0}} </td>
+                        <tr ng-repeat="c in journal_entries.accountingList">
+
+                            <td class="center w50 blue">{{$index + 1}}</td>
+
+                            <td class="center w100">
+                                <i-control ng-model="c.code" ng-keydown="getGuideAccountList($event,undefined,c)">
+                                </i-control>
+                            </td>
+
+                            <td class="center">{{c.name_##session.lang##}}</td>
+                            <td class="center">{{c.currency.name}}</td>
+
+                            <td class="center">
+                                <i-textarea ng-model="c.statement">
+                                </i-textarea>
+                            </td>
+
+                            <td class="w150">
+                                <i-control type="number" ng-disabled="c.side =='creditor'" ng-change="calcDifference()"
+                                    ng-model="c.debtor">
+                                </i-control>
+                            </td>
+
+                            <td class="w150">
+                                <i-control type="number" ng-disabled="c.side =='debtor'" ng-change="calcDifference()"
+                                    ng-model="c.creditor">
+                                </i-control>
+                            </td>
+
+                            <td class="center">
+                                <i-button type="view" ng-show="c.code" label="##word.accounting_cost_centers##"
+                                    ng-click="showCostCentersList(c)"></i-button>
+                                <i-button type="delete" ng-click="journal_entries.accountingList.splice($index,1);calcDifference()">
+                                </i-button>
+                            </td>
+
                         </tr>
                     </table>
                 </div>
+                <br>
+                <br>
+                <div class="row">
+                    <div class="col4"></div>
+                    <div class="col4">
 
-                <div class="col4"></div>
-            </div>
+                        <table class="table hover center bold">
+
+                            <tr>
+                                <td colspan="2"> ##word.accounting_guide_budget_creditor##</td>
+                                <td colspan="2"> ##word.accounting_guide_budget_debtor##</td>
+                                <td colspan="2"> ##word.the_difference##</td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="2" class="blue "> {{journal_entries.creditor ||0}} </td>
+                                <td colspan="2" class="blue "> {{journal_entries.debtor ||0}} </td>
+                                <td colspan="2" class="red "> {{journal_entries.difference ||0}} </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="col4"></div>
+                </div>
+            </fieldset>
 
         </fieldset>
     </div>

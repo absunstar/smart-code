@@ -4,15 +4,20 @@
             <legend> ##word.accounting_cost_centers_informations## </legend>
             <div class="col9">
                 <div class="row">
-                    <i-control ng-disabled="disabledCode" class="col2" label="##word.accounting_cost_centers_code##" ng-model="accounting_cost_centers.code"></i-control>
-                    <i-control v="r" class="col4" label="##word.accounting_cost_centers_name_ar##" ng-model="accounting_cost_centers.name_ar"></i-control>
-                    <i-control class="col4" label="##word.accounting_cost_centers_name_en##" ng-model="accounting_cost_centers.name_en"></i-control>
+                    <i-control ng-disabled="disabledCode" class="col2" label="##word.accounting_cost_centers_code##"
+                        ng-model="accounting_cost_centers.code"></i-control>
+                    <i-control v="r" class="col4" label="##word.accounting_cost_centers_name_ar##"
+                        ng-model="accounting_cost_centers.name_ar"></i-control>
+                    <i-control class="col4" label="##word.accounting_cost_centers_name_en##"
+                        ng-model="accounting_cost_centers.name_en"></i-control>
+                    <i-control ng-show="disabledCode" type="number" class="col2" label="##word.length_level##"
+                        ng-model="accounting_cost_centers.length_level"></i-control>
                 </div>
 
                 <br>
                 <br>
                 <br>
-                
+
                 <div class="row">
                     <h2 class="brown col3">##word.accounting_cost_centers_type## :</h2>
 
@@ -44,7 +49,7 @@
                             ng-model="accounting_cost_centers.status">
                         </i-radio>
 
-                    
+
 
                     </div>
 

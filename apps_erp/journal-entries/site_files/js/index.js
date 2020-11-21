@@ -7,7 +7,7 @@ app.controller("journal_entries", function ($scope, $http, $timeout) {
     $scope._search = {};
     $scope.error = '';
     $scope.journal_entries = {
-      accountingList: [{}]
+      accountingList: []
     };
     site.showModal('#journalEntriesAddModal');
   };
@@ -192,13 +192,40 @@ app.controller("journal_entries", function ($scope, $http, $timeout) {
     )
   };
 
-
-  $scope.getGuideAccountList = function (ev, search, account) {
+  $scope.getCostCentersList = function (ev, search) {
+    $scope.error = '';
     $scope.busy = true;
     if (ev.which !== 13) {
       return;
     };
-    if (account) $scope.current_account = account;
+
+    $scope.costCentersList = [];
+    $http({
+      method: "POST",
+      url: "/api/accounting_cost_centers/all",
+      data: {
+        search: search,
+        where: {
+          type: 'detailed',
+          status: 'active'
+        },
+        select: { id: 1, name_ar: 1, name_en: 1, code: 1, type: 1 }
+      }
+    }).then(
+      function (response) {
+        $scope.costCentersList = response.data.list;
+      },
+      function (err) {
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.getGuideAccountList = function (ev, search) {
+    $scope.busy = true;
+    if (ev.which !== 13) {
+      return;
+    };
 
     $http({
       method: "POST",
@@ -215,7 +242,6 @@ app.controller("journal_entries", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done && response.data.list.length > 0) {
           $scope.guideAccountList = response.data.list;
-          site.showModal('#accountsListModal');
         }
       },
       function (err) {
@@ -226,23 +252,50 @@ app.controller("journal_entries", function ($scope, $http, $timeout) {
   };
 
   $scope.selectGuideAccount = function (account) {
+    let current_account = {
+      name_ar: account.name_ar,
+      name_en: account.name_en,
+      code: account.code,
+      currency: account.currency,
+      side: account.side,
+      cost_list: account.cost_list || []
+    };
+
     if (account.side == 'creditor') {
       account.debtor = 0;
-      $scope.current_account.debtor = account.debtor;
+      current_account.debtor = account.debtor;
 
     } else if (account.side == 'debtor') {
       account.creditor = 0;
-      $scope.current_account.creditor = account.creditor;
+      current_account.creditor = account.creditor;
 
     }
-    $scope.current_account.name_ar = account.name_ar;
-    $scope.current_account.name_en = account.name_en;
-    $scope.current_account.code = account.code;
-    $scope.current_account.currency = account.currency;
-    $scope.current_account.side = account.side;
-    $scope.calcDifference();
+
+    $scope.journal_entries.accountingList.push(current_account);
+
     site.hideModal('#accountsListModal');
 
+  };
+
+  $scope.selectCostCenter = function (costCenter) {
+
+    if ($scope.current_cost_center_list && $scope.current_cost_center_list.length > 0) {
+      let foundCostCenter = $scope.current_cost_center_list.some(_costCenter => _costCenter.code === costCenter.code);
+
+      if (!foundCostCenter) {
+        $scope.current_cost_center_list.push(costCenter)
+      }
+    } else {
+      $scope.current_cost_center_list = [costCenter]
+    }
+
+  };
+
+  $scope.showCostCentersList = function (costCenterList) {
+
+    $scope.current_cost_center_list = costCenterList.cost_list || [];
+
+    site.showModal('#costCentersModal');
   };
 
   $scope.calcDifference = function () {

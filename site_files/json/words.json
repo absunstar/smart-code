@@ -980,6 +980,11 @@
         "ar": "الحسابات"
     },
     {
+        "name": "account",
+        "en": "Account",
+        "ar": "الحساب"
+    },
+    {
         "name": "insurances",
         "en": "Insurances",
         "ar": "التامينات"
