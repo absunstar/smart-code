@@ -7,6 +7,7 @@
     {"name" : "cost_center_details_delete" , "en" : "Details Delete Cost Center" , "ar" : " تفاصيل حذف مركز تكلفة"},
     {"name" : "accounting_guide_accounts_new" , "en" : "New Guide Accounts" , "ar" : "دليل حساب جديد"},
     {"name" : "accounting_guide_accounts" , "en" : "Guide Accounts" , "ar" : "دليل الحسابات"},
+    {"name" : "accounting_guide_accounts_search" , "en" : "Guide Accounts Search" , "ar" : "بحث دليل الحسابات"},
     {"name" : "accounting_guide_accounts_code_err" , "en" : "Code Exists" , "ar" : "الكود مكرر"},
     {"name" : "detailed_err" , "en" : "Can't Change" , "ar" : "لا يمكن تحويله يحتوي على حسابات فرعية"},
     {"name" : "cant_delete" , "en" : "Can't Delete" , "ar" : "لا يمكن حذفه يحتوي على حسابات فرعية"},

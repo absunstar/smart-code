@@ -24,16 +24,7 @@
         "en": "collected / PaidUp",
         "ar": "المحصل / المدفوع"
     },
-    {
-        "name": "required",
-        "en": "Required",
-        "ar": "المطلوب"
-    },
-    {
-        "name": "the_amount",
-        "en": "The Amount",
-        "ar": "المبلغ"
-    },
+
     {
         "name": "addition_mission",
         "en": "Addition Mission",

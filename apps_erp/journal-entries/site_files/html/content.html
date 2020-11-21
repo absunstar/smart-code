@@ -1,0 +1,194 @@
+<div class="form">
+    <div id="journalEntriesAddModal">
+        <fieldset>
+            <legend> ##word.journal_entries_informations## </legend>
+            <div class="row">
+                <div class="col4">
+                    <div class="row">
+
+                        <i-date2 class="col8" ng-model="journal_entries.date" label="##word.date##" v="r"></i-date2>
+
+                        <i-list ng-search="_search.$document_type_journal_entries" class="col4"
+                            ng-model="journal_entries.document_type" items="namesInList" label="##word.document_type##">
+                        </i-list>
+                    </div>
+
+                    <div class="row">
+
+                        <i-control class="col6" label="##word.reference_number##"
+                            ng-model="journal_entries.reference_number">
+                        </i-control>
+
+                        <i-control class="col6" label="##word.name##" ng-model="journal_entries.name">
+                        </i-control>
+                    </div>
+
+                    <div class="row">
+                        <br>
+
+                        <i-checkbox class="row" ng-model="journal_entries.create_new_entry_from_previous_periodic_entry"
+                            label="##word.create_new_entry_from_previous_periodic_entry##"></i-checkbox>
+
+                        <br>
+                        <br>
+
+                        <i-checkbox class="row" ng-model="journal_entries.create_new_entry_from_bank_reconciliation"
+                            label="##word.create_new_entry_from_bank_reconciliation##"></i-checkbox>
+
+                        <br>
+                        <br>
+
+                        <i-checkbox class="row" ng-model="journal_entries.create_entry_from_notice"
+                            label="##word.create_entry_from_notice##"></i-checkbox>
+
+                        <br>
+                        <br>
+                        <i-button type="add" ng-click="journal_entries.accountingList.push({})"></i-button>
+                    </div>
+
+                </div>
+                <div class="col1"></div>
+                <div class="col2">
+                    <i-control label="##word.document_number##" ng-model="journal_entries.document_number">
+                    </i-control>
+
+                    <i-control label="##word.the_amount##" type="number" ng-model="journal_entries.the_amount">
+                    </i-control>
+
+                    <i-control label="##word.number_periodic_document##"
+                        ng-model="journal_entries.number_periodic_document">
+                    </i-control>
+
+                    <i-control label="##word.entry_notice_number##" ng-model="journal_entries.entry_notice_number">
+                    </i-control>
+
+                    <i-control label="##word.bank_settlement_number##"
+                        ng-model="journal_entries.bank_settlement_number">
+                    </i-control>
+
+                </div>
+                <div class="col1"></div>
+
+                <div class="col4">
+
+                    <div class="row">
+
+                        <div class="col7">
+
+                            <i-control label="##word.net_amount##" type="number" ng-model="journal_entries.net_amount">
+                            </i-control>
+
+                            <i-control label="##word.check_number##" ng-model="journal_entries.check_number">
+                            </i-control>
+
+                        </div>
+
+                        <div class="col1"></div>
+
+                        <div class="col4">
+                            <fieldset>
+                                <i-checkbox ng-model="journal_entries.reversing_entry" label="##word.reversing_entry##">
+                                </i-checkbox>
+
+                                <i-checkbox ng-model="journal_entries.periodic_entry" label="##word.periodic_entry##">
+                                </i-checkbox>
+
+                                <i-checkbox ng-model="journal_entries.entry_pending" label="##word.entry_pending##">
+                                </i-checkbox>
+
+                                <i-checkbox ng-model="journal_entries.currency_differences_entry"
+                                    label="##word.currency_differences_entry##">
+                                </i-checkbox>
+
+                            </fieldset>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <i-date2 class="col9" ng-model="journal_entries.due_date" label="##word.due_date##"></i-date2>
+
+                    </div>
+
+                    <div class="row">
+                        <i-textarea ng-model="journal_entries.statement" label="##word.statement##">
+                        </i-textarea>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <br>
+            <br>
+            <div class="row">
+
+                <table x-permissions="login" class="table bold hover loaded" id="t1">
+
+                    <tr>
+                        <th>##word.serial##</th>
+                        <th>##word.companies_bank_account_number##</th>
+                        <th>##word.account_name##</th>
+                        <th>##word.currency_symbol##</th>
+                        <th>##word.statement##</th>
+                        <th>##word.local_debtor##</th>
+                        <th>##word.local_creditor##</th>
+                        <th>##word.cost_center##</th>
+                    </tr>
+
+                    <tr ng-repeat="c in journal_entries.accountingList">
+
+                        <td class="center w50 blue">{{$index + 1}}</td>
+                        <td class="center w100">
+                            <i-control ng-model="c.code" ng-keydown="getGuideAccountList($event,undefined,c)">
+                            </i-control>
+                        </td>
+                        <td class="center">{{c.name_##session.lang##}}</td>
+                        <td class="center">{{c.currency.name}}</td>
+                        <td class="center">
+                            <i-textarea ng-model="c.statement">
+                            </i-textarea>
+                        </td>
+                        <td class="w150">
+                            <i-control type="number" ng-disabled="c.side =='creditor'" ng-change="calcDifference()"
+                                ng-model="c.debtor">
+                            </i-control>
+                        </td>
+                        <td class="w150">
+                            <i-control type="number" ng-disabled="c.side =='debtor'" ng-change="calcDifference()"
+                                ng-model="c.creditor">
+                            </i-control>
+                        </td>
+                        <td class="center">{{c.count}}</td>
+
+                    </tr>
+                </table>
+            </div>
+            <br>
+            <br>
+            <div class="row">
+                <div class="col4"></div>
+                <div class="col4">
+
+                    <table class="table hover center bold">
+
+                        <tr>
+                            <td colspan="2"> ##word.accounting_guide_budget_creditor##</td>
+                            <td colspan="2"> ##word.accounting_guide_budget_debtor##</td>
+                            <td colspan="2"> ##word.the_difference##</td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="2" class="blue "> {{journal_entries.creditor ||0}} </td>
+                            <td colspan="2" class="blue "> {{journal_entries.debtor ||0}} </td>
+                            <td colspan="2" class="red "> {{journal_entries.difference ||0}} </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="col4"></div>
+            </div>
+
+        </fieldset>
+    </div>
+</div>

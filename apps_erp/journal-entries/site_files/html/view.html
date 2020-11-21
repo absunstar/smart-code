@@ -1,0 +1,40 @@
+<div ng-hide="busy" id="v1">
+    <div class="form">
+        <div id="customersGroupViewModal">
+            <fieldset>
+                <legend> ##word.journal_entries_informations## </legend>
+                <div class="row">
+                    <div class="col9">
+                        <table class="table bold">
+
+                            <tr>
+                                <td class="title"> ##word.journal_entries_name## </td>
+                                <td class="center"> {{journal_entries.name}} </td>
+                            </tr>
+
+                            <tr>
+                                <td class="title">##word.description##</td>
+                                <td class="center">{{journal_entries.description}}</td>
+                            </tr>
+
+
+                            <tr>
+                                <td class="title"> ##word.active## </td>
+                                <td ng-show="journal_entries.active == true" class="center green"> ##word.active## </td>
+                                <td ng-show="journal_entries.active == false" class="center red"> ##word.not_active##
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="col3">
+                        <i-image class="not-print" view ng-model="journal_entries.image_url"> </i-image>
+                    </div>
+
+
+                </div>
+            </fieldset>
+        </div>
+    </div>
+</div>
+<div x-import="journal-entries/action_info.html"></div>

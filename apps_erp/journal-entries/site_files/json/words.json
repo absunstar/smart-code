@@ -1,0 +1,45 @@
+[
+    {"name" : "journal_entries_informations" , "en" : "Journal Entries Informations" , "ar" : "بيانات قيد يومية"},
+
+    {"name" : "journal_entry" , "en" : "Journal Entries" , "ar" : "قيد اليومية"},
+    {"name" : "journal_entries" , "en" : "Journal Entries" , "ar" : "قيود اليومية"},
+    {"name" : "journal_entries_code" , "en" : "Journal Entry Code" , "ar" : "كود نوع "},
+    {"name" : "journal_entries_name" , "en" : "Journal Entry Name" , "ar" : "اسم النوع"},
+    {"name" : "journal_entries_new" , "en" : "New Journal Entry" , "ar" : "قيد يومية جديد"},
+    {"name" : "journal_entries_details" , "en" : "Journal Entry Details" , "ar" : "تفاصيل قيد يومية"},
+    {"name" : "journal_entries_update" , "en" : "Edit Journal Entry" , "ar" : "تعديل قيد يومية"},
+    {"name" : "journal_entries_delete" , "en" : "Delte Journal Entry" , "ar" : "حذف قيد يومية"},
+    {"name" : "journal_entries_add_name" , "en" : "Add Journal Entry" , "ar" : "إضافة قيد يومية"},
+
+
+    {"name" : "reference_number" , "en" : "Reference Number" , "ar" : "رقم المرجع"},
+    {"name" : "name" , "en" : "Name" , "ar" : "الإسم"},
+    {"name" : "document_type" , "en" : "Document Type" , "ar" : "نوع المستند"},
+    {"name" : "document_number" , "en" : "Document Number" , "ar" : "رقم المستند"},
+    {"name" : "net_amount" , "en" : "Net Amount" , "ar" : "صافي المبلغ"},
+    {"name" : "check_number" , "en" : "Check Number" , "ar" : "رقم الشيك"},
+    {"name" : "number_periodic_document" , "en" : "Number Of The Periodic Document" , "ar" : "رقم المستند الدوري"},
+    {"name" : "entry_notice_number" , "en" : "Entry Notice Number" , "ar" : "رقم الإشعار المدخل"},
+    {"name" : "bank_settlement_number" , "en" : "Bank Settlement Number" , "ar" : "رقم التسوية البنكية"},
+
+
+    {"name" : "create_entry_from_notice" , "en" : "Create a Entry from a notice" , "ar" : "إنشاء قيد من إشعار"},
+    {"name" : "create_new_entry_from_bank_reconciliation" , "en" : "Create a new entry from a bank reconciliation" , "ar" : "إنشاء قيد جديد من تسوية بنكية"},
+    {"name" : "create_new_entry_from_previous_periodic_entry" , "en" : "Create a new entry from a previous periodic entry" , "ar" : "إنشاء قيد جديد من قيد دوري سابق"},
+
+
+    {"name" : "reversing_entry" , "en" : "Reversing Entry" , "ar" : "قيد عكسي"},
+    {"name" : "periodic_entry" , "en" : "Periodic Entry" , "ar" : "قيد دوري"},
+    {"name" : "entry_pending" , "en" : "Entry is pending" , "ar" : "قيد تحت الإنتظار"},
+    {"name" : "currency_differences_entry" , "en" : "Currency Differences Entry" , "ar" : "قيد فروق عملة"},
+
+    {"name" : "statement" , "en" : "Statement" , "ar" : "البيان"},
+    {"name" : "account_name" , "en" : "Account Name" , "ar" : "إسم الحساب"},
+    {"name" : "the_difference" , "en" : "The difference" , "ar" : "الفرق"},
+
+
+    {"name" : "local_creditor" , "en" : "Local Creditor" , "ar" : "دائن محلي"},
+    {"name" : "local_debtor" , "en" : "Local Debtor" , "ar" : "مدين محلي"},
+    {"name" : "currency_symbol" , "en" : "Currency Symbol" , "ar" : "رمز العملة"}
+
+]

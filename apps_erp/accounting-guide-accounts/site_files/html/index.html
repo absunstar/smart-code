@@ -35,7 +35,7 @@
                 </div>
 
                 <div x-permissions="login" class="row">
-                    <i-treeview display="name2" class="col6" label="##word.accounting_guide_accounts##"
+                    <i-treeview display="name_##session.lang##" class="col6" label="##word.accounting_guide_accounts##"
                         ng-model="parent_guide_account" ng-click="accounting_guide_accounts_view = parent_guide_account"
                         ng-node="displayAddGuideAccounts(null)" ng-add="displayAddGuideAccounts(parent_guide_account)"
                         ng-edit="displayUpdateGuideAccounts(parent_guide_account)"
