@@ -16,8 +16,8 @@
                 </i-control>
 
                 <i-list ng-search="_search.$document_type_journal_entries" class="col4" ng-model="cost_center"
-                    display="name_##session.lang##" display2="code" space="-" ng-change="selectCostCenter(cost_center)" items="costCentersList"
-                    label="##word.cost_center##">
+                    display="name_##session.lang##" display2="code" space="-" ng-change="selectCostCenter(cost_center)"
+                    items="costCentersList" label="##word.cost_center##">
                 </i-list>
 
             </div>
@@ -38,7 +38,7 @@
                         <th>##word.actions##</th>
                     </tr>
 
-                    <tr ng-repeat="c in current_cost_center_list">
+                    <tr ng-repeat="c in current_account.cost_list">
 
                         <td class="blue">
                             {{$index + 1}}
@@ -49,15 +49,17 @@
                         <td>{{c.name_ar}} - {{c.name_en}}</td>
 
                         <td>
-                            <i-control ng-model="c.rate" type="number"></i-control>
+                            <i-control ng-change="calcCostCentersRate(c,true)" ng-model="c.rate" type="number">
+                            </i-control>
                         </td>
 
                         <td>
-                            <i-control ng-model="c.amount" type="number"></i-control>
+                            <i-control ng-change="calcCostCentersRate(c,false)" ng-model="c.amount" type="number"></i-control>
+                            </i-control>
                         </td>
 
                         <td>
-                            <i-button type="delete" ng-click="current_cost_center_list.splice($index,1)">
+                            <i-button type="delete" ng-click="current_account.cost_list.splice($index,1)">
                             </i-button>
                         </td>
 
@@ -71,6 +73,9 @@
         </div>
         <h2 class="error center bold">{{error}}</h2>
         <div class="modal-footer center">
+            <i-button type="close" label="##word.close##" onclick="site.hideModal('#costCentersModal')">
+            </i-button>
+
         </div>
     </div>
 </div>

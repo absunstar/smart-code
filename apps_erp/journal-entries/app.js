@@ -33,6 +33,68 @@ module.exports = function init(site) {
     journal_entries_doc.company = site.get_company(req)
     journal_entries_doc.branch = site.get_branch(req)
 
+    if (journal_entries_doc.creditor !== journal_entries_doc.debtor) {
+      response.error = 'debtor_creditor_must_equal';
+      res.json(response)
+      return
+    }
+
+    if (journal_entries_doc.accountingList && journal_entries_doc.accountingList.length > 0) {
+      let total_creditor = 0
+      let total_debtor = 0
+      let found = false
+      let accounts_arr = []
+
+      journal_entries_doc.accountingList.forEach(_accList => {
+        let rate = 0
+        let amount = 0
+        let total_account_dibt_credit = 0
+
+        if (_accList.creditor) {
+          total_creditor += _accList.creditor
+          total_account_dibt_credit += _accList.creditor
+
+        } else if (_accList.debtor) {
+          total_debtor += _accList.debtor
+          total_account_dibt_credit += _accList.debtor
+
+        }
+
+        if (_accList.cost_list && _accList.cost_list.length > 0) {
+          _accList.cost_list.forEach(_costList => {
+            rate += _costList.rate
+            amount += _costList.amount
+          });
+        }
+
+        if (rate > 100 || amount > total_account_dibt_credit) {
+          found = true
+          if (req.session.lang == 'ar') {
+            accounts_arr.push(_accList.name_ar)
+          } else if (req.session.lang == 'en') {
+            accounts_arr.push(_accList.name_en)
+          }
+        }
+      });
+
+
+
+      if (journal_entries_doc.the_amount !== total_creditor || journal_entries_doc.the_amount !== total_debtor) {
+        response.error = 'sum_debit_credit_equal_amount';
+        res.json(response)
+        return
+      }
+
+      if (found) {
+        response.error = 'ratios_amounts_cost_centers_account';
+        response.accounts_arr = accounts_arr;
+        res.json(response)
+        return
+      }
+
+    }
+
+
     $journal_entries.add(journal_entries_doc, (err, doc) => {
       if (!err) {
         response.done = true
@@ -60,6 +122,68 @@ module.exports = function init(site) {
       $req: req,
       $res: res
     })
+
+    if (journal_entries_doc.creditor !== journal_entries_doc.debtor) {
+      response.error = 'debtor_creditor_must_equal';
+      res.json(response)
+      return
+    }
+
+    if (journal_entries_doc.accountingList && journal_entries_doc.accountingList.length > 0) {
+      let total_creditor = 0
+      let total_debtor = 0
+      let found = false
+      let accounts_arr = []
+
+      journal_entries_doc.accountingList.forEach(_accList => {
+        let rate = 0
+        let amount = 0
+        let total_account_dibt_credit = 0
+
+        if (_accList.creditor) {
+          total_creditor += _accList.creditor
+          total_account_dibt_credit += _accList.creditor
+
+        } else if (_accList.debtor) {
+          total_debtor += _accList.debtor
+          total_account_dibt_credit += _accList.debtor
+
+        }
+
+        if (_accList.cost_list && _accList.cost_list.length > 0) {
+          _accList.cost_list.forEach(_costList => {
+            rate += _costList.rate
+            amount += _costList.amount
+          });
+        }
+
+        if (rate > 100 || amount > total_account_dibt_credit) {
+          found = true
+      if (req.session.lang == 'ar') {
+            accounts_arr.push(_accList.name_ar)
+          } else {
+            accounts_arr.push(_accList.name_en)
+          }
+        }
+      });
+
+
+
+      if (journal_entries_doc.the_amount !== total_creditor || journal_entries_doc.the_amount !== total_debtor) {
+        response.error = 'sum_debit_credit_equal_amount';
+        res.json(response)
+        return
+      }
+
+      if (found) {
+        response.error = 'ratios_amounts_cost_centers_account';
+        response.accounts_arr = accounts_arr;
+        res.json(response)
+        return
+      }
+
+    }
+
     if (journal_entries_doc.id) {
       $journal_entries.edit({
         where: {

@@ -132,6 +132,7 @@
                     </i-list>
 
                 </div>
+
                 <br>
                 <br>
                 <div class="row">
@@ -153,10 +154,7 @@
 
                             <td class="center w50 blue">{{$index + 1}}</td>
 
-                            <td class="center w100">
-                                <i-control ng-model="c.code" ng-keydown="getGuideAccountList($event,undefined,c)">
-                                </i-control>
-                            </td>
+                            <td class="center">{{c.code}}</td>
 
                             <td class="center">{{c.name_##session.lang##}}</td>
                             <td class="center">{{c.currency.name}}</td>

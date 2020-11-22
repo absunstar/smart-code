@@ -9,6 +9,11 @@ app.controller("journal_entries", function ($scope, $http, $timeout) {
     $scope.journal_entries = {
       accountingList: []
     };
+    $scope.search_cost_centers = '';
+    $scope.search_account = '';
+    $scope.cost_center = {};
+    $scope.guide_account = {};
+
     site.showModal('#journalEntriesAddModal');
   };
 
@@ -41,6 +46,13 @@ app.controller("journal_entries", function ($scope, $http, $timeout) {
             $scope.error = "##word.code_exisit##"
           } else if (response.data.error.like('*Please write code*')) {
             $scope.error = "##word.enter_code_inventory##"
+          } else if (response.data.error.like('*debtor_creditor_must_equal*')) {
+            $scope.error = "##word.debtor_creditor_must_equal##"
+          } else if (response.data.error.like('*sum_debit_credit_equal_amount*')) {
+            $scope.error = "##word.sum_debit_credit_equal_amount##"
+          } else if (response.data.error.like('*ratios_amounts_cost_centers_account*')) {
+
+            $scope.error = `##word.ratios_amounts_cost_centers_account##   ( ${response.data.accounts_arr.join('-')} )`;
           }
         }
       },
@@ -72,8 +84,11 @@ app.controller("journal_entries", function ($scope, $http, $timeout) {
     const v = site.validated('#journalEntriesUpdateModal');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
+      $scope.busy = true;
+
       return;
     }
+
     $http({
       method: "POST",
       url: "/api/journal_entries/update",
@@ -90,6 +105,18 @@ app.controller("journal_entries", function ($scope, $http, $timeout) {
           });
         } else {
           $scope.error = response.data.error;
+          if (response.data.error.like('*duplicate key error*')) {
+            $scope.error = "##word.code_exisit##"
+          } else if (response.data.error.like('*Please write code*')) {
+            $scope.error = "##word.enter_code_inventory##"
+          } else if (response.data.error.like('*debtor_creditor_must_equal*')) {
+            $scope.error = "##word.debtor_creditor_must_equal##"
+          } else if (response.data.error.like('*sum_debit_credit_equal_amount*')) {
+            $scope.error = "##word.sum_debit_credit_equal_amount##"
+          } else if (response.data.error.like('*ratios_amounts_cost_centers_account*')) {
+
+            $scope.error = `##word.ratios_amounts_cost_centers_account##   ( ${response.data.accounts_arr.join('-')} )`;
+          }
         }
       },
       function (err) {
@@ -213,6 +240,10 @@ app.controller("journal_entries", function ($scope, $http, $timeout) {
       }
     }).then(
       function (response) {
+        $scope.busy = false;
+
+        $scope.search_cost_centers = '';
+        $scope.cost_center = {};
         $scope.costCentersList = response.data.list;
       },
       function (err) {
@@ -222,6 +253,7 @@ app.controller("journal_entries", function ($scope, $http, $timeout) {
   };
 
   $scope.getGuideAccountList = function (ev, search) {
+    $scope.error = '';
     $scope.busy = true;
     if (ev.which !== 13) {
       return;
@@ -241,6 +273,8 @@ app.controller("journal_entries", function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done && response.data.list.length > 0) {
+          $scope.search_account = '';
+          $scope.guide_account = {};
           $scope.guideAccountList = response.data.list;
         }
       },
@@ -252,6 +286,7 @@ app.controller("journal_entries", function ($scope, $http, $timeout) {
   };
 
   $scope.selectGuideAccount = function (account) {
+    $scope.error = '';
     let current_account = {
       name_ar: account.name_ar,
       name_en: account.name_en,
@@ -278,35 +313,52 @@ app.controller("journal_entries", function ($scope, $http, $timeout) {
   };
 
   $scope.selectCostCenter = function (costCenter) {
+    $scope.error = '';
 
-    if ($scope.current_cost_center_list && $scope.current_cost_center_list.length > 0) {
-      let foundCostCenter = $scope.current_cost_center_list.some(_costCenter => _costCenter.code === costCenter.code);
+    if ($scope.current_account.cost_list && $scope.current_account.cost_list.length > 0) {
+      let foundCostCenter = $scope.current_account.cost_list.some(_costCenter => _costCenter.code === costCenter.code);
 
       if (!foundCostCenter) {
-        $scope.current_cost_center_list.push(costCenter)
+        $scope.current_account.cost_list.push(costCenter)
       }
     } else {
-      $scope.current_cost_center_list = [costCenter]
+      $scope.current_account.cost_list = [costCenter]
     }
 
   };
 
-  $scope.showCostCentersList = function (costCenterList) {
+  $scope.showCostCentersList = function (account_list) {
+    $scope.error = '';
 
-    $scope.current_cost_center_list = costCenterList.cost_list || [];
+    $scope.current_account = account_list;
 
     site.showModal('#costCentersModal');
   };
 
   $scope.calcDifference = function () {
     $timeout(() => {
+      $scope.error = '';
       let creditor = 0;
       let debtor = 0;
       if ($scope.journal_entries.accountingList && $scope.journal_entries.accountingList.length > 0) {
 
         $scope.journal_entries.accountingList.forEach(_accList => {
-          if (_accList.creditor) creditor += _accList.creditor;
-          else if (_accList.debtor) debtor += _accList.debtor;
+          let amount = 0;
+          if (_accList.creditor) {
+            amount = _accList.creditor;
+            creditor += _accList.creditor;
+
+          } else if (_accList.debtor) {
+            amount = _accList.debtor;
+            debtor += _accList.debtor;
+          }
+
+          if (_accList.cost_list && _accList.cost_list.length > 0) {
+            _accList.cost_list.forEach(_costList => {
+              _costList.amount = amount * _costList.rate / 100
+            });
+          }
+
         });
 
       }
@@ -314,6 +366,27 @@ app.controller("journal_entries", function ($scope, $http, $timeout) {
       $scope.journal_entries.creditor = creditor;
 
       $scope.journal_entries.difference = $scope.journal_entries.creditor - $scope.journal_entries.debtor;
+    }, 250);
+  };
+
+  $scope.calcCostCentersRate = function (costCenter, x) {
+    $timeout(() => {
+
+      let amount = 0;
+
+      if ($scope.current_account.creditor) {
+        amount = $scope.current_account.creditor;
+      } else if ($scope.current_account.debtor) {
+        amount = $scope.current_account.debtor;
+      }
+
+      if (x) {
+        costCenter.amount = amount * costCenter.rate / 100
+      } else {
+        costCenter.rate = costCenter.amount / amount * 100
+      }
+
+
     }, 250);
   };
 

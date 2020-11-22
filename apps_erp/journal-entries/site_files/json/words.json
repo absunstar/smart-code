@@ -36,6 +36,9 @@
     {"name" : "statement" , "en" : "Statement" , "ar" : "البيان"},
     {"name" : "account_name" , "en" : "Account Name" , "ar" : "إسم الحساب"},
     {"name" : "the_difference" , "en" : "The difference" , "ar" : "الفرق"},
+    {"name" : "debtor_creditor_must_equal" , "en" : "The debtor must be equal to the creditor" , "ar" : "يجب أن يتساوى المدين مع الدائن"},
+    {"name" : "ratios_amounts_cost_centers_account" , "en" : "The ratios and amounts of cost centers are greater than those paid in accounts" , "ar" : "نسب و مبالغ مراكز التكلفة أكبر من المدفوع في الحسابات"},
+    {"name" : "sum_debit_credit_equal_amount" , "en" : "The sum of debit and credit must be equal to the amount paid" , "ar" : "يجب أن يكون مجموع المدين و الدائن يساوي المبلغ المدفوع"},
 
 
     {"name" : "local_creditor" , "en" : "Local Creditor" , "ar" : "دائن محلي"},
