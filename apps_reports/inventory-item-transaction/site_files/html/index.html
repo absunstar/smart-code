@@ -45,7 +45,7 @@
                             <th>##word.unit##</th>
                             <th>##word.item_transaction_in##</th>
                             <th>##word.item_transaction_out##</th>
-                            <th>##word.balance##</th>
+                            <th>##word.safes_payments_safe_balance##</th>
                             <th>##word.item_transaction_previous_count##</th>
                             <th>##word.stores_in_item_cost##</th>
                             <th>##word.stores_in_item_price##</th>
@@ -103,7 +103,7 @@
 
                             </td>
                             <td class="green font-22 center"><br>{{c.current_count}}</td>
-                            <td class="red center"><br>{{c.last_count}}</td>
+                            <td class="red font-22 center"><br>{{c.last_count}}</td>
                             <td class="bold center"><br>{{c.cost}}</td>
                             <td class="bold center"><br>{{c.price}}</td>
                             <td>
@@ -182,7 +182,7 @@
                                     <p class="center red bold">
                                         <p class="center">
 
-                                            ##word.item_transaction_current_status_5##
+                                            ##word.Unit_switch##
                                         </p>
                                         <br>
                                         <span class="center">{{c.ticket_code}}</span>
@@ -192,6 +192,20 @@
 
                                 </div>
                                 <div ng-show="c.current_status == 'storein'">
+
+
+                                    <p class="center red bold">
+                                        <p class="center">
+                                            ##word.item_transaction_current_status_6##
+                                        </p>
+                                        <br>
+                                        <p class="center"> {{c.source_type.##session.lang##}}</p>
+                                        <span class="blue center userPrint">{{c.number}}</span>
+                                    </p>
+
+                                </div>
+
+                                <div ng-show="c.current_status == 'switchUnit'">
 
 
                                     <p class="center red bold">
