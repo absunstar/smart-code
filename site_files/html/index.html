@@ -64,13 +64,12 @@
     <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom"></nav>
 
     <div id="main-layout">
+      <div class="center icc hidden">
+        <img ng-src="/images/icc.png" />
+      </div>
+
       <div class="footer" x-features="!login && !site.dynamic">
-        <div class="center icc">
-          <img ng-src="/images/icc.png" />
-        </div>
-        <h2 class="center red bold">
-          ##word.try_application##
-        </h2>
+        <h2 class="center red bold">##word.try_application##</h2>
         <br />
         <h2 class="center">##word.security_user_email## : <span> test </span></h2>
         <h2 class="center">##word.security_user_password## : <span> test </span></h2>
@@ -78,12 +77,14 @@
       </div>
 
       <div id="posts" class="center"></div>
+      <h2 class="center">Download <a target="_blank" href="https://social-browser.com##new_tab##"> Social Browser </a> For Best Browsing</h2>
+      <br />
       <div class="footer" x-feature="!login">
-        <div class="row egypt">
+        <div class="row egypt hidden">
           <h2 class="center">whats up <span> +201090061266 </span></h2>
           <h2 class="center">Email <span> call.smart.code@gmail.com </span></h2>
         </div>
-        <div class="row mt">
+        <div class="row mt hidden">
           <div class="center mt">
             <img ng-src="/images/mt.jpeg" />
           </div>
@@ -96,10 +97,10 @@
             </span>
           </h2>
         </div>
-        <h2 class="center">Download <a target="_blank" href="https://social-browser.com##new_tab##"> Social Browser </a> For Best Browsing</h2>
+
         <br />
         <br />
-        <div class="row oman">
+        <div class="row oman hidden">
           <h2 class="center">
             فرع عمان
             <span>
@@ -125,12 +126,12 @@
     <script>
       let busy = false;
 
-      if ("##req.headers.host##".like("*icc*")) {
-        $(".oman , .egypt , .mt").hide();
-      } else if ("##req.headers.host##".like("*mt*")) {
-        $(".oman , .egypt , .icc").hide();
+      if ('##req.headers.host##'.like('*icc*')) {
+        $('.icc').removeClass('hidden');
+      } else if ('##req.headers.host##'.like('*mt*')) {
+        $('.mt').removeClass('hidden');
       } else {
-        $(".icc , .mt").hide();
+        $('.egypt , .oman').removeClass('hidden');
       }
 
       function loadPosts(more) {
@@ -138,59 +139,59 @@
           return;
         }
 
-        if (typeof Mustache == "undefined") {
+        if (typeof Mustache == 'undefined') {
           return;
         }
 
         if (busy) return;
         busy = true;
 
-        $(".posts-loading").remove();
-        $("#posts").append('<p class="posts-loading"> <img src="/images/loading.gif"> ##word.posts_load_more## </p>');
+        $('.posts-loading').remove();
+        $("#posts").append('<p class="posts-loading"> <img src="/images/loading.gif"> </p>');
 
         busy = true;
 
         site.getData(
           {
-            url: "/json/app_features.json",
-            method: "POST",
+            url: '/json/app_features.json',
+            method: 'POST',
           },
           function (res) {
             busy = false;
 
-            var rendered = "";
-            var post_template = $("#post-template").html();
+            var rendered = '';
+            var post_template = $('#post-template').html();
             Mustache.parse(post_template);
 
             for (var i = 0; i < res.length; i++) {
               try {
                 var post = {};
 
-                if (res[i].feature == "puplic") {
+                if (res[i].feature == 'puplic') {
                   post = res[i];
                   rendered += Mustache.render(post_template, post);
-                } else if (res[i].feature == "gym" && site.features.like("*gym*")) {
+                } else if (res[i].feature == 'gym' && site.features.like('*gym*')) {
                   post = res[i];
                   rendered += Mustache.render(post_template, post);
-                } else if (res[i].feature == "academy" && site.features.like("*academy*")) {
+                } else if (res[i].feature == 'academy' && site.features.like('*academy*')) {
                   post = res[i];
                   rendered += Mustache.render(post_template, post);
-                } else if (res[i].feature == "restaurant" && site.features.like("*restaurant*")) {
+                } else if (res[i].feature == 'restaurant' && site.features.like('*restaurant*')) {
                   post = res[i];
                   rendered += Mustache.render(post_template, post);
-                } else if (res[i].feature == "lawyer" && site.features.like("*lawyer*")) {
+                } else if (res[i].feature == 'lawyer' && site.features.like('*lawyer*')) {
                   post = res[i];
                   rendered += Mustache.render(post_template, post);
-                } else if (res[i].feature == "pos" && site.features.like("*pos*")) {
+                } else if (res[i].feature == 'pos' && site.features.like('*pos*')) {
                   post = res[i];
                   rendered += Mustache.render(post_template, post);
-                } else if (res[i].feature == "order") {
-                  if (site.features.like("*restaurant*") || site.features.like("*pos*")) {
+                } else if (res[i].feature == 'order') {
+                  if (site.features.like('*restaurant*') || site.features.like('*pos*')) {
                     post = res[i];
                     rendered += Mustache.render(post_template, post);
                   }
-                } else if (res[i].feature == "pos") {
-                  if (site.features.like("*gym*") || site.features.like("*restaurant*") || site.features.like("*academy*")) {
+                } else if (res[i].feature == 'pos') {
+                  if (site.features.like('*gym*') || site.features.like('*restaurant*') || site.features.like('*academy*')) {
                     post = res[i];
                     rendered += Mustache.render(post_template, post);
                   }
@@ -198,21 +199,21 @@
               } catch (error) {}
             }
 
-            $("#posts").append('<span class="line"></span><span class="line"></span><span class="line"></span>');
-            $("#posts").append(rendered);
+            $('#posts').append('<span class="line"></span><span class="line"></span><span class="line"></span>');
+            $('#posts').append(rendered);
 
             busy = false;
-            $(".posts-loading").remove();
-          }
+            $('.posts-loading').remove();
+          },
         );
       }
 
       loadPosts();
 
-      var app = app || angular.module("myApp", []);
+      var app = app || angular.module('myApp', []);
 
       function scope() {
-        return angular.element(document.getElementById("main-layout")).scope();
+        return angular.element(document.getElementById('main-layout')).scope();
       }
     </script>
   </body>
