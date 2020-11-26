@@ -5,14 +5,14 @@
 
 </head>
 
-<body class="##session.lang## loaded">
+<body class="##session.lang## ">
 
     <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
     </nav>
     <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
     </nav>
 
-    <div id="main-layout" class="container">
+    <div id="main-layout" class="container loaded">
         <div class="row">
             <div class="row" ng-controller="account_invoices" x-permissions="login">
                 <div x-import="accounting-invoices/add_modal.html"></div>

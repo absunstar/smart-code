@@ -5,7 +5,7 @@
 
 </head>
 
-<body class="##session.lang## loaded">
+<body class="##session.lang##">
 
     <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
     </nav>
@@ -13,7 +13,7 @@
     <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
 
     </nav>
-    <div id="main-layout" class="container">
+    <div id="main-layout" class="container loaded">
         <div class="row ">
             <div class="row" ng-controller="stores_in">
                 <div x-permissions="stores_in_add || stores_in_manage" x-import="inventory-stores-in/add_modal.html">
