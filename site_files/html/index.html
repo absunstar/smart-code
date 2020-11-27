@@ -167,7 +167,7 @@
               try {
                 var post = {};
 
-                if (res[i].feature == 'puplic') {
+                if (res[i].feature == 'public') {
                   post = res[i];
                   rendered += Mustache.render(post_template, post);
                 } else if (res[i].feature == 'gym' && site.features.like('*gym*')) {
@@ -191,7 +191,7 @@
                     rendered += Mustache.render(post_template, post);
                   }
                 } else if (res[i].feature == 'pos') {
-                  if (site.features.like('*gym*') || site.features.like('*restaurant*') || site.features.like('*academy*')) {
+                  if (site.features.like('*erp*') || site.features.like('*gym*') || site.features.like('*restaurant*') || site.features.like('*academy*')) {
                     post = res[i];
                     rendered += Mustache.render(post_template, post);
                   }

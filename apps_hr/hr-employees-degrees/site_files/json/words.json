@@ -32,7 +32,12 @@
     },
     {
         "name": "employees_degrees",
-        "en": "Degree",
+        "en": "Employees Degrees",
+        "ar": "الدرجات الوظيفية"
+    },
+    {
+        "name": "employee_degree",
+        "en": "Employee Degree",
         "ar": "درجة وظيفية"
     },
     {

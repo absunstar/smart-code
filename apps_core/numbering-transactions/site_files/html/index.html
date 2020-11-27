@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en"  x-permissions="numbering_transactions_ui || numbering_transactions_manage" data-ng-app="myApp">
+
+<head x-import="head.html">
+
+</head>
+
+<body class="##session.lang##">
+
+ 
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+
+    </nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+
+    </nav>
+    <div class="row">
+        <h1 class="bold text-center"> ##word.transactions## </h1>
+    </div>
+
+    <div id="main-layout" class="container">
+        <div class="row">
+            <div class="row" ng-controller="numbering_transactions" x-permissions="login">
+                <div x-import="numbering-transactions/content.html"></div>
+
+                <i-button ng-hide="busy" x-permissions="numbering_transactions_save || numbering_transactions_manage" type="save" label="##word.save##" ng-click="saveTransactionNumbering()"></i-button>
+                
+            </div>
+
+        </div>
+    </div>
+    <div x-import="scripts.html"></div>
+
+    <script x-permission="login" x-import="numbering-transactions/index.js"></script>
+</body>
+
+</html>

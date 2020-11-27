@@ -328,7 +328,7 @@
         "description_en": "A subscriber is chosen, the services offered are subscribed, the number of remaining attendance, the bills due, and the remaining days for the end of service and the appearance of services in distinct colors to facilitate knowledge of the remaining days of the subscription to renew it."
     },
     {
-        "feature": "puplic",
+        "feature": "public",
         "title_ar": "الشركات و الفروع",
         "title_en": "Companies and Branches",
         "image_url": "/images/company.png",
@@ -336,7 +336,7 @@
         "description_en": "The program allows adding more than one company and more than one branch of a company and linking them to each other and controlling them easily"
     },
     {
-        "feature": "puplic",
+        "feature": "public",
         "title_ar": "المستخدمين و الصلاحيات",
         "title_en": "Users and permissions",
         "image_url": "/images/permision.png",
@@ -344,7 +344,7 @@
         "description_en": "The program allows adding users, linking them to employees and clients, and organizing the powers of each of them on screens, buttons, and the appearance of data to determine the business needs of each user."
     },
     {
-        "feature": "puplic",
+        "feature": "public",
         "title_ar": "نظام المراقبة",
         "title_en": "Monitoring system",
         "image_url": "/images/monitor.png",
@@ -352,7 +352,7 @@
         "description_en": "It records all that is done on the program, from adding, modifying or deleting transactions and files, and specifying the user and the time that the process was completed."
     },
     {
-        "feature": "puplic",
+        "feature": "public",
         "title_ar": "الحماية و تشفير البيانات",
         "title_en": "Security and data encryption",
         "image_url": "/images/security_encrypt.png",
@@ -360,7 +360,7 @@
         "description_en": "Our programs enjoy the highest levels of protection to provide security for you and your company and data for the workflow of institutions with the strongest protection programs and data encryption completely to prevent data theft or hack"
     },
     {
-        "feature": "puplic",
+        "feature": "public",
         "title_ar": "الإدارة والتنظيم عن بعد",
         "title_en": "Remote administration and management",
         "image_url": "/images/Remote_management.png",
@@ -368,7 +368,7 @@
         "description_en": "Our brograms can provide access to the system by phone or mobile devices, which adds flexibility to manage the system from anywhere and at any time"
     },
     {
-        "feature": "puplic",
+        "feature": "public",
         "title_ar": "التكامل مع البرامج الأخرى",
         "title_en": "Integration with other programs",
         "image_url": "/images/integration.png",
@@ -376,7 +376,7 @@
         "description_en": "The ability to integrate with other programs is a huge advantage of our Program. After using the Program to enter all sales, revenue and expenses, business owners can easily export that data to other programs Word, Exel, etc..."
     },
     {
-        "feature": "puplic",
+        "feature": "public",
         "title_ar": "سهولة الإستخدام",
         "title_en": "Ease of use",
         "image_url": "/images/easy_use.png",
@@ -384,7 +384,7 @@
         "description_en": "One problem with accounting Program is that many of them are difficult to use and cumbersome to learn. So it is designed to be intuitive and easy to understand, even for business owners who lack a financial or accounting background"
     },
     {
-        "feature": "puplic",
+        "feature": "public",
         "title_ar": "إضافات سريعة لبياناتك",
         "title_en": "Quick additions to data",
         "image_url": "/images/add_data.png",
@@ -392,7 +392,7 @@
         "description_en": "The program is characterized by ease and speed in performance as it has many capabilities that help it to that, as it allows you to create more than one transaction in one place and ease of movement builds screens, you can also make a quick addition to new customers all with one click"
     },
     {
-        "feature": "puplic",
+        "feature": "public",
         "title_ar": "إرفاق الملفات و الصور",
         "title_en": "Attach files and pictures",
         "image_url": "/images/file_pic.png",
@@ -400,7 +400,7 @@
         "description_en": "It allows you to attach files and pictures to transactions, invoices, employees, customers, etc...."
     },
     {
-        "feature": "puplic",
+        "feature": "public",
         "title_ar": "البصمة و الحضور و الإنصراف",
         "title_en": "Fingerprint and attendance and Departure",
         "image_url": "/images/fingerprint.png",
@@ -408,7 +408,7 @@
         "description_en": "Connecting the program to the fingerprint device enables recording the fingerprint of employees and clients and record attendance and leave time and date"
     },
     {
-        "feature": "puplic",
+        "feature": "public",
         "title_ar": "قراءة الباركود",
         "title_en": "Barcode reading",
         "image_url": "/images/barcode_reading.png",
@@ -416,7 +416,7 @@
         "description_en": "The possibility of using the barcode reader directly in the selling process. Automatic inventory tracking, automatic barcode creation for items."
     },
     {
-        "feature": "puplic",
+        "feature": "public",
         "title_ar": "الإعدادات الإفتراضية",
         "title_en": "Default settings",
         "image_url": "/images/default_setting.png",
@@ -424,7 +424,7 @@
         "description_en": "Control program settings, print as needed, and define default checkboxes for transactions, for ease of adding transactions."
     },
     {
-        "feature": "puplic",
+        "feature": "public",
         "title_ar": "ورديات العمل",
         "title_en": "Work shifts",
         "image_url": "/images/shift.png",
@@ -432,7 +432,7 @@
         "description_en": "Opening a shift enables you to add transactions inside the shift and when closed it can review all details of the shift and added bills and print them."
     },
     {
-        "feature": "puplic",
+        "feature": "public",
         "title_ar": "المجموعات",
         "title_en": "Groups",
         "image_url": "/images/groups.png",
@@ -440,7 +440,7 @@
         "description_en": "Clients, suppliers, or items stored in groups are linked when there is compatibility and similarities in characteristics and features between them to facilitate access and linking between them."
     },
     {
-        "feature": "puplic",
+        "feature": "public",
         "title_ar": "التقارير و الطباعة",
         "title_en": "Reports and printing",
         "image_url": "/images/printer_path.png",
@@ -448,7 +448,7 @@
         "description_en": "The program has a system that contains many accurate and comprehensive reports with the ability to make a filter for reports as needed and the ability to print reports and invoices in various ways such as thermal printer, pdf, OneNote, fax..etc...."
     },
     {
-        "feature": "puplic",
+        "feature": "public",
         "title_ar": "العناويــــــــــن و طرق الوصـــــول",
         "title_en": "Addresses and access methods",
         "image_url": "/images/area.png",
@@ -456,7 +456,7 @@
         "description_en": "The address system enables you to add provinces, cities and regions, write addresses and link them to employees, customers and suppliers, and register their personal numbers and social media accounts for them to easily reach them and send notifications."
     },
     {
-        "feature": "puplic",
+        "feature": "public",
         "title_ar": "العملات",
         "title_en": "Currencies",
         "image_url": "/images/currency.png",
@@ -464,7 +464,7 @@
         "description_en": "Enables you to work in different currencies on billing, payment and collection .. etc...."
     },
     {
-        "feature": "puplic",
+        "feature": "public",
         "title_ar": "تعدد طرق الدفع",
         "title_en": "Multiple payment methods",
         "image_url": "/images/payment_methods.png",
@@ -472,7 +472,7 @@
         "description_en": "Our program provides you with more than one way to pay or collect by cash, check, visa or master card."
     },
     {
-        "feature": "puplic",
+        "feature": "public",
         "title_ar": "التجنيد و الحالات الإجتماعية",
         "title_en": "Enlistment and Social status",
         "image_url": "/images/military.png",
@@ -480,7 +480,7 @@
         "description_en": "It allows you to add recruitment and social cases and link them to employees to know their social status and recruitment situation."
     },
     {
-        "feature": "puplic",
+        "feature": "public",
         "title_ar": "الضرائب و الخصومات",
         "title_en": "Taxes and discounts",
         "image_url": "/images/tax_type.png",
@@ -560,7 +560,7 @@
         "description_en": "It allows you to register clients or suppliers and link them to transactions, invoices and orders"
     },
     {
-        "feature": "puplic",
+        "feature": "public",
         "title_ar": "الوظائف و الدرجات الوظيفية",
         "title_en": "Jobs and job degree",
         "image_url": "/images/degree.png",
@@ -568,7 +568,7 @@
         "description_en": "Jobs and job grades are added, linked to employees, and the salary for each job is determined by job degree"
     },
     {
-        "feature": "puplic",
+        "feature": "public",
         "title_ar": "مرتبات الموظفين",
         "title_en": "Employees salaries",
         "image_url": "/images/employees_salary.png",
@@ -576,7 +576,7 @@
         "description_en": "It allows you to pay salaries monthly to employees, make a comprehensive report for the employee, and indicate his participation in the work to determine the value of the salary"
     },
     {
-        "feature": "puplic",
+        "feature": "public",
         "title_ar": "الموظفين و المناديب و موظفين التوصيل",
         "title_en": "Employees, delegates, and delivery employees",
         "image_url": "/images/employee_list.png",
@@ -584,7 +584,7 @@
         "description_en": "Employees are added, their terms of reference are added, delegates are added and they are linked to sales invoices, add delivery staff and link them to requests, and detailed reports are made for each of them according to the nature of their work"
     },
     {
-        "feature": "puplic",
+        "feature": "public",
         "title_ar": "السلف و سداد السلف",
         "title_en": "Advances and payment of advances",
         "image_url": "/images/emp_advances2.png",
@@ -592,7 +592,7 @@
         "description_en": "It allows you to make advances to employees and create a monthly system for paying advances"
     },
     {
-        "feature": "puplic",
+        "feature": "public",
         "title_ar": "مكافئات و خصومات الموظفين",
         "title_en": "Employee bonuses and discounts",
         "image_url": "/images/offer.png",
@@ -600,7 +600,7 @@
         "description_en": "Incentive bonuses or deductions are set for employees and their deduction is added to the monthly salary"
     },
     {
-        "feature": "puplic",
+        "feature": "public",
         "title_ar": "التأمينات الإجتماعية",
         "title_en": "Social Security",
         "image_url": "/images/Insurance-employee.png",

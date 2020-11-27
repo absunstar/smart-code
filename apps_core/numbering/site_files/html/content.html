@@ -1,0 +1,458 @@
+<div class="form" id="numbering">
+
+    <div class="tabs">
+        <div class="tabs-header">
+
+            <a class="tab-link" onclick="site.showTabContent(event, '#main_tabs')">
+                <img src="/images/main.png">
+                <span> ##word.main##</span>
+            </a>
+
+            <a x-features="restaurant || pos || academy || gym || erp" class="tab-link"
+                onclick="site.showTabContent(event, '#inventory_tabs')">
+                <img src="/images/pic_store2.png">
+                <span>##word.inventory_transactions##</span>
+            </a>
+
+            <a class="tab-link" onclick="site.showTabContent(event, '#accounting_tabs')">
+                <img src="/images/safe.png">
+                <span>##word.financial_transactions## </span>
+            </a>
+
+            <a class="tab-link" onclick="site.showTabContent(event, '#employees_tabs')">
+                <img src="/images/delegate.png">
+                <span>##word.employees## </span>
+            </a>
+
+            <a class="tab-link" onclick="site.showTabContent(event, '#general_tabs')">
+                <img src="/images/gov.png">
+                <span>##word.general_setting##</span>
+            </a>
+
+        </div>
+
+
+
+        <div class="tabs-content">
+
+            <div id="main_tabs" class="tab-content">
+
+                <fieldset>
+                    <legend> ##word.main## </legend>
+
+                    <div class="row">
+                        <div class="col2"></div>
+
+                        <i-list class="col2" ng-model="numbering.modules_list[0].type_numbering"
+                            items="typeNumberingList" display="##session.lang##" label="##word.type_numbering##"
+                            ng-search="_search.$search_type_numbering"></i-list>
+
+                        <i-control class="col2"ng-hide="numbering.modules_list[0].type_numbering.id ==4" ng-model="numbering.modules_list[0].first_value"
+                            label="##word.first_transaction_number##" type="number"></i-control>
+
+                        <i-control class="col2" ng-hide="numbering.modules_list[0].type_numbering.id ==4" ng-model="numbering.modules_list[0].length_level"
+                            label="##word.length_level##" type="number">
+                        </i-control>
+
+                        <div class="col1"></div>
+
+                        <i-button type="save" ng-hide="numbering.modules_list[0].type_numbering.id ==4" label="##word.circulate##" ng-click="setCirculate('inventory')">
+                        </i-button>
+                    </div>
+
+                    <br>
+                    <br>
+
+                    <div class="row" ng-hide="numbering.modules_list[0].type_numbering.id ==4">
+                        <table class="table loaded center bold hover">
+
+                            <tr>
+                                <th>##word.screen_name##</th>
+                                <th>##word.type_numbering##</th>
+                                <th>##word.first_transaction_number##</th>
+                                <th>##word.last_transaction_number##</th>
+                                <th>##word.length_level##</th>
+                                <th>##word.actions##</th>
+                            </tr>
+
+                            <tr ng-repeat="screen0 in numbering.modules_list[0].screens_list">
+
+                                <td>
+                                    <p class="text-center blue"> {{screen0.##session.lang##}} </p>
+                                </td>
+
+
+                                <td>
+                                    <i-list class="col3" ng-model="screen0.type_numbering" items="typeNumberingList"
+                                        display="##session.lang##" ng-search="_search.$search_type_numbering">
+                                    </i-list>
+                                </td>
+
+                                <td>
+                                    <i-control ng-model="screen0.first_value" type="number">
+                                    </i-control>
+                                </td>
+
+                                <td>
+                                    <p class="text-center red"> {{screen0.last_value}} </p>
+                                </td>
+
+                                <td>
+                                    <i-control ng-model="screen0.length_level" type="number">
+                                    </i-control>
+                                </td>
+
+                                <td class="center">
+
+                                    <i-button type="bg-green" fa="recycle"
+                                        ng-click="screen0.last_value = screen0.first_value - 1"></i-button>
+
+                                </td>
+
+                            </tr>
+
+                        </table>
+                    </div>
+
+                </fieldset>
+
+            </div>
+
+            <div id="inventory_tabs" class="tab-content">
+
+                <fieldset>
+                    <legend> ##word.inventory_transactions## </legend>
+
+                    <div class="row">
+                        <div class="col2"></div>
+
+                        <i-list class="col2" ng-model="numbering.modules_list[1].type_numbering"
+                            items="typeNumberingList" display="##session.lang##" label="##word.type_numbering##"
+                            ng-search="_search.$search_type_numbering"></i-list>
+
+                        <i-control class="col2"ng-hide="numbering.modules_list[1].type_numbering.id ==4" ng-model="numbering.modules_list[1].first_value"
+                            label="##word.first_transaction_number##" type="number"></i-control>
+
+                        <i-control class="col2" ng-hide="numbering.modules_list[1].type_numbering.id ==4" ng-model="numbering.modules_list[1].length_level"
+                            label="##word.length_level##" type="number">
+                        </i-control>
+
+                        <div class="col1"></div>
+
+                        <i-button type="save" ng-hide="numbering.modules_list[1].type_numbering.id ==4" label="##word.circulate##" ng-click="setCirculate('inventory')">
+                        </i-button>
+                    </div>
+
+                    <br>
+                    <br>
+
+                    <div class="row" ng-hide="numbering.modules_list[1].type_numbering.id ==4">
+                        <table class="table loaded center bold hover">
+
+                            <tr>
+                                <th>##word.screen_name##</th>
+                                <th>##word.type_numbering##</th>
+                                <th>##word.first_transaction_number##</th>
+                                <th>##word.last_transaction_number##</th>
+                                <th>##word.length_level##</th>
+                                <th>##word.actions##</th>
+                            </tr>
+
+                            <tr ng-repeat="screen1 in numbering.modules_list[1].screens_list">
+
+                                <td>
+                                    <p class="text-center blue"> {{screen1.##session.lang##}} </p>
+                                </td>
+
+
+                                <td>
+                                    <i-list class="col3" ng-model="screen1.type_numbering" items="typeNumberingList"
+                                        display="##session.lang##" ng-search="_search.$search_type_numbering">
+                                    </i-list>
+                                </td>
+
+                                <td>
+                                    <i-control ng-model="screen1.first_value" type="number">
+                                    </i-control>
+                                </td>
+
+                                <td>
+                                    <p class="text-center red"> {{screen1.last_value}} </p>
+                                </td>
+
+                                <td>
+                                    <i-control ng-model="screen1.length_level" type="number">
+                                    </i-control>
+                                </td>
+
+                                <td class="center">
+
+                                    <i-button type="bg-green" fa="recycle"
+                                        ng-click="screen1.last_value = screen1.first_value - 1"></i-button>
+
+                                </td>
+
+                            </tr>
+
+                        </table>
+                    </div>
+
+                </fieldset>
+
+            </div>
+
+            <div id="accounting_tabs" class="tab-content">
+
+                <fieldset>
+                    <legend> ##word.financial_transactions## </legend>
+
+                    <div class="row">
+                        <div class="col2"></div>
+
+                        <i-list class="col2" ng-model="numbering.modules_list[2].type_numbering"
+                            items="typeNumberingList" display="##session.lang##" label="##word.type_numbering##"
+                            ng-search="_search.$search_type_numbering"></i-list>
+
+                        <i-control class="col2" ng-hide="numbering.modules_list[2].type_numbering.id ==4" ng-model="numbering.modules_list[2].first_value"
+                            label="##word.first_transaction_number##" type="number"></i-control>
+
+                        <i-control class="col2" ng-hide="numbering.modules_list[2].type_numbering.id ==4" ng-model="numbering.modules_list[2].length_level"
+                            label="##word.length_level##" type="number">
+                        </i-control>
+
+                        <div class="col1"></div>
+
+                        <i-button type="save" ng-hide="numbering.modules_list[2].type_numbering.id ==4" label="##word.circulate##" ng-click="setCirculate('accounting')">
+                        </i-button>
+                    </div>
+
+                    <br>
+                    <br>
+
+                    <div class="row" ng-hide="numbering.modules_list[2].type_numbering.id ==4">
+                        <table class="table loaded center bold hover">
+
+                            <tr>
+                                <th>##word.screen_name##</th>
+                                <th>##word.type_numbering##</th>
+                                <th>##word.first_transaction_number##</th>
+                                <th>##word.last_transaction_number##</th>
+                                <th>##word.length_level##</th>
+                                <th>##word.actions##</th>
+                            </tr>
+
+                            <tr ng-repeat="screen2 in numbering.modules_list[2].screens_list">
+
+                                <td>
+                                    <p class="text-center blue"> {{screen2.##session.lang##}} </p>
+                                </td>
+
+
+                                <td>
+                                    <i-list class="col3" ng-model="screen2.type_numbering" items="typeNumberingList"
+                                        display="##session.lang##" ng-search="_search.$search_type_numbering">
+                                    </i-list>
+                                </td>
+
+                                <td>
+                                    <i-control ng-model="screen2.first_value" type="number">
+                                    </i-control>
+                                </td>
+
+                                <td>
+                                    <p class="text-center red"> {{screen2.last_value}} </p>
+                                </td>
+
+                                <td>
+                                    <i-control ng-model="screen2.length_level" type="number">
+                                    </i-control>
+                                </td>
+
+                                <td class="center">
+
+                                    <i-button type="bg-green" fa="recycle"
+                                        ng-click="screen2.last_value = screen2.first_value - 1"></i-button>
+
+                                </td>
+
+                            </tr>
+
+                        </table>
+                    </div>
+
+                </fieldset>
+
+            </div>
+
+            <div id="employees_tabs" class="tab-content">
+
+                <fieldset>
+                    <legend> ##word.employees## </legend>
+
+                    <div class="row">
+                        <div class="col2"></div>
+
+                        <i-list class="col2" ng-model="numbering.modules_list[3].type_numbering"
+                            items="typeNumberingList" display="##session.lang##" label="##word.type_numbering##"
+                            ng-search="_search.$search_type_numbering"></i-list>
+
+                        <i-control class="col2" ng-hide="numbering.modules_list[3].type_numbering.id ==4" ng-model="numbering.modules_list[3].first_value"
+                            label="##word.first_transaction_number##" type="number"></i-control>
+
+                        <i-control class="col2" ng-hide="numbering.modules_list[3].type_numbering.id ==4" ng-model="numbering.modules_list[3].length_level"
+                            label="##word.length_level##" type="number">
+                        </i-control>
+
+                        <div class="col1"></div>
+
+                        <i-button type="save" ng-hide="numbering.modules_list[3].type_numbering.id ==4" label="##word.circulate##" ng-click="setCirculate('general')">
+                        </i-button>
+                    </div>
+
+                    <br>
+                    <br>
+
+                    <div class="row" ng-hide="numbering.modules_list[3].type_numbering.id ==4">
+                        <table class="table loaded center bold hover">
+
+                            <tr>
+                                <th>##word.screen_name##</th>
+                                <th>##word.type_numbering##</th>
+                                <th>##word.first_transaction_number##</th>
+                                <th>##word.last_transaction_number##</th>
+                                <th>##word.length_level##</th>
+                                <th>##word.actions##</th>
+                            </tr>
+
+                            <tr ng-repeat="screen3 in numbering.modules_list[3].screens_list">
+
+                                <td>
+                                    <p class="text-center blue"> {{screen3.##session.lang##}} </p>
+                                </td>
+
+
+                                <td>
+                                    <i-list class="col3" ng-model="screen3.type_numbering" items="typeNumberingList"
+                                        display="##session.lang##" ng-search="_search.$search_type_numbering">
+                                    </i-list>
+                                </td>
+
+                                <td>
+                                    <i-control ng-model="screen3.first_value" type="number">
+                                    </i-control>
+                                </td>
+
+                                <td>
+                                    <p class="text-center red"> {{screen3.last_value}} </p>
+                                </td>
+
+                                <td>
+                                    <i-control ng-model="screen3.length_level" type="number">
+                                    </i-control>
+                                </td>
+
+                                <td class="center">
+
+                                    <i-button type="bg-green" fa="recycle"
+                                        ng-click="screen3.last_value = screen3.first_value - 1"></i-button>
+
+                                </td>
+
+                            </tr>
+
+                        </table>
+                    </div>
+
+                </fieldset>
+
+            </div>
+
+            <div id="general_tabs" class="tab-content">
+
+                <fieldset>
+                    <legend> ##word.general_setting## </legend>
+
+                    <div class="row">
+                        <div class="col2"></div>
+
+                        <i-list class="col2" ng-model="numbering.modules_list[4].type_numbering"
+                            items="typeNumberingList" display="##session.lang##" label="##word.type_numbering##"
+                            ng-search="_search.$search_type_numbering"></i-list>
+
+                        <i-control class="col2" ng-hide="numbering.modules_list[4].type_numbering.id ==4" ng-model="numbering.modules_list[4].first_value"
+                            label="##word.first_transaction_number##" type="number"></i-control>
+
+                        <i-control class="col2" ng-hide="numbering.modules_list[4].type_numbering.id ==4" ng-model="numbering.modules_list[4].length_level"
+                            label="##word.length_level##" type="number">
+                        </i-control>
+
+                        <div class="col1"></div>
+
+                        <i-button type="save" ng-hide="numbering.modules_list[4].type_numbering.id ==4" label="##word.circulate##" ng-click="setCirculate('employees')">
+                        </i-button>
+                    </div>
+
+                    <br>
+                    <br>
+
+                    <div class="row" ng-hide="numbering.modules_list[4].type_numbering.id ==4">
+                        <table class="table loaded center bold hover">
+
+                            <tr>
+                                <th>##word.screen_name##</th>
+                                <th>##word.type_numbering##</th>
+                                <th>##word.first_transaction_number##</th>
+                                <th>##word.last_transaction_number##</th>
+                                <th>##word.length_level##</th>
+                                <th>##word.actions##</th>
+                            </tr>
+
+                            <tr ng-repeat="screen4 in numbering.modules_list[4].screens_list">
+
+                                <td>
+                                    <p class="text-center blue"> {{screen4.##session.lang##}} </p>
+                                </td>
+
+
+                                <td>
+                                    <i-list class="col3" ng-model="screen4.type_numbering" items="typeNumberingList"
+                                        display="##session.lang##" ng-search="_search.$search_type_numbering">
+                                    </i-list>
+                                </td>
+
+                                <td>
+                                    <i-control ng-model="screen4.first_value" type="number">
+                                    </i-control>
+                                </td>
+
+                                <td>
+                                    <p class="text-center red"> {{screen4.last_value}} </p>
+                                </td>
+
+                                <td>
+                                    <i-control ng-model="screen4.length_level" type="number">
+                                    </i-control>
+                                </td>
+
+                                <td class="center">
+
+                                    <i-button type="bg-green" fa="recycle"
+                                        ng-click="screen4.last_value = screen4.first_value - 1"></i-button>
+
+                                </td>
+
+                            </tr>
+
+                        </table>
+                    </div>
+
+                </fieldset>
+
+            </div>
+
+
+        </div>
+    </div>
+
+
+</div>

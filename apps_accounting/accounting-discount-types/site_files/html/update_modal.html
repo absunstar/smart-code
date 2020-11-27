@@ -1,0 +1,27 @@
+<div id="updateDiscountTypeModal" class="modal">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.discount_types_edit## <i class="fa fa-pencil"></i>
+                 
+            </h2>
+        </div>
+        <div class="modal-body">
+
+            <div x-import="accounting-discount-types/content.html"></div>
+            <div x-import="accounting-discount-types/action_info.html"></div>
+
+
+        </div>
+        <h2 class="error">{{error}}</h2>
+        <div class="modal-footer center">
+            <i-button type="save" label="##word.save##" ng-hide="busy" id="update_city_btn" ng-click="update(city)"></i-button>
+            <i-button type="close" label="##word.close##" onclick="site.hideModal('#updateDiscountTypeModal')"></i-button>
+
+        </div>
+    </div>
+
+
+</div>

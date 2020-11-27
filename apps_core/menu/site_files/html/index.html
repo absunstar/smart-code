@@ -151,13 +151,6 @@
                 <span> ##word.menu_area## </span>
             </a>
 
-
-            <a x-features="pos || erp" class="tab-link" href="/itineraries"
-                x-permissions="itineraries_ui || itineraries_manage">
-                <img src="/images/itinerary.png">
-                <span> ##word.itineraries## </span>
-            </a>
-
             <a x-features="academy || gym" class="tab-link" href="/medicine"
                 x-permissions="medicine_ui || medicine_manage">
                 <img src="/images/medicine.png">
@@ -311,10 +304,23 @@
                 <img src="/images/currency.png">
                 <span> ##word.currencies## </span>
             </a>
+
             <a class="tab-link" href="/in_out_names" x-permissions="in_out_names_ui || in_out_names_manage">
                 <img src="/images/pic_in_out.png">
                 <span>##word.system_in_out_names_menus##</span>
             </a>
+
+
+            <a class="tab-link" href="/tax_types" x-permissions="tax_types_ui || tax_types_manage">
+                <img src="/images/tax_type.png">
+                <span>##word.tax_types##</span>
+            </a>
+
+            <a class="tab-link" href="/discount_types" x-permissions="discount_types_ui || discount_types_manage">
+                <img src="/images/discount_type.png">
+                <span>##word.discount_types##</span>
+            </a>
+
             <a class="tab-link" onclick="site.showTabs(event, '#main_tabs')">
                 <img src="/images/back.png">
                 <span> ##word.main_menu##</span>
@@ -491,17 +497,6 @@
                 <span>##word.store_offer_menu##</span>
             </a>
 
-            <a class="tab-link" href="/tax_types" x-permissions="tax_types_ui || tax_types_manage">
-                <img src="/images/tax_type.png">
-                <span>##word.system_add_tax_menus##</span>
-            </a>
-
-            <a class="tab-link" href="/discount_types" x-permissions="discount_types_ui || discount_types_manage">
-                <img src="/images/discount_type.png">
-                <span>##word.system_add_discount_menus##</span>
-            </a>
-
-
             <a class="tab-link" onclick="site.showTabs(event, '#inventory_tabs')">
                 <img src="/images/back.png">
                 <span> ##word.inventory_transactions##</span>
@@ -514,7 +509,7 @@
 
             <a class="tab-link" href="/employees" x-permissions="employee_ui || employee_manage">
                 <img src="/images/employee_list.png">
-                <span> ##word.employee## </span>
+                <span> ##word.employees## </span>
             </a>
 
             <a x-features="gym" class="tab-link" href="/trainer" x-permissions="trainer_ui || trainer_manage">
@@ -533,7 +528,7 @@
                 <a class="tab-link" href="/delivery_employees"
                     x-permissions="delivery_employee_ui || delivery_employee_manage">
                     <img src="/images/delivery_employee_list.png">
-                    <span> ##word.delivery_employee_menus## </span>
+                    <span> ##word.delivery_employees## </span>
                 </a>
             </div>
 
@@ -546,7 +541,7 @@
             <a class="tab-link" href="/employees_degrees"
                 x-permissions="employees_degrees_ui || employees_degrees_manage">
                 <img src="/images/degree.png">
-                <span>##word.system_employee_degrees_menus## </span>
+                <span>##word.employees_degrees## </span>
             </a>
 
             <a class="tab-link" href="/attend_leave" x-permissions="attend_leave_ui || attend_leave_manage">
@@ -975,6 +970,13 @@
                     x-permissions="order_distributor_ui || order_distributor_manage">
                     <img src="/images/order_distributor.png">
                     <span>##word.order_distributor_menus## </span>
+                </a>
+
+
+                <a x-features="pos || erp" class="tab-link" href="/itineraries"
+                    x-permissions="itineraries_ui || itineraries_manage">
+                    <img src="/images/itinerary.png">
+                    <span> ##word.itineraries## </span>
                 </a>
 
                 <a class="tab-link" href="/stores_in" x-permissions="stores_in_ui || stores_in_manage">

@@ -1,0 +1,7 @@
+[{
+    "module_name" : "accounting" ,
+    "name": "tax_types_admin",
+    "en": "Tax Types Admin",
+    "ar": "إدارة الضرائب",
+    "permissions": ["tax_types_manage"]
+}]

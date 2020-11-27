@@ -1,0 +1,391 @@
+[
+    {
+        "id": 1,
+        "en": "Main",
+        "ar": "الرئيسية",
+        "screens_list": [
+            {
+                "feature": "pos",
+                "id": 1,
+                "en": "Orders Customers Screen",
+                "ar": "شاشة طلبات العملاء"
+            },
+            {
+                "feature": "pos",
+                "id": 2,
+                "en": "Itineraries",
+                "ar": "خطوط السير"
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "en": "Inventory Transactions",
+        "ar": "المعاملات المخزنية",
+        "screens_list": [
+            {
+                "feature": "pos",
+                "id": 1,
+                "en": "Stores",
+                "ar": "المخازن"
+            },
+            {
+                "feature": "pos",
+                "id": 2,
+                "en": "Units",
+                "ar": "الوحدات"
+            },
+            {
+                "feature": "pos",
+                "id": 3,
+                "en": "Items Groups",
+                "ar": "مجموعات الأصناف"
+            },
+            {
+                "feature": "pos",
+                "id": 4,
+                "en": "Categories Items",
+                "ar": "الأصناف المخزنية"
+            },
+            {
+                "feature": "pos",
+                "id": 5,
+                "en": "Items Offers",
+                "ar": "عروض الأصناف"
+            },
+            {
+                "feature": "pos",
+                "id": 6,
+                "en": "Purchases Invoices Store",
+                "ar": "فواتير مشتريات مخزنية"
+            },
+            {
+                "feature": "pos",
+                "id": 7,
+                "en": "Returns Purchases Store",
+                "ar": "مرتجعات فواتير شراء"
+            },
+            {
+                "feature": "pos",
+                "id": 8,
+                "en": "Sales Invoices Store",
+                "ar": "فواتير مبيعات مخزنية"
+            },
+            {
+                "feature": "pos",
+                "id": 9,
+                "en": "Returns Sales Store",
+                "ar": "مرتجعات فواتير بيع"
+            },
+            {
+                "feature": "pos",
+                "id": 10,
+                "en": "Orders Screen Store",
+                "ar": "شاشة الطلبات المخزنية"
+            },
+            {
+                "feature": "pos",
+                "id": 11,
+                "en": "Transfer Items",
+                "ar": "تحويل أصناف"
+            },
+            {
+                "feature": "pos",
+                "id": 12,
+                "en": "Damage Store",
+                "ar": "إتلاف / إهلاك مخزني"
+            },
+            {
+                "feature": "pos",
+                "id": 13,
+                "en": "Opening Balances Store",
+                "ar": "أرصدة إفتتاحية مخزنية"
+            },
+            {
+                "feature": "pos",
+                "id": 14,
+                "en": "Depts Store",
+                "ar": "عهد مخزنية"
+            },
+            {
+                "feature": "pos",
+                "id": 15,
+                "en": "Assembling Items",
+                "ar": "تجميع أصناف"
+            },
+            {
+                "feature": "pos",
+                "id": 16,
+                "en": "Dismantling Items",
+                "ar": "تفكيك أصناف"
+            },
+            {
+                "feature": "pos",
+                "id": 17,
+                "en": "Units Switch",
+                "ar": "تبديل وحدات"
+            },
+            {
+                "feature": "pos",
+                "id": 18,
+                "en": "Stores Stocktaking",
+                "ar": "جرد مخزني"
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "en": "Accounting Transactions",
+        "ar": "المعاملات الحسابية",
+        "screens_list": [
+            {
+                "feature": "pos",
+                "id": 1,
+                "en": "Purchases Invoices",
+                "ar": "فواتير المشتريات"
+            },
+            {
+                "feature": "pos",
+                "id": 2,
+                "en": "Sales Invoices",
+                "ar": "فواتير المبيعات"
+            },
+            {
+                "feature": "pos",
+                "id": 3,
+                "en": "Orders Screen Invoices",
+                "ar": "فواتير شاشة الطلبات"
+            },
+            {
+                "feature": "pos",
+                "id": 4,
+                "en": "Amounts In",
+                "ar": "سندات القبض"
+            },
+            {
+                "feature": "pos",
+                "id": 5,
+                "en": "Amounts Out",
+                "ar": "سندات الصرف"
+            },
+            {
+                "feature": "pos",
+                "id": 6,
+                "en": "Recharge Customer Balance",
+                "ar": "دفعة عميل مقدمة"
+            },
+            {
+                "feature": "pos",
+                "id": 7,
+                "en": "Employee Advance",
+                "ar": "سلفة موظف"
+            },
+            {
+                "feature": "pos",
+                "id": 8,
+                "en": "Payment Employee Advance",
+                "ar": "تسديد سلفة موظف"
+            },
+            {
+                "feature": "pos",
+                "id": 9,
+                "en": "Safes",
+                "ar": "الخزينة"
+            },
+            {
+                "feature": "pos",
+                "id": 10,
+                "en": "Currencies",
+                "ar": "العملات"
+            },
+            {
+                "feature": "pos",
+                "id": 11,
+                "en": "Amounts In & Amounts Out Names",
+                "ar": "مسميات الوارد و المنصرف"
+            },
+            {
+                "feature": "pos",
+                "id": 12,
+                "en": "Taxes Type",
+                "ar": "الضرائب"
+            },
+            {
+                "feature": "pos",
+                "id": 13,
+                "en": "Discounts",
+                "ar": "الخصومات"
+            },
+            {
+                "feature": "erp",
+                "id": 14,
+                "en": "Journal Entries",
+                "ar": "قيود اليومية"
+            },
+            {
+                "feature": "erp",
+                "id": 15,
+                "en": "Guide Categories Budget",
+                "ar": "دليل تصنيفات المزانية"
+            },
+            {
+                "feature": "erp",
+                "id": 16,
+                "en": "Guide Categories Income List",
+                "ar": "دليل تصنيفات قائمة الدخل"
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "en": "H.R",
+        "ar": "شئون الموظفين",
+        "screens_list": [
+            {
+                "feature": "public",
+                "id": 1,
+                "en": "Employees",
+                "ar": "الموظفين"
+            },
+            {
+                "feature": "public",
+                "id": 2,
+                "en": "Delegates",
+                "ar": "المناديب"
+            },
+            {
+                "feature": "public",
+                "id": 3,
+                "en": "Delivery Employees",
+                "ar": "موظفين التوصيل"
+            },
+            {
+                "feature": "public",
+                "id": 4,
+                "en": "Jops",
+                "ar": "الوظائف"
+            },
+            {
+                "feature": "public",
+                "id": 5,
+                "en": "Employees Degrees",
+                "ar": "الدرجات الوظيفية"
+            },
+            {
+                "feature": "public",
+                "id": 6,
+                "en": "Attend & Leave",
+                "ar": "الحضور و الإنصراف"
+            },
+            {
+                "feature": "public",
+                "id": 7,
+                "en": "Employees Offers",
+                "ar": "مكافئات الموظفين"
+            },
+            {
+                "feature": "public",
+                "id": 8,
+                "en": "Employees Discount",
+                "ar": "خصومات الموظفين"
+            },
+            {
+                "feature": "public",
+                "id": 9,
+                "en": "Employees Insurance",
+                "ar": "تأمينات الموظفين"
+            },
+            {
+                "feature": "public",
+                "id": 10,
+                "en": "Insurance Slides",
+                "ar": "شرائح التأمين"
+            },
+            {
+                "feature": "public",
+                "id": 11,
+                "en": "Facilities",
+                "ar": "تعريف المنشآت"
+            }
+        ]
+    },
+    {
+        "id": 5,
+        "en": "General Setting",
+        "ar": "إعدادات عامة",
+        "screens_list": [
+            {
+                "feature": "public",
+                "id": 1,
+                "en": "Shifts",
+                "ar": "الشيفتات"
+            },
+            {
+                "feature": "public",
+                "id": 2,
+                "en": "Printers Path",
+                "ar": "مسار الطابعات"
+            },
+            {
+                "feature": "public",
+                "id": 3,
+                "en": "Goves",
+                "ar": "المحافظات"
+            },
+            {
+                "feature": "public",
+                "id": 4,
+                "en": "Cities",
+                "ar": "المدن"
+            },
+            {
+                "feature": "public",
+                "id": 5,
+                "en": "Ereas",
+                "ar": "المناطق"
+            },
+            {
+                "feature": "public",
+                "id": 6,
+                "en": "Vendors",
+                "ar": "الموردين"
+            },
+            {
+                "feature": "public",
+                "id": 7,
+                "en": "Vendors Groups",
+                "ar": "مجموعات الموردين"
+            },
+            {
+                "feature": "restaurant",
+                "id": 8,
+                "en": "Tables Groups",
+                "ar": "مجموعة الطاولات"
+            },
+            {
+                "feature": "restaurant",
+                "id": 9,
+                "en": "Tables",
+                "ar": "الطاولات"
+            },
+            {
+                "feature": "restaurant",
+                "id": 10,
+                "en": "Kitchens",
+                "ar": "المطابخ"
+            },
+            {
+                "feature": "public",
+                "id": 11,
+                "en": "Militaies",
+                "ar": "موقف التجنيد"
+            },
+            {
+                "feature": "public",
+                "id": 12,
+                "en": "Social Status",
+                "ar": "الحالة الإجتماعية"
+            }
+        ]
+    }
+]

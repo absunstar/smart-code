@@ -1,0 +1,662 @@
+[
+    {
+        "id": 1,
+        "name": "stores",
+        "ar": "المخازن",
+        "en": "Stores",
+        "transactions_names_list": [
+            {
+                "id": 1,
+                "name": "inventory_services_items",
+                "ar": " صنف خدمي ",
+                "en": "Service item",
+                "type": "files",
+                "db": ""
+            },
+            {
+                "id": 2,
+                "name": "inventory_assemble_items",
+                "ar": "  تجميع  الأصناف",
+                "en": "Collection Store",
+                "type": "transactions"
+            },
+            {
+                "id": 3,
+                "name": "inventory_opening_balance",
+                "ar": "   رصيد إفتتاحي",
+                "en": "Opening Balance",
+                "type": "transactions"
+            },
+            {
+                "id": 4,
+                "name": "inventory_stocktaking_registry",
+                "ar": "محضر الجرد",
+                "en": "Inventory Record",
+                "type": "transactions"
+            },
+            {
+                "id": 5,
+                "name": "inventory_stocktaking_request",
+                "ar": "الجرد المخزني",
+                "en": "Store inventory",
+                "type": "transactions"
+            },
+            {
+                "id": 6,
+                "name": "inventory_store_out",
+                "ar": " صرف مخزني",
+                "en": "Exchange Store",
+                "type": "transactions"
+            },
+            {
+                "id": 7,
+                "name": "inventory_damage",
+                "ar": "إتلاف مخزني",
+                "en": "Destruction Store",
+                "type": "transactions"
+            },
+            {
+                "id": 8,
+                "name": "inventory_disassemble_items",
+                "ar": " تفكيك مخزني",
+                "en": "Disassemble Store",
+                "type": "transactions"
+            },
+            {
+                "id": 9,
+                "name": "inventory_services_items_groups",
+                "ar": " مجموعة الأصناف الخدمية ",
+                "en": "Serices Items Groups",
+                "type": "files"
+            },
+            {
+                "id": 10,
+                "name": "inventory_booking",
+                "ar": "حجز كميات",
+                "en": "booking",
+                "type": "transactions"
+            },
+            {
+                "id": 11,
+                "name": "inventory_store_in",
+                "ar": "إستلام مخزني",
+                "en": "Receive Store",
+                "type": "transactions"
+            },
+            {
+                "id": 12,
+                "name": "inventory_revaluation",
+                "ar": "إعادة تقييم المخزون",
+                "en": "Stock Valuation",
+                "type": "transactions"
+            },
+            {
+                "id": 13,
+                "name": "inventory_request_transfer",
+                "ar": "طلب تحويل محزني",
+                "en": "Request Conversion",
+                "type": "transactions"
+            },
+            {
+                "id": 14,
+                "name": "inventory_request_book",
+                "ar": " طلب حجز كميات ",
+                "en": "inventory request book ",
+                "type": "transactions"
+            },
+            {
+                "id": 15,
+                "name": "inventory_unbooking",
+                "ar": " فك حجز كميات  ",
+                "en": "un-booking  ",
+                "type": "transactions"
+            },
+            {
+                "id": 16,
+                "name": "inventory_consignment_in",
+                "ar": " إستلام بضاعة الأمانة ",
+                "en": "inventory consignment in ",
+                "type": "transactions"
+            },
+            {
+                "id": 17,
+                "name": "inventory_consignment_out",
+                "ar": "  صرف بضاعة الأمانة  ",
+                "en": "inventory consignment out ",
+                "type": "transactions"
+            },
+            {
+                "id": 18,
+                "name": "inventory_stocktaking_merging",
+                "ar": "  دمج الجرد  ",
+                "en": "stocktaking merging ",
+                "type": "transactions"
+            },
+            {
+                "id": 19,
+                "name": "inventory_stocktaking_adjustment",
+                "ar": "  تسوية  الجرد  ",
+                "en": "stocktaking adjustment ",
+                "type": "transactions"
+            },
+            {
+                "id": 20,
+                "name": "inventory_store_out_request",
+                "ar": " طلب صرف مخزني",
+                "en": "Store out request",
+                "type": "transactions"
+            },
+            {
+                "id": 21,
+                "name": "inventory_transfer_out",
+                "ar": "تحويل صادر",
+                "en": "Transfer out",
+                "type": "transactions"
+            },
+            {
+                "id": 22,
+                "name": "inventory_transfer_in",
+                "ar": "تحويل وارد",
+                "en": "Transfer in",
+                "type": "transactions"
+            },
+            {
+                "id": 23,
+                "name": "inventory_internal_transfer",
+                "ar": " طلب تحويل داخلي",
+                "en": "inventory internal transfer request",
+                "type": "transactions"
+            },
+            {
+                "id": 24,
+                "name": "inventory_direct_transfer",
+                "ar": "  تحويل مباشر ",
+                "en": "Direct Transfer",
+                "type": "transactions"
+            },
+            {
+                "id": 27,
+                "name": "stores_items",
+                "ar": "أصناف مخزنية",
+                "en": "Stores Items",
+                "type": "files"
+            },
+            {
+                "id": 28,
+                "name": "inventory_items_groups",
+                "ar": "مجموعة الأصناف المخزنية ",
+                "en": "Stores Items Groups",
+                "type": "files"
+            },
+            {
+                "id": 29,
+                "name": "inventory_items_types",
+                "ar": "نوع الصنف ",
+                "en": "Items Types",
+                "type": "files"
+            },
+            {
+                "id": 30,
+                "name": "inventory_items_families",
+                "ar": "عائلات الأصناف ",
+                "en": "Items Families",
+                "type": "files"
+            },
+            {
+                "id": 31,
+                "name": "inventory_items_units",
+                "ar": " وحدات الصنف ",
+                "en": "Items Units",
+                "type": "files"
+            },
+            {
+                "id": 32,
+                "name": "inventory_items_related_units",
+                "ar": " الوحدات المرتبطة ",
+                "en": "Related Items Units",
+                "type": "files"
+            },
+            {
+                "id": 33,
+                "name": "inventory_items_ranks",
+                "ar": " تصنيفات الأصناف",
+                "en": "Items Ranks",
+                "type": "files"
+            },
+            {
+                "id": 34,
+                "name": "inventory_sections",
+                "ar": " أقسام الأصناف",
+                "en": "Stores Sections",
+                "type": "files"
+            },
+            {
+                "id": 36,
+                "name": "inventory_attributes",
+                "ar": "متغيرات الأصناف",
+                "en": "Attribute",
+                "type": "files"
+            }
+        ],
+        "type": {
+            "id": 1,
+            "name": "connected",
+            "ar": "متصل",
+            "en": "Connected"
+        },
+        "transaction_system": "auto",
+        "transaction_files_system": "auto"
+    },
+    {
+        "id": 2,
+        "name": "gl_numbering",
+        "ar": "الأستاذ العام",
+        "en": "GL Numbering",
+        "transactions_names_list": [
+            {
+                "id": 1,
+                "name": "check_return",
+                "ar": "إرتداد الشيكات",
+                "en": "Check Return",
+                "type": "transactions"
+            },
+            {
+                "id": 2,
+                "name": "check_collection",
+                "ar": "تحصيل الشيكات",
+                "en": "Check Collection",
+                "type": "transactions"
+            },
+            {
+                "id": 3,
+                "name": "customers_checks_return",
+                "ar": " إرتجاع الشيكات للعملاء",
+                "en": "Customers Checks Return",
+                "type": "transactions"
+            },
+            {
+                "id": 4,
+                "name": "first_payment_checks",
+                "ar": "أول المدة شيكات دفع",
+                "en": "First Time Payment Checks",
+                "type": "transactions"
+            },
+            {
+                "id": 5,
+                "name": "cashing_checks",
+                "ar": "صرف الشيك",
+                "en": "Cashing Checks",
+                "type": "transactions"
+            },
+            {
+                "id": 6,
+                "name": "paid_check_return",
+                "ar": "إرتداد شيكات تحت الدفع",
+                "en": "Paid Check Return",
+                "type": "transactions"
+            },
+            {
+                "id": 7,
+                "name": "journal_entries",
+                "ar": "قيود اليومية",
+                "en": "Daily Restrictions",
+                "type": "transactions"
+            },
+            {
+                "id": 8,
+                "name": "pay_check",
+                "ar": "سداد شيك",
+                "en": "Pay Check",
+                "type": "transactions"
+            },
+            {
+                "id": 9,
+                "name": "beneficiaries",
+                "ar": "المستفيدون",
+                "en": "Beneficiaries",
+                "type": "files"
+            },
+            {
+                "id": 10,
+                "name": "accounting_reasons_rejection_check",
+                "ar": "أسباب رفض الشيك",
+                "en": "Reasons Rejection Check",
+                "type": "files"
+            },
+            {
+                "id": 11,
+                "name": "first_received_checks",
+                "ar": "أول المدة شيكات قبض",
+                "en": "First Time Received Checks",
+                "type": "transactions"
+            },
+            {
+                "id": 12,
+                "name": "receipt_checks",
+                "ar": "إستلام شيكات",
+                "en": "Receipt Checks",
+                "type": "transactions"
+            },
+            {
+                "id": 13,
+                "name": "deliver_checks",
+                "ar": "تسليم الشيكات",
+                "en": "Deliver Checks",
+                "type": "transactions"
+            },
+            {
+                "id": 14,
+                "name": "check_deposit",
+                "ar": "إيداع الشيكات",
+                "en": "Check Deposit",
+                "type": "transactions"
+            },
+            {
+                "id": 17,
+                "name": "accounting_guide_income_list",
+                "ar": "تصنيفات قائمة الدخل",
+                "en": "Guide Income List",
+                "type": "files"
+            },
+            {
+                "id": 18,
+                "name": "accounting_guide_budget",
+                "ar": "تصنيفات الميزانية",
+                "en": "Guide Budget",
+                "type": "files"
+            },
+            {
+                "id": 19,
+                "name": "accounting_accounts_opening_balances",
+                "ar": "الأرصدة الإفتتاحية للحسابات",
+                "en": "Accounts Opening Balances",
+                "type": "transactions"
+            },
+            {
+                "id": 20,
+                "name": "accounting_cash_definations",
+                "ar": "تعريف الصناديق",
+                "en": "Cash Definations",
+                "type": "files"
+            },
+            {
+                "id": 21,
+                "name": "accounting_banks",
+                "ar": "البنوك",
+                "en": "accounting_banks",
+                "type": "files"
+            },
+            {
+                "id": 22,
+                "name": "debentures_receipt",
+                "ar": "سندات القبض",
+                "en": "Debentures Receipt",
+                "type": "transactions"
+            },
+            {
+                "id": 23,
+                "name": "debentures_exchange",
+                "ar": "سندات الصرف",
+                "en": "Debentures Exchange",
+                "type": "transactions"
+            },
+            {
+                "id": 24,
+                "name": "creditor_notes",
+                "ar": "الإشعارات الدائنة",
+                "en": "Credito Notes",
+                "type": "transactions"
+            },
+            {
+                "id": 25,
+                "name": "debtor_notes",
+                "ar": "الإشعارات المدينة",
+                "en": "Debtor Notes",
+                "type": "transactions"
+            },
+            {
+                "id": 26,
+                "name": "money_transfer",
+                "ar": "تحويلات مالية",
+                "en": "Money Transfer",
+                "type": "transactions"
+            },
+            {
+                "id": 27,
+                "name": "indebtedness_transfer",
+                "ar": "نقل المديونية",
+                "en": "Indebtedness Transfer",
+                "type": "transactions"
+            },
+            {
+                "id": 28,
+                "name": "customers_vendors_adjustment",
+                "ar": "تسوية العملاء / الموردين",
+                "en": "Customers Vendors Adjustment",
+                "type": "transactions"
+            },
+            {
+                "id": 29,
+                "name": "estimated_accounts",
+                "ar": "بيانات موازنة تقديرية للحسابات",
+                "en": "Estimated Accounts",
+                "type": "transactions"
+            },
+            {
+                "id": 30,
+                "name": "estimated_cost",
+                "ar": "بيانات موازنة تقديرية لمراكز التكلفة",
+                "en": "Estimated Cost",
+                "type": "transactions"
+            },
+            {
+                "id": 31,
+                "name": "accounting_checks_defined",
+                "ar": "الشيكات المعرفة",
+                "en": "Checks Defiend",
+                "type": "transactions"
+            },
+            {
+                "id": 32,
+                "name": "direct_collection_from_check_bank",
+                "ar": "تحصيل مباشر من بنك الشيك",
+                "en": "Direct Collection From Check Bank",
+                "type": "transactions"
+            }
+        ],
+        "type": {
+            "id": 1,
+            "name": "connected",
+            "ar": "متصل",
+            "en": "Connected"
+        },
+        "transaction_system": "auto",
+        "transaction_files_system": "auto"
+    },
+    {
+        "id": 3,
+        "name": "purchases",
+        "ar": "المشتريات",
+        "en": "Purchases",
+        "transactions_names_list": [
+            {
+                "id": 1,
+                "name": "inventory_monitoring_rejection_reasons",
+                "ar": "أسباب رفض مراقبة المخزون",
+                "en": "Inventory Monitoring Rejection Reasons",
+                "type": "files"
+            },
+            {
+                "id": 2,
+                "name": "projects",
+                "ar": "المشاريع",
+                "en": "Projects",
+                "type": "files"
+            },
+            {
+                "id": 3,
+                "name": "vendors_classifications",
+                "ar": " تصنيفات الموردين",
+                "en": "Vendors Classifications",
+                "type": "files"
+            },
+            {
+                "id": 4,
+                "name": "vendors",
+                "ar": "الموردين",
+                "en": "Vendors ",
+                "type": "files"
+            },
+            {
+                "id": 5,
+                "name": "vendors_group",
+                "ar": " مجموعات الموردين",
+                "en": "Vendors Group",
+                "type": "files"
+            },
+            {
+                "id": 6,
+                "name": "purchases_inventory_monitoring",
+                "ar": " مراقبة المخزون",
+                "en": "Inventory Monitoring",
+                "type": "transactions"
+            },
+            {
+                "id": 7,
+                "name": "purchases_purchase_request",
+                "ar": " طلب الشراء",
+                "en": "Purchase Request",
+                "type": "transactions"
+            },
+            {
+                "id": 7,
+                "name": "purchases_request_purchase_offer",
+                "en": "Request Purchase Offer",
+                "ar": "طلب عرض الشراء",
+                "type": "transactions"
+            },
+            {
+                "id": 8,
+                "name": "purchases_purchase_offer",
+                "en": "Purchase Offer",
+                "ar": "عرض الشراء",
+                "type": "transactions"
+            },
+            {
+                "id": 9,
+                "name": "purchases_price_comparison",
+                "en": "Prices Comparison",
+                "ar": "مقارنة الأسعار",
+                "type": "transactions"
+            },
+            {
+                "id": 10,
+                "name": "purchases_purchase_order",
+                "en": "Purchase Order",
+                "ar": "أمر الشراء",
+                "type": "transactions"
+            },
+            {
+                "id": 11,
+                "name": "purchases_invoice",
+                "en": "Invoice Purchases",
+                "ar": "فاتورة المشتريات",
+                "type": "transactions"
+            },
+            {
+                "id": 12,
+                "name": "purchases_return_purchase",
+                "en": "Return Purchase",
+                "ar": "مرتجع المشتريات",
+                "type": "transactions"
+            }
+        ],
+        "type": {
+            "id": 1,
+            "name": "connected",
+            "ar": "متصل",
+            "en": "Connected"
+        },
+        "transaction_system": "auto",
+        "transaction_files_system": "auto"
+    },
+    {
+        "id": 4,
+        "name": "sales",
+        "ar": "المبيعات",
+        "en": "Sales",
+        "transactions_names_list": [
+            {
+                "id": 1,
+                "name": "customers_classifications",
+                "ar": "تصنيفات العملاء",
+                "en": "customers Classifications",
+                "type": "files"
+            },
+            {
+                "id": 2,
+                "name": "reflex_reasons",
+                "ar": "أسباب الإرتجاع",
+                "en": "Reflex Reasons",
+                "type": "files"
+            },
+            {
+                "id": 3,
+                "name": "pricing_policy",
+                "ar": "سياسات التسعير",
+                "en": "Pricing Policy",
+                "type": "files"
+            },
+            {
+                "id": 4,
+                "name": "taxes",
+                "ar": "الضرائب",
+                "en": "Taxes",
+                "type": "files"
+            },
+            {
+                "id": 5,
+                "name": "rating_discounts",
+                "ar": "تصنيفات الخصومات",
+                "en": "Rating Discounts",
+                "type": "files"
+            },
+            {
+                "id": 6,
+                "name": "items_price",
+                "ar": "أسعار الأصناف",
+                "en": "Items Price",
+                "type": "files"
+            },
+            {
+                "id": 7,
+                "name": "delegate_commission",
+                "ar": "عمولات المناديب",
+                "en": "Delegate Commission",
+                "type": "files"
+            },
+            {
+                "id": 8,
+                "name": "customers",
+                "ar": "العملاء",
+                "en": "Customers ",
+                "type": "files"
+            },
+            {
+                "id": 9,
+                "name": "customers_group",
+                "ar": " مجموعات العملاء",
+                "en": "Customers Group",
+                "type": "files"
+            }
+        ],
+        "type": {
+            "id": 1,
+            "name": "connected",
+            "ar": "متصل",
+            "en": "Connected"
+        },
+        "transaction_system": "auto",
+        "transaction_files_system": "auto"
+    }
+]

@@ -1,0 +1,52 @@
+[
+    {
+        "name": "numbering_screen",
+        "en": "Numbering Screen",
+        "ar": "شاشة الترقيم"
+    },
+    {
+        "name": "screen_name",
+        "en": "Screen Name",
+        "ar": "إسم الشاشة"
+    },
+    {
+        "name": "first_transaction_number",
+        "en": "First Transaction Number",
+        "ar": "رقم أول معاملة"
+    },
+    {
+        "name": "last_transaction_number",
+        "en": "Last Transaction Number",
+        "ar": "آخر رقم معاملة"
+    },
+    {
+        "name": "financial_year",
+        "en": "Financial year",
+        "ar": "سنة مالية"
+    },
+    {
+        "name": "accounting_period",
+        "en": "Accounting period",
+        "ar": "فترة محاسبية"
+    },
+    {
+        "name": "connected",
+        "en": "Connected",
+        "ar": "متصل"
+    },
+    {
+        "name": "manual",
+        "en": "Manual",
+        "ar": "يدوي"
+    },
+    {
+        "name": "type_numbering",
+        "en": "Type Numbering",
+        "ar": "نوع الترقيم"
+    },
+    {
+        "name": "circulate",
+        "en": "Circulate",
+        "ar": "تعميم"
+    }
+]
