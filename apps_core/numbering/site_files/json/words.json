@@ -15,9 +15,14 @@
         "ar": "رقم أول معاملة"
     },
     {
+        "name": "beginning_numbering",
+        "en": "Beginning Of Numbering",
+        "ar": "بداية الترقيم"
+    },
+    {
         "name": "last_transaction_number",
         "en": "Last Transaction Number",
-        "ar": "آخر رقم معاملة"
+        "ar": "رقم آخر معاملة"
     },
     {
         "name": "financial_year",

@@ -24,11 +24,7 @@
         "en": "Order Type",
         "ar": "نوع الطلب"
     },
-    {
-        "name": "length_level",
-        "en": "Length level ",
-        "ar": "طول المستوى"
-    },
+   
     {
         "name": "auto_generate_account_code_and_cost_center",
         "en": "Automatic generation of account tree code and cost centers",

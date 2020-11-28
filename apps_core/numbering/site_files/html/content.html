@@ -47,29 +47,29 @@
                             items="typeNumberingList" display="##session.lang##" label="##word.type_numbering##"
                             ng-search="_search.$search_type_numbering"></i-list>
 
-                        <i-control class="col2"ng-hide="numbering.modules_list[0].type_numbering.id ==4" ng-model="numbering.modules_list[0].first_value"
-                            label="##word.first_transaction_number##" type="number"></i-control>
+                        <i-control class="col2" ng-model="numbering.modules_list[0].first_value"
+                            label="##word.beginning_numbering##" type="number"></i-control>
 
-                        <i-control class="col2" ng-hide="numbering.modules_list[0].type_numbering.id ==4" ng-model="numbering.modules_list[0].length_level"
+                        <i-control class="col2"  ng-model="numbering.modules_list[0].length_level"
                             label="##word.length_level##" type="number">
                         </i-control>
 
                         <div class="col1"></div>
 
-                        <i-button type="save" ng-hide="numbering.modules_list[0].type_numbering.id ==4" label="##word.circulate##" ng-click="setCirculate('inventory')">
+                        <i-button type="edit"  label="##word.circulate##" ng-click="setCirculate('main')">
                         </i-button>
                     </div>
 
                     <br>
                     <br>
 
-                    <div class="row" ng-hide="numbering.modules_list[0].type_numbering.id ==4">
+                    <div class="row" >
                         <table class="table loaded center bold hover">
 
                             <tr>
                                 <th>##word.screen_name##</th>
                                 <th>##word.type_numbering##</th>
-                                <th>##word.first_transaction_number##</th>
+                                <th>##word.beginning_numbering##</th>
                                 <th>##word.last_transaction_number##</th>
                                 <th>##word.length_level##</th>
                                 <th>##word.actions##</th>
@@ -89,22 +89,22 @@
                                 </td>
 
                                 <td>
-                                    <i-control ng-model="screen0.first_value" type="number">
+                                    <i-control ng-hide="screen0.type_numbering.id ==4" ng-model="screen0.first_value" type="number">
                                     </i-control>
                                 </td>
 
                                 <td>
-                                    <p class="text-center red"> {{screen0.last_value}} </p>
+                                    <p class="text-center red" ng-hide="screen0.type_numbering.id ==4"> {{screen0.last_value}} </p>
                                 </td>
 
                                 <td>
-                                    <i-control ng-model="screen0.length_level" type="number">
+                                    <i-control ng-model="screen0.length_level" ng-hide="screen0.type_numbering.id ==4" type="number">
                                     </i-control>
                                 </td>
 
                                 <td class="center">
 
-                                    <i-button type="bg-green" fa="recycle"
+                                    <i-button type="bg-green" ng-hide="screen0.type_numbering.id ==4" fa="recycle"
                                         ng-click="screen0.last_value = screen0.first_value - 1"></i-button>
 
                                 </td>
@@ -130,29 +130,29 @@
                             items="typeNumberingList" display="##session.lang##" label="##word.type_numbering##"
                             ng-search="_search.$search_type_numbering"></i-list>
 
-                        <i-control class="col2"ng-hide="numbering.modules_list[1].type_numbering.id ==4" ng-model="numbering.modules_list[1].first_value"
-                            label="##word.first_transaction_number##" type="number"></i-control>
+                        <i-control class="col2" ng-model="numbering.modules_list[1].first_value"
+                            label="##word.beginning_numbering##" type="number"></i-control>
 
-                        <i-control class="col2" ng-hide="numbering.modules_list[1].type_numbering.id ==4" ng-model="numbering.modules_list[1].length_level"
+                        <i-control class="col2"  ng-model="numbering.modules_list[1].length_level"
                             label="##word.length_level##" type="number">
                         </i-control>
 
                         <div class="col1"></div>
 
-                        <i-button type="save" ng-hide="numbering.modules_list[1].type_numbering.id ==4" label="##word.circulate##" ng-click="setCirculate('inventory')">
+                        <i-button type="edit"  label="##word.circulate##" ng-click="setCirculate('inventory')">
                         </i-button>
                     </div>
 
                     <br>
                     <br>
 
-                    <div class="row" ng-hide="numbering.modules_list[1].type_numbering.id ==4">
+                    <div class="row" >
                         <table class="table loaded center bold hover">
 
                             <tr>
                                 <th>##word.screen_name##</th>
                                 <th>##word.type_numbering##</th>
-                                <th>##word.first_transaction_number##</th>
+                                <th>##word.beginning_numbering##</th>
                                 <th>##word.last_transaction_number##</th>
                                 <th>##word.length_level##</th>
                                 <th>##word.actions##</th>
@@ -213,29 +213,29 @@
                             items="typeNumberingList" display="##session.lang##" label="##word.type_numbering##"
                             ng-search="_search.$search_type_numbering"></i-list>
 
-                        <i-control class="col2" ng-hide="numbering.modules_list[2].type_numbering.id ==4" ng-model="numbering.modules_list[2].first_value"
-                            label="##word.first_transaction_number##" type="number"></i-control>
+                        <i-control class="col2"  ng-model="numbering.modules_list[2].first_value"
+                            label="##word.beginning_numbering##" type="number"></i-control>
 
-                        <i-control class="col2" ng-hide="numbering.modules_list[2].type_numbering.id ==4" ng-model="numbering.modules_list[2].length_level"
+                        <i-control class="col2"  ng-model="numbering.modules_list[2].length_level"
                             label="##word.length_level##" type="number">
                         </i-control>
 
                         <div class="col1"></div>
 
-                        <i-button type="save" ng-hide="numbering.modules_list[2].type_numbering.id ==4" label="##word.circulate##" ng-click="setCirculate('accounting')">
+                        <i-button type="edit"  label="##word.circulate##" ng-click="setCirculate('accounting')">
                         </i-button>
                     </div>
 
                     <br>
                     <br>
 
-                    <div class="row" ng-hide="numbering.modules_list[2].type_numbering.id ==4">
+                    <div class="row" >
                         <table class="table loaded center bold hover">
 
                             <tr>
                                 <th>##word.screen_name##</th>
                                 <th>##word.type_numbering##</th>
-                                <th>##word.first_transaction_number##</th>
+                                <th>##word.beginning_numbering##</th>
                                 <th>##word.last_transaction_number##</th>
                                 <th>##word.length_level##</th>
                                 <th>##word.actions##</th>
@@ -296,29 +296,29 @@
                             items="typeNumberingList" display="##session.lang##" label="##word.type_numbering##"
                             ng-search="_search.$search_type_numbering"></i-list>
 
-                        <i-control class="col2" ng-hide="numbering.modules_list[3].type_numbering.id ==4" ng-model="numbering.modules_list[3].first_value"
-                            label="##word.first_transaction_number##" type="number"></i-control>
+                        <i-control class="col2"  ng-model="numbering.modules_list[3].first_value"
+                            label="##word.beginning_numbering##" type="number"></i-control>
 
-                        <i-control class="col2" ng-hide="numbering.modules_list[3].type_numbering.id ==4" ng-model="numbering.modules_list[3].length_level"
+                        <i-control class="col2"  ng-model="numbering.modules_list[3].length_level"
                             label="##word.length_level##" type="number">
                         </i-control>
 
                         <div class="col1"></div>
 
-                        <i-button type="save" ng-hide="numbering.modules_list[3].type_numbering.id ==4" label="##word.circulate##" ng-click="setCirculate('general')">
+                        <i-button type="edit"  label="##word.circulate##" ng-click="setCirculate('general')">
                         </i-button>
                     </div>
 
                     <br>
                     <br>
 
-                    <div class="row" ng-hide="numbering.modules_list[3].type_numbering.id ==4">
+                    <div class="row" >
                         <table class="table loaded center bold hover">
 
                             <tr>
                                 <th>##word.screen_name##</th>
                                 <th>##word.type_numbering##</th>
-                                <th>##word.first_transaction_number##</th>
+                                <th>##word.beginning_numbering##</th>
                                 <th>##word.last_transaction_number##</th>
                                 <th>##word.length_level##</th>
                                 <th>##word.actions##</th>
@@ -379,29 +379,29 @@
                             items="typeNumberingList" display="##session.lang##" label="##word.type_numbering##"
                             ng-search="_search.$search_type_numbering"></i-list>
 
-                        <i-control class="col2" ng-hide="numbering.modules_list[4].type_numbering.id ==4" ng-model="numbering.modules_list[4].first_value"
-                            label="##word.first_transaction_number##" type="number"></i-control>
+                        <i-control class="col2"  ng-model="numbering.modules_list[4].first_value"
+                            label="##word.beginning_numbering##" type="number"></i-control>
 
-                        <i-control class="col2" ng-hide="numbering.modules_list[4].type_numbering.id ==4" ng-model="numbering.modules_list[4].length_level"
+                        <i-control class="col2"  ng-model="numbering.modules_list[4].length_level"
                             label="##word.length_level##" type="number">
                         </i-control>
 
                         <div class="col1"></div>
 
-                        <i-button type="save" ng-hide="numbering.modules_list[4].type_numbering.id ==4" label="##word.circulate##" ng-click="setCirculate('employees')">
+                        <i-button type="edit"  label="##word.circulate##" ng-click="setCirculate('employees')">
                         </i-button>
                     </div>
 
                     <br>
                     <br>
 
-                    <div class="row" ng-hide="numbering.modules_list[4].type_numbering.id ==4">
+                    <div class="row" >
                         <table class="table loaded center bold hover">
 
                             <tr>
                                 <th>##word.screen_name##</th>
                                 <th>##word.type_numbering##</th>
-                                <th>##word.first_transaction_number##</th>
+                                <th>##word.beginning_numbering##</th>
                                 <th>##word.last_transaction_number##</th>
                                 <th>##word.length_level##</th>
                                 <th>##word.actions##</th>

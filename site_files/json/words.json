@@ -20,6 +20,11 @@
         "ar": "الاسم"
     },
     {
+        "name": "length_level",
+        "en": "Length level",
+        "ar": "طول المستوى"
+    },
+    {
         "name": "source_name",
         "en": "Source Name",
         "ar": "إسم المصدر"

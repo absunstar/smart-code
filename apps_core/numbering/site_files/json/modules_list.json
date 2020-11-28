@@ -15,6 +15,24 @@
                 "id": 2,
                 "en": "Itineraries",
                 "ar": "خطوط السير"
+            },
+            {
+                "feature": "gym",
+                "id": 3,
+                "en": "Request Service",
+                "ar": "طلبات الخدمات / الإشتراكات"
+            },
+            {
+                "feature": "gym",
+                "id": 4,
+                "en": "Attend Subscribers To Gym",
+                "ar": "حضور المشتركين للجيم"
+            },
+            {
+                "feature": "gym",
+                "id": 5,
+                "en": "Attend Subscribers To Session",
+                "ar": "حضور الجلسات للمشتركين"
             }
         ]
     },
@@ -375,14 +393,32 @@
                 "ar": "المطابخ"
             },
             {
-                "feature": "public",
+                "feature": "gym",
                 "id": 11,
+                "en": "Services",
+                "ar": "الخدمات"
+            },
+            {
+                "feature": "gym",
+                "id": 12,
+                "en": "Halls",
+                "ar": "القاعات"
+            },
+            {
+                "feature": "gym",
+                "id": 13,
+                "en": "Services Slides",
+                "ar": "شرائح الخدمات"
+            },
+            {
+                "feature": "public",
+                "id": 14,
                 "en": "Militaies",
                 "ar": "موقف التجنيد"
             },
             {
                 "feature": "public",
-                "id": 12,
+                "id": 15,
                 "en": "Social Status",
                 "ar": "الحالة الإجتماعية"
             }

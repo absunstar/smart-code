@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="en" data-ng-app="myApp" class="bg-white">
+<html lang="en" x-permissions="numbering_ui || numbering_manage" data-ng-app="myApp" class="bg-white">
 
 <head x-import="head.html">
 </head>
@@ -32,7 +32,7 @@
             <br>
             <br>
 
-            <i-button type="save" label="##word.save##" ng-click="saveNumbering()"></i-button>
+            <i-button type="save" label="##word.save##" x-permissions="numbering_update || numbering_manage" ng-click="saveNumbering()"></i-button>
 
 
         </div>
