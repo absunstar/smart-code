@@ -50,20 +50,20 @@
                         <i-control class="col2" ng-model="numbering.modules_list[0].first_value"
                             label="##word.beginning_numbering##" type="number"></i-control>
 
-                        <i-control class="col2"  ng-model="numbering.modules_list[0].length_level"
+                        <i-control class="col2" ng-model="numbering.modules_list[0].length_level"
                             label="##word.length_level##" type="number">
                         </i-control>
 
                         <div class="col1"></div>
 
-                        <i-button type="edit"  label="##word.circulate##" ng-click="setCirculate('main')">
+                        <i-button type="edit" label="##word.circulate##" ng-click="setCirculate('main')">
                         </i-button>
                     </div>
 
                     <br>
                     <br>
 
-                    <div class="row" >
+                    <div class="row">
                         <table class="table loaded center bold hover">
 
                             <tr>
@@ -89,23 +89,26 @@
                                 </td>
 
                                 <td>
-                                    <i-control ng-hide="screen0.type_numbering.id ==4" ng-model="screen0.first_value" type="number">
+                                    <i-control ng-hide="screen0.type_numbering.id ==4" ng-model="screen0.first_value"
+                                        type="number">
                                     </i-control>
                                 </td>
 
                                 <td>
-                                    <p class="text-center red" ng-hide="screen0.type_numbering.id ==4"> {{screen0.last_value}} </p>
+                                    <p class="text-center red" ng-hide="screen0.type_numbering.id ==4">
+                                        {{screen0.last_value}} </p>
                                 </td>
 
                                 <td>
-                                    <i-control ng-model="screen0.length_level" ng-hide="screen0.type_numbering.id ==4" type="number">
+                                    <i-control ng-model="screen0.length_level" ng-hide="screen0.type_numbering.id ==4"
+                                        type="number">
                                     </i-control>
                                 </td>
 
                                 <td class="center">
 
                                     <i-button type="bg-green" ng-hide="screen0.type_numbering.id ==4" fa="recycle"
-                                        ng-click="screen0.last_value = screen0.first_value - 1"></i-button>
+                                        ng-click="screen0.last_value = 0"></i-button>
 
                                 </td>
 
@@ -133,20 +136,20 @@
                         <i-control class="col2" ng-model="numbering.modules_list[1].first_value"
                             label="##word.beginning_numbering##" type="number"></i-control>
 
-                        <i-control class="col2"  ng-model="numbering.modules_list[1].length_level"
+                        <i-control class="col2" ng-model="numbering.modules_list[1].length_level"
                             label="##word.length_level##" type="number">
                         </i-control>
 
                         <div class="col1"></div>
 
-                        <i-button type="edit"  label="##word.circulate##" ng-click="setCirculate('inventory')">
+                        <i-button type="edit" label="##word.circulate##" ng-click="setCirculate('inventory')">
                         </i-button>
                     </div>
 
                     <br>
                     <br>
 
-                    <div class="row" >
+                    <div class="row">
                         <table class="table loaded center bold hover">
 
                             <tr>
@@ -164,7 +167,6 @@
                                     <p class="text-center blue"> {{screen1.##session.lang##}} </p>
                                 </td>
 
-
                                 <td>
                                     <i-list class="col3" ng-model="screen1.type_numbering" items="typeNumberingList"
                                         display="##session.lang##" ng-search="_search.$search_type_numbering">
@@ -172,23 +174,24 @@
                                 </td>
 
                                 <td>
-                                    <i-control ng-model="screen1.first_value" type="number">
-                                    </i-control>
+                                    <i-control ng-hide="screen1.type_numbering.id ==4" ng-model="screen1.first_value"
+                                        type="number"></i-control>
                                 </td>
 
                                 <td>
-                                    <p class="text-center red"> {{screen1.last_value}} </p>
+                                    <p class="text-center red" ng-hide="screen1.type_numbering.id ==4">
+                                        {{screen1.last_value}} </p>
                                 </td>
 
                                 <td>
-                                    <i-control ng-model="screen1.length_level" type="number">
-                                    </i-control>
+                                    <i-control ng-hide="screen1.type_numbering.id ==4" ng-model="screen1.length_level"
+                                        type="number"></i-control>
                                 </td>
 
                                 <td class="center">
 
-                                    <i-button type="bg-green" fa="recycle"
-                                        ng-click="screen1.last_value = screen1.first_value - 1"></i-button>
+                                    <i-button ng-hide="screen1.type_numbering.id ==4" type="bg-green" fa="recycle"
+                                        ng-click="screen1.last_value = 0"></i-button>
 
                                 </td>
 
@@ -213,23 +216,22 @@
                             items="typeNumberingList" display="##session.lang##" label="##word.type_numbering##"
                             ng-search="_search.$search_type_numbering"></i-list>
 
-                        <i-control class="col2"  ng-model="numbering.modules_list[2].first_value"
+                        <i-control class="col2" ng-model="numbering.modules_list[2].first_value"
                             label="##word.beginning_numbering##" type="number"></i-control>
 
-                        <i-control class="col2"  ng-model="numbering.modules_list[2].length_level"
-                            label="##word.length_level##" type="number">
-                        </i-control>
+                        <i-control class="col2" ng-model="numbering.modules_list[2].length_level"
+                            label="##word.length_level##" type="number"></i-control>
 
                         <div class="col1"></div>
 
-                        <i-button type="edit"  label="##word.circulate##" ng-click="setCirculate('accounting')">
+                        <i-button type="edit" label="##word.circulate##" ng-click="setCirculate('accounting')">
                         </i-button>
                     </div>
 
                     <br>
                     <br>
 
-                    <div class="row" >
+                    <div class="row">
                         <table class="table loaded center bold hover">
 
                             <tr>
@@ -255,23 +257,26 @@
                                 </td>
 
                                 <td>
-                                    <i-control ng-model="screen2.first_value" type="number">
+                                    <i-control ng-hide="screen2.type_numbering.id ==4" ng-model="screen2.first_value"
+                                        type="number">
                                     </i-control>
                                 </td>
 
                                 <td>
-                                    <p class="text-center red"> {{screen2.last_value}} </p>
+                                    <p class="text-center red" ng-hide="screen2.type_numbering.id ==4">
+                                        {{screen2.last_value}} </p>
                                 </td>
 
                                 <td>
-                                    <i-control ng-model="screen2.length_level" type="number">
+                                    <i-control ng-hide="screen2.type_numbering.id ==4" ng-model="screen2.length_level"
+                                        type="number">
                                     </i-control>
                                 </td>
 
                                 <td class="center">
 
-                                    <i-button type="bg-green" fa="recycle"
-                                        ng-click="screen2.last_value = screen2.first_value - 1"></i-button>
+                                    <i-button ng-hide="screen2.type_numbering.id ==4" type="bg-green" fa="recycle"
+                                        ng-click="screen2.last_value = 0"></i-button>
 
                                 </td>
 
@@ -296,23 +301,23 @@
                             items="typeNumberingList" display="##session.lang##" label="##word.type_numbering##"
                             ng-search="_search.$search_type_numbering"></i-list>
 
-                        <i-control class="col2"  ng-model="numbering.modules_list[3].first_value"
+                        <i-control class="col2" ng-model="numbering.modules_list[3].first_value"
                             label="##word.beginning_numbering##" type="number"></i-control>
 
-                        <i-control class="col2"  ng-model="numbering.modules_list[3].length_level"
+                        <i-control class="col2" ng-model="numbering.modules_list[3].length_level"
                             label="##word.length_level##" type="number">
                         </i-control>
 
                         <div class="col1"></div>
 
-                        <i-button type="edit"  label="##word.circulate##" ng-click="setCirculate('general')">
+                        <i-button type="edit" label="##word.circulate##" ng-click="setCirculate('general')">
                         </i-button>
                     </div>
 
                     <br>
                     <br>
 
-                    <div class="row" >
+                    <div class="row">
                         <table class="table loaded center bold hover">
 
                             <tr>
@@ -338,23 +343,26 @@
                                 </td>
 
                                 <td>
-                                    <i-control ng-model="screen3.first_value" type="number">
+                                    <i-control ng-hide="screen3.type_numbering.id ==4" ng-model="screen3.first_value"
+                                        type="number">
                                     </i-control>
                                 </td>
 
                                 <td>
-                                    <p class="text-center red"> {{screen3.last_value}} </p>
+                                    <p class="text-center red" ng-hide="screen3.type_numbering.id ==4">
+                                        {{screen3.last_value}} </p>
                                 </td>
 
                                 <td>
-                                    <i-control ng-model="screen3.length_level" type="number">
+                                    <i-control ng-hide="screen3.type_numbering.id ==4" ng-model="screen3.length_level"
+                                        type="number">
                                     </i-control>
                                 </td>
 
                                 <td class="center">
 
-                                    <i-button type="bg-green" fa="recycle"
-                                        ng-click="screen3.last_value = screen3.first_value - 1"></i-button>
+                                    <i-button ng-hide="screen3.type_numbering.id ==4" type="bg-green" fa="recycle"
+                                        ng-click="screen3.last_value = 0"></i-button>
 
                                 </td>
 
@@ -379,23 +387,23 @@
                             items="typeNumberingList" display="##session.lang##" label="##word.type_numbering##"
                             ng-search="_search.$search_type_numbering"></i-list>
 
-                        <i-control class="col2"  ng-model="numbering.modules_list[4].first_value"
+                        <i-control class="col2" ng-model="numbering.modules_list[4].first_value"
                             label="##word.beginning_numbering##" type="number"></i-control>
 
-                        <i-control class="col2"  ng-model="numbering.modules_list[4].length_level"
+                        <i-control class="col2" ng-model="numbering.modules_list[4].length_level"
                             label="##word.length_level##" type="number">
                         </i-control>
 
                         <div class="col1"></div>
 
-                        <i-button type="edit"  label="##word.circulate##" ng-click="setCirculate('employees')">
+                        <i-button type="edit" label="##word.circulate##" ng-click="setCirculate('employees')">
                         </i-button>
                     </div>
 
                     <br>
                     <br>
 
-                    <div class="row" >
+                    <div class="row">
                         <table class="table loaded center bold hover">
 
                             <tr>
@@ -421,23 +429,26 @@
                                 </td>
 
                                 <td>
-                                    <i-control ng-model="screen4.first_value" type="number">
+                                    <i-control ng-hide="screen4.type_numbering.id ==4" ng-model="screen4.first_value"
+                                        type="number">
                                     </i-control>
                                 </td>
 
                                 <td>
-                                    <p class="text-center red"> {{screen4.last_value}} </p>
+                                    <p class="text-center red" ng-hide="screen4.type_numbering.id ==4">
+                                        {{screen4.last_value}} </p>
                                 </td>
 
                                 <td>
-                                    <i-control ng-model="screen4.length_level" type="number">
+                                    <i-control ng-hide="screen4.type_numbering.id ==4" ng-model="screen4.length_level"
+                                        type="number">
                                     </i-control>
                                 </td>
 
                                 <td class="center">
 
-                                    <i-button type="bg-green" fa="recycle"
-                                        ng-click="screen4.last_value = screen4.first_value - 1"></i-button>
+                                    <i-button ng-hide="screen4.type_numbering.id ==4" type="bg-green" fa="recycle"
+                                        ng-click="screen4.last_value = 0"></i-button>
 
                                 </td>
 

@@ -56,7 +56,7 @@ module.exports = function init(site) {
               id: 4,
               "en": "Manual",
               "ar": "يدوي"
-          }
+            }
           });
         });
 
@@ -64,7 +64,7 @@ module.exports = function init(site) {
 
           let screens_list0 = modules_list[0].screens_list.filter(i => i.feature !== 'gym');
           modules_list[0].screens_list = screens_list0
-          
+
           let screens_list4 = modules_list[4].screens_list.filter(i => i.feature !== 'restaurant' || i.feature !== 'gym');
           modules_list[4].screens_list = screens_list4
 
@@ -94,7 +94,7 @@ module.exports = function init(site) {
 
           let screens_list0 = modules_list[0].screens_list.filter(i => i.feature !== 'pos');
           modules_list[0].screens_list = screens_list0
-     
+
           let screens_list2 = modules_list[2].screens_list.filter(i => i.feature !== 'erp');
           modules_list[2].screens_list = screens_list2
 
@@ -136,7 +136,6 @@ module.exports = function init(site) {
 
     let data = req.data
 
-
     $numbering.update(data, (err, result) => {
       if (!err) {
         response.done = true
@@ -146,4 +145,92 @@ module.exports = function init(site) {
       res.json(response)
     })
   })
+
+
+  site.post("/api/numbering/get_type", (req, res) => {
+    let response = {
+      done: false
+    }
+
+    let search = req.body.search
+
+
+    $numbering.findOne({
+      where: { 'company.id': site.get_company(req).id },
+    }, (err, doc) => {
+      if (!err && doc) {
+        response.done = true
+
+        let iCategory = search.categoryI - 1
+        let iScreen = search.screenI - 1
+
+        if (doc.modules_list[iCategory].screens_list[iScreen].type_numbering.id == 4) {
+          response.doc = false
+        } else {
+          response.doc = true
+        }
+
+
+      } else {
+        response.error = err.message
+      }
+      res.json(response)
+    })
+  })
+
+
+  site.getNumbering = function (obj, callback) {
+
+    let iCategory = obj.categoryI - 1
+    let iScreen = obj.screenI - 1
+
+    callback = callback || {}
+
+    $numbering.findOne({
+      where: {
+        'company.id': obj.companyId
+      }
+    }, (err, doc) => {
+
+      if (!err && doc) {
+        let obj = {}
+        let d = doc.modules_list[iCategory].screens_list[iScreen]
+
+        if (d.last_value === 0) { d.last_value = d.first_value }
+        else { d.last_value = d.last_value + 1 }
+
+        if (d.type_numbering.id === 1) {
+          obj.active = false
+
+        } else if (d.type_numbering.id === 2) {
+
+          // let y = new Date().getFullYear().toString()  
+          // let m = new Date().getMonth().toString()     
+          obj.active = false
+
+        } else if (d.type_numbering.id === 3) {
+          obj.code = d.last_value.toString()
+
+          obj.active = true
+
+        } else if (d.type_numbering.id === 4) {
+
+          obj.active = false
+
+          callback(obj)
+          return
+        }
+
+        doc.modules_list[iCategory].screens_list[iScreen].last_value = d.last_value
+
+        $numbering.update(doc, () => {
+          callback(obj)
+        });
+
+      }
+    })
+  }
+
+
+
 }

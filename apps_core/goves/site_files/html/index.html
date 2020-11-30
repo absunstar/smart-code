@@ -36,12 +36,14 @@
                     <a class="btn left bg-green" target="blank" href="/area"> ##word.area_add##</a>
                     <a class="btn left bg-green" target="blank" href="/city"> ##word.city_add##</a>
                     <h3 class="bold text-center"> ##word.count## : {{count}}</h3>
+                    <h3 class="bold text-center red"> {{error}}</h3>
 
                 </div>
 
                 <table x-permissions="login" class="table hover bold loaded" id="t1">
                     <tr>
                         <th class="not-print">##word.logo##</th>
+                        <th>##word.code##</th>
                         <th>##word.goves_name##</th>
 
                         <th>##word.status##</th>
@@ -51,6 +53,7 @@
                         <td class="center not-print">
                             <img class="logo" ng-src="{{c.image_url}}">
                         </td>
+                        <td class="center blue">{{c.code}}</td>
                         <td class="center title">{{c.name}}</td>
                         <td class="center">
                             <p ng-show="c.active ==true" class="green"> ##word.active## </p>

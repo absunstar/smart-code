@@ -1,9 +1,0 @@
-[{
-    "module_name":"public",
-    "name": "numbering_transactions_admin",
-    "en": "Numbering Transactions Add Admin",
-    "ar": "إدارة ترقيم المعاملات",
-    "permissions": [
-        "numbering_transactions_manage"
-    ]
-}]

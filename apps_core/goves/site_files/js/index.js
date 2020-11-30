@@ -8,8 +8,8 @@ app.controller("goves", function ($scope, $http, $timeout) {
     $scope.gov = {
       image_url: '/images/gov.png',
       active: true
-
     };
+
     site.showModal('#govAddModal');
 
   };
@@ -21,6 +21,7 @@ app.controller("goves", function ($scope, $http, $timeout) {
       $scope.error = v.messages[0].ar;
       return;
     }
+    
     $scope.busy = true;
     $http({
       method: "POST",
@@ -34,6 +35,9 @@ app.controller("goves", function ($scope, $http, $timeout) {
           $scope.getGovList();
         } else {
           $scope.error = response.data.error;
+          if (response.data.error.like('*Must Enter Code*')) {
+            $scope.error = "##word.must_enter_code##"
+          }
         }
       },
       function (err) {
@@ -170,6 +174,32 @@ app.controller("goves", function ($scope, $http, $timeout) {
 
   };
 
+  $scope.getNumberingType = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/numbering/get_type",
+      data: {
+        search: {
+          categoryI: 5,
+          screenI: 3
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.disabledCode = response.data.doc;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
   $scope.displaySearchModal = function () {
     $scope.error = '';
     site.showModal('#govSearchModal');
@@ -177,12 +207,12 @@ app.controller("goves", function ($scope, $http, $timeout) {
   };
 
   $scope.searchAll = function () {
-  
+
     $scope.getGovList($scope.search);
     site.hideModal('#govSearchModal');
     $scope.search = {};
   };
 
   $scope.getGovList();
-
+  $scope.getNumberingType();
 });

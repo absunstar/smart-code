@@ -3,7 +3,13 @@
         <fieldset>
             <legend> ##word.basic_information##</legend>
             <div class="col9">
-                <table id="basicInformationTable" class="table bold">
+                <table id="basicInformationTable" class="table hover bold">
+
+                    <tr>
+                        <td class="title">##word.code##</td>
+                        <td class="center blue">{{gov.code}}</td>
+                    </tr>
+
                     <tr>
                         <td class="title">##word.goves_name##</td>
                         <td class="center">{{gov.name}}</td>
@@ -14,6 +20,7 @@
                         <td ng-show="gov.active == true" class="green center"> ##word.active## </td>
                         <td ng-show="gov.active == false" class="red center"> ##word.not_active## </td>
                     </tr>
+
                 </table>
             </div>
 
@@ -24,4 +31,5 @@
         </fieldset>
     </div>
 </div>
+
 <div x-import="goves/action_info.html"></div>

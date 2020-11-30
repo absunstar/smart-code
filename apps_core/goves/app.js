@@ -17,6 +17,7 @@ module.exports = function init(site) {
   site.on('[company][created]', doc => {
 
     $goves.add({
+      code: 'test - 1',
       name: "محافظة إفتراضية",
       image_url: '/images/gov.png',
       company: {
@@ -35,10 +36,13 @@ module.exports = function init(site) {
   })
 
 
+
   site.post("/api/goves/add", (req, res) => {
+
     let response = {
       done: false
     }
+
     if (!req.session.user) {
       response.error = 'Please Login First'
       res.json(response)
@@ -75,14 +79,31 @@ module.exports = function init(site) {
         response.error = 'Name Exists'
         res.json(response)
       } else {
-        $goves.add(goves_doc, (err, doc) => {
-          if (!err) {
-            response.done = true
-            response.doc = doc
-          } else {
-            response.error = err.message
+
+        let num_obj = {
+          companyId: site.get_company(req).id,
+          categoryI: 5,
+          screenI: 3
+        }
+
+        site.getNumbering(num_obj, cb => {
+          if (!goves_doc.code && !cb.active) {
+            response.error = 'Must Enter Code'
+            res.json(response)
+            return
+          } else if (cb.active) {
+            goves_doc.code = cb.code
           }
-          res.json(response)
+
+          $goves.add(goves_doc, (err, doc) => {
+            if (!err) {
+              response.done = true
+              response.doc = doc
+            } else {
+              response.error = err.message
+            }
+            res.json(response)
+          })
         })
       }
     })

@@ -23,7 +23,7 @@ app.controller("default_setting", function ($scope, $http) {
 
       _ml.type_numbering = $scope.numbering.modules_list[index].type_numbering;
       _ml.first_value = $scope.numbering.modules_list[index].first_value;
-      _ml.last_value = $scope.numbering.modules_list[index].first_value -1;
+      _ml.last_value = 0;
       _ml.length_level = $scope.numbering.modules_list[index].length_level;
     });
 

@@ -20,6 +20,11 @@
         "ar": "الاسم"
     },
     {
+        "name": "must_enter_code",
+        "en": "Must Enter Code",
+        "ar": "يجب إدخال الكود"
+    },
+    {
         "name": "length_level",
         "en": "Length level",
         "ar": "طول المستوى"
