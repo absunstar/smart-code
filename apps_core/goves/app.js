@@ -1,244 +1,249 @@
 module.exports = function init(site) {
-  const $goves = site.connectCollection("goves")
+  const $goves = site.connectCollection('goves');
 
   site.get({
     name: 'images',
-    path: __dirname + '/site_files/images/'
-  })
+    path: __dirname + '/site_files/images/',
+  });
 
   site.get({
-    name: "goves",
-    path: __dirname + "/site_files/html/index.html",
-    parser: "html",
-    compress: true
-  })
+    name: 'goves',
+    path: __dirname + '/site_files/html/index.html',
+    parser: 'html',
+    compress: true,
+  });
 
-
-  site.on('[company][created]', doc => {
-
-    $goves.add({
-      code: 'test-1',
-      name: "محافظة إفتراضية",
-      image_url: '/images/gov.png',
-      company: {
-        id: doc.id,
-        name_ar: doc.name_ar
+  site.on('[company][created]', (doc) => {
+    $goves.add(
+      {
+        code: 'test-1',
+        name: 'محافظة إفتراضية',
+        image_url: '/images/gov.png',
+        company: {
+          id: doc.id,
+          name_ar: doc.name_ar,
+        },
+        branch: {
+          code: doc.branch_list[0].code,
+          name_ar: doc.branch_list[0].name_ar,
+        },
+        active: true,
       },
-      branch: {
-        code: doc.branch_list[0].code,
-        name_ar: doc.branch_list[0].name_ar
+      (err, doc) => {
+        site.call('[register][city][add]', doc);
       },
-      active: true
-    }, (err, doc) => {
-      site.call('[register][city][add]', doc)
+    );
+  });
 
-    })
-  })
-
-
-
-  site.post("/api/goves/add", (req, res) => {
-
+  site.post('/api/goves/add', (req, res) => {
     let response = {
-      done: false
-    }
+      done: false,
+    };
 
     if (!req.session.user) {
-      response.error = 'Please Login First'
-      res.json(response)
-      return
+      response.error = 'Please Login First';
+      res.json(response);
+      return;
     }
 
-    let goves_doc = req.body
-    goves_doc.$req = req
-    goves_doc.$res = res
+    let goves_doc = req.body;
+    goves_doc.$req = req;
+    goves_doc.$res = res;
 
     goves_doc.add_user_info = site.security.getUserFinger({
       $req: req,
-      $res: res
-    })
+      $res: res,
+    });
 
     if (typeof goves_doc.active === 'undefined') {
-      goves_doc.active = true
+      goves_doc.active = true;
     }
 
-    goves_doc.company = site.get_company(req)
-    goves_doc.branch = site.get_branch(req)
+    goves_doc.company = site.get_company(req);
+    goves_doc.branch = site.get_branch(req);
 
-    $goves.find({
+    $goves.find(
+      {
+        where: {
+          'company.id': site.get_company(req).id,
+          'branch.code': site.get_branch(req).code,
+          name: goves_doc.name,
+        },
+      },
+      (err, doc) => {
+        if (!err && doc) {
+          response.error = 'Name Exists';
+          res.json(response);
+        } else {
+          let num_obj = {
+            company: site.get_company(req),
+            categoryI: 5,
+            screenI: 3,
+          };
 
-      where: {
+          let cb = site.getNumbering(num_obj);
 
-        'company.id': site.get_company(req).id,
-        'branch.code': site.get_branch(req).code,
-        'name': goves_doc.name
-      }
-    }, (err, doc) => {
-      if (!err && doc) {
-
-        response.error = 'Name Exists'
-        res.json(response)
-      } else {
-
-        let num_obj = {
-          companyId: site.get_company(req).id,
-          categoryI: 5,
-          screenI: 3
-        }
-
-        site.getNumbering(num_obj, cb => {
           if (!goves_doc.code && !cb.active) {
-            response.error = 'Must Enter Code'
-            res.json(response)
-            return
+            response.error = 'Must Enter Code';
+            res.json(response);
+            return;
           } else if (cb.active) {
-            goves_doc.code = cb.code
+            goves_doc.code = cb.code;
           }
 
           $goves.add(goves_doc, (err, doc) => {
             if (!err) {
-              response.done = true
-              response.doc = doc
+              response.done = true;
+              response.doc = doc;
             } else {
-              response.error = err.message
+              response.error = err.message;
             }
-            res.json(response)
-          })
-        })
-      }
-    })
-  })
+            res.json(response);
+          });
+        }
+      },
+    );
+  });
 
-  site.post("/api/goves/update", (req, res) => {
+  site.post('/api/goves/update', (req, res) => {
     let response = {
-      done: false
-    }
+      done: false,
+    };
 
     if (!req.session.user) {
-      response.error = 'Please Login First'
-      res.json(response)
-      return
+      response.error = 'Please Login First';
+      res.json(response);
+      return;
     }
 
-    let goves_doc = req.body
+    let goves_doc = req.body;
 
     goves_doc.edit_user_info = site.security.getUserFinger({
       $req: req,
-      $res: res
-    })
+      $res: res,
+    });
 
     if (goves_doc.id) {
-      $goves.edit({
-        where: {
-          id: goves_doc.id
+      $goves.edit(
+        {
+          where: {
+            id: goves_doc.id,
+          },
+          set: goves_doc,
+          $req: req,
+          $res: res,
         },
-        set: goves_doc,
-        $req: req,
-        $res: res
-      }, err => {
-        if (!err) {
-          response.done = true
-        } else {
-          response.error = 'Code Already Exist'
-        }
-        res.json(response)
-      })
+        (err) => {
+          if (!err) {
+            response.done = true;
+          } else {
+            response.error = 'Code Already Exist';
+          }
+          res.json(response);
+        },
+      );
     } else {
-      response.error = 'no id'
-      res.json(response)
+      response.error = 'no id';
+      res.json(response);
     }
-  })
+  });
 
-  site.post("/api/goves/view", (req, res) => {
+  site.post('/api/goves/view', (req, res) => {
     let response = {
-      done: false
-    }
+      done: false,
+    };
 
     if (!req.session.user) {
-      response.error = 'Please Login First'
-      res.json(response)
-      return
+      response.error = 'Please Login First';
+      res.json(response);
+      return;
     }
 
-    $goves.findOne({
-      where: {
-        id: req.body.id
-      }
-    }, (err, doc) => {
-      if (!err) {
-        response.done = true
-        response.doc = doc
-      } else {
-        response.error = err.message
-      }
-      res.json(response)
-    })
-  })
+    $goves.findOne(
+      {
+        where: {
+          id: req.body.id,
+        },
+      },
+      (err, doc) => {
+        if (!err) {
+          response.done = true;
+          response.doc = doc;
+        } else {
+          response.error = err.message;
+        }
+        res.json(response);
+      },
+    );
+  });
 
-  site.post("/api/goves/delete", (req, res) => {
+  site.post('/api/goves/delete', (req, res) => {
     let response = {
-      done: false
-    }
+      done: false,
+    };
 
     if (!req.session.user) {
-      response.error = 'Please Login First'
-      res.json(response)
-      return
+      response.error = 'Please Login First';
+      res.json(response);
+      return;
     }
 
-    let id = req.body.id
+    let id = req.body.id;
 
     if (id) {
-      $goves.delete({
-        id: id,
-        $req: req,
-        $res: res
-      }, (err, result) => {
-        if (!err) {
-          response.done = true
-        } else {
-          response.error = err.message
-        }
-        res.json(response)
-      })
+      $goves.delete(
+        {
+          id: id,
+          $req: req,
+          $res: res,
+        },
+        (err, result) => {
+          if (!err) {
+            response.done = true;
+          } else {
+            response.error = err.message;
+          }
+          res.json(response);
+        },
+      );
     } else {
-      response.error = 'no id'
-      res.json(response)
+      response.error = 'no id';
+      res.json(response);
     }
-  })
+  });
 
-
-  site.post("/api/goves/all", (req, res) => {
+  site.post('/api/goves/all', (req, res) => {
     let response = {
-      done: false
-    }
+      done: false,
+    };
 
-    let where = req.body.where || {}
+    let where = req.body.where || {};
 
     if (where['name']) {
-      where['name'] = site.get_RegExp(where['name'], "i");
+      where['name'] = site.get_RegExp(where['name'], 'i');
     }
 
-    if (site.get_company(req) && site.get_company(req).id)
-      where['company.id'] = site.get_company(req).id
+    if (site.get_company(req) && site.get_company(req).id) where['company.id'] = site.get_company(req).id;
 
-    $goves.findMany({
-      select: req.body.select || {},
-      where: where,
-      sort: req.body.sort || {
-        id: -1
+    $goves.findMany(
+      {
+        select: req.body.select || {},
+        where: where,
+        sort: req.body.sort || {
+          id: -1,
+        },
+        limit: req.body.limit,
       },
-      limit: req.body.limit
-    }, (err, docs, count) => {
-      if (!err) {
-        response.done = true
-        response.list = docs
-        response.count = count
-      } else {
-        response.error = err.message
-      }
-      res.json(response)
-    })
-  })
-
-}
+      (err, docs, count) => {
+        if (!err) {
+          response.done = true;
+          response.list = docs;
+          response.count = count;
+        } else {
+          response.error = err.message;
+        }
+        res.json(response);
+      },
+    );
+  });
+};
