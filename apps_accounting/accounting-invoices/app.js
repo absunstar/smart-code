@@ -259,7 +259,7 @@ module.exports = function init(site) {
                     paid_value.transition_type = 'out'
 
                   } else if (doc.source_type.id == 10) {
-                    paid_value.operation = { ar: 'دفعة عميل مقدمة', en: 'Recharge Customer Balance' }
+                    paid_value.operation = { ar: 'دفعة عميل مقدمة', en: 'Customer Advance Payment' }
                     paid_value.transition_type = 'in'
                     let customerPay = doc.paid_up * doc.currency.ex_rate
                     let customerBalance = {
@@ -428,7 +428,7 @@ module.exports = function init(site) {
 
 
                 } else if (account_invoices_doc.source_type.id == 10) {
-                  paid_value.operation = { ar: 'دفعة دفعة عميل مقدمة', en: 'Pay Recharge Customer Balance' }
+                  paid_value.operation = { ar: 'دفعة دفعة عميل مقدمة', en: 'Pay Customer Advance Payment' }
                   paid_value.transition_type = 'in'
 
                   let customerPay = _payment_list.paid_up * _payment_list.currency.ex_rate
@@ -623,7 +623,7 @@ module.exports = function init(site) {
                     obj.transition_type = 'out'
 
                   } else if (account_invoices_doc.source_type.id == 10) {
-                    obj.operation = { ar: 'دفعة عميل مقدمة', en: 'Recharge Customer Balance' }
+                    obj.operation = { ar: 'دفعة عميل مقدمة', en: 'Customer Advance Payment' }
                     obj.transition_type = 'in'
                     let customerPay = _payment_list.paid_up * _payment_list.currency.ex_rate
                     let customerBalance = {
@@ -718,7 +718,7 @@ module.exports = function init(site) {
                     obj.value = (-Math.abs(obj.value))
 
                   } else if (account_invoices_doc.source_type.id == 10) {
-                    obj.operation = { ar: 'فك ترحيل دفعة عميل مقدمة', en: 'Un Post Recharge Customer Balance' }
+                    obj.operation = { ar: 'فك ترحيل دفعة عميل مقدمة', en: 'Un Post Customer Advance Payment' }
                     obj.transition_type = 'in'
                     obj.value = (-Math.abs(obj.value))
                     let customerPay = _payment_list.paid_up * _payment_list.currency.ex_rate
@@ -949,7 +949,7 @@ module.exports = function init(site) {
 
                       } else if (response.doc.source_type.id == 10) {
 
-                        obj.operation = { ar: 'حذف دفعة عميل مقدمة', en: 'Delete Recharge Customer Balance' }
+                        obj.operation = { ar: 'حذف دفعة عميل مقدمة', en: 'Delete Customer Advance Payment' }
                         obj.transition_type = 'in'
                         obj.value = (-Math.abs(obj.value))
                         let customerPay = _payment_list.paid_up * _payment_list.currency.ex_rate

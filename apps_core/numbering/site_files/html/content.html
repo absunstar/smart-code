@@ -43,15 +43,15 @@
                     <div class="row">
                         <div class="col2"></div>
 
-                        <i-list class="col2" ng-model="numbering.modules_list[0].type_numbering"
-                            items="typeNumberingList" display="##session.lang##" label="##word.type_numbering##"
+                        <i-list class="col2" ng-model="circulate.type_numbering" items="typeNumberingList"
+                            display="##session.lang##" label="##word.type_numbering##"
                             ng-search="_search.$search_type_numbering"></i-list>
 
-                        <i-control class="col2" ng-model="numbering.modules_list[0].first_value"
-                            label="##word.beginning_numbering##" type="number"></i-control>
+                        <i-control class="col2" ng-model="circulate.first_value" label="##word.beginning_numbering##"
+                            type="number"></i-control>
 
-                        <i-control class="col2" ng-model="numbering.modules_list[0].length_level"
-                            label="##word.length_level##" type="number">
+                        <i-control class="col2" ng-model="circulate.length_level" label="##word.length_level##"
+                            type="number">
                         </i-control>
 
                         <div class="col1"></div>
@@ -75,7 +75,7 @@
                                 <th>##word.actions##</th>
                             </tr>
 
-                            <tr ng-repeat="screen0 in numbering.modules_list[0].screens_list">
+                            <tr ng-repeat="screen0 in numbering.screens_list | filter:{category :'main'} ">
 
                                 <td>
                                     <p class="text-center blue"> {{screen0.##session.lang##}} </p>
@@ -132,14 +132,14 @@
                     <div class="row">
                         <div class="col2"></div>
 
-                        <i-list class="col2" ng-model="numbering.modules_list[1].type_numbering"
+                        <i-list class="col2" ng-model="circulate.type_numbering"
                             items="typeNumberingList" display="##session.lang##" label="##word.type_numbering##"
                             ng-search="_search.$search_type_numbering"></i-list>
 
-                        <i-control class="col2" ng-model="numbering.modules_list[1].first_value"
+                        <i-control class="col2" ng-model="circulate.first_value"
                             label="##word.beginning_numbering##" type="number"></i-control>
 
-                        <i-control class="col2" ng-model="numbering.modules_list[1].length_level"
+                        <i-control class="col2" ng-model="circulate.length_level"
                             label="##word.length_level##" type="number">
                         </i-control>
 
@@ -164,7 +164,7 @@
                                 <th>##word.actions##</th>
                             </tr>
 
-                            <tr ng-repeat="screen1 in numbering.modules_list[1].screens_list">
+                            <tr ng-repeat="screen1 in numbering.screens_list| filter:{category :'inventory'}">
 
                                 <td>
                                     <p class="text-center blue"> {{screen1.##session.lang##}} </p>
@@ -195,7 +195,7 @@
 
                                     <i-button ng-show="screen1.type_numbering.id ==3" type="bg-green" fa="recycle"
                                         ng-click="screen1.last_value = 0"></i-button>
-                                        <i-button type="view" ng-hide="screen1.type_numbering.id ==3"
+                                    <i-button type="view" ng-hide="screen1.type_numbering.id ==3"
                                         ng-click="viewCurrentNumbering(screen1)"></i-button>
 
                                 </td>
@@ -217,14 +217,14 @@
                     <div class="row">
                         <div class="col2"></div>
 
-                        <i-list class="col2" ng-model="numbering.modules_list[2].type_numbering"
+                        <i-list class="col2" ng-model="circulate.type_numbering"
                             items="typeNumberingList" display="##session.lang##" label="##word.type_numbering##"
                             ng-search="_search.$search_type_numbering"></i-list>
 
-                        <i-control class="col2" ng-model="numbering.modules_list[2].first_value"
+                        <i-control class="col2" ng-model="circulate.first_value"
                             label="##word.beginning_numbering##" type="number"></i-control>
 
-                        <i-control class="col2" ng-model="numbering.modules_list[2].length_level"
+                        <i-control class="col2" ng-model="circulate.length_level"
                             label="##word.length_level##" type="number"></i-control>
 
                         <div class="col1"></div>
@@ -248,7 +248,7 @@
                                 <th>##word.actions##</th>
                             </tr>
 
-                            <tr ng-repeat="screen2 in numbering.modules_list[2].screens_list">
+                            <tr ng-repeat="screen2 in numbering.screens_list | filter:{category :'accounting'}">
 
                                 <td>
                                     <p class="text-center blue"> {{screen2.##session.lang##}} </p>
@@ -282,7 +282,7 @@
 
                                     <i-button ng-show="screen2.type_numbering.id ==3" type="bg-green" fa="recycle"
                                         ng-click="screen2.last_value = 0"></i-button>
-                                        <i-button type="view" ng-hide="screen2.type_numbering.id ==3"
+                                    <i-button type="view" ng-hide="screen2.type_numbering.id ==3"
                                         ng-click="viewCurrentNumbering(screen2)"></i-button>
 
                                 </td>
@@ -304,20 +304,20 @@
                     <div class="row">
                         <div class="col2"></div>
 
-                        <i-list class="col2" ng-model="numbering.modules_list[3].type_numbering"
+                        <i-list class="col2" ng-model="circulate.type_numbering"
                             items="typeNumberingList" display="##session.lang##" label="##word.type_numbering##"
                             ng-search="_search.$search_type_numbering"></i-list>
 
-                        <i-control class="col2" ng-model="numbering.modules_list[3].first_value"
+                        <i-control class="col2" ng-model="circulate.first_value"
                             label="##word.beginning_numbering##" type="number"></i-control>
 
-                        <i-control class="col2" ng-model="numbering.modules_list[3].length_level"
+                        <i-control class="col2" ng-model="circulate.length_level"
                             label="##word.length_level##" type="number">
                         </i-control>
 
                         <div class="col1"></div>
 
-                        <i-button type="edit" label="##word.circulate##" ng-click="setCirculate('general')">
+                        <i-button type="edit" label="##word.circulate##" ng-click="setCirculate('hr')">
                         </i-button>
                     </div>
 
@@ -336,7 +336,7 @@
                                 <th>##word.actions##</th>
                             </tr>
 
-                            <tr ng-repeat="screen3 in numbering.modules_list[3].screens_list">
+                            <tr ng-repeat="screen3 in numbering.screens_list  | filter:{category :'hr'}">
 
                                 <td>
                                     <p class="text-center blue"> {{screen3.##session.lang##}} </p>
@@ -370,7 +370,7 @@
 
                                     <i-button ng-show="screen3.type_numbering.id ==3" type="bg-green" fa="recycle"
                                         ng-click="screen3.last_value = 0"></i-button>
-                                        <i-button type="view" ng-hide="screen3.type_numbering.id ==3"
+                                    <i-button type="view" ng-hide="screen3.type_numbering.id ==3"
                                         ng-click="viewCurrentNumbering(screen3)"></i-button>
 
                                 </td>
@@ -392,20 +392,20 @@
                     <div class="row">
                         <div class="col2"></div>
 
-                        <i-list class="col2" ng-model="numbering.modules_list[4].type_numbering"
+                        <i-list class="col2" ng-model="circulate.type_numbering"
                             items="typeNumberingList" display="##session.lang##" label="##word.type_numbering##"
                             ng-search="_search.$search_type_numbering"></i-list>
 
-                        <i-control class="col2" ng-model="numbering.modules_list[4].first_value"
+                        <i-control class="col2" ng-model="circulate.first_value"
                             label="##word.beginning_numbering##" type="number"></i-control>
 
-                        <i-control class="col2" ng-model="numbering.modules_list[4].length_level"
+                        <i-control class="col2" ng-model="circulate.length_level"
                             label="##word.length_level##" type="number">
                         </i-control>
 
                         <div class="col1"></div>
 
-                        <i-button type="edit" label="##word.circulate##" ng-click="setCirculate('employees')">
+                        <i-button type="edit" label="##word.circulate##" ng-click="setCirculate('general_setting')">
                         </i-button>
                     </div>
 
@@ -424,7 +424,7 @@
                                 <th>##word.actions##</th>
                             </tr>
 
-                            <tr ng-repeat="screen4 in numbering.modules_list[4].screens_list">
+                            <tr ng-repeat="screen4 in numbering.screens_list  | filter:{category :'general_setting'}">
 
                                 <td>
                                     <p class="text-center blue"> {{screen4.##session.lang##}} </p>
@@ -458,7 +458,8 @@
 
                                     <i-button ng-show="screen4.type_numbering.id ==3" type="bg-green" fa="recycle"
                                         ng-click="screen4.last_value = 0"></i-button>
-                                        <i-button type="view" ng-hide="screen4.type_numbering.id ==3"
+
+                                    <i-button type="view" ng-hide="screen4.type_numbering.id ==3"
                                         ng-click="viewCurrentNumbering(screen4)"></i-button>
 
                                 </td>

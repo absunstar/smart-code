@@ -76,16 +76,15 @@ module.exports = function init(site) {
           res.json(response);
         } else {
           // let d = new Date();
-          // d.setFullYear(d.getFullYear() + 2);
+          // d.setFullYear(d.getFullYear() + 1);
+          // d.setMonth(1);
           let num_obj = {
             company: site.get_company(req),
-            categoryId: 5,
-            screenId: 3,
+            screen: 'gov',
             date: new Date()
           };
 
           let cb = site.getNumbering(num_obj);
-
           if (!goves_doc.code && !cb.active) {
 
             response.error = 'Must Enter Code';

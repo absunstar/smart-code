@@ -1,7 +1,7 @@
 module.exports = function init(site) {
   const $numbering = site.connectCollection('numbering');
   let Numbering = [];
-  let moduleListCore = JSON.parse(site.readFileSync(__dirname + '/site_files/json/modules_list.json'));
+  let moduleListCore = JSON.parse(site.readFileSync(__dirname + '/site_files/json/screens_list.json'));
 
   $numbering.findAll({}, (err, docs) => {
     if (!err && docs) {
@@ -17,8 +17,8 @@ module.exports = function init(site) {
   });
 
   site.get({
-    name: '/api/modules_list/all',
-    path: __dirname + '/site_files/json/modules_list.json',
+    name: '/api/screens_list/all',
+    path: __dirname + '/site_files/json/screens_list.json',
   });
 
   site.post({
@@ -47,55 +47,36 @@ module.exports = function init(site) {
       response.source = 'memory';
       response.doc = Numbering.filter((n) => n.company.id == site.get_company(req).id)[0];
       res.json(response);
+
     } else {
+
       moduleListCore.forEach((_ml) => {
-        _ml.screens_list.forEach((_sl) => {
-          _sl.type_numbering = {
-            id: 4,
-            en: 'Manual',
-            ar: 'يدوي',
-          };
-        });
-      });
+        _ml.type_numbering = {
+          id: 4,
+          en: 'Manual',
+          ar: 'يدوي',
+        }
+      })
+
+      let screens_list = []
 
       if (site.features.like('*erp*')) {
-        let screens_list0 = moduleListCore[0].screens_list.filter((i) => i.feature !== 'gym');
-        moduleListCore[0].screens_list = screens_list0;
+        screens_list = moduleListCore.filter((i) => i.feature !== 'restaurant' && i.feature !== 'gym');
 
-        let screens_list4 = moduleListCore[4].screens_list.filter((i) => i.feature !== 'restaurant' || i.feature !== 'gym');
-        moduleListCore[4].screens_list = screens_list4;
       } else if (site.features.like('*restaurant*')) {
-        let screens_list0 = moduleListCore[0].screens_list.filter((i) => i.feature !== 'gym');
-        moduleListCore[0].screens_list = screens_list0;
+        screens_list = moduleListCore.filter((i) => i.feature !== 'gym' && i.feature !== 'restaurant' && i.feature !== 'erp');
 
-        let screens_list2 = moduleListCore[2].screens_list.filter((i) => i.feature !== 'erp');
-        moduleListCore[2].screens_list = screens_list2;
-
-        let screens_list4 = moduleListCore[4].screens_list.filter((i) => i.feature !== 'gym');
-        moduleListCore[4].screens_list = screens_list4;
       } else if (site.features.like('*pos*')) {
-        let screens_list0 = moduleListCore[0].screens_list.filter((i) => i.feature !== 'gym');
-        moduleListCore[0].screens_list = screens_list0;
+        screens_list = moduleListCore.filter((i) => i.feature !== 'gym' && i.feature !== 'erp' && i.feature !== 'restaurant');
 
-        let screens_list2 = moduleListCore[2].screens_list.filter((i) => i.feature !== 'erp');
-        moduleListCore[2].screens_list = screens_list2;
-
-        let screens_list4 = moduleListCore[4].screens_list.filter((i) => i.feature !== 'restaurant' || i.feature !== 'gym');
-        moduleListCore[4].screens_list = screens_list4;
       } else if (site.features.like('*gym*')) {
-        let screens_list0 = moduleListCore[0].screens_list.filter((i) => i.feature !== 'pos');
-        moduleListCore[0].screens_list = screens_list0;
+        screens_list = moduleListCore.filter((i) => i.feature !== 'pos' && i.feature !== 'erp' && i.feature !== 'restaurant');
 
-        let screens_list2 = moduleListCore[2].screens_list.filter((i) => i.feature !== 'erp');
-        moduleListCore[2].screens_list = screens_list2;
-
-        let screens_list4 = moduleListCore[4].screens_list.filter((i) => i.feature !== 'restaurant');
-        moduleListCore[4].screens_list = screens_list4;
       }
 
       $numbering.add(
         {
-          modules_list: moduleListCore,
+          screens_list: screens_list,
           company: site.get_company(req),
         },
         (err, doc) => {
@@ -148,24 +129,23 @@ module.exports = function init(site) {
     let response = {
       done: false,
     };
+    if (Numbering && Numbering.length > 0) {
 
-    Numbering.filter((n) => n.company.id == site.get_company(req).id)[0].modules_list.forEach(_ml => {
+      Numbering.filter((n) => n.company.id == site.get_company(req).id)[0].screens_list.forEach(_sl => {
 
-      if (_ml.id == req.data.search.categoryId) {
-        _ml.screens_list.forEach(_sl => {
-          if (_sl.id == req.data.search.screenId) {
+        if (_sl.name == req.data.screen) {
 
-            if (_sl.type_numbering.id == 4) {
-              response.isAuto = false;
-            } else {
-              response.isAuto = true;
-            }
-
+          if (_sl.type_numbering.id == 4) {
+            response.isAuto = false;
+          } else {
+            response.isAuto = true;
           }
-        });
-      }
 
-    });
+        }
+      });
+    } else {
+      response.isAuto = false;
+    }
 
     response.done = true;
     res.json(response);
@@ -188,86 +168,132 @@ module.exports = function init(site) {
       }
     });
 
-    doc.modules_list.forEach(_ml => {
-      if (_ml.id == obj.categoryId) {
-        _ml.screens_list.forEach(_sl => {
-
-          if (_sl.id == obj.screenId) {
-
-            if (_sl.type_numbering.id == 4) {
-              obj.active = false;
-
-            } else if (_sl.type_numbering.id == 3) {
-              obj.active = true;
-
-              if (_sl.last_value == 0) {
-                _sl.last_value = _sl.first_value
-              } else {
-                _sl.last_value = _sl.last_value + 1;
-
-              }
-
-              if (_sl.length_level) {
-                obj.code = addZero(_sl.last_value, _sl.length_level)
-
-              } else obj.code = _sl.last_value.toString()
+    doc.screens_list.forEach(_sl => {
 
 
-            } else if (_sl.type_numbering.id == 1) {
+      if (_sl.name == obj.screen) {
 
-              let y = new Date().getFullYear().toString();
-              obj.active = true;
+        if (_sl.type_numbering.id == 4) {
+          obj.active = false;
 
-              if (_sl.years_list && _sl.years_list.length > 0) {
+        } else if (_sl.type_numbering.id == 3) {
+          obj.active = true;
 
-                let found_year = _sl.years_list.some(_yl => _yl.year == new Date(obj.date).getFullYear().toString());
-
-                if (!found_year) {
-
-                  let lastYIndex = _sl.years_list.length - 1
-                  _sl.years_list.push({
-                    year: new Date(obj.date).getFullYear().toString(),
-                    first_value: _sl.years_list[lastYIndex].first_value,
-                    last_value: 0,
-                    length_level: _sl.years_list[lastYIndex].length_level
-                  })
-                }
-
-              } else {
-
-                _sl.years_list = [{
-                  year: new Date(obj.date).getFullYear().toString(),
-                  first_value: _sl.first_value || _ml.first_value || 1,
-                  last_value: 0,
-                  length_level: _sl.length_level || _ml.length_level || 0
-                }]
-              }
-
-              _sl.years_list.forEach(_yl => {
-                if (_yl.year == new Date(obj.date).getFullYear().toString()) {
-                  found_year = true
-                  if (_yl.last_value == 0) {
-                    _yl.last_value = _yl.first_value
-                  } else {
-                    _yl.last_value = _yl.last_value + 1;
-
-                  }
-
-                  if (_yl.length_level) {
-                    obj.code = new Date(obj.date).getFullYear().toString() + '-' + addZero(_yl.last_value, _yl.length_level)
-
-                  } else {
-
-                    obj.code = new Date(obj.date).getFullYear().toString() + '-' + _yl.last_value.toString()
-                  }
-                }
-              });
-
-            }
+          if (_sl.last_value == 0) {
+            _sl.last_value = _sl.first_value
+          } else {
+            _sl.last_value = _sl.last_value + 1;
 
           }
 
-        });
+          if (_sl.length_level) {
+            obj.code = addZero(_sl.last_value, _sl.length_level)
+
+          } else obj.code = _sl.last_value.toString()
+
+
+        } else if (_sl.type_numbering.id == 1) {
+
+          obj.active = true;
+
+          if (_sl.years_list && _sl.years_list.length > 0) {
+
+            let found_year = _sl.years_list.some(_yl => _yl.year == new Date(obj.date).getFullYear());
+
+            if (!found_year) {
+
+              _sl.years_list.unshift({
+                year: new Date(obj.date).getFullYear(),
+                first_value: _sl.years_list[0].first_value,
+                last_value: 0,
+                length_level: _sl.years_list[0].length_level
+              })
+            }
+
+          } else {
+
+            _sl.years_list = [{
+              year: new Date(obj.date).getFullYear(),
+              first_value: _sl.first_value || 1,
+              last_value: 0,
+              length_level: _sl.length_level || 0
+            }]
+          }
+
+          _sl.years_list.forEach(_yl => {
+            if (_yl.year == new Date(obj.date).getFullYear()) {
+              found_year = true
+              if (_yl.last_value == 0) {
+                _yl.last_value = _yl.first_value
+              } else {
+                _yl.last_value = _yl.last_value + 1;
+
+              }
+
+              if (_yl.length_level) {
+                obj.code = new Date(obj.date).getFullYear().toString() + _yl.separator_symbol + addZero(_yl.last_value, _yl.length_level)
+
+              } else {
+
+                obj.code = new Date(obj.date).getFullYear().toString() + _yl.separator_symbol + _yl.last_value.toString()
+              }
+            }
+          });
+
+        } else if (_sl.type_numbering.id == 2) {
+
+          obj.active = true;
+
+          if (_sl.months_list && _sl.months_list.length > 0) {
+
+            let found_year = _sl.months_list.some(_yl => _yl.year == new Date(obj.date).getFullYear() && _yl.month == new Date(obj.date).getMonth() + 1);
+
+            if (!found_year) {
+
+              _sl.months_list.unshift({
+                year: new Date(obj.date).getFullYear(),
+                month: new Date(obj.date).getMonth() + 1,
+                first_value: _sl.months_list[0].first_value,
+                last_value: 0,
+                length_level: _sl.months_list[0].length_level
+              })
+
+
+            }
+
+          } else {
+
+            _sl.months_list = [{
+              year: new Date(obj.date).getFullYear(),
+              month: new Date(obj.date).getMonth() + 1,
+              first_value: _sl.first_value || 1,
+              last_value: 0,
+              length_level: _sl.length_level || 0
+            }]
+          }
+
+          _sl.months_list.forEach(_yl => {
+            if (_yl.year == new Date(obj.date).getFullYear() && _yl.month == new Date(obj.date).getMonth() + 1) {
+              found_year = true
+              if (_yl.last_value == 0) {
+                _yl.last_value = _yl.first_value
+              } else {
+                _yl.last_value = _yl.last_value + 1;
+
+              }
+
+              if (_yl.length_level) {
+                obj.code = new Date(obj.date).getFullYear().toString() + (new Date(obj.date).getMonth() + 1) + _yl.separator_symbol + addZero(_yl.last_value, _yl.length_level)
+
+              } else {
+
+                obj.code = new Date(obj.date).getFullYear().toString() + (new Date(obj.date).getMonth() + 1) + _yl.separator_symbol + _yl.last_value.toString()
+              }
+            }
+          });
+
+        }
+
       }
     });
 

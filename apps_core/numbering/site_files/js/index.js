@@ -15,37 +15,49 @@ app.controller("numbering", function ($scope, $http) {
     if (type === 'main') index = 0;
     else if (type === 'inventory') index = 1;
     else if (type === 'accounting') index = 2;
-    else if (type === 'general') index = 3;
-    else if (type === 'employees') index = 4;
+    else if (type === 'general_setting') index = 3;
+    else if (type === 'hr') index = 4;
 
 
-    $scope.numbering.modules_list[index].screens_list.forEach(_ml => {
-      if ($scope.numbering.modules_list[index].type_numbering) {
-        _ml.type_numbering = $scope.numbering.modules_list[index].type_numbering;
+    $scope.numbering.screens_list.forEach(_sl => {
+      if ($scope.circulate.type_numbering && type === _sl.category) {
+        _sl.type_numbering = $scope.circulate.type_numbering;
 
-        if ($scope.numbering.modules_list[index].type_numbering.id == 3) {
+        if ($scope.circulate.type_numbering.id == 3) {
 
-          _ml.first_value = $scope.numbering.modules_list[index].first_value;
-          _ml.last_value = 0;
-          _ml.length_level = $scope.numbering.modules_list[index].length_level;
+          _sl.first_value = $scope.circulate.first_value || 1;
+          _sl.last_value = 0;
+          _sl.length_level = $scope.circulate.length_level || 0;
 
 
-        } else if ($scope.numbering.modules_list[index].type_numbering.id == 1) {
+        } else if ($scope.circulate.type_numbering.id == 1) {
 
-          let y = new Date().getFullYear().toString();
+          let y = new Date().getFullYear();
+
+          _sl.years_list = [{
+            year: y,
+            first_value: $scope.circulate.first_value || 1,
+            last_value: 0,
+            length_level: $scope.circulate.length_level || 0
+          }]
+
+        } else if ($scope.circulate.type_numbering.id == 2) {
+
+          let y = new Date().getFullYear();
           let m = new Date().getMonth() + 1;
 
-          _ml.years_list = [{
+          _sl.months_list = [{
             year: y,
-            first_value: $scope.numbering.modules_list[index].first_value || 1,
+            month: m,
+            first_value: $scope.circulate.first_value || 1,
             last_value: 0,
-            length_level: $scope.numbering.modules_list[index].length_level || 0
+            length_level: $scope.circulate.length_level || 0
           }]
 
         }
       }
     });
-
+    $scope.circulate = {};
   };
 
   $scope.loadNumbering = function () {
@@ -65,17 +77,67 @@ app.controller("numbering", function ($scope, $http) {
     )
   };
 
-  $scope.viewCurrentNumbering = function (c) {
-    let y = new Date().getFullYear().toString();
-    let m = new Date().getMonth().toString();
+  $scope.addYearMonth = function (c) {
 
 
-    if (!c.years_list) {
-      c.years_list = [{
-        year: y,
+    if (c.type_numbering.id == 1) {
+
+
+      c.years_list.unshift({
+        year: c.years_list[0].year + 1,
         first_value: c.first_value || 1,
         last_value: 0,
         length_level: c.length_level || 0
+      })
+
+    } else if (c.type_numbering.id == 2) {
+
+      if (c.months_list[0].month == 12) {
+        c.months_list.unshift({
+          year: c.months_list[0].year + 1,
+          month: 1,
+          first_value: c.first_value || 1,
+          last_value: 0,
+          length_level: c.length_level || 0
+        })
+      } else {
+        c.months_list.unshift({
+          year: c.months_list[0].year,
+          month: c.months_list[0].month + 1,
+          first_value: c.first_value || 1,
+          last_value: 0,
+          length_level: c.length_level || 0
+        })
+      }
+
+
+
+    }
+
+  };
+
+
+
+  $scope.viewCurrentNumbering = function (c) {
+
+    let y = new Date().getFullYear();
+    let m = new Date().getMonth() + 1;
+
+    if (!c.years_list && c.type_numbering.id == 1) {
+      c.years_list = [{
+        year: y,
+        first_value: 1,
+        last_value: 0,
+        length_level: 0
+      }]
+
+    } else if (!c.months_list && c.type_numbering.id == 2) {
+      c.months_list = [{
+        year: y,
+        month: m,
+        first_value: 1,
+        last_value: 0,
+        length_level: 0
       }]
     }
 

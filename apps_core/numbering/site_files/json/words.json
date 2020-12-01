@@ -55,6 +55,16 @@
         "ar": "إسم السنة"
     },
     {
+        "name": "the_month",
+        "en": "The Month",
+        "ar": "الشهر"
+    },
+    {
+        "name": "separator_symbol",
+        "en": "Separator Symbol",
+        "ar": "الرمز الفاصل"
+    },
+    {
         "name": "circulate",
         "en": "Circulate",
         "ar": "تعميم"

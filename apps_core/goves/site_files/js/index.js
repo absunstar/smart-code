@@ -181,10 +181,7 @@ app.controller("goves", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/numbering/get_automatic",
       data: {
-        search: {
-          categoryId: 5,
-          screenId: 3
-        }
+        screen: "gov"
       }
     }).then(
       function (response) {

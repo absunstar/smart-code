@@ -17,7 +17,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
 
 
   $scope.addDays = function (date, days) {
-    var result = new Date(date);
+    let result = new Date(date);
     result.setTime(result.getTime() + (days * 24 * 60 * 60 * 1000));
     return result;
   }

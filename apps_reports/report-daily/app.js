@@ -194,7 +194,7 @@ module.exports = function init(site) {
         {
           source_type: {
             id: 10,
-            en: "Recharge Customer Balance",
+            en: "Customer Advance Payment",
             ar: "دفعة عميل مقدمة"
           },
           paid_up: 0,

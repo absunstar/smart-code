@@ -12,49 +12,125 @@
 
         <div class="modal-body">
             <form class="form">
-                <div class="row">
-                    <table x-permissions="login" class="table hover bold">
+                <div class="row" ng-show="current_screen.type_numbering.id == 1">
 
-                        <tr>
-                            <th>##word.year_name##</th>
-                            <th>##word.beginning_numbering##</th>
-                            <th>##word.last_transaction_number##</th>
-                            <th>##word.length_level##</th>
-                            <th>##word.actions##</th>
-                        </tr>
+                    <div class="row">
+                        <i-button type="add" ng-click="addYearMonth(current_screen)"></i-button>
+                    </div>
+                    <div class="row">
+                        <table x-permissions="login" class="table hover bold">
 
-                        <tr ng-repeat="c in current_screen.years_list">
+                            <tr>
+                                <th>##word.year_name##</th>
+                                <th>##word.beginning_numbering##</th>
+                                <th>##word.last_transaction_number##</th>
+                                <th>##word.length_level##</th>
+                                <th>##word.separator_symbol##</th>
+                                <th>##word.actions##</th>
+                            </tr>
 
-                            <td>
-                                <p class="text-center blue">
-                                    <br>
-                                    {{c.year}} </p>
-                            </td>
+                            <tr ng-repeat="c in current_screen.years_list">
 
-                            <td>
-                                <i-control ng-model="c.first_value" type="number">
-                                </i-control>
-                            </td>
+                                <td>
+                                    <p class="text-center blue">
+                                        <br>
+                                        {{c.year}} </p>
+                                </td>
 
-                            <td>
-                                <p class="text-center red">
-                                    <br>
-                                    {{c.last_value}} </p>
-                            </td>
+                                <td>
+                                    <i-control ng-model="c.first_value" type="number">
+                                    </i-control>
+                                </td>
 
-                            <td>
-                                <i-control ng-model="c.length_level" type="number">
-                                </i-control>
-                            </td>
+                                <td>
+                                    <p class="text-center red">
+                                        <br>
+                                        {{c.last_value}} </p>
+                                </td>
 
-                            <td class="center">
+                                <td>
+                                    <i-control ng-model="c.length_level" type="number">
+                                    </i-control>
+                                </td>
 
-                                <i-button type="bg-green" fa="recycle" ng-click="c.last_value = 0"></i-button>
+                                <td>
+                                    <i-control ng-model="c.separator_symbol">
+                                    </i-control>
+                                </td>
 
-                            </td>
-                        </tr>
-                    </table>
+                                <td class="center">
+
+                                    <i-button type="bg-green" fa="recycle" ng-click="c.last_value = 0"></i-button>
+
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
+
+                <div class="row" ng-show="current_screen.type_numbering.id == 2">
+
+                    <div class="row">
+                        <i-button type="add" ng-click="addYearMonth(current_screen)"></i-button>
+                    </div>
+                    <div class="row">
+                        <table x-permissions="login" class="table hover bold">
+
+                            <tr>
+                                <th>##word.year_name##</th>
+                                <th>##word.the_month##</th>
+                                <th>##word.beginning_numbering##</th>
+                                <th>##word.last_transaction_number##</th>
+                                <th>##word.length_level##</th>
+                                <th>##word.separator_symbol##</th>
+                                <th>##word.actions##</th>
+                            </tr>
+
+                            <tr ng-repeat="c in current_screen.months_list">
+
+                                <td>
+                                    <p class="text-center blue">
+                                        <br>
+                                        {{c.year}} </p>
+                                </td>
+
+                                <td>
+                                    <p class="text-center blue">
+                                        <br>
+                                        {{c.month}} </p>
+                                </td>
+
+                                <td>
+                                    <i-control ng-model="c.first_value" type="number">
+                                    </i-control>
+                                </td>
+
+                                <td>
+                                    <p class="text-center red">
+                                        <br>
+                                        {{c.last_value}} </p>
+                                </td>
+
+                                <td>
+                                    <i-control ng-model="c.length_level" type="number">
+                                    </i-control>
+                                </td>
+
+                                <td>
+                                    <i-control ng-model="c.separator_symbol">
+                                    </i-control>
+                                </td>
+
+                                <td class="center">
+
+                                    <i-button type="bg-green" fa="recycle" ng-click="c.last_value = 0"></i-button>
+
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
             </form>
         </div>
 
