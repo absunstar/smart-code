@@ -174,23 +174,23 @@ app.controller("goves", function ($scope, $http, $timeout) {
 
   };
 
-  $scope.getNumberingType = function () {
+  $scope.getNumberingAuto = function () {
     $scope.error = '';
     $scope.busy = true;
     $http({
       method: "POST",
-      url: "/api/numbering/get_type",
+      url: "/api/numbering/get_automatic",
       data: {
         search: {
-          categoryI: 5,
-          screenI: 3
+          categoryId: 5,
+          screenId: 3
         }
       }
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          $scope.disabledCode = response.data.doc;
+          $scope.disabledCode = response.data.isAuto;
         }
       },
       function (err) {
@@ -214,5 +214,5 @@ app.controller("goves", function ($scope, $http, $timeout) {
   };
 
   $scope.getGovList();
-  $scope.getNumberingType();
+  $scope.getNumberingAuto();
 });

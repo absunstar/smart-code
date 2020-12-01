@@ -75,18 +75,23 @@ module.exports = function init(site) {
           response.error = 'Name Exists';
           res.json(response);
         } else {
+          // let d = new Date();
+          // d.setFullYear(d.getFullYear() + 2);
           let num_obj = {
             company: site.get_company(req),
-            categoryI: 5,
-            screenI: 3,
+            categoryId: 5,
+            screenId: 3,
+            date: new Date()
           };
 
           let cb = site.getNumbering(num_obj);
 
           if (!goves_doc.code && !cb.active) {
+
             response.error = 'Must Enter Code';
             res.json(response);
             return;
+
           } else if (cb.active) {
             goves_doc.code = cb.code;
           }

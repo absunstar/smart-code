@@ -4,7 +4,7 @@ if (btn1) {
   btn1.click();
 }
 
-app.controller("default_setting", function ($scope, $http) {
+app.controller("numbering", function ($scope, $http) {
   $scope._search = {};
 
 
@@ -20,11 +20,30 @@ app.controller("default_setting", function ($scope, $http) {
 
 
     $scope.numbering.modules_list[index].screens_list.forEach(_ml => {
+      if ($scope.numbering.modules_list[index].type_numbering) {
+        _ml.type_numbering = $scope.numbering.modules_list[index].type_numbering;
 
-      _ml.type_numbering = $scope.numbering.modules_list[index].type_numbering;
-      _ml.first_value = $scope.numbering.modules_list[index].first_value;
-      _ml.last_value = 0;
-      _ml.length_level = $scope.numbering.modules_list[index].length_level;
+        if ($scope.numbering.modules_list[index].type_numbering.id == 3) {
+
+          _ml.first_value = $scope.numbering.modules_list[index].first_value;
+          _ml.last_value = 0;
+          _ml.length_level = $scope.numbering.modules_list[index].length_level;
+
+
+        } else if ($scope.numbering.modules_list[index].type_numbering.id == 1) {
+
+          let y = new Date().getFullYear().toString();
+          let m = new Date().getMonth() + 1;
+
+          _ml.years_list = [{
+            year: y,
+            first_value: $scope.numbering.modules_list[index].first_value || 1,
+            last_value: 0,
+            length_level: $scope.numbering.modules_list[index].length_level || 0
+          }]
+
+        }
+      }
     });
 
   };
@@ -46,7 +65,24 @@ app.controller("default_setting", function ($scope, $http) {
     )
   };
 
+  $scope.viewCurrentNumbering = function (c) {
+    let y = new Date().getFullYear().toString();
+    let m = new Date().getMonth().toString();
 
+
+    if (!c.years_list) {
+      c.years_list = [{
+        year: y,
+        first_value: c.first_value || 1,
+        last_value: 0,
+        length_level: c.length_level || 0
+      }]
+    }
+
+    $scope.current_screen = c;
+    site.showModal('#yearMonthModal');
+
+  };
 
   $scope.typeNumberingList = function () {
     $scope.error = '';

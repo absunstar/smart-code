@@ -50,6 +50,11 @@
         "ar": "نوع الترقيم"
     },
     {
+        "name": "year_name",
+        "en": "Year Name",
+        "ar": "إسم السنة"
+    },
+    {
         "name": "circulate",
         "en": "Circulate",
         "ar": "تعميم"

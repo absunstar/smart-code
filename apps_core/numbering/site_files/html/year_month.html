@@ -1,0 +1,68 @@
+<div id="yearMonthModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2 ng-show="current_screen.type_numbering.id == 1">
+                ##word.financial_year## <i class="fa fa-file"></i>
+            </h2>
+            <h2 ng-show="current_screen.type_numbering.id == 2">
+                ##word.accounting_period## <i class="fa fa-file"></i>
+            </h2>
+        </div>
+
+        <div class="modal-body">
+            <form class="form">
+                <div class="row">
+                    <table x-permissions="login" class="table hover bold">
+
+                        <tr>
+                            <th>##word.year_name##</th>
+                            <th>##word.beginning_numbering##</th>
+                            <th>##word.last_transaction_number##</th>
+                            <th>##word.length_level##</th>
+                            <th>##word.actions##</th>
+                        </tr>
+
+                        <tr ng-repeat="c in current_screen.years_list">
+
+                            <td>
+                                <p class="text-center blue">
+                                    <br>
+                                    {{c.year}} </p>
+                            </td>
+
+                            <td>
+                                <i-control ng-model="c.first_value" type="number">
+                                </i-control>
+                            </td>
+
+                            <td>
+                                <p class="text-center red">
+                                    <br>
+                                    {{c.last_value}} </p>
+                            </td>
+
+                            <td>
+                                <i-control ng-model="c.length_level" type="number">
+                                </i-control>
+                            </td>
+
+                            <td class="center">
+
+                                <i-button type="bg-green" fa="recycle" ng-click="c.last_value = 0"></i-button>
+
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </form>
+        </div>
+
+        <h2 class="error">{{error}}</h2>
+
+        <div class="modal-footer center">
+
+            <i-button type="close" label="##word.close##" onclick="site.hideModal('#yearMonthModal')"> </i-button>
+        </div>
+    </div>
+</div>
