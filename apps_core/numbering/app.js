@@ -171,19 +171,16 @@ module.exports = function init(site) {
     res.json(response);
   });
 
-
+  function addZero(code, number) {
+    let c = number - code.toString().length
+    for (let i = 0; i < c; i++) {
+      code = '0' + code.toString()
+    }
+    return code
+  }
 
   site.getNumbering = function (obj) {
     let doc = null;
-
-    function addZero(code, number) {
-      let c = number - code.toString().length
-      for (let i = 0; i < c; i++) {
-        code = '0' + code.toString()
-      }
-      return code
-    }
-
 
     Numbering.forEach((n, i) => {
       if (n.company.id == obj.company.id) {
@@ -246,7 +243,7 @@ module.exports = function init(site) {
                 }]
               }
 
-              _sl.years_list.map(_yl => {
+              _sl.years_list.forEach(_yl => {
                 if (_yl.year == new Date(obj.date).getFullYear().toString()) {
                   found_year = true
                   if (_yl.last_value == 0) {
@@ -267,8 +264,6 @@ module.exports = function init(site) {
               });
 
             }
-
-
 
           }
 
