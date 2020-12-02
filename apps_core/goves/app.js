@@ -85,13 +85,13 @@ module.exports = function init(site) {
           };
 
           let cb = site.getNumbering(num_obj);
-          if (!goves_doc.code && !cb.active) {
+          if (!goves_doc.code && !cb.auto) {
 
             response.error = 'Must Enter Code';
             res.json(response);
             return;
 
-          } else if (cb.active) {
+          } else if (cb.auto) {
             goves_doc.code = cb.code;
           }
 

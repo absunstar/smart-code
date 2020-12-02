@@ -174,10 +174,10 @@ module.exports = function init(site) {
       if (_sl.name == obj.screen) {
 
         if (_sl.type_numbering.id == 4) {
-          obj.active = false;
+          obj.auto = false;
 
         } else if (_sl.type_numbering.id == 3) {
-          obj.active = true;
+          obj.auto = true;
 
           if (_sl.last_value == 0) {
             _sl.last_value = _sl.first_value
@@ -194,8 +194,7 @@ module.exports = function init(site) {
 
         } else if (_sl.type_numbering.id == 1) {
 
-          obj.active = true;
-
+          obj.auto = true;
           if (_sl.years_list && _sl.years_list.length > 0) {
 
             let found_year = _sl.years_list.some(_yl => _yl.year == new Date(obj.date).getFullYear());
@@ -242,8 +241,7 @@ module.exports = function init(site) {
 
         } else if (_sl.type_numbering.id == 2) {
 
-          obj.active = true;
-
+          obj.auto = true;
           if (_sl.months_list && _sl.months_list.length > 0) {
 
             let found_year = _sl.months_list.some(_yl => _yl.year == new Date(obj.date).getFullYear() && _yl.month == new Date(obj.date).getMonth() + 1);

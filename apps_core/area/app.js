@@ -68,6 +68,21 @@ module.exports = function init(site) {
 
     area_doc.company = site.get_company(req)
     area_doc.branch = site.get_branch(req)
+    let num_obj = {
+      company: site.get_company(req),
+      screen: 'area',
+      date: new Date()
+    };
+    let cb = site.getNumbering(num_obj);
+
+    if (!area_doc.code && !cb.auto) {
+      response.error = 'Must Enter Code';
+      res.json(response);
+      return;
+
+    } else if (cb.auto) {
+      area_doc.code = cb.code;
+    }
 
 
     $area.add(area_doc, (err, doc) => {

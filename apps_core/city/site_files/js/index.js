@@ -34,6 +34,9 @@ app.controller("city", function ($scope, $http, $timeout) {
           $scope.getCityList();
         } else {
           $scope.error = 'Please Login First';
+          if (response.data.error.like('*Must Enter Code*')) {
+            $scope.error = "##word.must_enter_code##"
+          }
         }
       },
       function (err) {
@@ -41,7 +44,7 @@ app.controller("city", function ($scope, $http, $timeout) {
       }
     )
   };
-       
+
   $scope.displayUpdateCity = function (city) {
     $scope.error = '';
     $scope.viewCity(city);
@@ -178,8 +181,8 @@ app.controller("city", function ($scope, $http, $timeout) {
         where: {
           active: true
         },
-        select:{
-          id: 1, name :1
+        select: {
+          id: 1, name: 1
         }
       }
     }).then(
@@ -188,6 +191,29 @@ app.controller("city", function ($scope, $http, $timeout) {
         if (response.data.done && response.data.list.length > 0) {
           $scope.govesList = response.data.list;
 
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.getNumberingAuto = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/numbering/get_automatic",
+      data: {
+        screen: "city"
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.disabledCode = response.data.isAuto;
         }
       },
       function (err) {
@@ -214,5 +240,5 @@ app.controller("city", function ($scope, $http, $timeout) {
 
   $scope.getCityList();
   $scope.getGovesList();
-
+  $scope.getNumberingAuto();
 });

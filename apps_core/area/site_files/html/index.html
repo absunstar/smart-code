@@ -43,6 +43,7 @@
                 <table x-permissions="login" class="table hover bold loaded" id="t1">
                     <tr>
                         <th class="not-print">##word.logo##</th>
+                        <th>##word.code##</th>
                         <th>##word.gov##</th>
                         <th>##word.city_name##</th>
                         <th>##word.area_name##</th>
@@ -54,6 +55,7 @@
                         <td class="center not-print">
                             <img class="logo" ng-src="{{c.image_url}}">
                         </td>
+                        <td class="center blue">{{c.code}}</td>
                         <td class="center">{{c.gov.name}}</td>
                         <td class="center">{{c.city.name}}</td>
                         <td class="center title">{{c.name}}</td>

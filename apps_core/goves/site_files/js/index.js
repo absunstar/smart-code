@@ -171,7 +171,6 @@ app.controller("goves", function ($scope, $http, $timeout) {
       }
 
     )
-
   };
 
   $scope.getNumberingAuto = function () {

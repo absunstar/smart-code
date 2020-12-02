@@ -66,6 +66,22 @@ module.exports = function init(site) {
     city_doc.company = site.get_company(req)
     city_doc.branch = site.get_branch(req)
 
+    let num_obj = {
+      company: site.get_company(req),
+      screen: 'city',
+      date: new Date()
+    };
+
+    let cb = site.getNumbering(num_obj);
+    if (!city_doc.code && !cb.auto) {
+      response.error = 'Must Enter Code';
+      res.json(response);
+      return;
+
+    } else if (cb.auto) {
+      city_doc.code = cb.code;
+    }
+
     $city.add(city_doc, (err, doc) => {
       if (!err) {
         response.done = true

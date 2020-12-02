@@ -4,6 +4,12 @@
             <legend> ##word.basic_information##</legend>
             <div class="col9">
                 <table id="basicInformationTable" class="table hover bold">
+
+                    <tr>
+                        <td class="title">##word.code##</td>
+                        <td class="center blue">{{city.code}}</td>
+                    </tr>
+
                     <tr>
                         <td class="title">##word.goves_name##</td>
                         <td class="center">{{city.gov.name}}</td>
@@ -19,11 +25,12 @@
                         <td ng-show="city.active == true" class="center green"> ##word.active## </td>
                         <td ng-show="city.active == false" class="center red"> ##word.not_active## </td>
                     </tr>
+
                 </table>
             </div>
 
             <div class="col3">
-                <i-image view class="col3" ng-model="city.image_url"></i-image>
+                <i-image view  ng-model="city.image_url"></i-image>
             </div>
 
         </fieldset>

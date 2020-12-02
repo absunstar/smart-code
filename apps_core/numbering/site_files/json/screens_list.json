@@ -373,15 +373,15 @@
     {
         "category": "general_setting",
         "feature": "public",
-        "name": "cities",
+        "name": "city",
         "en": "City",
         "ar": "المدن"
     },
     {
         "category": "general_setting",
         "feature": "public",
-        "name": "erea",
-        "en": "Ereas",
+        "name": "area",
+        "en": "Areas",
         "ar": "المناطق"
     },
     {

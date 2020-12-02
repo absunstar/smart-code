@@ -4,7 +4,11 @@
             <legend> ##word.basic_information## </legend>
             <div class="row">
                 <div class="col9">
+
                     <div class="row">
+
+                        <i-control ng-disabled="disabledCode" class="col2" label="##word.code##" ng-model="area.code">
+                        </i-control>
                         <i-list class="col3" label="##word.gov##" ng-model="area.gov" items="govList"
                             ng-change="getCityList(area.gov)" display="name" ng-search="_search.$area.$gov_search">
                         </i-list>
@@ -12,11 +16,12 @@
                         <i-list class="col3" label="##word.city##" ng-model="area.city" items="cityList" display="name"
                             ng-search="_search.$area.$city_search">
                         </i-list>
-                        <div class="col4"></div>
+                        <div class="col2"></div>
                         <i-checkbox help-id="area_active" class="col2" label="##word.active##" ng-model="area.active">
                         </i-checkbox>
 
                     </div>
+
                     <div class="row">
 
                         <i-control help-id="area_name" v="r ll2" class="col4" label="##word.area_name##"

@@ -5,15 +5,17 @@
             <div class="row">
                 <div class="col9">
                     <div class="row">
-
+                        <i-control ng-disabled="disabledCode" class="col2" label="##word.code##" ng-model="city.code">
+                        </i-control>
                         <i-list help-id="" v="r" class="col3" label="##word.goves_name##" ng-model="city.gov"
-                           display="name" items="govesList" ng-search="_search.$city_gov"></i-list>
+                            display="name" items="govesList" ng-search="_search.$city_gov"></i-list>
 
                         <i-control help-id="city_name" v="r ll2" class="col3" label="##word.city_name##"
                             ng-model="city.name"></i-control>
+                        <div class="col2"></div>
+                        <i-checkbox help-id="city_active" class="col2" label="##word.active##" ng-model="city.active">
+                        </i-checkbox>
 
-                        <i-checkbox help-id="city_active" class="col3" label="##word.active##" ng-model="city.active"></i-checkbox>
-                
                     </div>
                 </div>
 
@@ -21,7 +23,7 @@
                     <i-image help-id="city_logo" ng-model="city.image_url"></i-image>
                 </div>
             </div>
-            
+
         </fieldset>
     </div>
 </div>
