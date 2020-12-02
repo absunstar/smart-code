@@ -55,7 +55,21 @@ module.exports = function init(site) {
     printers_path_doc.$req = req
     printers_path_doc.$res = res
 
-    
+    let num_obj = {
+      company: site.get_company(req),
+      screen: 'printers_path',
+      date: new Date()
+    };
+
+    let cb = site.getNumbering(num_obj);
+    if (!printers_path_doc.code && !cb.auto) {
+      response.error = 'Must Enter Code';
+      res.json(response);
+      return;
+
+    } else if (cb.auto) {
+      printers_path_doc.code = cb.code;
+    }
     printers_path_doc.company = site.get_company(req)
     printers_path_doc.branch = site.get_branch(req)
 

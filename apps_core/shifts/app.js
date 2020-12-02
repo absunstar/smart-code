@@ -14,33 +14,6 @@ module.exports = function init(site) {
   })
 
 
-  function addZero(code, number) {
-    let c = number - code.toString().length
-    for (let i = 0; i < c; i++) {
-      code = '0' + code.toString()
-    }
-    return code
-  }
-
-  $shifts.newCode = function () {
-
-    let y = new Date().getFullYear().toString().substr(2, 2)
-    let m = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L'][new Date().getMonth()].toString()
-    let d = new Date().getDate()
-    let lastCode = site.storage('shift_code') || 0
-    let lastMonth = site.storage('shift_month') || m
-    if (lastMonth != m) {
-      lastMonth = m
-      lastCode = 0
-    }
-    lastCode++
-    site.storage('shift_code', lastCode)
-    site.storage('shift_month', lastMonth)
-    return 'S-H' + y + lastMonth + addZero(d, 2) + addZero(lastCode, 4)
-  }
-
-
-
   site.on('[company][created]', doc => {
     $shifts.add({
       name: "شيفت إفتراضي",
@@ -77,7 +50,23 @@ module.exports = function init(site) {
     let shifts_doc = req.body
     shifts_doc.$req = req
     shifts_doc.$res = res
-    shifts_doc.code = $shifts.newCode();
+    let num_obj = {
+      company: site.get_company(req),
+      screen: 'shifts',
+      date: new Date()
+    };
+
+    let cb = site.getNumbering(num_obj);
+    if (!shifts_doc.code && !cb.auto) {
+
+      response.error = 'Must Enter Code';
+      res.json(response);
+      return;
+
+    } else if (cb.auto) {
+      shifts_doc.code = cb.code;
+    }
+
     shifts_doc.add_user_info = site.security.getUserFinger({
       $req: req,
       $res: res
