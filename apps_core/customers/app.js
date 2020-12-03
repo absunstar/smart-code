@@ -215,7 +215,22 @@ module.exports = function init(site) {
 
     user.company = customers_doc.company
     user.branch = customers_doc.branch
+    
+    let num_obj = {
+      company: site.get_company(req),
+      screen: 'customers',
+      date: new Date()
+    };
 
+    let cb = site.getNumbering(num_obj);
+    if (!customers_doc.code && !cb.auto) {
+      response.error = 'Must Enter Code';
+      res.json(response);
+      return;
+
+    } else if (cb.auto) {
+      customers_doc.code = cb.code;
+    }
 
     $customers.add(customers_doc, (err, doc) => {
       if (!err) {

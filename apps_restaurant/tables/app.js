@@ -43,7 +43,7 @@ module.exports = function init(site) {
 
 
   site.on('[register][tables][add]', doc => {
-
+  
     $tables.add({
       tables_group: {
         id: doc.id,
@@ -154,6 +154,22 @@ module.exports = function init(site) {
         response.error = 'Name Exists'
         res.json(response)
       } else {
+
+        let num_obj = {
+          company: site.get_company(req),
+          screen: 'tables',
+          date: new Date()
+        };
+
+        let cb = site.getNumbering(num_obj);
+        if (!tables_doc.code && !cb.auto) {
+          response.error = 'Must Enter Code';
+          res.json(response);
+          return;
+    
+        } else if (cb.auto) {
+          tables_doc.code = cb.code;
+        }
         $tables.add(tables_doc, (err, doc) => {
           if (!err) {
             response.done = true

@@ -28,6 +28,24 @@ module.exports = function init(site) {
     })
     doc.company = site.get_company(req)
     doc.branch = site.get_branch(req)
+
+    let num_obj = {
+      company: site.get_company(req),
+      screen: 'services_slides',
+      date: new Date()
+    };
+
+    let cb = site.getNumbering(num_obj);
+    if (!doc.code && !cb.auto) {
+      response.error = 'Must Enter Code';
+      res.json(response);
+      return;
+
+    } else if (cb.auto) {
+      doc.code = cb.code;
+    }
+
+
     $order_slides.add(doc, (err, id) => {
       if (!err) {
         response.done = true

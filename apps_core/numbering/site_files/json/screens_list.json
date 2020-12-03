@@ -183,6 +183,34 @@
     },
     {
         "category": "accounting",
+        "feature": "gym",
+        "name": "request_service_invoice",
+        "en": "Request Service Invoices",
+        "ar": "فواتير طلب الخدمة"
+    },
+    {
+        "category": "accounting",
+        "feature": "academy",
+        "name": "booking_hall",
+        "en": "Booking A Hall",
+        "ar": "حجز قاعة"
+    },
+    {
+        "category": "accounting",
+        "feature": "academy",
+        "name": "trainer_account",
+        "en": "Trainer Account",
+        "ar": "حساب مدرب"
+    },
+    {
+        "category": "accounting",
+        "feature": "academy",
+        "name": "course_booking",
+        "en": "Form Course Booking",
+        "ar": "إستمارة حجز كورس"
+    },
+    {
+        "category": "accounting",
         "feature": "pos",
         "name": "amounts_in",
         "en": "Amounts In",
@@ -198,7 +226,7 @@
     {
         "category": "accounting",
         "feature": "pos",
-        "name": "Recharge c_ustomer_balance",
+        "name": "recharge_customer_balance",
         "en": "Customer Advance Payment",
         "ar": "دفعة عميل مقدمة"
     },
@@ -387,6 +415,20 @@
     {
         "category": "general_setting",
         "feature": "public",
+        "name": "customers",
+        "en": "Customers",
+        "ar": "العملاء"
+    },
+    {
+        "category": "general_setting",
+        "feature": "public",
+        "name": "customers_groups",
+        "en": "Customers Groups",
+        "ar": "مجموعات العملاء"
+    },
+    {
+        "category": "general_setting",
+        "feature": "public",
         "name": "vendors",
         "en": "Vendors",
         "ar": "الموردين"
@@ -401,9 +443,9 @@
     {
         "category": "general_setting",
         "feature": "restaurant",
-        "name": "tables_groups",
-        "en": "Tables Groups",
-        "ar": "مجموعة الطاولات"
+        "name": "kitchens",
+        "en": "Kitchens",
+        "ar": "المطابخ"
     },
     {
         "category": "general_setting",
@@ -415,9 +457,9 @@
     {
         "category": "general_setting",
         "feature": "restaurant",
-        "name": "kitchens",
-        "en": "Kitchens",
-        "ar": "المطابخ"
+        "name": "tables_groups",
+        "en": "Tables Groups",
+        "ar": "مجموعة الطاولات"
     },
     {
         "category": "general_setting",
@@ -428,7 +470,7 @@
     },
     {
         "category": "general_setting",
-        "feature": "gym",
+        "feature": "medic",
         "name": "halls",
         "en": "Halls",
         "ar": "القاعات"
@@ -439,6 +481,20 @@
         "name": "services_slides",
         "en": "Services Slides",
         "ar": "شرائح الخدمات"
+    },
+    {
+        "category": "general_setting",
+        "feature": "medic",
+        "name": "medicine",
+        "en": "Medicine",
+        "ar": "الأدوية"
+    },
+    {
+        "category": "general_setting",
+        "feature": "medic",
+        "name": "disease",
+        "en": "Disease",
+        "ar": "الأمراض"
     },
     {
         "category": "general_setting",

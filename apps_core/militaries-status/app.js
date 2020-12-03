@@ -49,6 +49,22 @@ module.exports = function init(site) {
       $res: res
     })
 
+    let num_obj = {
+      company: site.get_company(req),
+      screen: 'militaies',
+      date: new Date()
+    };
+
+    let cb = site.getNumbering(num_obj);
+    if (!doc.code && !cb.auto) {
+      response.error = 'Must Enter Code';
+      res.json(response);
+      return;
+
+    } else if (cb.auto) {
+      doc.code = cb.code;
+    }
+
     $militaries_status.add(doc, (err, id) => {
       if (!err) {
         response.done = true

@@ -5,7 +5,8 @@
             <div class="row">
                 <div class="col9">
                     <div class="row">
-
+                        <i-control ng-disabled="disabledCode" class="col2" label="##word.code##"
+                            ng-model="service.code"></i-control>
                         <i-control help-id="service_name" v="r ll2" class="col5" label="##word.service_name##"
                             ng-model="service.name"></i-control>
                         <i-control help-id="services_price" type="number" v="r" class="col2"
@@ -15,7 +16,6 @@
                             type="number" class="col3" disabled label="##word.total_complex_services_price##"
                             ng-model="service.total_complex_services_price"></i-control>
 
-                        <div class="col2"></div>
                         <i-checkbox help-id="service_active" class="col2" label="##word.active##"
                             ng-model="service.active"></i-checkbox>
                     </div>

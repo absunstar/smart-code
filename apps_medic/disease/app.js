@@ -72,6 +72,23 @@ module.exports = function init(site) {
         response.error = 'Name Exists'
         res.json(response)
       } else {
+
+        let num_obj = {
+          company: site.get_company(req),
+          screen: 'disease',
+          date: new Date()
+        };
+
+        let cb = site.getNumbering(num_obj);
+        if (!disease_doc.code && !cb.auto) {
+          response.error = 'Must Enter Code';
+          res.json(response);
+          return;
+
+        } else if (cb.auto) {
+          disease_doc.code = cb.code;
+        }
+
         $disease.add(disease_doc, (err, doc) => {
           if (!err) {
             response.done = true

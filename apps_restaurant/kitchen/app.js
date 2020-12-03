@@ -70,6 +70,23 @@ module.exports = function init(site) {
         response.error = 'Name Exists'
         res.json(response)
       } else {
+
+        let num_obj = {
+          company: site.get_company(req),
+          screen: 'kitchens',
+          date: new Date()
+        };
+
+        let cb = site.getNumbering(num_obj);
+        if (!kitchen_doc.code && !cb.auto) {
+          response.error = 'Must Enter Code';
+          res.json(response);
+          return;
+
+        } else if (cb.auto) {
+          kitchen_doc.code = cb.code;
+        }
+
         $kitchen.add(kitchen_doc, (err, doc) => {
           if (!err) {
             response.done = true
@@ -195,7 +212,7 @@ module.exports = function init(site) {
     let response = {
       done: false
     }
-          
+
     if (!req.session.user) {
       response.error = 'Please Login First'
       res.json(response)

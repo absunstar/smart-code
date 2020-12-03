@@ -16,7 +16,6 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
           image_url: '/images/account_invoices.png',
           date: new Date(),
           shift: shift,
-          active: true,
           source_type: $scope.source_type
         };
 
@@ -126,6 +125,8 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
                   $scope.error = "##word.open_shift_not_found##"
                 } else if (response.data.error.like('*n`t Open Perio*')) {
                   $scope.error = "##word.should_open_period##"
+                } else if (response.data.error.like('*Must Enter Code*')) {
+                  $scope.error = "##word.must_enter_code##"
                 }
               }
             },
@@ -1459,6 +1460,49 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
 
   };
 
+  $scope.getNumberingAuto = function () {
+    $scope.error = '';
+    $scope.busy = true;
+
+    let screen = '';
+    if (site.toNumber("##query.type##")) {
+
+      if (site.toNumber("##query.type##") == 1) screen = 'purchases_invoices';
+      else if (site.toNumber("##query.type##") == 2) screen = 'sales_invoices';
+      else if (site.toNumber("##query.type##") == 3) screen = 'o_screen_invoices';
+      else if (site.toNumber("##query.type##") == 4) screen = 'request_service_invoice';
+      else if (site.toNumber("##query.type##") == 5) screen = 'booking_hall';
+      else if (site.toNumber("##query.type##") == 6) screen = 'trainer_account';
+      else if (site.toNumber("##query.type##") == 7) screen = 'course_booking';
+      else if (site.toNumber("##query.type##") == 8) screen = 'amounts_in';
+      else if (site.toNumber("##query.type##") == 9) screen = 'amounts_out';
+      else if (site.toNumber("##query.type##") == 10) screen = 'recharge_customer_balance';
+      else if (site.toNumber("##query.type##") == 11) screen = 'employee_advance';
+      else if (site.toNumber("##query.type##") == 12) screen = 'payment_employee_advance';
+
+
+      $http({
+        method: "POST",
+        url: "/api/numbering/get_automatic",
+        data: {
+          screen: screen
+        }
+      }).then(
+        function (response) {
+          $scope.busy = false;
+          if (response.data.done) {
+            $scope.disabledCode = response.data.isAuto;
+          }
+        },
+        function (err) {
+          $scope.busy = false;
+          $scope.error = err;
+        }
+      )
+    }
+
+  };
+
   $scope.get_open_shift = function (callback) {
     $scope.busy = true;
     $http({
@@ -1496,4 +1540,5 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
   $scope.loadDelegates();
   $scope.getSafes();
   $scope.getPaymentMethodList();
+  $scope.getNumberingAuto();
 });

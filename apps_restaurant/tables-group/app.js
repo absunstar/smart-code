@@ -61,6 +61,22 @@ module.exports = function init(site) {
     tables_group_doc.company = site.get_company(req)
     tables_group_doc.branch = site.get_branch(req)
 
+    let num_obj = {
+      company: site.get_company(req),
+      screen: 'tables_groups',
+      date: new Date()
+    };
+
+    let cb = site.getNumbering(num_obj);
+    if (!tables_group_doc.code && !cb.auto) {
+      response.error = 'Must Enter Code';
+      res.json(response);
+      return;
+
+    } else if (cb.auto) {
+      tables_group_doc.code = cb.code;
+    }
+
     $tables_group.find({
       where: {
         'company.id': site.get_company(req).id,

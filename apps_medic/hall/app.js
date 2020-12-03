@@ -71,6 +71,23 @@ module.exports = function init(site) {
         response.error = 'Name Exists'
         res.json(response)
       } else {
+
+        let num_obj = {
+          company: site.get_company(req),
+          screen: 'halls',
+          date: new Date()
+        };
+
+        let cb = site.getNumbering(num_obj);
+        if (!hall_doc.code && !cb.auto) {
+          response.error = 'Must Enter Code';
+          res.json(response);
+          return;
+
+        } else if (cb.auto) {
+          hall_doc.code = cb.code;
+        }
+
         $hall.add(hall_doc, (err, doc) => {
           if (!err) {
             response.done = true

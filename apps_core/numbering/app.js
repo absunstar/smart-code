@@ -61,16 +61,19 @@ module.exports = function init(site) {
       let screens_list = []
 
       if (site.features.like('*erp*')) {
-        screens_list = moduleListCore.filter((i) => i.feature !== 'restaurant' && i.feature !== 'gym');
+        screens_list = moduleListCore.filter((i) => i.feature !== 'restaurant' && i.feature !== 'gym' && i.feature !== 'academy' && i.feature !== 'medic' );
 
       } else if (site.features.like('*restaurant*')) {
-        screens_list = moduleListCore.filter((i) => i.feature !== 'gym' && i.feature !== 'restaurant' && i.feature !== 'erp');
+        screens_list = moduleListCore.filter((i) => i.feature !== 'gym' && i.feature !== 'erp' && i.feature !== 'academy' && i.feature !== 'medic' );
 
       } else if (site.features.like('*pos*')) {
-        screens_list = moduleListCore.filter((i) => i.feature !== 'gym' && i.feature !== 'erp' && i.feature !== 'restaurant');
+        screens_list = moduleListCore.filter((i) => i.feature !== 'gym' && i.feature !== 'erp' && i.feature !== 'restaurant' && i.feature !== 'academy' && i.feature !== 'medic' );
 
       } else if (site.features.like('*gym*')) {
-        screens_list = moduleListCore.filter((i) => i.feature !== 'pos' && i.feature !== 'erp' && i.feature !== 'restaurant');
+        screens_list = moduleListCore.filter((i) => i.feature !== 'pos' && i.feature !== 'erp' && i.feature !== 'restaurant' && i.feature !== 'academy');
+
+      } else if (site.features.like('*academy*')) {
+        screens_list = moduleListCore.filter((i) => i.feature !== 'erp' && i.feature !== 'restaurant' && i.feature !== 'gym');
 
       }
 
@@ -175,11 +178,11 @@ module.exports = function init(site) {
 
         if (_sl.type_numbering.id == 4) {
           obj.auto = false;
-
+          return;
         } else if (_sl.type_numbering.id == 3) {
           obj.auto = true;
 
-          if (_sl.last_value == 0) {
+          if (!_sl.last_value) {
             _sl.last_value = _sl.first_value
           } else {
             _sl.last_value = _sl.last_value + 1;
@@ -222,7 +225,7 @@ module.exports = function init(site) {
           _sl.years_list.forEach(_yl => {
             if (_yl.year == new Date(obj.date).getFullYear()) {
               found_year = true
-              if (_yl.last_value == 0) {
+              if (!_yl.last_value) {
                 _yl.last_value = _yl.first_value
               } else {
                 _yl.last_value = _yl.last_value + 1;
@@ -230,11 +233,11 @@ module.exports = function init(site) {
               }
 
               if (_yl.length_level) {
-                obj.code = new Date(obj.date).getFullYear().toString() + _yl.separator_symbol + addZero(_yl.last_value, _yl.length_level)
+                obj.code = new Date(obj.date).getFullYear().toString() + (_yl.separator_symbol || '') + addZero(_yl.last_value, _yl.length_level)
 
               } else {
 
-                obj.code = new Date(obj.date).getFullYear().toString() + _yl.separator_symbol + _yl.last_value.toString()
+                obj.code = new Date(obj.date).getFullYear().toString() + (_yl.separator_symbol || '') + _yl.last_value.toString()
               }
             }
           });
@@ -281,11 +284,11 @@ module.exports = function init(site) {
               }
 
               if (_yl.length_level) {
-                obj.code = new Date(obj.date).getFullYear().toString() + (new Date(obj.date).getMonth() + 1) + _yl.separator_symbol + addZero(_yl.last_value, _yl.length_level)
+                obj.code = new Date(obj.date).getFullYear().toString() + (new Date(obj.date).getMonth() + 1) + (_yl.separator_symbol || '') + addZero(_yl.last_value, _yl.length_level)
 
               } else {
 
-                obj.code = new Date(obj.date).getFullYear().toString() + (new Date(obj.date).getMonth() + 1) + _yl.separator_symbol + _yl.last_value.toString()
+                obj.code = new Date(obj.date).getFullYear().toString() + (new Date(obj.date).getMonth() + 1) + (_yl.separator_symbol || '') + _yl.last_value.toString()
               }
             }
           });

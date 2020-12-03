@@ -76,6 +76,9 @@ app.controller("militaries_status", function ($scope, $http) {
           $scope.loadAll();
         } else {
           $scope.error = '##word.error##';
+          if (response.data.error.like('*Must Enter Code*')) {
+            $scope.error = "##word.must_enter_code##"
+          }
         }
       },
       function (err) {
@@ -166,6 +169,31 @@ app.controller("militaries_status", function ($scope, $http) {
       }
     )
   };
+
+  $scope.getNumberingAuto = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/numbering/get_automatic",
+      data: {
+        screen: "militaies"
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.disabledCode = response.data.isAuto;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
   $scope.loadAll();
   $scope.loadMilitaries_Status();
+  $scope.getNumberingAuto();
 });

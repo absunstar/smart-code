@@ -69,6 +69,22 @@ module.exports = function init(site) {
     vendors_doc.$req = req
     vendors_doc.$res = res
 
+    let num_obj = {
+      company: site.get_company(req),
+      screen: 'vendors',
+      date: new Date()
+    };
+
+    let cb = site.getNumbering(num_obj);
+    if (!vendors_doc.code && !cb.auto) {
+      response.error = 'Must Enter Code';
+      res.json(response);
+      return;
+
+    } else if (cb.auto) {
+      vendors_doc.code = cb.code;
+    }
+
     vendors_doc.company = site.get_company(req)
     vendors_doc.branch = site.get_branch(req)
 

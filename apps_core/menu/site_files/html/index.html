@@ -65,6 +65,11 @@
                 <span>##word.default_setting_menus## </span>
             </a>
 
+            <a class="tab-link" href="/numbering" x-permissions="numbering_ui || numbering_manage">
+                <img src="/images/numbering.png">
+                <span> ##word.numbering_screen## </span>
+            </a>
+
             <a x-features="restaurant || pos || academy || gym || erp" class="tab-link" href="/shifts"
                 x-permissions="shifts_ui || shifts_manage">
                 <img src="/images/shift.png">
@@ -151,6 +156,18 @@
                 <span> ##word.menu_area## </span>
             </a>
 
+
+            <a class="tab-link" x-features="academy || gym" href="/hall" x-permissions="hall_ui || hall_manage">
+                <img src="/images/hall.png">
+                <span> ##word.halls##</span>
+            </a>
+
+            <a class="tab-link" x-features="academy || gym" href="/service"
+                x-permissions="service_ui || service_manage">
+                <img src="/images/service.png">
+                <span> ##word.service_management##</span>
+            </a>
+
             <a x-features="academy || gym" class="tab-link" href="/medicine"
                 x-permissions="medicine_ui || medicine_manage">
                 <img src="/images/medicine.png">
@@ -163,16 +180,6 @@
                 <span> ##word.disease##</span>
             </a>
 
-            <a class="tab-link" x-features="academy || gym" href="/hall" x-permissions="hall_ui || hall_manage">
-                <img src="/images/hall.png">
-                <span> ##word.halls##</span>
-            </a>
-
-            <a class="tab-link" x-features="academy || gym" href="/service"
-                x-permissions="service_ui || service_manage">
-                <img src="/images/service.png">
-                <span> ##word.service_management##</span>
-            </a>
 
             <a x-features="restaurant" class="tab-link" href="/tables_group"
                 x-permissions="tables_group_ui || tables_group_manage">

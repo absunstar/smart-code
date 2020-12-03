@@ -6,15 +6,15 @@
                 <div class="col9">
 
                     <div class="row">
+                        <i-control ng-disabled="disabledCode" class="col2" label="##word.code##" ng-model="account_invoices.code">
+                        </i-control>
+
                         <i-date2 class="col4" ng-model="account_invoices.date" label="##word.date##"></i-date2>
 
-                        <div class="col3"></div>
 
                         <i-control class="col3 r_indigo" disabled label="##word.shift##" ng-model="shift.code">
                         </i-control>
 
-                        <i-checkbox class="col2" label="##word.active##" ng-model="account_invoices.active">
-                        </i-checkbox>
                     </div>
 
                     <div class="row">
@@ -460,8 +460,8 @@
                                 ng-model="account_invoices.paid_up" label="##word.paid_up##" type="number">
                             </i-control>
                             <i-control class="col2" ng-model="account_invoices.Paid_from_customer"
-                            ng-change="calc(account_invoices)" label="##word.Paid_from_customer##" type="number">
-                        </i-control>
+                                ng-change="calc(account_invoices)" label="##word.Paid_from_customer##" type="number">
+                            </i-control>
                         </div>
 
                         <div class="row"
@@ -471,7 +471,7 @@
                                 type="number">
                             </i-control>
 
-                          
+
                         </div>
 
                     </div>

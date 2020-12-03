@@ -26,31 +26,6 @@ module.exports = function init(site) {
   });
 
 
-  function addZero(code, number) {
-    let c = number - code.toString().length
-    for (let i = 0; i < c; i++) {
-      code = '0' + code.toString()
-    }
-    return code
-  }
-
-  $account_invoices.newCode = function () {
-
-    let y = new Date().getFullYear().toString().substr(2, 2)
-    let m = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L'][new Date().getMonth()].toString()
-    let d = new Date().getDate()
-    let lastCode = site.storage('ticket_last_code') || 0
-    let lastMonth = site.storage('ticket_last_month') || m
-    if (lastMonth != m) {
-      lastMonth = m
-      lastCode = 0
-    }
-    lastCode++
-    site.storage('ticket_last_code', lastCode)
-    site.storage('ticket_last_month', lastMonth)
-    return 'A-C' + y + lastMonth + addZero(d, 2) + addZero(lastCode, 4)
-  }
-
   site.get({
     name: "account_invoices",
     path: __dirname + "/site_files/html/index.html",
@@ -88,7 +63,8 @@ module.exports = function init(site) {
     account_invoices_doc.$res = res;
     account_invoices_doc.company = site.get_company(req);
     account_invoices_doc.branch = site.get_branch(req);
-    account_invoices_doc.code = $account_invoices.newCode();
+
+
     account_invoices_doc.add_user_info = site.security.getUserFinger({
       $req: req,
       $res: res
@@ -153,6 +129,35 @@ module.exports = function init(site) {
             res.json(response)
           } else {
 
+            let num_obj = {
+              company: site.get_company(req),
+              date: account_invoices_doc.date
+            };
+
+            if (account_invoices_doc.source_type.id == 1) num_obj.screen = 'purchases_invoices';
+            else if (account_invoices_doc.source_type.id == 2) num_obj.screen = 'sales_invoices';
+            else if (account_invoices_doc.source_type.id == 3) num_obj.screen = 'o_screen_invoices';
+            else if (account_invoices_doc.source_type.id == 4) num_obj.screen = 'request_service_invoice';
+            else if (account_invoices_doc.source_type.id == 5) num_obj.screen = 'booking_hall';
+            else if (account_invoices_doc.source_type.id == 6) num_obj.screen = 'trainer_account';
+            else if (account_invoices_doc.source_type.id == 7) num_obj.screen = 'course_booking';
+            else if (account_invoices_doc.source_type.id == 8) num_obj.screen = 'amounts_in';
+            else if (account_invoices_doc.source_type.id == 9) num_obj.screen = 'amounts_out';
+            else if (account_invoices_doc.source_type.id == 10) num_obj.screen = 'recharge_customer_balance';
+            else if (account_invoices_doc.source_type.id == 11) num_obj.screen = 'employee_advance';
+            else if (account_invoices_doc.source_type.id == 12) num_obj.screen = 'payment_employee_advance';
+
+
+            let cb = site.getNumbering(num_obj);
+            if (!account_invoices_doc.code && !cb.auto) {
+
+              response.error = 'Must Enter Code';
+              res.json(response);
+              return;
+
+            } else if (cb.auto) {
+              account_invoices_doc.code = cb.code;
+            }
 
             $account_invoices.add(account_invoices_doc, (err, doc) => {
 

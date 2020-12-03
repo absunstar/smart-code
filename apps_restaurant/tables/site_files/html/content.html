@@ -6,18 +6,18 @@
                 <div class="col9">
                     <div class="row">
 
+                        <i-control ng-disabled="disabledCode" class="col2" label="##word.code##" ng-model="tables.code">
+                        </i-control>
+
                         <i-list ng-search="_search.$tables_group" v="r" class="col4" display="name" display2="code"
                             space="-" ng-model="tables.tables_group" label="##word.tables_group##"
                             items="tablesGroupList">
                         </i-list>
 
-                        <i-control type="text" help-id="tables_number" v="r" class="col3" label="##word.tables_number##"
-                            ng-model="tables.code"></i-control>
-
                         <i-control type="text" help-id="table_name" v="r" class="col3" label="##word.table_name##"
                             ng-model="tables.name"></i-control>
 
-                        <i-checkbox help-id="tables_active" class="col2" label="##word.active##"
+                        <i-checkbox help-id="tables_active" class="col3" label="##word.active##"
                             ng-model="tables.active"></i-checkbox>
 
                         <i-checkbox class="col2" label="##word.reserved##" ng-model="tables.busy"></i-checkbox>
@@ -32,7 +32,7 @@
                     <br>
                     <br>
                     <div class="row">
-                        
+
                         <fieldset class="col11">
                             <legend> ##word.login_information## </legend>
 

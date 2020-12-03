@@ -5,8 +5,9 @@
             <div class="row">
                 <div class="col9">
                     <div class="row">
-                        <i-control type="text" help-id="tables_group_number" v="r" class="col3"
-                            label="##word.tables_group_number##" ng-model="tables_group.code"></i-control>
+                        <i-control ng-disabled="disabledCode" class="col2" label="##word.code##"
+                            ng-model="tables_group.code">
+                        </i-control>
 
                         <i-control type="text" help-id="tables_group_name" v="r" class="col4"
                             label="##word.tables_group_name##" ng-model="tables_group.name"></i-control>

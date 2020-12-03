@@ -43,6 +43,9 @@ app.controller("customers_group", function ($scope, $http, $timeout) {
           } else if (response.data.error.like('*Please write code*')) {
             $scope.error = "##word.enter_code_inventory##"
           }
+          if (response.data.error.like('*Must Enter Code*')) {
+            $scope.error = "##word.must_enter_code##"
+          }
         }
       },
       function (err) {
@@ -201,20 +204,20 @@ app.controller("customers_group", function ($scope, $http, $timeout) {
 
   };
 
-  $scope.getScreenType = function () {
+  $scope.getNumberingAuto = function () {
+    $scope.error = '';
     $scope.busy = true;
-
     $http({
       method: "POST",
-      url: "/api/numbering_transactions_status/get",
+      url: "/api/numbering/get_automatic",
       data: {
-        screen_name: "customers_group"
+        screen: "customers_groups"
       }
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data) {
-          $scope.disabledCode = response.data.doc == 'auto' ? true : false;
+        if (response.data.done) {
+          $scope.disabledCode = response.data.isAuto;
         }
       },
       function (err) {
@@ -223,7 +226,8 @@ app.controller("customers_group", function ($scope, $http, $timeout) {
       }
     )
   };
-  $scope.getScreenType();
+
+  $scope.getNumberingAuto();
   $scope.getCustomerGroupList();
 
 });

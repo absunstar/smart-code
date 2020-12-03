@@ -32,6 +32,7 @@
                 <table class="table loaded bold hover" id="t1">
                     <tr>
                         <th class="not-print">##word.maritals_status_logo##</th>
+                        <th>##word.code##</th>
                         <th>##word.maritals_status_name##</th>
                         <th>##word.status##</th>
                         <th class="not-print">##word.actions##</th>
@@ -40,7 +41,8 @@
                         <td class="center not-print">
                             <i-image view class="logo" category="maritals_status" ng-model="c.image_url"></i-image>
                         </td>
-                        <td class="center bold indigo">{{c.name}}</td>
+                        <td class="center bold userPrint blue">{{c.code}}</td>
+                        <td class="center bold ">{{c.name}}</td>
                         <td class="center">
                             <p ng-show="c.active ==true" class="green"> ##word.active## </p>
                             <p ng-show="c.active ==false" class="red"> ##word.not_active## </p>

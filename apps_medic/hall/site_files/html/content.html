@@ -5,17 +5,19 @@
             <div class="row">
                 <div class="col9">
                     <div class="row">
-
+                        <i-control ng-disabled="disabledCode" class="col2" label="##word.code##" ng-model="hall.code"></i-control>
+                        </i-control>
                         <i-control help-id="hall_name" v="r ll2" class="col5" label="##word.hall_name##"
                             ng-model="hall.name"></i-control>
 
-                        <div class="col2"></div>
-                        <i-checkbox help-id="hall_active" class="col2" label="##word.active##" ng-model="hall.active"></i-checkbox>
+                        <div class="col3"></div>
+                        <i-checkbox help-id="hall_active" class="col2" label="##word.active##" ng-model="hall.active">
+                        </i-checkbox>
                     </div>
 
                     <div class="row">
-                        <i-control help-id="hall_capaneighborhood" v="r" type="number" class="col2" label="##word.hall_capaneighborhood##"
-                            ng-model="hall.capaneighborhood"></i-control>
+                        <i-control help-id="hall_capaneighborhood" v="r" type="number" class="col2"
+                            label="##word.hall_capaneighborhood##" ng-model="hall.capaneighborhood"></i-control>
 
                     </div>
 

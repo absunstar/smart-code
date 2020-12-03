@@ -41,6 +41,7 @@
                 <table x-permissions="login" class="table bold hover loaded" id="t1">
                     <tr>
                         <th class="not-print">##word.logo##</th>
+                        <th>##word.code##</th>
                         <th>##word.service_name##</th>
                         <th>##word.services_price##</th>
                         <th>##word.available_period##</th>
@@ -52,6 +53,7 @@
                         <td class="center not-print">
                             <img class="logo" ng-src="{{c.image_url}}">
                         </td>
+                        <td class="center userPrint blue">{{c.code}}</td>
                         <td class="center title">{{c.name}}</td>
                         <td class="center green">{{c.services_price}}</td>
                         <td class="center blue"> {{c.available_period}} ##word.day##</td>

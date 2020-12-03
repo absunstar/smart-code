@@ -41,8 +41,8 @@
                 <table x-permissions="login" class="table hover bold loaded" id="t1">
                     <tr>
                         <th class="not-print">##word.logo##</th>
+                        <th>##word.code##</th>
                         <th>##word.tables_group##</th>
-                        <th>##word.tables_number##</th>
                         <th>##word.table_name##</th>
                         <th>##word.tables_min##</th>
                         <th>##word.tables_max##</th>
@@ -54,8 +54,8 @@
                         <td class="center not-print">
                             <img class="logo" ng-src="{{c.image_url}}">
                         </td>
+                        <td class="center userPrint blue">{{c.code}}</td>
                         <td class="center title">{{c.tables_group.name}}</td>
-                        <td class="center title">{{c.code}}</td>
                         <td class="center title">{{c.name}}</td>
                         <td class="center green">{{c.minimum}}</td>
                         <td class="center red">{{c.maxmum}}</td>

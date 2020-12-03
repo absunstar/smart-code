@@ -37,6 +37,9 @@ app.controller("vendors_group", function ($scope, $http, $timeout) {
           $scope.count += 1;
         } else {
           $scope.error = response.data.error;
+          if (response.data.error.like('*Must Enter Code*')) {
+            $scope.error = "##word.must_enter_code##"
+          }
         }
       },
       function (err) {
@@ -187,6 +190,30 @@ app.controller("vendors_group", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.getNumberingAuto = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/numbering/get_automatic",
+      data: {
+        screen: "vendors_groups"
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.disabledCode = response.data.isAuto;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+
   $scope.searchAll = function () {
 
     $scope.getVendorGroupList($scope.search);
@@ -197,5 +224,5 @@ app.controller("vendors_group", function ($scope, $http, $timeout) {
   };
 
   $scope.getVendorGroupList();
-
+  $scope.getNumberingAuto();
 });
