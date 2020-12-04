@@ -37,6 +37,9 @@ app.controller("employee_list", function ($scope, $http, $timeout) {
           $scope.getEmployeeList();
         } else {
           $scope.error = response.data.error;
+          if (response.data.error.like('*Must Enter Code*')) {
+            $scope.error = "##word.must_enter_code##"
+          }
         }
       },
       function (err) {
@@ -250,7 +253,7 @@ app.controller("employee_list", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/maritals_status/all",
       data: {
-        select: { id: 1, name: 1 }
+        select: { id: 1, name: 1, code: 1 }
       }
     }).then(
       function (response) {
@@ -272,7 +275,7 @@ app.controller("employee_list", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/militaries_status/all",
       data: {
-        select: { id: 1, name: 1 }
+        select: { id: 1, name: 1, code: 1 }
       }
     }).then(
       function (response) {
@@ -386,7 +389,7 @@ app.controller("employee_list", function ($scope, $http, $timeout) {
         where: {
           active: true
         },
-        select: { id: 1, name: 1 }
+        select: { id: 1, name: 1 ,code:1}
       }
     }).then(
       function (response) {
@@ -501,6 +504,29 @@ app.controller("employee_list", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.getNumberingAuto = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/numbering/get_automatic",
+      data: {
+        screen: "employees"
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.disabledCode = response.data.isAuto;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
   $scope.displaySearchModal = function () {
     $scope.error = '';
     site.showModal('#employeeSearchModal');
@@ -518,7 +544,7 @@ app.controller("employee_list", function ($scope, $http, $timeout) {
   $scope.getCoursesList();
   $scope.getJobsList();
   $scope.getDegree();
-
+  $scope.getNumberingAuto();
   $scope.getGender();
   $scope.loadMaritalsStatus();
   $scope.loadMilitariesStatus();

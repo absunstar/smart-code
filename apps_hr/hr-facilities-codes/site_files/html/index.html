@@ -18,7 +18,7 @@
 
     <div id="main-layout" class="container loaded">
         <div class="row center">
-            <div  ng-controller="facilities_codes">
+            <div ng-controller="facilities_codes">
                 <div x-permissions="facilities_codes_add || facilities_codes_manage"
                     x-import="hr-facilities-codes/add_modal.html"></div>
                 <div x-permissions="facilities_codes_update || facilities_codes_manage"
@@ -49,8 +49,8 @@
                     </tr>
                     <tr ng-repeat="c in list">
                         <td class="not-print">
-                            <img class="logo" ng-src="{{c.image_url}}"> </td>
-                        <td class="blue">{{c.code}}</td>
+                            <i-image view class="logo" ng-model="c.image_url"></i-image> </td>
+                        <td class="center userPrint blue">{{c.code}}</td>
                         <td>{{c.name}}</td>
                         <td>{{c.owner}}</td>
                         <td class="not-print" x-permission="owner" class="center">
@@ -67,8 +67,8 @@
                     </tr>
 
                 </table>
-              
-                
+
+
                 <i-button x-permissions="facilities_codes_print || facilities_codes_manage" type="print"
                     label="##word.print##" onclick="site.print('#t1')"></i-button>
             </div>

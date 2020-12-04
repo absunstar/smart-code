@@ -27,12 +27,14 @@
                         <legend> ##word.basic_information## </legend>
 
                         <div class="row">
-
+                            <i-control ng-disabled="disabledCode" class="col2" label="##word.code##"
+                                ng-model="employee_list.code"></i-control>
+                            </i-control>
                             <i-control help-id="" v="r ll2" class="col5" label="##word.name##"
                                 ng-model="employee_list.name"></i-control>
 
 
-                            <div class="col5"></div>
+                            <div class="col3"></div>
                             <i-checkbox help-id="employee_active" class="col2" label="##word.active##"
                                 ng-model="employee_list.active"></i-checkbox>
                         </div>
@@ -201,7 +203,7 @@
                     </div>
 
                     <div class="row">
-                        
+
                         <i-list ng-search="$vacation_travel_payable" display="name_##session.lang##" space="-"
                             display2="code" class="col4" items="guideAccountList"
                             ng-model="employee_list.vacation_travel_payable" label="##word.vacation_travel_payable##">

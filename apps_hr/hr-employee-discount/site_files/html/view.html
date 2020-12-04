@@ -2,6 +2,24 @@
     <div class="col8">
         <br>
         <table class="table bold hover">
+
+            <tr>
+                <td class="title">##word.employee_discount_date##</td>
+                <td class="center brown">{{employee_discount.date | date : 'dd - MM - yyyy'}}</td>
+            </tr>
+
+
+            <tr>
+                <td class="title">##word.code##</td>
+                <td class="center userPrint blue">{{employee_discount.code}}</td>
+            </tr>
+
+            <tr>
+                <td class="title">##word.employee_discount_employees##</td>
+                <td class="center">{{employee_discount.employee.name}}</td>
+            </tr>
+
+
             <tr>
                 <td class="title">##word.employee_discount_value##</td>
                 <td class="center green">{{employee_discount.value}}</td>
@@ -15,16 +33,6 @@
                 </td>
             </tr>
 
-            <tr>
-                <td class="title">##word.employee_discount_employees##</td>
-                <td class="center">{{employee_discount.employee.name}}</td>
-            </tr>
-
-
-            <tr>
-                <td class="title">##word.employee_discount_date##</td>
-                <td class="center brown">{{employee_discount.date | date : 'dd - MM - yyyy'}}</td>
-            </tr>
 
 
             <tr>

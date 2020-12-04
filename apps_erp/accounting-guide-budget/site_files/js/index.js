@@ -58,6 +58,8 @@ app.controller("accounting_guide_budget", function ($scope, $http, $timeout) {
           } else if (response.data.error.like('*duplicate key*')) {
             $scope.error = "##word.accounting_banks_code_err##";
 
+          } else if (response.data.error.like('*Must Enter Code*')) {
+            $scope.error = "##word.must_enter_code##"
           }
         }
       },
@@ -215,6 +217,29 @@ app.controller("accounting_guide_budget", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.getNumberingAuto = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/numbering/get_automatic",
+      data: {
+        screen: "guide_budget"
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.disabledCode = response.data.isAuto;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
   $scope.searchAll = function () {
     $scope._search = {};
 
@@ -225,5 +250,6 @@ app.controller("accounting_guide_budget", function ($scope, $http, $timeout) {
   };
 
   $scope.getGuideBudgetList();
+  $scope.getNumberingAuto();
 
 });

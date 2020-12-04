@@ -38,6 +38,7 @@
                 <table class="table hover bold loaded" id="t1">
                     <tr>
                         <th class="not-print center">##word.safes_logo##</th>
+                        <th class="center">##word.code##</th>
                         <th class="center">##word.safes_name##</th>
                         <th class="center">##word.currency##</th>
                         <th class="center">##word.safe_type##</th>
@@ -49,6 +50,7 @@
                         <td class="not-print">
                             <i-image view class="logo" ng-model="c.image_url"></i-image>
                         </td>
+                        <td class="center userPrint blue">{{c.code}}</td>
                         <td class="center title">{{c.name}}</td>
                         <td class="center title">{{c.currency.name}}</td>
                         <td class="center blue">{{c.type.##session.lang##}}</td>

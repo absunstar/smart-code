@@ -233,7 +233,7 @@ app.controller("report_stores_balance", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/stores/all",
       data: {
-        select: { id: 1, name: 1, type: 1 },
+        select: { id: 1, name: 1, type: 1, code: 1 },
         branchTo: branch
       }
 
@@ -279,7 +279,7 @@ app.controller("report_stores_balance", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.viewPatchesList = function (itm,b) {
+  $scope.viewPatchesList = function (itm, b) {
     $scope.error = '';
     $scope.item_barcode = b;
     $scope.item_patch = itm;

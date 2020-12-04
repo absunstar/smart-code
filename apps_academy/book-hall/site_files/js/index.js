@@ -563,6 +563,7 @@ app.controller("book_hall", function ($scope, $http, $timeout) {
       url: "/api/discount_types/all",
       data: {
         select: {
+          code : 1,
           id: 1,
           name: 1,
           value: 1,

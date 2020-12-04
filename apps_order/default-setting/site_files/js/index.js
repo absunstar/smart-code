@@ -39,12 +39,12 @@ app.controller("default_setting", function ($scope, $http) {
   };
 
   $scope.linkWarehouseAccountInvoices = function () {
-    if($scope.default_setting.accounting.link_warehouse_account_invoices){
+    if ($scope.default_setting.accounting.link_warehouse_account_invoices) {
       $scope.default_setting.accounting.create_invoice_auto = true
     }
   };
 
-  
+
 
   $scope.getCustomerList = function (ev) {
     $scope.error = '';
@@ -128,7 +128,7 @@ app.controller("default_setting", function ($scope, $http) {
     $http({
       method: "POST",
       url: "/api/stores/all",
-      data: { select: { id: 1, name: 1, type: 1 } }
+      data: { select: { id: 1, name: 1, type: 1, code: 1 } }
     }).then(
       function (response) {
         $scope.busy = false;

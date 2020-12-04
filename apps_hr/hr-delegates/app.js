@@ -165,6 +165,23 @@ module.exports = function init(site) {
         user.company = delegate_doc.company
         user.branch = delegate_doc.branch
 
+        
+        let num_obj = {
+          company: site.get_company(req),
+          screen: 'delegates',
+          date: new Date()
+        };
+
+        let cb = site.getNumbering(num_obj);
+        if (!delegate_doc.code && !cb.auto) {
+          response.error = 'Must Enter Code';
+          res.json(response);
+          return;
+
+        } else if (cb.auto) {
+          delegate_doc.code = cb.code;
+        }
+
         $delegate_list.add(delegate_doc, (err, doc) => {
           if (!err) {
             response.done = true

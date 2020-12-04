@@ -7,10 +7,10 @@ app.controller("delegate_list", function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.delegate_list = {
       image_url: '/images/delegate.png',
-     /*  class_rooms_list : [{}],
-      courses_list : [{}], */
+      /*  class_rooms_list : [{}],
+       courses_list : [{}], */
       active: true
-      
+
     };
     site.showModal('#delegateAddModal');
     document.querySelector('#delegateAddModal .tab-link').click();
@@ -37,6 +37,9 @@ app.controller("delegate_list", function ($scope, $http, $timeout) {
           $scope.getDelegateList();
         } else {
           $scope.error = response.data.error;
+          if (response.data.error.like('*Must Enter Code*')) {
+            $scope.error = "##word.must_enter_code##"
+          }
         }
       },
       function (err) {
@@ -165,7 +168,7 @@ app.controller("delegate_list", function ($scope, $http, $timeout) {
           $scope.list = response.data.list;
           $scope.count = response.data.count;
           site.hideModal('#delegateSearchModal');
-          $scope.search ={};
+          $scope.search = {};
 
         }
       },
@@ -236,7 +239,7 @@ app.controller("delegate_list", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/maritals_status/all",
       data: {
-        select : {id:1 , name : 1}
+        select: { id: 1, name: 1 }
       }
     }).then(
       function (response) {
@@ -258,7 +261,7 @@ app.controller("delegate_list", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/militaries_status/all",
       data: {
-        select : {id:1 , name : 1}
+        select: { id: 1, name: 1 }
       }
     }).then(
       function (response) {
@@ -323,7 +326,7 @@ app.controller("delegate_list", function ($scope, $http, $timeout) {
         where: {
           active: true
         },
-        select : {id : 1 , name : 1}
+        select: { id: 1, name: 1 }
       }
     }).then(
       function (response) {
@@ -363,7 +366,7 @@ app.controller("delegate_list", function ($scope, $http, $timeout) {
       }
     )
   };
-  
+
   $scope.getAreaList = function (city) {
     $scope.busy = true;
     $http({
@@ -396,12 +399,35 @@ app.controller("delegate_list", function ($scope, $http, $timeout) {
     $http({
       method: "POST",
       url: "/api/stores/all",
-      data: { select: { id: 1, name: 1, type: 1 } }
+      data: { select: { id: 1, name: 1, type: 1, code: 1 } }
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.storesList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.getNumberingAuto = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/numbering/get_automatic",
+      data: {
+        screen: "delegates"
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.disabledCode = response.data.isAuto;
         }
       },
       function (err) {
@@ -420,7 +446,7 @@ app.controller("delegate_list", function ($scope, $http, $timeout) {
   $scope.searchAll = function () {
     $scope.getDelegateList($scope.search);
     site.hideModal('#delegateSearchModal');
-    $scope.search ={};
+    $scope.search = {};
   };
 
   $scope.getDelegateList();
@@ -430,6 +456,7 @@ app.controller("delegate_list", function ($scope, $http, $timeout) {
   $scope.getCoursesList();
   $scope.getDegree();
   $scope.getGender();
+  $scope.getNumberingAuto();
   $scope.loadMaritalsStatus();
   $scope.loadMilitariesStatus();
 });

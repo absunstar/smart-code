@@ -39,6 +39,7 @@
                 <table x-permissions="login" class="table bold hover loaded" id="t1">
                     <tr>
                         <th class="not-print">##word.logo##</th>
+                        <th>##word.code##</th>
                         <th>##word.name##</th>
                         <th>##word.address##</th>
                         <th>##word.mobile##</th>
@@ -47,8 +48,9 @@
                     </tr>
                     <tr ng-repeat="c in list">
                         <td class="center not-print">
-                            <img class="logo" ng-src="{{c.image_url}}">
+                            <i-image view class="logo" ng-model="c.image_url"></i-image>
                         </td>
+                        <td class="center userPrint blue">{{c.code}}</td>
                         <td class="center title">{{c.name}}</td>
                         <td class="center">{{c.gov.name + ' - ' + c.city.name + ' - ' + c.address}}</td>
                         <td class="center blue">{{c.mobile}} <i class="fa fa-mobile" ng-show="c.mobile" aria-hidden="true"></i></td>

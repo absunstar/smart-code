@@ -95,6 +95,9 @@ app.controller("safes", function ($scope, $http) {
         }
         else {
           $scope.error = '##word.error##';
+          if (response.data.error.like('*Must Enter Code*')) {
+            $scope.error = "##word.must_enter_code##"
+          }
         }
       },
       function (err) {
@@ -184,29 +187,29 @@ app.controller("safes", function ($scope, $http) {
 
   $scope.delete = function (safe) {
     $scope.busy = true;
-  
 
-      $http({
-        method: "POST",
-        url: "/api/safes/delete",
-        data: safe
-      }).then(
-        function (response) {
-          $scope.busy = false;
-          if (response.data.done) {
-            site.hideModal('#deleteSafeModal');
-            $scope.loadAll();
-          } else {
-            $scope.error = response.data.error;
-            if (response.data.error.like('*Delete Safe Its Exist In Other*')) {
-              $scope.error = "##word.err_delete_safe##"
-            }
+
+    $http({
+      method: "POST",
+      url: "/api/safes/delete",
+      data: safe
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          site.hideModal('#deleteSafeModal');
+          $scope.loadAll();
+        } else {
+          $scope.error = response.data.error;
+          if (response.data.error.like('*Delete Safe Its Exist In Other*')) {
+            $scope.error = "##word.err_delete_safe##"
           }
-        },
-        function (err) {
-          console.log(err);
         }
-      )
+      },
+      function (err) {
+        console.log(err);
+      }
+    )
     /* } else {
       $scope.busy = false;
       $scope.error = '##word.cannt_delete_safe##';
@@ -288,6 +291,28 @@ app.controller("safes", function ($scope, $http) {
 
   };
 
+  $scope.getNumberingAuto = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/numbering/get_automatic",
+      data: {
+        screen: "safes"
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.disabledCode = response.data.isAuto;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
 
   $scope.get_open_shift = function (callback) {
     $scope.busy = true;
@@ -319,6 +344,7 @@ app.controller("safes", function ($scope, $http) {
   $scope.loadAll();
   $scope.getSafeTypeList();
   $scope.loadEmployees();
+  $scope.getNumberingAuto();
   $scope.loadCurrencies();
   // $scope.loadSafes();
 

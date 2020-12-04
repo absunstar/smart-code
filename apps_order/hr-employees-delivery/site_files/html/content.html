@@ -23,21 +23,24 @@
                         <legend> ##word.basic_information## </legend>
 
                         <div class="row">
+                            <i-control ng-disabled="disabledCode" class="col2" label="##word.code##"
+                                ng-model="delivery_employee_list.code"></i-control>
+                            </i-control>
 
                             <i-control help-id="" v="r ll2" class="col5" label="##word.name##"
                                 ng-model="delivery_employee_list.name"></i-control>
 
-                            <div class="col5"></div>
+                            <div class="col3"></div>
                             <i-checkbox help-id="delivery_employee_active" class="col2" label="##word.active##"
                                 ng-model="delivery_employee_list.active"></i-checkbox>
                         </div>
 
                         <div class="row">
-                                <i-control help-id="" class="col4" label="##word.finger_code##"
-                                    ng-model="delivery_employee_list.finger_code"></i-control>
-                                <i-control help-id="" v="r ll2" class="col4" label="##word.national_id##"
-                                    ng-model="delivery_employee_list.national_id"></i-control>
-                            </div>
+                            <i-control help-id="" class="col4" label="##word.finger_code##"
+                                ng-model="delivery_employee_list.finger_code"></i-control>
+                            <i-control help-id="" v="r ll2" class="col4" label="##word.national_id##"
+                                ng-model="delivery_employee_list.national_id"></i-control>
+                        </div>
 
                     </fieldset>
 
@@ -46,20 +49,21 @@
 
                         <div class="row">
 
-                            <i-list help-id="" ng-search="_search.$gender_search" class="col2"
-                                label="##word.gender##" ng-model="delivery_employee_list.gender"
-                                items="genderList" display="##session.lang##" ><i-list>
+                            <i-list help-id="" ng-search="_search.$gender_search" class="col2" label="##word.gender##"
+                                ng-model="delivery_employee_list.gender" items="genderList" display="##session.lang##">
+                                <i-list>
 
-                            <i-control help-id="" class="col2" label="##word.salary##" type="number"
-                                ng-model="delivery_employee_list.salary"></i-control>
+                                    <i-control help-id="" class="col2" label="##word.salary##" type="number"
+                                        ng-model="delivery_employee_list.salary"></i-control>
 
-                            <i-control help-id="" class="col2" label="##word.delivery_difference##" type="number"
-                                ng-model="delivery_employee_list.delivery_difference"></i-control>
+                                    <i-control help-id="" class="col2" label="##word.delivery_difference##"
+                                        type="number" ng-model="delivery_employee_list.delivery_difference"></i-control>
                         </div>
                         <div class="row">
-                            <i-control help-id="" type="text" class="col4" label="##word.employees_insurances_insurance_number##"
+                            <i-control help-id="" type="text" class="col4"
+                                label="##word.employees_insurances_insurance_number##"
                                 ng-model="delivery_employee_list.insurance_number"></i-control>
-                                <i-control help-id="" type="text" class="col6" label="##word.qualification##"
+                            <i-control help-id="" type="text" class="col6" label="##word.qualification##"
                                 ng-model="delivery_employee_list.qualification"></i-control>
                         </div>
 
@@ -69,12 +73,11 @@
                         <legend>##word.addresses##</legend>
                         <div class="row">
                             <i-list class="col4" label="##word.gov##" ng-model="delivery_employee_list.gov"
-                                items="govList" ng-change="getCityList(delivery_employee_list.gov)"
-                                display="name" ng-search="_search.$delivery_employee.$gov_search"></i-list>
+                                items="govList" ng-change="getCityList(delivery_employee_list.gov)" display="name"
+                                ng-search="_search.$delivery_employee.$gov_search"></i-list>
 
-                            <i-list class="col4" label="##word.city##"
-                                ng-model="delivery_employee_list.city" items="cityList"
-                                ng-change="getAreaList(delivery_employee_list.city)" display="name"
+                            <i-list class="col4" label="##word.city##" ng-model="delivery_employee_list.city"
+                                items="cityList" ng-change="getAreaList(delivery_employee_list.city)" display="name"
                                 ng-search="_search.$delivery_employee.$city_search"></i-list>
 
                             <i-list class="col4" label="##word.area##" ng-model="delivery_employee_list.area"

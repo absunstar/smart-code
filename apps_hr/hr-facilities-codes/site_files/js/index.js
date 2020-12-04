@@ -3,14 +3,14 @@ app.controller("facilities_codes", function ($scope, $http) {
 
   $scope.facility_code = {};
 
- 
+
   $scope.loadFacilities_Codes = function () {
     $scope.busy = true;
     $http({
       method: "POST",
       url: "/api/facilities_codes/all",
       data: {
-        select : {id:1 , name : 1}
+        select: { id: 1, name: 1, code: 1 }
       }
     }).then(
       function (response) {
@@ -23,7 +23,7 @@ app.controller("facilities_codes", function ($scope, $http) {
         $scope.busy = false;
         $scope.error = err;
       }
-      )
+    )
   };
 
   $scope.loadAll = function () {
@@ -43,7 +43,7 @@ app.controller("facilities_codes", function ($scope, $http) {
         $scope.busy = false;
         $scope.error = err;
       }
-      )
+    )
   };
 
   $scope.newFacility_Code = function () {
@@ -51,6 +51,7 @@ app.controller("facilities_codes", function ($scope, $http) {
     $scope.facility_code = { image_url: '/images/facility_code.png' };
     site.showModal('#addFacilityCodeModal');
   };
+
   $scope.add = function () {
     $scope.busy = true;
     $http({
@@ -65,12 +66,15 @@ app.controller("facilities_codes", function ($scope, $http) {
           $scope.loadAll();
         } else {
           $scope.error = '##word.error##';
+          if (response.data.error.like('*Must Enter Code*')) {
+            $scope.error = "##word.must_enter_code##"
+          }
         }
       },
       function (err) {
         console.log(err);
       }
-      )
+    )
   };
 
   $scope.edit = function (facility_code) {
@@ -98,7 +102,7 @@ app.controller("facilities_codes", function ($scope, $http) {
       function (err) {
         console.log(err);
       }
-      )
+    )
   };
 
   $scope.remove = function (facility_code) {
@@ -125,7 +129,7 @@ app.controller("facilities_codes", function ($scope, $http) {
       function (err) {
         console.log(err);
       }
-      )
+    )
   };
   $scope.details = function (facility_code) {
     $scope.view(facility_code);
@@ -151,8 +155,33 @@ app.controller("facilities_codes", function ($scope, $http) {
       function (err) {
         console.log(err);
       }
-      )
+    )
   };
-  $scope.loadAll();    
+
+  $scope.getNumberingAuto = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/numbering/get_automatic",
+      data: {
+        screen: "facilities"
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.disabledCode = response.data.isAuto;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.loadAll();
   $scope.loadFacilities_Codes();
+  $scope.getNumberingAuto();
 });

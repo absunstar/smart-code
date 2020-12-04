@@ -29,6 +29,22 @@ module.exports = function init(site) {
 
     facilities_codes_doc.add_user_info = site.security.getUserFinger({ $req: req, $res: res })
 
+    let num_obj = {
+      company: site.get_company(req),
+      screen: 'facilities',
+      date: new Date()
+    };
+
+    let cb = site.getNumbering(num_obj);
+    if (!facilities_codes_doc.code && !cb.auto) {
+      response.error = 'Must Enter Code';
+      res.json(response);
+      return;
+
+    } else if (cb.auto) {
+      facilities_codes_doc.code = cb.code;
+    }
+
     $facilities_codes.add(facilities_codes_doc, (err, _id) => {
       if (!err) {
         response.done = true

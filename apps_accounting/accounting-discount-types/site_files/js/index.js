@@ -10,12 +10,6 @@ app.controller("discount_types", function ($scope, $http) {
       method: "POST",
       url: "/api/discount_types/all",
       data: {
-        select: {
-          id: 1,
-          name: 1,
-          value: 1,
-          type: 1
-        }
       }
     }).then(
       function (response) {
@@ -28,12 +22,15 @@ app.controller("discount_types", function ($scope, $http) {
         $scope.busy = false;
         $scope.error = err;
       }
-      )
+    )
   };
 
   $scope.newDiscount_Type = function () {
     $scope.error = '';
-    $scope.discount_type = { image_url: '/images/discount_type.png' };
+    $scope.discount_type = {
+      image_url: '/images/discount_type.png',
+      active: true
+    };
     site.showModal('#addDiscountTypeModal');
   };
   $scope.add = function () {
@@ -45,7 +42,7 @@ app.controller("discount_types", function ($scope, $http) {
       return;
     }
 
-    if(!$scope.discount_type.type){
+    if (!$scope.discount_type.type) {
       $scope.error = "##word.discount_types_error##"
       return;
     };
@@ -62,12 +59,15 @@ app.controller("discount_types", function ($scope, $http) {
           $scope.loadAll();
         } else {
           $scope.error = '##word.error##';
+          if (response.data.error.like('*Must Enter Code*')) {
+            $scope.error = "##word.must_enter_code##"
+          }
         }
       },
       function (err) {
         console.log(err);
       }
-      )
+    )
   };
 
   $scope.edit = function (discount_type) {
@@ -95,7 +95,7 @@ app.controller("discount_types", function ($scope, $http) {
       function (err) {
         console.log(err);
       }
-      )
+    )
   };
 
   $scope.remove = function (discount_type) {
@@ -123,7 +123,7 @@ app.controller("discount_types", function ($scope, $http) {
       function (err) {
         console.log(err);
       }
-      )
+    )
   };
   $scope.details = function (discount_type) {
     $scope.error = '';
@@ -150,8 +150,34 @@ app.controller("discount_types", function ($scope, $http) {
       function (err) {
         console.log(err);
       }
-      )
+    )
   };
+
+  $scope.getNumberingAuto = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/numbering/get_automatic",
+      data: {
+        screen: "discounts"
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.disabledCode = response.data.isAuto;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+
   $scope.loadAll();
+  $scope.getNumberingAuto();
 
 });

@@ -48,6 +48,22 @@ module.exports = function init(site) {
     insurances_slides_doc.company = site.get_company(req)
     insurances_slides_doc.branch = site.get_branch(req)
 
+    let num_obj = {
+      company: site.get_company(req),
+      screen: 'insurance_slides',
+      date: new Date()
+    };
+
+    let cb = site.getNumbering(num_obj);
+    if (!insurances_slides_doc.code && !cb.auto) {
+      response.error = 'Must Enter Code';
+      res.json(response);
+      return;
+
+    } else if (cb.auto) {
+      insurances_slides_doc.code = cb.code;
+    }
+
     $insurances_slides.add(insurances_slides_doc, (err, _id) => {
       if (!err) {
         response.done = true

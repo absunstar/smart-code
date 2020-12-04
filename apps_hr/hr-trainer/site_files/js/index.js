@@ -6,10 +6,10 @@ app.controller("trainer", function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.trainer = {
       image_url: '/images/trainer.png',
-      class_rooms_list : [{}],
-      courses_list : [{}],
+      class_rooms_list: [{}],
+      courses_list: [{}],
       active: true
-      
+
     };
     site.showModal('#trainerAddModal');
     document.querySelector('#trainerAddModal .tab-link').click();
@@ -36,6 +36,9 @@ app.controller("trainer", function ($scope, $http, $timeout) {
           $scope.getTrainerList();
         } else {
           $scope.error = response.data.error;
+          if (response.data.error.like('*Must Enter Code*')) {
+            $scope.error = "##word.must_enter_code##"
+          }
         }
       },
       function (err) {
@@ -164,7 +167,7 @@ app.controller("trainer", function ($scope, $http, $timeout) {
           $scope.list = response.data.list;
           $scope.count = response.data.count;
           site.hideModal('#trainerSearchModal');
-          $scope.search ={};
+          $scope.search = {};
 
         }
       },
@@ -304,7 +307,7 @@ app.controller("trainer", function ($scope, $http, $timeout) {
         where: {
           active: true
         },
-        select : {id : 1 , name : 1}
+        select: { id: 1, name: 1 }
       }
     }).then(
       function (response) {
@@ -330,7 +333,7 @@ app.controller("trainer", function ($scope, $http, $timeout) {
           'gov.id': gov.id,
           active: true
         },
-        select : {id : 1 , name : 1}
+        select: { id: 1, name: 1 }
       }
     }).then(
       function (response) {
@@ -345,7 +348,7 @@ app.controller("trainer", function ($scope, $http, $timeout) {
       }
     )
   };
-  
+
   $scope.getAreaList = function (city) {
     $scope.busy = true;
     $http({
@@ -377,7 +380,7 @@ app.controller("trainer", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/maritals_status/all",
       data: {
-        select : {id:1 , name : 1}
+        select: { id: 1, name: 1 }
       }
     }).then(
       function (response) {
@@ -399,7 +402,7 @@ app.controller("trainer", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/militaries_status/all",
       data: {
-        select : {id:1 , name : 1}
+        select: { id: 1, name: 1 }
       }
     }).then(
       function (response) {
@@ -424,7 +427,7 @@ app.controller("trainer", function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done) {          
+        if (response.data.done) {
           $scope.getTrainerList();
         }
       },
@@ -441,11 +444,34 @@ app.controller("trainer", function ($scope, $http, $timeout) {
 
   };
 
+  $scope.getNumberingAuto = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/numbering/get_automatic",
+      data: {
+        screen: "trainer"
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.disabledCode = response.data.isAuto;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
   $scope.searchAll = function () {
-  
+
     $scope.getTrainerList($scope.search);
     site.hideModal('#trainerSearchModal');
-    $scope.search ={};
+    $scope.search = {};
   };
 
   $scope.getTrainerList();
@@ -454,6 +480,7 @@ app.controller("trainer", function ($scope, $http, $timeout) {
   $scope.loadMilitariesStatus();
   $scope.loadMaritalsStatus();
   $scope.getAccountingSystem();
+  $scope.getNumberingAuto();
   $scope.getCoursesList();
   $scope.getJobsList();
   $scope.getGender();

@@ -19,32 +19,32 @@ app.controller("item_transaction", function ($scope, $http, $timeout) {
     $scope.busy = true;
     if (ev.which === 13) {
       $http({
-      method: "POST",
-      url: "/api/vendors/all",
-      data: {
-        search: $scope.search_vendor
-      }
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          $scope.vendorsList = response.data.list;
+        method: "POST",
+        url: "/api/vendors/all",
+        data: {
+          search: $scope.search_vendor
         }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
-  }
-};
+      }).then(
+        function (response) {
+          $scope.busy = false;
+          if (response.data.done) {
+            $scope.vendorsList = response.data.list;
+          }
+        },
+        function (err) {
+          $scope.busy = false;
+          $scope.error = err;
+        }
+      )
+    }
+  };
 
   $scope.loadStores = function () {
     $scope.busy = true;
     $http({
       method: "POST",
       url: "/api/stores/all",
-      data: { select: { id: 1, name: 1, type: 1 } }
+      data: { select: { id: 1, name: 1, type: 1, code: 1 } }
     }).then(
       function (response) {
         $scope.busy = false;
@@ -99,7 +99,7 @@ app.controller("item_transaction", function ($scope, $http, $timeout) {
         $scope.busy = false;
         $scope.transactionTypes = response.data;
         console.log($scope.transactionTypes);
-        
+
       },
       function (err) {
         $scope.busy = false;
@@ -171,15 +171,15 @@ app.controller("item_transaction", function ($scope, $http, $timeout) {
     )
   };
 
- 
+
   $scope.loadStoresStatusTypes = function () {
     $scope.error = '';
 
     let url = '/api/stores_in/types/all';
 
-    if($scope.search.t_type){
-      if( $scope.search.t_type.id == 1 ) url = '/api/stores_in/types/all';
-     else if( $scope.search.t_type.id == 2 ) url = '/api/stores_out/types/all';
+    if ($scope.search.t_type) {
+      if ($scope.search.t_type.id == 1) url = '/api/stores_in/types/all';
+      else if ($scope.search.t_type.id == 2) url = '/api/stores_out/types/all';
 
     }
 

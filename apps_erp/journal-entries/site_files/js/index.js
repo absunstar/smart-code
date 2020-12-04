@@ -53,6 +53,8 @@ app.controller("journal_entries", function ($scope, $http, $timeout) {
           } else if (response.data.error.like('*ratios_amounts_cost_centers_account*')) {
 
             $scope.error = `##word.ratios_amounts_cost_centers_account##   ( ${response.data.accounts_arr.join('-')} )`;
+          } else if (response.data.error.like('*Must Enter Code*')) {
+            $scope.error = "##word.must_enter_code##"
           }
         }
       },
@@ -390,6 +392,29 @@ app.controller("journal_entries", function ($scope, $http, $timeout) {
     }, 250);
   };
 
+  $scope.getNumberingAuto = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/numbering/get_automatic",
+      data: {
+        screen: "journal_entries"
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.disabledCode = response.data.isAuto;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
   $scope.searchAll = function () {
     $scope._search = {};
     $scope.getJournalEntriesList($scope.search);
@@ -399,5 +424,5 @@ app.controller("journal_entries", function ($scope, $http, $timeout) {
   };
 
   $scope.getJournalEntriesList();
-
+  $scope.getNumberingAuto();
 });

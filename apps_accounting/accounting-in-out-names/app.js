@@ -73,6 +73,22 @@ module.exports = function init(site) {
     in_out_names_doc.company = site.get_company(req)
     in_out_names_doc.branch = site.get_branch(req)
 
+    let num_obj = {
+      company: site.get_company(req),
+      screen: 'amounts_in_out_names',
+      date: new Date()
+    };
+
+    let cb = site.getNumbering(num_obj);
+    if (!in_out_names_doc.code && !cb.auto) {
+      response.error = 'Must Enter Code';
+      res.json(response);
+      return;
+
+    } else if (cb.auto) {
+      in_out_names_doc.code = cb.code;
+    }
+
     $in_out_names.add(in_out_names_doc, (err, _id) => {
       if (!err) {
         response.done = true

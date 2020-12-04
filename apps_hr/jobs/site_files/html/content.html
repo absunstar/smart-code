@@ -5,12 +5,15 @@
             <div class="row">
                 <div class="col9">
                     <div class="row">
+                        <i-control ng-disabled="disabledCode" class="col2" label="##word.code##"
+                            ng-model="jobs.code"></i-control>
+                        <i-control help-id="jobs_name" v="r ll2" class="col5" label="##word.jobs_name##"
+                            ng-model="jobs.name"></i-control>
 
-                        <i-control help-id="jobs_name" v="r ll2" class="col5" label="##word.jobs_name##" ng-model="jobs.name"></i-control>
+                        <div class="col3"></div>
 
-                        <div class="col5"></div>
-
-                        <i-checkbox help-id="jobs_active" class="col2" label="##word.active##" ng-model="jobs.active"></i-checkbox>
+                        <i-checkbox help-id="jobs_active" class="col2" label="##word.active##" ng-model="jobs.active">
+                        </i-checkbox>
                     </div>
 
                 </div>

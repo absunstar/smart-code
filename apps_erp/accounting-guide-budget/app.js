@@ -45,18 +45,22 @@ module.exports = function init(site) {
 
     accounting_guide_budget_doc.company = site.get_company(req)
    
+    
+    let num_obj = {
+      company: site.get_company(req),
+      screen: 'guide_budget',
+      date: new Date()
+    };
 
-    // let code = site.get_new_code(req,2, 18)
+    let cb = site.getNumbering(num_obj);
+    if (!accounting_guide_budget_doc.code && !cb.auto) {
+      response.error = 'Must Enter Code';
+      res.json(response);
+      return;
 
-    // if (!code) {
-    //   if (!accounting_guide_budget_doc.code) {
-    //     response.error = 'Please write Inventory code';
-    //     res.json(response)
-    //     return
-    //   }
-    // } else {
-    //   accounting_guide_budget_doc.code = code.toString();
-    // }
+    } else if (cb.auto) {
+      accounting_guide_budget_doc.code = cb.code;
+    }
 
     $accounting_guide_budget.add(accounting_guide_budget_doc, (err, doc) => {
       if (!err) {

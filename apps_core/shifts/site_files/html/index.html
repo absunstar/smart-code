@@ -49,7 +49,7 @@
                     </tr>
                     <tr ng-repeat="c in list">
                         <td class="center not-print">
-                            <img class="logo" ng-src="{{c.image_url}}">
+                            <i-image view class="logo" ng-model="c.image_url"></i-image>
                         </td>
 
                         <td class="center title">{{c.name}} <p class="blue userPrint">{{c.code}}</p>

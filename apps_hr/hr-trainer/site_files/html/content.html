@@ -23,13 +23,15 @@
                         <legend> ##word.basic_information## </legend>
 
                         <div class="row">
+                            <i-control ng-disabled="disabledCode" class="col2" label="##word.code##"
+                                ng-model="trainer.code"></i-control>
 
-                            <i-control help-id="" v="r ll2" class="col5" label="##word.name##" ng-model="trainer.name">
+                            <i-control help-id="" v="r ll2" class="col4" label="##word.name##" ng-model="trainer.name">
                             </i-control>
 
                             <i-control help-id="" class="col4" label="##word.national_id##"
                                 ng-model="trainer.national_id"></i-control>
-                            <div class="col1"></div>
+
                             <i-checkbox help-id="trainer_active" class="col2" label="##word.active##"
                                 ng-model="trainer.active"></i-checkbox>
                         </div>
@@ -42,8 +44,8 @@
                             <i-date ng-model="trainer.birth_date" class="col4" label="##word.birth_date##">
                             </i-date>
 
-                            <i-date ng-model="trainer.employment_date" class="col4"
-                                label="##word.employment_date##"></i-date>
+                            <i-date ng-model="trainer.employment_date" class="col4" label="##word.employment_date##">
+                            </i-date>
                         </div>
 
                         <div class="row">
@@ -55,8 +57,7 @@
                                 ng-model="trainer.military_status" label="##word.military_status##">
                             </i-list>
 
-                            <i-list help-id="" class="col3"
-                                display="##session.lang##" items="accountingSystemList"
+                            <i-list help-id="" class="col3" display="##session.lang##" items="accountingSystemList"
                                 ng-search="_search.$employee.$accounting_system" label="##word.accounting_system##"
                                 ng-model="trainer.accounting_system">
                             </i-list>
@@ -64,14 +65,12 @@
                         </div>
                         <div class="row">
 
-                            <i-list help-id="" ng-search="_search.$gender_search" class="col2"
-                                label="##word.gender##" ng-model="trainer.gender"
-                                items="genderList" display="##session.lang##"></i-list>
+                            <i-list help-id="" ng-search="_search.$gender_search" class="col2" label="##word.gender##"
+                                ng-model="trainer.gender" items="genderList" display="##session.lang##"></i-list>
 
                             <i-list help-id="" class="col3" items="degreeList"
                                 ng-search="_search.$employee.$degree_search" label="##word.employee_degree##"
-                                ng-change="trainer.salary = trainer.degree.salary"
-                                ng-model="trainer.degree"></i-list>
+                                ng-change="trainer.salary = trainer.degree.salary" ng-model="trainer.degree"></i-list>
 
                             <i-control help-id="" class="col2" label="##word.salary##" type="number"
                                 ng-model="trainer.salary"></i-control>
@@ -91,11 +90,11 @@
                         <legend>##word.addresses##</legend>
                         <div class="row">
                             <i-list class="col4" label="##word.gov##" ng-model="trainer.gov" items="govList"
-                                ng-change="getCitiesList(trainer.gov)" display="name"
-                                ng-search="trainer.$gov_search"></i-list>
+                                ng-change="getCitiesList(trainer.gov)" display="name" ng-search="trainer.$gov_search">
+                            </i-list>
 
-                            <i-list class="col4" label="##word.city##" ng-model="trainer.city"
-                                items="citiesList" ng-change="getAreaList(trainer.city)" display="name"
+                            <i-list class="col4" label="##word.city##" ng-model="trainer.city" items="citiesList"
+                                ng-change="getAreaList(trainer.city)" display="name"
                                 ng-search="trainer.$neighborhood_search"></i-list>
 
                             <i-list class="col4" label="##word.area##" ng-model="trainer.area" items="areaList"

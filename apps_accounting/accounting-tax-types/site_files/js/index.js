@@ -20,11 +20,14 @@ app.controller("tax_types", function ($scope, $http) {
         $scope.busy = false;
         $scope.error = err;
       }
-      )
+    )
   };
   $scope.newTax_Type = function () {
     $scope.error = '';
-    $scope.tax_type = { image_url: '/images/tax_type.png' };
+    $scope.tax_type = { 
+      image_url: '/images/tax_type.png',
+      active: true
+     };
     site.showModal('#addTaxTypeModal');
   };
   $scope.add = function () {
@@ -48,12 +51,15 @@ app.controller("tax_types", function ($scope, $http) {
           $scope.loadAll();
         } else {
           $scope.error = '##word.error##';
+          if (response.data.error.like('*Must Enter Code*')) {
+            $scope.error = "##word.must_enter_code##"
+          }
         }
       },
       function (err) {
         console.log(err);
       }
-      )
+    )
   };
 
   $scope.edit = function (tax_type) {
@@ -81,7 +87,7 @@ app.controller("tax_types", function ($scope, $http) {
       function (err) {
         console.log(err);
       }
-      )
+    )
   };
 
   $scope.remove = function (tax_type) {
@@ -109,7 +115,7 @@ app.controller("tax_types", function ($scope, $http) {
       function (err) {
         console.log(err);
       }
-      )
+    )
   };
 
   $scope.details = function (tax_type) {
@@ -137,8 +143,33 @@ app.controller("tax_types", function ($scope, $http) {
       function (err) {
         console.log(err);
       }
-      )
+    )
   };
+
+  $scope.getNumberingAuto = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/numbering/get_automatic",
+      data: {
+        screen: "taxes_type"
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.disabledCode = response.data.isAuto;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
   $scope.loadAll();
+  $scope.getNumberingAuto();
 
 });

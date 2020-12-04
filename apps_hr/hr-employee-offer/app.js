@@ -32,6 +32,22 @@ module.exports = function init(site) {
     employee_offer_doc.company = site.get_company(req)
     employee_offer_doc.branch = site.get_branch(req)
 
+    let num_obj = {
+      company: site.get_company(req),
+      screen: 'employees_offers',
+      date: new Date(employee_offer_doc.date)
+    };
+
+    let cb = site.getNumbering(num_obj);
+    if (!employee_offer_doc.code && !cb.auto) {
+      response.error = 'Must Enter Code';
+      res.json(response);
+      return;
+
+    } else if (cb.auto) {
+      employee_offer_doc.code = cb.code;
+    }
+
     $employee_offer.add(employee_offer_doc, (err, doc) => {
 
       if (!err) {

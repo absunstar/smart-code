@@ -237,7 +237,7 @@ app.controller("report_stores_movement", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/stores/all",
       data: {
-        select: { id: 1, name: 1, type: 1 },
+        select: { id: 1, name: 1, type: 1, code: 1 },
         branchTo: branch
       }
 

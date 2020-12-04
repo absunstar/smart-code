@@ -156,28 +156,28 @@ app.controller("security", function ($scope, $http, $interval) {
   };
 
   $scope.checkAll = function (name) {
-    $scope[name].forEach(r=>{
+    $scope[name].forEach(r => {
       r.$selected = $scope['$' + name];
-      if(r.$selected){
+      if (r.$selected) {
         let exists = false;
-        $scope.user.roles.forEach(r2=>{
-          if(r.name == r2.name){
+        $scope.user.roles.forEach(r2 => {
+          if (r.name == r2.name) {
             exists = true
             r2.$selected = true;
           }
         });
-        if(!exists){
+        if (!exists) {
           $scope.user.roles.push(r);
         }
-      }else if(!r.$selected){
+      } else if (!r.$selected) {
         let exists = false;
-        $scope.user.roles.forEach(( r2 , i)=>{
-          if(r.name == r2.name){
+        $scope.user.roles.forEach((r2, i) => {
+          if (r.name == r2.name) {
             r2.$selected = false;
-            $scope.user.roles.splice(i , 1);
+            $scope.user.roles.splice(i, 1);
           }
         });
-       
+
       }
     });
   };
@@ -386,7 +386,7 @@ app.controller("security", function ($scope, $http, $interval) {
     $http({
       method: "POST",
       url: "/api/stores/all",
-      data: { select: { id: 1, name: 1, type: 1 } }
+      data: { select: { id: 1, name: 1, type: 1, code: 1 } }
     }).then(
       function (response) {
         $scope.busy = false;

@@ -3,12 +3,18 @@
     <div class="col9">
         <form class="form">
             <div class="row">
-                <i-control class="col6" ng-model="insurance_slide.name" type="text" label="##word.insurances_slides_name##"></i-control>
+                <i-control ng-disabled="disabledCode" class="col2" label="##word.code##"
+                    ng-model="insurance_slide.code"></i-control>
+                    
+                <i-control class="col6" ng-model="insurance_slide.name" type="text"
+                    label="##word.insurances_slides_name##"></i-control>
 
-                <i-control class="col3" ng-model="insurance_slide.value" type="number" label="##word.insurances_slides_value##"></i-control>
+                <i-control class="col3" ng-model="insurance_slide.value" type="number"
+                    label="##word.insurances_slides_value##"></i-control>
             </div>
             <div class="row">
-                <i-textarea class="col9" ng-model="insurance_slide.details" type="text" label="##word.insurances_slides_details##"></i-textarea>
+                <i-textarea class="col9" ng-model="insurance_slide.details" type="text"
+                    label="##word.insurances_slides_details##"></i-textarea>
 
             </div>
         </form>

@@ -72,7 +72,7 @@
                     </tr>
                     <tr ng-repeat="c in list">
                         <td ng-click="displayDetailsRequestService(c)" class="center not-print">
-                            <img class="logo" ng-src="{{c.image_url}}">
+                            <i-image view class="logo" ng-model="c.image_url"></i-image>
                         </td>
                         <td ng-click="displayDetailsRequestService(c)" class="center blue">{{c.code}}</td>
                         <td class="center bold" ng-click="displayDetailsRequestService(c)">

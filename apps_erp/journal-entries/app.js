@@ -78,7 +78,6 @@ module.exports = function init(site) {
       });
 
 
-
       if (journal_entries_doc.the_amount !== total_creditor || journal_entries_doc.the_amount !== total_debtor) {
         response.error = 'sum_debit_credit_equal_amount';
         res.json(response)
@@ -94,6 +93,21 @@ module.exports = function init(site) {
 
     }
 
+    let num_obj = {
+      company: site.get_company(req),
+      screen: 'journal_entries',
+      date: new Date()
+    };
+
+    let cb = site.getNumbering(num_obj);
+    if (!journal_entries_doc.code && !cb.auto) {
+      response.error = 'Must Enter Code';
+      res.json(response);
+      return;
+
+    } else if (cb.auto) {
+      journal_entries_doc.code = cb.code;
+    }
 
     $journal_entries.add(journal_entries_doc, (err, doc) => {
       if (!err) {

@@ -60,7 +60,7 @@
 
                     <tr ng-repeat="c in list | orderBy : '-id'">
                         <td class="not-print">
-                            <img class="logo" ng-src="{{c.image_url}}">
+                            <i-image view class="logo" ng-model="c.image_url"></i-image>
                         </td>
                         <td class="blue"> {{c.code}} </td>
                         <td class="brown"> {{c.add_user_info.date | date : 'dd - MM - yyyy'}} </td>

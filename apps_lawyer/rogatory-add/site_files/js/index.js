@@ -9,7 +9,7 @@ app.controller("rogatory_add", function ($scope, $http, $timeout) {
     $scope.rogatory_add = {
       image_url: '/images/rogatory_add.png',
       active: true,
-      date : new Date()
+      date: new Date()
     };
     site.showModal('#rogatoryAddAddModal');
   };
@@ -208,7 +208,7 @@ app.controller("rogatory_add", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/rogatory_places/all",
       data: {
-        select: { id: 1, name: 1, description: 1 }
+        select: { id: 1, name: 1, description: 1, code: 1 }
       }
     }).then(
       function (response) {
@@ -230,7 +230,7 @@ app.controller("rogatory_add", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/rogatory_types/all",
       data: {
-        select: { id: 1, name: 1, description: 1 }
+        select: { id: 1, name: 1, description: 1, code: 1 }
       }
     }).then(
       function (response) {

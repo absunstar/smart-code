@@ -1,14 +1,14 @@
 [
     {
         "category": "main",
-        "feature": "pos",
+        "feature": "order",
         "name": "o_customer_screen",
         "en": "Orders Customers Screen",
         "ar": "شاشة طلبات العملاء"
     },
     {
         "category": "main",
-        "feature": "pos",
+        "feature": "order",
         "name": "itineraries",
         "en": "Itineraries",
         "ar": "خطوط السير"
@@ -309,14 +309,21 @@
     },
     {
         "category": "hr",
-        "feature": "public",
+        "feature": "medic",
+        "name": "trainer",
+        "en": "Trainer",
+        "ar": "المدربين"
+    },
+    {
+        "category": "hr",
+        "feature": "order",
         "name": "delegates",
         "en": "Delegates",
         "ar": "المناديب"
     },
     {
         "category": "hr",
-        "feature": "public",
+        "feature": "order",
         "name": "delivery_employees",
         "en": "Delivery Employees",
         "ar": "موظفين التوصيل"

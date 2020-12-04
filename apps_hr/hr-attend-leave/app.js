@@ -44,9 +44,18 @@ module.exports = function init(site) {
 
           if (attend.check_status == "check_in" && can_check_in) {
 
+            let num_obj = {
+              company: employeeCb.company,
+              screen: 'attend_leave',
+              date: new Date(attend.date)
+            };
+
+            let cb = site.getNumbering(num_obj);
+
             $attend_leave.add({
               image_url: '/images/attend_leave.png',
               employee: employeeCb,
+              code: cb.code,
               active: true,
               attend_date: new Date(attend.date),
               attend: attend_time,
@@ -110,6 +119,22 @@ module.exports = function init(site) {
 
     attend_leave_doc.company = site.get_company(req)
     attend_leave_doc.branch = site.get_branch(req)
+
+    let num_obj = {
+      company: site.get_company(req),
+      screen: 'attend_leave',
+      date: new Date(attend_leave_doc.attend_date) || new Date()
+    };
+
+    let cb = site.getNumbering(num_obj);
+    if (!attend_leave_doc.code && !cb.auto) {
+      response.error = 'Must Enter Code';
+      res.json(response);
+      return;
+
+    } else if (cb.auto) {
+      attend_leave_doc.code = cb.code;
+    }
 
     $attend_leave.add(attend_leave_doc, (err, doc) => {
       if (!err) {

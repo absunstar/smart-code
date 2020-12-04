@@ -141,6 +141,23 @@ module.exports = function init(site) {
     safes_doc.company = site.get_company(req)
     safes_doc.branch = site.get_branch(req)
 
+    let num_obj = {
+      company: site.get_company(req),
+      screen: 'safes',
+      date: new Date()
+    };
+
+    let cb = site.getNumbering(num_obj);
+    if (!safes_doc.code && !cb.auto) {
+      response.error = 'Must Enter Code';
+      res.json(response);
+      return;
+
+    } else if (cb.auto) {
+      safes_doc.code = cb.code;
+    }
+
+
     $safes.add(safes_doc, (err, doc) => {
       if (!err) {
 

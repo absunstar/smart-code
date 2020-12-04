@@ -38,18 +38,24 @@
                     <table class="table center hover bold loaded" id="t1">
                         <tr>
                             <th class="not-print">##word.tax_types_logo##</th>
+                            <th>##word.code##</th>
                             <th>##word.tax_types_name##</th>
                             <th>##word.tax_types_value##</th>
+                            <th>##word.status##</th>
 
                             <th class="not-print">##word.actions##</th>
                         </tr>
                         <tr ng-repeat="c in list">
                             <td class="not-print">
-                                <img class="logo" ng-src="{{c.image_url}}">
+                                <i-image view class="logo" ng-model="c.image_url"></i-image>
                             </td>
+                            <td class="userPrint blue">{{c.code}}</td>
                             <td>{{c.name}}</td>
                             <td class="center red">{{c.value}} % </td>
-
+                            <td class="center">
+                                <p ng-show="c.active ==true" class="green"> ##word.active## </p>
+                                <p ng-show="c.active ==false" class="red"> ##word.not_active## </p>
+                            </td>
                             <td class="center not-print">
                                 <i-button x-permissions="tax_types_view || tax_types_manage" type="details"
                                     label="##word.details##" ng-click="details(c)"></i-button>

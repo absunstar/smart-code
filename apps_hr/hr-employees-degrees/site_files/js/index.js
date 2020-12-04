@@ -28,6 +28,8 @@ app.controller("employees_degrees", function ($scope, $http) {
     $scope.employee_degree = { image_url: '/images/employee_degree.png' };
     site.showModal('#addEmployeeDegreeModal');
   };
+  
+
   $scope.add = function () {
     $scope.error = '';
     const v = site.validated('#addEmployeeDegreeModal');
@@ -49,6 +51,9 @@ app.controller("employees_degrees", function ($scope, $http) {
           $scope.loadAll();
         } else {
           $scope.error = '##word.error##';
+          if (response.data.error.like('*Must Enter Code*')) {
+            $scope.error = "##word.must_enter_code##"
+          }
         }
       },
       function (err) {
@@ -166,6 +171,29 @@ app.controller("employees_degrees", function ($scope, $http) {
     )
   };
 
+  $scope.getNumberingAuto = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/numbering/get_automatic",
+      data: {
+        screen: "employees_degrees"
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.disabledCode = response.data.isAuto;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
   $scope.searchAll = function () {
     $scope.loadAll($scope.search);
 
@@ -176,4 +204,5 @@ app.controller("employees_degrees", function ($scope, $http) {
 
   $scope.loadAll();
   $scope.loadEmployees_degrees();
+  $scope.getNumberingAuto();
 });

@@ -1349,7 +1349,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
       url: "/api/in_out_names/all",
       data: {
         where: { in: true },
-        select: { id: 1, name: 1 }
+        select: { id: 1, name: 1,code:1 }
       }
     }).then(
       function (response) {
@@ -1371,7 +1371,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
       url: "/api/in_out_names/all",
       data: {
         where: { out: true },
-        select: { id: 1, name: 1 }
+        select: { id: 1, name: 1,code:1 }
       }
     }).then(
       function (response) {

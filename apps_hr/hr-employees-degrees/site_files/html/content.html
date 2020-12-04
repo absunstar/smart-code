@@ -2,9 +2,12 @@
     <div class="col9">
         <form class="form">
             <div class="row">
-
-                <i-control v="r" ng-model="employee_degree.name" class="col5" type="text" label="##word.employees_degrees_name##"></i-control>
-                <i-control v="r" ng-model="employee_degree.salary" class="col2" type="number" label="##word.employees_degrees_salary##"></i-control>
+                <i-control ng-disabled="disabledCode" class="col2" label="##word.code##" ng-model="employee_degree.code">
+                </i-control>
+                <i-control v="r" ng-model="employee_degree.name" class="col5" type="text"
+                    label="##word.employees_degrees_name##"></i-control>
+                <i-control v="r" ng-model="employee_degree.salary" class="col2" type="number"
+                    label="##word.employees_degrees_salary##"></i-control>
             </div>
             <div class="row">
                 <i-textarea class="col7" ng-model="employee_degree.notes" label="##word.notes##"></i-textarea>

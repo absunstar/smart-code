@@ -9,7 +9,7 @@ app.controller("administrative_business", function ($scope, $http, $timeout) {
     $scope.administrative_business = {
       image_url: '/images/administrative_business.png',
       active: true,
-      date : new Date()
+      date: new Date()
     };
     site.showModal('#administrativeBusinessAddModal');
   };
@@ -208,7 +208,7 @@ app.controller("administrative_business", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/request_types/all",
       data: {
-        select: { id: 1, name: 1, description: 1 }
+        select: { id: 1, name: 1, description: 1, code: 1 }
       }
     }).then(
       function (response) {

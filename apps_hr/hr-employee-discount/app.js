@@ -32,6 +32,23 @@ module.exports = function init(site) {
     employee_discount_doc.company = site.get_company(req)
     employee_discount_doc.branch = site.get_branch(req)
 
+    let num_obj = {
+      company: site.get_company(req),
+      screen: 'employees_discount',
+      date: new Date(employee_discount_doc.date)
+    };
+
+    let cb = site.getNumbering(num_obj);
+    if (!employee_discount_doc.code && !cb.auto) {
+      response.error = 'Must Enter Code';
+      res.json(response);
+      return;
+
+    } else if (cb.auto) {
+      employee_discount_doc.code = cb.code;
+    }
+
+
     $employee_discount.add(employee_discount_doc, (err, doc) => {
 
       if (!err) {

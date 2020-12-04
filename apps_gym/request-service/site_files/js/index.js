@@ -272,7 +272,7 @@ app.controller("request_service", function ($scope, $http, $timeout) {
       ip = $scope.defaultSettings.printer_program.printer_path.ip_device || '127.0.0.1';
       port = $scope.defaultSettings.printer_program.printer_path.Port_device || '60080';
     };
-    
+
     $scope.account_invoices.total_remain = $scope.account_invoices.net_value - ($scope.account_invoices.paid_up * $scope.account_invoices.currency.ex_rate);
 
 
@@ -667,7 +667,7 @@ app.controller("request_service", function ($scope, $http, $timeout) {
         url: "/api/service/all",
         data: {
           where: { name: $scope.search_service },
-          select: { id: 1, name: 1, services_price: 1, selectedServicesList: 1, attend_count: 1, available_period: 1, complex_service: 1 }
+          select: { id: 1, name: 1, code: 1, services_price: 1, selectedServicesList: 1, attend_count: 1, available_period: 1, complex_service: 1 }
         }
       }).then(
         function (response) {
@@ -691,7 +691,7 @@ app.controller("request_service", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/hall/all",
       data: {
-        select: { id: 1, name: 1, capaneighborhood: 1 }
+        select: { id: 1, name: 1, capaneighborhood: 1,code:1 }
       }
     }).then(
       function (response) {
@@ -735,6 +735,7 @@ app.controller("request_service", function ($scope, $http, $timeout) {
       url: "/api/discount_types/all",
       data: {
         select: {
+          code: 1,
           id: 1,
           name: 1,
           value: 1,

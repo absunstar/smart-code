@@ -6,13 +6,18 @@
                 <div class="col9">
 
                     <div class="row">
+                        <i-control ng-disabled="disabledCode" class="col2" label="##word.code##" ng-model="currency.code">
+                        </i-control>
+
                         <i-control help-id="currency_name" v="r" class="col4" label="##word.currency_name##"
                             ng-model="currency.name"></i-control>
 
                         <i-control help-id="ex_rate" class="col2" label="##word.ex_rate##" type="number"
                             ng-model="currency.ex_rate"></i-control>
-                        <div class="col3"></div>
-                        <i-checkbox help-id="currency_active" class="col3" label="##word.active##"
+
+                        <div class="col2"></div>
+
+                        <i-checkbox help-id="currency_active" class="col2" label="##word.active##"
                             ng-model="currency.active"></i-checkbox>
 
                     </div>

@@ -1,7 +1,12 @@
 <div class="row" fixed>
     <div class="col7">
         <br>
-        <table class="table bold">
+        <table class="table hover bold">
+            <tr>
+                <td class="title">##word.code##</td>
+                <td class="center userPrint blue">{{discount_type.code}}</td>
+            </tr>
+
             <tr>
                 <td class="title">##word.discount_types_name##</td>
                 <td class="center">{{discount_type.name}}</td>
@@ -12,6 +17,13 @@
                 <td class="center red" ng-show="discount_type.type === '%'">{{discount_type.value}} % </td>
                 <td class="center red" ng-show="discount_type.type !== '%'">{{discount_type.value}} $</td>
             </tr>
+
+            <tr>
+                <td class="title">##word.status##</td>
+                <td ng-show="discount_type.active == true" class="center green"> ##word.active## </td>
+                <td ng-show="discount_type.active == false" class="center red"> ##word.not_active## </td>
+            </tr>
+
         </table>
     </div>
     <div class="col2"></div>

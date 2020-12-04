@@ -61,19 +61,19 @@ module.exports = function init(site) {
       let screens_list = []
 
       if (site.features.like('*erp*')) {
-        screens_list = moduleListCore.filter((i) => i.feature !== 'restaurant' && i.feature !== 'gym' && i.feature !== 'academy' && i.feature !== 'medic' );
+        screens_list = moduleListCore.filter((i) => i.feature !== 'restaurant' && i.feature !== 'gym' && i.feature !== 'academy' && i.feature !== 'medic');
 
       } else if (site.features.like('*restaurant*')) {
-        screens_list = moduleListCore.filter((i) => i.feature !== 'gym' && i.feature !== 'erp' && i.feature !== 'academy' && i.feature !== 'medic' );
+        screens_list = moduleListCore.filter((i) => i.feature !== 'gym' && i.feature !== 'erp' && i.feature !== 'academy' && i.feature !== 'medic');
 
       } else if (site.features.like('*pos*')) {
-        screens_list = moduleListCore.filter((i) => i.feature !== 'gym' && i.feature !== 'erp' && i.feature !== 'restaurant' && i.feature !== 'academy' && i.feature !== 'medic' );
+        screens_list = moduleListCore.filter((i) => i.feature !== 'gym' && i.feature !== 'erp' && i.feature !== 'restaurant' && i.feature !== 'academy' && i.feature !== 'medic');
 
       } else if (site.features.like('*gym*')) {
-        screens_list = moduleListCore.filter((i) => i.feature !== 'pos' && i.feature !== 'erp' && i.feature !== 'restaurant' && i.feature !== 'academy');
+        screens_list = moduleListCore.filter((i) => i.feature !== 'order' && i.feature !== 'erp' && i.feature !== 'restaurant' && i.feature !== 'academy');
 
       } else if (site.features.like('*academy*')) {
-        screens_list = moduleListCore.filter((i) => i.feature !== 'erp' && i.feature !== 'restaurant' && i.feature !== 'gym');
+        screens_list = moduleListCore.filter((i) => i.feature !== 'order' && i.feature !== 'erp' && i.feature !== 'restaurant' && i.feature !== 'gym');
 
       }
 

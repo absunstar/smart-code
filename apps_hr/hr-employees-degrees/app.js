@@ -35,7 +35,21 @@ module.exports = function init(site) {
 
     employees_degrees_doc.company = site.get_company(req)
     employees_degrees_doc.branch = site.get_branch(req)
+    let num_obj = {
+      company: site.get_company(req),
+      screen: 'employees_degrees',
+      date: new Date()
+    };
 
+    let cb = site.getNumbering(num_obj);
+    if (!employees_degrees_doc.code && !cb.auto) {
+      response.error = 'Must Enter Code';
+      res.json(response);
+      return;
+
+    } else if (cb.auto) {
+      employees_degrees_doc.code = cb.code;
+    }
     $employees_degrees.add(employees_degrees_doc, (err, doc) => {
       if (!err) {
         response.done = true

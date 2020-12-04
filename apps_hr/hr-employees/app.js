@@ -124,6 +124,23 @@ module.exports = function init(site) {
         user.company = employee_doc.company
         user.branch = employee_doc.branch
 
+        let num_obj = {
+          company: site.get_company(req),
+          screen: 'employees',
+          date: new Date()
+        };
+
+        let cb = site.getNumbering(num_obj);
+        if (!employee_doc.code && !cb.auto) {
+          response.error = 'Must Enter Code';
+          res.json(response);
+          return;
+
+        } else if (cb.auto) {
+          employee_doc.code = cb.code;
+        }
+
+        
         $employee_list.add(employee_doc, (err, doc) => {
           if (!err) {
             response.done = true

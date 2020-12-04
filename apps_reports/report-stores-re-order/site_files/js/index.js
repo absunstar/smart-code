@@ -35,9 +35,9 @@ app.controller("report_stores_re_order", function ($scope, $http, $timeout) {
     $scope.error = '';
     if ($scope.busy) return;
     $scope.busy = true;
-    
+
     let InvoiceDate = new Date();
-    
+
     let ip = '127.0.0.1';
     let port = '60080';
 
@@ -236,7 +236,7 @@ app.controller("report_stores_re_order", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/stores/all",
       data: {
-        select: { id: 1, name: 1, type: 1 },
+        select: { id: 1, name: 1, type: 1, code: 1 },
         branchTo: branch
       }
 

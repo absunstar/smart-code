@@ -4,13 +4,15 @@
         <form class="form">
 
             <div class="row">
-
-                <i-control class="col2" ng-model="facility_code.code" type="text" label="##word.facilities_codes_code##"></i-control>
-                <i-control class="col5" ng-model="facility_code.name" type="text" label="##word.facilities_codes_name##"></i-control>
+                <i-control ng-disabled="disabledCode" class="col2" label="##word.code##"
+                    ng-model="facility_code.code"></i-control>
+                <i-control class="col5" ng-model="facility_code.name" type="text"
+                    label="##word.facilities_codes_name##"></i-control>
             </div>
             <div class="row">
-                <i-control class="col5" ng-model="facility_code.owner" type="text" label="##word.facilities_codes_owner##"></i-control>
-                
+                <i-control class="col5" ng-model="facility_code.owner" type="text"
+                    label="##word.facilities_codes_owner##"></i-control>
+
             </div>
 
         </form>

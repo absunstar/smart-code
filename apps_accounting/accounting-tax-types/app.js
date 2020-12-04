@@ -63,6 +63,21 @@ module.exports = function init(site) {
     tax_types_doc.add_user_info = site.security.getUserFinger({$req : req , $res : res})
 
 
+    let num_obj = {
+      company: site.get_company(req),
+      screen: 'taxes_type',
+      date: new Date()
+    };
+
+    let cb = site.getNumbering(num_obj);
+    if (!tax_types_doc.code && !cb.auto) {
+      response.error = 'Must Enter Code';
+      res.json(response);
+      return;
+
+    } else if (cb.auto) {
+      tax_types_doc.code = cb.code;
+    }
 
     $tax_types.add(tax_types_doc, (err, _id) => {
       if (!err) {
@@ -158,6 +173,9 @@ module.exports = function init(site) {
 
     $tax_types.findMany({
       select: req.body.select || {},
+      sort: {
+        id: -1
+      },
       where: where
     }, (err, docs) => {
       if (!err) {

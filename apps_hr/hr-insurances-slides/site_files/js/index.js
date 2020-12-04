@@ -3,14 +3,14 @@ app.controller("insurances_slides", function ($scope, $http) {
 
   $scope.insurance_slide = {};
 
-  
+
   $scope.loadinsurances_slides = function () {
     $scope.busy = true;
     $http({
       method: "POST",
       url: "/api/insurances_slides/all",
       data: {
-        select : {id:1 , name : 1}
+        select: { id: 1, name: 1 ,code:1}
       }
     }).then(
       function (response) {
@@ -23,16 +23,17 @@ app.controller("insurances_slides", function ($scope, $http) {
         $scope.busy = false;
         $scope.error = err;
       }
-      )
+    )
   };
 
-  $scope.loadAll = function (where , limit) {
+  $scope.loadAll = function (where, limit) {
     $scope.busy = true;
     $http({
       method: "POST",
       url: "/api/insurances_slides/all",
-      data: {where : where,
-      limit : limit ||10000000
+      data: {
+        where: where,
+        limit: limit || 10000000
       }
     }).then(
       function (response) {
@@ -45,14 +46,14 @@ app.controller("insurances_slides", function ($scope, $http) {
         $scope.busy = false;
         $scope.error = err;
       }
-      )
+    )
   };
 
   $scope.searchAll = function () {
     let where = {};
-    
-    
-   
+
+
+
     if ($scope.search.name) {
       where['name'] = parseInt($scope.search.name);
     }
@@ -60,12 +61,12 @@ app.controller("insurances_slides", function ($scope, $http) {
     if ($scope.search.value) {
       where['value'] = ($scope.search.value);
     }
-    
+
     if ($scope.search.details) {
       where['details'] = ($scope.search.details);
     }
-    
-    $scope.loadAll(where , $scope.search.limit);
+
+    $scope.loadAll(where, $scope.search.limit);
   };
 
 
@@ -88,12 +89,15 @@ app.controller("insurances_slides", function ($scope, $http) {
           $scope.loadAll();
         } else {
           $scope.error = '##word.error##';
+          if (response.data.error.like('*Must Enter Code*')) {
+            $scope.error = "##word.must_enter_code##"
+          }
         }
       },
       function (err) {
         console.log(err);
       }
-      )
+    )
   };
 
   $scope.edit = function (insurance_slide) {
@@ -121,7 +125,7 @@ app.controller("insurances_slides", function ($scope, $http) {
       function (err) {
         console.log(err);
       }
-      )
+    )
   };
 
   $scope.remove = function (insurance_slide) {
@@ -148,7 +152,7 @@ app.controller("insurances_slides", function ($scope, $http) {
       function (err) {
         console.log(err);
       }
-      )
+    )
   };
   $scope.details = function (insurance_slide) {
     $scope.view(insurance_slide);
@@ -174,8 +178,33 @@ app.controller("insurances_slides", function ($scope, $http) {
       function (err) {
         console.log(err);
       }
-      )
+    )
   };
-  $scope.loadAll();    
+
+  $scope.getNumberingAuto = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/numbering/get_automatic",
+      data: {
+        screen: "insurance_slides"
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.disabledCode = response.data.isAuto;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.loadAll();
   $scope.loadinsurances_slides();
+  $scope.getNumberingAuto();
 });

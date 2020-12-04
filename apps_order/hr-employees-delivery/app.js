@@ -119,6 +119,23 @@ module.exports = function init(site) {
           id: delivery_employee_doc.id
         }
 
+        let num_obj = {
+          company: site.get_company(req),
+          screen: 'delivery_employees',
+          date: new Date()
+        };
+
+        let cb = site.getNumbering(num_obj);
+        if (!delivery_employee_doc.code && !cb.auto) {
+          response.error = 'Must Enter Code';
+          res.json(response);
+          return;
+
+        } else if (cb.auto) {
+          delivery_employee_doc.code = cb.code;
+        }
+
+
         $delivery_employee_list.add(delivery_employee_doc, (err, doc) => {
           if (!err) {
             response.done = true

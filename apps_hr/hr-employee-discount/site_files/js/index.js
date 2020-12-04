@@ -146,6 +146,9 @@ app.controller("employee_discount", function ($scope, $http) {
           $scope.loadAll();
         } else {
           $scope.error = '##word.error##';
+          if (response.data.error.like('*Must Enter Code*')) {
+            $scope.error = "##word.must_enter_code##"
+          }
         }
       },
       function (err) {
@@ -248,24 +251,35 @@ app.controller("employee_discount", function ($scope, $http) {
     )
   };
 
-  $scope.loadEmployees = function () {
+  $scope.getEmployeeList = function (ev) {
+    $scope.error = '';
     $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/employees/all",
-      data: {}
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          $scope.employeeList = response.data.list;
+    if (ev.which === 13) {
+      $http({
+        method: "POST",
+        url: "/api/employees/all",
+        data: {
+          search: $scope.search_employee,
+
+          /*  select: {
+            id: 1,
+            name_ar: 1,
+            name_en: 1,
+          } */
         }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
+      }).then(
+        function (response) {
+          $scope.busy = false;
+          if (response.data.done && response.data.list.length > 0) {
+            $scope.employeeList = response.data.list;
+          }
+        },
+        function (err) {
+          $scope.busy = false;
+          $scope.error = err;
+        }
+      )
+    };
   };
 
   $scope.get_open_shift = function (callback) {
@@ -336,9 +350,31 @@ app.controller("employee_discount", function ($scope, $http) {
     )
   };
 
+  $scope.getNumberingAuto = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/numbering/get_automatic",
+      data: {
+        screen: "employees_discount"
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.disabledCode = response.data.isAuto;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
 
   $scope.loadSafes();
   $scope.loadCurrencies();
-  $scope.loadEmployees();
+  $scope.getNumberingAuto();
   $scope.loadAll({ date: new Date() });
 });

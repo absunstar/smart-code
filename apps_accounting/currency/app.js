@@ -71,6 +71,23 @@ module.exports = function init(site) {
         response.error = 'You have exceeded the maximum number of extensions'
         res.json(response)
       } else {
+
+        let num_obj = {
+          company: site.get_company(req),
+          screen: 'currencies',
+          date: new Date()
+        };
+
+        let cb = site.getNumbering(num_obj);
+        if (!currency_doc.code && !cb.auto) {
+          response.error = 'Must Enter Code';
+          res.json(response);
+          return;
+
+        } else if (cb.auto) {
+          currency_doc.code = cb.code;
+        }
+
         $currency.add(currency_doc, (err, doc) => {
           if (!err) {
             response.done = true

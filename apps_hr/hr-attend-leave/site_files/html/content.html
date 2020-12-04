@@ -5,8 +5,16 @@
             <div class="row">
                 <div class="col9">
                     <div class="row">
+                        <i-control ng-disabled="disabledCode" class="col2" label="##word.code##"
+                            ng-model="attend_leave.code"></i-control>
+
                         <i-control class="col3 r_indigo" disabled label="##word.shift##" ng-model="shift.code">
                         </i-control>
+
+                        <div class="col5"></div>
+
+                        <i-checkbox help-id="attend_leave_active" class="col2" label="##word.active##"
+                            ng-model="attend_leave.active"></i-checkbox>
                     </div>
 
                     <div class="row">
@@ -16,9 +24,7 @@
                             ng-model="attend_leave.employee" label="##word.leave_name##" items="employeeList">
                         </i-list>
 
-                        <div class="col3"></div>
-                        <i-checkbox help-id="attend_leave_active" class="col2" label="##word.active##"
-                            ng-model="attend_leave.active"></i-checkbox>
+
                     </div>
                     <br>
                     <br>

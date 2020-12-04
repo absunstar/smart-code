@@ -33,6 +33,9 @@ app.controller("currency", function ($scope, $http, $timeout) {
           $scope.getCurrencyList();
         } else {
           $scope.error = response.data.error;
+          if (response.data.error.like('*Must Enter Code*')) {
+            $scope.error = "##word.must_enter_code##"
+          }
         }
       },
       function (err) {
@@ -164,9 +167,30 @@ app.controller("currency", function ($scope, $http, $timeout) {
         $scope.busy = false;
         $scope.error = err;
       }
-
     )
+  };
 
+  $scope.getNumberingAuto = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/numbering/get_automatic",
+      data: {
+        screen: "currencies"
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.disabledCode = response.data.isAuto;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
   };
 
   $scope.displaySearchModal = function () {
@@ -183,5 +207,5 @@ app.controller("currency", function ($scope, $http, $timeout) {
   };
 
   $scope.getCurrencyList();
-
+  $scope.getNumberingAuto();
 });

@@ -4,11 +4,14 @@
             <legend> ##word.accounting_guide_budget_informations## </legend>
             <div class="col9">
                 <div class="row">
-                    <i-control class="col2" label="##word.accounting_guide_budget_code##"
-                        ng-model="accounting_guide_budget.code"></i-control>
-                    <i-control class="col5" v="r ll3" label="##word.accounting_guide_budget_name##" ng-model="accounting_guide_budget.name"></i-control>
+                    <i-control ng-disabled="disabledCode" class="col2" label="##word.code##"
+                        ng-model="accounting_guide_budget.code">
+                    </i-control>
+                    <i-control class="col5" v="r ll2" label="##word.accounting_guide_budget_name##"
+                        ng-model="accounting_guide_budget.name"></i-control>
                     <div class="col3"></div>
-                    <i-checkbox class="col2" label="##word.active##" ng-model="accounting_guide_budget.active"></i-checkbox>
+                    <i-checkbox class="col2" label="##word.active##" ng-model="accounting_guide_budget.active">
+                    </i-checkbox>
                 </div>
                 <br>
                 <br>
@@ -53,13 +56,15 @@
                     <div class="row">
                         <div class="col4"></div>
                         <i-control ng-show="accounting_guide_budget.type == 'result'" class="col3"
-                            label="##word.accounting_guide_budget_resulting##" ng-model="accounting_guide_budget.resulting"></i-control>
+                            label="##word.accounting_guide_budget_resulting##"
+                            ng-model="accounting_guide_budget.resulting"></i-control>
 
                     </div>
                 </div>
 
                 <div class="row">
-                    <i-checkbox class="col4" label="##word.accounting_guide_budget_delete_count##" ng-model="accounting_guide_budget.count">
+                    <i-checkbox class="col4" label="##word.accounting_guide_budget_delete_count##"
+                        ng-model="accounting_guide_budget.count">
                     </i-checkbox>
                 </div>
 

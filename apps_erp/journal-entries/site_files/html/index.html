@@ -41,16 +41,18 @@
                 <table class="table loaded center hover bold" id="t1">
                     <tr>
                         <th class="not-print"> ##word.logo## </th>
+                        <th> ##word.code## </th>
                         <th> ##word.journal_entries_name## </th>
                         <th> ##word.types## </th>
-
                         <th class="not-print"> ##word.actions## </th>
                     </tr>
+
                     <tr ng-repeat="c in list | orderBy : '-id'">
                         <td class="not-print">
-                            <img class="logo" ng-src="{{c.image_url}}">
+                            <i-image view class="logo" ng-model="c.image_url"></i-image>
                         </td>
 
+                        <td class="userPrint blue"> {{c.code}} </td>
                         <td> {{c.name}} </td>
 
                         <td>
@@ -66,6 +68,7 @@
                             <i-button type="delete" x-permissions="journal_entries_delete || journal_entries_manage" label="##word.delete##" ng-click="displayDeleteJournalEntries(c)"></i-button>
                         </td>
                     </tr>
+
                 </table>
 
                 <div class="row">

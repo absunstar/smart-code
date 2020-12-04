@@ -41,6 +41,9 @@ app.controller("attend_leave", function ($scope, $http, $timeout, $interval) {
           $scope.getAttendLeaveList();
         } else {
           $scope.error = response.data.error;
+          if (response.data.error.like('*Must Enter Code*')) {
+            $scope.error = "##word.must_enter_code##"
+          }
         }
       },
       function (err) {
@@ -250,7 +253,7 @@ app.controller("attend_leave", function ($scope, $http, $timeout, $interval) {
 
 
 
-$scope.absence = function () {
+  $scope.absence = function () {
     $scope.attend_leave.attend_date = new Date();
     $scope.attend_leave.attend = {
       hour: new Date().getHours(),
@@ -331,6 +334,29 @@ $scope.absence = function () {
     )
   };
 
+  $scope.getNumberingAuto = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/numbering/get_automatic",
+      data: {
+        screen: "attend_leave"
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.disabledCode = response.data.isAuto;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
   $scope.searchAll = function () {
     $scope.getAttendLeaveList($scope.search);
     site.hideModal('#attendLeaveSearchModal');
@@ -339,8 +365,9 @@ $scope.absence = function () {
 
   $interval(() => {
     if ($scope.auto_load_attendance) {
-      $scope.getAttendLeaveList();
+      $scope.getAttendLeaveList({ attend_date: new Date() });
     };
   }, 1000 * 3);
 
+  $scope.getNumberingAuto();
 });

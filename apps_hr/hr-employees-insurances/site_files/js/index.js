@@ -1,7 +1,7 @@
 app.controller("employees_insurances", function ($scope, $http) {
   $scope._search = {};
 
-  function toFloat(num){
+  function toFloat(num) {
     num = num || 0;
     num = num.toString().trim();
     return site.toNumber(num);
@@ -9,48 +9,48 @@ app.controller("employees_insurances", function ($scope, $http) {
 
   $scope.calc = function () {
     setTimeout(() => {
-       $scope.employee_insurance.total =  
-    toFloat($scope.employee_insurance.insurance_discount) +
-    
-     toFloat($scope.employee_insurance.salary_discount);
+      $scope.employee_insurance.total =
+        toFloat($scope.employee_insurance.insurance_discount) +
+
+        toFloat($scope.employee_insurance.salary_discount);
     }, 200);
-   
+
   },
 
 
-  $scope.calc_variable_fixed = function () {
-    setTimeout(() => {
-       $scope.employee_insurance.total_fixed_variable =  
-    toFloat($scope.employee_insurance.employee.salary) +
-    
-     toFloat($scope.employee_insurance.variable_salary);
-    }, 200);
-   
-  },
+    $scope.calc_variable_fixed = function () {
+      setTimeout(() => {
+        $scope.employee_insurance.total_fixed_variable =
+          toFloat($scope.employee_insurance.employee.salary) +
 
-  
+          toFloat($scope.employee_insurance.variable_salary);
+      }, 200);
 
-  $scope.loadEmployees = function () {
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/employees/all",
-      data: {}
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          $scope.employees = response.data.list;
+    },
+
+
+
+    $scope.loadEmployees = function () {
+      $scope.busy = true;
+      $http({
+        method: "POST",
+        url: "/api/employees/all",
+        data: {}
+      }).then(
+        function (response) {
+          $scope.busy = false;
+          if (response.data.done) {
+            $scope.employees = response.data.list;
+          }
+        },
+        function (err) {
+          $scope.busy = false;
+          $scope.error = err;
         }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
       )
-  };
+    };
 
-  
+
 
   $scope.loadInsurances_slides = function () {
     $scope.busy = true;
@@ -58,7 +58,7 @@ app.controller("employees_insurances", function ($scope, $http) {
       method: "POST",
       url: "/api/insurances_slides/all",
       data: {
-        select: { id: 1, name: 1, value: 1 }
+        select: { id: 1, name: 1, value: 1, code: 1 }
       }
     }).then(
       function (response) {
@@ -71,7 +71,7 @@ app.controller("employees_insurances", function ($scope, $http) {
         $scope.busy = false;
         $scope.error = err;
       }
-      )
+    )
   };
 
   $scope.loadFacilites_Codes = function () {
@@ -80,7 +80,7 @@ app.controller("employees_insurances", function ($scope, $http) {
       method: "POST",
       url: "/api/facilities_codes/all",
       data: {
-        select: { id: 1, name: 1 }
+        select: { id: 1, name: 1, code: 1 }
       }
     }).then(
       function (response) {
@@ -93,17 +93,18 @@ app.controller("employees_insurances", function ($scope, $http) {
         $scope.busy = false;
         $scope.error = err;
       }
-      )
+    )
   };
 
 
-  $scope.loadAll = function (where , limit) {
+  $scope.loadAll = function (where, limit) {
     $scope.busy = true;
     $http({
       method: "POST",
       url: "/api/employees_insurances/all",
-      data: {where : where,
-      limit : limit ||10000000
+      data: {
+        where: where,
+        limit: limit || 10000000
       }
 
     }).then(
@@ -117,18 +118,18 @@ app.controller("employees_insurances", function ($scope, $http) {
         $scope.busy = false;
         $scope.error = err;
       }
-      )
+    )
   };
 
   $scope.newEmployee_Insurance = function () {
     $scope.error = '';
-    $scope.employee_insurance = { image_url: '/images/employee_insurance.png'  , increase : .07 , date: new Date()};
+    $scope.employee_insurance = { image_url: '/images/employee_insurance.png', increase: .07, date: new Date() };
     site.showModal('#addEmployeeInsuranceModal');
   };
-  
+
   $scope.add = function () {
 
-    
+
     let v = site.validated('#addEmployeeInsuranceModal');
 
     if (!v.ok) {
@@ -150,12 +151,15 @@ app.controller("employees_insurances", function ($scope, $http) {
           $scope.loadAll();
         } else {
           $scope.error = '##word.error##';
+          if (response.data.error.like('*Must Enter Code*')) {
+            $scope.error = "##word.must_enter_code##"
+          }
         }
       },
       function (err) {
         console.log(err);
       }
-      )
+    )
   };
 
   $scope.edit = function (employee_insurance) {
@@ -184,7 +188,7 @@ app.controller("employees_insurances", function ($scope, $http) {
       function (err) {
         console.log(err);
       }
-      )
+    )
   };
 
   $scope.remove = function (employee_insurance) {
@@ -213,13 +217,13 @@ app.controller("employees_insurances", function ($scope, $http) {
       function (err) {
         console.log(err);
       }
-      )
+    )
   };
 
   $scope.searchAll = function () {
     $scope.error = '';
     let where = {};
-    
+
     if ($scope.search.employee && $scope.search.employee.id) {
       where['employee.id'] = $scope.search.employee.id;
     }
@@ -232,7 +236,7 @@ app.controller("employees_insurances", function ($scope, $http) {
       where['insurance_slide.id'] = $scope.search.insurance_slide.id;
     }
 
-    
+
     if ($scope.search.fixed_salary) {
       where['fixed_salary'] = ($scope.search.fixed_salary);
     }
@@ -253,8 +257,8 @@ app.controller("employees_insurances", function ($scope, $http) {
       where['description'] = ($scope.search.description);
     }
 
-    
-    $scope.loadAll(where , $scope.search.limit);
+
+    $scope.loadAll(where, $scope.search.limit);
   };
 
   $scope.details = function (employee_insurance) {
@@ -281,10 +285,35 @@ app.controller("employees_insurances", function ($scope, $http) {
       function (err) {
         console.log(err);
       }
-      )
+    )
   };
+
+  $scope.getNumberingAuto = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/numbering/get_automatic",
+      data: {
+        screen: "employees_insurance"
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.disabledCode = response.data.isAuto;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
   $scope.loadAll();
   $scope.loadEmployees();
   $scope.loadInsurances_slides();
+  $scope.getNumberingAuto();
   $scope.loadFacilites_Codes();
 });

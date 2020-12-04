@@ -1154,6 +1154,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
       url: "/api/tax_types/all",
       data: {
         select: {
+          code: 1,
           id: 1,
           name: 1,
           value: 1
@@ -1180,6 +1181,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
       url: "/api/discount_types/all",
       data: {
         select: {
+          code : 1,
           id: 1,
           name: 1,
           value: 1,

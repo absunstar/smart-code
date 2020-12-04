@@ -1,6 +1,6 @@
 module.exports = function init(site) {
   const $accounting_guide_income_list = site.connectCollection("accounting_guide_income_list")
-  
+
   $accounting_guide_income_list.deleteDuplicate({
     code: 1,
     'company.id': 1
@@ -8,7 +8,7 @@ module.exports = function init(site) {
     $accounting_guide_income_list.createUnique({
       code: 1,
       'company.id': 1
-    }, (err, result) => {})
+    }, (err, result) => { })
   })
 
   site.get({
@@ -42,18 +42,22 @@ module.exports = function init(site) {
       $res: res
     })
     accounting_guide_income_list_doc.company = site.get_company(req)
-   
-    // let code = site.get_new_code(req,2, 17)
 
-    // if (!code) {
-    //   if (!accounting_guide_income_list_doc.code) {
-    //     response.error = 'Please write Inventory code';
-    //     res.json(response)
-    //     return
-    //   }
-    // } else {
-    //   accounting_guide_income_list_doc.code = (code).toString()
-    // }
+    let num_obj = {
+      company: site.get_company(req),
+      screen: 'guide_income_list',
+      date: new Date()
+    };
+
+    let cb = site.getNumbering(num_obj);
+    if (!accounting_guide_income_list_doc.code && !cb.auto) {
+      response.error = 'Must Enter Code';
+      res.json(response);
+      return;
+
+    } else if (cb.auto) {
+      accounting_guide_income_list_doc.code = cb.code;
+    }
 
     $accounting_guide_income_list.add(accounting_guide_income_list_doc, (err, doc) => {
       if (!err) {
@@ -90,7 +94,7 @@ module.exports = function init(site) {
         set: accounting_guide_income_list_doc,
         $req: req,
         $res: res
-      },(err , result) => {
+      }, (err, result) => {
         if (!err) {
           response.done = true
           response.doc = result.doc
@@ -152,7 +156,7 @@ module.exports = function init(site) {
       }, (err, result) => {
         if (!err) {
           response.done = true
-          response.doc=result.doc
+          response.doc = result.doc
         } else {
           response.error = err.message
         }
@@ -175,9 +179,9 @@ module.exports = function init(site) {
       return
     }
 
-    
+
     let where = req.data.where || {}
-    
+
     if (where['name']) {
       where['name'] = new RegExp(where['name'], 'i')
     }
@@ -185,9 +189,9 @@ module.exports = function init(site) {
     if (where['code']) {
       where['code'] = new RegExp(where['code'], 'i')
     }
-    
-    
-    
+
+
+
     // if (where['active'] !== 'all') {
     //   where['active'] = true
     // } else {

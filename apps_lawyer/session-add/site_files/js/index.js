@@ -215,7 +215,7 @@ app.controller("session_add", function ($scope, $http, $timeout) {
         data: {
           search: $scope.search_lawsuit,
           where: {},
-          select: { id: 1, number: 1, year: 1 }
+          select: { id: 1, number: 1, year: 1, code: 1 }
         }
       }).then(
         function (response) {
@@ -238,7 +238,7 @@ app.controller("session_add", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/reasons_sessions/all",
       data: {
-        select: { id: 1, name: 1, description: 1 }
+        select: { id: 1, name: 1, description: 1, code: 1 }
       }
     }).then(
       function (response) {

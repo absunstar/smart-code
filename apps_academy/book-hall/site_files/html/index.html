@@ -62,7 +62,7 @@
                     </tr>
                     <tr ng-repeat="c in list" class="bold pointer">
                         <td ng-click="displayDetailsBookHall(c)" class="not-print">
-                            <img class="logo" ng-src="{{c.image_url}}">
+                            <i-image view class="logo" ng-model="c.image_url"></i-image>
                         </td>
                         <td ng-click="displayDetailsBookHall(c)" class="brown"> 
                             <p class="brown"> {{c.date | date : 'dd- MM-yyyy'}}</p> 

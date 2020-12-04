@@ -2,6 +2,10 @@
     <div class="col7">
         <table class="table hover bold">
             <tr>
+                <td class="title">##word.code##</td>
+                <td class="center userPrint blue">{{safe.code}}</td>
+            </tr>
+            <tr>
                 <td class="title">##word.safes_name##</td>
                 <td class="center title">{{safe.name}}</td>
             </tr>
@@ -18,7 +22,7 @@
                 <td class="center">{{safe.employee.name}}</td>
             </tr>
 
-            <tr  ng-show="safe.type.id ==2">
+            <tr ng-show="safe.type.id ==2">
                 <td class="title">##word.commission##</td>
                 <td class="center red">{{safe.commission}} %</td>
             </tr>

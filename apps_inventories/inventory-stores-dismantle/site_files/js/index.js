@@ -767,7 +767,7 @@ app.controller("stores_dismantle", function ($scope, $http, $timeout) {
     $http({
       method: "POST",
       url: "/api/stores/all",
-      data: { select: { id: 1, name: 1, type: 1 } }
+      data: { select: { id: 1, name: 1, type: 1, code: 1 } }
     }).then(
       function (response) {
         $scope.busy = false;

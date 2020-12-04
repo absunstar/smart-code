@@ -2,8 +2,6 @@ module.exports = function init(site) {
 
   const $employees_insurances = site.connectCollection("hr_employees_insurances")
   
-  site.words.addList(__dirname + '/site_files/json/words.json')
-
   site.get({
     name: "employees_insurances",
     path: __dirname + "/site_files/html/index.html",
@@ -29,6 +27,23 @@ module.exports = function init(site) {
 
     employees_insurances_doc.company = site.get_company(req)
     employees_insurances_doc.branch = site.get_branch(req)
+
+    let num_obj = {
+      company: site.get_company(req),
+      screen: 'employees_insurance',
+      date: new Date()
+    };
+
+    let cb = site.getNumbering(num_obj);
+    if (!employees_insurances_doc.code && !cb.auto) {
+      response.error = 'Must Enter Code';
+      res.json(response);
+      return;
+
+    } else if (cb.auto) {
+      employees_insurances_doc.code = cb.code;
+    }
+
 
     $employees_insurances.add(employees_insurances_doc, (err, _id) => {
       if (!err) {

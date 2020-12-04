@@ -9,7 +9,7 @@ app.controller("office_lawyers", function ($scope, $http, $timeout) {
       image_url: '/images/office_lawyers.png',
       active: true
     };
-  
+
     site.showModal('#officeLawyersAddModal');
     document.querySelector('#officeLawyersAddModal .tab-link').click();
   };
@@ -75,7 +75,7 @@ app.controller("office_lawyers", function ($scope, $http, $timeout) {
         }
       }
     }
-    if ($scope.showOpeningBalance) 
+    if ($scope.showOpeningBalance)
       $scope.office_lawyers.balance = parseInt(num);
 
   };
@@ -237,7 +237,7 @@ app.controller("office_lawyers", function ($scope, $http, $timeout) {
         where: {
           active: true
         },
-        select: { id: 1, name: 1 }
+        select: { id: 1, name: 1, code: 1 }
       }
     }).then(
       function (response) {
@@ -265,7 +265,7 @@ app.controller("office_lawyers", function ($scope, $http, $timeout) {
           'gov.id': gov.id,
           active: true
         },
-        select: { id: 1, name: 1 }
+        select: { id: 1, name: 1, code: 1 }
       }
     }).then(
       function (response) {
@@ -307,7 +307,7 @@ app.controller("office_lawyers", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/maritals_status/all",
       data: {
-        select : {id:1 , name : 1}
+        select: { id: 1, name: 1, code: 1 }
       }
     }).then(
       function (response) {
@@ -329,7 +329,7 @@ app.controller("office_lawyers", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/militaries_status/all",
       data: {
-        select : {id:1 , name : 1}
+        select: { id: 1, name: 1, code: 1 }
       }
     }).then(
       function (response) {

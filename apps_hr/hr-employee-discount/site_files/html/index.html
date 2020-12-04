@@ -45,6 +45,7 @@
                     <tr>
                         <th class="not-print">##word.employee_discount_logo##</th>
                         <th>##word.employee_discount_date##</th>
+                        <th>##word.code##</th>
                         <th>##word.employee_discount_employees##</th>
                         <th>##word.employee_discount_value##</th>
                         <th>##word.currency##</th>
@@ -57,6 +58,11 @@
                         <td>
                             <p class="center brown"> {{c.date | date : 'dd - MM - yyyy'}} </p>
                         </td>
+
+                        <td>
+                            <p class="center userPrint blue"> {{c.code}} </p>
+                        </td>
+
                         <td>
                             <p class="center"> {{c.employee.name}} </p>
 

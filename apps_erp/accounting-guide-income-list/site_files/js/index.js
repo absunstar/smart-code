@@ -56,6 +56,8 @@ app.controller("accounting_guide_income_list", function ($scope, $http, $timeout
             $scope.error = "##word.enter_code_inventory##";
           } else if (response.data.error.like('*duplicate key*')) {
             $scope.error = "##word.accounting_banks_code_err##";
+          } else if (response.data.error.like('*Must Enter Code*')) {
+            $scope.error = "##word.must_enter_code##"
           }
         }
       },
@@ -212,10 +214,32 @@ app.controller("accounting_guide_income_list", function ($scope, $http, $timeout
     )
   };
 
+  $scope.getNumberingAuto = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/numbering/get_automatic",
+      data: {
+        screen: "guide_income_list"
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.disabledCode = response.data.isAuto;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
 
   $scope.searchAll = function () {
     $scope._search = {};
-    console.log($scope.search);
     $scope.getGuideIncomeListList($scope.search);
     site.hideModal('#guideIncomeListSearchModal');
     $scope.search = {}
@@ -223,5 +247,5 @@ app.controller("accounting_guide_income_list", function ($scope, $http, $timeout
  
 
   $scope.getGuideIncomeListList();
-
+  $scope.getNumberingAuto();
 });

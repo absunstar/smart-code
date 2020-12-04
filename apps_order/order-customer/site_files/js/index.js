@@ -183,7 +183,7 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
   };
 
   $scope.sendToKitchens = function (_order_customer) {
-    
+
     let ip = '127.0.0.1';
     let port = '60080';
 
@@ -937,6 +937,7 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
       url: "/api/tax_types/all",
       data: {
         select: {
+          code: 1,
           id: 1,
           name: 1,
           value: 1
@@ -963,6 +964,7 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
       url: "/api/discount_types/all",
       data: {
         select: {
+          code: 1,
           id: 1,
           name: 1,
           value: 1,
@@ -1057,7 +1059,7 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
         where: {
           active: true
         },
-        select: { id: 1, name: 1 }
+        select: { id: 1, name: 1, code: 1 }
       }
     }).then(
       function (response) {

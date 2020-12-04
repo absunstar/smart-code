@@ -82,7 +82,7 @@
 
                     <tr ng-repeat="c in list | orderBy : '-id'">
                         <td class="not-print">
-                            <img class="logo" ng-src="{{c.image_url}}">
+                            <i-image view class="logo" ng-model="c.image_url"></i-image>
                         </td>
                         <td class="green"> {{c.date_from | date : 'dd - MM - yyyy'}} </td>
                         <td class="red"> {{c.date_to | date : 'dd - MM - yyyy'}} </td>
