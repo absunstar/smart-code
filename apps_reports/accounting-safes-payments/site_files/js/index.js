@@ -114,7 +114,8 @@ app.controller("safes_payments", function ($scope, $http) {
             name: 1,
             commission: 1,
             currency: 1,
-            type: 1
+            type: 1,
+            code : 1
           },
           where: where
         }

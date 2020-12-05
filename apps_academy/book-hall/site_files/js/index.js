@@ -912,7 +912,8 @@ app.controller("book_hall", function ($scope, $http, $timeout) {
             name: 1,
             commission: 1,
             currency: 1,
-            type: 1
+            type: 1,
+            code : 1
           },
           where: where
         }
@@ -940,7 +941,8 @@ app.controller("book_hall", function ($scope, $http, $timeout) {
           id: 1,
           name: 1,
           minor_currency: 1,
-          ex_rate: 1
+          ex_rate: 1,
+          code : 1
         },
         where: {
           active: true

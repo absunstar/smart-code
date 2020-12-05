@@ -523,7 +523,8 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name: 1
+          name: 1,
+          code : 1
         }
       }
     }).then(
@@ -550,7 +551,8 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
         select: {
           id: 1,
           name: 1,
-          printer_path: 1
+          printer_path: 1,
+          code : 1
         }
       }
     }).then(
@@ -576,7 +578,8 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name: 1
+          name: 1,
+          code : 1
         }
       }
     }).then(
@@ -645,7 +648,8 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
         select: {
           id: 1,
           name: 1,
-          type: 1
+          type: 1,
+          code : 1
         }
       }
     }).then(

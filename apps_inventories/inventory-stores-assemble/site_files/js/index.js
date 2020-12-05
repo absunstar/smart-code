@@ -947,7 +947,8 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name: 1
+          name: 1,
+          code : 1
         }
       }
     }).then(

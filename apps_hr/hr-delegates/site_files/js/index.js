@@ -239,7 +239,8 @@ app.controller("delegate_list", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/maritals_status/all",
       data: {
-        select: { id: 1, name: 1 }
+        select: { id: 1, name: 1,
+          code : 1 }
       }
     }).then(
       function (response) {
@@ -261,7 +262,8 @@ app.controller("delegate_list", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/militaries_status/all",
       data: {
-        select: { id: 1, name: 1 }
+        select: { id: 1, name: 1,
+          code : 1 }
       }
     }).then(
       function (response) {
@@ -326,7 +328,8 @@ app.controller("delegate_list", function ($scope, $http, $timeout) {
         where: {
           active: true
         },
-        select: { id: 1, name: 1 }
+        select: { id: 1, name: 1,
+          code : 1 }
       }
     }).then(
       function (response) {

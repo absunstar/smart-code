@@ -8,9 +8,7 @@ app.controller("attend_subscribers", function ($scope, $http, $timeout, $interva
     $scope.get_open_shift((shift) => {
       if (shift) {
         $scope.attend_subscribers = {
-          image_url: '/images/attend_subscribers.png',
-          active: true,
-          date: new Date()
+          image_url: '/images/attend_subscribers.png'
         };
         site.showModal('#attendSubscribersAddModal');
       } else $scope.error = '##word.open_shift_not_found##';
@@ -39,6 +37,9 @@ app.controller("attend_subscribers", function ($scope, $http, $timeout, $interva
           $scope.getAttendSubscribersList();
         } else {
           $scope.error = response.data.error;
+          if (response.data.error.like('*Must Enter Code*')) {
+            $scope.error = "##word.must_enter_code##"
+          }
         }
       },
       function (err) {
@@ -290,6 +291,28 @@ app.controller("attend_subscribers", function ($scope, $http, $timeout, $interva
     )
   };
 
+  $scope.getNumberingAuto = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/numbering/get_automatic",
+      data: {
+        screen: "attend_subscribers"
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.disabledCode = response.data.isAuto;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
 
   $scope.searchAll = function () {
     $scope.getAttendSubscribersList($scope.search);
@@ -302,5 +325,5 @@ app.controller("attend_subscribers", function ($scope, $http, $timeout, $interva
       $scope.getAttendSubscribersList();
     };
   }, 1000 * 3);
-
+  $scope.getNumberingAuto();
 });

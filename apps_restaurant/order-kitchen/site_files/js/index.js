@@ -57,7 +57,8 @@ app.controller("order_kitchen", function ($scope, $http, $interval) {
         select: {
           id: 1,
           name: 1,
-          printer_path: 1
+          printer_path: 1,
+          code : 1
         }
       }
     }).then(

@@ -47,7 +47,7 @@ module.exports = function init(site) {
             let num_obj = {
               company: employeeCb.company,
               screen: 'attend_leave',
-              date: new Date(attend.date)
+              date: new Date()
             };
 
             let cb = site.getNumbering(num_obj);
@@ -123,7 +123,7 @@ module.exports = function init(site) {
     let num_obj = {
       company: site.get_company(req),
       screen: 'attend_leave',
-      date: new Date(attend_leave_doc.attend_date) || new Date()
+      date: new Date()
     };
 
     let cb = site.getNumbering(num_obj);

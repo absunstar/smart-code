@@ -193,7 +193,8 @@ app.controller("employees_salary_report", function ($scope, $http) {
           id: 1,
           name: 1,
           commission: 1,
-          type: 1
+          type: 1,
+          code : 1
         }
       }
     }).then(

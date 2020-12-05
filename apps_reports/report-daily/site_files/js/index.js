@@ -286,7 +286,8 @@ app.controller("report_daily", function ($scope, $http, $timeout) {
           id: 1,
           name: 1,
           minor_currency: 1,
-          ex_rate: 1
+          ex_rate: 1,
+          code : 1
         },
         where: {
           active: true

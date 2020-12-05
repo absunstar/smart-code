@@ -1863,7 +1863,8 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
         select: {
           id: 1,
           name: 1,
-          type: 1
+          type: 1,
+          code : 1
         }
       }
     }).then(
@@ -1888,7 +1889,8 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
           id: 1,
           name: 1,
           minor_currency: 1,
-          ex_rate: 1
+          ex_rate: 1,
+          code : 1
         },
         where: {
           active: true
@@ -1948,7 +1950,8 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
             name: 1,
             commission: 1,
             currency: 1,
-            type: 1
+            type: 1,
+            code : 1
           },
           where: where
         }
@@ -2018,7 +2021,8 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name: 1
+          name: 1,
+          code : 1
         }
       }
     }).then(
@@ -2042,10 +2046,10 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
       url: "/api/tax_types/all",
       data: {
         select: {
-          code: 1,
           id: 1,
           name: 1,
-          value: 1
+          value: 1,
+          code : 1
         }
       }
     }).then(

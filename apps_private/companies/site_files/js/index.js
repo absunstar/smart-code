@@ -192,7 +192,8 @@ app.controller("companies", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name: 1
+          name: 1,
+          code : 1
         }
       }
     }).then(
@@ -216,7 +217,8 @@ app.controller("companies", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name: 1
+          name: 1,
+          code : 1
         }
       }
     }).then(
@@ -268,7 +270,8 @@ app.controller("companies", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name: 1
+          name: 1,
+          code : 1
         },
         where: {
           'gov.id': gov.id
@@ -297,7 +300,8 @@ app.controller("companies", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name: 1
+          name: 1,
+          code : 1
         }
       }
     }).then(

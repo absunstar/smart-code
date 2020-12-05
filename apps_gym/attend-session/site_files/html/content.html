@@ -7,26 +7,29 @@
                     <div class="row">
 
                         <div class="row">
-                            <i-control ng-keydown="getCustomerList($event)" class="col3"
-                                ng-model="search_customer" label="##word.search##" type="text"></i-control>
+                            <i-control ng-disabled="disabledCode" class="col2" label="##word.code##"
+                                ng-model="attend_session.code"></i-control>
+
+                            <i-control ng-keydown="getCustomerList($event)" class="col2" ng-model="search_customer"
+                                label="##word.search##" type="text"></i-control>
+
                             <i-list ng-search="_search.$customer" class="col4" display="name_##session.lang##" v="r"
                                 ng-model="attend_session.customer" label="##word.customer##" items="customersList">
                             </i-list>
-
-                            <div class="col3"></div>
-                            <i-checkbox help-id="attend_session_active" class="col2" label="##word.active##"
-                                ng-model="attend_session.active"></i-checkbox>
+                          
                         </div>
 
                         <div class="row" ng-show="attend_session.customer.id">
                             <table class="table bold center hover">
                                 <tr>
                                     <td class="blue"> ##word.customer_name## </td>
-                                    <td colspan="7" class="center"> {{attend_session.customer.name_##session.lang##}}</td>
+                                    <td colspan="7" class="center"> {{attend_session.customer.name_##session.lang##}}
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td class="blue"> ##word.gender## </td>
-                                    <td colspan="2" class="center"> {{attend_session.customer.gender.##session.lang##}} </td>
+                                    <td colspan="2" class="center"> {{attend_session.customer.gender.##session.lang##}}
+                                    </td>
                                     <td class="blue"> ##word.child## </td>
                                     <td colspan="2" ng-show="attend_session.customer.child == true">
                                         <p class="green"> ##word.yes## </p>
@@ -98,11 +101,11 @@
                     <br>
 
                     <div class="row">
-                            <i-control ng-keydown="getService($event)" id="service" class="col3" ng-model="search_service"
+                        <i-control ng-keydown="getService($event)" id="service" class="col3" ng-model="search_service"
                             label="##word.search##" type="text"></i-control>
 
-                        <i-list ng-search="_search.$service" class="col4" v="r" display="name" space="-" display2="general_service" ng-model="attend_session.service"
-                            label="##word.service##"
+                        <i-list ng-search="_search.$service" class="col4" v="r" display="name" space="-"
+                            display2="general_service" ng-model="attend_session.service" label="##word.service##"
                             items="sessionList"></i-list>
 
                         <div class="col1"></div>
@@ -119,7 +122,7 @@
 
                     <br>
 
-                 <!--    <div class="row">
+                    <!--    <div class="row">
                         <i-button type="exit" class="col2" label="##word.leave_now##" ng-click="leaveNow(attend_session)"></i-button>
                         <i-date2 class="col3" ng-model="attend_session.leave_date"
                             label="##word.attend_session_leave##"></i-date2>

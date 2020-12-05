@@ -8,6 +8,11 @@
                     <table id="basicInformationTable" class="table hover bold">
 
                         <tr>
+                            <td class="title">##word.code##</td>
+                            <td class="center userPrint blue">{{attend_subscribers.code}}</td>
+                        </tr>
+
+                        <tr>
                             <td class="title">##word.subscribers_name##</td>
                             <td class="center">{{attend_subscribers.customer.name_##session.lang##}}</td>
                         </tr>
@@ -31,14 +36,6 @@
                             </td>
                         </tr>
 
-
-
-                        <tr>
-                            <td class="title">##word.status##</td>
-                            <td ng-show="attend_subscribers.active == true" class="green center"> ##word.active## </td>
-                            <td ng-show="attend_subscribers.active == false" class="red center"> ##word.not_active##
-                            </td>
-                        </tr>
                     </table>
                 </div>
                 <br>

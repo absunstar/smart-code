@@ -65,8 +65,8 @@
                         <th>##word.service##</th>
                         <th>##word.date_from_subscribe##</th>
                         <th>##word.expired_date##</th>
-                        <th>##word.paid_require##</th>
                         <th>##word.service_count##</th>
+                        <th>##word.paid_require##</th>
                         <th>##word.status##</th>
                         <th class="not-print">##word.actions##</th>
                     </tr>
@@ -74,7 +74,7 @@
                         <td ng-click="displayDetailsRequestService(c)" class="center not-print">
                             <i-image view class="logo" ng-model="c.image_url"></i-image>
                         </td>
-                        <td ng-click="displayDetailsRequestService(c)" class="center blue">{{c.code}}</td>
+                        <td ng-click="displayDetailsRequestService(c)" class="center userPrint blue">{{c.code}}</td>
                         <td class="center bold" ng-click="displayDetailsRequestService(c)">
                             <p>{{c.shift.name}}</p>
                             <p>{{c.shift.code}}</p>
@@ -92,8 +92,8 @@
                             {{c.date_to | date : 'yyyy - MM - dd'}}
                             <p class="center red"> {{c.time_to.minute}} : {{c.time_to.hour}}</p>
                         </td>
+                        <td ng-click="displayDetailsRequestService(c)" class="center blue">{{c.service_count}}</td>
                         <td ng-click="displayDetailsRequestService(c)" class="center green">{{c.paid_require}}</td>
-                        <td ng-click="displayDetailsRequestService(c)" class="center green">{{c.service_count}}</td>
                         <td ng-click="displayDetailsRequestService(c)" class="center">
                             <p ng-show="c.active ==true" class="green"> ##word.active## </p>
                             <p ng-show="c.active ==false" class="red"> ##word.not_active## </p>

@@ -207,6 +207,7 @@ app.controller("kitchen", function ($scope, $http, $timeout) {
           ip_device: 1,
           Port_device: 1,
           ip: 1,
+          code : 1
         }
       }
     }).then(

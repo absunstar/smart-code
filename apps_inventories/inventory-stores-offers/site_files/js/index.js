@@ -621,7 +621,8 @@ app.controller("stores_offer", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name: 1
+          name: 1,
+          code : 1
         }
       }
     }).then(

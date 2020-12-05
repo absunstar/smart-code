@@ -82,7 +82,6 @@ module.exports = function init(site) {
               $attend_subscribers.add({
                 image_url: '/images/attend_subscribers.png',
                 customer: customerCb,
-                active: true,
                 attend_date: new Date(attend.date),
                 attend: attend_time,
                 company: customerCb.company,
@@ -155,10 +154,6 @@ module.exports = function init(site) {
       $res: res
     })
 
-    if (typeof attend_subscribers_doc.active === 'undefined') {
-      attend_subscribers_doc.active = true
-    }
-
     attend_subscribers_doc.company = site.get_company(req)
     attend_subscribers_doc.branch = site.get_branch(req)
 
@@ -199,8 +194,25 @@ module.exports = function init(site) {
             }
           });
         });
+
         attend_subscribers_doc.service_list = request_services_list
-      
+
+        let num_obj = {
+          company: site.get_company(req),
+          screen: 'attend_subscribers',
+          date: new Date()
+        };
+
+        let cb = site.getNumbering(num_obj);
+        if (!attend_subscribers_doc.code && !cb.auto) {
+          response.error = 'Must Enter Code';
+          res.json(response);
+          return;
+
+        } else if (cb.auto) {
+          attend_subscribers_doc.code = cb.code;
+        }
+
 
         $attend_subscribers.add(attend_subscribers_doc, (err, doc) => {
           if (!err) {
@@ -319,7 +331,7 @@ module.exports = function init(site) {
     let response = {
       done: false
     }
-          
+
     if (!req.session.user) {
       response.error = 'Please Login First'
       res.json(response)
@@ -399,7 +411,7 @@ module.exports = function init(site) {
           _doc.service_list.forEach(_serviceList => {
             let gifTime = Math.abs(new Date() - new Date(_serviceList.date_to))
             _serviceList.ex_service = Math.ceil(gifTime / (1000 * 60 * 60 * 24))
-            
+
           });
         });
         response.list = docs

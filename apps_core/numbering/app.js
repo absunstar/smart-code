@@ -190,9 +190,9 @@ module.exports = function init(site) {
           }
 
           if (_sl.length_level) {
-            obj.code = addZero(_sl.last_value, _sl.length_level)
+            obj.code = (_sl.separator_symbol || '') + addZero(_sl.last_value, _sl.length_level)
 
-          } else obj.code = _sl.last_value.toString()
+          } else obj.code = (_sl.separator_symbol || '') + _sl.last_value.toString()
 
 
         } else if (_sl.type_numbering.id == 1) {

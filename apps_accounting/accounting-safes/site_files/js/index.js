@@ -247,7 +247,8 @@ app.controller("safes", function ($scope, $http) {
           id: 1,
           name: 1,
           minor_currency: 1,
-          ex_rate: 1
+          ex_rate: 1,
+          code : 1
         },
         where: {
           active: true

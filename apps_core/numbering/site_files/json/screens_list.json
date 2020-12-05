@@ -96,7 +96,7 @@
         "name": "return_sales_store",
         "en": "Returns Sales Store",
         "ar": "مرتجعات فواتير بيع"
-    },
+    }, 
     {
         "category": "inventory",
         "feature": "pos",

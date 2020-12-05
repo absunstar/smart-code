@@ -72,6 +72,7 @@
                                 <th>##word.beginning_numbering##</th>
                                 <th>##word.last_transaction_number##</th>
                                 <th>##word.length_level##</th>
+                                <th>##word.separator_symbol##</th>
                                 <th>##word.actions##</th>
                             </tr>
 
@@ -101,6 +102,12 @@
                                 <td>
                                     <i-control ng-model="screen0.length_level" ng-show="screen0.type_numbering.id ==3"
                                         type="number">
+                                    </i-control>
+                                </td>
+
+                                <td>
+                                    <i-control ng-model="screen0.separator_symbol"
+                                        ng-show="screen0.type_numbering.id ==3">
                                     </i-control>
                                 </td>
 
@@ -162,6 +169,7 @@
                                 <th>##word.beginning_numbering##</th>
                                 <th>##word.last_transaction_number##</th>
                                 <th>##word.length_level##</th>
+                                <th>##word.separator_symbol##</th>
                                 <th>##word.actions##</th>
                             </tr>
 
@@ -191,7 +199,11 @@
                                     <i-control ng-show="screen1.type_numbering.id ==3" ng-model="screen1.length_level"
                                         type="number"></i-control>
                                 </td>
-
+                                <td>
+                                    <i-control ng-model="screen1.separator_symbol"
+                                        ng-show="screen1.type_numbering.id ==3">
+                                    </i-control>
+                                </td>
                                 <td class="center">
 
                                     <i-button ng-show="screen1.type_numbering.id ==3" type="bg-green" fa="recycle"
@@ -247,6 +259,7 @@
                                 <th>##word.beginning_numbering##</th>
                                 <th>##word.last_transaction_number##</th>
                                 <th>##word.length_level##</th>
+                                <th>##word.separator_symbol##</th>
                                 <th>##word.actions##</th>
                             </tr>
 
@@ -277,6 +290,12 @@
                                 <td>
                                     <i-control ng-show="screen2.type_numbering.id ==3" ng-model="screen2.length_level"
                                         type="number">
+                                    </i-control>
+                                </td>
+
+                                <td>
+                                    <i-control ng-model="screen2.separator_symbol"
+                                        ng-show="screen2.type_numbering.id ==3">
                                     </i-control>
                                 </td>
 
@@ -336,6 +355,7 @@
                                 <th>##word.beginning_numbering##</th>
                                 <th>##word.last_transaction_number##</th>
                                 <th>##word.length_level##</th>
+                                <th>##word.separator_symbol##</th>
                                 <th>##word.actions##</th>
                             </tr>
 
@@ -366,6 +386,12 @@
                                 <td>
                                     <i-control ng-show="screen3.type_numbering.id ==3" ng-model="screen3.length_level"
                                         type="number">
+                                    </i-control>
+                                </td>
+                                
+                                <td>
+                                    <i-control ng-model="screen3.separator_symbol"
+                                        ng-show="screen3.type_numbering.id ==3">
                                     </i-control>
                                 </td>
 
@@ -425,6 +451,7 @@
                                 <th>##word.beginning_numbering##</th>
                                 <th>##word.last_transaction_number##</th>
                                 <th>##word.length_level##</th>
+                                <th>##word.separator_symbol##</th>
                                 <th>##word.actions##</th>
                             </tr>
 
@@ -455,6 +482,12 @@
                                 <td>
                                     <i-control ng-show="screen4.type_numbering.id ==3" ng-model="screen4.length_level"
                                         type="number">
+                                    </i-control>
+                                </td>
+
+                                <td>
+                                    <i-control ng-model="screen4.separator_symbol"
+                                        ng-show="screen4.type_numbering.id ==3">
                                     </i-control>
                                 </td>
 

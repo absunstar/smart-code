@@ -154,7 +154,8 @@ app.controller("employees_degrees", function ($scope, $http) {
         select: {
           id: 1,
           name: 1,
-          balance: 1
+          balance: 1,
+          code : 1
         }
       }
     }).then(

@@ -32,10 +32,24 @@ module.exports = function init(site) {
       $res: res
     })
 
-    if (typeof attend_session_doc.active === 'undefined') attend_session_doc.active = true
-
     attend_session_doc.company = site.get_company(req)
     attend_session_doc.branch = site.get_branch(req)
+
+    let num_obj = {
+      company: site.get_company(req),
+      screen: 'attend_session',
+      date: new Date()
+    };
+
+    let cb = site.getNumbering(num_obj);
+    if (!attend_session_doc.code && !cb.auto) {
+      response.error = 'Must Enter Code';
+      res.json(response);
+      return;
+
+    } else if (cb.auto) {
+      attend_session_doc.code = cb.code;
+    }
 
     $attend_session.add(attend_session_doc, (err, doc) => {
       if (!err && doc) {

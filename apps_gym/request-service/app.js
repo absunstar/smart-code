@@ -2,30 +2,30 @@ module.exports = function init(site) {
   const $request_service = site.connectCollection("request_service")
 
 
-  function addZero(code, number) {
-    let c = number - code.toString().length
-    for (let i = 0; i < c; i++) {
-      code = '0' + code.toString()
-    }
-    return code
-  }
+  // function addZero(code, number) {
+  //   let c = number - code.toString().length
+  //   for (let i = 0; i < c; i++) {
+  //     code = '0' + code.toString()
+  //   }
+  //   return code
+  // }
 
-  $request_service.newCode = function () {
+  // $request_service.newCode = function () {
 
-    let y = new Date().getFullYear().toString().substr(2, 2)
-    let m = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L'][new Date().getMonth()].toString()
-    let d = new Date().getDate()
-    let lastCode = site.storage('ticket_last_code') || 0
-    let lastMonth = site.storage('ticket_last_month') || m
-    if (lastMonth != m) {
-      lastMonth = m
-      lastCode = 0
-    }
-    lastCode++
-    site.storage('ticket_last_code', lastCode)
-    site.storage('ticket_last_month', lastMonth)
-    return 'R-S' + y + lastMonth + addZero(d, 2) + addZero(lastCode, 4)
-  }
+  //   let y = new Date().getFullYear().toString().substr(2, 2)
+  //   let m = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L'][new Date().getMonth()].toString()
+  //   let d = new Date().getDate()
+  //   let lastCode = site.storage('ticket_last_code') || 0
+  //   let lastMonth = site.storage('ticket_last_month') || m
+  //   if (lastMonth != m) {
+  //     lastMonth = m
+  //     lastCode = 0
+  //   }
+  //   lastCode++
+  //   site.storage('ticket_last_code', lastCode)
+  //   site.storage('ticket_last_month', lastMonth)
+  //   return 'R-S' + y + lastMonth + addZero(d, 2) + addZero(lastCode, 4)
+  // }
 
   site.on('[attend_session][attend_request][+]', obj => {
     $request_service.findOne({
@@ -89,6 +89,7 @@ module.exports = function init(site) {
     let response = {
       done: false
     }
+
     if (!req.session.user) {
       response.error = 'Please Login First'
       res.json(response)
@@ -107,9 +108,26 @@ module.exports = function init(site) {
     if (typeof request_service_doc.active === 'undefined') {
       request_service_doc.active = true
     }
-    request_service_doc.code = $request_service.newCode()
+
     request_service_doc.company = site.get_company(req)
     request_service_doc.branch = site.get_branch(req)
+
+    let num_obj = {
+      company: site.get_company(req),
+      screen: 'request_service',
+      date: new Date()
+    };
+
+    let cb = site.getNumbering(num_obj);
+    if (!request_service_doc.code && !cb.auto) {
+      response.error = 'Must Enter Code';
+      res.json(response);
+      return;
+
+    } else if (cb.auto) {
+      request_service_doc.code = cb.code;
+    }
+    
 
     $request_service.add(request_service_doc, (err, doc) => {
       if (!err) {

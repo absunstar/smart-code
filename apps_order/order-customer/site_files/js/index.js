@@ -768,7 +768,8 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
         select: {
           id: 1,
           name: 1,
-          image_url: 1
+          image_url: 1,
+          code : 1
         }
       }
     }).then(
@@ -796,7 +797,8 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
           id: 1,
           name: 1,
           minor_currency: 1,
-          ex_rate: 1
+          ex_rate: 1,
+          code : 1
         },
         where: {
           active: true
@@ -856,7 +858,8 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
             name: 1,
             commission: 1,
             currency: 1,
-            type: 1
+            type: 1,
+            code : 1
           },
           where: where
         }
@@ -887,6 +890,7 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
           ip_device: 1,
           Port_device: 1,
           ip: 1,
+          code : 1
         }
       }
     }).then(
@@ -913,7 +917,8 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
         select: {
           id: 1,
           name: 1,
-          printer_path: 1
+          printer_path: 1,
+          code : 1
         }
       }
     }).then(
@@ -1087,7 +1092,8 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
         },
         select: {
           id: 1,
-          name: 1
+          name: 1,
+          code : 1
         }
       }
     }).then(

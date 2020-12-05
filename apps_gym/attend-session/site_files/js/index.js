@@ -42,6 +42,9 @@ app.controller("attend_session", function ($scope, $http, $timeout) {
           $scope.getAttendSessionList();
         } else {
           $scope.error = response.data.error;
+          if (response.data.error.like('*Must Enter Code*')) {
+            $scope.error = "##word.must_enter_code##"
+          }
         }
       },
       function (err) {
@@ -270,7 +273,7 @@ app.controller("attend_session", function ($scope, $http, $timeout) {
       url: "/api/hall/all",
       data: {
         select: {
-          id: 1, capaneighborhood: 1, active: 1, name: 1
+          id: 1, capaneighborhood: 1, active: 1, name: 1 , code : 1
         }
       }
     }).then(
@@ -349,6 +352,29 @@ app.controller("attend_session", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.getNumberingAuto = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/numbering/get_automatic",
+      data: {
+        screen: "attend_session"
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.disabledCode = response.data.isAuto;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
   $scope.searchAll = function () {
     $scope.getAttendSessionList($scope.search);
     site.hideModal('#attendSessionSearchModal');
@@ -358,5 +384,6 @@ app.controller("attend_session", function ($scope, $http, $timeout) {
 
   $scope.getAttendSessionList();
   $scope.getHallList();
+  $scope.getNumberingAuto();
   $scope.getDefaultSettings();
 });
