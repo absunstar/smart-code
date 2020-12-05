@@ -5,13 +5,14 @@
             <div class="row">
                 <div class="col9">
                     <div class="row">
+                        <i-control ng-disabled="disabledCode" class="col2" label="##word.code##" ng-model="itinerary.code">
+                        </i-control>
+
                         <i-date2 class="col4" ng-model="itinerary.date" label="##word.date##"></i-date2>
 
                         <i-list class="col4" ng-model="itinerary.delegate" ng-search="_search.$items_group_search" v="r"
                             label="##word.delegate##" items="delegatesList">
                         </i-list>
-
-                        <div class="col2"></div>
 
                         <i-checkbox help-id="itineraries_active" class="col2" label="##word.active##"
                             ng-model="itinerary.active"></i-checkbox>

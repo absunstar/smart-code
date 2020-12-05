@@ -50,6 +50,7 @@
                 <table x-permissions="login" class="table hover bold loaded" id="t1">
                     <tr>
                         <th class="not-print">##word.logo##</th>
+                        <th>##word.code##</th>
                         <th>##word.date##</th>
                         <th>##word.delegate##</th>
                         <th>##word.status##</th>
@@ -59,6 +60,7 @@
                         <td class="center not-print">
                             <i-image view class="logo" ng-model="c.image_url"></i-image>
                         </td>
+                        <td class="center userPrint blue">{{c.code}}</td>
                         <td class="text-center brown">{{c.date | date : 'yyyy - MM - dd'}}</td>
                         <td class="center title">{{c.delegate.name}}</td>
                         <td class="center">

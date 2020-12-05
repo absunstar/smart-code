@@ -79,9 +79,17 @@ module.exports = function init(site) {
                 });
               });
 
+              let num_obj = {
+                company: customerCb.company,
+                screen: 'attend_leave',
+                date: new Date()
+              };
+              let cb = site.getNumbering(num_obj);
+
               $attend_subscribers.add({
                 image_url: '/images/attend_subscribers.png',
                 customer: customerCb,
+                code: cb.code,
                 attend_date: new Date(attend.date),
                 attend: attend_time,
                 company: customerCb.company,

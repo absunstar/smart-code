@@ -42,6 +42,9 @@ app.controller("itineraries", function ($scope, $http, $timeout) {
           $scope.getItineraryList();
         } else {
           $scope.error = response.data.error;
+          if (response.data.error.like('*Must Enter Code*')) {
+            $scope.error = "##word.must_enter_code##"
+          }
         }
       },
       function (err) {
@@ -705,6 +708,29 @@ app.controller("itineraries", function ($scope, $http, $timeout) {
     site.hideModal('#missionTransferViewModal');
   };
 
+  $scope.getNumberingAuto = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/numbering/get_automatic",
+      data: {
+        screen: "itineraries"
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.disabledCode = response.data.isAuto;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
   $scope.searchAll = function () {
 
     $scope.getItineraryList($scope.search);
@@ -717,5 +743,6 @@ app.controller("itineraries", function ($scope, $http, $timeout) {
   $scope.loadItinerariesTypes();
   $scope.getPaymentMethodList();
   $scope.loadCurrencies();
+  $scope.getNumberingAuto();
   $scope.getItineraryList({ date: new Date() });
 });

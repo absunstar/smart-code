@@ -11,31 +11,12 @@ module.exports = function init(site) {
     path: __dirname + '/site_files/json/types.json'
   })
 
-
   site.get({
     name: "itineraries",
     path: __dirname + "/site_files/html/index.html",
     parser: "html",
     compress: true
   })
-
-
-  site.on('[company][created]', doc => {
-    $itineraries.add({
-      name: "محكمة إفتراضية",
-      image_url: '/images/itinerary.png',
-      company: {
-        id: doc.id,
-        name_ar: doc.name_ar
-      },
-      branch: {
-        code: doc.branch_list[0].code,
-        name_ar: doc.branch_list[0].name_ar
-      },
-      active: true
-    }, (err, doc) => { })
-  })
-
 
   site.post("/api/itineraries/add", (req, res) => {
     let response = {
@@ -63,6 +44,21 @@ module.exports = function init(site) {
     itineraries_doc.company = site.get_company(req)
     itineraries_doc.branch = site.get_branch(req)
 
+    let num_obj = {
+      company: site.get_company(req),
+      screen: 'itineraries',
+      date: new Date(itineraries_doc.date)
+    };
+
+    let cb = site.getNumbering(num_obj);
+    if (!itineraries_doc.code && !cb.auto) {
+      response.error = 'Must Enter Code';
+      res.json(response);
+      return;
+
+    } else if (cb.auto) {
+      itineraries_doc.code = cb.code;
+    }
 
     $itineraries.add(itineraries_doc, (err, doc) => {
       if (!err) {
