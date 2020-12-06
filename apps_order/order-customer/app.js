@@ -130,33 +130,6 @@ module.exports = function init(site) {
   // order_done_handle(null)
 
 
-
-
-  function addZero(code, number) {
-    let c = number - code.toString().length
-    for (let i = 0; i < c; i++) {
-      code = '0' + code.toString()
-    }
-    return code
-  };
-
-  $order_customer.newCode = function () {
-
-    let y = new Date().getFullYear().toString().substr(2, 2)
-    let m = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L'][new Date().getMonth()].toString()
-    let d = new Date().getDate()
-    let lastCode = site.storage('order_last_code') || 0
-    let lastMonth = site.storage('order_last_month') || m
-    if (lastMonth != m) {
-      lastMonth = m
-      lastCode = 0
-    }
-    lastCode++
-    site.storage('order_last_code', lastCode)
-    site.storage('order_last_month', lastMonth)
-    return 'O-C' + y + lastMonth + addZero(d, 2) + addZero(lastCode, 4)
-  };
-
   site.get({
     name: 'images',
     path: __dirname + '/site_files/images/'
@@ -201,7 +174,6 @@ module.exports = function init(site) {
 
     order_customer_doc.company = site.get_company(req)
     order_customer_doc.branch = site.get_branch(req)
-    order_customer_doc.code = $order_customer.newCode()
     order_customer_doc.image_url = '/images/order_customer.png'
 
     if (!order_customer_doc.status)
@@ -222,8 +194,26 @@ module.exports = function init(site) {
       order_customer_doc.total_book_list += book_list.total
     });
 
+    let num_obj = {
+      company: site.get_company(req),
+      screen: 'o_customer_screen',
+      date: new Date(order_customer_doc.date)
+    };
+
+    let cb = site.getNumbering(num_obj);
+    if (!order_customer_doc.code && !cb.auto) {
+      response.error = 'Must Enter Code';
+      res.json(response);
+      return;
+
+    } else if (cb.auto) {
+      order_customer_doc.code = cb.code;
+    }
+
     if (order_customer_doc.status.id == 2)
     site.call('[order_customer][order_invoice][+]', Object.assign({}, order_customer_doc))
+
+
 
     $order_customer.add(order_customer_doc, (err, doc) => {
       if (!err) {

@@ -22,21 +22,27 @@
                         <div class="row">
 
 
-                            <table class="table hover">
+                            <table class="table hover bold">
 
                                 <tr>
-                                    <td class="title bold">##word.stores_items_name##</td>
-                                    <td class="center bold">{{category_item.name}}</td>
+                                    <td class="title">##word.code##</td>
+                                    <td class="center userPrint blue">{{category_item.code}}</td>
                                 </tr>
 
                                 <tr>
-                                    <td class="title bold">##word.item_group##</td>
-                                    <td class="center bold">{{category_item.item_group.name}}</td>
+                                    <td class="title">##word.stores_items_name##</td>
+                                    <td class="center">{{category_item.name}}</td>
+                                </tr>
+
+
+                                <tr>
+                                    <td class="title">##word.item_group##</td>
+                                    <td class="center">{{category_item.item_group.name}}</td>
                                 </tr>
 
                                 <tr ng-hide="category_item.service_item">
-                                    <td class="title bold">##word.main_unit##</td>
-                                    <td class="center bold">{{category_item.main_unit.name}}</td>
+                                    <td class="title">##word.main_unit##</td>
+                                    <td class="center">{{category_item.main_unit.name}}</td>
                                 </tr>
 
                                 <tr>

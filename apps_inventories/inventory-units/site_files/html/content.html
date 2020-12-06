@@ -6,12 +6,13 @@
                 <div class="col9">
                     <div class="row">
 
+                        <i-control ng-disabled="disabledCode" class="col2" label="##word.code##" ng-model="unit.code">
+                        </i-control>
+
                         <i-control help-id="unit_name" v="r ll2" class="col5" label="##word.unit_name##"
                             ng-model="unit.name"></i-control>
 
-                   
-
-                        <div class="col5"></div>
+                        <div class="col3"></div>
                         <i-checkbox help-id="units_active" class="col2" label="##word.active##" ng-model="unit.active">
                         </i-checkbox>
                     </div>

@@ -233,7 +233,7 @@
     },
     {
         "feature": "order",
-        "title_ar": "شاشة إدارة الطلبات",
+        "title_ar": "إدارة شاشة الطلبات",
         "title_en": "Orders management screen",
         "image_url": "/images/order_management.png",
         "description_ar": "هي شاشة مسئولة عن إدارة الطلبات من شاشة الطلبات و يمكن فتح الطلبات المغلقة أو إنشاء فواتير حسابات أو تغيير عامل التوصيل",

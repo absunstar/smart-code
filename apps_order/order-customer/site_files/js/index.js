@@ -74,12 +74,26 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
       const v = site.validated('#OrderCustomerAddModal');
       if (!v.ok) {
         $scope.error = v.messages[0].ar;
+        $scope.order_customer.posting = false;
+
+        $scope.order_customer.status = {
+          id: 1,
+          en: "Opened",
+          ar: "مفتوحة"
+        }
         return;
       };
 
       if (new Date($scope.order_customer.date) > new Date()) {
 
         $scope.error = "##word.date_exceed##";
+        $scope.order_customer.posting = false;
+
+        $scope.order_customer.status = {
+          id: 1,
+          en: "Opened",
+          ar: "مفتوحة"
+        }
         return;
 
       };
@@ -94,6 +108,13 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
 
         if (max_discount) {
           $scope.error = "##word.err_maximum_discount##";
+          $scope.order_customer.posting = false;
+
+          $scope.order_customer.status = {
+            id: 1,
+            en: "Opened",
+            ar: "مفتوحة"
+          }
           return;
         }
       }
@@ -114,41 +135,18 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
             $scope.sendToKitchens(Object.assign({}, response.data.doc));
             $scope.order_customer = response.data.doc;
 
-            /*  if ($scope.order_customer.status.id == 2 && $scope.order_customer.posting) {
- 
-               let store_out = {
-                 image_url: '/images/store_out.png',
-                 supply_date: new Date(),
-                 date: $scope.order_customer.date,
-                 order_id: $scope.order_customer.id,
-                 customer: $scope.order_customer.customer,
-                 shift: $scope.order_customer.shift,
-                 net_value: $scope.order_customer.net_value,
-                 paid_up: $scope.order_customer.net_value,
-                 payment_method: $scope.order_customer.payment_method,
-                 store: $scope.order_customer.store,
-                 order_code: $scope.order_customer.code,
-                 items: $scope.order_customer.book_list,
-                 total_discount: $scope.order_customer.total_discount,
-                 total_tax: $scope.order_customer.total_tax,
-                 total_value: $scope.order_customer.total_value,
-                 net_value: $scope.order_customer.net_value,
-                 type: {
-                   id: 4,
-                   en: "Orders Screen",
-                   ar: "شاشة الطلبات"
-                 },
-                 active: true
-               };
- 
-               if ($scope.defaultSettings.general_Settings && !$scope.defaultSettings.general_Settings.work_posting)
-                 store_out.posting = true;
- 
-               $scope.addStoresOut(store_out)
-             }
-  */
           } else {
             $scope.error = response.data.error;
+            if (response.data.error.like('*Must Enter Code*')) {
+              $scope.error = "##word.must_enter_code##";
+              $scope.order_customer.posting = false;
+
+              $scope.order_customer.status = {
+                id: 1,
+                en: "Opened",
+                ar: "مفتوحة"
+              }
+            }
           }
         },
         function (err) {
@@ -769,7 +767,7 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
           id: 1,
           name: 1,
           image_url: 1,
-          code : 1
+          code: 1
         }
       }
     }).then(
@@ -798,7 +796,7 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
           name: 1,
           minor_currency: 1,
           ex_rate: 1,
-          code : 1
+          code: 1
         },
         where: {
           active: true
@@ -859,7 +857,7 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
             commission: 1,
             currency: 1,
             type: 1,
-            code : 1
+            code: 1
           },
           where: where
         }
@@ -890,7 +888,7 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
           ip_device: 1,
           Port_device: 1,
           ip: 1,
-          code : 1
+          code: 1
         }
       }
     }).then(
@@ -918,7 +916,7 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
           id: 1,
           name: 1,
           printer_path: 1,
-          code : 1
+          code: 1
         }
       }
     }).then(
@@ -1093,7 +1091,7 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
         select: {
           id: 1,
           name: 1,
-          code : 1
+          code: 1
         }
       }
     }).then(
@@ -1586,6 +1584,29 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.getNumberingAuto = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/numbering/get_automatic",
+      data: {
+        screen: "o_customer_screen"
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.disabledCode = response.data.isAuto;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
   $scope.getDefaultSettingsList();
   $scope.newOrderCustomer();
   $scope.getOrderCustomerList();
@@ -1598,7 +1619,7 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
   $scope.loadCurrencies();
   $scope.getPrintersPath();
   $scope.getPaymentMethodList();
-
+  $scope.getNumberingAuto();
   if (site.feature('restaurant'))
     $scope.loadKitchenList();
 });

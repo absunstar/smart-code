@@ -628,6 +628,23 @@ module.exports = function init(site) {
         res.json(response)
       } else {
 
+        let num_obj = {
+          company: site.get_company(req),
+          screen: 'category_items',
+          date: new Date()
+        };
+
+        let cb = site.getNumbering(num_obj);
+        if (!stores_items_doc.code && !cb.auto) {
+          response.error = 'Must Enter Code';
+          res.json(response);
+          return;
+
+        } else if (cb.auto) {
+          stores_items_doc.code = cb.code;
+        }
+
+
         $stores_items.add(stores_items_doc, (err, doc) => {
           if (!err) {
             response.done = true

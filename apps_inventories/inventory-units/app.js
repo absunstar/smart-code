@@ -68,6 +68,25 @@ module.exports = function init(site) {
         response.error = 'You have exceeded the maximum number of extensions'
         res.json(response)
       } else {
+
+
+        let num_obj = {
+          company: site.get_company(req),
+          screen: 'units',
+          date: new Date()
+        };
+
+        let cb = site.getNumbering(num_obj);
+        if (!units_doc.code && !cb.auto) {
+          response.error = 'Must Enter Code';
+          res.json(response);
+          return;
+
+        } else if (cb.auto) {
+          units_doc.code = cb.code;
+        }
+
+
         $units.add(units_doc, (err, doc) => {
           if (!err) {
             response.done = true

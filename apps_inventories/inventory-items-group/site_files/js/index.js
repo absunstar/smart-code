@@ -35,6 +35,9 @@ app.controller("items_group", function ($scope, $http, $timeout) {
           $scope.getItemsGroupList();
         } else {
           $scope.error = response.data.error;
+          if (response.data.error.like('*Must Enter Code*')) {
+            $scope.error = "##word.must_enter_code##"
+          }
         }
       },
       function (err) {
@@ -166,9 +169,30 @@ app.controller("items_group", function ($scope, $http, $timeout) {
         $scope.busy = false;
         $scope.error = err;
       }
-
     )
+  };
 
+  $scope.getNumberingAuto = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/numbering/get_automatic",
+      data: {
+        screen: "items_groups"
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.disabledCode = response.data.isAuto;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
   };
 
   $scope.displaySearchModal = function () {
@@ -185,5 +209,5 @@ app.controller("items_group", function ($scope, $http, $timeout) {
   };
 
   $scope.getItemsGroupList();
-
+  $scope.getNumberingAuto();
 });

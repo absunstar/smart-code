@@ -77,6 +77,7 @@
 
                         <tr>
                             <th class="not-print">##word.stores_items_logo##</th>
+                            <th>##word.code##</th>
                             <th>##word.stores_items_name##</th>
                             <th>##word.item_group##</th>
                             <th>##word.stores_items_all_details##</th>
@@ -86,6 +87,10 @@
                         <tr ng-repeat="c in list">
                             <td class="not-print center">
                                 <i-image view class="logo" ng-model="c.image_url"></i-image>
+                            </td>
+
+                            <td>
+                                <p class="bold text-center userPrint blue"> <br> {{c.code}} </p>
                             </td>
 
                             <td>

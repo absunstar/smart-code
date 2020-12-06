@@ -213,18 +213,46 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
       const v = site.validated('#OrderInvoiceAddModal');
       if (!v.ok) {
         $scope.error = v.messages[0].ar;
+        $scope.order_invoice.posting = false;
+
+        $scope.order_invoice.status = {
+          id: 1,
+          en: "Opened",
+          ar: "مفتوحة"
+        };
         return;
       };
       if (!$scope.order_invoice.transaction_type || ($scope.order_invoice.transaction_type && !$scope.order_invoice.transaction_type.id)) {
         $scope.error = "##word.err_transaction_type##";
+        $scope.order_invoice.posting = false;
+
+        $scope.order_invoice.status = {
+          id: 1,
+          en: "Opened",
+          ar: "مفتوحة"
+        };
         return;
       };
       if (!$scope.order_invoice.customer && $scope.order_invoice.transaction_type == 2) {
         $scope.error = "##word.err_customer##";
+        $scope.order_invoice.posting = false;
+
+        $scope.order_invoice.status = {
+          id: 1,
+          en: "Opened",
+          ar: "مفتوحة"
+        };
         return;
       };
       if (!$scope.order_invoice.table && $scope.order_invoice.transaction_type == 1) {
         $scope.error = "##word.err_table##";
+        $scope.order_invoice.posting = false;
+
+        $scope.order_invoice.status = {
+          id: 1,
+          en: "Opened",
+          ar: "مفتوحة"
+        };
         return;
       };
 
@@ -238,6 +266,13 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
 
         if (max_discount) {
           $scope.error = "##word.err_maximum_discount##";
+          $scope.order_invoice.posting = false;
+
+          $scope.order_invoice.status = {
+            id: 1,
+            en: "Opened",
+            ar: "مفتوحة"
+          };
           return;
         }
       }
@@ -245,6 +280,13 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
       if (new Date($scope.order_invoice.date) > new Date()) {
 
         $scope.error = "##word.date_exceed##";
+        $scope.order_invoice.posting = false;
+
+        $scope.order_invoice.status = {
+          id: 1,
+          en: "Opened",
+          ar: "مفتوحة"
+        };
         return;
 
       };
@@ -317,11 +359,22 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
                 if ($scope.defaultSettings.general_Settings && !$scope.defaultSettings.general_Settings.work_posting)
                   store_out.posting = true;
 
-                $scope.addStoresOut(store_out)
+                $scope.addStoresOut(store_out);
               }
 
             } else {
               $scope.error = response.data.error;
+              if (response.data.error.like('*Must Enter Code*')) {
+                $scope.error = "##word.must_enter_code##";
+                $scope.order_invoice.posting = false;
+
+                $scope.order_invoice.status = {
+                  id: 1,
+                  en: "Opened",
+                  ar: "مفتوحة"
+                };
+              }
+
             }
           },
           function (err) {
@@ -986,7 +1039,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
           id: 1,
           name: 1,
           image_url: 1,
-          code : 1
+          code: 1
         }
       }
     }).then(
@@ -1015,7 +1068,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
           name: 1,
           minor_currency: 1,
           ex_rate: 1,
-          code : 1
+          code: 1
         },
         where: {
           active: true
@@ -1076,7 +1129,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
             commission: 1,
             currency: 1,
             type: 1,
-            code : 1
+            code: 1
           },
           where: where
         }
@@ -1107,7 +1160,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
           ip_device: 1,
           Port_device: 1,
           ip: 1,
-          code : 1
+          code: 1
         }
       }
     }).then(
@@ -1135,7 +1188,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
           id: 1,
           name: 1,
           printer_path: 1,
-          code : 1
+          code: 1
         }
       }
     }).then(
@@ -1163,7 +1216,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
           id: 1,
           name: 1,
           value: 1,
-          code : 1
+          code: 1
         }
       }
     }).then(
@@ -1187,12 +1240,12 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
       url: "/api/discount_types/all",
       data: {
         select: {
-          code : 1,
+          code: 1,
           id: 1,
           name: 1,
           value: 1,
           type: 1,
-          code : 1
+          code: 1
         }
       }
     }).then(
@@ -1295,7 +1348,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         select: {
           id: 1,
           name: 1,
-          code : 1
+          code: 1
         }
       }
     }).then(
@@ -1358,7 +1411,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         select: {
           id: 1,
           name: 1,
-          code : 1
+          code: 1
         }
       }
     }).then(
@@ -1388,7 +1441,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         select: {
           id: 1,
           name: 1,
-          code : 1
+          code: 1
         }
       }
     }).then(
@@ -2074,6 +2127,29 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.getNumberingAuto = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/numbering/get_automatic",
+      data: {
+        screen: "o_screen_store"
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.disabledCode = response.data.isAuto;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
   $scope.getOrderInvoiceList();
   $scope.loadItemsGroups();
   $scope.loadDiscountTypes();
@@ -2087,7 +2163,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
   $scope.getPaymentMethodList();
   $scope.getCustomerGroupList();
   $scope.loadCurrencies();
-
+  $scope.getNumberingAuto();
   if (site.feature('restaurant')) {
     $scope.loadKitchenList();
     $scope.getTablesList();

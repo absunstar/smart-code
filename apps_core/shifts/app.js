@@ -18,7 +18,6 @@ module.exports = function init(site) {
     $shifts.add({
       name: "شيفت إفتراضي",
       image_url: '/images/shift.png',
-      code: $shifts.newCode(),
       company: {
         id: doc.id,
         name_ar: doc.name_ar

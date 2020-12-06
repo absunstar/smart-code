@@ -465,6 +465,11 @@
         "ar": "شاشة الطلبات المخزنية"
     },
     {
+        "name": "orders_screen_permission",
+        "en": "Orders Screen Permission",
+        "ar": "أذونات شاشة الطلبات"
+    },
+    {
         "name": "damage_store",
         "en": "Damage Store",
         "ar": "إتلاف / إهلاك مخزني"

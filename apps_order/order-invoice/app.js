@@ -150,33 +150,6 @@ module.exports = function init(site) {
   order_done_handle(null)
 
 
-
-
-  function addZero(code, number) {
-    let c = number - code.toString().length
-    for (let i = 0; i < c; i++) {
-      code = '0' + code.toString()
-    }
-    return code
-  };
-
-  $order_invoice.newCode = function () {
-
-    let y = new Date().getFullYear().toString().substr(2, 2)
-    let m = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L'][new Date().getMonth()].toString()
-    let d = new Date().getDate()
-    let lastCode = site.storage('order_last_code') || 0
-    let lastMonth = site.storage('order_last_month') || m
-    if (lastMonth != m) {
-      lastMonth = m
-      lastCode = 0
-    }
-    lastCode++
-    site.storage('order_last_code', lastCode)
-    site.storage('order_last_month', lastMonth)
-    return 'order-' + y + lastMonth + addZero(d, 2) + addZero(lastCode, 4)
-  };
-
   site.get({
     name: 'images',
     path: __dirname + '/site_files/images/'
@@ -226,7 +199,6 @@ module.exports = function init(site) {
 
     order_invoice_doc.company = site.get_company(req)
     order_invoice_doc.branch = site.get_branch(req)
-    order_invoice_doc.code = $order_invoice.newCode()
     order_invoice_doc.image_url = '/images/order_invoice.png'
 
     if (!order_invoice_doc.status)
@@ -243,6 +215,22 @@ module.exports = function init(site) {
         ar: "تحت التوصيل"
       };
     };
+
+    let num_obj = {
+      company: site.get_company(req),
+      screen: 'o_screen_store',
+      date: new Date(order_invoice_doc.date)
+    };
+
+    let cb = site.getNumbering(num_obj);
+    if (!order_invoice_doc.code && !cb.auto) {
+      response.error = 'Must Enter Code';
+      res.json(response);
+      return;
+
+    } else if (cb.auto) {
+      order_invoice_doc.code = cb.code;
+    }
 
     if (order_invoice_doc.transaction_type && order_invoice_doc.transaction_type.id == 1 && order_invoice_doc.table) {
       let table = order_invoice_doc.table

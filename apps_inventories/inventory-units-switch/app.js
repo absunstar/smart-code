@@ -35,31 +35,6 @@ module.exports = function init(site) {
     path: __dirname + '/site_files/images/'
   })
 
-  function addZero(code, number) {
-    let c = number - code.toString().length
-    for (let i = 0; i < c; i++) {
-      code = '0' + code.toString()
-    }
-    return code
-  }
-
-  $units_switch.newCode = function () {
-
-    let y = new Date().getFullYear().toString().substr(2, 2)
-    let m = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L'][new Date().getMonth()].toString()
-    let d = new Date().getDate()
-    let lastCode = site.storage('ticket_last_code') || 0
-    let lastMonth = site.storage('ticket_last_month') || m
-    if (lastMonth != m) {
-      lastMonth = m
-      lastCode = 0
-    }
-    lastCode++
-    site.storage('ticket_last_code', lastCode)
-    site.storage('ticket_last_month', lastMonth)
-    return 'U-S' + y + lastMonth + addZero(d, 2) + addZero(lastCode, 4)
-  }
-
   site.post("/api/units_switch/add", (req, res) => {
     let response = {}
     response.done = false
@@ -72,7 +47,6 @@ module.exports = function init(site) {
 
     units_switch_doc.company = site.get_company(req)
     units_switch_doc.branch = site.get_branch(req)
-    units_switch_doc.code = $units_switch.newCode();
 
     site.getOpenShift({ companyId: units_switch_doc.company.id, branchCode: units_switch_doc.branch.code }, shiftCb => {
       if (shiftCb) {
@@ -104,7 +78,6 @@ module.exports = function init(site) {
             units_switch_doc.total_value = site.toNumber(units_switch_doc.total_value)
             units_switch_doc.net_value = site.toNumber(units_switch_doc.net_value)
 
-
             site.isAllowOverDraft(req, req.body.items, cbOverDraft => {
 
               if (!cbOverDraft.overdraft && cbOverDraft.value) {
@@ -114,6 +87,21 @@ module.exports = function init(site) {
 
               } else {
 
+                let num_obj = {
+                  company: site.get_company(req),
+                  screen: 'units_Switch',
+                  date: new Date(units_switch_doc.date)
+                };
+
+                let cb = site.getNumbering(num_obj);
+                if (!units_switch_doc.code && !cb.auto) {
+                  response.error = 'Must Enter Code';
+                  res.json(response);
+                  return;
+
+                } else if (cb.auto) {
+                  units_switch_doc.code = cb.code;
+                }
 
                 $units_switch.add(units_switch_doc, (err, doc) => {
 

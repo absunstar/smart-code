@@ -282,6 +282,9 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
 
           } else {
             $scope.error = response.data.error;
+            if (response.data.error.like('*Must Enter Code*')) {
+              $scope.error = "##word.must_enter_code##"
+            }
           }
         },
         function (err) {
@@ -524,7 +527,7 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
         select: {
           id: 1,
           name: 1,
-          code : 1
+          code: 1
         }
       }
     }).then(
@@ -552,7 +555,7 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
           id: 1,
           name: 1,
           printer_path: 1,
-          code : 1
+          code: 1
         }
       }
     }).then(
@@ -579,7 +582,7 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
         select: {
           id: 1,
           name: 1,
-          code : 1
+          code: 1
         }
       }
     }).then(
@@ -649,7 +652,7 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
           id: 1,
           name: 1,
           type: 1,
-          code : 1
+          code: 1
         }
       }
     }).then(
@@ -1236,6 +1239,8 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
               $scope.error = response.data.error;
               if (response.data.error.like('*OverDraft Not*')) {
                 $scope.error = "##word.overdraft_not_active##"
+              } else if (response.data.error.like('*Must Enter Code*')) {
+                $scope.error = "##word.must_enter_code##"
               }
             }
           },
@@ -1647,10 +1652,60 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
     )
 
   };
+
+  $scope.getNumberingAuto = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/numbering/get_automatic",
+      data: {
+        screen: "category_items"
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.disabledCode = response.data.isAuto;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.getNumberingAutoSwitch = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/numbering/get_automatic",
+      data: {
+        screen: "units_Switch"
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.disabledCodeSwitch = response.data.isAuto;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+
   $scope.getDefaultSetting();
   $scope.loadStores();
   $scope.loadItemsGroups();
   $scope.loadItemSizeList();
+  $scope.getNumberingAuto();
+  $scope.getNumberingAutoSwitch();
   $scope.loadUnits();
   $scope.loadAll();
   $scope.loadItems();

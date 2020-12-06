@@ -8,10 +8,16 @@
                 <div class="col9">
 
                     <div class="row">
-                        <i-control help-id="items_group_code" v="r" class="col2" label="##word.items_group_code##" ng-model="items_group.code"></i-control>
-                        <i-control help-id="items_group_name" v="r ll2" class="col4" label="##word.items_group_name##" ng-model="items_group.name"></i-control>
+                        <i-control ng-disabled="disabledCode" class="col2" label="##word.code##"
+                            ng-model="items_group.code"></i-control>
+
+                        <i-control help-id="items_group_name" v="r ll2" class="col4" label="##word.items_group_name##"
+                            ng-model="items_group.name"></i-control>
+
                         <div class="col4"></div>
-                        <i-checkbox help-id="items_group_active" class="col2" label="##word.active##" ng-model="items_group.active"></i-checkbox>
+
+                        <i-checkbox help-id="items_group_active" class="col2" label="##word.active##"
+                            ng-model="items_group.active"></i-checkbox>
                     </div>
 
                 </div>

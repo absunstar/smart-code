@@ -33,6 +33,9 @@ app.controller("units", function ($scope, $http, $timeout) {
           $scope.getUnitList();
         } else {
           $scope.error = response.data.error;
+          if (response.data.error.like('*Must Enter Code*')) {
+            $scope.error = "##word.must_enter_code##"
+          }
         }
       },
       function (err) {
@@ -109,7 +112,7 @@ app.controller("units", function ($scope, $http, $timeout) {
 
   $scope.displayDeleteUnit = function (unit) {
     $scope.error = '';
-    
+
     $scope.viewUnit(unit);
     $scope.unit = {};
     site.showModal('#unitDeleteModal');
@@ -181,16 +184,36 @@ app.controller("units", function ($scope, $http, $timeout) {
           $scope.count = response.data.count;
           site.hideModal('#unitSearchModal');
           $scope.search = {};
-
         }
       },
       function (err) {
         $scope.busy = false;
         $scope.error = err;
       }
-
     )
+  };
 
+  $scope.getNumberingAuto = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/numbering/get_automatic",
+      data: {
+        screen: "units"
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.disabledCode = response.data.isAuto;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
   };
 
   $scope.displaySearchModal = function () {
@@ -207,5 +230,6 @@ app.controller("units", function ($scope, $http, $timeout) {
   };
 
   $scope.getUnitList();
+  $scope.getNumberingAuto();
   $scope.getDefaultSetting();
 });

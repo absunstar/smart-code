@@ -64,6 +64,23 @@ module.exports = function init(site) {
         response.error = 'You have exceeded the maximum number of extensions'
         res.json(response)
       } else {
+
+        let num_obj = {
+          company: site.get_company(req),
+          screen: 'stores',
+          date: new Date()
+        };
+
+        let cb = site.getNumbering(num_obj);
+        if (!stores_doc.code && !cb.auto) {
+          response.error = 'Must Enter Code';
+          res.json(response);
+          return;
+
+        } else if (cb.auto) {
+          stores_doc.code = cb.code;
+        }
+
         $stores.add(stores_doc, (err, _id) => {
           if (!err) {
             response.done = true
@@ -201,6 +218,9 @@ module.exports = function init(site) {
     $stores.findMany({
       select: req.body.select || {},
       limit: req.body.limit,
+      sort: req.body.sort || {
+        id: -1
+      },
       where: where
     }, (err, docs) => {
       if (!err) {

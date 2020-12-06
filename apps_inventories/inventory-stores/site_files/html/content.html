@@ -3,14 +3,17 @@
         <legend> ##word.basic_information## </legend>
         <div class="col9">
             <form class="form">
+                <div class="row">
 
-                <i-control class="col4" ng-model="store.name" label="##word.stores_name##" type="text" id="store_name"
-                    v="r"></i-control>
+                    <i-control ng-disabled="disabledCode" class="col2" label="##word.code##" ng-model="store.code">
+                    </i-control>
 
-                <i-list display="##session.lang##" class="col4" ng-model="store.type" items="store_types"
-                    ng-search="_search.$serach_store_types" label="##word.stores_type##" v="r"></i-list>
-                <i-textarea label="##word.stores_note##" class="col8" ng-model="store.note"></i-textarea>
+                    <i-control class="col4" ng-model="store.name" label="##word.stores_name##" type="text"
+                        id="store_name" v="r"></i-control>
 
+                    <i-list display="##session.lang##" class="col4" ng-model="store.type" items="store_types"
+                        ng-search="_search.$serach_store_types" label="##word.stores_type##" v="r"></i-list>
+                </div>
 
                 <div class="row" x-feature="erp">
                     <br>
@@ -129,6 +132,11 @@
                         </div>
 
                     </fieldset>
+
+                </div>
+
+                <div class="row">
+                    <i-textarea label="##word.stores_note##" class="col8" ng-model="store.note"></i-textarea>
 
                 </div>
 

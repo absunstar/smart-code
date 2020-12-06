@@ -21,19 +21,26 @@
                                 <div class="col7">
 
                                     <div class="row">
-                                        <i-control class="col6" id="category_name" ng-model="category_item.name"
+                                        <i-control ng-disabled="disabledCode" class="col4" label="##word.code##"
+                                            ng-model="category_item.code"></i-control>
+
+                                        <i-control class="col8" id="category_name" ng-model="category_item.name"
                                             label="##word.stores_items_name##" type="text" v="r"></i-control>
+
+                                    </div>
+
+                                    <div class="row">
 
                                         <i-list class="col6" ng-model="category_item.item_group" v="r"
                                             ng-search="_search.$category_item.$items_group_search"
                                             label="##word.item_group##" items="itemsGroupList"></i-list>
-                                    </div>
 
-                                    <div class="row" ng-hide="category_item.service_item">
-                                        <i-list class="col6" ng-model="category_item.main_unit" v="r"
+                                        <i-list class="col6" ng-hide="category_item.service_item"
+                                            ng-model="category_item.main_unit" v="r"
                                             ng-change="addMainUnit(category_item)"
                                             ng-search="_search.$category_item.$main_unit_search"
                                             label="##word.main_unit##" items="unitsList"></i-list>
+
                                     </div>
                                 </div>
 
@@ -65,7 +72,8 @@
                                     </div>
 
                                     <div class="row">
-                                        <h2 class="indigoD bold" ng-show="category_item.$edit && category_item.service_item">
+                                        <h2 class="indigoD bold"
+                                            ng-show="category_item.$edit && category_item.service_item">
                                             ##word.service_item##</h2>
                                         <i-checkbox ng-hide="category_item.$edit" label="##word.service_item##"
                                             ng-model="category_item.service_item">
