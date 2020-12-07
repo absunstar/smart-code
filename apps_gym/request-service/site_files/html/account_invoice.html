@@ -13,13 +13,10 @@
                 <div class="row">
 
                     <div class="row">
-                        <i-date2 class="col5" ng-model="account_invoices.date" label="##word.date##"></i-date2>
+                        <i-control ng-disabled="disabledCodeInvoice" class="col3" label="##word.code##"
+                            ng-model="account_invoices.code"></i-control>
 
-                        <i-list help-id="" ng-search="_search.$payment_method_search" class="col2"
-                            label="##word.payment_method##" ng-model="account_invoices.payment_method"
-                            ng-change="getSafeByType(account_invoices)" items="paymentMethodList"
-                            display="##session.lang##">
-                        </i-list>
+                        <i-date2 class="col5" ng-model="account_invoices.date" label="##word.date##"></i-date2>
                     </div>
 
                     <div class="row">

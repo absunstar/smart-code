@@ -86,6 +86,9 @@ app.controller("request_service", function ($scope, $http, $timeout) {
           $scope.count = $scope.list.length;
         } else {
           $scope.error = 'Please Login First';
+          if (response.data.error.like('*Must Enter Code*')) {
+            $scope.error = "##word.must_enter_code##"
+          }
         }
       },
       function (err) {
@@ -255,7 +258,12 @@ app.controller("request_service", function ($scope, $http, $timeout) {
           site.hideModal('#accountInvoiceModal');
           $scope.printAccountInvoive();
           $scope.getRequestServiceList();
-        } else $scope.error = response.data.error;
+        } else {
+          $scope.error = response.data.error;
+          if (response.data.error.like('*Must Enter Code*')) {
+            $scope.error = "##word.must_enter_code##"
+          }
+        }
       },
       function (err) {
         console.log(err);
@@ -538,7 +546,7 @@ app.controller("request_service", function ($scope, $http, $timeout) {
           name: 1,
           minor_currency: 1,
           ex_rate: 1,
-          code : 1
+          code: 1
         },
         where: {
           active: true
@@ -594,7 +602,7 @@ app.controller("request_service", function ($scope, $http, $timeout) {
             commission: 1,
             currency: 1,
             type: 1,
-            code : 1
+            code: 1
           },
           where: where
         }
@@ -963,7 +971,7 @@ app.controller("request_service", function ($scope, $http, $timeout) {
         select: {
           id: 1,
           name: 1,
-          code : 1
+          code: 1
         }
       }
     }).then(
@@ -1091,6 +1099,52 @@ app.controller("request_service", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.getNumberingAutoInvoice = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/numbering/get_automatic",
+      data: {
+        screen: "request_service_invoice"
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.disabledCodeInvoice = response.data.isAuto;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.getNumberingAutoCustomer = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/numbering/get_automatic",
+      data: {
+        screen: "customers"
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.disabledCodeCustomer = response.data.isAuto;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
 
   $scope.getRequestServiceList();
   $scope.getHallList();
@@ -1100,6 +1154,8 @@ app.controller("request_service", function ($scope, $http, $timeout) {
   $scope.getSourceType();
   $scope.getGender();
   $scope.getNumberingAuto();
+  $scope.getNumberingAutoInvoice();
+  $scope.getNumberingAutoCustomer();
   $scope.getCustomerGroupList();
   $scope.getDefaultSettings();
   $scope.loadDiscountTypes();
