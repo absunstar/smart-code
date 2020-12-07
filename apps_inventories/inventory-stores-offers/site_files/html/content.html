@@ -1,25 +1,33 @@
 <form class="form">
     <div class="row">
         <div class="row">
+
+            <i-control ng-disabled="disabledCode" class="col2" label="##word.code##" ng-model="store_offer.code">
+            </i-control>
+
             <i-control class="col2 r_indigo" disabled label="##word.shift##" ng-model="shift.code">
             </i-control>
+
             <i-date2 class="col3" ng-model="store_offer.startup_date" label="##word.startup_date##" v="r">
             </i-date2>
+
             <i-date2 class="col3" ng-model="store_offer.deadline_date" label="##word.deadline_date##" v="r">
             </i-date2>
-
-            <div class="col1"></div>
 
             <i-checkbox help-id="city_active" class="col2" label="##word.active##" ng-model="store_offer.active">
             </i-checkbox>
 
         </div>
+
         <br>
         <br>
         <br>
+
         <div class="row">
+
             <i-control type="number" label="##word.offer_value##" v="r" class="col2" ng-change="calc()"
                 ng-model="store_offer.offer_value.value"></i-control>
+
             <div class="col3">
                 <div class="row">
                     <i-radio ng-model="store_offer.offer_value.type" ng-click="calc()"
@@ -30,12 +38,15 @@
             </div>
 
             <div class="col1"></div>
+
             <i-button type="search" label=" ##word.select_items##" onclick="site.showModal('#selectItemsModal')">
             </i-button>
+
         </div>
 
         <br>
         <br>
+
         <div class="row margin padding">
             <fieldset class="col10" ng-show="store_offer.items.length > 0">
                 <legend> ##word.permission_detailes## </legend>
@@ -55,6 +66,7 @@
                         <td> <br> {{itm.name}}</td>
 
                         <td>
+                            <br>
                             <p>{{itm.size}}</p>
                             <p>{{itm.size_en}}</p>
                         </td>
@@ -91,6 +103,7 @@
                         <td>
                             <i-button type="delete" ng-click="deleteRow(itm)"></i-button>
                         </td>
+
                     </tr>
                 </table>
             </fieldset>
@@ -99,7 +112,6 @@
         <div class="row">
             <i-textarea class="col9" label="##word.stores_offer_notes##" ng-model="store_offer.notes">
             </i-textarea>
-
         </div>
 
     </div>

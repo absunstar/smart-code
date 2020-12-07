@@ -54,31 +54,6 @@ module.exports = function init(site) {
     compress: false
   })
 
-  function addZero(code, number) {
-    let c = number - code.toString().length
-    for (let i = 0; i < c; i++) {
-      code = '0' + code.toString()
-    }
-    return code
-  }
-
-  $stores_in.newCode = function () {
-
-    let y = new Date().getFullYear().toString().substr(2, 2)
-    let m = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L'][new Date().getMonth()].toString()
-    let d = new Date().getDate()
-    let lastCode = site.storage('ticket_last_code') || 0
-    let lastMonth = site.storage('ticket_last_month') || m
-    if (lastMonth != m) {
-      lastMonth = m
-      lastCode = 0
-    }
-    lastCode++
-    site.storage('ticket_last_code', lastCode)
-    site.storage('ticket_last_month', lastMonth)
-    return 'I-N' + y + lastMonth + addZero(d, 2) + addZero(lastCode, 4)
-  }
-
   site.post("/api/stores_in/add", (req, res) => {
     let response = {}
     response.done = false
@@ -102,7 +77,6 @@ module.exports = function init(site) {
             res.json(response)
           } else {
 
-            stores_in_doc.number = $stores_in.newCode();
             stores_in_doc.add_user_info = site.security.getUserFinger({ $req: req, $res: res })
 
             stores_in_doc.$req = req
@@ -146,6 +120,26 @@ module.exports = function init(site) {
 
               } else {
 
+                let num_obj = {
+                  company: site.get_company(req),
+                  date: new Date(stores_in_doc.date)
+                };
+
+                if (stores_in_doc.type.id == 1) num_obj.screen = 'purchases_invoices_store';
+                else if (stores_in_doc.type.id == 2) num_obj.screen = 'depts_store';
+                else if (stores_in_doc.type.id == 3) num_obj.screen = 'opening_balances_Store';
+                else if (stores_in_doc.type.id == 4) num_obj.screen = 'return_purchases_store';
+                let cb = site.getNumbering(num_obj);
+                if (!stores_in_doc.code && !cb.auto) {
+
+                  response.error = 'Must Enter Code';
+                  res.json(response);
+                  return;
+
+                } else if (cb.auto) {
+                  stores_in_doc.code = cb.code;
+                }
+
                 $stores_in.add(stores_in_doc, (err, doc) => {
 
                   if (!err) {
@@ -162,7 +156,7 @@ module.exports = function init(site) {
                         _itm.branch = doc.branch
                         _itm.source_type = doc.type
                         _itm.store_in = true
-                        _itm.number = doc.number
+                        _itm.code = doc.code
                         _itm.vendor = doc.vendor
                         _itm.date = doc.date
                         _itm.current_status = 'storein'
@@ -368,7 +362,7 @@ module.exports = function init(site) {
                               _itm.branch = result.doc.branch
                               _itm.source_type = result.doc.type
                               _itm.store_in = true
-                              _itm.number = result.doc.number
+                              _itm.code = result.doc.code
                               _itm.vendor = result.doc.vendor
                               _itm.date = result.doc.date
                               _itm.shift = {
@@ -505,7 +499,7 @@ module.exports = function init(site) {
                               _itm.branch = stores_in_doc.branch
                               _itm.source_type = stores_in_doc.type
                               _itm.store_in = true
-                              _itm.number = stores_in_doc.number
+                              _itm.code = stores_in_doc.code
                               _itm.vendor = stores_in_doc.vendor
                               _itm.date = stores_in_doc.date
                               _itm.current_status = 'd_storein'
@@ -629,7 +623,7 @@ module.exports = function init(site) {
       })
 
       where.$or.push({
-        'store.number': site.get_RegExp(search, "i")
+        'store.code': site.get_RegExp(search, "i")
       })
 
       where.$or.push({
@@ -655,8 +649,8 @@ module.exports = function init(site) {
       where['notes'] = site.get_RegExp(where['notes'], 'i')
     }
 
-    if (where && where['number']) {
-      where['number'] = where['number']
+    if (where && where['code']) {
+      where['code'] = where['code']
     }
 
     if (where && where['supply_number']) {
@@ -863,7 +857,7 @@ module.exports = function init(site) {
 
 
   site.returnStoresIn = function (obj, res) {
-    $stores_in.findOne({ number: obj.retured_number }, (err, doc) => {
+    $stores_in.findOne({ code: obj.retured_number }, (err, doc) => {
       if (doc && doc.return_paid) {
 
         obj.items.forEach(_itemsObj => {
@@ -1047,7 +1041,7 @@ module.exports = function init(site) {
                   _itm.branch = doc.branch
                   _itm.source_type = doc.type
                   _itm.store_in = true
-                  _itm.number = doc.number
+                  _itm.code = doc.code
                   _itm.vendor = doc.vendor
                   _itm.date = doc.date
                   _itm.current_status = 'storein'
@@ -1126,7 +1120,7 @@ module.exports = function init(site) {
                   _itm.branch = result.doc.branch
                   _itm.source_type = result.doc.type
                   _itm.store_in = true
-                  _itm.number = result.doc.number
+                  _itm.code = result.doc.code
                   _itm.vendor = result.doc.vendor
                   _itm.date = result.doc.date
                   _itm.shift = {

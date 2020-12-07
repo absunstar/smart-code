@@ -3,10 +3,16 @@
         <div class="col9">
             <div class="row">
                 <div class="row">
+
+                    <i-control ng-disabled="disabledCode" class="col2" label="##word.code##" ng-model="store_stock.code">
+                    </i-control>
+
                     <i-control class="col3 r_indigo" disabled label="##word.shift##" ng-model="shift.code">
                     </i-control>
+
                     <i-date2 class="col4" ng-model="store_stock.date" label="##word.stores_stock_date##" v="r">
                     </i-date2>
+
                 </div>
 
                 <div class="row">

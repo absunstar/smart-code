@@ -171,6 +171,8 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
                     $scope.error = "##word.open_shift_not_found##"
                   } else if (response.data.error.like('*n`t Open Perio*')) {
                     $scope.error = "##word.should_open_period##"
+                  } else if (response.data.error.like('*Must Enter Code*')) {
+                    $scope.error = "##word.must_enter_code##"
                   }
                 }
 
@@ -926,7 +928,7 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
         select: {
           id: 1,
           name: 1,
-          code : 1
+          code: 1
         }
       }
     }).then(
@@ -1147,10 +1149,32 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
     )
   };
 
-
+  $scope.getNumberingAuto = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/numbering/get_automatic",
+      data: {
+        screen: "transfer_items"
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.disabledCode = response.data.isAuto;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
 
   $scope.loadCategories();
   $scope.getDefaultSettings();
+  $scope.getNumberingAuto();
   $scope.loadBranches();
   $scope.loadStoresFrom();
   $scope.loadAll({ date: new Date() });

@@ -265,7 +265,8 @@ module.exports = function init(site) {
     }
 
     if (where['source_code']) {
-      where['$or'] = [{ 'code': where['source_code'] }, { 'number': where['source_code'] }]
+      where['code'] =  where['source_code']
+      // where['$or'] = [{ 'code': where['source_code'] }, { 'number': where['source_code'] }]
       delete where['source_code']
     }
 

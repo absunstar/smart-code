@@ -298,7 +298,6 @@ module.exports = function init(site) {
       }
     });
 
-
     $numbering.update(doc, () => { });
     return obj;
   };

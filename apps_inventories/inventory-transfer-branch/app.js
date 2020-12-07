@@ -30,31 +30,6 @@ module.exports = function init(site) {
     compress: false
   })
 
-  function addZero(code, number) {
-    let c = number - code.toString().length
-    for (let i = 0; i < c; i++) {
-      code = '0' + code.toString()
-    }
-    return code
-  }
-
-  $transfer_branch.newCode = function () {
-
-    let y = new Date().getFullYear().toString().substr(2, 2)
-    let m = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L'][new Date().getMonth()].toString()
-    let d = new Date().getDate()
-    let lastCode = site.storage('ticket_last_code') || 0
-    let lastMonth = site.storage('ticket_last_month') || m
-    if (lastMonth != m) {
-      lastMonth = m
-      lastCode = 0
-    }
-    lastCode++
-    site.storage('ticket_last_code', lastCode)
-    site.storage('ticket_last_month', lastMonth)
-    return 'T-R' + y + lastMonth + addZero(d, 2) + addZero(lastCode, 4)
-  }
-
   site.post("/api/transfer_branch/add", (req, res) => {
     let response = {}
     response.done = false
@@ -80,10 +55,6 @@ module.exports = function init(site) {
             res.json(response)
           } else {
 
-
-         
-            branch_ransfer_doc.number = $transfer_branch.newCode();
-
             branch_ransfer_doc.add_user_info = site.security.getUserFinger({ $req: req, $res: res })
 
             branch_ransfer_doc.date = site.toDateTime(branch_ransfer_doc.date)
@@ -100,6 +71,23 @@ module.exports = function init(site) {
                 _itm.patch_list = filter_patch
               }
             })
+
+            let num_obj = {
+              company: site.get_company(req),
+              screen: 'transfer_items',
+              date: new Date(branch_ransfer_doc.date)
+            };
+
+            let cb = site.getNumbering(num_obj);
+            if (!branch_ransfer_doc.code && !cb.auto) {
+              response.error = 'Must Enter Code';
+              res.json(response);
+              return;
+
+            } else if (cb.auto) {
+              branch_ransfer_doc.code = cb.code;
+            }
+
 
             $transfer_branch.add(branch_ransfer_doc, (err, doc) => {
               if (!err) {
@@ -168,7 +156,7 @@ module.exports = function init(site) {
                       doc.items.forEach((_itm, i) => {
                         _itm.company = doc.company
                         _itm.branch = doc.branch_from
-                        _itm.number = doc.number
+                        _itm.code = doc.code
                         _itm.current_status = 'transferred'
                         _itm.date = doc.date
                         _itm.transaction_type = 'out'
@@ -182,7 +170,7 @@ module.exports = function init(site) {
                       doc.items.forEach((_itm, i) => {
                         _itm.company = doc.company
                         _itm.branch = doc.branch_to
-                        _itm.number = doc.number
+                        _itm.code = doc.code
                         _itm.current_status = 'transferred'
                         _itm.date = doc.date
                         _itm.transaction_type = 'in'
@@ -306,7 +294,7 @@ module.exports = function init(site) {
                     value: result.doc.net_value,
                     safe: result.doc.safe,
                     date: result.doc.date,
-                    number: result.doc.number,
+                    code: result.doc.code,
                     company: result.doc.company,
                     branch: result.doc.branch,
                     notes: result.doc.notes
@@ -314,7 +302,7 @@ module.exports = function init(site) {
 
                   result.doc.items.forEach(itm => {
 
-                    itm.number = result.doc.number
+                    itm.code = result.doc.code
                     itm.vendor = result.doc.vendor
                     itm.date = result.doc.date
                     itm.transaction_type = 'out'
@@ -410,8 +398,8 @@ module.exports = function init(site) {
     if (where && where['notes']) {
       where['notes'] = site.get_RegExp(where['notes'], 'i')
     }
-    if (where && where['number']) {
-      where['number'] = site.get_RegExp(where['number'], 'i')
+    if (where && where['code']) {
+      where['code'] = site.get_RegExp(where['code'], 'i')
     }
 
     if (where && where['supply_number']) {
@@ -601,7 +589,7 @@ module.exports = function init(site) {
                 doc.items.forEach((_itm, i) => {
                   _itm.company = doc.company
                   _itm.branch = doc.branch_from
-                  _itm.number = doc.number
+                  _itm.code = doc.code
                   _itm.current_status = 'transferred'
                   _itm.date = doc.date
                   _itm.transaction_type = 'out'
@@ -615,7 +603,7 @@ module.exports = function init(site) {
                 doc.items.forEach((_itm, i) => {
                   _itm.company = doc.company
                   _itm.branch = doc.branch_to
-                  _itm.number = doc.number
+                  _itm.code = doc.code
                   _itm.current_status = 'transferred'
                   _itm.date = doc.date
                   _itm.transaction_type = 'in'

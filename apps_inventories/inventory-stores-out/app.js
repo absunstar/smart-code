@@ -2,8 +2,8 @@ module.exports = function init(site) {
 
   const $stores_out = site.connectCollection("stores_out")
 
-  // $stores_out.deleteDuplicate({ number: 1 }, (err, result) => {
-  //   $stores_out.createUnique({ number: 1 }, (err, result) => {
+  // $stores_out.deleteDuplicate({ code: 1 }, (err, result) => {
+  //   $stores_out.createUnique({ code: 1 }, (err, result) => {
   //   })
   // })
 
@@ -58,30 +58,6 @@ module.exports = function init(site) {
     compress: false
   })
 
-  function addZero(code, number) {
-    let c = number - code.toString().length
-    for (let i = 0; i < c; i++) {
-      code = '0' + code.toString()
-    }
-    return code
-  }
-
-  $stores_out.newCode = function () {
-
-    let y = new Date().getFullYear().toString().substr(2, 2)
-    let m = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L'][new Date().getMonth()].toString()
-    let d = new Date().getDate()
-    let lastCode = site.storage('ticket_last_code') || 0
-    let lastMonth = site.storage('ticket_last_month') || m
-    if (lastMonth != m) {
-      lastMonth = m
-      lastCode = 0
-    }
-    lastCode++
-    site.storage('ticket_last_code', lastCode)
-    site.storage('ticket_last_month', lastMonth)
-    return 'O-U' + y + lastMonth + addZero(d, 2) + addZero(lastCode, 4)
-  }
 
   site.post("/api/stores_out/add", (req, res) => {
     let response = {}
@@ -98,7 +74,6 @@ module.exports = function init(site) {
 
     stores_out_doc.company = site.get_company(req)
     stores_out_doc.branch = site.get_branch(req)
-    stores_out_doc.number = $stores_out.newCode();
 
     stores_out_doc.add_user_info = site.security.getUserFinger({ $req: req, $res: res })
 
@@ -156,6 +131,25 @@ module.exports = function init(site) {
 
               } else {
 
+                let num_obj = {
+                  company: site.get_company(req),
+                  date: new Date(stores_out_doc.date)
+                };
+
+                if (stores_out_doc.type.id == 3) num_obj.screen = 'sales_invoices_store';
+                else if (stores_out_doc.type.id == 5) num_obj.screen = 'damage_store';
+                else if (stores_out_doc.type.id == 6) num_obj.screen = 'return_sales_store';
+                let cb = site.getNumbering(num_obj);
+                if (!stores_out_doc.code && !cb.auto) {
+
+                  response.error = 'Must Enter Code';
+                  res.json(response);
+                  return;
+
+                } else if (cb.auto) {
+                  stores_out_doc.code = cb.code;
+                }
+
                 $stores_out.add(stores_out_doc, (err, doc) => {
                   if (!err) {
                     response.done = true
@@ -169,7 +163,7 @@ module.exports = function init(site) {
                         _itm.company = doc.company
                         _itm.branch = doc.branch
                         _itm.source_type = doc.type
-                        _itm.number = doc.number
+                        _itm.code = doc.code
                         _itm.current_status = 'sold'
                         _itm.date = doc.date
                         _itm.customer = doc.customer
@@ -374,7 +368,7 @@ module.exports = function init(site) {
                               _itm.company = result.doc.company
                               _itm.branch = result.doc.branch
                               _itm.source_type = result.doc.type
-                              _itm.number = result.doc.number
+                              _itm.code = result.doc.code
                               _itm.customer = result.doc.customer
                               _itm.date = result.doc.date
                               _itm.shift = {
@@ -509,7 +503,7 @@ module.exports = function init(site) {
                               _itm.store = stores_out_doc.store
                               _itm.company = stores_out_doc.company
                               _itm.branch = stores_out_doc.branch
-                              _itm.number = stores_out_doc.number
+                              _itm.code = stores_out_doc.code
                               _itm.customer = stores_out_doc.customer
                               _itm.date = stores_out_doc.date
                               _itm.current_status = 'd_sold'
@@ -625,7 +619,7 @@ module.exports = function init(site) {
       })
 
       where.$or.push({
-        'store.number': site.get_RegExp(search, "i")
+        'store.code': site.get_RegExp(search, "i")
       })
 
       where.$or.push({
@@ -661,8 +655,8 @@ module.exports = function init(site) {
       where['notes'] = site.get_RegExp(where['notes'], 'i')
     }
 
-    if (where && where['number']) {
-      where['number'] = where['number']
+    if (where && where['code']) {
+      where['code'] = where['code']
     }
 
     if (where && where['limit']) {
@@ -879,7 +873,7 @@ module.exports = function init(site) {
 
 
   site.returnStoresOut = function (obj, res) {
-    $stores_out.findOne({ number: obj.retured_number }, (err, doc) => {
+    $stores_out.findOne({ code: obj.retured_number }, (err, doc) => {
       if (doc && doc.return_paid) {
 
         obj.items.forEach(_itemsObj => {
@@ -934,7 +928,7 @@ module.exports = function init(site) {
 
               let discount = 0;
               if (_itemsDoc.discount) {
-                if (_itemsDoc.discount.type == 'number')
+                if (_itemsDoc.discount.type == 'code')
                   discount = _itemsDoc.discount.value * _itemsDoc.count;
                 else if (_itemsDoc.discount.type == 'percent')
                   discount = _itemsDoc.discount.value * (_itemsDoc.price * _itemsDoc.count) / 100;
@@ -1047,7 +1041,7 @@ module.exports = function init(site) {
                       _itm.company = result.doc.company
                       _itm.branch = result.doc.branch
                       _itm.source_type = result.doc.type
-                      _itm.number = result.doc.number
+                      _itm.code = result.doc.code
                       _itm.customer = result.doc.customer
                       _itm.date = result.doc.date
                       _itm.shift = {

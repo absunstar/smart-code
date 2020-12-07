@@ -814,7 +814,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
     }
 
     $scope.account_invoices.invoice_id = item.id;
-    $scope.account_invoices.invoice_code = item.code || item.number;
+    $scope.account_invoices.invoice_code = item.code;
     $scope.account_invoices.paid_up = 0;
     $scope.total_tax = $scope.account_invoices.total_tax;
     $scope.total_discount = $scope.account_invoices.total_discount;

@@ -32,31 +32,6 @@ module.exports = function init(site) {
     compress: false
   })
 
-  function addZero(code, number) {
-    let c = number - code.toString().length
-    for (let i = 0; i < c; i++) {
-      code = '0' + code.toString()
-    }
-    return code
-  }
-
-  $stores_assemble.newCode = function () {
-
-    let y = new Date().getFullYear().toString().substr(2, 2)
-    let m = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L'][new Date().getMonth()].toString()
-    let d = new Date().getDate()
-    let lastCode = site.storage('ticket_last_code') || 0
-    let lastMonth = site.storage('ticket_last_month') || m
-    if (lastMonth != m) {
-      lastMonth = m
-      lastCode = 0
-    }
-    lastCode++
-    site.storage('ticket_last_code', lastCode)
-    site.storage('ticket_last_month', lastMonth)
-    return 'A-S'+ y + lastMonth + addZero(d, 2) + addZero(lastCode, 4)
-  }
-
   site.post("/api/stores_assemble/add", (req, res) => {
     let response = {}
     response.done = false
@@ -69,7 +44,6 @@ module.exports = function init(site) {
     let stores_assemble_doc = req.body
     stores_assemble_doc.company = site.get_company(req)
     stores_assemble_doc.branch = site.get_branch(req)
-    stores_assemble_doc.code = $stores_assemble.newCode();
     stores_assemble_doc.add_user_info = site.security.getUserFinger({ $req: req, $res: res })
 
 
@@ -81,8 +55,6 @@ module.exports = function init(site) {
             response.error = 'Don`t Open Period'
             res.json(response)
           } else {
-
-
 
             stores_assemble_doc.$req = req
             stores_assemble_doc.$res = res
@@ -130,6 +102,22 @@ module.exports = function init(site) {
                 res.json(response)
 
               } else {
+
+                let num_obj = {
+                  company: site.get_company(req),
+                  screen: 'assembling_items',
+                  date: new Date(stores_assemble_doc.date)
+                };
+
+                let cb = site.getNumbering(num_obj);
+                if (!stores_assemble_doc.code && !cb.auto) {
+                  response.error = 'Must Enter Code';
+                  res.json(response);
+                  return;
+
+                } else if (cb.auto) {
+                  stores_assemble_doc.code = cb.code;
+                }
 
                 $stores_assemble.add(stores_assemble_doc, (err, doc) => {
 

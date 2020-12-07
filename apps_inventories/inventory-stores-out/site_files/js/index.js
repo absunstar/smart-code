@@ -458,7 +458,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
                         paid_up: response.data.doc.paid_up || 0,
                         payment_method: response.data.doc.payment_method,
                         safe: response.data.doc.safe,
-                        invoice_code: response.data.doc.number,
+                        invoice_code: response.data.doc.code,
                         total_discount: response.data.doc.total_discount,
                         total_tax: response.data.doc.total_tax,
                         current_book_list: response.data.doc.items,
@@ -476,17 +476,22 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
                     site.hideModal('#addStoreOutModal');
                     $timeout(() => {
                       document.querySelector('#clickNew').click();
-                      $scope.busy = false;
 
                     }, 250);
                   } else {
                     $scope.error = response.data.error;
                     if (response.data.error.like('*OverDraft Not*')) {
+                      $scope.busy = false;
                       $scope.error = "##word.overdraft_not_active##"
                     } else if (response.data.error.like('*n`t Found Open Shi*')) {
+                      $scope.busy = false;
                       $scope.error = "##word.open_shift_not_found##"
                     } else if (response.data.error.like('*n`t Open Perio*')) {
+                      $scope.busy = false;
                       $scope.error = "##word.should_open_period##"
+                    } else if (response.data.error.like('*Must Enter Code*')) {
+                      $scope.busy = false;
+                      $scope.error = "##word.must_enter_code##"
                     }
                   }
 
@@ -1288,7 +1293,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
           id: 1,
           name: 1,
           type: 1,
-          code : 1
+          code: 1
         }
       }
     }).then(
@@ -1315,7 +1320,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
           name: 1,
           minor_currency: 1,
           ex_rate: 1,
-          code : 1
+          code: 1
         },
         where: {
           active: true
@@ -1377,7 +1382,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
           commission: 1,
           currency: 1,
           type: 1,
-          code : 1
+          code: 1
         },
         where: where
       }
@@ -1431,7 +1436,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         select: {
           id: 1,
           name: 1,
-          code : 1
+          code: 1
         }
       }
     }).then(
@@ -1481,7 +1486,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
       url: "/api/discount_types/all",
       data: {
         select: {
-          code : 1,
+          code: 1,
           id: 1,
           name: 1,
           value: 1,
@@ -1559,7 +1564,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
           shift: shift,
           net_value: store_out.net_value,
           paid_up: 0,
-          invoice_code: store_out.number,
+          invoice_code: store_out.code,
           total_discount: store_out.total_discount,
           total_tax: store_out.total_tax,
           current_book_list: store_out.items,
@@ -1884,7 +1889,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         select: {
           id: 1,
           name: 1,
-          code : 1
+          code: 1
         }
       }
     }).then(
@@ -2037,7 +2042,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         select: {
           id: 1,
           name: 1,
-          code : 1
+          code: 1
         }
       }
     }).then(
@@ -2069,7 +2074,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         select: {
           id: 1,
           name: 1,
-          code : 1
+          code: 1
         }
       }
     }).then(
@@ -2224,7 +2229,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
                         paid_up: response.data.doc.paid_up || 0,
                         payment_method: response.data.doc.payment_method,
                         safe: response.data.doc.safe,
-                        invoice_code: response.data.doc.number,
+                        invoice_code: response.data.doc.code,
                         total_discount: response.data.doc.total_discount,
                         total_tax: response.data.doc.total_tax,
                         current_book_list: response.data.doc.items,
@@ -2280,7 +2285,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
       let notExistCount = _stOut.items.some(_iz => _iz.count < 1);
       if (notExistCount) {
         notExist = true;
-        notExistCountList.push(_stOut.number)
+        notExistCountList.push(_stOut.code)
       }
     });
 
@@ -2574,7 +2579,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
   $scope.selectReturnedStoreOut = function (i) {
 
     if ($scope.store_out && i.return_paid) {
-      $scope.store_out.retured_number = i.number;
+      $scope.store_out.retured_number = i.code;
       $scope.store_out.delegate = i.delegate || {};
       $scope.store_out.total_discount = i.return_paid.total_discount;
       $scope.store_out.total_value_added = i.return_paid.total_value_added;
@@ -2713,11 +2718,45 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.getNumberingAuto = function () {
+    $scope.error = '';
+    $scope.busy = true;
+
+    let screen = '';
+    if (site.toNumber("##query.type##")) {
+
+      if (site.toNumber("##query.type##") == 3) screen = 'sales_invoices_store';
+      else if (site.toNumber("##query.type##") == 5) screen = 'damage_store';
+      else if (site.toNumber("##query.type##") == 6) screen = 'return_sales_store';
+
+      $http({
+        method: "POST",
+        url: "/api/numbering/get_automatic",
+        data: {
+          screen: screen
+        }
+      }).then(
+        function (response) {
+          $scope.busy = false;
+          if (response.data.done) {
+            $scope.disabledCode = response.data.isAuto;
+          }
+        },
+        function (err) {
+          $scope.busy = false;
+          $scope.error = err;
+        }
+      )
+    }
+
+  };
+
 
   $scope.loadStoresOutTypes();
   $scope.loadStores();
   $scope.loadPaymentTypes();
   $scope.loadCategories();
+  $scope.getNumberingAuto();
   $scope.getPaymentMethodList();
   $scope.getDefaultSettings();
   $scope.getGovList();

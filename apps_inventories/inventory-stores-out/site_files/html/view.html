@@ -30,7 +30,7 @@
 
         <td class="center">
           <b class="indigoD">##word.stores_out_id## :</b>
-          <b class="blue userPrint">{{store_out.number}}</b>
+          <b class="blue userPrint">{{store_out.code}}</b>
           <h3 class="red bold center userPrint">{{store_out.retured_number}}</h3>
         </td>
       </tr>
@@ -47,7 +47,7 @@
         </td>
       </tr>
 
-      <tr>
+      <tr ng-hide="##query.type## == 5">
         <td class="title">
           <b class="indigoD">##word.customer## :</b>
           <b class="center">{{store_out.customer.name_##session.lang##}} </b>
@@ -128,8 +128,10 @@
         <th class="w250">##word.stores_out_item_name##</th>
         <th class="w50">##word.unit##</th>
         <th class="w50">##word.stores_out_item_count##</th>
-        <th class="w50" x-permissions="stores_out_details_values || stores_out_manage" ng-hide="store_out.type.id ==5">##word.price##</th>
-        <th class="w50" x-permissions="stores_out_details_values || stores_out_manage" ng-show="defaultSettings.inventory.value_added > 0">##word.total_v_a##</th>
+        <th class="w50" x-permissions="stores_out_details_values || stores_out_manage" ng-hide="store_out.type.id ==5">
+          ##word.price##</th>
+        <th class="w50" x-permissions="stores_out_details_values || stores_out_manage"
+          ng-show="defaultSettings.inventory.value_added > 0">##word.total_v_a##</th>
 
         <th class="w50" x-permissions="stores_out_details_values || stores_out_manage">##word.stores_out_item_total##
         </th>

@@ -4,23 +4,18 @@
         <table class="table hover bold">
 
             <tr>
-                <td class="title">##word.stores_dismantle_date##</td>
-                <td class="center brown">{{store_dismantle.date |date:"dd - MM - yyyy" }}</td>
-            </tr>
-
-            <tr>
                 <td class="title">##word.stores_dismantle_id##</td>
                 <td class="center blue userPrint">{{store_dismantle.code}}</td>
             </tr>
 
             <tr>
-                <td class="title">##word.store##</td>
-                <td class="center">{{store_dismantle.store.name}}</td>
+                <td class="title">##word.stores_dismantle_date##</td>
+                <td class="center brown">{{store_dismantle.date |date:"dd - MM - yyyy" }}</td>
             </tr>
 
             <tr>
-                <td class="title">##word.transaction_type##</td>
-                <td class="center">{{store_dismantle.type.##session.lang##}}</td>
+                <td class="title">##word.store##</td>
+                <td class="center">{{store_dismantle.store.name}}</td>
             </tr>
 
             <tr>
@@ -44,7 +39,7 @@
                                 <p>{{itm.size}}</p>
                                 <p>{{itm.size_en}}</p>
                             </td>
-                            <td class="center"> <br>
+                            <td class="center">
                                 <p class="userPrint blue">{{itm.barcode}}</p>
                             </td>
                             <td class="center">{{itm.unit.name}}</td>

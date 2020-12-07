@@ -2,6 +2,10 @@
     <div class="col9">
         <br>
         <table class="table hover bold">
+            <tr>
+                <td class="title">##word.stores_assemble_id##</td>
+                <td class="center userPrint blue">{{store_assemble.code}}</td>
+            </tr>
 
             <tr>
                 <td class="title">##word.stores_assemble_date##</td>
@@ -9,20 +13,10 @@
             </tr>
 
             <tr>
-                <td class="title">##word.stores_assemble_id##</td>
-                <td class="center userPrint blue">{{store_assemble.code}}</td>
-            </tr>
-
-            <tr>
                 <td class="title">##word.store##</td>
                 <td class="center">{{store_assemble.store.name}}</td>
             </tr>
-
-            <tr>
-                <td class="title">##word.transaction_type##</td>
-                <td class="center">{{store_assemble.type.##session.lang##}}</td>
-            </tr>
-
+    
             <tr>
                 <td class="title">##word.stores_assemble_items##</td>
                 <td>
@@ -47,7 +41,7 @@
                                 <p>{{itm.size}}</p>
                                 <p>{{itm.size_en}}</p>
                             </td>
-                            <td class="center"> <br>
+                            <td class="center">
                                 <p class="userPrint blue">{{itm.barcode}}</p>
                             </td>
                             <td class="center">{{itm.unit.name}}</td>

@@ -36,32 +36,6 @@ module.exports = function init(site) {
     path: __dirname + '/site_files/images/'
   })
 
-
-  function addZero(code, number) {
-    let c = number - code.toString().length
-    for (let i = 0; i < c; i++) {
-      code = '0' + code.toString()
-    }
-    return code
-  }
-
-  $stores_stock.newCode = function () {
-
-    let y = new Date().getFullYear().toString().substr(2, 2)
-    let m = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L'][new Date().getMonth()].toString()
-    let d = new Date().getDate()
-    let lastCode = site.storage('ticket_last_code') || 0
-    let lastMonth = site.storage('ticket_last_month') || m
-    if (lastMonth != m) {
-      lastMonth = m
-      lastCode = 0
-    }
-    lastCode++
-    site.storage('ticket_last_code', lastCode)
-    site.storage('ticket_last_month', lastMonth)
-    return 'S-T' + y + lastMonth + addZero(d, 2) + addZero(lastCode, 4)
-  }
-
   site.post("/api/stores_stock/add", (req, res) => {
     let response = {}
     response.done = false
@@ -75,8 +49,7 @@ module.exports = function init(site) {
 
     stores_stock_doc.company = site.get_company(req)
     stores_stock_doc.branch = site.get_branch(req)
-    stores_stock_doc.code = $stores_stock.newCode();
-    
+
     site.getOpenShift({ companyId: stores_stock_doc.company.id, branchCode: stores_stock_doc.branch.code }, shiftCb => {
       if (shiftCb) {
 
@@ -87,25 +60,26 @@ module.exports = function init(site) {
             res.json(response)
           } else {
 
-
-        
             stores_stock_doc.add_user_info = site.security.getUserFinger({ $req: req, $res: res })
 
             stores_stock_doc.$req = req
             stores_stock_doc.$res = res
 
-            stores_stock_doc.date = site.toDateTime(stores_stock_doc.date)
+            let num_obj = {
+              company: site.get_company(req),
+              screen: 'stores_Stocktaking',
+              date: new Date(stores_stock_doc.date)
+            };
 
-            // stores_stock_doc.items.forEach(itm => {
-            //   itm.current_count = site.toNumber(itm.current_count)
-            //   itm.count = site.toNumber(itm.count)
-            //   itm.cost = site.toNumber(itm.cost)
-            //   itm.price = site.toNumber(itm.price)
-            //   itm.total = site.toNumber(itm.total)
-            // })
+            let cb = site.getNumbering(num_obj);
+            if (!stores_stock_doc.code && !cb.auto) {
+              response.error = 'Must Enter Code';
+              res.json(response);
+              return;
 
-            // stores_stock_doc.total_value = site.toNumber(stores_stock_doc.total_value)
-            // stores_stock_doc.net_value = site.toNumber(stores_stock_doc.net_value)
+            } else if (cb.auto) {
+              stores_stock_doc.code = cb.code;
+            }
 
             $stores_stock.add(stores_stock_doc, (err, doc) => {
 

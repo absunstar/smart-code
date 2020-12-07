@@ -55,8 +55,10 @@
                 <table id="t1" class="table loaded bold center hover">
                     <tr>
                         <th class="not-print"> ##word.logo## </th>
-                        <th>##word.transfer_branch_date##</th>
                         <th>##word.transfer_branch_number##</th>
+                        <th>##word.transfer_branch_date##</th>
+                        <th>##word.from##</th>
+                        <th>##word.to##</th>
                         <th class="not-print">##word.actions##</th>
 
                     </tr>
@@ -66,11 +68,21 @@
                         </td>
 
                         <td>
-                            <p class="text-center brown"> <br> {{c.date | date : 'yyyy - MM - dd'}} </p>
+                            <p class="bold blue text-center userPrint"> {{c.code}} </p>
                         </td>
 
                         <td>
-                            <p class="bold  text-center userPrint"> <br> {{c.number}} </p>
+                            <p class="text-center brown"> {{c.date | date : 'yyyy - MM - dd'}} </p>
+                        </td>
+
+                        <td>
+                            <p>{{c.branch_from.name_##session.lang##}}</p>
+                            <p>{{c.store_from.name}}</p>
+                        </td>
+
+                        <td>
+                            <p>{{c.branch_to.name_##session.lang##}}</p>
+                            <p>{{c.store_to.name}}</p>
                         </td>
 
                         <td class="center not-print">

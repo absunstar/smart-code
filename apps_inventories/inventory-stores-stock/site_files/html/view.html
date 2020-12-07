@@ -4,6 +4,11 @@
         <table class="table hover bold">
 
             <tr>
+                <td class="title">##word.stores_stock_id##</td>
+                <td class="center userPrint blue">{{store_stock.code}}</td>
+            </tr>
+
+            <tr>
                 <td class="title">##word.stores_stock_date##</td>
                 <td class="center brown">{{store_stock.date |date:"dd - MM - yyyy" }}</td>
             </tr>
@@ -11,11 +16,6 @@
             <tr>
                 <td class="title">##word.shift##</td>
                 <td class="center">{{store_stock.shift.code}} - {{store_stock.shift.name}}</td>
-            </tr>
-
-            <tr>
-                <td class="title">##word.stores_stock_id##</td>
-                <td class="center">{{store_stock.code}}</td>
             </tr>
 
             <tr>
@@ -66,9 +66,7 @@
                                         <td> {{i.stock_count}}</td>
                                         <td class="red"> {{i.difference_cost}}</td>
                                         <td ng-show="itm.work_patch || itm.work_serial">
-                                            <i-button class="not-print"
-                                                 type="view"
-                                                ng-click="viewPatchesList(i)">
+                                            <i-button class="not-print" type="view" ng-click="viewPatchesList(i)">
                                             </i-button>
                                         </td>
                                     </tr>

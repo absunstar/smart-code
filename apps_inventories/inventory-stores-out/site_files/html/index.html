@@ -71,15 +71,15 @@
                 <table id="t1" class="table loaded bold center hover">
                     <tr>
                         <th class="not-print"> ##word.logo## </th>
-                        <th>##word.stores_out_date##</th>
                         <th>##word.stores_out_id##</th>
-                        <th>##word.customer##</th>
+                        <th>##word.stores_out_date##</th>
+                        <th ng-hide="##query.type## == 5">##word.customer##</th>
                         <th>##word.store##</th>
                         <th x-permissions="stores_out_details_values || stores_out_manage">
                             ##word.stores_out_total_value##</th>
                         <th x-permissions="stores_out_details_values || stores_out_manage">##word.stores_out_net_value##
                         </th>
-                        <th> ##word.transaction_type##</th>
+                        <th ng-show="##query.type## == 6"> ##word.source_code##</th>
                         <th class="not-print">##word.actions##</th>
                     </tr>
                     <tr ng-repeat="c in list">
@@ -87,13 +87,14 @@
                             <i-image view class="logo" ng-model="c.image_url"></i-image>
                         </td>
                         <td>
+                            <br>
+                            <p class="bold blue text-center userPrint"> {{c.code}} </p>
+                        </td>
+                        <td>
                             <p class="text-center brown"> <br> {{c.date | date : 'yyyy - MM - dd'}} </p>
                         </td>
-                        <td>
-                            <br>
-                            <p class="bold blue text-center userPrint"> {{c.number}} </p>
-                        </td>
-                        <td>
+                    
+                        <td ng-hide="##query.type## == 5">
                             <p class="text-center blue"> <br> {{c.customer.name_##session.lang##}} </p>
                         </td>
                         <td>
@@ -105,8 +106,10 @@
                         <td x-permissions="stores_out_details_values || stores_out_manage">
                             <p class="bold text-center green"> <br> {{c.net_value}} </p>
                         </td>
-                        <td>
-                            <p class="bold text-center blue"> <br> {{c.type.##session.lang##}} </p>
+                        <td ng-show="##query.type## == 6">
+                            <h3 class="blue bold cente userPrintr">{{c.retured_number}}</h3>
+
+                            <!-- <p class="bold text-center blue"> <br> {{c.type.##session.lang##}} </p> -->
                         </td>
                         <td class="center not-print">
 

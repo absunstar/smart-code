@@ -16,6 +16,7 @@
     </nav>
     <div id="main-layout" class="container loaded">
         <div class="row ">
+
             <div class="row" ng-controller="stores_stock">
 
                 <div x-permissions="stores_stock_add || stores_stock_manage"
@@ -44,6 +45,7 @@
                 <div class="row">
                     <h1 class="bold text-center"> ##word.stores_stock## </h1>
                 </div>
+
                 <div class="top-actions">
 
                     <i-button x-permissions="stores_stock_add || stores_stock_manage" type="add"
@@ -55,7 +57,9 @@
                     <h2 class="bold red text-center"> {{error}}</h2>
                     <h3 class="bold text-center"> ##word.count## : {{count}}</h3>
                 </div>
+               
                 <table id="t1" class="table loaded center bold hover">
+
                     <tr>
                         <th class="not-print"> ##word.logo## </th>
                         <th>##word.stores_stock_date##</th>
@@ -63,21 +67,22 @@
                         <th>##word.store##</th>
                         <th class="not-print">##word.actions##</th>
                     </tr>
+
                     <tr ng-repeat="c in list">
                         <td class="not-print">
                             <i-image view class="logo" ng-model="c.image_url"></i-image>
                         </td>
 
                         <td>
-                            <p class="text-center brown"> <br> {{c.date | date : 'yyyy - MM - dd'}} </p>
+                            <p class="bold blue text-center userPrint"> {{c.code}} </p>
                         </td>
 
                         <td>
-                            <p class="bold blue text-center userPrint"> <br> {{c.code}} </p>
+                            <p class="text-center brown"> {{c.date | date : 'yyyy - MM - dd'}} </p>
                         </td>
 
                         <td>
-                            <p class="text-center blue"> <br> {{c.store.name}} </p>
+                            <p class="text-center blue"> {{c.store.name}} </p>
                         </td>
 
                         <td class="center not-print">

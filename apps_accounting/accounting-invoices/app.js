@@ -131,7 +131,7 @@ module.exports = function init(site) {
 
             let num_obj = {
               company: site.get_company(req),
-              date: account_invoices_doc.date
+              date: new Date(account_invoices_doc.date)
             };
 
             if (account_invoices_doc.source_type.id == 1) num_obj.screen = 'purchases_invoices';

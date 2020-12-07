@@ -53,9 +53,9 @@
                 <table id="t1" class="table loaded center bold hover">
                     <tr>
                         <th class="not-print"> ##word.logo## </th>
+                        <th>##word.stores_offer_id##</th>
                         <th>##word.startup_date##</th>
                         <th>##word.deadline_date##</th>
-                        <th>##word.stores_offer_id##</th>
                         <th>##word.offer_value##</th>
                         <th>##word.status##</th>
                         <th class="not-print">##word.actions##</th>
@@ -63,6 +63,10 @@
                     <tr ng-repeat="c in list">
                         <td class="not-print">
                             <i-image view class="logo" ng-model="c.image_url"></i-image>
+                        </td>
+
+                        <td>
+                            <p class="bold blue text-center userPrint"> {{c.code}} </p>
                         </td>
 
                         <td>
@@ -74,12 +78,8 @@
                         </td>
 
                         <td>
-                            <p class="bold blue text-center userPrint"> {{c.code}} </p>
-                        </td>
-
-                        <td>
                             <p class="text-center red">
-                                
+
                                 <b class="red" ng-show="c.offer_value.type == 'number'">
                                     {{c.offer_value.value}} $</b>
                                 <b class="red" ng-show="c.offer_value.type == 'percent'"> {{c.offer_value.value}} % </b>

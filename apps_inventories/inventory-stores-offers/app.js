@@ -35,32 +35,6 @@ module.exports = function init(site) {
     path: __dirname + '/site_files/images/'
   })
 
-
-  function addZero(code, number) {
-    let c = number - code.toString().length
-    for (let i = 0; i < c; i++) {
-      code = '0' + code.toString()
-    }
-    return code
-  }
-
-  $stores_offer.newCode = function () {
-
-    let y = new Date().getFullYear().toString().substr(2, 2)
-    let m = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L'][new Date().getMonth()].toString()
-    let d = new Date().getDate()
-    let lastCode = site.storage('ticket_last_code') || 0
-    let lastMonth = site.storage('ticket_last_month') || m
-    if (lastMonth != m) {
-      lastMonth = m
-      lastCode = 0
-    }
-    lastCode++
-    site.storage('ticket_last_code', lastCode)
-    site.storage('ticket_last_month', lastMonth)
-    return 'O-F' + y + lastMonth + addZero(d, 2) + addZero(lastCode, 4)
-  }
-
   site.post("/api/stores_offer/add", (req, res) => {
     let response = {}
     response.done = false
@@ -74,8 +48,7 @@ module.exports = function init(site) {
 
     stores_offer_doc.company = site.get_company(req)
     stores_offer_doc.branch = site.get_branch(req)
-    stores_offer_doc.code = $stores_offer.newCode();
-    
+
     site.getOpenShift({ companyId: stores_offer_doc.company.id, branchCode: stores_offer_doc.branch.code }, shiftCb => {
       if (shiftCb) {
 
@@ -86,13 +59,10 @@ module.exports = function init(site) {
             res.json(response)
           } else {
 
-
-         
             stores_offer_doc.add_user_info = site.security.getUserFinger({ $req: req, $res: res })
 
             stores_offer_doc.$req = req
             stores_offer_doc.$res = res
-
 
             if (stores_offer_doc.items && stores_offer_doc.items.length > 0)
               stores_offer_doc.items.forEach(_item => {
@@ -102,13 +72,27 @@ module.exports = function init(site) {
                   });
               });
 
+            let num_obj = {
+              company: site.get_company(req),
+              screen: 'items_offers',
+              date: new Date()
+            };
+
+            let cb = site.getNumbering(num_obj);
+            if (!stores_offer_doc.code && !cb.auto) {
+              response.error = 'Must Enter Code';
+              res.json(response);
+              return;
+
+            } else if (cb.auto) {
+              stores_offer_doc.code = cb.code;
+            }
+
             $stores_offer.add(stores_offer_doc, (err, doc) => {
 
               if (!err) {
-
                 response.done = true
                 response.doc = doc
-
               } else {
                 response.error = err.message
               }
@@ -317,27 +301,37 @@ module.exports = function init(site) {
       where['supply_number'] = site.get_RegExp(where['supply_number'], 'i')
     }
 
-
-    if (where.startup_date) {
-      let d1 = site.toDate(where.startup_date)
-      let d2 = site.toDate(where.startup_date)
+    if (where.dateTo) {
+      let d1 = site.toDate(where.dateFrom)
+      let d2 = site.toDate(where.dateFrom)
       d2.setDate(d2.getDate() + 1)
       where.startup_date = {
         '$gte': d1,
         '$lt': d2
       }
-    } else if (where && where.startup_date) {
-      let d1 = site.toDate(where.startup_date)
-      let d2 = site.toDate(where.deadline_date)
+
+    } else if (where && where.dateTo) {
+      let d1 = site.toDate(where.dateFrom)
+      let d2 = site.toDate(where.dateTo)
       d2.setDate(d2.getDate() + 1);
-      where.startup_date = {
+      where.deadline_date = {
         '$gte': d1,
         '$lt': d2
       }
-      delete where.date_from
-      delete where.deadline_date
-    }
+      delete where.dateFrom
+      delete where.dateTo
 
+    } else if (where.date) {
+      let d1 = site.toDate(where.date)
+      let d2 = site.toDate(where.date)
+      d2.setTime(d2.getTime() + (500 * 24 * 60 * 60 * 1000));
+      where.deadline_date = {
+        '$gte': d1,
+        '$lt': d2
+      }
+      delete where.date
+
+    }
 
     if (where['shift_code']) {
       where['shift.code'] = where['shift_code']
