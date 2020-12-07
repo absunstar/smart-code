@@ -37,8 +37,8 @@ module.exports = function init(site) {
       en: "delivery",
       ar: "توصيل"
     }
-    
-    $order_invoice.add(order_customer, (err, doc) => {})
+
+    $order_invoice.add(order_customer, (err, doc) => { })
 
   });
 
@@ -65,7 +65,6 @@ module.exports = function init(site) {
     $order_invoice.findOne({ id: obj.invoice_id }, (err, doc) => {
 
       if (doc.under_paid) {
-
 
         if (obj.return) {
           doc.under_paid.net_value = doc.under_paid.net_value + obj.net_value;
@@ -107,6 +106,7 @@ module.exports = function init(site) {
             };
           });
         });
+
         $order_invoice.update(doc, () => {
           order_paid_handle(null)
         });
@@ -417,7 +417,7 @@ module.exports = function init(site) {
     let response = {
       done: false
     }
-          
+
     if (!req.session.user) {
       response.error = 'Please Login First'
       res.json(response)
@@ -457,7 +457,7 @@ module.exports = function init(site) {
     let response = {
       done: false
     }
-              
+
     if (!req.session.user) {
       response.error = 'Please Login First'
       res.json(response)
@@ -495,7 +495,7 @@ module.exports = function init(site) {
     let response = {
       done: false
     }
-              
+
     if (!req.session.user) {
       response.error = 'Please Login First'
       res.json(response)
@@ -535,7 +535,7 @@ module.exports = function init(site) {
     let response = {
       done: false
     }
-              
+
     if (!req.session.user) {
       response.error = 'Please Login First'
       res.json(response)
@@ -566,7 +566,7 @@ module.exports = function init(site) {
       '$gte': 2,
       '$lte': 5
     }
-    
+
     if (req.data.order_invoices_type && req.data.order_invoices_type.id) {
       where['transaction_type.id'] = req.data.order_invoices_type.id;
       delete where['transaction_type']
@@ -584,7 +584,7 @@ module.exports = function init(site) {
         response.done = true
         response.list = docs
         response.count = count
-        
+
       } else {
         response.error = err.message
       }

@@ -8,6 +8,14 @@
                         <div class="row">
 
                             <table class="table bold hover">
+
+                                <tr>
+                                    <td class="title"> ##word.code## </td>
+                                    <td class="center ">
+                                        <p class="userPrint blue">{{account_invoices.code}}</p>
+                                    </td>
+                                </tr>
+
                                 <tr>
                                     <td class="title"> ##word.date## </td>
                                     <td class="center brown"> {{account_invoices.date | date : 'dd - MM - yyyy'}} </td>
@@ -16,12 +24,6 @@
                                 <tr>
                                     <td class="title"> ##word.shift## </td>
                                     <td class="center userPrint blue"> {{account_invoices.shift.code}} </td>
-                                </tr>
-                                <tr>
-                                    <td class="title"> ##word.code## </td>
-                                    <td class="center ">
-                                        <p class="userPrint blue">{{account_invoices.code}}</p>
-                                    </td>
                                 </tr>
                                 <tr>
                                     <td class="title"> ##word.source_type## </td>

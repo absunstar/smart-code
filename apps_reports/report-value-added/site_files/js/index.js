@@ -225,7 +225,7 @@ app.controller("report_value_added", function ($scope, $http, $timeout) {
       data: obj_print
     }).then(
       function (response) {
-        if (response)
+        if (response.data.done)
           $scope.busy = false;
       },
       function (err) {

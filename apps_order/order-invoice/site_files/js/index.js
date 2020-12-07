@@ -323,8 +323,9 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
           function (response) {
             $scope.busy = false;
             if (response.data.done) {
-              if (site.feature('restaurant'))
+              if (site.feature('restaurant')) {
                 $scope.sendToKitchens(Object.assign({}, response.data.doc));
+              }
 
 
               $scope.order_invoice = response.data.doc;
@@ -397,7 +398,9 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         function (response) {
           if (response.data.done) {
             $scope.busy = false;
-          } else $scope.error = response.data.error;
+          } else {
+            $scope.error = response.data.error;
+          }
         },
         function (err) {
           $scope.error = err.message;
@@ -579,6 +582,8 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
             $scope.error = "##word.code_exisit##"
           } else if (response.data.error.like('*Please write code*')) {
             $scope.error = "##word.enter_code_inventory##"
+          } else if (response.data.error.like('*Must Enter Code*')) {
+            $scope.error = "##word.must_enter_code##";
           }
         }
       },
@@ -833,7 +838,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
       data: obj_print
     }).then(
       function (response) {
-        if (response)
+        if (response.data.done)
           $scope.busy = false;
       },
       function (err) {
@@ -1303,7 +1308,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         } else {
           $scope.error = 'Please Login First';
           if (response.data.error.like('*Must Enter Code*')) {
-            $scope.error = "##word.must_enter_code##"
+            $scope.error = "##word.must_enter_code##";
           }
         }
       },
@@ -2153,6 +2158,29 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.getNumberingAutoInvoice = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/numbering/get_automatic",
+      data: {
+        screen: "o_screen_invoices"
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.disabledCodeInvoice = response.data.isAuto;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
   $scope.getNumberingAutoCustomer = function () {
     $scope.error = '';
     $scope.busy = true;
@@ -2190,6 +2218,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
   $scope.getCustomerGroupList();
   $scope.loadCurrencies();
   $scope.getNumberingAuto();
+  $scope.getNumberingAutoInvoice();
   $scope.getNumberingAutoCustomer();
   if (site.feature('restaurant')) {
     $scope.loadKitchenList();

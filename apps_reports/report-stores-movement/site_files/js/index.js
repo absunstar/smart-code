@@ -122,7 +122,7 @@ app.controller("report_stores_movement", function ($scope, $http, $timeout) {
       data: obj_print
     }).then(
       function (response) {
-        if (response)
+        if (response.data.done)
           $scope.busy = false;
       },
       function (err) {

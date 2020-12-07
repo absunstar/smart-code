@@ -420,7 +420,7 @@ app.controller("order_management", function ($scope, $http, $timeout) {
       data: obj_print
     }).then(
       function (response) {
-        if (response)
+        if (response.data.done)
           $scope.busy = false;
       },
       function (err) {
@@ -863,6 +863,29 @@ app.controller("order_management", function ($scope, $http, $timeout) {
     $scope.search = {}
   };
 
+  $scope.getNumberingAutoInvoice = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/numbering/get_automatic",
+      data: {
+        screen: "o_screen_invoices"
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.disabledCodeInvoice = response.data.isAuto;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
   $scope.get_open_shift = function (callback) {
     $scope.busy = true;
     $http({
@@ -899,7 +922,7 @@ app.controller("order_management", function ($scope, $http, $timeout) {
   $scope.getOrderStatusList();
   $scope.getDeliveryEmployeesList();
   $scope.getDefaultSettingsList();
-
+  $scope.getNumberingAutoInvoice();
   if (site.feature('restaurant'))
     $scope.getTablesGroupList();
 

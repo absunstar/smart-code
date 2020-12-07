@@ -434,7 +434,7 @@ app.controller("itineraries", function ($scope, $http, $timeout) {
       }).then(
         function (response) {
           $scope.busy = false;
-          if (response) {
+          if (response.data.done) {
             $scope.itinerary_i.invoice = true;
             site.hideModal('#amountInvoiceModal');
           } else $scope.error = response.data.error;

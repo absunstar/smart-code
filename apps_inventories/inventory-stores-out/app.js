@@ -77,8 +77,6 @@ module.exports = function init(site) {
 
     stores_out_doc.add_user_info = site.security.getUserFinger({ $req: req, $res: res })
 
-    stores_out_doc.date = site.toDateTime(stores_out_doc.date)
-
     site.getOpenShift({ companyId: stores_out_doc.company.id, branchCode: stores_out_doc.branch.code }, shiftCb => {
       if (shiftCb) {
 
@@ -135,8 +133,8 @@ module.exports = function init(site) {
                   company: site.get_company(req),
                   date: new Date(stores_out_doc.date)
                 };
-
                 if (stores_out_doc.type.id == 3) num_obj.screen = 'sales_invoices_store';
+                else  if (stores_out_doc.type.id == 4) num_obj.screen = 'o_screen_store';
                 else if (stores_out_doc.type.id == 5) num_obj.screen = 'damage_store';
                 else if (stores_out_doc.type.id == 6) num_obj.screen = 'return_sales_store';
                 let cb = site.getNumbering(num_obj);

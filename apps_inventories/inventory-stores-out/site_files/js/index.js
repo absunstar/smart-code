@@ -1635,12 +1635,17 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
       }).then(
         function (response) {
           $scope.busy = false;
-          if (response) {
+          if (response.data.done) {
             site.hideModal('#accountInvoiceModal');
             $scope.account_invoices = response.data.doc;
             $scope.printAccountInvoive();
             $scope.loadAll({ date: new Date() });
-          } else $scope.error = response.data.error;
+          } else {
+            $scope.error = response.data.error;
+            if (response.data.error.like('*Must Enter Code*')) {
+              $scope.error = "##word.must_enter_code##"
+            }
+          }
         },
         function (err) {
           console.log(err);
@@ -2754,6 +2759,29 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
 
   };
 
+  $scope.getNumberingAutoInvoice = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/numbering/get_automatic",
+      data: {
+        screen: "sales_invoices"
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.disabledCodeInvoice = response.data.isAuto;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
   $scope.getNumberingAutoCustomer = function () {
     $scope.error = '';
     $scope.busy = true;
@@ -2782,6 +2810,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
   $scope.loadPaymentTypes();
   $scope.loadCategories();
   $scope.getNumberingAuto();
+  $scope.getNumberingAutoInvoice();
   $scope.getNumberingAutoCustomer();
   $scope.getPaymentMethodList();
   $scope.getDefaultSettings();

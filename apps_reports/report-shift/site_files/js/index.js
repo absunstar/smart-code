@@ -121,7 +121,7 @@ app.controller("report_shift", function ($scope, $http, $timeout) {
       data: obj_print
     }).then(
       function (response) {
-        if (response)
+        if (response.data.done)
           $scope.busy = false;
       },
       function (err) {

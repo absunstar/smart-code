@@ -13,6 +13,9 @@
                 <div class="row">
 
                     <div class="row">
+                        <i-control ng-disabled="disabledCodeInvoice" class="col3" label="##word.code##"
+                            ng-model="account_invoices.code"></i-control>
+
                         <i-date2 class="col5" ng-model="account_invoices.date" label="##word.date##"></i-date2>
                     </div>
 
@@ -33,8 +36,8 @@
                         <i-control class="col2" disabled ng-model="account_invoices.currency.ex_rate" type="number"
                             label="##word.exchange_rate##"></i-control>
 
-                        <i-list ng-search="_search.$order_invoice.$safes_search"
-                            class="col4" ng-model="account_invoices.safe" label="##word.safe##" items="safesList">
+                        <i-list ng-search="_search.$order_invoice.$safes_search" class="col4"
+                            ng-model="account_invoices.safe" label="##word.safe##" items="safesList">
                         </i-list>
                     </div>
 
@@ -78,7 +81,8 @@
 
         <div class="modal-footer center">
             <i-button type="add" label="##word.add##" ng-click="addAccountInvoice(account_invoices)"></i-button>
-            <i-button class="not-print" label="##word.print_invoice##" type="print " ng-click="printAccountInvoive(account_invoices)">
+            <i-button class="not-print" label="##word.print_invoice##" type="print "
+                ng-click="printAccountInvoive(account_invoices)">
             </i-button>
 
             <i-button type="close" label="##word.close##" onclick="site.hideModal('#accountInvoiceModal')"> </i-button>

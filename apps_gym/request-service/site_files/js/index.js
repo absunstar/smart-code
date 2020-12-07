@@ -251,7 +251,7 @@ app.controller("request_service", function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response) {
+        if (response.data.done) {
           site.hideModal('#accountInvoiceModal');
           $scope.printAccountInvoive();
           $scope.getRequestServiceList();
@@ -381,7 +381,7 @@ app.controller("request_service", function ($scope, $http, $timeout) {
       data: obj_print
     }).then(
       function (response) {
-        if (response)
+        if (response.data.done)
           $scope.busy = false;
       },
       function (err) {

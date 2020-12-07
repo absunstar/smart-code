@@ -728,7 +728,7 @@ app.controller("book_hall", function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response) {
+        if (response.data.done) {
           site.hideModal('#accountInvoiceModal');
           $scope.printAccountInvoive();
           $scope.getBookHallList();
@@ -867,7 +867,7 @@ app.controller("book_hall", function ($scope, $http, $timeout) {
       data: obj_print
     }).then(
       function (response) {
-        if (response)
+        if (response.data.done)
           $scope.busy = false;
       },
       function (err) {
