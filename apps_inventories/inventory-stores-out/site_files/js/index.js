@@ -1992,6 +1992,9 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
           site.hideModal('#customerAddModal');
         } else {
           $scope.error = 'Please Login First';
+          if (response.data.error.like('*Must Enter Code*')) {
+            $scope.error = "##word.must_enter_code##"
+          }
         }
       },
       function (err) {
@@ -2751,12 +2754,35 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
 
   };
 
+  $scope.getNumberingAutoCustomer = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/numbering/get_automatic",
+      data: {
+        screen: "customers"
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.disabledCodeCustomer = response.data.isAuto;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
 
   $scope.loadStoresOutTypes();
   $scope.loadStores();
   $scope.loadPaymentTypes();
   $scope.loadCategories();
   $scope.getNumberingAuto();
+  $scope.getNumberingAutoCustomer();
   $scope.getPaymentMethodList();
   $scope.getDefaultSettings();
   $scope.getGovList();

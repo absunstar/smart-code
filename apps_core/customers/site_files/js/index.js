@@ -555,7 +555,7 @@ app.controller("customers", function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          $scope.disabledCode = response.data.isAuto;
+          $scope.disabledCodeCustomer = response.data.isAuto;
         }
       },
       function (err) {
