@@ -1,0 +1,45 @@
+<div class="form">
+    <div id="schoolGradeAddModal">
+        <fieldset>
+            <legend> ##word.school_grade_informations## </legend>
+            <div class="row">
+                <div class="col9">
+                    <div class="row">
+                        <i-control ng-disabled="disabledCode" class="col2" label="##word.code##"
+                            ng-model="school_grade.code"></i-control>
+
+                        <i-control v="r" class="col4" label="##word.school_grade_name##" ng-model="school_grade.name">
+                        </i-control>
+                        <div class="col4"></div>
+                        <i-checkbox class="col2" label="##word.active##" ng-model="school_grade.active"></i-checkbox>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="row">
+                        <fieldset>
+                            <legend>##word.subjects##
+
+                                <i-button type="add default" ng-click="school_grade.subjects_list.push({})">
+                                </i-button>
+                            </legend>
+
+                            <div ng-repeat="s in school_grade.subjects_list" class="row">
+                                <i-list help-id="" class="col5" ng-model="s.subject"
+                                ng-search="_search.$_subject" items="subjectsList" display="name"></i-list>
+                                <i-button class="col2" type="delete default"
+                                    ng-click="school_grade.subjects_list.length ==1 || school_grade.subjects_list.splice($index,1)">
+                                </i-button>
+
+                            </div>
+                        </fieldset>
+
+                    </div>
+                </div>
+
+                <div class="col3">
+                    <i-image category="school_grade" ng-model="school_grade.image_url"> </i-image>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+</div>

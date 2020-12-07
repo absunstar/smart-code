@@ -1,0 +1,18 @@
+[
+    {"name" : "school_grade_informations" , "en" : "School Grade Informations" , "ar" : "بيانات المراحل الدراسية"},
+
+    {"name" : "school_grades_name" , "en" : "School Grades" , "ar" : "المراحل الدراسية"},
+    {"name" : "school_grade_menus" , "en" : "School Grade Menu" , "ar" : "قائمة المرحلة الدراسية"},
+    {"name" : "school_grade_code" , "en" : "School Grade Code" , "ar" : "كود المرحلة الدراسية"},
+    {"name" : "school_grade_name" , "en" : "School Grade Name" , "ar" : "اسم المرحلة الدراسية"},
+
+    {"name" : "school_grade_new" , "en" : "New School Grade" , "ar" : "مرحلة دراسية جديدة"},
+    {"name" : "school_grade_details" , "en" : "School Grade Details" , "ar" : "تفاصيل المرحلة الدراسية"},
+    {"name" : "school_grade_update" , "en" : "Edit School Grade" , "ar" : "تعديل المرحلة الدراسية"},
+    {"name" : "school_grade_delete" , "en" : "Delte School Grade" , "ar" : "حذف المرحلة الدراسية"},
+    {"name" : "school_grade_add_name" , "en" : "Add School Grade" , "ar" : "إضافة المرحلة الدراسية"}
+
+
+    
+    
+]

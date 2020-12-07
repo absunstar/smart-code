@@ -1,0 +1,60 @@
+<div ng-hide="busy" id="v1">
+    <div class="form">
+        <div id="customersGroupViewModal">
+            <fieldset>
+                <legend> ##word.school_grade_informations## </legend>
+                <div class="row">
+                    <div class="col9">
+                        <div class="row">
+
+                            <table class="table hover bold">
+                                <tr>
+                                    <td class="title"> ##word.school_grade_code## </td>
+                                    <td class="center userPrint blue"> {{school_grade.code}} </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title"> ##word.school_grade_name## </td>
+                                    <td class="center"> {{school_grade.name}} </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title"> ##word.active## </td>
+                                    <td ng-show="school_grade.active == true" class="center green"> ##word.active##
+                                    </td>
+                                    <td ng-show="school_grade.active == false" class="center red"> ##word.not_active##
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <br>
+                        <br>
+                        <br>
+                        <div class="row">
+                            <div class="col8">
+
+                            <fieldset>
+                                <legend>##word.subjects##</legend>
+                                <div class="row" ng-repeat="s in school_grade.subjects_list">
+                                        <br>
+                                        <h2 class="black">{{$index + 1}} - {{s.subject.name}}</h2>
+                                        <br>
+                                </div>
+                            </fieldset>
+                        </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col3">
+                        <i-image class="not-print" view ng-model="school_grade.image_url"> </i-image>
+                    </div>
+
+
+                </div>
+            </fieldset>
+        </div>
+    </div>
+</div>
+<div x-import="school-grade/action_info.html"></div>

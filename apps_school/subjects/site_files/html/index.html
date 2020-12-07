@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="subjects_ui || subjects_manage" data-ng-app="myApp">
+
+<head x-import="head.html">
+
+</head>
+
+<body class="##session.lang##">
+
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+
+    </nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+
+    </nav>
+
+    <div id="main-layout" class="container loaded">
+        <div class="row">
+            <div class="row" ng-controller="subjects">
+                <div x-permissions="subjects_add || subjects_manage" x-import="subjects/add_modal.html"></div>
+                <div x-permissions="subjects_update || subjects_manage" x-import="subjects/update_modal.html"></div>
+                <div x-permissions="subjects_delete || subjects_manage" x-import="subjects/delete_modal.html"></div>
+                <div x-permissions="subjects_view || subjects_manage" x-import="subjects/view_modal.html"></div>
+                <div x-permissions="subjects_search || subjects_manage" x-import="subjects/search_all_modal.html"></div>
+
+                <div class="row">
+                    <h1 class="bold text-center">##word.subjects##</h1>
+                </div>
+
+                <div class="top-actions">
+                    <i-button x-permissions="subjects_add || subjects_manage" type="add" label="##word.subjects_new##"
+                        ng-click="displayAddSubjects()"></i-button>
+
+                    <i-button x-permissions="subjects_search || subjects_manage" type="search" label="##word.search_all##"
+                        ng-click="displaySearchModal()"></i-button>
+
+                    <h3 class="bold text-center"> ##word.count## : {{count}}</h3>
+                </div>
+
+                <table x-permissions="login" class="table hover bold loaded" id="t1">
+                    <tr>
+                        <th class="not-print">##word.logo##</th>
+                        <th>##word.code##</th>
+                        <th>##word.subject_name##</th>
+                        <th>##word.status##</th>
+                        <th class="not-print">##word.actions##</th>
+                    </tr>
+                    <tr ng-repeat="c in list">
+                        <td class="center not-print">
+                            <i-image view class="logo" ng-model="c.image_url"></i-image>
+                        </td>
+                        <td class="center userPrint blue">{{c.code}}</td>
+                        <td class="center title">{{c.name}}</td>
+                        <td class="center">
+                            <p ng-show="c.active == true" class="green center"> ##word.active## </p>
+                            <p ng-show="c.active == false" class="red center"> ##word.not_active## </p>
+                        </td>
+
+                        <td class="center not-print">
+                            <i-button x-permissions="subjects_view || subjects_manage" type="view" label="##word.details##"
+                                ng-click="displayDetailsSubjects(c)"></i-button>
+
+                            <i-button x-permissions="subjects_update || subjects_manage" type="edit" label="##word.edit##"
+                                ng-click="displayUpdateSubjects(c)"></i-button>
+
+                            <i-button x-permissions="subjects_delete || subjects_manage" type="delete"
+                                label="##word.delete##" ng-click="displayDeleteSubjects(c)"></i-button>
+                        </td>
+                    </tr>
+                </table>
+                <i-button x-permissions="subjects_print || subjects_manage" type="print" label="##word.print##"
+                    onclick="site.print('#t1')"></i-button>
+
+            </div>
+        </div>
+    </div>
+
+    <div x-import="scripts.html"></div>
+    <script x-import="subjects/index.js"></script>
+</body>
+
+</html>

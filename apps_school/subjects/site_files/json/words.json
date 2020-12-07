@@ -1,0 +1,47 @@
+[
+    {
+        "name": "subjects",
+        "en": "Subjects",
+        "ar": "المواد الدراسية"
+    },
+    {
+        "name": "subject",
+        "en": "Subject",
+        "ar": "المادة الدراسية"
+    },
+    {
+        "name": "subject_name",
+        "en": "Subject Name",
+        "ar": "إسم المادة الدراسية"
+    },
+    {
+        "name": "subjects_new",
+        "en": "New Subject",
+        "ar": "مادة دراسية جديد"
+    },
+    {
+        "name": "subjects_add",
+        "en": "Add Subject",
+        "ar": "إضافة مادة دراسية"
+    },
+    {
+        "name": "subjects_edit",
+        "en": "Edit Subject",
+        "ar": "تعديل مادة دراسية"
+    },
+    {
+        "name": "subjects_details",
+        "en": "Subject Details",
+        "ar": "تفاصيل مادة دراسية"
+    },
+    {
+        "name": "subjects_delete",
+        "en": "Delete subjects",
+        "ar": "حذف مادة دراسية"
+    },
+    {
+        "name": "subjects_number",
+        "en": "Subject Number",
+        "ar": "رقم المادة دراسية"
+    }
+]

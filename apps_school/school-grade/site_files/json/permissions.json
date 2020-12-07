@@ -1,0 +1,12 @@
+[
+    { "module_name" : "public", "screen_name" : "school-grade" , "name":"school_grade_manage" , "en":"Manage" , "ar":"إدارة"},
+    { "module_name" : "public", "screen_name" : "school-grade" , "name":"school_grade_add" , "en":"Add" , "ar":"إضافة"},
+    { "module_name" : "public", "screen_name" : "school-grade" , "name":"school_grade_edit" , "en":"Edit" , "ar":"تعديل"},
+    { "module_name" : "public", "screen_name" : "school-grade" , "name":"school_grade_delete" , "en":"Delete" , "ar":"حذف"},
+    { "module_name" : "public", "screen_name" : "school-grade" , "name":"school_grade_view" , "en":"View" , "ar":"عرض"},
+    { "module_name" : "public", "screen_name" : "school-grade" , "name":"school_grade_search" , "en":"Search" , "ar":"بحث"},
+    { "module_name" : "public", "screen_name" : "school-grade" , "name":"school_grade_export" , "en":"Export" , "ar":"تصدير"},
+    { "module_name" : "public", "screen_name" : "school-grade" , "name":"school_grade_print" , "en":"Print" , "ar":"طباعة"},
+    { "module_name" : "public", "screen_name" : "school-grade" , "name":"school_grade_ui" , "en":"UI" , "ar":"الواجهة الرسومية"}
+
+]

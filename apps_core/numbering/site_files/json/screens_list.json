@@ -449,6 +449,20 @@
     },
     {
         "category": "general_setting",
+        "feature": "school",
+        "name": "subjects",
+        "en": "Subjects",
+        "ar": "المواد الدراسية"
+    },
+    {
+        "category": "general_setting",
+        "feature": "school",
+        "name": "school_grade",
+        "en": "School Grade",
+        "ar": "المراحل الدراسية"
+    },
+    {
+        "category": "general_setting",
         "feature": "restaurant",
         "name": "kitchens",
         "en": "Kitchens",

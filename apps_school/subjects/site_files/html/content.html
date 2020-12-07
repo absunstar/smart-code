@@ -1,0 +1,34 @@
+<div class="form">
+    <div id="basicInformation" class="">
+        <fieldset>
+            <legend> ##word.basic_information## </legend>
+            <div class="row">
+                <div class="col9">
+                    <div class="row">
+
+                        <i-control ng-disabled="disabledCode" class="col2" label="##word.code##"
+                            ng-model="subjects.code">
+                        </i-control>
+
+                        <i-control type="text" v="r" class="col4" label="##word.subject_name##"
+                            ng-model="subjects.name"></i-control>
+
+                        <div class="col4"></div>
+                        <i-checkbox help-id="subjects_active" class="col2" label="##word.active##"
+                            ng-model="subjects.active"></i-checkbox>
+
+                    </div>
+                </div>
+
+                <div class="col3">
+
+                    <i-image help-id="subjects_logo" ng-model="subjects.image_url"></i-image>
+
+                </div>
+
+            </div>
+
+        </fieldset>
+
+    </div>
+</div>
