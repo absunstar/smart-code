@@ -47,6 +47,7 @@ site.words.add({
 
 site.ready = false
 site.loadLocalApp('client-side')
+site.importApps(__dirname + '/apps_school')
 site.importApp(__dirname + '/apps_private/cloud_security', 'security')
 site.importApp(__dirname + '/apps_private/ui-print')
 site.importApp(__dirname + '/apps_private/ui-help')
@@ -54,7 +55,6 @@ site.importApps(__dirname + '/apps_accounting')
 site.importApps(__dirname + '/apps_inventories')
 site.importApps(__dirname + '/apps_reports')
 site.importApps(__dirname + '/apps_hr')
-site.importApps(__dirname + '/apps_school')
 site.importApps(__dirname + '/apps_medic')
 site.addFeature('school')
 

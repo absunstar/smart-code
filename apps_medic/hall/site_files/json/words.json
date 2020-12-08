@@ -16,7 +16,7 @@
     {
         "name": "hall_add",
         "en": "Add Hall",
-        "ar": "اضافة قاعة"
+        "ar": "إضافة قاعة"
     },
     {
         "name": "hall_edit",
@@ -35,8 +35,8 @@
     },
     {
         "name": "hall_name",
-        "en": "Course Name",
-        "ar": "اسم القاعة "
+        "en": "Hall Name",
+        "ar": "إسم القاعة "
     },
     {
         "name": "hall_total",
@@ -53,5 +53,5 @@
         "en": "Number Of Current Students",
         "ar": "عدد الطلاب الحاليين"
     }
-    
+
 ]

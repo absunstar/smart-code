@@ -3,10 +3,10 @@ module.exports = function init(site) {
 
   site.on('[company][created]', doc => {
 
-    if (site.feature('gym') || site.feature('academy')) {
+    if (site.feature('gym') || site.feature('academy') || site.feature('school')) {
 
       $trainer.add({
-        name: "مدرب إفتراضي",
+        name: site.feature('school') ? "مدرس إفتراضي" : "مدرب إفتراضي",
         image_url: '/images/trainer.png',
         job: {
           id: doc.id,
@@ -104,13 +104,13 @@ module.exports = function init(site) {
           screen: 'trainer',
           date: new Date()
         };
-    
+
         let cb = site.getNumbering(num_obj);
         if (!trainer_doc.code && !cb.auto) {
           response.error = 'Must Enter Code';
           res.json(response);
           return;
-    
+
         } else if (cb.auto) {
           trainer_doc.code = cb.code;
         }

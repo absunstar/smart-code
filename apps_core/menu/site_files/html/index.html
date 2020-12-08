@@ -59,8 +59,8 @@
 
     <div id="general_tabs" class="tabs">
         <div class="tabs-header">
-            <a x-features="restaurant || pos || academy || gym || erp" class="tab-link" href="/default_setting"
-                x-permissions="default_setting_ui || default_setting_manage">
+            <a x-features="restaurant || pos || academy || gym || erp || school" class="tab-link"
+                href="/default_setting" x-permissions="default_setting_ui || default_setting_manage">
                 <img src="/images/default_setting.png">
                 <span>##word.default_setting_menus## </span>
             </a>
@@ -156,10 +156,21 @@
                 <span> ##word.menu_area## </span>
             </a>
 
-
-            <a class="tab-link" x-features="academy || gym" href="/hall" x-permissions="hall_ui || hall_manage">
+            <a class="tab-link" x-features="academy || gym || school" href="/hall"
+                x-permissions="hall_ui || hall_manage">
                 <img src="/images/hall.png">
                 <span> ##word.halls##</span>
+            </a>
+
+            <a class="tab-link" x-features="school" href="/school_grade"
+                x-permissions="school_grade_ui || school_grade_manage">
+                <img src="/images/school_grade.png">
+                <span> ##word.school_grades##</span>
+            </a>
+
+            <a class="tab-link" x-features="school" href="/subjects" x-permissions="subjects_ui || subjects_manage">
+                <img src="/images/subjects.png">
+                <span> ##word.subjects##</span>
             </a>
 
             <a class="tab-link" x-features="academy || gym" href="/service"
@@ -168,13 +179,13 @@
                 <span> ##word.service_management##</span>
             </a>
 
-            <a x-features="academy || gym" class="tab-link" href="/medicine"
+            <a x-features="academy || gym || school" class="tab-link" href="/medicine"
                 x-permissions="medicine_ui || medicine_manage">
                 <img src="/images/medicine.png">
                 <span> ##word.medicine##</span>
             </a>
 
-            <a x-features="academy || gym" class="tab-link" href="/disease"
+            <a x-features="academy || gym || school" class="tab-link" href="/disease"
                 x-permissions="disease_ui || disease_manage">
                 <img src="/images/disease.png">
                 <span> ##word.disease##</span>
@@ -529,7 +540,7 @@
                 <span> ##word.employees## </span>
             </a>
 
-            <a x-features="gym" class="tab-link" href="/trainer" x-permissions="trainer_ui || trainer_manage">
+            <a x-features="gym || school" class="tab-link" href="/trainer" x-permissions="trainer_ui || trainer_manage">
                 <img src="images/trainer.png">
                 <span> ##word.trainer##</span>
             </a>

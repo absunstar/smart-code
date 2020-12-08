@@ -1,7 +1,12 @@
 [{
-        "name": "trainer",
+        "name": "trainers",
         "en": "Trainers",
         "ar": "المدربين"
+    },
+    {
+        "name": "trainer",
+        "en": "Trainer",
+        "ar": "المدرب"
     },
     {
         "name": "trainer_new",

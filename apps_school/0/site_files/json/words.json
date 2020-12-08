@@ -339,7 +339,106 @@
     {"name" : "customers_group_details" , "en" : "Students Group Details" , "ar" : "تفاصيل مجموعة طلاب"},
     {"name" : "customers_group_update" , "en" : "Edit Students Group" , "ar" : "تعديل مجموعة طلاب"},
     {"name" : "customers_group_delete" , "en" : "Delte Students Group" , "ar" : "حذف مجموعة طلاب"},
-    {"name" : "customers_group_add_name" , "en" : "Add Students Group" , "ar" : "إضافة مجموعة طلاب"}
+    {"name" : "customers_group_add_name" , "en" : "Add Students Group" , "ar" : "إضافة مجموعة طلاب"},{
+        "name": "halls",
+        "en": "The Classes",
+        "ar": "الفصول الدراسية"
+    },
+    {
+        "name": "hall",
+        "en": "The Class",
+        "ar": "الفصل الدراسي"
+    },
+    {
+        "name": "hall_new",
+        "en": "New Class",
+        "ar": "فصل دراسي جديد"
+    },
+    {
+        "name": "hall_add",
+        "en": "Add Class",
+        "ar": "إضافة فصل دراسي"
+    },
+    {
+        "name": "hall_edit",
+        "en": "Edit Class",
+        "ar": "تعديل فصل دراسي"
+    },
+    {
+        "name": "hall_details",
+        "en": "Class Details",
+        "ar": "تفاصيل الفصل الدراسي"
+    },
+    {
+        "name": "hall_delete",
+        "en": "Delete Class",
+        "ar": "حذف فصل دراسي"
+    },
+    {
+        "name": "hall_name",
+        "en": "Class Name",
+        "ar": "إسم الفصل الدراسي"
+    },
+    {
+        "name": "hall_total",
+        "en": "Total Duration",
+        "ar": "إجمالي المدة "
+    },
+    {
+        "name": "hall_capaneighborhood",
+        "en": "Class Capaneighborhood",
+        "ar": "سعة الفصل الدراسي "
+    },
+    {
+        "name": "trainer",
+        "en": "Teachers",
+        "ar": "المدرسين"
+    },
+    {
+        "name": "trainer_new",
+        "en": "New Teacher",
+        "ar": "مدرس جديد"
+    },
+    {
+        "name": "handel_trainers",
+        "en": "Handel Teachers",
+        "ar": "هندلة المدرسين"
+    },
+    {
+        "name": "trainer_add",
+        "en": "Add Teacher",
+        "ar": "إضافة مدرس"
+    },
+    {
+        "name": "trainer_edit",
+        "en": "Edit Teacher",
+        "ar": "تعديل مدرس"
+    },
+    {
+        "name": "trainer_details",
+        "en": "Teacher Details",
+        "ar": "تفاصيل المدرس"
+    },
+    {
+        "name": "trainer_delete",
+        "en": "Delete Teacher",
+        "ar": "حذف مدرس"
+    },
+    {
+        "name": "trainer_name",
+        "en": "Teacher Name",
+        "ar": "إسم المدرس"
+    },
+    {
+        "name": "trainer_indentfy",
+        "en": "Teacher Indentfy",
+        "ar": "نوع المدرس"
+    },
+    {
+        "name": "trainer_info",
+        "en": "Teacher Informations",
+        "ar": "معلومات المدرس"
+    }
 
 
 ]
