@@ -8,7 +8,12 @@ app.controller("class_schedule", function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.class_schedule = {
       image_url: '/images/class_schedule.png',
-      subjects_list: [{}],
+      sunday: true,
+      monday: true,
+      tuesday: true,
+      wednesday: true,
+      thursday: true,
+      max_school_class: 0,
       active: true
     };
     site.showModal('#classScheduleAddModal');
@@ -203,6 +208,22 @@ app.controller("class_schedule", function ($scope, $http, $timeout) {
     $scope.search = {}
 
   };
+
+  $scope.createSchedule = function () {
+
+    $scope.class_schedule.schedulesList = [];
+    $scope.class_schedule.school_class_list = new Array($scope.class_schedule.max_school_class);
+
+    if ($scope.class_schedule.saturday) $scope.class_schedule.schedulesList.push({ day: { name: 'saturday', ar: 'السبت', en: 'Saturday' } });
+    if ($scope.class_schedule.sunday) $scope.class_schedule.schedulesList.push({ day: { name: 'sunday', ar: 'الأحد', en: 'Sunday' } });
+    if ($scope.class_schedule.monday) $scope.class_schedule.schedulesList.push({ day: { name: 'monday', ar: 'الإثنين', en: 'Monday' } });
+    if ($scope.class_schedule.tuesday) $scope.class_schedule.schedulesList.push({ day: { name: 'tuesday', ar: 'الثلاثاء', en: 'Tuesday' } });
+    if ($scope.class_schedule.wednesday) $scope.class_schedule.schedulesList.push({ day: { name: 'wednesday', ar: 'الأربعاء', en: 'Wednesday' } });
+    if ($scope.class_schedule.thursday) $scope.class_schedule.schedulesList.push({ day: { name: 'thursday', ar: 'الخميس', en: 'Thursday' } });
+    if ($scope.class_schedule.friday) $scope.class_schedule.schedulesList.push({ day: { name: 'friday', ar: 'الجمعة', en: 'Friday' } });
+
+  };
+
 
   $scope.getSchoolGrade = function () {
     $http({

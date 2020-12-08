@@ -612,7 +612,7 @@ app.controller("customers", function ($scope, $http, $timeout) {
   if (site.feature('erp')) {
     $scope.getGuideAccountList();
   }
-  if (site.feature('gym') || site.feature('academy')) {
+  if (site.feature('gym') || site.feature('academy') || site.feature('school')) {
     $scope.getDiseaseList();
     $scope.getMedicineList();
   }

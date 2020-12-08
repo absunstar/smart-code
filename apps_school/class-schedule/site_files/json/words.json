@@ -6,6 +6,18 @@
     {"name" : "class_schedule_menus" , "en" : "Class Schedule Menu" , "ar" : "قائمة جدول الحصص"},
     {"name" : "class_schedule_code" , "en" : "Class Schedule Code" , "ar" : "كود جدول الحصص"},
     {"name" : "class_schedule_name" , "en" : "Class Schedule Name" , "ar" : "اسم جدول الحصص"},
+    {"name" : "create_schedule" , "en" : "Create Schedule" , "ar" : "إنشاء الجدول"},
+    {"name" : "workdays" , "en" : "Workdays" , "ar" : "أيام العمل"},
+    {"name" : "max_school_class" , "en" : "Max School Class" , "ar" : "الحد الأقصى للحصص"},
+    {"name" : "day_school_class" , "en" : "Day / Sch Cla." , "ar" : "اليوم / الحصص"},
+
+    {"name" : "saturday" , "en" : "Sat." , "ar" : "السبت"},
+    {"name" : "sunday" , "en" : "Sun." , "ar" : "الأحد"},
+    {"name" : "monday" , "en" : "Mon." , "ar" : "الإثنين"},
+    {"name" : "tuesday" , "en" : "Tues." , "ar" : "الثلاثاء"},
+    {"name" : "wednesday" , "en" : "Wed." , "ar" : "الأربعاء"},
+    {"name" : "thursday" , "en" : "Thurs." , "ar" : "الخميس"},
+    {"name" : "friday" , "en" : "Fri." , "ar" : "الجمعة"},
 
     {"name" : "class_schedule_new" , "en" : "New Class Schedule" , "ar" : "جدول حصص جديد"},
     {"name" : "class_schedule_details" , "en" : "Class Schedule Details" , "ar" : "تفاصيل جدول الحصص"},

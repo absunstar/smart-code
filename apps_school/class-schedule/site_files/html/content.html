@@ -8,7 +8,7 @@
                         <i-control ng-disabled="disabledCode" class="col2" label="##word.code##"
                             ng-model="class_schedule.code"></i-control>
 
-                        <i-list help-id="" class="col4" label="##word.class_schedule##"
+                        <i-list help-id="" class="col4" label="##word.school_grade##"
                             ng-model="class_schedule.school_grade" ng-search="_search.$_school_grade"
                             items="schoolGradeList" display="name"></i-list>
 
@@ -17,7 +17,62 @@
                         <i-checkbox class="col2" label="##word.active##" ng-model="class_schedule.active"></i-checkbox>
                     </div>
                     <br>
-                
+                    <br>
+                    <fieldset>
+                        <legend>##word.workdays##</legend>
+                        <div class="row">
+                            <div class="col7">
+
+                                <i-checkbox label="##word.saturday##" ng-model="class_schedule.saturday"></i-checkbox>
+                                <i-checkbox label="##word.sunday##" ng-model="class_schedule.sunday"></i-checkbox>
+                                <i-checkbox label="##word.monday##" ng-model="class_schedule.monday"></i-checkbox>
+                                <i-checkbox label="##word.tuesday##" ng-model="class_schedule.tuesday"></i-checkbox>
+                                <i-checkbox label="##word.wednesday##" ng-model="class_schedule.wednesday"></i-checkbox>
+                                <i-checkbox label="##word.thursday##" ng-model="class_schedule.thursday"></i-checkbox>
+                                <i-checkbox label="##word.friday##" ng-model="class_schedule.friday"></i-checkbox>
+                            </div>
+
+                            <i-control class="col3" label="##word.max_school_class##" type="number"
+                                ng-model="class_schedule.max_school_class"></i-control>
+
+                            <i-button type="add" class="col2" label="##word.create_schedule##"
+                                ng-click="createSchedule()"></i-button>
+
+                        </div>
+
+
+                    </fieldset>
+
+                    <br>
+                    <br>
+                    <br>
+
+                    <fieldset>
+                        <legend></legend>
+
+                        <div class="row">
+                            <table class="table center bold hover details">
+                                <tr>
+                                    <th>##word.day_school_class##</th>
+                                    <th ng-repeat="x in class_schedule.school_class_list track by $index">{{$index +1}}
+                                    </th>
+                                </tr>
+
+                                <tr ng-repeat="i in class_schedule.schedulesList">
+                                    <td class="w200"> <br> {{i.day.##session.lang##}}</td>
+
+                                    <td ng-repeat="x in class_schedule.school_class_list track by $index">
+                                        <i-list ng-model="i.subject" ng-search="_search.$_subject" display="subject.name"
+                                            items="class_schedule.school_grade.subjects_list"></i-list>
+                                        </i-list>
+                                    </td>
+
+
+                                </tr>
+                            </table>
+                        </div>
+                    </fieldset>
+
                     <!-- <div class="row">
                         <fieldset>
                             <legend>##word.subjects##
