@@ -248,13 +248,38 @@ app.controller("customers", function ($scope, $http, $timeout) {
         select: {
           id: 1,
           name: 1,
-          code : 1
+          code: 1
         }
       }
     }).then(
       function (response) {
         $scope.busy = false;
         $scope.customerGroupList = response.data.list;
+      },
+      function (err) {
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.getSchoolGradeList = function () {
+    $http({
+      method: "POST",
+      url: "/api/school_grade/all",
+      data: {
+        select: {
+          id: 1,
+          name: 1,
+          code: 1
+        },
+        where: {
+          active: true
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.schoolGradeList = response.data.list;
       },
       function (err) {
         $scope.error = err;
@@ -311,7 +336,7 @@ app.controller("customers", function ($scope, $http, $timeout) {
         where: {
           active: true
         },
-        select: { id: 1, name: 1 ,code:1}
+        select: { id: 1, name: 1, code: 1 }
       }
     }).then(
       function (response) {
@@ -337,7 +362,7 @@ app.controller("customers", function ($scope, $http, $timeout) {
           'gov.id': gov.id,
           active: true
         },
-        select: { id: 1, name: 1 ,code:1}
+        select: { id: 1, name: 1, code: 1 }
       }
     }).then(
       function (response) {
@@ -428,7 +453,7 @@ app.controller("customers", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/maritals_status/all",
       data: {
-        select: { id: 1, name: 1,code:1 }
+        select: { id: 1, name: 1, code: 1 }
       }
     }).then(
       function (response) {
@@ -470,7 +495,7 @@ app.controller("customers", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/militaries_status/all",
       data: {
-        select: { id: 1, name: 1 ,code:1}
+        select: { id: 1, name: 1, code: 1 }
       }
     }).then(
       function (response) {
@@ -522,7 +547,7 @@ app.controller("customers", function ($scope, $http, $timeout) {
           name: 1,
           minor_currency: 1,
           ex_rate: 1,
-          code : 1
+          code: 1
         },
         where: {
           active: true
@@ -581,6 +606,7 @@ app.controller("customers", function ($scope, $http, $timeout) {
   $scope.Gender();
   $scope.getGovList();
   $scope.getBloodType();
+  $scope.getSchoolGradeList();
   $scope.loadMaritalsStatus();
   $scope.loadMilitariesStatus();
   if (site.feature('erp')) {

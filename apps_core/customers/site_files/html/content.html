@@ -73,7 +73,7 @@
                                 <i-control x-features="lawyer" help-id="" v="r ll2" class="col4"
                                     label="##word.national_id##" ng-model="customer.national_id"></i-control>
 
-                                <i-date x-features="lawyer || academy" ng-model="customer.birth_date" class="col4"
+                                <i-date x-features="lawyer || academy || school" ng-model="customer.birth_date" class="col4"
                                     label="##word.birth_date##">
                                 </i-date>
 
@@ -91,7 +91,7 @@
 
                             <div class="row">
 
-                                <i-control class="col4" x-features="gym || academy" label="##word.finger_code##"
+                                <i-control class="col4" x-features="gym || academy || school" label="##word.finger_code##"
                                     ng-model="customer.finger_code">
                                 </i-control>
 
@@ -111,6 +111,9 @@
                                 <i-list class="col4" label="##word.customers_groups##" ng-model="customer.group"
                                     items="customerGroupList" display="name" ng-search="_search.$customerGroup">
                                 </i-list>
+                                <i-list class="col4" label="##word.school_grade##" ng-model="customer.school_grade"
+                                items="schoolGradeList" display="name" ng-search="_search.$_school_grade">
+                            </i-list>
                             </div>
 
                         </div>
