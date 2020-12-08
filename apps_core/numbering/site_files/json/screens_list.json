@@ -505,10 +505,10 @@
     },
     {
         "category": "general_setting",
-        "feature": "gym",
-        "name": "services_slides",
-        "en": "Services Slides",
-        "ar": "شرائح الخدمات"
+        "feature": "pos",
+        "name": "orders_slides",
+        "en": "Orders Slides",
+        "ar": "شرائح الطلبات"
     },
     {
         "category": "general_setting",

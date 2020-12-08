@@ -975,11 +975,6 @@
                     <img src="/images/hall.png">
                     <span> ##word.halls##</span>
                 </a>
-
-                <a class="tab-link" href="/order_slides" x-permissions="order_slides_ui || order_slides_manage">
-                    <img src="/images/slides.png">
-                    <span> ##word.order_slides_management##</span>
-                </a>
             </div>
 
 
@@ -1044,6 +1039,12 @@
                     <span>##word.tables##</span>
                 </a>
             </div>
+
+            <a class="tab-link" x-features="restaurant || pos || erp || gym || academy || school" href="/order_slides"
+                x-permissions="order_slides_ui || order_slides_manage">
+                <img src="/images/slides.png">
+                <span> ##word.order_slides##</span>
+            </a>
 
             <a class="tab-link" href="/reset" x-permissions="reset_ui || reset_manage">
                 <img src="/images/reset.png">

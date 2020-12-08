@@ -388,5 +388,30 @@
         "name": "companies_customer_service",
         "en": "Customer Services",
         "ar": "خدمة العملاء"
+    },
+    {
+        "name": "order_slides_add",
+        "en": "Add Sessions Slide",
+        "ar": "إضافة شريحة جلسات"
+    },
+    {
+        "name": "order_slide",
+        "en": "Sessions Slide",
+        "ar": " شريحة الجلسات"
+    },
+    {
+        "name": "order_slides",
+        "en": "Sessions Slides",
+        "ar": " شرائح الجلسات"
+    },
+    {
+        "name": "order_slides_img",
+        "en": "Sessions Slides Image",
+        "ar": "ملفات شريحة الجلسات"
+    },
+    {
+        "name": "order_slides_value",
+        "en": "Session Value",
+        "ar": "قيمة الجلسة"
     }
 ]
