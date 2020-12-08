@@ -1,0 +1,24 @@
+
+<div class="row">
+    <table class="table border">
+        <tr>
+            <th>##word.useradd_user_info##</th>
+            <th>##word.useredit_user_info## </th>
+        </tr>
+        <tr>
+            <td class="center">
+               
+                <p class="blue bold"> {{class_schedule.add_user_info.name}} </p>
+                <small class="green"> {{class_schedule.add_user_info.date |date:"hh:mm"}} </small>
+                <small> {{class_schedule.add_user_info.date |date:"dd - MM - yyyy"}} </small>
+            </td>
+
+            <td class="center">
+           
+                <p class="blue bold"> {{class_schedule.edit_user_info.name}} </p>
+                <small class="green"> {{class_schedule.edit_user_info.date |date:"hh:mm"}} </small>
+                <small> {{class_schedule.edit_user_info.date |date:"dd - MM - yyyy"}} </small>
+            </td>
+        </tr>
+    </table>
+</div>

@@ -1,0 +1,48 @@
+<div class="form">
+    <div id="classScheduleAddModal">
+        <fieldset>
+            <legend> ##word.class_schedule_informations## </legend>
+            <div class="row">
+                <div class="col9">
+                    <div class="row">
+                        <i-control ng-disabled="disabledCode" class="col2" label="##word.code##"
+                            ng-model="class_schedule.code"></i-control>
+
+                        <i-list help-id="" class="col4" label="##word.class_schedule##"
+                            ng-model="class_schedule.school_grade" ng-search="_search.$_school_grade"
+                            items="schoolGradeList" display="name"></i-list>
+
+                        <i-list help-id="" class="col4" label="##word.hall##" ng-model="class_schedule.hall"
+                            ng-search="_search.$_hall" items="hallsList" display="name"></i-list>
+                        <i-checkbox class="col2" label="##word.active##" ng-model="class_schedule.active"></i-checkbox>
+                    </div>
+                    <br>
+                
+                    <!-- <div class="row">
+                        <fieldset>
+                            <legend>##word.subjects##
+
+                                <i-button type="add default" ng-click="class_schedule.subjects_list.push({})">
+                                </i-button>
+                            </legend>
+
+                            <div ng-repeat="s in class_schedule.subjects_list" class="row">
+                                <i-list help-id="" class="col5" ng-model="s.subject"
+                                ng-search="_search.$_subject" items="subjectsList" display="name"></i-list>
+                                <i-button class="col2" type="delete default"
+                                    ng-click="class_schedule.subjects_list.length ==1 || class_schedule.subjects_list.splice($index,1)">
+                                </i-button>
+
+                            </div>
+                        </fieldset>
+
+                    </div> -->
+                </div>
+
+                <div class="col3">
+                    <i-image category="class_schedule" ng-model="class_schedule.image_url"> </i-image>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+</div>

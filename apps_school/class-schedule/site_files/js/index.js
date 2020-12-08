@@ -1,27 +1,27 @@
-app.controller("school_grade", function ($scope, $http, $timeout) {
+app.controller("class_schedule", function ($scope, $http, $timeout) {
   $scope._search = {};
 
-  $scope.school_grade = {};
+  $scope.class_schedule = {};
 
-  $scope.displayAddSchoolGrade = function () {
+  $scope.displayAddClassSchedule = function () {
     $scope._search = {};
     $scope.error = '';
-    $scope.school_grade = {
-      image_url: '/images/school_grade.png',
+    $scope.class_schedule = {
+      image_url: '/images/class_schedule.png',
       subjects_list: [{}],
       active: true
     };
-    site.showModal('#schoolGradeAddModal');
+    site.showModal('#classScheduleAddModal');
   };
 
-  $scope.addSchoolGrade = function () {
+  $scope.addClassSchedule = function () {
     if ($scope.busy) {
       return;
     }
     $scope.error = '';
     $scope.busy = true;
 
-    const v = site.validated('#schoolGradeAddModal');
+    const v = site.validated('#classScheduleAddModal');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
@@ -29,14 +29,14 @@ app.controller("school_grade", function ($scope, $http, $timeout) {
 
     $http({
       method: "POST",
-      url: "/api/school_grade/add",
-      data: $scope.school_grade
+      url: "/api/class_schedule/add",
+      data: $scope.class_schedule
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#schoolGradeAddModal');
-          $scope.getSchoolGradeList();
+          site.hideModal('#classScheduleAddModal');
+          $scope.getClassScheduleList();
         } else {
           $scope.error = response.data.error;
           if (response.data.error.like('*duplicate key error*')) {
@@ -54,39 +54,39 @@ app.controller("school_grade", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.displayUpdateSchoolGrade = function (school_grade) {
+  $scope.displayUpdateClassSchedule = function (class_schedule) {
     $scope._search = {};
 
     $scope.error = '';
-    $scope.detailsSchoolGrade(school_grade);
-    $scope.school_grade = {
+    $scope.detailsClassSchedule(class_schedule);
+    $scope.class_schedule = {
       image_url: '/images/vendor_logo.png',
 
     };
-    site.showModal('#schoolGradeUpdateModal');
+    site.showModal('#classScheduleUpdateModal');
   };
 
-  $scope.updateSchoolGrade = function () {
+  $scope.updateClassSchedule = function () {
     if ($scope.busy) {
       return;
     }
     $scope.error = '';
     $scope.busy = true;
 
-    const v = site.validated('#schoolGradeUpdateModal');
+    const v = site.validated('#classScheduleUpdateModal');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
     }
     $http({
       method: "POST",
-      url: "/api/school_grade/update",
-      data: $scope.school_grade
+      url: "/api/class_schedule/update",
+      data: $scope.class_schedule
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#schoolGradeUpdateModal');
+          site.hideModal('#classScheduleUpdateModal');
           $scope.list.forEach((b, i) => {
             if (b.id == response.data.doc.id) {
               $scope.list[i] = response.data.doc;
@@ -102,27 +102,27 @@ app.controller("school_grade", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.displayDetailsSchoolGrade = function (school_grade) {
+  $scope.displayDetailsClassSchedule = function (class_schedule) {
     $scope.error = '';
-    $scope.detailsSchoolGrade(school_grade);
-    $scope.school_grade = {};
-    site.showModal('#schoolGradeDetailsModal');
+    $scope.detailsClassSchedule(class_schedule);
+    $scope.class_schedule = {};
+    site.showModal('#classScheduleDetailsModal');
   };
 
-  $scope.detailsSchoolGrade = function (school_grade) {
+  $scope.detailsClassSchedule = function (class_schedule) {
     $scope.busy = true;
     $http({
       method: "POST",
-      url: "/api/school_grade/view",
+      url: "/api/class_schedule/view",
       data: {
-        id: school_grade.id
+        id: class_schedule.id
       }
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
           response.data.doc.date = new Date(response.data.doc.date);
-          $scope.school_grade = response.data.doc;
+          $scope.class_schedule = response.data.doc;
         } else {
           $scope.error = response.data.error;
         }
@@ -133,28 +133,28 @@ app.controller("school_grade", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.displayDeleteSchoolGrade = function (school_grade) {
+  $scope.displayDeleteClassSchedule = function (class_schedule) {
     $scope.error = '';
-    $scope.detailsSchoolGrade(school_grade);
-    $scope.school_grade = {};
-    site.showModal('#schoolGradeDeleteModal');
+    $scope.detailsClassSchedule(class_schedule);
+    $scope.class_schedule = {};
+    site.showModal('#classScheduleDeleteModal');
   };
 
-  $scope.deleteSchoolGrade = function () {
+  $scope.deleteClassSchedule = function () {
     $scope.error = '';
     $scope.busy = true;
     $http({
       method: "POST",
-      url: "/api/school_grade/delete",
+      url: "/api/class_schedule/delete",
       data: {
-        id: $scope.school_grade.id
+        id: $scope.class_schedule.id
 
       }
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#schoolGradeDeleteModal');
+          site.hideModal('#classScheduleDeleteModal');
           $scope.list.forEach((b, i) => {
             if (b.id == response.data.doc.id) {
               $scope.list.splice(i, 1);
@@ -171,13 +171,13 @@ app.controller("school_grade", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.getSchoolGradeList = function (where) {
+  $scope.getClassScheduleList = function (where) {
     $scope.busy = true;
     $scope.list = [];
     $scope.count = 0;
     $http({
       method: "POST",
-      url: "/api/school_grade/all",
+      url: "/api/class_schedule/all",
       data: {
         where: where
       }
@@ -198,21 +198,22 @@ app.controller("school_grade", function ($scope, $http, $timeout) {
 
   $scope.searchAll = function () {
     $scope._search = {};
-    $scope.getSchoolGradeList($scope.search);
-    site.hideModal('#schoolGradeSearchModal');
+    $scope.getClassScheduleList($scope.search);
+    site.hideModal('#classScheduleSearchModal');
     $scope.search = {}
 
   };
 
-  $scope.getSubjects = function () {
+  $scope.getSchoolGrade = function () {
     $http({
       method: "POST",
-      url: "/api/subjects/all",
+      url: "/api/school_grade/all",
       data: {
         select: {
           id: 1,
           name: 1,
-          code: 1
+          code: 1,
+          subjects_list: 1
         },
         where: {
           active: true
@@ -221,13 +222,64 @@ app.controller("school_grade", function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
-        $scope.subjectsList = response.data.list;
+        $scope.schoolGradeList = response.data.list;
       },
       function (err) {
         $scope.error = err;
       }
     )
   };
+
+  $scope.getSchoolGrade = function () {
+    $http({
+      method: "POST",
+      url: "/api/school_grade/all",
+      data: {
+        select: {
+          id: 1,
+          name: 1,
+          code: 1,
+          subjects_list: 1
+        },
+        where: {
+          active: true
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.schoolGradeList = response.data.list;
+      },
+      function (err) {
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.getHalls = function () {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/hall/all",
+      data: {
+        where: {
+          active: true
+        },
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.hallsList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
 
   $scope.getNumberingAuto = function () {
     $scope.error = '';
@@ -236,7 +288,7 @@ app.controller("school_grade", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/numbering/get_automatic",
       data: {
-        screen: "school_grade"
+        screen: "class_schedule"
       }
     }).then(
       function (response) {
@@ -253,7 +305,8 @@ app.controller("school_grade", function ($scope, $http, $timeout) {
   };
 
   $scope.getNumberingAuto();
-  $scope.getSubjects();
-  $scope.getSchoolGradeList();
+  $scope.getSchoolGrade();
+  $scope.getHalls();
+  $scope.getClassScheduleList();
 
 });

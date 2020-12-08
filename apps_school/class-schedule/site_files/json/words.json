@@ -1,0 +1,19 @@
+[
+    {"name" : "class_schedule_informations" , "en" : "Class Schedule Informations" , "ar" : "بيانات جداول الحصص"},
+
+    {"name" : "class_schedules" , "en" : "Class Schedules" , "ar" : "جداول الحصص"},
+    {"name" : "class_schedule" , "en" : "Class Schedule" , "ar" : "جدول الحصص"},
+    {"name" : "class_schedule_menus" , "en" : "Class Schedule Menu" , "ar" : "قائمة جدول الحصص"},
+    {"name" : "class_schedule_code" , "en" : "Class Schedule Code" , "ar" : "كود جدول الحصص"},
+    {"name" : "class_schedule_name" , "en" : "Class Schedule Name" , "ar" : "اسم جدول الحصص"},
+
+    {"name" : "class_schedule_new" , "en" : "New Class Schedule" , "ar" : "جدول حصص جديد"},
+    {"name" : "class_schedule_details" , "en" : "Class Schedule Details" , "ar" : "تفاصيل جدول الحصص"},
+    {"name" : "class_schedule_update" , "en" : "Edit Class Schedule" , "ar" : "تعديل جدول الحصص"},
+    {"name" : "class_schedule_delete" , "en" : "Delte Class Schedule" , "ar" : "حذف جدول الحصص"},
+    {"name" : "class_schedule_add_name" , "en" : "Add Class Schedule" , "ar" : "إضافة جدول الحصص"}
+
+
+    
+    
+]

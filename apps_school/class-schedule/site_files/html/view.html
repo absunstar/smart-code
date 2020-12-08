@@ -1,0 +1,60 @@
+<div ng-hide="busy" id="v1">
+    <div class="form">
+        <div id="customersGroupViewModal">
+            <fieldset>
+                <legend> ##word.class_schedule_informations## </legend>
+                <div class="row">
+                    <div class="col9">
+                        <div class="row">
+
+                            <table class="table hover bold">
+                                <tr>
+                                    <td class="title"> ##word.class_schedule_code## </td>
+                                    <td class="center userPrint blue"> {{class_schedule.code}} </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title"> ##word.class_schedule_name## </td>
+                                    <td class="center"> {{class_schedule.name}} </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title"> ##word.active## </td>
+                                    <td ng-show="class_schedule.active == true" class="center green"> ##word.active##
+                                    </td>
+                                    <td ng-show="class_schedule.active == false" class="center red"> ##word.not_active##
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <!-- <br>
+                        <br>
+                        <br>
+                        <div class="row">
+                            <div class="col8">
+
+                            <fieldset>
+                                <legend>##word.subjects##</legend>
+                                <div class="row" ng-repeat="s in class_schedule.subjects_list">
+                                        <br>
+                                        <h2 class="black">{{$index + 1}} - {{s.subject.name}}</h2>
+                                        <br>
+                                </div>
+                            </fieldset>
+                        </div>
+
+                        </div> -->
+
+                    </div>
+
+                    <div class="col3">
+                        <i-image class="not-print" view ng-model="class_schedule.image_url"> </i-image>
+                    </div>
+
+
+                </div>
+            </fieldset>
+        </div>
+    </div>
+</div>
+<div x-import="class-schedule/action_info.html"></div>

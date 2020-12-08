@@ -450,6 +450,13 @@
     {
         "category": "general_setting",
         "feature": "school",
+        "name": "class_schedules",
+        "en": "Class Schedule",
+        "ar": "جداول الحصص"
+    },
+    {
+        "category": "general_setting",
+        "feature": "school",
         "name": "subjects",
         "en": "Subjects",
         "ar": "المواد الدراسية"

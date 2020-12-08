@@ -436,42 +436,42 @@
     },
     {
         "name": "halls",
-        "en": "The Classes",
+        "en": "The classrooms",
         "ar": "الفصول الدراسية"
     },
     {
         "name": "hall",
-        "en": "The Class",
+        "en": "The classroom",
         "ar": "الفصل الدراسي"
     },
     {
         "name": "hall_new",
-        "en": "New Class",
+        "en": "New classroom",
         "ar": "فصل دراسي جديد"
     },
     {
         "name": "hall_add",
-        "en": "Add Class",
+        "en": "Add classroom",
         "ar": "إضافة فصل دراسي"
     },
     {
         "name": "hall_edit",
-        "en": "Edit Class",
+        "en": "Edit classroom",
         "ar": "تعديل فصل دراسي"
     },
     {
         "name": "hall_details",
-        "en": "Class Details",
+        "en": "classroom Details",
         "ar": "تفاصيل الفصل الدراسي"
     },
     {
         "name": "hall_delete",
-        "en": "Delete Class",
+        "en": "Delete classroom",
         "ar": "حذف فصل دراسي"
     },
     {
         "name": "hall_name",
-        "en": "Class Name",
+        "en": "classroom Name",
         "ar": "إسم الفصل الدراسي"
     },
     {
@@ -481,7 +481,7 @@
     },
     {
         "name": "hall_capaneighborhood",
-        "en": "Class Capaneighborhood",
+        "en": "classroom Capaneighborhood",
         "ar": "سعة الفصل الدراسي "
     },
     {

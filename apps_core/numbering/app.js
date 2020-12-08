@@ -76,6 +76,21 @@ module.exports = function init(site) {
         screens_list = moduleListCore.filter((i) => i.feature !== 'order' && i.feature !== 'erp' && i.feature !== 'restaurant' && i.feature !== 'gym' && i.feature !== 'school');
 
       } else if (site.features.like('*school*')) {
+        moduleListCore.forEach(_mc => {
+          if (_mc.name == 'customers') {
+            _mc.en = 'Students'
+            _mc.ar = 'الطلاب'
+          } else if (_mc.name == 'customers_groups') {
+            _mc.en = 'Students Group'
+            _mc.ar = 'مجموعة الطلاب'
+          } else if (_mc.name == 'trainer') {
+            _mc.en = 'Teachers'
+            _mc.ar = 'المدرسين'
+          } else if (_mc.name == 'halls') {
+            _mc.en = 'classrooms'
+            _mc.ar = 'الفصول الدراسية'
+          }
+        });
         screens_list = moduleListCore.filter((i) => i.feature !== 'order' && i.feature !== 'erp' && i.feature !== 'restaurant' && i.feature !== 'gym' && i.feature !== 'academy');
 
       }
