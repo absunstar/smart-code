@@ -59,11 +59,11 @@ app.controller("class_schedule", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.displayUpdateClassSchedule = function (class_schedule) {
+  $scope.displayUpdateClassSchedule = function (class_schedule, update) {
     $scope._search = {};
 
     $scope.error = '';
-    $scope.detailsClassSchedule(class_schedule);
+    $scope.detailsClassSchedule(class_schedule, update);
     $scope.class_schedule = {};
     site.showModal('#classScheduleUpdateModal');
   };
@@ -126,7 +126,9 @@ app.controller("class_schedule", function ($scope, $http, $timeout) {
         if (response.data.done) {
           response.data.doc.date = new Date(response.data.doc.date);
           $scope.class_schedule = response.data.doc;
-
+          if (view == 'update') {
+            $scope.getSubjects($scope.class_schedule.school_grade)
+          }
         } else {
           $scope.error = response.data.error;
         }
