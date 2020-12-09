@@ -584,7 +584,10 @@ app.controller("order_management", function ($scope, $http, $timeout) {
     $http({
       method: "POST",
       url: "/api/customers/all",
-      data: {}
+      data: {
+        where:{
+          active: true
+        }}
     }).then(
       function (response) {
         $scope.busy = false;

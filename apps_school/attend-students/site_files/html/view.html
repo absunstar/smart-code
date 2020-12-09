@@ -1,0 +1,82 @@
+<div ng-hide="busy" class="row">
+    <div id="basicInformation">
+        <fieldset>
+            <legend> ##word.basic_information##</legend>
+            <div class="col9">
+                <div class="row">
+
+                    <table id="basicInformationTable" class="table hover bold">
+
+                        <tr>
+                            <td class="title">##word.code##</td>
+                            <td class="center userPrint blue">{{attend_students.code}}</td>
+                        </tr>
+                        <tr>
+                            <td class="title">##word.date##</td>
+                            <td class="center brown">{{attend_students.date |date:'dd - MM - yyyy'}}</td>
+                        </tr>
+                        <tr ng-show="attend_students.school_grade.id">
+                            <td class="title">##word.school_grade##</td>
+                            <td class="center">{{attend_students.school_grade.name}}</td>
+                        </tr>
+
+                        <tr ng-show="attend_students.hall.id">
+                            <td class="title">##word.hall##</td>
+                            <td class="center">{{attend_students.hall.name}}</td>
+                        </tr>
+
+                    </table>
+                </div>
+                <br>
+                <br>
+                <div class="row">
+                    <div class="col10">
+                        <table x-permissions="login" class="table bold loaded hover" id="t1">
+                            <tr>
+                                <th>##word.customer_name##</th>
+                                <th>##word.attend_status##</th>
+                                <th>##word.attend_leave_attend##</th>
+                                <th>##word.attend_leave_leave##</th>
+                            </tr>
+
+                            <tr ng-repeat="att_stu in attend_students.attend_list">
+                                <td class="center title">{{att_stu.customer.name_##session.lang##}}</td>
+
+                                <td class="center title">
+
+                                    <h class="green bold" ng-show="att_stu.status.name == 'attend'">
+                                        {{att_stu.status.##session.lang##}}
+                                    </h>
+                                    <h class="red bold" ng-show="att_stu.status.name == 'absence'">
+                                        {{att_stu.status.##session.lang##}}
+                                    </h>
+                                </td>
+
+                                <td class="center">
+                                    <p class="green">{{att_stu.attend_time.minute}} :
+                                        {{att_stu.attend_time.hour}}
+                                    </p>
+                                </td>
+
+                                <td class="center">
+
+                                    <p class="red">{{att_stu.leave_time.minute}} :
+                                        {{att_stu.leave_time.hour}}
+                                    </p>
+                                </td>
+                            </tr>
+                        </table>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col3">
+                <i-image view ng-model="attend_students.image_url"></i-image>
+            </div>
+
+        </fieldset>
+    </div>
+</div>
+<div x-import="attend-students/action_info.html"></div>

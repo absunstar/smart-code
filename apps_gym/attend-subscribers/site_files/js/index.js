@@ -201,7 +201,10 @@ app.controller("attend_subscribers", function ($scope, $http, $timeout, $interva
         url: "/api/customers/all",
         data: {
           search: $scope.search_customer
-     
+          ,
+          where:{
+            active: true
+          }
         }
       }).then(
         function (response) {

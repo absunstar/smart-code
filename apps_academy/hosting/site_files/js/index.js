@@ -245,7 +245,7 @@ app.controller("hosting", function ($scope, $http, $timeout) {
       data: {
         where: {
           active: true
-        },
+        }
       }
     }).then(
       function (response) {

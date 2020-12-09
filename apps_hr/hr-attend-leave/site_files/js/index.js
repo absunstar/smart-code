@@ -215,6 +215,9 @@ app.controller("attend_leave", function ($scope, $http, $timeout, $interval) {
         url: "/api/employees/all",
         data: {
           search: $scope.search_employee,
+          where : {
+            active: true
+          }
 
           /*  select: {
             id: 1,

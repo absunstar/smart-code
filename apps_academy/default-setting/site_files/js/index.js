@@ -64,7 +64,10 @@ app.controller("default_setting", function ($scope, $http) {
     $http({
       method: "POST",
       url: "/api/customers/all",
-      data: {}
+      data: {
+        where:{
+          active: true
+        }}
     }).then(
       function (response) {
         $scope.busy = false;
@@ -227,7 +230,10 @@ app.controller("default_setting", function ($scope, $http) {
     $http({
       method: "POST",
       url: "/api/trainer/all",
-      data: {}
+      data: {  
+        where: {
+        active : true
+      }}
     }).then(
       function (response) {
         $scope.busy = false;

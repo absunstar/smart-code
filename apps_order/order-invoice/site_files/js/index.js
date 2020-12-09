@@ -1326,7 +1326,10 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         method: "POST",
         url: "/api/customers/all",
         data: {
-          search: $scope.search_customer
+          search: $scope.search_customer,
+          where:{
+            active: true
+          }
           /*  select: {
             id: 1,
             name_ar: 1,

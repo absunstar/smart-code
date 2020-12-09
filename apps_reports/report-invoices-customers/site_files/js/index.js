@@ -10,7 +10,10 @@ app.controller("report_invoices_customers", function ($scope, $http, $timeout) {
         method: "POST",
         url: "/api/customers/all",
         data: {
-          search: $scope.search_customer
+          search: $scope.search_customer,
+          where:{
+            active: true
+          }
         }
       }).then(
         function (response) {

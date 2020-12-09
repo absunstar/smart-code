@@ -200,7 +200,7 @@ app.controller("lecture", function ($scope, $http, $timeout) {
       data: {
         where: {
           active: true
-        },
+        }
       }
     }).then(
       function (response) {

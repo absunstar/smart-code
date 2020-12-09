@@ -14,9 +14,15 @@
                                 </tr>
 
                                 <tr>
-                                    <td class="title"> ##word.class_schedule_name## </td>
-                                    <td class="center"> {{class_schedule.name}} </td>
+                                    <td class="title"> ##word.school_grade## </td>
+                                    <td class="center"> {{class_schedule.school_grade.name}} </td>
                                 </tr>
+
+                                <tr>
+                                    <td class="title"> ##word.hall## </td>
+                                    <td class="center"> {{class_schedule.hall.name}} </td>
+                                </tr>
+
 
                                 <tr>
                                     <td class="title"> ##word.active## </td>
@@ -27,23 +33,60 @@
                                 </tr>
                             </table>
                         </div>
-                        <!-- <br>
-                        <br>
-                        <br>
                         <div class="row">
-                            <div class="col8">
+                            <!-- <table class="table center bold hover details">
+                                <tr>
+                                    <th>##word.day_school_class##</th>
+                                    <th ng-repeat="x in class_schedule.school_class_list track by $index">{{$index +1}}
+                                    </th>
+                                </tr>
 
-                            <fieldset>
-                                <legend>##word.subjects##</legend>
-                                <div class="row" ng-repeat="s in class_schedule.subjects_list">
-                                        <br>
-                                        <h2 class="black">{{$index + 1}} - {{s.subject.name}}</h2>
-                                        <br>
-                                </div>
-                            </fieldset>
+                                <tr ng-repeat="i in class_schedule.schedulesList">
+                                    <td class="w200"> <br> {{i.day.##session.lang##}}</td>
+
+                                    <td ng-repeat="x in class_schedule.school_class_list track by $index">
+                                        <i-list ng-model="i.subject" ng-search="_search.$_subject" display="subject.name"
+                                            items="class_schedule.school_grade.subjects_list"></i-list>
+                                        </i-list>
+                                    </td>
+
+
+                                </tr>
+                            </table> -->
+
+                            <table class="table center bold hover details">
+                                <tr>
+                                    <th>##word.day_school_class##</th>
+                                    
+                                    <th ng-repeat="x in [].constructor(class_schedule.max_school_class) track by $index">{{$index +1}}
+                                    </th>
+                                </tr>
+
+                                <tr ng-repeat="i in class_schedule.schedules_list track by $index">
+                                    <td class="center blue">
+                                        {{i.day.##session.lang##}}
+                                    </td>
+
+                                    <td class="center blue" ng-repeat="s in i.schedules_count_list track by $index">
+                                        <p class="blue">{{s.subject.name}}</p>
+                                        <hr>
+                                        <p>{{s.trainer.name}}</p>
+                                        <hr>
+                                        <p>
+                                            <b class="green">{{s.from.minute}} :
+                                                {{s.from.hour}}
+                                            </b>
+
+                                            /
+
+                                            <b class="red">{{s.to.minute}} :
+                                                {{s.to.hour}}
+                                            </b>
+                                        </p>
+                                    </td>
+                                </tr>
+                            </table>
                         </div>
-
-                        </div> -->
 
                     </div>
 

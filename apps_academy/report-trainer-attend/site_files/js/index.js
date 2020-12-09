@@ -34,7 +34,10 @@ app.controller("report_trainer_attend", function ($scope, $http) {
     $http({
       method: "POST",
       url: "/api/trainer/all",
-      data: {}
+      data: { 
+         where: {
+        active : true
+      }}
     }).then(
       function (response) {
         $scope.busy = false;

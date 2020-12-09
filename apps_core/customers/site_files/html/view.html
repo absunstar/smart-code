@@ -13,7 +13,8 @@
             </a>
             <a class="tab-link" onclick="site.showTabContent(event, '#customersFiles')">
                 ##word.customers_files## </a>
-            <a class="tab-link" x-features="academy || school" onclick="site.showTabContent(event,'#familyInformation')">
+            <a class="tab-link" x-features="academy || school"
+                onclick="site.showTabContent(event,'#familyInformation')">
                 ##word.family_info##
             </a>
 
@@ -115,9 +116,14 @@
                                     <td class="center"> {{customer.group.name}} </td>
                                 </tr>
 
-                                <tr>
+                                <tr x-features="school">
                                     <td class="title"> ##word.school_grade## </td>
                                     <td class="center"> {{customer.school_grade.name}} </td>
+                                </tr>
+
+                                <tr x-features="school">
+                                    <td class="title"> ##word.hall## </td>
+                                    <td class="center"> {{customer.hall.name}} </td>
                                 </tr>
 
                                 <tr>

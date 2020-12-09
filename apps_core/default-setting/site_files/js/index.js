@@ -55,6 +55,9 @@ app.controller("default_setting", function ($scope, $http) {
         url: "/api/customers/all",
         data: {
           search: $scope.search_customer,
+          where:{
+            active: true
+          }
 
           /*  select: {
             id: 1,

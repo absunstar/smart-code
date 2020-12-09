@@ -192,8 +192,10 @@ app.controller("attend_session", function ($scope, $http, $timeout) {
         data: {
           search: $scope.search_customer,
           where: {
-            busy: { $ne: true }
+            busy: { $ne: true },
+            active: true
           }
+          
           /*  select: {
             id: 1,
             name_ar: 1,
@@ -221,7 +223,9 @@ app.controller("attend_session", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/trainer/all",
       data: {
+       
         where: {
+          active: true,
           busy: { $ne: true }
         }
       }

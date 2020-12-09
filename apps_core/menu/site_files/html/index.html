@@ -162,22 +162,21 @@
                 <span> ##word.halls##</span>
             </a>
 
-            <a class="tab-link" x-features="school" href="/school_grade"
-                x-permissions="school_grade_ui || school_grade_manage">
-                <img src="/images/school_grade.png">
-                <span> ##word.school_grades##</span>
-            </a>
 
-            <a class="tab-link" x-features="school" href="/class_schedule"
-                x-permissions="class_schedule_ui || class_schedule_manage">
-                <img src="/images/class_schedule.png">
-                <span> ##word.class_schedules##</span>
-            </a>
+            <div class="row" x-features="school">
+                <a class="tab-link" href="/school_grade" x-permissions="school_grade_ui || school_grade_manage">
+                    <img src="/images/school_grade.png">
+                    <span> ##word.school_grades##</span>
+                </a>
 
-            <a class="tab-link" x-features="school" href="/subjects" x-permissions="subjects_ui || subjects_manage">
-                <img src="/images/subjects.png">
-                <span> ##word.subjects##</span>
-            </a>
+                <a class="tab-link" href="/subjects" x-permissions="subjects_ui || subjects_manage">
+                    <img src="/images/subjects.png">
+                    <span> ##word.subjects##</span>
+                </a>
+
+            </div>
+
+
 
             <a class="tab-link" x-features="academy || gym" href="/service"
                 x-permissions="service_ui || service_manage">
@@ -893,6 +892,7 @@
                 </a>
             </div>
 
+
             <div class="row" x-features="gym">
                 <a class="tab-link" href="/request_service"
                     x-permissions="request_service_ui || request_service_manage">
@@ -965,6 +965,23 @@
 
             </div>
 
+
+
+
+            <div class="row" x-features="school">
+                <a class="tab-link" href="/attend_students"
+                    x-permissions="attend_students_ui || attend_students_manage">
+                    <img src="/images/attend_students.png">
+                    <span> ##word.attend_students##</span>
+                </a>
+
+                <a class="tab-link" href="/class_schedule" x-permissions="class_schedule_ui || class_schedule_manage">
+                    <img src="/images/class_schedule.png">
+                    <span> ##word.class_schedules##</span>
+                </a>
+
+            </div>
+
             <div class="row" x-features="academy || gym || school">
                 <a class="tab-link" href="/customers" x-permissions="customers_ui || customers_manage">
                     <img src="/images/customer.png">
@@ -976,6 +993,9 @@
                     <span> ##word.halls##</span>
                 </a>
             </div>
+
+
+
 
 
             <div class="row" x-features="restaurant || pos || erp">

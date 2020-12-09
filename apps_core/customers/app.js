@@ -97,9 +97,18 @@ module.exports = function init(site) {
   site.on('[company][created]', doc => {
 
     let name_ar = "عميل إفتراضي"
+    let name_en = "Default Customer"
 
-    if (site.feature('gym'))
+    if (site.feature('gym')) {
+
       name_ar = "مشترك إفتراضي"
+      name_en = "Default Subscriber"
+
+    } else if (site.feature('school')) {
+      name_ar = "تلميذ إفتراضي"
+      name_en = "Default Student"
+
+    }
 
     $customers.add({
       group: {
@@ -108,6 +117,7 @@ module.exports = function init(site) {
       },
       code: "1",
       name_ar: name_ar,
+      name_en: name_en,
       branch_list: [
         {
           charge: [{}]
@@ -215,7 +225,7 @@ module.exports = function init(site) {
 
     user.company = customers_doc.company
     user.branch = customers_doc.branch
-    
+
     let num_obj = {
       company: site.get_company(req),
       screen: 'customers',
@@ -504,14 +514,6 @@ module.exports = function init(site) {
       where['code'] = where.code;
     }
 
-    if (where.name_ar) {
-
-      where['name_ar'] = site.get_RegExp(where['name_ar'], 'i')
-    }
-    if (where.name_en) {
-
-      where['name_en'] = site.get_RegExp(where['name_en'], 'i')
-    }
     if (where.nationality) {
 
       where['nationality'] = where.nationality;
@@ -526,7 +528,21 @@ module.exports = function init(site) {
       where['mobile'] = where.mobile;
     }
 
+    if (where['school_grade'] && where['school_grade'].id) {
+      where['school_grade.id'] = where['school_grade'].id;
+      delete where['school_grade']
+    }
+
+    if (where['hall'] && where['hall'].id) {
+      where['hall.id'] = where['hall'].id;
+      delete where['hall']
+    }
+
     where['company.id'] = site.get_company(req).id
+
+    if (site.feature('school')){
+    where['branch.code'] = site.get_branch(req).code
+    }
 
     if (req.session.user && req.session.user.type === 'customer') {
       where['id'] = req.session.user.ref_info.id;

@@ -27,8 +27,10 @@
                 </div>
 
                 <div class="top-actions">
-                    <i-button type="add" x-permissions="sales_class_schedule_add || sales_class_schedule_manage" label="##word.class_schedule_new##" ng-click="displayAddClassSchedule()"></i-button>
-                    <i-button type="search" x-permissions="sales_class_schedule_search || sales_class_schedule_manage" label="##word.search_all##" onclick="site.showModal('#classScheduleSearchModal')"></i-button>
+                    <i-button type="add" x-permissions="sales_class_schedule_add || sales_class_schedule_manage"
+                        label="##word.class_schedule_new##" ng-click="displayAddClassSchedule()"></i-button>
+                    <i-button type="search" x-permissions="sales_class_schedule_search || sales_class_schedule_manage"
+                        label="##word.search_all##" onclick="site.showModal('#classScheduleSearchModal')"></i-button>
 
                     <span ng-show="busy">
                         <span class="sr-only">Loading...</span>
@@ -41,7 +43,8 @@
                     <tr>
                         <th class="not-print"> ##word.logo## </th>
                         <th> ##word.class_schedule_code## </th>
-                        <th> ##word.class_schedule_name## </th>
+                        <th> ##word.school_grade## </th>
+                        <th> ##word.hall## </th>
                         <th> ##word.status## </th>
 
                         <th class="not-print"> ##word.actions## </th>
@@ -52,7 +55,8 @@
                         </td>
 
                         <td class="blue userPrint"> {{c.code}} </td>
-                        <td> {{c.name}} </td>
+                        <td> {{c.school_grade.name}} </td>
+                        <td> {{c.hall.name}} </td>
 
                         <td>
                             <p ng-show="c.active == true" class="green"> ##word.active## </p>
@@ -60,17 +64,24 @@
                         </td>
 
                         <td class="center not-print">
-                            <i-button type="details" x-permissions="sales_class_schedule_view || sales_class_schedule_manage" label="##word.details##" ng-click="displayDetailsClassSchedule(c)"></i-button>
+                            <i-button type="details"
+                                x-permissions="sales_class_schedule_view || sales_class_schedule_manage"
+                                label="##word.details##" ng-click="displayDetailsClassSchedule(c,'view')"></i-button>
 
-                            <i-button type="update" x-permissions="sales_class_schedule_edit || sales_class_schedule_manage" label="##word.update##" ng-click="displayUpdateClassSchedule(c)"></i-button>
+                            <i-button type="update"
+                                x-permissions="sales_class_schedule_edit || sales_class_schedule_manage"
+                                label="##word.update##" ng-click="displayUpdateClassSchedule(c)"></i-button>
 
-                            <i-button type="delete" x-permissions="sales_class_schedule_delete || sales_class_schedule_manage" label="##word.delete##" ng-click="displayDeleteClassSchedule(c)"></i-button>
+                            <i-button type="delete"
+                                x-permissions="sales_class_schedule_delete || sales_class_schedule_manage"
+                                label="##word.delete##" ng-click="displayDeleteClassSchedule(c)"></i-button>
                         </td>
                     </tr>
                 </table>
 
                 <div class="row">
-                    <i-button x-permissions="sales_class_schedule_print || sales_class_schedule_manage" type="print" label="##word.print##" onclick="site.print('#t1')"></i-button>
+                    <i-button x-permissions="sales_class_schedule_print || sales_class_schedule_manage" type="print"
+                        label="##word.print##" onclick="site.print('#t1')"></i-button>
 
 
                 </div>

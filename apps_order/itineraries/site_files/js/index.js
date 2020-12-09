@@ -219,7 +219,10 @@ app.controller("itineraries", function ($scope, $http, $timeout) {
         method: "POST",
         url: "/api/customers/all",
         data: {
-          search: $scope.search_customer
+          search: $scope.search_customer,
+          where:{
+            active: true
+          }
         }
       }).then(
         function (response) {

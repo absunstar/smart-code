@@ -695,6 +695,11 @@
         "ar": "حضور"
     },
     {
+        "name": "leave",
+        "en": "Leave",
+        "ar": "مغادرة"
+    },
+    {
         "name": "menu_delegates_tag",
         "en": "Delegates Add",
         "ar": "إضافة المناديب"

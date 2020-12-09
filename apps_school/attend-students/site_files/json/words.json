@@ -1,0 +1,122 @@
+[
+    {
+        "name": "attend_students",
+        "en": "Attend Studentss",
+        "ar": "حضور التلاميذ"
+    },
+    {
+        "name": "attend_students",
+        "en": "The Attend Students",
+        "ar": "حضور تلاميذ"
+    },
+    {
+        "name": "attend_students_new",
+        "en": "New Attend Students",
+        "ar": "حضور تلاميذ جديدة"
+    },
+    {
+        "name": "attend_status",
+        "en": "Attend Status",
+        "ar": "حالة الحضور"
+    },
+    {
+        "name": "search_students",
+        "en": "Search Students",
+        "ar": "بحث التلاميذ"
+    },
+    {
+        "name": "invoice_remain",
+        "en": "Invoice Remain",
+        "ar": "باقي الفاتورة"
+    },
+    {
+        "name": "students_name",
+        "en": "Students Name",
+        "ar": "إسم التلاميذ"
+    },
+    {
+        "name": "attend_students_attend",
+        "en": "Attend Time",
+        "ar": "وقت الحضور"
+    },
+    {
+        "name": "attend_students_leave",
+        "en": "Leave Time",
+        "ar": "وقت المغادرة"
+    },
+    {
+        "name": "leave_now",
+        "en": "Leave Now",
+        "ar": "مغادرة الأن"
+    },
+    {
+        "name": "attend_date",
+        "en": "Attend Date",
+        "ar": "تاريخ الحضور"
+    },
+    {
+        "name": "attend_date_from",
+        "en": "Attend Date From",
+        "ar": "تاريخ الحضور من"
+    },
+    {
+        "name": "attend_date_to",
+        "en": "Attend Date To",
+        "ar": "تاريخ الحضور إلى"
+    },
+    {
+        "name": "leave_date",
+        "en": "Leave Date",
+        "ar": "تاريخ الإنصراف"
+    },
+    {
+        "name": "leave_date_from",
+        "en": "Leave Date From",
+        "ar": "تاريخ الإنصراف من"
+    },
+    {
+        "name": "leave_date_to",
+        "en": "Leave Date To",
+        "ar": "تاريخ الإنصراف إلى"
+    },
+    {
+        "name": "leave_now",
+        "en": "Leave Now",
+        "ar": "مغادرة الأن"
+    },
+    {
+        "name": "attend_students_add",
+        "en": "Add Attend Students",
+        "ar": "إضافة حضور تلاميذ"
+    },
+    {
+        "name": "attend_students_edit",
+        "en": "Edit Attend Students",
+        "ar": "تعديل حضور تلاميذ"
+    },
+    {
+        "name": "attend_students_details",
+        "en": "Attend Students Details",
+        "ar": "تفاصيل حضور تلاميذ"
+    },
+    {
+        "name": "attend_students_delete",
+        "en": "Delete Attend Students",
+        "ar": "حذف حضور تلاميذ"
+    },
+    {
+        "name": "attend_students_name",
+        "en": "Course Name",
+        "ar": "اسم الحضور تلاميذ "
+    },
+    {
+        "name": "attend_students_total",
+        "en": "Total Duration",
+        "ar": "إجمالي المدة "
+    },
+    {
+        "name": "auto_load_attendance",
+        "en": "Auto Load Attendance",
+        "ar": "تحميل تلقائى للبصمة"
+    }
+]

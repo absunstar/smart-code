@@ -33,7 +33,13 @@ app.controller("report_student_attend", function ($scope, $http) {
     $http({
       method: "POST",
       url: "/api/customers/all",
-      data: {}
+      data: {
+        where:{
+          active: true
+        }},
+      where:{
+        active: true
+      }
     }).then(
       function (response) {
         $scope.busy = false;

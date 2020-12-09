@@ -654,7 +654,10 @@ app.controller("request_service", function ($scope, $http, $timeout) {
         method: "POST",
         url: "/api/customers/all",
         data: {
-          search: $scope.search_customer
+          search: $scope.search_customer,
+          where:{
+            active: true
+          }
 
         }
       }).then(
@@ -725,7 +728,11 @@ app.controller("request_service", function ($scope, $http, $timeout) {
     $http({
       method: "POST",
       url: "/api/trainer/all",
-      data: {}
+      data: {
+          where: {
+        active : true
+      } 
+    }
     }).then(
       function (response) {
         $scope.busy = false;

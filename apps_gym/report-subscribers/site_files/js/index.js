@@ -88,7 +88,10 @@ app.controller("report_subscribers", function ($scope, $http, $timeout) {
         method: "POST",
         url: "/api/customers/all",
         data: {
-          search: $scope.search_customer
+          search: $scope.search_customer,
+          where: {
+            active: true
+          }
           /*  select: {
             id: 1,
             name_ar: 1,
@@ -117,9 +120,10 @@ app.controller("report_subscribers", function ($scope, $http, $timeout) {
       url: "/api/trainer/all",
       data: {
         where: {
+          active: true,
           busy: { $ne: true }
         }
-      }
+      }  
     }).then(
       function (response) {
         $scope.busy = false;

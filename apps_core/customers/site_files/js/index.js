@@ -287,6 +287,32 @@ app.controller("customers", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.getHallsList = function () {
+    $http({
+      method: "POST",
+      url: "/api/hall/all",
+      data: {
+        select: {
+          id: 1,
+          name: 1,
+          code: 1
+        },
+        where: {
+          active: true
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.hallsList = response.data.list;
+      },
+      function (err) {
+        $scope.error = err;
+      }
+    )
+  };
+
+
   $scope.Gender = function () {
     $scope.error = '';
     $scope.busy = true;
@@ -607,6 +633,7 @@ app.controller("customers", function ($scope, $http, $timeout) {
   $scope.getGovList();
   $scope.getBloodType();
   $scope.getSchoolGradeList();
+  $scope.getHallsList();
   $scope.loadMaritalsStatus();
   $scope.loadMilitariesStatus();
   if (site.feature('erp')) {

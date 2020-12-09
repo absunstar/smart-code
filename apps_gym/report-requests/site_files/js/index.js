@@ -81,7 +81,11 @@ app.controller("report_requests", function ($scope, $http, $timeout) {
     $http({
       method: "POST",
       url: "/api/trainer/all",
-      data: {}
+      data: {
+        where: {
+          active : true
+        }
+      }
     }).then(
       function (response) {
         $scope.busy = false;

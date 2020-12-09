@@ -214,7 +214,10 @@ app.controller("book_course", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/customers/all",
       data: {
-        search: $scope.student_search
+        search: $scope.student_search,
+        where:{
+          active: true
+        }
       }
     }).then(
       function (response) {

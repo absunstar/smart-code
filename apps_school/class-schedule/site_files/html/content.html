@@ -10,7 +10,7 @@
 
                         <i-list help-id="" class="col4" label="##word.school_grade##"
                             ng-model="class_schedule.school_grade" ng-search="_search.$_school_grade"
-                            items="schoolGradeList" display="name"></i-list>
+                          ng-change="getSubjects(class_schedule.school_grade)"  items="schoolGradeList" display="name"></i-list>
 
                         <i-list help-id="" class="col4" label="##word.hall##" ng-model="class_schedule.hall"
                             ng-search="_search.$_hall" items="hallsList" display="name"></i-list>
@@ -40,37 +40,65 @@
 
                         </div>
 
-
                     </fieldset>
 
                     <br>
                     <br>
                     <br>
 
-                    <fieldset>
-                        <legend></legend>
+                    <fieldset ng-show="class_schedule.schedules_list.length > 0">
 
-                        <div class="row">
+                        <div ng-repeat="s in class_schedule.schedules_list" class="row">
+                            <div class="row">
+                                <div class="col5"></div>
+                                <h1 class="black bold">{{s.day.##session.lang##}}</h1>
+                            </div>
+                            <br>
+
                             <table class="table center bold hover details">
                                 <tr>
-                                    <th>##word.day_school_class##</th>
-                                    <th ng-repeat="x in class_schedule.school_class_list track by $index">{{$index +1}}
-                                    </th>
+                                    <th>##word.class_number##</th>
+                                    <th>##word.trainer##</th>
+                                    <th>##word.subject##</th>
+                                    <th class="w250">##word.from##</th>
+                                    <th class="w250">##word.to##</th>
                                 </tr>
 
-                                <tr ng-repeat="i in class_schedule.schedulesList">
-                                    <td class="w200"> <br> {{i.day.##session.lang##}}</td>
+                                <tr ng-repeat="i in s.schedules_count_list track by $index">
+                                    <td class="center blue">
+                                        {{$index + 1}}
+                                    </td>
+                                    <td>
+                                        <i-list help-id="" ng-search="_search.$trainer_search" ng-model="i.trainer"
+                                            items="trainersList" display="name"></i-list>
+                                    </td>
 
-                                    <td ng-repeat="x in class_schedule.school_class_list track by $index">
-                                        <i-list ng-model="i.subject" ng-search="_search.$_subject" display="subject.name"
-                                            items="class_schedule.school_grade.subjects_list"></i-list>
+                                    <td>
+                                        <i-list ng-model="i.subject" ng-search="_search.$_subject"
+                                            display="name" items="subjectsList">
                                         </i-list>
                                     </td>
 
+                                    <td>
+                                        <i-time display="##session.lang##" ng-model="i.from" label="##word.from##">
+                                        </i-time>
+                                    </td>
+
+                                    <td>
+                                        <i-time display="##session.lang##" ng-model="i.to" label="##word.to##">
+                                        </i-time>
+                                    </td>
 
                                 </tr>
                             </table>
+                            <br>
+                            <br>
+                            <hr>
+                            <br>
+                            <br>
                         </div>
+
+
                     </fieldset>
 
                     <!-- <div class="row">

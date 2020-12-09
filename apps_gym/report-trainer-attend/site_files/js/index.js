@@ -23,8 +23,10 @@ app.controller("report_trainer_attend", function ($scope, $http) {
       url: "/api/trainer/all",
       data: {
         where: {
+          active : true,
           busy: { $ne: true }
         }
+      
       }
     }).then(
       function (response) {

@@ -33,15 +33,16 @@
                         <div class="row">
                             <div class="col8">
 
-                            <fieldset>
-                                <legend>##word.subjects##</legend>
-                                <div class="row" ng-repeat="s in school_grade.subjects_list">
-                                        <br>
-                                        <h2 class="black">{{$index + 1}} - {{s.subject.name}}</h2>
-                                        <br>
-                                </div>
-                            </fieldset>
-                        </div>
+                                <fieldset>
+                                    <legend>##word.subjects##</legend>
+                                    <table class="table hover bold">
+
+                                        <tr ng-repeat="s in school_grade.subjects_list">
+                                            <td > <h2> {{$index + 1}} - {{s.subject.name}}</h2> </td>
+                                        </tr>
+                                    </table>
+                                </fieldset>
+                            </div>
 
                         </div>
 

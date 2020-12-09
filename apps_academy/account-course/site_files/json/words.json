@@ -88,11 +88,7 @@
         "en": "payback Paid",
         "ar": "الدفعات المسددة"
     },
-    {
-        "name": "attend",
-        "en": "Attend",
-        "ar": "حضور"
-    },
+   
    
     {
         "name": "trainer_account",

@@ -35,6 +35,13 @@
         "ar": "حضور الجلسات للمشتركين"
     },
     {
+        "category": "main",
+        "feature": "school",
+        "name": "attend_students",
+        "en": "Attend Students",
+        "ar": "حضور الطلاب"
+    },
+    {
         "category": "inventory",
         "feature": "pos",
         "name": "stores",
