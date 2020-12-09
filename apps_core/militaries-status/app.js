@@ -13,7 +13,7 @@ module.exports = function init(site) {
 
     $militaries_status.add({
       name: "موقف تجنيد إفتراضي",
-      code : "1",
+      code: "1-Test",
       image_url: '/images/military.png',
       company: {
         id: doc.id,

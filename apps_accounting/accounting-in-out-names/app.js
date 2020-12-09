@@ -25,6 +25,7 @@ module.exports = function init(site) {
       name: "مسمى وارد إفتراضي",
       image_url: '/images/in_out_name.png',
       in: true,
+      code: "1-Test",
       company: {
         id: doc.id,
         name_ar: doc.name_ar

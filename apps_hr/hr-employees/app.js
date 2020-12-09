@@ -6,6 +6,7 @@ module.exports = function init(site) {
     $employee_list.add({
       name: "موظف إفتراضي",
       image_url: '/images/employee_list.png',
+      code: "1-Test",
       company: {
         id: doc.id,
         name_ar: doc.name_ar

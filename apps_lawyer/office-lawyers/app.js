@@ -21,7 +21,7 @@ module.exports = function init(site) {
         id: doc.id,
         name: doc.name
       },
-      code: "1",
+      code: "1-Test",
       name_ar: "محامي مكتب إفتراضي",
       image_url: '/images/oppenent.png',
       company: {

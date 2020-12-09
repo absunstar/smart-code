@@ -20,6 +20,7 @@ module.exports = function init(site) {
       name: "عملة إفتراضية",
       image_url: '/images/currency.png',
       ex_rate: 1,
+      code: "1-Test",
       company: {
         id: doc.id,
         name_ar: doc.name_ar

@@ -16,7 +16,7 @@ module.exports = function init(site) {
   site.on('[company][created]', (doc) => {
     $goves.add(
       {
-        code: 'test-1',
+        code: "1-Test",
         name: 'محافظة إفتراضية',
         image_url: '/images/gov.png',
         company: {

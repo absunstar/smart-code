@@ -1,5 +1,5 @@
 module.exports = function init(site) {
- 
+
   const $discount_types = site.connectCollection("discount_types")
 
   // $discount_types.deleteDuplicate({
@@ -21,8 +21,9 @@ module.exports = function init(site) {
     $discount_types.add({
       name: "خصم إفتراضي",
       image_url: '/images/discount_type.png',
-      value : 1,
-      type : 'number',
+      code: "1-Test",
+      value: 1,
+      type: 'number',
       company: {
         id: doc.id,
         name_ar: doc.name_ar
@@ -32,7 +33,7 @@ module.exports = function init(site) {
         name_ar: doc.branch_list[0].name_ar
       },
       active: true
-    }, (err, doc) => {})
+    }, (err, doc) => { })
   })
 
 
@@ -59,7 +60,7 @@ module.exports = function init(site) {
     discount_types_doc.company = site.get_company(req)
     discount_types_doc.branch = site.get_branch(req)
 
-    discount_types_doc.add_user_info = site.security.getUserFinger({$req : req , $res : res})
+    discount_types_doc.add_user_info = site.security.getUserFinger({ $req: req, $res: res })
 
     let num_obj = {
       company: site.get_company(req),
@@ -89,14 +90,14 @@ module.exports = function init(site) {
   site.post("/api/discount_types/update", (req, res) => {
     let response = {}
     response.done = false
-     if (!req.session.user) {
+    if (!req.session.user) {
       response.error = 'Please Login First'
       res.json(response)
       return
     }
     let discount_types_doc = req.body
 
-    discount_types_doc.edit_user_info = site.security.getUserFinger({$req : req , $res : res})
+    discount_types_doc.edit_user_info = site.security.getUserFinger({ $req: req, $res: res })
 
 
     if (discount_types_doc._id) {
@@ -187,5 +188,5 @@ module.exports = function init(site) {
     })
   })
 
- 
+
 }

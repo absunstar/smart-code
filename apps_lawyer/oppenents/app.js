@@ -16,7 +16,7 @@ module.exports = function init(site) {
   site.on('[company][created]', doc => {
 
     $oppenents.add({
-      code: "1",
+      code: "1-Test",
       name_ar: "خصم إفتراضي",
       image_url: '/images/oppenents.png',
       company: {

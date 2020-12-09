@@ -27,7 +27,7 @@ module.exports = function init(site) {
 
     $rogatory_types.add({
       name: "نوع توكيل إفتراضي",
-      code : "1",
+      code: "1-Test",
       image_url: '/images/rogatory_types.png',
       company: {
         id: doc.id,

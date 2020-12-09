@@ -1,3 +1,4 @@
+
 <div class="form">
     <div class="tabs">
         <div class="tabs-header">
@@ -25,10 +26,10 @@
             <a class="tab-link hide" x-features="pos || erp" onclick="site.showTabContent(event, '#customersBranches')">
                 ##word.customers_branches## </a>
 
-            <a class="tab-link x-features=" pos || erp"" onclick="site.showTabContent(event, '#customers_dealing')">
+            <a class="tab-link" x-features=" pos || erp" onclick="site.showTabContent(event, '#customers_dealing')">
                 ##word.customers_dealing## </a>
 
-            <a class="tab-link x-features=" pos || erp"" onclick="site.showTabContent(event, '#officialDocuments')">
+            <a class="tab-link" x-features=" pos || erp" onclick="site.showTabContent(event, '#officialDocuments')">
                 ##word.customers_official_documents## </a>
 
             <a class="tab-link " onclick="site.showTabContent(event, '#openingBalance')">
@@ -156,7 +157,7 @@
             </div>
 
 
-            <div id="familyInformation" x-features="academy" class="tab-content">
+            <div id="familyInformation" x-features="academy || school" class="tab-content">
                 <fieldset class="row">
                     <i-list class="col3" items="hostList" ng-search="_search.$host_search" label="##word.host##"
                         display="##session.lang##" ng-model="customer.host"></i-list>
@@ -250,7 +251,7 @@
                 </fieldset>
             </div>
 
-            <div id="medicalConditionInformation" x-features="gym || academy" class="tab-content">
+            <div id="medicalConditionInformation" x-features="gym || academy || school" class="tab-content">
                 <fieldset>
 
                     <legend>

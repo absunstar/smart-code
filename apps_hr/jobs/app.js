@@ -3,7 +3,7 @@ module.exports = function init(site) {
 
   site.on('[company][created]', doc => {
     $jobs.add({
-      code: "1",
+      code: "1-Test",
       name: "موظف إفتراضي",
       image_url: '/images/jobs.png',
       company: {

@@ -27,7 +27,7 @@ module.exports = function init(site) {
 
     $school_grade.add({
       name: "مرحلة دراسية إفتراضية",
-      code : "1",
+      code: "1-Test",
       image_url: '/images/school_grade.png',
       company: {
         id: doc.id,

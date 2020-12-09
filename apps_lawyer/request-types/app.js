@@ -27,7 +27,7 @@ module.exports = function init(site) {
 
     $request_types.add({
       name: "نوع طلب إفتراضي",
-      code : "1",
+      code: "1-Test",
       image_url: '/images/request_types.png',
       company: {
         id: doc.id,

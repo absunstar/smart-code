@@ -8,6 +8,7 @@ module.exports = function init(site) {
       $trainer.add({
         name: site.feature('school') ? "مدرس إفتراضي" : "مدرب إفتراضي",
         image_url: '/images/trainer.png',
+        code: "1-Test",
         job: {
           id: doc.id,
           name: doc.name,

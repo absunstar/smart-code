@@ -4,7 +4,7 @@ module.exports = function init(site) {
   site.on('[company][created]', doc => {
 
     $service.add({
-      code: "1",
+      code: "1-Test",
       name: "خدمة إفتراضية",
       image_url: '/images/service.png',
       company: {

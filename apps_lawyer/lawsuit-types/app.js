@@ -17,7 +17,7 @@ module.exports = function init(site) {
 
     $lawsuit_types.add({
       name: "نوع دعوى إفتراضية",
-      code: "1",
+      code: "1-Test",
       image_url: '/images/lawsuit_types.png',
       company: {
         id: doc.id,

@@ -7,7 +7,7 @@ module.exports = function init(site) {
       $tenant.add({
         name: doc.name,
         active: true,
-        code: "1",
+        code: "1-Test",
         name_ar: "مستأجر إفتراضي",
         company: {
           id: doc.id,

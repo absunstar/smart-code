@@ -115,7 +115,7 @@ module.exports = function init(site) {
         id: doc.id,
         name: doc.name
       },
-      code: "1",
+      code: "1-Test",
       name_ar: name_ar,
       name_en: name_en,
       branch_list: [
@@ -540,8 +540,8 @@ module.exports = function init(site) {
 
     where['company.id'] = site.get_company(req).id
 
-    if (site.feature('school')){
-    where['branch.code'] = site.get_branch(req).code
+    if (site.feature('school')) {
+      where['branch.code'] = site.get_branch(req).code
     }
 
     if (req.session.user && req.session.user.type === 'customer') {

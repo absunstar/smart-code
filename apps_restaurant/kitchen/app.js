@@ -16,7 +16,7 @@ module.exports = function init(site) {
   site.on('[company][created]', doc => {
 
     $kitchen.add({
-      code: "1",
+      code: "1-Test",
       name: "مطبخ إفتراضى",
       image_url: '/images/kitchen.png',
       company: {

@@ -24,6 +24,7 @@ module.exports = function init(site) {
     $printers_path.add({
       name: "مسار طابعة إفتراضية",
       type : "نوع إفتراضي",
+      code: "1-Test",
       ip : "OneNote",
       image_url: '/images/printer_path.png',
       company: {

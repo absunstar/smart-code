@@ -17,7 +17,7 @@ module.exports = function init(site) {
 
     $lawsuit_status.add({
       name: "حالة دعوى إفتراضية",
-      code: "1",
+      code: "1-Test",
       image_url: '/images/lawsuit_status.png',
       company: {
         id: doc.id,

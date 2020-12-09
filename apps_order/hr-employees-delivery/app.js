@@ -7,6 +7,7 @@ module.exports = function init(site) {
       $delivery_employee_list.add({
         name: "موظف توصيل إفتراضي",
         image_url: '/images/delivery_employee_list.png',
+        code: "1-Test",
         delivery: true,
         company: {
           id: doc.id,

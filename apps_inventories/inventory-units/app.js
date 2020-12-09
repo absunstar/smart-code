@@ -19,6 +19,7 @@ module.exports = function init(site) {
     $units.add({
       name: "وحدة إفتراضية",
       image_url: '/images/unit.png',
+      code: "1-Test",
       company: {
         id: doc.id,
         name_ar: doc.name_ar

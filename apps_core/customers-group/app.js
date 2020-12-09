@@ -27,7 +27,7 @@ module.exports = function init(site) {
 
     $customers_group.add({
       name: "مجموعة عملاء إفتراضية",
-      code : "1",
+      code: "1-Test",
       image_url: '/images/customer_groups.png',
       company: {
         id: doc.id,

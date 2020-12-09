@@ -12,7 +12,7 @@ module.exports = function init(site) {
 
     $maritals_status.add({
       name: "حالة إجتماعية إفتراضية",
-      code: "1",
+      code: "1-Test",
       image_url: '/images/marital.png',
       company: {
         id: doc.id,

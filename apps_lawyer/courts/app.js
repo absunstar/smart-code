@@ -17,6 +17,7 @@ module.exports = function init(site) {
   site.on('[company][created]', doc => {
     $courts.add({
       name: "محكمة إفتراضية",
+      code: "1-Test",
       image_url: '/images/court.png',
       company: {
         id: doc.id,

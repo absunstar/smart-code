@@ -18,6 +18,7 @@ module.exports = function init(site) {
     $adjectives.add({
       name: "دائرة إفتراضية",
       image_url: '/images/adjectives.png',
+      code: "1-Test",
       company: {
         id: doc.id,
         name_ar: doc.name_ar

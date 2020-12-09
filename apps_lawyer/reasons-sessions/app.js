@@ -27,7 +27,7 @@ module.exports = function init(site) {
 
     $reasons_sessions.add({
       name: "سبب جلسة إفتراضي",
-      code : "1",
+      code: "1-Test",
       image_url: '/images/reasons_sessions.png',
       company: {
         id: doc.id,

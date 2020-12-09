@@ -6,6 +6,7 @@ module.exports = function init(site) {
     $delegate_list.add({
       name: "مندوب إفتراضي",
       image_url: '/images/delegate.png',
+      code: "1-Test",
       delegate: true,
       company: {
         id: doc.id,

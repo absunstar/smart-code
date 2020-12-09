@@ -3,20 +3,21 @@ module.exports = function init(site) {
 
   site.on('[company][created]', doc => {
 
-    $hall.add({
-      code: "1",
-      name: "قاعة إفتراضية",
-      image_url: '/images/hall.png',
-      company: {
-        id: doc.id,
-        name_ar: doc.name_ar
-      },
-      branch: {
-        code: doc.branch_list[0].code,
-        name_ar: doc.branch_list[0].name_ar
-      },
-      active: true
-    }, (err, doc) => { })
+    if (site.feature('gym') || site.feature('academy') || site.feature('school'))
+      $hall.add({
+        code: "1-Test",
+        name: "قاعة إفتراضية",
+        image_url: '/images/hall.png',
+        company: {
+          id: doc.id,
+          name_ar: doc.name_ar
+        },
+        branch: {
+          code: doc.branch_list[0].code,
+          name_ar: doc.branch_list[0].name_ar
+        },
+        active: true
+      }, (err, doc) => { })
   })
 
   site.get({
@@ -214,7 +215,7 @@ module.exports = function init(site) {
     let response = {
       done: false
     }
-          
+
     if (!req.session.user) {
       response.error = 'Please Login First'
       res.json(response)

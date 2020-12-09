@@ -31,6 +31,7 @@ module.exports = function init(site) {
     $tax_types.add({
       name: "ضريبة إفتراضية",
       value : 1,
+      code: "1-Test",
       image_url: '/images/tax_type.png',
       company: {
         id: doc.id,

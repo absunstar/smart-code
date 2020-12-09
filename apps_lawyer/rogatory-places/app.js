@@ -27,7 +27,7 @@ module.exports = function init(site) {
 
     $rogatory_places.add({
       name: "مكان توكيل إفتراضي",
-      code: "1",
+      code: "1-Test",
       image_url: '/images/rogatory_places.png',
       company: {
         id: doc.id,

@@ -15,6 +15,7 @@ module.exports = function init(site) {
       name: "شريحة تأمين إفتراضية",
       image_url: '/images/insurance_slides.png',
       value: 1,
+      code: "1-Test",
       company: {
         id: doc.id,
         name_ar: doc.name_ar
