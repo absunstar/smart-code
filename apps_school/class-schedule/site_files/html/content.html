@@ -60,11 +60,8 @@
                                 <div class="col5"></div>
 
                                 <h1 class="black col2 bold">{{s.day.##session.lang##}}</h1>
-
-                                <i-control class="col2" label="##word.count_school_class##" type="number"
-                                    ng-model="s.count_school_class"></i-control>
-
-                                <i-button type="add" class="col2" label="##word.create_class##" ng-click="createClass(s)"></i-button>
+                           
+                                <i-button type="add" class="col2" label="##word.add_class##" ng-click="addClass(s)"></i-button>
 
                             </div>
                             <br>
@@ -76,6 +73,7 @@
                                     <th>##word.subject##</th>
                                     <th class="w250">##word.from##</th>
                                     <th class="w250">##word.to##</th>
+                                    <th>##word.actions##</th>
                                 </tr>
 
                                 <tr ng-repeat="i in s.schedules_count_list track by $index">
@@ -102,6 +100,12 @@
                                     <td>
                                         <i-time display="##session.lang##" ng-model="i.to">
                                         </i-time>
+                                    </td>
+
+                                    <td>
+                                        <i-button type="delete"
+                                        ng-click="s.schedules_count_list.length ==1 || s.schedules_count_list.splice($index,1)">
+                                    </i-button>
                                     </td>
 
                                 </tr>

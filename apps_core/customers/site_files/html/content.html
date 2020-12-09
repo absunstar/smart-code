@@ -1,6 +1,7 @@
 <div class="form">
     <div class="tabs">
         <div class="tabs-header">
+
             <a class="tab-link" onclick="site.showTabContent(event, '#personalInformation')">
                 ##word.customers_personal_information## </a>
 
@@ -8,31 +9,27 @@
             <a class="tab-link" onclick="site.showTabContent(event, '#contactAndAddress')">
                 ##word.customers_contact_and_addresses## </a>
 
-
             <a class="tab-link" x-features="gym || academy || school"
                 onclick="site.showTabContent(event,'#medicalConditionInformation')">
                 ##word.medical_condition##</a>
+
             <a class="tab-link" x-features="academy || school"
                 onclick="site.showTabContent(event,'#familyInformation')">
                 ##word.family_info##
             </a>
+
             <a class="tab-link" x-features="academy" onclick="site.showTabContent(event,'#accountingInformation')">
                 ##word.accounting##
             </a>
-            <a class="tab-link hide" onclick="site.showTabContent(event, '#customersBranches')">
+
+            <a class="tab-link hide" x-features="pos || erp" onclick="site.showTabContent(event, '#customersBranches')">
                 ##word.customers_branches## </a>
 
-
-            <a class="tab-link hide" onclick="site.showTabContent(event, '#customers_dealing')">
+            <a class="tab-link x-features=" pos || erp"" onclick="site.showTabContent(event, '#customers_dealing')">
                 ##word.customers_dealing## </a>
 
-
-
-
-            <a class="tab-link hide" onclick="site.showTabContent(event, '#officialDocuments')">
+            <a class="tab-link x-features=" pos || erp"" onclick="site.showTabContent(event, '#officialDocuments')">
                 ##word.customers_official_documents## </a>
-
-
 
             <a class="tab-link " onclick="site.showTabContent(event, '#openingBalance')">
                 ##word.customers_opening_balance## </a>
@@ -119,9 +116,8 @@
                                     ng-search="_search.$_school_grade">
                                 </i-list>
 
-                                <i-list class="col4" x-features="school" label="##word.hall##"
-                                    ng-model="customer.hall" items="hallsList" display="name"
-                                    ng-search="_search.$_hall">
+                                <i-list class="col4" x-features="school" label="##word.hall##" ng-model="customer.hall"
+                                    items="hallsList" display="name" ng-search="_search.$_hall">
                                 </i-list>
                             </div>
 

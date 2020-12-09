@@ -24,12 +24,12 @@
                             </legend>
 
                             <div ng-repeat="s in school_grade.subjects_list" class="row">
-                                <i-list help-id="" class="col5" ng-model="s.subject"
-                                ng-search="_search.$_subject" items="subjectsList" display="name"></i-list>
+                                <i-list help-id="" class="col5" ng-model="s.subject" ng-search="_search.$_subject"
+                                    items="subjectsList" display="name"></i-list>
+
                                 <i-button class="col2" type="delete default"
                                     ng-click="school_grade.subjects_list.length ==1 || school_grade.subjects_list.splice($index,1)">
                                 </i-button>
-
                             </div>
                         </fieldset>
 

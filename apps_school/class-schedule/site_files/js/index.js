@@ -268,13 +268,21 @@ app.controller("class_schedule", function ($scope, $http, $timeout) {
   };
 
 
-  $scope.createClass = function (c) {
+  $scope.addClass = function (c) {
     $scope.error = '';
 
-    if (c.count_school_class > $scope.class_schedule.max_school_class) {
+    let count_school_class_length = c.schedules_count_list.length + 1;
+
+    if (count_school_class_length > $scope.class_schedule.max_school_class) {
       $scope.error = '##word.err_class_bigger##';
 
-    } else if (c.count_school_class !== c.schedules_count_list.length) {
+    } else {
+      c.schedules_count_list.push({});
+    }
+
+
+
+  /*   if (c.count_school_class !== c.schedules_count_list.length) {
 
       c.schedules_count_list = [];
 
@@ -283,7 +291,7 @@ app.controller("class_schedule", function ($scope, $http, $timeout) {
         c.schedules_count_list.push({});
 
       };
-    }
+    } */
   };
 
 
