@@ -64,10 +64,7 @@ app.controller("class_schedule", function ($scope, $http, $timeout) {
 
     $scope.error = '';
     $scope.detailsClassSchedule(class_schedule);
-    $scope.class_schedule = {
-      image_url: '/images/vendor_logo.png',
-
-    };
+    $scope.class_schedule = {};
     site.showModal('#classScheduleUpdateModal');
   };
 
@@ -107,15 +104,15 @@ app.controller("class_schedule", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.displayDetailsClassSchedule = function (class_schedule,view) {
+  $scope.displayDetailsClassSchedule = function (class_schedule, view) {
     $scope.error = '';
-    $scope.detailsClassSchedule(class_schedule,view);
+    $scope.detailsClassSchedule(class_schedule, view);
 
     $scope.class_schedule = {};
     site.showModal('#classScheduleDetailsModal');
   };
 
-  $scope.detailsClassSchedule = function (class_schedule,view) {
+  $scope.detailsClassSchedule = function (class_schedule, view) {
     $scope.busy = true;
     $http({
       method: "POST",
@@ -129,7 +126,7 @@ app.controller("class_schedule", function ($scope, $http, $timeout) {
         if (response.data.done) {
           response.data.doc.date = new Date(response.data.doc.date);
           $scope.class_schedule = response.data.doc;
-          
+
         } else {
           $scope.error = response.data.error;
         }
@@ -249,8 +246,8 @@ app.controller("class_schedule", function ($scope, $http, $timeout) {
     if ($scope.class_schedule.friday) $scope.class_schedule.schedules_list.push({ day: { name: 'friday', ar: 'الجمعة', en: 'Friday' }, schedules_count_list: [] });
 
     $scope.class_schedule.schedules_list.forEach(_sl => {
+      _sl.count_school_class = $scope.class_schedule.max_school_class;
       for (let i = 0; i < $scope.class_schedule.max_school_class; i++) {
-
         _sl.schedules_count_list.push({});
       };
     });
@@ -261,11 +258,30 @@ app.controller("class_schedule", function ($scope, $http, $timeout) {
 
     c.subjects_list.forEach(_s => {
       $scope.subjectsList.push({
-        name:_s.subject.name,
-        code:_s.subject.code,
-        id:_s.subject.id
+        name: _s.subject.name,
+        code: _s.subject.code,
+        id: _s.subject.id
       })
     });
+  };
+
+
+  $scope.createClass = function (c) {
+    $scope.error = '';
+
+    if (c.count_school_class > $scope.class_schedule.max_school_class) {
+      $scope.error = '##word.err_class_bigger##';
+
+    } else if (c.count_school_class !== c.schedules_count_list.length) {
+
+      c.schedules_count_list = [];
+
+      for (let i = 0; i < c.count_school_class; i++) {
+
+        c.schedules_count_list.push({});
+
+      };
+    }
   };
 
 

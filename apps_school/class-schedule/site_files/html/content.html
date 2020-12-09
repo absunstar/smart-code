@@ -10,7 +10,8 @@
 
                         <i-list help-id="" class="col4" label="##word.school_grade##"
                             ng-model="class_schedule.school_grade" ng-search="_search.$_school_grade"
-                          ng-change="getSubjects(class_schedule.school_grade)"  items="schoolGradeList" display="name"></i-list>
+                            ng-change="getSubjects(class_schedule.school_grade)" items="schoolGradeList" display="name">
+                        </i-list>
 
                         <i-list help-id="" class="col4" label="##word.hall##" ng-model="class_schedule.hall"
                             ng-search="_search.$_hall" items="hallsList" display="name"></i-list>
@@ -22,14 +23,19 @@
                         <legend>##word.workdays##</legend>
                         <div class="row">
                             <div class="col7">
-
-                                <i-checkbox label="##word.saturday##" ng-model="class_schedule.saturday"></i-checkbox>
-                                <i-checkbox label="##word.sunday##" ng-model="class_schedule.sunday"></i-checkbox>
-                                <i-checkbox label="##word.monday##" ng-model="class_schedule.monday"></i-checkbox>
-                                <i-checkbox label="##word.tuesday##" ng-model="class_schedule.tuesday"></i-checkbox>
-                                <i-checkbox label="##word.wednesday##" ng-model="class_schedule.wednesday"></i-checkbox>
-                                <i-checkbox label="##word.thursday##" ng-model="class_schedule.thursday"></i-checkbox>
-                                <i-checkbox label="##word.friday##" ng-model="class_schedule.friday"></i-checkbox>
+                                <br>
+                                <div class="row">
+                                    <i-checkbox label="##word.saturday##" ng-model="class_schedule.saturday">
+                                    </i-checkbox>
+                                    <i-checkbox label="##word.sunday##" ng-model="class_schedule.sunday"></i-checkbox>
+                                    <i-checkbox label="##word.monday##" ng-model="class_schedule.monday"></i-checkbox>
+                                    <i-checkbox label="##word.tuesday##" ng-model="class_schedule.tuesday"></i-checkbox>
+                                    <i-checkbox label="##word.wednesday##" ng-model="class_schedule.wednesday">
+                                    </i-checkbox>
+                                    <i-checkbox label="##word.thursday##" ng-model="class_schedule.thursday">
+                                    </i-checkbox>
+                                    <i-checkbox label="##word.friday##" ng-model="class_schedule.friday"></i-checkbox>
+                                </div>
                             </div>
 
                             <i-control class="col3" label="##word.max_school_class##" type="number"
@@ -50,8 +56,16 @@
 
                         <div ng-repeat="s in class_schedule.schedules_list" class="row">
                             <div class="row">
+
                                 <div class="col5"></div>
-                                <h1 class="black bold">{{s.day.##session.lang##}}</h1>
+
+                                <h1 class="black col2 bold">{{s.day.##session.lang##}}</h1>
+
+                                <i-control class="col2" label="##word.count_school_class##" type="number"
+                                    ng-model="s.count_school_class"></i-control>
+
+                                <i-button type="add" class="col2" label="##word.create_class##" ng-click="createClass(s)"></i-button>
+
                             </div>
                             <br>
 
@@ -74,18 +88,18 @@
                                     </td>
 
                                     <td>
-                                        <i-list ng-model="i.subject" ng-search="_search.$_subject"
-                                            display="name" items="subjectsList">
+                                        <i-list ng-model="i.subject" ng-search="_search.$_subject" display="name"
+                                            items="subjectsList">
                                         </i-list>
                                     </td>
 
                                     <td>
-                                        <i-time display="##session.lang##" ng-model="i.from" label="##word.from##">
+                                        <i-time display="##session.lang##" ng-model="i.from">
                                         </i-time>
                                     </td>
 
                                     <td>
-                                        <i-time display="##session.lang##" ng-model="i.to" label="##word.to##">
+                                        <i-time display="##session.lang##" ng-model="i.to">
                                         </i-time>
                                     </td>
 
@@ -98,28 +112,8 @@
                             <br>
                         </div>
 
-
                     </fieldset>
 
-                    <!-- <div class="row">
-                        <fieldset>
-                            <legend>##word.subjects##
-
-                                <i-button type="add default" ng-click="class_schedule.subjects_list.push({})">
-                                </i-button>
-                            </legend>
-
-                            <div ng-repeat="s in class_schedule.subjects_list" class="row">
-                                <i-list help-id="" class="col5" ng-model="s.subject"
-                                ng-search="_search.$_subject" items="subjectsList" display="name"></i-list>
-                                <i-button class="col2" type="delete default"
-                                    ng-click="class_schedule.subjects_list.length ==1 || class_schedule.subjects_list.splice($index,1)">
-                                </i-button>
-
-                            </div>
-                        </fieldset>
-
-                    </div> -->
                 </div>
 
                 <div class="col3">

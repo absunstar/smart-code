@@ -11,6 +11,9 @@
     {"name" : "workdays" , "en" : "Workdays" , "ar" : "أيام العمل"},
     {"name" : "max_school_class" , "en" : "Max School Class" , "ar" : "الحد الأقصى للحصص"},
     {"name" : "day_school_class" , "en" : "Day / Sch Cla." , "ar" : "اليوم / الحصص"},
+    {"name" : "count_school_class" , "en" : "Count School Class" , "ar" : "عدد الحصص"},
+    {"name" : "create_class" , "en" : "Create Class" , "ar" : "إنشاء الحصص"},
+    {"name" : "err_class_bigger" , "en" : "The number of Classes cannot be greater than the maximum Classes" , "ar" : "لا يمكن أن يكون عدد الحص أكبر من الحد الأقصى للحصص"},
 
     {"name" : "saturday" , "en" : "Sat." , "ar" : "السبت"},
     {"name" : "sunday" , "en" : "Sun." , "ar" : "الأحد"},
