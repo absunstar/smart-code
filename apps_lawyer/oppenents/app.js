@@ -134,15 +134,7 @@ module.exports = function init(site) {
     }
 
     let id = req.body.id
-    let data = { name: 'oppenent', id: req.body.id };
-
-    site.getDataToDelete(data, callback => {
-
-      if (callback == true) {
-        response.error = 'Cant Delete Its Exist In Other Transaction'
-        res.json(response)
-
-      } else {
+  
         if (id) {
           $oppenents.delete({
             id: id,
@@ -161,8 +153,7 @@ module.exports = function init(site) {
           response.error = 'no id'
           res.json(response)
         }
-      }
-    })
+   
   })
 
   site.post("/api/oppenents/all", (req, res) => {

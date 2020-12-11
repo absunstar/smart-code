@@ -220,7 +220,7 @@ module.exports = function init(site) {
     // }
 
     where['company.id'] = site.get_company(req).id
-
+    
     $customers_group.findMany({
       select: req.body.select || {},
       where: where,

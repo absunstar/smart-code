@@ -181,6 +181,7 @@ module.exports = function init(site) {
     );
   });
 
+
   site.post('/api/attend_students/delete', (req, res) => {
     let response = {
       done: false,
@@ -208,13 +209,195 @@ module.exports = function init(site) {
             response.error = err.message;
           }
           res.json(response);
-        },
+        }
       );
+
+
+
     } else {
       response.error = 'no id';
       res.json(response);
     }
   });
+
+  site.post('/api/attend_students/get', (req, res) => {
+    let response = {
+      done: false,
+    };
+
+    let where = req.body.where || {};
+
+    where['company.id'] = site.get_company(req).id
+    where['branch.code'] = site.get_branch(req).code
+
+    let data = {
+      search: req.body.search,
+      where: where
+    }
+
+    site.getCustomers(data, customersCb => {
+      let hallsList = []
+      let schoolGrades = []
+      customersCb.forEach(_cusCb => {
+        let foundHall = hallsList.some(_hall => _cusCb.hall.id == _hall.id)
+        let foundSchoolGrades = schoolGrades.some(_schoolG => _cusCb.school_grade.id == _schoolG.id)
+        if (!foundHall) {
+          hallsList.push(_cusCb.hall.id)
+        }
+        if (!foundSchoolGrades) {
+          schoolGrades.push(_cusCb.school_grade.id)
+        }
+      });
+      whereObj = req.body.whereAttend || {};
+
+      whereObj['hall.id'] = {
+        $in: hallsList
+      }
+
+      whereObj['school_grade.id'] = {
+        $in: schoolGrades
+      }
+
+
+      if (whereObj.date) {
+        let d1 = site.toDate(whereObj.date)
+        let d2 = site.toDate(whereObj.date)
+        d2.setDate(d2.getDate() + 1)
+        whereObj.date = {
+          '$gte': d1,
+          '$lt': d2
+        }
+      }
+
+      whereObj['company.id'] = site.get_company(req).id
+      whereObj['branch.code'] = site.get_branch(req).code
+
+      $attend_students.findMany(
+        { where: whereObj },
+        (err, docs) => {
+
+          if (!err) {
+            let list = []
+            customersCb.forEach(_customersCb => {
+              let attendObj = { customer: _customersCb }
+              docs = docs || []
+              docs.forEach(_docs => {
+                _docs.attend_list.forEach(_attList => {
+                  if (_attList.customer.id == _customersCb.id) {
+                    _attList.customer = _customersCb
+                    attendObj = _attList
+                  }
+                });
+              });
+              list.push(attendObj)
+
+            });
+            response.list = list;
+          }
+          response.done = true;
+
+          res.json(response);
+
+        }
+
+      )
+
+
+
+    })
+  });
+
+
+  site.post('/api/attend_students/transaction', (req, res) => {
+    let response = {
+      done: false,
+    };
+
+    let where = req.body.where || {};
+    let obj = req.body.obj || {};
+    let customer = where['customer']
+    let date1 = where.date
+
+
+    if (where.date) {
+      let d1 = site.toDate(where.date)
+      let d2 = site.toDate(where.date)
+      d2.setDate(d2.getDate() + 1)
+      where.date = {
+        '$gte': d1,
+        '$lt': d2
+      }
+    }
+
+    if (where['customer'] && where['customer'].id) {
+
+      where['school_grade.id'] = where['customer'].school_grade.id;
+
+      where['hall.id'] = where['customer'].hall.id;
+
+      delete where['customer']
+
+    }
+
+    where['company.id'] = site.get_company(req).id
+    where['branch.code'] = site.get_branch(req).code
+
+    $attend_students.findOne(
+      { where: where },
+      (err, doc, count) => {
+        response.done = true;
+        if (!err && doc) {
+
+          let found = false
+          doc.attend_list.forEach(_at => {
+
+            if (_at.customer && _at.customer.id == customer.id) {
+              _at.status = obj.status
+              _at.attend_time = obj.attend_time
+              _at.leave_time = obj.leave_time
+              found = true
+            }
+          });
+
+          if (!found) {
+
+            doc.attend_list.unshift(obj)
+          }
+      
+          $attend_students.update(doc)
+
+        } else {
+
+
+          let num_obj = {
+            company: site.get_company(req),
+            screen: 'attend_students',
+            date: new Date(date1)
+          };
+
+          let cb = site.getNumbering(num_obj);
+
+
+          $attend_students.add({
+            image_url: '/images/attend_students.png',
+            date: date1,
+            code: cb.code,
+            school_grade: customer.school_grade,
+            hall: customer.hall,
+            company: site.get_company(req),
+            branch: site.get_branch(req),
+            attend_list: [obj]
+          })
+
+        }
+        res.json(response);
+      },
+    );
+  });
+
+
+
+
 
   site.post('/api/attend_students/all', (req, res) => {
     let response = {
@@ -222,6 +405,16 @@ module.exports = function init(site) {
     };
 
     let where = req.body.where || {};
+
+    if (where.date) {
+      let d1 = site.toDate(where.date)
+      let d2 = site.toDate(where.date)
+      d2.setDate(d2.getDate() + 1)
+      where.date = {
+        '$gte': d1,
+        '$lt': d2
+      }
+    }
 
     if (where['name']) {
       where['name'] = site.get_RegExp(where['name'], 'i');
@@ -251,4 +444,12 @@ module.exports = function init(site) {
       },
     );
   });
+
+
+
+
 };
+
+
+
+

@@ -111,38 +111,38 @@
     },
     {
         "name": "host_job",
-        "en": "Host Job",
-        "ar": "وظيفة المستضيف"
+        "en": "Guardian Job",
+        "ar": "وظيفة ولي الأمؤ"
     },
     {
         "name": "host_name",
-        "en": "Full Name Host",
-        "ar": "إسم المستضيف بالكامل"
+        "en": "Full Name Guardian",
+        "ar": "إسم ولي الأمر بالكامل"
     },
     {
         "name": "host_mobile",
-        "en": "Host Mobile",
-        "ar": "موبايل المستضيف"
+        "en": "Guardian Mobile",
+        "ar": "موبايل ولي الأمر"
     },
     {
         "name": "host_job_address",
-        "en": "Host job Address",
-        "ar": "عنوان عمل المستضيف"
+        "en": "Guardian job Address",
+        "ar": "عنوان عمل ولي الأمر"
     },
     {
         "name": "host_job_phone",
-        "en": "Host job Phone",
-        "ar": "هاتف عمل المستضيف"
+        "en": "Guardian job Phone",
+        "ar": "هاتف عمل ولي الأمر"
     },
     {
         "name": "host_data",
-        "en": "Host Data",
-        "ar": "بيانات المستضيف"
+        "en": "Guardian Data",
+        "ar": "بيانات ولي الأمر"
     },
     {
         "name": "host",
-        "en": "Host",
-        "ar": " المستضيف"
+        "en": "Guardian",
+        "ar": " ولي الأمر"
     },
     {
         "name": "relation_parents",
@@ -171,8 +171,8 @@
     },
     {
         "name": "family_info",
-        "en": "Family Informations",
-        "ar": "معلومات العائلة"
+        "en": "Guardian Informations",
+        "ar": "معلومات ولي الأمر"
     },
     {
         "name": "medical_info",

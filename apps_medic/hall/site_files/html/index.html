@@ -23,6 +23,7 @@
                 <div x-permissions="hall_delete || hall_manage" x-import="hall/delete_modal.html"></div>
                 <div x-permissions="hall_view || hall_manage" x-import="hall/view_modal.html"></div>
                 <div x-permissions="hall_search || hall_manage" x-import="hall/search_all_modal.html"></div>
+                <div x-permissions="hall_view || hall_manage" x-import="hall/students_list_modal.html"></div>
 
                 <div class="row">
                     <h1 class="bold text-center">##word.halls##</h1>
@@ -36,7 +37,7 @@
                     <h3 class="bold text-center"> ##word.count## : {{count}}</h3>
                 </div>
 
-                <table x-permissions="login" class="table bold loaded" id="t1">
+                <table x-permissions="login" class="table bold hover loaded" id="t1">
                     <tr>
                         <th class="not-print">##word.logo##</th>
                         <th>##word.code##</th>
@@ -51,7 +52,7 @@
                         </td>
                         <td class="center userPrint blue">{{c.code}}</td>
                         <td class="center title">{{c.name}}</td>
-                        <td class="center blue">{{c.capaneighborhood}}</td>
+                        <td class="center green">{{c.capaneighborhood}}</td>
 
                         <td class="center">
                             <p ng-show="c.active ==true" class="green"> ##word.active## </p>

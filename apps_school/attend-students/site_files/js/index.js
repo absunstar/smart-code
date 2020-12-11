@@ -151,7 +151,6 @@ app.controller("attend_students", function ($scope, $http, $timeout, $interval) 
     )
   };
 
-  $scope.list = [];
   $scope.getAttendStudentsList = function (where) {
     $scope.busy = true;
     $scope.error = "";
@@ -166,7 +165,7 @@ app.controller("attend_students", function ($scope, $http, $timeout, $interval) 
       function (response) {
         $scope.busy = false;
         if (response.data.done && response.data.list.length > 0) {
-          if ($scope.list.length == response.data.list.length) {
+          if ($scope.list && $scope.list.length == response.data.list.length) {
             response.data.list.forEach((d, i) => {
               if (!$scope.list[i].leave_date && d.leave_date) {
                 $scope.list[i].leave_date = d.leave_date;
@@ -252,27 +251,28 @@ app.controller("attend_students", function ($scope, $http, $timeout, $interval) 
   $scope.searchStudents = function (ev) {
     $scope.error = '';
     $scope.busy = true;
-    if ( ev == 'searchAll' ||ev.which === 13) {
+    if (ev == 'searchAll' || ev.which === 13) {
       $http({
         method: "POST",
-        url: "/api/customers/all",
+        url: "/api/attend_students/get",
         data: {
           search: $scope.search_customer,
           where: {
             school_grade: $scope.attend_students.school_grade,
             hall: $scope.attend_students.hall,
             active: true
+          },
+          whereAttend: {
+            date: $scope.attend_students.date
           }
         }
       }).then(
         function (response) {
           $scope.busy = false;
           if (response.data.done) {
+
             if (ev == 'searchAll') {
-              $scope.attend_students.attend_list = [];
-              response.data.list.forEach(_customer => {
-                $scope.attend_students.attend_list.push({ customer: _customer })
-              });
+              $scope.attend_students.attend_list = response.data.list;
             } else if (ev.which === 13) {
               $scope.customersList = response.data.list;
 
@@ -289,29 +289,58 @@ app.controller("attend_students", function ($scope, $http, $timeout, $interval) 
   };
 
 
-  $scope.attendNow = function (c) {
-    c.status = {
-      name: 'attend',
-      ar: 'حضور',
-      en: 'Attend'
-    };
-    c.attend_time = {
-      hour: new Date($scope.attend_students.date).getHours(),
-      minute: new Date($scope.attend_students.date).getMinutes()
-    };
-  };
+  
+  $scope.attendNow = function (c, action) {
+    $scope.attend_students.date = new Date($scope.attend_students.date);
+    /*     $scope.attend_students.date.setTime(new Date().getTime());
+     */
+    if (action == 'attend') {
 
-  $scope.leaveNow = function (c) {
+      c.status = {
+        name: 'attend',
+        ar: 'حضور',
+        en: 'Attend'
+      };
+      c.attend_time = {
+        hour: new Date().getHours(),
+        minute: new Date().getMinutes()
+      };
 
-    c.leave_time = {
-      hour: new Date($scope.attend_students.date).getHours(),
-      minute: new Date($scope.attend_students.date).getMinutes()
-    };
-  };
+    } else if (action == 'leave') {
 
-  $scope.absence = function (c) {
+      c.leave_time = {
+        hour: new Date().getHours(),
+        minute: new Date().getMinutes()
+      };
 
-    c.status = { name: 'absence', ar: 'غياب', en: 'Absence' };
+    } else if (action == 'absence') {
+      c.status = { name: 'absence', ar: 'غياب', en: 'Absence' };
+
+    }
+
+    $http({
+      method: "POST",
+      url: "/api/attend_students/transaction",
+      data: {
+        obj: c,
+        where: {
+          customer: c.customer,
+          date: $scope.attend_students.date
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+
+        } else {
+          $scope.error = response.data.error;
+        }
+      },
+      function (err) {
+        console.log(err);
+      }
+    )
   };
 
 
@@ -326,8 +355,8 @@ app.controller("attend_students", function ($scope, $http, $timeout, $interval) 
     if (!found)
       $scope.attend_students.attend_list.push({ customer: c });
 
-      $scope.search_customer = '';
-      $scope.attend_students.customer = {};
+    $scope.search_customer = '';
+    $scope.attend_students.customer = {};
   };
 
   $scope.getSchoolGradeList = function (where) {

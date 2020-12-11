@@ -3,10 +3,19 @@ module.exports = function init(site) {
 
   site.on('[company][created]', doc => {
 
-    if (site.feature('gym') || site.feature('academy') || site.feature('school'))
+    if (site.feature('gym') || site.feature('academy') || site.feature('school')) {
+      let name = ''
+
+      if (site.feature('school')) {
+        name = "فصل دراسي إفتراضي"
+      } else if (site.feature('gym')) {
+        name = "قاعة إفتراضية"
+      }
+
+
       $hall.add({
         code: "1-Test",
-        name: "قاعة إفتراضية",
+        name: name,
         image_url: '/images/hall.png',
         company: {
           id: doc.id,
@@ -18,6 +27,7 @@ module.exports = function init(site) {
         },
         active: true
       }, (err, doc) => { })
+    }
   })
 
   site.get({

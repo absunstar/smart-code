@@ -1035,7 +1035,6 @@ module.exports = function init(site) {
               if (doc.posting) {
 
                 doc.items.forEach((_itm, i) => {
-
                   _itm.store = doc.store
                   _itm.company = doc.company
                   _itm.branch = doc.branch

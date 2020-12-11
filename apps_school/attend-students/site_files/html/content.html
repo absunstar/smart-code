@@ -32,7 +32,8 @@
                         <i-control ng-keydown="searchStudents($event)" id="service" class="col2"
                             ng-model="search_customer" label="##word.search##" type="text"></i-control>
                         <i-list ng-search="_search.$customer" class="col4" display="name_##session.lang##"
-                        ng-change="selectStudent(attend_students.customer)"   ng-model="attend_students.customer" label="##word.students_name##" items="customersList">
+                            ng-change="selectStudent(attend_students.customer)" ng-model="attend_students.customer"
+                            label="##word.students_name##" items="customersList">
                         </i-list>
                     </div>
 
@@ -53,10 +54,10 @@
 
                                 <td class="center title">
                                     <i-button type="add" ng-hide="att_stu.status" label="##word.attend##"
-                                        ng-click="attendNow(att_stu)">
+                                        ng-click="attendNow(att_stu,'attend')">
                                     </i-button>
                                     <i-button type="exit" ng-hide="att_stu.status" label="##word.absence##"
-                                        ng-click="absence(att_stu);">
+                                        ng-click="attendNow(att_stu,'absence');">
                                     </i-button>
 
                                     <h class="green bold" ng-show="att_stu.status.name == 'attend'">
@@ -76,7 +77,7 @@
                                 <td class="center">
                                     <i-button type="close"
                                         ng-show="att_stu.status.name =='attend' && !att_stu.leave_time"
-                                        label="##word.leave##" ng-click="leaveNow(att_stu)">
+                                        label="##word.leave##" ng-click="attendNow(att_stu,'leave')">
                                     </i-button>
                                     <p class="red">{{att_stu.leave_time.minute}} :
                                         {{att_stu.leave_time.hour}}

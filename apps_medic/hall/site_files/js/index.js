@@ -194,6 +194,33 @@ app.controller("hall", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.loadCustomers = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/customers/all",
+      data: {
+        where: {
+          hall: $scope.hall,
+          active: true
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.customersList = response.data.list;
+          site.showModal('#StudentsListModal');
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
   $scope.displaySearchModal = function () {
     $scope.error = '';
     site.showModal('#hallSearchModal');

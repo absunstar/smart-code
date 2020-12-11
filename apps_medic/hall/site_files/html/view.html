@@ -16,7 +16,7 @@
 
                     <tr>
                         <td class="title">##word.hall_capaneighborhood##</td>
-                        <td class="center blue">{{hall.capaneighborhood}}</td>
+                        <td class="center green">{{hall.capaneighborhood}}</td>
                     </tr>
 
                     <tr>
@@ -24,6 +24,13 @@
                         <td ng-show="hall.active == true" class="green center"> ##word.active## </td>
                         <td ng-show="hall.active == false" class="red center"> ##word.not_active## </td>
                     </tr>
+
+                    <tr x-features="academy || school">
+                        <td class="center" colspan="2">
+                            <i-button type="view"   label="##word.customers_view##" ng-click="loadCustomers(hall)"> </i-button>
+                        </td>
+                    </tr>
+
                 </table>
             </div>
 

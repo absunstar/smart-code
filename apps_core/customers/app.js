@@ -426,6 +426,14 @@ module.exports = function init(site) {
     })
   })
 
+
+  if (site.feature('school')) {
+
+    site.getDataToDelete = function (data, callback) {
+      callback(null)
+    }
+  }
+
   site.post("/api/customers/delete", (req, res) => {
     let response = {
       done: false
@@ -441,7 +449,6 @@ module.exports = function init(site) {
     let data = { name: 'customer', id: req.body.id };
 
     site.getDataToDelete(data, callback => {
-
       if (callback == true) {
         response.error = 'Cant Delete Its Exist In Other Transaction'
         res.json(response)
@@ -616,5 +623,77 @@ module.exports = function init(site) {
       }
     })
   }
+
+  site.getCustomers = function (data, callback) {
+
+    let where = data.where || {}
+
+    let search = data.search || ''
+
+    if (search) {
+      where.$or = []
+      where.$or.push({
+        'name_ar': site.get_RegExp(search, "i")
+      })
+      where.$or.push({
+        'name_en': site.get_RegExp(search, "i")
+      })
+
+      where.$or.push({
+        'code': search
+      })
+      where.$or.push({
+        'mobile': site.get_RegExp(search, "i")
+      })
+
+    }
+
+    if (where['name_ar']) {
+      where['name_ar'] = site.get_RegExp(where['name_ar'], 'i')
+    }
+
+    if (where['name_en']) {
+      where['name_en'] = site.get_RegExp(where['name_en'], 'i')
+    }
+
+    if (where.code) {
+
+      where['code'] = where.code;
+    }
+
+    if (where.nationality) {
+
+      where['nationality'] = where.nationality;
+    }
+
+    if (where.phone) {
+
+      where['phone'] = where.phone;
+    }
+    if (where.mobile) {
+
+      where['mobile'] = where.mobile;
+    }
+
+    if (where['school_grade'] && where['school_grade'].id) {
+      where['school_grade.id'] = where['school_grade'].id;
+      delete where['school_grade']
+    }
+
+    if (where['hall'] && where['hall'].id) {
+      where['hall.id'] = where['hall'].id;
+      delete where['hall']
+    }
+
+    $customers.findMany({
+      where:where,
+    }, (err, docs) => {
+      if (!err) {
+        if (docs) callback(docs)
+        else callback(false)
+      }
+    })
+  }
+
 
 }

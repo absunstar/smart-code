@@ -177,7 +177,7 @@ module.exports = function init(site) {
       done: false,
     };
     if (Numbering && Numbering.length > 0) {
-
+      if(Numbering.filter((n) => n.company.id == site.get_company(req).id)[0] && Numbering.filter((n) => n.company.id == site.get_company(req).id)[0].screens_list)
       Numbering.filter((n) => n.company.id == site.get_company(req).id)[0].screens_list.forEach(_sl => {
 
         if (_sl.name == req.data.screen) {
@@ -215,6 +215,9 @@ module.exports = function init(site) {
       }
     });
 
+    if(doc){
+
+    doc.screens_list = doc.screens_list || []
     doc.screens_list.forEach(_sl => {
 
 
@@ -341,6 +344,10 @@ module.exports = function init(site) {
 
       }
     });
+  } else {
+    obj.auto = false
+  }
+
 
     $numbering.update(doc, () => { });
     return obj;

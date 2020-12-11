@@ -7,7 +7,7 @@
     {
         "name": "brand_tag",
         "en": "Enterprise Resources Planing",
-        "ar": "نظام إدارة الأكاديمية"
+        "ar": "نظام إدارة المدرسة"
     },
     {
         "name": "yes",
@@ -156,22 +156,22 @@
     },
     {
         "name": "companies",
-        "en": "Academy",
+        "en": "School",
         "ar": "الأكاديمية"
     },
     {
         "name": "companies_add",
-        "en": "Add ِAcademy",
+        "en": "Add School",
         "ar": "إضافة أكاديمية"
     },
     {
         "name": "companies_edit",
-        "en": "Edit ِAcademy",
+        "en": "Edit School",
         "ar": "تعديل أكاديمية"
     },
     {
         "name": "companies_informations",
-        "en": "ِAcademy Informations",
+        "en": "ِSchool Informations",
         "ar": "بيانات الأكاديمية"
     },
     {
@@ -186,17 +186,17 @@
     },
     {
         "name": "companies_details",
-        "en": "ِAcademy Details",
+        "en": "ِSchool Details",
         "ar": "تفاصيل الأكاديمية"
     },
     {
         "name": "companies_delete",
-        "en": "Delete ِAcademy",
+        "en": "Delete ِSchool",
         "ar": "حذف أكاديمية"
     },
     {
         "name": "companies_code",
-        "en": "ِAcademy Code",
+        "en": "ِSchool Code",
         "ar": "كود الأكاديمية"
     },
     {
@@ -341,12 +341,12 @@
     },
     {
         "name": "companies_name_ar",
-        "en": "ِAcademy Name Arabic",
+        "en": "ِSchool Name Arabic",
         "ar": "إسم الأكاديمية"
     },
     {
         "name": "companies_name_en",
-        "en": "ِAcademy Name English",
+        "en": "ِSchool Name English",
         "ar": "إسم الأكاديمية بالانجليزية"
     },
     {
@@ -355,13 +355,13 @@
         "ar": "سعر الصرف"
     },
     {
-        "name": "companies_ِAcademy_swift_code",
+        "name": "companies_ِSchool_swift_code",
         "en": "Swift Code",
         "ar": "رقم السويفت"
     },
     {
         "name": "companies_new",
-        "en": "New ِAcademy",
+        "en": "New ِSchool",
         "ar": "أكاديمية جديدة"
     },
     {
@@ -541,57 +541,62 @@
     },
     {
         "name": "customers_new",
-        "en": "New Customer",
+        "en": "New Student",
         "ar": "طالب جديد"
     },
     {
         "name": "customers_add",
-        "en": "Add Customer",
+        "en": "Add Student",
         "ar": "إضافة طالب"
     },
     {
         "name": "customers_edit",
-        "en": "Customer Edit",
+        "en": "Student Edit",
         "ar": "تعديل بيانات طالب"
     },
     {
         "name": "customers_details",
-        "en": "Customer Details",
+        "en": "Student Details",
         "ar": "تفاصيل طالب"
     },
     {
+        "name": "customers_view",
+        "en": "Students View",
+        "ar": "عرض الطلاب"
+    },
+    {
         "name": "customers_delete",
-        "en": "Delete Customer",
+        "en": "Delete Student",
         "ar": "حذف طالب"
     },
     {
         "name": "customers_indentfy",
-        "en": "Customer indentfy",
+        "en": "Student indentfy",
         "ar": "نوع الطالب"
     },
     {
         "name": "customers_code",
-        "en": "Customer Code",
+        "en": "Student Code",
         "ar": "كود الطالب"
     },
     {
         "name": "customers_name_ar",
-        "en": "Customer Name Arabic",
+        "en": "Student Name Arabic",
         "ar": "إسم الطالب بالعربي"
     },
     {
         "name": "customers_name_en",
-        "en": "Customer Name English",
+        "en": "Student Name English",
         "ar": "إسم الطالب بالانجليزية"
     },
     {
         "name": "customer_name",
-        "en": "Customer Name",
+        "en": "Student Name",
         "ar": "إسم الطالب"
     },
     {
         "name": "customer",
-        "en": "Customer ",
+        "en": "Student ",
         "ar": " الطالب"
     },
     {
