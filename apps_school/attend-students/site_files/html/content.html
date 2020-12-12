@@ -43,6 +43,7 @@
                     <div class="row">
                         <table x-permissions="login" class="table bold loaded hover" id="t1">
                             <tr>
+                                <th class="not-print"> ##word.logo## </th>
                                 <th>##word.customer_name##</th>
                                 <th>##word.attend_status##</th>
                                 <th>##word.attend_leave_attend##</th>
@@ -50,6 +51,9 @@
                             </tr>
 
                             <tr ng-repeat="att_stu in attend_students.attend_list">
+                                <td class="not-print">
+                                    <i-image view class="logo" ng-model="c.customer.image_url"></i-image>
+                                </td>
                                 <td class="center title">{{att_stu.customer.name_##session.lang##}}</td>
 
                                 <td class="center title">
@@ -60,12 +64,12 @@
                                         ng-click="attendNow(att_stu,'absence');">
                                     </i-button>
 
-                                    <h class="green bold" ng-show="att_stu.status.name == 'attend'">
+                                    <h3 class="green bold" ng-show="att_stu.status.name == 'attend'">
                                         {{att_stu.status.##session.lang##}}
-                                    </h>
-                                    <h class="red bold" ng-show="att_stu.status.name == 'absence'">
+                                    </h3>
+                                    <h3 class="red bold" ng-show="att_stu.status.name == 'absence'">
                                         {{att_stu.status.##session.lang##}}
-                                    </h>
+                                    </h3>
                                 </td>
 
                                 <td class="center">

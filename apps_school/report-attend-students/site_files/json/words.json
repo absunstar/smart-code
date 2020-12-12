@@ -1,0 +1,32 @@
+[
+    {
+        "name": "report_attend_students_informations",
+        "en": "Report Invoices Students Informations",
+        "ar": "بيانات حضور و غياب الطلاب"
+    },
+    {
+        "name": "report_attend_students",
+        "en": "Attend & Absence Students",
+        "ar": "حضور و غياب الطلاب"
+    },
+    {
+        "name": "report_attend_students_menus",
+        "en": "Report Invoices Menu",
+        "ar": "قائمة تقرير فاتورة"
+    },
+    {
+        "name": "view_students_attend",
+        "en": "View Students Attend",
+        "ar": "عرض حضور الطلاب"
+    },
+    {
+        "name": "attend_count",
+        "en": "Attend Count",
+        "ar": "عدد مرات الحضور"
+    },
+    {
+        "name": "absence_count",
+        "en": "Absence Count",
+        "ar": "عدد مرات الغياب"
+    }
+]
