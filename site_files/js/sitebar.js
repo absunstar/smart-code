@@ -7,9 +7,9 @@ if (btn) {
 
 site.showTabs(event, '#main_tabs');
 
-$('body').click(() => {
+/*$('body').click(() => {
     $('.sitebar .links').hide(100);
-});
+});*/
 
 app.controller('sitebar', ($scope, $http) => {
 

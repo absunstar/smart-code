@@ -31,8 +31,7 @@
 }
 
 body {
-  margin-top: 100px;
-  margin-bottom: 100px;
+  margin: 100px;
 }
 
 a {
@@ -73,7 +72,6 @@ fieldset legend {
   color: #ffffff;
 }
 
-
 .userPrint {
   user-select: all;
 }
@@ -84,20 +82,24 @@ popup item:hover {
 }
 
 .main-menu {
-    position: fixed;
-    width: auto;
-    right: 0px;
-    top: 54px;
-    overflow: scroll;
-    height: 100vh;
-    padding: 40px;
-    text-align: center;
-    box-shadow: 1px 1px 3px 1px var(--theme-color);
-    background: var(--x-background);
-    border-radius: 0px 0px 0px 0px;
-
+  position: fixed;
+  width: auto;
+  right: 0px;
+  top: 54px;
+  overflow: scroll;
+  height: 100vh;
+  padding: 0px;
+  text-align: center;
+  box-shadow: 1px 1px 3px 1px var(--theme-color);
+  background: var(--x-background);
+  border-radius: 0px 0px 0px 0px;
 }
-
+.main-menu:hover .tab-link span{
+  display: inline-block;
+}
+.main-menu .tab-link span{
+  display: none;
+}
 .modal {
   background-color: #0000006e;
   z-index: 999999;
@@ -144,7 +146,7 @@ nav h2.brand a i {
 }
 
 nav .links {
-  display: none;
+  display: block;
   -webkit-animation-name: var(--modal-animation-name);
   -webkit-animation-duration: var(--modal-animation-duration);
   animation-name: var(--modal-animation-name);
@@ -269,8 +271,6 @@ nav.sitebottom a.link:hover {
   display: inline-block;
 }
 
-
-
 .logoPrint {
   width: 140px;
   height: 120px;
@@ -279,7 +279,6 @@ nav.sitebottom a.link:hover {
   border-radius: 0;
   border: 1px solid var(--background-color);
 }
-
 
 @media screen and (max-width: 768px) {
   .tabs .tabs-header .tab-link {
@@ -302,13 +301,10 @@ nav.sitebottom a.link:hover {
     width: 90%;
   }
   .main-menu {
-  
     top: 84px;
-   
+  }
 
-}
-
-.userPrint {
-  user-select :all
-}
+  .userPrint {
+    user-select: all;
+  }
 }
