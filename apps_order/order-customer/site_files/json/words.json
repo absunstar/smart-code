@@ -25,11 +25,6 @@
         "ar": "إختيار الطاولة"
     },
     {
-        "name": "customer_data",
-        "en": "Customer Data",
-        "ar": "بيانات العميل"
-    },
-    {
         "name": "count_person",
         "en": "Count Person",
         "ar": "عدد الأفراد"

@@ -57,6 +57,7 @@
 
     {"name" : "companies_country" , "en" : "Coutntry" , "ar" : "الدولة"},
     {"name" : "companies_address" , "en" : "Address" , "ar" : "العنوان"},
+    {"name" : "host_domain" , "en" : "Host Domain" , "ar" : "مضيف / نطاق"},
     {"name" : "companies_customer_service" , "en" : "Customer Services" , "ar" : "خدمة العملاء"}  
  
     

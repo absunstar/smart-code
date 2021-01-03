@@ -105,6 +105,11 @@
         "ar": "حساب شريحة جلسات"
     },
     {
+        "name": "menu_company",
+        "en": "Schools",
+        "ar": "المدارس"
+    },
+    {
         "name": "order_slides_name",
         "en": "Slide Name",
         "ar": "اسم حساب الشريحة"
@@ -157,22 +162,22 @@
     {
         "name": "companies",
         "en": "School",
-        "ar": "الأكاديمية"
+        "ar": "المدرسة"
     },
     {
         "name": "companies_add",
         "en": "Add School",
-        "ar": "إضافة أكاديمية"
+        "ar": "إضافة مدرسة"
     },
     {
         "name": "companies_edit",
         "en": "Edit School",
-        "ar": "تعديل أكاديمية"
+        "ar": "تعديل مدرسة"
     },
     {
         "name": "companies_informations",
-        "en": "ِSchool Informations",
-        "ar": "بيانات الأكاديمية"
+        "en": "School Informations",
+        "ar": "بيانات المدرسة"
     },
     {
         "name": "companies_basic_information",
@@ -187,17 +192,17 @@
     {
         "name": "companies_details",
         "en": "ِSchool Details",
-        "ar": "تفاصيل الأكاديمية"
+        "ar": "تفاصيل المدرسة"
     },
     {
         "name": "companies_delete",
         "en": "Delete ِSchool",
-        "ar": "حذف أكاديمية"
+        "ar": "حذف مدرسة"
     },
     {
         "name": "companies_code",
         "en": "ِSchool Code",
-        "ar": "كود الأكاديمية"
+        "ar": "كود المدرسة"
     },
     {
         "name": "companies_phone",
@@ -342,12 +347,12 @@
     {
         "name": "companies_name_ar",
         "en": "ِSchool Name Arabic",
-        "ar": "إسم الأكاديمية"
+        "ar": "إسم المدرسة"
     },
     {
         "name": "companies_name_en",
         "en": "ِSchool Name English",
-        "ar": "إسم الأكاديمية بالانجليزية"
+        "ar": "إسم المدرسة بالانجليزية"
     },
     {
         "name": "companies_excahange_price",
@@ -362,7 +367,7 @@
     {
         "name": "companies_new",
         "en": "New ِSchool",
-        "ar": "أكاديمية جديدة"
+        "ar": "مدرسة جديدة"
     },
     {
         "name": "companies_country",

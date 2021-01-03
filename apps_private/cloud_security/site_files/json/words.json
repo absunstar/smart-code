@@ -55,6 +55,7 @@
     {"name" : "ar_lang" , "en" : "اللغة العربية" , "ar":"اللغة العربية"},
     {"name" : "en_lang" , "en" : "English" , "ar":"English"},
     {"name" : "close" , "en" : "Close" , "ar":"أغلاق"},
+    {"name" : "entry" , "en" : "Entry" , "ar":"دخول"},
     {"name" : "role_details" , "en" : "Role Details" , "ar":"تفاصيل الصفات"}
 
 

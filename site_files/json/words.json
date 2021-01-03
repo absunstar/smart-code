@@ -15,6 +15,11 @@
         "ar": "غير مرحل"
     },
     {
+        "name": "customer_data",
+        "en": "Customer Data",
+        "ar": "بيانات العميل"
+    },
+    {
         "name": "name",
         "en": "Name",
         "ar": "الاسم"

@@ -66,6 +66,12 @@
 .bg_skyblue {
   background-color: turquoise !important;
 }
+
+.grayDark,
+.grayDark {
+  color: 	#989898 !important;
+}
+
 .bord {
   background-color: #272727 !important;
   width: auto;

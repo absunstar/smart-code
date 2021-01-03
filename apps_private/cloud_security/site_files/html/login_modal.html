@@ -29,13 +29,24 @@
                 <br>
                 <br>
 
-                <div class="row" ng-repeat="b in branch_list">
+                <div class="row">
 
-                    <div class="col2 bold blue"> <br> {{b.company.name_##session.lang##}} </div>
-                    <div class="col2 bold green"> <br> {{b.branch.name_##session.lang##}} </div>
-                    <i-button label="##word.security_login##" ng-hide="busy" id="loginBtn" class="col2" type="add"
-                        ng-click="login(b)"></i-button>
+                    <div class="col1"></div>
+                    <div class="col10">
 
+                        <table class="table loaded hover center bold">
+                            <tr ng-repeat="b in branch_list">
+                                <td class="blue"> <br> {{b.company.name_##session.lang##}} </td>
+                                <td class="green"> <br> {{b.branch.name_##session.lang##}} </td>
+                                <td>
+                                    <i-button label="##word.security_login##" ng-hide="busy" id="loginBtn" class="center" type="add"
+                                    ng-click="login(b)"></i-button>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="col1"></div>
                 </div>
 
             </form>

@@ -16,7 +16,7 @@
 </style>
 
 <div class="main-menu">
-    <div class="row" ng-show="'##user.type##' == 'customer'">
+    <div class="" ng-show="'##user.type##' == 'customer'">
         <div class="col4"></div>
         <a class="tab-link" href="/customers" x-permissions="customers_ui || customers_manage">
             <img src="/images/customer.png">
@@ -82,7 +82,7 @@
             </a>
 
 
-            <div class="row" x-features="lawyer">
+            <div class="" x-features="lawyer">
 
                 <a class="tab-link" href="/courts" x-permissions="courts_ui || courts_manage">
                     <img src="images/court.png">
@@ -163,7 +163,7 @@
             </a>
 
 
-            <div class="row" x-features="school">
+            <div class="" x-features="school">
                 <a class="tab-link" href="/school_grade" x-permissions="school_grade_ui || school_grade_manage">
                     <img src="/images/school_grade.png">
                     <span> ##word.school_grades##</span>
@@ -549,7 +549,7 @@
             </a>
 
 
-            <div class="row" x-features="restaurant || pos || erp">
+            <div class="" x-features="restaurant || pos || erp">
 
                 <a class="tab-link" href="/delegates" x-permissions="delegate_ui || delegate_manage">
                     <img src="/images/delegate.png">
@@ -642,7 +642,7 @@
                 <span>##word.report_daily_name##</span>
             </a>
 
-            <div class="row" x-features="gym">
+            <div class="" x-features="gym">
 
                 <a class="tab-link" href="/report_requests"
                     x-permissions="report_requests_ui || report_requests_manage">
@@ -670,7 +670,7 @@
             </div>
 
 
-            <div class="row" x-features="academy">
+            <div class="" x-features="academy">
 
 
                 <a class="tab-link" href="/report_student_courses"
@@ -852,7 +852,7 @@
     <div id="company_tabs" class="tabs">
         <div class="tabs-header">
 
-            <div class="row" x-features="lawyer">
+            <div class="" x-features="lawyer">
 
                 <a class="tab-link" href="/customers" x-permissions="customers_ui || customers_manage">
                     <img src="/images/customer.png">
@@ -898,7 +898,7 @@
             </div>
 
 
-            <div class="row" x-features="gym">
+            <div class="" x-features="gym">
                 <a class="tab-link" href="/request_service"
                     x-permissions="request_service_ui || request_service_manage">
                     <img src="/images/request_service.png">
@@ -935,7 +935,7 @@
             </a>
 
 
-            <div class="row" x-features="academy">
+            <div class="" x-features="academy">
 
                 <a class="tab-link" href="/book_hall" x-permissions="book_hall_ui || book_hall_manage">
                     <img src="images/book_hall.png">
@@ -974,7 +974,7 @@
 
             </div>
 
-            <div class="row" x-features="academy || gym || school">
+            <div class="" x-features="academy || gym || school">
                 <a class="tab-link" href="/customers" x-permissions="customers_ui || customers_manage">
                     <img src="/images/customer.png">
                     <span> ##word.customers## </span>
@@ -987,7 +987,7 @@
             </div>
 
 
-            <div class="row" x-features="school">
+            <div class="" x-features="school">
                 <a class="tab-link" href="/attend_students"
                     x-permissions="attend_students_ui || attend_students_manage">
                     <img src="/images/attend_students.png">
@@ -1033,7 +1033,7 @@
             </div>
 
 
-            <div class="row" x-features="restaurant || pos || erp">
+            <div class="" x-features="restaurant || pos || erp">
                 <a class="tab-link" href="/order_invoice" x-permissions="order_invoice_ui || order_invoice_manage">
                     <img src="/images/order_invoice.png">
                     <span> ##word.order_invoice_menus## </span>
@@ -1082,7 +1082,7 @@
             </div>
 
 
-            <div class="row" x-features="restaurant">
+            <div class="" x-features="restaurant">
 
                 <a class="tab-link" href="/order_kitchen" x-permissions="order_kitchen_ui || order_kitchen_manage">
                     <img src="/images/order_kitchen.png">
@@ -1128,7 +1128,7 @@
 
     <div id="main_tabs" class="tabs">
         <div class="tabs-header">
-            <div class="row"
+            <div class=""
                 ng-hide="'##user.type##' == 'customer' || '##user.type##' == 'table' || '##user.type##' == 'delegate'">
                 <a class="tab-link" onclick="site.showTabs(event, '#company_tabs')">
                     <img src="/images/main.png">
@@ -1136,21 +1136,21 @@
                 </a>
 
                 <a class="tab-link" onclick="site.showTabs(event, '#security_tabs')">
-                    <img src="/images/users.png">
+                    <img src="/images/security.png">
                     <span> ##word.security_system##</span>
                 </a>
                 <a x-features="restaurant || pos || academy || gym || erp || school" class="tab-link"
                     onclick="site.showTabs(event, '#inventory_tabs')">
-                    <img src="/images/pic_store2.png">
+                    <img src="/images/inventory.png">
                     <span>##word.inventory_transactions##</span>
                 </a>
                 <a class="tab-link" onclick="site.showTabs(event, '#accounting_tabs')">
-                    <img src="/images/safe.png">
+                    <img src="/images/accounting.png">
                     <span>##word.financial_transactions## </span>
                 </a>
 
                 <a class="tab-link" onclick="site.showTabs(event, '#general_tabs')">
-                    <img src="/images/gov.png">
+                    <img src="/images/general_setting.png">
                     <span>##word.general_setting##</span>
                 </a>
                 <a class="tab-link" onclick="site.showTabs(event, '#employees_tabs')">
@@ -1160,7 +1160,7 @@
 
                 <a x-features="restaurant || pos || academy || gym || erp || school" class="tab-link"
                     onclick="site.showTabs(event, '#reporting_tabs')">
-                    <img src="/images/item_transaction.png">
+                    <img src="/images/report.png">
                     <span>##word.reports## </span>
                 </a>
             </div>
@@ -1184,7 +1184,7 @@
             </a>
 
 
-            <div class="row" ng-show="'##user.type##' == 'customer'">
+            <div class="" ng-show="'##user.type##' == 'customer'">
                 <div class="col4"></div>
                 <a class="tab-link" href="/customers" x-permissions="customers_ui || customers_manage">
                     <img src="/images/customer.png">

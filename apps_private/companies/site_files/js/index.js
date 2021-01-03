@@ -11,9 +11,10 @@ app.controller("companies", function ($scope, $http, $timeout) {
       active: true,
       branch_count: 1,
       store: 1,
-      item: 1,
+      item: 100,
       unit: 1,
       currency: 1,
+      users_count: 10,
       branch_list: [{
         code: 1,
         name_ar: 'الفرع الرئيسى',
@@ -193,7 +194,7 @@ app.controller("companies", function ($scope, $http, $timeout) {
         select: {
           id: 1,
           name: 1,
-          code : 1
+          code: 1
         }
       }
     }).then(
@@ -218,7 +219,7 @@ app.controller("companies", function ($scope, $http, $timeout) {
         select: {
           id: 1,
           name: 1,
-          code : 1
+          code: 1
         }
       }
     }).then(
@@ -237,7 +238,7 @@ app.controller("companies", function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.busy = true;
     $scope.list = [];
-    $scope.count =0;
+    $scope.count = 0;
     $http({
       method: "POST",
       url: "/api/companies/all",
@@ -271,7 +272,7 @@ app.controller("companies", function ($scope, $http, $timeout) {
         select: {
           id: 1,
           name: 1,
-          code : 1
+          code: 1
         },
         where: {
           'gov.id': gov.id
@@ -301,7 +302,7 @@ app.controller("companies", function ($scope, $http, $timeout) {
         select: {
           id: 1,
           name: 1,
-          code : 1
+          code: 1
         }
       }
     }).then(
@@ -316,8 +317,8 @@ app.controller("companies", function ($scope, $http, $timeout) {
     )
   };
 
-  
- 
+
+
   $scope.getcompanyList();
   $scope.getGovList();
   $scope.getBankList();

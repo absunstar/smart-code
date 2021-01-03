@@ -89,6 +89,15 @@ module.exports = function init(site) {
       res.json(response)
     } else {
 
+      if (site.feature('erp')) companies_doc.type = 'erp'
+      else if (site.feature('pos')) companies_doc.type = 'pos'
+      else if (site.feature('restaurant')) companies_doc.type = 'restaurant'
+      else if (site.feature('school')) companies_doc.type = 'school'
+      else if (site.feature('gym')) companies_doc.type = 'gym'
+      else if (site.feature('academy')) companies_doc.type = 'academy'
+      else if (site.feature('lawyer')) companies_doc.type = 'lawyer'
+      else if (site.feature('employee')) companies_doc.type = 'employee'
+
 
       $companies.add(companies_doc, (err, doc) => {
         if (!err) {
@@ -165,11 +174,11 @@ module.exports = function init(site) {
             response.doc = result.doc
 
 
-            let branch_list =  []
-            companies_doc.branch_list.forEach(b=>{
+            let branch_list = []
+            companies_doc.branch_list.forEach(b => {
               branch_list.push({
-                company : companies_doc,
-                branch : b
+                company: companies_doc,
+                branch: b
               })
             })
 
@@ -179,7 +188,7 @@ module.exports = function init(site) {
               password: companies_doc.password,
               company_id: companies_doc.id,
               is_company: true,
-              branch_list : branch_list,
+              branch_list: branch_list,
               profile: {
                 name: companies_doc.name_ar,
                 mobile: companies_doc.mobile,

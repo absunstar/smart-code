@@ -30,6 +30,10 @@ app.controller('sitebar', ($scope, $http) => {
         site.showModal('#loginModal');
     };
 
+    $scope.customerRegister = function () {
+        site.showModal('#customerRegisterModal');
+    };
+
     $scope.showBranches = function () {
         site.showModal('#branchesModal');
     };

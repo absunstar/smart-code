@@ -32,15 +32,16 @@
                                     <td> {{company.name_en}} </td>
                                 </tr>
 
+
+                                <tr>
+                                    <td class="title"> ##word.host_domain## </td>
+                                    <td> {{company.host}} </td>
+                                </tr>
+
                                 <tr>
                                     <td class="title"> ##word.status## </td>
                                     <td class="green" ng-show="company.active == true"> ##word.active## </td>
                                     <td class="red" ng-show="company.active == false"> ##word.not_active## </td>
-                                </tr>
-
-                                <tr>
-                                    <td class="title"> ##word.companies_activity## </td>
-                                    <td> {{company.activity.name}} </td>
                                 </tr>
 
                                 <tr>

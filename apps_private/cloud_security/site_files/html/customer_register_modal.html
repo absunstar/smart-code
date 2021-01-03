@@ -1,4 +1,4 @@
-<div data-ng-controller="register" id="customerRegisterModal" class="modal small" fixed >
+<div data-ng-controller="register" id="customerRegisterModal" class="modal small" fixed>
 
     <div class="modal-content">
         <div class="modal-header">
@@ -22,21 +22,26 @@
 
                                 <div class="row">
                                     <i-list v="r" label="##word.security_company##" ng-search="_search.$company_search"
-                                        display="name_##session.lang##" class="col4" items="company_list" ng-model="customer.company">
+                                        display="name_##session.lang##" class="col4" items="company_list"
+                                        ng-model="customer.company">
                                     </i-list>
 
-                                    <i-list label="##word.security_branch##" v="r" primary="code" display="name_##session.lang##"
-                                        ng-search="_search.$branch_search" class="col4"
+                                    <i-list label="##word.security_branch##" v="r" primary="code"
+                                        display="name_##session.lang##" ng-search="_search.$branch_search" class="col4"
                                         items="customer.company.branch_list" ng-model="customer.branch">
                                     </i-list>
-
-                                  
                                 </div>
 
+                                <br>
+                                <br>
+                                <hr>
+                                <br>
+
                                 <div class="row">
-                                    <i-control class="col6" help-id="" v="r" label="##word.email##"
-                                    ng-model="customer.username">
-                                </i-control>
+                                    <i-control class="col5" help-id="" v="r" label="##word.email##"
+                                        ng-model="customer.username">
+                                    </i-control>
+                                    <div class="col1"></div>
                                     <i-control class="col3" help-id="" v="r" type="password" label="##word.password##"
                                         ng-model="customer.password"></i-control>
                                     <i-control class="col3" help-id="" v="r" type="password"
@@ -45,71 +50,79 @@
                                     </i-control>
                                 </div>
 
-                               
-
                                 <div class="row">
+                                    <div class="col8">
+                                        <div class="row">
 
-                                    <i-control class="col3" help-id="" v="r" type="text" label="##word.name_ar##"
-                                        ng-model="customer.name_ar">
-                                    </i-control>
-                                    <i-control class="col3" help-id="" type="text" label="##word.name_en##"
-                                        ng-model="customer.name_en">
-                                    </i-control>
+                                            <i-control class="col6" help-id="" v="r" type="text"
+                                                label="##word.name_ar##" ng-model="customer.name_ar">
+                                            </i-control>
+
+                                            <i-control class="col6" help-id="" type="text" label="##word.name_en##"
+                                                ng-model="customer.name_en">
+                                            </i-control>
+
+                                        </div>
+
+
+                                        <div class="row">
+
+                                            <i-control class="col6" help-id="" v="r" label="##word.mobile##"
+                                                ng-model="customer.mobile">
+                                            </i-control>
+                                            <i-control class="col6" label="##word.phone##" ng-model="customer.phone">
+                                            </i-control>
+
+                                        </div>
+
+                                        <div class="row">
+
+                                            <i-list class="col6" label="##word.customers_gov##" ng-model="customer.gov"
+                                                items="govList" display="name" ng-change="getCityList(customer.gov)"
+                                                ng-search="_search.$govNameContact">
+                                            </i-list>
+                                            <i-list class="col6" label="##word.city##" ng-model="customer.city"
+                                                items="cityList" ng-change="getAreaList(customer.city)" display="name"
+                                                ng-search="_search.$customer.$city_search"></i-list>
+
+
+                                        </div>
+
+                                       
+                                    </div>
                                     <div class="col1"></div>
-                                    <i-radio class="col2" ng-model="Gender.type" ng-value="male" group="type"
-                                        label="##word.security_user_male##">
-                                    </i-radio>
+                                    <div class="col3">
+                                        <div class="row">
 
-                                    <i-radio class="col2" ng-model="Gender.type" group="type" ng-value="female"
-                                        label="##word.security_user_female##">
-                                    </i-radio>
-                                    <div class="col2 hidden">
-                                        <i-image help-id="" ng-model="customer.image_url"></i-image>
+                                            <i-image help-id="" ng-model="customer.image_url"></i-image>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col2"></div>
+                                            <i-radio ng-model="Gender.type" ng-value="male" group="type"
+                                                label="##word.security_user_male##">
+                                            </i-radio>
+
+                                            <i-radio ng-model="Gender.type" group="type" ng-value="female"
+                                                label="##word.security_user_female##">
+                                            </i-radio>
+                                        </div>
                                     </div>
                                 </div>
-
-                            
-
-                                
-
                                 <div class="row">
-
-                                    <i-control class="col3" help-id="" v="r" label="##word.mobile##"
-                                        ng-model="customer.mobile">
-                                    </i-control>
-                                    <i-control class="col3" label="##word.phone##" ng-model="customer.phone">
-                                    </i-control>
-                                </div>
-
-                                <div class="row">
-
-                                    <i-list class="col3" label="##word.customers_gov##" ng-model="customer.gov"
-                                        items="govList" display="name" ng-change="getCityList(customer.gov)"
-                                        ng-search="_search.$govNameContact">
+                                    <i-list class="col4" label="##word.area##" ng-model="customer.area"
+                                        items="areaList" display="name"
+                                        ng-search="_search.$customer.$area_search">
                                     </i-list>
-                                    <i-list class="col3" label="##word.city##" ng-model="customer.city" items="cityList"
-                                        ng-change="getAreaList(customer.city)" display="name"
-                                        ng-search="_search.$customer.$city_search"></i-list>
-
-                                    <i-list class="col3" label="##word.area##" ng-model="customer.area" items="areaList"
-                                        display="name" ng-search="_search.$customer.$area_search">
-                                    </i-list>
-                                </div>
-
-                                <div class="row">
-
-                                </div>
-                                <div class="row">
-
                                     <i-control class="col6" label="##word.customers_address##"
                                         ng-model="customer.address">
                                     </i-control>
                                 </div>
 
+
                             </div>
                         </div>
 
-                       
+
                     </fieldset>
 
                 </div>
@@ -119,8 +132,9 @@
         <div class="modal-footer center">
             <h2 class="error"> {{error}} </h2>
             <i-button type="add" label="##word.register##" ng-click="registerCustomer()"></i-button>
-            <a class="btn" onclick="site.hideModal('#customerRegisterModal')"> <i class="fa fa-times"
-                    aria-hidden="true"></i> ##word.close## </a>
+
+            <i-button type="close" label="##word.close##" onclick="site.hideModal( '#customerRegisterModal')">
+            </i-button>
 
         </div>
 
