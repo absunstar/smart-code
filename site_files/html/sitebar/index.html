@@ -1,11 +1,11 @@
 <h2 class="brand">
   <div class="row">
-    <div class="col4" help-id="brand_title">
+    <div class="inline" help-id="brand_title">
       <a x-feature="test" href="#" onclick="event.stopPropagation(); $('.sitebar .links').toggle(200)"> <i class="fa fa-bars"></i> </a>
 
       <a href="/"> ##word.brand_title## <span> ##word.brand_tag##</span> </a>
     </div>
-    <div class="col4 text-center desktop">
+    <div class="inline text-center desktop">
       <div class="info bord">
         <a x-features="login" id="btn_change_branch" onclick="site.showModal('#changeBranchModal');">
           <i ng-show="'##session.lang##' == 'ar'"> ##session.company.name_ar## - ##session.branch.name_ar## </i>
@@ -13,7 +13,7 @@
         </a>
       </div>
     </div>
-    <div class="col4 text-left">
+    <div class="inline left">
       <div class="info">
         <span x-features="login" class="user-name"> ##user.name## </span>
         <a x-features="!login" id="btn_register" onclick="site.showModal('#customerRegisterModal')"> ##word.customer_register## </a>
