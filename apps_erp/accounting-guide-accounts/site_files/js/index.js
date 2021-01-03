@@ -140,12 +140,10 @@ app.controller("accounting_guide_accounts", function ($scope, $http, $timeout) {
     if ($scope.busy) {
       return;
     }
-    $scope.busy = true;
 
     const v = site.validated('#guideAccountsUpdateModal');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
-      $scope.busy = false;
       return;
     };
 
@@ -157,10 +155,11 @@ app.controller("accounting_guide_accounts", function ($scope, $http, $timeout) {
       });
       if (total != 100) {
         $scope.error = "##word.accounting_guide_accounts_total_rate##";
-        $scope.busy = false;
         return;
       }
     };
+    $scope.busy = true;
+
     $http({
       method: "POST",
       url: "/api/accounting_guide_accounts/update",

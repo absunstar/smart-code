@@ -18,14 +18,13 @@ app.controller("customers_group", function ($scope, $http, $timeout) {
       return;
     }
     $scope.error = '';
-    $scope.busy = true;
 
     const v = site.validated('#customerGroupAddModal');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
     };
-
+    $scope.busy = true;
     $http({
       method: "POST",
       url: "/api/customers_group/add",
@@ -71,13 +70,13 @@ app.controller("customers_group", function ($scope, $http, $timeout) {
       return;
     }
     $scope.error = '';
-    $scope.busy = true;
 
     const v = site.validated('#customerGroupUpdateModal');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
     }
+    $scope.busy = true;
     $http({
       method: "POST",
       url: "/api/customers_group/update",

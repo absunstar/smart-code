@@ -1,0 +1,103 @@
+<div ng-hide="busy">
+    <div class="form">
+        <div id="customersGroupViewModal">
+            <fieldset>
+                <legend> ##word.exam_grades_informations## </legend>
+                <div class="row">
+                    <div class="col9">
+                        <div class="row">
+
+                            <table class="table hover bold">
+                                <tr>
+                                    <td class="title"> ##word.code## </td>
+                                    <td class="center userPrint blue"> {{exam_grades.code}} </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title"> ##word.exam## </td>
+                                    <td class="center"> {{exam_grades.exam.name}} </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title"> ##word.school_grade## </td>
+                                    <td class="center"> {{exam_grades.school_grade.name}} </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title"> ##word.hall## </td>
+                                    <td class="center"> {{exam_grades.hall.name}} </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title"> ##word.active## </td>
+                                    <td ng-show="exam_grades.active == true" class="center green"> ##word.active##
+                                    </td>
+                                    <td ng-show="exam_grades.active == false" class="center red">
+                                        ##word.not_active##
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <br>
+                        <br>
+                        <br>
+                        <div class="row" >
+                            <fieldset>
+                                <legend>##word.customers_view##
+                                </legend>
+
+                                <table class="table loaded hover center bold" id="t1">
+
+                                    <tr>
+                                        <th> ##word.serial## </th>
+                                        <th class="not-print"> ##word.logo## </th>
+                                        <th> ##word.code## </th>
+                                        <th> ##word.customer_name## </th>
+                                        <th> ##word.final_grade## </th>
+                                        <th> ##word.degree_success## </th>
+                                        <th> ##word.student_score## </th>
+                                        <th> ##word.result## </th>
+    
+                                    </tr>
+    
+                                    <tr ng-repeat="c in exam_grades.students_list | orderBy : '-id'">
+                                        <td class="center  blue">
+                                            {{$index + 1}}
+                                        </td>
+                                        <td class="not-print">
+                                            <i-image view class="logo" ng-model="c.image_url"></i-image>
+                                        </td>
+    
+                                        <td class="blue userPrint"> {{c.code}} </td>
+                                        <td> {{c.name_##session.lang##}} </td>
+                                        <td class="green"> {{c.final_grade}} </td>
+                                        <td class="red"> {{c.degree_success}} </td>
+                                        <td> {{c.student_score}} </td>
+                                        <td>
+                                            <p class="green"
+                                                ng-show="c.student_score >= c.degree_success && c.student_score!= 0">
+                                                ##word.successful##</p>
+                                            <p class="red"
+                                                ng-show="c.degree_success > c.student_score && c.student_score!= 0">
+                                                ##word.precipitate##</p>
+                                        </td>
+                                    </tr>
+                                </table>
+
+                            </fieldset>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col3">
+                        <i-image class="not-print" view ng-model="exam_grades.image_url"> </i-image>
+                    </div>
+
+
+                </div>
+            </fieldset>
+        </div>
+    </div>
+</div>
+<div x-import="exam-grades/action_info.html"></div>

@@ -18,14 +18,14 @@ app.controller("administrative_business", function ($scope, $http, $timeout) {
     if ($scope.busy) {
       return;
     }
-    $scope.error = '';
-    $scope.busy = true;
 
     const v = site.validated('#administrativeBusinessAddModal');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
     };
+    $scope.error = '';
+    $scope.busy = true;
 
     $http({
       method: "POST",
@@ -69,13 +69,13 @@ app.controller("administrative_business", function ($scope, $http, $timeout) {
       return;
     }
     $scope.error = '';
-    $scope.busy = true;
 
     const v = site.validated('#administrativeBusinessUpdateModal');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
     }
+    $scope.busy = true;
     $http({
       method: "POST",
       url: "/api/administrative_business/update",

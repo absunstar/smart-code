@@ -1,0 +1,62 @@
+[
+    {
+        "name": "exams",
+        "en": "Exams",
+        "ar": "الإمتحانات"
+    },
+    {
+        "name": "exam",
+        "en": "Exam",
+        "ar": "الإمتحان"
+    },
+    {
+        "name": "exam_name",
+        "en": "Exam Name",
+        "ar": "إسم الإمتحان"
+    },
+    {
+        "name": "exams_new",
+        "en": "New Exam",
+        "ar": "إمتحان جديد"
+    },
+    {
+        "name": "exams_add",
+        "en": "Add Exam",
+        "ar": "إضافة إمتحان"
+    },
+    {
+        "name": "exams_edit",
+        "en": "Edit Exam",
+        "ar": "تعديل إمتحان"
+    },
+    {
+        "name": "exams_details",
+        "en": "Exam Details",
+        "ar": "تفاصيل إمتحان"
+    },
+    {
+        "name": "exams_delete",
+        "en": "Delete exams",
+        "ar": "حذف إمتحان"
+    },
+    {
+        "name": "final_grade",
+        "en": "The Final Grade",
+        "ar": "الدرجة النهائية"
+    },
+    {
+        "name": "degree_success",
+        "en": "The Degree Of Success",
+        "ar": "درجة النجاح"
+    },
+    {
+        "name": "exams_type",
+        "en": "Exam Type",
+        "ar": "نوع الإمتحان"
+    },
+    {
+        "name": "exams_number",
+        "en": "Exam Number",
+        "ar": "رقم الإمتحان"
+    }
+]

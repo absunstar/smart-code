@@ -13,28 +13,6 @@ module.exports = function init(site) {
     compress: true,
   });
 
-  site.on('[company][created]', (doc) => {
-    $attend_students.add(
-      {
-        code: "1-Test",
-        name: 'محافظة إفتراضية',
-        image_url: '/images/gov.png',
-        company: {
-          id: doc.id,
-          name_ar: doc.name_ar,
-        },
-        branch: {
-          code: doc.branch_list[0].code,
-          name_ar: doc.branch_list[0].name_ar,
-        },
-        active: true,
-      },
-      (err, doc) => {
-        site.call('[register][city][add]', doc);
-      },
-    );
-  });
-
   site.post('/api/attend_students/add', (req, res) => {
     let response = {
       done: false,

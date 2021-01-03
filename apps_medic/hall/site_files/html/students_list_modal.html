@@ -13,11 +13,16 @@
                 <div class="row">
                     <table x-permissions="login" class="table bold hover loaded" id="t1">
                         <tr>
+                            <th>##word.serial##</th>
                             <th class="not-print">##word.logo##</th>
                             <th>##word.customers_code##</th>
                             <th>##word.customer_name##</th>
                         </tr>
                         <tr ng-repeat="c in customersList">
+                            <td class="center blue">
+                                {{$index + 1}}
+
+                            </td>
                             <td class="center not-print">
                                 <i-image view class="logo" ng-model="c.image_url"></i-image>
                             </td>

@@ -17,19 +17,17 @@ app.controller("register", function ($scope, $http, $timeout) {
     if ($scope.busy) {
       return;
     }
-    $scope.busy = true;
 
     const v = site.validated('#registerAddAcademy');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
-      $scope.busy = false;
       return;
     };
     if ($scope.academy.academy_password != $scope.academy.academy_password_return) {
       $scope.error = "##word.password_err##";
-      $scope.busy = false;
       return;
     };
+    $scope.busy = true;
 
     $http({
       method: "POST",

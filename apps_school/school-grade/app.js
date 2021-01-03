@@ -23,26 +23,6 @@ module.exports = function init(site) {
     path: __dirname + '/site_files/images/'
   })
 
-  site.on('[company][created]', doc => {
-
-    $school_grade.add({
-      name: "مرحلة دراسية إفتراضية",
-      code: "1-Test",
-      image_url: '/images/school_grade.png',
-      company: {
-        id: doc.id,
-        name_ar: doc.name_ar
-      },
-      branch: {
-        code: doc.branch_list[0].code,
-        name_ar: doc.branch_list[0].name_ar
-      },
-      active: true
-    }, (err, doc) => {
-    })
-  })
-
-
 
   site.post("/api/school_grade/add", (req, res) => {
     let response = {}

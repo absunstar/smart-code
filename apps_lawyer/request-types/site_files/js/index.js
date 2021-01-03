@@ -18,13 +18,13 @@ app.controller("request_types", function ($scope, $http, $timeout) {
       return;
     }
     $scope.error = '';
-    $scope.busy = true;
 
     const v = site.validated('#requestTypesAddModal');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
     };
+    $scope.busy = true;
 
     $http({
       method: "POST",
@@ -68,13 +68,13 @@ app.controller("request_types", function ($scope, $http, $timeout) {
       return;
     }
     $scope.error = '';
-    $scope.busy = true;
 
     const v = site.validated('#requestTypesUpdateModal');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
     }
+    $scope.busy = true;
     $http({
       method: "POST",
       url: "/api/request_types/update",

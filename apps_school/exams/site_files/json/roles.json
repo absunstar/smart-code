@@ -1,0 +1,7 @@
+[{
+    "module_name" : "public" ,
+    "name": "exams_admin",
+    "en": "Exams Admin",
+    "ar": "إدارة الإمتحانات",
+    "permissions": ["exams_manage"]
+}]

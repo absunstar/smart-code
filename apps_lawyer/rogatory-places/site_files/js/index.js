@@ -18,13 +18,13 @@ app.controller("rogatory_places", function ($scope, $http, $timeout) {
       return;
     }
     $scope.error = '';
-    $scope.busy = true;
 
     const v = site.validated('#rogatoryPlacesAddModal');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
     };
+    $scope.busy = true;
 
     $http({
       method: "POST",
@@ -68,13 +68,14 @@ app.controller("rogatory_places", function ($scope, $http, $timeout) {
       return;
     }
     $scope.error = '';
-    $scope.busy = true;
 
     const v = site.validated('#rogatoryPlacesUpdateModal');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
     }
+    $scope.busy = true;
+
     $http({
       method: "POST",
       url: "/api/rogatory_places/update",

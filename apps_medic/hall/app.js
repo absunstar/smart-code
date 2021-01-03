@@ -8,7 +8,7 @@ module.exports = function init(site) {
 
       if (site.feature('school')) {
         name = "فصل دراسي إفتراضي"
-      } else if (site.feature('gym')) {
+      } else if (site.feature('gym') || site.feature('academy')) {
         name = "قاعة إفتراضية"
       }
 
@@ -16,6 +16,7 @@ module.exports = function init(site) {
       $hall.add({
         code: "1-Test",
         name: name,
+        capaneighborhood: 1,
         image_url: '/images/hall.png',
         company: {
           id: doc.id,

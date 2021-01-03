@@ -98,7 +98,6 @@ app.controller("item_transaction", function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         $scope.transactionTypes = response.data;
-        console.log($scope.transactionTypes);
 
       },
       function (err) {

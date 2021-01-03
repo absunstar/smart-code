@@ -21,13 +21,13 @@ app.controller("lawsuit_add", function ($scope, $http, $timeout) {
       return;
     }
     $scope.error = '';
-    $scope.busy = true;
 
     const v = site.validated('#lawsuitAddAddModal');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
     };
+    $scope.busy = true;
 
     $http({
       method: "POST",
@@ -69,13 +69,13 @@ app.controller("lawsuit_add", function ($scope, $http, $timeout) {
       return;
     }
     $scope.error = '';
-    $scope.busy = true;
 
     const v = site.validated('#lawsuitAddUpdateModal');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
     }
+    $scope.busy = true;
     $http({
       method: "POST",
       url: "/api/lawsuit_add/update",

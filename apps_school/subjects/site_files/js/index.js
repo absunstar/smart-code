@@ -220,32 +220,6 @@ app.controller("subjects", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.getNumberingAuto = function () {
-    $scope.error = '';
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/numbering/get_automatic",
-      data: {
-        screen: "subjects"
-      }
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          $scope.disabledCode = response.data.isAuto;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
-  };
-
-
-
-
   $scope.displaySearchModal = function () {
     $scope.error = '';
     site.showModal('#subjectsSearchModal');
@@ -258,7 +232,6 @@ app.controller("subjects", function ($scope, $http, $timeout) {
     $scope.search = {};
 
   };
-  $scope.getNumberingAuto();
   $scope.getSubjectsList();
   $scope.getSubjectsGroupList();
   $scope.getNumberingAuto();

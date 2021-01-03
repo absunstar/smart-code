@@ -31,7 +31,8 @@
                     <div class="row">
                         <i-control ng-keydown="searchStudents($event)" id="service" class="col2"
                             ng-model="search_customer" label="##word.search##" type="text"></i-control>
-                        <i-list ng-search="_search.$customer" class="col4" display="name_##session.lang##"
+
+                        <i-list ng-search="_search.$customer" class="col4" display="customer.name_##session.lang##"
                             ng-change="selectStudent(attend_students.customer)" ng-model="attend_students.customer"
                             label="##word.students_name##" items="customersList">
                         </i-list>
@@ -43,6 +44,7 @@
                     <div class="row">
                         <table x-permissions="login" class="table bold loaded hover" id="t1">
                             <tr>
+                                <th>##word.serial##</th>
                                 <th class="not-print"> ##word.logo## </th>
                                 <th>##word.customer_name##</th>
                                 <th>##word.attend_status##</th>
@@ -51,8 +53,11 @@
                             </tr>
 
                             <tr ng-repeat="att_stu in attend_students.attend_list">
+                                <td class="center  blue">
+                                    {{$index + 1}}
+                                </td>
                                 <td class="not-print">
-                                    <i-image view class="logo" ng-model="c.customer.image_url"></i-image>
+                                    <i-image view class="logo" ng-model="att_stu.customer.image_url"></i-image>
                                 </td>
                                 <td class="center title">{{att_stu.customer.name_##session.lang##}}</td>
 
@@ -64,10 +69,10 @@
                                         ng-click="attendNow(att_stu,'absence');">
                                     </i-button>
 
-                                    <h3 class="green bold" ng-show="att_stu.status.name == 'attend'">
+                                    <h3 class="green center bold" ng-show="att_stu.status.name == 'attend'">
                                         {{att_stu.status.##session.lang##}}
                                     </h3>
-                                    <h3 class="red bold" ng-show="att_stu.status.name == 'absence'">
+                                    <h3 class="red center bold" ng-show="att_stu.status.name == 'absence'">
                                         {{att_stu.status.##session.lang##}}
                                     </h3>
                                 </td>

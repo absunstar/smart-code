@@ -131,7 +131,6 @@ app.controller("employee_discount", function ($scope, $http) {
       return;
     }
 
-
     $scope.busy = true;
     $http({
       method: "POST",

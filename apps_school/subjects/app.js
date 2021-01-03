@@ -16,7 +16,7 @@ module.exports = function init(site) {
 
     $subjects.add({
       name: "مادة دراسية إفتراضية",
-      image_url: '/images/circle.png',
+      image_url: '/images/subjects.png',
       code: "1-Test",
       company: {
         id: doc.id,

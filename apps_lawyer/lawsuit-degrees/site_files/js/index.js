@@ -18,13 +18,13 @@ app.controller("lawsuit_degrees", function ($scope, $http, $timeout) {
       return;
     }
     $scope.error = '';
-    $scope.busy = true;
 
     const v = site.validated('#lawsuitDegreesAddModal');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
     };
+    $scope.busy = true;
 
     $http({
       method: "POST",
@@ -68,13 +68,13 @@ app.controller("lawsuit_degrees", function ($scope, $http, $timeout) {
       return;
     }
     $scope.error = '';
-    $scope.busy = true;
 
     const v = site.validated('#lawsuitDegreesUpdateModal');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
     }
+    $scope.busy = true;
     $http({
       method: "POST",
       url: "/api/lawsuit_degrees/update",

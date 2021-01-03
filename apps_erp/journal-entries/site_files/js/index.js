@@ -22,13 +22,13 @@ app.controller("journal_entries", function ($scope, $http, $timeout) {
       return;
     }
     $scope.error = '';
-    $scope.busy = true;
 
     const v = site.validated('#journalEntriesAddModal');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
     };
+    $scope.busy = true;
 
     $http({
       method: "POST",
@@ -81,15 +81,13 @@ app.controller("journal_entries", function ($scope, $http, $timeout) {
       return;
     }
     $scope.error = '';
-    $scope.busy = true;
 
     const v = site.validated('#journalEntriesUpdateModal');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
-      $scope.busy = true;
-
       return;
     }
+    $scope.busy = true;
 
     $http({
       method: "POST",

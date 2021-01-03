@@ -1,0 +1,23 @@
+[
+    {"name" : "exam_grades_informations" , "en" : "Putting Exam Grades Informations" , "ar" : "بيانات وضع درجات إمتحان"},
+    {"name" : "exam_grades" , "en" : "Putting Exam Grades" , "ar" : "وضع درجات الإمتحانات"},
+    {"name" : "seating_number" , "en" : "Putting Exam Grade" , "ar" : "وضع درجات الإمتحانات"},
+    {"name" : "exam_grades_menus" , "en" : "Putting Exam Grades Menu" , "ar" : "قائمة وضع درجات إمتحان"},
+    {"name" : "exam_grades_code" , "en" : "Putting Exam Grades Code" , "ar" : "كود وضع درجات إمتحان"},
+    {"name" : "exam_grades_name" , "en" : "Putting Exam Grades Name" , "ar" : "إسم وضع درجات إمتحان"},
+    {"name" : "exam_grades_new" , "en" : "New Putting Exam Grades" , "ar" : " وضع درجات إمتحان جديدة"},
+    {"name" : "exam_grades_details" , "en" : "Putting Exam Grades Details" , "ar" : "تفاصيل وضع درجات إمتحان"},
+    {"name" : "exam_grades_update" , "en" : "Edit Putting Exam Grades" , "ar" : "تعديل وضع درجات إمتحان"},
+    {"name" : "exam_grades_delete" , "en" : "Delte Putting Exam Grades" , "ar" : "حذف وضع درجات إمتحان"},
+    {"name" : "numbers_start_from" , "en" : "The numbers start from" , "ar" : "الأرقام تبدأ من"},
+    {"name" : "student_score" , "en" : "Student's score" , "ar" : "درجة الطالب"},
+    {"name" : "successful" , "en" : "Successful" , "ar" : "ناجح"},
+    {"name" : "err_score_higher" , "en" : "The student's score is higher than the final grade" , "ar" : "درجة الطالب أعلى من الدرجة النهائية"},
+    {"name" : "precipitate" , "en" : "Precipitate" , "ar" : "راسب"},
+    {"name" : "result" , "en" : "The Result" , "ar" : "النتيجة"},
+    {"name" : "exam_grades_add_name" , "en" : "Add Putting Exam Grades" , "ar" : "إضافة وضع درجات إمتحان"}
+
+
+    
+    
+]

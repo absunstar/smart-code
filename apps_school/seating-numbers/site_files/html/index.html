@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="sales_seating_numbers_ui || sales_seating_numbers_manage" data-ng-app="myApp">
+
+<head x-import="head.html">
+
+</head>
+
+<body class="##session.lang##">
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+
+    </nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+
+    </nav>
+    <div id="main-layout" class="container loaded">
+        <div class="row">
+            <div class="row" ng-controller="seating_numbers" x-permissions="login">
+                <div x-import="seating-numbers/add_modal.html"></div>
+                <div x-import="seating-numbers/update_modal.html"></div>
+                <div x-import="seating-numbers/delete_modal.html"></div>
+                <div x-import="seating-numbers/view_modal.html"></div>
+                <div x-import="seating-numbers/search_all_modal.html"></div>
+
+                <div class="row">
+                    <h1 class="bold text-center"> ##word.seating_numbers## </h1>
+                </div>
+
+                <div class="top-actions">
+                    <i-button type="add" x-permissions="sales_seating_numbers_add || sales_seating_numbers_manage" label="##word.seating_numbers_new##" ng-click="displayAddSeatingNumbers()"></i-button>
+                    <i-button type="search" x-permissions="sales_seating_numbers_search || sales_seating_numbers_manage" label="##word.search_all##" onclick="site.showModal('#seatingNumbersSearchModal')"></i-button>
+
+                    <span ng-show="busy">
+                        <span class="sr-only">Loading...</span>
+                    </span>
+                    <h3 class="bold text-center"> ##word.count## : {{count}} </h3>
+                    <br>
+                </div>
+
+                <table class="table loaded hover center bold" id="t1">
+                    <tr>
+                        <th class="not-print"> ##word.logo## </th>
+                        <th> ##word.seating_numbers_code## </th>
+                        <th> ##word.school_grade## </th>
+                        <th> ##word.numbers_start_from## </th>
+                        <th> ##word.to## </th>
+                        <th> ##word.status## </th>
+
+                        <th class="not-print"> ##word.actions## </th>
+                    </tr>
+                    <tr ng-repeat="c in list | orderBy : '-id'">
+                        <td class="not-print">
+                            <i-image view class="logo" ng-model="c.image_url"></i-image>
+                        </td>
+
+                        <td class="blue userPrint"> {{c.code}} </td>
+                        <td> {{c.school_grade.name}} </td>
+                        <td class="green"> {{c.from}} </td>
+                        <td class="red"> {{c.to}} </td>
+
+                        <td>
+                            <p ng-show="c.active == true" class="green"> ##word.active## </p>
+                            <p ng-show="c.active == false" class="red"> ##word.not_active## </p>
+                        </td>
+
+                        <td class="center not-print">
+                            <i-button type="details" x-permissions="sales_seating_numbers_view || sales_seating_numbers_manage" label="##word.details##" ng-click="displayDetailsSeatingNumbers(c)"></i-button>
+
+                            <i-button type="update" x-permissions="sales_seating_numbers_edit || sales_seating_numbers_manage" label="##word.update##" ng-click="displayUpdateSeatingNumbers(c)"></i-button>
+
+                            <i-button type="delete" x-permissions="sales_seating_numbers_delete || sales_seating_numbers_manage" label="##word.delete##" ng-click="displayDeleteSeatingNumbers(c)"></i-button>
+                        </td>
+                    </tr>
+                </table>
+
+                <div class="row">
+                    <i-button x-permissions="sales_seating_numbers_print || sales_seating_numbers_manage" type="print" label="##word.print##" onclick="site.print('#t1')"></i-button>
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div x-import="scripts.html"></div>
+
+    <script x-permissions="login" x-import="seating-numbers/index.js"></script>
+</body>
+
+</html>

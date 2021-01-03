@@ -275,7 +275,6 @@ app.controller("attend_students", function ($scope, $http, $timeout, $interval) 
               $scope.attend_students.attend_list = response.data.list;
             } else if (ev.which === 13) {
               $scope.customersList = response.data.list;
-
             }
 
           }
@@ -353,7 +352,7 @@ app.controller("attend_students", function ($scope, $http, $timeout, $interval) 
     }
 
     if (!found)
-      $scope.attend_students.attend_list.push({ customer: c });
+      $scope.attend_students.attend_list.push(c);
 
     $scope.search_customer = '';
     $scope.attend_students.customer = {};

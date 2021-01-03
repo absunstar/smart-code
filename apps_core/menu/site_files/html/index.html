@@ -619,7 +619,8 @@
     <div id="reporting_tabs" class="tabs">
         <div class="tabs-header">
 
-            <a class="tab-link" href="/report_attend_students" x-permissions="report_attend_students_ui || report_attend_students_manage">
+            <a class="tab-link" href="/report_attend_students"
+                x-permissions="report_attend_students_ui || report_attend_students_manage">
                 <img src="images/attend_students.png">
                 <span>##word.report_attend_students##</span>
             </a>
@@ -973,7 +974,17 @@
 
             </div>
 
+            <div class="row" x-features="academy || gym || school">
+                <a class="tab-link" href="/customers" x-permissions="customers_ui || customers_manage">
+                    <img src="/images/customer.png">
+                    <span> ##word.customers## </span>
+                </a>
 
+                <a class="tab-link" href="/hall" x-permissions="hall_ui || hall_manage">
+                    <img src="/images/hall.png">
+                    <span> ##word.halls##</span>
+                </a>
+            </div>
 
 
             <div class="row" x-features="school">
@@ -993,27 +1004,33 @@
                     <span> ##word.school_grades##</span>
                 </a>
 
+                <a class="tab-link" href="/exams" x-permissions="exams_ui || exams_manage">
+                    <img src="/images/exams.png">
+                    <span> ##word.exams##</span>
+                </a>
+
                 <a class="tab-link" href="/subjects" x-permissions="subjects_ui || subjects_manage">
                     <img src="/images/subjects.png">
                     <span> ##word.subjects##</span>
                 </a>
 
-            </div>
-
-            <div class="row" x-features="academy || gym || school">
-                <a class="tab-link" href="/customers" x-permissions="customers_ui || customers_manage">
-                    <img src="/images/customer.png">
-                    <span> ##word.customers## </span>
+                <a class="tab-link" href="/exam_grades" x-permissions="exam_grades_ui || exam_grades_manage">
+                    <img src="/images/exam_grades.png">
+                    <span> ##word.exam_grades##</span>
                 </a>
 
-                <a class="tab-link" href="/hall" x-permissions="hall_ui || hall_manage">
-                    <img src="/images/hall.png">
-                    <span> ##word.halls##</span>
+                <a class="tab-link" href="/year_works" x-permissions="year_works_ui || year_works_manage">
+                    <img src="/images/year_works.png">
+                    <span> ##word.year_works##</span>
                 </a>
+
+                <a class="tab-link" href="/seating_numbers"
+                    x-permissions="seating_numbers_ui || seating_numbers_manage">
+                    <img src="/images/seating_numbers.png">
+                    <span> ##word.seating_numbers##</span>
+                </a>
+
             </div>
-
-
-
 
 
             <div class="row" x-features="restaurant || pos || erp">

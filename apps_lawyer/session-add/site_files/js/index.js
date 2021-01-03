@@ -19,7 +19,6 @@ app.controller("session_add", function ($scope, $http, $timeout) {
       return;
     }
     $scope.error = '';
-    $scope.busy = true;
 
     const v = site.validated('#sessionAddAddModal');
 
@@ -29,6 +28,7 @@ app.controller("session_add", function ($scope, $http, $timeout) {
     };
 
     $scope.session_add.judgment_status = $scope.sessionJudgmentList[0];
+    $scope.busy = true;
 
     $http({
       method: "POST",
@@ -72,13 +72,13 @@ app.controller("session_add", function ($scope, $http, $timeout) {
       return;
     }
     $scope.error = '';
-    $scope.busy = true;
 
     const v = site.validated('#sessionAddUpdateModal');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
     }
+    $scope.busy = true;
     $http({
       method: "POST",
       url: "/api/session_add/update",

@@ -1,0 +1,7 @@
+[{
+    "module_name" : "public" ,
+    "name": "exam_grades_admin",
+    "en": "Putting Exam Grades Admin",
+    "ar": "إدارةوضع درجات الإمتحان",
+    "permissions": ["exam_grades_manage"]
+}]

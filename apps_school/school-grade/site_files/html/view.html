@@ -31,16 +31,41 @@
                         <br>
                         <br>
                         <div class="row">
-                            <div class="col8">
+                            <div class="col10">
 
                                 <fieldset>
                                     <legend>##word.subjects##</legend>
-                                    <table class="table hover bold">
+                                    <table class="table loaded hover center bold" id="t1">
+                                        <tr>
+                                            <th> ##word.subject## </th>
+                                            <th> ##word.exam_score_month## </th>
+                                            <th> ##word.exam_score_midterm## </th>
+                                            <th> ##word.exam_score_mid_year## </th>
+                                            <th> ##word.exam_score_end_year## </th>
+                                            <th> ##word.work_degree_year## </th>
+                                        </tr>
+                                        <tr ng-repeat="c in school_grade.subjects_list | orderBy : '-id'">
 
-                                        <tr ng-repeat="s in school_grade.subjects_list">
-                                            <td > <h2> {{$index + 1}} - {{s.subject.name}}</h2> </td>
+                                            <td> {{c.subject.name}} </td>
+                                            <td>
+                                                {{c.exam_score_month}}
+                                            </td>
+                                            <td>
+                                                {{c.exam_score_midterm}}
+                                            </td>
+                                            <td>
+                                                {{c.exam_score_mid_year}}
+                                            </td>
+                                            <td>
+                                                {{c.exam_score_end_year}}
+                                            </td>
+                                            <td>
+                                                {{c.work_degree_year}}
+                                            </td>
+
                                         </tr>
                                     </table>
+
                                 </fieldset>
                             </div>
 

@@ -19,13 +19,18 @@ app.controller("school_grade", function ($scope, $http, $timeout) {
       return;
     }
     $scope.error = '';
-    $scope.busy = true;
 
     const v = site.validated('#schoolGradeAddModal');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
     };
+
+    if ($scope.school_grade.subjects_list.length < 1) {
+      $scope.error = '##word.err_subject_list##';
+      return;
+    }
+    $scope.busy = true;
 
     $http({
       method: "POST",
@@ -71,13 +76,18 @@ app.controller("school_grade", function ($scope, $http, $timeout) {
       return;
     }
     $scope.error = '';
-    $scope.busy = true;
 
     const v = site.validated('#schoolGradeUpdateModal');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
     }
+    if ($scope.school_grade.subjects_list.length < 1) {
+      $scope.error = '##word.err_subject_list##';
+      return;
+    }
+    $scope.busy = true;
+
     $http({
       method: "POST",
       url: "/api/school_grade/update",

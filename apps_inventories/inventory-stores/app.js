@@ -216,8 +216,6 @@ module.exports = function init(site) {
       where['branch.code'] = req.body.branchTo.code
     } else where['branch.code'] = site.get_branch(req).code
 
-    console.log(site.get_branch(req));
-
     $stores.findMany({
       select: req.body.select || {},
       limit: req.body.limit,

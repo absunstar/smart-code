@@ -36,42 +36,7 @@
                         <br>
                         <br>
                         <br>
-                        <div class="row">
 
-                            <table class="table center bold hover details">
-                                <tr>
-                                    <th>##word.day_school_class##</th>
-                                    
-                                    <th ng-repeat="x in [].constructor(class_schedule.max_school_class) track by $index">{{$index +1}}
-                                    </th>
-                                </tr>
-
-                                <tr ng-repeat="i in class_schedule.schedules_list track by $index">
-                                    <td class="center ">
-                                        <br>
-                                        <h2 class="bold blue">{{i.day.##session.lang##}}</h2>
-                                    </td>
-
-                                    <td class="center blue" ng-repeat="s in i.schedules_count_list track by $index">
-                                        <p class="blue">{{s.subject.name}}</p>
-                                        <hr>
-                                        <p>{{s.trainer.name}}</p>
-                                        <hr>
-                                        <p>
-                                            <b class="green">{{s.from.minute}} :
-                                                {{s.from.hour}}
-                                            </b>
-
-                                            /
-
-                                            <b class="red">{{s.to.minute}} :
-                                                {{s.to.hour}}
-                                            </b>
-                                        </p>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
 
                     </div>
 
@@ -80,6 +45,43 @@
                     </div>
 
 
+                </div>
+                <div class="row">
+
+                    <table class="table center bold hover details">
+                        <tr>
+                            <th>##word.day_school_class##</th>
+
+                            <th ng-repeat="x in [].constructor(class_schedule.max_school_class) track by $index">
+                                {{$index +1}}
+                            </th>
+                        </tr>
+
+                        <tr ng-repeat="i in class_schedule.schedules_list track by $index">
+                            <td class="center ">
+                                <br>
+                                <h2 class="bold blue">{{i.day.##session.lang##}}</h2>
+                            </td>
+
+                            <td class="center blue" ng-repeat="s in i.schedules_count_list track by $index">
+                                <p class="blue">{{s.subject.name}}</p>
+                                <hr>
+                                <p>{{s.trainer.name}}</p>
+                                <hr>
+                                <p>
+                                    <b class="green">{{s.from.minute}} :
+                                        {{s.from.hour}}
+                                    </b>
+
+                                    /
+
+                                    <b class="red">{{s.to.minute}} :
+                                        {{s.to.hour}}
+                                    </b>
+                                </p>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
             </fieldset>
         </div>

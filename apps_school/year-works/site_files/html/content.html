@@ -1,0 +1,82 @@
+<div class="form">
+    <div id="yearWorksAddModal">
+        <fieldset>
+            <legend> ##word.year_works_informations## </legend>
+            <div class="row">
+                <div class="col9">
+                    <div class="row">
+                        <i-control ng-disabled="disabledCode" class="col2" label="##word.code##"
+                            ng-model="year_works.code"></i-control>
+                        <i-list help-id="" class="col4" label="##word.hall##" ng-model="year_works.hall"
+                            ng-search="_search.$_hall" items="hallsList" display="name"></i-list>
+
+                        <div class="col4"></div>
+                        <i-checkbox class="col2" label="##word.active##" ng-model="year_works.active"></i-checkbox>
+                    </div>
+                    <div class="row">
+
+                        <i-list help-id="" class="col4" label="##word.school_grade##" ng-model="year_works.school_grade"
+                            ng-search="_search.$_school_grade" items="schoolGradeList" display="name"></i-list>
+
+                        <i-list ng-model="year_works.subject" v="r" class="col3" label="##word.subject##"
+                            ng-search="_search.$_subject" items="year_works.school_grade.subjects_list"
+                            display="subject.name">
+                        </i-list>
+
+
+                        <div class="col2"></div>
+
+                        <i-button label="##word.search_students##" type="search" ng-click="searchStudents()">
+                        </i-button>
+
+                    </div>
+                    <br>
+                    <br>
+                    <div class="row">
+                        <fieldset>
+                            <legend>##word.customers_view##
+                            </legend>
+
+                            <table class="table loaded hover center bold" id="t1">
+
+                                <tr>
+                                    <th> ##word.serial## </th>
+                                    <th class="not-print"> ##word.logo## </th>
+                                    <th> ##word.code## </th>
+                                    <th> ##word.customer_name## </th>
+                                    <th> ##word.final_grade## </th>
+                                    <th> ##word.student_score## </th>
+
+                                </tr>
+
+                                <tr ng-repeat="c in year_works.students_list | orderBy : '-id'">
+                                    <td class="center  blue">
+                                        {{$index + 1}}
+                                    </td>
+                                    <td class="not-print">
+                                        <i-image view class="logo" ng-model="c.image_url"></i-image>
+                                    </td>
+
+                                    <td class="blue userPrint"> {{c.code}} </td>
+                                    <td> {{c.name_##session.lang##}} </td>
+                                    <td class="green"> {{c.work_degree_year}} </td>
+                                    <td>
+                                        <i-control type="number" ng-change="calc(c)" ng-model="c.student_score">
+                                        </i-control>
+                                    </td>
+
+                                </tr>
+                            </table>
+
+                        </fieldset>
+
+                    </div>
+                </div>
+
+                <div class="col3">
+                    <i-image category="year_works" ng-model="year_works.image_url"> </i-image>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+</div>

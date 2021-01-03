@@ -535,12 +535,12 @@ module.exports = function init(site) {
       where['mobile'] = where.mobile;
     }
 
-    if (where['school_grade'] && where['school_grade'].id) {
+    if (where['school_grade']) {
       where['school_grade.id'] = where['school_grade'].id;
       delete where['school_grade']
     }
 
-    if (where['hall'] && where['hall'].id) {
+    if (where['hall']) {
       where['hall.id'] = where['hall'].id;
       delete where['hall']
     }
@@ -550,6 +550,9 @@ module.exports = function init(site) {
     if (site.feature('school')) {
       where['branch.code'] = site.get_branch(req).code
     }
+
+
+
 
     if (req.session.user && req.session.user.type === 'customer') {
       where['id'] = req.session.user.ref_info.id;
@@ -686,7 +689,7 @@ module.exports = function init(site) {
     }
 
     $customers.findMany({
-      where:where,
+      where: where,
     }, (err, docs) => {
       if (!err) {
         if (docs) callback(docs)

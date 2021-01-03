@@ -1,0 +1,26 @@
+[
+    {
+        "id" : 1,
+        "name": "exam_month",
+        "en": "Exam Of The Month",
+        "ar": "إمتحان الشهر"
+    },
+    {
+        "id" : 2,
+        "name": "exam_midterm",
+        "en": "Midterm Exam",
+        "ar": "إمتحان الميدتيرم"
+    },
+    {
+        "id" : 3,
+        "name": "exam_mid_year",
+        "en": "Mid-year Exam",
+        "ar": "إمتحان نصف العام"
+    },
+    {
+        "id" : 4,
+        "name": "exam_end_year",
+        "en": "End-year Exam",
+        "ar": "إمتحان آخر العام"
+    }
+]

@@ -1,0 +1,56 @@
+<div class="form">
+    <div id="basicInformation" class="">
+        <fieldset>
+            <legend> ##word.basic_information## </legend>
+            <div class="row">
+                <div class="col9">
+                    <div class="row">
+
+                        <i-control ng-disabled="disabledCode" class="col2" label="##word.code##" ng-model="exams.code">
+                        </i-control>
+
+                        <i-control type="text" v="r" class="col4" label="##word.exam_name##" ng-model="exams.name">
+                        </i-control>
+
+                        <div class="col4"></div>
+                        <i-checkbox help-id="exams_active" class="col2" label="##word.active##" ng-model="exams.active">
+                        </i-checkbox>
+
+                    </div>
+
+                    <div class="row">
+                        <i-list help-id="" class="col4" label="##word.school_grade##" v="r" ng-change="getDegrees()"
+                            ng-model="exams.school_grade" ng-search="_search.$_school_grade" items="schoolGradeList"
+                            display="name"></i-list>
+
+                        <i-list help-id="" v="r" class="col4" label="##word.subject##" ng-model="exams.subject"
+                            ng-change="getDegrees()" ng-search="_search.$_subject" items="subjectsList" display="name">
+                        </i-list>
+
+                        <i-list help-id="" class="col4" label="##word.exams_type##" ng-model="exams.exams_type"
+                            ng-change="getDegrees()" ng-search="_search.$_exams_type" items="examsTypesList"
+                            display="##session.lang##"></i-list>
+                    </div>
+
+                    <div class="row">
+                        <i-control type="number" v="r" class="col3" label="##word.final_grade##"
+                            ng-model="exams.final_grade">
+                        </i-control>
+                        <i-control type="number" v="r" class="col3" label="##word.degree_success##"
+                            ng-model="exams.degree_success">
+                        </i-control>
+                    </div>
+                </div>
+
+                <div class="col3">
+
+                    <i-image help-id="exams_logo" ng-model="exams.image_url"></i-image>
+
+                </div>
+
+            </div>
+
+        </fieldset>
+
+    </div>
+</div>

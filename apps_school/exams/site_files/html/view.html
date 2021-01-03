@@ -1,0 +1,57 @@
+<div ng-hide="busy" class="row">
+    <div id="basicInformation" class="">
+        <fieldset>
+            <legend> ##word.basic_information##</legend>
+            <div class="col9">
+                <table id="basicInformationTable" class="table bold hover">
+                    <tr>
+                        <td class="title">##word.code##</td>
+                        <td class="center userPrint blue">{{exams.code}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="title">##word.exam_name##</td>
+                        <td class="center">{{exams.name}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="title">##word.school_grade##</td>
+                        <td class="center">{{exams.school_grade.name}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="title">##word.subject##</td>
+                        <td class="center">{{exams.subject.name}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="title">##word.exams_type##</td>
+                        <td class="center">{{exams.exams_type.##session.lang##}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="title">##word.final_grade##</td>
+                        <td class="center green">{{exams.final_grade}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="title">##word.degree_success##</td>
+                        <td class="center red">{{exams.degree_success}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="title">##word.status##</td>
+                        <td ng-show="exams.active == true" class="green center"> ##word.active## </td>
+                        <td ng-show="exams.active == false" class="red center"> ##word.not_active## </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="col3">
+                <i-image view ng-model="exams.image_url"></i-image>
+            </div>
+
+        </fieldset>
+    </div>
+</div>
+<div x-import="exams/action_info.html"></div>

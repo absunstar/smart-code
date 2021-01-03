@@ -42,6 +42,20 @@
         "ar": "حضور الطلاب"
     },
     {
+        "category": "main",
+        "feature": "school",
+        "name": "exam_grades",
+        "en": "Putting Exam Grades",
+        "ar": "وضع درجات الإمتحانات"
+    },
+    {
+        "category": "main",
+        "feature": "school",
+        "name": "year_works",
+        "en": "Putting Year Works",
+        "ar": "وضع درجات أعمال السنة"
+    },
+    {
         "category": "inventory",
         "feature": "pos",
         "name": "stores",
@@ -460,6 +474,13 @@
         "name": "class_schedules",
         "en": "Class Schedule",
         "ar": "جداول الحصص"
+    },
+    {
+        "category": "general_setting",
+        "feature": "school",
+        "name": "seating_numbers",
+        "en": "Distribution Seating Numbers",
+        "ar": "توزيع أرقام الجلوس"
     },
     {
         "category": "general_setting",

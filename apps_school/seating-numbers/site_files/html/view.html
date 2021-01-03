@@ -1,0 +1,96 @@
+<div ng-hide="busy">
+    <div class="form">
+        <div id="customersGroupViewModal">
+            <fieldset>
+                <legend> ##word.seating_numbers_informations## </legend>
+                <div class="row">
+                    <div class="col9">
+                        <div class="row">
+
+                            <table class="table hover bold">
+                                <tr>
+                                    <td class="title"> ##word.seating_numbers_code## </td>
+                                    <td class="center userPrint blue"> {{seating_numbers.code}} </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title"> ##word.school_grade## </td>
+                                    <td class="center"> {{seating_numbers.school_grade.name}} </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title"> ##word.numbers_start_from## </td>
+                                    <td class="center green"> {{seating_numbers.from}} </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title"> ##word.to## </td>
+                                    <td class="center red"> {{seating_numbers.to}} </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title"> ##word.active## </td>
+                                    <td ng-show="seating_numbers.active == true" class="center green"> ##word.active##
+                                    </td>
+                                    <td ng-show="seating_numbers.active == false" class="center red">
+                                        ##word.not_active##
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <br>
+                        <br>
+                        <br>
+                        <div class="row">
+                            <fieldset>
+                                <legend>##word.customers_view##
+                                </legend>
+
+                                <table class="table loaded hover center bold">
+
+                                    <tr>
+                                        <th> ##word.serial## </th>
+                                        <th class="not-print"> ##word.logo## </th>
+                                        <th> ##word.code## </th>
+                                        <th> ##word.customer_name## </th>
+                                        <th> ##word.gender## </th>
+                                        <th> ##word.school_grade## </th>
+                                        <th> ##word.hall## </th>
+                                        <th> ##word.seating_n## </th>
+                                    </tr>
+
+                                    <tr ng-repeat="c in seating_numbers.students_list | orderBy : '-id'">
+                                        <td class="center  blue">
+                                            {{$index + 1}}
+                                        </td>
+                                        <td class="not-print">
+                                            <i-image view class="logo" ng-model="c.image_url"></i-image>
+                                        </td>
+
+                                        <td class="blue userPrint"> {{c.code}} </td>
+                                        <td> {{c.name_##session.lang##}} </td>
+                                        <td> {{c.gender.##session.lang##}} </td>
+                                        <td> {{c.school_grade.name}} </td>
+                                        <td> {{c.hall.name}} </td>
+                                        <td class="blue"> {{c.seating_n}} </td>
+
+                                    </tr>
+                                </table>
+
+                            </fieldset>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col3">
+                        <i-image class="not-print" view ng-model="seating_numbers.image_url"> </i-image>
+                    </div>
+
+
+                </div>
+            </fieldset>
+        </div>
+    </div>
+</div>
+<div x-import="seating-numbers/action_info.html"></div>
