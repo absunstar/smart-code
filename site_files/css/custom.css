@@ -96,6 +96,10 @@ popup item:hover {
   border-radius: 0px 0px 0px 0px;
   transition: all 0.5s ease;
 }
+.en .main-menu {
+  left: 0px;
+  right: auto;
+}
 .main-menu:hover {
   opacity: 1;
 }
@@ -137,6 +141,9 @@ nav.sitebar {
 nav h2.brand {
   margin: 0px;
   padding: 5px;
+}
+nav h2.brand .title {
+  vertical-align: super;
 }
 
 nav h2.brand a {
@@ -183,8 +190,11 @@ nav .info {
   color: #ffffff;
   margin-left: 50px;
   margin-right: 50px;
+  float: left;
 }
-
+.en nav .info {
+  float: right;
+}
 nav .info .user-name {
   color: #bbbbbb;
 }
@@ -317,7 +327,6 @@ nav.sitebottom a.link:hover {
   .modal-content.small {
     width: 90%;
   }
-
 
   .userPrint {
     user-select: all;

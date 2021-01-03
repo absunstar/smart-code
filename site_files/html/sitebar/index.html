@@ -1,6 +1,6 @@
 <h2 class="brand">
   <div class="row">
-    <div class="inline" help-id="brand_title">
+    <div class="inline title" help-id="brand_title">
       <a x-feature="test" href="#" onclick="event.stopPropagation(); $('.sitebar .links').toggle(200)"> <i class="fa fa-bars"></i> </a>
 
       <a href="/"> ##word.brand_title## <span> ##word.brand_tag##</span> </a>
@@ -13,14 +13,12 @@
         </a>
       </div>
     </div>
-    <div class="inline left">
-      <div class="info">
-        <span x-features="login" class="user-name"> ##user.name## </span>
-        <a x-features="!login" id="btn_register" onclick="site.showModal('#customerRegisterModal')"> ##word.customer_register## </a>
-        <a x-features="login" id="btn_logout" ng-click="logout()"> ##word.security_logout## </a>
+    <div class="info">
+      <span x-features="login" class="user-name"> ##user.name## </span>
+      <a x-features="!login" id="btn_register" onclick="site.showModal('#customerRegisterModal')"> ##word.customer_register## </a>
+      <a x-features="login" id="btn_logout" ng-click="logout()"> ##word.security_logout## </a>
 
-        <a x-features="!login" id="btn_login" ng-click="login()"> ##word.security_login## </a>
-      </div>
+      <a x-features="!login" id="btn_login" ng-click="login()"> ##word.security_login## </a>
     </div>
   </div>
 </h2>
