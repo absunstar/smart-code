@@ -1,4 +1,3 @@
-
 <div class="form">
     <div class="tabs">
         <div class="tabs-header">
@@ -742,11 +741,19 @@
             <div id="loginInformation" class="tab-content">
                 <fieldset>
                     <legend> ##word.login_information## </legend>
+                    <div class="row">
 
-                    <i-control help-id="" class="col4" label="##word.email##" ng-model="customer.username"></i-control>
+                        <i-control help-id="" class="col4" label="##word.email##" ng-model="customer.username">
+                        </i-control>
 
-                    <i-control help-id="" class="col4" label="##word.password##" ng-model="customer.password">
-                    </i-control>
+                        <i-control help-id="" class="col4" label="##word.password##" ng-model="customer.password">
+                        </i-control>
+                    </div>
+
+                    <div class="row">
+                        <i ng-show="##session.company.host##" class="grayDark bold">examble##session.company.host##</i>
+                        <i ng-hide="##session.company.host##" class="grayDark bold">you@examble.com</i>
+                    </div>
 
                 </fieldset>
             </div>

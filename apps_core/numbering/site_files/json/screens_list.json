@@ -498,6 +498,13 @@
     },
     {
         "category": "general_setting",
+        "feature": "school",
+        "name": "school_years",
+        "en": "School Years",
+        "ar": "السنوات الدراسية"
+    },
+    {
+        "category": "general_setting",
         "feature": "restaurant",
         "name": "kitchens",
         "en": "Kitchens",

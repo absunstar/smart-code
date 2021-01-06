@@ -55,8 +55,58 @@
         "ar": "نوع الإمتحان"
     },
     {
+        "name": "with_reason_stated",
+        "en": "With the reason stated",
+        "ar": "مع ذكر السبب"
+    },
+    {
+        "name": "choices",
+        "en": "Choices",
+        "ar": "الإختيارات"
+    },
+    {
+        "name": "question_types",
+        "en": "Question Type",
+        "ar": "نوع السؤال"
+    },
+    {
+        "name": "answer",
+        "en": "The Answer",
+        "ar": "الإجابة"
+    },
+    {
+        "name": "exam_time",
+        "en": "Exam time",
+        "ar": "زمن الإمتحان"
+    },
+    {
+        "name": "degree",
+        "en": "Degree",
+        "ar": "الدرجة"
+    },
+    {
+        "name": "question",
+        "en": "The question",
+        "ar": "السؤال"
+    },
+    {
         "name": "exams_number",
         "en": "Exam Number",
         "ar": "رقم الإمتحان"
+    },
+    {
+        "name": "create_questions",
+        "en": "Create questions",
+        "ar": "إنشاء الأسئلة"
+    },
+    {
+        "name": "exam_questions",
+        "en": "Exam questions",
+        "ar": "أسئلة الإمتحان"
+    },
+    {
+        "name": "duration_exam",
+        "en": "Duration of the exam",
+        "ar": "مدة الإمتحان"
     }
 ]

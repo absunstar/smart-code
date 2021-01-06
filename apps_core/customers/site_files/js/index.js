@@ -22,6 +22,9 @@ app.controller("customers", function ($scope, $http, $timeout) {
       bank_list: [{}],
       dealing_company: [{}]
     };
+
+  
+
     site.showModal('#customerAddModal');
     document.querySelector('#customerAddModal .tab-link').click();
   };

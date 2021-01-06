@@ -9,10 +9,15 @@
                         <i-control ng-disabled="disabledCode" class="col2" label="##word.code##" ng-model="exams.code">
                         </i-control>
 
+                        <i-list ng-search="_search.$_school_year" class="col3" display="name"
+                            ng-model="exams.school_year" label="##word.school_year##" items="schoolYearsList">
+                        </i-list>
+
                         <i-control type="text" v="r" class="col4" label="##word.exam_name##" ng-model="exams.name">
                         </i-control>
 
-                        <div class="col4"></div>
+                        <div class="col1"></div>
+
                         <i-checkbox help-id="exams_active" class="col2" label="##word.active##" ng-model="exams.active">
                         </i-checkbox>
 
@@ -33,21 +38,188 @@
                     </div>
 
                     <div class="row">
-                        <i-control type="number" v="r" class="col3" label="##word.final_grade##"
+
+                        <i-control type="number" v="r" class="col2" label="##word.final_grade##"
                             ng-model="exams.final_grade">
                         </i-control>
-                        <i-control type="number" v="r" class="col3" label="##word.degree_success##"
+
+                        <i-control type="number" v="r" class="col2" label="##word.degree_success##"
                             ng-model="exams.degree_success">
                         </i-control>
+
+                        <i-control type="number" v="r" class="col2" label="##word.exam_time##"
+                            ng-model="exams.exam_time">
+                        </i-control>
+                        <div class="col1"></div>
+                        <i-checkbox help-id="create_questions" class="col2" label="##word.create_questions##"
+                            ng-click="createQuestions('creat')" ng-model="exams.create_questions">
+                        </i-checkbox>
+
                     </div>
+
                 </div>
 
                 <div class="col3">
-
                     <i-image help-id="exams_logo" ng-model="exams.image_url"></i-image>
-
                 </div>
 
+            </div>
+
+            <div class="row" ng-show="exams.create_questions">
+
+                <br>
+                <br>
+                <hr>
+                <br>
+                <br>
+
+                <div class="row">
+
+                    <fieldset>
+                        <legend>##word.exam_questions##
+                            <i-button type="add default" ng-click="createQuestions('add')">
+                            </i-button>
+                        </legend>
+
+                        <div ng-repeat="m in exams.main_ques_list" class="row">
+
+                            <div class="row">
+
+                                <i-list help-id="" v="r" class="col4" label="##word.question_types##"
+                                    display="##session.lang##" ng-model="m.question_types"
+                                    ng-change="changeMainQuestion(m)" ng-search="_search.$_question_types"
+                                    items="questionsTypesList" display="name">
+                                </i-list>
+
+                                <i-checkbox ng-show="m.question_types.name =='m_t_f'" class="col2"
+                                    label="##word.with_reason_stated##" ng-model="m.with_reason_stated">
+                                </i-checkbox>
+
+                                <i-control type="number" v="r" class="col2" label="##word.degree##" ng-model="m.degree">
+                                </i-control>
+
+                                <div class="col2"></div>
+                                <div ng-hide="m.question_types.name =='m_t_f'" class="col2"></div>
+                                <i-button type="delete"
+                                    ng-click="exams.main_ques_list.length === 1 || exams.main_ques_list.splice($index,1)">
+                                </i-button>
+                            </div>
+                            <br>
+                            <br>
+                            <div class="row">
+                                <table class="table hover bold">
+
+                                    <tr>
+                                        <th class="w50">##word.serial##</th>
+                                        <th>##word.question##</th>
+                                        <th class="w400" ng-show="m.question_types.name =='c_c_a'">##word.choices##</th>
+                                        <th>##word.answer##</th>
+                                        <th ng-show="m.with_reason_stated && m.question_types.name =='m_t_f'">
+                                            ##word.reason##</th>
+                                        <th class="w150">##word.degree##</th>
+                                        <th class="w150">##word.actions##</th>
+                                    </tr>
+
+                                    <tr ng-repeat="q in m.ques_list">
+                                        <td class="center  blue"><br>{{$index + 1}}</td>
+
+                                        <td class="center title">
+                                            <i-textarea ng-model="q.question"></i-textarea>
+                                        </td>
+
+                                        <td class="center title" ng-show="m.question_types.name =='c_c_a'">
+
+                                            <div class="row">
+                                                <i-button type="add default" ng-click="q.choices_list.push({})">
+                                                </i-button>
+                                            </div>
+
+                                            <div class="row" ng-repeat="c in q.choices_list">
+                                                <div class="col1">
+                                                    <br>
+                                                    {{$index + 1}} -
+                                                </div>
+
+                                                <i-control class="col8" ng-model="c.choice.name">
+                                                </i-control>
+
+                                                <i-checkbox  ng-click="selectChoice(q,$index)" ng-model="c.choice.select">
+                                                </i-checkbox>
+
+                                                <i-button  type="delete default"
+                                                    ng-click="q.choices_list.length ===1 ||q.choices_list.splice($index,1)">
+                                                </i-button>
+
+                                            </div>
+
+                                        </td>
+
+                                        <td class="center title">
+                                            <i-textarea ng-show="m.question_types.name =='m_t_fq'" ng-model="q.answer">
+                                            </i-textarea>
+                                            <div class="row" ng-show="m.question_types.name =='c_c_a'">
+                                                <br>
+                                                <br>
+                                                <h2  class="black bold center">{{q.answer}}</h2>
+                                            </div>
+
+                                            <div class="row" ng-show="m.question_types.name =='m_t_f'">
+                                                <h2 class="green bold center" ng-show="q.answer == 'true'">##word.true##
+                                                </h2>
+                                                <h2 class="red bold center" ng-show="q.answer == 'false'">##word.false##
+                                                </h2>
+                                            </div>
+
+                                            <div class="row center" ng-show="m.question_types.name =='m_t_f'">
+                                                <br>
+                                                <i-button type="fa fa-check true default" ng-hide="q.answer == 'true'"
+                                                    ng-click="markTrueFalse(q,true)"></i-button>
+
+                                                <i-button type="close default" ng-hide="q.answer == 'false'"
+                                                    ng-click="markTrueFalse(q,false)">
+                                                </i-button>
+                                            </div>
+
+                                        </td>
+
+
+
+                                        <td class="center title"
+                                            ng-show="m.with_reason_stated && m.question_types.name =='m_t_f'">
+                                            <i-textarea ng-model="q.reason"></i-textarea>
+
+                                        </td>
+                                        <td class="center title">
+                                            <br>
+                                            <i-control type="number" ng-model="q.degree"></i-control>
+                                        </td>
+
+                                        <td class="center title">
+                                            <br>
+                                            <i-button type="delete"
+                                                ng-click="m.ques_list.length === 1 || m.ques_list.splice($index,1)">
+                                            </i-button>
+
+                                            <i-button type="add" ng-show="$index + 1 == m.ques_list.length"
+                                                ng-click="addQuestion(m)"></i-button>
+                                        </td>
+
+                                    </tr>
+
+                                </table>
+                            </div>
+
+
+                            <br>
+                            <br>
+                            <hr>
+                            <br>
+                            <br>
+                        </div>
+
+                    </fieldset>
+
+                </div>
             </div>
 
         </fieldset>

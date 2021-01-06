@@ -16,8 +16,12 @@ module.exports = function init(site) {
     name: "/api/exams_types/all",
     path: __dirname + "/site_files/json/exams_types.json"
   })
+  site.post({
+    name: "/api/questions_types/all",
+    path: __dirname + "/site_files/json/questions_types.json"
+  })
 
-
+  
   site.post("/api/exams/add", (req, res) => {
     let response = {
       done: false

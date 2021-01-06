@@ -9,7 +9,9 @@
                         <i-control ng-disabled="disabledCode" class="col2" label="##word.code##"
                             ng-model="attend_students.code"></i-control>
                         <i-date2 class="col4" ng-model="attend_students.date" label="##word.date##"></i-date2>
-
+                        <i-list ng-search="_search.$_school_year" class="col3" display="name"
+                            ng-model="attend_students.school_year" label="##word.school_year##"
+                            items="schoolYearsList"></i-list>
                     </div>
 
                     <div class="row">

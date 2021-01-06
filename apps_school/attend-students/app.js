@@ -40,22 +40,6 @@ module.exports = function init(site) {
     attend_students_doc.company = site.get_company(req);
     attend_students_doc.branch = site.get_branch(req);
 
-    // $attend_students.find(
-    //   {
-    //     where: {
-    //       'company.id': site.get_company(req).id,
-    //       'branch.code': site.get_branch(req).code,
-    //       name: attend_students_doc.name,
-    //     },
-    //   },
-    //   (err, doc) => {
-    //     if (!err && doc) {
-    //       response.error = 'Name Exists';
-    //       res.json(response);
-    //     } else {
-    // let d = new Date();
-    // d.setFullYear(d.getFullYear() + 1);
-    // d.setMonth(1);
     let num_obj = {
       company: site.get_company(req),
       screen: 'attend_students',
@@ -361,6 +345,7 @@ module.exports = function init(site) {
             date: date1,
             code: cb.code,
             school_grade: customer.school_grade,
+            school_year: obj.school_year,
             hall: customer.hall,
             company: site.get_company(req),
             branch: site.get_branch(req),

@@ -1,0 +1,25 @@
+<div class="form">
+    <div id="schoolYearsAddModal">
+        <fieldset>
+            <legend> ##word.school_years_informations## </legend>
+            <div class="row">
+                <div class="col9">
+                    <div class="row">
+                        <i-control ng-disabled="disabledCode" class="col2" label="##word.code##"
+                            ng-model="school_years.code"></i-control>
+
+                        <i-control v="r" class="col4" label="##word.school_years_name##" ng-model="school_years.name">
+                        </i-control>
+                        <div class="col4"></div>
+                        <i-checkbox class="col2" label="##word.active##" ng-model="school_years.active"></i-checkbox>
+                    </div>
+
+                </div>
+
+                <div class="col3">
+                    <i-image category="school_years" ng-model="school_years.image_url"> </i-image>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+</div>

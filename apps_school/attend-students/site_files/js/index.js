@@ -10,6 +10,9 @@ app.controller("attend_students", function ($scope, $http, $timeout, $interval) 
           image_url: '/images/attend_students.png',
           date: new Date()
         };
+        if ($scope.defaultSettings.general_Settings) {
+          $scope.attend_students.school_year = $scope.defaultSettings.general_Settings.school_year
+        }
         site.showModal('#attendStudentsAddModal');
       } else $scope.error = '##word.open_shift_not_found##';
     });
@@ -288,11 +291,13 @@ app.controller("attend_students", function ($scope, $http, $timeout, $interval) 
   };
 
 
-  
+
   $scope.attendNow = function (c, action) {
     $scope.attend_students.date = new Date($scope.attend_students.date);
     /*     $scope.attend_students.date.setTime(new Date().getTime());
      */
+
+    c.school_year = $scope.attend_students.school_year;
     if (action == 'attend') {
 
       c.status = {
@@ -342,6 +347,29 @@ app.controller("attend_students", function ($scope, $http, $timeout, $interval) 
     )
   };
 
+  $scope.getDefaultSettings = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/default_setting/get",
+      data: {}
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.doc) {
+          $scope.defaultSettings = response.data.doc;
+
+        };
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+
+  };
+
 
   $scope.selectStudent = function (c) {
     let found = false;
@@ -388,6 +416,33 @@ app.controller("attend_students", function ($scope, $http, $timeout, $interval) 
 
   };
 
+  $scope.loadSchoolYears = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/school_years/all",
+      data: {
+        select: {
+          id: 1,
+          name: 1,
+          code: 1
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.schoolYearsList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
   $scope.getHalls = function () {
     $http({
       method: "POST",
@@ -422,5 +477,7 @@ app.controller("attend_students", function ($scope, $http, $timeout, $interval) 
   $scope.getAttendStudentsList();
   $scope.getHalls();
   $scope.getSchoolGradeList();
+  $scope.getDefaultSettings();
+  $scope.loadSchoolYears();
   $scope.getNumberingAuto();
 });

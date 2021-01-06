@@ -40,6 +40,13 @@
                     </div>
                     <br>
                     <br>
+
+                    <div class="row" x-features="school">
+                        <i-list ng-search="_search.$_school_year" class="col3" display="name"
+                        ng-model="default_setting.general_Settings.school_year"
+                        label="##word.school_year##" items="schoolYearsList"></i-list>
+
+                    </div>
                     <div class="row" x-features="restaurant || pos  || erp">
 
                         <i-list help-id="" ng-search="_search.$payment_type_search" class="col2"

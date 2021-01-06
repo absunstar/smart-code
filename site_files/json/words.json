@@ -760,6 +760,16 @@
         "ar": "السبب"
     },
     {
+        "name": "true",
+        "en": "True",
+        "ar": "صح"
+    },
+    {
+        "name": "false",
+        "en": "False",
+        "ar": "خطأ"
+    },
+    {
         "name": "requests",
         "en": "Requests",
         "ar": "الطلبات"

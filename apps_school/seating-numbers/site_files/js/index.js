@@ -11,6 +11,11 @@ app.controller("seating_numbers", function ($scope, $http, $timeout) {
       students_list: [],
       active: true
     };
+
+    if ($scope.defaultSettings.general_Settings) {
+      $scope.seating_numbers.school_year = $scope.defaultSettings.general_Settings.school_year
+    }
+    
     site.showModal('#seatingNumbersAddModal');
   };
 
@@ -275,6 +280,55 @@ app.controller("seating_numbers", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.loadSchoolYears = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/school_years/all",
+      data: {
+        select: {
+          id: 1,
+          name: 1,
+          code: 1
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.schoolYearsList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.getDefaultSettings = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/default_setting/get",
+      data: {}
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.doc) {
+          $scope.defaultSettings = response.data.doc;
+
+        };
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+
+  };
 
   $scope.getNumberingAuto = function () {
     $scope.error = '';
@@ -301,6 +355,8 @@ app.controller("seating_numbers", function ($scope, $http, $timeout) {
 
   $scope.getNumberingAuto();
   $scope.getSchoolGrade();
+  $scope.loadSchoolYears();
+  $scope.getDefaultSettings();
   $scope.getSeatingNumbersList();
 
 });

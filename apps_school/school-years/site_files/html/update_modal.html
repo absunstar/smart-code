@@ -1,0 +1,24 @@
+<div id="schoolYearsUpdateModal" class="modal" fixed>
+    <div class="modal-content">
+
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.school_years_update##
+                <i class="fa fa-pencil"></i>
+            </h2>
+        </div>
+
+        <div class="modal-body">
+            <div x-import="school-years/content.html"></div>
+            <div x-import="school-years/action_info.html"></div>
+        </div>
+
+        <div class="modal-footer center">
+            <h2 class="error"> {{error}} </h2>
+            <i-button type="save" label="##word.save##" ng-click="updateSchoolYears(school_years)" ></i-button>
+            
+            <i-button type="close" label="##word.close##"onclick="site.hideModal( '#schoolYearsUpdateModal')" ></i-button>
+        </div>
+    </div>
+</div>

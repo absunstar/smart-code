@@ -14,6 +14,11 @@
                                 </tr>
 
                                 <tr>
+                                    <td class="title">##word.school_year##</td>
+                                    <td class="center">{{exam_grades.school_year.name}}</td>
+                                </tr>
+
+                                <tr>
                                     <td class="title"> ##word.exam## </td>
                                     <td class="center"> {{exam_grades.exam.name}} </td>
                                 </tr>
@@ -41,7 +46,7 @@
                         <br>
                         <br>
                         <br>
-                        <div class="row" >
+                        <div class="row">
                             <fieldset>
                                 <legend>##word.customers_view##
                                 </legend>
@@ -57,9 +62,9 @@
                                         <th> ##word.degree_success## </th>
                                         <th> ##word.student_score## </th>
                                         <th> ##word.result## </th>
-    
+
                                     </tr>
-    
+
                                     <tr ng-repeat="c in exam_grades.students_list | orderBy : '-id'">
                                         <td class="center  blue">
                                             {{$index + 1}}
@@ -67,7 +72,7 @@
                                         <td class="not-print">
                                             <i-image view class="logo" ng-model="c.image_url"></i-image>
                                         </td>
-    
+
                                         <td class="blue userPrint"> {{c.code}} </td>
                                         <td> {{c.name_##session.lang##}} </td>
                                         <td class="green"> {{c.final_grade}} </td>

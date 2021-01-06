@@ -7,7 +7,9 @@
                     <div class="row">
                         <i-control ng-disabled="disabledCode" class="col2" label="##word.code##"
                             ng-model="seating_numbers.code"></i-control>
-
+                        <i-list ng-search="_search.$_school_year" class="col3" display="name"
+                            ng-model="seating_numbers.school_year" label="##word.school_year##" items="schoolYearsList">
+                        </i-list>
                         <i-list help-id="" class="col4" label="##word.school_grade##" v="r"
                             ng-model="seating_numbers.school_grade" ng-search="_search.$_school_grade"
                             items="schoolGradeList" display="name">

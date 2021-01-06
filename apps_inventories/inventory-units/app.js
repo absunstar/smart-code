@@ -70,7 +70,6 @@ module.exports = function init(site) {
         res.json(response)
       } else {
 
-
         let num_obj = {
           company: site.get_company(req),
           screen: 'units',

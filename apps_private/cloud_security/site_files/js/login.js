@@ -9,7 +9,6 @@ app.controller('login', function ($scope, $http) {
         }
     };
 
-
     $scope.login = function (b) {
         $scope.error = '';
         const v = site.validated('#loginModal');
@@ -38,7 +37,8 @@ app.controller('login', function ($scope, $http) {
                     store: $scope.user.company.store,
                     unit: $scope.user.company.unit,
                     currency: $scope.user.company.currency,
-                    users_count: $scope.user.company.users_count
+                    users_count: $scope.user.company.users_count,
+                    host: $scope.user.company.host
                 }),
                 branch: site.to123({
                     code: $scope.user.branch.code,

@@ -11,6 +11,9 @@ app.controller("trainer", function ($scope, $http, $timeout) {
       active: true
 
     };
+    if (site.feature('school')) {
+      $scope.trainer.subject_list = []
+    }
     site.showModal('#trainerAddModal');
     document.querySelector('#trainerAddModal .tab-link').click();
 
@@ -307,8 +310,10 @@ app.controller("trainer", function ($scope, $http, $timeout) {
         where: {
           active: true
         },
-        select: { id: 1, name: 1,
-          code : 1 }
+        select: {
+          id: 1, name: 1,
+          code: 1
+        }
       }
     }).then(
       function (response) {
@@ -334,8 +339,10 @@ app.controller("trainer", function ($scope, $http, $timeout) {
           'gov.id': gov.id,
           active: true
         },
-        select: { id: 1, name: 1 ,
-          code : 1}
+        select: {
+          id: 1, name: 1,
+          code: 1
+        }
       }
     }).then(
       function (response) {
@@ -382,8 +389,10 @@ app.controller("trainer", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/maritals_status/all",
       data: {
-        select: { id: 1, name: 1 ,
-          code : 1}
+        select: {
+          id: 1, name: 1,
+          code: 1
+        }
       }
     }).then(
       function (response) {
@@ -405,8 +414,10 @@ app.controller("trainer", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/militaries_status/all",
       data: {
-        select: { id: 1, name: 1 ,
-          code : 1}
+        select: {
+          id: 1, name: 1,
+          code: 1
+        }
       }
     }).then(
       function (response) {
@@ -448,6 +459,31 @@ app.controller("trainer", function ($scope, $http, $timeout) {
 
   };
 
+  $scope.getSubjects = function () {
+    $http({
+      method: "POST",
+      url: "/api/subjects/all",
+      data: {
+        select: {
+          id: 1,
+          name: 1,
+          code: 1
+        },
+        where: {
+          active: true
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.subjectsList = response.data.list;
+      },
+      function (err) {
+        $scope.error = err;
+      }
+    )
+  };
+
   $scope.getNumberingAuto = function () {
     $scope.error = '';
     $scope.busy = true;
@@ -480,7 +516,15 @@ app.controller("trainer", function ($scope, $http, $timeout) {
 
   $scope.getTrainerList();
   $scope.getGovList();
-  $scope.getClassRoomsList();
+
+  if (site.feature('gym') || site.feature('academy') || site.feature('school')) {
+    $scope.getClassRoomsList();
+  };
+
+  if (site.feature('school')) {
+    $scope.getSubjects();
+  };
+
   $scope.loadMilitariesStatus();
   $scope.loadMaritalsStatus();
   $scope.getAccountingSystem();

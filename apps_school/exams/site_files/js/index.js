@@ -10,6 +10,10 @@ app.controller("exams", function ($scope, $http, $timeout) {
       active: true,
       busy: false
     };
+    if ($scope.defaultSettings.general_Settings) {
+      $scope.exams.school_year = $scope.defaultSettings.general_Settings.school_year
+    }
+
     site.showModal('#examsAddModal');
 
   };
@@ -267,6 +271,26 @@ app.controller("exams", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.questionsTypes = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $scope.questionsTypesList = [];
+    $http({
+      method: "POST",
+      url: "/api/questions_types/all"
+
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.questionsTypesList = response.data;
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
   $scope.getDegrees = function () {
     $scope.error = '';
 
@@ -275,6 +299,7 @@ app.controller("exams", function ($scope, $http, $timeout) {
       $scope.exams.school_grade.subjects_list.forEach(_sg => {
         if (_sg.subject && _sg.subject.id == $scope.exams.subject.id) {
           if ($scope.exams.exams_type) {
+
             if ($scope.exams.exams_type.id == 1) {
               $scope.exams.final_grade = _sg.exam_score_month
             } else if ($scope.exams.exams_type.id == 2) {
@@ -296,12 +321,115 @@ app.controller("exams", function ($scope, $http, $timeout) {
 
   };
 
+  $scope.loadSchoolYears = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/school_years/all",
+      data: {
+        select: {
+          id: 1,
+          name: 1,
+          code: 1
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.schoolYearsList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.getDefaultSettings = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/default_setting/get",
+      data: {}
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.doc) {
+          $scope.defaultSettings = response.data.doc;
+
+        };
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+
+  };
 
   $scope.displaySearchModal = function () {
     $scope.error = '';
     site.showModal('#examsSearchModal');
 
   };
+
+  $scope.createQuestions = function (option) {
+    if ($scope.exams.create_questions && option == 'creat')
+      $scope.exams.main_ques_list = $scope.exams.main_ques_list || [{ ques_list: [{}] }];
+
+    if ($scope.exams.create_questions && option == 'add')
+      $scope.exams.main_ques_list.push({ ques_list: [{}] });
+  };
+
+
+  $scope.changeMainQuestion = function (c) {
+    if (c.question_types.name == 'c_c_a')
+      c.ques_list.forEach(_q => {
+        _q.choices_list = [{}]
+      });
+
+  };
+
+  $scope.markTrueFalse = function (obj, boolean) {
+
+    if (boolean) {
+      obj.answer = 'true'
+    } else {
+      obj.answer = 'false'
+
+    }
+
+  };
+
+  $scope.addQuestion = function (m) {
+
+    if (m.question_types.name == 'c_c_a') {
+      m.ques_list.push({ choices_list: [{}] })
+
+    }
+
+  };
+
+
+  $scope.selectChoice = function (q, i) {
+    /*     let foundTrue = q.some(_q => _q.choice.select === true);
+     */
+    q.choices_list.forEach((_q, _i) => {
+      if (_i !== i && _q.choice) {
+        _q.choice.select = false
+      } else {
+        q.answer = _q.choice.name
+      }
+    });
+
+
+
+  };
+
 
   $scope.searchAll = function () {
     $scope.getExamsList($scope.search);
@@ -312,7 +440,10 @@ app.controller("exams", function ($scope, $http, $timeout) {
 
   $scope.getExamsList();
   $scope.getSchoolGrade();
+  $scope.loadSchoolYears();
+  $scope.getDefaultSettings();
   $scope.getSubjects();
   $scope.getExamsTypes();
+  $scope.questionsTypes();
   $scope.getNumberingAuto();
 });

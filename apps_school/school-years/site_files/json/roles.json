@@ -1,0 +1,7 @@
+[{
+    "module_name" : "public" ,
+    "name": "school_years_admin",
+    "en": "School Years Admin",
+    "ar": "إدارة السنوات الدراسية",
+    "permissions": ["school_years_manage"]
+}]

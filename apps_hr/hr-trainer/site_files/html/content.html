@@ -6,6 +6,10 @@
                 ##word.basic_information##
             </a>
 
+            <a class="tab-link" x-feature="school" onclick="site.showTabContent(event,'#subjects')">
+                ##word.subjects##
+            </a>
+
             <a class="tab-link" onclick="site.showTabContent(event,'#filesInformation')">
                 ##word.files##
             </a>
@@ -147,6 +151,27 @@
                 <div class="col3">
                     <i-image help-id="trainer_logo" ng-model="trainer.image_url"></i-image>
                 </div>
+            </div>
+
+            <div id="subjects" x-feature="school" class="tab-content">
+                <fieldset>
+                    <legend> ##word.subject_name##
+                        <i-button type="add default" ng-click="trainer.subject_list.push({})">
+                        </i-button>
+                    </legend>
+                    <div class="row">
+
+                        <div ng-repeat="s in trainer.subject_list" class="row">
+                            <i-list ng-search="subject" class="col4" items="subjectsList"
+                                ng-model="s.subject">
+                            </i-list>
+                            <i-button class="col2" type="delete default"
+                                ng-click="trainer.subject_list.length ==1 || trainer.subject_list.splice($index,1)">
+                            </i-button>
+
+                        </div>
+                    </div>
+                </fieldset>
             </div>
 
             <div id="filesInformation" class="tab-content">

@@ -9,11 +9,28 @@ module.exports = function init(site) {
     compress: true
   })
 
+  site.on('[company][created]', doc => {
+
+    $employees_degrees.add({
+      name: "درجة إفتراضية",
+      image_url: '/images/employee_degree.png',
+      code: "1-Test",
+      company: {
+        id: doc.id,
+        name_ar: doc.name_ar
+      },
+      branch: {
+        code: doc.branch_list[0].code,
+        name_ar: doc.branch_list[0].name_ar
+      },
+      salary: 1
+    }, (err, doc1) => { })
+  })
 
   site.post("/api/employees_degrees/add", (req, res) => {
     let response = {}
     response.done = false
-          
+
     if (!req.session.user) {
       response.error = 'Please Login First'
       res.json(response)

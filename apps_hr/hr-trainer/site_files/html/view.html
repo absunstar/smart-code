@@ -6,6 +6,10 @@
                 ##word.basic_information##
             </a>
 
+            <a class="tab-link" x-feature="school" onclick="site.showTabContent(event,'#subjects')">
+                ##word.subjects##
+            </a>
+
             <a class="tab-link" onclick="site.showTabContent(event,'#filesInformation')">
                 ##word.files##
             </a>
@@ -190,6 +194,24 @@
                 </fieldset>
             </div>
 
+            <div id="subjects" class="tab-content">
+
+                <fieldset>
+                    <div class="row">
+
+                        <table class="table hover bold">
+                            <tr>
+                                <th class="title">##word.subject_name##</th>
+                            </tr>
+                            <tr ng-repeat="s in trainer.subject_list">
+                                <td class="center">{{s.subject.name}}</td>
+                            </tr>
+
+                        </table>
+                    </div>
+                </fieldset>
+            </div>
+
             <div id="filesInformation" class="tab-content">
 
                 <fieldset>
@@ -200,6 +222,7 @@
                     </div>
                 </fieldset>
             </div>
+
 
 
             <div id="loginInformation" class="tab-content">

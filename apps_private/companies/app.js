@@ -350,7 +350,6 @@ module.exports = function init(site) {
     let where = req.body.where || {}
 
 
-
     if (req.session.user && req.session.user.is_company) {
       where['id'] = req.session.user.company_id;
     } else if (site.get_company(req) && site.get_company(req).id) {
