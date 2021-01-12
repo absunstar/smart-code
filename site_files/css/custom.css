@@ -300,6 +300,10 @@ nav.sitebottom a.link:hover {
   border: 1px solid var(--background-color);
 }
 
+.underline {
+  text-decoration: underline;
+}
+
 @media screen and (max-width: 768px) {
   body {
     margin-right: 0px;

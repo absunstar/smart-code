@@ -254,7 +254,7 @@ app.controller("attend_students", function ($scope, $http, $timeout, $interval) 
   $scope.searchStudents = function (ev) {
     $scope.error = '';
     $scope.busy = true;
-    if (ev == 'searchAll' || ev.which === 13) {
+    if (ev === 'searchAll' || ev.which === 13) {
       $http({
         method: "POST",
         url: "/api/attend_students/get",
@@ -274,7 +274,7 @@ app.controller("attend_students", function ($scope, $http, $timeout, $interval) 
           $scope.busy = false;
           if (response.data.done) {
 
-            if (ev == 'searchAll') {
+            if (ev === 'searchAll') {
               $scope.attend_students.attend_list = response.data.list;
             } else if (ev.which === 13) {
               $scope.customersList = response.data.list;

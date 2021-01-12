@@ -138,6 +138,7 @@ module.exports = function init(site) {
         if (!err, result) {
           response.done = true
           response.doc = result.doc
+          // site.call('[order_invoice][store_out][posting]', result.doc.id)
 
           if (result.doc.transaction_type && result.doc.transaction_type.id == 1 && result.doc.table && result.doc.table.id) {
 

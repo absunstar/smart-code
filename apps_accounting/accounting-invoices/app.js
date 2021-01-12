@@ -253,7 +253,7 @@ module.exports = function init(site) {
                   } else if (doc.source_type.id == 5) {
                     paid_value.operation = { ar: 'فاتورة حجز قاعة', en: 'Book Hall Invoice' }
                     paid_value.transition_type = 'in'
-                    site.call('[account_invoices][book_hall][+]', Object.assign({}, doc.invoice_id))
+                    site.call('[account_invoices][book_hall][+]', doc.invoice_id)
 
                   } else if (doc.source_type.id == 8) {
                     paid_value.operation = { ar: 'سند قبض', en: 'Amount In' }
@@ -477,7 +477,7 @@ module.exports = function init(site) {
                   response.done = true
                   response.doc = result.doc
                   if (response.doc.remain_amount <= 0 && response.doc.source_type.id == 3)
-                    site.call('[account_invoices][order_invoice][paid]', Object.assign({}, response.doc.invoice_id))
+                    site.call('[account_invoices][order_invoice][paid]', response.doc.invoice_id)
 
                 } else {
                   response.error = err.message
@@ -617,7 +617,7 @@ module.exports = function init(site) {
                   } else if (account_invoices_doc.source_type.id == 5) {
                     obj.operation = { ar: 'فاتورة حجز قاعة', en: 'Book Hall Invoice' }
                     obj.transition_type = 'in'
-                    site.call('[account_invoices][book_hall][+]', Object.assign({}, account_invoices_doc.invoice_id))
+                    site.call('[account_invoices][book_hall][+]', account_invoices_doc.invoice_id)
 
                   } else if (account_invoices_doc.source_type.id == 8) {
                     obj.operation = { ar: 'سند قبض', en: 'Amount In' }

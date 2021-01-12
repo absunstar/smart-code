@@ -24,7 +24,26 @@
         "en": "Order Type",
         "ar": "نوع الطلب"
     },
-   
+    {
+        "name": "exam_header",
+        "en": "Header Exam",
+        "ar": "مقدمة الإمتحان"
+    },
+    {
+        "name": "exam_header2",
+        "en": "Header Exam 2",
+        "ar": "مقدمة الإمتحان 2"
+    },
+    {
+        "name": "exam_footer",
+        "en": "Footer Exam",
+        "ar": "هامش الإمتحان"
+    },
+    {
+        "name": "exams_setting",
+        "en": "Exams Setting",
+        "ar": "إعدادات الإمتحانات"
+    },
     {
         "name": "auto_generate_account_code_and_cost_center",
         "en": "Automatic generation of account tree code and cost centers",

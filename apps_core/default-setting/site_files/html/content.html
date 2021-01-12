@@ -8,6 +8,8 @@
                 ##word.finger_program## </a>
             <a class="tab-link" onclick="site.showTabContent(event, '#printer_program')">
                 ##word.printer_program## </a>
+            <a class="tab-link" x-feature="school" onclick="site.showTabContent(event, '#exams_setting')">
+                ##word.exams_setting## </a>
             <a class="tab-link" onclick="site.showTabContent(event, '#accounting_settings')">
                 ##word.accounting_settings## </a>
             <a class="tab-link" onclick="site.showTabContent(event, '#inventory_settings')">
@@ -43,8 +45,8 @@
 
                     <div class="row" x-features="school">
                         <i-list ng-search="_search.$_school_year" class="col3" display="name"
-                        ng-model="default_setting.general_Settings.school_year"
-                        label="##word.school_year##" items="schoolYearsList"></i-list>
+                            ng-model="default_setting.general_Settings.school_year" label="##word.school_year##"
+                            items="schoolYearsList"></i-list>
 
                     </div>
                     <div class="row" x-features="restaurant || pos  || erp">
@@ -221,6 +223,79 @@
                     onclick="document.querySelector('.tab-link.active + .tab-link').click();"></i-button>
             </div>
 
+            <div id="exams_setting" x-feature="school" class="tab-content">
+                <fieldset>
+                    <legend> ##word.exams_setting## </legend>
+                    <div class="row">
+                        <div class="col9">
+                            <div class="row">
+
+                                <h2 class="black">##word.exam_header##</h2>
+                                <i-button type="add default"
+                                    ng-click="default_setting.exams_setting.exam_header.push({})">
+                                </i-button>
+
+                                <div ng-repeat="h in default_setting.exams_setting.exam_header track by $index"
+                                    class="row">
+                                    <i-control class="col8" ng-model="h.name"></i-control>
+                                    <i-button class="col2" type="delete default"
+                                        ng-click="default_setting.exams_setting.exam_header.length ==1 || default_setting.exams_setting.exam_header.splice($index,1)">
+                                    </i-button>
+
+                                </div>
+                            </div>
+                            <div class="row">
+
+                                <h2 class="black">##word.exam_header2##</h2>
+                                <i-button type="add default"
+                                    ng-click="default_setting.exams_setting.exam_header2.push({})">
+                                </i-button>
+
+                                <div ng-repeat="f in default_setting.exams_setting.exam_header2 track by $index"
+                                    class="row">
+
+                                    <i-control class="col8" ng-model="f.name"></i-control>
+
+                                    <i-button class="col2" type="delete default"
+                                        ng-click="default_setting.exams_setting.exam_header2.length ==1 || default_setting.exams_setting.exam_header2.splice($index,1)">
+                                    </i-button>
+
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <h2 class="black">##word.exam_footer##</h2>
+                                <i-button type="add default"
+                                    ng-click="default_setting.exams_setting.exam_footer.push({})">
+                                </i-button>
+
+                                <div ng-repeat="f in default_setting.exams_setting.exam_footer track by $index"
+                                    class="row">
+
+                                    <i-control class="col8" ng-model="f.name"></i-control>
+
+                                    <i-button class="col2" type="delete default"
+                                        ng-click="default_setting.exams_setting.exam_footer.length ==1 || default_setting.exams_setting.exam_footer.splice($index,1)">
+                                    </i-button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col3">
+                            <div class="col1"></div>
+                            <div>
+                                <i-image help-id="units_logo" ng-model="default_setting.exams_setting.exam_logo">
+                                </i-image>
+                            </div>
+                        </div>
+
+                    </div>
+                </fieldset>
+
+                <i-button type="default left" fa="2x fa-angle-double-left"
+                    onclick="document.querySelector('.tab-link.active + .tab-link').click();"></i-button>
+            </div>
+
             <div id="accounting_settings" class="tab-content">
                 <fieldset>
 
@@ -310,10 +385,10 @@
 
                     <div class="row">
 
-                        <i-list help-id="" ng-search="_search.$discount_method_search" class="col2"
+                      <!--   <i-list help-id="" ng-search="_search.$discount_method_search" class="col2"
                             label="##word.discount_method##" ng-model="default_setting.inventory.discount_method"
                             items="discountMethodList" display="##session.lang##">
-                        </i-list>
+                        </i-list> -->
 
                         <i-list class="col3" ng-model="default_setting.inventory.delegate"
                             ng-search="_search.$items_group_search" label="##word.delegate##" items="delegatesList">

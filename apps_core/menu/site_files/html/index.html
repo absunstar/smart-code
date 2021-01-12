@@ -16,18 +16,23 @@
 </style>
 
 <div class="main-menu">
-    <div class="" ng-show="'##user.type##' == 'customer'">
-        <div class="col4"></div>
+    <!-- <div class="tabs" ng-show="'##user.type##' == 'customer'">
+
         <a class="tab-link" href="/customers" x-permissions="customers_ui || customers_manage">
             <img src="/images/customer.png">
             <span> ##word.customers##</span>
+        </a>
+
+        <a class="tab-link" href="/exams" x-permissions="exams_ui || exams_manage">
+            <img src="/images/exams.png">
+            <span> ##word.exams##</span>
         </a>
 
         <a class="tab-link" href="/order_customer" x-permissions="order_customer_ui || order_customer_manage">
             <img src="/images/order_customer.png">
             <span> ##word.order_customer_management##</span>
         </a>
-    </div>
+    </div> -->
 
 
 
@@ -1196,10 +1201,14 @@
 
 
             <div class="" ng-show="'##user.type##' == 'customer'">
-                <div class="col4"></div>
                 <a class="tab-link" href="/customers" x-permissions="customers_ui || customers_manage">
                     <img src="/images/customer.png">
                     <span> ##word.customers##</span>
+                </a>
+
+                <a class="tab-link" href="/exams" x-permissions="exams_ui || exams_manage">
+                    <img src="/images/exams.png">
+                    <span> ##word.exams##</span>
                 </a>
 
                 <a class="tab-link" href="/order_customer" x-permissions="order_customer_ui || order_customer_manage">

@@ -303,7 +303,7 @@ app.controller("default_setting", function ($scope, $http) {
   };
 
 
-  $scope.getDiscountMethodList = function () {
+  /* $scope.getDiscountMethodList = function () {
     $scope.error = '';
     $scope.busy = true;
     $scope.discountMethodList = [];
@@ -321,7 +321,7 @@ app.controller("default_setting", function ($scope, $http) {
         $scope.error = err;
       }
     )
-  };
+  }; */
 
 
 
@@ -535,8 +535,8 @@ app.controller("default_setting", function ($scope, $http) {
   $scope.loadCustomers();
   $scope.getTrainerList();
   $scope.getPaymentMethodList();
-  $scope.getDiscountMethodList();
-  $scope.loadCurrencies();
+/*   $scope.getDiscountMethodList();
+ */  $scope.loadCurrencies();
   $scope.loadUnits();
   $scope.loadStoresOutTypes();
   $scope.loadStoresInTypes();

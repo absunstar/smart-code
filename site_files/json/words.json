@@ -755,6 +755,11 @@
         "ar": "دقيقة / ساعة"
     },
     {
+        "name": "minute",
+        "en": "Minute",
+        "ar": "دقيقة"
+    },
+    {
         "name": "reason",
         "en": "Reason",
         "ar": "السبب"

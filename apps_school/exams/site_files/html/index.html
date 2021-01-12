@@ -7,17 +7,16 @@
 
 <body class="##session.lang##">
 
-    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar"></nav>
 
-    </nav>
-
-    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
-
-    </nav>
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom"></nav>
 
     <div id="main-layout" class="container loaded">
         <div class="row">
             <div class="row" ng-controller="exams">
+                <div x-import="exams/start_exam.html"></div>
+                <div x-import="exams/exam_detailes.html"></div>
+                <div x-permissions="exams_add || exams_manage" x-import="exams/select_students.html"></div>
                 <div x-permissions="exams_add || exams_manage" x-import="exams/add_modal.html"></div>
                 <div x-permissions="exams_update || exams_manage" x-import="exams/update_modal.html"></div>
                 <div x-permissions="exams_delete || exams_manage" x-import="exams/delete_modal.html"></div>
@@ -36,6 +35,8 @@
                         ng-click="displaySearchModal()"></i-button>
 
                     <h3 class="bold text-center"> ##word.count## : {{count}}</h3>
+                    <h2 class="bold red text-center">{{error}} </h2>
+
                 </div>
 
                 <table x-permissions="login" class="table hover bold loaded" id="t1">
@@ -58,14 +59,19 @@
                         </td>
 
                         <td class="center not-print">
+
+                            <i-button type="fa fa-hourglass-start" label="##word.exam_started##"
+                                ng-show="'##user.type##' == 'customer' && '##user.school_grade.id##' == c.school_grade.id"
+                                ng-click="examStarted(c)"></i-button>
+
                             <i-button x-permissions="exams_view || exams_manage" type="view" label="##word.details##"
                                 ng-click="displayDetailsExams(c)"></i-button>
 
                             <i-button x-permissions="exams_update || exams_manage" type="edit" label="##word.edit##"
                                 ng-click="displayUpdateExams(c)"></i-button>
 
-                            <i-button x-permissions="exams_delete || exams_manage" type="delete"
-                                label="##word.delete##" ng-click="displayDeleteExams(c)"></i-button>
+                            <i-button x-permissions="exams_delete || exams_manage" type="delete" label="##word.delete##"
+                                ng-click="displayDeleteExams(c)"></i-button>
                         </td>
                     </tr>
                 </table>

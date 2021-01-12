@@ -269,7 +269,7 @@ app.controller("default_setting", function ($scope, $http) {
   };
 
 
-  $scope.getDiscountMethodList = function () {
+ /*  $scope.getDiscountMethodList = function () {
     $scope.error = '';
     $scope.busy = true;
     $scope.discountMethodList = [];
@@ -288,7 +288,7 @@ app.controller("default_setting", function ($scope, $http) {
       }
     )
   };
-
+ */
   $scope.getPlaceProgramList = function () {
     $scope.error = '';
     $scope.busy = true;
@@ -585,8 +585,8 @@ app.controller("default_setting", function ($scope, $http) {
 
   $scope.loadStores();
   $scope.getPaymentMethodList();
-  $scope.getDiscountMethodList();
-  $scope.getPlaceProgramList();
+/*   $scope.getDiscountMethodList();
+ */  $scope.getPlaceProgramList();
   $scope.loadPaymentTypes();
   $scope.loadItemsGroups();
   $scope.loadDelegates();

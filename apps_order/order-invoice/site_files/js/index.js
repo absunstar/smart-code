@@ -327,15 +327,15 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
                 $scope.sendToKitchens(Object.assign({}, response.data.doc));
               }
 
-
               $scope.order_invoice = response.data.doc;
 
-              if ($scope.order_invoice.status.id == 2 && $scope.order_invoice.posting) {
+              if ($scope.order_invoice.status.id == 2) {
 
                 let store_out = {
                   image_url: '/images/store_out.png',
                   supply_date: new Date(),
                   date: $scope.order_invoice.date,
+                  posting: $scope.order_invoice.posting,
                   order_id: $scope.order_invoice.id,
                   customer: $scope.order_invoice.customer,
                   shift: $scope.order_invoice.shift,
@@ -356,9 +356,6 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
                   },
                   active: true
                 };
-
-                if ($scope.defaultSettings.general_Settings && !$scope.defaultSettings.general_Settings.work_posting)
-                  store_out.posting = true;
 
                 $scope.addStoresOut(store_out);
               }
@@ -1327,7 +1324,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         url: "/api/customers/all",
         data: {
           search: $scope.search_customer,
-          where:{
+          where: {
             active: true
           }
           /*  select: {
@@ -1704,7 +1701,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
           return;
         }
 
-        if ($scope.defaultSettings.inventory && $scope.defaultSettings.inventory.discount_method && $scope.defaultSettings.inventory.discount_method.id == 1)
+        if ($scope.defaultSettings.general_Settings && !$scope.defaultSettings.general_Settings.work_posting)
           $scope.order_invoice.posting = true;
 
         $scope.order_invoice.status = {
@@ -1827,7 +1824,12 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
 
       item.branches_list.forEach(_branch => {
         if (_branch.code == '##session.branch.code##') {
-          kitchenBranch = _branch.kitchen;
+          if (_branch.kitchen) {
+            kitchenBranch = _branch.kitchen;
+          } else{
+            kitchenBranch = $scope.defaultSettings.general_Settings.kitchen;
+          }
+          
           _branch.stores_list.forEach(_store => {
             if (_store.store && _store.store.id == $scope.order_invoice.store.id) {
               if (_store.hold) foundHold = true;

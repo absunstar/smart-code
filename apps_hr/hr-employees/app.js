@@ -204,7 +204,6 @@ module.exports = function init(site) {
       is_employee: true
     }
 
-
     user.roles = [{
       module_name: "public",
       name: "employee_admin",

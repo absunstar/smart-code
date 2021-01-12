@@ -529,7 +529,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/stores_out/view",
       data: {
-        _id: store_out._id
+        id: store_out.id
       }
     }).then(
       function (response) {
@@ -2017,7 +2017,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         url: "/api/customers/all",
         data: {
           search: $scope.search_customer,
-          where:{
+          where: {
             active: true
           }
           /*  select: {
@@ -2174,6 +2174,13 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
 
   $scope.posting = function (store_out) {
     $scope.error = '';
+
+    if (site.toNumber("##query.type##") == 4 && store_out.posting) {
+       store_out.posting = false;
+      $scope.error = '##word.from_order_management_screen##';
+      return;
+    };
+
 
     if (!store_out.posting && store_out.return_paid && store_out.net_value != store_out.return_paid.net_value) {
       store_out.posting = true;

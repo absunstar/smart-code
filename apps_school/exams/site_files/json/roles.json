@@ -1,7 +1,21 @@
-[{
-    "module_name" : "public" ,
-    "name": "exams_admin",
-    "en": "Exams Admin",
-    "ar": "إدارة الإمتحانات",
-    "permissions": ["exams_manage"]
-}]
+[
+    {
+        "module_name": "public",
+        "name": "exams_admin",
+        "en": "Exams Admin",
+        "ar": "إدارة الإمتحانات",
+        "permissions": [
+            "exams_manage"
+        ]
+    },
+    {
+        "module_name": "public",
+        "name": "exams_customer",
+        "en": "Exams Students",
+        "ar": "إمتحانات الطلاب",
+        "permissions": [
+            "exams_ui",
+            "exams_view"
+        ]
+    }
+]

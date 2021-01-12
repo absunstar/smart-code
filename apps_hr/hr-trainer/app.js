@@ -54,6 +54,8 @@ module.exports = function init(site) {
     compress: true
   })
 
+
+
   site.post("/api/trainer/add", (req, res) => {
     let response = {
       done: false
@@ -77,11 +79,11 @@ module.exports = function init(site) {
       trainer_doc.active = true
     }
 
-    trainer_doc.trainer = true
     trainer_doc.company = site.get_company(req)
     trainer_doc.branch = site.get_branch(req)
 
     $trainer.find({
+
       where: {
         'company.id': site.get_company(req).id,
         'branch.code': site.get_branch(req).code,
@@ -100,6 +102,51 @@ module.exports = function init(site) {
         res.json(response)
       } else {
 
+        let user = {};
+
+        user = {
+          name: trainer_doc.name,
+          mobile: trainer_doc.mobile,
+          username: trainer_doc.username,
+          email: trainer_doc.username,
+          password: trainer_doc.password,
+          image_url: trainer_doc.image_url,
+          branch_list: [{
+            company: site.get_company(req),
+            branch: site.get_branch(req)
+          }],
+          type: 'trainer'
+        }
+
+        user.roles = [{
+          module_name: "public",
+          name: "trainer_admin",
+          en: "Employee Admin",
+          ar: "إدارة الموظفين",
+          permissions: ["trainer_manage"]
+        }]
+        if (site.feature('school')) {
+          user.roles.push({
+            "module_name": "public",
+            "name": "exams_admin",
+            "en": "Exams Admin",
+            "ar": "إدارة الإمتحانات",
+            "permissions": ["exams_manage"]
+          })
+        }
+        user.profile = {
+          name: user.name,
+          mobile: user.mobile,
+          image_url: user.image_url
+        }
+
+        user.ref_info = {
+          id: trainer_doc.id
+        }
+
+        user.company = trainer_doc.company
+        user.branch = trainer_doc.branch
+
         let num_obj = {
           company: site.get_company(req),
           screen: 'trainer',
@@ -116,11 +163,31 @@ module.exports = function init(site) {
           trainer_doc.code = cb.code;
         }
 
+
         $trainer.add(trainer_doc, (err, doc) => {
           if (!err) {
             response.done = true
             response.doc = doc
 
+
+            if (user.password && user.username) {
+
+              site.security.addUser(user, (err, doc1) => {
+                if (!err) {
+                  delete user._id
+                  delete user.id
+                  doc.user_info = {
+                    id: doc1.id
+                  }
+                  $trainer.edit(doc, (err2, doc2) => {
+                    res.json(response)
+                  })
+                } else {
+                  response.error = err.message
+                }
+                res.json(response)
+              })
+            }
           } else {
             response.error = err.message
           }
@@ -142,6 +209,52 @@ module.exports = function init(site) {
     }
 
     let trainer_doc = req.body
+    let user = {}
+
+    user = {
+      name: trainer_doc.name,
+      mobile: trainer_doc.mobile,
+      username: trainer_doc.username,
+      email: trainer_doc.username,
+      password: trainer_doc.password,
+      image_url: trainer_doc.image_url,
+      branch_list: [{
+        company: site.get_company(req),
+        branch: site.get_branch(req)
+      }],
+      type: 'trainer'
+    }
+
+
+    user.roles = [{
+      module_name: "public",
+      name: "trainer_admin",
+      en: "Employee Admin",
+      ar: "إدارة الموظفين",
+      permissions: ["trainer_manage"]
+    }]
+    
+    if (site.feature('school')) {
+      user.roles.push({
+        "module_name": "public",
+        "name": "exams_admin",
+        "en": "Exams Admin",
+        "ar": "إدارة الإمتحانات",
+        "permissions": ["exams_manage"]
+      })
+    }
+    user.profile = {
+      name: user.name,
+      mobile: user.mobile,
+      image_url: user.image_url
+    }
+
+    user.ref_info = {
+      id: trainer_doc.id
+    }
+
+    user.company = trainer_doc.company
+    user.branch = trainer_doc.branch
 
     trainer_doc.edit_user_info = site.security.getUserFinger({
       $req: req,
@@ -156,9 +269,29 @@ module.exports = function init(site) {
         set: trainer_doc,
         $req: req,
         $res: res
-      }, err => {
+      }, (err, trainer_doc) => {
         if (!err) {
           response.done = true
+          user.trainer_id = trainer_doc.doc.id
+
+          if (!trainer_doc.doc.user_info && user.password && user.username) {
+            site.security.addUser(user, (err, doc1) => {
+              if (!err) {
+                delete user._id
+                delete user.id
+                trainer_doc.doc.user_info = {
+                  id: doc1.id
+                }
+                $trainer.edit(trainer_doc.doc, (err2, doc2) => { res.json(response) })
+              } else {
+                response.error = err.message
+              }
+              res.json(response)
+            })
+          } else if (trainer_doc.doc.user_info && trainer_doc.doc.user_info.id) {
+            user.id = trainer_doc.doc.user_info.id
+            site.security.updateUser(user, (err, user_doc) => { })
+          }
 
         } else {
           response.error = 'Code Already Exist'
@@ -170,6 +303,8 @@ module.exports = function init(site) {
       res.json(response)
     }
   })
+
+
 
   site.post("/api/trainer/view", (req, res) => {
     let response = {

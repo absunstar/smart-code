@@ -18,10 +18,10 @@ module.exports = function init(site) {
     path: __dirname + "/site_files/json/place_program.json"
   })
 
-  site.post({
-    name: "/api/discount_method/all",
-    path: __dirname + "/site_files/json/discount_method.json"
-  })
+  // site.post({
+  //   name: "/api/discount_method/all",
+  //   path: __dirname + "/site_files/json/discount_method.json"
+  // })
 
   site.post("/api/default_setting/get", (req, res) => {
     let response = {
@@ -47,7 +47,8 @@ module.exports = function init(site) {
         response.doc = doc
         res.json(response)
       } else {
-        $default_setting.add({
+
+        let obj = {
           company: {
             id: site.get_company(req).id
           },
@@ -66,7 +67,17 @@ module.exports = function init(site) {
           },
           general_Settings: {}
 
-        }, (err, doc) => {
+        }
+
+        if (site.feature('school')) {
+          obj.printer_program = {
+            exam_header: [{ name: '' }],
+            exam_header2: [{ name: '' }],
+            exam_footer: [{ name: '' }]
+          }
+        }
+
+        $default_setting.add(obj, (err, doc) => {
           if (!err && doc) {
             response.done = true
             response.doc = doc
@@ -136,6 +147,25 @@ module.exports = function init(site) {
         invoice_header: [{ name: '' }],
         invoice_header2: [{ name: '' }],
         invoice_footer: [{ name: '' }]
+      }
+    }
+
+    if (data.exams_setting) {
+
+      if (!data.exams_setting.exam_header)
+        data.exams_setting.exam_header = [{ name: '' }]
+
+      if (!data.exams_setting.exam_header2)
+        data.exams_setting.exam_header2 = [{ name: '' }]
+
+      if (!data.exams_setting.exam_footer)
+        data.exams_setting.exam_footer = [{ name: '' }]
+
+    } else {
+      data.exams_setting = {
+        exam_header: [{ name: '' }],
+        exam_header2: [{ name: '' }],
+        exam_footer: [{ name: '' }]
       }
     }
 

@@ -1206,8 +1206,7 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
           return;
         }
 
-        if ($scope.defaultSettings.inventory && $scope.defaultSettings.inventory.discount_method && $scope.defaultSettings.inventory.discount_method.id == 1)
-          $scope.order_customer.posting = true;
+        $scope.order_customer.posting = true;
 
         $scope.order_customer.status = {
           id: 2,

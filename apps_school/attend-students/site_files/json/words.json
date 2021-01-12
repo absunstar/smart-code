@@ -30,9 +30,9 @@
         "ar": "باقي الفاتورة"
     },
     {
-        "name": "students_name",
-        "en": "Students Name",
-        "ar": "إسم التلاميذ"
+        "name": "student_name",
+        "en": "Student Name",
+        "ar": "إسم التلميذ"
     },
     {
         "name": "attend_students_attend",

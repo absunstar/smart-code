@@ -1,0 +1,98 @@
+<div id="selectStudentsModal" class="modal">
+    <div class="col2"></div>
+    <div class="modal-content col8">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.choosing_students## <i class="fa fa-search"></i>
+            </h2>
+        </div>
+
+        <div class="modal-body">
+            <form class="form">
+                <div class="row">
+
+                    <div class="row" ng-hide="exams.$view">
+                        <i-list help-id="" class="col3" label="##word.hall##" ng-model="exams.hall"
+                            ng-search="_search.$_hall" items="hallsList" display="name"></i-list>
+
+                        <i-control ng-keydown="searchStudents($event)" id="service" class="col2"
+                            ng-model="search_customer" label="##word.search##" type="text"></i-control>
+
+                        <i-list ng-search="_search.$customer" class="col4" display="name_##session.lang##"
+                            ng-change="selectStudent(customer)" ng-model="customer" label="##word.student_name##"
+                            items="customersList">
+                        </i-list>
+                        <div class="col1"></div>
+                        <i-button label="##word.search_students##" class="col2" type="search"
+                            ng-click="searchStudents('searchAll')">
+                        </i-button>
+
+                    </div>
+
+                    <div class="row">
+                        <fieldset>
+                            <legend>##word.customers_view##
+                            </legend>
+
+                            <table class="table loaded hover center bold" id="t1">
+
+                                <tr>
+                                    <th> ##word.serial## </th>
+                                    <th class="not-print"> ##word.logo## </th>
+                                    <th> ##word.code## </th>
+                                    <th> ##word.customer_name## </th>
+                                    <th> ##word.exam_procedure## </th>
+                                    <th> ##word.actions## </th>
+                                </tr>
+
+                                <tr ng-repeat="c in exams.students_list | orderBy : '-id'">
+                                    <td class="center  blue">
+                                        <br>
+                                        {{$index + 1}}
+                                    </td>
+                                    <td class="not-print">
+                                        <i-image view class="logo" ng-model="c.image_url"></i-image>
+                                    </td>
+
+                                    <td class="blue userPrint"> <br> {{c.code}} </td>
+                                    <td> <br> {{c.name_##session.lang##}} </td>
+
+                                    <td>
+                                        <br>
+                                        <p class="green" ng-show="c.exam_procedure">##word.exam_was_completed##</p>
+                                        <p class="red" ng-show="!c.exam_procedure">##word.exam_wasnot_completed##</p>
+                                    </td>
+                                    <td>
+
+                                        <i-button type="delete" ng-hide="exams.$view"
+                                            ng-click="exams.students_list.length === 1 || exams.students_list.splice($index,1)">
+                                        </i-button>
+
+                                        <i-button type="view" label="##word.exams_details##" ng-show="exams.$view"
+                                            ng-click="examDetails(c)">
+                                        </i-button>
+
+                                    </td>
+                                </tr>
+                            </table>
+
+                        </fieldset>
+
+                    </div>
+
+                </div>
+            </form>
+        </div>
+
+        <h2 class="error">{{error}}</h2>
+
+        <div class="modal-footer center">
+            <i-button type="print" label="##word.print##" onclick="site.print('#v1')"></i-button>
+
+            <i-button type="close" label="##word.close##" onclick="site.hideModal('#selectStudentsModal')">
+            </i-button>
+        </div>
+    </div>
+    <div class="col2"></div>
+</div>

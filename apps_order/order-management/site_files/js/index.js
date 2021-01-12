@@ -42,54 +42,79 @@ app.controller("order_management", function ($scope, $http, $timeout) {
     $scope.busy = true;
     $http({
       method: "POST",
-      url: "/api/order_management/update",
-      data: order
+      url: "/api/stores_out/view",
+      data: {
+        order_id: order.id
+      }
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#employeeDeliveryModal');
-          if (order.post && $scope.post)
-            if ($scope.defaultSettings.inventory && $scope.defaultSettings.inventory.discount_method && $scope.defaultSettings.inventory.discount_method.id == 2 && order.status.id == 2) {
-              let store_out = {
-                image_url: '/images/store_out.png',
-                supply_date: new Date(),
-                date: order.date,
-                order_id: order.id,
-                customer: order.customer,
-                shift: order.shift,
-                net_value: order.net_value,
-                paid_up: order.net_value,
-                payment_method: order.payment_method,
-                store: order.store,
-                order_code: order.code,
-                items: order.book_list,
-                total_discount: order.total_discount,
-                total_tax: order.total_tax,
-                total_value: order.total_value,
-                net_value: order.net_value,
-                type: {
-                  id: 4,
-                  en: "Orders Screen",
-                  ar: "شاشة الطلبات"
-                },
-                active: true
-              };
-              if ($scope.defaultSettings.general_Settings && !$scope.defaultSettings.general_Settings.work_posting)
-                store_out.posting = true;
-              $scope.addStoresOut(store_out)
+          let store_out = response.data.doc;
+          store_out.posting = true;
+          $http({
+            method: "POST",
+            url: "/api/stores_out/posting",
+            data: store_out
+          }).then(
+            function (response) {
+              $scope.busy = false;
+              if (response.data.done) {
+
+                $http({
+                  method: "POST",
+                  url: "/api/order_management/update",
+                  data: order
+                }).then(
+                  function (response) {
+                    $scope.busy = false;
+                    if (response.data.done) {
+                      site.hideModal('#employeeDeliveryModal');
+
+                      $scope.posting = false;
+                      $scope.getOrderManagementList();
+                    } else {
+                      $scope.error = 'Please Login First';
+                    }
+                  },
+                  function (err) {
+                    console.log(err);
+                  }
+                )
+
+              } else {
+                $scope.error = '##word.error##';
+                if (response.data.error.like('*OverDraft Not*')) {
+                  $scope.error = "##word.overdraft_not_active##"
+                } else if (response.data.error.like('*n`t Found Open Shi*')) {
+                  $scope.error = "##word.open_shift_not_found##"
+                } else if (response.data.error.like('*n`t Open Perio*')) {
+                  $scope.error = "##word.should_open_period##"
+                } if (response.data.error.like('*t`s Have Account Invo*')) {
+                  $scope.error = "##word.cant_process_found_invoice##"
+                }
+                if (store_out.posting) store_out.posting = false;
+                else store_out.posting = true;
+              }
+            },
+            function (err) {
+              console.log(err);
             }
-          $scope.post = false;
-          $scope.getOrderManagementList();
-        } else {
-          $scope.error = 'Please Login First';
+          )
+
         }
-      },
-      function (err) {
-        console.log(err);
       }
     )
+
+
   };
+
+  $scope.posting = function (order) {
+    $scope.error = '';
+
+
+  };
+
 
   $scope.displayAccountInvoice = function (order_invoice) {
     $scope.get_open_shift((shift) => {
@@ -474,7 +499,7 @@ app.controller("order_management", function ($scope, $http, $timeout) {
             commission: 1,
             currency: 1,
             type: 1,
-            code : 1
+            code: 1
           },
           where: where
         }
@@ -491,30 +516,30 @@ app.controller("order_management", function ($scope, $http, $timeout) {
       )
     }
   };
-  
-  $scope.addStoresOut = function (store_out) {
 
-    if (store_out.items.length > 0) {
-      $scope.busy = true;
-      $http({
-        method: "POST",
-        url: "/api/stores_out/add",
-        data: store_out
-      }).then(
-        function (response) {
-          if (response.data.done) {
-            $scope.busy = false;
-          } else $scope.error = response.data.error;
-        },
-        function (err) {
-          $scope.error = err.message;
-        }
-      )
-    } else {
-      $scope.error = "##word.must_enter_quantity##";
-      return;
-    }
-  };
+  /*  $scope.addStoresOut = function (store_out) {
+ 
+     if (store_out.items.length > 0) {
+       $scope.busy = true;
+       $http({
+         method: "POST",
+         url: "/api/stores_out/add",
+         data: store_out
+       }).then(
+         function (response) {
+           if (response.data.done) {
+             $scope.busy = false;
+           } else $scope.error = response.data.error;
+         },
+         function (err) {
+           $scope.error = err.message;
+         }
+       )
+     } else {
+       $scope.error = "##word.must_enter_quantity##";
+       return;
+     }
+   }; */
 
 
 
@@ -585,9 +610,10 @@ app.controller("order_management", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/customers/all",
       data: {
-        where:{
+        where: {
           active: true
-        }}
+        }
+      }
     }).then(
       function (response) {
         $scope.busy = false;
@@ -734,7 +760,7 @@ app.controller("order_management", function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
-        $scope.post = false;
+        $scope.posting = false;
         if (response.data.done && response.data.list.length > 0) {
           $scope.list = response.data.list;
           $scope.count = response.data.count;
@@ -772,8 +798,8 @@ app.controller("order_management", function ($scope, $http, $timeout) {
 
         $scope.get_open_shift((shift) => {
           if (shift) {
-            order.post = true;
-            $scope.post = true;
+            order.posting = true;
+            $scope.posting = true;
             $scope.updateOrderManagement(order);
           } else $scope.error = '##word.open_shift_not_found##';
         });
@@ -794,7 +820,7 @@ app.controller("order_management", function ($scope, $http, $timeout) {
           name: 1,
           minor_currency: 1,
           ex_rate: 1,
-          code : 1
+          code: 1
         },
         where: {
           active: true

@@ -30,9 +30,19 @@
         "ar": "تعديل إمتحان"
     },
     {
+        "name": "correct_answer",
+        "en": "The correct answer",
+        "ar": "الإجابة الصحيحة"
+    },
+    {
+        "name": "student_answer",
+        "en": "Student answer",
+        "ar": "إجابة الطالب"
+    },
+    {
         "name": "exams_details",
         "en": "Exam Details",
-        "ar": "تفاصيل إمتحان"
+        "ar": "تفاصيل الإمتحان"
     },
     {
         "name": "exams_delete",
@@ -55,6 +65,11 @@
         "ar": "نوع الإمتحان"
     },
     {
+        "name": "exam_started",
+        "en": "Exam Started",
+        "ar": "بدء الإمتحان"
+    },
+    {
         "name": "with_reason_stated",
         "en": "With the reason stated",
         "ar": "مع ذكر السبب"
@@ -63,6 +78,31 @@
         "name": "choices",
         "en": "Choices",
         "ar": "الإختيارات"
+    },
+    {
+        "name": "availability_exam",
+        "en": "Availability Exam",
+        "ar": "إتاحة الإمتحان"
+    },
+    {
+        "name": "choosing_students",
+        "en": "Choosing students",
+        "ar": "إختيار التلاميذ"
+    },
+    {
+        "name": "title_question",
+        "en": "Title of the question",
+        "ar": "عنوان السؤال"
+    },
+    {
+        "name": "passing_score_greater_final_grade",
+        "en": "The passing score is greater than the final grade",
+        "ar": "درجة النجاح أكبر من الدرجة النهائية"
+    },
+    {
+        "name": "sum_scores_not_equal_final_score",
+        "en": "The sum of the scores does not equal the final score",
+        "ar": "مجموع الدرجات لا يساوي الدرجة النهائية"
     },
     {
         "name": "question_types",
@@ -75,14 +115,59 @@
         "ar": "الإجابة"
     },
     {
+        "name": "exam_procedure",
+        "en": "Exam Procedure",
+        "ar": "إجراء الإمتحان"
+    },
+    {
+        "name": "exam_was_completed",
+        "en": "The exam was completed",
+        "ar": "تم الإمتحان"
+    },
+    {
+        "name": "You_have_already_taken_test",
+        "en": "You have already taken the test",
+        "ar": "لقد أجريت الاختبار بالفعل"
+    },
+    {
+        "name": "cant_enter_exam",
+        "en": "You cannot enter because you are not registered for the exam",
+        "ar": "لا يمكنك الدخول لأنك غير مسجل في الإمتحان"
+    },
+    {
+        "name": "exam_wasnot_completed",
+        "en": "The exam wasn`t completed",
+        "ar": "لم يتم الإمتحان"
+    },
+    {
+        "name": "finish_exam",
+        "en": "Finish the exam",
+        "ar": "إنهاء الإمتحان"
+    },
+    {
         "name": "exam_time",
         "en": "Exam time",
         "ar": "زمن الإمتحان"
     },
     {
+        "name": "ex_time",
+        "en": "time",
+        "ar": "الزمن"
+    },
+    {
+        "name": "class",
+        "en": "Class",
+        "ar": "الصف"
+    },
+    {
         "name": "degree",
         "en": "Degree",
         "ar": "الدرجة"
+    },
+    {
+        "name": "student_degree",
+        "en": "Student's degree",
+        "ar": "درجة الطالب"
     },
     {
         "name": "question",

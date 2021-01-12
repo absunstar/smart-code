@@ -10,6 +10,11 @@
         "ar": "بحث"
     },
     {
+        "name": "from_order_management_screen",
+        "en": "You need to post from the order management screen",
+        "ar": "يجب الترحيل من شاشة إدارة الطلبات"
+    },
+    {
         "name": "cannot_exceeded_customer",
         "en": "The customer's credit limit cannot be exceeded",
         "ar": "لا يمكن تجاوز الحد الإئتماني للعميل"

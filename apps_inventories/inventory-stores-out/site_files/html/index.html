@@ -93,7 +93,7 @@
                         <td>
                             <p class="text-center brown"> <br> {{c.date | date : 'yyyy - MM - dd'}} </p>
                         </td>
-                    
+
                         <td ng-hide="##query.type## == 5">
                             <p class="text-center blue"> <br> {{c.customer.name_##session.lang##}} </p>
                         </td>
@@ -117,7 +117,7 @@
                                 label="##word.details##" ng-click="details(c)"></i-button>
 
                             <i-button
-                                ng-show="c.posting && !c.invoice && !defaultSettings.accounting.create_invoice_auto && (c.type.id != 4 || c.type.id != 5)"
+                                ng-show="##query.type## != 4 && c.posting && !c.invoice && !defaultSettings.accounting.create_invoice_auto && c.type.id != 4 && c.type.id != 5"
                                 type="save" label="##word.create_an_invoice##" ng-click="displayAccountInvoice(c)">
                             </i-button>
 

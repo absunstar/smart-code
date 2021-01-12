@@ -1,0 +1,13 @@
+[
+    {
+        "id" : 1,
+        "name": "public",
+        "en": "Public",
+        "ar": "عام"
+    },
+    {
+        "id" : 2,
+        "name": "special",
+        "en": "Special",
+        "ar": "خاص"
+    }]

@@ -75,6 +75,7 @@
                             <p ng-show="c.price_delivery_service"> ##word.price_delivery_service## </p>
                             <p ng-show="c.price_delivery_service">{{c.price_delivery_service}}</p>
                         </td>
+
                         <td ng-click="showDetailes(c)" class="pointer"> {{c.net_value}} </td>
                         <td ng-click="showDetailes(c)" class="pointer">{{c.status.##session.lang##}}</td>
                         <td>
@@ -85,7 +86,7 @@
                                 label="##word.set_employee_delivery##" ng-click="showDeliveryEmployee(c)"></i-button>
 
                             <i-button type="save"
-                                ng-show="!c.posting && defaultSettings.inventory.discount_method.id == 2 && c.status.id == 2"
+                                ng-show="!c.posting && c.status.id == 2"
                                 x-permissions="order_management_edit || order_management_manage"
                                 label="##word.posting##" ng-click="postOrder(c)"></i-button>
 

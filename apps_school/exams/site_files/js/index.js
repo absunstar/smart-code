@@ -27,6 +27,53 @@ app.controller("exams", function ($scope, $http, $timeout) {
       return;
     };
 
+    if ($scope.exams.degree_success >= $scope.exams.final_grade) {
+      $scope.error = "##word.passing_score_greater_final_grade##";
+      return;
+
+    }
+
+    let degree_m = 0;
+    let alot = false;
+    let notEqualList = [];
+
+    $scope.exams.main_ques_list = $scope.exams.main_ques_list || [];
+    $scope.exams.main_ques_list.forEach(_m_q => {
+      degree_m += _m_q.degree;
+      let degree_q = 0;
+      _m_q.ques_list = _m_q.ques_list || [];
+
+      _m_q.ques_list.forEach(_q_c => {
+        degree_q += _q_c.degree;
+      });
+
+      if (_m_q.degree !== degree_q) {
+        notEqualList.push(_m_q.title_question);
+        alot = true;
+      }
+
+    });
+
+
+    if (degree_m !== $scope.exams.final_grade && $scope.exams.create_questions) {
+      $scope.error = "##word.sum_scores_not_equal_final_score##";
+      return;
+
+    } else if (alot && $scope.exams.create_questions) {
+
+      $scope.error = `##word.sum_scores_not_equal_final_score##   ( ${notEqualList.join('-')} )`;
+      return;
+    }
+
+    $scope.exams.students_list = $scope.exams.students_list || [];
+    if ($scope.exams.availability_exam.id == 2) {
+      $scope.exams.students_list.forEach(_sL => {
+        _sL.exam = Object.assign({}, $scope.exams);
+        _sL.exam_procedure = false;
+        _sL.exam.students_list = [];
+      });
+    }
+
     $scope.busy = true;
     $http({
       method: "POST",
@@ -66,6 +113,53 @@ app.controller("exams", function ($scope, $http, $timeout) {
       $scope.error = v.messages[0].ar;
       return;
     }
+
+    if ($scope.exams.degree_success >= $scope.exams.final_grade) {
+      $scope.error = "##word.passing_score_greater_final_grade##";
+      return;
+
+    }
+
+    let degree_m = 0;
+    let alot = false;
+    let notEqualList = [];
+
+    $scope.exams.main_ques_list = $scope.exams.main_ques_list || [];
+    $scope.exams.main_ques_list.forEach(_m_q => {
+      degree_m += _m_q.degree;
+      let degree_q = 0;
+      _m_q.ques_list = _m_q.ques_list || [];
+
+      _m_q.ques_list.forEach(_q_c => {
+        degree_q += _q_c.degree;
+      });
+
+      if (_m_q.degree !== degree_q) {
+        notEqualList.push(_m_q.title_question);
+        alot = true;
+      }
+
+    });
+
+    if (degree_m !== $scope.exams.final_grade && $scope.exams.create_questions) {
+      $scope.error = "##word.sum_scores_not_equal_final_score##";
+      return;
+
+    } else if (alot && $scope.exams.create_questions) {
+
+      $scope.error = `##word.sum_scores_not_equal_final_score##   ( ${notEqualList.join('-')} )`;
+      return;
+    }
+    $scope.exams.students_list = $scope.exams.students_list || [];
+
+    if ($scope.exams.availability_exam.id == 2) {
+      $scope.exams.students_list.forEach(_sL => {
+        _sL.exam = Object.assign({}, $scope.exams);
+        _sL.exam_procedure = false;
+        _sL.exam.students_list = [];
+      });
+    }
+
     $scope.busy = true;
     $http({
       method: "POST",
@@ -89,12 +183,12 @@ app.controller("exams", function ($scope, $http, $timeout) {
 
   $scope.displayDetailsExams = function (exams) {
     $scope.error = '';
-    $scope.viewExams(exams);
+    $scope.viewExams(exams, 'view');
     $scope.exams = {};
     site.showModal('#examsViewModal');
   };
 
-  $scope.viewExams = function (exams) {
+  $scope.viewExams = function (exams, view) {
     $scope.busy = true;
     $scope.error = '';
     $http({
@@ -108,6 +202,7 @@ app.controller("exams", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.exams = response.data.doc;
+          if (view == 'view') $scope.exams.$view = true;
         } else {
           $scope.error = response.data.error;
         }
@@ -291,6 +386,26 @@ app.controller("exams", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.availabilityExam = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $scope.availabilityExamList = [];
+    $http({
+      method: "POST",
+      url: "/api/availability_exam/all"
+
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.availabilityExamList = response.data;
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
   $scope.getDegrees = function () {
     $scope.error = '';
 
@@ -377,12 +492,19 @@ app.controller("exams", function ($scope, $http, $timeout) {
 
   };
 
-  $scope.createQuestions = function (option) {
+  $scope.createQuestions = function (option, i) {
     if ($scope.exams.create_questions && option == 'creat')
-      $scope.exams.main_ques_list = $scope.exams.main_ques_list || [{ ques_list: [{}] }];
+      $scope.exams.main_ques_list = [{ ques_list: [{}] }];
 
-    if ($scope.exams.create_questions && option == 'add')
-      $scope.exams.main_ques_list.push({ ques_list: [{}] });
+    else if ($scope.exams.create_questions && option == 'add') {
+      let _i = i + 1;
+
+      $scope.exams.main_ques_list.splice(_i, 0, { ques_list: [{}] });
+
+    }
+
+    else $scope.exams.main_ques_list = [];
+
   };
 
 
@@ -394,42 +516,293 @@ app.controller("exams", function ($scope, $http, $timeout) {
 
   };
 
-  $scope.markTrueFalse = function (obj, boolean) {
+  $scope.markTrueFalse = function (obj, boolean, option) {
 
-    if (boolean) {
-      obj.answer = 'true'
-    } else {
-      obj.answer = 'false'
+    if (option == 'add') {
 
-    }
-
-  };
-
-  $scope.addQuestion = function (m) {
-
-    if (m.question_types.name == 'c_c_a') {
-      m.ques_list.push({ choices_list: [{}] })
-
-    }
-
-  };
-
-
-  $scope.selectChoice = function (q, i) {
-    /*     let foundTrue = q.some(_q => _q.choice.select === true);
-     */
-    q.choices_list.forEach((_q, _i) => {
-      if (_i !== i && _q.choice) {
-        _q.choice.select = false
+      if (boolean) {
+        obj.answer.boolean = 'true'
       } else {
-        q.answer = _q.choice.name
+        obj.answer.boolean = 'false'
       }
+
+    } else if (option == 'answer') {
+
+      obj.answer_stu = obj.answer_stu || {};
+
+      if (boolean) {
+        obj.answer_stu.answer.boolean = 'true'
+      } else {
+        obj.answer_stu.answer.boolean = 'false'
+      }
+
+    }
+
+  };
+
+  $scope.getHalls = function () {
+    $http({
+      method: "POST",
+      url: "/api/hall/all",
+      data: {
+        select: {
+          id: 1,
+          name: 1,
+          code: 1
+        },
+        where: {
+          active: true
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.hallsList = response.data.list;
+      },
+      function (err) {
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.getStudentList = function () {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/customers/all",
+      data: {
+        where: {
+          active: true
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.studentsList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.searchStudents = function (ev) {
+    $scope.error = '';
+    $scope.busy = true;
+    if (ev === 'searchAll' || ev.which === 13) {
+      $http({
+        method: "POST",
+        url: "/api/customers/all",
+        data: {
+          search: $scope.search_customer,
+          where: {
+            school_grade: $scope.exams.school_grade,
+            hall: $scope.exams.hall,
+            active: true
+          }
+        }
+      }).then(
+        function (response) {
+          $scope.busy = false;
+          if (response.data.done) {
+
+            if (ev === 'searchAll') {
+              $scope.exams.students_list = response.data.list;
+            } else if (ev.which === 13) {
+              $scope.customersList = response.data.list;
+            }
+
+          }
+        },
+        function (err) {
+          $scope.busy = false;
+          $scope.error = err;
+        }
+      )
+    };
+  };
+
+  $scope.selectStudent = function (c) {
+    let found = false;
+    if ($scope.exams.students_list && $scope.exams.students_list.length > 0) {
+      found = $scope.exams.students_list.some(_al => c.id == _al.id);
+    } else {
+      $scope.exams.students_list = []
+    }
+
+    if (!found)
+      $scope.exams.students_list.push(c);
+
+    $scope.search_customer = '';
+    $scope.customer = {};
+  };
+
+  $scope.addQuestion = function (m, i) {
+    let _i = i + 1;
+    if (m.question_types.name == 'c_c_a') {
+      m.ques_list.splice(_i, 0, { choices_list: [{}] });
+    } else if (m.question_types.name == 'm_t_f') {
+      m.ques_list.splice(_i, 0, {});
+
+    }
+  };
+
+
+  $scope.selectChoice = function (q, i, option) {
+    q.answer = q.answer || {};
+
+    if (option == 'add') {
+
+      q.choices_list.forEach((_q, _i) => {
+
+        if (_i !== i) {
+          _q.boolean = false;
+        } else {
+          q.answer.name = _q.name;
+          q.answer.index = i;
+        }
+      });
+
+    } else if (option == 'answer') {
+
+      q.choices_list.forEach((_q, _i) => {
+        _q.answer_stu = _q.answer_stu || {};
+        if (_i !== i && _q.answer_stu) {
+          _q.answer_stu.boolean = false
+
+        } else {
+          q.answer_stu.name = _q.choice.name;
+          q.answer_stu.index = i;
+
+        }
+
+      })
+    }
+
+  };
+
+  $scope.examStarted = function (c) {
+    $scope.exams = c;
+    $scope.exams.students_list = $scope.exams.students_list || [];
+    /*   let found_student = false;
+        $scope.exams.students_list.forEach(_student => {
+          if ('##user.ref_info.id##' == _student.id && '##user.type##' == 'customer') {
+            found_student = true;
+          }
+        }); */
+
+
+
+    if ($scope.exams.availability_exam.id == 1) {
+      let student = $scope.studentsList.find(_stu => { return _stu.id == '##user.ref_info.id##' });
+
+      let found_student = $scope.exams.students_list.some(_student => '##user.ref_info.id##' == _student.id);
+
+      if (!found_student) $scope.exams.students_list.push(student);
+
+    } else if ($scope.exams.availability_exam.id == 2) {
+
+    }
+
+    let found = false;
+    let finish_exam = false;
+    $scope.exams.students_list.forEach(_s => {
+      if (_s.id == '##user.ref_info.id##') {
+        $scope.student_exams = _s;
+        found = true;
+        if (_s.exam_procedure) finish_exam = true;
+      }
+
     });
 
+    if (!found) {
+      $scope.error = '##word.cant_enter_exam##';
+      return;
+    };
 
+    if (finish_exam) {
+      $scope.error = '##word.You_have_already_taken_test##';
+      return;
+    };
+
+    $scope.exams.time = {
+      minutes: $scope.exams.exam_time,
+      seconds: 0
+    };
+
+
+    $scope.timer();
+    site.showModal('#startExamModal');
+  };
+
+
+
+  $scope.updateExamsStudent = function (exams, update) {
+    $scope.error = '';
+
+    if (update != 'update') {
+
+      exams.students_list.forEach(_stu => {
+        if (_stu.id == '##user.ref_info.id##')
+          _stu.exam_procedure = true
+      });
+    }
+
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/exams/update",
+      data: exams
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          if (update != 'update')
+            site.hideModal('#startExamModal');
+        } else {
+          $scope.error = 'Please Login First';
+        }
+      },
+      function (err) {
+        console.log(err);
+      }
+    )
+  };
+
+
+
+  $scope.timer = function () {
+    $timeout(() => {
+
+      if ($scope.exams.time.seconds == 0 && $scope.exams.time.minutes > 0) {
+        $scope.exams.time.minutes--;
+        $scope.exams.time.seconds = 59;
+        $scope.updateExamsStudent($scope.exams, 'update');
+        $scope.timer();
+      } else if ($scope.exams.time.seconds > 0) {
+        $scope.exams.time.seconds--;
+        $scope.updateExamsStudent($scope.exams, 'update');
+
+        $scope.timer();
+      } else {
+        $scope.updateExamsStudent($scope.exams);
+
+      }
+    }, 1000);
+    $scope.exams.real_time = ($scope.exams.time.minutes + ':' + $scope.exams.time.seconds);
 
   };
 
+  $scope.examDetails = function (student_exams) {
+
+    $scope.student_exams = student_exams;
+
+    site.showModal('#examDetailesModal');
+
+  };
 
   $scope.searchAll = function () {
     $scope.getExamsList($scope.search);
@@ -438,12 +811,17 @@ app.controller("exams", function ($scope, $http, $timeout) {
 
   };
 
+
+
   $scope.getExamsList();
   $scope.getSchoolGrade();
   $scope.loadSchoolYears();
   $scope.getDefaultSettings();
+  $scope.getStudentList();
+  $scope.getHalls();
   $scope.getSubjects();
   $scope.getExamsTypes();
   $scope.questionsTypes();
+  $scope.availabilityExam();
   $scope.getNumberingAuto();
 });

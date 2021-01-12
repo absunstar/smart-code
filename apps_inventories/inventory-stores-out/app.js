@@ -7,6 +7,15 @@ module.exports = function init(site) {
   //   })
   // })
 
+
+  // site.on('[order_invoice][store_out][posting]', function (id) {
+  //   $stores_out.findOne({ id: id }, (err, doc) => {
+  //     doc.posting = true
+  //     $stores_out.update(doc);
+  //   });
+  // });
+
+
   site.on('[stores_items][item_name][change]', objectStoreOut => {
 
     let barcode = objectStoreOut.sizes_list.map(_obj => _obj.barcode)
@@ -134,7 +143,7 @@ module.exports = function init(site) {
                   date: new Date(stores_out_doc.date)
                 };
                 if (stores_out_doc.type.id == 3) num_obj.screen = 'sales_invoices_store';
-                else  if (stores_out_doc.type.id == 4) num_obj.screen = 'o_screen_store';
+                else if (stores_out_doc.type.id == 4) num_obj.screen = 'o_screen_store';
                 else if (stores_out_doc.type.id == 5) num_obj.screen = 'damage_store';
                 else if (stores_out_doc.type.id == 6) num_obj.screen = 'return_sales_store';
                 let cb = site.getNumbering(num_obj);
@@ -565,10 +574,19 @@ module.exports = function init(site) {
       return
     }
 
+    where = {}
+    if(req.body.id){
+
+      where['id'] = req.body.id
+    }
+
+    if(req.body.order_id){
+
+      where['order_id'] = req.body.order_id
+    }
+
     $stores_out.findOne({
-      where: {
-        _id: site.mongodb.ObjectID(req.body._id)
-      }
+      where: where
     }, (err, doc) => {
       if (!err) {
         response.done = true

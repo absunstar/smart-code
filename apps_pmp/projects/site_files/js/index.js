@@ -281,8 +281,6 @@ app.controller("projects", function ($scope, $http, $timeout) {
       let seconds = Math.floor((t % (1000 * 60)) / 1000);
       $scope.timer= days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
       
-    console.log($scope.timer);
-      
     
     }, 1000);
   };

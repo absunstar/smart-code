@@ -13,10 +13,10 @@ module.exports = function init(site) {
     path: __dirname + "/site_files/images"
   })
 
-  site.post({
-    name: "/api/discount_method/all",
-    path: __dirname + "/site_files/json/discount_method.json"
-  })
+  // site.post({
+  //   name: "/api/discount_method/all",
+  //   path: __dirname + "/site_files/json/discount_method.json"
+  // })
 
   site.post({
     name: "/api/place_program/all",

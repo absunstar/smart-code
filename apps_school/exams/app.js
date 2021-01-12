@@ -17,11 +17,15 @@ module.exports = function init(site) {
     path: __dirname + "/site_files/json/exams_types.json"
   })
   site.post({
+    name: "/api/availability_exam/all",
+    path: __dirname + "/site_files/json/availability_exam.json"
+  })
+  site.post({
     name: "/api/questions_types/all",
     path: __dirname + "/site_files/json/questions_types.json"
   })
 
-  
+
   site.post("/api/exams/add", (req, res) => {
     let response = {
       done: false
@@ -51,14 +55,14 @@ module.exports = function init(site) {
     $exams.find({
 
       where: {
-        
+
         'company.id': site.get_company(req).id,
         'branch.code': site.get_branch(req).code,
         'name': exams_doc.name
       }
     }, (err, doc) => {
       if (!err && doc) {
-        
+
         response.error = 'Name Exists'
         res.json(response)
       } else {
@@ -68,13 +72,13 @@ module.exports = function init(site) {
           screen: 'exams',
           date: new Date()
         };
-    
+
         let cb = site.getNumbering(num_obj);
         if (!exams_doc.code && !cb.auto) {
           response.error = 'Must Enter Code';
           res.json(response);
           return;
-    
+
         } else if (cb.auto) {
           exams_doc.code = cb.code;
         }
@@ -195,7 +199,7 @@ module.exports = function init(site) {
     let response = {
       done: false
     }
-          
+
     if (!req.session.user) {
       response.error = 'Please Login First'
       res.json(response)
@@ -207,6 +211,14 @@ module.exports = function init(site) {
     if (where['name']) {
       where['name'] = site.get_RegExp(where['name'], "i");
     }
+
+    if (req.session.user.type == 'trainer') {
+      where['add_user_info.id'] = req.session.user.id;
+
+    } else if (req.session.user.type == 'customer' && req.session.user.school_grade) {
+      where['school_grade.id'] = req.session.user.school_grade.id;
+    }
+
 
     where['company.id'] = site.get_company(req).id
     where['branch.code'] = site.get_branch(req).code

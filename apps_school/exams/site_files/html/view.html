@@ -43,9 +43,17 @@
                     </tr>
 
                     <tr>
-                        <td class="title">##word.duration_exam##</td>
-                        <td class="center blue">{{exams.duration_exam}}</td>
+                        <td class="title">##word.exam_time##</td>
+                        <td>
+                            <h3 class="bold center blue"> {{exams.exam_time}} / ##word.minute##</h3>
+                        </td>
                     </tr>
+
+                    <tr>
+                        <td class="title">##word.availability_exam##</td>
+                        <td class="center">{{exams.availability_exam.##session.lang##}}</td>
+                    </tr>
+
 
                     <tr>
                         <td class="title">##word.status##</td>
@@ -55,8 +63,11 @@
                 </table>
             </div>
 
-            <div class="col3">
+            <div class="col3 center">
                 <i-image view ng-model="exams.image_url"></i-image>
+                <i-button type="view"  label="##word.customers_view##"
+                    onclick="site.showModal( '#selectStudentsModal')">
+                </i-button>
             </div>
 
         </fieldset>

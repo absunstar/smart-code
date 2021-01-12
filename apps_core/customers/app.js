@@ -184,18 +184,34 @@ module.exports = function init(site) {
       },
       {
         module_name: "public",
-        name: "report_info_user",
-        en: "Subscribe Info USer",
-        ar: "معلومات المشتركين للمستخدم",
-        permissions: ["report_info_ui"]
-      },
-      {
-        module_name: "public",
         name: "order_customer_user",
         en: "Order Customers User",
         ar: "طلبات العملاء للمستخدمين",
         permissions: ["order_customer_ui", "order_customer_delete_items"]
       }]
+
+    if (site.feature('gym')) {
+      user.roles.push({
+        module_name: "public",
+        name: "report_info_user",
+        en: "Subscribe Info USer",
+        ar: "معلومات المشتركين للمستخدم",
+        permissions: ["report_info_ui"]
+      })
+    } if (site.feature('school')) {
+      user.school_grade = customers_doc.school_grade
+
+      user.roles.push({
+        module_name: "public",
+        name: "exams_customer",
+        en: "Exams Students",
+        ar: "إمتحانات الطلاب",
+        permissions: [
+          "exams_ui",
+          "exams_view"
+        ]
+      })
+    }
 
     user.profile = {
       name: user.name,
@@ -316,7 +332,6 @@ module.exports = function init(site) {
       image_url: customers_doc.image_url,
       type: 'customer'
     }
-
     user.roles = [
       {
         module_name: "public",
@@ -327,19 +342,34 @@ module.exports = function init(site) {
       },
       {
         module_name: "public",
-        name: "report_info_user",
-        en: "Subscribe Info USer",
-        ar: "معلومات المشتركين للمستخدم",
-        permissions: ["report_info_ui"]
-      },
-      {
-        module_name: "public",
         name: "order_customer_user",
         en: "Order Customers User",
         ar: "طلبات العملاء للمستخدمين",
         permissions: ["order_customer_ui", "order_customer_delete_items"]
       }]
 
+    if (site.feature('gym')) {
+      user.roles.push({
+        module_name: "public",
+        name: "report_info_user",
+        en: "Subscribe Info USer",
+        ar: "معلومات المشتركين للمستخدم",
+        permissions: ["report_info_ui"]
+      })
+    } if (site.feature('school')) {
+      user.school_grade = customers_doc.school_grade
+
+      user.roles.push({
+        module_name: "public",
+        name: "exams_customer",
+        en: "Exams Students",
+        ar: "إمتحانات الطلاب",
+        permissions: [
+          "exams_ui",
+          "exams_view"
+        ]
+      })
+    }
     user.profile = {
       name: user.name,
       mobile: user.mobile,
@@ -550,9 +580,6 @@ module.exports = function init(site) {
     if (site.feature('school')) {
       where['branch.code'] = site.get_branch(req).code
     }
-
-
-
 
     if (req.session.user && req.session.user.type === 'customer') {
       where['id'] = req.session.user.ref_info.id;

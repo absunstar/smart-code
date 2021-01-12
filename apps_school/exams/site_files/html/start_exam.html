@@ -1,0 +1,138 @@
+<div id="startExamModal" class="modal" fixed>
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>
+                ##word.exam_started## <i class="fa fa-hourglass-start"></i>
+            </h2>
+        </div>
+
+        <div class="modal-body">
+            <form class="form">
+                <div class="row">
+                    <div class="row">
+                        <div class="col4 right">
+                            <div class="row right" ng-repeat="i in defaultSettings.exams_setting.exam_header">
+                                <p class="right p_header bold">{{i.name}}</p>
+                            </div>
+                        </div>
+
+                        <div class="col4 center">
+                            <img class="logoPrint center" ng-src="{{defaultSettings.exams_setting.exam_logo}}" />
+                        </div>
+
+                        <div class="col4 left">
+                            <div class="row left" ng-repeat="i in defaultSettings.exams_setting.exam_header2">
+                                <p class="left p_header bold">{{i.name}}</p>
+                            </div>
+
+                            <div class="row">
+                                <h3 class="bold black left">##word.subject## : {{exams.subject.name}}</h3>
+                            </div>
+                            <div class="row">
+                                <h3 class="bold black left">{{exams.name}}</h3>
+                            </div>
+                            <h3 class="bold blue left">##word.ex_time## : {{exams.exam_time}}
+                                ##word.minute##</h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <h3 class="bold black center underline">{{exams.exams_type.##session.lang##}}
+                            {{exams.school_year.name}}
+                        </h3>
+                        <h3 class="bold black center">##word.class## : {{exams.school_grade.name}}</h3>
+                    </div>
+
+                    <br>
+                    <br>
+                    <h1 class="red bold center">{{exams.real_time}} </h1>
+                    <hr>
+                    <br>
+                    <br>
+
+                </div>
+
+                <fieldset>
+
+                    <div class="row" ng-repeat="main in student_exams.exam.main_ques_list">
+
+                        <h2 class="bold black">{{main.title_question}} : </h2>
+                        <br>
+                        <div class="row">
+                            <div class="col9">
+
+                                <h2 class="bold black underline"
+                                    ng-show="main.question_types.name =='m_t_f' && main.with_reason_stated">
+                                    {{main.question_types.##session.lang##}} ##word.with_reason_stated## :
+                                </h2>
+                                <h2 class="bold black underline" ng-show="!main.with_reason_stated">
+                                    {{main.question_types.##session.lang##}} : </h2>
+                            </div>
+                            <div class="col2 bold">
+                                ##word.final_grade## ({{main.degree}})
+                            </div>
+
+                        </div>
+
+                        <br>
+                        <div class="row" ng-repeat="ques in main.ques_list">
+                            <h3 class="bold black" ng-show="main.question_types.name !='m_t_f'"> {{$index+ 1}} -
+                                {{ques.question}}</h3>
+                            <div class="row" ng-show="main.question_types.name =='m_t_f'">
+                                <h3 class="bold black"> {{$index+ 1}} -
+                                    {{ques.question}}
+                                    (
+                                    <b class="green bold" ng-show="ques.answer_stu.answer == 'true'">##word.true##
+                                    </b>
+                                    <b class="red bold" ng-show="ques.answer_stu.answer == 'false'">##word.false##
+                                    </b>
+                                    )
+                                    <i-button type="fa fa-check true default" ng-hide="ques.answer_stu.answer == 'true'"
+                                        ng-click="markTrueFalse(ques,true,'answer')"></i-button>
+
+                                    <i-button type="close default" ng-hide="ques.answer_stu.answer == 'false'"
+                                        ng-click="markTrueFalse(ques,false,'answer')">
+                                    </i-button>
+                                </h3>
+
+                                <i-textarea class="col7" ng-show="main.with_reason_stated"
+                                    ng-model="ques.answer_stu.reason">
+                                </i-textarea>
+                            </div>
+                            <div class="row" ng-repeat="c in ques.choices_list">
+                                <i-checkbox ng-click="selectChoice(ques,$index,'answer')" label="{{c.choice.name}}"
+                                    ng-model="c.answer_stu.boolean">
+                                </i-checkbox>
+                            </div>
+                            <br>
+                            <br>
+                            <hr style="width:60%">
+                            <br>
+                        </div>
+
+                        <br>
+                        <br>
+                        <hr>
+                        <hr>
+                        <br>
+                        <br>
+                    </div>
+
+                </fieldset>
+            </form>
+
+        </div>
+
+        <h2 class="error">{{error}}</h2>
+
+        <div class="modal-footer center">
+
+            <i-button type="save" label="##word.finish_exam##" ng-click="updateExamsStudent(exams)">
+            </i-button>
+
+            <i-button type="close" label="##word.close##" onclick="site.hideModal('#startExamModal')">
+            </i-button>
+        </div>
+
+    </div>
+
+</div>
