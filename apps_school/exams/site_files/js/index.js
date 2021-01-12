@@ -517,13 +517,17 @@ app.controller("exams", function ($scope, $http, $timeout) {
   };
 
   $scope.markTrueFalse = function (obj, boolean, option) {
+    obj.answer = obj.answer || {};
 
     if (option == 'add') {
 
       if (boolean) {
-        obj.answer.boolean = 'true'
+        obj.answer.boolean = 'true';
+        obj.answer.name = '##session.lang##' == 'ar' ? 'صح' : 'True';
+
       } else {
-        obj.answer.boolean = 'false'
+        obj.answer.boolean = 'false';
+        obj.answer.name = '##session.lang##' == 'ar' ? 'خطأ' : 'False';
       }
 
     } else if (option == 'answer') {
@@ -531,9 +535,11 @@ app.controller("exams", function ($scope, $http, $timeout) {
       obj.answer_stu = obj.answer_stu || {};
 
       if (boolean) {
-        obj.answer_stu.answer.boolean = 'true'
+        obj.answer_stu.boolean = 'true';
+        obj.answer_stu.name = '##session.lang##' == 'ar' ? 'صح' : 'True';
       } else {
-        obj.answer_stu.answer.boolean = 'false'
+        obj.answer_stu.boolean = 'false';
+        obj.answer_stu.name = '##session.lang##' == 'ar' ? 'خطأ' : 'False';
       }
 
     }
@@ -653,6 +659,7 @@ app.controller("exams", function ($scope, $http, $timeout) {
 
   $scope.selectChoice = function (q, i, option) {
     q.answer = q.answer || {};
+    q.answer_stu = q.answer_stu || {};
 
     if (option == 'add') {
 
@@ -662,7 +669,7 @@ app.controller("exams", function ($scope, $http, $timeout) {
           _q.boolean = false;
         } else {
           q.answer.name = _q.name;
-          q.answer.index = i;
+          q.answer.indx = i;
         }
       });
 
@@ -670,21 +677,23 @@ app.controller("exams", function ($scope, $http, $timeout) {
 
       q.choices_list.forEach((_q, _i) => {
         _q.answer_stu = _q.answer_stu || {};
-        if (_i !== i && _q.answer_stu) {
+        if (_i !== i) {
           _q.answer_stu.boolean = false
 
         } else {
-          q.answer_stu.name = _q.choice.name;
-          q.answer_stu.index = i;
+          q.answer_stu.name = _q.name;
+          q.answer_stu.indx = i;
 
         }
 
-      })
+      });
+      console.log(q);
     }
 
   };
 
   $scope.examStarted = function (c) {
+    $scope.error = '';
     $scope.exams = c;
     $scope.exams.students_list = $scope.exams.students_list || [];
     /*   let found_student = false;
@@ -740,10 +749,10 @@ app.controller("exams", function ($scope, $http, $timeout) {
 
 
 
-  $scope.updateExamsStudent = function (exams, update) {
+  $scope.updateExamsStudent = function (exams, type) {
     $scope.error = '';
 
-    if (update != 'update') {
+    if (type == 'time') {
 
       exams.students_list.forEach(_stu => {
         if (_stu.id == '##user.ref_info.id##')
@@ -751,17 +760,63 @@ app.controller("exams", function ($scope, $http, $timeout) {
       });
     }
 
+    if (type === 'correct') {
+
+      const v = site.validated('#examDetailesModal');
+
+      if (!v.ok) {
+        $scope.error = v.messages[0].ar;
+        return;
+      };
+
+
+      let alot_main = false;
+      let alot_ques = false;
+      let alot_mai_list = [];
+      let alot_ques_list = [];
+      exams.exam.main_ques_list.forEach(_m_q => {
+        if (_m_q.student_degree > _m_q.degree) {
+          alot_main = true;
+          alot_mai_list.push(_m_q.title_question);
+
+        }
+
+
+        _m_q.ques_list.forEach(_q_c => {
+          if (_q_c.student_degree > _q_c.degree) {
+            alot_ques = true;
+            alot_ques_list.push(_m_q.title_question);
+
+          }
+        });
+
+      });
+
+      if (alot_main && $scope.exams.create_questions) {
+
+        $scope.error = `##word.student_scores_not_equal_final_score##   ( ${alot_mai_list.join('-')} )`;
+        return;
+      } else if (alot_ques && $scope.exams.create_questions) {
+
+        $scope.error = `##word.student_scores_not_equal_question_score##   ( ${alot_ques_list.join('-')} )`;
+        return;
+      }
+    }
+
     $scope.busy = true;
     $http({
       method: "POST",
       url: "/api/exams/update",
-      data: exams
+      data: $scope.exams
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          if (update != 'update')
+          if (type === 'start')
             site.hideModal('#startExamModal');
+
+          else if (type === 'correct')
+            site.hideModal('#examDetailesModal');
         } else {
           $scope.error = 'Please Login First';
         }
@@ -772,6 +827,22 @@ app.controller("exams", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.calc = function (obj) {
+    $scope.error = '';
+    $timeout(() => {
+      obj.total_scores = 0;
+      obj.exam.main_ques_list.forEach(_main => {
+        _main.student_degree = 0;
+        _main.ques_list.forEach(_ques => {
+          obj.total_scores += (_ques.student_degree || 0);
+          _main.student_degree += (_ques.student_degree || 0);
+
+        });
+      });
+      obj.student_degree = (obj.total_scores || 0) + (obj.additional_degrees || 0);
+    }, 200);
+  };
+
 
 
   $scope.timer = function () {
@@ -780,15 +851,12 @@ app.controller("exams", function ($scope, $http, $timeout) {
       if ($scope.exams.time.seconds == 0 && $scope.exams.time.minutes > 0) {
         $scope.exams.time.minutes--;
         $scope.exams.time.seconds = 59;
-        $scope.updateExamsStudent($scope.exams, 'update');
         $scope.timer();
       } else if ($scope.exams.time.seconds > 0) {
         $scope.exams.time.seconds--;
-        $scope.updateExamsStudent($scope.exams, 'update');
-
         $scope.timer();
       } else {
-        $scope.updateExamsStudent($scope.exams);
+        $scope.updateExamsStudent($scope.exams, 'time');
 
       }
     }, 1000);
@@ -796,11 +864,56 @@ app.controller("exams", function ($scope, $http, $timeout) {
 
   };
 
-  $scope.examDetails = function (student_exams) {
+  $scope.examDetails = function (student_exams, type) {
 
     $scope.student_exams = student_exams;
-
+    if (type == 'correct') {
+      $scope.student_exams.$correct = true;
+    } else if (type == 'view') {
+      $scope.student_exams.$correct = false;
+    }
     site.showModal('#examDetailesModal');
+
+  };
+
+
+
+  $scope.acceptFinishExam = function (student_exams) {
+
+    $scope.main_ques_list = [];
+    student_exams.exam.main_ques_list.forEach((_main, i) => {
+      _main.ques_list.forEach((_ques,_i) => {
+        if (_ques.answer_stu && _ques.answer_stu.name) {
+
+        } else {
+
+          let found = $scope.main_ques_list.some(_m => _m.indx === i);
+
+          if (!found) {
+
+            $scope.main_ques_list.push({
+              question: _main.title_question,
+              indx: i,
+              ques_list: [{question: _ques.question, indx : _i}]
+            })
+
+          } else {
+            $scope.main_ques_list.forEach(_q => {
+                if(_q.indx === i){
+                  _q.ques_list.push({question: _ques.question, indx : _i})
+                }
+            });
+          }
+        }
+      });
+
+    });
+
+    if($scope.main_ques_list && $scope.main_ques_list.length > 0){ 
+      site.showModal('#acceptFinishExamModal');
+    } else {
+      $scope.updateExamsStudent($scope.exams,'start');
+    }
 
   };
 

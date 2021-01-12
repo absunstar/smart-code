@@ -99,9 +99,11 @@
                                 <h1 class="bold black center">({{$index + 1}})</h1>
                             </div>
                             <div class="row">
+
                                 <i-control v="r" class="col3" label="##word.title_question##"
                                     ng-model="m.title_question">
                                 </i-control>
+
                                 <i-list help-id="" v="r" class="col4" label="##word.question_types##"
                                     display="##session.lang##" ng-model="m.question_types"
                                     ng-change="changeMainQuestion(m)" ng-search="_search.$_question_types"
@@ -113,17 +115,17 @@
                                 </i-checkbox>
 
                                 <i-control type="number" v="r" class="col1" label="##word.final_grade##"
-                                    ng-model="m.degree">
-                                </i-control>
+                                    ng-model="m.degree"></i-control>
+
                                 <div class="col1"></div>
+
                                 <div class="col1">
-                                    <i-button type="add default" ng-click="createQuestions('add',$index)">
-                                    </i-button>
+                                    <i-button type="add default" ng-click="createQuestions('add',$index)"></i-button>
                                     <i-button type="delete default"
                                         ng-click="exams.main_ques_list.length === 1 || exams.main_ques_list.splice($index,1)">
                                     </i-button>
-
                                 </div>
+
                             </div>
                             <br>
                             <br>
@@ -177,8 +179,10 @@
                                         </td>
 
                                         <td class="center title">
-                                            <i-textarea ng-show="m.question_types.name =='m_t_fq'" ng-model="q.answer.name">
+                                            <i-textarea ng-show="m.question_types.name =='tttttttttt'"
+                                                ng-model="q.answer.name">
                                             </i-textarea>
+
                                             <div class="row" ng-show="m.question_types.name =='c_c_a'">
                                                 <br>
                                                 <br>
@@ -186,15 +190,18 @@
                                             </div>
 
                                             <div class="row" ng-show="m.question_types.name =='m_t_f'">
-                                                <h2 class="green bold center" ng-show="q.answer.boolean == 'true'">##word.true##
+                                                <h2 class="green bold center" ng-show="q.answer.boolean == 'true'">
+                                                    {{q.answer.name}}
                                                 </h2>
-                                                <h2 class="red bold center" ng-show="q.answer.boolean == 'false'">##word.false##
+                                                <h2 class="red bold center" ng-show="q.answer.boolean == 'false'">
+                                                    {{q.answer.name}}
                                                 </h2>
                                             </div>
 
                                             <div class="row center" ng-show="m.question_types.name =='m_t_f'">
                                                 <br>
-                                                <i-button type="fa fa-check true default" ng-hide="q.answer.boolean == 'true'"
+                                                <i-button type="fa fa-check true default"
+                                                    ng-hide="q.answer.boolean == 'true'"
                                                     ng-click="markTrueFalse(q,true,'add')"></i-button>
 
                                                 <i-button type="close default" ng-hide="q.answer.boolean == 'false'"
@@ -204,10 +211,9 @@
 
                                         </td>
 
-
                                         <td class="center title"
                                             ng-show="m.with_reason_stated && m.question_types.name =='m_t_f'">
-                                            <i-textarea ng-model="q.reason"></i-textarea>
+                                            <i-textarea ng-model="q.answer.reason"></i-textarea>
 
                                         </td>
                                         <td class="center title">

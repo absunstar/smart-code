@@ -54,7 +54,7 @@
                 <fieldset>
 
                     <div class="row" ng-repeat="main in student_exams.exam.main_ques_list">
-                        <br>
+
 
                         <div class="row">
 
@@ -65,97 +65,186 @@
                                     ng-show="main.question_types.name =='m_t_f' && main.with_reason_stated">
                                     {{main.question_types.##session.lang##}} ##word.with_reason_stated## :
                                 </h2>
-
                                 <h2 class="bold black underline" ng-show="!main.with_reason_stated">
                                     {{main.question_types.##session.lang##}} : </h2>
                             </div>
-
-
-                            <div class="col2 bold">
-
+                            <div class="col2">
                                 <fieldset>
-                                    <div class="row ">
-
-                                        <h3 class="bold center black">##word.final_grade##</h3>
-                                        <h2 class="bold center red">({{main.degree}})</h2>
+                                    <div class="row">
+                                        <h3 class="black bold center">##word.final_grade##</h3>
+                                        <h2 class="green bold center">({{main.degree}})</h2>
                                     </div>
                                     <hr>
-                                    <div class="row center">
-                                        <i-control ng-disabled="disabledCode" type="number"
-                                            label="##word.student_degree##" ng-model="main.student_degree">
-                                        </i-control>
+                                    <div class="row">
+                                        <h3 class="black bold center">
+                                            ##word.student_degree##</h3>
+                                        <h2 class="red bold center">
+                                            ({{main.student_degree}})</h2>
                                     </div>
                                 </fieldset>
-
                             </div>
+
                         </div>
+
 
                         <br>
                         <div class="row" ng-repeat="ques in main.ques_list">
-                            <h3 class="bold black" ng-show="main.question_types.name !='m_t_f'"> {{$index+ 1}} -
-                                {{ques.question}}</h3>
-                            <div class="row" ng-show="main.question_types.name =='m_t_f'">
-                                <h3 class="bold black"> {{$index+ 1}} -
-                                    {{ques.question}}
-                                    (
-                                    <b class="green bold" ng-show="ques.answer_stu.answer == 'true'">##word.true##
-                                    </b>
-                                    <b class="red bold" ng-show="ques.answer_stu.answer == 'false'">##word.false##
-                                    </b>
-                                    )
-                                    <i-button type="fa fa-check true default" ng-hide="ques.answer_stu.answer == 'true'"
-                                        ng-click="markTrueFalse(ques,true,'answer')"></i-button>
+                            <div class="row">
+                                <div class="col8">
 
-                                    <i-button type="close default" ng-hide="ques.answer_stu.answer == 'false'"
-                                        ng-click="markTrueFalse(ques,false,'answer')">
-                                    </i-button>
-                                </h3>
+                                    <h3 class="bold black" ng-show="main.question_types.name !='m_t_f'"> {{$index+ 1}} -
+                                        {{ques.question}}</h3>
+                                    <div class="row" ng-show="main.question_types.name =='m_t_f'">
+                                        <h3 class="bold black"> {{$index+ 1}} -
+                                            {{ques.question}}
+                                        </h3>
 
-                                <i-textarea class="col7" ng-show="main.with_reason_stated"
-                                    ng-model="ques.answer_stu.reason">
-                                </i-textarea>
-                            </div>
-                            <div class="row" ng-repeat="c in ques.choices_list">
-                             <!--    <i-checkbox ng-click="selectChoice(ques,$index,'answer')" label="{{c.choice.name}}"
-                                    ng-model="c.answer_stu.boolean">
-                                </i-checkbox>
- -->
-                                <h2 class="bold red">##word.correct_answer## : {{c.answer_stu.name}}</h2>
-                                <h2 class="bold blue">##word.student_answer## : {{c.answer}}</h2>
+                                    </div>
+                                    <br>
+                                    <br>
+                                    <div class="row">
+                                        <div class="row">
+                                            <div class="col3">
+                                                <h2 class="bold green">##word.correct_answer## : </h2>
 
-                                <!--   <div class="col5">
+                                            </div>
+                                            <div class="col8">
+                                                <h2 class="bold black">{{ques.answer.name}}</h2>
+
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col3">
+                                                <h2 class="bold blue">##word.student_answer## : </h2>
+                                            </div>
+                                            <div class="col8">
+                                                <h2 class="bold black">{{ques.answer_stu.name}}</h2>
+                                                <h2 class="bold red" ng-show="!ques.answer_stu.name">
+                                                    ##word.no_answer##
+                                                </h2>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col1">
                                     <fieldset>
-                                        <legend>##word.correct_answer##</legend>
+                                        <div class="row">
+                                            <h3 class="black bold center">##word.degree##</h3>
+                                            <h2 class="green bold center">({{ques.degree}})</h2>
+                                        </div>
+                                        <hr>
+                                        <div class="row">
+                                            <i-control class="center" label="##word.student_degree##" type="number"
+                                                ng-change="calc(student_exams)" v="r" ng-show="student_exams.$correct"
+                                                ng-model="ques.student_degree">
+                                            </i-control>
+                                            <h3 ng-hide="student_exams.$correct" class="black bold center">
+                                                ##word.student_degree##</h3>
+                                            <h2 ng-hide="student_exams.$correct" class="red bold center">
+                                                ({{ques.student_degree}})</h2>
+                                        </div>
+                                    </fieldset>
+                                </div>
+
+                            </div>
+                            <br>
+                            <br>
+                            <div class="row" ng-show="main.with_reason_stated && main.question_types.name =='m_t_f'">
+                                <div class="col8">
+
+                                    <fieldset>
+                                        <legend>##word.with_reason_stated##</legend>
+
+                                        <div class="row">
+                                            <div class="col3">
+                                                <h2 class="bold green">##word.correct_answer## : </h2>
+
+                                            </div>
+                                            <div class="col9">
+                                                <h2 class="bold black">{{ques.answer.reason}}</h2>
+
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col3">
+                                                <h2 class="bold blue">##word.student_answer## : </h2>
+                                            </div>
+                                            <div class="col9">
+                                                <h2 class="bold black">{{ques.answer_stu.reason}}</h2>
+                                                <h2 class="bold red" ng-show="!ques.answer_stu.reason">
+                                                    ##word.no_answer##
+                                                </h2>
 
 
+                                            </div>
+                                        </div>
 
                                     </fieldset>
                                 </div>
 
-                                <div class="col5">
-                                    <fieldset>
-                                        <legend>##word.student_answer##</legend>
-
-
-
-                                    </fieldset>
-                                </div> -->
-
                             </div>
+
                             <br>
                             <br>
-                            <hr style="width:60%">
+                            <hr style="width:80%">
                             <br>
                         </div>
 
                         <br>
                         <br>
-                        <hr>
-                        <hr>
+                        <hr style="height:5px;color:grey;background-color:blue">
                         <br>
                         <br>
                     </div>
+                    <br>
+                    <div class="row">
+                        <div class="col1"></div>
+                        <div class="col10">
 
+                            <table class="table center hover bold">
+                                <tr>
+                                    <th class="w200">##word.final_grade##</th>
+                                    <th class="w200">##word.degree_success##</th>
+                                    <th class="w200">##word.total_scores##</th>
+                                    <th class="w200">##word.additional_degrees##</th>
+                                    <th class="w200">##word.student_degree##</th>
+                                </tr>
+
+                                <tr>
+                                    <td class="center title ">
+                                        <h2 class="bold center green">{{student_exams.exam.final_grade}}</h2>
+                                    </td>
+
+                                    <td class="center title ">
+                                        <h2 class="bold center red">{{student_exams.exam.degree_success}}</h2>
+                                    </td>
+
+                                    <td class="center title">
+                                        <h2 class="bold center black">{{student_exams.total_scores}}</h2>
+                                    </td>
+
+                                    <td class="center title">
+                                        <i-control type="number" ng-change="calc(student_exams)"
+                                            ng-show="student_exams.$correct"
+                                            ng-model="student_exams.additional_degrees">
+                                        </i-control>
+                                        <h2 class="center bold red" ng-hide="student_exams.$correct">
+                                            {{student_exams.additional_degrees}}</h2>
+                                    </td>
+                                    <td class="center title">
+                                        <h2 class="center bold blue">
+                                            {{student_exams.student_degree}}</h2>
+                                    </td>
+
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="col1"></div>
+
+                    </div>
                 </fieldset>
             </form>
 
@@ -165,7 +254,8 @@
 
         <div class="modal-footer center">
 
-            <i-button type="save" label="##word.finish_exam##" ng-click="updateExamsStudent(exams)">
+            <i-button type="edit" ng-show="student_exams.$correct" label="##word.termination_correction##"
+                ng-click="updateExamsStudent(student_exams,'correct')">
             </i-button>
             <i-button type="close" label="##word.close##" onclick="site.hideModal( '#examDetailesModal')"></i-button>
 

@@ -81,15 +81,18 @@
                                 <h3 class="bold black"> {{$index+ 1}} -
                                     {{ques.question}}
                                     (
-                                    <b class="green bold" ng-show="ques.answer_stu.answer == 'true'">##word.true##
+                                    <b class="green bold"
+                                        ng-show="ques.answer_stu.boolean == 'true'">{{ques.answer_stu.name}}
                                     </b>
-                                    <b class="red bold" ng-show="ques.answer_stu.answer == 'false'">##word.false##
+                                    <b class="red bold"
+                                        ng-show="ques.answer_stu.boolean == 'false'">{{ques.answer_stu.name}}
                                     </b>
                                     )
-                                    <i-button type="fa fa-check true default" ng-hide="ques.answer_stu.answer == 'true'"
+                                    <i-button type="fa fa-check true default"
+                                        ng-hide="ques.answer_stu.boolean == 'true'"
                                         ng-click="markTrueFalse(ques,true,'answer')"></i-button>
 
-                                    <i-button type="close default" ng-hide="ques.answer_stu.answer == 'false'"
+                                    <i-button type="close default" ng-hide="ques.answer_stu.boolean == 'false'"
                                         ng-click="markTrueFalse(ques,false,'answer')">
                                     </i-button>
                                 </h3>
@@ -98,14 +101,20 @@
                                     ng-model="ques.answer_stu.reason">
                                 </i-textarea>
                             </div>
-                            <div class="row" ng-repeat="c in ques.choices_list">
-                                <i-checkbox ng-click="selectChoice(ques,$index,'answer')" label="{{c.choice.name}}"
-                                    ng-model="c.answer_stu.boolean">
-                                </i-checkbox>
+                            <div class="row" ng-show="main.question_types.name =='c_c_a'">
+                                <ol type="A">
+                                    <li class="bold" ng-repeat="c in ques.choices_list">
+                                        <i-checkbox ng-click="selectChoice(ques,$index,'answer')" label="{{c.name}}"
+                                            ng-model="c.answer_stu.boolean">
+                                        </i-checkbox>
+                                    </li>
+
+                                </ol>
+
                             </div>
                             <br>
                             <br>
-                            <hr style="width:60%">
+                            <hr style="width:80%">
                             <br>
                         </div>
 
@@ -126,13 +135,62 @@
 
         <div class="modal-footer center">
 
-            <i-button type="save" label="##word.finish_exam##" ng-click="updateExamsStudent(exams)">
+            <i-button type="save" label="##word.finish_exam##" ng-click="acceptFinishExam(student_exams)">
             </i-button>
 
-            <i-button type="close" label="##word.close##" onclick="site.hideModal('#startExamModal')">
-            </i-button>
+
         </div>
 
     </div>
 
+</div>
+
+
+
+
+<div id="acceptFinishExamModal" class="modal">
+    <div class="modal-content small">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                <i class="fa fa-file"></i>
+            </h2>
+        </div>
+
+        <div class="modal-body">
+
+            <div class="row">
+                <div class="row">
+                    <h1 class="red bold center">##word.There_are_unanswered_questions##</h1>
+                </div>
+                <br>
+                <br>
+                <div class="row" ng-repeat="m in main_ques_list">
+                    <hr>
+                    <br>
+                    <br>
+
+                    <h2 class="black bold underline">{{m.question}} : </h2>
+
+                    <br>
+                    <br>
+                    <div class="row" ng-repeat="q in m.ques_list">
+                        <h3 class="blue bold">{{q.indx + 1}} - {{q.question}}</h3>
+                        <br>
+                        <br>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <h2 class="error"> {{error}} </h2>
+
+        <div class="modal-footer center">
+            <i-button type="save" label="##word.accept##" ng-click="updateExamsStudent(exams,'start')">
+            </i-button>
+            <i-button type="close" label="##word.close##" onclick="site.hideModal('#acceptFinishExamModal')"></i-button>
+        </div>
+    </div>
 </div>

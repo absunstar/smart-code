@@ -51,6 +51,7 @@
                                         <br>
                                         {{$index + 1}}
                                     </td>
+
                                     <td class="not-print">
                                         <i-image view class="logo" ng-model="c.image_url"></i-image>
                                     </td>
@@ -70,7 +71,11 @@
                                         </i-button>
 
                                         <i-button type="view" label="##word.exams_details##" ng-show="exams.$view"
-                                            ng-click="examDetails(c)">
+                                            ng-click="examDetails(c,'view')">
+                                        </i-button>
+
+                                        <i-button type="edit" label="##word.correction_exam##" ng-show="exams.$view"
+                                            ng-click="examDetails(c,'correct')">
                                         </i-button>
 
                                     </td>
