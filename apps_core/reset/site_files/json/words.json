@@ -7,12 +7,17 @@
     {
         "name": "reset_i_transactions",
         "en": "Delete Item Transactions",
-        "ar": "حذف كارتة الصنف"
+        "ar": "حذف معاملات كارتة الصنف"
     },
     {
         "name": "reset_safes_payments",
         "en": "Delete Safes Payments",
         "ar": "حذف معاملات الخزينة"
+    },
+    {
+        "name": "reset_orders_screen",
+        "en": "Delete Orders Screen",
+        "ar": "حذف معاملات شاشة الطلبات"
     },
     {
         "name": "reset_unpost_store_in",

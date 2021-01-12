@@ -530,6 +530,24 @@ module.exports = function init(site) {
     })
   })
 
+  site.post("/api/order_invoice/drop", (req, res) => {
+    let response = {}
+    response.done = false
+    if (!req.session.user) {
+      response.error = 'Please Login First'
+      res.json(response)
+      return
+    }
+    $order_invoice.deleteMany({
+      'company.id': site.get_company(req).id,
+      $req: req,
+      $res: res
+    }, () => {
+      response.done = true
+      res.json(response)
+    });
+  })
+
 
   site.post("/api/order_invoice/invoices", (req, res) => {
     let response = {

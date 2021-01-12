@@ -41,6 +41,25 @@ app.controller("reset", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.resetOrdersScreen = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/order_invoice/drop"
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
   $scope.handelStoreInInvoice = function () {
     $scope.error = '';
     $scope.busy = true;

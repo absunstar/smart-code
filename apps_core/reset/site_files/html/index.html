@@ -121,7 +121,14 @@
                         </div>
                         <br><br><br>
 
+                        <div class="row" ng-hide="reset_orders_screen">
 
+                            <i-button x-permissions="reset_orders_screen || reset_manage"
+                                label="##word.reset_orders_screen##"
+                                ng-click="resetOrdersScreen() ;reset_orders_screen = true">
+                            </i-button>
+                        </div>
+                        <br><br><br>
 
 
 

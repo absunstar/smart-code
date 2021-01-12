@@ -3,6 +3,7 @@
     { "module_name" : "public" , "screen_name" : "reset" , "name":"reset_stores_i" , "en":"Reset Stores Items" , "ar":"تهيئة الأصناف المخزنية"},
     { "module_name" : "public" , "screen_name" : "reset" , "name":"reset_i_transaction" , "en":"Delete Item Transaction" , "ar":"حذف كارتة الصنف"},
     { "module_name" : "public" , "screen_name" : "reset" , "name":"reset_safes_payments" , "en":"Delete Safes Payments" , "ar":"حذف معاملات الخزينة"},
+    { "module_name" : "public" , "screen_name" : "reset" , "name":"reset_orders_screen" , "en":"Delete Orders Screen" , "ar":"حذف شاشة الطلبات"},
     { "module_name" : "public" , "screen_name" : "reset" , "name":"reset_safes" , "en":"Reset Safes" , "ar":"تصفير الخزن"},
     { "module_name" : "public" , "screen_name" : "reset" , "name":"reset_unpost_store_in" , "en":"Un Post Purchase" , "ar":"فك ترحيل المشتريات"},
     { "module_name" : "public" , "screen_name" : "reset" , "name":"reset_unpost_store_out" , "en":"Un Post Sales" , "ar":"فك ترحيل المبيعات"},
@@ -16,7 +17,6 @@
     { "module_name" : "public" , "screen_name" : "reset" , "name":"reset_post_account_invoice" , "en":"Post Account Invoice" , "ar":"ترحيل فواتير الحسابات"},
     { "module_name" : "public" , "screen_name" : "reset" , "name":"reset_account_invoice_store_in" , "en":"Handel Purchase Account Invoice" , "ar":"هندلة فواتير المشتريات الحسابية"},
     { "module_name" : "public" , "screen_name" : "reset" , "name":"reset_account_invoice_store_out" , "en":"Handel Sales Account Invoice" , "ar":"هندلة فواتير المبيعات الحسابية"},
-
     { "module_name" : "public" , "screen_name" : "reset" , "name":"reset_print" , "en":"Print" , "ar":"طباعة"},
     { "module_name" : "public" , "screen_name" : "reset" , "name":"reset_ui" , "en":"UI" , "ar":"الواجهة الرسومية"}
 ]
