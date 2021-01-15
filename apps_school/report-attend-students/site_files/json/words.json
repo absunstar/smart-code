@@ -20,6 +20,11 @@
         "ar": "عرض حضور الطلاب"
     },
     {
+        "name": "report_attend_details",
+        "en": "Students Attend Details",
+        "ar": "تفاصيل حضور الطلاب"
+    },
+    {
         "name": "attend_count",
         "en": "Attend Count",
         "ar": "عدد مرات الحضور"

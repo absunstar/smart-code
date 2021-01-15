@@ -1,0 +1,7 @@
+[{
+    "module_name" : "public" ,
+    "name": "report_exams_admin",
+    "en": "Report Exams Admin",
+    "ar": "تقرير الإمتحانات",
+    "permissions": ["report_exams_manage"]
+}]

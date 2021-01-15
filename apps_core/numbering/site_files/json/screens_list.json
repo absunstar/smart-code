@@ -366,9 +366,9 @@
     {
         "category": "hr",
         "feature": "public",
-        "name": "attend_leave",
-        "en": "Attend & Leave",
-        "ar": "الحضور و الإنصراف"
+        "name": "attend_employees",
+        "en": "Attend Employees",
+        "ar": "حضور الموظفين"
     },
     {
         "category": "hr",

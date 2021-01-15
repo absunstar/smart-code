@@ -1,0 +1,37 @@
+[
+    {
+        "name": "report_attend_employees_informations",
+        "en": "Report Invoices Employees Informations",
+        "ar": "بيانات حضور و غياب الموظفين"
+    },
+    {
+        "name": "report_attend_employees",
+        "en": "Attend & Absence Employees",
+        "ar": "حضور و غياب الموظفين"
+    },
+    {
+        "name": "report_attend_employees_menus",
+        "en": "Report Invoices Menu",
+        "ar": "قائمة تقرير فاتورة"
+    },
+    {
+        "name": "view_employees_attend",
+        "en": "View Employees Attend",
+        "ar": "عرض حضور الموظفين"
+    },
+    {
+        "name": "report_attend_details",
+        "en": "Employees Attend Details",
+        "ar": "تفاصيل حضور الموظفين"
+    },
+    {
+        "name": "attend_count",
+        "en": "Attend Count",
+        "ar": "عدد مرات الحضور"
+    },
+    {
+        "name": "absence_count",
+        "en": "Absence Count",
+        "ar": "عدد مرات الغياب"
+    }
+]

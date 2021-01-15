@@ -1,0 +1,7 @@
+[{
+    "module_name" : "public" ,
+    "name": "attend_employees_admin",
+    "en": "Attend Employees Admin",
+    "ar": "إدارة حضور الموظفين",
+    "permissions": ["attend_employees_manage"]
+}]

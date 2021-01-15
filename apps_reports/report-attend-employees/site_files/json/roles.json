@@ -1,0 +1,7 @@
+[{
+    "module_name" : "accounting" ,
+    "name": "report_attend_employees_admin",
+    "en": "Attend & Absence Employees Admin",
+    "ar": "حضور و غياب الموظفين",
+    "permissions": ["report_attend_employees_manage"]
+}]

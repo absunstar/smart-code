@@ -114,6 +114,7 @@ module.exports = function init(site) {
       $res: res
     })
 
+
     if (exams_doc.id) {
       $exams.edit({
         where: {
@@ -122,7 +123,7 @@ module.exports = function init(site) {
         set: exams_doc,
         $req: req,
         $res: res
-      }, err => {
+      }, (err, obj) => {
         if (!err) {
           response.done = true
         } else {

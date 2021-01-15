@@ -1,0 +1,94 @@
+<div id="reportAttendDetailsModal" class="modal">
+
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.report_attend_details##
+                <i class="fa fa-file"></i>
+            </h2>
+        </div>
+        <div class="modal-body">
+            <span ng-show="busy">
+                <span class="sr-only">Loading...</span>
+            </span>
+            <div class="row">
+
+                <div class="row">
+
+                    <i-control class="col2 r_blue" ng-model="exams.number_examinees"
+                        label="##word.number_examinees##" type="number" disabled></i-control>
+
+                    <i-control class="col2 r_black" ng-model="exams.number_non_examinees"
+                        label="##word.number_non_examinees##" type="number" disabled></i-control>
+
+                    <i-control class="col2 r_green" ng-model="exams.number_successful" label="##word.number_successful##"
+                        type="number" disabled></i-control>
+
+                    <i-control class="col2 r_darkRed" ng-model="exams.number_repeaters" label="##word.number_repeaters##"
+                        type="number" disabled></i-control>
+
+
+
+                </div>
+
+
+                <table class="table loaded center hover bold">
+                    <tr>
+                        <th>##word.serial##</th>
+                        <th > ##word.code## </th>
+                        <th >##word.customer_name##</th>
+                        <th >##word.exam_name##</th>
+                        <th>##word.final_grade##</th>
+                        <th>##word.degree_success##</th>
+                        <th>##word.total_scores##</th>
+                        <th>##word.additional_degrees##</th>
+                        <th>##word.student_degree##</th>
+                        <th> ##word.result## </th>
+                    </tr>
+
+                    <tr ng-repeat="c in exams.list | orderBy : '-id'">
+                        <td class="blue">
+                            {{$index + 1}}
+                        </td>
+                        <td  class="blue"> {{c.code}} </td>
+                        <td > {{c.name_##session.lang##}} </td>
+                        <td > {{c.name}}
+                            <p class="blue">{{c.exams_type.##session.lang##}}</p>
+                        </td>
+                        <td class="green"> {{c.final_grade}} </td>
+                        <td class="red"> {{c.degree_success}} </td>
+                        <td> {{c.total_scores ||0}} </td>
+                        <td> {{c.additional_degrees ||0}} </td>
+                        <td> {{c.student_degree ||0}} </td>
+                        <td>
+                            <p class="green" ng-show="c.student_degree >= c.degree_success && c.student_degree!= 0">
+                                ##word.successful##</p>
+
+                            <p class="red" ng-show="c.degree_success > c.student_degree && c.student_degree!= 0">
+                                ##word.precipitate##</p>
+
+                            <p class="red" ng-show="!c.exam_procedure">##word.exam_wasnot_completed##</p>
+
+                        </td>
+                    
+
+                    </tr>
+                </table>
+
+            </div>
+
+        </div>
+        <h2 class="error"> {{error}} </h2>
+        <div class="modal-footer center">
+
+
+            <i-button type="close" label="##word.close##" onclick="site.hideModal('#reportAttendDetailsModal')">
+            </i-button>
+            <i-button class="not-print" label="##word.print##" type="print "
+                onclick="site.print('#reportAttendDetailsModal ')"></i-button>
+        </div>
+    </div>
+
+</div>

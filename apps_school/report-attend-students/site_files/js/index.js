@@ -88,16 +88,66 @@ app.controller("report_attend_students", function ($scope, $http, $timeout) {
     $scope.attend = c;
     $scope.attend.attend_count = 0;
     $scope.attend.absence_count = 0;
+
     $scope.attend.attend_list.forEach(_att => {
+
       if (_att.status.name == 'attend') {
         $scope.attend.attend_count = $scope.attend.attend_count + 1
 
       } else if (_att.status.name == 'absence') {
         $scope.attend.absence_count = $scope.attend.absence_count + 1
       }
-    });
-    site.showModal('#reportAttendDetailsModal');
 
+    });
+
+    site.showModal('#reportAttendDetailsModal');
+  };
+
+  $scope.getSchoolGradeList = function (where) {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/school_grade/all",
+      data: {
+        where: where
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.schoolGradeList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.getHalls = function () {
+    $http({
+      method: "POST",
+      url: "/api/hall/all",
+      data: {
+        select: {
+          id: 1,
+          name: 1,
+          code: 1
+        },
+        where: {
+          active: true
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.hallsList = response.data.list;
+      },
+      function (err) {
+        $scope.error = err;
+      }
+    )
   };
 
   $scope.searchAll = function () {
@@ -112,4 +162,6 @@ app.controller("report_attend_students", function ($scope, $http, $timeout) {
   };
 
   $scope.getReportAttendstudentsList({ date: new Date() });
+  $scope.getHalls();
+  $scope.getSchoolGradeList();
 });

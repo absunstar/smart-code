@@ -130,7 +130,14 @@
                         </div>
                         <br><br><br>
 
+                        <div class="row" ng-hide="reset_numbering">
 
+                            <i-button x-permissions="reset_numbering || reset_manage"
+                                label="##word.reset_numbering##"
+                                ng-click="resetNumbering() ;reset_numbering = true">
+                            </i-button>
+                        </div>
+                        <br><br><br>
 
                     </fieldset>
                 </div>

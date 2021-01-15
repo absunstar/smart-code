@@ -15,6 +15,11 @@
         "ar": "حذف معاملات الخزينة"
     },
     {
+        "name": "reset_numbering",
+        "en": "Reset Numbering Screen",
+        "ar": "تهيئة شاشة الترقيم"
+    },
+    {
         "name": "reset_orders_screen",
         "en": "Delete Orders Screen",
         "ar": "حذف معاملات شاشة الطلبات"

@@ -140,6 +140,11 @@
         "ar": "الإجابة"
     },
     {
+        "name": "add_text",
+        "en": "Add text",
+        "ar": "إضافة نص"
+    },
+    {
         "name": "total_scores",
         "en": "Total scores",
         "ar": "مجموع الدرجات"

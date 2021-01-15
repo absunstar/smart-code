@@ -211,6 +211,7 @@
                                     <th class="w200">##word.total_scores##</th>
                                     <th class="w200">##word.additional_degrees##</th>
                                     <th class="w200">##word.student_degree##</th>
+                                    <th> ##word.result## </th>
                                 </tr>
 
                                 <tr>
@@ -234,9 +235,20 @@
                                         <h2 class="center bold red" ng-hide="student_exams.$correct">
                                             {{student_exams.additional_degrees}}</h2>
                                     </td>
+
                                     <td class="center title">
                                         <h2 class="center bold blue">
                                             {{student_exams.student_degree}}</h2>
+                                    </td>
+
+                                    <td>
+                                        <p class="green"
+                                            ng-show="student_exams.student_degree >= student_exams.exam.degree_success && student_exams.student_degree!= 0">
+                                            ##word.successful##</p>
+
+                                        <p class="red"
+                                            ng-show="student_exams.exam.degree_success > student_exams.student_degree && student_exams.student_degree!= 0">
+                                            ##word.precipitate##</p>
                                     </td>
 
                                 </tr>

@@ -460,6 +460,65 @@ module.exports = function init(site) {
     })
   })
 
+  site.getEmployees = function (data, callback) {
+
+    let where = data.where || {}
+
+    let search = data.search || ''
+
+    if (search) {
+      where.$or = []
+      where.$or.push({
+        'name': site.get_RegExp(search, "i")
+      })
+
+      where.$or.push({
+        'code': search
+      })
+      where.$or.push({
+        'mobile': site.get_RegExp(search, "i")
+      })
+
+    }
+
+    if (where['name_ar']) {
+      where['name_ar'] = site.get_RegExp(where['name_ar'], 'i')
+    }
+
+    if (where['name_en']) {
+      where['name_en'] = site.get_RegExp(where['name_en'], 'i')
+    }
+
+    if (where.code) {
+
+      where['code'] = where.code;
+    }
+
+    if (where.nationality) {
+
+      where['nationality'] = where.nationality;
+    }
+
+    if (where.phone) {
+
+      where['phone'] = where.phone;
+    }
+    if (where.mobile) {
+
+      where['mobile'] = where.mobile;
+    }
+
+
+    $employee_list.findMany({
+      where: where,
+    }, (err, docs) => {
+      if (!err) {
+        if (docs) callback(docs)
+        else callback(false)
+      }
+    })
+  }
+
   site.getEmployeeAttend = function (data, callback) {
 
     let select = {

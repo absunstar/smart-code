@@ -336,7 +336,7 @@ app.controller("attend_students", function ($scope, $http, $timeout, $interval) 
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-
+          $scope.getAttendStudentsList();
         } else {
           $scope.error = response.data.error;
         }
@@ -408,14 +408,32 @@ app.controller("attend_students", function ($scope, $http, $timeout, $interval) 
     )
   };
 
-  $scope.searchAll = function () {
-    $scope._search = {};
-    $scope.getSchoolGradeList($scope.search);
-    site.hideModal('#schoolGradeSearchModal');
-    $scope.search = {}
-
+  $scope.getHalls = function () {
+    $http({
+      method: "POST",
+      url: "/api/hall/all",
+      data: {
+        select: {
+          id: 1,
+          name: 1,
+          code: 1
+        },
+        where: {
+          active: true
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.hallsList = response.data.list;
+      },
+      function (err) {
+        $scope.error = err;
+      }
+    )
   };
 
+  
   $scope.loadSchoolYears = function () {
     $scope.error = '';
     $scope.busy = true;
@@ -438,31 +456,6 @@ app.controller("attend_students", function ($scope, $http, $timeout, $interval) 
       },
       function (err) {
         $scope.busy = false;
-        $scope.error = err;
-      }
-    )
-  };
-
-  $scope.getHalls = function () {
-    $http({
-      method: "POST",
-      url: "/api/hall/all",
-      data: {
-        select: {
-          id: 1,
-          name: 1,
-          code: 1
-        },
-        where: {
-          active: true
-        }
-      }
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        $scope.hallsList = response.data.list;
-      },
-      function (err) {
         $scope.error = err;
       }
     )

@@ -1,0 +1,106 @@
+<div class="form">
+    <div id="basicInformation">
+        <fieldset>
+            <legend> ##word.basic_information## </legend>
+            <div class="row">
+                <div class="col9">
+
+                    <div class="row">
+                        <i-control ng-disabled="disabledCode" class="col2" label="##word.code##"
+                            ng-model="attend_employees.code"></i-control>
+                        <i-date2 class="col4" ng-model="attend_employees.date" label="##word.date##"></i-date2>
+                    </div>
+
+                    <div class="row">
+
+
+
+                    </div>
+
+                    <div class="row">
+                        <i-control ng-keydown="searchEmployees($event)" id="service" class="col2"
+                            ng-model="search_employee" label="##word.search##" type="text"></i-control>
+
+                        <i-list ng-search="_search.$employee" class="col4" display="employee.name"
+                            ng-change="selectEmployee(attend_employees.employee)" ng-model="attend_employees.employee"
+                            label="##word.employee_name##" items="employeesList">
+                        </i-list>
+                        <div class="col1"></div>
+
+                        <i-button label="##word.search_employees##" class="col2" type="search"
+                            ng-click="searchEmployees('searchAll')">
+                        </i-button>
+
+                    </div>
+
+                    <br>
+                    <br>
+
+                    <div class="row">
+                        <table x-permissions="login" class="table bold loaded hover" id="t1">
+                            <tr>
+                                <th>##word.serial##</th>
+                                <th class="not-print"> ##word.logo## </th>
+                                <th>##word.employee_name##</th>
+                                <th>##word.attend_status##</th>
+                                <th>##word.attend_leave_attend##</th>
+                                <th>##word.attend_leave_leave##</th>
+                            </tr>
+
+                            <tr ng-repeat="att_stu in attend_employees.attend_list">
+                                <td class="center  blue">
+                                    {{$index + 1}}
+                                </td>
+                                <td class="not-print">
+                                    <i-image view class="logo" ng-model="att_stu.employee.image_url"></i-image>
+                                </td>
+                                <td class="center title">{{att_stu.employee.name}}</td>
+
+                                <td class="center title">
+                                    <i-button type="add" ng-hide="att_stu.status" label="##word.attend##"
+                                        ng-click="attendNow(att_stu,'attend')">
+                                    </i-button>
+                                    <i-button type="exit" ng-hide="att_stu.status" label="##word.absence##"
+                                        ng-click="attendNow(att_stu,'absence');">
+                                    </i-button>
+
+                                    <h3 class="green center bold" ng-show="att_stu.status.name == 'attend'">
+                                        {{att_stu.status.##session.lang##}}
+                                    </h3>
+                                    <h3 class="red center bold" ng-show="att_stu.status.name == 'absence'">
+                                        {{att_stu.status.##session.lang##}}
+                                    </h3>
+                                </td>
+
+                                <td class="center">
+                                    <p class="green">{{att_stu.attend_time.minute}} :
+                                        {{att_stu.attend_time.hour}}
+                                    </p>
+                                </td>
+
+                                <td class="center">
+                                    <i-button type="close"
+                                        ng-show="att_stu.status.name =='attend' && !att_stu.leave_time"
+                                        label="##word.leave##" ng-click="attendNow(att_stu,'leave')">
+                                    </i-button>
+                                    <p class="red">{{att_stu.leave_time.minute}} :
+                                        {{att_stu.leave_time.hour}}
+                                    </p>
+                                </td>
+                            </tr>
+                        </table>
+
+                    </div>
+
+                    <br>
+
+                </div>
+
+                <div class="col3">
+                    <i-image help-id="attend_employees_logo" ng-model="attend_employees.image_url"></i-image>
+                </div>
+            </div>
+        </fieldset>
+
+    </div>
+</div>

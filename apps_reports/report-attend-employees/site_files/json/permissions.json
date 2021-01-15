@@ -1,0 +1,7 @@
+[
+    { "module_name" : "accounting" , "screen_name" : "report-attend-employees" , "name":"report_attend_employees_manage" , "en":"Manage" , "ar":"إدارة"},
+    { "module_name" : "accounting" , "screen_name" : "report-attend-employees" , "name":"report_attend_employees_search" , "en":"Search" , "ar":"بحث"},
+    { "module_name" : "accounting" , "screen_name" : "report-attend-employees" , "name":"report_attend_employees_export" , "en":"Export" , "ar":"تصدير"},
+    { "module_name" : "accounting" , "screen_name" : "report-attend-employees" , "name":"report_attend_employees_print" , "en":"Print" , "ar":"طباعة"},
+    { "module_name" : "accounting" , "screen_name" : "report-attend-employees" , "name":"report_attend_employees_ui" , "en":"UI" , "ar":"الواجهة الرسومية"}
+]  

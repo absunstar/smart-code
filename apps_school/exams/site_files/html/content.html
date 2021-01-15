@@ -114,6 +114,10 @@
                                     label="##word.with_reason_stated##" ng-model="m.with_reason_stated">
                                 </i-checkbox>
 
+                                <i-checkbox ng-show="m.question_types.name =='a_f_q'" class="col2"
+                                    label="##word.add_text##" ng-model="m.add_text">
+                                </i-checkbox>
+
                                 <i-control type="number" v="r" class="col1" label="##word.final_grade##"
                                     ng-model="m.degree"></i-control>
 
@@ -126,6 +130,10 @@
                                     </i-button>
                                 </div>
 
+                            </div>
+
+                            <div class="row" ng-show="m.question_types.name =='a_f_q' && m.add_text">
+                                <i-textarea class="col8" ng-model="m.text"></i-textarea>
                             </div>
                             <br>
                             <br>
@@ -179,7 +187,7 @@
                                         </td>
 
                                         <td class="center title">
-                                            <i-textarea ng-show="m.question_types.name =='tttttttttt'"
+                                            <i-textarea ng-show="m.question_types.name =='a_f_q'"
                                                 ng-model="q.answer.name">
                                             </i-textarea>
 
@@ -240,8 +248,7 @@
                             <br>
                             <br>
                             <br>
-                            <hr>
-                            <hr>
+                            <hr style="height:5px;color:grey;background-color:blue">
                             <br>
                             <br>
                         </div>

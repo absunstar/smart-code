@@ -1,0 +1,122 @@
+[
+    {
+        "name": "attend_employees",
+        "en": "Attend Employees",
+        "ar": "حضور الموظفين"
+    },
+    {
+        "name": "attend_employees",
+        "en": "The Attend Employees",
+        "ar": "حضور موظفين"
+    },
+    {
+        "name": "attend_employees_new",
+        "en": "New Attend Employees",
+        "ar": "حضور موظفين جديدة"
+    },
+    {
+        "name": "attend_status",
+        "en": "Attend Status",
+        "ar": "حالة الحضور"
+    },
+    {
+        "name": "search_employees",
+        "en": "Search Employees",
+        "ar": "بحث الموظفين"
+    },
+    {
+        "name": "invoice_remain",
+        "en": "Invoice Remain",
+        "ar": "باقي الفاتورة"
+    },
+    {
+        "name": "employee_name",
+        "en": "Employee Name",
+        "ar": "إسم الموظف"
+    },
+    {
+        "name": "attend_employees_attend",
+        "en": "Attend Time",
+        "ar": "وقت الحضور"
+    },
+    {
+        "name": "attend_employees_leave",
+        "en": "Leave Time",
+        "ar": "وقت المغادرة"
+    },
+    {
+        "name": "leave_now",
+        "en": "Leave Now",
+        "ar": "مغادرة الأن"
+    },
+    {
+        "name": "attend_date",
+        "en": "Attend Date",
+        "ar": "تاريخ الحضور"
+    },
+    {
+        "name": "attend_date_from",
+        "en": "Attend Date From",
+        "ar": "تاريخ الحضور من"
+    },
+    {
+        "name": "attend_date_to",
+        "en": "Attend Date To",
+        "ar": "تاريخ الحضور إلى"
+    },
+    {
+        "name": "leave_date",
+        "en": "Leave Date",
+        "ar": "تاريخ الإنصراف"
+    },
+    {
+        "name": "leave_date_from",
+        "en": "Leave Date From",
+        "ar": "تاريخ الإنصراف من"
+    },
+    {
+        "name": "leave_date_to",
+        "en": "Leave Date To",
+        "ar": "تاريخ الإنصراف إلى"
+    },
+    {
+        "name": "leave_now",
+        "en": "Leave Now",
+        "ar": "مغادرة الأن"
+    },
+    {
+        "name": "attend_employees_add",
+        "en": "Add Attend Employees",
+        "ar": "إضافة حضور موظفين"
+    },
+    {
+        "name": "attend_employees_edit",
+        "en": "Edit Attend Employees",
+        "ar": "تعديل حضور موظفين"
+    },
+    {
+        "name": "attend_employees_details",
+        "en": "Attend Employees Details",
+        "ar": "تفاصيل حضور موظفين"
+    },
+    {
+        "name": "attend_employees_delete",
+        "en": "Delete Attend Employees",
+        "ar": "حذف حضور موظفين"
+    },
+    {
+        "name": "attend_employees_name",
+        "en": "Course Name",
+        "ar": "اسم الحضور موظفين "
+    },
+    {
+        "name": "attend_employees_total",
+        "en": "Total Duration",
+        "ar": "إجمالي المدة "
+    },
+    {
+        "name": "auto_load_attendance",
+        "en": "Auto Load Attendance",
+        "ar": "تحميل تلقائى للبصمة"
+    }
+]

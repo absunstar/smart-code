@@ -471,6 +471,10 @@
 
     <div id="inventories" class="tabs">
         <div class="tabs-header">
+            <a class="tab-link" href="/stores_items" x-permissions="stores_items_ui || stores_items_manage">
+                <img src="/images/pic_catagories.png">
+                <span>##word.stores_items##</span>
+            </a>
 
             <a class="tab-link" href="/transfer_branch" x-permissions="transfer_branch_ui || transfer_branch_manage">
                 <img src="/images/transfer_branch.png">
@@ -513,10 +517,7 @@
             </a>
 
 
-            <a class="tab-link" href="/stores_items" x-permissions="stores_items_ui || stores_items_manage">
-                <img src="/images/pic_catagories.png">
-                <span>##word.stores_items##</span>
-            </a>
+
 
             <a class="tab-link" href="/items_group" x-permissions="items_group_ui || items_group_manage">
                 <img src="/images/items_group.png">
@@ -585,9 +586,9 @@
                 <span>##word.employees_degrees## </span>
             </a>
 
-            <a class="tab-link" href="/attend_leave" x-permissions="attend_leave_ui || attend_leave_manage">
-                <img src="/images/attend_leave.png">
-                <span> ##word.menu_attend_leave## </span>
+            <a class="tab-link" href="/attend_employees" x-permissions="attend_employees_ui || attend_employees_manage">
+                <img src="/images/attend_employees.png">
+                <span> ##word.attend_employees## </span>
             </a>
 
             <a class="tab-link" href="/employee_offer" x-permissions="employee_offer_ui || employee_offer_manage">
@@ -629,12 +630,23 @@
     <div id="reporting_tabs" class="tabs">
         <div class="tabs-header">
 
-            <a class="tab-link" href="/report_attend_students"
+            <a class="tab-link" x-features="school" href="/report_attend_students"
                 x-permissions="report_attend_students_ui || report_attend_students_manage">
                 <img src="images/attend_students.png">
                 <span>##word.report_attend_students##</span>
             </a>
 
+            <a class="tab-link" href="/report_attend_employees"
+                x-permissions="report_attend_employees_ui || report_attend_employees_manage">
+                <img src="images/attend_employees.png">
+                <span>##word.report_attend_employees##</span>
+            </a>
+
+            <a class="tab-link" href="/report_exams"
+            x-permissions="report_exams_ui || report_exams_manage">
+            <img src="images/report_exams.png">
+            <span>##word.report_exams##</span>
+        </a>
 
             <a class="tab-link" href="/employees_report" x-permissions="employees_report_ui || employees_report_manage">
                 <img src="images/employees_salary.png">

@@ -74,9 +74,31 @@
                         </div>
 
                         <br>
+                        <br>
+                        <div class="row" ng-show="main.question_types.name =='a_f_q' && main.add_text">
+                            <div class="col1"></div>
+                            <div class="col10">
+                                <h3 class="center black bold">({{main.text}})</h3>
+                            </div>
+
+                        </div>
+                        <br ng-show="main.question_types.name =='a_f_q' && main.add_text">
+                        <br ng-show="main.question_types.name =='a_f_q' && main.add_text">
+                        <hr ng-show="main.question_types.name =='a_f_q' && main.add_text" style="width:50%" class="center">
+                        <hr ng-show="main.question_types.name =='a_f_q' && main.add_text" style="width:50%" class="center">
+                        <br>
+                        <br>
                         <div class="row" ng-repeat="ques in main.ques_list">
                             <h3 class="bold black" ng-show="main.question_types.name !='m_t_f'"> {{$index+ 1}} -
                                 {{ques.question}}</h3>
+                           
+                            <br>
+                            <br>
+                            <div class="row" ng-show="main.question_types.name =='a_f_q'">
+                                <i-textarea class="col8" ng-model="ques.answer_stu.name">
+                                </i-textarea>
+                            </div>
+
                             <div class="row" ng-show="main.question_types.name =='m_t_f'">
                                 <h3 class="bold black"> {{$index+ 1}} -
                                     {{ques.question}}
@@ -120,8 +142,7 @@
 
                         <br>
                         <br>
-                        <hr>
-                        <hr>
+                        <hr style="height:5px;color:grey;background-color:blue">
                         <br>
                         <br>
                     </div>

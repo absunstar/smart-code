@@ -61,6 +61,18 @@ module.exports = function init(site) {
       
     }
 
+    if (where['school_grade']) {
+      where['school_grade.id'] = where['school_grade'].id;
+      delete where['school_grade']
+      
+    }
+
+    if (where['hall']) {
+      where['hall.id'] = where['hall'].id;
+      delete where['hall']
+      
+    }
+
     // where['$or'] = [{ 'source_type.id': 2 }, { 'source_type.id': 3 }, { 'source_type.id': 4 }, { 'source_type.id': 7 }]
 
     where['company.id'] = site.get_company(req).id

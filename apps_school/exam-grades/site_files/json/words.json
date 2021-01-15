@@ -11,10 +11,6 @@
     {"name" : "exam_grades_delete" , "en" : "Delte Putting Exam Grades" , "ar" : "حذف وضع درجات إمتحان"},
     {"name" : "numbers_start_from" , "en" : "The numbers start from" , "ar" : "الأرقام تبدأ من"},
     {"name" : "student_score" , "en" : "Student's score" , "ar" : "درجة الطالب"},
-    {"name" : "successful" , "en" : "Successful" , "ar" : "ناجح"},
-    {"name" : "err_score_higher" , "en" : "The student's score is higher than the final grade" , "ar" : "درجة الطالب أعلى من الدرجة النهائية"},
-    {"name" : "precipitate" , "en" : "Precipitate" , "ar" : "راسب"},
-    {"name" : "result" , "en" : "The Result" , "ar" : "النتيجة"},
     {"name" : "exam_grades_add_name" , "en" : "Add Putting Exam Grades" , "ar" : "إضافة وضع درجات إمتحان"}
 
 

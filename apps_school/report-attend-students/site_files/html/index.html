@@ -29,66 +29,67 @@
                     </i-button>
 
                     <div ng-show="customer.id" class="row margin padding ">
-                        <div class="col6 padding dashed">
+                        <div class="col8 padding dashed">
 
-                            <div class="row">
-                                <div class="row" ng-show="customer.id">
-                                    <table class="table bold center hover">
-                                        <tr>
-                                            <td class="blue"> ##word.customer_name## </td>
-                                            <td colspan="7" class="center"> {{customer.name_##session.lang##}}
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="blue"> ##word.gender## </td>
-                                            <td colspan="2" class="center"> {{customer.gender.##session.lang##}}
-                                            </td>
-                                            <td class="blue"> ##word.child## </td>
-                                            <td colspan="2" ng-show="customer.child == true">
-                                                <p class="green"> ##word.yes## </p>
-                                            </td>
-                                            <td colspan="2" ng-show="!customer.child">
-                                                <p class="red"> ##word.no## </p>
-                                            </td>
-                                            <td colspan="2"></td>
-                                        </tr>
 
-                                        <tr>
-                                            <td class="blue"> ##word.weight## </td>
-                                            <td colspan="2" class="center"> {{customer.weight}} </td>
-                                            <td class="blue"> ##word.tall## </td>
-                                            <td colspan="2" class="center"> {{customer.tall}} </td>
-                                            <td class="blue"> ##word.blood_type## </td>
-                                            <td colspan="2" class="center red"> {{customer.blood_type.name}}
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="blue"> ##word.medicine_notes## </td>
-                                            <td colspan="7" class="center"> {{customer.medicine_notes}}</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="blue"> ##word.gov## </td>
-                                            <td colspan="2" class="center"> {{customer.gov.name}} </td>
-                                            <td class="blue"> ##word.city## </td>
-                                            <td colspan="2" class="center"> {{customer.city.name}} </td>
-                                            <td class="blue"> ##word.area## </td>
-                                            <td colspan="2" class="center"> {{customer.area.name}} </td>
-                                        </tr>
+                            <table class="table bold center hover">
+                                <tr>
+                                    <td class="blue"> ##word.customer_name## </td>
+                                    <td colspan="5" class="center"> {{customer.name_##session.lang##}}
+                                    </td>
+                                    <td class="blue"> ##word.child## </td>
+                                    <td colspan="2" ng-show="customer.child == true">
+                                        <p class="green"> ##word.yes## </p>
+                                    </td>
+                                    <td colspan="2" ng-show="!customer.child">
+                                        <p class="red"> ##word.no## </p>
+                                    </td>
 
-                                        <tr>
-                                            <td class="blue"> ##word.address## </td>
-                                            <td colspan="7" class="center"> {{customer.address}}</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="blue"> ##word.mobile## </td>
-                                            <td colspan="4" class="center"> {{customer.mobile}}</td>
-                                            <td class="blue"> ##word.phone## </td>
-                                            <td colspan="3" class="center"> {{customer.phone}}</td>
-                                        </tr>
+                                </tr>
+                                <tr>
+                                    <td class="blue"> ##word.gender## </td>
+                                    <td colspan="2" class="center"> {{customer.gender.##session.lang##}}
+                                    </td>
+                                    <td class="blue"> ##word.school_grade## </td>
+                                    <td colspan="3" class="center"> {{customer.school_grade.name}} </td>
+                                    <td colspan="1"></td>
+                                </tr>
 
-                                    </table>
-                                </div>
-                            </div>
+                                <tr>
+                                    <td class="blue"> ##word.weight## </td>
+                                    <td colspan="2" class="center"> {{customer.weight}} </td>
+                                    <td class="blue"> ##word.tall## </td>
+                                    <td colspan="2" class="center"> {{customer.tall}} </td>
+                                    <td class="blue"> ##word.blood_type## </td>
+                                    <td colspan="2" class="center red"> {{customer.blood_type.name}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="blue"> ##word.medicine_notes## </td>
+                                    <td colspan="7" class="center"> {{customer.medicine_notes}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="blue"> ##word.gov## </td>
+                                    <td colspan="2" class="center"> {{customer.gov.name}} </td>
+                                    <td class="blue"> ##word.city## </td>
+                                    <td colspan="2" class="center"> {{customer.city.name}} </td>
+                                    <td class="blue"> ##word.area## </td>
+                                    <td colspan="2" class="center"> {{customer.area.name}} </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="blue"> ##word.address## </td>
+                                    <td colspan="7" class="center"> {{customer.address}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="blue"> ##word.mobile## </td>
+                                    <td colspan="4" class="center"> {{customer.mobile}}</td>
+                                    <td class="blue"> ##word.phone## </td>
+                                    <td colspan="3" class="center"> {{customer.phone}}</td>
+                                </tr>
+
+                            </table>
+
                         </div>
 
 
@@ -97,7 +98,6 @@
                     <span ng-show="busy">
                         <span class="sr-only">Loading...</span>
                     </span>
-                    <h3 class="bold text-center" ng-hide="customer.id"> ##word.count## : {{count}} </h3>
                     <br>
                 </div>
 

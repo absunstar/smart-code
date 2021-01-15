@@ -1,0 +1,42 @@
+[
+    {
+        "name": "report_exams_informations",
+        "en": "Report Exams Informations",
+        "ar": "بيانات تقرير الإمتحانات"
+    },
+    {
+        "name": "report_exams",
+        "en": "Report Exams",
+        "ar": "تقرير الإمتحانات"
+    },
+    {
+        "name": "number_non_examinees",
+        "en": "The number of non-examinees",
+        "ar": "عدد غير الممتحنين"
+    },
+    {
+        "name": "number_examinees",
+        "en": "The number of examinees",
+        "ar": "عدد الممتحنين"
+    },
+    {
+        "name": "number_repeaters",
+        "en": "Repetition number",
+        "ar": "عدد الرسوب"
+    },
+    {
+        "name": "number_successful",
+        "en": "Success Number",
+        "ar": "عدد النجاح"
+    },
+    {
+        "name": "view_students_attend",
+        "en": "View Exams Details",
+        "ar": "عرض تفاصيل الإمتحان"
+    },
+    {
+        "name": "report_attend_details",
+        "en": "Exams Details",
+        "ar": "تفاصيل الإمتحان"
+    }
+]

@@ -1,0 +1,83 @@
+<div id="reportAttendDetailsModal" class="modal">
+
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.report_attend_details##
+                <i class="fa fa-file"></i>
+            </h2>
+        </div>
+        <div class="modal-body">
+            <span ng-show="busy">
+                <span class="sr-only">Loading...</span>
+            </span>
+            <div class="row">
+
+                <div class="row">
+
+                    <i-control class="col2 r_green" ng-model="attend.attend_count" label="##word.attend_count##"
+                        type="number" disabled></i-control>
+
+                    <i-control class="col2 r_darkRed" ng-model="attend.absence_count" label="##word.absence_count##"
+                        type="number" disabled></i-control>
+
+                </div>
+
+
+                <table class="table loaded center hover bold" id="t1">
+                    <tr>
+                        <th>##word.serial##</th>
+                        <th class="not-print"> ##word.logo## </th>
+                        <th> ##word.employee## </th>
+                        <th>##word.attend_status##</th>
+                        <th>##word.attend_leave_attend##</th>
+                        <th>##word.attend_leave_leave##</th>
+                    </tr>
+
+                    <tr ng-repeat="c in attend.attend_list | orderBy : '-id'">
+                        <td class="blue">
+                            {{$index + 1}}
+                        </td>
+                        <td class="not-print">
+                            <i-image view class="logo" ng-model="c.employee.image_url"></i-image>
+                        </td>
+                     
+                        <td> {{c.employee.name}} </td>
+                        <td>
+                            <h3 class="green bold" ng-show="c.status.name == 'attend'">
+                                {{c.status.##session.lang##}}
+                            </h3>
+                            <h3 class="red bold" ng-show="c.status.name == 'absence'">
+                                {{c.status.##session.lang##}}
+                            </h3>
+                        </td>
+                        <td>
+                            <p class="green">{{c.attend_time.minute}} :
+                                {{c.attend_time.hour}}
+                            </p>
+                        </td>
+                        <td>
+                            <p class="red">{{c.leave_time.minute}} :
+                                {{c.leave_time.hour}}
+                            </p>
+                        </td>
+
+                    </tr>
+                </table>
+            </div>
+
+        </div>
+        <h2 class="error"> {{error}} </h2>
+        <div class="modal-footer center">
+
+
+            <i-button type="close" label="##word.close##" onclick="site.hideModal('#reportAttendDetailsModal')">
+            </i-button>
+            <i-button class="not-print" label="##word.print##" type="print "
+                onclick="site.print('#reportAttendDetailsModal ')"></i-button>
+        </div>
+    </div>
+
+</div>
