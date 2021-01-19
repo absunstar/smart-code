@@ -33,10 +33,10 @@
 <div x-feature="help" x-import="ui-help/index.html"></div>
 <script x-import="ui-print/index.js"></script>
 <script>
-    $(document).on('keydown', 'input,select,textarea', function (e) {
+    $(document).on('keydown', 'input,select', function (e) {
         if (e.which == 13 || e.keyCode == 13) {
             e.preventDefault();
-            var $canfocus = $('input,select,textarea');
+            var $canfocus = $('input,select');
             var index = $canfocus.index(document.activeElement) + 1;
             if (index >= $canfocus.length) index = 0;
             $canfocus.eq(index).focus();

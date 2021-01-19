@@ -1,0 +1,14 @@
+[
+    {"name" : "types_expenses_informations" , "en" : "Types Expenses Informations" , "ar" : "بيانات أنواع المصروفات"},
+    {"name" : "types_expenses" , "en" : "Types Expenses" , "ar" : "أنواع المصروفات الدراسية"},
+    {"name" : "types_expense" , "en" : "Types Expenses" , "ar" : "نوع المصروفات"},
+    {"name" : "types_expenses_menus" , "en" : "Types Expenses Menu" , "ar" : "قائمة أنواع المصروفات"},
+    {"name" : "types_expenses_code" , "en" : "Types Expenses Code" , "ar" : "كود نوع المصروفات"},
+    {"name" : "types_expenses_name" , "en" : "Types Expenses Name" , "ar" : "إسم نوع المصروفات"},
+    {"name" : "expense_value" , "en" : "Expense Value" , "ar" : "قيمة المصروف"},
+    {"name" : "types_expenses_new" , "en" : "New Types Expenses" , "ar" : " نوع مصروفات جديد"},
+    {"name" : "types_expenses_details" , "en" : "Types Expenses Details" , "ar" : "تفاصيل نوع المصروفات"},
+    {"name" : "types_expenses_update" , "en" : "Edit Types Expenses" , "ar" : "تعديل نوع المصروفات"},
+    {"name" : "types_expenses_delete" , "en" : "Delte Types Expenses" , "ar" : "حذف نوع المصروفات"}
+
+]

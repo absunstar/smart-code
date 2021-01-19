@@ -1,0 +1,25 @@
+<div class="form">
+    <div id="yearWorksAddModal">
+        <fieldset>
+            <legend> ##word.types_expenses_informations## </legend>
+            <div class="row">
+                <div class="col9">
+                    <div class="row">
+                        <i-control ng-disabled="disabledCode" class="col2" label="##word.code##"
+                            ng-model="types_expenses.code"></i-control>
+                        <i-control class="col4" label="##word.types_expenses_name##" ng-model="types_expenses.name">
+                        </i-control>
+
+                        <div class="col4"></div>
+                        <i-checkbox class="col2" label="##word.active##" ng-model="types_expenses.active"></i-checkbox>
+                    </div>
+
+                </div>
+
+                <div class="col3">
+                    <i-image category="types_expenses" ng-model="types_expenses.image_url"> </i-image>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+</div>

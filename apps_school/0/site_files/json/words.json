@@ -20,6 +20,11 @@
         "ar": "لا"
     },
     {
+        "name": "school_fees",
+        "en": "School Fees",
+        "ar": "المصروفات الدراسية"
+    },
+    {
         "name": "child",
         "en": "Child",
         "ar": "طفل"

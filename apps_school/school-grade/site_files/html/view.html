@@ -31,6 +31,35 @@
                         <br>
                         <br>
                         <div class="row">
+                            <div class="col6">
+
+                                <fieldset>
+                                    <legend>##word.types_expenses##</legend>
+                                    <table class="table loaded hover center bold">
+
+                                        <tr>
+                                            <th> ##word.types_expenses_name## </th>
+                                            <th> ##word.expense_value## </th>
+                                        </tr>
+
+                                        <tr ng-repeat="c in school_grade.types_expenses_list">
+
+                                            <td> {{c.name}} </td>
+                                            <td class="green">
+                                                {{c.value}}
+                                            </td>
+                                          
+
+                                        </tr>
+                                    </table>
+
+                                </fieldset>
+                            </div>
+
+                        </div>
+                        <br>
+                        <br>
+                        <div class="row">
                             <div class="col10">
 
                                 <fieldset>

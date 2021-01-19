@@ -1,0 +1,45 @@
+<div ng-hide="busy">
+    <div class="form">
+        <div id="customersGroupViewModal">
+            <fieldset>
+                <legend> ##word.types_expenses_informations## </legend>
+                <div class="row">
+                    <div class="col9">
+                        <div class="row">
+
+                            <table class="table hover bold">
+                                <tr>
+                                    <td class="title"> ##word.code## </td>
+                                    <td class="center userPrint blue"> {{types_expenses.code}} </td>
+                                </tr>
+                             
+
+                                <tr>
+                                    <td class="title"> ##word.types_expenses_name## </td>
+                                    <td class="center"> {{types_expenses.name}} </td>
+                                </tr>
+                             
+                                <tr>
+                                    <td class="title"> ##word.active## </td>
+                                    <td ng-show="types_expenses.active == true" class="center green"> ##word.active##
+                                    </td>
+                                    <td ng-show="types_expenses.active == false" class="center red">
+                                        ##word.not_active##
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+
+                    </div>
+
+                    <div class="col3">
+                        <i-image class="not-print" view ng-model="types_expenses.image_url"> </i-image>
+                    </div>
+
+
+                </div>
+            </fieldset>
+        </div>
+    </div>
+</div>
+<div x-import="types-expenses/action_info.html"></div>

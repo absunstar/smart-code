@@ -146,6 +146,7 @@ module.exports = function init(site) {
             else if (account_invoices_doc.source_type.id == 10) num_obj.screen = 'recharge_customer_balance';
             else if (account_invoices_doc.source_type.id == 11) num_obj.screen = 'employee_advance';
             else if (account_invoices_doc.source_type.id == 12) num_obj.screen = 'payment_employee_advance';
+            else if (account_invoices_doc.source_type.id == 13) num_obj.screen = 'school_fees';
 
 
             let cb = site.getNumbering(num_obj);
@@ -199,7 +200,6 @@ module.exports = function init(site) {
                     }
 
                     paid_value.transition_type = 'out'
-
 
                   } else if (doc.source_type.id == 2) {
 
@@ -282,6 +282,10 @@ module.exports = function init(site) {
                     paid_value.operation = { ar: 'تسديد سلفة موظف', en: 'Payment Employee Advance' }
                     paid_value.transition_type = 'in'
                     site.accountInvoiceAccept(doc.invoice_id)
+
+                  } else if (doc.source_type.id == 13) {
+                    paid_value.operation = { ar: 'مصروفات دراسية', en: 'School Fees' }
+                    paid_value.transition_type = 'in'
 
                   }
 
@@ -646,6 +650,11 @@ module.exports = function init(site) {
                     obj.operation = { ar: 'تسديد سلفة موظف', en: 'Payment Employee Advance' }
                     obj.transition_type = 'in'
                     site.accountInvoiceAccept(account_invoices_doc.invoice_id)
+
+                  } else if (account_invoices_doc.source_type.id == 13) {
+                    obj.operation = { ar: 'مصروفات دراسية', en: 'School Fees' }
+                    obj.transition_type = 'in'
+
                   }
 
 
@@ -740,7 +749,11 @@ module.exports = function init(site) {
 
                   } else if (account_invoices_doc.source_type.id == 12) {
                     obj.operation = { ar: 'فك ترحيل تسديد سلفة موظف', en: 'Un Post Payment Employee Advance' }
-                    obj.transition_type = 'Out'
+                    obj.transition_type = 'out'
+
+                  } else if (account_invoices_doc.source_type.id == 13) {
+                    obj.operation = { ar: 'فك ترحيل مصروفات دراسية', en: 'Un Post School Fees' }
+                    obj.transition_type = 'out'
 
                   }
 
@@ -971,8 +984,12 @@ module.exports = function init(site) {
 
                       } else if (response.doc.source_type.id == 12) {
                         obj.operation = { ar: 'حذف تسديد سلفة موظف', en: 'Delete Payment Employee Advance' }
-                        obj.transition_type = 'Out'
+                        obj.transition_type = 'out'
 
+                      } else if (response.doc.source_type.id == 13) {
+                        obj.operation = { ar: 'مصروفات دراسية', en: 'School Fees' }
+                        obj.transition_type = 'out'
+    
                       }
 
                       if (response.doc.employee && response.doc.employee.id) obj.sourceName = response.doc.employee.name

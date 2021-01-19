@@ -248,6 +248,12 @@
     <div id="accounting_tabs" class="tabs">
         <div class="tabs-header">
 
+            <a class="tab-link" x-features="school" href="/account_invoices?type=13"
+                x-permissions="account_invoices_ui || account_invoices_manage">
+                <img src="/images/school_fees.png">
+                <span>##word.school_fees## </span>
+            </a>
+
             <a class="tab-link" x-features="gym" href="/account_invoices?type=4"
                 x-permissions="account_invoices_ui || account_invoices_manage">
                 <img src="/images/order_invoice.png">
@@ -642,11 +648,10 @@
                 <span>##word.report_attend_employees##</span>
             </a>
 
-            <a class="tab-link" href="/report_exams"
-            x-permissions="report_exams_ui || report_exams_manage">
-            <img src="images/report_exams.png">
-            <span>##word.report_exams##</span>
-        </a>
+            <a class="tab-link" href="/report_exams" x-permissions="report_exams_ui || report_exams_manage">
+                <img src="images/report_exams.png">
+                <span>##word.report_exams##</span>
+            </a>
 
             <a class="tab-link" href="/employees_report" x-permissions="employees_report_ui || employees_report_manage">
                 <img src="images/employees_salary.png">
@@ -1055,6 +1060,11 @@
                 <a class="tab-link" href="/school_years" x-permissions="school_years_ui || school_years_manage">
                     <img src="/images/school_years.png">
                     <span> ##word.school_years##</span>
+                </a>
+
+                <a class="tab-link" href="/types_expenses" x-permissions="types_expenses_ui || types_expenses_manage">
+                    <img src="/images/types_expenses.png">
+                    <span> ##word.types_expenses##</span>
                 </a>
 
 

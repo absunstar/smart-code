@@ -267,6 +267,13 @@
     },
     {
         "category": "accounting",
+        "feature": "school",
+        "name": "school_fees",
+        "en": "School Fees",
+        "ar": "المصروفات الدراسية"
+    },
+    {
+        "category": "accounting",
         "feature": "pos",
         "name": "safes",
         "en": "Safes",
@@ -502,6 +509,13 @@
         "name": "school_years",
         "en": "School Years",
         "ar": "السنوات الدراسية"
+    },
+    {
+        "category": "general_setting",
+        "feature": "school",
+        "name": "types_expenses",
+        "en": "Types Expenses",
+        "ar": "أنواع المصروفات الدراسية"
     },
     {
         "category": "general_setting",

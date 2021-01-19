@@ -38,6 +38,15 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
             $scope.account_invoices.posting = true;
           if ($scope.defaultSettings.general_Settings.order_type && $scope.account_invoices.source_type && $scope.account_invoices.source_type.id == 3)
             $scope.account_invoices.order_invoices_type = $scope.defaultSettings.general_Settings.order_type;
+
+          if (site.toNumber("##query.type##") == 13 || site.toNumber("##query.type##") == 8 || site.toNumber("##query.type##") == 10) {
+            $scope.account_invoices.customer = $scope.defaultSettings.general_Settings.customer;
+
+          };
+          if (site.toNumber("##query.type##") == 13) {
+            $scope.account_invoices.school_year = $scope.defaultSettings.general_Settings.school_year;
+
+          };
         }
 
         site.showModal('#accountInvoicesAddModal');
@@ -671,7 +680,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
           name: 1,
           minor_currency: 1,
           ex_rate: 1,
-          code : 1
+          code: 1
         },
         where: {
           active: true
@@ -732,7 +741,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
             commission: 1,
             currency: 1,
             type: 1,
-            code : 1
+            code: 1
           },
           where: where
         }
@@ -764,7 +773,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
           commission: 1,
           currency: 1,
           type: 1,
-          code : 1
+          code: 1
         }
       }
     }).then(
@@ -1241,14 +1250,18 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.busy = true;
     if (ev.which === 13) {
+
+      let where = { active: true };
+
+      if ($scope.account_invoices.school_grade)
+        where.school_grade = $scope.account_invoices.school_grade;
+
       $http({
         method: "POST",
         url: "/api/customers/all",
         data: {
           search: $scope.search_customer,
-          where:{
-            active: true
-          }
+          where: where
           /*  select: {
             id: 1,
             name_ar: 1,
@@ -1355,7 +1368,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
       url: "/api/in_out_names/all",
       data: {
         where: { in: true },
-        select: { id: 1, name: 1,code:1 }
+        select: { id: 1, name: 1, code: 1 }
       }
     }).then(
       function (response) {
@@ -1377,7 +1390,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
       url: "/api/in_out_names/all",
       data: {
         where: { out: true },
-        select: { id: 1, name: 1,code:1 }
+        select: { id: 1, name: 1, code: 1 }
       }
     }).then(
       function (response) {
@@ -1443,6 +1456,33 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.loadSchoolYears = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/school_years/all",
+      data: {
+        select: {
+          id: 1,
+          name: 1,
+          code: 1
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.schoolYearsList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
   $scope.financialYear = function (date, callback) {
     if (site.feature('erp')) {
 
@@ -1463,7 +1503,32 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
       );
     } else callback(true);
 
+  };
 
+  $scope.getSchoolGradeList = function () {
+    $http({
+      method: "POST",
+      url: "/api/school_grade/all",
+      data: {
+        select: {
+          id: 1,
+          name: 1,
+          code: 1,
+          types_expenses_list: 1
+        },
+        where: {
+          active: true
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.schoolGradeList = response.data.list;
+      },
+      function (err) {
+        $scope.error = err;
+      }
+    )
   };
 
   $scope.getNumberingAuto = function () {
@@ -1485,6 +1550,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
       else if (site.toNumber("##query.type##") == 10) screen = 'recharge_customer_balance';
       else if (site.toNumber("##query.type##") == 11) screen = 'employee_advance';
       else if (site.toNumber("##query.type##") == 12) screen = 'payment_employee_advance';
+      else if (site.toNumber("##query.type##") == 13) screen = 'school_fees';
 
 
       $http({
@@ -1508,6 +1574,14 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
     }
 
   };
+
+
+  $scope.changeTypesExpenses = function (types_expenses) {
+    $scope.error = '';
+    $scope.account_invoices.net_value = types_expenses.value;
+
+  };
+
 
   $scope.get_open_shift = function (callback) {
     $scope.busy = true;
@@ -1545,6 +1619,8 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
   $scope.loadEmployees();
   $scope.loadDelegates();
   $scope.getSafes();
+  if (site.feature('school')) $scope.getSchoolGradeList();
+  $scope.loadSchoolYears();
   $scope.getPaymentMethodList();
   $scope.getNumberingAuto();
 });

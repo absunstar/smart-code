@@ -155,6 +155,11 @@ app.controller("report_safes", function ($scope, $http, $timeout) {
                 $scope.total_incoming_comm += _invoice.commission;
 
 
+              } else if (_invoice.source_type.id == 13) {
+                $scope.total_incoming += _invoice.paid;
+                $scope.total_incoming_comm += _invoice.commission;
+
+
               }
             }
 

@@ -11,6 +11,11 @@ app.controller("school_grade", function ($scope, $http, $timeout) {
       subjects_list: [{}],
       active: true
     };
+    $scope.typesExpensesList.forEach(_t => {
+      _t.value = 0;
+    });
+    $scope.school_grade.types_expenses_list = $scope.typesExpensesList;
+
     site.showModal('#schoolGradeAddModal');
   };
 
@@ -214,6 +219,14 @@ app.controller("school_grade", function ($scope, $http, $timeout) {
 
   };
 
+  $scope.addTypesExpensesList = function (types_expenses) {
+    types_expenses.value = 0;
+    $scope.school_grade.types_expenses_list = $scope.school_grade.types_expenses_list || [];
+
+  let found =  $scope.school_grade.types_expenses_list.some(t => t.id === types_expenses.id);
+    if(!found) $scope.school_grade.types_expenses_list.unshift(types_expenses);
+  };
+
   $scope.getSubjects = function () {
     $http({
       method: "POST",
@@ -239,6 +252,34 @@ app.controller("school_grade", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.loadTypesExpenses = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/types_expenses/all",
+      data: {
+        select: {
+          id: 1,
+          name: 1,
+          code: 1
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.typesExpensesList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+
   $scope.getNumberingAuto = function () {
     $scope.error = '';
     $scope.busy = true;
@@ -263,6 +304,7 @@ app.controller("school_grade", function ($scope, $http, $timeout) {
   };
 
   $scope.getNumberingAuto();
+  $scope.loadTypesExpenses();
   $scope.getSubjects();
   $scope.getSchoolGradeList();
 

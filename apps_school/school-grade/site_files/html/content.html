@@ -15,6 +15,51 @@
                     </div>
                     <br>
                     <br>
+
+                    <div class="row">
+                        <i-list ng-search="_search.$_types_expenses" class="col3" display="name"
+                            ng-change="addTypesExpensesList(types_expenses)" ng-model="types_expenses"
+                            label="##word.types_expenses##" items="typesExpensesList">
+                        </i-list>
+                        <div class="col1"></div>
+
+                        <div class="col6">
+
+                            <fieldset>
+                                <legend>##word.types_expenses##</legend>
+
+                                <table class="table loaded hover center bold">
+                                    <tr>
+                                        <th> ##word.types_expenses_name## </th>
+                                        <th class="w150"> ##word.expense_value## </th>
+                                        <th> ##word.actions## </th>
+                                    </tr>
+                                    <tr ng-repeat="t in school_grade.types_expenses_list">
+
+                                        <td>
+                                            {{t.name}}
+                                        </td>
+
+                                        <td>
+                                            <i-control type="number" v="r" ng-model="t.value"></i-control>
+                                        </td>
+
+                                        <td>
+                                            <i-button type="delete"
+                                                ng-click="school_grade.types_expenses_list.length ==1 || school_grade.types_expenses_list.splice($index,1)">
+                                            </i-button>
+                                        </td>
+
+                                    </tr>
+                                </table>
+                            </fieldset>
+                        </div>
+                    </div>
+
+                 
+
+                    <br>
+                    <br>
                     <div class="row">
                         <fieldset>
                             <legend>##word.subjects##
@@ -36,8 +81,8 @@
                                 <tr ng-repeat="c in school_grade.subjects_list | orderBy : '-id'">
 
                                     <td>
-                                        <i-list ng-model="c.subject"  v="r" ng-search="_search.$_subject" items="subjectsList"
-                                            display="name"></i-list>
+                                        <i-list ng-model="c.subject" v="r" ng-search="_search.$_subject"
+                                            items="subjectsList" display="name"></i-list>
                                     </td>
 
                                     <td>
