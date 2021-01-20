@@ -230,12 +230,18 @@
             <div id="loginInformation" class="tab-content">
                 <fieldset>
                     <legend> ##word.login_information## </legend>
+                    <div class="row">
 
-                    <i-control help-id="" class="col4" label="##word.email##" ng-model="employee_list.username">
-                    </i-control>
-
-                    <i-control help-id="" class="col4" label="##word.password##" ng-model="employee_list.password">
-                    </i-control>
+                        <i-control help-id="" class="col4" label="##word.email##" ng-model="employee_list.username">
+                        </i-control>
+                        
+                        <i-control help-id="" class="col4" label="##word.password##" ng-model="employee_list.password">
+                        </i-control>
+                    </div>
+                    
+                    <div class="row">
+                        <i class="grayDark bold">{{email_examble}}</i>
+                    </div>
 
                 </fieldset>
             </div>

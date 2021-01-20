@@ -538,6 +538,16 @@ app.controller("employee_list", function ($scope, $http, $timeout) {
     $scope.search = {};
   };
 
+  $scope.email_examble = '';
+  if(typeof '##session.company.host##' === 'string'){
+  $scope.email_examble = 'examble##session.company.host##';
+
+  } else {
+  $scope.email_examble = 'you@examble.com';
+
+  }
+
+
   $scope.getEmployeeList();
   $scope.getGovList();
   $scope.getClassRoomsList();

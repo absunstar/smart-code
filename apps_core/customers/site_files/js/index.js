@@ -625,6 +625,15 @@ app.controller("customers", function ($scope, $http, $timeout) {
   };
 
 
+  $scope.email_examble = '';
+  if(typeof '##session.company.host##' === 'string'){
+  $scope.email_examble = 'examble##session.company.host##';
+
+  } else {
+  $scope.email_examble = 'you@examble.com';
+
+  }
+
 
   $scope.getCustomersList();
   $scope.getHost();

@@ -35,12 +35,18 @@
 
                         <fieldset class="col11">
                             <legend> ##word.login_information## </legend>
+                            <div class="row">
 
-                            <i-control help-id="" class="col4" label="##word.email##" ng-model="tables.username">
-                            </i-control>
+                                <i-control help-id="" class="col4" label="##word.email##" ng-model="tables.username">
+                                </i-control>
+                                
+                                <i-control help-id="" class="col4" label="##word.password##" ng-model="tables.password">
+                                </i-control>
+                            </div>
 
-                            <i-control help-id="" class="col4" label="##word.password##" ng-model="tables.password">
-                            </i-control>
+                            <div class="row">
+                                <i class="grayDark bold">{{email_examble}}</i>
+                            </div>
 
                         </fieldset>
                     </div>

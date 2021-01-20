@@ -184,12 +184,17 @@
             <div id="loginInformation" class="tab-content">
                 <fieldset>
                     <legend> ##word.login_information## </legend>
+                    <div class="row">
 
-                    <i-control help-id="" class="col4" label="##word.email##" ng-model="trainer.username"></i-control>
+                        <i-control help-id="" class="col4" label="##word.email##" ng-model="trainer.username"></i-control>
+                        
+                        <i-control help-id="" class="col4" label="##word.password##" ng-model="trainer.password">
+                        </i-control>
+                    </div>
 
-                    <i-control help-id="" class="col4" label="##word.password##" ng-model="trainer.password">
-                    </i-control>
-
+                    <div class="row">
+                        <i class="grayDark bold">{{email_examble}}</i>
+                    </div>
                 </fieldset>
             </div>
 
