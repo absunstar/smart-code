@@ -163,7 +163,6 @@ module.exports = function init(site) {
 
     let user = {};
 
-
     user = {
       name: customers_doc.name,
       mobile: customers_doc.mobile,
@@ -171,6 +170,7 @@ module.exports = function init(site) {
       email: customers_doc.username,
       password: customers_doc.password,
       image_url: customers_doc.image_url,
+      gender: customers_doc.gender,
       type: 'customer'
     }
 
@@ -212,6 +212,17 @@ module.exports = function init(site) {
         ]
       })
     }
+
+    if (user.gender && user.gender.id == 2) {
+      user.roles.push({
+        module_name: "student",
+        name: "customers_type",
+        en: "Student Type",
+        ar: "نوع الطالب",
+        permissions: ['female']
+      })
+    }
+
 
     user.profile = {
       name: user.name,
@@ -330,6 +341,7 @@ module.exports = function init(site) {
       email: customers_doc.username,
       password: customers_doc.password,
       image_url: customers_doc.image_url,
+      gender: customers_doc.gender,
       type: 'customer'
     }
     user.roles = [
@@ -370,6 +382,9 @@ module.exports = function init(site) {
         ]
       })
     }
+
+  
+
     user.profile = {
       name: user.name,
       mobile: user.mobile,
