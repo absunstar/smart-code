@@ -1243,6 +1243,22 @@ module.exports = function init(site) {
       delete where['source_code']
     }
 
+    if (where['school_year']) {
+      where['school_year.id'] = where['school_year'].id;
+      delete where['school_year']
+    }
+
+    if (where['school_grade']) {
+      where['school_grade.id'] = where['school_grade'].id;
+      delete where['school_grade']
+    }
+
+    if (where['types_expenses']) {
+      where['types_expenses.id'] = where['types_expenses'].id;
+      delete where['types_expenses']
+    }
+
+
     if (where['post']) {
       where['posting'] = true
       delete where['post']

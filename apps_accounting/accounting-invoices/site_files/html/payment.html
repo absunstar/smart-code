@@ -23,7 +23,7 @@
                 </i-list>
 
                 <i-list class="col3" ng-search="_search.$currency_search"
-                    ng-model="paid_invoice.currency" ng-change="getSafeByType(paid_invoice) ; calc(paid_invoice)"
+                    ng-model="paid_invoice.currency" ng-change="getSafeByType(paid_invoice) ; calc(paid_invoice,'pay')"
                     items="currenciesList" label="##word.currency##">
                 </i-list>
 

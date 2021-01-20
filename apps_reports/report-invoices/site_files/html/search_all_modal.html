@@ -31,11 +31,26 @@
                                 label="##word.source_type##" ng-model="search.source_type" items="sourceTypeList"
                                 display="##session.lang##"></i-list>
 
-                           <!--  <i-list help-id="" ng-search="_search.$order_invoices_type_search" class="col2"
+                            <!--  <i-list help-id="" ng-search="_search.$order_invoices_type_search" class="col2"
                                 x-feature="restaurant" label="##word.invoice_type##"
                                 ng-model="search.order_invoices_type" items="transactionTypeList"
                                 display="##session.lang##">
                             </i-list> -->
+                        </div>
+
+                        <div class="row" ng-show="##query.type## == 13">
+                            <i-list ng-search="_search.$_school_year" class="col3" display="name"
+                                ng-model="search.school_year" label="##word.school_year##" items="schoolYearsList">
+                            </i-list>
+                            </i-list>
+
+                            <i-list ng-search="_search.$_school_grade" class="col3" display="name"
+                                ng-model="search.school_grade" label="##word.school_grade##" items="schoolGradeList">
+                            </i-list>
+
+                            <i-list ng-search="_search.$_types_expenses" class="col3" display="name"
+                                ng-model="search.types_expenses" label="##word.types_expenses##"
+                                items="search.school_grade.types_expenses_list"></i-list>
                         </div>
                     </fieldset>
                 </form>

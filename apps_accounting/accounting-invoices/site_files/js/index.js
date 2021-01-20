@@ -110,16 +110,16 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
       }
 
 
-      if (site.toNumber("##query.type##") === 13){
-        if(!$scope.account_invoices.types_expenses){
+      if (site.toNumber("##query.type##") === 13) {
+        if (!$scope.account_invoices.types_expenses) {
           $scope.error = "##word.must_choose_type_tuition_fees##";
           return;
         }
 
-        if(!$scope.account_invoices.school_grade){
+        if (!$scope.account_invoices.school_grade) {
           $scope.error = "##word.must_choose_school_grade##";
           return;
-  
+
         }
       }
 
@@ -540,7 +540,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
       }
 
       $scope.paid_invoice.payment_list = $scope.paid_invoice.payment_list || [];
-      $scope.paid_invoice.payment_list.push({
+      $scope.paid_invoice.payment_list.unshift({
         paid_up: $scope.paid_invoice.payment_paid_up,
         payment_method: $scope.paid_invoice.payment_method,
         currency: $scope.paid_invoice.currency,
@@ -887,7 +887,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
     });
   };
 
-  $scope.calc = function (account_invoices) {
+  $scope.calc = function (account_invoices, type) {
     $scope.error = '';
     $timeout(() => {
       let total_price_item = 0;
@@ -898,7 +898,14 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
       }
 
       if (account_invoices.currency) {
-        $scope.amount_currency = (account_invoices.remain_amount || account_invoices.net_value) / account_invoices.currency.ex_rate;
+        if (type === 'pay') {
+          $scope.amount_currency = account_invoices.remain_amount / account_invoices.currency.ex_rate;
+
+        } else {
+          $scope.amount_currency = account_invoices.net_value / account_invoices.currency.ex_rate;
+
+        }
+
         $scope.amount_currency = site.toNumber($scope.amount_currency);
         if (account_invoices.Paid_from_customer <= $scope.amount_currency) {
           account_invoices.paid_up = account_invoices.Paid_from_customer;
@@ -906,6 +913,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
           account_invoices.paid_up = $scope.amount_currency;
         }
       }
+
     }, 250);
 
   };
@@ -1634,8 +1642,10 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
   $scope.loadEmployees();
   $scope.loadDelegates();
   $scope.getSafes();
-  if (site.feature('school')) $scope.getSchoolGradeList();
-  $scope.loadSchoolYears();
+  if (site.feature('school')) {
+    $scope.getSchoolGradeList();
+    $scope.loadSchoolYears();
+  }
   $scope.getPaymentMethodList();
   $scope.getNumberingAuto();
 });

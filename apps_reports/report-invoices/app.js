@@ -74,6 +74,22 @@ module.exports = function init(site) {
       delete where['order_invoices_type']
     }
 
+    if (where['school_year']) {
+      where['school_year.id'] = where['school_year'].id;
+      delete where['school_year']
+    }
+
+    if (where['school_grade']) {
+      where['school_grade.id'] = where['school_grade'].id;
+      delete where['school_grade']
+    }
+
+    if (where['types_expenses']) {
+      where['types_expenses.id'] = where['types_expenses'].id;
+      delete where['types_expenses']
+    }
+
+
     where['posting'] = true
 
     where['company.id'] = site.get_company(req).id

@@ -295,6 +295,58 @@ app.controller("report_invoices", function ($scope, $http, $timeout) {
 
   };
 
+  $scope.getSchoolGradeList = function () {
+    $http({
+      method: "POST",
+      url: "/api/school_grade/all",
+      data: {
+        select: {
+          id: 1,
+          name: 1,
+          code: 1,
+          types_expenses_list: 1
+        },
+        where: {
+          active: true
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.schoolGradeList = response.data.list;
+      },
+      function (err) {
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.loadSchoolYears = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/school_years/all",
+      data: {
+        select: {
+          id: 1,
+          name: 1,
+          code: 1
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.schoolYearsList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
 
   $scope.searchAll = function () {
     $scope._search = {};
@@ -306,6 +358,12 @@ app.controller("report_invoices", function ($scope, $http, $timeout) {
   $scope.getReportInvoicesList({ date: new Date() });
   if (site.feature('restaurant') || site.feature('pos') || site.feature('erp'))
     $scope.getTransactionTypeList();
+
+  if (site.feature('school')) {
+    $scope.getSchoolGradeList();
+    $scope.loadSchoolYears();
+  }
+
   $scope.getPaymentMethodList();
   $scope.getDefaultSettings();
   $scope.getSourceType();
