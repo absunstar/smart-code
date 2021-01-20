@@ -25,6 +25,16 @@
         "ar": "تم الدفع"
     },
     {
+        "name": "must_choose_type_tuition_fees",
+        "en": "You must choose the type of tuition fees",
+        "ar": "يجب إختيار نوع المصروفات الدراسية"
+    },
+    {
+        "name": "must_choose_school_grade",
+        "en": "You must choose school grade",
+        "ar": "يجب إختيار المرحلة الدراسية"
+    },
+    {
         "name": "under_payment",
         "en": "Under Payment",
         "ar": "تحت الدفع"

@@ -70,6 +70,9 @@ app.controller("report_invoices", function ($scope, $http, $timeout) {
     $scope.busy = true;
     $scope.list = [];
     $scope.count = 0;
+    where = where || {};
+    where.source_type = { id: site.toNumber("##query.type##") };
+
     $http({
       method: "POST",
       url: "/api/report_invoices/all",

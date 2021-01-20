@@ -10,6 +10,11 @@
         "ar": "مرحل"
     },
     {
+        "name": "report",
+        "en": "Report",
+        "ar": "تقرير"
+    },
+    {
         "name": "un_post",
         "en": "Un Post",
         "ar": "غير مرحل"

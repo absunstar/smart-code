@@ -60,6 +60,11 @@
                                     <td class="center "> {{account_invoices.school_grade.name}} </td>
                                 </tr>
 
+                                <tr ng-show="account_invoices.types_expenses.id">
+                                    <td class="title"> ##word.types_expenses## </td>
+                                    <td class="center "> {{account_invoices.types_expenses.name}} </td>
+                                </tr>
+
 
                                 <tr ng-show="account_invoices.trainer.name">
                                     <td class="title"> ##word.trainer## </td>
@@ -162,14 +167,6 @@
                                     </td>
                                 </tr>
 
-                                <tr>
-                                    <td class="title"> ##word.active## </td>
-                                    <td ng-show="account_invoices.active == true" class="center green"> ##word.active##
-                                    </td>
-                                    <td ng-show="account_invoices.active == false" class="center red">
-                                        ##word.not_active##
-                                    </td>
-                                </tr>
                             </table>
                         </div>
 

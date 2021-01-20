@@ -18,7 +18,17 @@
 
                 <div x-import="report-invoices/search_all_modal.html"></div>
                 <div class="row">
-                    <h1 class="bold text-center"> ##word.report_invoices_name## </h1>
+                    <h1 ng-show="##query.type## == 1" class="bold text-center"> ##word.report## ##word.purchase_invoice## </h1>
+                    <h1 ng-show="##query.type## == 2" class="bold text-center"> ##word.report## ##word.sales_invoice## </h1>
+                    <h1 ng-show="##query.type## == 3" class="bold text-center"> ##word.report## ##word.orders_screen_invoice## </h1>
+                    <h1 ng-show="##query.type## == 4" class="bold text-center"> ##word.report## ##word.orders_service_invoice## </h1>
+                    <h1 ng-show="##query.type## == 8" class="bold text-center"> ##word.report## ##word.amount_in_invoice## </h1>
+                    <h1 ng-show="##query.type## == 9" class="bold text-center"> ##word.report## ##word.amount_out_invoice## </h1>
+                    <h1 ng-show="##query.type## == 10" class="bold text-center"> ##word.report## ##word.recharge_customer_balance##</h1>
+                    <h1 ng-show="##query.type## == 11" class="bold text-center"> ##word.report## ##word.employee_advance## </h1>
+                    <h1 ng-show="##query.type## == 12" class="bold text-center"> ##word.report## ##word.payment_employee_advance## </h1>
+                    <h1 ng-show="##query.type## == 13" class="bold text-center"> ##word.report## ##word.school_fees## </h1>
+
                 </div>
 
                 <div class="top-actions">
@@ -44,10 +54,10 @@
                         type="number" disabled></i-control>
                 </div>
                 <div class="row">
-                    <i-control id="item_name" class="col2 r_green" ng-model="cash"
-                        label="##word.cash##" type="number" disabled></i-control>
-                    <i-control id="item_name" class="col2 r_green" ng-model="bank"
-                        label="##word.bank##" type="number" disabled></i-control>
+                    <i-control id="item_name" class="col2 r_green" ng-model="cash" label="##word.cash##" type="number"
+                        disabled></i-control>
+                    <i-control id="item_name" class="col2 r_green" ng-model="bank" label="##word.bank##" type="number"
+                        disabled></i-control>
 
 
                     <i-control id="item_name" class="col2 r_darkRed" ng-model="total_tax"
@@ -67,16 +77,18 @@
                             <th> ##word.date## </th>
                             <th> ##word.invoices_code## </th>
                             <th> ##word.source_type## </th>
-                            <th x-feature="restaurant"> ##word.order_type## </th>
+                            <th ng-show="##query.type## == 3"> ##word.order_type## </th>
                             <th> ##word.payment_method## </th>
-                            <th> ##word.total_items_price## </th>
-                            <th> ##word.stores_out_total_tax## </th>
-                            <th> ##word.stores_out_total_discount## </th>
-                            <th x-feature="restaurant"> ##word.services## </th>
+                            <!--  <th ng-show="##query.type## == 1 || ##query.type## == 2 || ##query.type## == 3">
+                                ##word.total_items_price## </th> -->
+                            <th ng-show="##query.type## == 1 || ##query.type## == 2 || ##query.type## == 3">
+                                ##word.stores_out_total_tax## </th>
+                            <th ng-show="##query.type## == 1 || ##query.type## == 2 || ##query.type## == 3">
+                                ##word.stores_out_total_discount## </th>
+                            <th ng-show="##query.type## == 3"> ##word.services## </th>
                             <th> ##word.net_value## </th>
                             <th> ##word.paid_up## </th>
                             <th> ##word.remain_amount## </th>
-                            <th> ##word.status## </th>
                         </tr>
 
                         <tr ng-repeat="c in list | orderBy : '-id'">
@@ -86,12 +98,15 @@
                             <td class="brown"> {{c.date | date : 'dd - MM - yyyy'}} </td>
                             <td class="blue"> {{c.code}} </td>
                             <td> {{c.source_type.##session.lang##}} </td>
-                            <td x-feature="restaurant"> {{c.order_invoices_type.##session.lang##}} </td>
+                            <td ng-show="##query.type## == 3"> {{c.order_invoices_type.##session.lang##}} </td>
                             <td> {{c.payment_method.##session.lang##}} </td>
-                            <td> {{c.items_price ||0}} </td>
-                            <td class="red"> {{c.total_tax ||0}} </td>
-                            <td class="red"> {{c.total_discount ||0}} </td>
-                            <td x-feature="restaurant">
+                            <!--  <td ng-show="##query.type## == 1 || ##query.type## == 2 || ##query.type## == 3">
+                                {{c.items_price ||0}} </td> -->
+                            <td class="red" ng-show="##query.type## == 1 || ##query.type## == 2 || ##query.type## == 3">
+                                {{c.total_tax ||0}} </td>
+                            <td class="red" ng-show="##query.type## == 1 || ##query.type## == 2 || ##query.type## == 3">
+                                {{c.total_discount ||0}} </td>
+                            <td ng-show="##query.type## == 3">
                                 <p ng-show="c.service"> ##word.service## </p>
                                 <p ng-show="c.service">{{c.service}}</p>
                                 <p ng-show="c.price_delivery_service"> ##word.price_delivery_service## </p>
@@ -100,10 +115,6 @@
                             <td> {{c.net_value}} </td>
                             <td class="green"> {{c.paid_up ||0}} </td>
                             <td class="blue"> {{c.remain_amount ||0}} </td>
-                            <td>
-                                <p ng-show="c.active == true" class="green"> ##word.active## </p>
-                                <p ng-show="c.active == false" class="red"> ##word.not_active## </p>
-                            </td>
                         </tr>
                     </table>
                 </div>

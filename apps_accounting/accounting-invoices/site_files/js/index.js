@@ -20,14 +20,14 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
         };
 
         if ($scope.defaultSettings.accounting) {
-          if ($scope.account_invoices.source_type && $scope.account_invoices.source_type.id == 3)
+          if ($scope.account_invoices.source_type && $scope.account_invoices.source_type.id === 3)
             $scope.getTransactionTypeList();
           $scope.account_invoices.currency = $scope.currencySetting;
 
           if ($scope.defaultSettings.accounting.payment_method) {
             $scope.account_invoices.payment_method = $scope.defaultSettings.accounting.payment_method;
             $scope.loadSafes($scope.account_invoices.payment_method, $scope.account_invoices.currency);
-            if ($scope.account_invoices.payment_method.id == 1)
+            if ($scope.account_invoices.payment_method.id === 1)
               $scope.account_invoices.safe = $scope.defaultSettings.accounting.safe_box;
             else $scope.account_invoices.safe = $scope.defaultSettings.accounting.safe_bank;
           }
@@ -36,7 +36,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
         if ($scope.defaultSettings.general_Settings) {
           if ($scope.defaultSettings.general_Settings && !$scope.defaultSettings.general_Settings.work_posting)
             $scope.account_invoices.posting = true;
-          if ($scope.defaultSettings.general_Settings.order_type && $scope.account_invoices.source_type && $scope.account_invoices.source_type.id == 3)
+          if ($scope.defaultSettings.general_Settings.order_type && $scope.account_invoices.source_type && $scope.account_invoices.source_type.id === 3)
             $scope.account_invoices.order_invoices_type = $scope.defaultSettings.general_Settings.order_type;
 
           if (site.toNumber("##query.type##") == 13 || site.toNumber("##query.type##") == 8 || site.toNumber("##query.type##") == 10) {
@@ -89,7 +89,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
         $scope.error = "##word.date_exceed##";
         return;
 
-      } else if ($scope.account_invoices.customer && $scope.account_invoices.payment_method && $scope.account_invoices.payment_method.id == 10) {
+      } else if ($scope.account_invoices.customer && $scope.account_invoices.payment_method && $scope.account_invoices.payment_method.id === 10) {
         if (customer) {
           let totalCustomerBalance = 0;
           let customerPay = $scope.account_invoices.paid_up * $scope.account_invoices.currency.ex_rate;
@@ -104,10 +104,25 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
       }
 
       if ($scope.account_invoices.source_type) {
-        if ($scope.account_invoices.source_type.id == 8 || $scope.account_invoices.source_type.id == 9 || $scope.account_invoices.source_type.id == 10 || $scope.account_invoices.source_type.id == 11) {
+        if ($scope.account_invoices.source_type.id === 8 || $scope.account_invoices.source_type.id === 9 || $scope.account_invoices.source_type.id === 10 || $scope.account_invoices.source_type.id === 11) {
           $scope.account_invoices.net_value = $scope.account_invoices.paid_up;
         }
       }
+
+
+      if (site.toNumber("##query.type##") === 13){
+        if(!$scope.account_invoices.types_expenses){
+          $scope.error = "##word.must_choose_type_tuition_fees##";
+          return;
+        }
+
+        if(!$scope.account_invoices.school_grade){
+          $scope.error = "##word.must_choose_school_grade##";
+          return;
+  
+        }
+      }
+
 
       $scope.financialYear($scope.account_invoices.date, is_allowed_date => {
         if (!is_allowed_date) {
@@ -286,7 +301,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
         $scope.error = "##word.date_exceed##";
         return;
 
-      } else if ($scope.account_invoices.customer && $scope.account_invoices.payment_method && $scope.account_invoices.payment_method.id == 10) {
+      } else if ($scope.account_invoices.customer && $scope.account_invoices.payment_method && $scope.account_invoices.payment_method.id === 10) {
         if (customer) {
           let totalCustomerBalance = 0;
           let customerPay = $scope.account_invoices.paid_up * $scope.account_invoices.currency.ex_rate;
@@ -301,7 +316,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
       }
 
       if ($scope.account_invoices.source_type) {
-        if ($scope.account_invoices.source_type.id == 8 || $scope.account_invoices.source_type.id == 9 || $scope.account_invoices.source_type.id == 10 || $scope.account_invoices.source_type.id == 11) {
+        if ($scope.account_invoices.source_type.id === 8 || $scope.account_invoices.source_type.id === 9 || $scope.account_invoices.source_type.id === 10 || $scope.account_invoices.source_type.id === 11) {
           $scope.account_invoices.net_value = $scope.account_invoices.paid_up;
         }
       }
@@ -383,7 +398,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
     });
   };
   $scope.getTransactionType = function (source_type) {
-    if (source_type.id == 3)
+    if (source_type.id === 3)
       $scope.getTransactionTypeList();
   };
 
@@ -509,7 +524,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
         return;
       }
 
-      if ($scope.paid_invoice.customer && $scope.paid_invoice.payment_method && $scope.paid_invoice.payment_method.id == 10) {
+      if ($scope.paid_invoice.customer && $scope.paid_invoice.payment_method && $scope.paid_invoice.payment_method.id === 10) {
         if (customer) {
 
           let totalCustomerBalance = 0;
@@ -602,7 +617,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.busy = true;
     $scope.orderInvoicesTypeList = [];
-    if ($scope.account_invoices.source_type.id == 3 && !$scope.account_invoices.order_invoices_type) {
+    if ($scope.account_invoices.source_type.id === 3 && !$scope.account_invoices.order_invoices_type) {
       $scope.error = "##word.err_order_type##";
       return;
     } else if (ev.which === 13) {
@@ -612,26 +627,26 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
 
       if ($scope.account_invoices.source_type) {
 
-        if ($scope.account_invoices.source_type.id == 1) {
+        if ($scope.account_invoices.source_type.id === 1) {
           url = "/api/stores_in/all";
           where = { 'type.id': 1 };
         }
 
-        else if ($scope.account_invoices.source_type.id == 2) {
+        else if ($scope.account_invoices.source_type.id === 2) {
           url = "/api/stores_out/all";
           where = { 'type.id': { $ne: 4 } };
         }
 
-        else if ($scope.account_invoices.source_type.id == 3)
+        else if ($scope.account_invoices.source_type.id === 3)
           url = "/api/order_invoice/invoices";
 
-        else if ($scope.account_invoices.source_type.id == 4)
+        else if ($scope.account_invoices.source_type.id === 4)
           url = "/api/request_service/all";
 
-        else if ($scope.account_invoices.source_type.id == 5)
+        else if ($scope.account_invoices.source_type.id === 5)
           url = "/api/book_hall/all";
 
-        else if ($scope.account_invoices.source_type.id == 12) {
+        else if ($scope.account_invoices.source_type.id === 12) {
           url = "/api/account_invoices/all";
 
 
@@ -692,7 +707,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
         if (response.data.done) {
           $scope.currenciesList = response.data.list;
           $scope.currenciesList.forEach(_c => {
-            if ($scope.defaultSettings && $scope.defaultSettings.accounting && $scope.defaultSettings.accounting.currency && $scope.defaultSettings.accounting.currency.id == _c.id) {
+            if ($scope.defaultSettings && $scope.defaultSettings.accounting && $scope.defaultSettings.accounting.currency && $scope.defaultSettings.accounting.currency.id === _c.id) {
               $scope.currencySetting = _c
             }
           });
@@ -709,7 +724,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
     $scope.error = '';
     if ($scope.defaultSettings.accounting) {
       $scope.loadSafes(obj.payment_method, obj.currency);
-      if (obj.payment_method.id == 1) {
+      if (obj.payment_method.id === 1) {
         if ($scope.defaultSettings.accounting.safe_box)
           obj.safe = $scope.defaultSettings.accounting.safe_box
       } else {
@@ -727,7 +742,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
 
       let where = { 'currency.id': currency.id };
 
-      if (method.id == 1)
+      if (method.id === 1)
         where['type.id'] = 1;
       else where['type.id'] = 2;
 
@@ -830,7 +845,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
     $scope.price_delivery_service = $scope.account_invoices.price_delivery_service;
     $scope.service = $scope.account_invoices.service;
 
-    if ($scope.account_invoices.source_type && $scope.account_invoices.source_type.id == 3) {
+    if ($scope.account_invoices.source_type && $scope.account_invoices.source_type.id === 3) {
 
       item.under_paid.book_list.forEach(_item => {
         if (_item.count > 0) {
@@ -857,7 +872,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
           if ($scope.defaultSettings.accounting.payment_method) {
             $scope.paid_invoice.payment_method = $scope.defaultSettings.accounting.payment_method;
             $scope.loadSafes($scope.paid_invoice.payment_method, $scope.paid_invoice.currency);
-            if ($scope.paid_invoice.payment_method.id == 1)
+            if ($scope.paid_invoice.payment_method.id === 1)
               $scope.paid_invoice.safe = $scope.defaultSettings.accounting.safe_box;
             else $scope.paid_invoice.safe = $scope.defaultSettings.accounting.safe_bank;
           }
@@ -897,7 +912,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
   $scope.deleteItemsList = function (item) {
     $scope.error = '';
 
-    if (item.count == 1) {
+    if (item.count === 1) {
       $scope.account_invoices.current_book_list.splice($scope.account_invoices.current_book_list.indexOf(item), 1)
 
     } else if (item.count > 1) {
@@ -1286,7 +1301,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
   $scope.getOrderTypeSetting = function () {
     $scope.error = '';
     $scope.account_invoices.order_invoices_type = {};
-    if ($scope.account_invoices.source_type && $scope.account_invoices.source_type.id == 3 && $scope.defaultSettings.general_Settings && $scope.defaultSettings.general_Settings.order_type) {
+    if ($scope.account_invoices.source_type && $scope.account_invoices.source_type.id === 3 && $scope.defaultSettings.general_Settings && $scope.defaultSettings.general_Settings.order_type) {
       $scope.getTransactionTypeList();
       $scope.account_invoices.order_invoices_type = $scope.defaultSettings.general_Settings.order_type;
     }

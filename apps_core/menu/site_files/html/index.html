@@ -636,6 +636,13 @@
     <div id="reporting_tabs" class="tabs">
         <div class="tabs-header">
 
+
+            <a class="tab-link" x-features="school" href="/report_invoices?type=13"
+                x-permissions="report_invoices_ui || report_invoices_manage">
+                <img src="/images/school_fees.png">
+                <span>##word.school_fees## </span>
+            </a>
+
             <a class="tab-link" x-features="school" href="/report_attend_students"
                 x-permissions="report_attend_students_ui || report_attend_students_manage">
                 <img src="images/attend_students.png">
@@ -648,7 +655,8 @@
                 <span>##word.report_attend_employees##</span>
             </a>
 
-            <a class="tab-link" href="/report_exams" x-permissions="report_exams_ui || report_exams_manage">
+            <a class="tab-link" x-features="school" href="/report_exams"
+                x-permissions="report_exams_ui || report_exams_manage">
                 <img src="images/report_exams.png">
                 <span>##word.report_exams##</span>
             </a>
@@ -664,7 +672,8 @@
                 <span>##word.employees_salary_report##</span>
             </a>
 
-            <a class="tab-link" href="/report_daily" x-permissions="report_daily_ui || report_daily_manage">
+            <a class="tab-link" x-features="pos || erp || restaurant" href="/report_daily"
+                x-permissions="report_daily_ui || report_daily_manage">
                 <img src="/images/report_daily.png">
                 <span>##word.report_daily_name##</span>
             </a>
@@ -809,9 +818,65 @@
                 <span>##word.report_sales_total_name##</span>
             </a>
 
-            <a class="tab-link" href="/report_invoices" x-permissions="report_invoices_ui || report_invoices_manage">
+
+            <!-- <a class="tab-link" href="/report_invoices" x-permissions="report_invoices_ui || report_invoices_manage">
                 <img src="/images/report_invoices.png">
                 <span>##word.report_invoices_name##</span>
+            </a> -->
+
+
+            <a class="tab-link" x-features="gym" href="/report_invoices?type=4"
+                x-permissions="report_invoices_ui || report_invoices_manage">
+                <img src="/images/order_invoice.png">
+                <span>##word.report##  ##word.orders_service_invoice## </span>
+            </a>
+
+            <a class="tab-link" href="/report_invoices?type=1"
+                x-permissions="report_invoices_ui || report_invoices_manage">
+                <img src="/images/pic_money_in.png">
+                <span>##word.report##  ##word.purchase_invoice## </span>
+            </a>
+
+            <a class="tab-link" href="/report_invoices?type=2"
+                x-permissions="report_invoices_ui || report_invoices_manage">
+                <img src="/images/store_out.png">
+                <span>##word.report##  ##word.sales_invoice## </span>
+            </a>
+
+            <a class="tab-link" x-features="pos || restaurant || erp" href="/report_invoices?type=3"
+                x-permissions="report_invoices_ui || report_invoices_manage">
+                <img src="/images/order_invoice.png">
+                <span>##word.report##  ##word.orders_screen_invoice## </span>
+            </a>
+
+            <a class="tab-link" href="/report_invoices?type=8"
+                x-permissions="report_invoices_ui || report_invoices_manage">
+                <img src="/images/amount_in.png">
+                <span>##word.report##  ##word.amount_in_invoice## </span>
+            </a>
+
+            <a class="tab-link" href="/report_invoices?type=9"
+                x-permissions="report_invoices_ui || report_invoices_manage">
+                <img src="/images/amount_out1.png">
+                <span>##word.report##  ##word.amount_out_invoice## </span>
+            </a>
+
+            <a class="tab-link" href="/report_invoices?type=10"
+                x-permissions="report_invoices_ui || report_invoices_manage">
+                <img src="/images/recharge_customer_balance.png">
+                <span>##word.report##  ##word.recharge_customer_balance## </span>
+            </a>
+
+            <a class="tab-link" href="/report_invoices?type=11"
+                x-permissions="report_invoices_ui || report_invoices_manage">
+                <img src="/images/emp_advances1.png">
+                <span>##word.report##  ##word.employee_advance## </span>
+            </a>
+
+            <a class="tab-link" href="/report_invoices?type=12"
+                x-permissions="report_invoices_ui || report_invoices_manage">
+                <img src="/images/emp_advances2.png">
+                <span>##word.report##  ##word.payment_employee_advance## </span>
             </a>
 
             <a class="tab-link" href="/report_safes" x-permissions="report_safes_ui || report_safes_manage">
