@@ -1,5 +1,5 @@
 [{
-    "module_name" : "inventory" ,
+    "module_name" : "report" ,
     "name": "report_stores_movement_admin",
     "en": "Report Stores Movement Admin",
     "ar": "تقرير حركة الأصناف",

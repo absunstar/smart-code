@@ -1,5 +1,5 @@
 [{
-    "module_name" : "accounting" ,
+    "module_name" : "report" ,
     "name": "report_invoices_payments_admin",
     "en": "Report Invoices Payments",
     "ar": "تقرير دفعات الفواتير",

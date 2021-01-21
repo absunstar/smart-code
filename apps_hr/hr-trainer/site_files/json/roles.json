@@ -1,5 +1,5 @@
 [{
-    "module_name" : "public" ,
+    "module_name" : "hr" ,
     "name": "trainer_admin",
     "en": "Trainer Admin",
     "ar": "إدارة المدربين",

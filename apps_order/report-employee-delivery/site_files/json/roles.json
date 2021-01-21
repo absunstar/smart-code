@@ -1,5 +1,5 @@
 [{
-    "module_name" : "accounting" ,
+    "module_name" : "report" ,
     "name": "report_employee_delivery_admin",
     "en": "Report Employee Delivery  Admin",
     "ar": "تقرير سائقين التوصيل",

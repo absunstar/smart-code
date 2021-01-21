@@ -1,7 +1,7 @@
 [
-    { "module_name" : "accounting" , "screen_name" : "report-invoices-customers" , "name":"report_invoices_customers_manage" , "en":"Manage" , "ar":"إدارة"},
-    { "module_name" : "accounting" , "screen_name" : "report-invoices-customers" , "name":"report_invoices_customers_search" , "en":"Search" , "ar":"بحث"},
-    { "module_name" : "accounting" , "screen_name" : "report-invoices-customers" , "name":"report_invoices_customers_export" , "en":"Export" , "ar":"تصدير"},
-    { "module_name" : "accounting" , "screen_name" : "report-invoices-customers" , "name":"report_invoices_customers_print" , "en":"Print" , "ar":"طباعة"},
-    { "module_name" : "accounting" , "screen_name" : "report-invoices-customers" , "name":"report_invoices_customers_ui" , "en":"UI" , "ar":"الواجهة الرسومية"}
+    { "module_name" : "report" , "screen_name" : "report-invoices-customers" , "name":"report_invoices_customers_manage" , "en":"Manage" , "ar":"إدارة"},
+    { "module_name" : "report" , "screen_name" : "report-invoices-customers" , "name":"report_invoices_customers_search" , "en":"Search" , "ar":"بحث"},
+    { "module_name" : "report" , "screen_name" : "report-invoices-customers" , "name":"report_invoices_customers_export" , "en":"Export" , "ar":"تصدير"},
+    { "module_name" : "report" , "screen_name" : "report-invoices-customers" , "name":"report_invoices_customers_print" , "en":"Print" , "ar":"طباعة"},
+    { "module_name" : "report" , "screen_name" : "report-invoices-customers" , "name":"report_invoices_customers_ui" , "en":"UI" , "ar":"الواجهة الرسومية"}
 ]

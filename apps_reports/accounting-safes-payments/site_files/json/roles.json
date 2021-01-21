@@ -1,5 +1,5 @@
 [{
-    "module_name" : "accounting" ,
+    "module_name" : "report" ,
     "name": "safes_payments_admin",
     "en": "Safes Payments Admin",
     "ar": "إدارة معاملات الخزينة",

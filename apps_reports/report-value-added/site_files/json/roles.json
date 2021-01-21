@@ -1,5 +1,5 @@
 [{
-    "module_name" : "accounting" ,
+    "module_name" : "report" ,
     "name": "report_value_added_admin",
     "en": "Report Value Added Admin",
     "ar": "إدارة تقرير القيمة المضافة",

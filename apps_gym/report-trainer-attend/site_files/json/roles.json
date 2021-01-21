@@ -1,5 +1,5 @@
 [{
-    "module_name" : "public" ,
+    "module_name" : "report" ,
     "name": "report_trainer_attend_admin",
     "en": "report Trainer Attend Session Admin",
     "ar": "إدارة تقرير حضور الجلسات للمدربين",

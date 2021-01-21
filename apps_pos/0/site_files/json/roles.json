@@ -1,9 +1,0 @@
-[{
-    "module_name":"public",
-    "name": "companies_admin",
-    "en": "POS Add Admin",
-    "ar": "إدارة نقاط البيع",
-    "permissions": [
-        "*"
-    ]
-}]

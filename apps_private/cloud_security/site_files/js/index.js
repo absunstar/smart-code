@@ -45,6 +45,7 @@ app.controller("security", function ($scope, $http, $interval) {
           $scope.inventory_roles = $scope.roles.filter(s => s.module_name == 'inventory');
           $scope.custom_roles = $scope.roles.filter(s => s.module_name == 'custom');
           $scope.public_roles = $scope.roles.filter(s => s.module_name == 'public');
+          $scope.report_roles = $scope.roles.filter(s => s.module_name == 'report');
 
         }
       },

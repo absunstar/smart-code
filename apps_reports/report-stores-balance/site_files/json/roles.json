@@ -1,5 +1,5 @@
 [{
-    "module_name" : "inventory" ,
+    "module_name" : "report" ,
     "name": "report_stores_balance_admin",
     "en": "Report Items Balance Admin",
     "ar": "تقرير أرصدة الأصناف",

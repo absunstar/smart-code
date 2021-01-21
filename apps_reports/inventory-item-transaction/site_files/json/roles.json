@@ -1,5 +1,5 @@
 [{
-    "module_name" : "inventory" ,
+    "module_name" : "report" ,
     "name": "item_transaction_admin",
     "en": "item_transaction",
     "ar": "إدارة كارتة الصنف",

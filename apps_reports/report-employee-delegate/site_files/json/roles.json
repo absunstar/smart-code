@@ -1,5 +1,5 @@
 [{
-    "module_name" : "accounting" ,
+    "module_name" : "report" ,
     "name": "report_employee_delegate_admin",
     "en": "Report Employee Delegate  Admin",
     "ar": "تقرير المناديب",

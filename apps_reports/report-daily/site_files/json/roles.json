@@ -1,5 +1,5 @@
 [{
-    "module_name" : "accounting" ,
+    "module_name" : "report" ,
     "name": "report_daily_admin",
     "en": "Report Invoices  Admin",
     "ar": "إدارة تقرير اليومية",

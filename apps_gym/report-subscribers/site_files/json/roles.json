@@ -1,5 +1,5 @@
 [{
-    "module_name" : "accounting" ,
+    "module_name" : "report" ,
     "name": "report_subscribers_admin",
     "en": "Account statement Admin",
     "ar": "إدارة كشف حساب المشتركين",

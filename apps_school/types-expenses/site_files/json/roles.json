@@ -1,7 +1,7 @@
 [{
     "module_name" : "public" ,
-    "name": "year_works_admin",
-    "en": "Putting Year Works Admin",
-    "ar": "إدارة وضع درجات أعمال السنة",
-    "permissions": ["year_works_manage"]
+    "name": "types_expenses_admin",
+    "en": "Types Expenses Admin",
+    "ar": "إدارة أنواع المصروفات الدراسية",
+    "permissions": ["types_expenses_manage"]
 }]

@@ -19,20 +19,59 @@
     background-color: cyan !important;
 }
 
+html {
+    background:  #ffeff7;
+ 
+}
+.table th {
+    border-color:#ffe8f3;
+    background-color : #ff0077d9;
+}
+
+.table td {
+    border-color:#ffe8f3;
+}
+
+.post {
+    background: #ffeff7;
+}
+
+.tabs .tabs-header .tab-link.active {
+    background-color: #ff0077;
+  }
+
+  .tabs .tabs-header .tab-link:hover {
+    background-color: #ff0077;
+  }
+  
+  popup item:hover {
+    background: #ff0077;
+    color: #ffffff;
+  }
+
+  nav.sitebar {
+    box-shadow: 1px 1px 1px 1px #f50073;
+  }
+
+
+.select-items div:hover, .same-as-selected {
+    background-color: #d4007c;
+  }
+
 :root {
     --theme-color2: #7143a5;
-    --theme-color: #ff0076;
-    --input-focus-border-color: #ff0076;
-    --input-color: #ff0076;
-    --tabs-header-link-color: #0024da;
-    --modal-box-shadow-color: #ff0076;
-    --background-color: url('/images/roz.jpg') fixed;
-    --table-background-color: url('/images/roz.jpg') fixed;
-    --body-background: url('/images/roz.jpg') fixed;
-    --input-background-color: #fddaeb;
-    --modal-background:  #fddaeb;
-    --modal-content-background: #fddaeb;
+    --theme-color: #ff0077d9;
+    --input-focus-border-color: #ff0077d9;
+    --input-color: #000000;
+    --tabs-header-link-color: #000000;
+    --modal-box-shadow-color: #ff0077d9;
+    --background-color: #ffeff7;
+    --table-background-color: #ffeff7;
+    --body-background: #ffeff7;
+    --input-background-color: #ffeff7;
+    --modal-background:  #ffeff7;
+    --modal-content-background: #ffeff7;
     --table-border: 1px solid #fc479b;
     --input-border-color: rgb(243, 103, 157);
-    --tabs-header-link-border-bottom: 1px solid #ff0076;
+    --tabs-header-link-border-bottom: 1px solid #ffeff7;
 }

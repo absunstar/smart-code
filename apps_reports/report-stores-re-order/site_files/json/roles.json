@@ -1,5 +1,5 @@
 [{
-    "module_name" : "inventory" ,
+    "module_name" : "report" ,
     "name": "report_stores_re_order_admin",
     "en": "Report Stores Re Order Admin",
     "ar": "تقرير إعادة الطلب",

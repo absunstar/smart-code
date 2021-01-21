@@ -1,7 +1,0 @@
-[{
-    "module_name" : "public" ,
-    "name": "attend_leave_admin",
-    "en": "Attend Leave Employees Admin",
-    "ar": "إدارة حضور و إنصراف الموظفين",
-    "permissions": ["attend_leave_manage"]
-}]

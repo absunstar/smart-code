@@ -1,5 +1,5 @@
 [{
-    "module_name" : "accounting" ,
+    "module_name" : "report" ,
     "name": "report_full_employees_admin",
     "en": "Report Full Employee Admin",
     "ar": "تقرير شامل لطلبات الموظفين",

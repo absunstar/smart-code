@@ -123,6 +123,17 @@
                     <fieldset>
                         <legend>
                             ##word.security_inventory_roles##
+                            <i-checkbox ng-model="$report_roles" ng-click="checkAll('report_roles')"></i-checkbox>
+                        </legend>
+                        <i-checklist primary="name" label="" items="report_roles" display="##session.lang##"
+                            ng-model="user.roles"></i-checklist>
+                    </fieldset>
+                </div>
+
+                <div class="row padding">
+                    <fieldset>
+                        <legend>
+                            ##word.reports##
                             <i-checkbox ng-model="$inventory_roles" ng-click="checkAll('inventory_roles')"></i-checkbox>
                         </legend>
                         <i-checklist primary="name" label="" items="inventory_roles" display="##session.lang##"

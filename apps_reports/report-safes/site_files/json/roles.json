@@ -1,5 +1,5 @@
 [{
-    "module_name" : "accounting" ,
+    "module_name" : "report" ,
     "name": "report_safes_admin",
     "en": "Report Safes Admin",
     "ar": "إدارة تقرير الخزينة",

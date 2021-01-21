@@ -1,5 +1,5 @@
 [{
-    "module_name" : "accounting" ,
+    "module_name" : "report" ,
     "name": "report_attend_students_admin",
     "en": "Attend & Absence Students Admin",
     "ar": "حضور و غياب الطلاب",

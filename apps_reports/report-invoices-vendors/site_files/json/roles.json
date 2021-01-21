@@ -1,5 +1,5 @@
 [{
-    "module_name" : "accounting" ,
+    "module_name" : "report" ,
     "name": "report_invoices_vendors_admin",
     "en": "Account Statement Vendors  Admin",
     "ar": "كشف حساب الموردين",

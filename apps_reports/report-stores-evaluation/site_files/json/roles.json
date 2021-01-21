@@ -1,5 +1,5 @@
 [{
-    "module_name" : "inventory" ,
+    "module_name" : "report" ,
     "name": "report_stores_evaluation_admin",
     "en": "Report Inventory Evaluation Admin",
     "ar": "تقرير تقييم المخزون",

@@ -1,5 +1,5 @@
 [{
-    "module_name":"public",
+    "module_name":"accounting",
     "name": "financial_years_admin",
     "en": "Financial Years Add Admin",
     "ar": "ادارة السنوات المالية",

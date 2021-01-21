@@ -1,5 +1,5 @@
 [{
-    "module_name" : "public" ,
+    "module_name" : "hr" ,
     "name": "jobs_admin",
     "en": "Jobs Admin",
     "ar": "إدارة الوظائف",

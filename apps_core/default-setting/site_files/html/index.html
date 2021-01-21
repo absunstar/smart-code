@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="en" data-ng-app="myApp" class="bg-white">
+<html lang="en" data-ng-app="myApp" class="bg-white" x-permissions="default_setting_ui || default_setting_manage">
 
 <head x-import="head.html">
 </head>
@@ -23,12 +23,12 @@
             <h1 class="center bold black"> ##word.default_settings## </h1>
             <br>
 
-            <div x-permissions="login" x-import="default-setting/content.html"></div>
+            <div x-permissions="default_setting_view || default_setting_manage" x-import="default-setting/content.html"></div>
             <br>
             <br>
             <br>
 
-            <i-button type="save" label="##word.save##" ng-click="saveSetting()"></i-button>
+            <i-button type="save"  label="##word.save##" x-permissions="default_setting_edit || default_setting_manage" ng-click="saveSetting()"></i-button>
 
 
         </div>

@@ -1,9 +1,0 @@
-[{
-    "module_name":"public",
-    "name": "companies_admin",
-    "en": "Lawyers Office Add Admin",
-    "ar": "إدارة مكاتب المحاماه",
-    "permissions": [
-        "*"
-    ]
-}]

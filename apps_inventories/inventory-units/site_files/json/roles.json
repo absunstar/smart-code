@@ -1,5 +1,5 @@
 [{
-    "module_name" : "public" ,
+    "module_name" : "inventory" ,
     "name": "units_admin",
     "en": "Units Admin",
     "ar": "إدارة الوحدات",

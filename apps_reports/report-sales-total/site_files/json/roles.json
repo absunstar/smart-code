@@ -1,5 +1,5 @@
 [{
-    "module_name" : "accounting" ,
+    "module_name" : "report" ,
     "name": "report_sales_total_admin",
     "en": "Report Sales Total Admin",
     "ar": "تقرير إجمالي للمبيعات",

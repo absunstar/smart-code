@@ -192,7 +192,7 @@ module.exports = function init(site) {
 
     if (site.feature('gym')) {
       user.roles.push({
-        module_name: "public",
+        module_name: "report",
         name: "report_info_user",
         en: "Subscribe Info USer",
         ar: "معلومات المشتركين للمستخدم",
@@ -217,9 +217,9 @@ module.exports = function init(site) {
       user.roles.push({
         module_name: "student",
         name: "customers_type",
-        en: "Student Type",
-        ar: "نوع الطالب",
-        permissions: ['female']
+        en: "Female Type",
+        ar: "نوع العميل",
+        permissions: ["female"]
       })
     }
 
@@ -362,7 +362,7 @@ module.exports = function init(site) {
 
     if (site.feature('gym')) {
       user.roles.push({
-        module_name: "public",
+        module_name: "report",
         name: "report_info_user",
         en: "Subscribe Info USer",
         ar: "معلومات المشتركين للمستخدم",
@@ -383,7 +383,15 @@ module.exports = function init(site) {
       })
     }
 
-  
+    if (user.gender && user.gender.id == 2) {
+      user.roles.push({
+        module_name: "student",
+        name: "customers_type",
+        en: "Female Type",
+        ar: "نوع العميل",
+        permissions: ['female']
+      })
+    }
 
     user.profile = {
       name: user.name,

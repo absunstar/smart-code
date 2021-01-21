@@ -1,5 +1,5 @@
 [{
-    "module_name" : "courses" ,
+    "module_name" : "public" ,
     "name": "courses_admin",
     "en": "Courses Admin",
     "ar": "إدارة الكورسات",

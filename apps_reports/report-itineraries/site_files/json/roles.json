@@ -1,5 +1,5 @@
 [{
-    "module_name" : "accounting" ,
+    "module_name" : "report" ,
     "name": "report_itineraries_admin",
     "en": "Report Itineraries Admin",
     "ar": "تقرير خطوط السير",

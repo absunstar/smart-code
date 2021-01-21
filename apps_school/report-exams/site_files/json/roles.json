@@ -1,5 +1,5 @@
 [{
-    "module_name" : "public" ,
+    "module_name" : "report" ,
     "name": "report_exams_admin",
     "en": "Report Exams Admin",
     "ar": "تقرير الإمتحانات",

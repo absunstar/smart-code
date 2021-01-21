@@ -1,5 +1,5 @@
 [{
-    "module_name" : "public" ,
+    "module_name" : "hr" ,
     "name": "attend_employees_admin",
     "en": "Attend Employees Admin",
     "ar": "إدارة حضور الموظفين",
