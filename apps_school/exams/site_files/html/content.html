@@ -50,16 +50,20 @@
                         <i-control type="number" v="r" class="col2" label="##word.exam_time##"
                             ng-model="exams.exam_time">
                         </i-control>
+
                         <div class="col1">
                             <br>
                             <br>
                             <h3 class="bold black">##word.minute##</h3>
                         </div>
+
                         <i-list help-id="" v="r" class="col2" label="##word.availability_exam##"
                             ng-model="exams.availability_exam" ng-search="_search.$_availability_exam"
                             items="availabilityExamList" display="##session.lang##">
                         </i-list>
+
                         <div class="col1"></div>
+
                         <div class="col2">
                             <i-checkbox help-id="create_questions" label="##word.create_questions##"
                                 ng-click="createQuestions('creat')" ng-model="exams.create_questions">

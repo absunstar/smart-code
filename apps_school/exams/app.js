@@ -107,12 +107,37 @@ module.exports = function init(site) {
       return
     }
 
-    let exams_doc = req.body
+    let exams_doc = req.body.data
 
     exams_doc.edit_user_info = site.security.getUserFinger({
       $req: req,
       $res: res
     })
+
+    if (req.body.start) {
+      exams_doc.students_list.forEach(_stu => {
+        if (req.session.user.ref_info && _stu.id === req.session.user.ref_info.id){
+          _stu.exam_procedure = true
+
+          if (!_stu.exam.finish_date) {
+            _stu.exam.finish_date = new Date();
+            _stu.exam.finish_date.setMinutes(_stu.exam.finish_date.getMinutes() + exams_doc.exam_time);
+      
+          }
+
+          if (_stu.exam.time && _stu.exam.finish_date) {
+            _stu.exam.finish_date = new Date(_stu.exam.finish_date);
+            let minutes = _stu.exam.finish_date.getMinutes() - new Date().getMinutes();
+            _stu.exam.time = {
+              minutes: minutes,
+              seconds: 0
+            };
+          } else {
+            _stu.exam.time = { minutes: exams_doc.exam_time, seconds: 0 };
+          }
+        }
+      });
+    }
 
 
     if (exams_doc.id) {
@@ -126,6 +151,7 @@ module.exports = function init(site) {
       }, (err, obj) => {
         if (!err) {
           response.done = true
+          response.doc = obj.doc
         } else {
           response.error = 'Code Already Exist'
         }

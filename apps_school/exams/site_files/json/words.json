@@ -15,6 +15,11 @@
         "ar": "إسم الإمتحان"
     },
     {
+        "name": "exam_time_expired",
+        "en": "The exam time has expired",
+        "ar": "وقت الإمتحان قد إنتهى"
+    },
+    {
         "name": "exams_new",
         "en": "New Exam",
         "ar": "إمتحان جديد"
@@ -166,8 +171,8 @@
     },
     {
         "name": "You_have_already_taken_test",
-        "en": "You have already taken the test",
-        "ar": "لقد أجريت الاختبار بالفعل"
+        "en": "The test has already been performed",
+        "ar": "تم إجراء الإختبار من قبل"
     },
     {
         "name": "cant_enter_exam",

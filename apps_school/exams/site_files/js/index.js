@@ -163,7 +163,9 @@ app.controller("exams", function ($scope, $http, $timeout) {
     $http({
       method: "POST",
       url: "/api/exams/update",
-      data: exams
+      data: {
+        data: exams
+      }
     }).then(
       function (response) {
         $scope.busy = false;
@@ -692,57 +694,73 @@ app.controller("exams", function ($scope, $http, $timeout) {
 
   $scope.examStarted = function (c) {
     $scope.error = '';
-    $scope.exams = c;
-    $scope.exams.students_list = $scope.exams.students_list || [];
-    /*   let found_student = false;
-        $scope.exams.students_list.forEach(_student => {
-          if ('##user.ref_info.id##' == _student.id && '##user.type##' == 'customer') {
-            found_student = true;
-          }
-        }); */
 
-
-
-    if ($scope.exams.availability_exam.id == 1) {
-      let student = $scope.studentsList.find(_stu => { return _stu.id == '##user.ref_info.id##' });
-
-      let found_student = $scope.exams.students_list.some(_student => '##user.ref_info.id##' == _student.id);
-
-      if (!found_student) $scope.exams.students_list.push(student);
-
-    } else if ($scope.exams.availability_exam.id == 2) {
-
-    }
-
-    let found = false;
-    let finish_exam = false;
-    $scope.exams.students_list.forEach(_s => {
-      if (_s.id == '##user.ref_info.id##') {
-        $scope.student_exams = _s;
-        found = true;
-        if (_s.exam_procedure) finish_exam = true;
+    $http({
+      method: "POST",
+      url: "/api/exams/update",
+      data: {
+        data: c,
+        start: true
       }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
 
-    });
+          $scope.exams = response.data.doc;
+          $scope.exams.students_list = $scope.exams.students_list || [];
 
-    if (!found) {
-      $scope.error = '##word.cant_enter_exam##';
-      return;
-    };
+          if ($scope.exams.availability_exam.id == 1) {
+            let student = $scope.studentsList.find(_stu => { return _stu.id == '##user.ref_info.id##' });
+      
+            let found_student = $scope.exams.students_list.some(_student => '##user.ref_info.id##' == _student.id);
+      
+            if (!found_student) $scope.exams.students_list.push(student);
+      
+          } else if ($scope.exams.availability_exam.id == 2) {
+      
+          }
+      
+          let found = false;
+          let finish_exam = false;
+          $scope.exams.students_list.forEach(_s => {
+            if (_s.id == '##user.ref_info.id##') {
+              $scope.student_exams = _s;
+              found = true;
+              if (_s.exam_procedure) finish_exam = true;
+            }
 
-    if (finish_exam) {
-      $scope.error = '##word.You_have_already_taken_test##';
-      return;
-    };
+          });
+      
+          if (!found) {
+            $scope.error = '##word.cant_enter_exam##';
+            return;
+          };
+      
+          if ( ($scope.student_exams.exam.time && $scope.student_exams.exam.time.minutes < 1 && $scope.student_exams.exam.time.seconds < 1)) {
+            $scope.error = '##word.You_have_already_taken_test##';
+            return;
+          };
 
-    $scope.exams.time = {
-      minutes: $scope.exams.exam_time,
-      seconds: 0
-    };
+
+          if ($scope.student_exams.exam.time && $scope.student_exams.exam.time.minutes < 1) {
+            $scope.error = '##word.exam_time_expired##';
+            return;
+          }
+      
+          $scope.timer();
+      
+          site.showModal('#startExamModal');
 
 
-    $scope.timer();
-    site.showModal('#startExamModal');
+        } else {
+          $scope.error = 'Please Login First';
+        }
+      },
+      function (err) {
+        console.log(err);
+      }
+    )
   };
 
 
@@ -750,13 +768,13 @@ app.controller("exams", function ($scope, $http, $timeout) {
   $scope.updateExamsStudent = function (exams, type) {
     $scope.error = '';
 
-    if (type == 'time' || type == 'start') {
+  /*   if (type == 'time' || type == 'start') {
 
       exams.students_list.forEach(_stu => {
         if (_stu.id == '##user.ref_info.id##')
           _stu.exam_procedure = true
       });
-    }
+    } */
 
     if (type === 'correct') {
 
@@ -772,13 +790,12 @@ app.controller("exams", function ($scope, $http, $timeout) {
       let alot_ques = false;
       let alot_mai_list = [];
       let alot_ques_list = [];
-      exams.exam.main_ques_list.forEach(_m_q => {
+      $scope.student_exams.exam.main_ques_list.forEach(_m_q => {
         if (_m_q.student_degree > _m_q.degree) {
           alot_main = true;
           alot_mai_list.push(_m_q.title_question);
 
         }
-
 
         _m_q.ques_list.forEach(_q_c => {
           if (_q_c.student_degree > _q_c.degree) {
@@ -790,11 +807,11 @@ app.controller("exams", function ($scope, $http, $timeout) {
 
       });
 
-      if (alot_main && $scope.exams.create_questions) {
+      if (alot_main && $scope.student_exams.create_questions) {
 
         $scope.error = `##word.student_scores_not_equal_final_score##   ( ${alot_mai_list.join('-')} )`;
         return;
-      } else if (alot_ques && $scope.exams.create_questions) {
+      } else if (alot_ques && $scope.student_exams.create_questions) {
 
         $scope.error = `##word.student_scores_not_equal_question_score##   ( ${alot_ques_list.join('-')} )`;
         return;
@@ -805,7 +822,9 @@ app.controller("exams", function ($scope, $http, $timeout) {
     $http({
       method: "POST",
       url: "/api/exams/update",
-      data: $scope.exams
+      data: {
+        data: $scope.exams
+      }
     }).then(
       function (response) {
         $scope.busy = false;
@@ -846,19 +865,20 @@ app.controller("exams", function ($scope, $http, $timeout) {
   $scope.timer = function () {
     $timeout(() => {
 
-      if ($scope.exams.time.seconds == 0 && $scope.exams.time.minutes > 0) {
-        $scope.exams.time.minutes--;
-        $scope.exams.time.seconds = 59;
+      if ($scope.student_exams.exam.time.seconds === 0 && $scope.student_exams.exam.time.minutes > 0) {
+        $scope.student_exams.exam.time.minutes = $scope.student_exams.exam.time.minutes - 1;
+        $scope.student_exams.exam.time.seconds = 59;
+
         $scope.timer();
-      } else if ($scope.exams.time.seconds > 0) {
-        $scope.exams.time.seconds--;
+      } else if ($scope.student_exams.exam.time.seconds > 0) {
+        $scope.student_exams.exam.time.seconds = $scope.student_exams.exam.time.seconds - 1;
         $scope.timer();
       } else {
-        $scope.updateExamsStudent($scope.exams, 'time');
+        $scope.updateExamsStudent($scope.exams, 'start');
 
       }
+      $scope.student_exams.exam.real_time = ($scope.student_exams.exam.time.minutes + ':' + $scope.student_exams.exam.time.seconds);
     }, 1000);
-    $scope.exams.real_time = ($scope.exams.time.minutes + ':' + $scope.exams.time.seconds);
 
   };
 
@@ -880,7 +900,7 @@ app.controller("exams", function ($scope, $http, $timeout) {
 
     $scope.main_ques_list = [];
     student_exams.exam.main_ques_list.forEach((_main, i) => {
-      _main.ques_list.forEach((_ques,_i) => {
+      _main.ques_list.forEach((_ques, _i) => {
         if (_ques.answer_stu && _ques.answer_stu.name) {
 
         } else {
@@ -892,14 +912,14 @@ app.controller("exams", function ($scope, $http, $timeout) {
             $scope.main_ques_list.push({
               question: _main.title_question,
               indx: i,
-              ques_list: [{question: _ques.question, indx : _i}]
+              ques_list: [{ question: _ques.question, indx: _i }]
             })
 
           } else {
             $scope.main_ques_list.forEach(_q => {
-                if(_q.indx === i){
-                  _q.ques_list.push({question: _ques.question, indx : _i})
-                }
+              if (_q.indx === i) {
+                _q.ques_list.push({ question: _ques.question, indx: _i })
+              }
             });
           }
         }
@@ -907,10 +927,10 @@ app.controller("exams", function ($scope, $http, $timeout) {
 
     });
 
-    if($scope.main_ques_list && $scope.main_ques_list.length > 0){ 
+    if ($scope.main_ques_list && $scope.main_ques_list.length > 0) {
       site.showModal('#acceptFinishExamModal');
     } else {
-      $scope.updateExamsStudent($scope.exams,'start');
+      $scope.updateExamsStudent($scope.exams, 'start');
     }
 
   };

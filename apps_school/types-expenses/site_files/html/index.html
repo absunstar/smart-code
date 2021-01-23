@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" x-permissions="sales_types_expenses_ui || sales_types_expenses_manage" data-ng-app="myApp">
+<html lang="en" x-permissions="sales_types_expenses_ui || types_expenses_manage" data-ng-app="myApp">
 
 <head x-import="head.html">
 
@@ -27,9 +27,9 @@
                 </div>
 
                 <div class="top-actions">
-                    <i-button type="add" x-permissions="sales_types_expenses_add || sales_types_expenses_manage"
+                    <i-button type="add" x-permissions="sales_types_expenses_add || types_expenses_manage"
                         label="##word.types_expenses_new##" ng-click="displayAddYearWorks()"></i-button>
-                    <i-button type="search" x-permissions="sales_types_expenses_search || sales_types_expenses_manage"
+                    <i-button type="search" x-permissions="sales_types_expenses_search || types_expenses_manage"
                         label="##word.search_all##" onclick="site.showModal('#yearWorksSearchModal')"></i-button>
 
                     <span ng-show="busy">
@@ -64,22 +64,22 @@
 
                         <td class="center not-print">
                             <i-button type="details"
-                                x-permissions="sales_types_expenses_view || sales_types_expenses_manage"
+                                x-permissions="sales_types_expenses_view || types_expenses_manage"
                                 label="##word.details##" ng-click="displayDetailsYearWorks(c)"></i-button>
 
                             <i-button type="update"
-                                x-permissions="sales_types_expenses_edit || sales_types_expenses_manage"
+                                x-permissions="sales_types_expenses_edit || types_expenses_manage"
                                 label="##word.update##" ng-click="displayUpdateYearWorks(c)"></i-button>
 
                             <i-button type="delete"
-                                x-permissions="sales_types_expenses_delete || sales_types_expenses_manage"
+                                x-permissions="sales_types_expenses_delete || types_expenses_manage"
                                 label="##word.delete##" ng-click="displayDeleteYearWorks(c)"></i-button>
                         </td>
                     </tr>
                 </table>
 
                 <div class="row">
-                    <i-button x-permissions="sales_types_expenses_print || sales_types_expenses_manage" type="print"
+                    <i-button x-permissions="sales_types_expenses_print || types_expenses_manage" type="print"
                         label="##word.print##" onclick="site.print('#t1')"></i-button>
 
 

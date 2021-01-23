@@ -213,9 +213,9 @@ module.exports = function init(site) {
       })
     }
 
-    if (user.gender && user.gender.id == 2) {
+    if (user.gender && user.gender.name === 'female') {
       user.roles.push({
-        module_name: "student",
+        module_name: "public",
         name: "customers_type",
         en: "Female Type",
         ar: "نوع العميل",
@@ -383,9 +383,9 @@ module.exports = function init(site) {
       })
     }
 
-    if (user.gender && user.gender.id == 2) {
+    if (user.gender && user.gender.name === 'female') {
       user.roles.push({
-        module_name: "student",
+        module_name: "public",
         name: "customers_type",
         en: "Female Type",
         ar: "نوع العميل",
