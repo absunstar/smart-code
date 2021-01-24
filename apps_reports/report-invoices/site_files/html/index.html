@@ -18,16 +18,28 @@
 
                 <div x-import="report-invoices/search_all_modal.html"></div>
                 <div class="row">
-                    <h1 ng-show="##query.type## == 1" class="bold text-center"> ##word.report## ##word.purchase_invoice## </h1>
-                    <h1 ng-show="##query.type## == 2" class="bold text-center"> ##word.report## ##word.sales_invoice## </h1>
-                    <h1 ng-show="##query.type## == 3" class="bold text-center"> ##word.report## ##word.orders_screen_invoice## </h1>
-                    <h1 ng-show="##query.type## == 4" class="bold text-center"> ##word.report## ##word.orders_service_invoice## </h1>
-                    <h1 ng-show="##query.type## == 8" class="bold text-center"> ##word.report## ##word.amount_in_invoice## </h1>
-                    <h1 ng-show="##query.type## == 9" class="bold text-center"> ##word.report## ##word.amount_out_invoice## </h1>
-                    <h1 ng-show="##query.type## == 10" class="bold text-center"> ##word.report## ##word.recharge_customer_balance##</h1>
-                    <h1 ng-show="##query.type## == 11" class="bold text-center"> ##word.report## ##word.employee_advance## </h1>
-                    <h1 ng-show="##query.type## == 12" class="bold text-center"> ##word.report## ##word.payment_employee_advance## </h1>
-                    <h1 ng-show="##query.type## == 13" class="bold text-center"> ##word.report## ##word.school_fees## </h1>
+                    <h1 ng-show="##query.type## == 1" class="bold text-center"> ##word.report##
+                        ##word.purchase_invoice## </h1>
+                    <h1 ng-show="##query.type## == 2" class="bold text-center"> ##word.report## ##word.sales_invoice##
+                    </h1>
+                    <h1 ng-show="##query.type## == 3" class="bold text-center"> ##word.report##
+                        ##word.orders_screen_invoice## </h1>
+                    <h1 ng-show="##query.type## == 4" class="bold text-center"> ##word.report##
+                        ##word.orders_service_invoice## </h1>
+                    <h1 ng-show="##query.type## == 8" class="bold text-center"> ##word.report##
+                        ##word.amount_in_invoice## </h1>
+                    <h1 ng-show="##query.type## == 9" class="bold text-center"> ##word.report##
+                        ##word.amount_out_invoice## </h1>
+                    <h1 ng-show="##query.type## == 10" class="bold text-center"> ##word.report##
+                        ##word.recharge_customer_balance##</h1>
+                    <h1 ng-show="##query.type## == 11" class="bold text-center"> ##word.report##
+                        ##word.employee_advance## </h1>
+                    <h1 ng-show="##query.type## == 12" class="bold text-center"> ##word.report##
+                        ##word.payment_employee_advance## </h1>
+                    <h1 ng-show="##query.type## == 13" class="bold text-center"> ##word.report## ##word.school_fees##
+                    </h1>
+                    <h1 ng-show="##query.type## == 14" class="bold text-center"> ##word.report##
+                        ##word.transfer_safes_balances## </h1>
 
                 </div>
 
@@ -44,26 +56,27 @@
                     <h3 class="bold text-center"> ##word.count## : {{count}} </h3>
                     <br>
                 </div>
+                <div class="row" ng-hide="##query.type## == 14">
 
-                <div class="row">
-                    <i-control id="item_name" class="col2 r_black" ng-model="net_value"
-                        label="##word.report_invoices_total_required##" type="number" disabled></i-control>
-                    <i-control id="item_name" class="col2 r_green" ng-model="paid_up" label="##word.total_paid_up##"
-                        type="number" disabled></i-control>
-                    <i-control id="item_name" class="col2 r_blue" ng-model="remain_amount" label="##word.total_remain##"
-                        type="number" disabled></i-control>
-                </div>
-                <div class="row">
-                    <i-control id="item_name" class="col2 r_green" ng-model="cash" label="##word.cash##" type="number"
-                        disabled></i-control>
-                    <i-control id="item_name" class="col2 r_green" ng-model="bank" label="##word.bank##" type="number"
-                        disabled></i-control>
+                    <div class="row">
+                        <i-control id="item_name" class="col2 r_black" ng-model="net_value"
+                            label="##word.report_invoices_total_required##" type="number" disabled></i-control>
+                        <i-control id="item_name" class="col2 r_green" ng-model="paid_up" label="##word.total_paid_up##"
+                            type="number" disabled></i-control>
+                        <i-control id="item_name" class="col2 r_blue" ng-model="remain_amount"
+                            label="##word.total_remain##" type="number" disabled></i-control>
+                    </div>
+                    <div class="row">
+                        <i-control id="item_name" class="col2 r_green" ng-model="cash" label="##word.cash##"
+                            type="number" disabled></i-control>
+                        <i-control id="item_name" class="col2 r_green" ng-model="bank" label="##word.bank##"
+                            type="number" disabled></i-control>
 
-
-                    <i-control id="item_name" class="col2 r_darkRed" ng-model="total_tax"
-                        label="##word.stores_out_total_tax##" type="number" disabled></i-control>
-                    <i-control id="item_name" class="col2 r_darkRed" ng-model="total_discount"
-                        label="##word.stores_out_total_discount##" type="number" disabled></i-control>
+                        <i-control id="item_name" class="col2 r_darkRed" ng-model="total_tax"
+                            label="##word.stores_out_total_tax##" type="number" disabled></i-control>
+                        <i-control id="item_name" class="col2 r_darkRed" ng-model="total_discount"
+                            label="##word.stores_out_total_discount##" type="number" disabled></i-control>
+                    </div>
                 </div>
 
                 <i-button type="save" x-permissions="report_invoices_print || report_invoices_manage"
@@ -78,7 +91,10 @@
                             <th> ##word.invoices_code## </th>
                             <th> ##word.source_type## </th>
                             <th ng-show="##query.type## == 3"> ##word.order_type## </th>
-                            <th> ##word.payment_method## </th>
+                            <th ng-show="##query.type## == 14"> ##word.data_transmitted_from## </th>
+                            <th ng-show="##query.type## == 14"> ##word.data_transmitted_to## </th>
+
+
                             <!--  <th ng-show="##query.type## == 1 || ##query.type## == 2 || ##query.type## == 3">
                                 ##word.total_items_price## </th> -->
                             <th ng-show="##query.type## == 1 || ##query.type## == 2 || ##query.type## == 3">
@@ -99,7 +115,10 @@
                             <td class="blue"> {{c.code}} </td>
                             <td> {{c.source_type.##session.lang##}} </td>
                             <td ng-show="##query.type## == 3"> {{c.order_invoices_type.##session.lang##}} </td>
-                            <td> {{c.payment_method.##session.lang##}} </td>
+                            <td ng-show="##query.type## == 14">{{c.safe.name}} / {{c.payment_method.##session.lang##}}
+                            </td>
+                            <td ng-show="##query.type## == 14">{{c.safe_to.name}} /
+                                {{c.payment_method_to.##session.lang##}} </td>
                             <!--  <td ng-show="##query.type## == 1 || ##query.type## == 2 || ##query.type## == 3">
                                 {{c.items_price ||0}} </td> -->
                             <td class="red" ng-show="##query.type## == 1 || ##query.type## == 2 || ##query.type## == 3">

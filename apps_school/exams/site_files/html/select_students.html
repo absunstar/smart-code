@@ -61,8 +61,8 @@
 
                                     <td>
                                         <br>
-                                        <p class="green" ng-show="c.exam_procedure">##word.exam_was_completed##</p>
-                                        <p class="red" ng-show="!c.exam_procedure">##word.exam_wasnot_completed##</p>
+                                        <p class="green" ng-show="c.exam.exam_procedure">##word.exam_was_completed##</p>
+                                        <p class="red" ng-show="!c.exam.exam_procedure">##word.exam_wasnot_completed##</p>
                                     </td>
                                     <td>
 
@@ -74,7 +74,7 @@
                                             ng-click="examDetails(c,'view')">
                                         </i-button>
 
-                                        <i-button type="edit" ng-show="c.exam_procedure" label="##word.correction_exam##" ng-show="exams.$view"
+                                        <i-button type="edit" ng-show="c.exam.exam_procedure" label="##word.correction_exam##" ng-show="exams.$view"
                                             ng-click="examDetails(c,'correct')">
                                         </i-button>
 

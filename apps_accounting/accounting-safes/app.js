@@ -31,7 +31,7 @@ module.exports = function init(site) {
     }, (err, _doc) => {
       $safes.add({
         name: "خزينة بنك إفتراضية",
-        code: "1-Test",
+        code: "2-Test",
         balance: 0,
         type: {
           id: 2,

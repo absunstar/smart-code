@@ -31,7 +31,7 @@
                                         <p class="blue">{{account_invoices.invoice_type.##session.lang##}}
                                     </td>
                                 </tr>
-                                <tr x-feature="restaurant">
+                                <tr ng-show="##query.type## == 4">
                                     <td class="title"> ##word.order_invoices_type## </td>
                                     <td class="center"> {{account_invoices.order_invoices_type.##session.lang##}} </td>
                                 </tr>
@@ -142,18 +142,35 @@
 
                                 <tr ng-show="account_invoices.net_value">
                                     <td class="title"> ##word.net_value## </td>
-                                    <td class="center blue"> {{account_invoices.net_value}} </td>
+                                    <td class="center green"> {{account_invoices.net_value}} </td>
                                 </tr>
 
-                                <!-- <tr>
-                                    <td class="title"> ##word.payment_method## </td>
-                                    <td class="center blue"> {{account_invoices.payment_method.##session.lang##}} </td>
+                                <tr ng-show="##query.type## == 14">
+                                    <td class="title"> ##word.currency## </td>
+                                    <td class="center"> {{account_invoices.currency.name}} - <b
+                                            class="blue">{{account_invoices.currency.ex_rate}}</b> </td>
                                 </tr>
 
-                                <tr ng-show="account_invoices.safe">
-                                    <td class="title"> ##word.safe## </td>
+                                <tr ng-show="##query.type## == 14">
+                                    <td class="title"> ##word.payment_method## ##word.transmitted_from##</td>
+                                    <td class="center"> {{account_invoices.payment_method.##session.lang##}} </td>
+                                </tr>
+
+                                <tr ng-show="##query.type## == 14">
+                                    <td class="title"> ##word.safe## ##word.transmitted_from##</td>
                                     <td class="center"> {{account_invoices.safe.name}} </td>
-                                </tr> -->
+                                </tr>
+
+                                <tr ng-show="##query.type## == 14">
+                                    <td class="title"> ##word.payment_method## ##word.transferee## </td>
+                                    <td class="center"> {{account_invoices.payment_method_to.##session.lang##}}
+                                    </td>
+                                </tr>
+
+                                <tr ng-show="##query.type## == 14">
+                                    <td class="title"> ##word.safe## ##word.transferee## </td>
+                                    <td class="center"> {{account_invoices.safe_to.name}} </td>
+                                </tr>
 
                                 <tr ng-show="account_invoices.date_from">
                                     <td class="title">##word.date_from_subscribe##</td>
@@ -226,7 +243,7 @@
                         </div>
                         <br>
                         <br>
-                        <div class="row">
+                        <div class="row" ng-hide="##query.type## == 14">
                             <fieldset>
 
                                 <legend>##word.detailes_amounts_paid##</legend>

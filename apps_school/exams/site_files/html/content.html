@@ -68,6 +68,11 @@
                             <i-checkbox help-id="create_questions" label="##word.create_questions##"
                                 ng-click="createQuestions('creat')" ng-model="exams.create_questions">
                             </i-checkbox>
+
+                            <i-checkbox help-id="upload_exam" label="##word.upload_exam##"
+                                ng-click="" ng-model="exams.upload_exam">
+                            </i-checkbox>
+
                             <i-button type="view" label="##word.choosing_students##"
                                 ng-show="exams.availability_exam.id == 2"
                                 onclick="site.showModal( '#selectStudentsModal')">
@@ -75,6 +80,13 @@
 
                         </div>
                     </div>
+
+                   <!--  <div class="row" ng-show="exams.upload_exam">
+                        <div class="col9"></div>
+                        <div class="col3">
+                            <i-image help-id="exams_logo" ng-model="exams.exam_img"></i-image>
+                        </div>
+                    </div> -->
 
                 </div>
 

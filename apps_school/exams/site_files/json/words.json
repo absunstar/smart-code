@@ -170,6 +170,11 @@
         "ar": "تم الإمتحان"
     },
     {
+        "name": "upload_exam",
+        "en": "Upload exam",
+        "ar": "تحميل إمتحان"
+    },
+    {
         "name": "You_have_already_taken_test",
         "en": "The test has already been performed",
         "ar": "تم إجراء الإختبار من قبل"

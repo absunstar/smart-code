@@ -27,52 +27,7 @@ app.controller("exams", function ($scope, $http, $timeout) {
       return;
     };
 
-    if ($scope.exams.degree_success >= $scope.exams.final_grade) {
-      $scope.error = "##word.passing_score_greater_final_grade##";
-      return;
 
-    }
-
-    let degree_m = 0;
-    let alot = false;
-    let notEqualList = [];
-
-    $scope.exams.main_ques_list = $scope.exams.main_ques_list || [];
-    $scope.exams.main_ques_list.forEach(_m_q => {
-      degree_m += _m_q.degree;
-      let degree_q = 0;
-      _m_q.ques_list = _m_q.ques_list || [];
-
-      _m_q.ques_list.forEach(_q_c => {
-        degree_q += _q_c.degree;
-      });
-
-      if (_m_q.degree !== degree_q) {
-        notEqualList.push(_m_q.title_question);
-        alot = true;
-      }
-
-    });
-
-
-    if (degree_m !== $scope.exams.final_grade && $scope.exams.create_questions) {
-      $scope.error = "##word.sum_scores_not_equal_final_score##";
-      return;
-
-    } else if (alot && $scope.exams.create_questions) {
-
-      $scope.error = `##word.sum_scores_not_equal_final_score##   ( ${notEqualList.join('-')} )`;
-      return;
-    }
-
-    $scope.exams.students_list = $scope.exams.students_list || [];
-    if ($scope.exams.availability_exam.id == 2) {
-      $scope.exams.students_list.forEach(_sL => {
-        _sL.exam = Object.assign({}, $scope.exams);
-        _sL.exam_procedure = false;
-        _sL.exam.students_list = [];
-      });
-    }
 
     $scope.busy = true;
     $http({
@@ -88,7 +43,23 @@ app.controller("exams", function ($scope, $http, $timeout) {
         } else {
           $scope.error = response.data.error;
           if (response.data.error.like('*Must Enter Code*')) {
-            $scope.error = "##word.must_enter_code##"
+            $scope.error = "##word.must_enter_code##";
+
+          } else if (response.data.error.like('*student grade are greater than the final*')) {
+            $scope.error = `##word.student_scores_not_equal_final_score##   ( ${response.data.error_list.join('-')} )`;
+
+          } else if (response.data.error.like('*student score is greater than the question*')) {
+            $scope.error = `##word.student_scores_not_equal_question_score##   ( ${response.data.error_list.join('-')} )`;
+
+          } else if (response.data.error.like('*passing score is greater than the final*')) {
+            $scope.error = '##word.passing_score_greater_final_grade##';
+
+          } else if (response.data.error.like('*sum of the scores does not equal the final*')) {
+            $scope.error = '##word.sum_scores_not_equal_final_score##';
+
+          } else if (response.data.error.like('*sum of the scores does not equal the final all*')) {
+            $scope.error = `##word.sum_scores_not_equal_final_score##   ( ${response.data.error_list.join('-')} )`;
+
           }
         }
       },
@@ -106,81 +77,7 @@ app.controller("exams", function ($scope, $http, $timeout) {
     site.showModal('#examsUpdateModal');
   };
 
-  $scope.updateExams = function (exams) {
-    $scope.error = '';
-    const v = site.validated('#examsUpdateModal');
-    if (!v.ok) {
-      $scope.error = v.messages[0].ar;
-      return;
-    }
-    if (exams.degree_success >= exams.final_grade) {
-      $scope.error = "##word.passing_score_greater_final_grade##";
-      return;
 
-    }
-
-    let degree_m = 0;
-    let alot = false;
-    let notEqualList = [];
-
-    exams.main_ques_list = exams.main_ques_list || [];
-    exams.main_ques_list.forEach(_m_q => {
-      degree_m += _m_q.degree;
-      let degree_q = 0;
-      _m_q.ques_list = _m_q.ques_list || [];
-
-      _m_q.ques_list.forEach(_q_c => {
-        degree_q += _q_c.degree;
-      });
-
-      if (_m_q.degree !== degree_q) {
-        notEqualList.push(_m_q.title_question);
-        alot = true;
-      }
-
-    });
-
-    if (degree_m !== exams.final_grade && exams.create_questions) {
-      $scope.error = "##word.sum_scores_not_equal_final_score##";
-      return;
-
-    } else if (alot && exams.create_questions) {
-
-      $scope.error = `##word.sum_scores_not_equal_final_score##   ( ${notEqualList.join('-')} )`;
-      return;
-    }
-    exams.students_list = exams.students_list || [];
-
-    if (exams.availability_exam.id == 2) {
-      exams.students_list.forEach(_sL => {
-        _sL.exam = Object.assign({}, exams);
-        _sL.exam_procedure = false;
-        _sL.exam.students_list = [];
-      });
-    }
-
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/exams/update",
-      data: {
-        data: exams
-      }
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          site.hideModal('#examsUpdateModal');
-          $scope.getExamsList();
-        } else {
-          $scope.error = 'Please Login First';
-        }
-      },
-      function (err) {
-        console.log(err);
-      }
-    )
-  };
 
   $scope.displayDetailsExams = function (exams) {
     $scope.error = '';
@@ -692,130 +589,26 @@ app.controller("exams", function ($scope, $http, $timeout) {
 
   };
 
-  $scope.examStarted = function (c) {
-    $scope.error = '';
-
-    $http({
-      method: "POST",
-      url: "/api/exams/update",
-      data: {
-        data: c,
-        start: true
-      }
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-
-          $scope.exams = response.data.doc;
-          $scope.exams.students_list = $scope.exams.students_list || [];
-
-          if ($scope.exams.availability_exam.id == 1) {
-            let student = $scope.studentsList.find(_stu => { return _stu.id == '##user.ref_info.id##' });
-      
-            let found_student = $scope.exams.students_list.some(_student => '##user.ref_info.id##' == _student.id);
-      
-            if (!found_student) $scope.exams.students_list.push(student);
-      
-          } else if ($scope.exams.availability_exam.id == 2) {
-      
-          }
-      
-          let found = false;
-          let finish_exam = false;
-          $scope.exams.students_list.forEach(_s => {
-            if (_s.id == '##user.ref_info.id##') {
-              $scope.student_exams = _s;
-              found = true;
-              if (_s.exam_procedure) finish_exam = true;
-            }
-
-          });
-      
-          if (!found) {
-            $scope.error = '##word.cant_enter_exam##';
-            return;
-          };
-      
-          if ( ($scope.student_exams.exam.time && $scope.student_exams.exam.time.minutes < 1 && $scope.student_exams.exam.time.seconds < 1)) {
-            $scope.error = '##word.You_have_already_taken_test##';
-            return;
-          };
-
-
-          if ($scope.student_exams.exam.time && $scope.student_exams.exam.time.minutes < 1) {
-            $scope.error = '##word.exam_time_expired##';
-            return;
-          }
-      
-          $scope.timer();
-      
-          site.showModal('#startExamModal');
-
-
-        } else {
-          $scope.error = 'Please Login First';
-        }
-      },
-      function (err) {
-        console.log(err);
-      }
-    )
-  };
-
-
 
   $scope.updateExamsStudent = function (exams, type) {
     $scope.error = '';
 
-  /*   if (type == 'time' || type == 'start') {
-
-      exams.students_list.forEach(_stu => {
-        if (_stu.id == '##user.ref_info.id##')
-          _stu.exam_procedure = true
-      });
-    } */
-
     if (type === 'correct') {
 
       const v = site.validated('#examDetailesModal');
-
       if (!v.ok) {
         $scope.error = v.messages[0].ar;
         return;
       };
 
+    } else if (type === 'update') {
 
-      let alot_main = false;
-      let alot_ques = false;
-      let alot_mai_list = [];
-      let alot_ques_list = [];
-      $scope.student_exams.exam.main_ques_list.forEach(_m_q => {
-        if (_m_q.student_degree > _m_q.degree) {
-          alot_main = true;
-          alot_mai_list.push(_m_q.title_question);
-
-        }
-
-        _m_q.ques_list.forEach(_q_c => {
-          if (_q_c.student_degree > _q_c.degree) {
-            alot_ques = true;
-            alot_ques_list.push(_m_q.title_question);
-
-          }
-        });
-
-      });
-
-      if (alot_main && $scope.student_exams.create_questions) {
-
-        $scope.error = `##word.student_scores_not_equal_final_score##   ( ${alot_mai_list.join('-')} )`;
+      const v = site.validated('#examsUpdateModal');
+      if (!v.ok) {
+        $scope.error = v.messages[0].ar;
         return;
-      } else if (alot_ques && $scope.student_exams.create_questions) {
+      };
 
-        $scope.error = `##word.student_scores_not_equal_question_score##   ( ${alot_ques_list.join('-')} )`;
-        return;
-      }
     }
 
     $scope.busy = true;
@@ -823,19 +616,93 @@ app.controller("exams", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/exams/update",
       data: {
-        data: $scope.exams
+        data: exams,
+        type: type,
+        stuList: $scope.studentsList
+
       }
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          if (type === 'start')
+          if (type === 'finish') {
             site.hideModal('#startExamModal');
+            $scope.getExamsList();
 
-          else if (type === 'correct')
+          } else if (type === 'correct') {
             site.hideModal('#examDetailesModal');
+
+          } else if (type === 'update') {
+            site.hideModal('#examsUpdateModal');
+            $scope.getExamsList();
+
+          } else if (type === 'start' || type === 'time') {
+            let finish_exam = false;
+            $scope.exams = response.data.doc;
+
+            $scope.exams.students_list.forEach(_s => {
+              if (_s.id == '##user.ref_info.id##') {
+                $scope.student_exams = _s;
+                found = true;
+
+                if (_s.exam.exam_procedure) {
+                  finish_exam = true;
+
+                } else {
+                  $scope.timer();
+
+                }
+              }
+
+            });
+
+            if (finish_exam) {
+
+              site.hideModal('#startExamModal');
+              $scope.getExamsList();
+              $scope.error = '##word.You_have_already_taken_test##';
+
+              return;
+            }
+            /*  $scope.seconds = 0;
+             $scope.timerSecounds(); */
+            site.showModal('#startExamModal');
+
+          }
+
         } else {
           $scope.error = 'Please Login First';
+          if (response.data.error.like('*Must Enter Code*')) {
+            $scope.error = "##word.must_enter_code##"
+
+          } else if (response.data.error.like('*student grade are greater than the final*')) {
+            $scope.error = `##word.student_scores_not_equal_final_score##   ( ${response.data.error_list.join('-')} )`;
+
+          } else if (response.data.error.like('*student score is greater than the question*')) {
+            $scope.error = `##word.student_scores_not_equal_question_score##   ( ${response.data.error_list.join('-')} )`;
+
+          } else if (response.data.error.like('*passing score is greater than the final*')) {
+            $scope.error = '##word.passing_score_greater_final_grade##';
+
+          } else if (response.data.error.like('*sum of the scores does not equal the final*')) {
+            $scope.error = '##word.sum_scores_not_equal_final_score##';
+
+          } else if (response.data.error.like('*sum of the scores does not equal the final all*')) {
+            $scope.error = `##word.sum_scores_not_equal_final_score##   ( ${response.data.error_list.join('-')} )`;
+
+          } else if (response.data.error.like('*cannot enter because you are not registered*')) {
+            $scope.error = '##word.cant_enter_exam##';
+
+          } else if (response.data.error.like('*test has already been performed*')) {
+            $scope.error = '##word.You_have_already_taken_test##';
+
+          }
+
+          else if (response.data.error.like('*exam time has expired*')) {
+            $scope.error = '##word.exam_time_expired##';
+
+          }
+
         }
       },
       function (err) {
@@ -861,26 +728,36 @@ app.controller("exams", function ($scope, $http, $timeout) {
   };
 
 
-
   $scope.timer = function () {
     $timeout(() => {
 
-      if ($scope.student_exams.exam.time.seconds === 0 && $scope.student_exams.exam.time.minutes > 0) {
-        $scope.student_exams.exam.time.minutes = $scope.student_exams.exam.time.minutes - 1;
-        $scope.student_exams.exam.time.seconds = 59;
+      if ($scope.student_exams.exam.time_minutes > 1) {
 
-        $scope.timer();
-      } else if ($scope.student_exams.exam.time.seconds > 0) {
-        $scope.student_exams.exam.time.seconds = $scope.student_exams.exam.time.seconds - 1;
-        $scope.timer();
+        $scope.updateExamsStudent($scope.exams, 'time');
       } else {
-        $scope.updateExamsStudent($scope.exams, 'start');
+
+        $scope.updateExamsStudent($scope.exams, 'finish');
 
       }
-      $scope.student_exams.exam.real_time = ($scope.student_exams.exam.time.minutes + ':' + $scope.student_exams.exam.time.seconds);
-    }, 1000);
+
+    }, 1000 * 60);
 
   };
+
+  /*  $scope.timerSecounds = function () {
+     $timeout(() => {
+ 
+       if ($scope.seconds === 0 && $scope.student_exams.exam.time_minutes > 0) {
+         $scope.seconds = 59;
+         $scope.timerSecounds();
+       } else if ($scope.seconds > 0) {
+         $scope.seconds = $scope.seconds - 1;
+         $scope.timerSecounds();
+       }
+ 
+     }, 1000);
+ 
+   }; */
 
   $scope.examDetails = function (student_exams, type) {
 
@@ -897,6 +774,11 @@ app.controller("exams", function ($scope, $http, $timeout) {
 
 
   $scope.acceptFinishExam = function (student_exams) {
+
+    if (student_exams.exam.time_minutes === 0) {
+      site.hideModal('#startExamModal');
+      return;
+    };
 
     $scope.main_ques_list = [];
     student_exams.exam.main_ques_list.forEach((_main, i) => {
@@ -930,7 +812,7 @@ app.controller("exams", function ($scope, $http, $timeout) {
     if ($scope.main_ques_list && $scope.main_ques_list.length > 0) {
       site.showModal('#acceptFinishExamModal');
     } else {
-      $scope.updateExamsStudent($scope.exams, 'start');
+      $scope.updateExamsStudent($scope.exams, 'finish');
     }
 
   };

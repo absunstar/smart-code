@@ -151,6 +151,8 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
                   $scope.error = "##word.should_open_period##"
                 } else if (response.data.error.like('*Must Enter Code*')) {
                   $scope.error = "##word.must_enter_code##"
+                } else if (response.data.error.like('*sure to specify the data of the transferee*')) {
+                  $scope.error = "##word.sure_specify_data_transferee##"
                 }
               }
             },
@@ -344,6 +346,8 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
                   $scope.error = "##word.open_shift_not_found##"
                 } else if (response.data.error.like('*n`t Open Perio*')) {
                   $scope.error = "##word.should_open_period##"
+                } else if (response.data.error.like('*sure to specify the data of the transferee*')) {
+                  $scope.error = "##word.sure_specify_data_transferee##"
                 }
               }
             },
@@ -731,10 +735,16 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
         if ($scope.defaultSettings.accounting.safe_bank)
           obj.safe = $scope.defaultSettings.accounting.safe_bank
       }
+
+      if (site.toNumber("##query.type##") === 14) {
+        $scope.loadSafes($scope.account_invoices.payment_method_to, $scope.account_invoices.currency, 'to');
+      }
     }
   };
 
-  $scope.loadSafes = function (method, currency) {
+
+
+  $scope.loadSafes = function (method, currency, type) {
     $scope.error = '';
     $scope.busy = true;
 
@@ -763,7 +773,15 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
       }).then(
         function (response) {
           $scope.busy = false;
-          if (response.data.done) $scope.safesList = response.data.list;
+          if (response.data.done) {
+            if (type === 'to') {
+              $scope.safesListTo = response.data.list;
+
+            } else {
+
+              $scope.safesList = response.data.list;
+            }
+          }
 
         },
         function (err) {
@@ -773,6 +791,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
       )
     }
   };
+
 
   $scope.getSafes = function () {
     $scope.error = '';
@@ -1574,6 +1593,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
       else if (site.toNumber("##query.type##") == 11) screen = 'employee_advance';
       else if (site.toNumber("##query.type##") == 12) screen = 'payment_employee_advance';
       else if (site.toNumber("##query.type##") == 13) screen = 'school_fees';
+      else if (site.toNumber("##query.type##") == 14) screen = 'transfer_safes_balances';
 
 
       $http({

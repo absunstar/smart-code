@@ -247,6 +247,13 @@
     {
         "category": "accounting",
         "feature": "pos",
+        "name": "transfer_safes_balances",
+        "en": "Transfer of safes balances",
+        "ar": "تحويل أرصدة الخزن"
+    },
+    {
+        "category": "accounting",
+        "feature": "pos",
         "name": "recharge_customer_balance",
         "en": "Customer Advance Payment",
         "ar": "دفعة عميل مقدمة"

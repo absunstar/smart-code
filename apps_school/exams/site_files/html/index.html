@@ -62,7 +62,7 @@
 
                             <i-button type="fa fa-hourglass-start" label="##word.exam_started##"
                                 ng-show="'##user.type##' == 'customer' && '##user.school_grade.id##' == c.school_grade.id"
-                                ng-click="examStarted(c)"></i-button>
+                                ng-click="updateExamsStudent(c,'start')"></i-button>
 
                             <i-button x-permissions="exams_view || exams_manage" type="view" label="##word.details##"
                                 ng-click="displayDetailsExams(c)"></i-button>

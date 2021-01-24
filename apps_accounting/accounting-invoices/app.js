@@ -70,6 +70,15 @@ module.exports = function init(site) {
       $res: res
     })
 
+    if (account_invoices_doc.source_type.id === 14) {
+      if (!account_invoices_doc.payment_method_to || !account_invoices_doc.safe_to) {
+        response.error = 'sure to specify the data of the transferee';
+        res.json(response)
+        return;
+      }
+    }
+
+
     if (account_invoices_doc.current_book_list && account_invoices_doc.current_book_list.length > 0) {
       account_invoices_doc.total_items_discount = 0
       account_invoices_doc.current_book_list.forEach(_c_b_list => {
@@ -117,7 +126,11 @@ module.exports = function init(site) {
     } else account_invoices_doc.remain_amount = site.toNumber(account_invoices_doc.net_value)
     account_invoices_doc.remain_amount = site.toNumber(account_invoices_doc.remain_amount)
 
-    if (account_invoices_doc.source_type.id == 8 || account_invoices_doc.source_type.id == 9 || account_invoices_doc.source_type.id == 10 || account_invoices_doc.source_type.id == 11) account_invoices_doc.remain_amount = 0
+
+    if (account_invoices_doc.source_type.id == 8 || account_invoices_doc.source_type.id == 9 || account_invoices_doc.source_type.id == 10 || account_invoices_doc.source_type.id == 11|| account_invoices_doc.source_type.id == 14) {
+      account_invoices_doc.remain_amount = 0
+      account_invoices_doc.net_value = account_invoices_doc.paid_up
+    }
 
     site.getOpenShift({ companyId: account_invoices_doc.company.id, branchCode: account_invoices_doc.branch.code }, shiftCb => {
       if (shiftCb) {
@@ -147,6 +160,7 @@ module.exports = function init(site) {
             else if (account_invoices_doc.source_type.id == 11) num_obj.screen = 'employee_advance';
             else if (account_invoices_doc.source_type.id == 12) num_obj.screen = 'payment_employee_advance';
             else if (account_invoices_doc.source_type.id == 13) num_obj.screen = 'school_fees';
+            else if (account_invoices_doc.source_type.id == 14) num_obj.screen = 'transfer_safes_balances';
 
 
             let cb = site.getNumbering(num_obj);
@@ -292,9 +306,29 @@ module.exports = function init(site) {
                   if (doc.employee && doc.employee.id) paid_value.sourceName = doc.employee.name
                   if (doc.delegate && doc.delegate.id) paid_value.sourceName = doc.delegate.name
 
+                  if (doc.source_type.id === 14) {
+                    paid_value.operation = { en: "Transfer of safes balances", ar: "تحويل أرصدة الخزن" }
+
+                    let paid_to = Object.assign({}, paid_value)
+
+                    paid_value.transition_type = 'out'
+
+
+                    paid_to.payment_method = doc.payment_method_to
+                    paid_to.safe = doc.safe_to
+                    paid_to.transition_type = 'in'
+
+                    site.quee('[amounts][safes][+]', Object.assign({}, paid_to))
+
+
+                  }
+
                   if (doc.safe) site.quee('[amounts][safes][+]', Object.assign({}, paid_value))
+
                 }
-                site.call('[account_invoices][request_service][+]', doc.invoice_id)
+
+                if (doc.source_type.id === 4)
+                  site.call('[account_invoices][request_service][+]', doc.invoice_id)
 
               } else {
                 response.error = err.message
@@ -449,8 +483,11 @@ module.exports = function init(site) {
 
                   site.quee('[customer][account_invoice][balance]', Object.assign({}, customerBalance))
 
-                }
+                } else if (account_invoices_doc.source_type.id == 13) {
+                  paid_value.operation = { ar: 'دفعة مصروفات دراسية', en: 'Pay School Fees' }
+                  paid_value.transition_type = 'in'
 
+                }
 
                 if (account_invoices_doc.employee && account_invoices_doc.employee.id) paid_value.sourceName = account_invoices_doc.employee.name
                 if (account_invoices_doc.delegate && account_invoices_doc.delegate.id) paid_value.sourceName = account_invoices_doc.delegate.name
@@ -763,7 +800,31 @@ module.exports = function init(site) {
                 if (account_invoices_doc.employee && account_invoices_doc.employee.id) obj.sourceName = account_invoices_doc.employee.name
                 if (account_invoices_doc.delegate && account_invoices_doc.delegate.id) obj.sourceName = account_invoices_doc.delegate.name
 
-                if (obj.safe) site.quee('[amounts][safes][+]', Object.assign({}, obj))
+                if (account_invoices_doc.source_type.id === 14) {
+
+                  let paid_to = Object.assign({}, obj)
+                  if (account_invoices_doc.posting) {
+                    obj.transition_type = 'out'
+                    obj.operation = { en: "Transfer of safes balances", ar: "تحويل أرصدة الخزن" }
+                  } else {
+                    obj.transition_type = 'in'
+                    obj.operation = { en: "Un Post Transfer of safes balances", ar: "فك ترحيل تحويل أرصدة الخزن" }
+                  }
+
+                  paid_to.payment_method = account_invoices_doc.payment_method_to
+                  paid_to.safe = account_invoices_doc.safe_to
+
+                  if (account_invoices_doc.posting) {
+                    paid_to.transition_type = 'in'
+                  } else {
+                    paid_to.transition_type = 'out'
+                  }
+
+                  site.quee('[amounts][safes][+]', Object.assign({}, paid_to))
+
+                }
+                if (account_invoices_doc.safe) site.quee('[amounts][safes][+]', Object.assign({}, obj))
+
               })
 
             account_invoices_doc.remain_amount = site.toNumber(account_invoices_doc.net_value) - site.toNumber(account_invoices_doc.total_paid_up)
@@ -989,11 +1050,29 @@ module.exports = function init(site) {
                       } else if (response.doc.source_type.id == 13) {
                         obj.operation = { ar: 'مصروفات دراسية', en: 'School Fees' }
                         obj.transition_type = 'out'
-    
+
                       }
 
                       if (response.doc.employee && response.doc.employee.id) obj.sourceName = response.doc.employee.name
                       if (response.doc.delegate && response.doc.delegate.id) obj.sourceName = response.doc.delegate.name
+
+
+                      if (result.doc.source_type.id === 14) {
+                        obj.operation = { en: "Delete Transfer of safes balances", ar: "حذف تحويل أرصدة الخزن" }
+
+                        let paid_to = Object.assign({}, obj)
+
+                        obj.transition_type = 'in'
+
+                        paid_to.payment_method = result.doc.payment_method_to
+                        paid_to.safe = result.doc.safe_to
+                        paid_to.transition_type = 'out'
+
+                        site.quee('[amounts][safes][+]', Object.assign({}, paid_to))
+
+
+                      }
+
 
                       if (obj.safe) site.quee('[amounts][safes][+]', Object.assign({}, obj))
 
@@ -1046,6 +1125,13 @@ module.exports = function init(site) {
 
     let account_invoices_doc = req.body
 
+    if (account_invoices_doc.source_type.id === 14) {
+      if (!account_invoices_doc.payment_method_to || !account_invoices_doc.safe_to) {
+        response.error = 'sure to specify the data of the transferee';
+        res.json(response)
+        return;
+      }
+    }
 
     if (account_invoices_doc.paid_up && account_invoices_doc.safe && account_invoices_doc.payment_list && account_invoices_doc.payment_list.length == 1) {
       account_invoices_doc.payment_list = [{
@@ -1066,8 +1152,10 @@ module.exports = function init(site) {
     };
 
 
-
-    if (account_invoices_doc.source_type.id == 8 || account_invoices_doc.source_type.id == 9 || account_invoices_doc.source_type.id == 10 || account_invoices_doc.source_type.id == 11) account_invoices_doc.remain_amount = 0
+    if (account_invoices_doc.source_type.id == 8 || account_invoices_doc.source_type.id == 9 || account_invoices_doc.source_type.id == 10 || account_invoices_doc.source_type.id == 11|| account_invoices_doc.source_type.id == 14) {
+      account_invoices_doc.remain_amount = 0
+      account_invoices_doc.net_value = account_invoices_doc.paid_up
+    }
     account_invoices_doc.edit_user_info = site.security.getUserFinger({ $req: req, $res: res })
     site.getOpenShift({ companyId: req.body.company.id, branchCode: req.body.branch.code }, shiftCb => {
       if (shiftCb) {

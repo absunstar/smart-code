@@ -44,7 +44,7 @@
 
                     <br>
                     <br>
-                    <h1 class="red bold center">{{student_exams.exam.real_time}} </h1>
+                    <h1 class="red bold center">{{seconds}} : {{student_exams.exam.time_minutes}} </h1>
                     <hr>
                     <br>
                     <br>
@@ -90,7 +90,10 @@
                         <br>
                         <div class="row" ng-repeat="ques in main.ques_list">
                             <h3 class="bold black" ng-show="main.question_types.name !='m_t_f'"> {{$index+ 1}} -
-                                {{ques.question}}</h3>
+                                {{ques.question}}
+                                <b class="blue">( ##word.degree## {{ques.degree}})</b>
+                                
+                            </h3>
                            
                             <br>
                             <br>
@@ -117,6 +120,8 @@
                                     <i-button type="close default" ng-hide="ques.answer_stu.boolean == 'false'"
                                         ng-click="markTrueFalse(ques,false,'answer')">
                                     </i-button>
+
+                                    <b class="blue">( ##word.degree## {{ques.degree}})</b>
                                 </h3>
 
                                 <i-textarea class="col7" ng-show="main.with_reason_stated"
@@ -209,7 +214,7 @@
         <h2 class="error"> {{error}} </h2>
 
         <div class="modal-footer center">
-            <i-button type="save" label="##word.accept##" ng-click="updateExamsStudent(exams,'start')">
+            <i-button type="save" label="##word.accept##" ng-click="updateExamsStudent(exams,'finish')">
             </i-button>
             <i-button type="close" label="##word.close##" onclick="site.hideModal('#acceptFinishExamModal')"></i-button>
         </div>

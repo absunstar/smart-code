@@ -20,9 +20,39 @@
         "ar": "قائمة فواتير الحسابات"
     },
     {
+        "name": "transmitted_from",
+        "en": "Transmitted from it",
+        "ar": "المحول منه"
+    },
+    {
+        "name": "transferee",
+        "en": "Transferee",
+        "ar": "المحول إليه"
+    },
+    {
+        "name": "transfer_safes_balances",
+        "en": "Transfer of safes balances",
+        "ar": "تحويل أرصدة الخزن"
+    },
+    {
         "name": "payment_made",
         "en": "Payment Was Made",
         "ar": "تم الدفع"
+    },
+    {
+        "name": "data_transmitted_from",
+        "en": "Data transmitted from it",
+        "ar": "بيانات المحول منه"
+    },
+    {
+        "name": "sure_specify_data_transferee",
+        "en": "Be sure to specify the data of the transferee",
+        "ar": "يجب التأكد من تحديد بيانات المحول إليه"
+    },
+    {
+        "name": "data_transmitted_to",
+        "en": "Data transmitted To it",
+        "ar": "بيانات المحول إليه"
     },
     {
         "name": "must_choose_type_tuition_fees",
