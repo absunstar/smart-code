@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" x-permissions="sales_class_schedule_ui || sales_class_schedule_manage" data-ng-app="myApp">
+<html lang="en" x-permissions="class_schedule_ui || class_schedule_manage" data-ng-app="myApp">
 
 <head x-import="head.html">
 
@@ -27,9 +27,9 @@
                 </div>
 
                 <div class="top-actions">
-                    <i-button type="add" x-permissions="sales_class_schedule_add || sales_class_schedule_manage"
+                    <i-button type="add" x-permissions="class_schedule_add || class_schedule_manage"
                         label="##word.class_schedule_new##" ng-click="displayAddClassSchedule()"></i-button>
-                    <i-button type="search" x-permissions="sales_class_schedule_search || sales_class_schedule_manage"
+                    <i-button type="search" x-permissions="class_schedule_search || class_schedule_manage"
                         label="##word.search_all##" onclick="site.showModal('#classScheduleSearchModal')"></i-button>
 
                     <span ng-show="busy">
@@ -65,22 +65,22 @@
 
                         <td class="center not-print">
                             <i-button type="details"
-                                x-permissions="sales_class_schedule_view || sales_class_schedule_manage"
+                                x-permissions="class_schedule_view || class_schedule_manage"
                                 label="##word.details##" ng-click="displayDetailsClassSchedule(c,'view')"></i-button>
 
                             <i-button type="update"
-                                x-permissions="sales_class_schedule_edit || sales_class_schedule_manage"
+                                x-permissions="class_schedule_edit || class_schedule_manage"
                                 label="##word.update##" ng-click="displayUpdateClassSchedule(c,'update')"></i-button>
 
                             <i-button type="delete"
-                                x-permissions="sales_class_schedule_delete || sales_class_schedule_manage"
+                                x-permissions="class_schedule_delete || class_schedule_manage"
                                 label="##word.delete##" ng-click="displayDeleteClassSchedule(c)"></i-button>
                         </td>
                     </tr>
                 </table>
 
                 <div class="row">
-                    <i-button x-permissions="sales_class_schedule_print || sales_class_schedule_manage" type="print"
+                    <i-button x-permissions="class_schedule_print || class_schedule_manage" type="print"
                         label="##word.print##" onclick="site.print('#t1')"></i-button>
 
 

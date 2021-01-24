@@ -501,7 +501,7 @@ module.exports = function init(site) {
       res.json(response)
       return
     }
-
+    console.log(req.session.user);
     let where = req.body.where || {}
 
     if (where['name']) {

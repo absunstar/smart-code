@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" x-permissions="sales_school_grade_ui || sales_school_grade_manage" data-ng-app="myApp">
+<html lang="en" x-permissions="school_grade_ui || school_grade_manage" data-ng-app="myApp">
 
 <head x-import="head.html">
 
@@ -27,8 +27,8 @@
                 </div>
 
                 <div class="top-actions">
-                    <i-button type="add" x-permissions="sales_school_grade_add || sales_school_grade_manage" label="##word.school_grade_new##" ng-click="displayAddSchoolGrade()"></i-button>
-                    <i-button type="search" x-permissions="sales_school_grade_search || sales_school_grade_manage" label="##word.search_all##" onclick="site.showModal('#schoolGradeSearchModal')"></i-button>
+                    <i-button type="add" x-permissions="school_grade_add || school_grade_manage" label="##word.school_grade_new##" ng-click="displayAddSchoolGrade()"></i-button>
+                    <i-button type="search" x-permissions="school_grade_search || school_grade_manage" label="##word.search_all##" onclick="site.showModal('#schoolGradeSearchModal')"></i-button>
 
                     <span ng-show="busy">
                         <span class="sr-only">Loading...</span>
@@ -60,17 +60,17 @@
                         </td>
 
                         <td class="center not-print">
-                            <i-button type="details" x-permissions="sales_school_grade_view || sales_school_grade_manage" label="##word.details##" ng-click="displayDetailsSchoolGrade(c)"></i-button>
+                            <i-button type="details" x-permissions="school_grade_view || school_grade_manage" label="##word.details##" ng-click="displayDetailsSchoolGrade(c)"></i-button>
 
-                            <i-button type="update" x-permissions="sales_school_grade_edit || sales_school_grade_manage" label="##word.update##" ng-click="displayUpdateSchoolGrade(c)"></i-button>
+                            <i-button type="update" x-permissions="school_grade_edit || school_grade_manage" label="##word.update##" ng-click="displayUpdateSchoolGrade(c)"></i-button>
 
-                            <i-button type="delete" x-permissions="sales_school_grade_delete || sales_school_grade_manage" label="##word.delete##" ng-click="displayDeleteSchoolGrade(c)"></i-button>
+                            <i-button type="delete" x-permissions="school_grade_delete || school_grade_manage" label="##word.delete##" ng-click="displayDeleteSchoolGrade(c)"></i-button>
                         </td>
                     </tr>
                 </table>
 
                 <div class="row">
-                    <i-button x-permissions="sales_school_grade_print || sales_school_grade_manage" type="print" label="##word.print##" onclick="site.print('#t1')"></i-button>
+                    <i-button x-permissions="school_grade_print || school_grade_manage" type="print" label="##word.print##" onclick="site.print('#t1')"></i-button>
 
 
                 </div>

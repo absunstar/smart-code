@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" x-permissions="sales_seating_numbers_ui || sales_seating_numbers_manage" data-ng-app="myApp">
+<html lang="en" x-permissions="seating_numbers_ui || seating_numbers_manage" data-ng-app="myApp">
 
 <head x-import="head.html">
 
@@ -27,8 +27,8 @@
                 </div>
 
                 <div class="top-actions">
-                    <i-button type="add" x-permissions="sales_seating_numbers_add || sales_seating_numbers_manage" label="##word.seating_numbers_new##" ng-click="displayAddSeatingNumbers()"></i-button>
-                    <i-button type="search" x-permissions="sales_seating_numbers_search || sales_seating_numbers_manage" label="##word.search_all##" onclick="site.showModal('#seatingNumbersSearchModal')"></i-button>
+                    <i-button type="add" x-permissions="seating_numbers_add || seating_numbers_manage" label="##word.seating_numbers_new##" ng-click="displayAddSeatingNumbers()"></i-button>
+                    <i-button type="search" x-permissions="seating_numbers_search || seating_numbers_manage" label="##word.search_all##" onclick="site.showModal('#seatingNumbersSearchModal')"></i-button>
 
                     <span ng-show="busy">
                         <span class="sr-only">Loading...</span>
@@ -64,17 +64,17 @@
                         </td>
 
                         <td class="center not-print">
-                            <i-button type="details" x-permissions="sales_seating_numbers_view || sales_seating_numbers_manage" label="##word.details##" ng-click="displayDetailsSeatingNumbers(c)"></i-button>
+                            <i-button type="details" x-permissions="seating_numbers_view || seating_numbers_manage" label="##word.details##" ng-click="displayDetailsSeatingNumbers(c)"></i-button>
 
-                            <i-button type="update" x-permissions="sales_seating_numbers_edit || sales_seating_numbers_manage" label="##word.update##" ng-click="displayUpdateSeatingNumbers(c)"></i-button>
+                            <i-button type="update" x-permissions="seating_numbers_edit || seating_numbers_manage" label="##word.update##" ng-click="displayUpdateSeatingNumbers(c)"></i-button>
 
-                            <i-button type="delete" x-permissions="sales_seating_numbers_delete || sales_seating_numbers_manage" label="##word.delete##" ng-click="displayDeleteSeatingNumbers(c)"></i-button>
+                            <i-button type="delete" x-permissions="seating_numbers_delete || seating_numbers_manage" label="##word.delete##" ng-click="displayDeleteSeatingNumbers(c)"></i-button>
                         </td>
                     </tr>
                 </table>
 
                 <div class="row">
-                    <i-button x-permissions="sales_seating_numbers_print || sales_seating_numbers_manage" type="print" label="##word.print##" onclick="site.print('#t1')"></i-button>
+                    <i-button x-permissions="seating_numbers_print || seating_numbers_manage" type="print" label="##word.print##" onclick="site.print('#t1')"></i-button>
 
 
                 </div>

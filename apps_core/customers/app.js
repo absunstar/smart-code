@@ -164,7 +164,7 @@ module.exports = function init(site) {
     let user = {};
 
     user = {
-      name: customers_doc.name,
+      name: customers_doc.name_ar,
       mobile: customers_doc.mobile,
       username: customers_doc.username,
       email: customers_doc.username,
@@ -198,7 +198,8 @@ module.exports = function init(site) {
         ar: "معلومات المشتركين للمستخدم",
         permissions: ["report_info_ui"]
       })
-    } if (site.feature('school')) {
+    } 
+    if (site.feature('school')) {
       user.school_grade = customers_doc.school_grade
 
       user.roles.push({
@@ -213,14 +214,11 @@ module.exports = function init(site) {
       })
     }
 
-    if (user.gender && user.gender.name === 'female') {
-      user.roles.push({
-        module_name: "public",
-        name: "customers_type",
-        en: "Female Type",
-        ar: "نوع العميل",
-        permissions: ["female"]
-      })
+    user.permissions = []
+    
+    if (user.gender && user.gender.name == 'female') {
+
+    user.permissions.push({name:'female'})
     }
 
 
@@ -383,15 +381,13 @@ module.exports = function init(site) {
       })
     }
 
-    if (user.gender && user.gender.name === 'female') {
-      user.roles.push({
-        module_name: "public",
-        name: "customers_type",
-        en: "Female Type",
-        ar: "نوع العميل",
-        permissions: ['female']
-      })
+    user.permissions = []
+    
+    if (user.gender && user.gender.name == 'female') {
+
+    user.permissions.push({name:'female'})
     }
+
 
     user.profile = {
       name: user.name,

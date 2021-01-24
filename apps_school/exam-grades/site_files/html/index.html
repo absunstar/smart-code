@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" x-permissions="sales_exam_grades_ui || sales_exam_grades_manage" data-ng-app="myApp">
+<html lang="en" x-permissions="exam_grades_ui || exam_grades_manage" data-ng-app="myApp">
 
 <head x-import="head.html">
 
@@ -27,9 +27,9 @@
                 </div>
 
                 <div class="top-actions">
-                    <i-button type="add" x-permissions="sales_exam_grades_add || sales_exam_grades_manage"
+                    <i-button type="add" x-permissions="exam_grades_add || exam_grades_manage"
                         label="##word.exam_grades_new##" ng-click="displayAddExamGrades()"></i-button>
-                    <i-button type="search" x-permissions="sales_exam_grades_search || sales_exam_grades_manage"
+                    <i-button type="search" x-permissions="exam_grades_search || exam_grades_manage"
                         label="##word.search_all##" onclick="site.showModal('#examGradessSearchModal')"></i-button>
 
                     <span ng-show="busy">
@@ -66,20 +66,20 @@
                         </td>
 
                         <td class="center not-print">
-                            <i-button type="details" x-permissions="sales_exam_grades_view || sales_exam_grades_manage"
+                            <i-button type="details" x-permissions="exam_grades_view || exam_grades_manage"
                                 label="##word.details##" ng-click="displayDetailsExamGrades(c)"></i-button>
 
-                            <i-button type="update" x-permissions="sales_exam_grades_edit || sales_exam_grades_manage"
+                            <i-button type="update" x-permissions="exam_grades_edit || exam_grades_manage"
                                 label="##word.update##" ng-click="displayUpdateExamGrades(c)"></i-button>
 
-                            <i-button type="delete" x-permissions="sales_exam_grades_delete || sales_exam_grades_manage"
+                            <i-button type="delete" x-permissions="exam_grades_delete || exam_grades_manage"
                                 label="##word.delete##" ng-click="displayDeleteExamGrades(c)"></i-button>
                         </td>
                     </tr>
                 </table>
 
                 <div class="row">
-                    <i-button x-permissions="sales_exam_grades_print || sales_exam_grades_manage" type="print"
+                    <i-button x-permissions="exam_grades_print || exam_grades_manage" type="print"
                         label="##word.print##" onclick="site.print('#t1')"></i-button>
 
 
