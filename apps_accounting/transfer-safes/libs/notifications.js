@@ -1,24 +1,24 @@
 module.exports = function init(site) {
 
-  let collection_name = 'school_years'
+  let collection_name = 'transfer_safes'
 
   let source = {
-    name: 'School Years System',
-    ar: ' نظام المراحل الدراسية'
+    name: 'Transfer Safes System',
+    ar: ' نظام تحويل الخزن'
   }
 
-  let image_url = '/images/school_years.png'
+  let image_url = '/images/transfer_safes.png'
   let add_message = {
-    name: 'New School Years Added',
-    ar: 'تم إضافة سنة دراسية جديدة'
+    name: 'New Transfer Safes Added',
+    ar: 'تم إضافة تحويل خزن جديدة'
   }
   let update_message = {
-    name: ' School Years Updated',
-    ar: 'تم تعديل سنة دراسية'
+    name: ' Transfer Safes Updated',
+    ar: 'تم تعديل تحويل خزن'
   }
   let delete_message = {
-    name: ' School Years Deleted',
-    ar: 'تم حذف سنة دراسية '
+    name: ' Transfer Safes Deleted',
+    ar: 'تم حذف تحويل خزن '
   }
 
 

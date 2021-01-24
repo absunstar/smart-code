@@ -441,46 +441,24 @@
                         </div>
 
                         <div class="row">
-                            <fieldset>
-                                <legend ng-show="account_invoices.source_type.id ==14">##word.data_transmitted_from##
-                                </legend>
-                                <i-list help-id="" ng-search="_search.$payment_method_search" class="col2"
-                                    label="##word.payment_method##" ng-model="account_invoices.payment_method"
-                                    items="paymentMethodList" ng-change="getSafeByType(account_invoices)"
-                                    display="##session.lang##">
-                                </i-list>
 
-                                <i-list class="col3" ng-search="_search.$currency_search"
-                                    ng-model="account_invoices.currency"
-                                    ng-change="getSafeByType(account_invoices) ; calc(account_invoices)"
-                                    items="currenciesList" label="##word.currency##"></i-list>
+                            <i-list help-id="" ng-search="_search.$payment_method_search" class="col2"
+                                label="##word.payment_method##" ng-model="account_invoices.payment_method"
+                                items="paymentMethodList" ng-change="getSafeByType(account_invoices)"
+                                display="##session.lang##">
+                            </i-list>
 
-                                <i-control class="col2" disabled ng-model="account_invoices.currency.ex_rate"
-                                    type="number" label="##word.exchange_rate##"></i-control>
+                            <i-list class="col3" ng-search="_search.$currency_search"
+                                ng-model="account_invoices.currency"
+                                ng-change="getSafeByType(account_invoices) ; calc(account_invoices)"
+                                items="currenciesList" label="##word.currency##"></i-list>
 
-                                <i-list class="col3 " ng-search="_search.$safe_account_invoices"
-                                    ng-model="account_invoices.safe" items="safesList" label="##word.amounts_in_safe##">
-                                </i-list>
-                            </fieldset>
+                            <i-control class="col2" disabled ng-model="account_invoices.currency.ex_rate" type="number"
+                                label="##word.exchange_rate##"></i-control>
 
-                        </div>
-                        <br>
-                        <br>
-                        <div class="row" ng-show="account_invoices.source_type.id ==14">
-                            <fieldset>
-                                <legend>##word.data_transmitted_to##
-                                </legend>
-                                <i-list help-id="" ng-search="_search.$payment_method_search" class="col2"
-                                    label="##word.payment_method##" ng-model="account_invoices.payment_method_to"
-                                    items="paymentMethodList" ng-change="getSafeByType(account_invoices)"
-                                    display="##session.lang##">
-                                </i-list>
-
-                                <i-list class="col3 " ng-search="_search.$safe_account_invoices"
-                                    ng-model="account_invoices.safe_to" items="safesListTo"
-                                    label="##word.amounts_in_safe##">
-                                </i-list>
-                            </fieldset>
+                            <i-list class="col3 " ng-search="_search.$safe_account_invoices"
+                                ng-model="account_invoices.safe" items="safesList" label="##word.amounts_in_safe##">
+                            </i-list>
 
                         </div>
 

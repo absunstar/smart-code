@@ -1,23 +1,134 @@
 <div class="form">
-    <div id="schoolYearsAddModal">
+    <div id="transferSafesAddModal">
         <fieldset>
-            <legend> ##word.school_years_informations## </legend>
+            <legend> ##word.transfer_safes_informations## </legend>
             <div class="row">
                 <div class="col9">
                     <div class="row">
-                        <i-control ng-disabled="disabledCode" class="col2" label="##word.code##"
-                            ng-model="school_years.code"></i-control>
+                        <div class="row">
 
-                        <i-control v="r" class="col4" label="##word.school_years_name##" ng-model="school_years.name">
-                        </i-control>
-                        <div class="col4"></div>
-                        <i-checkbox class="col2" label="##word.active##" ng-model="school_years.active"></i-checkbox>
+                            <i-control ng-disabled="disabledCode" class="col2" label="##word.code##"
+                                ng-model="transfer_safes.code"></i-control>
+
+                            <i-date2 class="col4" ng-model="transfer_safes.date" label="##word.date##"></i-date2>
+
+                            <i-control class="col3 r_indigo" disabled label="##word.shift##" ng-model="shift.code">
+                            </i-control>
+
+                        </div>
+                        <br>
+                        <br>
+                        <div class="row">
+                            <fieldset>
+                                <legend>##word.data_transmitted_from##</legend>
+
+                                <i-list v="r" display="##session.lang##" class="col2" ng-search="_search.$safe_type"
+                                    ng-change="loadSafes(transfer_safes.type_from,'from') ;calc()" items="safeTypesList"
+                                    ng-model="transfer_safes.type_from" label="##word.safe_type##">
+                                </i-list>
+
+                                <i-list class="col3" v="r" ng-search="_search.$safe_transfer_safes"
+                                    ng-change="loadCurrencies(transfer_safes.safe_from,'from') ;calc()"
+                                    ng-model="transfer_safes.safe_from" items="safesListFrom"
+                                    label="##word.amounts_in_safe##">
+                                </i-list>
+
+                                <i-list class="col3" ng-search="_search.$currency_search"
+                                    ng-model="transfer_safes.currency_from" disabled label="##word.currency##">
+                                </i-list>
+
+                                <i-control class="col2" disabled ng-model="transfer_safes.currency_from.ex_rate"
+                                    type="number" label="##word.exchange_rate##"></i-control>
+
+                                <div class="col2">
+                                    <h3 class="center bold black">##word.current_safe_balance##</h3>
+                                    <br>
+                                    <h3 class="center bold green" ng-show="transfer_safes.safe_from.balance > 0">
+                                        ( {{transfer_safes.safe_from.balance}} )</h3>
+                                    <h3 class="center bold red"
+                                        ng-show="transfer_safes.safe_from.balance == 0 || transfer_safes.safe_from.balance < 0">
+                                        ( {{transfer_safes.safe_from.balance}} )</h3>
+
+                                </div>
+                            </fieldset>
+                        </div>
+                        <br>
+                        <br>
+                        <div class="row">
+                            <fieldset>
+                                <legend>##word.data_transmitted_to##</legend>
+
+                                <i-list v="r" display="##session.lang##" class="col2" ng-search="_search.$safe_type"
+                                    ng-change="loadSafes(transfer_safes.type_to,'to');calc()" items="safeTypesList"
+                                    ng-model="transfer_safes.type_to" label="##word.safe_type##">
+                                </i-list>
+
+                                <i-list class="col3" v="r" ng-search="_search.$safe_transfer_safes"
+                                    ng-change="loadCurrencies(transfer_safes.safe_to,'to');calc()"
+                                    ng-model="transfer_safes.safe_to" items="safesListTo"
+                                    label="##word.amounts_in_safe##">
+                                </i-list>
+
+                                <i-list class="col3" ng-search="_search.$currency_search"
+                                    ng-model="transfer_safes.currency_to" disabled label="##word.currency##">
+                                </i-list>
+
+                                <i-control class="col2" disabled ng-model="transfer_safes.currency_to.ex_rate"
+                                    type="number" label="##word.exchange_rate##"></i-control>
+                                <div class="col2">
+                                    <h3 class="center bold black">##word.current_safe_balance##</h3>
+                                    <br>
+                                    <h3 class="center bold green" ng-show="transfer_safes.safe_to.balance > 0">
+                                        ( {{transfer_safes.safe_to.balance}} )</h3>
+
+                                    <h3 class="center bold red"
+                                        ng-show="transfer_safes.safe_to.balance == 0 || transfer_safes.safe_to.balance < 0">
+                                        ( {{transfer_safes.safe_to.balance}} )</h3>
+
+                                </div>
+                            </fieldset>
+                        </div>
+                        <br>
+                        <br>
+
+                        <div class="row">
+                            <i-control class="col2" ng-model="transfer_safes.value_from" type="number"
+                                ng-change="calc()" label="##word.amount_transferred##"></i-control>
+
+                            <i-control class="col3" disabled ng-model="transfer_safes.value_to" type="number"
+                                label="##word.currency_transferred_to##"></i-control>
+
+                        </div>
+                        <br>
+                        <br>
+                        <div class="row">
+                            <fieldset>
+                                <legend>##word.Safes_balances_after_transfer##</legend>
+                                <div class="row">
+                                    <div class="col3"></div>
+                                    <div class="col4">
+                                        <h2 class="bold black">##word.transferred_from## :
+                                            ( <b class="red">{{transfer_safes.safe_transferred_from}}</b> ) </h2>
+
+                                    </div>
+                                    <div class="col1">
+                                        <h1 class="blue bold"> / </h1>
+                                    </div>
+                                    <div class="col4">
+                                        <h2 class="bold black">##word.transferred_to## :
+                                            ( <b class="green">{{transfer_safes.safe_transferred_to}}</b> ) </h2>
+                                    </div>
+                                </div>
+
+
+                            </fieldset>
+                        </div>
                     </div>
 
                 </div>
 
                 <div class="col3">
-                    <i-image category="school_years" ng-model="school_years.image_url"> </i-image>
+                    <i-image category="transfer_safes" ng-model="transfer_safes.image_url"> </i-image>
                 </div>
             </div>
         </fieldset>

@@ -1,19 +1,66 @@
 [
-    {"name" : "school_years_informations" , "en" : "School Years Informations" , "ar" : "بيانات السنوات الدراسية"},
+    {"name" : "transfer_safes_informations" , "en" : "Transfer Safes Informations" , "ar" : "بيانات تحويلات الخزن"},
 
-    {"name" : "school_year" , "en" : "School Year" , "ar" : "السنة الدراسية"},
-    {"name" : "school_years" , "en" : "School Years" , "ar" : "السنوات الدراسية"},
-    {"name" : "school_years_menus" , "en" : "School Years Menu" , "ar" : "قائمة السنوات الدراسية"},
-    {"name" : "school_years_code" , "en" : "School Years Code" , "ar" : "كود السنة الدراسية"},
-    {"name" : "school_years_name" , "en" : "School Years Name" , "ar" : "إسم السنة الدراسية"},
+    {"name" : "transfer_safes" , "en" : "Transfer Safes" , "ar" : "تحويلات الخزن"},
+    {"name" : "transfer_safes_menus" , "en" : "Transfer Safes Menu" , "ar" : "قائمة تحويلات الخزن"},
+    {"name" : "transfer_safes_code" , "en" : "Transfer Safes Code" , "ar" : "كود تحويل الخزن"},
+    {"name" : "transfer_safes_name" , "en" : "Transfer Safes Name" , "ar" : "إسم تحويل الخزن"},
 
-    {"name" : "school_years_new" , "en" : "New School Year" , "ar" : "سنة دراسية جديدة"},
-    {"name" : "school_years_details" , "en" : "School Years Details" , "ar" : "تفاصيل السنة الدراسية"},
-    {"name" : "school_years_update" , "en" : "Edit School Years" , "ar" : "تعديل السنة الدراسية"},
-    {"name" : "school_years_delete" , "en" : "Delte School Years" , "ar" : "حذف السنة الدراسية"},
-    {"name" : "school_years_add_name" , "en" : "Add School Years" , "ar" : "إضافة سنة الدراسية"}
-
-
+    {"name" : "transfer_safes_new" , "en" : "New Transfer Safes" , "ar" : "تحويل خزن جديد"},
+    {"name" : "transfer_safes_details" , "en" : "Transfer Safes Details" , "ar" : "تفاصيل تحويل الخزن"},
+    {"name" : "transfer_safes_update" , "en" : "Edit Transfer Safes" , "ar" : "تعديل تحويل الخزن"},
+    {"name" : "transfer_safes_delete" , "en" : "Delte Transfer Safes" , "ar" : "حذف تحويل الخزن"},
+    {"name" : "transfer_safes_add_name" , "en" : "Add Transfer Safes" , "ar" : "إضافة تحويل خزن"},
+    {
+        "name": "data_transmitted_from",
+        "en": "Data transmitted from it",
+        "ar": "بيانات المحول منه"
+    },
+    {
+        "name": "Safes_balances_after_transfer",
+        "en": "Safes balances after transfer",
+        "ar": "أرصدة الخزن بعد التحويل"
+    },
+    {
+        "name": "amount_transferred",
+        "en": "The amount transferred",
+        "ar": "المبلغ المحول"
+    },
+    {
+        "name": "transferred_from",
+        "en": "Safe Transferred From",
+        "ar": "الخزنة المحول منها"
+    },
+    {
+        "name": "transferred_to",
+        "en": "Safe Transferred To",
+        "ar": "الخزنة المحول لها"
+    },
+    {
+        "name": "balance_after_transfer",
+        "en": "Balance after transfer",
+        "ar": "الرصيد بعد التحويل"
+    },
+    {
+        "name": "currency_transferred_to",
+        "en": "Amount in currency transferred to it",
+        "ar": "المبلغ بالعملة المحول لها"
+    },
+    {
+        "name": "current_safe_balance",
+        "en": "Current Safe Balance",
+        "ar": "رصيد الخزنة الحالي"
+    },
+    {
+        "name": "data_transmitted_to",
+        "en": "Data transmitted To it",
+        "ar": "بيانات المحول إليه"
+    },
+    {
+        "name": "transfer_safes_balances",
+        "en": "Transfer of safes balances",
+        "ar": "تحويل أرصدة الخزن"
+    }
     
     
 ]

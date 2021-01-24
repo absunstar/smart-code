@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" x-permissions="school_years_ui || school_years_manage" data-ng-app="myApp">
+<html lang="en" x-permissions="transfer_safes_ui || transfer_safes_manage" data-ng-app="myApp">
 
 <head x-import="head.html">
 
@@ -15,20 +15,20 @@
     </nav>
     <div id="main-layout" class="container loaded">
         <div class="row">
-            <div class="row" ng-controller="school_years" x-permissions="login">
-                <div x-import="school-years/add_modal.html"></div>
-                <div x-import="school-years/update_modal.html"></div>
-                <div x-import="school-years/delete_modal.html"></div>
-                <div x-import="school-years/view_modal.html"></div>
-                <div x-import="school-years/search_all_modal.html"></div>
+            <div class="row" ng-controller="transfer_safes" x-permissions="login">
+                <div x-import="transfer-safes/add_modal.html"></div>
+                <div x-import="transfer-safes/update_modal.html"></div>
+                <div x-import="transfer-safes/delete_modal.html"></div>
+                <div x-import="transfer-safes/view_modal.html"></div>
+                <div x-import="transfer-safes/search_all_modal.html"></div>
 
                 <div class="row">
-                    <h1 class="bold text-center"> ##word.school_years## </h1>
+                    <h1 class="bold text-center"> ##word.transfer_safes_balances## </h1>
                 </div>
 
                 <div class="top-actions">
-                    <i-button type="add" x-permissions="school_years_add || school_years_manage" label="##word.school_years_new##" ng-click="displayAddSchoolYears()"></i-button>
-                    <i-button type="search" x-permissions="school_years_search || school_years_manage" label="##word.search_all##" onclick="site.showModal('#schoolYearsSearchModal')"></i-button>
+                    <i-button type="add" x-permissions="transfer_safes_add || transfer_safes_manage" label="##word.transfer_safes_new##" ng-click="displayAddTransferSafes()"></i-button>
+                    <i-button type="search" x-permissions="transfer_safes_search || transfer_safes_manage" label="##word.search_all##" onclick="site.showModal('#transferSafesSearchModal')"></i-button>
 
                     <span ng-show="busy">
                         <span class="sr-only">Loading...</span>
@@ -40,8 +40,8 @@
                 <table class="table loaded hover center bold" id="t1">
                     <tr>
                         <th class="not-print"> ##word.logo## </th>
-                        <th> ##word.school_years_code## </th>
-                        <th> ##word.school_years_name## </th>
+                        <th> ##word.code## </th>
+                        <th> ##word.transfer_safes_name## </th>
                         <th> ##word.status## </th>
 
                         <th class="not-print"> ##word.actions## </th>
@@ -60,17 +60,17 @@
                         </td>
 
                         <td class="center not-print">
-                            <i-button type="details" x-permissions="school_years_view || school_years_manage" label="##word.details##" ng-click="displayDetailsSchoolYears(c)"></i-button>
+                            <i-button type="details" x-permissions="transfer_safes_view || transfer_safes_manage" label="##word.details##" ng-click="displayDetailsTransferSafes(c)"></i-button>
 
-                            <i-button type="update" x-permissions="school_years_edit || school_years_manage" label="##word.update##" ng-click="displayUpdateSchoolYears(c)"></i-button>
+                            <i-button type="update" x-permissions="transfer_safes_edit || transfer_safes_manage" label="##word.update##" ng-click="displayUpdateTransferSafes(c)"></i-button>
 
-                            <i-button type="delete" x-permissions="school_years_delete || school_years_manage" label="##word.delete##" ng-click="displayDeleteSchoolYears(c)"></i-button>
+                            <i-button type="delete" x-permissions="transfer_safes_delete || transfer_safes_manage" label="##word.delete##" ng-click="displayDeleteTransferSafes(c)"></i-button>
                         </td>
                     </tr>
                 </table>
 
                 <div class="row">
-                    <i-button x-permissions="school_years_print || school_years_manage" type="print" label="##word.print##" onclick="site.print('#t1')"></i-button>
+                    <i-button x-permissions="transfer_safes_print || transfer_safes_manage" type="print" label="##word.print##" onclick="site.print('#t1')"></i-button>
 
 
                 </div>
@@ -80,7 +80,7 @@
     </div>
     <div x-import="scripts.html"></div>
 
-    <script x-permissions="login" x-import="school-years/index.js"></script>
+    <script x-permissions="login" x-import="transfer-safes/index.js"></script>
 </body>
 
 </html>

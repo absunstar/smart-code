@@ -247,7 +247,7 @@
     {
         "category": "accounting",
         "feature": "pos",
-        "name": "transfer_safes_balances",
+        "name": "transfer_safes",
         "en": "Transfer of safes balances",
         "ar": "تحويل أرصدة الخزن"
     },

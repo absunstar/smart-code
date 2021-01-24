@@ -1,18 +1,18 @@
 module.exports = function init(site) {
-  const $school_years = site.connectCollection("school_years")
+  const $transfer_safes = site.connectCollection("transfer_safes")
 
-  $school_years.deleteDuplicate({
+  $transfer_safes.deleteDuplicate({
     code: 1,
     'company.id': 1
   }, (err, result) => {
-    $school_years.createUnique({
+    $transfer_safes.createUnique({
       code: 1,
       'company.id': 1
     }, (err, result) => { })
   })
 
   site.get({
-    name: "school_years",
+    name: "transfer_safes",
     path: __dirname + "/site_files/html/index.html",
     parser: "html",
     compress: true
@@ -24,7 +24,7 @@ module.exports = function init(site) {
   })
 
 
-  site.post("/api/school_years/add", (req, res) => {
+  site.post("/api/transfer_safes/add", (req, res) => {
     let response = {}
     response.done = false
 
@@ -44,7 +44,7 @@ module.exports = function init(site) {
 
     let num_obj = {
       company: site.get_company(req),
-      screen: 'school_years',
+      screen: 'transfer_safes',
       date: new Date()
     };
 
@@ -61,7 +61,7 @@ module.exports = function init(site) {
     school_years_doc.company = site.get_company(req)
     school_years_doc.branch = site.get_branch(req)
 
-    $school_years.add(school_years_doc, (err, doc) => {
+    $transfer_safes.add(school_years_doc, (err, doc) => {
       if (!err) {
         response.done = true
         response.doc = doc
@@ -72,7 +72,7 @@ module.exports = function init(site) {
     })
   })
 
-  site.post("/api/school_years/update", (req, res) => {
+  site.post("/api/transfer_safes/update", (req, res) => {
     let response = {
       done: false
     }
@@ -89,7 +89,7 @@ module.exports = function init(site) {
       $res: res
     })
     if (school_years_doc.id) {
-      $school_years.edit({
+      $transfer_safes.edit({
         where: {
           id: school_years_doc.id
         },
@@ -112,7 +112,7 @@ module.exports = function init(site) {
     }
   })
 
-  site.post("/api/school_years/view", (req, res) => {
+  site.post("/api/transfer_safes/view", (req, res) => {
     let response = {
       done: false
     }
@@ -123,7 +123,7 @@ module.exports = function init(site) {
       return
     }
 
-    $school_years.findOne({
+    $transfer_safes.findOne({
       where: {
         id: req.body.id
       }
@@ -138,7 +138,7 @@ module.exports = function init(site) {
     })
   })
 
-  site.post("/api/school_years/delete", (req, res) => {
+  site.post("/api/transfer_safes/delete", (req, res) => {
     let response = {
       done: false
     }
@@ -152,7 +152,7 @@ module.exports = function init(site) {
     let id = req.body.id
 
     if (id) {
-      $school_years.delete({
+      $transfer_safes.delete({
         id: id,
         $req: req,
         $res: res
@@ -171,7 +171,7 @@ module.exports = function init(site) {
     }
   })
 
-  site.post("/api/school_years/all", (req, res) => {
+  site.post("/api/transfer_safes/all", (req, res) => {
     let response = {
       done: false
     }
@@ -200,7 +200,7 @@ module.exports = function init(site) {
 
     where['company.id'] = site.get_company(req).id
 
-    $school_years.findMany({
+    $transfer_safes.findMany({
       select: req.body.select || {},
       where: where,
       sort: req.body.sort || { id: -1 },

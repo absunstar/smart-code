@@ -26,7 +26,7 @@
             </div>
 
             <div class="row">
-                <i-list v="r" display="ar" class="col3" ng-search="_search.$safe_type" items="safeTypesList"
+                <i-list v="r" display="##session.lang##" class="col3" ng-search="_search.$safe_type" items="safeTypesList"
                     ng-model="safe.type" label="##word.safe_type##"></i-list>
 
                 <i-control ng-show="safe.type.id == 2" class="col3" ng-model="safe.commission" type="number"

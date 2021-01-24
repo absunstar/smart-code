@@ -141,6 +141,7 @@
             "report_exams_manage",
             "school_grade_manage",
             "school_years_manage",
+            "transfer_safes_manage",
             "seating_numbers_manage",
             "subjects_manage",
             "types_expenses_manage",

@@ -1,10 +1,10 @@
-<div id="schoolYearsDeleteModal" class="modal">
+<div id="transferSafesDeleteModal" class="modal">
         
     <div class="modal-content">
         <div class="modal-header">
             <span class="close">&times;</span>
             <h2>
-                ##word.school_years_delete##
+                ##word.transfer_safes_delete##
                 <i class="fa fa-trash"></i>
             </h2>
         </div>
@@ -12,14 +12,14 @@
             <span ng-show="busy">
                 <span class="sr-only">Loading...</span>
             </span>
-            <div x-import="school-years/view.html"></div>
+            <div x-import="transfer-safes/view.html"></div>
 
         </div>
         <h2 class="error"> {{error}} </h2>
         <div class="modal-footer center">
-            <i-button type="delete" label="##word.delete##" ng-click="deleteSchoolYears(school_years)"></i-button>
+            <i-button type="delete" label="##word.delete##" ng-click="deleteTransferSafes(transfer_safes)"></i-button>
             
-            <i-button type="close" label="##word.close##" onclick="site.hideModal('#schoolYearsDeleteModal')"></i-button>
+            <i-button type="close" label="##word.close##" onclick="site.hideModal('#transferSafesDeleteModal')"></i-button>
 
         </div>
     </div>

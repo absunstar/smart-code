@@ -2,37 +2,142 @@
     <div class="form">
         <div id="customersGroupViewModal">
             <fieldset>
-                <legend> ##word.school_years_informations## </legend>
+                <legend> ##word.transfer_safes_informations## </legend>
                 <div class="row">
                     <div class="col9">
                         <div class="row">
 
                             <table class="table hover bold">
                                 <tr>
-                                    <td class="title"> ##word.school_years_code## </td>
-                                    <td class="center userPrint blue"> {{school_years.code}} </td>
+                                    <td class="title"> ##word.code## </td>
+                                    <td class="center userPrint blue"> {{transfer_safes.code}} </td>
                                 </tr>
 
                                 <tr>
-                                    <td class="title"> ##word.school_years_name## </td>
-                                    <td class="center"> {{school_years.name}} </td>
+                                    <td class="title"> ##word.date## </td>
+                                    <td class="center"> {{transfer_safes.date | date : 'dd- MM -yyyy'}} </td>
                                 </tr>
 
                                 <tr>
-                                    <td class="title"> ##word.active## </td>
-                                    <td ng-show="school_years.active == true" class="center green"> ##word.active##
-                                    </td>
-                                    <td ng-show="school_years.active == false" class="center red"> ##word.not_active##
-                                    </td>
+                                    <td class="title"> ##word.shift## </td>
+                                    <td class="center userPrint blue"> {{transfer_safes.shift.code}} </td>
                                 </tr>
+
+                                <tr>
+                                    <td class="title"> ##word.amount_transferred## </td>
+                                    <td class="center red"> {{transfer_safes.value_from}} - {{transfer_safes.currency_from.name}} </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title"> ##word.currency_transferred_to## </td>
+                                    <td class="center green"> {{transfer_safes.value_to}} - {{transfer_safes.currency_to.name}} </td>
+                                </tr>
+
                             </table>
                         </div>
-                 
+                        <br>
+                        <br>
+                        <div class="row">
+                            <div class="col5">
+
+                                <fieldset>
+                                    <legend>##word.data_transmitted_from##</legend>
+                                    <table class="table hover bold">
+                                        <tr>
+                                            <td class="title"> ##word.safe_type## </td>
+                                            <td class="center"> {{transfer_safes.type_from.##session.lang##}} </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="title"> ##word.amounts_in_safe## </td>
+                                            <td class="center"> {{transfer_safes.safe_from.name}} </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="title"> ##word.currency## </td>
+                                            <td class="center"> {{transfer_safes.currency_from.name}} /
+                                                {{transfer_safes.currency_from.ex_rate}} </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="title"> ##word.current_safe_balance## </td>
+                                            <td class="center">
+                                                <h3 class="center bold green"
+                                                    ng-show="transfer_safes.safe_from.balance > 0">
+                                                    ( {{transfer_safes.safe_from.balance}} )</h3>
+                                                <h3 class="center bold red"
+                                                    ng-show="transfer_safes.safe_from.balance == 0 || transfer_safes.safe_from.balance < 0">
+                                                    ( {{transfer_safes.safe_from.balance}} )</h3>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="title"> ##word.balance_after_transfer## </td>
+                                            <td class="center">
+                                                <h3 class="center bold green"
+                                                    ng-show="transfer_safes.safe_transferred_from > 0">
+                                                    ( {{transfer_safes.safe_transferred_from}} )</h3>
+                                                <h3 class="center bold red"
+                                                    ng-show="transfer_safes.safe_transferred_from == 0 || transfer_safes.safe_transferred_from < 0">
+                                                    ( {{transfer_safes.safe_transferred_from}} )</h3>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </fieldset>
+                            </div>
+                            <div class="col1"></div>
+                            <div class="col5">
+
+                                <fieldset>
+                                    <legend>##word.data_transmitted_to##</legend>
+                                    <table class="table hover bold">
+                                        <tr>
+                                            <td class="title"> ##word.safe_type## </td>
+                                            <td class="center"> {{transfer_safes.type_to.##session.lang##}} </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="title"> ##word.amounts_in_safe## </td>
+                                            <td class="center"> {{transfer_safes.safe_to.name}} </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="title"> ##word.currency## </td>
+                                            <td class="center"> {{transfer_safes.currency_to.name}} /
+                                                {{transfer_safes.currency_to.ex_rate}} </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="title"> ##word.current_safe_balance## </td>
+                                            <td class="center">
+                                                <h3 class="center bold green"
+                                                    ng-show="transfer_safes.safe_to.balance > 0">
+                                                    ( {{transfer_safes.safe_to.balance}} )</h3>
+                                                <h3 class="center bold red"
+                                                    ng-show="transfer_safes.safe_to.balance == 0 || transfer_safes.safe_to.balance < 0">
+                                                    ( {{transfer_safes.safe_to.balance}} )</h3>
+                                            </td>
+                                        </tr>
+
+
+                                        <tr>
+                                            <td class="title"> ##word.balance_after_transfer## </td>
+                                            <td class="center">
+                                                <h3 class="center bold green"
+                                                    ng-show="transfer_safes.safe_transferred_to > 0">
+                                                    ( {{transfer_safes.safe_transferred_to}} )</h3>
+                                                <h3 class="center bold red"
+                                                    ng-show="transfer_safes.safe_transferred_to == 0 || transfer_safes.safe_transferred_to < 0">
+                                                    ( {{transfer_safes.safe_transferred_to}} )</h3>
+                                            </td>
+                                        </tr>
+
+                                    </table>
+                                </fieldset>
+                            </div>
+                        </div>
+
 
                     </div>
 
                     <div class="col3">
-                        <i-image class="not-print" view ng-model="school_years.image_url"> </i-image>
+                        <i-image class="not-print" view ng-model="transfer_safes.image_url"> </i-image>
                     </div>
 
 
@@ -41,4 +146,4 @@
         </div>
     </div>
 </div>
-<div x-import="school-years/action_info.html"></div>
+<div x-import="transfer-safes/action_info.html"></div>

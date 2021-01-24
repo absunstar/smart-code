@@ -1,7 +1,7 @@
 [{
-    "module_name" : "public" ,
-    "name": "school_years_admin",
-    "en": "School Years Admin",
-    "ar": "إدارة السنوات الدراسية",
-    "permissions": ["school_years_manage"]
+    "module_name" : "accounting" ,
+    "name": "transfer_safes_admin",
+    "en": "Transfer Safes Admin",
+    "ar": "إدارة تحويل الخزن",
+    "permissions": ["transfer_safes_manage"]
 }]

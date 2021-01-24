@@ -1,47 +1,48 @@
-app.controller("school_years", function ($scope, $http, $timeout) {
+app.controller("transfer_safes", function ($scope, $http, $timeout) {
   $scope._search = {};
 
-  $scope.school_years = {};
+  $scope.transfer_safes = {};
 
-  $scope.displayAddSchoolYears = function () {
-    $scope._search = {};
-    $scope.error = '';
-    $scope.school_years = {
-      image_url: '/images/school_years.png',
-      subjects_list: [{}],
-      active: true
-    };
-    site.showModal('#schoolYearsAddModal');
+  $scope.displayAddTransferSafes = function () {
+    $scope.get_open_shift((shift) => {
+      if (shift) {
+        $scope._search = {};
+        $scope.error = '';
+        $scope.transfer_safes = {
+          image_url: '/images/transfer_safes.png',
+          shift: shift,
+          date: new Date()
+        };
+        site.showModal('#transferSafesAddModal');
+      } else $scope.error = '##word.open_shift_not_found##';
+    });
   };
 
-  $scope.addSchoolYears = function () {
+  $scope.addTransferSafes = function () {
     if ($scope.busy) {
       return;
     }
     $scope.error = '';
 
-    const v = site.validated('#schoolYearsAddModal');
+    const v = site.validated('#transferSafesAddModal');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
     };
 
-    if ($scope.school_years.subjects_list.length < 1) {
-      $scope.error = '##word.err_subject_list##';
-      return;
-    }
+  
     $scope.busy = true;
 
     $http({
       method: "POST",
-      url: "/api/school_years/add",
-      data: $scope.school_years
+      url: "/api/transfer_safes/add",
+      data: $scope.transfer_safes
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#schoolYearsAddModal');
-          $scope.getSchoolYearsList();
+          site.hideModal('#transferSafesAddModal');
+          $scope.getTransferSafesList();
         } else {
           $scope.error = response.data.error;
           if (response.data.error.like('*duplicate key error*')) {
@@ -59,44 +60,46 @@ app.controller("school_years", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.displayUpdateSchoolYears = function (school_years) {
-    $scope._search = {};
+  $scope.displayUpdateTransferSafes = function (transfer_safes) {
 
-    $scope.error = '';
-    $scope.detailsSchoolYears(school_years);
-    $scope.school_years = {
-      image_url: '/images/vendor_logo.png',
+    $scope.get_open_shift((shift) => {
+      if (shift) {
+        $scope._search = {};
 
-    };
-    site.showModal('#schoolYearsUpdateModal');
+        $scope.error = '';
+        $scope.detailsTransferSafes(transfer_safes);
+        $scope.transfer_safes = {
+          image_url: '/images/vendor_logo.png',
+
+        };
+        site.showModal('#transferSafesUpdateModal');
+      } else $scope.error = '##word.open_shift_not_found##';
+    });
   };
 
-  $scope.updateSchoolYears = function () {
+  $scope.updateTransferSafes = function () {
     if ($scope.busy) {
       return;
     }
     $scope.error = '';
 
-    const v = site.validated('#schoolYearsUpdateModal');
+    const v = site.validated('#transferSafesUpdateModal');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
     }
-    if ($scope.school_years.subjects_list.length < 1) {
-      $scope.error = '##word.err_subject_list##';
-      return;
-    }
+  
     $scope.busy = true;
 
     $http({
       method: "POST",
-      url: "/api/school_years/update",
-      data: $scope.school_years
+      url: "/api/transfer_safes/update",
+      data: $scope.transfer_safes
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#schoolYearsUpdateModal');
+          site.hideModal('#transferSafesUpdateModal');
           $scope.list.forEach((b, i) => {
             if (b.id == response.data.doc.id) {
               $scope.list[i] = response.data.doc;
@@ -112,27 +115,27 @@ app.controller("school_years", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.displayDetailsSchoolYears = function (school_years) {
+  $scope.displayDetailsTransferSafes = function (transfer_safes) {
     $scope.error = '';
-    $scope.detailsSchoolYears(school_years);
-    $scope.school_years = {};
-    site.showModal('#schoolYearsDetailsModal');
+    $scope.detailsTransferSafes(transfer_safes);
+    $scope.transfer_safes = {};
+    site.showModal('#transferSafesDetailsModal');
   };
 
-  $scope.detailsSchoolYears = function (school_years) {
+  $scope.detailsTransferSafes = function (transfer_safes) {
     $scope.busy = true;
     $http({
       method: "POST",
-      url: "/api/school_years/view",
+      url: "/api/transfer_safes/view",
       data: {
-        id: school_years.id
+        id: transfer_safes.id
       }
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
           response.data.doc.date = new Date(response.data.doc.date);
-          $scope.school_years = response.data.doc;
+          $scope.transfer_safes = response.data.doc;
         } else {
           $scope.error = response.data.error;
         }
@@ -143,28 +146,32 @@ app.controller("school_years", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.displayDeleteSchoolYears = function (school_years) {
-    $scope.error = '';
-    $scope.detailsSchoolYears(school_years);
-    $scope.school_years = {};
-    site.showModal('#schoolYearsDeleteModal');
+  $scope.displayDeleteTransferSafes = function (transfer_safes) {
+    $scope.get_open_shift((shift) => {
+      if (shift) {
+        $scope.error = '';
+        $scope.detailsTransferSafes(transfer_safes);
+        $scope.transfer_safes = {};
+        site.showModal('#transferSafesDeleteModal');
+      } else $scope.error = '##word.open_shift_not_found##';
+    });
   };
 
-  $scope.deleteSchoolYears = function () {
+  $scope.deleteTransferSafes = function () {
     $scope.error = '';
     $scope.busy = true;
     $http({
       method: "POST",
-      url: "/api/school_years/delete",
+      url: "/api/transfer_safes/delete",
       data: {
-        id: $scope.school_years.id
+        id: $scope.transfer_safes.id
 
       }
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#schoolYearsDeleteModal');
+          site.hideModal('#transferSafesDeleteModal');
           $scope.list.forEach((b, i) => {
             if (b.id == response.data.doc.id) {
               $scope.list.splice(i, 1);
@@ -181,13 +188,13 @@ app.controller("school_years", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.getSchoolYearsList = function (where) {
+  $scope.getTransferSafesList = function (where) {
     $scope.busy = true;
     $scope.list = [];
     $scope.count = 0;
     $http({
       method: "POST",
-      url: "/api/school_years/all",
+      url: "/api/transfer_safes/all",
       data: {
         where: where
       }
@@ -208,20 +215,44 @@ app.controller("school_years", function ($scope, $http, $timeout) {
 
   $scope.searchAll = function () {
     $scope._search = {};
-    $scope.getSchoolYearsList($scope.search);
-    site.hideModal('#schoolYearsSearchModal');
+    $scope.getTransferSafesList($scope.search);
+    site.hideModal('#transferSafesSearchModal');
     $scope.search = {}
 
   };
 
-  $scope.getSubjects = function () {
+
+  $scope.getSafeTypeList = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $scope.safeTypeList = [];
     $http({
       method: "POST",
-      url: "/api/subjects/all",
+      url: "/api/safe_type/all"
+
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.safeTypesList = response.data;
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.loadCurrencies = function (safe, type) {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/currency/all",
       data: {
         select: {
           id: 1,
           name: 1,
+          minor_currency: 1,
+          ex_rate: 1,
           code: 1
         },
         where: {
@@ -231,10 +262,111 @@ app.controller("school_years", function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
-        $scope.subjectsList = response.data.list;
+        if (response.data.done) {
+          $scope.currenciesList = response.data.list;
+          $scope.currenciesList.forEach(_c => {
+            if (_c.id === safe.currency.id) {
+              if (type === 'from') $scope.transfer_safes.currency_from = _c;
+              if (type === 'to') $scope.transfer_safes.currency_to = _c;
+            }
+          });
+        }
       },
       function (err) {
+        $scope.busy = false;
         $scope.error = err;
+      }
+    )
+  };
+
+  $scope.loadSafes = function (type,t) {
+    $scope.error = '';
+    $scope.busy = true;
+
+    if (type && type.id) {
+
+      let where = {};
+
+      if (type.id == 1)
+        where['type.id'] = 1;
+      else where['type.id'] = 2;
+
+      $http({
+        method: "POST",
+        url: "/api/safes/all",
+        data: {
+          select: {
+            id: 1,
+            name: 1,
+            commission: 1,
+            currency: 1,
+            balance: 1,
+            type: 1,
+            code: 1
+          },
+          where: where
+        }
+      }).then(
+        function (response) {
+          $scope.busy = false;
+          if (response.data.done) {
+
+            if (t === 'from') $scope.safesListFrom = response.data.list;
+            if (t === 'to') $scope.safesListTo = response.data.list;
+          }
+
+        },
+        function (err) {
+          $scope.busy = false;
+          $scope.error = err;
+        }
+      )
+    }
+  };
+
+  $scope.calc = function () {
+    $timeout(() => {
+    if($scope.transfer_safes.safe_from && $scope.transfer_safes.safe_to){
+
+      let value_from = (($scope.transfer_safes.value_from || 0) * $scope.transfer_safes.currency_from.ex_rate);
+      $scope.transfer_safes.value_to = value_from / $scope.transfer_safes.currency_to.ex_rate;
+
+      $scope.transfer_safes.value_to = site.toNumber($scope.transfer_safes.value_to);
+
+      $scope.transfer_safes.safe_transferred_from =$scope.transfer_safes.safe_from.balance + $scope.transfer_safes.value_from;
+      $scope.transfer_safes.safe_transferred_to =$scope.transfer_safes.safe_to.balance + $scope.transfer_safes.value_to;
+
+
+
+    }
+      
+    }, 300);
+
+  },
+
+  $scope.get_open_shift = function (callback) {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/shifts/get_open_shift",
+      data: {
+        where: { active: true },
+        select: { id: 1, name: 1, code: 1, from_date: 1, from_time: 1, to_date: 1, to_time: 1 }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.doc) {
+          $scope.shift = response.data.doc;
+          callback(response.data.doc);
+        } else {
+          callback(null);
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+        callback(null);
       }
     )
   };
@@ -246,7 +378,7 @@ app.controller("school_years", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/numbering/get_automatic",
       data: {
-        screen: "school_years"
+        screen: "transfer_safes"
       }
     }).then(
       function (response) {
@@ -263,7 +395,6 @@ app.controller("school_years", function ($scope, $http, $timeout) {
   };
 
   $scope.getNumberingAuto();
-  $scope.getSubjects();
-  $scope.getSchoolYearsList();
-
+  $scope.getSafeTypeList();
+  $scope.getTransferSafesList();
 });
