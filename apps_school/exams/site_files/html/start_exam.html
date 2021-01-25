@@ -44,7 +44,8 @@
 
                     <br>
                     <br>
-                    <h1 class="red bold center">{{seconds}} : {{student_exams.exam.time_minutes}} </h1>
+                    <h1 class="red bold center">##word.remaining_time## ( {{student_exams.exam.time_minutes}} )
+                        ##word.minute##</h1>
                     <hr>
                     <br>
                     <br>
@@ -84,17 +85,19 @@
                         </div>
                         <br ng-show="main.question_types.name =='a_f_q' && main.add_text">
                         <br ng-show="main.question_types.name =='a_f_q' && main.add_text">
-                        <hr ng-show="main.question_types.name =='a_f_q' && main.add_text" style="width:50%" class="center">
-                        <hr ng-show="main.question_types.name =='a_f_q' && main.add_text" style="width:50%" class="center">
+                        <hr ng-show="main.question_types.name =='a_f_q' && main.add_text" style="width:50%"
+                            class="center">
+                        <hr ng-show="main.question_types.name =='a_f_q' && main.add_text" style="width:50%"
+                            class="center">
                         <br>
                         <br>
                         <div class="row" ng-repeat="ques in main.ques_list">
                             <h3 class="bold black" ng-show="main.question_types.name !='m_t_f'"> {{$index+ 1}} -
                                 {{ques.question}}
                                 <b class="blue">( ##word.degree## {{ques.degree}})</b>
-                                
+
                             </h3>
-                           
+
                             <br>
                             <br>
                             <div class="row" ng-show="main.question_types.name =='a_f_q'">
@@ -214,7 +217,7 @@
         <h2 class="error"> {{error}} </h2>
 
         <div class="modal-footer center">
-            <i-button type="save" label="##word.accept##" ng-click="updateExamsStudent(exams,'finish')">
+            <i-button type="save" label="##word.finish_exam##" ng-click="updateExamsStudent(exams,'finish')">
             </i-button>
             <i-button type="close" label="##word.close##" onclick="site.hideModal('#acceptFinishExamModal')"></i-button>
         </div>

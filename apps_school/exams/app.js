@@ -174,7 +174,17 @@ module.exports = function init(site) {
         if (req.session.user.ref_info && _stu.id === req.session.user.ref_info.id) {
           _stu.exam.exam_procedure = true
           _stu.exam.time_minutes = 0
+          // _stu.exam.start_date = new Date(_stu.exam.start_date)
+          // _stu.exam.finish_date = new Date(_stu.exam.finish_date)
+          // let date = new Date()
 
+          // date.setMinutes(date.getMinutes() + 2);
+
+          // if ((_stu.exam.finish_date < date) || _stu.exam.finish_date.getMinutes() < date.getMinutes()) {
+          //   response.error = 'exam time has expired';
+          //   res.json(response)
+          //   return;
+          // }
         }
       });
 
@@ -300,7 +310,7 @@ module.exports = function init(site) {
           _sL.exam.exam_procedure = false;
           _sL.exam.students_list = [];
         });
-      } else if (exams_doc.availability_exam.id == 1){
+      } else if (exams_doc.availability_exam.id == 1) {
         exams_doc.students_list = []
       }
 
@@ -354,6 +364,7 @@ module.exports = function init(site) {
           _s.exam.finish_date = new Date(_s.exam.finish_date)
 
           if ((_s.exam.finish_date < new Date()) || _s.exam.finish_date.getMinutes() < new Date().getMinutes()) {
+
             _s.exam.exam_procedure = true
             _s.exam.time_minutes = 0
 
@@ -501,7 +512,6 @@ module.exports = function init(site) {
       res.json(response)
       return
     }
-    console.log(req.session.user);
     let where = req.body.where || {}
 
     if (where['name']) {

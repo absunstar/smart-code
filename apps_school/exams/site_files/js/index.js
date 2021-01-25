@@ -626,7 +626,9 @@ app.controller("exams", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           if (type === 'finish') {
+            site.hideModal('#acceptFinishExamModal');
             site.hideModal('#startExamModal');
+
             $scope.getExamsList();
 
           } else if (type === 'correct') {
@@ -696,9 +698,7 @@ app.controller("exams", function ($scope, $http, $timeout) {
           } else if (response.data.error.like('*test has already been performed*')) {
             $scope.error = '##word.You_have_already_taken_test##';
 
-          }
-
-          else if (response.data.error.like('*exam time has expired*')) {
+          } else if (response.data.error.like('*exam time has expired*')) {
             $scope.error = '##word.exam_time_expired##';
 
           }
@@ -732,10 +732,9 @@ app.controller("exams", function ($scope, $http, $timeout) {
     $timeout(() => {
 
       if ($scope.student_exams.exam.time_minutes > 1) {
-
         $scope.updateExamsStudent($scope.exams, 'time');
-      } else {
 
+      } else {
         $scope.updateExamsStudent($scope.exams, 'finish');
 
       }
@@ -812,6 +811,7 @@ app.controller("exams", function ($scope, $http, $timeout) {
     if ($scope.main_ques_list && $scope.main_ques_list.length > 0) {
       site.showModal('#acceptFinishExamModal');
     } else {
+
       $scope.updateExamsStudent($scope.exams, 'finish');
     }
 

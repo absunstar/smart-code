@@ -70,13 +70,13 @@ module.exports = function init(site) {
       $res: res
     })
 
-    if (account_invoices_doc.source_type.id === 14) {
-      if (!account_invoices_doc.payment_method_to || !account_invoices_doc.safe_to) {
-        response.error = 'sure to specify the data of the transferee';
-        res.json(response)
-        return;
-      }
-    }
+    // if (account_invoices_doc.source_type.id === 14) {
+    //   if (!account_invoices_doc.payment_method_to || !account_invoices_doc.safe_to) {
+    //     response.error = 'sure to specify the data of the transferee';
+    //     res.json(response)
+    //     return;
+    //   }
+    // }
 
 
     if (account_invoices_doc.current_book_list && account_invoices_doc.current_book_list.length > 0) {
@@ -127,7 +127,7 @@ module.exports = function init(site) {
     account_invoices_doc.remain_amount = site.toNumber(account_invoices_doc.remain_amount)
 
 
-    if (account_invoices_doc.source_type.id == 8 || account_invoices_doc.source_type.id == 9 || account_invoices_doc.source_type.id == 10 || account_invoices_doc.source_type.id == 11|| account_invoices_doc.source_type.id == 14) {
+    if (account_invoices_doc.source_type.id == 8 || account_invoices_doc.source_type.id == 9 || account_invoices_doc.source_type.id == 10 || account_invoices_doc.source_type.id == 11 || account_invoices_doc.source_type.id == 14) {
       account_invoices_doc.remain_amount = 0
       account_invoices_doc.net_value = account_invoices_doc.paid_up
     }
@@ -308,18 +308,13 @@ module.exports = function init(site) {
 
                   if (doc.source_type.id === 14) {
                     paid_value.operation = { en: "Transfer of safes balances", ar: "تحويل أرصدة الخزن" }
+                    if (doc.type == 'from') {
+                      paid_value.transition_type = 'out'
 
-                    let paid_to = Object.assign({}, paid_value)
+                    } else if (doc.type == 'to') {
+                      paid_value.transition_type = 'in'
 
-                    paid_value.transition_type = 'out'
-
-
-                    paid_to.payment_method = doc.payment_method_to
-                    paid_to.safe = doc.safe_to
-                    paid_to.transition_type = 'in'
-
-                    site.quee('[amounts][safes][+]', Object.assign({}, paid_to))
-
+                    }
 
                   }
 
@@ -800,29 +795,29 @@ module.exports = function init(site) {
                 if (account_invoices_doc.employee && account_invoices_doc.employee.id) obj.sourceName = account_invoices_doc.employee.name
                 if (account_invoices_doc.delegate && account_invoices_doc.delegate.id) obj.sourceName = account_invoices_doc.delegate.name
 
-                if (account_invoices_doc.source_type.id === 14) {
+                // if (account_invoices_doc.source_type.id === 14) {
 
-                  let paid_to = Object.assign({}, obj)
-                  if (account_invoices_doc.posting) {
-                    obj.transition_type = 'out'
-                    obj.operation = { en: "Transfer of safes balances", ar: "تحويل أرصدة الخزن" }
-                  } else {
-                    obj.transition_type = 'in'
-                    obj.operation = { en: "Un Post Transfer of safes balances", ar: "فك ترحيل تحويل أرصدة الخزن" }
-                  }
+                //   let paid_to = Object.assign({}, obj)
+                //   if (account_invoices_doc.posting) {
+                //     obj.transition_type = 'out'
+                //     obj.operation = { en: "Transfer of safes balances", ar: "تحويل أرصدة الخزن" }
+                //   } else {
+                //     obj.transition_type = 'in'
+                //     obj.operation = { en: "Un Post Transfer of safes balances", ar: "فك ترحيل تحويل أرصدة الخزن" }
+                //   }
 
-                  paid_to.payment_method = account_invoices_doc.payment_method_to
-                  paid_to.safe = account_invoices_doc.safe_to
+                //   paid_to.payment_method = account_invoices_doc.payment_method_to
+                //   paid_to.safe = account_invoices_doc.safe_to
 
-                  if (account_invoices_doc.posting) {
-                    paid_to.transition_type = 'in'
-                  } else {
-                    paid_to.transition_type = 'out'
-                  }
+                //   if (account_invoices_doc.posting) {
+                //     paid_to.transition_type = 'in'
+                //   } else {
+                //     paid_to.transition_type = 'out'
+                //   }
 
-                  site.quee('[amounts][safes][+]', Object.assign({}, paid_to))
+                //   site.quee('[amounts][safes][+]', Object.assign({}, paid_to))
 
-                }
+                // }
                 if (account_invoices_doc.safe) site.quee('[amounts][safes][+]', Object.assign({}, obj))
 
               })
@@ -908,7 +903,7 @@ module.exports = function init(site) {
 
       where['id'] = account_invoices_doc.id
     }
-
+    console.log(where);
     site.getOpenShift({ companyId: account_invoices_doc.company.id, branchCode: account_invoices_doc.branch.code }, shiftCb => {
       if (shiftCb) {
 
@@ -918,12 +913,12 @@ module.exports = function init(site) {
             response.error = 'Don`t Open Period'
             res.json(response)
           } else {
-
-            $account_invoices.delete({
+            $account_invoices.deleteOne({
               where: where,
               $req: req,
               $res: res
             }, (err, result) => {
+
               if (!err) {
                 response.done = true
                 response.doc = result.doc
@@ -1060,15 +1055,13 @@ module.exports = function init(site) {
                       if (result.doc.source_type.id === 14) {
                         obj.operation = { en: "Delete Transfer of safes balances", ar: "حذف تحويل أرصدة الخزن" }
 
-                        let paid_to = Object.assign({}, obj)
-
-                        obj.transition_type = 'in'
-
-                        paid_to.payment_method = result.doc.payment_method_to
-                        paid_to.safe = result.doc.safe_to
-                        paid_to.transition_type = 'out'
-
-                        site.quee('[amounts][safes][+]', Object.assign({}, paid_to))
+                        if (result.doc.type == 'from') {
+                          obj.transition_type = 'in'
+    
+                        } else if (result.doc.type == 'to') {
+                          obj.transition_type = 'out'
+    
+                        }
 
 
                       }
@@ -1125,13 +1118,13 @@ module.exports = function init(site) {
 
     let account_invoices_doc = req.body
 
-    if (account_invoices_doc.source_type.id === 14) {
-      if (!account_invoices_doc.payment_method_to || !account_invoices_doc.safe_to) {
-        response.error = 'sure to specify the data of the transferee';
-        res.json(response)
-        return;
-      }
-    }
+    // if (account_invoices_doc.source_type.id === 14) {
+    //   if (!account_invoices_doc.payment_method_to || !account_invoices_doc.safe_to) {
+    //     response.error = 'sure to specify the data of the transferee';
+    //     res.json(response)
+    //     return;
+    //   }
+    // }
 
     if (account_invoices_doc.paid_up && account_invoices_doc.safe && account_invoices_doc.payment_list && account_invoices_doc.payment_list.length == 1) {
       account_invoices_doc.payment_list = [{
@@ -1152,7 +1145,7 @@ module.exports = function init(site) {
     };
 
 
-    if (account_invoices_doc.source_type.id == 8 || account_invoices_doc.source_type.id == 9 || account_invoices_doc.source_type.id == 10 || account_invoices_doc.source_type.id == 11|| account_invoices_doc.source_type.id == 14) {
+    if (account_invoices_doc.source_type.id == 8 || account_invoices_doc.source_type.id == 9 || account_invoices_doc.source_type.id == 10 || account_invoices_doc.source_type.id == 11 || account_invoices_doc.source_type.id == 14) {
       account_invoices_doc.remain_amount = 0
       account_invoices_doc.net_value = account_invoices_doc.paid_up
     }

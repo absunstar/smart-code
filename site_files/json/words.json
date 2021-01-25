@@ -15,6 +15,16 @@
         "ar": "تقرير"
     },
     {
+        "name": "minutes",
+        "en": "Minutes",
+        "ar": "دقائق"
+    },
+    {
+        "name": "minute",
+        "en": "Minute",
+        "ar": "دقيقة"
+    },
+    {
         "name": "un_post",
         "en": "Un Post",
         "ar": "غير مرحل"

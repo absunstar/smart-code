@@ -168,7 +168,6 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
   $scope.posting = function (account_invoices) {
     $scope.error = '';
 
-    $scope.busy = true;
     $scope.financialYear(account_invoices.date, is_allowed_date => {
       if (!is_allowed_date) {
         $scope.error = '##word.should_open_period##';
@@ -176,6 +175,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
         else account_invoices.posting = true;
 
       } else {
+        $scope.busy = true;
 
         $http({
           method: "POST",

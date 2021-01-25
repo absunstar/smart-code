@@ -27,8 +27,10 @@
                 </div>
 
                 <div class="top-actions">
-                    <i-button type="add" x-permissions="transfer_safes_add || transfer_safes_manage" label="##word.transfer_safes_new##" ng-click="displayAddTransferSafes()"></i-button>
-                    <i-button type="search" x-permissions="transfer_safes_search || transfer_safes_manage" label="##word.search_all##" onclick="site.showModal('#transferSafesSearchModal')"></i-button>
+                    <i-button type="add" x-permissions="transfer_safes_add || transfer_safes_manage"
+                        label="##word.transfer_safes_new##" ng-click="displayAddTransferSafes()"></i-button>
+                    <i-button type="search" x-permissions="transfer_safes_search || transfer_safes_manage"
+                        label="##word.search_all##" onclick="site.showModal('#transferSafesSearchModal')"></i-button>
 
                     <span ng-show="busy">
                         <span class="sr-only">Loading...</span>
@@ -41,8 +43,9 @@
                     <tr>
                         <th class="not-print"> ##word.logo## </th>
                         <th> ##word.code## </th>
-                        <th> ##word.transfer_safes_name## </th>
-                        <th> ##word.status## </th>
+                        <th> ##word.date## </th>
+                        <th> ##word.data_transmitted_from## </th>
+                        <th> ##word.data_transmitted_to## </th>
 
                         <th class="not-print"> ##word.actions## </th>
                     </tr>
@@ -52,25 +55,49 @@
                         </td>
 
                         <td class="blue userPrint"> {{c.code}} </td>
-                        <td> {{c.name}} </td>
+
+                        <td class="brown"> {{c.date | date : 'dd- MM -yyyy'}} </td>
 
                         <td>
-                            <p ng-show="c.active == true" class="green"> ##word.active## </p>
-                            <p ng-show="c.active == false" class="red"> ##word.not_active## </p>
+                            <p>{{c.safe_from.name}}</p>
+                            <p class="green">{{c.currency_from.name}} / {{c.currency_from.ex_rate}}</p>
+
+                        </td>
+
+                        <td>
+                            <p>{{c.safe_to.name}}</p>
+                            <p class="green">{{c.currency_to.name}} / {{c.currency_to.ex_rate}}</p>
+
                         </td>
 
                         <td class="center not-print">
-                            <i-button type="details" x-permissions="transfer_safes_view || transfer_safes_manage" label="##word.details##" ng-click="displayDetailsTransferSafes(c)"></i-button>
+                            <i-button type="details" x-permissions="transfer_safes_view || transfer_safes_manage"
+                                label="##word.details##" ng-click="displayDetailsTransferSafes(c)"></i-button>
 
-                            <i-button type="update" x-permissions="transfer_safes_edit || transfer_safes_manage" label="##word.update##" ng-click="displayUpdateTransferSafes(c)"></i-button>
+                            <i-button x-permissions="transfer_safes_post || transfer_safes_manage"
+                                label="##word.posting##"
+                                ng-show="defaultSettings.general_Settings.work_posting && !c.posting"
+                                ng-click="c.posting = true ; updateTransferSafes(c,'posting')"></i-button>
 
-                            <i-button type="delete" x-permissions="transfer_safes_delete || transfer_safes_manage" label="##word.delete##" ng-click="displayDeleteTransferSafes(c)"></i-button>
+                            <i-button x-permissions="transfer_safes_unpost || transfer_safes_manage"
+                                label="##word.unposting##"
+                                ng-show="defaultSettings.general_Settings.work_unposting && c.posting"
+                                ng-click="c.posting = false ; updateTransferSafes(c,'unposting')"></i-button>
+
+                            <i-button type="update" x-permissions="transfer_safes_edit || transfer_safes_manage"
+                                ng-show="!c.posting && defaultSettings.general_Settings.work_posting"
+                                label="##word.update##" ng-click="displayUpdateTransferSafes(c)"></i-button>
+
+                            <i-button type="delete" x-permissions="transfer_safes_delete || transfer_safes_manage"
+                                ng-hide="c.posting && defaultSettings.general_Settings.work_unposting"
+                                label="##word.delete##" ng-click="displayDeleteTransferSafes(c)"></i-button>
                         </td>
                     </tr>
                 </table>
 
                 <div class="row">
-                    <i-button x-permissions="transfer_safes_print || transfer_safes_manage" type="print" label="##word.print##" onclick="site.print('#t1')"></i-button>
+                    <i-button x-permissions="transfer_safes_print || transfer_safes_manage" type="print"
+                        label="##word.print##" onclick="site.print('#t1')"></i-button>
 
 
                 </div>

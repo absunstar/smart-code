@@ -14,6 +14,12 @@
         "en": "Exam Name",
         "ar": "إسم الإمتحان"
     },
+   
+    {
+        "name": "remaining_time",
+        "en": "Remaining time",
+        "ar": "باقي من الزمن"
+    },
     {
         "name": "exam_time_expired",
         "en": "The exam time has expired",

@@ -34,10 +34,10 @@ module.exports = function init(site) {
       return
     }
 
-    let school_years_doc = req.body
-    school_years_doc.$req = req
-    school_years_doc.$res = res
-    school_years_doc.add_user_info = site.security.getUserFinger({
+    let transfer_safes_doc = req.body
+    transfer_safes_doc.$req = req
+    transfer_safes_doc.$res = res
+    transfer_safes_doc.add_user_info = site.security.getUserFinger({
       $req: req,
       $res: res
     })
@@ -49,19 +49,19 @@ module.exports = function init(site) {
     };
 
     let cb = site.getNumbering(num_obj);
-    if (!school_years_doc.code && !cb.auto) {
+    if (!transfer_safes_doc.code && !cb.auto) {
       response.error = 'Must Enter Code';
       res.json(response);
       return;
 
     } else if (cb.auto) {
-      school_years_doc.code = cb.code;
+      transfer_safes_doc.code = cb.code;
     }
 
-    school_years_doc.company = site.get_company(req)
-    school_years_doc.branch = site.get_branch(req)
+    transfer_safes_doc.company = site.get_company(req)
+    transfer_safes_doc.branch = site.get_branch(req)
 
-    $transfer_safes.add(school_years_doc, (err, doc) => {
+    $transfer_safes.add(transfer_safes_doc, (err, doc) => {
       if (!err) {
         response.done = true
         response.doc = doc
@@ -83,17 +83,17 @@ module.exports = function init(site) {
       return
     }
 
-    let school_years_doc = req.body
-    school_years_doc.edit_user_info = site.security.getUserFinger({
+    let transfer_safes_doc = req.body
+    transfer_safes_doc.edit_user_info = site.security.getUserFinger({
       $req: req,
       $res: res
     })
-    if (school_years_doc.id) {
+    if (transfer_safes_doc.id) {
       $transfer_safes.edit({
         where: {
-          id: school_years_doc.id
+          id: transfer_safes_doc.id
         },
-        set: school_years_doc,
+        set: transfer_safes_doc,
         $req: req,
         $req: req,
         $res: res
