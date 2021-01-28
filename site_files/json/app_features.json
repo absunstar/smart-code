@@ -11,7 +11,7 @@
         "feature": "school",
         "title_ar": "الطلاب",
         "title_en": "School",
-        "image_url": "/images/customer.png",
+        "image_url": "/images/student.png",
         "description_ar": "الشاشة المسئولة عن إضافة الطلاب و تسجيل البيانات الخاصة بهم و بأولياء أمورهم لسهولة التواصل معهم و إيضا بيان عن حالة الطالب الطبية و ربطه بالمرحلة الدراسة و الفصل",
         "description_en": "Responsibility for adding students and their data and data about their parents, communicating with them and also explaining the student's medical status and linking it to the study and the semester"
     },

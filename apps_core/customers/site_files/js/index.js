@@ -23,7 +23,13 @@ app.controller("customers", function ($scope, $http, $timeout) {
       dealing_company: [{}]
     };
 
-  
+    if (site.feature('medical')) {
+      image_url = '/images/patients.png'
+
+    } else if (site.feature('school') || site.feature('academy')) {
+      image_url = '/images/student.png'
+
+    } 
 
     site.showModal('#customerAddModal');
     document.querySelector('#customerAddModal .tab-link').click();
@@ -626,11 +632,11 @@ app.controller("customers", function ($scope, $http, $timeout) {
 
 
   $scope.email_examble = '';
-  if(typeof '##session.company.host##' === 'string'){
-  $scope.email_examble = 'examble##session.company.host##';
+  if (typeof '##session.company.host##' === 'string') {
+    $scope.email_examble = 'examble##session.company.host##';
 
   } else {
-  $scope.email_examble = 'you@examble.com';
+    $scope.email_examble = 'you@examble.com';
 
   }
 

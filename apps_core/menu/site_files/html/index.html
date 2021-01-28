@@ -964,7 +964,19 @@
 
     <div id="company_tabs" class="tabs">
         <div class="tabs-header">
+
+            <a x-features="gym || school" class="tab-link" href="/trainer" x-permissions="trainer_ui || trainer_manage">
+                <img src="images/trainer.png">
+                <span> ##word.trainer##</span>
+            </a>
+
+
             <div class="" x-features="medical">
+
+                <a class="tab-link" href="/customers" x-permissions="customers_ui || customers_manage">
+                    <img src="/images/patients.png">
+                    <span> ##word.customers## </span>
+                </a>
 
                 <a class="tab-link" href="/doctors" x-permissions="doctors_ui || doctors_manage">
                     <img src="/images/doctor.png">
@@ -985,7 +997,7 @@
                     <img src="/images/ticket.png">
                     <span> ##word.tickets_book## </span>
                 </a>
-           
+
                 <a class="tab-link" href="/medical_specialties" x-permissions="specialties_ui || specialties_manage">
                     <img src="/images/medical_specialty.png">
                     <span> ##word.medical_specialties##</span>
@@ -1044,6 +1056,12 @@
 
 
             <div class="" x-features="gym">
+
+                <a class="tab-link" href="/customers" x-permissions="customers_ui || customers_manage">
+                    <img src="/images/customer.png">
+                    <span> ##word.customers## </span>
+                </a>
+
                 <a class="tab-link" href="/request_service"
                     x-permissions="request_service_ui || request_service_manage">
                     <img src="/images/request_service.png">
@@ -1071,68 +1089,21 @@
                     <span> ##word.service_management##</span>
                 </a>
 
-
-            </div>
-
-            <a x-features="gym || school" class="tab-link" href="/trainer" x-permissions="trainer_ui || trainer_manage">
-                <img src="images/trainer.png">
-                <span> ##word.trainer##</span>
-            </a>
-
-
-            <div class="" x-features="academy">
-
-                <a class="tab-link" href="/book_hall" x-permissions="book_hall_ui || book_hall_manage">
-                    <img src="images/book_hall.png">
-                    <span> ##word.book_hall##</span>
-                </a>
-
-                <a class="tab-link" href="/book_course" x-permissions="book_course_ui || book_course_manage">
-                    <img src="images/book_course.png">
-                    <span> ##word.book_course##</span>
-                </a>
-
-                <a class="tab-link" href="/hosting" x-permissions="hosting_ui || hosting_manage">
-                    <img src="images/hosting.png">
-                    <span> ##word.hosting##</span>
-                </a>
-
-                <a class="tab-link" href="/account_course" x-permissions="account_course_ui || account_course_manage">
-                    <img src="images/account_course.png">
-                    <span> ##word.account_course##</span>
-                </a>
-
-                <a class="tab-link" href="/create_course" x-permissions="create_course_ui || create_course_manage">
-                    <img src="images/create_course.png">
-                    <span> ##word.create_course##</span>
-                </a>
-
-                <a class="tab-link" href="/courses" x-permissions="courses_ui || courses_manage">
-                    <img src="images/courses.png">
-                    <span> ##word.courses_id##</span>
-                </a>
-
-                <a class="tab-link" href="/tenant" x-permissions="tenant_ui || tenant_manage">
-                    <img src="images/tenant.png">
-                    <span> ##word.tenants##</span>
-                </a>
-
-            </div>
-
-            <div class="" x-features="academy || gym || school">
-                <a class="tab-link" href="/customers" x-permissions="customers_ui || customers_manage">
-                    <img src="/images/customer.png">
-                    <span> ##word.customers## </span>
-                </a>
-
                 <a class="tab-link" href="/hall" x-permissions="hall_ui || hall_manage">
                     <img src="/images/hall.png">
                     <span> ##word.halls##</span>
                 </a>
+
             </div>
 
 
             <div class="" x-features="school">
+                
+                <a class="tab-link" href="/customers" x-permissions="customers_ui || customers_manage">
+                    <img src="/images/student.png">
+                    <span> ##word.customers## </span>
+                </a>
+
                 <a class="tab-link" href="/attend_students"
                     x-permissions="attend_students_ui || attend_students_manage">
                     <img src="/images/attend_students.png">
@@ -1180,6 +1151,11 @@
                     <span> ##word.school_years##</span>
                 </a>
 
+                <a class="tab-link" href="/hall" x-permissions="hall_ui || hall_manage">
+                    <img src="/images/hall.png">
+                    <span> ##word.halls##</span>
+                </a>
+
                 <a class="tab-link" href="/types_expenses" x-permissions="types_expenses_ui || types_expenses_manage">
                     <img src="/images/types_expenses.png">
                     <span> ##word.types_expenses##</span>
@@ -1187,6 +1163,69 @@
 
 
             </div>
+
+
+
+
+            <div class="" x-features="academy">
+
+                <a class="tab-link" href="/customers" x-permissions="customers_ui || customers_manage">
+                    <img src="/images/student.png">
+                    <span> ##word.customers## </span>
+                </a>
+
+                <a class="tab-link" href="/book_hall" x-permissions="book_hall_ui || book_hall_manage">
+                    <img src="images/book_hall.png">
+                    <span> ##word.book_hall##</span>
+                </a>
+
+                <a class="tab-link" href="/book_course" x-permissions="book_course_ui || book_course_manage">
+                    <img src="images/book_course.png">
+                    <span> ##word.book_course##</span>
+                </a>
+
+                <a class="tab-link" href="/hosting" x-permissions="hosting_ui || hosting_manage">
+                    <img src="images/hosting.png">
+                    <span> ##word.hosting##</span>
+                </a>
+
+                <a class="tab-link" href="/account_course" x-permissions="account_course_ui || account_course_manage">
+                    <img src="images/account_course.png">
+                    <span> ##word.account_course##</span>
+                </a>
+
+                <a class="tab-link" href="/create_course" x-permissions="create_course_ui || create_course_manage">
+                    <img src="images/create_course.png">
+                    <span> ##word.create_course##</span>
+                </a>
+
+                <a class="tab-link" href="/courses" x-permissions="courses_ui || courses_manage">
+                    <img src="images/courses.png">
+                    <span> ##word.courses_id##</span>
+                </a>
+
+                <a class="tab-link" href="/tenant" x-permissions="tenant_ui || tenant_manage">
+                    <img src="images/tenant.png">
+                    <span> ##word.tenants##</span>
+                </a>
+
+                <a class="tab-link" href="/hall" x-permissions="hall_ui || hall_manage">
+                    <img src="/images/hall.png">
+                    <span> ##word.halls##</span>
+                </a>
+
+            </div>
+
+            <div class="" x-features="academy || gym || school">
+                <a class="tab-link" href="/customers" x-permissions="customers_ui || customers_manage">
+                    <img src="/images/customer.png">
+                    <span> ##word.customers## </span>
+                </a>
+
+
+            </div>
+
+
 
 
             <div class="" x-features="restaurant || pos || erp">
