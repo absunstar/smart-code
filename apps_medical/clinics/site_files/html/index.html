@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="clinics_ui || clinics_manage" data-ng-app="myApp">
+
+<head x-import="head.html">
+
+</head>
+
+<body class="##session.lang##">
+
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+
+    </nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+
+    </nav>
+    <div id="main-layout" class="container">
+        <div class="row">
+            <div class="row" ng-controller="clinics">
+                <div x-permissions="clinics_add || clinics_manage" x-import="clinics/add_modal.html"></div>
+                <div x-permissions="clinics_update || clinics_manage" x-import="clinics/update_modal.html"></div>
+                <div x-permissions="clinics_delete || clinics_manage" x-import="clinics/delete_modal.html"></div>
+                <div x-permissions="clinics_view || clinics_manage" x-import="clinics/view_modal.html"></div>
+                <div x-permissions="clinics_search || clinics_manage" x-import="clinics/search_all_modal.html"></div>
+                <div x-import="clinics/work_times_modal.html"></div>
+
+                <div class="row">
+                    <h1 class="bold text-center">##word.clinics##</h1>
+                </div>
+
+                <div class="top-actions">
+                    <i-button x-permissions="clinics_add || clinics_manage" type="add" label="##word.clinics_new##"
+                        ng-click="displayAddClinic()"></i-button>
+
+                    <i-button x-permissions="clinics_search || clinics_manage" type="search" label="##word.search_all##"
+                        ng-click="displaySearchModal()"></i-button>
+
+                    <h3 class="bold text-center"> ##word.count## : {{count}}</h3>
+                </div>
+
+                <table x-permissions="login" class="table bold hover loaded" id="t1">
+                    <tr>
+                        <th class="not-print">##word.logo##</th>
+                        <th>##word.name##</th>
+                        <th>##word.hospital##</th>
+                        <th>##word.specialty##</th>
+                        <th>##word.status##</th>
+                        <th class="not-print">##word.actions##</th>
+                    </tr>
+                    <tr ng-repeat="c in list">
+                        <td class="center not-print">
+                            <img class="logo" ng-src="{{c.image_url}}">
+                        </td>
+                        <td class="center title">{{c.name}}</td>
+                        <td class="center">{{c.hospital.name}}</td>
+                        <td class="center">{{c.specialty.name}}</td>
+                        <td class="center">
+                            <p ng-show="c.active ==true" class="green bold"> ##word.active## </p>
+                            <p ng-show="c.active ==false" class="red bold"> ##word.not_active## </p>
+                        </td>
+
+                        <td class="center not-print">
+                            <i-button x-permissions="clinics_view || clinics_manage" type="view"
+                                label="##word.details##" ng-click="displayDetailsClinic(c)"></i-button>
+
+                            <i-button x-permissions="clinics_update || clinics_manage" type="edit" label="##word.edit##"
+                                ng-click="displayUpdateClinic(c)"></i-button>
+
+                            <i-button x-permissions="clinics_delete || clinics_manage" type="delete"
+                                label="##word.delete##" ng-click="displayDeleteClinic(c)"></i-button>
+                        </td>
+                    </tr>
+                </table>
+
+                <i-button x-permissions="clinics_print || clinics_manage" type="print" label="##word.print##"
+                    onclick="site.print('#t1')"></i-button>
+
+                <i-button x-permissions="clinics_export || clinics_manage" type="export"
+                    label="##word.export_to_excel##" onclick="export_to_xlsx('t1' , 'clinics.xlsx')"></i-button>
+            </div>
+        </div>
+    </div>
+
+    <div x-import="scripts.html"></div>
+    <script x-import="clinics/index.js"></script>
+</body>
+
+</html>

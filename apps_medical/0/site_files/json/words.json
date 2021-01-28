@@ -1,0 +1,317 @@
+[
+    {
+        "name": "brand_title",
+        "en": "Smart Code",
+        "ar": "سمـارت كـود"
+    },
+    {
+        "name": "brand_tag",
+        "en": "Management of hospitals and clinics",
+        "ar": "إدارة المستشفيات و العيادات"
+    },
+    {
+        "name": "menu_customers",
+        "en": "Patients Menu",
+        "ar": "قائمة المرضى"
+    },
+    {
+        "name": "menu_customers_tag",
+        "en": "Add Patients",
+        "ar": "إضافة مريض"
+    },
+    {
+        "name": "customers_groups",
+        "en": "Patients Group",
+        "ar": "مجموعة المرضى"
+    },
+    {
+        "name": "customers_indentfy",
+        "en": "Patient indentfy",
+        "ar": "جنس المريض"
+    },
+    {
+        "name": "customers",
+        "en": "Patients",
+        "ar": "المرضى"
+    },
+    {
+        "name": "customers_data",
+        "en": "Customers Data",
+        "ar": "بيانات العميل"
+    },
+    {
+        "name": "customers_new",
+        "en": "New Patient",
+        "ar": "مريض جديد"
+    },
+    {
+        "name": "customers_add",
+        "en": "Add Patient",
+        "ar": "إضافة مريض"
+    },
+    {
+        "name": "customers_edit",
+        "en": "Patient Edit",
+        "ar": "تعديل بيانات مريض"
+    },
+    {
+        "name": "customers_details",
+        "en": "Patient Details",
+        "ar": "تفاصيل مريض"
+    },
+    {
+        "name": "customers_delete",
+        "en": "Delete Patient",
+        "ar": "حذف مريض"
+    },
+    {
+        "name": "customers_code",
+        "en": "Patient Code",
+        "ar": "كود المريض"
+    },
+    {
+        "name": "customers_name_ar",
+        "en": "Patient Name Arabic",
+        "ar": "إسم المريض بالعربي"
+    },
+    {
+        "name": "customers_name_en",
+        "en": "Patient Name English",
+        "ar": "إسم المريض بالانجليزية"
+    },
+    {
+        "name": "customer_name",
+        "en": "Patient Name",
+        "ar": "إسم المريض"
+    },
+    {
+        "name": "customer",
+        "en": "Patient ",
+        "ar": " المريض"
+    },
+    {
+        "name": "companies_basic_information",
+        "en": "Basic Informations",
+        "ar": "البيانات الاساسية"
+    },
+    {
+        "name": "companies_contact_information",
+        "en": "Contact Informations",
+        "ar": "بيانات الاتصال"
+    },
+    {
+        "name": "companies_phone",
+        "en": "Phone",
+        "ar": "التليفون"
+    },
+    {
+        "name": "companies_mobile",
+        "en": "Mobile",
+        "ar": "المحمول"
+    },
+    {
+        "name": "companies_activity",
+        "en": "Activity",
+        "ar": "النشاط"
+    },
+    {
+        "name": "companies_branches_informations",
+        "en": "Branches Informations",
+        "ar": "بيانات الفروع"
+    },
+    {
+        "name": "companies_branch",
+        "en": "Branch",
+        "ar": "الفرع"
+    },
+    {
+        "name": "companies_branch_information",
+        "en": "Branch Information",
+        "ar": "بيانات الفرع"
+    },
+    {
+        "name": "companies_contact_charge",
+        "en": "Charge Information",
+        "ar": "بيانات المسئول"
+    },
+    {
+        "name": "companies_branch_code",
+        "en": "Branch Code",
+        "ar": "كود الفرع"
+    },
+    {
+        "name": "companies_branch_name",
+        "en": "Branch Name",
+        "ar": "إسم الفرع"
+    },
+    {
+        "name": "companies_branch_name_ar",
+        "en": "Branch Name Arabic",
+        "ar": "إسم الفرع بالعربى"
+    },
+    {
+        "name": "companies_branch_name_en",
+        "en": "Branch Name English",
+        "ar": "إسم الفرع بالانجليزى"
+    },
+    {
+        "name": "companies_branch_notes",
+        "en": "Branch Notes",
+        "ar": "ملاحظات الفرع"
+    },
+    {
+        "name": "companies_charge_name",
+        "en": "Charge Name",
+        "ar": "إسم المسئول"
+    },
+    {
+        "name": "companies_charge_job",
+        "en": "Charge Job",
+        "ar": "الوظيفة"
+    },
+    {
+        "name": "companies_internal_number",
+        "en": "Internal Number",
+        "ar": "الرقم الداخلي"
+    },
+    {
+        "name": "companies_banking_informations",
+        "en": "Banking Informations",
+        "ar": "البنوك"
+    },
+    {
+        "name": "companies_bank_information",
+        "en": "Bank Information",
+        "ar": "بيانات البنك"
+    },
+    {
+        "name": "companies_bank_name",
+        "en": "Bank Name",
+        "ar": "إسم البنك"
+    },
+    {
+        "name": "companies_bank_account_number",
+        "en": "Bank Account Number",
+        "ar": "رقم الحساب"
+    },
+    {
+        "name": "companies_filter_with_date",
+        "en": "Filter With Date",
+        "ar": "تصفية البيانات بالتاريخ"
+    },
+    {
+        "name": "companies_calender_type",
+        "en": "Calender Type",
+        "ar": "نوع التقويم"
+    },
+    {
+        "name": "companies_gegorian",
+        "en": "Gregorian",
+        "ar": "ميلادي"
+    },
+    {
+        "name": "companies_hijri",
+        "en": "Hijri",
+        "ar": "هجري"
+    },
+    {
+        "name": "companies_date",
+        "en": "Date",
+        "ar": "التاريخ"
+    },
+    {
+        "name": "companies_gov",
+        "en": "Gov",
+        "ar": "المحافظة"
+    },
+    {
+        "name": "companies_city",
+        "en": "City",
+        "ar": "المدينة"
+    },
+    {
+        "name": "companies_email",
+        "en": "Email",
+        "ar": "البريد الالكتروني"
+    },
+    {
+        "name": "companies_fax",
+        "en": "Fax",
+        "ar": "الفاكس"
+    },
+    {
+        "name": "companies_name_ar",
+        "en": "Hospital Name Arabic",
+        "ar": "إسم المستشفى"
+    },
+    {
+        "name": "companies_name_en",
+        "en": "Hospital Name English",
+        "ar": "إسم المستشفى بالانجليزية"
+    },
+    {
+        "name": "companies_excahange_price",
+        "en": "Exchange Price",
+        "ar": "سعر الصرف"
+    },
+    {
+        "name": "companies_company_swift_code",
+        "en": "Swift Code",
+        "ar": "رقم السويفت"
+    },
+    {
+        "name": "companies_new",
+        "en": "New Hospital",
+        "ar": "مستشفى جديدة"
+    },
+    {
+        "name": "companies_country",
+        "en": "Coutntry",
+        "ar": "الدولة"
+    },
+    {
+        "name": "companies",
+        "en": "Hospitals",
+        "ar": "المستشفيات"
+    },
+    {
+        "name": "companies_add",
+        "en": "Add company",
+        "ar": "إضافة مستشفى"
+    },
+    {
+        "name": "companies_edit",
+        "en": "Edit company",
+        "ar": "تعديل مستشفى"
+    },
+    {
+        "name": "companies_informations",
+        "en": "company Informations",
+        "ar": "بيانات المستشفى"
+    },
+    {
+        "name": "companies_details",
+        "en": "company Details",
+        "ar": "تفاصيل المستشفى"
+    },
+    {
+        "name": "companies_delete",
+        "en": "Delete company",
+        "ar": "حذف مستشفى"
+    },
+    {
+        "name": "companies_code",
+        "en": "company Code",
+        "ar": "كود المستشفى"
+    },
+    {
+        "name": "companies_address",
+        "en": "Address",
+        "ar": "العنوان"
+    },
+    {
+        "name": "companies_customer_service",
+        "en": "Customer Services",
+        "ar": "خدمة العملاء"
+    }
+]

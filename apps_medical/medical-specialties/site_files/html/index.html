@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="specialties_ui || specialties_manage" data-ng-app="myApp">
+
+<head x-import="head.html">
+
+</head>
+
+<body class="##session.lang##">
+
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+
+    </nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+
+    </nav>
+
+    <div id="main-layout" class="container">
+        <div class="row">
+            <div class="row" ng-controller="medical_specialties">
+                <div x-permissions="specialties_add || specialties_manage" x-import="medical-specialties/add_modal.html"></div>
+                <div x-permissions="specialties_update || specialties_manage" x-import="medical-specialties/update_modal.html"></div>
+                <div x-permissions="specialties_delete || specialties_manage" x-import="medical-specialties/delete_modal.html"></div>
+                <div x-permissions="specialties_view || specialties_manage" x-import="medical-specialties/view_modal.html"></div>
+                <div x-permissions="specialties_search || specialties_manage" x-import="medical-specialties/search_all_modal.html"></div>
+
+                <div class="row">
+                    <h1 class="bold text-center">##word.medical_specialties##</h1>
+                </div>
+
+                <div class="top-actions">
+                    <i-button x-permissions="specialties_add || specialties_manage" type="add" label="##word.medical_specialties_new##"
+                        ng-click="displayAddMedicalSpecialty()"></i-button>
+
+                    <i-button x-permissions="specialties_search || specialties_manage" type="search" label="##word.search_all##" ng-click="displaySearchModal()"></i-button>
+
+                    <h3 class="bold text-center"> ##word.count## : {{count}}</h3>
+                </div>
+
+                <table x-permissions="login" class="table bold loaded" id="t1">
+                    <tr>
+                        <th class="not-print">##word.logo##</th>
+                        <th>##word.name##</th>
+                        <th>##word.status##</th>
+                        <th class="not-print">##word.actions##</th>
+                    </tr>
+                    <tr ng-repeat="c in list">
+                        <td class="center not-print">
+                            <img class="logo" ng-src="{{c.image_url}}">
+                        </td>
+                        <td class="center title">{{c.name}}</td>
+                        <td class="center">
+                            <p ng-show="c.active ==true" class="green bold"> ##word.active## </p>
+                            <p ng-show="c.active ==false" class="red bold"> ##word.not_active## </p>
+                        </td>
+
+                        <td class="center not-print">
+                            <i-button x-permissions="specialties_view || specialties_manage" type="view" label="##word.details##" ng-click="displayDetailsMedicalSpecialty(c)"></i-button>
+
+                            <i-button x-permissions="specialties_update || specialties_manage" type="edit" label="##word.edit##" ng-click="displayUpdateMedicalSpecialty(c)"></i-button>
+
+                            <i-button x-permissions="specialties_delete || specialties_manage" type="delete" label="##word.delete##"
+                                ng-click="displayDeleteMedicalSpecialty(c)"></i-button>
+                        </td>
+                    </tr>
+                </table>
+
+                <i-button x-permissions="specialties_print || specialties_manage" type="print" label="##word.print##" onclick="site.print('#t1')"></i-button>
+
+                <i-button x-permissions="specialties_export || specialties_manage" type="export" label="##word.export_to_excel##" onclick="export_to_xlsx('t1' , 'medical_specialties.xlsx')"></i-button>
+            </div>
+        </div>
+    </div>
+
+    <div x-import="scripts.html"></div>
+    <script x-import="medical-specialties/index.js"></script>
+</body>
+
+</html>

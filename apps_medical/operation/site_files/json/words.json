@@ -1,0 +1,45 @@
+[{
+        "name": "operation",
+        "en": "operation",
+        "ar": "العمليات"
+    },
+    {
+        "name": "operation_new",
+        "en": "New operation",
+        "ar": "عملية جديدة"
+    },
+    {
+        "name": "operation_add",
+        "en": "Add operation",
+        "ar": "اضافة عملية "
+    },
+    {
+        "name": "operation_edit",
+        "en": "Edit operation",
+        "ar": "تعديل عملية "
+    },
+    {
+        "name": "operation_details",
+        "en": "operation Details",
+        "ar": "تفاصيل العملية "
+    },
+    {
+        "name": "operation_delete",
+        "en": "Delete operation",
+        "ar": "حذف عملية "
+    },
+    {
+        "name": "operation_name",
+        "en": "operation Name",
+        "ar": "اسم العملية "
+    },
+    {
+        "name": "operation_price",
+        "en": "operation Price",
+        "ar": "تكلفة العملية "
+    }
+
+
+
+
+]

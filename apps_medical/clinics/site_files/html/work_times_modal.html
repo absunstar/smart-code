@@ -1,0 +1,53 @@
+<div id="workTimeModal" class="modal">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="colse">&times;</span>
+            ##word.clinics_work_times##
+            <i class="fa fa-pencil"></i>
+
+        </div>
+
+        <div class="modal-body ">
+            <div class="row">
+                <fieldset>
+                    <legend>
+                        <i-button type="add default" ng-click="clinic.work_times.push({})"></i-button>
+                        ##word.clinics_work_times##
+                    </legend>
+
+                    <div class="row" ng-repeat="time in clinic.work_times">
+                        <div class="col2">
+                            <br>
+                            <i-checkbox label="##word.vacation##" ng-model="time.vacation"></i-checkbox>
+                        </div>
+
+                        <i-list help-id="clients_days" class="col3" label="##word.day##" ng-model="time.day" ng-hide="time.vacation == true"
+                            items="dayList" display="##session.lang##" ng-search="_search.$branch_days"></i-list>
+
+                        <i-list help-id="clients_from" class="col2" label="##word.from##" ng-model="time.from" ng-hide="time.vacation == true"
+                            items="timeList" display="##session.lang##" ng-search="_search.$branch_from"></i-list>
+
+                        <i-list help-id="clients_to" class="col2" label="##word.to##" ng-model="time.to" ng-hide="time.vacation == true"
+                            items="timeList" display="##session.lang##" ng-search="_search.$branch_to"></i-list>
+
+                        <div class="col3">
+                            <br>
+                            <i-button type="delete" ng-hide="time.vacation == true" ng-click="clinic.work_times.length ===1 || clinic.work_times.splice($index,1)"></i-button>
+
+                        </div>
+
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+
+        <div class="modal-footer center">
+            <h2 class="error"> {{error}} </h2>
+            <i-button type="add" label="##word.add##" ng-click="addToClinic()"></i-button>
+
+            <i-button type="close" label="##word.close##" onclick="site.hideModel('#workTimeModal')"></i-button>
+        </div>
+    </div>
+
+</div>

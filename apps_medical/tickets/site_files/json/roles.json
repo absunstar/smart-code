@@ -1,0 +1,7 @@
+[{
+    "module_name" : "public" ,
+    "name": "tickets_admin",
+    "en": "Tickets Admin",
+    "ar": "إدارة التذاكر",
+    "permissions": ["tickets_manage"]
+}]

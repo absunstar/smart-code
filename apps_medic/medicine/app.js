@@ -4,7 +4,7 @@ module.exports = function init(site) {
 
 
   site.on('[company][created]', doc => {
-    if (site.feature('gym') || site.feature('academy')|| site.feature('school'))
+    if (site.feature('gym') || site.feature('academy')|| site.feature('school') || site.feature('medical'))
       $medicine.add({
         code: "1-Test",
         name: "دواء إفتراضي",

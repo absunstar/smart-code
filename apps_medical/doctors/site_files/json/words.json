@@ -1,0 +1,41 @@
+[{
+        "name": "doctors",
+        "en": "Doctors",
+        "ar": "الاطباء"
+    },
+    {
+        "name": "doctors_new",
+        "en": "New Doctor",
+        "ar": "طبيب  جديد"
+    },
+
+    {
+        "name": "doctors_add",
+        "en": "Add Doctor",
+        "ar": "اضافة طبيب "
+    },
+    {
+        "name": "doctors_edit",
+        "en": "Edit Doctor",
+        "ar": "تعديل طبيب "
+    },
+    {
+        "name": "doctors_details",
+        "en": "Doctor Details",
+        "ar": "تفاصيل الطبيب "
+    },
+    {
+        "name": "doctors_delete",
+        "en": "Delete Doctor",
+        "ar": "حذف طبيب "
+    },
+    {
+        "name": "doctors_name",
+        "en": "Doctor Name",
+        "ar": "اسم الطبيب "
+    }
+
+
+
+
+]

@@ -1,0 +1,126 @@
+<div ng-hide="busy" class="row">
+    <fieldset>
+        <legend> ##word.basic_information##</legend>
+        <div class="col9">
+            <div>
+                <table id="basicInformationTable" class="table hover bold">
+              
+                    <tr>
+                        <td class="title">##word.name##</td>
+                        <td class="center">{{nurse.name}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="title">##word.nathional_id##</td>
+                        <td class="center blue">{{nurse.nathional_id}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="title">##word.specialty##</td>
+                        <td class="center">{{nurse.specialty.name}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="title">##word.status##</td>
+                        <td ng-show="nurse.active == true" class="green center"> ##word.active## </td>
+                        <td ng-show="nurse.active == false" class="red center"> ##word.not_active## </td>
+                    </tr>
+
+                </table>
+            </div>
+
+            <br>
+            <hr>
+            <br>
+            <div>
+                <fieldset>
+                    <legend>##word.address_connect##</legend>
+                    <table id="informationTable" class="table hover bold">
+
+                        <tr>
+                            <td class="title">##word.gov##</td>
+                            <td class="center">{{nurse.gov.name}}</td>
+                        </tr>
+                        <tr>
+                            <td class="title">##word.city##</td>
+                            <td class="center">{{nurse.city.name}}</td>
+                        </tr>
+                        <tr>
+                            <td class="title">##word.address##</td>
+                            <td class="center">{{nurse.address}}</td>
+                        </tr>
+
+                        <tr>
+                            <td class="title">##word.phone##</td>
+                            <td class="center">
+                                <a ng-show="nurse.phone" href="tel:{{nurse.phone}}">
+                                    {{nurse.phone}}
+                                    <i class="fa fa-phone" aria-hidden="true"></i>
+                                </a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="title">##word.mobile##</td>
+                            <td class="center">
+                                <a ng-show="nurse.mobile" href="tel:{{nurse.mobile}}">
+                                    {{nurse.mobile}}
+                                    <i class="fa fa-mobile" aria-hidden="true"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="title">##word.whatsapp##</td>
+                            <td class="center">
+                                <a ng-show="nurse.whatsapp" href="tel:{{nurse.whatsapp}}">
+                                    {{nurse.whatsapp}}
+                                    <i class="fa fa-whatsapp" aria-hidden="true"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="title">##word.email##</td>
+                            <td class="center">
+                                <a ng-show="nurse.email" target="_blank" href="tel:{{nurse.email}}">
+                                    {{nurse.email}}
+                                    <i class="fa fa-envelope" aria-hidden="true"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="title">##word.notes##</td>
+                            <td class="center blue">{{nurse.notes}}</td>
+                        </tr>
+
+                    </table>
+
+                </fieldset>
+
+            </div>
+            <br>
+            <fieldset>
+                <legend> ##word.login_information## </legend>
+
+                <table class="table hover bold">
+                    <tr>
+                        <td class="title">##word.email##</td>
+                        <td class="center">{{nurse.username}}</td>
+                    </tr>
+                    <tr>
+                        <td class="title">##word.password##</td>
+                        <td class="center">{{nurse.password}}</td>
+                    </tr>
+                </table>
+            </fieldset>
+
+
+        </div>
+
+        <div class="col3">
+            <i-image view ng-model="nurse.image_url"></i-image>
+            <i-files view ng-model="nurse.files"></i-files>
+
+        </div>
+    </fieldset>
+</div>
+<div x-import="nursing/action_info.html"></div>

@@ -100,7 +100,7 @@
 
         <br />
         <br />
-        <div class="row oman hidden">
+        <!-- <div class="row oman hidden">
           <h2 class="center">
             فرع عمان
             <span>
@@ -111,7 +111,7 @@
             </span>
           </h2>
           <h2 class="center">تليفونات عمان <span> 0096891246272 - 0096898927057 </span></h2>
-        </div>
+        </div> -->
       </div>
     </div>
 
@@ -171,6 +171,9 @@
                   post = res[i];
                   rendered += Mustache.render(post_template, post);
                 } else if (res[i].feature == 'gym' && site.features.like('*gym*')) {
+                  post = res[i];
+                  rendered += Mustache.render(post_template, post);
+                } else if (res[i].feature == 'school' && site.features.like('*school*')) {
                   post = res[i];
                   rendered += Mustache.render(post_template, post);
                 } else if (res[i].feature == 'academy' && site.features.like('*academy*')) {

@@ -29,8 +29,8 @@ module.exports = function init(site) {
         },
         active: true,
       },
-      (err, doc) => {
-        site.call('[register][city][add]', doc);
+      (err, doc1) => {
+        site.call('[register][city][add]', doc1);
       },
     );
   });

@@ -1,0 +1,55 @@
+<div id="ticketsSelectTimes" class="modal fade">
+    <div class="modal-content full">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.work_times##
+            </h2>
+
+        </div>
+
+        <div class="modal-body">
+            <div class="row padding">
+                <table class="table center bold">
+
+                    <tr>
+                        <th>##word.work_day##</th>
+                        <th>##word.work_from##</th>
+                        <th>##word.work_to##</th>
+                        <th>##word.work_to##</th>
+                    </tr>
+
+                    <tr ng-repeat="t in ticket.selected_shift.times_list">
+                        <td>
+                            <br>
+                            <p class="blue">{{t.day.ar}}</p>
+                        </td>
+
+                        <td>
+                            <br>
+                            <p class="green">{{t.from.minute}} : {{t.from.hour}}</p>
+                        </td>
+
+                        <td>
+                            <br>
+                            <p class="red">{{t.to.minute}} : {{t.to.hour}}</p>
+                        </td>
+
+                        <td>
+                            <i-button type="add" label="##word.booking##" ng-click="booking(t)"></i-button>
+                        </td>
+                    </tr>
+
+
+                </table>
+
+            </div>
+        </div>
+
+        <div class="modal-footer center">
+            <h2 class="error"> {{error}} </h2>
+
+            <i-button type="close" label="##word.close##" onclick="site.hideModal('#ticketsSelectTimes')"></i-button>
+        </div>
+    </div>
+</div>

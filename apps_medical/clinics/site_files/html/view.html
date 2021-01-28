@@ -1,0 +1,150 @@
+<div ng-hide="busy" class="row">
+    <div class="tabs col">
+        <div class="tabs-header full">
+
+            <a class="tab-link" onclick="site.showTabContent(event, '#basicInformation')">
+                ##word.basic_information## </a>
+
+            <a class="tab-link" onclick="site.showTabContent(event, '#shiftsInformation')">
+                ##word.shifts_information## </a>
+
+            <a class="tab-link" onclick="site.showTabContent(event, '#doctorsInformation')">
+                ##word.doctors## </a>
+
+            <a class="tab-link" onclick="site.showTabContent(event,'#nursingInformation')">
+                ##word.nurses##</a>
+
+            <a class="tab-link" onclick="site.showTabContent(event,'#loginInformation')">
+                ##word.login_information##</a>
+
+        </div>
+        <div id="clinicsAllInfo" class="tabs-content bold full">
+
+            <div id="basicInformation" class="tab-content">
+                <div class="col9">
+
+                    <fieldset>
+                        <legend> ##word.basic_information##</legend>
+                        <table id="basicInformationTable" class="table hover bold">
+                            <tr>
+                                <td class="title">##word.id##</td>
+                                <td class="center blue">{{clinic.id}}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="title">##word.name##</td>
+                                <td class="center">{{clinic.name}}</td>
+                            </tr>
+                            <tr>
+                                <td class="title">##word.hospital##</td>
+                                <td class="center">{{clinic.hospital.name}}</td>
+                            </tr>
+                            <tr>
+                                <td class="title">##word.specialty##</td>
+                                <td class="center">{{clinic.specialty.name}}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="title">##word.status##</td>
+                                <td ng-show="clinic.active == true" class="green center bold"> ##word.active## </td>
+                                <td ng-show="clinic.active == false" class="red center bold"> ##word.not_active##
+                                </td>
+                            </tr>
+                        </table>
+                    </fieldset>
+                </div>
+                <div class="col3">
+                    <i-image view class="col3" ng-model="clinic.image_url"></i-image>
+                </div>
+            </div>
+            <div id="shiftsInformation" class="tab-content">
+
+                <fieldset>
+                    <legend>##word.shifts_information##</legend>
+
+                    <div class="row" ng-repeat="shift in clinic.shift_list">
+                        <i-control disabled help-id="" class="col4" label="##word.shift_name##" ng-model="shift.name"></i-control>
+
+                        <table class="table center hover bold" ng-repeat="time in shift.times_list">
+                            <tr>
+                                <th>##word.day##</th>
+                                <th>##word.from##</th>
+                                <th>##word.to##</th>
+                                <th>##word.vacation##</th>
+                            </tr>
+
+                            <tr>
+                                <td>{{time.day.ar}}</td>
+                                <td class="green">{{time.from.minute}} : {{time.from.hour}}</td>
+                                <td class="red">{{time.to.minute}} : {{time.to.hour}}</td>
+                                <td ng-show="time.vacation == true" class="red center bold"> ##word.vacation## </td>
+                                <td ng-hide="time.vacation == true" class="green center bold"> ##word.active##</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <hr>
+                </fieldset>
+            </div>
+            <div id="doctorsInformation" class="tab-content">
+
+                <fieldset>
+                    <legend>##word.doctors##</legend>
+                    <table class="table bold hover">
+                        <tr>
+                            <th>##word.doctors_name##</th>
+                            <th>##word.shift_name##</th>
+                        </tr>
+                        <tr ng-repeat="doctor in clinic.doctor_list">
+                            <td class="center">{{doctor.doctor.name}}</td>
+                            <td class="center blue">{{doctor.shift.name}}</td>
+                        </tr>
+                    </table>
+
+                </fieldset>
+
+            </div>
+
+            <div id="nursingInformation" class="tab-content">
+
+                <fieldset>
+                    <legend>##word.doctors##</legend>
+                    <table class="table bold hover">
+                        <tr>
+                            <th>##word.nurses##</th>
+                            <th>##word.shift_name##</th>
+                        </tr>
+                        <tr ng-repeat="nurse in clinic.nurse_list">
+                            <td class="center">{{nurse.nurse.name}}</td>
+                            <td class="center blue">{{nurse.shift.name}}</td>
+                        </tr>
+                    </table>
+
+                </fieldset>
+
+            </div>
+
+            
+
+            <div id="loginInformation" class="tab-content">
+                <fieldset class="col9">
+                    <legend> ##word.login_information## </legend>
+
+                    <table id="loginTable" class="table hover bold">
+
+                        <tr>
+                            <td class="title">##word.email##</td>
+                            <td class="center">{{clinic.username}}</td>
+                        </tr>
+                        <tr>
+                            <td class="title">##word.password##</td>
+                            <td class="center">{{clinic.password}}</td>
+                        </tr>
+                    </table>
+
+                </fieldset>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div x-import="clinics/action_info.html"></div>

@@ -1,0 +1,7 @@
+[{
+    "module_name" : "public" ,
+    "name": "nursing_admin",
+    "en": "Nursing Admin",
+    "ar": "ادارة التمريض",
+    "permissions": ["nursing_manage"]
+}]

@@ -1,0 +1,254 @@
+<div ng-hide="busy" class="row">
+    <div class="tabs col">
+        <div class="tabs-header full">
+            <a class="tab-link" onclick="site.showTabContent(event, '#basicInformation')">
+                ##word.basic_information## </a>
+            <a class="tab-link" onclick="site.showTabContent(event, '#drugsInformation')">
+                ##word.drugs## </a>
+            <a class="tab-link" onclick="site.showTabContent(event, '#scanInformation')">
+                ##word.scan## </a>
+            <a class="tab-link" onclick="site.showTabContent(event, '#analysesInformation')">
+                ##word.analyses## </a>
+            <a class="tab-link" onclick="site.showTabContent(event, '#operationInformation')">
+                ##word.operation## </a>
+            <a class="tab-link" onclick="site.showTabContent(event, '#diagnosisInformation')">
+                ##word.diagnosis## </a>
+        </div>
+
+        <div id="customerAllInfo" class="tabs-content bold full">
+
+            <div id="basicInformation" class="tab-content">
+                <fieldset>
+                    <legend> ##word.basic_information##</legend>
+                    <div class="col9">
+                        <div class="row">
+                            <br>
+                            <i-button type="details" label="##word.patients_details##" ng-click="showPatient(ticket.patient.id)"></i-button>
+                            <div class="row">
+                                <div class="col10">
+                                        <table class="table hover center bold" ng-show="ticket.patient">
+                                            <tr>
+                                                <td class="title">##word.patient##</td>
+                                                <td colspan="5"> {{ticket.patient.name}}</td>
+                                            </tr>
+                
+                                            <tr>
+                                                <td class="title">##word.blood_type##</td>
+                                                <td class="blue "> {{ticket.patient.blood_type.name}}</td>
+                                                <td class="title">##word.mobile##</td>
+                                                <td colspan="3" class="blue "> {{ticket.patient.mobile}}</td>
+                                            </tr>
+                
+                                            <tr>
+                                                <td class="title">##word.indentfy##</td>
+                                                <td class="blue "> {{ticket.patient.indentfy.ar}}</td>
+                                                <td class="title">##word.age##</td>
+                                                <td colspan="3" class="brown "> {{ticket.patient.age}}</td>
+                                            </tr>
+                
+                                            <tr>
+                                                <td class="title">##word.weight##</td>
+                                                <td class=" blue"> {{ticket.patient.weight}} <p class="blue" ng-show="ticket.patient.weight">##word.kg##</p>
+                                                </td>
+                                                <td class="title">##word.tall##</td>
+                                                <td class=" blue"> {{ticket.patient.tall}} <p class="blue" ng-show="ticket.patient.tall">##word.cm##</p>
+                                                </td>
+                                                <td class="title">##word.job##</td>
+                                                <td class="blue "> {{ticket.patient.job}}</td>
+                                            </tr>
+                
+                                        </table>
+                                    </div>
+                            </div>
+
+                            <br>
+                            <br>
+
+                            <table class="table hover bold">
+                                <tr>
+                                    <td class="title">##word.Ticket_number##</td>
+                                    <td class="blue center"> {{ticket.code}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="title">##word.booking_date##</td>
+                                    <td class="brown center"> {{ticket.date | date : 'dd - MM - yyyy'}}</td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title">##word.notes##</td>
+                                    <td class="blue center"> {{ticket.notes}}</td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title">##word.notes_before##</td>
+                                    <td class="blue center"> {{ticket.notes_before}}</td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title"> ##word.status## </td>
+                                    <td class="center">
+                                        <p class="blue">{{ticket.status.ar}}</p>
+                                        <i-button type="update" label="##word.done_attendance##" ng-hide="ticket.status.id!=1"
+                                            ng-show="ticket.status.id==1" ng-click="attend(ticket)"></i-button>
+
+                                        <i-button type="update" label="##word.just_booking##" ng-hide="ticket.status.id!=2"
+                                            ng-show="ticket.status.id==2" ng-click="without(ticket)"></i-button>
+
+
+                                        <i-button type="update" label="##word.done_access_doctor##" ng-show="ticket.status.id==2"
+                                            ng-hide="ticket.status.id!=2" onclick="site.showModal('#ticketNotes')"></i-button>
+
+                                        <i-button type="update" class="col6 center" label="##word.sellorder##" ng-hide="ticket.status.id!=3"
+                                            ng-show="ticket.status.id==3" ng-click="sellorder(ticket)"></i-button>
+
+
+                                        <i-button type="update" label="##word.done_detected##" ng-show="ticket.status.id==3"
+                                            ng-hide="ticket.status.id!=3" ng-click="detection(ticket)"></i-button>
+
+                                        <i-button type="update" class="col6 center" label="##word.at_the_doctor##"
+                                            ng-show="ticket.status.id==4" ng-hide="ticket.status.id!=4" ng-click="atTheDoctor(ticket)"></i-button>
+
+                                    </td>
+                                </tr>
+
+                            </table>
+                        </div>
+
+                        <br>
+                        <br>
+                        <br>
+
+                        <div class="row">
+                            <table class="table center hover bold">
+                                <tr>
+                                    <th>##word.hospital##</th>
+                                    <th>##word.clinics##</th>
+                                    <th>##word.specialty##</th>
+
+                                </tr>
+                                <tr>
+                                    <td class="title"> {{ticket.selected_hospital.name}}</td>
+                                    <td> {{ticket.selected_clinic.name}}</td>
+                                    <td> {{ticket.selected_specialty.name}}</td>
+
+                                </tr>
+                            </table>
+
+                        </div>
+
+                        <br>
+                        <br>
+
+                        <div class="row">
+                            <table class="table center hover bold">
+                                <tr>
+                                    <th>##word.doctor_name##</th>
+                                    <th>##word.shift_name##</th>
+                                    <th>##word.work_day##</th>
+                                    <th>##word.work_from##</th>
+                                    <th>##word.work_to##</th>
+
+                                </tr>
+                                <tr>
+                                    <td class="title"> {{ticket.selected_doctor.name}}</td>
+                                    <td> {{ticket.selected_shift.name}}</td>
+                                    <td> {{ticket.selected_time.day.ar}}</td>
+                                    <td class="green"> {{ticket.selected_time.from.minute}} : {{ticket.selected_time.from.hour}}</td>
+                                    <td class="red"> {{ticket.selected_time.to.minute}} : {{ticket.selected_time.to.hour}}</td>
+
+                                </tr>
+                            </table>
+                        </div>
+
+                        <br>
+                        <br>
+
+                    </div>
+
+                    <div class="col3">
+                        <i-image view class="col3" ng-model="ticket.image_url"></i-image>
+                    </div>
+
+                </fieldset>
+
+                <div class="row">
+                    <div class="col5"></div>
+                    <i-button x-permissions="tickets_update || tickets_manage" class="col1" type="edit" label="##word.edit##" ng-click="displayUpdateTicket(ticket)"></i-button>
+                    <i-button x-permissions="tickets_delete || tickets_manage" class="col1" type="delete" label="##word.delete##" ng-click="displayDeleteTicket(ticket)"></i-button>
+                </div>
+
+
+            </div>
+
+            <div id="drugsInformation" class="tab-content">
+                <fieldset>
+                    <legend>
+                        <i-button type="add default" ng-click="ticket.drugs_list.push({active:true})"></i-button>
+                        ##word.drugs##
+                    </legend>
+                    <div class="row" ng-repeat="info in ticket.drugs_list">
+                        <i-button type="delete default" ng-click="ticket.drugs_list.length ===1 || ticket.drugs_list.splice($index,1)"></i-button>
+
+                        <i-list label="##word.name##" class="col5" ng-model="info.drugs" items="drugsList" ng-search="_search.$drugses"
+                            display="name"></i-list>
+                    </div>
+                </fieldset>
+
+            </div>
+
+            <div id="scanInformation" class="tab-content">
+                <fieldset>
+                    <legend>
+                        <i-button type="add default" ng-click="ticket.scans_list.push({active:true})"></i-button>
+                        ##word.scans##
+                    </legend>
+                    <div class="row" ng-repeat="info in ticket.scans_list">
+                        <i-button type="delete default" ng-click="ticket.scans_list.length ===1 || ticket.scans_list.splice($index,1)"></i-button>
+
+                        <i-list label="##word.name##" class="col5" ng-model="info.scans" items="scansList" ng-search="_search.$scanses"
+                            display="name"></i-list>
+                    </div>
+                </fieldset>
+            </div>
+
+            <div id="analysesInformation" class="tab-content">
+                <fieldset>
+                    <legend>
+                        <i-button type="add default" ng-click="ticket.analyses_list.push({active:true})"></i-button>
+                        ##word.analyses##
+                    </legend>
+                    <div class="row" ng-repeat="info in ticket.analyses_list">
+                        <i-button type="delete default" ng-click="ticket.analyses_list.length ===1 || ticket.analyses_list.splice($index,1)"></i-button>
+
+                        <i-list label="##word.name##" class="col5" ng-model="info.analyses" items="analysesList"
+                            ng-search="_search.$scanses" display="name"></i-list>
+                    </div>
+                </fieldset>
+            </div>
+
+            <div id="operationInformation" class="tab-content">
+                <fieldset>
+                    <legend>
+                        <i-button type="add default" ng-click="ticket.operation_list.push({active:true})"></i-button>
+                        ##word.operation##
+                    </legend>
+                    <div class="row" ng-repeat="info in ticket.operation_list">
+                        <i-button type="delete default" ng-click="ticket.operation_list.length ===1 || ticket.operation_list.splice($index,1)"></i-button>
+
+                        <i-list label="##word.name##" class="col5" ng-model="info.operation" items="operationList"
+                            ng-search="_search.$scanses" display="name"></i-list>
+                    </div>
+                </fieldset>
+            </div>
+
+            <div id="diagnosisInformation" class="tab-content">
+                <div class="col5">
+                    <i-list label="##word.diagnosis##" ng-model="ticket.diagnosis" ng-search="_search.$diagnosis_search" items="diagnosisList" display="ar"></i-list>
+                    <i-textarea label="##word.notes##" ng-model="tecket.doctor_notes"></i-textarea>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div x-import="tickets/action_info.html"></div>

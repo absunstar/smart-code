@@ -192,13 +192,24 @@
                 <span> ##word.service_management##</span>
             </a>
 
-            <a x-features="academy || gym || school" class="tab-link" href="/medicine"
+            <a x-features="medical" class="tab-link" href="/medical_specialties"
+                x-permissions="specialties_ui || specialties_manage">
+                <img src="/images/medical_specialty.png">
+                <span> ##word.medical_specialties##</span>
+            </a>
+
+            <a x-features="medical" class="tab-link" href="/operation" x-permissions="operation_ui || operation_manage">
+                <img src="/images/operation.png">
+                <span> ##word.operation##</span>
+            </a>
+
+            <a x-features="academy || gym || school || medical" class="tab-link" href="/medicine"
                 x-permissions="medicine_ui || medicine_manage">
                 <img src="/images/medicine.png">
                 <span> ##word.medicine##</span>
             </a>
 
-            <a x-features="academy || gym || school" class="tab-link" href="/disease"
+            <a x-features="academy || gym || school || medical" class="tab-link" href="/disease"
                 x-permissions="disease_ui || disease_manage">
                 <img src="/images/disease.png">
                 <span> ##word.disease##</span>
@@ -290,8 +301,7 @@
                 <span>##word.amount_out_invoice## </span>
             </a>
 
-            <a class="tab-link" href="/transfer_safes"
-                x-permissions="transfer_safes_ui || transfer_safes_manage">
+            <a class="tab-link" href="/transfer_safes" x-permissions="transfer_safes_ui || transfer_safes_manage">
                 <img src="/images/transfer_safes.png">
                 <span>##word.transfer_safes_balances## </span>
             </a>
@@ -468,8 +478,7 @@
                 <span> ##word.customers## </span>
             </a>
 
-            <a class="tab-link" href="/customers_group"
-                x-permissions="customers_group_ui || customers_group_manage">
+            <a class="tab-link" href="/customers_group" x-permissions="customers_group_ui || customers_group_manage">
                 <img src="/images/vendor_group.png">
                 <span> ##word.customers_groups## </span>
             </a>
@@ -955,6 +964,38 @@
 
     <div id="company_tabs" class="tabs">
         <div class="tabs-header">
+            <div class="" x-features="medical">
+
+                <a class="tab-link" href="/doctors" x-permissions="doctors_ui || doctors_manage">
+                    <img src="/images/doctor.png">
+                    <span> ##word.doctors## </span>
+                </a>
+
+                <a class="tab-link" href="/nursing" x-permissions="nursing_ui || nursing_manage">
+                    <img src="/images/nurse.png">
+                    <span> ##word.nursing## </span>
+                </a>
+
+                <a class="tab-link" href="/clinics" x-permissions="clinics_ui || clinics_manage">
+                    <img src="/images/clinic.png">
+                    <span> ##word.clinics## </span>
+                </a>
+
+                <a class="tab-link" href="/tickets" x-permissions="tickets_ui || tickets_manage">
+                    <img src="/images/ticket.png">
+                    <span> ##word.tickets_book## </span>
+                </a>
+           
+                <a class="tab-link" href="/medical_specialties" x-permissions="specialties_ui || specialties_manage">
+                    <img src="/images/medical_specialty.png">
+                    <span> ##word.medical_specialties##</span>
+                </a>
+
+                <a class="tab-link" href="/operation" x-permissions="operation_ui || operation_manage">
+                    <img src="/images/operation.png">
+                    <span> ##word.operation##</span>
+                </a>
+            </div>
 
             <div class="" x-features="lawyer">
 
@@ -1118,10 +1159,10 @@
                     <span> ##word.subjects##</span>
                 </a>
 
-                <a class="tab-link" href="/exam_grades" x-permissions="exam_grades_ui || exam_grades_manage">
+                <!-- <a class="tab-link" href="/exam_grades" x-permissions="exam_grades_ui || exam_grades_manage">
                     <img src="/images/exam_grades.png">
                     <span> ##word.exam_grades##</span>
-                </a>
+                </a> -->
 
                 <a class="tab-link" href="/year_works" x-permissions="year_works_ui || year_works_manage">
                     <img src="/images/year_works.png">

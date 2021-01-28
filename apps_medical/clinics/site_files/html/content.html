@@ -1,0 +1,199 @@
+<div class="form">
+    <div class="tabs">
+        <div class="tabs-header">
+            <a class="tab-link" onclick="site.showTabContent(event,'#basicInformation')">
+                ##word.basic_information##
+            </a>
+
+            <a class="tab-link" onclick="site.showTabContent(event,'#shiftsInformation')">
+                ##word.shifts_information##
+            </a>
+
+            <a class="tab-link" onclick="site.showTabContent(event,'#doctorsInformation')">
+                ##word.doctors##
+            </a>
+
+            <a class="tab-link" onclick="site.showTabContent(event,'#nursingInformation')">
+                ##word.nurses##
+            </a>
+
+            <a class="tab-link" onclick="site.showTabContent(event,'#loginInformation')">
+                ##word.login_information##
+            </a>
+
+        </div>
+
+        <div class="tabs-content">
+            <div id="basicInformation" class="tab-content">
+                <fieldset>
+                    <legend> ##word.basic_information## </legend>
+                    <div class="row">
+                        <div class="col9">
+                            <div class="row">
+
+                                <i-control help-id="" class="col6" label="##word.name##" ng-model="clinic.name">
+                                </i-control>
+                                <div class="col4"></div>
+                                <i-checkbox help-id="" class="col2" label="##word.active##" ng-model="clinic.active">
+                                </i-checkbox>
+
+                            </div>
+
+                            <div class="row">
+
+                                <i-list help-id="" class="col4" label="##word.hospital##" ng-model="clinic.hospital"
+                                    display="name" items="hospitalList" ng-search="_search.$hospital_name">
+                                </i-list>
+
+                                <i-list help-id="" class="col4" label="##word.specialty##" ng-model="clinic.specialty"
+                                    ng-change="getDoctorList(clinic); getNursesList(clinic)" display="name"
+                                    items="specialList" ng-search="_search.$specialty_name">
+                                </i-list>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col3">
+                            <i-image help-id="" ng-model="clinic.image_url"></i-image>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+
+            <div id="shiftsInformation" class="tab-content">
+                <fieldset>
+
+                    <legend>
+                        ##word.basic_information##
+
+                    </legend>
+
+                    <div class="row" ng-repeat="shift in clinic.shift_list">
+
+                        <fieldset>
+                            <legend>
+                                <i-button type="add default" ng-click="clinic.shift_list.push({times_list:[{}]})">
+                                </i-button>
+                                ##word.shift##
+                                <i-button type="delete default"
+                                    ng-click="clinic.shift_list.length ===1 || clinic.shift_list.splice($index,1)">
+                                </i-button>
+
+                            </legend>
+
+                            <div class="row">
+                                <i-control help-id="" class="col3" label="##word.shift_name##" ng-model="shift.name">
+                                </i-control>
+
+                                <fieldset>
+
+                                    <legend>
+                                        <i-button type="add default" ng-click="shift.times_list.push({})"></i-button>
+                                        ##word.times_of_work##
+                                    </legend>
+
+                                    <div class="row" ng-repeat="time in shift.times_list">
+                                        <i-button type="delete default"
+                                            ng-click="shift.times_list.length ===1 || shift.times_list.splice($index,1)">
+                                        </i-button>
+
+                                        <i-list help-id="clinic _days" class="col2" label="##word.day##"
+                                            ng-model="time.day" ng-hide="time.vacation == true" items="dayList"
+                                            display="##session.lang##" ng-search="_search.$clinic_days"></i-list>
+
+                                        <i-time help-id="clinic _from" class="col2" label="##word.from##"
+                                            ng-model="time.from" ng-hide="time.vacation == true"
+                                            display="##session.lang##"></i-time>
+
+                                        <i-time help-id="clinic _to" class="col2" label="##word.to##" ng-model="time.to"
+                                            ng-hide="time.vacation == true" display="##session.lang##"></i-time>
+
+                                        <div class="col3">
+                                            <div class="row">
+                                                <div class="col6">
+                                                    <i-checkbox label="##word.vacation##" ng-model="time.vacation">
+                                                    </i-checkbox>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </fieldset>
+                    </div>
+
+                </fieldset>
+            </div>
+
+            <div id="doctorsInformation" class="tab-content">
+                <fieldset>
+                    <legend>
+                        <i-button type="add default" ng-click="clinic.doctor_list.push({})"></i-button>
+                        ##word.basic_information##
+
+                    </legend>
+
+                    <div class="row">
+                        <div class="row" ng-repeat="doctor in clinic.doctor_list">
+
+                            <i-list help-id="" class="col3" label="##word.doctors_name##" ng-model="doctor.doctor"
+                                items="doctorList" ng-selected="item.specialty.id === clinic.specialty.id"
+                                display="name" ng-search="_search.$branch_doctors"></i-list>
+
+                            <i-list help-id="" primary="name" class="col2" label="##word.shift_name##" ng-model="doctor.shift"
+                                items="clinic.shift_list" display="name" ng-search="_search.$branch_shift"></i-list>
+
+                            <i-control help-id="" class="col2" type="number" label="##word.detection_Duration##"
+                                ng-model="doctor.detection_Duration"></i-control>
+
+                            <i-button type="delete default"
+                                ng-click="clinic.doctor_list.length ===1 || clinic.doctor_list.splice($index,1)">
+                            </i-button>
+
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+
+            <div id="nursingInformation" class="tab-content">
+                <fieldset>
+                    <legend>
+                        <i-button type="add default" ng-click="clinic.nurse_list.push({})"></i-button>
+                        ##word.basic_information##
+                    </legend>
+
+                    <div class="row">
+                        <div class="row" ng-repeat="nurse in clinic.nurse_list">
+                            <i-list help-id="" class="col3" label="##word.nurses##" ng-model="nurse.nurse"
+                                items="nurseList" ng-selected="item.specialty.id == clinic.specialty.id" display="name"
+                                ng-search="_search.$branch_nurse"></i-list>
+
+                            <i-list help-id="" primary="name" class="col2" label="##word.shift_name##" ng-model="nurse.shift"
+                                items="clinic.shift_list" display="name" ng-search="_search.$branch_shift"></i-list>
+                            <i-button type="delete default"
+                                ng-click="clinic.nurse_list.length ===1 || clinic.nurse_list.splice($index,1)">
+                            </i-button>
+
+                        </div>
+                    </div>
+
+                </fieldset>
+            </div>
+
+            <div id="loginInformation" class="tab-content">
+                <fieldset>
+                    <legend> ##word.login_information## </legend>
+
+                    <i-control help-id="" class="col4" label="##word.email##" ng-model="clinic.username"></i-control>
+
+                    <i-control help-id="" class="col4" label="##word.password##" ng-model="clinic.password"></i-control>
+
+                </fieldset>
+            </div>
+
+        </div>
+    </div>
+</div>

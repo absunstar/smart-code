@@ -1,0 +1,7 @@
+[{
+    "module_name" : "public" ,
+    "name": "specialties_admin",
+    "en": "Specialties Admin",
+    "ar": "ادارة التخصصات",
+    "permissions": ["specialties_manage"]
+}]

@@ -1,6 +1,34 @@
 [
     {
         "category": "main",
+        "feature": "medical",
+        "name": "doctors",
+        "en": "Doctors",
+        "ar": "الأطباء"
+    },
+    {
+        "category": "main",
+        "feature": "medical",
+        "name": "nurses",
+        "en": "Nurses",
+        "ar": "الممرضين"
+    },
+    {
+        "category": "main",
+        "feature": "medical",
+        "name": "clinics",
+        "en": "Clinics",
+        "ar": "العيادات"
+    },
+    {
+        "category": "main",
+        "feature": "medical",
+        "name": "tickets_book",
+        "en": "Ticket Booking",
+        "ar": "حجز تذكرة"
+    },
+    {
+        "category": "main",
         "feature": "order",
         "name": "o_customer_screen",
         "en": "Orders Customers Screen",
@@ -432,6 +460,20 @@
         "name": "printers_path",
         "en": "Printers Path",
         "ar": "مسار الطابعات"
+    },
+    {
+        "category": "general_setting",
+        "feature": "medical",
+        "name": "medical_specialties",
+        "en": "Medical Specialties",
+        "ar": "التخصص الطبي"
+    },
+    {
+        "category": "general_setting",
+        "feature": "medical",
+        "name": "operations",
+        "en": "Operations",
+        "ar": "العمليات"
     },
     {
         "category": "general_setting",

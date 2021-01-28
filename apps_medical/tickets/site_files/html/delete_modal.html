@@ -1,0 +1,30 @@
+<div id="ticketDeleteModal" class="modal">
+    
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.tickets_delete##
+                <i class="fa fa-trash"></i>
+            </h2>
+        </div>
+        <div class="modal-body">
+                <span ng-show="busy">
+                    <span class="sr-only">Loading...</span>
+                </span>
+    
+                <div class="row">
+                    <h1 class="red center">##word.confirm_delete##</h1>
+                </div>
+    
+            </div>
+        <h2 class="error"> {{error}} </h2>
+
+        <div class="modal-footer center">
+
+            <i-button type="delete" label="##word.delete##" ng-click="deleteTicket(ticket)"> </i-button>
+
+            <i-button type="close" label="##word.close##" onclick="site.hideModal('#ticketDeleteModal')"> </i-button>
+        </div>
+    </div>
+</div>

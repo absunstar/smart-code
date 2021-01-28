@@ -12,6 +12,7 @@
     "lawyer": "node lawyer.js",
     "academy": "node academy.js",
     "employee": "node employee.js",
+    "medical": "node medical.js",
     "pmp": "node pmp.js"
   },
   "keywords": [],

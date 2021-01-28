@@ -145,7 +145,13 @@
             "seating_numbers_manage",
             "subjects_manage",
             "types_expenses_manage",
-            "year_works_manage"
+            "year_works_manage",
+            "clinics_manage",
+            "doctors_manage",
+            "specialties_manage",
+            "nursing_manage",
+            "operation_manage",
+            "tickets_manage"
         ]
     }
 ]

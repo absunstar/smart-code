@@ -15,6 +15,16 @@
         "ar": "تقرير"
     },
     {
+        "name": "address_connect",
+        "en": "Addresses & Connections",
+        "ar": "العناوين و الإتصالات"
+    },
+    {
+        "name": "nathional_id",
+        "en": "Nathional Id",
+        "ar": "الرقم القومي"
+    },
+    {
         "name": "minutes",
         "en": "Minutes",
         "ar": "دقائق"

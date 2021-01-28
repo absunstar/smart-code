@@ -1,0 +1,41 @@
+[{
+        "name": "nursing",
+        "en": "Nursing",
+        "ar": "التمريض"
+    },
+    {
+        "name": "nursing_new",
+        "en": "New nurse",
+        "ar": "تمريض  جديد"
+    },
+
+    {
+        "name": "nursing_add",
+        "en": "Add nurse",
+        "ar": "اضافة تمريض "
+    },
+    {
+        "name": "nursing_edit",
+        "en": "Edit nurse",
+        "ar": "تعديل تمريض "
+    },
+    {
+        "name": "nursing_details",
+        "en": "nurse Details",
+        "ar": "تفاصيل التمريض "
+    },
+    {
+        "name": "nursing_delete",
+        "en": "Delete nurse",
+        "ar": "حذف تمريض "
+    },
+    {
+        "name": "nursing_name",
+        "en": "nurse Name",
+        "ar": "اسم التمريض "
+    }
+
+
+
+
+]

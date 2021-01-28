@@ -1,0 +1,21 @@
+<div class="row">
+    <table class="table border">
+        <tr>
+            <th>##word.user_created##</th>
+            <th>##word.user_updated## </th>
+        </tr>
+        <tr>
+            <td class="center">
+                <p class="blue"> {{nurse.add_user_info.name}} </p>
+                <small class="green"> {{nurse.add_user_info.date |date:"hh:mm"}} </small>
+                <small> {{nurse.add_user_info.date |date:"dd - MM - yyyy"}} </small>
+            </td>
+
+            <td class="center">
+                <p class="blue"> {{nurse.edit_user_info.name}} </p>
+                <small class="green"> {{nurse.edit_user_info.date |date:"hh:mm"}} </small>
+                <small> {{nurse.edit_user_info.date |date:"dd - MM - yyyy"}} </small>
+            </td>
+        </tr>
+    </table>
+</div>

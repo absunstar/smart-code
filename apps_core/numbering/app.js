@@ -53,96 +53,142 @@ module.exports = function init(site) {
       $numbering.delete({
         company: site.get_company(req)
       }, (err, result) => {
-          Numbering = [];
-          moduleListCore.forEach((_ml) => {
-            _ml.type_numbering = {
-              id: 4,
-              en: 'Manual',
-              ar: 'يدوي',
-            }
-          })
-
-          let screens_list = []
-
-          if (site.features.like('*erp*')) {
-            screens_list = moduleListCore.filter((i) => i.feature !== 'restaurant' && i.feature !== 'gym' && i.feature !== 'academy' && i.feature !== 'medic' && i.feature !== 'school');
-
-          } else if (site.features.like('*restaurant*')) {
-            screens_list = moduleListCore.filter((i) => i.feature !== 'gym' && i.feature !== 'erp' && i.feature !== 'academy' && i.feature !== 'medic' && i.feature !== 'school');
-
-          } else if (site.features.like('*pos*')) {
-            screens_list = moduleListCore.filter((i) => i.feature !== 'gym' && i.feature !== 'erp' && i.feature !== 'restaurant' && i.feature !== 'academy' && i.feature !== 'medic' && i.feature !== 'school');
-
-          } else if (site.features.like('*gym*')) {
-
-            moduleListCore.forEach(_mc => {
-              if (_mc.name == 'orders_slides') {
-                _mc.en = 'Sessions Slides'
-                _mc.ar = 'شرائح الجلسات'
-              }
-            });
-            screens_list = moduleListCore.filter((i) => i.feature !== 'order' && i.feature !== 'erp' && i.feature !== 'restaurant' && i.feature !== 'academy' && i.feature !== 'school');
-
-            moduleListCore.forEach(_mc => {
-              if (_mc.name == 'customers') {
-                _mc.en = 'Students'
-                _mc.ar = 'الطلاب'
-              } else if (_mc.name == 'customers_groups') {
-                _mc.en = 'Students Group'
-                _mc.ar = 'مجموعة الطلاب'
-              } else if (_mc.name == 'trainer') {
-                _mc.en = 'Teachers'
-                _mc.ar = 'المدرسين'
-              } else if (_mc.name == 'halls') {
-                _mc.en = 'classrooms'
-                _mc.ar = 'الفصول الدراسية'
-              }
-            });
-
-          } else if (site.features.like('*academy*')) {
-            screens_list = moduleListCore.filter((i) => i.feature !== 'order' && i.feature !== 'erp' && i.feature !== 'restaurant' && i.feature !== 'gym' && i.feature !== 'school');
-
-          } else if (site.features.like('*school*')) {
-            moduleListCore.forEach(_mc => {
-              if (_mc.name == 'customers') {
-                _mc.en = 'Students'
-                _mc.ar = 'الطلاب'
-              } else if (_mc.name == 'customers_groups') {
-                _mc.en = 'Students Group'
-                _mc.ar = 'مجموعة الطلاب'
-              } else if (_mc.name == 'trainer') {
-                _mc.en = 'Teachers'
-                _mc.ar = 'المدرسين'
-              } else if (_mc.name == 'halls') {
-                _mc.en = 'classrooms'
-                _mc.ar = 'الفصول الدراسية'
-              } else if (_mc.name == 'orders_slides') {
-                _mc.en = 'Sessions Slides'
-                _mc.ar = 'شرائح الجلسات'
-              }
-            });
-            screens_list = moduleListCore.filter((i) => i.feature !== 'order' && i.feature !== 'erp' && i.feature !== 'restaurant' && i.feature !== 'gym' && i.feature !== 'academy');
-
+        Numbering = [];
+        moduleListCore.forEach((_ml) => {
+          _ml.type_numbering = {
+            id: 4,
+            en: 'Manual',
+            ar: 'يدوي',
           }
+        })
 
-          $numbering.add(
-            {
-              screens_list: screens_list,
-              company: site.get_company(req),
-            },
-            (err, doc) => {
-              if (!err && doc) {
-                Numbering.push(doc);
-                response.done = true;
-                response.source = 'db';
-                response.doc = doc;
-                res.json(response);
-              } else {
-                response.error = err.message;
-                res.json(response);
-              }
-            },
-          );
+        let screens_list = []
+
+
+
+        if (site.features.like('*erp*')) {
+          screens_list = moduleListCore.filter((i) => i.feature !== 'restaurant' && i.feature !== 'gym' && i.feature !== 'academy' && i.feature !== 'medic' && i.feature !== 'school' && i.feature !== 'medical');
+
+
+
+
+
+        } else if (site.features.like('*restaurant*')) {
+          screens_list = moduleListCore.filter((i) => i.feature !== 'gym' && i.feature !== 'erp' && i.feature !== 'academy' && i.feature !== 'medic' && i.feature !== 'school' && i.feature !== 'medical');
+
+
+
+
+
+        } else if (site.features.like('*pos*')) {
+          screens_list = moduleListCore.filter((i) => i.feature !== 'gym' && i.feature !== 'erp' && i.feature !== 'restaurant' && i.feature !== 'academy' && i.feature !== 'medic' && i.feature !== 'school' && i.feature !== 'medical');
+
+
+
+
+        } else if (site.features.like('*gym*')) {
+
+          moduleListCore.forEach(_mc => {
+            if (_mc.name == 'orders_slides') {
+              _mc.en = 'Sessions Slides'
+              _mc.ar = 'شرائح الجلسات'
+            }
+          });
+          screens_list = moduleListCore.filter((i) => i.feature !== 'order' && i.feature !== 'erp' && i.feature !== 'restaurant' && i.feature !== 'academy' && i.feature !== 'school' && i.feature !== 'medical');
+
+          moduleListCore.forEach(_mc => {
+            if (_mc.name == 'customers') {
+              _mc.en = 'Students'
+              _mc.ar = 'الطلاب'
+            } else if (_mc.name == 'customers_groups') {
+              _mc.en = 'Students Group'
+              _mc.ar = 'مجموعة الطلاب'
+            } else if (_mc.name == 'trainer') {
+              _mc.en = 'Teachers'
+              _mc.ar = 'المدرسين'
+            } else if (_mc.name == 'halls') {
+              _mc.en = 'classrooms'
+              _mc.ar = 'الفصول الدراسية'
+            }
+          });
+
+
+
+
+
+
+        } else if (site.features.like('*academy*')) {
+          screens_list = moduleListCore.filter((i) => i.feature !== 'order' && i.feature !== 'erp' && i.feature !== 'restaurant' && i.feature !== 'gym' && i.feature !== 'school' && i.feature !== 'medical');
+
+
+
+
+
+
+        } else if (site.features.like('*school*')) {
+          moduleListCore.forEach(_mc => {
+            if (_mc.name == 'customers') {
+              _mc.en = 'Students'
+              _mc.ar = 'الطلاب'
+            } else if (_mc.name == 'customers_groups') {
+              _mc.en = 'Students Group'
+              _mc.ar = 'مجموعة الطلاب'
+            } else if (_mc.name == 'trainer') {
+              _mc.en = 'Teachers'
+              _mc.ar = 'المدرسين'
+            } else if (_mc.name == 'halls') {
+              _mc.en = 'classrooms'
+              _mc.ar = 'الفصول الدراسية'
+            } else if (_mc.name == 'orders_slides') {
+              _mc.en = 'Sessions Slides'
+              _mc.ar = 'شرائح الجلسات'
+            }
+          });
+          screens_list = moduleListCore.filter((i) => i.feature !== 'order' && i.feature !== 'erp' && i.feature !== 'restaurant' && i.feature !== 'gym' && i.feature !== 'academy' && i.feature !== 'medical');
+
+
+
+
+        } else if (site.features.like('*medical*')) {
+          moduleListCore.forEach(_mc => {
+            if (_mc.name == 'customers') {
+              _mc.en = 'patients'
+              _mc.ar = 'المريض'
+            } else if (_mc.name == 'customers_groups') {
+              _mc.en = 'patients Group'
+              _mc.ar = 'مجموعة المرضى'
+            } else if (_mc.name == 'orders_slides') {
+              _mc.en = 'Detection Slides'
+              _mc.ar = 'شرائح الكشوفات'
+            }
+          });
+          screens_list = moduleListCore.filter((i) => i.feature !== 'order' && i.feature !== 'erp' && i.feature !== 'restaurant' && i.feature !== 'gym' && i.feature !== 'academy' && i.feature !== 'medic');
+
+          moduleListCore.forEach(_m => {
+            if (_m.feature == 'medic' && _m.name != 'hall' && _m.name != 'trainer') {
+              screens_list.push(_m)
+            }
+          });
+        }
+
+        $numbering.add(
+          {
+            screens_list: screens_list,
+            company: site.get_company(req),
+          },
+          (err, doc) => {
+            if (!err && doc) {
+              Numbering.push(doc);
+              response.done = true;
+              response.source = 'db';
+              response.doc = doc;
+              res.json(response);
+            } else {
+              response.error = err.message;
+              res.json(response);
+            }
+          },
+        );
       })
     }
   });

@@ -79,6 +79,7 @@ module.exports = function init(site) {
       trainer_doc.active = true
     }
 
+    trainer_doc.trainer = true
     trainer_doc.company = site.get_company(req)
     trainer_doc.branch = site.get_branch(req)
 
@@ -233,7 +234,7 @@ module.exports = function init(site) {
       ar: "إدارة الموظفين",
       permissions: ["trainer_manage"]
     }]
-    
+
     if (site.feature('school')) {
       user.roles.push({
         "module_name": "public",

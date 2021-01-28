@@ -32,8 +32,8 @@ module.exports = function init(site) {
         name_ar: doc.branch.name_ar
       },
       active: true
-    }, (err, doc) => {
-      site.call('[register][area][add]', doc)
+    }, (err, doc1) => {
+      site.call('[register][area][add]', doc1)
 
     })
   })

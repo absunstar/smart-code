@@ -1,0 +1,227 @@
+[
+    {
+        "name": "tickets",
+        "en": "Tickets",
+        "ar": "التذاكر"
+    },
+    {
+        "name": "tickets_new",
+        "en": "New Ticket",
+        "ar": "تذكرة جديدة"
+    },
+    {
+        "name": "tickets_book",
+        "en": "Ticket Booking",
+        "ar": "حجز التذاكر"
+    },
+    {
+        "name": "dont_book",
+        "name_en": "Do Not Booking",
+        "ar": "لم يتم الحجز"
+    },
+    {
+        "name": "patient",
+        "en": "Patient Name",
+        "ar": " إسم المريض"
+    },
+    {
+        "name": "patient_search",
+        "en": "Patients Search",
+        "ar": "بحث المرضى"
+    },
+    {
+        "name": "address_search",
+        "en": "Address Search",
+        "ar": "بحث العنوان"
+    },
+    {
+        "name": "hospital_search",
+        "en": "Hospital Search",
+        "ar": "بحث المستشفى"
+    },
+    {
+        "name": "doctor_search",
+        "en": "Doctor Search",
+        "ar": "بحث الطبيب"
+    },
+    {
+        "name": "spicialty_search",
+        "en": "Spicialty Search",
+        "ar": "بحث التخصص"
+    },
+    {
+        "name": "clinic_search",
+        "en": "Clinic Search",
+        "ar": "بحث العيادة"
+    },
+    {
+        "name": "tickets_add",
+        "en": "Add Ticket",
+        "ar": "اضافة تذكرة"
+    },
+    {
+        "name": "tickets_edit",
+        "en": "Edit Ticket",
+        "ar": "تعديل تذكرة"
+    },
+    {
+        "name": "tickets_details",
+        "en": "Ticket Details",
+        "ar": "تفاصيل التذكرة"
+    },
+    {
+        "name": "tickets_delete",
+        "en": "Delete Ticket",
+        "ar": "حذف تذكرة"
+    },
+    {
+        "name": "tickets_select",
+        "en": "Select",
+        "ar": "تحديد"
+    },
+    {
+        "name": "view_doctors",
+        "en": "View Doctors",
+        "ar": "عرض الأطباء"
+    },
+    {
+        "name": "booking_date",
+        "en": "Booking Date",
+        "ar": "تاريخ الحجز"
+    },
+    {
+        "name": "Ticket_number",
+        "en": "Ticket Number",
+        "ar": "رقم التذكرة"
+    },
+    {
+        "name": "shift_name",
+        "en": "Shift Name",
+        "ar": "اسم الشيفت "
+    },
+    {
+        "name": "clinics",
+        "en": "Clinics",
+        "ar": "العيادات"
+    },
+    {
+        "name": "searching",
+        "en": "Searching",
+        "ar": "البحـــــــــــث"
+    },
+    {
+        "name": "work_times",
+        "en": "Work Times",
+        "ar": "مواعيد العمل"
+    },
+    {
+        "name": "work_day",
+        "en": "Day ",
+        "ar": "اليوم"
+    },
+    {
+        "name": "work_from",
+        "en": "From ",
+        "ar": "من"
+    },
+    {
+        "name": "work_to",
+        "en": "Work To",
+        "ar": "إلى"
+    },
+    {
+        "name": "doctor_name",
+        "en": "Doctor Name",
+        "ar": "إسم الطبيب"
+    },
+    {
+        "name": "doctor",
+        "en": "Doctor",
+        "ar": "الطبيب"
+    },
+    {
+        "name": "tickets_name",
+        "en": "Ticket Name",
+        "ar": "اسم التذكرة"
+    },
+    {
+        "name": "drugs",
+        "en": "Drugs",
+        "ar": "الأدوية"
+    },
+    {
+        "name": "scan",
+        "en": "Scans",
+        "ar": "الأشعة"
+    },
+    {
+        "name": "analyses",
+        "en": "Analyses",
+        "ar": "التحاليل"
+    },
+    {
+        "name": "diagnosis",
+        "en": "Diagnosis",
+        "ar": "التشخيص"
+    },
+    {
+        "name": "status",
+        "en": "Status",
+        "ar": "الحالة"
+    },
+    {
+        "name": "booking",
+        "en": "Booking",
+        "ar": "حجز"
+    },
+    {
+        "name": "notes_before",
+        "en": "Notes Before Detection",
+        "ar": "ملاحظات قبل الكشف"
+    },
+    {
+        "name": "confirm_delete",
+        "en": "Confirm Ticket Delete !!",
+        "ar": "تأكيد حذف التذكرة !!"
+    },
+    {
+        "name": "without",
+        "en": "WithOut",
+        "ar": "قيد الإنتظار"
+    },
+    {
+        "name": "just_booking",
+        "en": "Just Booking",
+        "ar": "حجز فقط"
+    },
+    {
+        "name": "sellorder",
+        "name_en": "Sell Order",
+        "ar": "إنتظار في العيادة"
+    },
+    {
+        "name": "at_the_doctor",
+        "name_en": "At The Doctor",
+        "ar": "عند الطبيب"
+    },
+    {
+        "name": "Projects",
+        "name_en": "Projects",
+        "ar": "تم الكشف"
+    },
+    {
+        "name": "done_attendance",
+        "en": "Attendance",
+        "ar": "تم الحضور"
+    },
+    {
+        "name": "done_access_doctor",
+        "en": "Access to the doctor",
+        "ar": "تم الدخول للطبيب"
+    },
+    {
+        "name": "done_detected",
+        "en": "Detected",
+        "ar": "تم الكشف"
+    }
+]

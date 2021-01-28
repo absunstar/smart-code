@@ -1,0 +1,11 @@
+[
+    { "module_name" : "public" , "screen_name" : "doctors" , "name":"doctors_manage" , "en":"Manage" , "ar":"إدارة"},
+    { "module_name" : "public" , "screen_name" : "doctors" , "name":"doctors_ui" , "en":"UI" , "ar":"الواجهة الرسومية"},
+    { "module_name" : "public" , "screen_name" : "doctors" , "name":"doctors_add" , "en":"Add" , "ar":"إضافة"},
+    { "module_name" : "public" , "screen_name" : "doctors" , "name":"doctors_update" , "en":"Edit" , "ar":"تعديل"},
+    { "module_name" : "public" , "screen_name" : "doctors" , "name":"doctors_delete" , "en":"Delete" , "ar":"حذف"},
+    { "module_name" : "public" , "screen_name" : "doctors" , "name":"doctors_view" , "en":"View" , "ar":"عرض"},
+    { "module_name" : "public" , "screen_name" : "doctors" , "name":"doctors_search" , "en":"Search" , "ar":"بحث"},
+    { "module_name" : "public" , "screen_name" : "doctors" , "name":"doctors_export" , "en":"Export" , "ar":"تصدير"},
+    { "module_name" : "public" , "screen_name" : "doctors" , "name":"doctors_print" , "en":"Print" , "ar":"طباعة"} 
+]

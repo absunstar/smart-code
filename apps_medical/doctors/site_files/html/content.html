@@ -1,0 +1,105 @@
+<div class="form">
+
+    <div class="tabs">
+        <div class="tabs-header">
+            <a class="tab-link" onclick="site.showTabContent(event,'#basicInformation')">
+                ##word.basic_information##
+            </a>
+
+            <a class="tab-link" onclick="site.showTabContent(event,'#filesInformation')">
+                ##word.files##
+            </a>
+
+            <a class="tab-link" onclick="site.showTabContent(event,'#loginInformation')">
+                ##word.login_information##
+            </a>
+
+
+        </div>
+
+        <div class="tabs-content">
+            <div id="basicInformation" class="tab-content">
+                <div class="col9">
+                    <fieldset>
+                        <legend> ##word.basic_information## </legend>
+                        <div class="row">
+
+                            <div class="row">
+
+                                <i-control help-id="" v="r ll2" class="col4" label="##word.name##" ng-model="doctor.name"></i-control>
+
+                                <i-control help-id=""  class="col4" label="##word.nathional_id##" ng-model="doctor.nathional_id"></i-control>
+
+                                <i-checkbox help-id="cities_active" class="col2" label="##word.active##" ng-model="doctor.active"></i-checkbox>
+                            </div>
+                            <div class="row">
+                                <i-list class="col5" v="r" label="##word.specialty##"  ng-model="doctor.specialty" items="specialtyList"
+                                    display="name" ng-search="_search.$specialty_search"></i-list>
+                            </div>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>##word.address_connect##</legend>
+                        <div class="row">
+                            <i-list class="col4" label="##word.gov##"  ng-model="doctor.gov" items="govList"
+                                ng-change="getCityList(doctor.gov)" display="name" ng-search="_search.$gov_search"></i-list>
+
+                            <i-list class="col4" label="##word.city##"  ng-model="doctor.city" items="cityList"
+                                display="name" ng-search="_search.$city_search"></i-list>
+
+                            <i-control help-id=""  class="col4" label="##word.address##" ng-model="doctor.address"></i-control>
+
+                        </div>
+
+                        <div class="row">
+                            <i-control help-id="" class="col6" label="##word.phone##" ng-model="doctor.phone"></i-control>
+
+                            <i-control help-id=""  class="col6" label="##word.mobile##" ng-model="doctor.mobile"></i-control>
+
+                        </div>
+
+
+                        <div class="row">
+                            <i-control help-id="" class="col6" label="##word.whatsapp##" ng-model="doctor.whatsapp"></i-control>
+
+                            <i-control help-id="" class="col6" label="##word.email##" ng-model="doctor.email"></i-control>
+
+                        </div>
+
+                        <div class="row">
+
+                            <i-textarea class="col" label="##word.notes##" ng-model="doctor.notes"></i-textarea>
+                        </div>
+
+                    </fieldset>
+
+                </div>
+
+                <div class="col3">
+                    <i-image help-id="cities_logo" ng-model="doctor.image_url"></i-image>
+                </div>
+            </div>
+
+
+            <div id="filesInformation" class="tab-content">
+                <fieldset>
+                    <legend> ##word.files## </legend>
+                    <i-files label="##word.files##" categoty="pathients" ng-model="doctor.files"></i-files>
+                </fieldset>
+            </div>
+
+            <div id="loginInformation" class="tab-content">
+                <fieldset>
+                    <legend> ##word.login_information## </legend>
+
+                    <i-control help-id=""  class="col4" label="##word.email##" ng-model="doctor.username"></i-control>
+
+                    <i-control help-id=""  class="col4" label="##word.password##" ng-model="doctor.password"></i-control>
+
+                </fieldset>
+            </div>
+
+        </div>
+    </div>
+
+</div>
