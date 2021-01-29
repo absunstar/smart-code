@@ -12,7 +12,11 @@
                 ##word.doctors## </a>
 
             <a class="tab-link" onclick="site.showTabContent(event,'#nursingInformation')">
-                ##word.nurses##</a>
+                ##word.nursing##</a>
+
+            <a class="tab-link" onclick="site.showTabContent(event,'#vacationformation')">
+                ##word.vacations##
+            </a>
 
             <a class="tab-link" onclick="site.showTabContent(event,'#loginInformation')">
                 ##word.login_information##</a>
@@ -26,23 +30,36 @@
                     <fieldset>
                         <legend> ##word.basic_information##</legend>
                         <table id="basicInformationTable" class="table hover bold">
-                            <tr>
+                            <!--     <tr>
                                 <td class="title">##word.id##</td>
-                                <td class="center blue">{{clinic.id}}</td>
+                                <td class="center">{{clinic.id}}</td>
+                            </tr>
+ -->
+                            <tr>
+                                <td class="title">##word.code##</td>
+                                <td class="center userPrint blue">{{clinic.code}}</td>
                             </tr>
 
                             <tr>
                                 <td class="title">##word.name##</td>
                                 <td class="center">{{clinic.name}}</td>
                             </tr>
-                            <tr>
-                                <td class="title">##word.hospital##</td>
-                                <td class="center">{{clinic.hospital.name}}</td>
-                            </tr>
+
                             <tr>
                                 <td class="title">##word.specialty##</td>
                                 <td class="center">{{clinic.specialty.name}}</td>
                             </tr>
+
+                            <tr>
+                                <td class="title">##word.detection_price##</td>
+                                <td class="center green">{{clinic.detection_price}}</td>
+                            </tr>
+
+                            <tr ng-show="clinic.detection_Duration">
+                                <td class="title">##word.detection_Duration##</td>
+                                <td class="center">{{clinic.detection_Duration}} ##word.minute##</td>
+                            </tr>
+
 
                             <tr>
                                 <td class="title">##word.status##</td>
@@ -63,7 +80,8 @@
                     <legend>##word.shifts_information##</legend>
 
                     <div class="row" ng-repeat="shift in clinic.shift_list">
-                        <i-control disabled help-id="" class="col4" label="##word.shift_name##" ng-model="shift.name"></i-control>
+                        <i-control disabled help-id="" class="col4" label="##word.shift_name##" ng-model="shift.name">
+                        </i-control>
 
                         <table class="table center hover bold" ng-repeat="time in shift.times_list">
                             <tr>
@@ -93,10 +111,16 @@
                         <tr>
                             <th>##word.doctors_name##</th>
                             <th>##word.shift_name##</th>
+                            <th>##word.detection_price##</th>
+                            <th>##word.detection_Duration##</th>
                         </tr>
                         <tr ng-repeat="doctor in clinic.doctor_list">
                             <td class="center">{{doctor.doctor.name}}</td>
                             <td class="center blue">{{doctor.shift.name}}</td>
+                            <td class="center green">{{doctor.detection_price}}</td>
+                            <td class="center">{{doctor.detection_Duration}} <b
+                                    ng-show="doctor.detection_Duration">##word.minute##</b></td>
+
                         </tr>
                     </table>
 
@@ -107,7 +131,7 @@
             <div id="nursingInformation" class="tab-content">
 
                 <fieldset>
-                    <legend>##word.doctors##</legend>
+                    <legend>##word.nursing##</legend>
                     <table class="table bold hover">
                         <tr>
                             <th>##word.nurses##</th>
@@ -123,7 +147,25 @@
 
             </div>
 
-            
+            <div id="vacationformation" class="tab-content">
+
+                <fieldset>
+                    <legend>##word.vacations##</legend>
+                    <table class="table bold hover">
+                        <tr>
+                            <th>##word.vacation_name##</th>
+                            <th>##word.date##</th>
+                        </tr>
+                        <tr ng-repeat="vacation in clinic.vacation_list">
+                            <td class="center">{{vacation.name}}</td>
+                            <td class="center brown"> {{vacation.date | date : 'dd - MM - yyyy'}} </td>
+                        </tr>
+                    </table>
+
+                </fieldset>
+
+            </div>
+
 
             <div id="loginInformation" class="tab-content">
                 <fieldset class="col9">

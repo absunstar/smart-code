@@ -1,398 +1,4 @@
 module.exports = function init(site) {
-  const $doctors = site.connectCollection("doctors")
-
-  site.on('[register][doctor][add]', (doc, callback) => {
-    doc.active = true
-    $doctors.add(doc, (err, doc) => {
-      callback(err, doc)
-    })
-  })
-
-  site.on('[register][doctor][add]', doc => {
-
-    $doctors.add({
-
-      code: "1-Test",
-      name: "دكتور إفتراضي",
-      image_url: '/images/doctors.png',
-      specialty: {
-        id: doc.id,
-        code: doc.code,
-        name: doc.name,
-      },
-      doctor: true,
-      company: {
-        id: doc.company.id,
-        name_ar: doc.company.name_ar
-      },
-      branch: {
-        code: doc.branch.code,
-        name_ar: doc.branch.name_ar
-      },
-      active: true
-    }, (err, doc1) => { })
-  })
-
-  site.get({
-    name: 'images',
-    path: __dirname + '/site_files/images/'
-  })
-
-  site.get({
-    name: "doctors",
-    path: __dirname + "/site_files/html/index.html",
-    parser: "html",
-    compress: true
-  })
-
-  site.post("/api/doctors/add", (req, res) => {
-    let response = {
-      done: false
-    }
-    if (!req.session.user) {
-      response.error = 'Please Login First'
-      res.json(response)
-      return
-    }
-
-    let doctors_doc = req.body
-    doctors_doc.$req = req
-    doctors_doc.$res = res
-
-    doctors_doc.add_user_info = site.security.getUserFinger({
-      $req: req,
-      $res: res
-    })
-
-    if (typeof doctors_doc.active === 'undefined') {
-      doctors_doc.active = true
-    }
-
-    $doctors.find({
-      where: {
-        $or: [{
-          'name': doctors_doc.name
-        }, {
-          'phone': doctors_doc.phone
-        }, {
-          'mobile': doctors_doc.mobile
-        }]
-      }
-    }, (err, doc) => {
-      if (!err && doc) {
-        response.error = 'Name , Phone Or mobile Exists'
-        res.json(response)
-      } else {
-        user = {
-          name: doctors_doc.name,
-          mobile: doctors_doc.mobile,
-          username: doctors_doc.username,
-          email: doctors_doc.username,
-          password: doctors_doc.password,
-          image_url: doctors_doc.image_url,
-          type: 'doctor'
-        }
-
-        user.roles = [{
-          name: 'doctors_admin'
-        }]
-
-
-        user.profile = {
-          name: user.name,
-          mobile: user.mobile,
-          image_url: user.image_url
-        }
-
-        $doctors.add(doctors_doc, (err, doc) => {
-          if (!err) {
-            response.done = true
-            response.doc = doc
-            user.ref_info = {
-              id: doc.id
-            }
-
-
-            if (user.password && user.username) {
-
-              site.security.addUser(user, (err, doc1) => {
-                if (!err) {
-                  delete user._id
-                  delete user.id
-                  doc.user_info = {
-                    id: doc1.id
-                  }
-                  $doctors.edit(doc, (err1, doc1) => {
-
-                    res.json(response)
-
-                  })
-                } else {
-                  response.error = err.message
-                }
-                res.json(response)
-              })
-            }
-          } else {
-            response.error = err.message
-          }
-          res.json(response)
-        })
-      }
-    })
-  })
-
-  site.post("/api/doctors/update", (req, res) => {
-    let response = {
-      done: false
-    }
-
-    if (!req.session.user) {
-      response.error = 'Please Login First'
-      res.json(response)
-      return
-    }
-
-    let doctors_doc = req.body
-
-    user = {
-      name: doctors_doc.name,
-      mobile: doctors_doc.mobile,
-      username: doctors_doc.username,
-      email: doctors_doc.username,
-      password: doctors_doc.password,
-      image_url: doctors_doc.image_url,
-      type: 'doctor'
-    }
-
-    user.roles = [{
-      name: 'doctors_admin'
-    }]
-
-    user.profile = {
-      name: user.name,
-      mobile: user.mobile,
-      image_url: user.image_url
-    }
-
-    user.ref_info = {
-      id: doctors_doc.id
-    }
-
-    doctors_doc.edit_user_info = site.security.getUserFinger({
-      $req: req,
-      $res: res
-    })
-
-    if (doctors_doc.id) {
-      $doctors.edit({
-        where: {
-          id: doctors_doc.id
-        },
-        set: doctors_doc,
-        $req: req,
-        $res: res
-      }, (err, doc) => {
-        if (!err) {
-          response.done = true
-
-          site.call('[doctor][hospital][update]', doctors_doc);
-
-          if (user.password && user.username) {
-            site.security.addUser(user, (err, doc1) => {
-              if (!err) {
-                delete user._id
-                delete user.id
-                doc.doc.user_info = {
-                  id: doc1.id
-                }
-                $doctors.edit(doc.doc, (err2, doc2) => {
-                  res.json(response)
-                })
-              } else {
-                response.error = err.message
-              }
-              res.json(response)
-            })
-          }
-
-        } else {
-          response.error = 'Code Already Exist'
-        }
-        res.json(response)
-      })
-    } else {
-      response.error = 'no id'
-      res.json(response)
-    }
-  })
-
-  site.post("/api/doctors/view", (req, res) => {
-    let response = {
-      done: false
-    }
-
-    if (!req.session.user) {
-      response.error = 'Please Login First'
-      res.json(response)
-      return
-    }
-
-    $doctors.findOne({
-      where: {
-        id: req.body.id
-      }
-    }, (err, doc) => {
-      if (!err) {
-        response.done = true
-        response.doc = doc
-
-      } else {
-        response.error = err.message
-      }
-      res.json(response)
-    })
-  })
-
-  site.post("/api/doctors/delete", (req, res) => {
-    let response = {
-      done: false
-    }
-
-    if (!req.session.user) {
-      response.error = 'Please Login First'
-      res.json(response)
-      return
-    }
-
-    let id = req.body.id
-
-    if (id) {
-      $doctors.delete({
-        id: id,
-        $req: req,
-        $res: res
-      }, (err, result) => {
-        if (!err) {
-          response.done = true
-        } else {
-          response.error = err.message
-        }
-        res.json(response)
-      })
-    } else {
-      response.error = 'no id'
-      res.json(response)
-    }
-  })
-
-  site.post("/api/doctors/all", (req, res) => {
-    let response = {
-      done: false
-    }
-
-    if (!req.session.user) {
-      response.error = 'Please Login First'
-      res.json(response)
-      return
-    }
-
-    let where = req.body.where || {}
-    let search = req.body.search
-
-    if (search) {
-      where.$or = []
-      where.$or.push({
-        'name': new RegExp(search, "i")
-      })
-
-      where.$or.push({
-        'mobile': new RegExp(search, "i")
-      })
-
-      where.$or.push({
-        'phone': new RegExp(search, "i")
-      })
-
-      where.$or.push({
-        'nathional_id': new RegExp(search, "i")
-      })
-
-      where.$or.push({
-        'email': new RegExp(search, "i")
-      })
-
-    }
-
-    if (where['gov']) {
-      where['gov.id'] = where['gov'].id;
-      delete where['gov']
-      delete where.active
-    }
-
-    if (where['city']) {
-      where['city.id'] = where['city'].id;
-      delete where['city']
-      delete where.active
-    }
-
-    if (where['specialty']) {
-      where['specialty.id'] = where['specialty'].id;
-      delete where['specialty']
-      delete where.active
-    }
-
-    if (where['name']) {
-      where['name'] = new RegExp(where['name'], "i");
-    }
-    if (where['address']) {
-      where['address'] = new RegExp(where['address'], "i");
-    }
-    if (where['nathional_id']) {
-      where['nathional_id'] = new RegExp(where['nathional_id'], "i");
-    }
-    if (where['phone']) {
-      where['phone'] = new RegExp(where['phone'], "i");
-    }
-    if (where['mobile']) {
-      where['mobile'] = new RegExp(where['mobile'], "i");
-    }
-
-    if (where['email']) {
-      where['email'] = new RegExp(where['email'], "i");
-    }
-
-    if (where['whatsapp']) {
-      where['whatsapp'] = new RegExp(where['whatsapp'], "i");
-    }
-
-    if (req.session.user && req.session.user.type === 'doctor') {
-      where['id'] = req.session.user.ref_info.id;
-    }
-
-    $doctors.findMany({
-      select: req.body.select || {},
-      where: where,
-      sort: req.body.sort || {
-        id: -1
-      },
-      limit: req.body.limit
-    }, (err, docs, count) => {
-      if (!err) {
-        response.done = true
-        response.list = docs
-        response.count = count
-      } else {
-        response.error = err.message
-      }
-      res.json(response)
-    })
-  })
-
-}
-
-
-module.exports = function init(site) {
   const $doctors = site.connectCollection("hr_employee_list")
 
   site.on('[register][doctor][add]', doc => {
@@ -458,7 +64,7 @@ module.exports = function init(site) {
     if (typeof doctor_doc.active === 'undefined') {
       doctor_doc.active = true
     }
-    doctor_doc.nurse = true
+    doctor_doc.doctor = true
 
     doctor_doc.company = site.get_company(req)
     doctor_doc.branch = site.get_branch(req)
@@ -466,6 +72,7 @@ module.exports = function init(site) {
     $doctors.find({
 
       where: {
+        'name': doctor_doc.name,
         'company.id': site.get_company(req).id,
         'branch.code': site.get_branch(req).code,
 
@@ -483,43 +90,6 @@ module.exports = function init(site) {
         res.json(response)
       } else {
 
-        let user = {};
-
-        user = {
-          name: doctor_doc.name,
-          mobile: doctor_doc.mobile,
-          username: doctor_doc.username,
-          email: doctor_doc.username,
-          password: doctor_doc.password,
-          image_url: doctor_doc.image_url,
-          branch_list: [{
-            company: site.get_company(req),
-            branch: site.get_branch(req)
-          }],
-          type: 'doctors'
-        }
-
-        user.roles = [{
-          module_name: "public",
-          name: "doctor_admin",
-          en: "Employee Admin",
-          ar: "إدارة الموظفين",
-          permissions: ["doctor_manage"]
-        }]
-       
-        user.profile = {
-          name: user.name,
-          mobile: user.mobile,
-          image_url: user.image_url
-        }
-
-        user.ref_info = {
-          id: doctor_doc.id
-        }
-
-        user.company = doctor_doc.company
-        user.branch = doctor_doc.branch
-
         let num_obj = {
           company: site.get_company(req),
           screen: 'doctors',
@@ -535,6 +105,42 @@ module.exports = function init(site) {
         } else if (cb.auto) {
           doctor_doc.code = cb.code;
         }
+
+
+        let user = {};
+
+        user = {
+          name: doctor_doc.name_ar,
+          mobile: doctor_doc.mobile,
+          username: doctor_doc.username,
+          email: doctor_doc.username,
+          password: doctor_doc.password,
+          image_url: doctor_doc.image_url,
+          gender: doctor_doc.gender,
+          type: 'doctor'
+        }
+
+        user.roles = [{
+          module_name: "public",
+          name: "doctor_admin",
+          en: "Employee Admin",
+          ar: "إدارة الموظفين",
+          permissions: ["doctor_manage"]
+        }]
+
+        user.profile = {
+          name: user.name,
+          mobile: user.mobile,
+          image_url: user.image_url
+        }
+
+        user.ref_info = {
+          id: doctor_doc.id
+        }
+
+        user.company = doctor_doc.company
+        user.branch = doctor_doc.branch
+
 
 
         $doctors.add(doctor_doc, (err, doc) => {
@@ -585,19 +191,15 @@ module.exports = function init(site) {
     let user = {}
 
     user = {
-      name: doctor_doc.name,
+      name: doctor_doc.name_ar,
       mobile: doctor_doc.mobile,
       username: doctor_doc.username,
       email: doctor_doc.username,
       password: doctor_doc.password,
       image_url: doctor_doc.image_url,
-      branch_list: [{
-        company: site.get_company(req),
-        branch: site.get_branch(req)
-      }],
-      type: 'doctors'
+      gender: doctor_doc.gender,
+      type: 'doctor'
     }
-
 
     user.roles = [{
       module_name: "public",
@@ -606,8 +208,8 @@ module.exports = function init(site) {
       ar: "إدارة الموظفين",
       permissions: ["doctor_manage"]
     }]
-    
-   
+
+
     user.profile = {
       name: user.name,
       mobile: user.mobile,
@@ -742,7 +344,7 @@ module.exports = function init(site) {
       response.done = true
 
       docs.forEach(_doc => {
-        _doc.doctors = true;
+        _doc.doctor = true;
         $doctors.edit(_doc)
       });
 
@@ -851,7 +453,7 @@ module.exports = function init(site) {
     //   where['id'] = req.session.user.doctor_id;
     // } 
 
-    where['doctors'] = true
+    where['doctor'] = true
     where['company.id'] = site.get_company(req).id
     where['branch.code'] = site.get_branch(req).code
 

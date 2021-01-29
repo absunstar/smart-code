@@ -47,8 +47,12 @@ module.exports = function init(site) {
     }
 
     let medical_specialties_doc = req.body
+
     medical_specialties_doc.$req = req
     medical_specialties_doc.$res = res
+
+    medical_specialties_doc.company = site.get_company(req);
+    medical_specialties_doc.branch = site.get_branch(req);
 
     medical_specialties_doc.add_user_info = site.security.getUserFinger({
       $req: req,
@@ -61,13 +65,33 @@ module.exports = function init(site) {
 
     $medical_specialties.find({
       where: {
-        'name': medical_specialties_doc.name
+        'name': medical_specialties_doc.name,
+        'company.id': site.get_company(req).id,
+        'branch.code': site.get_branch(req).code,
       }
     }, (err, doc) => {
       if (!err && doc) {
         response.error = 'Name Exists'
         res.json(response)
       } else {
+
+
+        let num_obj = {
+          company: site.get_company(req),
+          screen: 'medical_specialties',
+          date: new Date()
+        };
+
+        let cb = site.getNumbering(num_obj);
+        if (!medical_specialties_doc.code && !cb.auto) {
+          response.error = 'Must Enter Code';
+          res.json(response);
+          return;
+
+        } else if (cb.auto) {
+          medical_specialties_doc.code = cb.code;
+        }
+
         $medical_specialties.add(medical_specialties_doc, (err, doc) => {
           if (!err) {
             response.done = true
@@ -194,6 +218,8 @@ module.exports = function init(site) {
       where['name'] = new RegExp(where['name'], "i");
     }
 
+    where['company.id'] = site.get_company(req).id
+    where['branch.code'] = site.get_branch(req).code
 
     $medical_specialties.findMany({
       select: req.body.select || {},

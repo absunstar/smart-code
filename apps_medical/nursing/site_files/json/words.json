@@ -8,7 +8,16 @@
         "en": "New nurse",
         "ar": "تمريض  جديد"
     },
-
+    {
+        "name": "nurses",
+        "en": "Nurses",
+        "ar": "الممرضات"
+    },
+    {
+        "name": "nurse",
+        "en": "Nurse",
+        "ar": "الممرضة"
+    },
     {
         "name": "nursing_add",
         "en": "Add nurse",

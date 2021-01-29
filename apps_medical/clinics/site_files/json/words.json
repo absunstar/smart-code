@@ -9,9 +9,19 @@
         "ar": "الشيفت"
     },
     {
+        "name": "detection_price",
+        "en": "Detection price",
+        "ar": "سعر الكشف"
+    },
+    {
         "name": "detection_Duration",
         "en": "Detection Duration",
         "ar": "مدة الكشف"
+    },
+    {
+        "name": "shifts_information",
+        "en": "Shifts Information",
+        "ar": "مواعيد العمل"
     },
     {
         "name": "clinics",

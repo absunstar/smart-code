@@ -6,9 +6,16 @@
                 <div class="col9">
                     <div class="row">
 
+                        <i-control ng-disabled="disabledCode" class="col2" label="##word.code##"
+                            ng-model="medical_specialty.code"></i-control>
 
-                        <i-control help-id="" v="r ll2" class="col6" label="##word.name##" ng-model="medical_specialty.name"></i-control>
-                        <i-checkbox help-id="cities_active" class="col3" label="##word.active##" ng-model="medical_specialty.active"></i-checkbox>
+                        <i-control help-id="" v="r ll2" class="col5" label="##word.name##"
+                            ng-model="medical_specialty.name"></i-control>
+
+                        <div class="col3"></div>
+
+                        <i-checkbox help-id="cities_active" class="col2" label="##word.active##"
+                            ng-model="medical_specialty.active"></i-checkbox>
                     </div>
 
                 </div>

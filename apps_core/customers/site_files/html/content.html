@@ -9,7 +9,7 @@
             <a class="tab-link" onclick="site.showTabContent(event, '#contactAndAddress')">
                 ##word.customers_contact_and_addresses## </a>
 
-            <a class="tab-link" x-features="gym || academy || school"
+            <a class="tab-link" x-features="gym || academy || school || medical"
                 onclick="site.showTabContent(event,'#medicalConditionInformation')">
                 ##word.medical_condition##</a>
 
@@ -71,7 +71,7 @@
                                 <i-control x-features="lawyer" help-id="" v="r ll2" class="col4"
                                     label="##word.national_id##" ng-model="customer.national_id"></i-control>
 
-                                <i-date x-features="lawyer || academy || school" ng-model="customer.birth_date"
+                                <i-date x-features="lawyer || academy || school || medical" ng-model="customer.birth_date"
                                     class="col4" label="##word.birth_date##">
                                 </i-date>
 
@@ -100,7 +100,7 @@
 
                                 <div class="col1"></div>
 
-                                <i-checkbox x-features="gym || school" class="col2" label="##word.child##"
+                                <i-checkbox x-features="gym || school || medical" class="col2" label="##word.child##"
                                     ng-model="customer.child"></i-checkbox>
 
                             </div>
@@ -250,7 +250,7 @@
                 </fieldset>
             </div>
 
-            <div id="medicalConditionInformation" x-features="gym || academy || school" class="tab-content">
+            <div id="medicalConditionInformation" x-features="gym || academy || school || medical" class="tab-content">
                 <fieldset>
 
                     <legend>

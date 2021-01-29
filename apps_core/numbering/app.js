@@ -153,7 +153,7 @@ module.exports = function init(site) {
           moduleListCore.forEach(_mc => {
             if (_mc.name == 'customers') {
               _mc.en = 'patients'
-              _mc.ar = 'المريض'
+              _mc.ar = 'المرضى'
             } else if (_mc.name == 'customers_groups') {
               _mc.en = 'patients Group'
               _mc.ar = 'مجموعة المرضى'
@@ -162,7 +162,7 @@ module.exports = function init(site) {
               _mc.ar = 'شرائح الكشوفات'
             }
           });
-          screens_list = moduleListCore.filter((i) => i.feature !== 'order' && i.feature !== 'erp' && i.feature !== 'restaurant' && i.feature !== 'gym' && i.feature !== 'academy' && i.feature !== 'medic');
+          screens_list = moduleListCore.filter((i) => i.feature !== 'order' && i.feature !== 'erp' && i.feature !== 'restaurant' && i.feature !== 'gym' && i.feature !== 'academy' && i.feature !== 'school'&& i.feature !== 'medic');
 
           moduleListCore.forEach(_m => {
             if (_m.feature == 'medic' && _m.name != 'hall' && _m.name != 'trainer') {

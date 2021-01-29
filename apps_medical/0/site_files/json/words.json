@@ -36,8 +36,8 @@
     },
     {
         "name": "customers_data",
-        "en": "Customers Data",
-        "ar": "بيانات العميل"
+        "en": "Patients Data",
+        "ar": "بيانات المرضى"
     },
     {
         "name": "customers_new",

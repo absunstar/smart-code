@@ -171,6 +171,29 @@ app.controller("medical_specialties", function ($scope, $http, $timeout) {
 
   };
 
+  $scope.getNumberingAuto = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/numbering/get_automatic",
+      data: {
+        screen: "medical_specialties"
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.disabledCode = response.data.isAuto;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
   $scope.displaySearchModal = function () {
     $scope.error = '';
     site.showModal('#medicalSpecialtySearchModal');
@@ -185,6 +208,7 @@ app.controller("medical_specialties", function ($scope, $http, $timeout) {
   };
   
   $scope.getMedicalSpecialtyList();
+  $scope.getNumberingAuto();
   
 
 });

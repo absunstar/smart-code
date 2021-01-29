@@ -941,7 +941,6 @@ app.controller("tickets", function ($scope, $http, $timeout) {
 
   $scope.getClincDoctorList = function (clinic) {
     $scope.dynamic_ticket.$doctor_list = [];
-    console.log(clinic.$doctor_list);
     
     clinic.$doctor_list.forEach(d => {
       $scope.dynamic_ticket.$doctor_list.push({
@@ -952,6 +951,29 @@ app.controller("tickets", function ($scope, $http, $timeout) {
         $shift_list: [d.shift]
       });
     });
+  };
+
+  $scope.getNumberingAuto = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/numbering/get_automatic",
+      data: {
+        screen: "tickets_book"
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.disabledCode = response.data.isAuto;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
   };
 
   $scope.getTicketList();
@@ -965,5 +987,6 @@ app.controller("tickets", function ($scope, $http, $timeout) {
   $scope.getGovList();
   $scope.getHospitalList();
   $scope.getClinicTicketList();
+  $scope.getNumberingAuto();
   $scope.getSearchDoctorList();
 });

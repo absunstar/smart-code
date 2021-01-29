@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" x-permissions="specialties_ui || specialties_manage" data-ng-app="myApp">
+<html lang="en"  data-ng-app="myApp">
 
 <head x-import="head.html">
 
@@ -40,6 +40,7 @@
                 <table x-permissions="login" class="table bold loaded" id="t1">
                     <tr>
                         <th class="not-print">##word.logo##</th>
+                        <th>##word.code##</th>
                         <th>##word.name##</th>
                         <th>##word.status##</th>
                         <th class="not-print">##word.actions##</th>
@@ -48,6 +49,7 @@
                         <td class="center not-print">
                             <img class="logo" ng-src="{{c.image_url}}">
                         </td>
+                        <td class="center userPrint blue">{{c.code}}</td>
                         <td class="center title">{{c.name}}</td>
                         <td class="center">
                             <p ng-show="c.active ==true" class="green bold"> ##word.active## </p>

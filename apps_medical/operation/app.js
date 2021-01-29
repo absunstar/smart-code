@@ -49,6 +49,9 @@ module.exports = function init(site) {
     operation_doc.$req = req
     operation_doc.$res = res
 
+    operation_doc.company = site.get_company(req);
+    operation_doc.branch = site.get_branch(req);
+
     operation_doc.add_user_info = site.security.getUserFinger({
       $req: req,
       $res: res
@@ -60,13 +63,32 @@ module.exports = function init(site) {
 
     $operation.find({
       where: {
-        'name': operation_doc.name
+        'name': operation_doc.name,
+        'company.id': site.get_company(req).id,
+        'branch.code': site.get_branch(req).code,
       }
     }, (err, doc) => {
       if (!err && doc) {
         response.error = 'Name Exists'
         res.json(response)
       } else {
+
+        let num_obj = {
+          company: site.get_company(req),
+          screen: 'operations',
+          date: new Date()
+        };
+
+        let cb = site.getNumbering(num_obj);
+        if (!operation_doc.code && !cb.auto) {
+          response.error = 'Must Enter Code';
+          res.json(response);
+          return;
+
+        } else if (cb.auto) {
+          operation_doc.code = cb.code;
+        }
+
         $operation.add(operation_doc, (err, doc) => {
           if (!err) {
             response.done = true
@@ -188,6 +210,9 @@ module.exports = function init(site) {
     if (where['name']) {
       where['name'] = new RegExp(where['name'], "i");
     }
+
+    where['company.id'] = site.get_company(req).id
+    where['branch.code'] = site.get_branch(req).code
 
     $operation.findMany({
       select: req.body.select || {},

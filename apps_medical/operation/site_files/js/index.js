@@ -170,6 +170,29 @@ app.controller("operation", function ($scope, $http, $timeout) {
 
   };
 
+  $scope.getNumberingAuto = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/numbering/get_automatic",
+      data: {
+        screen: "operations"
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.disabledCode = response.data.isAuto;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
   $scope.searchAll = function () {
    
     $scope.getOperationList($scope.search);
@@ -184,5 +207,6 @@ app.controller("operation", function ($scope, $http, $timeout) {
   };
 
   $scope.getOperationList();
+  $scope.getNumberingAuto();
 
 });

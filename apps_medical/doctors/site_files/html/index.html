@@ -29,9 +29,11 @@
                 </div>
 
                 <div class="top-actions">
-                    <i-button x-permissions="doctors_add || doctors_manage" type="add" label="##word.doctors_new##" ng-click="displayAddDoctor()"></i-button>
+                    <i-button x-permissions="doctors_add || doctors_manage" type="add" label="##word.doctors_new##"
+                        ng-click="displayAddDoctor()"></i-button>
 
-                    <i-button x-permissions="doctors_search || doctors_manage" type="search" label="##word.search_all##" ng-click="displaySearchModal()"></i-button>
+                    <i-button x-permissions="doctors_search || doctors_manage" type="search" label="##word.search_all##"
+                        ng-click="displaySearchModal()"></i-button>
 
                     <h3 class="bold text-center"> ##word.count## : {{count}}</h3>
                 </div>
@@ -39,7 +41,9 @@
                 <table x-permissions="login" class="table bold hover loaded" id="t1">
                     <tr>
                         <th class="not-print">##word.logo##</th>
+                        <th>##word.code##</th>
                         <th>##word.name##</th>
+                        <th>##word.specialty##</th>
                         <th>##word.address##</th>
                         <th>##word.mobile##</th>
                         <th>##word.status##</th>
@@ -49,27 +53,36 @@
                         <td class="center not-print">
                             <img class="logo" ng-src="{{c.image_url}}">
                         </td>
+                        <td class="center userPrint blue">{{c.code}}</td>
+
                         <td class="center title">{{c.name}}</td>
+                        <td class="center title">{{c.specialty.name}}</td>
                         <td class="center">{{c.gov.name + ' - ' + c.city.name + ' - ' + c.address}}</td>
-                        <td class="center blue">{{c.mobile}} <i class="fa fa-mobile" ng-show="c.mobile" aria-hidden="true"></i></td>
+                        <td class="center blue">{{c.mobile}} <i class="fa fa-mobile" ng-show="c.mobile"
+                                aria-hidden="true"></i></td>
                         <td class="center">
                             <p ng-show="c.active ==true" class="green"> ##word.active## </p>
                             <p ng-show="c.active ==false" class="red"> ##word.not_active## </p>
                         </td>
 
                         <td class="center not-print">
-                            <i-button x-permissions="doctors_view || doctors_manage" type="view" label="##word.details##" ng-click="displayDetailsDoctor(c)"></i-button>
+                            <i-button x-permissions="doctors_view || doctors_manage" type="view"
+                                label="##word.details##" ng-click="displayDetailsDoctor(c)"></i-button>
 
-                            <i-button x-permissions="doctors_update || doctors_manage" type="edit" label="##word.edit##" ng-click="displayUpdateDoctor(c)"></i-button>
+                            <i-button x-permissions="doctors_update || doctors_manage" type="edit" label="##word.edit##"
+                                ng-click="displayUpdateDoctor(c)"></i-button>
 
-                            <i-button x-permissions="doctors_delete || doctors_manage" type="delete" label="##word.delete##" ng-click="displayDeleteDoctor(c)"></i-button>
+                            <i-button x-permissions="doctors_delete || doctors_manage" type="delete"
+                                label="##word.delete##" ng-click="displayDeleteDoctor(c)"></i-button>
                         </td>
                     </tr>
                 </table>
 
-                <i-button x-permissions="doctors_print || doctors_manage" type="print" label="##word.print##" onclick="site.print('#t1')"></i-button>
+                <i-button x-permissions="doctors_print || doctors_manage" type="print" label="##word.print##"
+                    onclick="site.print('#t1')"></i-button>
 
-                <i-button x-permissions="doctors_export || doctors_manage" type="export" label="##word.export_to_excel##" onclick="export_to_xlsx('t1' , 'doctors.xlsx')"></i-button>
+                <i-button x-permissions="doctors_export || doctors_manage" type="export"
+                    label="##word.export_to_excel##" onclick="export_to_xlsx('t1' , 'doctors.xlsx')"></i-button>
             </div>
         </div>
     </div>

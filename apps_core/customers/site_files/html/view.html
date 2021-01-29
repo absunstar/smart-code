@@ -7,7 +7,7 @@
 
             <a class="tab-link" onclick="site.showTabContent(event, '#contactAndAddress')">
                 ##word.customers_contact_and_addresses## </a>
-            <a class="tab-link" x-features="gym || academy || school"
+            <a class="tab-link" x-features="gym || academy || school || medical"
                 onclick="site.showTabContent(event,'#medicalConditionInformation')">
                 ##word.medical_condition##
             </a>
@@ -99,13 +99,13 @@
                                     <td class="center"> {{customer.gender.##session.lang##}}</td>
                                 </tr>
 
-                                <tr x-feature="gym || school">
+                                <tr x-feature="gym || school || medical">
                                     <td class="title"> ##word.child## </td>
                                     <td ng-show="customer.child" class="center green"> ##word.yes## </td>
                                     <td ng-show="!customer.child" class="center red"> ##word.no## </td>
                                 </tr>
 
-                                <tr x-features="gym || academy || school">
+                                <tr x-features="gym || academy || school || medical">
                                     <td class="title">##word.birth_date##</td>
                                     <td class="center brown">{{customer.birth_date | date : 'dd / MM / yyyy'}}
                                     </td>
@@ -175,7 +175,7 @@
                 </fieldset>
             </div>
 
-            <div id="medicalConditionInformation" x-features="gym || academy || school" class="tab-content">
+            <div id="medicalConditionInformation" x-features="gym || academy || school || medical" class="tab-content">
                 <fieldset>
 
                     <legend>

@@ -210,9 +210,7 @@ app.controller("nursing", function ($scope, $http, $timeout) {
         where: {
           active: true
         },
-        select:{
-          id: 1 , name : 1
-        }
+        select: { id: 1, name: 1 ,code:1}
       }
     }).then(
       function (response) {
@@ -225,24 +223,19 @@ app.controller("nursing", function ($scope, $http, $timeout) {
         $scope.busy = false;
         $scope.error = err;
       }
-
     )
-
   };
 
   $scope.getCityList = function (gov) {
     $scope.busy = true;
     $http({
       method: "POST",
-      url: "/api/cities/all",
+      url: "/api/city/all",
       data: {
         where: {
           'gov.id': gov.id,
           active: true
         },
-        select:{
-          id: 1 , name : 1
-        }
       }
     }).then(
       function (response) {
@@ -255,9 +248,54 @@ app.controller("nursing", function ($scope, $http, $timeout) {
         $scope.busy = false;
         $scope.error = err;
       }
-
     )
+  };
 
+  $scope.getAreaList = function (city) {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/area/all",
+      data: {
+        where: {
+          'city.id': city.id,
+          active: true
+        },
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.areaList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+  $scope.getNumberingAuto = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/numbering/get_automatic",
+      data: {
+        screen: "nursing"
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.disabledCode = response.data.isAuto;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
   };
 
   $scope.displaySearchModal = function () {
@@ -275,6 +313,7 @@ app.controller("nursing", function ($scope, $http, $timeout) {
 
   $scope.getNurseList();
   $scope.getGovList();
+  $scope.getNumberingAuto();
   $scope.getSpecialtyList();
 
 });

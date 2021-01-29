@@ -39,11 +39,7 @@
         "en": "Subscriber indentfy",
         "ar": "نوع المشترك"
     },
-    {
-        "name": "child",
-        "en": "Child",
-        "ar": "طفل"
-    },
+   
     {
         "name": "customers",
         "en": "Subscribers",

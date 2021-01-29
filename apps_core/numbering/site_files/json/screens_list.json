@@ -1,6 +1,20 @@
 [
     {
         "category": "main",
+        "feature": "public",
+        "name": "customers",
+        "en": "Customers",
+        "ar": "العملاء"
+    },
+    {
+        "category": "main",
+        "feature": "public",
+        "name": "customers_groups",
+        "en": "Customers Groups",
+        "ar": "مجموعات العملاء"
+    },
+    {
+        "category": "main",
         "feature": "medical",
         "name": "doctors",
         "en": "Doctors",
@@ -9,9 +23,9 @@
     {
         "category": "main",
         "feature": "medical",
-        "name": "nurses",
-        "en": "Nurses",
-        "ar": "الممرضين"
+        "name": "nursing",
+        "en": "Nursing",
+        "ar": "التمريض"
     },
     {
         "category": "main",
@@ -495,20 +509,6 @@
         "name": "area",
         "en": "Areas",
         "ar": "المناطق"
-    },
-    {
-        "category": "general_setting",
-        "feature": "public",
-        "name": "customers",
-        "en": "Customers",
-        "ar": "العملاء"
-    },
-    {
-        "category": "general_setting",
-        "feature": "public",
-        "name": "customers_groups",
-        "en": "Customers Groups",
-        "ar": "مجموعات العملاء"
     },
     {
         "category": "general_setting",

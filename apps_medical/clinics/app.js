@@ -75,6 +75,8 @@ module.exports = function init(site) {
     let clinics_doc = req.body
     clinics_doc.$req = req
     clinics_doc.$res = res
+    clinics_doc.company = site.get_company(req);
+    clinics_doc.branch = site.get_branch(req);
 
     clinics_doc.add_user_info = site.security.getUserFinger({
       $req: req,
@@ -86,7 +88,9 @@ module.exports = function init(site) {
     }
     $clinics.find({
       where: {
-        'name': clinics_doc.name
+        'name': clinics_doc.name,
+        'company.id': site.get_company(req).id,
+        'branch.code': site.get_branch(req).code
       }
     }, (err, doc) => {
       if (!err && doc) {
@@ -94,7 +98,23 @@ module.exports = function init(site) {
         res.json(response)
       } else {
 
-        user = {
+        let num_obj = {
+          company: site.get_company(req),
+          screen: 'clinics',
+          date: new Date()
+        };
+
+        let cb = site.getNumbering(num_obj);
+        if (!clinics_doc.code && !cb.auto) {
+          response.error = 'Must Enter Code';
+          res.json(response);
+          return;
+
+        } else if (cb.auto) {
+          clinics_doc.code = cb.code;
+        }
+
+        let user = {
           name: clinics_doc.name,
           mobile: clinics_doc.mobile,
           username: clinics_doc.username,
@@ -330,13 +350,12 @@ module.exports = function init(site) {
       delete where['name']
     }
 
-    if (where['hospital.id'] == 0) {
-      delete where['hospital.id']
-    }
-
     if (where['specialty.id'] == 0) {
       delete where['specialty.id']
     }
+
+    where['company.id'] = site.get_company(req).id
+    where['branch.code'] = site.get_branch(req).code
 
     if (req.session.user && req.session.user.type === 'clinic') {
       where['id'] = req.session.user.ref_info.id;
@@ -409,7 +428,7 @@ module.exports = function init(site) {
       limit: req.body.limit
     }, (err, docs, count) => {
 
-      
+
 
       if (!err) {
         response.done = true

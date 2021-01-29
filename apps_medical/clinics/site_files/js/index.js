@@ -14,8 +14,8 @@ app.controller("clinics", function ($scope, $http, $timeout) {
         times_list: [{}]
       }],
       doctor_list: [{}],
-      nurse_list: [{}]
-
+      nurse_list: [{}],
+      vacation_list: [{}]
     };
     site.showModal('#clinicAddModal');
     document.querySelector('#clinicAddModal  .tab-link').click();
@@ -52,6 +52,8 @@ app.controller("clinics", function ($scope, $http, $timeout) {
   $scope.displayUpdateClinic = function (clinic) {
     $scope.error = '';
     $scope.detailsClinic(clinic);
+    $scope.getNursesList(clinic);
+    $scope.getDoctorList(clinic);
     $scope.clinic = {};
     site.showModal('#clinicUpdateModal');
     document.querySelector('#clinicUpdateModal .tab-link').click();
@@ -108,7 +110,7 @@ app.controller("clinics", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.clinic = response.data.doc;
-          $scope.getDoctorList($scope.clinic.hospital);
+          $scope.getDoctorList();
         } else {
           $scope.error = response.data.error;
         }
@@ -181,30 +183,30 @@ app.controller("clinics", function ($scope, $http, $timeout) {
 
   };
 
-  $scope.getHospitalList = function (where) {
-    $scope.busy = true;
-    $scope.hospitalList = [];
-    $http({
-      method: "POST",
-      url: "/api/hospitals/all",
-      data: {
-        where: {
-          active: true
-        },    
-      }
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.hospitalList = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
-  };
+  /*  $scope.getHospitalList = function (where) {
+     $scope.busy = true;
+     $scope.hospitalList = [];
+     $http({
+       method: "POST",
+       url: "/api/hospitals/all",
+       data: {
+         where: {
+           active: true
+         },    
+       }
+     }).then(
+       function (response) {
+         $scope.busy = false;
+         if (response.data.done && response.data.list.length > 0) {
+           $scope.hospitalList = response.data.list;
+         }
+       },
+       function (err) {
+         $scope.busy = false;
+         $scope.error = err;
+       }
+     )
+   }; */
 
   $scope.getSpecialList = function () {
     $scope.busy = true;
@@ -237,7 +239,7 @@ app.controller("clinics", function ($scope, $http, $timeout) {
   };
 
   $scope.getNursesList = function (clinic) {
-    if (!clinic.hospital && !clinic.specialty) {
+    if ( !clinic.specialty) {
       return;
     }
 
@@ -247,10 +249,9 @@ app.controller("clinics", function ($scope, $http, $timeout) {
     $scope.nurseList = [];
     $http({
       method: "POST",
-      url: "/api/hospital/nurses/all", 
+      url: "/api/nursing/all",
       data: {
         where: {
-          'hospital.id': clinic.hospital.id,
           'specialty.id': clinic.specialty.id
         }
       }
@@ -270,7 +271,7 @@ app.controller("clinics", function ($scope, $http, $timeout) {
 
   $scope.getDoctorList = function (clinic) {
 
-    if (!clinic.hospital && !clinic.specialty) {
+    if (!clinic.specialty) {
       return;
     }
 
@@ -280,10 +281,9 @@ app.controller("clinics", function ($scope, $http, $timeout) {
     $scope.doctorList = [];
     $http({
       method: "POST",
-      url: "/api/hospital/doctors/all",
+      url: "/api/doctors/all",
       data: {
         where: {
-          'hospital.id': clinic.hospital.id,
           'specialty.id': clinic.specialty.id
         }
       }
@@ -349,6 +349,29 @@ app.controller("clinics", function ($scope, $http, $timeout) {
 
   };
 
+  $scope.getNumberingAuto = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/numbering/get_automatic",
+      data: {
+        screen: "clinics"
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.disabledCode = response.data.isAuto;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
   $scope.displaySearchModal = function () {
     $scope.error = '';
     site.showModal('#clinicSearchModal');
@@ -362,8 +385,11 @@ app.controller("clinics", function ($scope, $http, $timeout) {
     $scope.search = {};
   };
 
+  /*   $scope.getHospitalList();
+  */
   $scope.getClinicList();
-  $scope.getHospitalList();
   $scope.getSpecialList();
   $scope.getDayList();
+  $scope.getNumberingAuto();
+
 });

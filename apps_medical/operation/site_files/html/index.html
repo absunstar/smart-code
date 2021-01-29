@@ -39,6 +39,7 @@
                 <table x-permissions="login" class="table bold loaded" id="t1">
                     <tr>
                         <th class="not-print">##word.logo##</th>
+                        <th>##word.code##</th>
                         <th>##word.operation_name##</th>
                         <th>##word.operation_price##</th>
                         <th>##word.status##</th>
@@ -48,6 +49,7 @@
                         <td class="center not-print">
                             <img class="logo" ng-src="{{c.image_url}}">
                         </td>
+                        <td class="center userPrint blue">{{c.code}}</td>
                         <td class="center title">{{c.name}}</td>
                         <td class="center green">{{c.price}}</td>
 

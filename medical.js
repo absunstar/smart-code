@@ -52,15 +52,17 @@ site.importApp(__dirname + '/apps_private/ui-help');
 site.importApps(__dirname + '/apps_accounting');
 // site.importApps(__dirname + '/apps_inventories');
 // site.importApps(__dirname + '/apps_reports');
+site.importApps(__dirname + '/apps_medical');
+
 site.importApps(__dirname + '/apps_hr');
 site.importApps(__dirname + '/apps_medic')
-site.importApps(__dirname + '/apps_medical');
 site.importApps(__dirname + '/apps_core');
 
 site.addFeature('medical');
 setTimeout(() => {
   site.importApp(__dirname + '/apps_private/companies');
   site.importApp(__dirname + '/apps_private/zk-reader');
+
 
   // site.zk.load_attendance( {
   //     ip: '192.168.100.201',

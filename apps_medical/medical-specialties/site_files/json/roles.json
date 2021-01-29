@@ -2,6 +2,6 @@
     "module_name" : "public" ,
     "name": "specialties_admin",
     "en": "Specialties Admin",
-    "ar": "ادارة التخصصات",
+    "ar": "إدارة التخصصات",
     "permissions": ["specialties_manage"]
 }]

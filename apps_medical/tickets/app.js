@@ -1,30 +1,30 @@
 module.exports = function init(site) {
   const $tickets = site.connectCollection("tickets")
 
-  function addZero(code, number) {
-    let c = number - code.toString().length
-    for (let i = 0; i < c; i++) {
-      code = '0' + code.toString()
-    }
-    return code
-  }
+  // function addZero(code, number) {
+  //   let c = number - code.toString().length
+  //   for (let i = 0; i < c; i++) {
+  //     code = '0' + code.toString()
+  //   }
+  //   return code
+  // }
 
-  $tickets.newCode = function (hospital_id) {
-    hospital_id = hospital_id || 'x'
-    let y = new Date().getFullYear().toString().substr(2, 2)
-    let m = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'][new Date().getMonth()].toString()
-    let d = new Date().getDate()
-    let lastCode = site.storage('ticket_last_code_' + hospital_id) || 0
-    let lastMonth = site.storage('ticket_last_month_' + hospital_id) || m
-    if (lastMonth != m) {
-      lastMonth = m
-      lastCode = 0
-    }
-    lastCode++
-    site.storage('ticket_last_code_' + hospital_id, lastCode)
-    site.storage('ticket_last_month_' + hospital_id, lastMonth)
-    return hospital_id + '.' + y + lastMonth + addZero(d, 2) + addZero(lastCode, 4)
-  }
+  // $tickets.newCode = function (hospital_id) {
+  //   hospital_id = hospital_id || 'x'
+  //   let y = new Date().getFullYear().toString().substr(2, 2)
+  //   let m = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'][new Date().getMonth()].toString()
+  //   let d = new Date().getDate()
+  //   let lastCode = site.storage('ticket_last_code_' + hospital_id) || 0
+  //   let lastMonth = site.storage('ticket_last_month_' + hospital_id) || m
+  //   if (lastMonth != m) {
+  //     lastMonth = m
+  //     lastCode = 0
+  //   }
+  //   lastCode++
+  //   site.storage('ticket_last_code_' + hospital_id, lastCode)
+  //   site.storage('ticket_last_month_' + hospital_id, lastMonth)
+  //   return hospital_id + '.' + y + lastMonth + addZero(d, 2) + addZero(lastCode, 4)
+  // }
 
   site.get({
     name: 'images',
@@ -64,6 +64,9 @@ module.exports = function init(site) {
     tickets_doc.$req = req
     tickets_doc.$res = res
 
+    tickets_doc.company = site.get_company(req);
+    tickets_doc.branch = site.get_branch(req);
+
     tickets_doc.add_user_info = site.security.getUserFinger({
       $req: req,
       $res: res
@@ -73,12 +76,27 @@ module.exports = function init(site) {
       tickets_doc.active = true
     }
 
-    tickets_doc.code = $tickets.newCode(tickets_doc.selected_hospital.id)
-
     if (tickets_doc.company_code) {
       tickets_doc.company_codes = [tickets_doc.company_code]
       delete tickets_doc.company_code
     }
+
+    let num_obj = {
+      company: site.get_company(req),
+      screen: 'tickets_book',
+      date: new Date()
+    };
+
+    let cb = site.getNumbering(num_obj);
+    if (!tickets_doc.code && !cb.auto) {
+      response.error = 'Must Enter Code';
+      res.json(response);
+      return;
+
+    } else if (cb.auto) {
+      tickets_doc.code = cb.code;
+    }
+
 
     $tickets.add(tickets_doc, (err, doc) => {
 
@@ -590,6 +608,9 @@ module.exports = function init(site) {
       where['patient.id'] = where['patient_search'].id;
       delete where['patient_search']
     }
+
+    where['company.id'] = site.get_company(req).id
+    where['branch.code'] = site.get_branch(req).code
 
     $tickets.findMany({
       select: req.body.select || {},

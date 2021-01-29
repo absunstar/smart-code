@@ -91,19 +91,32 @@ module.exports = function init(site) {
         res.json(response)
       } else {
 
+        let num_obj = {
+          company: site.get_company(req),
+          screen: 'nursing',
+          date: new Date()
+        };
+
+        let cb = site.getNumbering(num_obj);
+        if (!nursing_doc.code && !cb.auto) {
+          response.error = 'Must Enter Code';
+          res.json(response);
+          return;
+
+        } else if (cb.auto) {
+          nursing_doc.code = cb.code;
+        }
+
         let user = {};
 
         user = {
-          name: nursing_doc.name,
+          name: nursing_doc.name_ar,
           mobile: nursing_doc.mobile,
           username: nursing_doc.username,
           email: nursing_doc.username,
           password: nursing_doc.password,
           image_url: nursing_doc.image_url,
-          branch_list: [{
-            company: site.get_company(req),
-            branch: site.get_branch(req)
-          }],
+          gender: nursing_doc.gender,
           type: 'nurse'
         }
 
@@ -128,23 +141,6 @@ module.exports = function init(site) {
 
         user.company = nursing_doc.company
         user.branch = nursing_doc.branch
-
-        let num_obj = {
-          company: site.get_company(req),
-          screen: 'nursing',
-          date: new Date()
-        };
-
-        let cb = site.getNumbering(num_obj);
-        if (!nursing_doc.code && !cb.auto) {
-          response.error = 'Must Enter Code';
-          res.json(response);
-          return;
-
-        } else if (cb.auto) {
-          nursing_doc.code = cb.code;
-        }
-
 
         $nursing.add(nursing_doc, (err, doc) => {
           if (!err) {
@@ -194,16 +190,13 @@ module.exports = function init(site) {
     let user = {}
 
     user = {
-      name: nursing_doc.name,
+      name: nursing_doc.name_ar,
       mobile: nursing_doc.mobile,
       username: nursing_doc.username,
       email: nursing_doc.username,
       password: nursing_doc.password,
       image_url: nursing_doc.image_url,
-      branch_list: [{
-        company: site.get_company(req),
-        branch: site.get_branch(req)
-      }],
+      gender: nursing_doc.gender,
       type: 'nurse'
     }
 

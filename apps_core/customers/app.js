@@ -108,6 +108,10 @@ module.exports = function init(site) {
       name_ar = "تلميذ إفتراضي"
       name_en = "Default Student"
 
+    }  else if (site.feature('medical')) {
+      name_ar = "مريض إفتراضي"
+      name_en = "Default Patient"
+
     }
 
     $customers.add({
