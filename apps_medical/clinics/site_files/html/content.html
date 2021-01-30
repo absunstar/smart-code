@@ -51,7 +51,7 @@
                                     display="name" items="hospitalList" ng-search="_search.$hospital_name">
                                 </i-list>
  -->
-                                <i-list help-id="" class="col4" label="##word.specialty##" ng-model="clinic.specialty"
+                                <i-list help-id="" class="col3" label="##word.specialty##" ng-model="clinic.specialty"
                                     ng-change="getDoctorList(clinic); getNursesList(clinic)" display="name"
                                     items="specialList" ng-search="_search.$specialty_name">
                                 </i-list>
@@ -59,9 +59,15 @@
                                 <i-control type="number" class="col2" label="##word.detection_price##"
                                     ng-model="clinic.detection_price"></i-control>
 
+                                <i-control type="number" class="col2" label="##word.re_detection##"
+                                    ng-model="clinic.re_detection"></i-control>
+
+                                <i-control type="number" class="col2" label="##word.consultation##"
+                                    ng-model="clinic.consultation"></i-control>
+
                                 <i-control type="number" class="col2" label="##word.detection_Duration##"
                                     ng-model="clinic.detection_Duration"></i-control>
-                                <div class="col2">
+                                <div class="col1">
                                     <br>
                                     <br>
                                     <p class="bold black">##word.minute##</p>
@@ -153,7 +159,6 @@
                     <legend>
                         <i-button type="add default" ng-click="clinic.doctor_list.push({})"></i-button>
                         ##word.basic_information##
-
                     </legend>
 
                     <div class="row">
@@ -199,15 +204,15 @@
 
                     <div class="row">
                         <div class="row" ng-repeat="nurse in clinic.nurse_list">
-                            <i-list help-id="" class="col3" label="##word.nurses##" ng-model="nurse.nurse"
+                            <i-list help-id="" class="col3" label="##word.nurse##" ng-model="nurse.nurse"
                                 items="nurseList" ng-selected="item.specialty.id == clinic.specialty.id" display="name"
                                 ng-search="_search.$branch_nurse"></i-list>
 
                             <i-list help-id="" primary="name" class="col2" label="##word.shift_name##"
                                 ng-model="nurse.shift" items="clinic.shift_list" display="name"
                                 ng-search="_search.$branch_shift"></i-list>
-                            <i-button type="delete default"
-                            class="col1"  ng-click="clinic.nurse_list.length ===1 || clinic.nurse_list.splice($index,1)">
+                            <i-button type="delete default" class="col1"
+                                ng-click="clinic.nurse_list.length ===1 || clinic.nurse_list.splice($index,1)">
                             </i-button>
 
                         </div>
@@ -227,13 +232,13 @@
                     <div class="row">
                         <div class="row" ng-repeat="vacation in clinic.vacation_list">
 
-                            <i-control help-id="" class="col3" label="##word.vacation_name##"
-                              v="r"  ng-model="vacation.name"></i-control>
+                            <i-control help-id="" class="col3" label="##word.vacation_name##" v="r"
+                                ng-model="vacation.name"></i-control>
 
                             <i-date2 class="col4" v="r" ng-model="vacation.date" label="##word.date##"></i-date2>
                             <div class="col1"></div>
-                            <i-button type="delete default"
-                            class="col1" ng-click="clinic.vacation_list.length ===1 || clinic.vacation_list.splice($index,1)">
+                            <i-button type="delete default" class="col1"
+                                ng-click="clinic.vacation_list.length ===1 || clinic.vacation_list.splice($index,1)">
                             </i-button>
 
                         </div>

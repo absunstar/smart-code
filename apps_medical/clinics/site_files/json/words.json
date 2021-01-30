@@ -9,6 +9,16 @@
         "ar": "الشيفت"
     },
     {
+        "name": "re_detection",
+        "en": "Re-detection",
+        "ar": "إعادة الكشف"
+    },
+    {
+        "name": "consultation",
+        "en": "Consultation",
+        "ar": "إستشارة"
+    },
+    {
         "name": "detection_price",
         "en": "Detection price",
         "ar": "سعر الكشف"
