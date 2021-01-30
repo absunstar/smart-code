@@ -9,7 +9,7 @@ const site = require('isite')({
         permissions: []
     },
     https: {
-        enabled: true,
+        enabled: false,
         port: 5050
     },
     mongodb: {
