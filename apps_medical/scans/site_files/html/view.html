@@ -1,0 +1,55 @@
+<div ng-hide="busy" class="row">
+    <div id="basicInformation" class="tab-content">
+        <fieldset>
+            <legend> ##word.basic_information##</legend>
+            <div class="col9">
+                <table id="basicInformationTable" class="table bold">
+
+                    <tr>
+                        <td class="title">##word.code##</td>
+                        <td class="center userPrint blue">{{scans.code}}</td>
+                    </tr>
+
+
+                    <tr>
+                        <td class="title">##word.scans_name##</td>
+                        <td class="center">{{scans.name}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="title">##word.scans_price##</td>
+                        <td class="center green">{{scans.price}}</td>
+                    </tr>
+
+                    <tr ng-hide="scans.immediate==true">
+                        <td class="title">##word.delivery_time##</td>
+                        <td class="center blue">{{scans.delivery_time}}</td>
+                    </tr>
+
+                    <tr ng-hide="scans.immediate==true">
+                        <td class="title">##word.period##</td>
+                        <td class="center blue">{{scans.period.ar}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="title">##word.immediate##</td>
+                        <td ng-show="scans.immediate == true" class="green center"> ##word.yes## </td>
+                        <td ng-show="scans.immediate == false" class="red center"> ##word.no## </td>
+                    </tr>
+
+                    <tr>
+                        <td class="title">##word.status##</td>
+                        <td ng-show="scans.active == true" class="green center"> ##word.active## </td>
+                        <td ng-show="scans.active == false" class="red center"> ##word.not_active## </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="col3">
+                <i-image view ng-model="scans.image_url"></i-image>
+            </div>
+
+        </fieldset>
+    </div>
+</div>
+<div x-import="scans/action_info.html"></div>

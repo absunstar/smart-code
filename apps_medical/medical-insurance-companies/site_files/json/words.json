@@ -1,0 +1,114 @@
+[{
+        "name": "medical_insurance_companies",
+        "en": "Medical Insurance Companies",
+        "ar": "شركات التامين الطبي"
+    },
+    {
+        "name": "medical_insurance_companies_informations",
+        "en": "Medical Insurance Company Information",
+        "ar": "بيانات شركة تامين طبي"
+    },
+    {
+        "name": "medical_insurance_companies_add",
+        "en": "Add Medical Insurance Company",
+        "ar": "اضافة شركة تامين طبي"
+    },
+    {
+        "name": "medical_insurance_companies_delete",
+        "en": "Delete Gov",
+        "ar": "حذف شركة تامين طبي"
+    },
+    {
+        "name": "medical_insurance_companies_edit",
+        "en": "Edit Medical Insurance Company",
+        "ar": "تعديل شركة تامين طبي"
+    },
+    {
+        "name": "medical_insurance_companies_details",
+        "en": "Medical Insurance Company Deteails",
+        "ar": "تفاصيل شركة تامين طبي"
+    },
+    {
+        "name": "medical_insurance_companies_delete",
+        "en": "Delete Medical Insurance Company",
+        "ar": "حذف شركة تامين طبي"
+    },
+    {
+        "name": "medical_insurance_companies_new",
+        "en": "New Medical Insurance Company",
+        "ar": "شركة تامين طبي جديدة"
+    },
+    {
+        "name": "medical_insurance_companies_name",
+        "en": "Medical Insurance Company Name",
+        "ar": "اسم شركة تامين طبي"
+    },
+    {
+        "name": "medical_insurance_companies_insurance_slides",
+        "en": "Insurance Slides",
+        "ar": "شرائح التامينات"
+    },
+
+    {
+        "name": "medical_insurance_companies_slide_value",
+        "en": "Slide Max Limit",
+        "ar": "الحد الأقصى للشريحة"
+    },
+    {
+        "name": "medical_insurance_companies_facebook",
+        "en": "FaceBook Account",
+        "ar": "حساب الفيسبوك"
+    },
+    {
+        "name": "medical_insurance_companies_twitter",
+        "en": "Twitter Account",
+        "ar": "حساب تويتر"
+    },
+    {
+        "name": "medical_insurance_companies_customer_will_pay",
+        "en": "Customer Bearing ratio",
+        "ar": "نسبة تحمل العميل"
+    },
+    {
+        "name": "medical_insurance_companies_blacklist",
+        "en": "Black List",
+        "ar": "خارج شريحة التأمين"
+    },
+    {
+        "name": "medical_insurance_companies_per_year",
+        "en": "Per Year",
+        "ar": "سنوي"
+    },
+    {
+        "name": "medical_insurance_companies_need_approved",
+        "en": "Need Approved",
+        "ar": "تحتاج موافقة"
+    },
+    {
+        "name": "analyses",
+        "en": "Analyses",
+        "ar": "التحاليل"
+    },
+    {
+        "name": "drugs",
+        "en": "Drugs",
+        "ar": "الأدوية"
+    },
+    {
+        "name": "scans",
+        "en": "Scans",
+        "ar": "الأشعة"
+    },
+    {
+        "name": "operation",
+        "en": "Operations",
+        "ar": "العمليات"
+    },
+    {
+        "name": "medical_insurance_companies_img",
+        "en": "Currency Images",
+        "ar": "الملفات"
+    }
+
+
+]

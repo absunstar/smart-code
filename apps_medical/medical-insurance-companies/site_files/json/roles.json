@@ -1,0 +1,7 @@
+[{
+    "module_name" : "general" ,
+    "name": "insurance_companies_admin",
+    "en": "Insurance Companies Admin",
+    "ar": "إدارة شركات التأمين",
+    "permissions": ["insurance_companies_manage"]
+}]

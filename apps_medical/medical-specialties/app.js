@@ -14,7 +14,7 @@ module.exports = function init(site) {
   })
 
   site.on('[company][created]', (doc) => {
-    $goves.add(
+    $medical_specialties.add(
       {
         code: "1-Test",
         name: 'تخصص إفتراضي',

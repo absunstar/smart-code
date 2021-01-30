@@ -25,9 +25,39 @@
         "ar": "أجازة"
     },
     {
+        "name": "hotline",
+        "en": "Hotline",
+        "ar": "الرقم الساخن"
+    },
+    {
+        "name": "fax",
+        "en": "Fax",
+        "ar": "الفاكس"
+    },
+    {
         "name": "child",
         "en": "Child",
         "ar": "طفل"
+    },
+    {
+        "name": "contact_information",
+        "en": "Contact Information",
+        "ar": "بيانات الاتصال"
+    },
+    {
+        "name": "social_information",
+        "en": "Social Information",
+        "ar": "بيانات التواصل الاجتماعي"
+    },
+    {
+        "name": "delivery_time",
+        "en": "Delivery Time",
+        "ar": "مدة التسليم "
+    },
+    {
+        "name": "slide_information",
+        "en": "Slide Information",
+        "ar": "بيانات الشريحة"
     },
     {
         "name": "vacation_name",

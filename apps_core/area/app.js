@@ -19,10 +19,12 @@ module.exports = function init(site) {
     $area.add({
       gov: {
         id: doc.gov.id,
+        code: doc.gov.code,
         name: doc.gov.name
       },
       city: {
         id: doc.id,
+        code: doc.code,
         name: doc.name
       },
       name: "منطقة إفتراضية",

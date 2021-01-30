@@ -19,6 +19,7 @@ module.exports = function init(site) {
     $city.add({
       gov: {
         id: doc.id,
+        code: doc.code,
         name: doc.name
       },
       name: "مدينة إفتراضي",

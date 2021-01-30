@@ -1,0 +1,42 @@
+[{
+        "name": "scans",
+        "en": "scans",
+        "ar": "الأشعات"
+    },
+    {
+        "name": "scans_new",
+        "en": "New scans",
+        "ar": "أشعة  جديد"
+    },
+    {
+        "name": "scans_add",
+        "en": "Add scans",
+        "ar": "اضافة أشعة "
+    },
+    {
+        "name": "scans_edit",
+        "en": "Edit scans",
+        "ar": "تعديل أشعة "
+    },
+    {
+        "name": "scans_details",
+        "en": "scans Details",
+        "ar": "تفاصيل الأشعة "
+    },
+    {
+        "name": "scans_delete",
+        "en": "Delete scans",
+        "ar": "حذف أشعة "
+    },
+    {
+        "name": "scans_name",
+        "en": "Scan Name",
+        "ar": "اسم الإشاعة "
+    },
+    {
+        "name": "scans_price",
+        "en": "Scans Price",
+        "ar": "سعر الإشاعة "
+    }
+    
+]

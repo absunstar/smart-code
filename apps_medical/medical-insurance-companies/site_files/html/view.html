@@ -1,0 +1,369 @@
+<div ng-hide="busy" class="row">
+    <div class="tabs col">
+        <div class="tabs-header full">
+            <a class="tab-link" onclick="site.showTabContent(event, '#basicInformation')">
+                ##word.basic_information##</a>
+
+            <a class="tab-link" onclick="site.showTabContent(event, '#slidesInformation')">
+                ##word.medical_insurance_companies_insurance_slides##</a>
+
+            <a class="tab-link" onclick="site.showTabContent(event,'#blackListInformation')">
+                ##word.medical_insurance_companies_blacklist##</a>
+
+            <a class="tab-link" onclick="site.showTabContent(event,'#needApprovedInformation')">
+                ##word.medical_insurance_companies_need_approved##</a>
+
+            <a class="tab-link" onclick="site.showTabContent(event, '#filesInformation')">
+                ##word.files##</a>
+            <a class="tab-link" onclick="site.showTabContent(event, '#loginInformation')">
+                ##word.login_information##</a>
+
+        </div>
+        <div id="insuranceAllInfo" class="tabs-content bold full">
+
+            <div id="basicInformation" class="tab-content">
+                <fieldset>
+                    <legend> ##word.basic_information##</legend>
+                    <div class="col9">
+                        <div>
+                            <table id="basicInformationTable" class="table hover bold">
+
+                                <tr>
+                                    <td class="title">##word.code##</td>
+                                    <td class="center userPrint blue">{{medical_insurance_company.code}}</td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title">##word.name##</td>
+                                    <td class="center">{{medical_insurance_company.name}}</td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title">##word.status##</td>
+                                    <td ng-show="medical_insurance_company.active == true" class="green center">
+                                        ##word.active##
+                                    </td>
+                                    <td ng-show="medical_insurance_company.active == false" class="red center">
+                                        ##word.not_active## </td>
+                                </tr>
+
+                            </table>
+                        </div>
+
+                        <br>
+                        <hr>
+                        <br>
+                        <div>
+                            <fieldset>
+                                <legend>##word.address_connect##</legend>
+                                <table id="informationTable" class="table hover bold">
+
+                                    <tr>
+                                        <td class="title">##word.gov##</td>
+                                        <td class="center">{{medical_insurance_company.gov.name}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="title">##word.city##</td>
+                                        <td class="center">{{medical_insurance_company.city.name}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="title">##word.address##</td>
+                                        <td class="center">{{medical_insurance_company.address}}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="title">##word.hotline##</td>
+                                        <td class="center">
+                                            <a ng-show="medical_insurance_company.hotline" href="tel:{{medical_insurance_company.hotline}}">
+                                                {{medical_insurance_company.hotline}}
+                                                <i class="fa fa-fire" aria-hidden="true"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="title">##word.phone##</td>
+                                        <td class="center">
+                                            <a ng-show="medical_insurance_company.phone" href="tel:{{medical_insurance_company.phone}}">
+                                                {{medical_insurance_company.phone}}
+                                                <i class="fa fa-phone" aria-hidden="true"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="title">##word.mobile##</td>
+                                        <td class="center">
+                                            <a ng-show="medical_insurance_company.mobile" href="tel:{{medical_insurance_company.mobile}}">
+                                                {{medical_insurance_company.mobile}}
+                                                <i class="fa fa-mobile" aria-hidden="true"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="title">##word.fax##</td>
+                                        <td class="center">
+                                            <a ng-show="medical_insurance_company.fax" href="tel:{{medical_insurance_company.fax}}">
+                                                {{medical_insurance_company.fax}}
+                                                <i class="fa fa-fax" aria-hidden="true"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="title">##word.medical_insurance_companies_facebook##</td>
+                                        <td class="center">
+                                            <a ng-show="medical_insurance_company.facebook" href="tel:{{medical_insurance_company.facebook}}">
+                                                {{medical_insurance_company.facebook}}
+                                                <i class="fa fa-facebook-f" aria-hidden="true"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="title">##word.medical_insurance_companies_twitter##</td>
+                                        <td class="center">
+                                            <a ng-show="medical_insurance_company.twitter" href="tel:{{medical_insurance_company.twitter}}">
+                                                {{medical_insurance_company.twitter}}
+                                                <i class="fa fa-twitter" aria-hidden="true"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="title">##word.email##</td>
+                                        <td class="center">
+                                            <a ng-show="medical_insurance_company.email" target="_blank" href="tel:{{medical_insurance_company.email}}">
+                                                {{medical_insurance_company.email}}
+                                                <i class="fa fa-envelope" aria-hidden="true"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="title">##word.website##</td>
+                                        <td class="center">
+                                            <a ng-show="medical_insurance_company.website" href="tel:{{medical_insurance_company.website}}">
+                                                {{medical_insurance_company.website}}
+                                                <i class="fa fa-globe" aria-hidden="true"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="title">##word.notes##</td>
+                                        <td class="center blue">{{medical_insurance_company.notes}}</td>
+                                    </tr>
+
+                                </table>
+
+                            </fieldset>
+
+                        </div>
+                    </div>
+                    <div class="col3">
+                        <i-image view ng-model="medical_insurance_company.image_url"></i-image>
+                    </div>
+
+                </fieldset>
+            </div>
+
+            <br>
+            <div id="slidesInformation" class="tab-content">
+
+                <fieldset>
+                    <legend>##word.slide_information##</legend>
+
+                    <table class="table hover bold">
+                        <tr>
+                            <th>##word.name##</th>
+                            <th>##word.medical_insurance_companies_slide_value##</th>
+                            <th>##word.medical_insurance_companies_customer_will_pay##</th>
+                            <th>##word.medical_insurance_companies_per_year##</th>
+                            <th>##word.medical_insurance_companies_need_approved##</th>
+                        </tr>
+                        <tr ng-repeat="s in medical_insurance_company.insurance_slides_list">
+                            <td class="center">{{s.name}}</td>
+                            <td class="center blue">{{s.value}}</td>
+                            <td class="center blue">{{s.customer_will_pay}} %</td>
+                            <td>
+                                <p ng-show="s.need_approve ==true" class="green center"> ##word.yes## </p>
+                                <p ng-show="s.need_approve ==false" class="red center"> ##word.no## </p>
+                            </td>
+                            <td>
+                                <p ng-show="s.per_year ==true" class="green center"> ##word.yes## </p>
+                                <p ng-show="s.per_year ==false" class="red center"> ##word.no## </p>
+                            </td>
+                        </tr>
+                    </table>
+
+                </fieldset>
+            </div>
+
+            <div id="blackListInformation" class="tab-content">
+
+                <fieldset>
+                    <legend>##word.medical_insurance_companies_blacklist##</legend>
+                    <div class="row">
+                        <div class="col6">
+
+                            <table class="table hover bold">
+                                <tr>
+
+                                    <th>##word.analyses##</th>
+
+                                </tr>
+                                <tr ng-repeat="black_analyse in medical_insurance_company.black_analyse_list">
+                                    <td class="center blue">{{black_analyse.analyse.name}}</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="col6">
+
+                            <table class="table hover bold">
+                                <tr>
+                                    <th>##word.scans##</th>
+
+                                </tr>
+
+                                <tr ng-repeat="black_scan in medical_insurance_company.black_scan_list">
+                                    <td class="center blue">{{black_scan.scan.name}}</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="row">
+                        <div class="col6">
+
+                            <table class="table hover bold">
+                                <tr>
+                                    <th>##word.drugs##</th>
+
+                                </tr>
+                                <tr ng-repeat="black_drug in medical_insurance_company.black_drug_list">
+                                    <td class="center blue">{{black_drug.drug.name}}</td>
+                                </tr>
+
+                            </table>
+                        </div>
+                        <div class="col6">
+
+                            <table class="table hover bold">
+                                <tr>
+                                    <th>##word.operation##</th>
+
+                                </tr>
+
+                                <tr ng-repeat="black_operation in medical_insurance_company.black_operation_list">
+                                    <td class="center blue">{{black_operation.operation.name}}</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                </fieldset>
+            </div>
+
+            <div id="needApprovedInformation" class="tab-content">
+
+                <fieldset>
+                    <legend>##word.medical_insurance_companies_need_approved##</legend>
+                    <div class="row">
+                        <div class="col6">
+
+                            <table class="table hover bold">
+                                <tr>
+
+                                    <th>##word.analyses##</th>
+
+                                </tr>
+                                <tr ng-repeat="approve_analyse in medical_insurance_company.approve_analyse_list">
+                                    <td class="center blue">{{approve_analyse.analyse.name}}</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="col6">
+
+                            <table class="table hover bold">
+                                <tr>
+                                    <th>##word.scans##</th>
+
+                                </tr>
+
+                                <tr ng-repeat="approve_scan in medical_insurance_company.approve_scan_list">
+                                    <td class="center blue">{{approve_scan.scan.name}}</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="row">
+                        <div class="col6">
+
+                            <table class="table hover bold">
+                                <tr>
+                                    <th>##word.drugs##</th>
+
+                                </tr>
+                                <tr ng-repeat="approve_drug in medical_insurance_company.approve_drug_list">
+                                    <td class="center blue">{{approve_drug.drug.name}}</td>
+                                </tr>
+
+                            </table>
+                        </div>
+                        <div class="col6">
+
+                            <table class="table hover bold">
+                                <tr>
+                                    <th>##word.operation##</th>
+
+                                </tr>
+
+                                <tr ng-repeat="approve_operation in medical_insurance_company.approve_operation_list">
+                                    <td class="center blue">{{approve_operation.operation.name}}</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                </fieldset>
+            </div>
+
+            <div id="filesInformation" class="tab-content">
+
+                <fieldset>
+                    <legend> ##word.files## </legend>
+                    <div class="row">
+                        <i-files view ng-model="medical_insurance_company.files"></i-files>
+
+                    </div>
+                </fieldset>
+            </div>
+
+
+            <div id="loginInformation" class="tab-content">
+
+                <fieldset>
+                    <legend> ##word.login_information## </legend>
+
+                    <table class="table hover bold">
+                        <tr>
+                            <td class="title">##word.email##</td>
+                            <td class="center">{{medical_insurance_company.username}}</td>
+                        </tr>
+                        <tr>
+                            <td class="title">##word.password##</td>
+                            <td class="center">{{medical_insurance_company.password}}</td>
+                        </tr>
+                    </table>
+                </fieldset>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div x-import="medical-insurance-companies/action_info.html"></div>

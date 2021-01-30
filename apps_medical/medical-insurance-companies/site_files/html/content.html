@@ -1,0 +1,272 @@
+<div class="form">
+    <div class="tabs">
+        <div class="tabs-header">
+            <a class="tab-link" onclick="site.showTabContent(event,'#basicInformation')">
+                ##word.basic_information##
+            </a>
+
+            <a class="tab-link" onclick="site.showTabContent(event,'#slidesInformation')">
+                ##word.medical_insurance_companies_insurance_slides##
+
+            </a>
+            <a class="tab-link" onclick="site.showTabContent(event,'#blackListInformation')">
+                ##word.medical_insurance_companies_blacklist##
+
+            </a>
+            <a class="tab-link" onclick="site.showTabContent(event,'#needApprovedInformation')">
+                ##word.medical_insurance_companies_need_approved##
+
+            </a>
+            <a class="tab-link" onclick="site.showTabContent(event,'#filesInformation')">
+                ##word.files##
+            </a>
+
+            <a class="tab-link" onclick="site.showTabContent(event,'#loginInformation')">
+                ##word.login_information##
+            </a>
+
+        </div>
+
+        <div class="tabs-content">
+            <div id="basicInformation" class="tab-content">
+                <fieldset>
+                    <legend> ##word.basic_information## </legend>
+                    <div class="row">
+                        <div class="col9">
+                            <div class="row">
+                                <i-control ng-disabled="disabledCode" class="col2" label="##word.code##" ng-model="medical_insurance_company.code">
+                                </i-control>
+
+                                <i-control help-id="" v="r" class="col8" label="##word.name##" ng-model="medical_insurance_company.name"></i-control>
+                                <i-checkbox help-id="" class="col2" label="##word.active##" ng-model="medical_insurance_company.active"></i-checkbox>
+                            </div>
+
+                            <fieldset>
+                                <legend>##word.addresses##</legend>
+                                <div class="row">
+                                    <i-list class="col3" label="##word.gov##" ng-model="medical_insurance_company.gov"
+                                        items="govList" ng-change="getCityList(medical_insurance_company.gov)"
+                                        ng-search="_search.$gov_name"></i-list>
+
+                                    <i-list class="col3" label="##word.city##" ng-model="medical_insurance_company.city"
+                                        items="cityList" ng-search="_search.$city_name"></i-list>
+
+                                    <i-control help-id="" class="col6" label="##word.address##" ng-model="medical_insurance_company.address"></i-control>
+
+                                </div>
+                            </fieldset>
+
+
+                            <fieldset>
+                                <legend>
+                                    ##word.contact_information##
+                                </legend>
+                                <div class="row">
+                                    <i-control help-id="" class="col3" label="##word.hotline##" ng-model="medical_insurance_company.hotline"></i-control>
+                                    <i-control help-id="" class="col3" label="##word.phone##" ng-model="medical_insurance_company.phone"></i-control>
+                                    <i-control help-id="" class="col3" label="##word.mobile##" ng-model="medical_insurance_company.mobile"></i-control>
+                                    <i-control help-id="" class="col3" label="##word.fax##" ng-model="medical_insurance_company.fax"></i-control>
+                                </div>
+                            </fieldset>
+
+
+                            <fieldset>
+                                <legend>
+                                    ##word.social_information##
+                                </legend>
+                                <div class="row">
+
+                                    <i-control help-id="" class="col6" label="##word.medical_insurance_companies_facebook##"
+                                        ng-model="medical_insurance_company.facebook"></i-control>
+                                    <i-control help-id="" class="col6" label="##word.medical_insurance_companies_twitter##"
+                                        ng-model="medical_insurance_company.twitter"></i-control>
+                                </div>
+                                <div class="row">
+                                    <i-control help-id="" class="col6" label="##word.email##" ng-model="medical_insurance_company.email"></i-control>
+                                    <i-control help-id="" class="col6" label="##word.website##" ng-model="medical_insurance_company.website"></i-control>
+                                </div>
+                                <div class="row">
+                                    <i-textarea label="##word.notes##" ng-model="medical_insurance_company.notes"></i-textarea>
+
+                                </div>
+                            </fieldset>
+
+                        </div>
+
+                        <div class="col3">
+                            <i-image help-id="" collection="medical_insurance_companies" ng-model="medical_insurance_company.image_url"></i-image>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+
+            <div id="slidesInformation" class="tab-content">
+
+                <fieldset ng-repeat="slide in medical_insurance_company.insurance_slides_list">
+                    <legend>
+                        <i-button type="add default" ng-click="medical_insurance_company.insurance_slides_list.push({})"></i-button>
+                        ##word.slide_information##
+                        <i-button type="delete default" ng-click="medical_insurance_company.insurance_slides_list.length ==1 || medical_insurance_company.insurance_slides_list.splice($index,1)"></i-button>
+                    </legend>
+
+                    <div class="row">
+                        <i-control help-id="" class="col4" label="##word.name##" ng-model="slide.name"></i-control>
+
+                        <i-control help-id="" class="col2" type="number" label="##word.medical_insurance_companies_slide_value##"
+                            ng-model="slide.value"></i-control>
+
+                        <i-control help-id="" class="col2" type="number" label="##word.medical_insurance_companies_customer_will_pay##"
+                            ng-model="slide.customer_will_pay"></i-control>
+
+                        <i-checkbox help-id="" class="col2" label="##word.medical_insurance_companies_per_year##"
+                        ng-model="slide.per_year"></i-checkbox>
+                        
+                        <i-checkbox help-id="" class="col2" label="##word.medical_insurance_companies_need_approved##"
+                        ng-model="slide.need_approve"></i-checkbox>
+
+                    </div>
+
+                </fieldset>
+            </div>
+
+            <div id="blackListInformation" class="tab-content">
+                <fieldset>
+                    <legend> ##word.medical_insurance_companies_blacklist## </legend>
+                        <fieldset>
+                            <legend>
+                                <i-button type="add default" ng-click="medical_insurance_company.black_analyse_list.push({})"></i-button>
+                                ##word.analyses##
+                            </legend>
+
+                            <div class="row" ng-repeat="black_analyse in medical_insurance_company.black_analyse_list">
+                                <i-list help-id="" class="col4" ng-model="black_analyse.analyse" items="analysList" display="name"
+                                    ng-search="_search.$black_analyses"></i-list>
+                                <i-button type="delete default" ng-click="medical_insurance_company.black_analyse_list.length ==1 || medical_insurance_company.black_analyse_list.splice($index,1)"></i-button>
+                            </div>
+
+                        </fieldset>
+                        <fieldset>
+                            <legend>
+                                <i-button type="add default" ng-click="medical_insurance_company.black_scan_list.push({})"></i-button>
+                                ##word.scans##
+                            </legend>
+
+                            <div class="row" ng-repeat="black_scan in medical_insurance_company.black_scan_list">
+                                <i-list help-id="" class="col4" ng-model="black_scan.scan" items="scansList" display="name"
+                                    ng-search="_search.$black_scans"></i-list>
+                                <i-button type="delete default" ng-click="medical_insurance_company.black_scan_list.length ==1 || medical_insurance_company.black_scan_list.splice($index,1)"></i-button>
+                            </div>
+
+                        </fieldset>
+
+                        <fieldset>
+                            <legend>
+                                <i-button type="add default" ng-click="medical_insurance_company.black_drug_list.push({})"></i-button>
+                                ##word.drugs##
+                            </legend>
+
+                            <div class="row" ng-repeat="black_drug in medical_insurance_company.black_drug_list">
+                                <i-list help-id="" class="col4" ng-model="black_drug.drug" items="drugsList"
+                                    display="name" ng-search="_search.$black_drugs"></i-list>
+                                <i-button type="delete default" ng-click="medical_insurance_company.black_drug_list.length ==1 || medical_insurance_company.black_drug_list.splice($index,1)"></i-button>
+                            </div>
+
+                        </fieldset>
+
+                        <fieldset>
+                            <legend>
+                                <i-button type="add default" ng-click="medical_insurance_company.black_operation_list.push({})"></i-button>
+                                ##word.operation##
+                            </legend>
+
+                            <div class="row" ng-repeat="black_operation in medical_insurance_company.black_operation_list">
+                                <i-list help-id="" class="col4" ng-model="black_operation.operation"
+                                    items="operationList" display="name" ng-search="_search.$black_operations"></i-list>
+                                <i-button type="delete default" ng-click="medical_insurance_company.black_operation_list.length ==1 || medical_insurance_company.black_operation_list.splice($index,1)"></i-button>
+                            </div>
+
+                        </fieldset>
+                </fieldset>
+            </div>
+
+            <div id="needApprovedInformation" class="tab-content">
+                <fieldset>
+                    <legend> ##word.medical_insurance_companies_need_approved## </legend>
+                    <fieldset>
+                        <legend>
+                            <i-button type="add default" ng-click="medical_insurance_company.approve_analyse_list.push({})"></i-button>
+                            ##word.analyses##
+                        </legend>
+
+                        <div class="row" ng-repeat="approve_analyse in medical_insurance_company.approve_analyse_list">
+                            <i-list help-id="" class="col4" ng-model="approve_analyse.analyse" items="analysList"
+                                display="name" ng-search="_search.$approve_analyses"></i-list>
+                            <i-button type="delete default" ng-click="medical_insurance_company.approve_analyse_list.length ==1 || medical_insurance_company.approve_analyse_list.splice($index,1)"></i-button>
+                        </div>
+
+                    </fieldset>
+                    <fieldset>
+                        <legend>
+                            <i-button type="add default" ng-click="medical_insurance_company.approve_scan_list.push({})"></i-button>
+                            ##word.scans##
+                        </legend>
+
+                        <div class="row" ng-repeat="approve_scan in medical_insurance_company.approve_scan_list">
+                            <i-list help-id="" class="col4" ng-model="approve_scan.scan" items="scansList" display="name"
+                                ng-search="_search.$approve_scans"></i-list>
+                            <i-button type="delete default" ng-click="medical_insurance_company.approve_scan_list.length ==1 || medical_insurance_company.approve_scan_list.splice($index,1)"></i-button>
+                        </div>
+
+                    </fieldset>
+                    <fieldset>
+                        <legend>
+                            <i-button type="add default" ng-click="medical_insurance_company.approve_drug_list.push({})"></i-button>
+                            ##word.drugs##
+                        </legend>
+
+                        <div class="row" ng-repeat="approve_drug in medical_insurance_company.approve_drug_list">
+                            <i-list help-id="" class="col4" ng-model="approve_drug.drug" items="drugsList"
+                                display="name" ng-search="_search.$approve_drugs"></i-list>
+                            <i-button type="delete default" ng-click="medical_insurance_company.approve_drug_list.length ==1 || medical_insurance_company.approve_drug_list.splice($index,1)"></i-button>
+                        </div>
+
+                    </fieldset>
+                    <fieldset>
+                        <legend>
+                            <i-button type="add default" ng-click="medical_insurance_company.approve_operation_list.push({})"></i-button>
+                            ##word.operation##
+                        </legend>
+
+                        <div class="row" ng-repeat="approve_operation in medical_insurance_company.approve_operation_list">
+                            <i-list help-id="" class="col4" ng-model="approve_operation.operation"
+                                items="operationList" display="name" ng-search="_search.$approve_operations"></i-list>
+                            <i-button type="delete default" ng-click="medical_insurance_company.approve_operation_list.length ==1 || medical_insurance_company.approve_operation_list.splice($index,1)"></i-button>
+                        </div>
+
+                    </fieldset>
+                </fieldset>
+            </div>
+
+            <div id="filesInformation" class="tab-content">
+                <fieldset>
+                    <legend> ##word.files## </legend>
+                    <i-files label="##word.files##" categoty="pathients" ng-model="medical_insurance_company.files"></i-files>
+                </fieldset>
+            </div>
+
+            <div id="loginInformation" class="tab-content">
+                <fieldset>
+                    <legend> ##word.login_information## </legend>
+                    <i-control help-id="" class="col4" label="##word.email##" ng-model="medical_insurance_company.username"></i-control>
+
+                    <i-control help-id="" class="col4" label="##word.password##" ng-model="medical_insurance_company.password"></i-control>
+
+                </fieldset>
+            </div>
+
+
+        </div>
+
+    </div>
+
+</div>

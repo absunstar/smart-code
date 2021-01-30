@@ -1,0 +1,7 @@
+[{
+    "module_name" : "general" ,
+    "name": "scan_centers_admin",
+    "en": "Scan Centers Admin",
+    "ar": "إدارة مراكز الإشاعات",
+    "permissions": ["scan_centers_manage"]
+}]

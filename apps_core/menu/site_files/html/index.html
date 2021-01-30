@@ -192,16 +192,30 @@
                 <span> ##word.service_management##</span>
             </a>
 
-            <a x-features="medical" class="tab-link" href="/medical_specialties"
-                x-permissions="specialties_ui || specialties_manage">
-                <img src="/images/medical_specialty.png">
-                <span> ##word.medical_specialties##</span>
-            </a>
+            <div x-features="medical">
 
-            <a x-features="medical" class="tab-link" href="/operation" x-permissions="operation_ui || operation_manage">
-                <img src="/images/operation.png">
-                <span> ##word.operation##</span>
-            </a>
+                <a class="tab-link" href="/scans" x-permissions="scans_ui || scans_manage">
+                    <img src="/images/scans.png">
+                    <span> ##word.scans##</span>
+                </a>
+
+                <a class="tab-link" href="/analyses" x-permissions="analyses_ui || analyses_manage">
+                    <img src="/images/analyses.png">
+                    <span> ##word.analyses##</span>
+                </a>
+
+                <a class="tab-link" href="/medical_specialties" x-permissions="specialties_ui || specialties_manage">
+                    <img src="/images/medical_specialty.png">
+                    <span> ##word.medical_specialties##</span>
+                </a>
+
+                <a class="tab-link" href="/operation" x-permissions="operation_ui || operation_manage">
+                    <img src="/images/operation.png">
+                    <span> ##word.operation##</span>
+                </a>
+
+            </div>
+
 
             <a x-features="academy || gym || school || medical" class="tab-link" href="/medicine"
                 x-permissions="medicine_ui || medicine_manage">
@@ -998,6 +1012,23 @@
                     <span> ##word.tickets_book## </span>
                 </a>
 
+                <a class="tab-link" href="/analyses_centers"
+                    x-permissions="analyses_centers_ui || analyses_centers_manage">
+                    <img src="/images/analyses_center.png">
+                    <span> ##word.analyses_centers##</span>
+                </a>
+
+                <a class="tab-link" href="/scan_centers" x-permissions="scan_centers_ui || scan_centers_manage">
+                    <img src="/images/scan_center.png">
+                    <span> ##word.scan_centers##</span>
+                </a>
+
+                <a class="tab-link" href="/medical_insurance_companies"
+                    x-permissions="insurance_companies_ui || insurance_companies_manage">
+                    <img src="/images/insurance.png">
+                    <span> ##word.medical_insurance_companies##</span>
+                </a>
+
                 <a class="tab-link" href="/medical_specialties" x-permissions="specialties_ui || specialties_manage">
                     <img src="/images/medical_specialty.png">
                     <span> ##word.medical_specialties##</span>
@@ -1007,6 +1038,17 @@
                     <img src="/images/operation.png">
                     <span> ##word.operation##</span>
                 </a>
+
+                <a class="tab-link" href="/scans" x-permissions="scans_ui || scans_manage">
+                    <img src="/images/scans.png">
+                    <span> ##word.scans##</span>
+                </a>
+
+                <a class="tab-link" href="/analyses" x-permissions="analyses_ui || analyses_manage">
+                    <img src="/images/analyses.png">
+                    <span> ##word.analyses##</span>
+                </a>
+
             </div>
 
             <div class="" x-features="lawyer">
@@ -1098,7 +1140,7 @@
 
 
             <div class="" x-features="school">
-                
+
                 <a class="tab-link" href="/customers" x-permissions="customers_ui || customers_manage">
                     <img src="/images/student.png">
                     <span> ##word.customers## </span>

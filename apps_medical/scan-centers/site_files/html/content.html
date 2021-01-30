@@ -1,0 +1,140 @@
+<div class="form">
+
+    <div class="tabs">
+        <div class="tabs-header">
+            <a class="tab-link" onclick="site.showTabContent(event,'#basicInformation')">
+                ##word.basic_information##
+            </a>
+
+            <a class="tab-link" onclick="site.showTabContent(event,'#scanNamesInformation')">
+                ##word.scan_names##
+            </a>
+
+            <a class="tab-link" onclick="site.showTabContent(event,'#filesInformation')">
+                ##word.files##
+            </a>
+
+            <a class="tab-link" onclick="site.showTabContent(event,'#loginInformation')">
+                ##word.login_information##
+            </a>
+        </div>
+
+        <div class="tabs-content">
+            <div id="basicInformation" class="tab-content">
+                <fieldset>
+                    <legend> ##word.basic_information## </legend>
+                    <div class="row">
+                        <div class="col9">
+                            <div class="row">
+                                <i-control ng-disabled="disabledCode" class="col2" label="##word.code##" ng-model="scan_center.code">
+                                </i-control>
+                                <i-control help-id="" v="r" class="col6" label="##word.name##" ng-model="scan_center.name"></i-control>
+                                <div class="col2"></div>
+                                <i-checkbox help-id="cities_active" class="col2" label="##word.active##" ng-model="scan_center.active"></i-checkbox>
+                            </div>
+
+                            <fieldset>
+                                <legend>##word.addresses##</legend>
+                                <div class="row">
+                                    <i-list class="col4" label="##word.gov##"  ng-model="scan_center.gov" items="govList"
+                                        ng-change="getCityList(scan_center.gov)" display="name" ng-search="_search.$gov_search"></i-list>
+
+                                    <i-list class="col4" label="##word.city##"  ng-model="scan_center.city" items="cityList"
+                                        display="name" ng-search="_search.$city_search"></i-list>
+
+                                    <i-control help-id="" class="col4" label="##word.address##" ng-model="scan_center.address"></i-control>
+
+                                </div>
+                            </fieldset>
+
+                            <fieldset>
+                                <legend>
+                                    ##word.contact_information##
+                                </legend>
+                                <div class="row">
+                                    <i-control help-id="" class="col3" label="##word.hotline##" ng-model="scan_center.hotline"></i-control>
+
+                                    <i-control help-id="" class="col3" label="##word.phone##" ng-model="scan_center.phone"></i-control>
+
+                                    <i-control help-id=""  class="col3" label="##word.mobile##" ng-model="scan_center.mobile"></i-control>
+
+                                    <i-control help-id="" class="col3" label="##word.fax##" ng-model="scan_center.fax"></i-control>
+
+                                </div>
+                            </fieldset>
+
+
+                            <fieldset>
+                                <legend>
+                                    ##word.social_information##
+                                </legend>
+                                <div class="row">
+                                    <i-control help-id="" class="col4" label="##word.whatsapp##" ng-model="scan_center.whatsapp"></i-control>
+
+                                    <i-control help-id="" class="col4" label="##word.website##" ng-model="scan_center.website"></i-control>
+
+                                    <i-control help-id="" class="col4" label="##word.email##" ng-model="scan_center.email"></i-control>
+
+                                </div>
+
+                                <div class="row">
+
+                                    <i-textarea class="col" label="##word.notes##" ng-model="scan_center.notes"></i-textarea>
+                                </div>
+
+                            </fieldset>
+
+                        </div>
+
+                        <div class="col3">
+                            <i-image help-id="scan_center_logo" ng-model="scan_center.image_url"></i-image>
+                        </div>
+                    </div>
+                </fieldset>
+
+            </div>
+
+            <div id="scanNamesInformation" class="tab-content">
+                <fieldset>
+                    <legend>
+                        <i-button type="add default" ng-click="scan_center.scan_list.push({active:true})"></i-button>
+                        ##word.scan_names##
+                    </legend>
+                    <div class="row" ng-repeat="info in scan_center.scan_list">
+
+                        <i-list help-id=""  class="col4" label="##word.name##" ng-search="_search.$scans" ng-model="info.scan" items="scansList"
+                            display="name"></i-list>
+
+                        <i-checkbox help-id="cities_active" class="col2" label="##word.active##" ng-model="info.active"></i-checkbox>
+
+                        <i-button type="delete default" ng-click="scan_center.scan_list.length ===1 || scan_center.scan_list.splice($index,1)"></i-button>
+
+                    </div>
+
+                </fieldset>
+            </div>
+
+            <div id="filesInformation" class="tab-content">
+                <fieldset>
+                    <legend> ##word.scan_names## </legend>
+                    <i-files label="##word.files##" categoty="pathients" ng-model="scan_center.files"></i-files>
+                </fieldset>
+            </div>
+
+
+
+            <div id="loginInformation" class="tab-content">
+                <fieldset>
+                    <legend> ##word.login_information## </legend>
+
+                    <i-control help-id=""  class="col4" label="##word.email##" ng-model="scan_center.username"></i-control>
+
+                    <i-control help-id=""  class="col4" label="##word.password##" ng-model="scan_center.password"></i-control>
+
+                </fieldset>
+            </div>
+
+        </div>
+    </div>
+
+</div>

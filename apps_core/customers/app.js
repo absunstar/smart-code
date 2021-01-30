@@ -94,34 +94,16 @@ module.exports = function init(site) {
   })
 
 
-  site.on('[company][created]', doc => {
+  site.on('[register][customer][add]', doc => {
 
-    let name_ar = "عميل إفتراضي"
-    let name_en = "Default Customer"
-
-    if (site.feature('gym')) {
-
-      name_ar = "مشترك إفتراضي"
-      name_en = "Default Subscriber"
-
-    } else if (site.feature('school')) {
-      name_ar = "تلميذ إفتراضي"
-      name_en = "Default Student"
-
-    }  else if (site.feature('medical')) {
-      name_ar = "مريض إفتراضي"
-      name_en = "Default Patient"
-
-    }
-
-    $customers.add({
+    let customer = {
       group: {
         id: doc.id,
         name: doc.name
       },
       code: "1-Test",
-      name_ar: name_ar,
-      name_en: name_en,
+      name_ar: "عميل إفتراضي",
+      name_en: "Default Customer",
       branch_list: [
         {
           charge: [{}]
@@ -139,15 +121,40 @@ module.exports = function init(site) {
       accounts_debt: [{}],
       image_url: '/images/customer.png',
       company: {
-        id: doc.id,
-        name_ar: doc.name_ar
+        id: doc.company.id,
+        name_ar: doc.company.name_ar
       },
       branch: {
-        code: doc.branch_list[0].code,
-        name_ar: doc.branch_list[0].name_ar
+        code: doc.branch.code,
+        name_ar: doc.branch.name_ar
       },
       active: true
-    }, (err, doc1) => { })
+    }
+
+    if (site.feature('gym') || site.feature('school') || site.feature('medical') || site.feature('academy')) {
+      customer.allergic_food_list = [{}];
+      customer.allergic_drink_list = [{}];
+      customer.medicine_list = [{}];
+      customer.disease_list = [{}];
+    }
+
+    if (site.feature('gym')) {
+      customer.name_ar = "مشترك إفتراضي"
+      customer.name_en = "Default Subscriber"
+
+    } else if (site.feature('school') || site.feature('academy')) {
+      customer.name_ar = "طالب إفتراضي"
+      customer.name_en = "Default Student"
+      customer.image_url = '/images/student.png'
+
+    } else if (site.feature('medical')) {
+      customer.name_ar = "مريض إفتراضي"
+      customer.name_en = "Default Patient"
+      customer.image_url = '/images/patients.png'
+
+    }
+
+    $customers.add(customer, (err, doc1) => { })
   })
 
   site.post("/api/customers/add", (req, res) => {
@@ -202,7 +209,7 @@ module.exports = function init(site) {
         ar: "معلومات المشتركين للمستخدم",
         permissions: ["report_info_ui"]
       })
-    } 
+    }
     if (site.feature('school')) {
       user.school_grade = customers_doc.school_grade
 
@@ -219,10 +226,10 @@ module.exports = function init(site) {
     }
 
     user.permissions = []
-    
+
     if (user.gender && user.gender.name == 'female') {
 
-    user.permissions.push({name:'female'})
+      user.permissions.push({ name: 'female' })
     }
 
 
@@ -386,10 +393,10 @@ module.exports = function init(site) {
     }
 
     user.permissions = []
-    
+
     if (user.gender && user.gender.name == 'female') {
 
-    user.permissions.push({name:'female'})
+      user.permissions.push({ name: 'female' })
     }
 
 

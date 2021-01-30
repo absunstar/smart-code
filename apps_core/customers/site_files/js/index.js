@@ -9,10 +9,7 @@ app.controller("customers", function ($scope, $http, $timeout) {
     $scope.customer = {
       image_url: '/images/customer.png',
       active: true,
-      allergic_food_list: [{}],
-      allergic_drink_list: [{}],
-      medicine_list: [{}],
-      disease_list: [{}],
+
       balance: 0,
       branch_list: [{
         charge: [{}]
@@ -24,12 +21,20 @@ app.controller("customers", function ($scope, $http, $timeout) {
     };
 
     if (site.feature('medical')) {
-      image_url = '/images/patients.png'
+      $scope.customer.image_url = '/images/patients.png';
+      $scope.customer.allergic_food_list = [{}];
+      $scope.customer.allergic_drink_list = [{}];
+      $scope.customer.medicine_list = [{}];
+      $scope.customer.disease_list = [{}];
 
     } else if (site.feature('school') || site.feature('academy')) {
-      image_url = '/images/student.png'
+      $scope.customer.image_url = '/images/student.png';
+      $scope.customer.allergic_food_list = [{}];
+      $scope.customer.allergic_drink_list = [{}];
+      $scope.customer.medicine_list = [{}];
+      $scope.customer.disease_list = [{}];
 
-    } 
+    }
 
     site.showModal('#customerAddModal');
     document.querySelector('#customerAddModal .tab-link').click();

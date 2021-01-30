@@ -151,6 +151,11 @@
             "specialties_manage",
             "nursing_manage",
             "operation_manage",
+            "analyses_manage",
+            "analyses_centers_manage",
+            "insurance_companies_manage",
+            "scan_centers_manage",
+            "scans_manage",
             "tickets_manage"
         ]
     }

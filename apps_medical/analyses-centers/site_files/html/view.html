@@ -1,0 +1,198 @@
+<div ng-hide="busy" class="row">
+    <div class="tabs col">
+        <div class="tabs-header full">
+            <a class="tab-link" onclick="site.showTabContent(event,'#basicInformation')">
+                ##word.basic_information##
+            </a>
+
+            <a class="tab-link" onclick="site.showTabContent(event,'#analysesNamesInformation')">
+                ##word.analyses_names##
+            </a>
+
+            <a class="tab-link" onclick="site.showTabContent(event,'#loginInformation')">
+                ##word.login_information##
+            </a>
+        </div>
+        <div id="analysesAllInfo" class="tabs-content bold full">
+
+            <div id="basicInformation" class="tab-content">
+                <fieldset>
+                    <legend> ##word.basic_information##</legend>
+                    <div class="col9">
+                        <div>
+                            <table id="basicInformationTable" class="table hover bold">
+                               
+                                <tr>
+                                    <td class="title">##word.code##</td>
+                                    <td class="center userPrint blue">{{analyses_center.code}}</td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title">##word.name##</td>
+                                    <td class="center">{{analyses_center.name}}</td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title">##word.status##</td>
+                                    <td ng-show="analyses_center.active == true" class="green center"> ##word.active##
+                                    </td>
+                                    <td ng-show="analyses_center.active == false" class="red center">
+                                        ##word.not_active##
+                                    </td>
+                                </tr>
+
+                            </table>
+                        </div>
+
+                        <br>
+                        <hr>
+                        <br>
+                        <div>
+                            <fieldset>
+                                <legend>##word.address_connect##</legend>
+                                <table id="informationTable" class="table hover bold">
+
+                                    <tr>
+                                        <td class="title">##word.gov##</td>
+                                        <td class="center">{{analyses_center.gov.name}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="title">##word.city##</td>
+                                        <td class="center">{{analyses_center.city.name}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="title">##word.address##</td>
+                                        <td class="center">{{analyses_center.address}}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="title">##word.hotline##</td>
+                                        <td class="center">
+                                            <a ng-show="analyses_center.hotline" href="tel:{{analyses_center.hotline}}">
+                                                {{analyses_center.hotline}}
+                                                <i class="fa fa-fire" aria-hidden="true"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="title">##word.phone##</td>
+                                        <td class="center">
+                                            <a ng-show="analyses_center.phone" href="tel:{{analyses_center.phone}}">
+                                                {{analyses_center.phone}}
+                                                <i class="fa fa-phone" aria-hidden="true"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="title">##word.mobile##</td>
+                                        <td class="center">
+                                            <a ng-show="analyses_center.mobile" href="tel:{{analyses_center.mobile}}">
+                                                {{analyses_center.mobile}}
+                                                <i class="fa fa-mobile" aria-hidden="true"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="title">##word.fax##</td>
+                                        <td class="center">
+                                            <a ng-show="analyses_center.fax" href="tel:{{analyses_center.fax}}">
+                                                {{analyses_center.fax}}
+                                                <i class="fa fa-fax" aria-hidden="true"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="title">##word.whatsapp##</td>
+                                        <td class="center">
+                                            <a ng-show="analyses_center.whatsapp" href="tel:{{analyses_center.whatsapp}}">
+                                                {{analyses_center.whatsapp}}
+                                                <i class="fa fa-whatsapp" aria-hidden="true"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="title">##word.website##</td>
+                                        <td class="center">
+                                            <a ng-show="analyses_center.website" href="tel:{{analyses_center.website}}">
+                                                {{analyses_center.website}}
+                                                <i class="fa fa-globe" aria-hidden="true"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="title">##word.email##</td>
+                                        <td class="center">
+                                            <a ng-show="analyses_center.email" target="_blank" href="tel:{{analyses_center.email}}">
+                                                {{analyses_center.email}}
+                                                <i class="fa fa-envelope" aria-hidden="true"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="title">##word.notes##</td>
+                                        <td class="center blue">{{analyses_center.notes}}</td>
+                                    </tr>
+
+                                </table>
+
+                            </fieldset>
+
+                        </div>
+                        <br>
+                    </div>
+                    <div class="col3">
+                        <i-image view ng-model="analyses_center.image_url"></i-image>
+                        <i-files view ng-model="analyses_center.files"></i-files>
+
+                    </div>
+
+                </fieldset>
+            </div>
+
+            <div id="analysesNamesInformation" class="tab-content">
+
+                <fieldset>
+                    <legend>##word.analyses_names##</legend>
+                    <table class="table hover bold">
+
+                        <tr>
+                            <th>##word.name##</th>
+                            <th>##word.status##</th>
+                        </tr>
+                        <tr ng-repeat="analyses in analyses_center.analyses_list">
+                            <td class="center">{{analyses.analyses.name}}</td>
+                            <td ng-show="analyses.active == true" class="green center"> ##word.active## </td>
+                            <td ng-show="analyses.active == false" class="red center"> ##word.not_active## </td>
+                        </tr>
+
+                    </table>
+                </fieldset>
+            </div>
+            <div id="loginInformation" class="tab-content">
+
+                <fieldset>
+                    <legend> ##word.login_information## </legend>
+
+                    <table class="table hover bold">
+                        <tr>
+                            <td class="title">##word.email##</td>
+                            <td class="center">
+                                <a ng-show="analyses_center.email" target="_blank" href="tel:{{analyses_center.email}}">
+                                    {{analyses_center.username}}
+                                    <i class="fa fa-envelope" aria-hidden="true"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="title">##word.password##</td>
+                            <td class="center">{{analyses_center.password}}</td>
+                        </tr>
+                    </table>
+                </fieldset>
+            </div>
+        </div>
+    </div>
+</div>
+<div x-import="analyses-centers/action_info.html"></div>

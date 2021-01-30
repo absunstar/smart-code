@@ -30,9 +30,30 @@
     {
         "category": "main",
         "feature": "medical",
-        "name": "clinics",
-        "en": "Clinics",
-        "ar": "العيادات"
+        "name": "analyses_centers",
+        "en": "Analyses labS",
+        "ar": "معامل التحاليل"
+    },
+    {
+        "category": "main",
+        "feature": "medical",
+        "name": "scan_centers",
+        "en": "Scan Labs",
+        "ar": "معامل الأشعة"
+    },
+    {
+        "category": "main",
+        "feature": "medical",
+        "name": "medical_insurance_companies",
+        "en": "Medical Insurance Companies",
+        "ar": "شركات التأمين الطبي"
+    },
+    {
+        "category": "main",
+        "feature": "medical",
+        "name": "tickets_book",
+        "en": "Ticket Booking",
+        "ar": "حجز تذكرة"
     },
     {
         "category": "main",
@@ -488,6 +509,20 @@
         "name": "operations",
         "en": "Operations",
         "ar": "العمليات"
+    },
+    {
+        "category": "general_setting",
+        "feature": "medical",
+        "name": "analyses",
+        "en": "Analyses",
+        "ar": "التحاليل"
+    },
+    {
+        "category": "general_setting",
+        "feature": "medical",
+        "name": "scans",
+        "en": "Scans",
+        "ar": "الإشاعات"
     },
     {
         "category": "general_setting",
