@@ -1,5 +1,5 @@
 const site = require('isite')({
-    port: [80 , 40005],
+    port: [80 , 40010],
     lang: 'ar',
     version : '1.0.6',
     name: 'school',
