@@ -12,7 +12,7 @@
                         <i-date2 class="col4" ng-model="ticket.date" label="##word.booking_date##" v="r"></i-date2>
 
                         <i-list class="col3" label="##word.ticket_type##" ng-model="ticket.ticket_type"
-                        items="ticketTypeList" display="##session.lang##" ng-search="_search.$ticket_type_search"></i-list>
+                       ng-change="changeTicketPrice()" items="ticketTypeList" display="##session.lang##" ng-search="_search.$ticket_type_search"></i-list>
 
                         <div class="col1"></div>
                         <i-checkbox help-id="cities_active" class="col2" label="##word.active##"
@@ -201,6 +201,8 @@
                                     <th>##word.work_day##</th>
                                     <th>##word.work_from##</th>
                                     <th>##word.work_to##</th>
+                                    <th>##word.ticket_price##</th>
+
                                 </tr>
 
                                 <tr>
@@ -229,6 +231,10 @@
                                     <td>
                                         <p class="red">{{ticket.selected_time.to.minute}} :
                                             {{ticket.selected_time.to.hour}}</p>
+                                    </td>
+
+                                    <td>
+                                        <p class="green">{{ticket.ticket_price}}</p>
                                     </td>
 
                                 </tr>

@@ -552,6 +552,25 @@ app.controller("default_setting", function ($scope, $http) {
     )
   };
 
+  $scope.getTicketTypeList = function () {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/ticket_type/all",
+      data: {}
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.ticketTypeList = response.data;
+
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
   $scope.getClinicList = function (where) {
     $scope.busy = true;
 
@@ -702,6 +721,7 @@ app.controller("default_setting", function ($scope, $http) {
   if (site.feature('medical')) {
     $scope.getSpecialtyList();
     $scope.getClinicList();
+    $scope.getTicketTypeList();
   }
 
   if (site.feature('school')) {

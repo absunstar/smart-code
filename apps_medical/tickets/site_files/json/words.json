@@ -10,9 +10,19 @@
         "ar": "تذكرة جديدة"
     },
     {
+        "name": "ticket_price",
+        "en": "Ticket Price",
+        "ar": "سعر التذكرة"
+    },
+    {
         "name": "ticket_type",
         "en": "Ticket Type",
         "ar": "نوع التذكرة"
+    },
+    {
+        "name": "cannot_booked_holiday_clinic",
+        "en": "Tickets cannot be booked on holiday for the clinic",
+        "ar": "لا يمكن حجز التذكرة اليوم عطلة للعيادة"
     },
     {
         "name": "view_appointments",

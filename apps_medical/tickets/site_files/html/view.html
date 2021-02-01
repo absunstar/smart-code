@@ -181,6 +181,7 @@
                                 <th>##word.work_day##</th>
                                 <th>##word.work_from##</th>
                                 <th>##word.work_to##</th>
+                                <th>##word.ticket_price##</th>
 
                             </tr>
                             <tr>
@@ -193,6 +194,9 @@
                                     {{ticket.selected_time.from.hour}}</td>
                                 <td class="red"> {{ticket.selected_time.to.minute}} :
                                     {{ticket.selected_time.to.hour}}</td>
+                               <td>
+                                    <p class="green">{{ticket.ticket_price}}</p>
+                                </td>
 
                             </tr>
                         </table>
@@ -221,8 +225,8 @@
                         <i-button type="delete default"
                             ng-click="ticket.drugs_list.length ===1 || ticket.drugs_list.splice($index,1)"></i-button>
 
-                        <i-list class="col4" ng-model="info.drugs" items="drugsList"
-                            ng-search="_search.$drugses" display="name"></i-list>
+                        <i-list class="col4" ng-model="info.drugs" items="drugsList" ng-search="_search.$drugses"
+                            display="name"></i-list>
                     </div>
                 </fieldset>
 
@@ -238,8 +242,8 @@
                         <i-button type="delete default"
                             ng-click="ticket.scans_list.length ===1 || ticket.scans_list.splice($index,1)"></i-button>
 
-                        <i-list class="col4" ng-model="info.scans" items="scansList"
-                            ng-search="_search.$scanses" display="name"></i-list>
+                        <i-list class="col4" ng-model="info.scans" items="scansList" ng-search="_search.$scanses"
+                            display="name"></i-list>
                     </div>
                 </fieldset>
             </div>
@@ -255,8 +259,8 @@
                             ng-click="ticket.analyses_list.length ===1 || ticket.analyses_list.splice($index,1)">
                         </i-button>
 
-                        <i-list class="col4" ng-model="info.analyses" items="analysesList"
-                            ng-search="_search.$scanses" display="name"></i-list>
+                        <i-list class="col4" ng-model="info.analyses" items="analysesList" ng-search="_search.$scanses"
+                            display="name"></i-list>
                     </div>
                 </fieldset>
             </div>

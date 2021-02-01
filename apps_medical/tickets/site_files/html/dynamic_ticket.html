@@ -13,10 +13,7 @@
             <div class="form">
                 <div class="row">
 
-                    <i-list help-id="" v="r" class="col3" label="##word.hospital##" ng-model="dynamic_ticket.hospital"
-                        display="name" items="hospitalList" ng-search="_search.$hospital"
-                        ng-change="getClinicTicketList(dynamic_ticket.hospital)"></i-list>
-
+                 
                     <i-list help-id="" v="r" class="col3" label="##word.clinic##" ng-model="dynamic_ticket.clinic"
                         display="name" items="dynamic_ticket.$clinic_list" ng-search="_search.$clinic_ticket"
                         ng-change="getClincDoctorList(dynamic_ticket.clinic)"></i-list>

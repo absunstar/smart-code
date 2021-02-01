@@ -9,6 +9,11 @@ app.controller("clinics", function ($scope, $http, $timeout) {
     $scope.clinic = {
       image_url: '/images/clinic.png',
       active: true,
+      detection_price : {
+        detection: 0,
+        re_detection: 0,
+        consultation: 0,
+      },
       shift_list: [{
         name: '##word.basic##',
         times_list: [{}]

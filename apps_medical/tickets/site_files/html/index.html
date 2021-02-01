@@ -120,6 +120,10 @@
                                     class="col6 center" label="##word.at_the_doctor##" ng-show="c.status.id==4"
                                     ng-hide="c.status.id!=4" ng-click="atTheDoctor(c)"></i-button>
 
+                                <i-button x-permissions="tickets_delete || tickets_manage" type="delete"
+                                    ng-show="c.status.id==1" label="##word.delete##" ng-show=""
+                                    ng-click="displayDeleteTicket(c)"></i-button>
+
                             </td>
                         </tr>
                     </table>

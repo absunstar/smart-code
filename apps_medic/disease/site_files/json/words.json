@@ -1,12 +1,17 @@
 [{
+        "name": "diseases",
+        "en": "diseases",
+        "ar": "الأمراض"
+    },
+    {
         "name": "disease",
         "en": "disease",
-        "ar": "الأمراض"
+        "ar": "المرض"
     },
     {
         "name": "disease_new",
         "en": "New Disease",
-        "ar": "مرض  جديد"
+        "ar": "مرض جديد"
     },
 
     {

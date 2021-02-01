@@ -56,8 +56,17 @@
                             ng-search="_search.$specialty_search">
                         </i-list>
 
+
+                    </div>
+
+                    <div class="row">
+
                         <i-list class="col3" label="##word.clinic##" ng-model="default_setting.general_Settings.clinic"
                             items="clinicList" display="name" ng-search="_search.$clinic_search"></i-list>
+
+                        <i-list class="col3" label="##word.ticket_type##" ng-model="default_setting.general_Settings.ticket_type"
+                            items="ticketTypeList" display="##session.lang##" ng-search="_search.$ticket_type_search">
+                        </i-list>
 
 
                     </div>
