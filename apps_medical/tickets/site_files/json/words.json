@@ -15,6 +15,11 @@
         "ar": "سعر التذكرة"
     },
     {
+        "name": "doctor_notes",
+        "en": "Doctor Notes",
+        "ar": "ملاحظات الطبيب"
+    },
+    {
         "name": "ticket_type",
         "en": "Ticket Type",
         "ar": "نوع التذكرة"
@@ -165,7 +170,7 @@
         "ar": "اسم التذكرة"
     },
     {
-        "name": "drugs",
+        "name": "diseases",
         "en": "Drugs",
         "ar": "الأدوية"
     },

@@ -18,11 +18,11 @@ module.exports = function init(site) {
         insurance_slides_list: [{}],
         black_analyse_list: [{}],
         black_scan_list: [{}],
-        black_drug_list: [{}],
+        black_medicine_list: [{}],
         black_operation_list: [{}],
         approve_analyse_list: [{}],
         approve_scan_list: [{}],
-        approve_drug_list: [{}],
+        approve_medicine_list: [{}],
         approve_operation_list: [{}],
         company: {
           id: doc.id,

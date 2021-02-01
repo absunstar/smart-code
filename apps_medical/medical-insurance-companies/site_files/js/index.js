@@ -15,12 +15,12 @@ app.controller("medicalInsuranceCompanies", function ($scope, $http, $timeout) {
 
       black_analyse_list: [{}],
       black_scan_list: [{}],
-      black_drug_list: [{}],
+      black_medicine_list: [{}],
       black_operation_list: [{}],
 
       approve_analyse_list: [{}],
       approve_scan_list: [{}],
-      approve_drug_list: [{}],
+      approve_medicine_list: [{}],
       approve_operation_list: [{}]
     };
     site.showModal('#medicalInsuranceCompanyAddModal');
@@ -288,12 +288,12 @@ app.controller("medicalInsuranceCompanies", function ($scope, $http, $timeout) {
 
   };
 
-  $scope.getDrugsList = function (where) {
+  $scope.getMedicinesList = function (where) {
     $scope.busy = true;
-    $scope.drugsList = [];
+    $scope.medicinesList = [];
     $http({
       method: "POST",
-      url: "/api/drugs/all",
+      url: "/api/medicine/all",
       data: {
         where: {
           active: true
@@ -304,7 +304,7 @@ app.controller("medicalInsuranceCompanies", function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done && response.data.list.length > 0) {
-          $scope.drugsList = response.data.list;
+          $scope.medicinesList = response.data.list;
         }
       },
       function (err) {
@@ -406,7 +406,7 @@ app.controller("medicalInsuranceCompanies", function ($scope, $http, $timeout) {
   $scope.getGovList();
   $scope.getAnalysesList();
   $scope.getNumberingAuto();
-  $scope.getDrugsList();
+  $scope.getMedicinesList();
   $scope.getOperationList();
   $scope.getScansList();
 });

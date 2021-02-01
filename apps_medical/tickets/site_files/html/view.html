@@ -3,8 +3,8 @@
         <div class="tabs-header full">
             <a class="tab-link" onclick="site.showTabContent(event, '#basicInformation')">
                 ##word.basic_information## </a>
-            <a class="tab-link" onclick="site.showTabContent(event, '#drugsInformation')">
-                ##word.drugs## </a>
+            <a class="tab-link" onclick="site.showTabContent(event, '#medicinesInformation')">
+                ##word.medicines## </a>
             <a class="tab-link" onclick="site.showTabContent(event, '#scanInformation')">
                 ##word.scan## </a>
             <a class="tab-link" onclick="site.showTabContent(event, '#analysesInformation')">
@@ -194,7 +194,7 @@
                                     {{ticket.selected_time.from.hour}}</td>
                                 <td class="red"> {{ticket.selected_time.to.minute}} :
                                     {{ticket.selected_time.to.hour}}</td>
-                               <td>
+                                <td>
                                     <p class="green">{{ticket.ticket_price}}</p>
                                 </td>
 
@@ -215,19 +215,38 @@
 
             </div>
 
-            <div id="drugsInformation" class="tab-content">
+            <div id="medicinesInformation" class="tab-content">
                 <fieldset>
                     <legend>
-                        <i-button type="add default" ng-click="ticket.drugs_list.push({active:true})"></i-button>
-                        ##word.drugs##
+                        ##word.medicines##
                     </legend>
-                    <div class="row" ng-repeat="info in ticket.drugs_list">
-                        <i-button type="delete default"
-                            ng-click="ticket.drugs_list.length ===1 || ticket.drugs_list.splice($index,1)"></i-button>
 
-                        <i-list class="col4" ng-model="info.drugs" items="drugsList" ng-search="_search.$drugses"
-                            display="name"></i-list>
+                    <div class="row">
+                        <div class="col2"></div>
+
+                        <div class="col8">
+
+
+                            <table class="table hover center">
+                                <tr>
+                                    <th>##word.medicines##</th>
+
+                                </tr>
+
+                                <tr ng-repeat="info in ticket.medicines_list">
+
+                                    <td>
+                                        <h3 class="black bold ">{{info.medicines.name}}</h3>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div class="col2"></div>
+
                     </div>
+
+
                 </fieldset>
 
             </div>
@@ -235,60 +254,137 @@
             <div id="scanInformation" class="tab-content">
                 <fieldset>
                     <legend>
-                        <i-button type="add default" ng-click="ticket.scans_list.push({active:true})"></i-button>
                         ##word.scans##
                     </legend>
-                    <div class="row" ng-repeat="info in ticket.scans_list">
-                        <i-button type="delete default"
-                            ng-click="ticket.scans_list.length ===1 || ticket.scans_list.splice($index,1)"></i-button>
 
-                        <i-list class="col4" ng-model="info.scans" items="scansList" ng-search="_search.$scanses"
-                            display="name"></i-list>
+                    <div class="row">
+                        <div class="col2"></div>
+
+                        <div class="col8">
+
+
+                            <table class="table hover center">
+                                <tr>
+                                    <th>##word.scans##</th>
+
+                                </tr>
+
+                                <tr ng-repeat="info in ticket.scans_list">
+
+                                    <td>
+                                        <h3 class="black bold ">{{info.scans.name}}</h3>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div class="col2"></div>
+
                     </div>
+
+
                 </fieldset>
             </div>
 
             <div id="analysesInformation" class="tab-content">
                 <fieldset>
                     <legend>
-                        <i-button type="add default" ng-click="ticket.analyses_list.push({active:true})"></i-button>
                         ##word.analyses##
                     </legend>
-                    <div class="row" ng-repeat="info in ticket.analyses_list">
-                        <i-button type="delete default"
-                            ng-click="ticket.analyses_list.length ===1 || ticket.analyses_list.splice($index,1)">
-                        </i-button>
 
-                        <i-list class="col4" ng-model="info.analyses" items="analysesList" ng-search="_search.$scanses"
-                            display="name"></i-list>
+                    <div class="row">
+                        <div class="col2"></div>
+
+                        <div class="col8">
+
+
+                            <table class="table hover center">
+                                <tr>
+                                    <th>##word.analyses##</th>
+
+                                </tr>
+
+                                <tr ng-repeat="info in ticket.analyses_list">
+
+                                    <td>
+                                        <h3 class="black bold ">{{info.analyses.name}}</h3>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div class="col2"></div>
+
                     </div>
+
+
                 </fieldset>
             </div>
 
             <div id="operationInformation" class="tab-content">
                 <fieldset>
                     <legend>
-                        <i-button type="add default" ng-click="ticket.operation_list.push({active:true})"></i-button>
                         ##word.operation##
                     </legend>
-                    <div class="row" ng-repeat="info in ticket.operation_list">
-                        <i-button type="delete default"
-                            ng-click="ticket.operation_list.length ===1 || ticket.operation_list.splice($index,1)">
-                        </i-button>
 
-                        <i-list class="col4" ng-model="info.operation" items="operationList"
-                            ng-search="_search.$scanses" display="name"></i-list>
+                    <div class="row">
+                        <div class="col2"></div>
+
+                        <div class="col8">
+
+
+                            <table class="table hover center">
+                                <tr>
+                                    <th>##word.operation##</th>
+
+                                </tr>
+
+                                <tr ng-repeat="info in ticket.operation_list">
+
+                                    <td>
+                                        <h3 class="black bold ">{{info.operation.name}}</h3>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div class="col2"></div>
+
                     </div>
+
                 </fieldset>
             </div>
 
             <div id="diagnosisInformation" class="tab-content">
-                <div class="col5">
-                    <i-list label="##word.diagnosis##" ng-model="ticket.diagnosis" ng-search="_search.$diagnosis_search"
-                        items="diagnosisList" display="ar"></i-list>
-                    <i-textarea label="##word.notes##" ng-model="tecket.doctor_notes"></i-textarea>
+                <fieldset>
+
+                <div class="row">
+
+                    <br>
+                    <br>
+
+                    <div class="row">
+                        <h3 class="col3 blue bold">##word.diagnosis## : </h3>
+                        <h3 class="col3 bold black">{{ticket.diagnosis.##session.lang##}}</h3>
+                    </div>
+                    <br>
+                    <br>
+
+                    <div class="row">
+                        <h3 class="col3 blue bold">##word.doctor_notes## : </h3>
+                        <div class="col8">
+
+                            <fieldset class="center">
+                                <br>
+                                <h3 class="center bold black">{{ticket.doctor_notes}}</h3>
+                            </fieldset>
+                        </div>
+                    </div>
+                  
 
                 </div>
+            </fieldset>
+
             </div>
         </div>
     </div>

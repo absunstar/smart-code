@@ -18,7 +18,7 @@ app.controller("tickets", function ($scope, $http, $timeout) {
       active: true,
       date: new Date(),
       status: $scope.statusList[0],
-      drugs_list: [{
+      medicines_list: [{
         active: true
       }],
       scans_list: [{
@@ -104,7 +104,7 @@ app.controller("tickets", function ($scope, $http, $timeout) {
       image_url: '/images/ticket.png',
       active: true,
       status: $scope.statusList[4],
-      drugs_list: [{
+      medicines_list: [{
         active: true
       }],
       scans_list: [{
@@ -491,12 +491,12 @@ app.controller("tickets", function ($scope, $http, $timeout) {
 
   };
 
-  $scope.getDrugsList = function (where) {
+  $scope.getMedicinesList = function (where) {
     $scope.busy = true;
-    $scope.drugsList = [];
+    $scope.medicinesList = [];
     $http({
       method: "POST",
-      url: "/api/drugs/all",
+      url: "/api/medicine/all",
       data: {
         select: {
           id: 1,
@@ -507,7 +507,7 @@ app.controller("tickets", function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done && response.data.list.length > 0) {
-          $scope.drugsList = response.data.list;
+          $scope.medicinesList = response.data.list;
         }
       },
       function (err) {
@@ -1232,7 +1232,7 @@ app.controller("tickets", function ($scope, $http, $timeout) {
 
   $scope.getTicketList();
   $scope.getSpecialtyList();
-  $scope.getDrugsList();
+  $scope.getMedicinesList();
   $scope.getScansList();
   $scope.getAnalysesList();
   $scope.getOperationList();
