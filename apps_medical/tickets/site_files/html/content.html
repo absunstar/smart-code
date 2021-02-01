@@ -9,186 +9,175 @@
                         <i-control ng-disabled="disabledCode" class="col2" label="##word.code##" ng-model="ticket.code">
                         </i-control>
 
-                        <i-date2 class="col4" ng-model="ticket.date" label="##word.date##" v="r"></i-date2>
+                        <i-date2 class="col4" ng-model="ticket.date" label="##word.booking_date##" v="r"></i-date2>
+
+                        <i-list class="col3" label="##word.ticket_type##" ng-model="ticket.ticket_type"
+                        items="ticketTypeList" display="##session.lang##" ng-search="_search.$ticket_type_search"></i-list>
+
+                        <div class="col1"></div>
+                        <i-checkbox help-id="cities_active" class="col2" label="##word.active##"
+                            ng-model="ticket.active"></i-checkbox>
                     </div>
 
                     <div class="row">
                         <i-control class="col3" label="##word.patient_search##" ng-model="patient_search"
                             ng-keydown="getPatientList($event)"></i-control>
 
-                        <i-list class="col4" label="##word.patient##" v="r" ng-model="ticket.patient" display="name"
-                            items="patientList" ng-search="_search.$patients_searching"></i-list>
+                        <i-list class="col4" label="##word.patient##" v="r" ng-model="ticket.customer"
+                            display="name_##session.lang##" items="patientList" ng-search="_search.$patients_searching">
+                        </i-list>
 
-                        <i-button class="col2" ng-show="ticket.patient.id" type="details"
-                            label="##word.patients_details##" ng-click="showPatient(ticket.patient.id)"></i-button>
+                        <i-button class="col2" ng-show="ticket.customer.id" type="details"
+                            label="##word.customers_details##" ng-click="showPatient(ticket.customer.id)"></i-button>
                         <div class="col1"></div>
-                        <i-checkbox help-id="cities_active" class="col2" label="##word.active##"
-                            ng-model="ticket.active"></i-checkbox>
+                        <i-button type="add" label="##word.customers_new##" ng-click="displayAddCustomer()">
+                        </i-button>
+
 
                     </div>
 
                     <div class="col10">
-                        <table class="table hover center bold" ng-show="ticket.patient">
-                            <tr>
-                                <td class="title">##word.patient##</td>
-                                <td colspan="5"> {{ticket.patient.name}}</td>
-                            </tr>
+                        <div class="row" ng-show="ticket.customer.id">
+                            <fieldset>
 
-                            <tr>
-                                <td class="title">##word.blood_type##</td>
-                                <td class="blue "> {{ticket.patient.blood_type.name}}</td>
-                                <td class="title">##word.mobile##</td>
-                                <td colspan="3" class="blue "> {{ticket.patient.mobile}}</td>
-                            </tr>
+                                <table class="table bold center hover">
+                                    <tr>
+                                        <td class="blue"> ##word.customer_name## </td>
+                                        <td colspan="7" class="center"> {{ticket.customer.name_##session.lang##}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="blue"> ##word.gender## </td>
+                                        <td colspan="2" class="center"> {{ticket.customer.gender.##session.lang##}}
+                                        </td>
+                                        <td class="blue"> ##word.child## </td>
+                                        <td colspan="2" ng-show="ticket.customer.child == true">
+                                            <p class="green"> ##word.yes## </p>
+                                        </td>
+                                        <td colspan="2" ng-show="!ticket.customer.child">
+                                            <p class="red"> ##word.no## </p>
+                                        </td>
+                                        <td colspan="2"></td>
+                                    </tr>
 
-                            <tr>
-                                <td class="title">##word.indentfy##</td>
-                                <td class="blue "> {{ticket.patient.indentfy.ar}}</td>
-                                <td class="title">##word.age##</td>
-                                <td colspan="3" class="brown "> {{ticket.patient.age}}</td>
-                            </tr>
 
-                            <tr>
-                                <td class="title">##word.weight##</td>
-                                <td class=" blue"> {{ticket.patient.weight}} <p class="blue"
-                                        ng-show="ticket.patient.weight">##word.kg##</p>
-                                </td>
-                                <td class="title">##word.tall##</td>
-                                <td class=" blue"> {{ticket.patient.tall}} <p class="blue"
-                                        ng-show="ticket.patient.tall">##word.cm##</p>
-                                </td>
-                                <td class="title">##word.job##</td>
-                                <td class="blue "> {{ticket.patient.job}}</td>
-                            </tr>
+                                    <tr>
+                                        <td class="blue"> ##word.weight## </td>
+                                        <td colspan="2" class="center"> {{ticket.customer.weight}} </td>
+                                        <td class="blue"> ##word.tall## </td>
+                                        <td colspan="2" class="center"> {{ticket.customer.tall}} </td>
+                                        <td class="blue"> ##word.blood_type## </td>
+                                        <td colspan="2" class="center red"> {{ticket.customer.blood_type.name}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="blue"> ##word.medicine_notes## </td>
+                                        <td colspan="7" class="center"> {{ticket.customer.medicine_notes}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="blue"> ##word.gov## </td>
+                                        <td colspan="2" class="center"> {{ticket.customer.gov.name}} </td>
+                                        <td class="blue"> ##word.city## </td>
+                                        <td colspan="2" class="center"> {{ticket.customer.city.name}} </td>
+                                        <td class="blue"> ##word.area## </td>
+                                        <td colspan="2" class="center"> {{ticket.customer.area.name}} </td>
+                                    </tr>
 
-                        </table>
+                                    <tr>
+                                        <td class="blue"> ##word.address## </td>
+                                        <td colspan="7" class="center"> {{ticket.customer.address}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="blue"> ##word.mobile## </td>
+                                        <td colspan="4" class="center"> {{ticket.customer.mobile}}</td>
+                                        <td class="blue"> ##word.phone## </td>
+                                        <td colspan="3" class="center"> {{ticket.customer.phone}}</td>
+                                    </tr>
+
+                                </table>
+                            </fieldset>
+                        </div>
                     </div>
 
                     <br>
                     <br>
 
-                    <div class="row">
-                        <i-date2 class="col4" ng-model="ticket.date" label="##word.booking_date##"></i-date2>
-                    </div>
-
-                    <div class="row">
-                        <i-button class="col2" type="search" label="##word.hospital_search##"
-                            ng-click="hospital = 'true';address = 'false';spicialty = 'false';doctor='false';clinic='false'">
-                        </i-button>
-                        <i-button class="col2" type="search" label="##word.address_search##"
-                            ng-click="address = 'true';hospital = 'false';spicialty = 'false';doctor='false';clinic='false'">
-                        </i-button>
-                        <i-button class="col2" type="search" label="##word.spicialty_search##"
-                            ng-click="spicialty = 'true';address = 'false';hospital = 'false';doctor='false';clinic='false'">
-                        </i-button>
-                        <i-button class="col2" type="search" label="##word.doctor_search##"
-                            ng-click="doctor = 'true'; spicialty = 'false';address = 'false';hospital = 'false';clinic='false'">
-                        </i-button>
-                        <i-button class="col2" type="search" label="##word.clinic_search##"
-                            ng-click="clinic = 'true';doctor = 'false'; spicialty = 'false';address = 'false';hospital = 'false'">
-                        </i-button>
-                    </div>
-
-                    <div class="row">
-
-                        <i-list class="col4" label="##word.hospital##" ng-show="hospital == 'true'"
-                            ng-model="ticket.hospital" items="hospitalList" display="name"
-                            ng-search="_search.$specialty_search">
-                        </i-list>
-
-                        <i-button type="search" class="col2" label="##word.search##" ng-show="hospital == 'true'"
-                            ng-click="getClinicList({'hospital.id' : ticket.hospital.id } )"></i-button>
-
-                    </div>
-
-                    <div class="row">
-                        <i-list class="col3" label="##word.goves##" ng-show="address == 'true'" ng-model="ticket.gov"
-                            ng-change="getCityList(ticket.gov)" items="govList" display="name"
-                            ng-search="_search.$goves_search">
-                        </i-list>
-
-                        <i-list class="col3" label="##word.city##" ng-show="address == 'true'" ng-model="ticket.city"
-                            items="cityList" display="name" ng-search="_search.$city_search"></i-list>
-
-                        <i-control class="col4" label="##word.address##" ng-show="address == 'true'"
-                            ng-model="ticket.address"></i-control>
-
-                        <i-button type="search" class="col2" label="##word.search##" ng-show="address == 'true'"
-                            ng-click="getClinicList({'hospital.address' : ticket.address , 'hospital.gov.id' : ticket.gov.id , 'hospital.city.id' : ticket.city.id } )">
-                        </i-button>
-
-                    </div>
-
-                    <div class="row">
-
-                        <i-list class="col4" label="##word.specialty##" ng-show="spicialty == 'true'"
-                            ng-model="ticket.specialty" items="specialtyList" display="name"
-                            ng-search="_search.$specialty_search"></i-list>
-
-                        <i-button type="search" class="col2" label="##word.search##" ng-show="spicialty == 'true'"
-                            ng-click="getClinicList({'specialty.id' : ticket.specialty.id } )"></i-button>
-
-                    </div>
-
-                    <div class="row">
-
-                        <i-control class="col3" label="##word.doctor_search##" ng-show="doctor == 'true'"
-                            ng-model="doctor_search" ng-keydown="getDoctorList($event)"></i-control>
-
-                        <i-list class="col4" label="##word.doctors##" ng-show="doctor == 'true'"
-                            ng-model="ticket.doctor" items="doctorList" display="name"
-                            ng-search="_search.$doctors_searching">
-                        </i-list>
-
-                        <i-button type="search" class="col2" label="##word.search##" ng-show="doctor == 'true'"
-                            ng-click="getClinicList({'doctor_list.doctor.id' : ticket.doctor.id } )"></i-button>
-
-                    </div>
-
-                    <div class="row">
-                        <i-control class="col3" label="##word.clinics##" ng-show="clinic == 'true'"
-                            ng-model="clinic_search" ng-keydown="getClinicList($event)"></i-control>
-
-                        <i-button type="search" class="col2" label="##word.search##" ng-show="clinic == 'true'"
-                            ng-click="getClinicList({'name' : clinic_search})"></i-button>
-
-                    </div>
                     <br>
                     <br>
+                    <div class="row">
+                        <div class="col10">
+
+                            <fieldset>
+                                <legend>##word.clinics_search##</legend>
+
+                                <div class="row">
+
+                                    <i-list class="col4" label="##word.specialty##" ng-model="ticket.specialty"
+                                        items="specialtyList" display="name" ng-search="_search.$specialty_search">
+                                    </i-list>
+
+
+                                    <i-list class="col4" label="##word.clinic##" ng-model="ticket.clinic"
+                                        items="clinicList" display="name" ng-search="_search.$clinic_search"></i-list>
+
+                                </div>
+
+                                <div class="row">
+
+
+                                    <i-control class="col2" label="##word.doctor_search##" ng-model="doctor_search"
+                                        ng-keydown="getDoctorList($event)"></i-control>
+
+                                    <i-list class="col4" label="##word.doctors##" ng-model="ticket.doctor"
+                                        items="doctorList" display="name" ng-search="_search.$doctors_searching">
+                                    </i-list>
+
+                                    <div class="col3"></div>
+
+                                    <i-button type="search" class="col2" label="##word.search##"
+                                        ng-click="getClinicBookList(ticket)">
+                                    </i-button>
+
+                                </div>
+
+                            </fieldset>
+                        </div>
+
+                    </div>
+
 
                     <div class="row">
-                        <div class="col11" ng-show="clinicList.length > 0">
-                            <table class="table center">
+                        <div class="col11" ng-show="clinicBookList.length > 0">
+                            <table class="table hover center">
                                 <tr>
-                                    <th>##word.hospital##</th>
                                     <th>##word.clinics##</th>
                                     <th>##word.specialty##</th>
                                     <th>##word.doctor_name##</th>
                                 </tr>
 
-                                <tr ng-repeat="c in clinicList track by $index">
+                                <tr ng-repeat="c in clinicBookList track by $index">
 
                                     <td>
-                                        <i-control disabled ng-model="c.hospital.name"></i-control>
-                                    </td>
-                                    <td>
-                                        <i-control disabled ng-model="c.name"></i-control>
+                                        <br>
+                                        <h3 class="black bold ">{{c.name}}</h3>
                                     </td>
 
                                     <td>
-                                        <i-control disabled ng-model="c.specialty.name"></i-control>
+                                        <br>
+                                        <h3 class="black bold ">{{c.specialty.name}}</h3>
                                     </td>
 
                                     <td>
                                         <div class="row" ng-repeat="d in c.doctor_list">
                                             <div class="col6">
-                                                <i-control disabled ng-model="d.doctor.name"></i-control>
+                                                <h3 class="black bold ">{{d.doctor.name}}</h3>
                                             </div>
-
                                             <div class="col6">
-                                                <i-button type="add" label="##word.booking##"
+                                                <i-button type="view" label="##word.view_appointments##"
                                                     ng-click="showTimes(d , c)"></i-button>
                                             </div>
+                                            <hr>
+
                                         </div>
                                     </td>
 
@@ -203,28 +192,41 @@
 
                     <div class="row">
                         <div class="col11">
-                            <table class="table center bold" ng-show="ticket.selected_time.day">
+                            <table class="table center hover bold" ng-show="ticket.selected_time.day">
 
                                 <tr>
+                                    <th>##word.clinic##</th>
+                                    <th>##word.doctor##</th>
+                                    <th>##word.specialty##</th>
                                     <th>##word.work_day##</th>
                                     <th>##word.work_from##</th>
                                     <th>##word.work_to##</th>
                                 </tr>
 
                                 <tr>
+
                                     <td>
-                                        <br>
+                                        <p class="blue">{{ticket.selected_clinic.name}}</p>
+                                    </td>
+
+                                    <td>
+                                        <p class="blue">{{ticket.selected_doctor.name}}</p>
+                                    </td>
+
+                                    <td>
+                                        <p class="blue">{{ticket.selected_specialty.name}}</p>
+                                    </td>
+
+                                    <td>
                                         <p class="blue">{{ticket.selected_time.day.ar}}</p>
                                     </td>
 
                                     <td>
-                                        <br>
                                         <p class="green">{{ticket.selected_time.from.minute}} :
                                             {{ticket.selected_time.from.hour}}</p>
                                     </td>
 
                                     <td>
-                                        <br>
                                         <p class="red">{{ticket.selected_time.to.minute}} :
                                             {{ticket.selected_time.to.hour}}</p>
                                     </td>

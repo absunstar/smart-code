@@ -10,6 +10,16 @@
         "ar": "تذكرة جديدة"
     },
     {
+        "name": "ticket_type",
+        "en": "Ticket Type",
+        "ar": "نوع التذكرة"
+    },
+    {
+        "name": "view_appointments",
+        "en": "View appointments",
+        "ar": "عرض المواعيد"
+    },
+    {
         "name": "tickets_book",
         "en": "Ticket Booking",
         "ar": "حجز التذاكر"

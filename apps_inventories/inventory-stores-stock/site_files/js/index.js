@@ -41,7 +41,8 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
 
         if ($scope.defaultSettings.inventory) {
           if ($scope.defaultSettings.inventory.store)
-            $scope.store_stock.store = $scope.defaultSettings.inventory.store
+        $scope.store_stock.store = $scope.storesList.find(_store => { return _store.id === $scope.defaultSettings.inventory.store.id });
+            
         }
         site.showModal('#addStoreStockModal');
       } else $scope.error = '##word.open_shift_not_found##';

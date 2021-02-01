@@ -253,6 +253,28 @@ app.controller("customers", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.getInsuranceCompaniesList = function () {
+    $http({
+      method: "POST",
+      url: "/api/medical_insurance_companies/all",
+      data: {
+        select: {
+          id: 1,
+          name: 1,
+          code: 1
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.insuranceCompaniesList = response.data.list;
+      },
+      function (err) {
+        $scope.error = err;
+      }
+    )
+  };
+
   $scope.getCustomerGroupList = function () {
     $http({
       method: "POST",
@@ -270,6 +292,46 @@ app.controller("customers", function ($scope, $http, $timeout) {
         $scope.customerGroupList = response.data.list;
       },
       function (err) {
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.Gender = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $scope.genderList = [];
+    $http({
+      method: "POST",
+      url: "/api/gender/all"
+
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.genderList = response.data;
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.getBloodType = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $scope.bloodTypeList = [];
+    $http({
+      method: "POST",
+      url: "/api/blood_type/all"
+
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.bloodTypeList = response.data;
+      },
+      function (err) {
+        $scope.busy = false;
         $scope.error = err;
       }
     )
@@ -326,45 +388,7 @@ app.controller("customers", function ($scope, $http, $timeout) {
   };
 
 
-  $scope.Gender = function () {
-    $scope.error = '';
-    $scope.busy = true;
-    $scope.genderList = [];
-    $http({
-      method: "POST",
-      url: "/api/gender/all"
-
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        $scope.genderList = response.data;
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
-  };
-
-  $scope.getBloodType = function () {
-    $scope.error = '';
-    $scope.busy = true;
-    $scope.bloodTypeList = [];
-    $http({
-      method: "POST",
-      url: "/api/blood_type/all"
-
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        $scope.bloodTypeList = response.data;
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
-  };
+ 
 
   $scope.getGovList = function (where) {
     $scope.busy = true;
@@ -661,6 +685,10 @@ app.controller("customers", function ($scope, $http, $timeout) {
   if (site.feature('erp')) {
     $scope.getGuideAccountList();
   }
+  if (site.feature('medical')) {
+    $scope.getInsuranceCompaniesList();
+  }
+  
   if (site.feature('gym') || site.feature('academy') || site.feature('school')) {
     $scope.getDiseaseList();
     $scope.getMedicineList();

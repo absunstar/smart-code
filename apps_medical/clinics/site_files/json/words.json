@@ -39,11 +39,20 @@
         "ar": "العيادات"
     },
     {
+        "name": "clinic",
+        "en": "Clinic",
+        "ar": "العيادة"
+    },
+    {
         "name": "clinics_new",
         "en": "New Clinic",
         "ar": "عيادة  جديدة"
     },
-
+    {
+        "name": "clinics_search",
+        "en": "Clinics Search",
+        "ar": "بحث العيادات "
+    },
     {
         "name": "clinics_add",
         "en": "Add Clinic",

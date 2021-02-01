@@ -52,11 +52,13 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
 
         if ($scope.defaultSettings.inventory) {
           if ($scope.defaultSettings.inventory.store)
-            $scope.order_customer.store = $scope.defaultSettings.inventory.store;
+            $scope.order_customer.store = $scope.storesList.find(_store => { return _store.id === $scope.defaultSettings.inventory.store.id });
+
         };
 
         if ($scope.defaultSettings.general_Settings) {
-          $scope.order_customer.delivery_employee = $scope.defaultSettings.general_Settings.delivery_employee;
+          $scope.order_customer.delivery_employee = $scope.deliveryEmployeesList.find(_deliveryEmployees => { return _deliveryEmployees.id === $scope.defaultSettings.general_Settings.delivery_employee.id });
+
         }
         $scope.getCustomerList();
 
@@ -1529,6 +1531,26 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
     $scope.search = {};
   };
 
+  $scope.loadStores = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/stores/all",
+      data: { select: { id: 1, name: 1, type: 1, code: 1 } }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) $scope.storesList = response.data.list;
+
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
   $scope.getPaymentMethodList = function () {
     $scope.error = '';
     $scope.busy = true;
@@ -1617,6 +1639,7 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
   $scope.getGovList();
   $scope.loadCurrencies();
   $scope.getPrintersPath();
+  $scope.loadStores();
   $scope.getPaymentMethodList();
   $scope.getNumberingAuto();
   if (site.feature('restaurant'))

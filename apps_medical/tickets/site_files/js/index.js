@@ -5,16 +5,14 @@ app.controller("tickets", function ($scope, $http, $timeout) {
 
   $scope.displayAddTicket = function () {
     $scope.error = '';
-    $scope.ticket = [];
-    $scope.patient_search = [];
-    $scope.doctor_search = [];
-    $scope.clinic_search = [];
-    $scope.hospital = false;
+    $scope.ticket = {};
+    $scope.patient_search = '';
+    $scope.doctor_search = '';
+    $scope.clinic_search = {};
     $scope.address = false;
     $scope.spicialty = false;
     $scope.doctor = false;
     $scope.clinic = false;
-    $scope.clinicList = {};
 
     $scope.ticket = {
       image_url: '/images/ticket.png',
@@ -33,6 +31,17 @@ app.controller("tickets", function ($scope, $http, $timeout) {
       operation_list: [{
         active: true
       }],
+
+    };
+
+
+    if ($scope.defaultSettings.general_Settings) {
+      if ($scope.defaultSettings.general_Settings.specialty) {
+        $scope.ticket.specialty = $scope.specialtyList.find(_specialty => { return _specialty.id === $scope.defaultSettings.general_Settings.specialty.id });
+      }
+
+      if ($scope.defaultSettings.general_Settings.clinic)
+        $scope.ticket.clinic = $scope.clinicList.find(_clinic => { return _clinic.id === $scope.defaultSettings.general_Settings.clinic.id });
 
     };
     site.showModal('#ticketAddModal');
@@ -59,6 +68,9 @@ app.controller("tickets", function ($scope, $http, $timeout) {
           $scope.getTicketList();
         } else {
           $scope.error = 'Please Login First';
+          if (response.data.error.like('*Must Enter Code*')) {
+            $scope.error = "##word.must_enter_code##"
+          }
         }
       },
       function (err) {
@@ -69,16 +81,14 @@ app.controller("tickets", function ($scope, $http, $timeout) {
 
   $scope.displayDynamicTicket = function () {
     $scope.error = '';
-    $scope.ticket = [];
-    $scope.patient_search = [];
-    $scope.doctor_search = [];
-    $scope.clinic_search = [];
-    $scope.hospital = false;
+    $scope.ticket = {};
+    $scope.patient_search = '';
+    $scope.doctor_search = '';
+    $scope.clinic_search = {};
     $scope.address = false;
     $scope.spicialty = false;
     $scope.doctor = false;
     $scope.clinic = false;
-    $scope.clinicList = {};
 
     $scope.dynamic_ticket = {
       image_url: '/images/ticket.png',
@@ -115,10 +125,7 @@ app.controller("tickets", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/tickets/generate_tickets",
       data: {
-        hospital: {
-          id: $scope.dynamic_ticket.hospital.id,
-          name: $scope.dynamic_ticket.hospital.name
-        },
+       
         clinic: {
           id: $scope.dynamic_ticket.clinic.id,
           name: $scope.dynamic_ticket.clinic.name
@@ -369,27 +376,30 @@ app.controller("tickets", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.getHospitalList = function (where) {
+ 
+  $scope.getClinicList = function (where) {
     $scope.busy = true;
+
     $http({
       method: "POST",
-      url: "/api/hospitals/all",
+      url: "/api/clinics/all",
       data: {
-        where: {
-          active: true,
-        }
+        where: where,
+        /*  select: {
+           id: 1,
+           hospital: 1,
+           name: 1,
+           doctor_list: 1,
+           specialty: 1
+         } */
       }
     }).then(
       function (response) {
         $scope.busy = false;
-
         if (response.data.done && response.data.list.length > 0) {
-          $scope.hospitalList = response.data.list;
-          $scope.hospitalList.unshift({
-            id: 0,
-            name: 'كل المستشفيات'
-          });
-        };
+          $scope.clinicList = response.data.list;
+
+        }
       },
       function (err) {
         $scope.busy = false;
@@ -398,34 +408,33 @@ app.controller("tickets", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.getClinicList = function (where, ) {
+  $scope.getClinicBookList = function (ticket) {
     $scope.busy = true;
 
-    $scope.clinicList = [];
-    where = where || {};
-    where.active = true;
-
-    $scope.busy = true;
 
     $http({
       method: "POST",
       url: "/api/clinics/all",
       data: {
-        where: where,
-        select: {
-          id: 1,
-          hospital: 1,
-          name: 1,
-          doctor_list: 1,
-          specialty: 1
-        }
+        where: {
+          specialty: ticket.specialty,
+          clinic: ticket.clinic,
+          doctor: ticket.doctor,
+          active: true
+        },
+        /*  select: {
+           id: 1,
+           hospital: 1,
+           name: 1,
+           doctor_list: 1,
+           specialty: 1
+         } */
       }
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done && response.data.list.length > 0) {
-          $scope.clinicList = response.data.list;
-
+          $scope.clinicBookList = response.data.list;
         }
       },
       function (err) {
@@ -459,8 +468,7 @@ app.controller("tickets", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done && response.data.list.length > 0) {
           $scope.doctorList = response.data.list;
-          console.log($scope.doctorList.id);
-          
+          $scope.doctor_search = '';
 
         }
       },
@@ -471,39 +479,6 @@ app.controller("tickets", function ($scope, $http, $timeout) {
     )
 
   };
-
-  $scope.getSearchDoctorList = function () {
-
-    $scope.error = '';
-
-    $scope.busy = true;
-
-    $scope.doctorList_s = [];
-    $http({
-      method: "POST",
-      url: "/api/doctors/all",
-      data: {
-        search: $scope.doctor_search,
-        select: {
-        }
-      }
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.doctorList_s = response.data.list;
-          
-
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
-
-  };
-
 
   $scope.getDrugsList = function (where) {
     $scope.busy = true;
@@ -533,6 +508,60 @@ app.controller("tickets", function ($scope, $http, $timeout) {
 
   };
 
+  $scope.displayAddCustomer = function () {
+    $scope.error = '';
+    $scope.customer = {
+      image_url: '/images/customer.png',
+      active: true,
+      allergic_food_list: [{}],
+      allergic_drink_list: [{}],
+      medicine_list: [{}],
+      disease_list: [{}],
+    };
+    site.showModal('#customerAddModal');
+    document.querySelector('#customerAddModal .tab-link').click();
+
+  };
+
+
+  $scope.addCustomer = function () {
+    $scope.error = '';
+    if ($scope.busy) {
+      return;
+    }
+
+    const v = site.validated('#customerAddModal');
+    if (!v.ok) {
+      $scope.error = v.messages[0].ar;
+      return;
+    }
+
+    $scope.busy = true;
+
+    $http({
+      method: "POST",
+      url: "/api/customers/add",
+      data: $scope.customer
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          site.hideModal('#customerAddModal');
+          $scope.count = $scope.list.length;
+        } else {
+          $scope.error = 'Please Login First';
+          if (response.data.error.like('*Must Enter Code*')) {
+            $scope.error = "##word.must_enter_code##";
+          }
+        }
+      },
+      function (err) {
+        console.log(err);
+      }
+    )
+  };
+
+
   $scope.getPatientList = function (ev) {
     $scope.busy = true;
 
@@ -543,7 +572,7 @@ app.controller("tickets", function ($scope, $http, $timeout) {
     $scope.patientList = [];
     $http({
       method: "POST",
-      url: "/api/patients/all",
+      url: "/api/customers/all",
       data: {
         search: $scope.patient_search,
         select: {
@@ -663,91 +692,73 @@ app.controller("tickets", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.getDiagnosis = function () {
-    $scope.busy = true;
-    $scope.diagnosisList = [];
+  $scope.getCustomerGroupList = function () {
     $http({
       method: "POST",
-      url: "/api/diagnosis/all"
-
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        $scope.diagnosisList = response.data;
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
-  };
-
-  $scope.getGovList = function (where) {
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/goves/all",
+      url: "/api/customers_group/all",
       data: {
-        where: {
-          active: true
-        },
         select: {
           id: 1,
-          name: 1
+          name: 1,
+          code: 1
         }
       }
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.govList = response.data.list;
-        }
+        $scope.customerGroupList = response.data.list;
       },
       function (err) {
-        $scope.busy = false;
         $scope.error = err;
       }
-
     )
-
   };
 
-  $scope.getCityList = function (where) {
+  $scope.Gender = function () {
+    $scope.error = '';
     $scope.busy = true;
+    $scope.genderList = [];
     $http({
       method: "POST",
-      url: "/api/cities/all",
-      data: {
-        where: {
-          active: true
-        },
-        select: {
-          id: 1,
-          name: 1
-        }
-      }
+      url: "/api/gender/all"
+
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.cityList = response.data.list;
-        }
+        $scope.genderList = response.data;
       },
       function (err) {
         $scope.busy = false;
         $scope.error = err;
       }
-
     )
-
   };
 
+  $scope.getBloodType = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $scope.bloodTypeList = [];
+    $http({
+      method: "POST",
+      url: "/api/blood_type/all"
+
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.bloodTypeList = response.data;
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
   $scope.showPatient = function (id) {
     $scope.busy = true;
 
     $http({
       method: "POST",
-      url: "/api/patients/view",
+      url: "/api/customers/view",
       data: {
         id: id,
         select: {}
@@ -755,9 +766,13 @@ app.controller("tickets", function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
+
         if (response.data.done) {
-          $scope.patient = response.data.doc;
-          site.showModal('#patientViewModal')
+          $scope.customer = response.data.doc;
+          console.log($scope.customer);
+          site.showModal('#customerDetailsModal')
+          document.querySelector('#customerDetailsModal .tab-link').click();
+
         }
       },
       function (err) {
@@ -779,16 +794,13 @@ app.controller("tickets", function ($scope, $http, $timeout) {
       id: c.id,
       name: c.name
     };
-    $scope.ticket.selected_hospital = {
-      id: c.hospital.id,
-      name: c.hospital.name
-    };
+  
     $scope.ticket.selected_specialty = {
       id: c.specialty.id,
       name: c.specialty.name
     };
     $scope.ticket.selected_doctor = d.doctor;
-    $scope.ticket.selected_shift = [];
+    $scope.ticket.selected_shift = {};
 
     $http({
       method: "POST",
@@ -891,9 +903,7 @@ app.controller("tickets", function ($scope, $http, $timeout) {
     let where = {
       active: true,
     }
-    if (hospital) {
-      where['hospital.id'] = hospital.id
-    }
+  
     $http({
       method: "POST",
       url: "/api/clinics/all",
@@ -906,7 +916,6 @@ app.controller("tickets", function ($scope, $http, $timeout) {
 
         if (response.data.done && response.data.list.length > 0) {
           $scope.clinicTicketList = response.data.list;
-          if (hospital) {
 
             $scope.dynamic_ticket.$clinic_list = [];
             $scope.dynamic_ticket.$doctor_list = [];
@@ -929,7 +938,6 @@ app.controller("tickets", function ($scope, $http, $timeout) {
                 });
               });
             });
-          }
         };
       },
       function (err) {
@@ -941,16 +949,198 @@ app.controller("tickets", function ($scope, $http, $timeout) {
 
   $scope.getClincDoctorList = function (clinic) {
     $scope.dynamic_ticket.$doctor_list = [];
-    
+
     clinic.$doctor_list.forEach(d => {
       $scope.dynamic_ticket.$doctor_list.push({
         id: d.doctor.id,
         name: d.doctor.name,
         detection_Duration: d.detection_Duration,
-        specialty : d.doctor.specialty,
+        specialty: d.doctor.specialty,
         $shift_list: [d.shift]
       });
     });
+  };
+
+  $scope.getTicketTypeList = function () {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/ticket_type/all",
+      data: {}
+    }).then(
+      function (response) {
+        $scope.busy = false;
+          $scope.ticketTypeList = response.data;
+        
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.getDiagnosisList = function () {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/diagnosis/all",
+      data: {}
+    }).then(
+      function (response) {
+        $scope.busy = false;
+          $scope.diagnosisList = response.data;
+        
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.getGovList = function (where) {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/goves/all",
+      data: {
+        where: {
+          active: true
+        },
+        select: { id: 1, name: 1, code: 1 }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.govList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.getCityList = function (gov) {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/city/all",
+      data: {
+        where: {
+          'gov.id': gov.id,
+          active: true
+        },
+        select: { id: 1, name: 1, code: 1 }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.cityList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.getAreaList = function (city) {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/area/all",
+      data: {
+        where: {
+          'city.id': city.id,
+          active: true
+        },
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.areaList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+
+  $scope.getDiseaseList = function (where) {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/disease/all",
+      data: {
+        where: {
+          active: true
+        },
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.diseaseList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.getMedicineList = function () {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/medicine/all",
+      data: { where: { active: true } }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.medicineList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.getDefaultSettings = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/default_setting/get",
+      data: {}
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.doc) {
+          $scope.defaultSettings = response.data.doc;
+
+        };
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+
   };
 
   $scope.getNumberingAuto = function () {
@@ -983,10 +1173,16 @@ app.controller("tickets", function ($scope, $http, $timeout) {
   $scope.getAnalysesList();
   $scope.getOperationList();
   $scope.getStatus();
-  $scope.getDiagnosis();
+  $scope.getDiseaseList();
+  $scope.getMedicineList();
   $scope.getGovList();
-  $scope.getHospitalList();
+  $scope.getCustomerGroupList();
+  $scope.Gender();
+  $scope.getBloodType();
+  $scope.getClinicList();
+  $scope.getTicketTypeList();
+  $scope.getDiagnosisList();
   $scope.getClinicTicketList();
+  $scope.getDefaultSettings();
   $scope.getNumberingAuto();
-  $scope.getSearchDoctorList();
 });

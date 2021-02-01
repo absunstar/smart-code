@@ -11,7 +11,7 @@ app.controller("attend_students", function ($scope, $http, $timeout, $interval) 
           date: new Date()
         };
         if ($scope.defaultSettings.general_Settings) {
-          $scope.attend_students.school_year = $scope.defaultSettings.general_Settings.school_year
+          $scope.attend_students.school_year = $scope.schoolYearsList.find(_school_year => { return _school_year.id === $scope.defaultSettings.general_Settings.school_year.id });
         }
         site.showModal('#attendStudentsAddModal');
       } else $scope.error = '##word.open_shift_not_found##';
@@ -433,7 +433,7 @@ app.controller("attend_students", function ($scope, $http, $timeout, $interval) 
     )
   };
 
-  
+
   $scope.loadSchoolYears = function () {
     $scope.error = '';
     $scope.busy = true;

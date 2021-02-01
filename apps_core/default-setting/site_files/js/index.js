@@ -55,7 +55,7 @@ app.controller("default_setting", function ($scope, $http) {
         url: "/api/customers/all",
         data: {
           search: $scope.search_customer,
-          where:{
+          where: {
             active: true
           }
 
@@ -157,7 +157,7 @@ app.controller("default_setting", function ($scope, $http) {
           name: 1,
           minor_currency: 1,
           ex_rate: 1,
-          code : 1
+          code: 1
         },
         where: {
           active: true
@@ -194,7 +194,7 @@ app.controller("default_setting", function ($scope, $http) {
           commission: 1,
           currency: 1,
           type: 1,
-          code : 1
+          code: 1
         },
         where: where
       }
@@ -228,7 +228,7 @@ app.controller("default_setting", function ($scope, $http) {
           commission: 1,
           currency: 1,
           type: 1,
-          code : 1
+          code: 1
         },
         where: where
       }
@@ -269,26 +269,26 @@ app.controller("default_setting", function ($scope, $http) {
   };
 
 
- /*  $scope.getDiscountMethodList = function () {
-    $scope.error = '';
-    $scope.busy = true;
-    $scope.discountMethodList = [];
-    $http({
-      method: "POST",
-      url: "/api/discount_method/all"
-
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        $scope.discountMethodList = response.data;
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
-  };
- */
+  /*  $scope.getDiscountMethodList = function () {
+     $scope.error = '';
+     $scope.busy = true;
+     $scope.discountMethodList = [];
+     $http({
+       method: "POST",
+       url: "/api/discount_method/all"
+ 
+     }).then(
+       function (response) {
+         $scope.busy = false;
+         $scope.discountMethodList = response.data;
+       },
+       function (err) {
+         $scope.busy = false;
+         $scope.error = err;
+       }
+     )
+   };
+  */
   $scope.getPlaceProgramList = function () {
     $scope.error = '';
     $scope.busy = true;
@@ -344,7 +344,7 @@ app.controller("default_setting", function ($scope, $http) {
         select: {
           id: 1,
           name: 1,
-          code : 1
+          code: 1
         }
       }
     }).then(
@@ -460,7 +460,7 @@ app.controller("default_setting", function ($scope, $http) {
           id: 1,
           name: 1,
           barcode: 1,
-          code : 1
+          code: 1
         }
       }
     }).then(
@@ -489,7 +489,7 @@ app.controller("default_setting", function ($scope, $http) {
           id: 1,
           name: 1,
           printer_path: 1,
-          code : 1
+          code: 1
         }
       }
     }).then(
@@ -516,7 +516,7 @@ app.controller("default_setting", function ($scope, $http) {
         select: {
           id: 1,
           name: 1,
-          code : 1
+          code: 1
         }
       }
     }).then(
@@ -552,6 +552,100 @@ app.controller("default_setting", function ($scope, $http) {
     )
   };
 
+  $scope.getClinicList = function (where) {
+    $scope.busy = true;
+
+    $http({
+      method: "POST",
+      url: "/api/clinics/all",
+      data: {
+        where: where,
+        /*  select: {
+           id: 1,
+           hospital: 1,
+           name: 1,
+           doctor_list: 1,
+           specialty: 1
+         } */
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.clinicList = response.data.list;
+
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.getDoctorList = function (ev) {
+
+    $scope.error = '';
+
+    $scope.busy = true;
+    if (ev.which !== 13) {
+      return;
+    }
+
+    $scope.doctorList = [];
+    $http({
+      method: "POST",
+      url: "/api/doctors/all",
+      data: {
+        search: $scope.doctor_search,
+        select: {
+
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.doctorList = response.data.list;
+          $scope.doctor_search = '';
+
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+
+  };
+
+  $scope.getSpecialtyList = function (where) {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/medical_specialties/all",
+      data: {
+        where: {
+          active: true
+        },
+        select: {
+          id: 1,
+          name: 1
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.specialtyList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
 
   $scope.getPrintersPath = function () {
     $scope.busy = true;
@@ -566,7 +660,7 @@ app.controller("default_setting", function ($scope, $http) {
           ip_device: 1,
           Port_device: 1,
           ip: 1,
-          code : 1
+          code: 1
         }
       }
     }).then(
@@ -603,6 +697,11 @@ app.controller("default_setting", function ($scope, $http) {
   }
   if (site.feature('restaurant')) {
     $scope.loadKitchens();
+  }
+
+  if (site.feature('medical')) {
+    $scope.getSpecialtyList();
+    $scope.getClinicList();
   }
 
   if (site.feature('school')) {

@@ -201,12 +201,14 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
             $scope.store_out.store = JSON.parse('##user.store##');
           } else if ($scope.defaultSettings.inventory.store)
             $scope.store_out.store = $scope.defaultSettings.inventory.store;
+            
 
           if ('##user.type##' == 'delegate') {
             $scope.store_out.delegate = $scope.delegatesList[0];
 
           } else if ($scope.defaultSettings.inventory.delegate)
-            $scope.store_out.delegate = $scope.defaultSettings.inventory.delegate;
+            $scope.store_out.delegate = $scope.delegatesList.find(_delegate => { return _delegate.id === $scope.defaultSettings.inventory.delegate.id });
+
         };
 
         if ($scope.defaultSettings.accounting) {

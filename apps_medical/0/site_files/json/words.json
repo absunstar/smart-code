@@ -57,7 +57,7 @@
     {
         "name": "customers_details",
         "en": "Patient Details",
-        "ar": "تفاصيل مريض"
+        "ar": "تفاصيل المريض"
     },
     {
         "name": "customers_delete",

@@ -11,7 +11,8 @@ app.controller("exams", function ($scope, $http, $timeout) {
       busy: false
     };
     if ($scope.defaultSettings.general_Settings) {
-      $scope.exams.school_year = $scope.defaultSettings.general_Settings.school_year
+      $scope.exams.school_year = $scope.schoolYearsList.find(_school_year => { return _school_year.id === $scope.defaultSettings.general_Settings.school_year.id });
+
     }
 
     site.showModal('#examsAddModal');

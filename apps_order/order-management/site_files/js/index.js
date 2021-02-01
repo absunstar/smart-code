@@ -141,7 +141,9 @@ app.controller("order_management", function ($scope, $http, $timeout) {
         };
 
         if ($scope.defaultSettings.accounting) {
-          $scope.account_invoices.currency = $scope.defaultSettings.accounting.currency;
+          if ($scope.defaultSettings.accounting.currency)
+            $scope.account_invoices.currency = $scope.currenciesList.find(_currency => { return _currency.id === $scope.defaultSettings.accounting.currency.id });
+
           if ($scope.defaultSettings.accounting.payment_method) {
             $scope.account_invoices.payment_method = $scope.defaultSettings.accounting.payment_method;
             $scope.loadSafes($scope.account_invoices.payment_method, $scope.account_invoices.currency);

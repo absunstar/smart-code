@@ -1,0 +1,19 @@
+[{
+        "id": 1,
+        "name": "detection",
+        "en": "Detection",
+        "ar": "كشف"
+    },
+    {
+        "id": 2,
+        "name": "re_detection",
+        "en": "Re-Detection",
+        "ar": "إعادة كشف"
+    },
+    {
+        "id": 3,
+        "name": "consultation",
+        "name_en": "Consultation",
+        "ar": "إستشارة"
+    }
+]

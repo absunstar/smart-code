@@ -99,10 +99,26 @@ i-checkbox .selector {
 
 i-image img {
   border-radius: 50%;
+  padding: 3px;
 }
 
 img {
   border-radius: 50%;
+  padding: 3px;
+}
+
+.files {
+  padding: 5px;
+  border-color: white;
+  border-style: outset;
+  border-radius: 25px;
+}
+
+i-image img {
+  border-radius: 50%;
+  padding: 3px;
+  border-style: inset;
+  border-color: #ffffff;
 }
 
 .logo {

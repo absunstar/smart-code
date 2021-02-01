@@ -3,7 +3,7 @@
     {"name" : "customers_new" , "en" : "New Customer" , "ar" : "عميل جديد"},   
     {"name" : "customers_add" , "en" : "Add Customer" , "ar" : "إضافة عميل"}, 
     {"name" : "customers_edit" , "en" : "Customer Edit" , "ar" : "تعديل بيانات عميل"},
-    {"name" : "customers_details" , "en" : "Customer Details" , "ar" : "تفاصيل عميل"}, 
+    {"name" : "customers_details" , "en" : "Customer Details" , "ar" : "تفاصيل العميل"}, 
     {"name" : "customers_delete" , "en" : "Delete Customer" , "ar" : "حذف عميل"},
     {"name" : "customers_indentfy" , "en" : "Customer indentfy" , "ar" : "نوع العميل"},
 

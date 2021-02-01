@@ -91,7 +91,7 @@ app.controller("order_kitchen", function ($scope, $http, $interval) {
           $scope.order_kitchen = {};
 
           if ($scope.defaultSettings.general_Settings && $scope.defaultSettings.general_Settings.kitchen)
-            $scope.order_kitchen.kitchen = $scope.defaultSettings.general_Settings.kitchen;
+            $scope.order_kitchen.kitchen = $scope.kitchensList.find(_kitchen => { return _kitchen.id === $scope.defaultSettings.general_Settings.kitchen.id });
 
           if ($scope.order_kitchen.kitchen && $scope.order_kitchen.kitchen.id) {
             $scope.orderKitchensList();

@@ -328,17 +328,38 @@ module.exports = function init(site) {
       })
     }
 
-    if (where['hospital']) {
-      where['hospital.id'] = where['hospital'].id;
-      delete where['hospital']
-      delete where.active
-    }
 
-    if (where['specialty']) {
+    if (where['specialty'] && where['specialty'].id ) {
       where['specialty.id'] = where['specialty'].id;
       delete where['specialty']
       delete where.active
+    } else {
+      delete where['specialty.id']
+      delete where['specialty']
+
     }
+
+    if (where['doctor'] && where['doctor'].id) {
+      where['doctor_list.doctor.id'] = where['doctor'].id;
+      delete where['doctor']
+      delete where.active
+    } else {
+      delete where['doctor_list.doctor.id']
+      delete where['doctor']
+
+    }
+
+
+    if (where['clinic'] && where['clinic'].id) {
+      where['id'] = where['clinic'].id;
+      delete where['clinic']
+      delete where.active
+    } else {
+      delete where['id']
+      delete where['clinic']
+
+    }
+
 
     if (where['hospital.address']) {
       where['hospital.address'] = new RegExp(where['hospital.address'], "i");
@@ -350,7 +371,7 @@ module.exports = function init(site) {
       delete where['name']
     }
 
-    if (where['specialty.id'] == 0) {
+    if (where['specialty.id'] === 0) {
       delete where['specialty.id']
     }
 
@@ -360,7 +381,8 @@ module.exports = function init(site) {
     if (req.session.user && req.session.user.type === 'clinic') {
       where['id'] = req.session.user.ref_info.id;
     }
-
+    
+      
     $clinics.findMany({
       select: req.body.select || {},
       where: where,
@@ -446,6 +468,7 @@ module.exports = function init(site) {
     let response = {
       done: false
     }
+
     if (!req.session.user) {
       response.error = 'Please Login First'
       res.json(response)

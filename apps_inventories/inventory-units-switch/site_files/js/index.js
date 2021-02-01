@@ -45,7 +45,8 @@ app.controller("units_switch", function ($scope, $http, $timeout) {
 
           if ($scope.defaultSettings.inventory) {
             if ($scope.defaultSettings.inventory.store)
-              $scope.units_switch.store = $scope.defaultSettings.inventory.store
+            $scope.units_switch.store = $scope.storesList.find(_store => { return _store.id === $scope.defaultSettings.inventory.store.id });
+
 
           }
           if ($scope.defaultSettings.general_Settings && !$scope.defaultSettings.general_Settings.work_posting) {

@@ -12,7 +12,8 @@ app.controller("types_expenses", function ($scope, $http, $timeout) {
       active: true
     };
     if ($scope.defaultSettings.general_Settings) {
-      $scope.types_expenses.school_year = $scope.defaultSettings.general_Settings.school_year
+      $scope.types_expenses.school_year = $scope.schoolYearsList.find(_school_year => { return _school_year.id === $scope.defaultSettings.general_Settings.school_year.id });
+
     }
     site.showModal('#yearWorksAddModal');
   };

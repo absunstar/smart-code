@@ -38,10 +38,11 @@ app.controller("stores_offer", function ($scope, $http, $timeout) {
           startup_date: new Date(),
         };
 
-        if ($scope.defaultSettings.inventory) {
+       /*  if ($scope.defaultSettings.inventory) {
           if ($scope.defaultSettings.inventory.store)
             $scope.store_offer.store = $scope.defaultSettings.inventory.store
-        }
+
+        } */
         site.showModal('#addStoreOfferModal');
       } else $scope.error = '##word.open_shift_not_found##';
     });

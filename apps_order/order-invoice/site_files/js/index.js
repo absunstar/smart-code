@@ -164,7 +164,10 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
             $scope.order_invoice.transaction_type = $scope.defaultSettings.general_Settings.order_type;
 
             if ($scope.defaultSettings.general_Settings.order_type.id == 2)
-              $scope.order_invoice.delivery_employee = $scope.defaultSettings.general_Settings.delivery_employee;
+
+              if ($scope.defaultSettings.general_Settings.delivery_employee)
+                $scope.order_invoice.delivery_employee = $scope.deliveryEmployeesList.find(_deliveryEmployees => { return _deliveryEmployees.id === $scope.defaultSettings.general_Settings.delivery_employee.id });
+
 
             if ($scope.defaultSettings.general_Settings.order_type.id == 1) {
               if ($scope.defaultSettings.general_Settings.service)
@@ -173,18 +176,21 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
           }
 
           if ($scope.defaultSettings.general_Settings.customer && $scope.order_invoice.transaction_type && $scope.order_invoice.transaction_type.id == 2) {
-            $scope.order_invoice.customer = $scope.defaultSettings.general_Settings.customer;
+
+            $scope.order_invoice.customer = $scope.customersList.find(_customer => { return _customer.id === $scope.defaultSettings.general_Settings.customer.id });
+
+
             if ($scope.defaultSettings.general_Settings.customer.gov)
-              $scope.order_invoice.gov = $scope.defaultSettings.general_Settings.customer.gov;
+              $scope.order_invoice.gov = $scope.govList.find(_gov => { return _gov.id === $scope.defaultSettings.general_Settings.customer.gov.id });
 
             if ($scope.defaultSettings.general_Settings.customer.city)
-              $scope.order_invoice.city = $scope.defaultSettings.general_Settings.customer.city;
+              $scope.order_invoice.city = $scope.cityList.find(_city => { return _city.id === $scope.defaultSettings.general_Settings.customer.city.id });
 
             if ($scope.defaultSettings.general_Settings.customer.area) {
-              $scope.order_invoice.area = $scope.defaultSettings.general_Settings.customer.area;
+              $scope.order_invoice.area = $scope.areaList.find(_area => { return _area.id === $scope.defaultSettings.general_Settings.customer.area.id });
 
               if ($scope.defaultSettings.general_Settings.customer.area.price_delivery_service)
-                $scope.order_invoice.price_delivery_service = $scope.defaultSettings.general_Settings.customer.area.price_delivery_service;
+                $scope.order_invoice.price_delivery_service = $scope.order_invoice.area.price_delivery_service;
             };
 
             if ($scope.defaultSettings.general_Settings.customer.address)
@@ -1826,10 +1832,12 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         if (_branch.code == '##session.branch.code##') {
           if (_branch.kitchen) {
             kitchenBranch = _branch.kitchen;
-          } else{
-            kitchenBranch = $scope.defaultSettings.general_Settings.kitchen;
+          } else {
+            if ($scope.defaultSettings.general_Settings.kitchen)
+              kitchenBranch = $scope.kitchensList.find(_kitchen => { return _kitchen.id === $scope.defaultSettings.general_Settings.kitchen.id });
+
           }
-          
+
           _branch.stores_list.forEach(_store => {
             if (_store.store && _store.store.id == $scope.order_invoice.store.id) {
               if (_store.hold) foundHold = true;

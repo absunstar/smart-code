@@ -71,7 +71,7 @@
                     </fieldset>
                 </div>
                 <div class="col3">
-                    <i-image view class="col3" ng-model="clinic.image_url"></i-image>
+                    <i-image view ng-model="clinic.image_url"></i-image>
                 </div>
             </div>
             <div id="shiftsInformation" class="tab-content">
@@ -83,7 +83,7 @@
                         <i-control disabled help-id="" class="col4" label="##word.shift_name##" ng-model="shift.name">
                         </i-control>
 
-                        <table class="table center hover bold" ng-repeat="time in shift.times_list">
+                        <table class="table center hover bold" >
                             <tr>
                                 <th>##word.day##</th>
                                 <th>##word.from##</th>
@@ -91,7 +91,7 @@
                                 <th>##word.vacation##</th>
                             </tr>
 
-                            <tr>
+                            <tr ng-repeat="time in shift.times_list">
                                 <td>{{time.day.ar}}</td>
                                 <td class="green">{{time.from.minute}} : {{time.from.hour}}</td>
                                 <td class="red">{{time.to.minute}} : {{time.to.hour}}</td>

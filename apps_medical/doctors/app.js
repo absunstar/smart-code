@@ -6,7 +6,7 @@ module.exports = function init(site) {
     $doctors.add({
 
       code: "1-Test",
-      name: "دكتور إفتراضي",
+      name: "طبيب إفتراضي",
       image_url: '/images/doctors.png',
       specialty: {
         id: doc.id,

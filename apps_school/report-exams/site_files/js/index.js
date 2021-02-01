@@ -270,7 +270,8 @@ app.controller("report_exams", function ($scope, $http, $timeout) {
     $scope.search = {};
 
     if ($scope.defaultSettings.general_Settings) {
-      $scope.search.school_year = $scope.defaultSettings.general_Settings.school_year;
+      $scope.search.school_year = $scope.schoolYearsList.find(_school_year => { return _school_year.id === $scope.defaultSettings.general_Settings.school_year.id });
+
       $scope.getExams($scope.search.school_year);
     }
     site.showModal('#reportExamsSearchModal');

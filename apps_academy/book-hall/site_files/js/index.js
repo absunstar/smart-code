@@ -19,7 +19,7 @@ app.controller("book_hall", function ($scope, $http, $timeout) {
 
         if ($scope.defaultSettings.general_Settings) {
           if ($scope.defaultSettings.general_Settings.hall)
-            $scope.book_hall.hall = $scope.defaultSettings.general_Settings.hall;
+            $scope.book_hall.hall = $scope.hallsList.find(_hall => { return _hall.id === $scope.defaultSettings.general_Settings.hall.id });
           if ($scope.defaultSettings.general_Settings.tenant)
             $scope.book_hall.tenant = $scope.defaultSettings.general_Settings.tenant;
         };
@@ -563,7 +563,7 @@ app.controller("book_hall", function ($scope, $http, $timeout) {
       url: "/api/discount_types/all",
       data: {
         select: {
-          code : 1,
+          code: 1,
           id: 1,
           name: 1,
           value: 1,
@@ -752,7 +752,7 @@ app.controller("book_hall", function ($scope, $http, $timeout) {
       ip = $scope.defaultSettings.printer_program.printer_path.ip_device || '127.0.0.1';
       port = $scope.defaultSettings.printer_program.printer_path.Port_device || '60080';
     };
-    
+
     $scope.account_invoices.total_remain = $scope.account_invoices.net_value - $scope.account_invoices.paid_up;
 
 
@@ -913,7 +913,7 @@ app.controller("book_hall", function ($scope, $http, $timeout) {
             commission: 1,
             currency: 1,
             type: 1,
-            code : 1
+            code: 1
           },
           where: where
         }
@@ -942,7 +942,7 @@ app.controller("book_hall", function ($scope, $http, $timeout) {
           name: 1,
           minor_currency: 1,
           ex_rate: 1,
-          code : 1
+          code: 1
         },
         where: {
           active: true

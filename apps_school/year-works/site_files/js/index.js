@@ -12,7 +12,8 @@ app.controller("year_works", function ($scope, $http, $timeout) {
       active: true
     };
     if ($scope.defaultSettings.general_Settings) {
-      $scope.year_works.school_year = $scope.defaultSettings.general_Settings.school_year
+      $scope.year_works.school_year = $scope.schoolYearsList.find(_school_year => { return _school_year.id === $scope.defaultSettings.general_Settings.school_year.id });
+
     }
     site.showModal('#yearWorksAddModal');
   };

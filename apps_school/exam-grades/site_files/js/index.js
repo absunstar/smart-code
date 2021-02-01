@@ -13,7 +13,8 @@ app.controller("exam_grades", function ($scope, $http, $timeout) {
     };
     
     if ($scope.defaultSettings.general_Settings) {
-      $scope.exam_grades.school_year = $scope.defaultSettings.general_Settings.school_year
+      $scope.exam_grades.school_year = $scope.schoolYearsList.find(_school_year => { return _school_year.id === $scope.defaultSettings.general_Settings.school_year.id });
+
     }
 
     site.showModal('#examGradessAddModal');

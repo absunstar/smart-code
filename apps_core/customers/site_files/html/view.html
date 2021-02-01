@@ -73,11 +73,6 @@
                                     <td class="center"> {{customer.gender.##session.lang##}}</td>
                                 </tr>
 
-                                <tr x-feature="lawyer">
-                                    <td class="title">##word.birth_date##</td>
-                                    <td class="center brown">{{customer.birth_date | date:'dd - MM - yyyy'}}
-                                    </td>
-                                </tr>
 
                                 <tr x-feature="lawyer">
                                     <td class="title">##word.marital_status##</td>
@@ -94,6 +89,12 @@
                                     <td class="center"> {{customer.finger_code}} </td>
                                 </tr>
 
+                                <tr x-features="medical">
+                                    <td class="title"> ##word.medical_insurance_company## </td>
+                                    <td class="center"> {{customer.insurance_company.name}} </td>
+                                </tr>
+
+
                                 <tr>
                                     <td class="title"> ##word.gender## </td>
                                     <td class="center"> {{customer.gender.##session.lang##}}</td>
@@ -105,7 +106,7 @@
                                     <td ng-show="!customer.child" class="center red"> ##word.no## </td>
                                 </tr>
 
-                                <tr x-features="gym || academy || school || medical">
+                                <tr x-features="gym || academy || school || medical || lawyer">
                                     <td class="title">##word.birth_date##</td>
                                     <td class="center brown">{{customer.birth_date | date : 'dd / MM / yyyy'}}
                                     </td>
@@ -974,20 +975,22 @@
                 </fieldset>
             </div>
 
-            <fieldset>
-                <legend> ##word.login_information## </legend>
+            <div id="loginInformation" class="tab-content">
+                <fieldset>
+                    <legend> ##word.login_information## </legend>
 
-                <table class="table hover bold">
-                    <tr>
-                        <td class="title">##word.email##</td>
-                        <td class="center">{{customer.username}}</td>
-                    </tr>
-                    <tr>
-                        <td class="title">##word.password##</td>
-                        <td class="center">{{customer.password}}</td>
-                    </tr>
-                </table>
-            </fieldset>
+                    <table class="table hover bold">
+                        <tr>
+                            <td class="title">##word.email##</td>
+                            <td class="center">{{customer.username}}</td>
+                        </tr>
+                        <tr>
+                            <td class="title">##word.password##</td>
+                            <td class="center">{{customer.password}}</td>
+                        </tr>
+                    </table>
+                </fieldset>
+            </div>
         </div>
 
     </div>

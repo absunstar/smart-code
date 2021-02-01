@@ -88,13 +88,13 @@ module.exports = function init(site) {
         };
 
         let cb = site.getNumbering(num_obj);
-        if (!operation_doc.code && !cb.auto) {
+        if (!analyses_doc.code && !cb.auto) {
           response.error = 'Must Enter Code';
           res.json(response);
           return;
 
         } else if (cb.auto) {
-          operation_doc.code = cb.code;
+          analyses_doc.code = cb.code;
         }
 
         $analyses.add(analyses_doc, (err, doc) => {

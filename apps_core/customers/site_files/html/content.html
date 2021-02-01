@@ -71,8 +71,8 @@
                                 <i-control x-features="lawyer" help-id="" v="r ll2" class="col4"
                                     label="##word.national_id##" ng-model="customer.national_id"></i-control>
 
-                                <i-date x-features="lawyer || academy || school || medical" ng-model="customer.birth_date"
-                                    class="col4" label="##word.birth_date##">
+                                <i-date x-features="lawyer || academy || school || medical"
+                                    ng-model="customer.birth_date" class="col4" label="##word.birth_date##">
                                 </i-date>
 
                             </div>
@@ -88,6 +88,11 @@
                             </div>
 
                             <div class="row">
+
+                                <i-list help-id="" x-features="medical" ng-search="_search.$insurance_companies_search" class="col4"
+                                    label="##word.medical_insurance_company##" ng-model="customer.insurance_company" items="insuranceCompaniesList"
+                                    display="name">
+                                </i-list>
 
                                 <i-control class="col4" x-features="gym || academy || school"
                                     label="##word.finger_code##" ng-model="customer.finger_code">

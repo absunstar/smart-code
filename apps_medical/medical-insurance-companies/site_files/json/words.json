@@ -4,6 +4,11 @@
         "ar": "شركات التامين الطبي"
     },
     {
+        "name": "medical_insurance_company",
+        "en": "Medical Insurance Company",
+        "ar": "شركة التامين الطبي"
+    },
+    {
         "name": "medical_insurance_companies_informations",
         "en": "Medical Insurance Company Information",
         "ar": "بيانات شركة تامين طبي"
@@ -11,7 +16,7 @@
     {
         "name": "medical_insurance_companies_add",
         "en": "Add Medical Insurance Company",
-        "ar": "اضافة شركة تامين طبي"
+        "ar": "إضافة شركة تامين طبي"
     },
     {
         "name": "medical_insurance_companies_delete",

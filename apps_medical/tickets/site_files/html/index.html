@@ -28,6 +28,8 @@
                 <div x-import="tickets/select_doctor.html"></div>
                 <div x-import="tickets/select_time.html"></div>
                 <div x-permissions="tickets_search || tickets_manage" x-import="tickets/search_all_modal.html"></div>
+                <div x-import="customers/add_modal.html"></div>
+                <div x-import="customers/view_modal.html"></div>
 
                 <div class="row">
                     <h1 class="bold text-center">##word.tickets##</h1>
@@ -47,8 +49,8 @@
                         label="##word.at_the_doctor##" ng-click="getTicketList({'status.id' : 3})"></i-button>
                     <i-button x-permissions="tickets_search || tickets_manage" type="search"
                         label="##word.done_detected##" ng-click="getTicketList({'status.id' : 4})"></i-button>
-                    <i-button x-permissions="tickets_search || tickets_manage" type="search"
-                        label="##word.dont_book##" ng-click="getTicketList({'status.id' : 5})"></i-button>
+                    <i-button x-permissions="tickets_search || tickets_manage" type="search" label="##word.dont_book##"
+                        ng-click="getTicketList({'status.id' : 5})"></i-button>
                     <i-button x-permissions="tickets_add || tickets_manage" class="left" type="add"
                         label="##word.tickets_book##" ng-click="displayDynamicTicket()"></i-button>
 
@@ -59,8 +61,8 @@
 
                         <tr>
                             <th>##word.Ticket_number##</th>
-                            <th>##word.patient##</th>
                             <th>##word.booking_date##</th>
+                            <th>##word.patient##</th>
                             <th>##word.clinics##</th>
                             <th>##word.doctor##</th>
                             <th>##word.status##</th>
@@ -68,13 +70,16 @@
 
                         <tr ng-repeat="c in list" class="bold pointer">
                             <td ng-click="displayDetailsTicket(c)">
-                                <p class="center title">{{c.code}}</p>
+                                <p class="blue center userPrint">{{c.code}}</p>
                                 <br>
                                 <h3 class="center bold blue">{{c.status.ar}}</h3>
                             </td>
-                            <td ng-click="displayDetailsTicket(c)" class="center"> <br> {{c.patient.name}}</td>
-                            <td ng-click="displayDetailsTicket(c)" class="center brown"> <br> {{c.date | date : 'dd - MM -
+                            <td ng-click="displayDetailsTicket(c)" class="center brown"> <br> {{c.date | date : 'dd - MM
+                                -
                                 yyyy'}}</td>
+                            <td ng-click="displayDetailsTicket(c)" class="center"> <br>
+                                {{c.customer.name_##session.lang##}}</td>
+
                             <td ng-click="displayDetailsTicket(c)">
                                 <p class="center">{{c.selected_clinic.name}}</p>
                                 <br>

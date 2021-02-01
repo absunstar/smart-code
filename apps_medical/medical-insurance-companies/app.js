@@ -85,13 +85,13 @@ module.exports = function init(site) {
     };
 
     let cb = site.getNumbering(num_obj);
-    if (!operation_doc.code && !cb.auto) {
+    if (!medical_insurance_companies_doc.code && !cb.auto) {
       response.error = 'Must Enter Code';
       res.json(response);
       return;
 
     } else if (cb.auto) {
-      operation_doc.code = cb.code;
+      medical_insurance_companies_doc.code = cb.code;
     }
 
     $medical_insurance_companies.find({

@@ -43,6 +43,12 @@ module.exports = function init(site) {
 
   })
 
+  site.post({
+    name: "/api/ticket_type/all",
+    path: __dirname + "/site_files/json/ticket_type.json"
+
+  })
+
   site.get({
     name: "tickets",
     path: __dirname + "/site_files/html/index.html",
@@ -55,6 +61,7 @@ module.exports = function init(site) {
       done: false
     }
     if (!req.session.user) {
+      console.log("Ffffffffffffffffffffffff");
       response.error = 'Please Login First'
       res.json(response)
       return
@@ -96,7 +103,6 @@ module.exports = function init(site) {
     } else if (cb.auto) {
       tickets_doc.code = cb.code;
     }
-
 
     $tickets.add(tickets_doc, (err, doc) => {
 
