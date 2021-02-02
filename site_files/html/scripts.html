@@ -83,9 +83,8 @@
 <!-- Load Facebook SDK for JavaScript -->
 <div id="fb-root"></div>
 <script>
-  if(site.features.like('*host.icc*')){
-    return
-  }
+  if (site.features.like('*host.icc*')) {
+
   window.fbAsyncInit = function () {
     FB.init({
       xfbml: true,
@@ -102,21 +101,21 @@
     js.src = 'https://connect.facebook.net/ar_AR/sdk/xfbml.customerchat.js';
     fjs.parentNode.insertBefore(js, fjs);
   })(document, 'script', 'facebook-jssdk');
+}
 </script>
 
 <script>
-   if(site.features.like('*host.icc*')){
-    return
+  if (!site.features.like('*host.icc*')) {
+    window.addEventListener('load', () => {
+      let cds = setInterval(() => {
+        let chat_div = document.querySelector('#fb-root iframe');
+        if (chat_div) {
+          chat_div.setAttribute('style', chat_div.getAttribute('style') + 'width : 500px;max-width:90vw');
+          clearInterval(cds);
+        }
+      }, 1000 * 3);
+    });
   }
-  window.addEventListener('load', () => {
-    let cds = setInterval(() => {
-      let chat_div = document.querySelector('#fb-root iframe');
-      if (chat_div) {
-        chat_div.setAttribute('style', chat_div.getAttribute('style') + 'width : 500px;max-width:90vw');
-        clearInterval(cds);
-      }
-    }, 1000 * 3);
-  });
 </script>
 
 <!-- Your Chat Plugin code -->
