@@ -4,7 +4,7 @@
             <div class="row">
                 <i-date2 class="col4" ng-model="employee_offer.date" label="##word.employee_offer_date##"></i-date2>
 
-                <i-control ng-disabled="disabledCode" class="col2" label="##word.code##" ng-model="employee_offer.code">
+                <i-control ng-hide="disabledCode" class="col2" label="##word.code##" ng-model="employee_offer.code">
                 </i-control>
                 <div class="col2"></div>
                 <i-control class="col3 r_indigo" disabled label="##word.shift##" ng-model="shift.code">

@@ -56,10 +56,13 @@ module.exports = function init(site) {
         Numbering = [];
         moduleListCore.forEach((_ml) => {
           _ml.type_numbering = {
-            id: 4,
-            en: 'Manual',
-            ar: 'يدوي',
+            id: 3,
+            en: 'Connected',
+            ar: 'متصل',
           }
+
+          _ml.first_value = 1
+          _ml.last_value = 0
         })
 
         let screens_list = []

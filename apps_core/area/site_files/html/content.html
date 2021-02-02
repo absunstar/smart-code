@@ -7,7 +7,7 @@
 
                     <div class="row">
 
-                        <i-control ng-disabled="disabledCode" class="col2" label="##word.code##" ng-model="area.code">
+                        <i-control ng-hide="disabledCode" class="col2" label="##word.code##" ng-model="area.code">
                         </i-control>
                         <i-list class="col3" label="##word.gov##" ng-model="area.gov" items="govList"
                             ng-change="getCityList(area.gov)" display="name" ng-search="_search.$area.$gov_search">

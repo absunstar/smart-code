@@ -6,7 +6,7 @@
                 <div class="col9">
 
                     <div class="row">
-                        <i-control ng-disabled="disabledCode" class="col2" label="##word.code##" ng-model="ticket.code">
+                        <i-control ng-hide="disabledCode" class="col2" label="##word.code##" ng-model="ticket.code">
                         </i-control>
 
                         <i-date2 class="col4" ng-model="ticket.date" label="##word.booking_date##" v="r"></i-date2>

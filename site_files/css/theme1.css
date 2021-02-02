@@ -109,17 +109,29 @@ img {
 
 .files {
   padding: 5px;
-  border-color: white;
-  border-style: outset;
+  border-style: solid;
+  border-color: #5b60ff;
   border-radius: 25px;
 }
 
 i-image img {
+  /* background-color: url('/images/add_image.png') ; */
   border-radius: 50%;
   padding: 3px;
-  border-style: inset;
-  border-color: #ffffff;
+  border-style: solid;
+  border-color: #5b60ff;
+
 }
+
+i-image img:hover {
+  box-shadow: 0 0 2px 1px rgba(0, 3, 175, 0.849);
+}
+
+
+.files:hover {
+  box-shadow: 0 0 2px 1px  rgba(0, 3, 175, 0.849);
+}
+
 
 .logo {
   border-radius: 50%;

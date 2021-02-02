@@ -120,6 +120,11 @@
         "ar": "رقم التذكرة"
     },
     {
+        "name": "Ticket_code",
+        "en": "Ticket Code",
+        "ar": "كود التذكرة"
+    },
+    {
         "name": "shift_name",
         "en": "Shift Name",
         "ar": "اسم الشيفت "

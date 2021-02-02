@@ -4,7 +4,7 @@
             <legend> ##word.vendors_group_informations## </legend>
             <div class="row">
                 <div class="col9">
-                    <i-control ng-disabled="disabledCode" class="col2" label="##word.code##"
+                    <i-control ng-hide="disabledCode" class="col2" label="##word.code##"
                     ng-model="vendor_group.code"></i-control>
                     <i-control v="r" class="col5" label="##word.vendors_group_name##" ng-model="vendor_group.name"></i-control>
                     <div class="col2"></div>

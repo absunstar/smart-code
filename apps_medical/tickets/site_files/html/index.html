@@ -60,7 +60,7 @@
                     <table x-permission="login" class="table hover loaded" id="t1">
 
                         <tr>
-                            <th>##word.Ticket_number##</th>
+                            <th>##word.Ticket_code##</th>
                             <th>##word.booking_date##</th>
                             <th>##word.patient##</th>
                             <th>##word.clinics##</th>
@@ -72,7 +72,7 @@
                             <td ng-click="displayDetailsTicket(c)">
                                 <p class="blue center userPrint">{{c.code}}</p>
                                 <br>
-                                <h3 class="center bold blue">{{c.status.ar}}</h3>
+                                <h3 class="center bold green">{{c.status.ar}}</h3>
                             </td>
                             <td ng-click="displayDetailsTicket(c)" class="center brown"> <br> {{c.date | date : 'dd - MM
                                 -
