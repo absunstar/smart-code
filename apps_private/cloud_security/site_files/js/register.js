@@ -97,6 +97,8 @@ app.controller('register', function ($scope, $http) {
                 store: $scope.customer.company.store,
                 unit: $scope.customer.company.unit,
                 currency: $scope.customer.company.currency,
+                host: $scope.customer.company.host,
+                customers_count: $scope.customer.company.customers_count,
                 users_count: $scope.customer.company.users_count
               }),
               branch: site.to123({

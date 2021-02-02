@@ -67,7 +67,7 @@ app.controller("customers", function ($scope, $http, $timeout) {
           $scope.getCustomersList();
           $scope.count = $scope.list.length;
         } else {
-          $scope.error = 'Please Login First';
+          $scope.error = response.data.error;
           if (response.data.error.like('*Must Enter Code*')) {
             $scope.error = "##word.must_enter_code##"
           }

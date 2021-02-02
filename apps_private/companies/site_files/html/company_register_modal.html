@@ -31,15 +31,15 @@
                                 <div class="row">
                                     <div class="col9">
                                         <div class="row">
-                                            <i-control id="cmd" class="col2" label="##word.code##"
+                                            <!-- <i-control id="cmd" class="col2" label="##word.code##"
                                                 ng-model="company.code">
-                                            </i-control>
+                                            </i-control> -->
 
-                                            <i-control class="col4" label="##word.companies_name_ar##"
+                                            <i-control class="col4" v="r" label="##word.companies_name_ar##"
                                                 ng-model="company.name_ar">
                                             </i-control>
 
-                                            <i-control class="col4" label="##word.companies_name_en##"
+                                            <i-control class="col4" v="r" label="##word.companies_name_en##"
                                                 ng-model="company.name_en">
                                             </i-control>
 
@@ -51,14 +51,17 @@
                                             <i-control class="col4" label="##word.host_domain##"
                                                 ng-model="company.host">
                                             </i-control>
+                                            <!--  <i-list class="col6" label="##word.companies_activity##"
+                                            ng-model="company.activity" items="companisActivitiesList"
+                                            display="name" ng-search="_search.$company_activity_search">
+                                        </i-list> -->
                                         </div>
 
-                                        <div class="row hide">
-                                            <i-list class="col6" label="##word.companies_activity##"
-                                                ng-model="company.activity" items="companisActivitiesList"
-                                                display="name" ng-search="_search.$company_activity_search">
-                                            </i-list>
+                                        <div class="row">
+                                            <i class="grayDark bold">##word.domain_example##</i>
                                         </div>
+
+
 
                                     </div>
 
@@ -219,16 +222,16 @@
                             <fieldset>
                                 <legend> ##word.login_information## </legend>
                                 <div class="row">
-                                    <i-control help-id="" class="col4" label="##word.email##"
+                                    <i-control help-id="" v="r" class="col4" label="##word.email##"
                                         ng-model="company.username">
                                     </i-control>
-                                    <i-control help-id="" class="col4" label="##word.password##"
+                                    <i-control help-id="" v="r" class="col4" label="##word.password##"
                                         ng-model="company.password">
                                     </i-control>
                                 </div>
                                 <div class="row">
-                                    <i ng-show="company.host" class="grayDark bold">examble{{company.host}}</i>
-                                    <i ng-hide="company.host" class="grayDark bold">you@examble.com</i>
+                                    <i ng-show="company.host" class="grayDark bold">{{company.username}}{{company.host}}</i>
+                                    <i ng-hide="company.host" class="grayDark bold">{{company.username}}@examble.com</i>
                                 </div>
 
                             </fieldset>
@@ -242,7 +245,7 @@
         <div class="modal-footer center">
             <h2 class="error"> {{error}} </h2>
             <i-button type="add" label="##word.add##" ng-click="addcompanyRegister(company)"></i-button>
-            
+
             <i-button type="close" label="##word.close##" onclick="site.hideModal( '#companyRegisterModal')">
             </i-button>
 

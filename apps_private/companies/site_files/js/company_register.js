@@ -11,6 +11,7 @@ app.controller('company_register', function ($scope, $http) {
     item: 100,
     unit: 1,
     currency: 1,
+    customers_count: 100,
     users_count: 10,
     branch_list: [{
       code: 1,

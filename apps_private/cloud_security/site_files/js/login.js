@@ -38,6 +38,7 @@ app.controller('login', function ($scope, $http) {
                     unit: $scope.user.company.unit,
                     currency: $scope.user.company.currency,
                     users_count: $scope.user.company.users_count,
+                    customers_count: $scope.user.company.customers_count,
                     host: $scope.user.company.host
                 }),
                 branch: site.to123({

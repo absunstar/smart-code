@@ -15,6 +15,7 @@ app.controller("companies", function ($scope, $http, $timeout) {
       unit: 1,
       currency: 1,
       users_count: 10,
+      customers_count: 100,
       branch_list: [{
         code: 1,
         name_ar: 'الفرع الرئيسى',

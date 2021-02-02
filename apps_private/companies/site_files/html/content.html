@@ -36,24 +36,32 @@
                                     ng-model="company.branch_count">
                                 </i-control>
 
-                                <i-control class="col2" label="##word.count_stores##" type="number"
-                                    x-features="restaurant || pos || erp || school || gym" ng-model="company.store">
+                                <i-control class="col2" label="##word.compaines_users_count##" type="number"
+                                    ng-model="company.users_count">
                                 </i-control>
 
-                                <i-control class="col2" label="##word.count_items##" type="number"
-                                    x-features="restaurant || pos || erp || school || gym" ng-model="company.item">
-                                </i-control>
-
-                                <i-control class="col2" label="##word.count_units##" type="number"
-                                    x-features="restaurant || pos || erp || school || gym" ng-model="company.unit">
+                                <i-control class="col2" label="##word.customers_count##" type="number"
+                                    ng-model="company.customers_count">
                                 </i-control>
 
                                 <i-control class="col2" label="##word.count_currencies##" type="number"
                                     ng-model="company.currency">
                                 </i-control>
 
-                                <i-control class="col2" label="##word.compaines_users_count##" type="number"
-                                    ng-model="company.users_count">
+                            </div>
+
+                            <div class="row" x-features="restaurant || pos || erp || school || gym">
+
+                                <i-control class="col2" label="##word.count_stores##" type="number"
+                                    ng-model="company.store">
+                                </i-control>
+
+                                <i-control class="col2" label="##word.count_items##" type="number"
+                                    ng-model="company.item">
+                                </i-control>
+
+                                <i-control class="col2" label="##word.count_units##" type="number"
+                                    ng-model="company.unit">
                                 </i-control>
 
                             </div>
@@ -61,13 +69,14 @@
                             <div class="row">
                                 <i-control class="col4" label="##word.host_domain##" ng-model="company.host">
                                 </i-control>
-                            </div>
-
-                            <div class="row hide">
-                                <i-list class="col6" label="##word.companies_activity##" ng-model="company.activity"
+                                <!-- <i-list class="col6" label="##word.companies_activity##" ng-model="company.activity"
                                     items="companisActivitiesList" display="name"
                                     ng-search="_search.$company_activity_search">
-                                </i-list>
+                                </i-list> -->
+                            </div>
+
+                            <div class="row">
+                                <i class="grayDark bold">##word.domain_example##</i>
                             </div>
 
                         </div>
@@ -219,8 +228,8 @@
                         </i-control>
                     </div>
                     <div class="row">
-                        <i ng-show="company.host" class="grayDark bold">examble{{company.host}}</i>
-                        <i ng-hide="company.host" class="grayDark bold">you@examble.com</i>
+                        <i ng-show="company.host" class="grayDark bold">{{company.username}}{{company.host}}</i>
+                        <i ng-hide="company.host" class="grayDark bold">{{company.username}}@examble.com</i>
                     </div>
 
                 </fieldset>

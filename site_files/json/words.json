@@ -15,6 +15,11 @@
         "ar": "تقرير"
     },
     {
+        "name": "create",
+        "en": "Create",
+        "ar": "إنشاء"
+    },
+    {
         "name": "vacations",
         "en": "Vacations",
         "ar": "الأجازات"

@@ -278,54 +278,68 @@ module.exports = function init(site) {
       customers_doc.code = cb.code;
     }
 
-    $customers.add(customers_doc, (err, doc) => {
-      if (!err) {
-        response.done = true
-        response.doc = doc
 
-        if (user.password && user.username) {
-          user.ref_info = { id: doc.id }
-          site.security.addUser(user, (err, doc1) => {
-            if (!err) {
-              delete user._id
-              delete user.id
-              doc.user_info = {
-                id: doc1.id
-              }
-              $customers.edit(doc, (err2, doc2) => {
-                // if (!req.session.user) {
-                //   site.security.login({
-                //     email: doc1.email,
-                //     password: doc1.password,
-                //     $req: req,
-                //     $res: res
-                //   },
-                //     function (err, user_login) {
-                //       if (!err) {                        
-                //         response.user = user_login
-                //         response.done = true
-                //       } else {
-                //         console.log(err)
-                //         response.error = err.message
-                //       }
+    $customers.findMany({
+      where: {
+        'company.id': site.get_company(req).id,
+      }
+    }, (err, docs, count) => {
+      if (!err && count >= site.get_company(req).customers_count) {
 
-                //       res.json(response)
-                //     }
-                //   )
-                // }
+        response.error = 'You have exceeded the maximum number of extensions'
+        res.json(response)
+      } else {
 
+        $customers.add(customers_doc, (err, doc) => {
+          if (!err) {
+            response.done = true
+            response.doc = doc
+
+            if (user.password && user.username) {
+              user.ref_info = { id: doc.id }
+              site.security.addUser(user, (err, doc1) => {
+                if (!err) {
+                  delete user._id
+                  delete user.id
+                  doc.user_info = {
+                    id: doc1.id
+                  }
+                  $customers.edit(doc, (err2, doc2) => {
+                    // if (!req.session.user) {
+                    //   site.security.login({
+                    //     email: doc1.email,
+                    //     password: doc1.password,
+                    //     $req: req,
+                    //     $res: res
+                    //   },
+                    //     function (err, user_login) {
+                    //       if (!err) {                        
+                    //         response.user = user_login
+                    //         response.done = true
+                    //       } else {
+                    //         console.log(err)
+                    //         response.error = err.message
+                    //       }
+
+                    //       res.json(response)
+                    //     }
+                    //   )
+                    // }
+
+                    res.json(response)
+                  })
+                } else {
+                  response.error = err.message
+                }
                 res.json(response)
               })
-            } else {
-              response.error = err.message
             }
-            res.json(response)
-          })
-        }
-      } else {
-        response.error = err.message
+          } else {
+            response.error = err.message
+          }
+          res.json(response)
+        })
       }
-      res.json(response)
     })
   })
 

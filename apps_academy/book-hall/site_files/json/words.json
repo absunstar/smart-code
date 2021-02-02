@@ -63,11 +63,7 @@
         "en": "Total Duration",
         "ar": "إجمالي المدة "
     },
-    {
-        "name": "create",
-        "en": "Create",
-        "ar": "إنشاء"
-    },
+    
     {
         "name": "create_booking",
         "en": "Create Booking",
