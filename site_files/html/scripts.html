@@ -3,21 +3,19 @@
 <script src="/x-js/angular.js?v=##site.options.version##"></script>
 <script src="/x-js/site.js?v=##site.options.version##"></script>
 <script>
-    site.features = '##req.features##';
-    site.feature = (f)=> site.features.indexOf(f) !== -1;
+  site.features = '##req.features##';
+  site.feature = (f) => site.features.indexOf(f) !== -1;
 
-    setTimeout(() => {
-        document.querySelectorAll('.loaded').forEach(el => {
-            el.style.visibility = 'visible';
-        });
-    }, 1000);
+  setTimeout(() => {
+    document.querySelectorAll('.loaded').forEach((el) => {
+      el.style.visibility = 'visible';
+    });
+  }, 1000);
 </script>
-
 
 <script>
-    var app = app || angular.module('myApp', []);
+  var app = app || angular.module('myApp', []);
 </script>
-
 
 <script src="/x-js/directive.js?v=##site.options.version##"></script>
 <script src="/js/sitebar.js?v=##site.options.version##"></script>
@@ -34,83 +32,92 @@
 <div x-feature="help" x-import="ui-help/index.html"></div>
 <script x-import="ui-print/index.js"></script>
 <script>
-    $(document).on('keydown', 'input,select', function (e) {
-        if (e.which == 13 || e.keyCode == 13) {
-            e.preventDefault();
-            var $canfocus = $('input,select');
-            var index = $canfocus.index(document.activeElement) + 1;
-            if (index >= $canfocus.length) index = 0;
-            $canfocus.eq(index).focus();
-        }
+  $(document).on('keydown', 'input,select', function (e) {
+    if (e.which == 13 || e.keyCode == 13) {
+      e.preventDefault();
+      var $canfocus = $('input,select');
+      var index = $canfocus.index(document.activeElement) + 1;
+      if (index >= $canfocus.length) index = 0;
+      $canfocus.eq(index).focus();
+    }
+  });
+
+  function string_to_buffer(s) {
+    if (typeof ArrayBuffer !== 'undefined') {
+      var buf = new ArrayBuffer(s.length);
+      var view = new Uint8Array(buf);
+      for (var i = 0; i != s.length; ++i) view[i] = s.charCodeAt(i) & 0xff;
+      return buf;
+    } else {
+      var buf = new Array(s.length);
+      for (var i = 0; i != s.length; ++i) buf[i] = s.charCodeAt(i) & 0xff;
+      return buf;
+    }
+  }
+
+  function export_to_xlsx(id, _fileName) {
+    _fileType = 'xlsx';
+    var workbook = XLSX.utils.table_to_book(document.getElementById(id), {
+      sheet: 'Sheet JS',
     });
-
-    function string_to_buffer(s) {
-        if (typeof ArrayBuffer !== "undefined") {
-            var buf = new ArrayBuffer(s.length);
-            var view = new Uint8Array(buf);
-            for (var i = 0; i != s.length; ++i) view[i] = s.charCodeAt(i) & 0xff;
-            return buf;
-        } else {
-            var buf = new Array(s.length);
-            for (var i = 0; i != s.length; ++i) buf[i] = s.charCodeAt(i) & 0xff;
-            return buf;
-        }
+    var wbout = XLSX.write(workbook, {
+      bookType: _fileType,
+      bookSST: true,
+      type: 'binary',
+    });
+    var fileName = _fileName || 'file.' + _fileType;
+    try {
+      saveAs(
+        new Blob([string_to_buffer(wbout)], {
+          type: 'application/octet-stream',
+        }),
+        fileName,
+      );
+    } catch (e) {
+      if (typeof console != 'undefined') console.log(e);
     }
-
-    function export_to_xlsx(id, _fileName) {
-        _fileType = 'xlsx';
-        var workbook = XLSX.utils.table_to_book(document.getElementById(id), {
-            sheet: "Sheet JS"
-        });
-        var wbout = XLSX.write(workbook, {
-            bookType: _fileType,
-            bookSST: true,
-            type: "binary"
-        });
-        var fileName = _fileName || "file." + _fileType;
-        try {
-            saveAs(new Blob([string_to_buffer(wbout)], {
-                type: "application/octet-stream"
-            }), fileName);
-        } catch (e) {
-            if (typeof console != "undefined") console.log(e);
-        }
-        return wbout;
-    }
+    return wbout;
+  }
 </script>
 
 <!-- Load Facebook SDK for JavaScript -->
 <div id="fb-root"></div>
 <script>
-  window.fbAsyncInit = function() {
+  window.fbAsyncInit = function () {
     FB.init({
-      xfbml            : true,
-      version          : 'v9.0'
+      xfbml: true,
+      version: 'v9.0',
     });
   };
 
-  (function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = 'https://connect.facebook.net/ar_AR/sdk/xfbml.customerchat.js';
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
+  (function (d, s, id) {
+    var js,
+      fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s);
+    js.id = id;
+    js.src = 'https://connect.facebook.net/ar_AR/sdk/xfbml.customerchat.js';
+    fjs.parentNode.insertBefore(js, fjs);
+  })(document, 'script', 'facebook-jssdk');
+</script>
 
 <script>
+  window.addEventListener('load', () => {
     let cds = setInterval(() => {
       let chat_div = document.querySelector('#fb-root iframe');
       if (chat_div) {
         chat_div.setAttribute('style', chat_div.getAttribute('style') + 'width : 500px;max-width:90vw');
         clearInterval(cds);
       }
-    }, 1000 * 5);
-  </script>
-  
+    }, 1000 * 3);
+  });
+</script>
+
 <!-- Your Chat Plugin code -->
-<div class="fb-customerchat"
+<div
+  class="fb-customerchat"
   attribution="setup_tool"
   page_id="545115802193198"
-logged_in_greeting="شركة سمارت كود ترحب بك - أكتب رسالتك وسنتواصل معك فى أقرب وقت"
-logged_out_greeting="شركة سمارت كود ترحب بك - أكتب رسالتك وسنتواصل معك فى أقرب وقت">
-</div>
+  logged_in_greeting="شركة سمارت كود ترحب بك - أكتب رسالتك وسنتواصل معك فى أقرب وقت"
+  logged_out_greeting="شركة سمارت كود ترحب بك - أكتب رسالتك وسنتواصل معك فى أقرب وقت"
+></div>
