@@ -7,16 +7,18 @@
             <a class="tab-link" onclick="site.showTabContent(event,'#basicInformation')">
                 ##word.basic_information##
             </a>
-            <a class="tab-link" onclick="site.showTabContent(event, '#medicinesInformation')">
-                ##word.medicines## </a>
-            <a class="tab-link" onclick="site.showTabContent(event, '#scanInformation')">
-                ##word.scan## </a>
-            <a class="tab-link" onclick="site.showTabContent(event, '#analysesInformation')">
-                ##word.analyses## </a>
-            <a class="tab-link" onclick="site.showTabContent(event, '#operationInformation')">
-                ##word.operation## </a>
+
             <a class="tab-link" onclick="site.showTabContent(event, '#diagnosisInformation')">
                 ##word.diagnosis## </a>
+
+            <a class="tab-link" onclick="site.showTabContent(event, '#medicinesInformation')">
+                ##word.medicines## ##word.requiredy##</a>
+            <a class="tab-link" onclick="site.showTabContent(event, '#scanInformation')">
+                ##word.scan## ##word.requiredy##</a>
+            <a class="tab-link" onclick="site.showTabContent(event, '#analysesInformation')">
+                ##word.analyses## ##word.requiredy##</a>
+            <a class="tab-link" onclick="site.showTabContent(event, '#operationInformation')">
+                ##word.operation## ##word.requiredy##</a>
 
             <a class="tab-link " onclick="site.showTabContent(event, '#ticketFiles')">
                 ##word.customers_files## </a>
@@ -33,18 +35,22 @@
 
                         <div class="row">
                             <i-list class="col3" label="##word.ticket_type##" ng-model="ticket.ticket_type"
-                                items="ticketTypeList" display="##session.lang##"
-                                ng-search="_search.$ticket_type_search">
-                            </i-list>
+                                ng-change="changeTicketPrice()" items="ticketTypeList" display="##session.lang##"
+                                ng-search="_search.$ticket_type_search"></i-list>
 
+                            <div class="col7"></div>
+
+                            <i-checkbox help-id="cities_active" class="col2" label="##word.active##"
+                                ng-model="ticket.active"></i-checkbox>
                         </div>
                         <div class="row">
                             <i-control class="col2" label="##word.patient_search##" ng-model="patient_search"
                                 ng-keydown="getPatientList($event)"></i-control>
 
-                            <i-list class="col3" label="##word.patient##" v="r" ng-model="ticket.customer"
-                                display="name_##session.lang##" items="customerList"
-                                ng-search="_search.$customers_searching"></i-list>
+                            <i-list class="col4" label="##word.patient##" v="r" ng-model="ticket.customer"
+                                display="name_##session.lang##" items="customersList"
+                                ng-search="_search.$patients_searching">
+                            </i-list>
 
                             <i-button class="col2" ng-show="ticket.customer.id" type="details"
                                 label="##word.customers_details##" ng-click="showPatient(ticket.customer.id)">
@@ -55,9 +61,6 @@
                             </i-button>
 
                             <div class="col1"></div>
-
-                            <i-checkbox help-id="cities_active" class="col2" label="##word.active##"
-                                ng-model="ticket.active"></i-checkbox>
 
                         </div>
 
@@ -165,6 +168,7 @@
                                     <th>##word.work_day##</th>
                                     <th>##word.work_from##</th>
                                     <th>##word.work_to##</th>
+                                    <th>##word.ticket_price##</th>
 
                                 </tr>
                                 <tr>
@@ -176,6 +180,10 @@
                                     <td class="red"> {{ticket.selected_time.to.minute}} :
                                         {{ticket.selected_time.to.hour}}
                                     </td>
+                                    <td>
+                                        <p class="green">{{ticket.ticket_price}}</p>
+                                    </td>
+
 
                                 </tr>
                             </table>

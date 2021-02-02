@@ -20,11 +20,11 @@
                     </div>
 
                     <div class="row">
-                        <i-control class="col3" label="##word.patient_search##" ng-model="patient_search"
+                        <i-control class="col2" label="##word.patient_search##" ng-model="patient_search"
                             ng-keydown="getPatientList($event)"></i-control>
 
                         <i-list class="col4" label="##word.patient##" v="r" ng-model="ticket.customer"
-                            display="name_##session.lang##" items="patientList" ng-search="_search.$patients_searching">
+                            display="name_##session.lang##" items="customersList" ng-search="_search.$patients_searching">
                         </i-list>
 
                         <i-button class="col2" ng-show="ticket.customer.id" type="details"

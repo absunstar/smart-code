@@ -130,6 +130,16 @@
         "ar": "المطلوب"
     },
     {
+        "name": "requiredy",
+        "en": "Required",
+        "ar": "المطلوبة"
+    },
+    {
+        "name": "Save_edit",
+        "en": "Save Edit",
+        "ar": "حفظ التعديل"
+    },
+    {
         "name": "the_amount",
         "en": "The Amount",
         "ar": "المبلغ"

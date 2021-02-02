@@ -580,7 +580,7 @@ app.controller("tickets", function ($scope, $http, $timeout) {
       return;
     }
 
-    $scope.patientList = [];
+    $scope.customersList = [];
     $http({
       method: "POST",
       url: "/api/customers/all",
@@ -594,7 +594,7 @@ app.controller("tickets", function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done && response.data.list.length > 0) {
-          $scope.patientList = response.data.list;
+          $scope.customersList = response.data.list;
 
         }
       },
