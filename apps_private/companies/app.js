@@ -83,68 +83,126 @@ module.exports = function init(site) {
     companies_doc.company = site.get_company(req)
     companies_doc.branch = site.get_branch(req)
 
+
+    if (!companies_doc.code) companies_doc.code = companies_doc.name_en + '-' + '1'
+
     if (companies_doc.branch_list.length > companies_doc.branch_count) {
 
       response.error = 'You have exceeded the maximum number of Branches'
       res.json(response)
     } else {
 
-      if (site.feature('erp')) companies_doc.type = 'erp'
-      else if (site.feature('pos')) companies_doc.type = 'pos'
-      else if (site.feature('restaurant')) companies_doc.type = 'restaurant'
-      else if (site.feature('school')) companies_doc.type = 'school'
-      else if (site.feature('gym')) companies_doc.type = 'gym'
-      else if (site.feature('academy')) companies_doc.type = 'academy'
-      else if (site.feature('lawyer')) companies_doc.type = 'lawyer'
-      else if (site.feature('employee')) companies_doc.type = 'employee'
+      if (site.feature('erp')) companies_doc.feature = 'erp'
+      else if (site.feature('pos')) companies_doc.feature = 'pos'
+      else if (site.feature('restaurant')) companies_doc.feature = 'restaurant'
+      else if (site.feature('school')) companies_doc.feature = 'school'
+      else if (site.feature('gym')) companies_doc.feature = 'gym'
+      else if (site.feature('academy')) companies_doc.feature = 'academy'
+      else if (site.feature('lawyer')) companies_doc.feature = 'lawyer'
+      else if (site.feature('employee')) companies_doc.feature = 'employee'
+      else if (site.feature('medical')) companies_doc.feature = 'medical'
 
 
-      if(companies_doc.username){
+      if (companies_doc.username) {
 
         let exist_domain = companies_doc.username.includes("@");
-        if(!exist_domain){
+        if (!exist_domain) {
           companies_doc.username = companies_doc.username + '@' + companies_doc.host;
         }
       }
 
-      $companies.add(companies_doc, (err, doc) => {
-        if (!err) {
-          response.done = true
-          response.doc = doc
+      $companies.findMany({
 
+        where: {
+          'feature': companies_doc.feature,
 
-          site.call('[user][add]', {
-            is_company: true,
-            company_id: doc.id,
-            email: doc.username,
-            password: doc.password,
-            roles: [{
-              name: "companies_admin"
-            }],
-            branch_list: [{
-              company: doc,
-              branch: doc.branch_list[0]
-            }],
-            profile: {
-              name: doc.name_ar,
-              mobile: doc.mobile,
-              image_url: companies_doc.image_url
-            }
-          }, (err, user_doc) => {
-            if (!err && user_doc) {
-              doc.user_id = user_doc.id
-              $companies.update(doc)
-            }
-          site.call('[company][created]', doc)
+          $or: [
+            { 'name_ar': companies_doc.name_ar },
+            { 'name_en': companies_doc.name_en },
+            { 'host': companies_doc.host },
+            { 'username': companies_doc.username },
 
-          })
+          ]
+        }
+      }, (err, docs) => {
 
-          res.json(response)
+        if (!err && docs && docs.length > 0) {
+          let exist_name_ar = false
+          let exist_name_en = false
+          let exist_host = false
+          let exist_username = false
+          docs.forEach(_docs => {
+            if (_docs.name_ar == companies_doc.name_ar) exist_name_ar = true
+            else if (_docs.name_en == companies_doc.name_en) exist_name_en = true
+            else if (_docs.host == companies_doc.host) exist_host = true
+            else if (_docs.username == companies_doc.username) exist_username = true
+          });
 
+          if (exist_name_ar) {
+            response.error = 'Arabic Name Is Exists'
+            res.json(response)
+            return;
+
+          } else if (exist_name_en) {
+            response.error = 'English Name Is Exists'
+            res.json(response)
+            return;
+
+          } else if (exist_host) {
+            response.error = 'Host Name Is Exists'
+            res.json(response)
+            return;
+
+          } else if (exist_username) {
+            response.error = 'User Name Is Exists'
+            res.json(response)
+            return;
+
+          }
 
         } else {
-          response.error = err.message
-          res.json(response)
+
+          $companies.add(companies_doc, (err, doc) => {
+            if (!err) {
+              response.done = true
+              response.doc = doc
+
+
+              site.call('[user][add]', {
+                is_company: true,
+                company_id: doc.id,
+                email: doc.username,
+                password: doc.password,
+                roles: [{
+                  name: "companies_admin"
+                }],
+                branch_list: [{
+                  company: doc,
+                  branch: doc.branch_list[0]
+                }],
+                profile: {
+                  name: doc.name_ar,
+                  mobile: doc.mobile,
+                  image_url: companies_doc.image_url
+                }
+              }, (err, user_doc) => {
+                if (!err && user_doc) {
+                  doc.user_id = user_doc.id
+                  $companies.update(doc)
+                }
+                site.call('[company][created]', doc)
+
+              })
+
+              res.json(response)
+
+
+            } else {
+              response.error = err.message
+              res.json(response)
+            }
+
+          })
         }
 
       })

@@ -220,7 +220,6 @@ module.exports = function init(site) {
     if (where['name']) {
       where['name'] = site.get_RegExp(where['name'], "i");
     }
-
     if (site.get_company(req) && site.get_company(req).id)
       where['company.id'] = site.get_company(req).id
 
