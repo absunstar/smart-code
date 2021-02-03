@@ -167,7 +167,6 @@ module.exports = function init(site) {
               response.done = true
               response.doc = doc
 
-
               site.call('[user][add]', {
                 is_company: true,
                 company_id: doc.id,
