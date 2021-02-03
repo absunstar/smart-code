@@ -89,23 +89,20 @@
       bottom: 0;
       left: 0;
       right: 0;
-      font-size:x-large;
+      font-size:19px;
       border-radius: 15px;
       line-height: 1.8;
       background: #556ae2;
       color: #fff;
       visibility: hidden;
       opacity: 0;
-
-      /* transition effect. not necessary */
       transition: opacity .3s, visibility .3s;
     }
 
     .post:hover .img__description {
       visibility: visible;
       box-shadow: 0 4px 8px 0 rgb(0 0 0 / 77%), 0 6px 20px 0 rgb(0 0 0 / 77%);
-      padding: 15px;
-      padding-top: 50px;
+      padding: 18px;
       opacity: 1;
     }
   </style>
@@ -122,14 +119,18 @@
     </div>
 
     <div class="footer" x-features="!login && !site.dynamic">
+      <br>
+      <br>
       <div class="row">
-        <div class="col6">
+        <div class="col1"></div>
+        <div class="col5">
           <h2 class="center red bold">##word.try_application##</h2>
           <h2 class="center">##word.security_user_email## : <span> test </span></h2>
           <h2 class="center">##word.security_user_password## : <span> test </span></h2>
         </div>
+        <div class="col2"></div>
 
-        <div class="col6">
+        <div class="col4">
           <div class="create center">
             <a onclick="site.showModal('#companyRegisterModal');"> <span class="bold"> ##word.create## ##word.companies_new## </span>
             </a>
