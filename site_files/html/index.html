@@ -91,13 +91,14 @@
       right: 0;
       font-size:x-large;
       border-radius: 15px;
-      background: #556ae2ed;
+      line-height: 1.8;
+      background: #556ae2;
       color: #fff;
       visibility: hidden;
       opacity: 0;
 
       /* transition effect. not necessary */
-      transition: opacity .7s, visibility .7s;
+      transition: opacity .3s, visibility .3s;
     }
 
     .post:hover .img__description {
@@ -122,20 +123,24 @@
 
     <div class="footer" x-features="!login && !site.dynamic">
       <div class="row">
-        <h2 class="center red bold">##word.try_application##</h2>
-        <h2 class="center">##word.security_user_email## : <span> test </span></h2>
-        <h2 class="center">##word.security_user_password## : <span> test </span></h2>
-
-      </div>
-      <br>
-      <br>
-
-      <div class="row center">
-        <div class="create center">
-          <a onclick="site.showModal('#companyRegisterModal');"> <span class="bold"> ##word.create## ##word.companies_new## </span>
-          </a>
+        <div class="col6">
+          <h2 class="center red bold">##word.try_application##</h2>
+          <h2 class="center">##word.security_user_email## : <span> test </span></h2>
+          <h2 class="center">##word.security_user_password## : <span> test </span></h2>
         </div>
+
+        <div class="col6">
+          <div class="create center">
+            <a onclick="site.showModal('#companyRegisterModal');"> <span class="bold"> ##word.create## ##word.companies_new## </span>
+            </a>
+          </div>
+        </div>
+
       </div>
+      <br>
+      <br>
+
+     
 
       <br>
       <br>
