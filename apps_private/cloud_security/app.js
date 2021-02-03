@@ -349,6 +349,7 @@ module.exports = function init(site) {
         $res: res
       },
       function (err, user) {
+  
         if (!err) {
 
           site.call('[session][update]', {

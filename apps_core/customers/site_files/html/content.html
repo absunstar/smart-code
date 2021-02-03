@@ -56,10 +56,10 @@
                                 <i-control ng-disabled="disabledCodeCustomer" class="col2" label="##word.code##"
                                     ng-model="customer.code"></i-control>
 
-                                <i-control class="col4" label="##word.customers_name_ar##" ng-model="customer.name_ar">
+                                <i-control class="col4" v="r" label="##word.customers_name_ar##" ng-model="customer.name_ar">
                                 </i-control>
 
-                                <i-control class="col4" label="##word.customers_name_en##" ng-model="customer.name_en">
+                                <i-control class="col4" v="r" label="##word.customers_name_en##" ng-model="customer.name_en">
                                 </i-control>
 
                                 <i-checkbox class="col2" label="##word.active##" ng-model="customer.active">
@@ -67,6 +67,10 @@
                             </div>
 
                             <div class="row">
+
+                                <i-list class="col4" label="##word.customers_groups##" ng-model="customer.group"
+                                    items="customerGroupList" display="name" ng-search="_search.$customerGroup">
+                                </i-list>
 
                                 <i-control x-features="lawyer" help-id="" v="r ll2" class="col4"
                                     label="##word.national_id##" ng-model="customer.national_id"></i-control>
@@ -89,9 +93,9 @@
 
                             <div class="row">
 
-                                <i-list help-id="" x-features="medical" ng-search="_search.$insurance_companies_search" class="col4"
-                                    label="##word.medical_insurance_company##" ng-model="customer.insurance_company" items="insuranceCompaniesList"
-                                    display="name">
+                                <i-list help-id="" x-features="medical" ng-search="_search.$insurance_companies_search"
+                                    class="col4" label="##word.medical_insurance_company##"
+                                    ng-model="customer.insurance_company" items="insuranceCompaniesList" display="name">
                                 </i-list>
 
                                 <i-control class="col4" x-features="gym || academy || school"
@@ -111,10 +115,6 @@
                             </div>
 
                             <div class="row">
-
-                                <i-list class="col4" label="##word.customers_groups##" ng-model="customer.group"
-                                    items="customerGroupList" display="name" ng-search="_search.$customerGroup">
-                                </i-list>
 
                                 <i-list class="col4" x-features="school" label="##word.school_grade##"
                                     ng-model="customer.school_grade" items="schoolGradeList" display="name"

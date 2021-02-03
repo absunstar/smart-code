@@ -67,81 +67,72 @@ module.exports = function init(site) {
     employee_doc.company = site.get_company(req)
     employee_doc.branch = site.get_branch(req)
 
-    $employee_list.find({
 
+    let user = {};
+
+
+    user = {
+      name: employee_doc.name,
+      mobile: employee_doc.mobile,
+      username: employee_doc.username,
+      email: employee_doc.username,
+      password: employee_doc.password,
+      image_url: employee_doc.image_url,
+      branch_list: [{
+        company: site.get_company(req),
+        branch: site.get_branch(req)
+      }],
+      is_employee: true
+    }
+
+    user.roles = [{
+      module_name: "public",
+      name: "employee_admin",
+      en: "Employee Admin",
+      ar: "إدارة الموظفين",
+      permissions: ["employee_manage"]
+    }]
+
+    user.profile = {
+      name: user.name,
+      mobile: user.mobile,
+      image_url: user.image_url
+    }
+
+    user.ref_info = {
+      id: employee_doc.id
+    }
+
+    user.company = employee_doc.company
+    user.branch = employee_doc.branch
+
+    let num_obj = {
+      company: site.get_company(req),
+      screen: 'employees',
+      date: new Date()
+    };
+
+    let cb = site.getNumbering(num_obj);
+    if (!employee_doc.code && !cb.auto) {
+      response.error = 'Must Enter Code';
+      res.json(response);
+      return;
+
+    } else if (cb.auto) {
+      employee_doc.code = cb.code;
+    }
+
+    $employee_list.findMany({
       where: {
         'company.id': site.get_company(req).id,
-        'branch.code': site.get_branch(req).code,
-
-        $or: [{
-          'name': employee_doc.name
-        }, {
-          'phone': employee_doc.phone
-        }, {
-          'mobile': employee_doc.mobile
-        }]
       }
-    }, (err, doc) => {
-      if (!err && doc) {
-        response.error = 'Name , Phone Or mobile Exists'
+    }, (err, docs, count) => {
+      if (!err && count >= site.get_company(req).employees_count) {
+
+        response.error = 'You have exceeded the maximum number of extensions'
         res.json(response)
       } else {
 
-        let user = {};
-
-
-        user = {
-          name: employee_doc.name,
-          mobile: employee_doc.mobile,
-          username: employee_doc.username,
-          email: employee_doc.username,
-          password: employee_doc.password,
-          image_url: employee_doc.image_url,
-          branch_list: [{
-            company: site.get_company(req),
-            branch: site.get_branch(req)
-          }],
-          is_employee: true
-        }
-
-        user.roles = [{
-          module_name: "public",
-          name: "employee_admin",
-          en: "Employee Admin",
-          ar: "إدارة الموظفين",
-          permissions: ["employee_manage"]
-        }]
-
-        user.profile = {
-          name: user.name,
-          mobile: user.mobile,
-          image_url: user.image_url
-        }
-
-        user.ref_info = {
-          id: employee_doc.id
-        }
-
-        user.company = employee_doc.company
-        user.branch = employee_doc.branch
-
-        let num_obj = {
-          company: site.get_company(req),
-          screen: 'employees',
-          date: new Date()
-        };
-
-        let cb = site.getNumbering(num_obj);
-        if (!employee_doc.code && !cb.auto) {
-          response.error = 'Must Enter Code';
-          res.json(response);
-          return;
-
-        } else if (cb.auto) {
-          employee_doc.code = cb.code;
-        }
-
-        
         $employee_list.add(employee_doc, (err, doc) => {
           if (!err) {
             response.done = true
@@ -173,6 +164,7 @@ module.exports = function init(site) {
         })
       }
     })
+
   })
 
   site.post("/api/employees/update", (req, res) => {
@@ -345,7 +337,7 @@ module.exports = function init(site) {
     let response = {
       done: false
     }
-          
+
     if (!req.session.user) {
       response.error = 'Please Login First'
       res.json(response)

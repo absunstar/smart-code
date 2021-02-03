@@ -2,22 +2,25 @@ module.exports = function init(site) {
   const $delegate_list = site.connectCollection("hr_employee_list")
 
   site.on('[company][created]', doc => {
+    if (site.feature('pos') || site.feature('erp') || site.feature('restaurant')) {
 
-    $delegate_list.add({
-      name: "مندوب إفتراضي",
-      image_url: '/images/delegate.png',
-      code: "1-Test",
-      delegate: true,
-      company: {
-        id: doc.id,
-        name_ar: doc.name_ar
-      },
-      branch: {
-        code: doc.branch_list[0].code,
-        name_ar: doc.branch_list[0].name_ar
-      },
-      active: true
-    }, (err, doc1) => { })
+      $delegate_list.add({
+        name: "مندوب إفتراضي",
+        image_url: '/images/delegate.png',
+        code: "1-Test",
+        delegate: true,
+        company: {
+          id: doc.id,
+          name_ar: doc.name_ar
+        },
+        branch: {
+          code: doc.branch_list[0].code,
+          name_ar: doc.branch_list[0].name_ar
+        },
+        active: true
+      }, (err, doc1) => { })
+    }
+
   })
 
   site.get({
@@ -59,129 +62,122 @@ module.exports = function init(site) {
     delegate_doc.branch = site.get_branch(req)
     delegate_doc.delegate = true;
 
-    $delegate_list.find({
 
+
+    let user = {};
+
+    user = {
+      name: delegate_doc.name,
+      mobile: delegate_doc.mobile,
+      username: delegate_doc.username,
+      email: delegate_doc.username,
+      password: delegate_doc.password,
+      image_url: delegate_doc.image_url,
+      type: 'delegate',
+      is_employee: true
+    }
+
+    user.roles = [
+      {
+        module_name: "inventory",
+        name: "stores_out_user",
+        en: "Stores Out User",
+        ar: "فاتورة مبيعات للمستخدم",
+        permissions: ["stores_out_add",
+          "stores_out_update",
+          "stores_out_view",
+          "stores_out_search",
+          "stores_out_price",
+          "stores_out_ui",
+          "stores_out_print",
+          "stores_out_export"]
+      },
+      {
+        module_name: "accounting",
+        name: "amounts_in_user",
+        en: "Amounts In User",
+        ar: "إدارة الوارد للمستخدم",
+        permissions: [
+          "amounts_in_add",
+          "amounts_in_update",
+          "amounts_in_view",
+          "amounts_in_search",
+          "amounts_in_ui",
+          "amounts_in_print",
+          "amounts_in_export"
+        ]
+      }, {
+        module_name: "public",
+        name: "itineraries_user",
+        en: "Itineraries User",
+        ar: "إدارة خطوط السير للمستخدم",
+        permissions: [
+          "itineraries_view",
+          "itineraries_search",
+          "itineraries_ui",
+          "itineraries_confirm",
+          "itineraries_print",
+          "itineraries_export"
+        ]
+      }]
+
+    user.profile = {
+      name: user.name,
+      mobile: user.mobile,
+      image_url: user.image_url
+    }
+
+    user.store = delegate_doc.store
+
+    if (req.session.user) {
+
+      delegate_doc.company = site.get_company(req)
+      delegate_doc.branch = site.get_branch(req)
+
+      user.branch_list = [{
+        company: site.get_company(req),
+        branch: site.get_branch(req)
+      }]
+
+    } else {
+      delegate_doc.active = true
+
+      user.branch_list = [{
+        company: delegate_doc.company,
+        branch: delegate_doc.branch
+      }]
+    }
+
+    user.company = delegate_doc.company
+    user.branch = delegate_doc.branch
+
+
+    let num_obj = {
+      company: site.get_company(req),
+      screen: 'delegates',
+      date: new Date()
+    };
+
+    let cb = site.getNumbering(num_obj);
+    if (!delegate_doc.code && !cb.auto) {
+      response.error = 'Must Enter Code';
+      res.json(response);
+      return;
+
+    } else if (cb.auto) {
+      delegate_doc.code = cb.code;
+    }
+
+    $delegate_list.findMany({
       where: {
         'company.id': site.get_company(req).id,
-        'branch.code': site.get_branch(req).code,
-
-        $or: [{
-          'name': delegate_doc.name
-        }, {
-          'phone': delegate_doc.phone
-        }, {
-          'mobile': delegate_doc.mobile
-        }]
       }
-    }, (err, doc) => {
-      if (!err && doc) {
-        response.error = 'Name , Phone Or mobile Exists'
+    }, (err, docs, count) => {
+      if (!err && count >= site.get_company(req).employees_count) {
+
+        response.error = 'You have exceeded the maximum number of extensions'
         res.json(response)
       } else {
-
-        let user = {};
-
-        user = {
-          name: delegate_doc.name,
-          mobile: delegate_doc.mobile,
-          username: delegate_doc.username,
-          email: delegate_doc.username,
-          password: delegate_doc.password,
-          image_url: delegate_doc.image_url,
-          type: 'delegate',
-          is_employee: true
-        }
-
-        user.roles = [
-          {
-            module_name: "inventory",
-            name: "stores_out_user",
-            en: "Stores Out User",
-            ar: "فاتورة مبيعات للمستخدم",
-            permissions: ["stores_out_add",
-              "stores_out_update",
-              "stores_out_view",
-              "stores_out_search",
-              "stores_out_price",
-              "stores_out_ui",
-              "stores_out_print",
-              "stores_out_export"]
-          },
-          {
-            module_name: "accounting",
-            name: "amounts_in_user",
-            en: "Amounts In User",
-            ar: "إدارة الوارد للمستخدم",
-            permissions: [
-              "amounts_in_add",
-              "amounts_in_update",
-              "amounts_in_view",
-              "amounts_in_search",
-              "amounts_in_ui",
-              "amounts_in_print",
-              "amounts_in_export"
-            ]
-          }, {
-            module_name: "public",
-            name: "itineraries_user",
-            en: "Itineraries User",
-            ar: "إدارة خطوط السير للمستخدم",
-            permissions: [
-              "itineraries_view",
-              "itineraries_search",
-              "itineraries_ui",
-              "itineraries_confirm",
-              "itineraries_print",
-              "itineraries_export"
-            ]
-          }]
-
-        user.profile = {
-          name: user.name,
-          mobile: user.mobile,
-          image_url: user.image_url
-        }
-
-        user.store = delegate_doc.store
-
-        if (req.session.user) {
-
-          delegate_doc.company = site.get_company(req)
-          delegate_doc.branch = site.get_branch(req)
-
-          user.branch_list = [{
-            company: site.get_company(req),
-            branch: site.get_branch(req)
-          }]
-
-        } else {
-          delegate_doc.active = true
-
-          user.branch_list = [{
-            company: delegate_doc.company,
-            branch: delegate_doc.branch
-          }]
-        }
-
-        user.company = delegate_doc.company
-        user.branch = delegate_doc.branch
-
-        
-        let num_obj = {
-          company: site.get_company(req),
-          screen: 'delegates',
-          date: new Date()
-        };
-
-        let cb = site.getNumbering(num_obj);
-        if (!delegate_doc.code && !cb.auto) {
-          response.error = 'Must Enter Code';
-          res.json(response);
-          return;
-
-        } else if (cb.auto) {
-          delegate_doc.code = cb.code;
-        }
 
         $delegate_list.add(delegate_doc, (err, doc) => {
           if (!err) {

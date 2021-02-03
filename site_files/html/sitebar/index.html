@@ -1,13 +1,15 @@
 <h2 class="brand">
   <div class="row">
     <div class="inline title" help-id="brand_title">
-      <a x-feature="test" href="#" onclick="event.stopPropagation(); $('.sitebar .links').toggle(200)"> <i class="fa fa-bars"></i> </a>
+      <a x-feature="test" href="#" onclick="event.stopPropagation(); $('.sitebar .links').toggle(200)"> <i
+          class="fa fa-bars"></i> </a>
 
       <a href="/"> ##word.brand_title## <span> ##word.brand_tag##</span> </a>
     </div>
     <div class="inline text-center desktop">
-      <div class="info bord" x-features="login">
-        <a  id="btn_change_branch" onclick="site.showModal('#changeBranchModal');">
+      <div class="info bord" style=" margin-left: 400px;
+      margin-right: 400px;" x-features="login">
+        <a id="btn_change_branch" onclick="site.showModal('#changeBranchModal');">
           <i ng-show="'##session.lang##' == 'ar'"> ##session.company.name_ar## - ##session.branch.name_ar## </i>
           <i ng-show="'##session.lang##' == 'en'"> ##session.company.name_en## - ##session.branch.name_en## </i>
         </a>
@@ -17,7 +19,7 @@
       <span x-features="login" class="user-name"> ##user.name## </span>
       <a x-features="!login" id="btn_register" ng-click="customerRegister()"> ##word.customer_register## </a>
       <a x-features="login" id="btn_logout" ng-click="logout()"> ##word.security_logout## </a>
-      <a x-features="!login"  id="btn_login" ng-click="login()"> ##word.security_login## </a>
+      <a x-features="!login" id="btn_login" ng-click="login()"> ##word.security_login## </a>
     </div>
   </div>
 </h2>

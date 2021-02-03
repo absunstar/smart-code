@@ -46,6 +46,7 @@
 
 
     {"name" : "customers_count" , "en" : "Customers Count" , "ar" : "عدد العملاء"},
+    {"name" : "employees_count" , "en" : "Employees Count" , "ar" : "عدد الموظفين"},
     {"name" : "companies_gov" , "en" : "Gov" , "ar" : "المحافظة"},
     {"name" : "companies_city" , "en" : "City" , "ar" : "المدينة"},
     {"name" : "companies_email" , "en" : "Email" , "ar" : "البريد الالكتروني"},
@@ -55,7 +56,7 @@
     {"name" : "companies_excahange_price" , "en" : "Exchange Price" , "ar" : "سعر الصرف"},
     {"name" : "companies_company_swift_code" , "en" : "Swift Code" , "ar" : "رقم السويفت"},
     {"name" : "companies_new" , "en" : "New company" , "ar" : "شركة جديد"},
-    {"name" : "domain_example" , "en" : "example : @domain.com" , "ar" : "example : @domain.com"},
+    {"name" : "domain_example" , "en" : "example : domain.com" , "ar" : "example : domain.com"},
 
     {"name" : "companies_country" , "en" : "Coutntry" , "ar" : "الدولة"},
     {"name" : "companies_address" , "en" : "Address" , "ar" : "العنوان"},

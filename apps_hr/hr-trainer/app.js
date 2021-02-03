@@ -83,87 +83,79 @@ module.exports = function init(site) {
     trainer_doc.company = site.get_company(req)
     trainer_doc.branch = site.get_branch(req)
 
-    $trainer.find({
 
+
+    let user = {};
+
+    user = {
+      name: trainer_doc.name,
+      mobile: trainer_doc.mobile,
+      username: trainer_doc.username,
+      email: trainer_doc.username,
+      password: trainer_doc.password,
+      image_url: trainer_doc.image_url,
+      branch_list: [{
+        company: site.get_company(req),
+        branch: site.get_branch(req)
+      }],
+      type: 'trainer'
+    }
+
+    user.roles = [{
+      module_name: "public",
+      name: "trainer_admin",
+      en: "Employee Admin",
+      ar: "إدارة الموظفين",
+      permissions: ["trainer_manage"]
+    }]
+    if (site.feature('school')) {
+      user.roles.push({
+        "module_name": "public",
+        "name": "exams_admin",
+        "en": "Exams Admin",
+        "ar": "إدارة الإمتحانات",
+        "permissions": ["exams_manage"]
+      })
+    }
+    user.profile = {
+      name: user.name,
+      mobile: user.mobile,
+      image_url: user.image_url
+    }
+
+    user.ref_info = {
+      id: trainer_doc.id
+    }
+
+    user.company = trainer_doc.company
+    user.branch = trainer_doc.branch
+
+    let num_obj = {
+      company: site.get_company(req),
+      screen: 'trainer',
+      date: new Date()
+    };
+
+    let cb = site.getNumbering(num_obj);
+    if (!trainer_doc.code && !cb.auto) {
+      response.error = 'Must Enter Code';
+      res.json(response);
+      return;
+
+    } else if (cb.auto) {
+      trainer_doc.code = cb.code;
+    }
+
+    $trainer.findMany({
       where: {
         'company.id': site.get_company(req).id,
-        'branch.code': site.get_branch(req).code,
-
-        $or: [{
-          'name': trainer_doc.name
-        }, {
-          'phone': trainer_doc.phone
-        }, {
-          'mobile': trainer_doc.mobile
-        }]
       }
-    }, (err, doc) => {
-      if (!err && doc) {
-        response.error = 'Name , Phone Or mobile Exists'
+    }, (err, docs, count) => {
+      if (!err && count >= site.get_company(req).employees_count) {
+
+        response.error = 'You have exceeded the maximum number of extensions'
         res.json(response)
       } else {
-
-        let user = {};
-
-        user = {
-          name: trainer_doc.name,
-          mobile: trainer_doc.mobile,
-          username: trainer_doc.username,
-          email: trainer_doc.username,
-          password: trainer_doc.password,
-          image_url: trainer_doc.image_url,
-          branch_list: [{
-            company: site.get_company(req),
-            branch: site.get_branch(req)
-          }],
-          type: 'trainer'
-        }
-
-        user.roles = [{
-          module_name: "public",
-          name: "trainer_admin",
-          en: "Employee Admin",
-          ar: "إدارة الموظفين",
-          permissions: ["trainer_manage"]
-        }]
-        if (site.feature('school')) {
-          user.roles.push({
-            "module_name": "public",
-            "name": "exams_admin",
-            "en": "Exams Admin",
-            "ar": "إدارة الإمتحانات",
-            "permissions": ["exams_manage"]
-          })
-        }
-        user.profile = {
-          name: user.name,
-          mobile: user.mobile,
-          image_url: user.image_url
-        }
-
-        user.ref_info = {
-          id: trainer_doc.id
-        }
-
-        user.company = trainer_doc.company
-        user.branch = trainer_doc.branch
-
-        let num_obj = {
-          company: site.get_company(req),
-          screen: 'trainer',
-          date: new Date()
-        };
-
-        let cb = site.getNumbering(num_obj);
-        if (!trainer_doc.code && !cb.auto) {
-          response.error = 'Must Enter Code';
-          res.json(response);
-          return;
-
-        } else if (cb.auto) {
-          trainer_doc.code = cb.code;
-        }
-
 
         $trainer.add(trainer_doc, (err, doc) => {
           if (!err) {

@@ -40,6 +40,10 @@
                                     ng-model="company.users_count">
                                 </i-control>
 
+                                <i-control class="col2" label="##word.employees_count##" type="number"
+                                    ng-model="company.employees_count">
+                                </i-control>
+
                                 <i-control class="col2" label="##word.customers_count##" type="number"
                                     ng-model="company.customers_count">
                                 </i-control>
@@ -52,12 +56,12 @@
 
                             <div class="row" x-features="restaurant || pos || erp || school || gym">
 
-                                <i-control class="col2" label="##word.count_stores##" type="number"
-                                    ng-model="company.store">
-                                </i-control>
-
                                 <i-control class="col2" label="##word.count_items##" type="number"
                                     ng-model="company.item">
+                                </i-control>
+
+                                <i-control class="col2" label="##word.count_stores##" type="number"
+                                    ng-model="company.store">
                                 </i-control>
 
                                 <i-control class="col2" label="##word.count_units##" type="number"
@@ -222,9 +226,9 @@
                 <fieldset>
                     <legend> ##word.login_information## </legend>
                     <div class="row">
-                        <i-control help-id="" class="col4" label="##word.email##" ng-model="company.username">
+                        <i-control help-id="" v="r" class="col4" label="##word.email##" ng-model="company.username">
                         </i-control>
-                        <i-control help-id="" class="col4" label="##word.password##" ng-model="company.password">
+                        <i-control help-id="" v="r" class="col4" label="##word.password##" ng-model="company.password">
                         </i-control>
                     </div>
                     <div class="row">

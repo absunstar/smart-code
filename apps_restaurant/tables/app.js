@@ -58,8 +58,8 @@ module.exports = function init(site) {
         name_ar: doc.company.name_ar
       },
       branch: {
-        code: doc.branch_list[0].code,
-        name_ar: doc.branch_list[0].name_ar
+        code: doc.branch.code,
+        name_ar: doc.branch.name_ar
       },
       active: true
     }, (err, doc) => { })

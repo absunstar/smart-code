@@ -99,12 +99,19 @@ module.exports = function init(site) {
       else if (site.feature('employee')) companies_doc.type = 'employee'
 
 
+      if(companies_doc.username){
+
+        let exist_domain = companies_doc.username.includes("@");
+        if(!exist_domain){
+          companies_doc.username = companies_doc.username + '@' + companies_doc.host;
+        }
+      }
+
       $companies.add(companies_doc, (err, doc) => {
         if (!err) {
           response.done = true
           response.doc = doc
 
-          site.call('[company][created]', doc)
 
           site.call('[user][add]', {
             is_company: true,
@@ -128,12 +135,18 @@ module.exports = function init(site) {
               doc.user_id = user_doc.id
               $companies.update(doc)
             }
+          site.call('[company][created]', doc)
+
           })
+
+          res.json(response)
+
 
         } else {
           response.error = err.message
+          res.json(response)
         }
-        res.json(response)
+
       })
     }
   })
