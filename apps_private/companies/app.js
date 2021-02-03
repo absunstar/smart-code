@@ -105,6 +105,27 @@ module.exports = function init(site) {
 
       if (companies_doc.username) {
 
+
+        if (companies_doc.username.includes("@") && !companies_doc.username.includes(".")) {
+          response.error = 'Username must be typed correctly'
+          res.json(response)
+          return;
+
+        } else if (!companies_doc.username.includes("@") && companies_doc.username.includes(".")) {
+          response.error = 'Username must be typed correctly'
+          res.json(response)
+          return;
+
+        }
+
+        if (!companies_doc.host.includes(".")) {
+          response.error = 'Host must be typed correctly'
+          res.json(response)
+          return;
+
+        }
+
+
         let exist_domain = companies_doc.username.includes("@");
         if (!exist_domain) {
           companies_doc.username = companies_doc.username + '@' + companies_doc.host;

@@ -36,13 +36,13 @@ app.controller('company_register', function ($scope, $http) {
       $scope.error = v.messages[0].ar;
       return;
     }
-    let user_name = company.username
+  /*   let user_name = company.username
 
 
     let exist_domain = company.username.includes("@");
     if(!exist_domain){
       user_name = company.username + '@' + company.host;
-    }
+    } */
     
     $scope.busy = true;
     $http({
@@ -59,7 +59,7 @@ app.controller('company_register', function ($scope, $http) {
             url: '/api/user/login',
             data: {
               $encript: '123',
-              email: site.to123(user_name),
+              email: site.to123(response.data.doc.username),
               password: site.to123(company.password),
               company: site.to123({
                 id: response.data.doc.id,
