@@ -100,6 +100,13 @@
     {
         "category": "main",
         "feature": "school",
+        "name": "exams",
+        "en": "Exams",
+        "ar": "الإمتحانات"
+    },
+    {
+        "category": "main",
+        "feature": "school",
         "name": "exam_grades",
         "en": "Putting Exam Grades",
         "ar": "وضع درجات الإمتحانات"

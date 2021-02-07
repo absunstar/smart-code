@@ -56,10 +56,7 @@ app.controller("rogatory_types", function ($scope, $http, $timeout) {
 
     $scope.error = '';
     $scope.detailsRogatoryTypes(rogatory_types);
-    $scope.rogatory_types = {
-      image_url: '/images/vendor_logo.png',
-
-    };
+    $scope.rogatory_types = {};
     site.showModal('#rogatoryTypesUpdateModal');
   };
 

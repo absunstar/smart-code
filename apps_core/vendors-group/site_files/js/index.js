@@ -51,10 +51,7 @@ app.controller("vendors_group", function ($scope, $http, $timeout) {
   $scope.displayUpdateVendorGroup = function (vendor_group) {
     $scope.error = '';
     $scope.detailsVendorGroup(vendor_group);
-    $scope.vendor_group = {
-      image_url: '/images/vendor_logo.png',
-
-    };
+    $scope.vendor_group = {};
     site.showModal('#vendorGroupUpdateModal');
   };
 

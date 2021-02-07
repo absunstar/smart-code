@@ -12,7 +12,7 @@
 
                         <i-date2 class="col4" ng-model="account_invoices.date" label="##word.date##"></i-date2>
 
-                        <i-control class="col3 r_indigo" disabled label="##word.shift##" ng-model="shift.code">
+                        <i-control class="col3 r_indigo" disabled label="##word.shift##" ng-model="shift.name">
                         </i-control>
 
                     </div>
@@ -415,10 +415,6 @@
                         </div>
 
                         <div class="row" ng-show="account_invoices.source_type.id ==13">
-
-                            <i-list ng-search="_search.$_school_year" class="col3" display="name"
-                                ng-model="account_invoices.school_year" label="##word.school_year##"
-                                items="schoolYearsList"></i-list>
 
                             <i-list ng-search="_search.$_school_grade" class="col3" display="name" v="r"
                                 ng-change="getStudentsYearsList(account_invoices.school_grade)"

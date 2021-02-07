@@ -359,7 +359,7 @@ module.exports = function init(site) {
             code: cb.code,
             school_grade: customer.school_grade,
             students_year: customer.students_year,
-            school_year: obj.school_year,
+            shift: obj.shift,
             hall: customer.hall,
             company: site.get_company(req),
             branch: site.get_branch(req),

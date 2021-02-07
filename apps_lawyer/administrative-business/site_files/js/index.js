@@ -57,10 +57,7 @@ app.controller("administrative_business", function ($scope, $http, $timeout) {
 
     $scope.error = '';
     $scope.detailsAdministrativeBusiness(administrative_business);
-    $scope.administrative_business = {
-      image_url: '/images/vendor_logo.png',
-
-    };
+    $scope.administrative_business = {};
     site.showModal('#administrativeBusinessUpdateModal');
   };
 

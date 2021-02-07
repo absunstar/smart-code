@@ -9,9 +9,9 @@
                         <i-control ng-hide="disabledCode" class="col2" label="##word.code##" ng-model="exams.code">
                         </i-control>
 
-                        <i-list ng-search="_search.$_school_year" class="col3" display="name"
-                            ng-model="exams.school_year" label="##word.school_year##" items="schoolYearsList">
-                        </i-list>
+                        <i-control class="col3 r_indigo" type="text" disabled label="##word.shift##"
+                            ng-model="shift.name">
+                        </i-control>
 
                         <i-control type="text" v="r" class="col4" label="##word.exam_name##" ng-model="exams.name">
                         </i-control>
@@ -25,13 +25,12 @@
 
                     <div class="row">
                         <i-list ng-search="_search.$_school_grade" class="col3" display="name"
-                            ng-change="getStudentsYearsList(exams.school_grade)" v="r"
-                            ng-model="exams.school_grade" label="##word.school_grade##"
-                            items="schoolGradesList">
+                            ng-change="getStudentsYearsList(exams.school_grade)" v="r" ng-model="exams.school_grade"
+                            label="##word.school_grade##" items="schoolGradesList">
                         </i-list>
 
-                        <i-list class="col3" label="##word.students_year##" ng-model="exams.students_year"
-                            v="r" items="studentsYearsList" display="name" ng-search="_search.$_students_year">
+                        <i-list class="col3" label="##word.students_year##" ng-model="exams.students_year" v="r"
+                            items="studentsYearsList" display="name" ng-search="_search.$_students_year">
                         </i-list>
 
                         <i-list help-id="" v="r" class="col3" label="##word.subject##" ng-model="exams.subject"

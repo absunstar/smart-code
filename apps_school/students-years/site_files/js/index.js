@@ -70,10 +70,7 @@ app.controller("students_years", function ($scope, $http, $timeout) {
 
     $scope.error = '';
     $scope.detailsStudentsYears(students_years);
-    $scope.students_years = {
-      image_url: '/images/vendor_logo.png',
-
-    };
+    $scope.students_years = {};
     site.showModal('#studentsYearsUpdateModal');
   };
 

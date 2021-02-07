@@ -44,7 +44,6 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
           };
 
           if (site.toNumber("##query.type##") == 13) {
-            $scope.account_invoices.school_year = $scope.schoolYearsList.find(_schoolYear => { return _schoolYear.id === $scope.defaultSettings.general_Settings.school_year.id });
             if($scope.defaultSettings.general_Settings.school_grade){
 
               $scope.account_invoices.school_grade = $scope.schoolGradesList.find(_schoolGrade => { return _schoolGrade.id === $scope.defaultSettings.general_Settings.school_grade.id });
@@ -274,10 +273,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
     $scope._search = {};
 
     $scope.detailsAccountInvoices(account_invoices);
-    $scope.account_invoices = {
-      image_url: '/images/vendor_logo.png',
-
-    };
+    $scope.account_invoices = {};
     site.showModal('#accountInvoicesUpdateModal');
   };
 
@@ -1514,32 +1510,6 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.loadSchoolYears = function () {
-    $scope.error = '';
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/school_years/all",
-      data: {
-        select: {
-          id: 1,
-          name: 1,
-          code: 1
-        }
-      }
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          $scope.schoolYearsList = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
-  };
 
   $scope.financialYear = function (date, callback) {
     if (site.feature('erp')) {
@@ -1704,8 +1674,8 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
   $scope.getSafes();
   if (site.feature('school')) {
     $scope.getSchoolGradesList();
-    $scope.loadSchoolYears();
   }
+  
   $scope.getPaymentMethodList();
   $scope.getNumberingAuto();
 });

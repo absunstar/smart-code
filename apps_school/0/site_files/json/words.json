@@ -628,5 +628,87 @@
         "name": "order_slides_value",
         "en": "Session Value",
         "ar": "قيمة الجلسة"
+    },{
+        "name": "shifts",
+        "en": "School Years",
+        "ar": "الأعوام الدراسية"
+    },
+    {
+        "name": "shift",
+        "en": "School Year",
+        "ar": "العام دراسي"
+    },
+    {
+        "name": "open_shift",
+        "en": "Open New School Year",
+        "ar": " فتح عام دراسي جديد "
+    },{
+        "name": "close_shift",
+        "en": "Close School Year",
+        "ar": "غلق العام دراسي"
+    },
+    {
+        "name": "open_shift_not_found",
+        "en": "Not Found Open School Year",
+        "ar": "لا يوجد عام دراسي مفتوح"
+    },
+    {
+        "name": "must_close_shift",
+        "en": "All School Years Must Be Closed Before Opening A New School Year",
+        "ar": "يجب غلق جميع العام دراسيات قبل فتح عام دراسي جديد"
+    },
+    {
+        "name": "shift_start",
+        "en": "Add Start",
+        "ar": "بدء العام دراسي"
+    },
+    {
+        "name": "shift_period",
+        "en": "Add Period",
+        "ar": "مدة العام دراسي"
+    },
+    {
+        "name": "shifts_add",
+        "en": "Add School Year",
+        "ar": "إضافة عام دراسي "
+    },
+    {
+        "name": "shifts_edit",
+        "en": "Edit School Year",
+        "ar": "تعديل عام دراسي "
+    },
+    {
+        "name": "shifts_details",
+        "en": "School Year Details",
+        "ar": "تفاصيل العام دراسي "
+    },
+    {
+        "name": "shifts_delete",
+        "en": "Delete School Year",
+        "ar": "حذف عام دراسي "
+    },
+    {
+        "name": "shifts_name",
+        "en": "School Year Name",
+        "ar": "إسم العام دراسي "
+    },{
+        "name": "menu_shift",
+        "en": "School Years Menu",
+        "ar": "قائمة الأعوام الدراسية"
+    },
+    {
+        "name": "menu_shift_tag",
+        "en": "School Years Manegment",
+        "ar": "إدارة الأعوام الدراسية"
+    },
+    {
+        "name": "report_shift_name",
+        "en": "Report School Years",
+        "ar": "تقرير الأعوام الدراسية"
+    },
+    {
+        "name": "report_shift_menus",
+        "en": "Report School Years Menu",
+        "ar": "قائمة تقرير الأعوام الدراسية"
     }
 ]

@@ -60,10 +60,7 @@ app.controller("session_add", function ($scope, $http, $timeout) {
 
     $scope.error = '';
     $scope.detailsSessionAdd(session_add);
-    $scope.session_add = {
-      image_url: '/images/vendor_logo.png',
-
-    };
+    $scope.session_add = {};
     site.showModal('#sessionAddUpdateModal');
   };
 

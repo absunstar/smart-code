@@ -38,12 +38,6 @@ module.exports = function init(site) {
 
     }
 
-    if (where['school_year']) {
-      where['school_year.id'] = where['school_year'].id;
-      delete where['school_year']
-
-    }
-
     if (where['students_years']) {
       where['students_years.id'] = where['students_years'].id;
       delete where['students_years']

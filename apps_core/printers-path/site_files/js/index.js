@@ -51,10 +51,7 @@ app.controller("printers_path", function ($scope, $http, $timeout) {
   $scope.displayUpdatePrinterPath = function (printer_path) {
     $scope.error = '';
     $scope.detailsPrinterPath(printer_path);
-    $scope.printer_path = {
-      image_url: '/images/vendor_logo.png',
-
-    };
+    $scope.printer_path = {};
     site.showModal('#printerPathUpdateModal');
   };
 

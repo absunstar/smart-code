@@ -2,6 +2,7 @@ module.exports = function init(site) {
 
   let collection_name = 'shifts'
 
+
   let source = {
     name: 'Shifts System',
     ar: 'نظام الشيفتات'
@@ -21,6 +22,30 @@ module.exports = function init(site) {
   let delete_message = {
     name: ' Shift Deleted',
     ar: 'تم حذف شيفت '
+  }
+
+
+  if (site.feature('school')) {
+
+    source = {
+      name: 'School Years System',
+      ar: 'نظام الأعوام الدراسية'
+    }
+
+    add_message = {
+      name: 'New School Year Added',
+      ar: 'تم إضافة عام دراسي جديدة'
+    }
+
+    update_message = {
+      name: 'School Year Updated',
+      ar: 'تم تعديل عام دراسي'
+    }
+
+    delete_message = {
+      name: ' School Year Deleted',
+      ar: 'تم حذف عام دراسي '
+    }
   }
 
 

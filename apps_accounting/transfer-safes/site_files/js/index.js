@@ -209,10 +209,7 @@ app.controller("transfer_safes", function ($scope, $http, $timeout) {
 
         $scope.error = '';
         $scope.detailsTransferSafes(transfer_safes);
-        $scope.transfer_safes = {
-          image_url: '/images/vendor_logo.png',
-
-        };
+        $scope.transfer_safes = {};
         site.showModal('#transferSafesUpdateModal');
       } else $scope.error = '##word.open_shift_not_found##';
     });

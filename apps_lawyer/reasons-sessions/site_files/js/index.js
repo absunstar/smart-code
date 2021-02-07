@@ -56,10 +56,7 @@ app.controller("reasons_sessions", function ($scope, $http, $timeout) {
 
     $scope.error = '';
     $scope.detailsReasonsSessions(reasons_sessions);
-    $scope.reasons_sessions = {
-      image_url: '/images/vendor_logo.png',
-
-    };
+    $scope.reasons_sessions = {};
     site.showModal('#reasonsSessionsUpdateModal');
   };
 

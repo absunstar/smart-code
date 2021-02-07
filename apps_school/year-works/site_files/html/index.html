@@ -27,12 +27,15 @@
                 </div>
 
                 <div class="top-actions">
-                    <i-button type="add" x-permissions="year_works_add || year_works_manage" label="##word.year_works_new##" ng-click="displayAddYearWorks()"></i-button>
-                    <i-button type="search" x-permissions="year_works_search || year_works_manage" label="##word.search_all##" onclick="site.showModal('#yearWorksSearchModal')"></i-button>
+                    <i-button type="add" x-permissions="year_works_add || year_works_manage"
+                        label="##word.year_works_new##" ng-click="displayAddYearWorks()"></i-button>
+                    <i-button type="search" x-permissions="year_works_search || year_works_manage"
+                        label="##word.search_all##" onclick="site.showModal('#yearWorksSearchModal')"></i-button>
 
                     <span ng-show="busy">
                         <span class="sr-only">Loading...</span>
                     </span>
+                    <h2 class="bold red text-center">{{error}}</h2>
                     <h3 class="bold text-center"> ##word.count## : {{count}} </h3>
                     <br>
                 </div>
@@ -41,6 +44,7 @@
                     <tr>
                         <th class="not-print"> ##word.logo## </th>
                         <th> ##word.code## </th>
+                        <th> ##word.shift## </th>
                         <th> ##word.school_grade## </th>
                         <th> ##word.students_year## </th>
                         <th> ##word.hall## </th>
@@ -53,8 +57,9 @@
                         <td class="not-print">
                             <i-image view class="logo" ng-model="c.image_url"></i-image>
                         </td>
-
+                        
                         <td class="blue userPrint"> {{c.code}} </td>
+                        <td>{{c.shift.name}}</td>
                         <td> {{c.school_grade.name}} </td>
                         <td> {{c.students_year.name}} </td>
                         <td> {{c.hall.name}} </td>
@@ -66,17 +71,21 @@
                         </td>
 
                         <td class="center not-print">
-                            <i-button type="details" x-permissions="year_works_view || year_works_manage" label="##word.details##" ng-click="displayDetailsYearWorks(c)"></i-button>
+                            <i-button type="details" x-permissions="year_works_view || year_works_manage"
+                                label="##word.details##" ng-click="displayDetailsYearWorks(c)"></i-button>
 
-                            <i-button type="update" x-permissions="year_works_edit || year_works_manage" label="##word.update##" ng-click="displayUpdateYearWorks(c)"></i-button>
+                            <i-button type="update" x-permissions="year_works_edit || year_works_manage"
+                                label="##word.update##" ng-click="displayUpdateYearWorks(c)"></i-button>
 
-                            <i-button type="delete" x-permissions="year_works_delete || year_works_manage" label="##word.delete##" ng-click="displayDeleteYearWorks(c)"></i-button>
+                            <i-button type="delete" x-permissions="year_works_delete || year_works_manage"
+                                label="##word.delete##" ng-click="displayDeleteYearWorks(c)"></i-button>
                         </td>
                     </tr>
                 </table>
 
                 <div class="row">
-                    <i-button x-permissions="year_works_print || year_works_manage" type="print" label="##word.print##" onclick="site.print('#t1')"></i-button>
+                    <i-button x-permissions="year_works_print || year_works_manage" type="print" label="##word.print##"
+                        onclick="site.print('#t1')"></i-button>
 
 
                 </div>

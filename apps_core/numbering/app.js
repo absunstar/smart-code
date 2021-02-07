@@ -51,7 +51,7 @@ module.exports = function init(site) {
     } else {
 
       $numbering.delete({
-        company: site.get_company(req)
+        'company.id': site.get_company(req).id
       }, (err, result) => {
         Numbering = [];
         moduleListCore.forEach((_ml) => {
@@ -89,6 +89,12 @@ module.exports = function init(site) {
 
 
 
+
+
+
+
+
+
         } else if (site.features.like('*gym*')) {
 
           moduleListCore.forEach(_mc => {
@@ -101,22 +107,25 @@ module.exports = function init(site) {
 
           moduleListCore.forEach(_mc => {
             if (_mc.name == 'customers') {
-              _mc.en = 'Students'
-              _mc.ar = 'الطلاب'
+              _mc.en = 'Subscribers'
+              _mc.ar = 'المشتركين'
             } else if (_mc.name == 'customers_groups') {
-              _mc.en = 'Students Group'
-              _mc.ar = 'مجموعة الطلاب'
-            } else if (_mc.name == 'trainer') {
-              _mc.en = 'Teachers'
-              _mc.ar = 'المدرسين'
-            } else if (_mc.name == 'halls') {
-              _mc.en = 'classrooms'
-              _mc.ar = 'الفصول الدراسية'
+              _mc.en = 'Subscribers Group'
+              _mc.ar = 'مجموعة المشتركين'
             }
           });
 
+
+
+
+          
+
         } else if (site.features.like('*academy*')) {
           screens_list = moduleListCore.filter((i) => i.feature !== 'order' && i.feature !== 'erp' && i.feature !== 'restaurant' && i.feature !== 'gym' && i.feature !== 'school' && i.feature !== 'medical');
+
+
+
+
 
 
         } else if (site.features.like('*school*')) {
@@ -136,9 +145,16 @@ module.exports = function init(site) {
             } else if (_mc.name == 'orders_slides') {
               _mc.en = 'Sessions Slides'
               _mc.ar = 'شرائح الجلسات'
+            } else if (_mc.name == 'shifts') {
+              _mc.en = 'School Years'
+              _mc.ar = 'الأعوام الدراسية'
             }
           });
           screens_list = moduleListCore.filter((i) => i.feature !== 'order' && i.feature !== 'erp' && i.feature !== 'restaurant' && i.feature !== 'gym' && i.feature !== 'academy' && i.feature !== 'medical');
+
+
+
+
 
 
 
@@ -156,7 +172,7 @@ module.exports = function init(site) {
               _mc.ar = 'شرائح الكشوفات'
             }
           });
-          screens_list = moduleListCore.filter((i) => i.feature !== 'order' && i.feature !== 'erp' && i.feature !== 'restaurant' && i.feature !== 'gym' && i.feature !== 'academy' && i.feature !== 'school'&& i.feature !== 'medic');
+          screens_list = moduleListCore.filter((i) => i.feature !== 'order' && i.feature !== 'erp' && i.feature !== 'restaurant' && i.feature !== 'gym' && i.feature !== 'academy' && i.feature !== 'school' && i.feature !== 'medic');
 
           moduleListCore.forEach(_m => {
             if (_m.feature == 'medic' && _m.name != 'hall' && _m.name != 'trainer') {

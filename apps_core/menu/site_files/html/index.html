@@ -179,10 +179,10 @@
                     <span> ##word.subjects##</span>
                 </a>
 
-                <a class="tab-link" href="/school_years" x-permissions="school_years_ui || school_years_manage">
+                <!-- <a class="tab-link" href="/school_years" x-permissions="school_years_ui || school_years_manage">
                     <img src="/images/school_years.png">
                     <span> ##word.school_years##</span>
-                </a>
+                </a> -->
 
                 <a class="tab-link" href="/school_grades" x-permissions="school_grades_ui || school_grades_manage">
                     <img src="/images/school_grades.png">
@@ -1198,10 +1198,10 @@
                     <span> ##word.seating_numbers##</span>
                 </a>
 
-                <a class="tab-link" href="/school_years" x-permissions="school_years_ui || school_years_manage">
+                <!-- <a class="tab-link" href="/school_years" x-permissions="school_years_ui || school_years_manage">
                     <img src="/images/school_years.png">
                     <span> ##word.school_years##</span>
-                </a>
+                </a> -->
 
                 <a class="tab-link" href="/hall" x-permissions="hall_ui || hall_manage">
                     <img src="/images/hall.png">
@@ -1213,6 +1213,17 @@
                     <span> ##word.types_expenses##</span>
                 </a>
 
+                <a x-features="restaurant || pos || academy || gym || erp" class="tab-link" href="/shifts"
+                    x-permissions="shifts_ui || shifts_manage">
+                    <img src="/images/shift.png">
+                    <span> ##word.menu_shift## </span>
+                </a>
+
+                <a x-features="school" class="tab-link" href="/shifts"
+                    x-permissions="shifts_ui || shifts_manage">
+                    <img src="/images/school_years.png">
+                    <span> ##word.menu_shift## </span>
+                </a>
 
             </div>
 

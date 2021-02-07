@@ -68,7 +68,7 @@ module.exports = function init(site) {
       } else {
 
         if (exams_doc.degree_success >= exams_doc.final_grade) {
-          response.error = "##word.passing_score_greater_final_grade##";
+          response.error = "passing score is greater than the final";
           res.json(response)
           return;
 
@@ -525,7 +525,11 @@ module.exports = function init(site) {
       where['students_years.id'] = req.session.user.students_years.id;
     }
 
-
+    if (where['shift']) {
+      where['shift.id'] = where['shift'].id;
+      delete where['shift']
+    }
+    
     where['company.id'] = site.get_company(req).id
     where['branch.code'] = site.get_branch(req).code
 

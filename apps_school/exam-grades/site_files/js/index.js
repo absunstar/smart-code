@@ -13,7 +13,6 @@ app.controller("exam_grades", function ($scope, $http, $timeout) {
     };
     
     if ($scope.defaultSettings.general_Settings) {
-      $scope.exam_grades.school_year = $scope.schoolYearsList.find(_school_year => { return _school_year.id === $scope.defaultSettings.general_Settings.school_year.id });
 
     }
 
@@ -65,10 +64,7 @@ app.controller("exam_grades", function ($scope, $http, $timeout) {
 
     $scope.error = '';
     $scope.detailsExamGrades(exam_grades);
-    $scope.exam_grades = {
-      image_url: '/images/vendor_logo.png',
-
-    };
+    $scope.exam_grades = {};
     site.showModal('#examGradessUpdateModal');
   };
 
@@ -363,33 +359,6 @@ app.controller("exam_grades", function ($scope, $http, $timeout) {
 
   };
 
-  $scope.loadSchoolYears = function () {
-    $scope.error = '';
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/school_years/all",
-      data: {
-        select: {
-          id: 1,
-          name: 1,
-          code: 1
-        }
-      }
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          $scope.schoolYearsList = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
-  };
-
   $scope.getDefaultSettings = function () {
     $scope.error = '';
     $scope.busy = true;
@@ -415,7 +384,6 @@ app.controller("exam_grades", function ($scope, $http, $timeout) {
 
   $scope.getNumberingAuto();
   $scope.getStudentsYears();
-  $scope.loadSchoolYears();
   $scope.getDefaultSettings();
   $scope.getHalls();
   $scope.getExams();

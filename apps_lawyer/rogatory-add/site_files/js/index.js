@@ -57,10 +57,7 @@ app.controller("rogatory_add", function ($scope, $http, $timeout) {
 
     $scope.error = '';
     $scope.detailsRogatoryAdd(rogatory_add);
-    $scope.rogatory_add = {
-      image_url: '/images/vendor_logo.png',
-
-    };
+    $scope.rogatory_add = {};
     site.showModal('#rogatoryAddUpdateModal');
   };
 

@@ -12,7 +12,6 @@ app.controller("types_expenses", function ($scope, $http, $timeout) {
       active: true
     };
     if ($scope.defaultSettings.general_Settings) {
-      $scope.types_expenses.school_year = $scope.schoolYearsList.find(_school_year => { return _school_year.id === $scope.defaultSettings.general_Settings.school_year.id });
 
     }
     site.showModal('#yearWorksAddModal');
@@ -63,10 +62,7 @@ app.controller("types_expenses", function ($scope, $http, $timeout) {
 
     $scope.error = '';
     $scope.detailsYearWorks(types_expenses);
-    $scope.types_expenses = {
-      image_url: '/images/vendor_logo.png',
-
-    };
+    $scope.types_expenses = {};
     site.showModal('#yearWorksUpdateModal');
   };
 
@@ -302,32 +298,6 @@ app.controller("types_expenses", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.loadSchoolYears = function () {
-    $scope.error = '';
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/school_years/all",
-      data: {
-        select: {
-          id: 1,
-          name: 1,
-          code: 1
-        }
-      }
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          $scope.schoolYearsList = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
-  };
 
   $scope.getDefaultSettings = function () {
     $scope.error = '';
@@ -391,7 +361,6 @@ app.controller("types_expenses", function ($scope, $http, $timeout) {
 
   $scope.getNumberingAuto();
   $scope.getStudentsYears();
-  $scope.loadSchoolYears();
   $scope.getDefaultSettings();
   $scope.getHalls();
   $scope.getYearWorksList();

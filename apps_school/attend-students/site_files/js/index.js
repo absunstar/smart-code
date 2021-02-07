@@ -8,10 +8,11 @@ app.controller("attend_students", function ($scope, $http, $timeout, $interval) 
       if (shift) {
         $scope.attend_students = {
           image_url: '/images/attend_students.png',
+          shift: shift,
           date: new Date()
         };
         if ($scope.defaultSettings.general_Settings) {
-          $scope.attend_students.school_year = $scope.schoolYearsList.find(_school_year => { return _school_year.id === $scope.defaultSettings.general_Settings.school_year.id });
+
         }
         site.showModal('#attendStudentsAddModal');
       } else $scope.error = '##word.open_shift_not_found##';
@@ -53,9 +54,13 @@ app.controller("attend_students", function ($scope, $http, $timeout, $interval) 
 
   $scope.displayUpdateAttendStudents = function (attend_students) {
     $scope.error = '';
-    $scope.viewAttendStudents(attend_students);
-    $scope.attend_students = {};
-    site.showModal('#attendStudentsUpdateModal');
+    $scope.get_open_shift((shift) => {
+      if (shift) {
+        $scope.viewAttendStudents(attend_students);
+        $scope.attend_students = {};
+        site.showModal('#attendStudentsUpdateModal');
+      } else $scope.error = '##word.open_shift_not_found##';
+    });
   };
 
   $scope.updateAttendStudents = function () {
@@ -88,9 +93,12 @@ app.controller("attend_students", function ($scope, $http, $timeout, $interval) 
 
   $scope.displayDetailsAttendStudents = function (attend_students) {
     $scope.error = '';
+
     $scope.viewAttendStudents(attend_students);
     $scope.attend_students = {};
     site.showModal('#attendStudentsViewModal');
+
+
   };
 
   $scope.viewAttendStudents = function (attend_students) {
@@ -294,58 +302,64 @@ app.controller("attend_students", function ($scope, $http, $timeout, $interval) 
 
 
   $scope.attendNow = function (c, action) {
-    $scope.attend_students.date = new Date($scope.attend_students.date);
-    /*     $scope.attend_students.date.setTime(new Date().getTime());
-     */
 
-    c.school_year = $scope.attend_students.school_year;
-    if (action == 'attend') {
+    $scope.get_open_shift((shift) => {
+      if (shift) {
 
-      c.status = {
-        name: 'attend',
-        ar: 'حضور',
-        en: 'Attend'
-      };
-      c.attend_time = {
-        hour: new Date().getHours(),
-        minute: new Date().getMinutes()
-      };
+        $scope.attend_students.date = new Date($scope.attend_students.date);
+        /*     $scope.attend_students.date.setTime(new Date().getTime());
+         */
 
-    } else if (action == 'leave') {
+        c.shift = $scope.attend_students.shift;
+        if (action == 'attend') {
 
-      c.leave_time = {
-        hour: new Date().getHours(),
-        minute: new Date().getMinutes()
-      };
+          c.status = {
+            name: 'attend',
+            ar: 'حضور',
+            en: 'Attend'
+          };
+          c.attend_time = {
+            hour: new Date().getHours(),
+            minute: new Date().getMinutes()
+          };
 
-    } else if (action == 'absence') {
-      c.status = { name: 'absence', ar: 'غياب', en: 'Absence' };
+        } else if (action == 'leave') {
 
-    }
+          c.leave_time = {
+            hour: new Date().getHours(),
+            minute: new Date().getMinutes()
+          };
 
-    $http({
-      method: "POST",
-      url: "/api/attend_students/transaction",
-      data: {
-        obj: c,
-        where: {
-          customer: c.customer,
-          date: $scope.attend_students.date
+        } else if (action == 'absence') {
+          c.status = { name: 'absence', ar: 'غياب', en: 'Absence' };
+
         }
-      }
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          $scope.getAttendStudentsList();
-        } else {
-          $scope.error = response.data.error;
-        }
-      },
-      function (err) {
-        console.log(err);
-      }
-    )
+
+        $http({
+          method: "POST",
+          url: "/api/attend_students/transaction",
+          data: {
+            obj: c,
+            where: {
+              customer: c.customer,
+              date: $scope.attend_students.date
+            }
+          }
+        }).then(
+          function (response) {
+            $scope.busy = false;
+            if (response.data.done) {
+              $scope.getAttendStudentsList();
+            } else {
+              $scope.error = response.data.error;
+            }
+          },
+          function (err) {
+            console.log(err);
+          }
+        )
+      } else $scope.error = '##word.open_shift_not_found##';
+    })
   };
 
   $scope.getDefaultSettings = function () {
@@ -461,32 +475,7 @@ app.controller("attend_students", function ($scope, $http, $timeout, $interval) 
   };
 
 
-  $scope.loadSchoolYears = function () {
-    $scope.error = '';
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/school_years/all",
-      data: {
-        select: {
-          id: 1,
-          name: 1,
-          code: 1
-        }
-      }
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          $scope.schoolYearsList = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
-  };
+
 
   $scope.searchAll = function () {
     $scope.getAttendStudentsList($scope.search);
@@ -498,6 +487,5 @@ app.controller("attend_students", function ($scope, $http, $timeout, $interval) 
   $scope.getHalls();
   $scope.getSchoolGradesList();
   $scope.getDefaultSettings();
-  $scope.loadSchoolYears();
   $scope.getNumberingAuto();
 });

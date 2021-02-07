@@ -4,24 +4,28 @@ app.controller("year_works", function ($scope, $http, $timeout) {
   $scope.year_works = {};
 
   $scope.displayAddYearWorks = function () {
-    $scope._search = {};
-    $scope.error = '';
-    $scope.year_works = {
-      image_url: '/images/year_works.png',
-      students_list: [],
-      active: true
-    };
-    if ($scope.defaultSettings.general_Settings) {
-      $scope.year_works.school_year = $scope.schoolYearsList.find(_school_year => { return _school_year.id === $scope.defaultSettings.general_Settings.school_year.id });
+    $scope.get_open_shift((shift) => {
+      if (shift) {
+        $scope._search = {};
+        $scope.error = '';
+        $scope.year_works = {
+          image_url: '/images/year_works.png',
+          students_list: [],
+          shift: shift,
+          active: true
+        };
+        if ($scope.defaultSettings.general_Settings) {
 
-      $scope.year_works.school_grade = $scope.schoolGradesList.find(_schoolGrade => { return _schoolGrade.id === $scope.defaultSettings.general_Settings.school_grade.id });
-      if($scope.year_works.school_grade && $scope.year_works.school_grade.id){
+          $scope.year_works.school_grade = $scope.schoolGradesList.find(_schoolGrade => { return _schoolGrade.id === $scope.defaultSettings.general_Settings.school_grade.id });
+          if ($scope.year_works.school_grade && $scope.year_works.school_grade.id) {
 
-        $scope.getStudentsYearsList($scope.year_works.school_grade);
-      }
+            $scope.getStudentsYearsList($scope.year_works.school_grade);
+          }
 
-    }
-    site.showModal('#yearWorksAddModal');
+        }
+        site.showModal('#yearWorksAddModal');
+      } else $scope.error = '##word.open_shift_not_found##';
+    });
   };
 
   $scope.addYearWorks = function () {
@@ -65,15 +69,17 @@ app.controller("year_works", function ($scope, $http, $timeout) {
   };
 
   $scope.displayUpdateYearWorks = function (year_works) {
-    $scope._search = {};
 
-    $scope.error = '';
-    $scope.detailsYearWorks(year_works);
-    $scope.year_works = {
-      image_url: '/images/vendor_logo.png',
+    $scope.get_open_shift((shift) => {
+      if (shift) {
 
-    };
-    site.showModal('#yearWorksUpdateModal');
+        $scope._search = {};
+        $scope.error = '';
+        $scope.detailsYearWorks(year_works);
+        $scope.year_works = {};
+        site.showModal('#yearWorksUpdateModal');
+      } else $scope.error = '##word.open_shift_not_found##';
+    });
   };
 
   $scope.updateYearWorks = function () {
@@ -114,6 +120,7 @@ app.controller("year_works", function ($scope, $http, $timeout) {
   };
 
   $scope.displayDetailsYearWorks = function (year_works) {
+
     $scope.error = '';
     $scope.detailsYearWorks(year_works);
     $scope.year_works = {};
@@ -145,10 +152,16 @@ app.controller("year_works", function ($scope, $http, $timeout) {
   };
 
   $scope.displayDeleteYearWorks = function (year_works) {
-    $scope.error = '';
-    $scope.detailsYearWorks(year_works);
-    $scope.year_works = {};
-    site.showModal('#yearWorksDeleteModal');
+    $scope.get_open_shift((shift) => {
+      if (shift) {
+
+        $scope.error = '';
+        $scope.detailsYearWorks(year_works);
+        $scope.year_works = {};
+        site.showModal('#yearWorksDeleteModal');
+
+      } else $scope.error = '##word.open_shift_not_found##';
+    });
   };
 
   $scope.deleteYearWorks = function () {
@@ -283,33 +296,6 @@ app.controller("year_works", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.loadSchoolYears = function () {
-    $scope.error = '';
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/school_years/all",
-      data: {
-        select: {
-          id: 1,
-          name: 1,
-          code: 1
-        }
-      }
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          $scope.schoolYearsList = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
-  };
-
   $scope.getDefaultSettings = function () {
     $scope.error = '';
     $scope.busy = true;
@@ -330,7 +316,6 @@ app.controller("year_works", function ($scope, $http, $timeout) {
         $scope.error = err;
       }
     )
-
   };
 
   $scope.getSchoolGradesList = function () {
@@ -382,6 +367,33 @@ app.controller("year_works", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.get_open_shift = function (callback) {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/shifts/get_open_shift",
+      data: {
+        where: { active: true },
+        select: { id: 1, name: 1, code: 1, from_date: 1, from_time: 1, to_date: 1, to_time: 1 }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.doc) {
+          $scope.shift = response.data.doc;
+          callback(response.data.doc);
+        } else {
+          callback(null);
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+        callback(null);
+      }
+    )
+  };
+
 
   $scope.getNumberingAuto = function () {
     $scope.error = '';
@@ -408,12 +420,13 @@ app.controller("year_works", function ($scope, $http, $timeout) {
 
 
   $scope.calc = function (c) {
+    
     $timeout(() => {
 
       $scope.error = '';
       if (c.student_score > c.work_degree_year) {
-        $scope.error = '##word.err_score_higher##';
         c.student_score = 0;
+        $scope.error = '##word.err_score_higher##';
       }
     }, 250);
 
@@ -422,7 +435,6 @@ app.controller("year_works", function ($scope, $http, $timeout) {
 
   $scope.getNumberingAuto();
   $scope.getSchoolGradesList();
-  $scope.loadSchoolYears();
   $scope.getDefaultSettings();
   $scope.getHalls();
   $scope.getYearWorksList();

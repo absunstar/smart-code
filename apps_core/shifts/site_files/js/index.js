@@ -17,6 +17,11 @@ app.controller("shifts", function ($scope, $http, $timeout) {
           active: true
         };
 
+        if (site.feature('school')) {
+          $scope.shift.image_url = '/images/school_years.png'
+
+        }
+
         site.showModal('#shiftAddModal');
       } else {
         $scope.error = '##word.must_close_shift##'

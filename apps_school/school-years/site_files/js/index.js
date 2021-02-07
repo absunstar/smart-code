@@ -64,10 +64,7 @@ app.controller("school_years", function ($scope, $http, $timeout) {
 
     $scope.error = '';
     $scope.detailsSchoolYears(school_years);
-    $scope.school_years = {
-      image_url: '/images/vendor_logo.png',
-
-    };
+    $scope.school_years = {};
     site.showModal('#schoolYearsUpdateModal');
   };
 

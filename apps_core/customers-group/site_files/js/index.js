@@ -58,10 +58,7 @@ app.controller("customers_group", function ($scope, $http, $timeout) {
 
     $scope.error = '';
     $scope.detailsCustomerGroup(customer_group);
-    $scope.customer_group = {
-      image_url: '/images/vendor_logo.png',
-
-    };
+    $scope.customer_group = {};
     site.showModal('#customerGroupUpdateModal');
   };
 

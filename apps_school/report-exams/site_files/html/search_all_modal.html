@@ -10,9 +10,9 @@
                     <fieldset>
                         <legend>##word.search_all##</legend>
                         <div class="row">
-                            <i-list ng-search="_search.$_school_year" class="col3" display="name"
-                               ng-change="getExams(search.school_year)" ng-model="search.school_year" label="##word.school_year##" items="schoolYearsList">
-                            </i-list>
+
+                            <i-list class="col3" ng-model="search.shift" ng-search="_search.$_shift" items="shiftsList"
+                                label="##word.shift##"></i-list>
 
                             <i-list help-id="" v="r" class="col3" label="##word.subject##" ng-model="search.subject"
                                 ng-change="getDegrees()" ng-search="_search.$_subject" items="subjectsList"
@@ -20,8 +20,7 @@
                             </i-list>
 
                             <i-list help-id="" v="r" class="col3" label="##word.exam##" ng-model="search.exam"
-                                ng-change="getDegrees()" ng-search="_search.$_exam" items="examsList"
-                                display="name">
+                                ng-change="getDegrees()" ng-search="_search.$_exam" items="examsList" display="name">
                             </i-list>
 
                             <i-list help-id="" class="col3" label="##word.exams_type##" ng-model="search.exams_type"
@@ -39,8 +38,9 @@
                                 label="##word.customer##" space=" - " display2="code" ng-model="search.customer"
                                 items="studentsList" display="name_##session.lang##"></i-list>
 
-                            <i-list help-id="" class="col3" label="##word.students_years##" ng-model="search.students_years"
-                                ng-search="_search.$_students_years" items="studentsYearsList" display="name"></i-list>
+                            <i-list help-id="" class="col3" label="##word.students_years##"
+                                ng-model="search.students_years" ng-search="_search.$_students_years"
+                                items="studentsYearsList" display="name"></i-list>
 
                         </div>
                     </fieldset>

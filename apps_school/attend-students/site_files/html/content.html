@@ -9,9 +9,8 @@
                         <i-control ng-hide="disabledCode" class="col2" label="##word.code##"
                             ng-model="attend_students.code"></i-control>
                         <i-date2 class="col4" ng-model="attend_students.date" label="##word.date##"></i-date2>
-                        <i-list ng-search="_search.$_school_year" class="col3" display="name"
-                            ng-model="attend_students.school_year" label="##word.school_year##" items="schoolYearsList"></i-list>
-                        </i-list>
+                        <i-control class="col3 r_indigo" type="text" disabled label="##word.shift##" ng-model="shift.name">
+                        </i-control>
                     </div>
 
                     <div class="row">

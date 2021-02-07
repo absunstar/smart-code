@@ -104,13 +104,7 @@ app.controller("financial_years", function ($scope, $http, $timeout) {
 
     $scope.viewFinancialYear(financial_year, index);
 
-
-
-
-
-    $scope.financial_year = {
-      image_url: '/images/vendor_logo.png'
-    };
+    $scope.financial_year = {};
 
 
     site.showModal('#financialYearUpdateModal');

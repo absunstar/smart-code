@@ -56,10 +56,7 @@ app.controller("rogatory_places", function ($scope, $http, $timeout) {
 
     $scope.error = '';
     $scope.detailsRogatoryPlaces(rogatory_places);
-    $scope.rogatory_places = {
-      image_url: '/images/vendor_logo.png',
-
-    };
+    $scope.rogatory_places = {};
     site.showModal('#rogatoryPlacesUpdateModal');
   };
 

@@ -4,25 +4,31 @@ app.controller("seating_numbers", function ($scope, $http, $timeout) {
   $scope.seating_numbers = {};
 
   $scope.displayAddSeatingNumbers = function () {
-    $scope._search = {};
-    $scope.error = '';
-    $scope.seating_numbers = {
-      image_url: '/images/seating_numbers.png',
-      students_list: [],
-      active: true
-    };
+    $scope.get_open_shift((shift) => {
+      if (shift) {
 
-    if ($scope.defaultSettings.general_Settings) {
-      $scope.seating_numbers.school_year = $scope.schoolYearsList.find(_school_year => { return _school_year.id === $scope.defaultSettings.general_Settings.school_year.id });
+        $scope._search = {};
+        $scope.error = '';
+        $scope.seating_numbers = {
+          image_url: '/images/seating_numbers.png',
+          students_list: [],
+          shift: shift,
+          active: true
+        };
 
-      $scope.seating_numbers.school_grade = $scope.schoolGradesList.find(_schoolGrade => { return _schoolGrade.id === $scope.defaultSettings.general_Settings.school_grade.id });
-      if($scope.seating_numbers.school_grade && $scope.seating_numbers.school_grade.id){
+        if ($scope.defaultSettings.general_Settings) {
 
-        $scope.getStudentsYearsList($scope.seating_numbers.school_grade);
-      }
-    }
-    
-    site.showModal('#seatingNumbersAddModal');
+          $scope.seating_numbers.school_grade = $scope.schoolGradesList.find(_schoolGrade => { return _schoolGrade.id === $scope.defaultSettings.general_Settings.school_grade.id });
+          if ($scope.seating_numbers.school_grade && $scope.seating_numbers.school_grade.id) {
+
+            $scope.getStudentsYearsList($scope.seating_numbers.school_grade);
+          }
+        }
+
+        site.showModal('#seatingNumbersAddModal');
+
+      } else $scope.error = '##word.open_shift_not_found##';
+    });
   };
 
   $scope.addSeatingNumbers = function () {
@@ -66,15 +72,16 @@ app.controller("seating_numbers", function ($scope, $http, $timeout) {
   };
 
   $scope.displayUpdateSeatingNumbers = function (seating_numbers) {
-    $scope._search = {};
+    $scope.get_open_shift((shift) => {
+      if (shift) {
 
-    $scope.error = '';
-    $scope.detailsSeatingNumbers(seating_numbers);
-    $scope.seating_numbers = {
-      image_url: '/images/vendor_logo.png',
-
-    };
-    site.showModal('#seatingNumbersUpdateModal');
+        $scope._search = {};
+        $scope.error = '';
+        $scope.detailsSeatingNumbers(seating_numbers);
+        $scope.seating_numbers = {};
+        site.showModal('#seatingNumbersUpdateModal');
+      } else $scope.error = '##word.open_shift_not_found##';
+    });
   };
 
   $scope.updateSeatingNumbers = function () {
@@ -146,10 +153,16 @@ app.controller("seating_numbers", function ($scope, $http, $timeout) {
   };
 
   $scope.displayDeleteSeatingNumbers = function (seating_numbers) {
-    $scope.error = '';
-    $scope.detailsSeatingNumbers(seating_numbers);
-    $scope.seating_numbers = {};
-    site.showModal('#seatingNumbersDeleteModal');
+    $scope.get_open_shift((shift) => {
+      if (shift) {
+
+        $scope.error = '';
+        $scope.detailsSeatingNumbers(seating_numbers);
+        $scope.seating_numbers = {};
+        site.showModal('#seatingNumbersDeleteModal');
+
+      } else $scope.error = '##word.open_shift_not_found##';
+    });
   };
 
   $scope.deleteSeatingNumbers = function () {
@@ -262,32 +275,6 @@ app.controller("seating_numbers", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.loadSchoolYears = function () {
-    $scope.error = '';
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/school_years/all",
-      data: {
-        select: {
-          id: 1,
-          name: 1,
-          code: 1
-        }
-      }
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          $scope.schoolYearsList = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
-  };
 
   $scope.getSchoolGradesList = function () {
     $http({
@@ -359,7 +346,33 @@ app.controller("seating_numbers", function ($scope, $http, $timeout) {
         $scope.error = err;
       }
     )
+  };
 
+  $scope.get_open_shift = function (callback) {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/shifts/get_open_shift",
+      data: {
+        where: { active: true },
+        select: { id: 1, name: 1, code: 1, from_date: 1, from_time: 1, to_date: 1, to_time: 1 }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.doc) {
+          $scope.shift = response.data.doc;
+          callback(response.data.doc);
+        } else {
+          callback(null);
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+        callback(null);
+      }
+    )
   };
 
   $scope.getNumberingAuto = function () {
@@ -386,7 +399,6 @@ app.controller("seating_numbers", function ($scope, $http, $timeout) {
   };
 
   $scope.getNumberingAuto();
-  $scope.loadSchoolYears();
   $scope.getSchoolGradesList();
   $scope.getDefaultSettings();
   $scope.getSeatingNumbersList();

@@ -507,32 +507,6 @@ app.controller("default_setting", function ($scope, $http) {
     )
   };
 
-  $scope.loadSchoolYears = function () {
-    $scope.error = '';
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/school_years/all",
-      data: {
-        select: {
-          id: 1,
-          name: 1,
-          code: 1
-        }
-      }
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          $scope.schoolYearsList = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
-  };
 
   $scope.loadPaymentTypes = function () {
     $scope.error = '';
@@ -749,7 +723,6 @@ app.controller("default_setting", function ($scope, $http) {
   }
 
   if (site.feature('school')) {
-    $scope.loadSchoolYears();
     $scope.getSchoolGradesList();
   }
 });

@@ -4,32 +4,36 @@ app.controller("class_schedule", function ($scope, $http, $timeout) {
   $scope.class_schedule = {};
 
   $scope.displayAddClassSchedule = function () {
-    $scope._search = {};
-    $scope.error = '';
-    $scope.class_schedule = {
-      image_url: '/images/class_schedule.png',
-      sunday: true,
-      monday: true,
-      tuesday: true,
-      wednesday: true,
-      thursday: true,
-      max_school_class: 0,
-      active: true
-    };
-    if ($scope.defaultSettings.general_Settings) {
-      $scope.class_schedule.school_year = $scope.schoolYearsList.find(_school_year => { return _school_year.id === $scope.defaultSettings.general_Settings.school_year.id });
+    $scope.get_open_shift((shift) => {
+      if (shift) {
 
+        $scope._search = {};
+        $scope.error = '';
+        $scope.class_schedule = {
+          image_url: '/images/class_schedule.png',
+          shift: shift,
+          sunday: true,
+          monday: true,
+          tuesday: true,
+          wednesday: true,
+          thursday: true,
+          max_school_class: 0,
+          active: true
+        };
+        if ($scope.defaultSettings.general_Settings) {
 
-      $scope.class_schedule.school_grade = $scope.schoolGradesList.find(_schoolGrade => { return _schoolGrade.id === $scope.defaultSettings.general_Settings.school_grade.id });
-      if($scope.class_schedule.school_grade && $scope.class_schedule.school_grade.id){
+          $scope.class_schedule.school_grade = $scope.schoolGradesList.find(_schoolGrade => { return _schoolGrade.id === $scope.defaultSettings.general_Settings.school_grade.id });
+          if ($scope.class_schedule.school_grade && $scope.class_schedule.school_grade.id) {
 
-        $scope.getStudentsYearsList($scope.class_schedule.school_grade);
-      }
+            $scope.getStudentsYearsList($scope.class_schedule.school_grade);
+          }
 
-    }
+        }
 
+        site.showModal('#classScheduleAddModal');
 
-    site.showModal('#classScheduleAddModal');
+      } else $scope.error = '##word.open_shift_not_found##';
+    });
   };
 
   $scope.addClassSchedule = function () {
@@ -73,12 +77,17 @@ app.controller("class_schedule", function ($scope, $http, $timeout) {
   };
 
   $scope.displayUpdateClassSchedule = function (class_schedule, update) {
-    $scope._search = {};
 
-    $scope.error = '';
-    $scope.detailsClassSchedule(class_schedule, update);
-    $scope.class_schedule = {};
-    site.showModal('#classScheduleUpdateModal');
+    $scope.get_open_shift((shift) => {
+      if (shift) {
+        $scope._search = {};
+
+        $scope.error = '';
+        $scope.detailsClassSchedule(class_schedule, update);
+        $scope.class_schedule = {};
+        site.showModal('#classScheduleUpdateModal');
+      } else $scope.error = '##word.open_shift_not_found##';
+    });
   };
 
   $scope.updateClassSchedule = function () {
@@ -155,9 +164,13 @@ app.controller("class_schedule", function ($scope, $http, $timeout) {
 
   $scope.displayDeleteClassSchedule = function (class_schedule) {
     $scope.error = '';
-    $scope.detailsClassSchedule(class_schedule);
-    $scope.class_schedule = {};
-    site.showModal('#classScheduleDeleteModal');
+    $scope.get_open_shift((shift) => {
+      if (shift) {
+        $scope.detailsClassSchedule(class_schedule);
+        $scope.class_schedule = {};
+        site.showModal('#classScheduleDeleteModal');
+      } else $scope.error = '##word.open_shift_not_found##';
+    });
   };
 
   $scope.deleteClassSchedule = function () {
@@ -296,16 +309,16 @@ app.controller("class_schedule", function ($scope, $http, $timeout) {
 
 
 
-  /*   if (c.count_school_class !== c.schedules_count_list.length) {
-
-      c.schedules_count_list = [];
-
-      for (let i = 0; i < c.count_school_class; i++) {
-
-        c.schedules_count_list.push({});
-
-      };
-    } */
+    /*   if (c.count_school_class !== c.schedules_count_list.length) {
+  
+        c.schedules_count_list = [];
+  
+        for (let i = 0; i < c.count_school_class; i++) {
+  
+          c.schedules_count_list.push({});
+  
+        };
+      } */
   };
 
   $scope.getSchoolGradesList = function () {
@@ -381,32 +394,6 @@ app.controller("class_schedule", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.loadSchoolYears = function () {
-    $scope.error = '';
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/school_years/all",
-      data: {
-        select: {
-          id: 1,
-          name: 1,
-          code: 1
-        }
-      }
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          $scope.schoolYearsList = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
-  };
 
   $scope.getDefaultSettings = function () {
     $scope.error = '';
@@ -431,6 +418,33 @@ app.controller("class_schedule", function ($scope, $http, $timeout) {
 
   };
 
+  $scope.get_open_shift = function (callback) {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/shifts/get_open_shift",
+      data: {
+        where: { active: true },
+        select: { id: 1, name: 1, code: 1, from_date: 1, from_time: 1, to_date: 1, to_time: 1 }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.doc) {
+          $scope.shift = response.data.doc;
+          callback(response.data.doc);
+        } else {
+          callback(null);
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+        callback(null);
+      }
+    )
+  };
+
   $scope.getNumberingAuto = function () {
     $scope.error = '';
     $scope.busy = true;
@@ -438,7 +452,7 @@ app.controller("class_schedule", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/numbering/get_automatic",
       data: {
-        screen: "class_schedule"
+        screen: "class_schedules"
       }
     }).then(
       function (response) {
@@ -457,7 +471,6 @@ app.controller("class_schedule", function ($scope, $http, $timeout) {
   $scope.getNumberingAuto();
   $scope.getTrainersList();
   $scope.getSchoolGradesList();
-  $scope.loadSchoolYears();
   $scope.getDefaultSettings();
   $scope.getHalls();
   $scope.getClassScheduleList();

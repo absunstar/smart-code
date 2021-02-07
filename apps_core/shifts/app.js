@@ -15,9 +15,18 @@ module.exports = function init(site) {
 
 
   site.on('[company][created]', doc => {
+    let name = "شيفت إفتراضي"
+    let image = '/images/shift.png'
+
+    if (site.feature('school')) {
+      name = 'عام دراسي إفتراضي'
+      image = '/images/school_years.png'
+
+    }
+
     $shifts.add({
-      name: "شيفت إفتراضي",
-      image_url: '/images/shift.png',
+      name: name,
+      image_url: image,
       code: "1-Test",
       company: {
         id: doc.id,

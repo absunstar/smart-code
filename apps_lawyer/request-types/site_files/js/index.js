@@ -56,10 +56,7 @@ app.controller("request_types", function ($scope, $http, $timeout) {
 
     $scope.error = '';
     $scope.detailsRequestTypes(request_types);
-    $scope.request_types = {
-      image_url: '/images/vendor_logo.png',
-
-    };
+    $scope.request_types = {};
     site.showModal('#requestTypesUpdateModal');
   };
 

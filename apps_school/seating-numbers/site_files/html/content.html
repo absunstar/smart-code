@@ -8,9 +8,9 @@
                         <i-control ng-hide="disabledCode" class="col2" label="##word.code##"
                             ng-model="seating_numbers.code"></i-control>
 
-                        <i-list ng-search="_search.$_school_year" class="col3" display="name"
-                            ng-model="seating_numbers.school_year" label="##word.school_year##" items="schoolYearsList">
-                        </i-list>
+                        <i-control class="col3 r_indigo" type="text" disabled label="##word.shift##"
+                            ng-model="shift.name">
+                        </i-control>
 
                         <div class="col1"></div>
                         <i-checkbox class="col2" label="##word.active##" ng-model="seating_numbers.active"></i-checkbox>
@@ -18,12 +18,13 @@
 
                     <div class="row">
                         <i-list ng-search="_search.$_school_grade" class="col3" display="name" v="r"
-                            ng-change="getStudentsYearsList(seating_numbers.school_grade)" ng-model="seating_numbers.school_grade"
-                            label="##word.school_grade##" items="schoolGradesList">
+                            ng-change="getStudentsYearsList(seating_numbers.school_grade)"
+                            ng-model="seating_numbers.school_grade" label="##word.school_grade##"
+                            items="schoolGradesList">
                         </i-list>
 
-                        <i-list class="col3" label="##word.students_year##" ng-model="seating_numbers.students_year" v="r"
-                            items="studentsYearsList" display="name" ng-search="_search.$_students_year">
+                        <i-list class="col3" label="##word.students_year##" ng-model="seating_numbers.students_year"
+                            v="r" items="studentsYearsList" display="name" ng-search="_search.$_students_year">
                         </i-list>
                     </div>
 
@@ -32,7 +33,8 @@
                             ng-model="seating_numbers.from">
                         </i-control>
 
-                        <i-control class="col2" v="r" type="number" label="##word.to##" ng-model="seating_numbers.to"></i-control>
+                        <i-control class="col2" v="r" type="number" label="##word.to##" ng-model="seating_numbers.to">
+                        </i-control>
 
                         <div class="col2"></div>
 

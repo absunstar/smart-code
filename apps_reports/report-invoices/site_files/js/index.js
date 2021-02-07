@@ -321,32 +321,6 @@ app.controller("report_invoices", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.loadSchoolYears = function () {
-    $scope.error = '';
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/school_years/all",
-      data: {
-        select: {
-          id: 1,
-          name: 1,
-          code: 1
-        }
-      }
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          $scope.schoolYearsList = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
-  };
 
   $scope.searchAll = function () {
     $scope._search = {};
@@ -361,7 +335,6 @@ app.controller("report_invoices", function ($scope, $http, $timeout) {
 
   if (site.feature('school')) {
     $scope.getStudentsYearsList();
-    $scope.loadSchoolYears();
   }
 
   $scope.getPaymentMethodList();

@@ -64,10 +64,7 @@ app.controller("school_grades", function ($scope, $http, $timeout) {
 
     $scope.error = '';
     $scope.detailsSchoolGrades(school_grades);
-    $scope.school_grades = {
-      image_url: '/images/vendor_logo.png',
-
-    };
+    $scope.school_grades = {};
     site.showModal('#schoolGradesUpdateModal');
   };
 

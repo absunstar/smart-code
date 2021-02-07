@@ -4,25 +4,28 @@ app.controller("exams", function ($scope, $http, $timeout) {
   $scope.exams = {};
 
   $scope.displayAddExams = function () {
-    $scope.error = '';
-    $scope.exams = {
-      image_url: '/images/exams.png',
-      active: true,
-      busy: false
-    };
-    if ($scope.defaultSettings.general_Settings) {
-      $scope.exams.school_year = $scope.schoolYearsList.find(_school_year => { return _school_year.id === $scope.defaultSettings.general_Settings.school_year.id });
+    $scope.get_open_shift((shift) => {
+      if (shift) {
+        $scope.error = '';
+        $scope.exams = {
+          image_url: '/images/exams.png',
+          shift: shift,
+          active: true,
+          busy: false
+        };
+        if ($scope.defaultSettings.general_Settings) {
 
-      $scope.exams.school_grade = $scope.schoolGradesList.find(_schoolGrade => { return _schoolGrade.id === $scope.defaultSettings.general_Settings.school_grade.id });
-      if($scope.exams.school_grade && $scope.exams.school_grade.id){
+          $scope.exams.school_grade = $scope.schoolGradesList.find(_schoolGrade => { return _schoolGrade.id === $scope.defaultSettings.general_Settings.school_grade.id });
+          if ($scope.exams.school_grade && $scope.exams.school_grade.id) {
 
-        $scope.getStudentsYearsList($scope.exams.school_grade);
-      }
+            $scope.getStudentsYearsList($scope.exams.school_grade);
+          }
 
-    }
+        }
 
-    site.showModal('#examsAddModal');
-
+        site.showModal('#examsAddModal');
+      } else $scope.error = '##word.open_shift_not_found##';
+    });
   };
 
   $scope.addExams = function () {
@@ -75,11 +78,14 @@ app.controller("exams", function ($scope, $http, $timeout) {
   };
 
   $scope.displayUpdateExams = function (exams) {
-
-    $scope.error = '';
-    $scope.viewExams(exams);
-    $scope.exams = {};
-    site.showModal('#examsUpdateModal');
+    $scope.get_open_shift((shift) => {
+      if (shift) {
+        $scope.error = '';
+        $scope.viewExams(exams);
+        $scope.exams = {};
+        site.showModal('#examsUpdateModal');
+      } else $scope.error = '##word.open_shift_not_found##';
+    });
   };
 
 
@@ -117,10 +123,14 @@ app.controller("exams", function ($scope, $http, $timeout) {
   };
 
   $scope.displayDeleteExams = function (exams) {
-    $scope.error = '';
-    $scope.viewExams(exams);
-    $scope.exams = {};
-    site.showModal('#examsDeleteModal');
+    $scope.get_open_shift((shift) => {
+      if (shift) {
+        $scope.error = '';
+        $scope.viewExams(exams);
+        $scope.exams = {};
+        site.showModal('#examsDeleteModal');
+      } else $scope.error = '##word.open_shift_not_found##';
+    });
   };
 
   $scope.deleteExams = function () {
@@ -286,9 +296,9 @@ app.controller("exams", function ($scope, $http, $timeout) {
   $scope.getDegrees = function () {
     $scope.error = '';
 
-    if ($scope.exams.students_years && $scope.exams.exams_type && $scope.exams.subject) {
+    if ($scope.exams.students_year && $scope.exams.exams_type && $scope.exams.subject) {
 
-      $scope.exams.students_years.subjects_list.forEach(_sg => {
+      $scope.exams.students_year.subjects_list.forEach(_sg => {
         if (_sg.subject && _sg.subject.id == $scope.exams.subject.id) {
           if ($scope.exams.exams_type) {
 
@@ -311,33 +321,6 @@ app.controller("exams", function ($scope, $http, $timeout) {
       $scope.exams.degree_success = $scope.exams.final_grade / 2;
     }
 
-  };
-
-  $scope.loadSchoolYears = function () {
-    $scope.error = '';
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/school_years/all",
-      data: {
-        select: {
-          id: 1,
-          name: 1,
-          code: 1
-        }
-      }
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          $scope.schoolYearsList = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
   };
 
   $scope.getDefaultSettings = function () {
@@ -482,7 +465,7 @@ app.controller("exams", function ($scope, $http, $timeout) {
         data: {
           search: $scope.search_customer,
           where: {
-            students_years: $scope.exams.students_years,
+            students_year: $scope.exams.students_year,
             hall: $scope.exams.hall,
             active: true
           }
@@ -570,124 +553,128 @@ app.controller("exams", function ($scope, $http, $timeout) {
 
 
   $scope.updateExamsStudent = function (exams, type) {
-    $scope.error = '';
 
-    if (type === 'correct') {
+    $scope.get_open_shift((shift) => {
+      if (shift) {
+        $scope.error = '';
 
-      const v = site.validated('#examDetailesModal');
-      if (!v.ok) {
-        $scope.error = v.messages[0].ar;
-        return;
-      };
+        if (type === 'correct') {
 
-    } else if (type === 'update') {
+          const v = site.validated('#examDetailesModal');
+          if (!v.ok) {
+            $scope.error = v.messages[0].ar;
+            return;
+          };
 
-      const v = site.validated('#examsUpdateModal');
-      if (!v.ok) {
-        $scope.error = v.messages[0].ar;
-        return;
-      };
+        } else if (type === 'update') {
 
-    }
-
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/exams/update",
-      data: {
-        data: exams,
-        type: type,
-        stuList: $scope.studentsList
-
-      }
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          if (type === 'finish') {
-            site.hideModal('#acceptFinishExamModal');
-            site.hideModal('#startExamModal');
-
-            $scope.getExamsList();
-
-          } else if (type === 'correct') {
-            site.hideModal('#examDetailesModal');
-
-          } else if (type === 'update') {
-            site.hideModal('#examsUpdateModal');
-            $scope.getExamsList();
-
-          } else if (type === 'start' || type === 'time') {
-            let finish_exam = false;
-            $scope.exams = response.data.doc;
-
-            $scope.exams.students_list.forEach(_s => {
-              if (_s.id == '##user.ref_info.id##') {
-                $scope.student_exams = _s;
-                found = true;
-
-                if (_s.exam.exam_procedure) {
-                  finish_exam = true;
-
-                } else {
-                  $scope.timer();
-
-                }
-              }
-
-            });
-
-            if (finish_exam) {
-
-              site.hideModal('#startExamModal');
-              $scope.getExamsList();
-              $scope.error = '##word.You_have_already_taken_test##';
-
-              return;
-            }
-            /*  $scope.seconds = 0;
-             $scope.timerSecounds(); */
-            site.showModal('#startExamModal');
-
-          }
-
-        } else {
-          $scope.error = 'Please Login First';
-          if (response.data.error.like('*Must Enter Code*')) {
-            $scope.error = "##word.must_enter_code##"
-
-          } else if (response.data.error.like('*student grade are greater than the final*')) {
-            $scope.error = `##word.student_scores_not_equal_final_score##   ( ${response.data.error_list.join('-')} )`;
-
-          } else if (response.data.error.like('*student score is greater than the question*')) {
-            $scope.error = `##word.student_scores_not_equal_question_score##   ( ${response.data.error_list.join('-')} )`;
-
-          } else if (response.data.error.like('*passing score is greater than the final*')) {
-            $scope.error = '##word.passing_score_greater_final_grade##';
-
-          } else if (response.data.error.like('*sum of the scores does not equal the final*')) {
-            $scope.error = '##word.sum_scores_not_equal_final_score##';
-
-          } else if (response.data.error.like('*sum of the scores does not equal the final all*')) {
-            $scope.error = `##word.sum_scores_not_equal_final_score##   ( ${response.data.error_list.join('-')} )`;
-
-          } else if (response.data.error.like('*cannot enter because you are not registered*')) {
-            $scope.error = '##word.cant_enter_exam##';
-
-          } else if (response.data.error.like('*test has already been performed*')) {
-            $scope.error = '##word.You_have_already_taken_test##';
-
-          } else if (response.data.error.like('*exam time has expired*')) {
-            $scope.error = '##word.exam_time_expired##';
-
-          }
+          const v = site.validated('#examsUpdateModal');
+          if (!v.ok) {
+            $scope.error = v.messages[0].ar;
+            return;
+          };
 
         }
-      },
-      function (err) {
-        console.log(err);
-      }
-    )
+        $scope.busy = true;
+        $http({
+          method: "POST",
+          url: "/api/exams/update",
+          data: {
+            data: exams,
+            type: type,
+            stuList: $scope.studentsList
+
+          }
+        }).then(
+          function (response) {
+            $scope.busy = false;
+            if (response.data.done) {
+              if (type === 'finish') {
+                site.hideModal('#acceptFinishExamModal');
+                site.hideModal('#startExamModal');
+
+                $scope.getExamsList();
+
+              } else if (type === 'correct') {
+                site.hideModal('#examDetailesModal');
+
+              } else if (type === 'update') {
+                site.hideModal('#examsUpdateModal');
+                $scope.getExamsList();
+
+              } else if (type === 'start' || type === 'time') {
+                let finish_exam = false;
+                $scope.exams = response.data.doc;
+
+                $scope.exams.students_list.forEach(_s => {
+                  if (_s.id == '##user.ref_info.id##') {
+                    $scope.student_exams = _s;
+                    found = true;
+
+                    if (_s.exam.exam_procedure) {
+                      finish_exam = true;
+
+                    } else {
+                      $scope.timer();
+
+                    }
+                  }
+
+                });
+
+                if (finish_exam) {
+
+                  site.hideModal('#startExamModal');
+                  $scope.getExamsList();
+                  $scope.error = '##word.You_have_already_taken_test##';
+
+                  return;
+                }
+                /*  $scope.seconds = 0;
+                 $scope.timerSecounds(); */
+                site.showModal('#startExamModal');
+
+              }
+
+            } else {
+              $scope.error = 'Please Login First';
+              if (response.data.error.like('*Must Enter Code*')) {
+                $scope.error = "##word.must_enter_code##"
+
+              } else if (response.data.error.like('*student grade are greater than the final*')) {
+                $scope.error = `##word.student_scores_not_equal_final_score##   ( ${response.data.error_list.join('-')} )`;
+
+              } else if (response.data.error.like('*student score is greater than the question*')) {
+                $scope.error = `##word.student_scores_not_equal_question_score##   ( ${response.data.error_list.join('-')} )`;
+
+              } else if (response.data.error.like('*passing score is greater than the final*')) {
+                $scope.error = '##word.passing_score_greater_final_grade##';
+
+              } else if (response.data.error.like('*sum of the scores does not equal the final*')) {
+                $scope.error = '##word.sum_scores_not_equal_final_score##';
+
+              } else if (response.data.error.like('*sum of the scores does not equal the final all*')) {
+                $scope.error = `##word.sum_scores_not_equal_final_score##   ( ${response.data.error_list.join('-')} )`;
+
+              } else if (response.data.error.like('*cannot enter because you are not registered*')) {
+                $scope.error = '##word.cant_enter_exam##';
+
+              } else if (response.data.error.like('*test has already been performed*')) {
+                $scope.error = '##word.You_have_already_taken_test##';
+
+              } else if (response.data.error.like('*exam time has expired*')) {
+                $scope.error = '##word.exam_time_expired##';
+
+              }
+
+            }
+          },
+          function (err) {
+            console.log(err);
+          }
+        )
+      } else $scope.error = '##word.open_shift_not_found##';
+    });
   };
 
   $scope.calc = function (obj) {
@@ -753,47 +740,51 @@ app.controller("exams", function ($scope, $http, $timeout) {
 
   $scope.acceptFinishExam = function (student_exams) {
 
-    if (student_exams.exam.time_minutes === 0) {
-      site.hideModal('#startExamModal');
-      return;
-    };
+    $scope.get_open_shift((shift) => {
+      if (shift) {
 
-    $scope.main_ques_list = [];
-    student_exams.exam.main_ques_list.forEach((_main, i) => {
-      _main.ques_list.forEach((_ques, _i) => {
-        if (_ques.answer_stu && _ques.answer_stu.name) {
+        if (student_exams.exam.time_minutes === 0) {
+          site.hideModal('#startExamModal');
+          return;
+        };
 
+        $scope.main_ques_list = [];
+        student_exams.exam.main_ques_list.forEach((_main, i) => {
+          _main.ques_list.forEach((_ques, _i) => {
+            if (_ques.answer_stu && _ques.answer_stu.name) {
+
+            } else {
+
+              let found = $scope.main_ques_list.some(_m => _m.indx === i);
+
+              if (!found) {
+
+                $scope.main_ques_list.push({
+                  question: _main.title_question,
+                  indx: i,
+                  ques_list: [{ question: _ques.question, indx: _i }]
+                })
+
+              } else {
+                $scope.main_ques_list.forEach(_q => {
+                  if (_q.indx === i) {
+                    _q.ques_list.push({ question: _ques.question, indx: _i })
+                  }
+                });
+              }
+            }
+          });
+
+        });
+
+        if ($scope.main_ques_list && $scope.main_ques_list.length > 0) {
+          site.showModal('#acceptFinishExamModal');
         } else {
 
-          let found = $scope.main_ques_list.some(_m => _m.indx === i);
-
-          if (!found) {
-
-            $scope.main_ques_list.push({
-              question: _main.title_question,
-              indx: i,
-              ques_list: [{ question: _ques.question, indx: _i }]
-            })
-
-          } else {
-            $scope.main_ques_list.forEach(_q => {
-              if (_q.indx === i) {
-                _q.ques_list.push({ question: _ques.question, indx: _i })
-              }
-            });
-          }
+          $scope.updateExamsStudent($scope.exams, 'finish');
         }
-      });
-
+      } else $scope.error = '##word.open_shift_not_found##';
     });
-
-    if ($scope.main_ques_list && $scope.main_ques_list.length > 0) {
-      site.showModal('#acceptFinishExamModal');
-    } else {
-
-      $scope.updateExamsStudent($scope.exams, 'finish');
-    }
-
   };
 
   $scope.getSchoolGradesList = function () {
@@ -846,6 +837,33 @@ app.controller("exams", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.get_open_shift = function (callback) {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/shifts/get_open_shift",
+      data: {
+        where: { active: true },
+        select: { id: 1, name: 1, code: 1, from_date: 1, from_time: 1, to_date: 1, to_time: 1 }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.doc) {
+          $scope.shift = response.data.doc;
+          callback(response.data.doc);
+        } else {
+          callback(null);
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+        callback(null);
+      }
+    )
+  };
+
   $scope.searchAll = function () {
     $scope.getExamsList($scope.search);
     site.hideModal('#examsSearchModal');
@@ -857,7 +875,6 @@ app.controller("exams", function ($scope, $http, $timeout) {
 
   $scope.getExamsList();
   $scope.getSchoolGradesList();
-  $scope.loadSchoolYears();
   $scope.getDefaultSettings();
   $scope.getStudentList();
   $scope.getHalls();

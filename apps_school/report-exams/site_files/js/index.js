@@ -168,34 +168,8 @@ app.controller("report_exams", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.loadSchoolYears = function () {
-    $scope.error = '';
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/school_years/all",
-      data: {
-        select: {
-          id: 1,
-          name: 1,
-          code: 1
-        }
-      }
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          $scope.schoolYearsList = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
-  };
 
-  $scope.getExams = function (school_year) {
+  $scope.getExams = function (shift) {
     $http({
       method: "POST",
       url: "/api/exams/all",
@@ -207,7 +181,7 @@ app.controller("report_exams", function ($scope, $http, $timeout) {
         },
         where: {
           active: true,
-          'school_year.id': school_year.id
+          'shift': shift
         }
       }
     }).then(
@@ -246,6 +220,22 @@ app.controller("report_exams", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.getShifts = function () {
+    $http({
+      method: "POST",
+      url: "/api/shifts/all",
+      data: {}
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.shiftsList = response.data.list;
+      },
+      function (err) {
+        $scope.error = err;
+      }
+    )
+  };
+
   $scope.getExamsTypes = function () {
     $scope.error = '';
     $scope.busy = true;
@@ -266,15 +256,45 @@ app.controller("report_exams", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.get_open_shift = function (callback) {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/shifts/get_open_shift",
+      data: {
+        where: { active: true },
+        select: { id: 1, name: 1, code: 1, from_date: 1, from_time: 1, to_date: 1, to_time: 1 }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.doc) {
+          $scope.shift = response.data.doc;
+          callback(response.data.doc);
+        } else {
+          callback(null);
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+        callback(null);
+      }
+    )
+  };
+
   $scope.viewSearchAll = function () {
-    $scope.search = {};
+    $scope.get_open_shift((shift) => {
+      $scope.search = {};
 
-    if ($scope.defaultSettings.general_Settings) {
-      $scope.search.school_year = $scope.schoolYearsList.find(_school_year => { return _school_year.id === $scope.defaultSettings.general_Settings.school_year.id });
+      if (shift) {
+        $scope.search.shift = $scope.shiftsList.find(_shift => { return _shift.id === shift.id });
+        $scope.getExams($scope.search.shift);
+      }
 
-      $scope.getExams($scope.search.school_year);
-    }
-    site.showModal('#reportExamsSearchModal');
+      site.showModal('#reportExamsSearchModal');
+
+    });
   };
 
   $scope.searchAll = function () {
@@ -292,8 +312,8 @@ app.controller("report_exams", function ($scope, $http, $timeout) {
   };
 
   $scope.getReportExamsList({ date: new Date() });
-  $scope.loadSchoolYears();
   $scope.getSubjects();
+  $scope.getShifts();
   $scope.getExamsTypes();
   $scope.getStudentsYearsList();
   $scope.getDefaultSettings();

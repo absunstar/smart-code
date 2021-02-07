@@ -56,10 +56,7 @@ app.controller("lawsuit_degrees", function ($scope, $http, $timeout) {
 
     $scope.error = '';
     $scope.detailsLawsuitDegrees(lawsuit_degrees);
-    $scope.lawsuit_degrees = {
-      image_url: '/images/vendor_logo.png',
-
-    };
+    $scope.lawsuit_degrees = {};
     site.showModal('#lawsuitDegreesUpdateModal');
   };
 

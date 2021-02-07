@@ -56,10 +56,7 @@ app.controller("lawsuit_types", function ($scope, $http, $timeout) {
 
     $scope.error = '';
     $scope.detailsLawsuitStatus(lawsuit_types);
-    $scope.lawsuit_types = {
-      image_url: '/images/vendor_logo.png',
-
-    };
+    $scope.lawsuit_types = {};
     site.showModal('#lawsuitStatusUpdateModal');
   };
 

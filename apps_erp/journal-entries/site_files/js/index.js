@@ -69,10 +69,7 @@ app.controller("journal_entries", function ($scope, $http, $timeout) {
 
     $scope.error = '';
     $scope.detailsJournalEntries(journal_entries);
-    $scope.journal_entries = {
-      image_url: '/images/vendor_logo.png',
-
-    };
+    $scope.journal_entries = {};
     site.showModal('#journalEntriesUpdateModal');
   };
 
