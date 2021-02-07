@@ -1,15 +1,15 @@
 module.exports = function init(site) {
   const $accounting_cost_centers = site.connectCollection("accounting_cost_centers")
 
-  $accounting_cost_centers.deleteDuplicate({
-    code: 1,
-    'company.id': 1
-  }, (err, result) => {
-    $accounting_cost_centers.createUnique({
-      code: 1,
-      'company.id': 1
-    }, (err, result) => { })
-  })
+  // $accounting_cost_centers.deleteDuplicate({
+  //   code: 1,
+  //   'company.id': 1
+  // }, (err, result) => {
+  //   $accounting_cost_centers.createUnique({
+  //     code: 1,
+  //     'company.id': 1
+  //   }, (err, result) => { })
+  // })
 
   site.get({
     name: "accounting_cost_centers",

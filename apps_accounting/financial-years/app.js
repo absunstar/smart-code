@@ -1,15 +1,15 @@
 module.exports = function init(site) {
   const $financial_years = site.connectCollection("financial_years")
 
-  $financial_years.deleteDuplicate({
-    code: 1,
-    'company.id': 1
-  }, (err, result) => {
-    $financial_years.createUnique({
-      code: 1,
-      'company.id': 1
-    }, (err, result) => { })
-  })
+  // $financial_years.deleteDuplicate({
+  //   code: 1,
+  //   'company.id': 1
+  // }, (err, result) => {
+  //   $financial_years.createUnique({
+  //     code: 1,
+  //     'company.id': 1
+  //   }, (err, result) => { })
+  // })
 
   site.get({
     name: "financial_years",

@@ -45,9 +45,9 @@
         "ar": "يجب إختيار نوع المصروفات الدراسية"
     },
     {
-        "name": "must_choose_school_grade",
-        "en": "You must choose school grade",
-        "ar": "يجب إختيار المرحلة الدراسية"
+        "name": "must_choose",
+        "en": "You must choose",
+        "ar": "يجب إختيار"
     },
     {
         "name": "under_payment",

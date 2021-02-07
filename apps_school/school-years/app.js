@@ -1,15 +1,15 @@
 module.exports = function init(site) {
   const $school_years = site.connectCollection("school_years")
 
-  $school_years.deleteDuplicate({
-    code: 1,
-    'company.id': 1
-  }, (err, result) => {
-    $school_years.createUnique({
-      code: 1,
-      'company.id': 1
-    }, (err, result) => { })
-  })
+  // $school_years.deleteDuplicate({
+  //   code: 1,
+  //   'company.id': 1
+  // }, (err, result) => {
+  //   $school_years.createUnique({
+  //     code: 1,
+  //     'company.id': 1
+  //   }, (err, result) => { })
+  // })
 
   site.get({
     name: "school_years",
@@ -21,6 +21,27 @@ module.exports = function init(site) {
   site.get({
     name: 'images',
     path: __dirname + '/site_files/images/'
+  })
+
+
+  site.on('[company][created]', doc => {
+
+    $circles.add({
+      name: "عام دراسي إفتراضي",
+      image_url: '/images/school_years.png',
+      code: "1-Test",
+      company: {
+        id: doc.id,
+        name_ar: doc.name_ar,
+        name_en: doc.name_en
+      },
+      branch: {
+        code: doc.branch_list[0].code,
+        name_ar: doc.branch_list[0].name_ar,
+        name_en: doc.branch_list[0].name_en
+      },
+      active: true
+    }, (err, doc) => {})
   })
 
 

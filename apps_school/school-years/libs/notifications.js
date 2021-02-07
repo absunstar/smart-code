@@ -4,21 +4,21 @@ module.exports = function init(site) {
 
   let source = {
     name: 'School Years System',
-    ar: ' نظام المراحل الدراسية'
+    ar: ' نظام الأعوام الدراسية'
   }
 
   let image_url = '/images/school_years.png'
   let add_message = {
     name: 'New School Years Added',
-    ar: 'تم إضافة سنة دراسية جديدة'
+    ar: 'تم إضافة عام دراسي جديد'
   }
   let update_message = {
     name: ' School Years Updated',
-    ar: 'تم تعديل سنة دراسية'
+    ar: 'تم تعديل عام دراسي'
   }
   let delete_message = {
     name: ' School Years Deleted',
-    ar: 'تم حذف سنة دراسية '
+    ar: 'تم حذف عام دراسي '
   }
 
 

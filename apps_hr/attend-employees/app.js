@@ -200,12 +200,12 @@ module.exports = function init(site) {
       // let schoolGrades = []
       // employeesCb.forEach(_empCb => {
       //   let foundHall = hallsList.some(_hall => _empCb.hall.id == _hall.id)
-      //   let foundSchoolGrades = schoolGrades.some(_schoolG => _empCb.school_grade.id == _schoolG.id)
+      //   let foundSchoolGrades = schoolGrades.some(_schoolG => _empCb.students_years.id == _schoolG.id)
       //   if (!foundHall) {
       //     hallsList.push(_empCb.hall.id)
       //   }
       //   if (!foundSchoolGrades) {
-      //     schoolGrades.push(_empCb.school_grade.id)
+      //     schoolGrades.push(_empCb.students_years.id)
       //   }
       // });
       // whereObj = req.body.whereAttend || {};
@@ -214,7 +214,7 @@ module.exports = function init(site) {
       //   $in: hallsList
       // }
 
-      // whereObj['school_grade.id'] = {
+      // whereObj['students_years.id'] = {
       //   $in: schoolGrades
       // }
 

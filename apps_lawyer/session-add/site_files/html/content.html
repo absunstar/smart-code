@@ -15,7 +15,7 @@
                     <div class="row">
                         <i-control ng-keydown="getLawsuitsList($event)" class="col3" ng-model="search_lawsuit"
                             label="##word.search##" type="text"></i-control>
-                        <i-list ng-search="_search.$customer" class="col4" display="number" space="-" display2="year"
+                        <i-list ng-search="_search.$customer" class="col4" display="number" space=" - " display2="year"
                             v="r" ng-model="session_add.lawsuit" label="##word.lawsuit_number##" items="lawsuitsList">
                         </i-list>
 

@@ -7,6 +7,7 @@ app.controller("items_group", function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.items_group = {
       image_url: '/images/items_group.png',
+      is_pos: true,
       active: true
 
     };

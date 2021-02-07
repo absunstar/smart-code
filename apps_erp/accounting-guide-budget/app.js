@@ -1,15 +1,15 @@
 module.exports = function init(site) {
   const $accounting_guide_budget = site.connectCollection("accounting_guide_budget")
 
-  $accounting_guide_budget.deleteDuplicate({
-    code: 1,
-    'company.id': 1
-  }, (err, result) => {
-    $accounting_guide_budget.createUnique({
-      code: 1,
-      'company.id': 1
-    }, (err, result) => {})
-  })
+  // $accounting_guide_budget.deleteDuplicate({
+  //   code: 1,
+  //   'company.id': 1
+  // }, (err, result) => {
+  //   $accounting_guide_budget.createUnique({
+  //     code: 1,
+  //     'company.id': 1
+  //   }, (err, result) => {})
+  // })
 
   site.get({
     name: "accounting_guide_budget",

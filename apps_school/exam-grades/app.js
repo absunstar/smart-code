@@ -1,15 +1,15 @@
 module.exports = function init(site) {
   const $exam_grades = site.connectCollection("exam_grades")
 
-  $exam_grades.deleteDuplicate({
-    code: 1,
-    'company.id': 1
-  }, (err, result) => {
-    $exam_grades.createUnique({
-      code: 1,
-      'company.id': 1
-    }, (err, result) => { })
-  })
+  // $exam_grades.deleteDuplicate({
+  //   code: 1,
+  //   'company.id': 1
+  // }, (err, result) => {
+  //   $exam_grades.createUnique({
+  //     code: 1,
+  //     'company.id': 1
+  //   }, (err, result) => { })
+  // })
 
   site.get({
     name: "exam_grades",

@@ -59,7 +59,7 @@
         "feature": "school",
         "title_ar": "المراحل الدراسية",
         "title_en": "School Grade",
-        "image_url": "/images/school_grade.png",
+        "image_url": "/images/students_years.png",
         "description_ar": "يتم فيها تحديد إسم المرحلة الدراسية و تحديد المصروفات الدراسية الخاصة بالمرحلة و تحديد المواد الدراسية للمرحلة و درجات الإمتحانات",
         "description_en": "In it, the name of the academic stage is determined, the study expenses for the stage, and the study materials for the stage and exam scores are determined"
     },

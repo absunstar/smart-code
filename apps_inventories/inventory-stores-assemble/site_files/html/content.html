@@ -70,7 +70,7 @@
                             <td>
                                 <i-list ng-model="itm.unit" ng-search="_search.$category_item.$unit_search"
                                     ng-change="itm.store_count = itm.unit.current_count ;calcSize(itm)"
-                                    display2="barcode" items="itm.size_units_list"></i-list>
+                                   space=" - " display2="barcode" items="itm.size_units_list"></i-list>
                             </td>
 
                             <td class="blue"> <br> {{itm.store_count}}</td>

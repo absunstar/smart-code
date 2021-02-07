@@ -14,10 +14,25 @@
                         <i-control help-id="items_group_name" v="r ll2" class="col4" label="##word.items_group_name##"
                             ng-model="items_group.name"></i-control>
 
-                        <div class="col4"></div>
+                        <i-checkbox class="col2" label="##word.stores_items_is_pos##" ng-model="items_group.is_pos">
+                        </i-checkbox>
+
+                        <div class="col2"></div>
 
                         <i-checkbox help-id="items_group_active" class="col2" label="##word.active##"
                             ng-model="items_group.active"></i-checkbox>
+                    </div>
+
+                    <div class="row" x-features="restaurant || pos || erp">
+
+                        <h2 class="bold black col3">##word.color_in_pos## : </h2> 
+
+                        <div class="col3">
+                            
+                            <input type="color" class="col2" ng-model="items_group.color" value="#ff0000">
+                        </div>
+
+
                     </div>
 
                 </div>

@@ -15,6 +15,16 @@
         "ar": "حضور موظفين جديدة"
     },
     {
+        "name": "attend_leave_attend",
+        "en": "Attend Time",
+        "ar": "وقت الحضور"
+    },
+    {
+        "name": "attend_leave_leave",
+        "en": "Leave Time",
+        "ar": "وقت المغادرة"
+    },
+    {
         "name": "attend_status",
         "en": "Attend Status",
         "ar": "حالة الحضور"

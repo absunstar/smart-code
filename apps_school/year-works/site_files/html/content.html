@@ -5,8 +5,8 @@
             <div class="row">
                 <div class="col9">
                     <div class="row">
-                        <i-control ng-hide="disabledCode" class="col2" label="##word.code##"
-                            ng-model="year_works.code"></i-control>
+                        <i-control ng-hide="disabledCode" class="col2" label="##word.code##" ng-model="year_works.code">
+                        </i-control>
 
                         <i-list ng-search="_search.$_school_year" class="col3" display="name"
                             ng-model="year_works.school_year" label="##word.school_year##" items="schoolYearsList">
@@ -14,16 +14,28 @@
                         <div class="col5"></div>
                         <i-checkbox class="col2" label="##word.active##" ng-model="year_works.active"></i-checkbox>
                     </div>
+
                     <div class="row">
 
-                        <i-list help-id="" class="col4" label="##word.school_grade##" ng-model="year_works.school_grade"
-                            ng-search="_search.$_school_grade" items="schoolGradeList" display="name"></i-list>
+                        <i-list ng-search="_search.$_school_grade" class="col3" display="name" v="r"
+                            ng-change="getStudentsYearsList(year_works.school_grade)"
+                            ng-model="year_works.school_grade" label="##word.school_grade##"
+                            items="schoolGradesList">
+                        </i-list>
 
-                        <i-list help-id="" class="col4" label="##word.hall##" ng-model="year_works.hall"
+                        <i-list class="col3" label="##word.students_year##" ng-model="year_works.students_year"
+                            v="r" items="studentsYearsList" display="name" ng-search="_search.$_students_year">
+                        </i-list>
+
+                    </div>
+
+                    <div class="row">
+
+                        <i-list help-id="" class="col3" label="##word.hall##" ng-model="year_works.hall"
                             ng-search="_search.$_hall" items="hallsList" display="name"></i-list>
 
                         <i-list ng-model="year_works.subject" v="r" class="col3" label="##word.subject##"
-                            ng-search="_search.$_subject" items="year_works.school_grade.subjects_list"
+                            ng-search="_search.$_subject" items="year_works.students_year.subjects_list"
                             display="subject.name">
                         </i-list>
 

@@ -21,9 +21,14 @@
                             <td class="center">{{attend_students.school_year.name}}</td>
                         </tr>
 
-                        <tr ng-show="attend_students.school_grade.id">
+                        <tr  ng-show="attend_students.school_grade.id">
                             <td class="title">##word.school_grade##</td>
                             <td class="center">{{attend_students.school_grade.name}}</td>
+                        </tr>
+
+                        <tr ng-show="attend_students.students_year.id">
+                            <td class="title">##word.students_year##</td>
+                            <td class="center">{{attend_students.students_year.name}}</td>
                         </tr>
 
                         <tr ng-show="attend_students.hall.id">

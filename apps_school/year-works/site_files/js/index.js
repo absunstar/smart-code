@@ -14,6 +14,12 @@ app.controller("year_works", function ($scope, $http, $timeout) {
     if ($scope.defaultSettings.general_Settings) {
       $scope.year_works.school_year = $scope.schoolYearsList.find(_school_year => { return _school_year.id === $scope.defaultSettings.general_Settings.school_year.id });
 
+      $scope.year_works.school_grade = $scope.schoolGradesList.find(_schoolGrade => { return _schoolGrade.id === $scope.defaultSettings.general_Settings.school_grade.id });
+      if($scope.year_works.school_grade && $scope.year_works.school_grade.id){
+
+        $scope.getStudentsYearsList($scope.year_works.school_grade);
+      }
+
     }
     site.showModal('#yearWorksAddModal');
   };
@@ -209,32 +215,6 @@ app.controller("year_works", function ($scope, $http, $timeout) {
 
   };
 
-  $scope.getSchoolGrade = function () {
-    $http({
-      method: "POST",
-      url: "/api/school_grade/all",
-      data: {
-        select: {
-          id: 1,
-          name: 1,
-          code: 1,
-          subjects_list: 1
-        },
-        where: {
-          active: true
-        }
-      }
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        $scope.schoolGradeList = response.data.list;
-      },
-      function (err) {
-        $scope.error = err;
-      }
-    )
-  };
-
   $scope.getHalls = function () {
     $http({
       method: "POST",
@@ -279,6 +259,7 @@ app.controller("year_works", function ($scope, $http, $timeout) {
       data: {
         where: {
           school_grade: $scope.year_works.school_grade,
+          students_year: $scope.year_works.students_year,
           hall: $scope.year_works.hall,
           active: true
         }
@@ -352,6 +333,56 @@ app.controller("year_works", function ($scope, $http, $timeout) {
 
   };
 
+  $scope.getSchoolGradesList = function () {
+    $http({
+      method: "POST",
+      url: "/api/school_grades/all",
+      data: {
+        select: {
+          id: 1,
+          name: 1,
+          code: 1
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.schoolGradesList = response.data.list;
+      },
+      function (err) {
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.getStudentsYearsList = function (school_grade) {
+    $http({
+      method: "POST",
+      url: "/api/students_years/all",
+      data: {
+        select: {
+          id: 1,
+          name: 1,
+          subjects_list: 1,
+          code: 1
+        },
+        where: {
+          active: true,
+          'school_grade.id': school_grade.id
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.studentsYearsList = response.data.list;
+      },
+      function (err) {
+        $scope.error = err;
+      }
+    )
+  };
+
+
   $scope.getNumberingAuto = function () {
     $scope.error = '';
     $scope.busy = true;
@@ -390,7 +421,7 @@ app.controller("year_works", function ($scope, $http, $timeout) {
 
 
   $scope.getNumberingAuto();
-  $scope.getSchoolGrade();
+  $scope.getSchoolGradesList();
   $scope.loadSchoolYears();
   $scope.getDefaultSettings();
   $scope.getHalls();

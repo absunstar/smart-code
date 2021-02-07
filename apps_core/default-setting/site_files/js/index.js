@@ -116,7 +116,8 @@ app.controller("default_setting", function ($scope, $http) {
     }).then(
       function (response) {
         $scope.busy = false;
-        $scope.transactionTypeList = response.data.filter(i => i.id == 2 || i.id == 3);
+        if (site.feature('restaurant')) $scope.transactionTypeList = response.data;
+        else $scope.transactionTypeList = response.data.filter(i => i.id != 1);
       },
       function (err) {
         $scope.busy = false;
@@ -666,6 +667,29 @@ app.controller("default_setting", function ($scope, $http) {
     )
   };
 
+  $scope.getSchoolGradesList = function () {
+    $http({
+      method: "POST",
+      url: "/api/school_grades/all",
+      data: {
+        select: {
+          id: 1,
+          name: 1,
+          code: 1
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.schoolGradesList = response.data.list;
+      },
+      function (err) {
+        $scope.error = err;
+      }
+    )
+  };
+
+
   $scope.getPrintersPath = function () {
     $scope.busy = true;
     $http({
@@ -726,5 +750,6 @@ app.controller("default_setting", function ($scope, $http) {
 
   if (site.feature('school')) {
     $scope.loadSchoolYears();
+    $scope.getSchoolGradesList();
   }
 });

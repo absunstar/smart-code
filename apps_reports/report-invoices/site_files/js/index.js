@@ -295,10 +295,10 @@ app.controller("report_invoices", function ($scope, $http, $timeout) {
 
   };
 
-  $scope.getSchoolGradeList = function () {
+  $scope.getStudentsYearsList = function () {
     $http({
       method: "POST",
-      url: "/api/school_grade/all",
+      url: "/api/students_years/all",
       data: {
         select: {
           id: 1,
@@ -313,7 +313,7 @@ app.controller("report_invoices", function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
-        $scope.schoolGradeList = response.data.list;
+        $scope.studentsYearsList = response.data.list;
       },
       function (err) {
         $scope.error = err;
@@ -360,7 +360,7 @@ app.controller("report_invoices", function ($scope, $http, $timeout) {
     $scope.getTransactionTypeList();
 
   if (site.feature('school')) {
-    $scope.getSchoolGradeList();
+    $scope.getStudentsYearsList();
     $scope.loadSchoolYears();
   }
 

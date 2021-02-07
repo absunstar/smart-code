@@ -1,0 +1,34 @@
+<div id="schoolGradesSearchModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.search_all## <i class="fa fa-search"></i>
+
+            </h2>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <form class="form">
+                    <fieldset>
+                        <legend>##word.search_all##</legend>
+                        <div class="row">
+                            <i-control class="col2" label="##word.school_grades_code##" ng-model="search.code">
+                            </i-control>
+                            <i-control class="col4" label="##word.school_grades_name##" ng-model="search.name">
+                            </i-control>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+
+            <h2 class="error"> {{error}} </h2>
+            <div class="modal-footer center">
+                <i-button type="search" ng-click="searchAll()" label="##word.search##"></i-button>
+                <i-button type="clear" ng-click="search = {}" label="##word.empty_search##"></i-button>
+                <i-button type="close" onclick="hideModal('schoolGradesSearchModal')" label="##word.close##">
+                </i-button>
+            </div>
+        </div>
+    </div>
+</div>

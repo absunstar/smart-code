@@ -1,15 +1,15 @@
 module.exports = function init(site) {
   const $accounting_guide_income_list = site.connectCollection("accounting_guide_income_list")
 
-  $accounting_guide_income_list.deleteDuplicate({
-    code: 1,
-    'company.id': 1
-  }, (err, result) => {
-    $accounting_guide_income_list.createUnique({
-      code: 1,
-      'company.id': 1
-    }, (err, result) => { })
-  })
+  // $accounting_guide_income_list.deleteDuplicate({
+  //   code: 1,
+  //   'company.id': 1
+  // }, (err, result) => {
+  //   $accounting_guide_income_list.createUnique({
+  //     code: 1,
+  //     'company.id': 1
+  //   }, (err, result) => { })
+  // })
 
   site.get({
     name: "accounting_guide_income_list",

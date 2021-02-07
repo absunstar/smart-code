@@ -1,0 +1,133 @@
+<div class="form">
+    <div id="studentsYearsAddModal">
+        <fieldset>
+            <legend> ##word.students_years_informations## </legend>
+            <div class="row">
+                <div class="col9">
+                    <div class="row">
+                        <i-control ng-hide="disabledCode" class="col2" label="##word.code##"
+                            ng-model="students_years.code"></i-control>
+
+                        <i-control v="r" class="col4" label="##word.students_years_name##"
+                            ng-model="students_years.name">
+                        </i-control>
+                        
+                        <i-list ng-search="_search.$_school_grade" class="col3" display="name"
+                            ng-model="students_years.school_grade" label="##word.school_grade##" items="schoolGradesList">
+                        </i-list>
+
+                        <div class="col1"></div>
+                        <i-checkbox class="col2" label="##word.active##" ng-model="students_years.active"></i-checkbox>
+                    </div>
+                    <br>
+                    <br>
+
+                    <div class="row">
+                        <i-list ng-search="_search.$_types_expenses" class="col3" display="name"
+                            ng-change="addTypesExpensesList(types_expenses)" ng-model="types_expenses"
+                            label="##word.types_expenses##" items="typesExpensesList">
+                        </i-list>
+                        <div class="col1"></div>
+
+                        <div class="col6">
+
+                            <fieldset>
+                                <legend>##word.types_expenses##</legend>
+
+                                <table class="table loaded hover center bold">
+                                    <tr>
+                                        <th> ##word.types_expenses_name## </th>
+                                        <th class="w150"> ##word.expense_value## </th>
+                                        <th> ##word.actions## </th>
+                                    </tr>
+                                    <tr ng-repeat="t in students_years.types_expenses_list">
+
+                                        <td>
+                                            {{t.name}}
+                                        </td>
+
+                                        <td>
+                                            <i-control type="number" v="r" ng-model="t.value"></i-control>
+                                        </td>
+
+                                        <td>
+                                            <i-button type="delete"
+                                                ng-click="students_years.types_expenses_list.length ==1 || students_years.types_expenses_list.splice($index,1)">
+                                            </i-button>
+                                        </td>
+
+                                    </tr>
+                                </table>
+                            </fieldset>
+                        </div>
+                    </div>
+
+
+
+                    <br>
+                    <br>
+                    <div class="row">
+                        <fieldset>
+                            <legend>##word.subjects##
+
+                                <i-button type="add default" ng-click="students_years.subjects_list.push({})">
+                                </i-button>
+                            </legend>
+
+                            <table class="table loaded hover center bold" id="t1">
+                                <tr>
+                                    <th> ##word.subject## </th>
+                                    <th> ##word.exam_score_month## </th>
+                                    <th> ##word.exam_score_midterm## </th>
+                                    <th> ##word.exam_score_mid_year## </th>
+                                    <th> ##word.exam_score_end_year## </th>
+                                    <th> ##word.work_degree_year## </th>
+                                    <th> ##word.actions## </th>
+                                </tr>
+                                <tr ng-repeat="c in students_years.subjects_list | orderBy : '-id'">
+
+                                    <td>
+                                        <i-list ng-model="c.subject" v="r" ng-search="_search.$_subject"
+                                            items="subjectsList" display="name"></i-list>
+                                    </td>
+
+                                    <td>
+                                        <i-control type="number" v="r" ng-model="c.exam_score_month"></i-control>
+                                    </td>
+
+                                    <td>
+                                        <i-control type="number" v="r" ng-model="c.exam_score_midterm"></i-control>
+                                    </td>
+
+                                    <td>
+                                        <i-control type="number" v="r" ng-model="c.exam_score_mid_year"></i-control>
+                                    </td>
+
+                                    <td>
+                                        <i-control type="number" v="r" ng-model="c.exam_score_end_year"></i-control>
+                                    </td>
+
+                                    <td>
+                                        <i-control type="number" v="r" ng-model="c.work_degree_year"></i-control>
+                                    </td>
+
+                                    <td>
+                                        <i-button type="delete"
+                                            ng-click="students_years.subjects_list.length ==1 || students_years.subjects_list.splice($index,1)">
+                                        </i-button>
+                                    </td>
+
+                                </tr>
+                            </table>
+                        </fieldset>
+
+                    </div>
+                </div>
+
+                <div class="col3">
+                    <i-image category="students_years" ng-model="students_years.image_url"> </i-image>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+</div>

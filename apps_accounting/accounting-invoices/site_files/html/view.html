@@ -60,6 +60,11 @@
                                     <td class="center "> {{account_invoices.school_grade.name}} </td>
                                 </tr>
 
+                                <tr ng-show="account_invoices.students_year.id">
+                                    <td class="title"> ##word.students_year## </td>
+                                    <td class="center "> {{account_invoices.students_year.name}} </td>
+                                </tr>
+
                                 <tr ng-show="account_invoices.types_expenses.id">
                                     <td class="title"> ##word.types_expenses## </td>
                                     <td class="center "> {{account_invoices.types_expenses.name}} </td>

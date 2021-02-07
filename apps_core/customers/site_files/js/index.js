@@ -337,10 +337,32 @@ app.controller("customers", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.getSchoolGradeList = function () {
+  $scope.getSchoolGradesList = function () {
     $http({
       method: "POST",
-      url: "/api/school_grade/all",
+      url: "/api/school_grades/all",
+      data: {
+        select: {
+          id: 1,
+          name: 1,
+          code: 1
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.schoolGradesList = response.data.list;
+      },
+      function (err) {
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.getStudentsYearsList = function (school_grade) {
+    $http({
+      method: "POST",
+      url: "/api/students_years/all",
       data: {
         select: {
           id: 1,
@@ -348,13 +370,14 @@ app.controller("customers", function ($scope, $http, $timeout) {
           code: 1
         },
         where: {
-          active: true
+          active: true,
+          'school_grade.id': school_grade.id
         }
       }
     }).then(
       function (response) {
         $scope.busy = false;
-        $scope.schoolGradeList = response.data.list;
+        $scope.studentsYearsList = response.data.list;
       },
       function (err) {
         $scope.error = err;
@@ -388,7 +411,7 @@ app.controller("customers", function ($scope, $http, $timeout) {
   };
 
 
- 
+
 
   $scope.getGovList = function (where) {
     $scope.busy = true;
@@ -678,17 +701,25 @@ app.controller("customers", function ($scope, $http, $timeout) {
   $scope.Gender();
   $scope.getGovList();
   $scope.getBloodType();
-  $scope.getSchoolGradeList();
-  $scope.getHallsList();
+
   $scope.loadMaritalsStatus();
   $scope.loadMilitariesStatus();
+
   if (site.feature('erp')) {
     $scope.getGuideAccountList();
   }
+
   if (site.feature('medical')) {
     $scope.getInsuranceCompaniesList();
   }
-  
+
+  if (site.feature('school')) {
+    $scope.getSchoolGradesList();
+    $scope.getHallsList();
+  }
+
+
+
   if (site.feature('gym') || site.feature('academy') || site.feature('school')) {
     $scope.getDiseaseList();
     $scope.getMedicineList();

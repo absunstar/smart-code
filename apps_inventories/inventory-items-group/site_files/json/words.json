@@ -10,6 +10,11 @@
         "ar": "مجموعة أصناف جديد"
     },
     {
+        "name": "color_in_pos",
+        "en": "Color In POS",
+        "ar": "اللون في نقطة البيع"
+    },
+    {
         "name": "items_group_code",
         "en": "Items Group Code",
         "ar": "كود المجموعة"

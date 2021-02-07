@@ -1,0 +1,7 @@
+[{
+    "module_name" : "public" ,
+    "name": "school_grades_admin",
+    "en": "School Grades Admin",
+    "ar": "إدارة المراحل الدراسية",
+    "permissions": ["school_grades_manage"]
+}]

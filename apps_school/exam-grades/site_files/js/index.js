@@ -211,10 +211,10 @@ app.controller("exam_grades", function ($scope, $http, $timeout) {
 
   };
 
-  $scope.getSchoolGrade = function () {
+  $scope.getStudentsYears = function () {
     $http({
       method: "POST",
-      url: "/api/school_grade/all",
+      url: "/api/students_years/all",
       data: {
         select: {
           id: 1,
@@ -229,7 +229,7 @@ app.controller("exam_grades", function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
-        $scope.schoolGradeList = response.data.list;
+        $scope.studentsYearsList = response.data.list;
       },
       function (err) {
         $scope.error = err;
@@ -301,7 +301,7 @@ app.controller("exam_grades", function ($scope, $http, $timeout) {
       url: "/api/customers/all",
       data: {
         where: {
-          school_grade: $scope.exam_grades.school_grade,
+          students_years: $scope.exam_grades.students_years,
           hall: $scope.exam_grades.hall,
           active: true
         }
@@ -414,7 +414,7 @@ app.controller("exam_grades", function ($scope, $http, $timeout) {
   };
 
   $scope.getNumberingAuto();
-  $scope.getSchoolGrade();
+  $scope.getStudentsYears();
   $scope.loadSchoolYears();
   $scope.getDefaultSettings();
   $scope.getHalls();

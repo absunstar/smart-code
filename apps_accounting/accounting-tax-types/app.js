@@ -3,19 +3,19 @@ module.exports = function init(site) {
   const $tax_types = site.connectCollection("tax_types")
   // site.words.addList(__dirname + '/site_files/json/words.json')
 
-  $tax_types.deleteDuplicate({
-    name: 1,
-    value: 1,
-    type: 1
-  }, (err, result) => {
-    $tax_types.createUnique({
-      name: 1,
-      value: 1,
-      type: 1
-    }, (err, result) => {
+  // $tax_types.deleteDuplicate({
+  //   name: 1,
+  //   value: 1,
+  //   type: 1
+  // }, (err, result) => {
+  //   $tax_types.createUnique({
+  //     name: 1,
+  //     value: 1,
+  //     type: 1
+  //   }, (err, result) => {
 
-    })
-  })
+  //   })
+  // })
 
 
   site.get({
@@ -35,11 +35,13 @@ module.exports = function init(site) {
       image_url: '/images/tax_type.png',
       company: {
         id: doc.id,
-        name_ar: doc.name_ar
+        name_ar: doc.name_ar,
+        name_en: doc.name_en
       },
       branch: {
         code: doc.branch_list[0].code,
-        name_ar: doc.branch_list[0].name_ar
+        name_ar: doc.branch_list[0].name_ar,
+        name_en: doc.branch_list[0].name_en
       },
       active: true
     }, (err, doc) => {})

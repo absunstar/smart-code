@@ -209,7 +209,7 @@
                         <i-control class="col3" label="##word.vendors_period_maturity_purchases##"
                             ng-model="vendor.period_maturity_purchases"></i-control>
 
-                        <i-list ng-search="$ledger_account" display="name_##session.lang##" space="-" display2="code"
+                        <i-list ng-search="$ledger_account" display="name_##session.lang##" space=" - " display2="code"
                             class="col3" items="guideAccountList" ng-model="vendor.ledger_account"
                             label="##word.ledger_account##">
                         </i-list>

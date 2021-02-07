@@ -1,0 +1,25 @@
+[
+    {"name" : "students_years_informations" , "en" : "Student Year Informations" , "ar" : "بيانات السنة الطلابية"},
+
+    {"name" : "students_years" , "en" : "Students Years" , "ar" : "السنوات الطلابية"},
+    {"name" : "students_year" , "en" : "Student Year" , "ar" : "السنة الطلابية"},
+    {"name" : "students_years_menus" , "en" : "Student Year Menu" , "ar" : "قائمة سنوات الطلاب"},
+    {"name" : "students_years_code" , "en" : "Student Year Code" , "ar" : "كود السنة الطلابية"},
+    {"name" : "students_years_name" , "en" : "Student Year Name" , "ar" : "إسم السنة الطلابية"},
+    {"name" : "exam_score_month" , "en" : "Exam Score Of The Month" , "ar" : "درجة إمتحان الشهر"},
+    {"name" : "exam_score_midterm" , "en" : "Midterm Exam Score" , "ar" : "درجة إمتحان الميدتيرم"},
+    {"name" : "exam_score_mid_year" , "en" : "Mid-year Exam Score" , "ar" : "درجة إمتحان نصف العام"},
+    {"name" : "exam_score_end_year" , "en" : "End-year Exam Score" , "ar" : "درجة إمتحان آخر العام"},
+    {"name" : "work_degree_year" , "en" : "Work degree of the year" , "ar" : "درجة أعمال السنة"},
+    {"name" : "err_subject_list" , "en" : "Must Add Subjects" , "ar" : "يجب إضافة مواد دراسية"},
+
+    {"name" : "students_years_new" , "en" : "New Student Year" , "ar" : "سنة طلابية جديدة"},
+    {"name" : "students_years_details" , "en" : "Student Year Details" , "ar" : "تفاصيل سنة طلابية"},
+    {"name" : "students_years_update" , "en" : "Edit Student Year" , "ar" : "تعديل سنة طلابية"},
+    {"name" : "students_years_delete" , "en" : "Delte Student Year" , "ar" : "حذف سنة طلابية"},
+    {"name" : "students_years_add_name" , "en" : "Add Student Year" , "ar" : "إضافة سنة طلابية"}
+
+
+    
+    
+]

@@ -50,8 +50,8 @@
                                     <td class="blue"> ##word.gender## </td>
                                     <td colspan="2" class="center"> {{customer.gender.##session.lang##}}
                                     </td>
-                                    <td class="blue"> ##word.school_grade## </td>
-                                    <td colspan="3" class="center"> {{customer.school_grade.name}} </td>
+                                    <td class="blue"> ##word.students_years## </td>
+                                    <td colspan="3" class="center"> {{customer.students_years.name}} </td>
                                     <td colspan="1"></td>
                                 </tr>
 
@@ -119,7 +119,7 @@
                         <th class="not-print"> ##word.logo## </th>
                         <th> ##word.date## </th>
                         <th> ##word.code## </th>
-                        <th ng-hide="customer.id"> ##word.school_grade## </th>
+                        <th ng-hide="customer.id"> ##word.students_years## </th>
                         <th ng-hide="customer.id"> ##word.hall## </th>
                         <th ng-show="customer.id">##word.attend_status##</th>
                         <th ng-show="customer.id">##word.attend_leave_attend##</th>
@@ -136,7 +136,7 @@
                         </td>
                         <td class="brown"> {{c.date | date : 'dd - MM - yyyy'}} </td>
                         <td class="blue"> {{c.code}} </td>
-                        <td ng-hide="customer.id" class="center">{{c.school_grade.name}}</td>
+                        <td ng-hide="customer.id" class="center">{{c.students_years.name}}</td>
                         <td ng-hide="customer.id" class="center">{{c.hall.name}}</td>
                         <td ng-show="customer.id">
                             <h3 class="green bold" ng-show="c.status.name == 'attend'">

@@ -1,15 +1,15 @@
 module.exports = function init(site) {
   const $seating_numbers = site.connectCollection("seating_numbers")
 
-  $seating_numbers.deleteDuplicate({
-    code: 1,
-    'company.id': 1
-  }, (err, result) => {
-    $seating_numbers.createUnique({
-      code: 1,
-      'company.id': 1
-    }, (err, result) => { })
-  })
+  // $seating_numbers.deleteDuplicate({
+  //   code: 1,
+  //   'company.id': 1
+  // }, (err, result) => {
+  //   $seating_numbers.createUnique({
+  //     code: 1,
+  //     'company.id': 1
+  //   }, (err, result) => { })
+  // })
 
   site.get({
     name: "seating_numbers",

@@ -41,11 +41,18 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
 
           if (site.toNumber("##query.type##") == 13 || site.toNumber("##query.type##") == 8 || site.toNumber("##query.type##") == 10) {
             $scope.account_invoices.customer = $scope.defaultSettings.general_Settings.customer;
-
           };
-          if (site.toNumber("##query.type##") == 13) {
-            $scope.account_invoices.school_year = $scope.defaultSettings.general_Settings.school_year;
 
+          if (site.toNumber("##query.type##") == 13) {
+            $scope.account_invoices.school_year = $scope.schoolYearsList.find(_schoolYear => { return _schoolYear.id === $scope.defaultSettings.general_Settings.school_year.id });
+            if($scope.defaultSettings.general_Settings.school_grade){
+
+              $scope.account_invoices.school_grade = $scope.schoolGradesList.find(_schoolGrade => { return _schoolGrade.id === $scope.defaultSettings.general_Settings.school_grade.id });
+              if($scope.account_invoices.school_grade && $scope.account_invoices.school_grade.id){
+
+                $scope.getStudentsYearsList($scope.account_invoices.school_grade);
+              }
+            }
           };
         }
 
@@ -117,7 +124,13 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
         }
 
         if (!$scope.account_invoices.school_grade) {
-          $scope.error = "##word.must_choose_school_grade##";
+          $scope.error = "##word.must_choose##" + "##word.school_grade##";
+          return;
+
+        }
+
+        if (!$scope.account_invoices.students_year) {
+          $scope.error = "##word.must_choose##" + "##word.students_year##";
           return;
 
         }
@@ -1298,6 +1311,9 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
       if ($scope.account_invoices.school_grade)
         where.school_grade = $scope.account_invoices.school_grade;
 
+      if ($scope.account_invoices.students_year)
+        where.students_year = $scope.account_invoices.students_year;
+
       $http({
         method: "POST",
         url: "/api/customers/all",
@@ -1547,31 +1563,55 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
 
   };
 
-  $scope.getSchoolGradeList = function () {
+  $scope.getSchoolGradesList = function () {
     $http({
       method: "POST",
-      url: "/api/school_grade/all",
+      url: "/api/school_grades/all",
       data: {
         select: {
           id: 1,
           name: 1,
-          code: 1,
-          types_expenses_list: 1
-        },
-        where: {
-          active: true
+          code: 1
         }
       }
     }).then(
       function (response) {
         $scope.busy = false;
-        $scope.schoolGradeList = response.data.list;
+        $scope.schoolGradesList = response.data.list;
       },
       function (err) {
         $scope.error = err;
       }
     )
   };
+
+  $scope.getStudentsYearsList = function (school_grade) {
+    $http({
+      method: "POST",
+      url: "/api/students_years/all",
+      data: {
+        select: {
+          id: 1,
+          name: 1,
+          types_expenses_list: 1,
+          code: 1
+        },
+        where: {
+          active: true,
+          'school_grade.id': school_grade.id
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.studentsYearsList = response.data.list;
+      },
+      function (err) {
+        $scope.error = err;
+      }
+    )
+  };
+
 
   $scope.getNumberingAuto = function () {
     $scope.error = '';
@@ -1663,7 +1703,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
   $scope.loadDelegates();
   $scope.getSafes();
   if (site.feature('school')) {
-    $scope.getSchoolGradeList();
+    $scope.getSchoolGradesList();
     $scope.loadSchoolYears();
   }
   $scope.getPaymentMethodList();

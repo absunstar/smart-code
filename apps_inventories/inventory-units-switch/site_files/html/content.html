@@ -78,11 +78,11 @@
                     <td>
                         <i-list ng-model="itm.unit" ng-search="_search.$category_item.$unit_search"
                             ng-change="itm.store_count = itm.unit.current_count ;calcSize(itm)" display2="barcode"
-                            items="itm.size_units_list"></i-list>
+                            space=" - "  items="itm.size_units_list"></i-list>
                     </td>
                     <td>
                         <i-list ng-model="itm.units_trans" items="itm.size_units_list" v="r" ng-change="calc(itm)"
-                            ng-search="_search.$category_item.$units_trans_search" display2="barcode">
+                        space=" - " ng-search="_search.$category_item.$units_trans_search" display2="barcode">
                         </i-list>
                     </td>
                     <td class="blue"> <br> {{itm.store_count}}</td>

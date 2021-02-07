@@ -576,16 +576,23 @@
     {
         "category": "general_setting",
         "feature": "school",
-        "name": "school_grade",
+        "name": "school_grades",
         "en": "School Grade",
         "ar": "المراحل الدراسية"
     },
     {
         "category": "general_setting",
         "feature": "school",
+        "name": "students_years",
+        "en": "Students Years",
+        "ar": "السنوات الطلابية"
+    },
+    {
+        "category": "general_setting",
+        "feature": "school",
         "name": "school_years",
         "en": "School Years",
-        "ar": "السنوات الدراسية"
+        "ar": "الأعوام الدراسية"
     },
     {
         "category": "general_setting",

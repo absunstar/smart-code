@@ -1,15 +1,15 @@
 module.exports = function init(site) {
   const $customers_group = site.connectCollection("customers_group")
 
-  $customers_group.deleteDuplicate({
-    code: 1,
-    'company.id': 1
-  }, (err, result) => {
-    $customers_group.createUnique({
-      code: 1,
-      'company.id': 1
-    }, (err, result) => { })
-  })
+  // $customers_group.deleteDuplicate({
+  //   code: 1,
+  //   'company.id': 1
+  // }, (err, result) => {
+  //   $customers_group.createUnique({
+  //     code: 1,
+  //     'company.id': 1
+  //   }, (err, result) => { })
+  // })
 
   site.get({
     name: "customers_group",
@@ -31,11 +31,13 @@ module.exports = function init(site) {
       image_url: '/images/customer_groups.png',
       company: {
         id: doc.id,
-        name_ar: doc.name_ar
+        name_ar: doc.name_ar,
+        name_en: doc.name_en
       },
       branch: {
         code: doc.branch_list[0].code,
-        name_ar: doc.branch_list[0].name_ar
+        name_ar: doc.branch_list[0].name_ar,
+        name_en: doc.branch_list[0].name_en
       },
       active: true
     }, (err, doc) => {

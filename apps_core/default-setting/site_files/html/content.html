@@ -59,13 +59,14 @@
 
                     </div>
 
-                    <div class="row">
+                    <div class="row" x-features="medical">
 
                         <i-list class="col3" label="##word.clinic##" ng-model="default_setting.general_Settings.clinic"
                             items="clinicList" display="name" ng-search="_search.$clinic_search"></i-list>
 
-                        <i-list class="col3" label="##word.ticket_type##" ng-model="default_setting.general_Settings.ticket_type"
-                            items="ticketTypeList" display="##session.lang##" ng-search="_search.$ticket_type_search">
+                        <i-list class="col3" label="##word.ticket_type##"
+                            ng-model="default_setting.general_Settings.ticket_type" items="ticketTypeList"
+                            display="##session.lang##" ng-search="_search.$ticket_type_search">
                         </i-list>
 
 
@@ -75,6 +76,10 @@
                         <i-list ng-search="_search.$_school_year" class="col3" display="name"
                             ng-model="default_setting.general_Settings.school_year" label="##word.school_year##"
                             items="schoolYearsList"></i-list>
+
+                        <i-list ng-search="_search.$_school_grade" class="col3" display="name"
+                            ng-model="default_setting.general_Settings.school_grade" label="##word.school_grade##"
+                            items="schoolGradesList"></i-list>
 
                     </div>
                     <div class="row" x-features="restaurant || pos  || erp">

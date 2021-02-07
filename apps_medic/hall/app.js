@@ -20,11 +20,13 @@ module.exports = function init(site) {
         image_url: '/images/hall.png',
         company: {
           id: doc.id,
-          name_ar: doc.name_ar
+          name_ar: doc.name_ar,
+          name_en: doc.name_en
         },
         branch: {
           code: doc.branch_list[0].code,
-          name_ar: doc.branch_list[0].name_ar
+          name_ar: doc.branch_list[0].name_ar,
+          name_en: doc.branch_list[0].name_en
         },
         active: true
       }, (err, doc) => { })

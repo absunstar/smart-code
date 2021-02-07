@@ -2,7 +2,7 @@
     {"name" : "seating_numbers_informations" , "en" : "Distribution Seating Number Informations" , "ar" : "بيانات توزيع أرقام الجلوس"},
     {"name" : "seating_numbers" , "en" : "Distribution Seating Numbers" , "ar" : "توزيع أرقام الجلوس"},
     {"name" : "seating_number" , "en" : "Distribution Seating Number" , "ar" : "توزيع رقم جلوس"},
-    {"name" : "seating_n" , "en" : "Seating Number" , "ar" : "رقم جلوس"},
+    {"name" : "seating_n" , "en" : "Seating Number" , "ar" : "رقم الجلوس"},
     {"name" : "seating_numbers_menus" , "en" : "Distribution Seating Number Menu" , "ar" : "قائمة توزيع أرقام الجلوس"},
     {"name" : "seating_numbers_code" , "en" : "Distribution Seating Number Code" , "ar" : "كود توزيع أرقام الجلوس"},
     {"name" : "seating_numbers_name" , "en" : "Distribution Seating Number Name" , "ar" : "اسم توزيع أرقام الجلوس"},

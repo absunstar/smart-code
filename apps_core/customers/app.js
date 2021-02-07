@@ -211,7 +211,7 @@ module.exports = function init(site) {
       })
     }
     if (site.feature('school')) {
-      user.school_grade = customers_doc.school_grade
+      user.students_years = customers_doc.students_years
 
       user.roles.push({
         module_name: "public",
@@ -392,7 +392,7 @@ module.exports = function init(site) {
         permissions: ["report_info_ui"]
       })
     } if (site.feature('school')) {
-      user.school_grade = customers_doc.school_grade
+      user.students_years = customers_doc.students_years
 
       user.roles.push({
         module_name: "public",
@@ -609,7 +609,12 @@ module.exports = function init(site) {
       where['mobile'] = where.mobile;
     }
 
-    if (where['school_grade']) {
+    if (where['students_year'] && where['students_year'].id) {
+      where['students_year.id'] = where['students_year'].id;
+      delete where['students_year']
+    }
+
+    if (where['school_grade'] && where['school_grade'].id) {
       where['school_grade.id'] = where['school_grade'].id;
       delete where['school_grade']
     }
@@ -749,6 +754,11 @@ module.exports = function init(site) {
       where['mobile'] = where.mobile;
     }
 
+    if (where['students_year'] && where['students_year'].id) {
+      where['students_year.id'] = where['students_year'].id;
+      delete where['students_year']
+    }
+
     if (where['school_grade'] && where['school_grade'].id) {
       where['school_grade.id'] = where['school_grade'].id;
       delete where['school_grade']
@@ -758,7 +768,6 @@ module.exports = function init(site) {
       where['hall.id'] = where['hall'].id;
       delete where['hall']
     }
-
     $customers.findMany({
       where: where,
     }, (err, docs) => {

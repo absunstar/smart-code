@@ -103,11 +103,11 @@ app.controller("report_attend_students", function ($scope, $http, $timeout) {
     site.showModal('#reportAttendDetailsModal');
   };
 
-  $scope.getSchoolGradeList = function (where) {
+  $scope.getStudentsYearsList = function (where) {
     $scope.busy = true;
     $http({
       method: "POST",
-      url: "/api/school_grade/all",
+      url: "/api/students_years/all",
       data: {
         where: where
       }
@@ -115,7 +115,7 @@ app.controller("report_attend_students", function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done && response.data.list.length > 0) {
-          $scope.schoolGradeList = response.data.list;
+          $scope.studentsYearsList = response.data.list;
         }
       },
       function (err) {
@@ -163,5 +163,5 @@ app.controller("report_attend_students", function ($scope, $http, $timeout) {
 
   $scope.getReportAttendstudentsList({ date: new Date() });
   $scope.getHalls();
-  $scope.getSchoolGradeList();
+  $scope.getStudentsYearsList();
 });

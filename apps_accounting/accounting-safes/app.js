@@ -93,18 +93,18 @@ module.exports = function init(site) {
   })
 
 
-  $safes.deleteDuplicate({
-    name: 1,
-    'company.id': 1
-  }, (err, result) => {
-    $safes.createUnique({
-      name: 1,
-      'company.id': 1
+  // $safes.deleteDuplicate({
+  //   name: 1,
+  //   'company.id': 1
+  // }, (err, result) => {
+  //   $safes.createUnique({
+  //     name: 1,
+  //     'company.id': 1
 
-    }, (err, result) => {
+  //   }, (err, result) => {
 
-    })
-  })
+  //   })
+  // })
 
   site.get({
     name: "safes",

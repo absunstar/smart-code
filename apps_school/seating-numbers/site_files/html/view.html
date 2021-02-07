@@ -24,6 +24,11 @@
                                 </tr>
 
                                 <tr>
+                                    <td class="title"> ##word.students_year## </td>
+                                    <td class="center"> {{seating_numbers.students_year.name}} </td>
+                                </tr>
+
+                                <tr>
                                     <td class="title"> ##word.numbers_start_from## </td>
                                     <td class="center green"> {{seating_numbers.from}} </td>
                                 </tr>
@@ -58,8 +63,8 @@
                                         <th class="not-print"> ##word.logo## </th>
                                         <th> ##word.code## </th>
                                         <th> ##word.customer_name## </th>
-                                        <th> ##word.gender## </th>
-                                        <th> ##word.school_grade## </th>
+                                        <th> ##word.school_grades## </th>
+                                        <th> ##word.students_years## </th>
                                         <th> ##word.hall## </th>
                                         <th> ##word.seating_n## </th>
                                     </tr>
@@ -74,8 +79,8 @@
 
                                         <td class="blue userPrint"> {{c.code}} </td>
                                         <td> {{c.name_##session.lang##}} </td>
-                                        <td> {{c.gender.##session.lang##}} </td>
                                         <td> {{c.school_grade.name}} </td>
+                                        <td> {{c.students_year.name}} </td>
                                         <td> {{c.hall.name}} </td>
                                         <td class="blue"> {{c.seating_n}} </td>
 

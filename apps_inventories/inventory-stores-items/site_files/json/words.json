@@ -1,7 +1,7 @@
 [
     {
         "name": "stores_items_add",
-        "en": "Add Category",
+        "en": "Add صory",
         "ar": "إضافة صنف"
     },
     {
@@ -61,7 +61,7 @@
     },
     {
         "name": "stores_items_new",
-        "en": "New Category",
+        "en": "New صory",
         "ar": "صنف جديد"
     },
     {
@@ -106,7 +106,7 @@
     },
     {
         "name": "stores_items_delete",
-        "en": "Delete Category",
+        "en": "Delete صory",
         "ar": "حذف صنف"
     },
     {
@@ -156,17 +156,17 @@
     },
     {
         "name": "stores_items_edit",
-        "en": "Edit Category",
+        "en": "Edit Item",
         "ar": "تعديل صنف"
     },
     {
         "name": "stores_items_details",
-        "en": "Category Details",
+        "en": "Item Details",
         "ar": "تفاصيل صنف"
     },
     {
         "name": "stores_items_name",
-        "en": "Category Name",
+        "en": "Item Name",
         "ar": "إسم الصنف"
     },
     {
@@ -206,8 +206,8 @@
     },
     {
         "name": "stores_items_img",
-        "en": "Category Image",
-        "ar": "ملفات الصنف"
+        "en": "Item Image",
+        "ar": "صور الصنف"
     },
     {
         "name": "stores_items_factory_code",
@@ -315,18 +315,18 @@
         "ar": "بخصم"
     },
     {
-        "name": "stores_items_category",
-        "en": "Item Category",
+        "name": "stores_items_صory",
+        "en": "Item Group",
         "ar": "مجموعة الصنف"
     },
     {
-        "name": "stores_items_Category_code",
-        "en": "Category Code",
+        "name": "stores_items_صory_code",
+        "en": "Group Code",
         "ar": "كود المجموعة"
     },
     {
-        "name": "stores_items_categry",
-        "en": "Stores Items Categry",
+        "name": "stores_items_صry",
+        "en": "صory",
         "ar": "الفئة"
     },
     {
@@ -381,7 +381,7 @@
     },
     {
         "name": "stores_items",
-        "en": "Categories Items",
+        "en": "Stores Items",
         "ar": "الأصناف المخزنية"
     },
     {
@@ -470,14 +470,9 @@
         "ar": " يرجى كتابة الصنف بشكل صحيح "
     },
     {
-        "name": "stores_in_categry",
+        "name": "stores_in_صry",
         "en": "Classfication",
         "ar": "  التصنيف "
-    },
-    {
-        "name": "stores_items_img",
-        "en": "Category Image",
-        "ar": "الملفات"
     },
     {
         "name": "stores_items_all_details",

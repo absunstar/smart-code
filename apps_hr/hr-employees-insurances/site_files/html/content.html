@@ -7,7 +7,7 @@
                 <i-control ng-hide="disabledCode" class="col2" label="##word.code##" ng-model="employee_insurance.code">
                 </i-control>
 
-                <i-list v="r" class="col5" ng-search="_search.$employee_insurance_employee" space="-"
+                <i-list v="r" class="col5" ng-search="_search.$employee_insurance_employee" space=" - "
                     display2="insurance_number" display="name" items="employees"
                     ng-change="employee_insurance.employee.salary" ng-model="employee_insurance.employee"
                     label="##word.employees_insurances_name##"></i-list>

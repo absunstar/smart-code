@@ -115,17 +115,8 @@ module.exports = function init(site) {
             }
           });
 
-
-
-
-
-
         } else if (site.features.like('*academy*')) {
           screens_list = moduleListCore.filter((i) => i.feature !== 'order' && i.feature !== 'erp' && i.feature !== 'restaurant' && i.feature !== 'gym' && i.feature !== 'school' && i.feature !== 'medical');
-
-
-
-
 
 
         } else if (site.features.like('*school*')) {

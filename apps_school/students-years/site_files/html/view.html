@@ -1,0 +1,120 @@
+<div ng-hide="busy" id="v1">
+    <div class="form">
+        <div id="customersGroupViewModal">
+            <fieldset>
+                <legend> ##word.students_years_informations## </legend>
+                <div class="row">
+                    <div class="col9">
+                        <div class="row">
+
+                            <table class="table hover bold">
+                                <tr>
+                                    <td class="title"> ##word.code## </td>
+                                    <td class="center userPrint blue"> {{students_years.code}} </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title"> ##word.students_years_name## </td>
+                                    <td class="center"> {{students_years.name}} </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title"> ##word.school_grade## </td>
+                                    <td class="center"> {{students_years.school_grade.name}} </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title"> ##word.active## </td>
+                                    <td ng-show="students_years.active == true" class="center green"> ##word.active##
+                                    </td>
+                                    <td ng-show="students_years.active == false" class="center red"> ##word.not_active##
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <br>
+                        <br>
+                        <br>
+                        <div class="row">
+                            <div class="col8">
+
+                                <fieldset>
+                                    <legend>##word.types_expenses##</legend>
+                                    <table class="table loaded hover center bold">
+
+                                        <tr>
+                                            <th> ##word.types_expenses_name## </th>
+                                            <th> ##word.expense_value## </th>
+                                        </tr>
+
+                                        <tr ng-repeat="c in students_years.types_expenses_list">
+
+                                            <td> {{c.name}} </td>
+                                            <td class="green">
+                                                {{c.value}}
+                                            </td>
+                                          
+
+                                        </tr>
+                                    </table>
+
+                                </fieldset>
+                            </div>
+
+                        </div>
+                        <br>
+                        <br>
+                        <div class="row">
+                            <div class="col10">
+
+                                <fieldset>
+                                    <legend>##word.subjects##</legend>
+                                    <table class="table loaded hover center bold" id="t1">
+                                        <tr>
+                                            <th> ##word.subject## </th>
+                                            <th> ##word.exam_score_month## </th>
+                                            <th> ##word.exam_score_midterm## </th>
+                                            <th> ##word.exam_score_mid_year## </th>
+                                            <th> ##word.exam_score_end_year## </th>
+                                            <th> ##word.work_degree_year## </th>
+                                        </tr>
+                                        <tr ng-repeat="c in students_years.subjects_list | orderBy : '-id'">
+
+                                            <td> {{c.subject.name}} </td>
+                                            <td>
+                                                {{c.exam_score_month}}
+                                            </td>
+                                            <td>
+                                                {{c.exam_score_midterm}}
+                                            </td>
+                                            <td>
+                                                {{c.exam_score_mid_year}}
+                                            </td>
+                                            <td>
+                                                {{c.exam_score_end_year}}
+                                            </td>
+                                            <td>
+                                                {{c.work_degree_year}}
+                                            </td>
+
+                                        </tr>
+                                    </table>
+
+                                </fieldset>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col3">
+                        <i-image class="not-print" view ng-model="students_years.image_url"> </i-image>
+                    </div>
+
+
+                </div>
+            </fieldset>
+        </div>
+    </div>
+</div>
+<div x-import="students-years/action_info.html"></div>

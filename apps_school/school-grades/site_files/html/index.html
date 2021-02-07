@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="school_grades_ui || school_grades_manage" data-ng-app="myApp">
+
+<head x-import="head.html">
+
+</head>
+
+<body class="##session.lang##">
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+
+    </nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+
+    </nav>
+    <div id="main-layout" class="container loaded">
+        <div class="row">
+            <div class="row" ng-controller="school_grades" x-permissions="login">
+                <div x-import="school-grades/add_modal.html"></div>
+                <div x-import="school-grades/update_modal.html"></div>
+                <div x-import="school-grades/delete_modal.html"></div>
+                <div x-import="school-grades/view_modal.html"></div>
+                <div x-import="school-grades/search_all_modal.html"></div>
+
+                <div class="row">
+                    <h1 class="bold text-center"> ##word.school_grades## </h1>
+                </div>
+
+                <div class="top-actions">
+                    <i-button type="add" x-permissions="school_grades_add || school_grades_manage" label="##word.school_grades_new##" ng-click="displayAddSchoolGrades()"></i-button>
+                    <i-button type="search" x-permissions="school_grades_search || school_grades_manage" label="##word.search_all##" onclick="site.showModal('#schoolGradesSearchModal')"></i-button>
+
+                    <span ng-show="busy">
+                        <span class="sr-only">Loading...</span>
+                    </span>
+                    <h3 class="bold text-center"> ##word.count## : {{count}} </h3>
+                    <br>
+                </div>
+
+                <table class="table loaded hover center bold" id="t1">
+                    <tr>
+                        <th class="not-print"> ##word.logo## </th>
+                        <th> ##word.school_grades_code## </th>
+                        <th> ##word.school_grades_name## </th>
+                        <th> ##word.status## </th>
+
+                        <th class="not-print"> ##word.actions## </th>
+                    </tr>
+                    <tr ng-repeat="c in list | orderBy : '-id'">
+                        <td class="not-print">
+                            <i-image view class="logo" ng-model="c.image_url"></i-image>
+                        </td>
+
+                        <td class="blue userPrint"> {{c.code}} </td>
+                        <td> {{c.name}} </td>
+
+                        <td>
+                            <p ng-show="c.active == true" class="green"> ##word.active## </p>
+                            <p ng-show="c.active == false" class="red"> ##word.not_active## </p>
+                        </td>
+
+                        <td class="center not-print">
+                            <i-button type="details" x-permissions="school_grades_view || school_grades_manage" label="##word.details##" ng-click="displayDetailsSchoolGrades(c)"></i-button>
+
+                            <i-button type="update" x-permissions="school_grades_edit || school_grades_manage" label="##word.update##" ng-click="displayUpdateSchoolGrades(c)"></i-button>
+
+                            <i-button type="delete" x-permissions="school_grades_delete || school_grades_manage" label="##word.delete##" ng-click="displayDeleteSchoolGrades(c)"></i-button>
+                        </td>
+                    </tr>
+                </table>
+
+                <div class="row">
+                    <i-button x-permissions="school_grades_print || school_grades_manage" type="print" label="##word.print##" onclick="site.print('#t1')"></i-button>
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div x-import="scripts.html"></div>
+
+    <script x-permissions="login" x-import="school-grades/index.js"></script>
+</body>
+
+</html>

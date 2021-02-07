@@ -1,0 +1,44 @@
+<div ng-hide="busy" id="v1">
+    <div class="form">
+        <div id="customersGroupViewModal">
+            <fieldset>
+                <legend> ##word.school_grades_informations## </legend>
+                <div class="row">
+                    <div class="col9">
+                        <div class="row">
+
+                            <table class="table hover bold">
+                                <tr>
+                                    <td class="title"> ##word.school_grades_code## </td>
+                                    <td class="center userPrint blue"> {{school_grades.code}} </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title"> ##word.school_grades_name## </td>
+                                    <td class="center"> {{school_grades.name}} </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title"> ##word.active## </td>
+                                    <td ng-show="school_grades.active == true" class="center green"> ##word.active##
+                                    </td>
+                                    <td ng-show="school_grades.active == false" class="center red"> ##word.not_active##
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                 
+
+                    </div>
+
+                    <div class="col3">
+                        <i-image class="not-print" view ng-model="school_grades.image_url"> </i-image>
+                    </div>
+
+
+                </div>
+            </fieldset>
+        </div>
+    </div>
+</div>
+<div x-import="school-grades/action_info.html"></div>

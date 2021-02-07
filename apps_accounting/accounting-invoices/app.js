@@ -1329,9 +1329,9 @@ module.exports = function init(site) {
       delete where['school_year']
     }
 
-    if (where['school_grade']) {
-      where['school_grade.id'] = where['school_grade'].id;
-      delete where['school_grade']
+    if (where['students_year']) {
+      where['students_year.id'] = where['students_year'].id;
+      delete where['students_year']
     }
 
     if (where['types_expenses']) {

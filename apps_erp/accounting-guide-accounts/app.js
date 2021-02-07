@@ -1,17 +1,17 @@
 module.exports = function init(site) {
   const $accounting_guide_accounts = site.connectCollection("accounting_guide_accounts")
 
-  $accounting_guide_accounts.deleteDuplicate({
-    code: 1,
-    'company.id': 1
-  }, (err, result) => {
-    $accounting_guide_accounts.createUnique({
-      code: 1,
-      'company.id': 1
-    }, (err, result) => {
+  // $accounting_guide_accounts.deleteDuplicate({
+  //   code: 1,
+  //   'company.id': 1
+  // }, (err, result) => {
+  //   $accounting_guide_accounts.createUnique({
+  //     code: 1,
+  //     'company.id': 1
+  //   }, (err, result) => {
 
-    })
-  })
+  //   })
+  // })
 
   site.get({
     name: "accounting_guide_accounts",

@@ -199,15 +199,24 @@ module.exports = function init(site) {
 
     site.getCustomers(data, customersCb => {
       let hallsList = []
-      let schoolGrades = []
+      let schoolGradesId = []
+      let studentsYearId = []
       customersCb.forEach(_cusCb => {
-        let foundHall = hallsList.some(_hall => _cusCb.hall.id == _hall.id)
-        let foundSchoolGrades = schoolGrades.some(_schoolG => _cusCb.school_grade.id == _schoolG.id)
-        if (!foundHall) {
-          hallsList.push(_cusCb.hall.id)
-        }
-        if (!foundSchoolGrades) {
-          schoolGrades.push(_cusCb.school_grade.id)
+        if (_cusCb.students_year && _cusCb.school_grade) {
+
+          let foundHall = hallsList.some(_hall => _cusCb.hall.id == _hall.id)
+          let foundSchoolGrades = schoolGradesId.some(_schoolG => _cusCb.school_grade.id == _schoolG.id)
+          let foundStudentsYear = studentsYearId.some(_studentY => _cusCb.students_year.id == _studentY.id)
+
+          if (!foundHall) {
+            hallsList.push(_cusCb.hall.id)
+          }
+          if (!foundSchoolGrades) {
+            schoolGradesId.push(_cusCb.school_grade.id)
+          }
+          if (!foundStudentsYear) {
+            studentsYearId.push(_cusCb.students_year.id)
+          }
         }
       });
       whereObj = req.body.whereAttend || {};
@@ -217,9 +226,12 @@ module.exports = function init(site) {
       }
 
       whereObj['school_grade.id'] = {
-        $in: schoolGrades
+        $in: schoolGradesId
       }
 
+      whereObj['students_year.id'] = {
+        $in: studentsYearId
+      }
 
       if (whereObj.date) {
         let d1 = site.toDate(whereObj.date)
@@ -293,6 +305,7 @@ module.exports = function init(site) {
 
     if (where['customer'] && where['customer'].id) {
 
+      where['students_year.id'] = where['customer'].students_year.id;
       where['school_grade.id'] = where['customer'].school_grade.id;
 
       where['hall.id'] = where['customer'].hall.id;
@@ -325,7 +338,7 @@ module.exports = function init(site) {
 
             doc.attend_list.unshift(obj)
           }
-      
+
           $attend_students.update(doc)
 
         } else {
@@ -345,6 +358,7 @@ module.exports = function init(site) {
             date: date1,
             code: cb.code,
             school_grade: customer.school_grade,
+            students_year: customer.students_year,
             school_year: obj.school_year,
             hall: customer.hall,
             company: site.get_company(req),

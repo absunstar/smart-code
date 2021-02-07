@@ -1,15 +1,15 @@
 module.exports = function init(site) {
   const $transfer_safes = site.connectCollection("transfer_safes")
 
-  $transfer_safes.deleteDuplicate({
-    code: 1,
-    'company.id': 1
-  }, (err, result) => {
-    $transfer_safes.createUnique({
-      code: 1,
-      'company.id': 1
-    }, (err, result) => { })
-  })
+  // $transfer_safes.deleteDuplicate({
+  //   code: 1,
+  //   'company.id': 1
+  // }, (err, result) => {
+  //   $transfer_safes.createUnique({
+  //     code: 1,
+  //     'company.id': 1
+  //   }, (err, result) => { })
+  // })
 
   site.get({
     name: "transfer_safes",

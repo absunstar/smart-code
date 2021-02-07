@@ -2,15 +2,15 @@ module.exports = function init(site) {
 
   const $in_out_names = site.connectCollection("in_out_names")
 
-  $in_out_names.deleteDuplicate({
-    name: 1
-  }, (err, result) => {
-    $in_out_names.createUnique({
-      name: 1
-    }, (err, result) => {
+  // $in_out_names.deleteDuplicate({
+  //   name: 1
+  // }, (err, result) => {
+  //   $in_out_names.createUnique({
+  //     name: 1
+  //   }, (err, result) => {
 
-    })
-  })
+  //   })
+  // })
 
   site.get({
     name: "in_out_names",
@@ -28,11 +28,13 @@ module.exports = function init(site) {
       code: "1-Test",
       company: {
         id: doc.id,
-        name_ar: doc.name_ar
+        name_ar: doc.name_ar,
+        name_en: doc.name_en
       },
       branch: {
         code: doc.branch_list[0].code,
-        name_ar: doc.branch_list[0].name_ar
+        name_ar: doc.branch_list[0].name_ar,
+        name_en: doc.branch_list[0].name_en
       },
       active: true
     }, (err, in_out_doc) => {
@@ -43,11 +45,13 @@ module.exports = function init(site) {
         out: true,
         company: {
           id: doc.id,
-          name_ar: doc.name_ar
+          name_ar: doc.name_ar,
+          name_en: doc.name_en
         },
         branch: {
           code: doc.branch_list[0].code,
-          name_ar: doc.branch_list[0].name_ar
+          name_ar: doc.branch_list[0].name_ar,
+          name_en: doc.branch_list[0].name_en
         },
         active: true
       }, (err, doc) => { })

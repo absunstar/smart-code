@@ -521,8 +521,8 @@ module.exports = function init(site) {
     if (req.session.user.type == 'trainer') {
       where['add_user_info.id'] = req.session.user.id;
 
-    } else if (req.session.user.type == 'customer' && req.session.user.school_grade) {
-      where['school_grade.id'] = req.session.user.school_grade.id;
+    } else if (req.session.user.type == 'customer' && req.session.user.students_years) {
+      where['students_years.id'] = req.session.user.students_years.id;
     }
 
 

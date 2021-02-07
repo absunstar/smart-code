@@ -1,15 +1,15 @@
 module.exports = function init(site) {
   const $class_schedule = site.connectCollection("class_schedule")
 
-  $class_schedule.deleteDuplicate({
-    code: 1,
-    'company.id': 1
-  }, (err, result) => {
-    $class_schedule.createUnique({
-      code: 1,
-      'company.id': 1
-    }, (err, result) => { })
-  })
+  // $class_schedule.deleteDuplicate({
+  //   code: 1,
+  //   'company.id': 1
+  // }, (err, result) => {
+  //   $class_schedule.createUnique({
+  //     code: 1,
+  //     'company.id': 1
+  //   }, (err, result) => { })
+  // })
 
   site.get({
     name: "class_schedule",

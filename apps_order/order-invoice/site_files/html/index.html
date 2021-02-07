@@ -13,44 +13,145 @@
             border: 1px solid #ffeb3b;
         }
 
-        .item-groups,
+
+
+        .item-groups {
+            flex-flow: wrap;
+            /* background-image: linear-gradient(rgb(255 217 0 / 38%), rgb(184 156 0 / 89%)); */
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+
+        .item-groups::-webkit-scrollbar {
+            height: 10px;
+        }
+
+        .item-groups::-webkit-scrollbar-thumb {
+            border-radius: 13px;
+            background-color: #5a47ff;
+        }
+
+        .item-groups::-webkit-scrollbar-thumb:hover {
+            background: #2414ff;
+        }
+
         .item-list,
         .item-types {
             display: inline-flex;
             flex-flow: wrap;
-            padding: 10px;
-            margin-bottom: 50px;
+            padding: 9px;
+            margin-bottom: 40px;
+
         }
 
-        .item-groups .item,
+        .item-groups .item {
+            width: 130px;
+            min-height: 80px;
+            display: inline-flex;
+            border: 1px solid #000000;
+            background-color: #ffffff;
+            text-align: center;
+            /* border-top-right-radius: 25px; */
+            border-top-left-radius: 25px;
+        }
+
         .item-list .item,
         .item-types .item {
-            width: 200px;
-            height: 220px;
+            width: 150px;
             display: inline-block;
-            border: 2px solid #FFEB3A;
-            background: #ffffff;
+            border: 2px solid #03008d;
+            background-color: #ffffff;
+            box-shadow: 3px 3px 3px 3px #9a96df;
+            border-radius: 10px;
             text-align: center;
-            margin: 15px;
+            margin: 13px !important;
         }
 
-        .item-groups .item:hover,
+        .my-hover,
+        .item-groups .item:hover {
+            transform: scale(1.1);
+            /* background-color: #57ff732e; */
+            /* border: 2px solid rgb(58, 255, 124); */
+            /* box-shadow: 3px 3px 3px 3px #36363638; */
+            border-top-right-radius: 25px;
+        }
+
+        /* .item-groups .item :active {
+            transform: scale(1.1);
+            background-color: #ff2802e1;
+            border: 2px solid rgb(74, 0, 248);
+            box-shadow: 3px 3px 3px 3px #fd004ccc;
+        } */
+
         .item-list .item:hover,
         .item-types .item:hover {
             transform: scale(1.1);
-            border: 2px solid rgb(58, 255, 124);
+            /*  background-color: #57ff732e;
+            border: 2px solid rgb(58, 255, 124); */
+            box-shadow: 2px 2px 2px 2px #3431ebb0;
         }
 
-        .item-groups img,
-        .item-list img,
+        .item-types img,
+        .item-list img {
+            width: max-content;
+            height: 90px;
+            padding: unset;
+            border-top-right-radius: 10px;
+            border-top-left-radius: 10px;
+            border-bottom-right-radius: unset;
+            border-bottom-left-radius: unset;
+            background-color: #ffffff;
+        }
+
+
+        /* .item-list img,
         .item-types img {
-            width: 180px;
-            height: 140px;
-            margin: 5px;
+            background-color: #ffffff;
+            border-radius: 10px;
+        } */
+
+        .bg_font_group {
+            border-bottom-right-radius: 10px;
+            border-bottom-left-radius: 10px;
+
         }
 
-        .item-groups h2,
-        .item-list h2,
+
+        .bg_font_item {
+            background-image: linear-gradient(#3f51b5, #001fcec2);
+            height: max-content;
+
+        }
+
+        .font_name_group {
+            width: 190px;
+            white-space: pre-line;
+            display: inline-block;
+            color: #ffffff;
+            text-align: center;
+            padding: 7px;
+            font-weight: bold;
+            text-shadow:
+                3px 3px 0 #000,
+                -1px -1px 0 #000,
+                1px -1px 0 #000,
+                -1px 1px 0 #000,
+                1px 1px 0 #000;
+        }
+
+        .font_name_items {
+            width: 190px;
+            height: 50px;
+            white-space: pre-line;
+            display: inline-block;
+            color: #ffffff;
+            text-align: center;
+            padding: 5px;
+            font-weight: bold;
+
+        }
+
+        /* .item-list h2,
         .item-types h2 {
             width: 190px;
             display: inline-block;
@@ -60,7 +161,15 @@
             font-weight: bold;
         }
 
-        .item-groups h3,
+        .item-groups h3 {
+            width: 190px;
+            display: inline-block;
+            color: black;
+            text-align: center;
+            padding: 2px;
+            font-weight: bold;
+        }
+
         .item-list h3,
         .item-types h3 {
             width: 190px;
@@ -69,7 +178,7 @@
             text-align: center;
             padding: 2px;
             font-weight: bold;
-        }
+        } */
 
 
         .code,
@@ -160,44 +269,37 @@
 
                 <div class="row">
 
+                    <!-- style="background-color: {{g.color}};" -->
+
                     <div class="col6">
-                        <div class="item-groups">
-                            <a class="item pointer " ng-repeat="g in itemsGroupList" ng-click="loadItems(g)"
-                                help-id="menu_monitor">
-                                <img ng-src="{{g.image_url}}">
-                                <h2>{{g.name}}</h2>
-                            </a>
+                        <div class="row">
+                            <div class="item-groups ">
+                                <a class="item pointer center" style="background-color: {{g.color}};"
+                                    ng-repeat="g in itemsGroupList" ng-click="loadItems(g , $event)"
+                                    help-id="menu_monitor">
+                                    <!-- <img ng-src="{{g.image_url}}"> -->
+                                    <p class="center font_name_group">{{g.name}}</p>
+                                </a>
+                            </div>
+                            <hr style="height:7px;background-image:linear-gradient(rgb(90 79 255), rgb(227 225 255));">
                         </div>
 
 
-                        <div id="itemsListModal" class="modal">
-
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <span class="close">&times;</span>
-                                </div>
-
-                                <div class="modal-body">
-                                    <div class="item-list" ng-show="itemsList.length > 0">
-                                        <a class="item pointer" ng-repeat="i in itemsList" ng-click="showItemsIn(i)"
-                                            help-id="menu_monitor">
-                                            <img ng-src="{{i.image_url}}">
-                                            <h2>{{i.name}}</h2>
-                                        </a>
+                        <div class="row">
+                            <div class="item-list" ng-show="itemsList.length > 0">
+                                <a class="item pointer" ng-repeat="i in itemsList" ng-click="showItemsIn(i)"
+                                    help-id="menu_monitor">
+                                    <img ng-src="{{i.image_url}}">
+                                    <div class="bg_font_item">
+                                        <p class="center font_name_items">{{i.name}}</p>
                                     </div>
-                                </div>
-
-                                <div class="modal-footer center">
-                                    <i-button type="close" label="##word.close##"
-                                        onclick="site.hideModal('#itemsListModal')"> </i-button>
-                                </div>
+                                </a>
                             </div>
-
                         </div>
 
                         <br>
 
-                        <div id="sizesModal" class="modal">
+                        <div id="sizesModal" class="modal small">
 
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -205,12 +307,14 @@
                                 </div>
 
                                 <div class="modal-body">
-                                    <div class="item-types">
-                                        <a class="item pointer" ng-repeat="s in current_items.sizes"
+                                    <div class="item-types center">
+                                        <a class="item pointer center" ng-repeat="s in current_items.sizes"
                                             ng-click="bookList(s)" help-id="menu_monitor">
                                             <img ng-src="{{s.image_url}}" onerror="this.src='/images/no.png'">
-                                            <h3> ##word.price## : {{s.price}}</h3>
-                                            <h2>{{s.size}}</h2>
+                                            <!-- <h3> ##word.price## : {{s.price}}</h3> -->
+                                            <div class="bg_font_item">
+                                                <h3 class="center font_name_items">{{s.size}}</h3>
+                                            </div>
                                         </a>
 
                                     </div>
@@ -226,9 +330,9 @@
 
                     </div>
 
-                    <div class="col6">
+                    <div class="col6 order-invoice">
                         <div class="row" ng-hide="'##user.type##' == 'table'">
-                            <div class="row order-invoice">
+                            <div class="row ">
                                 <h2 class="bold center red">{{error}}</h2>
 
                                 <div class="row">
@@ -250,18 +354,19 @@
                                     <i-control class="col3 r_indigo" disabled label="##word.shift##"
                                         ng-model="shift.code"></i-control>
 
-                                    <i-control ng-hide="disabledCode" class="col3" disabled label="##word.code##"
+                                    <i-control ng-disabled="disabledCode" class="col3" disabled label="##word.code##"
                                         ng-model="order_invoice.code"></i-control>
+
 
                                 </div>
 
                                 <div class="row">
+
                                     <i-list ng-search="_search.$transaction_type" class="col4"
                                         display="##session.lang##" ng-model="order_invoice.transaction_type"
                                         label="##word.transaction_type##" items="transactionTypeList"
                                         ng-change="calc(order_invoice)">
                                     </i-list>
-
                                     <i-button ng-show="order_invoice.transaction_type.id == 1 && order_invoice.id"
                                         type="bg-blue" label="##word.merge_table##" ng-click="viewInvoicesTablesList()">
                                     </i-button>
@@ -346,17 +451,15 @@
                         <br>
                         <div class="row ">
 
-                            <table class="table bold loaded" id="t1">
+                            <table class="table bold hover loaded" id="t1">
 
                                 <tr>
                                     <th>##word.stores_items_name##</th>
                                     <th>##word.stores_size##</th>
-                                    <th>##word.items_count##</th>
-                                    <th>##word.items_price##</th>
-                                    <th>##word.discount##</th>
-                                    <th>##word.items_price_total##</th>
-                                    <th>##word.notes##</th>
-                                    <th ng-hide="'##user.type##' == 'table'" class="not-print">##word.actions##</th>
+                                    <th class="w100">##word.items_count##</th>
+                                    <th>##word.price##</th>
+                                    <th class="w100">##word.t_o## ##word.price##</th>
+                                    <th class="not-print">##word.actions##</th>
                                 </tr>
 
                                 <tr ng-repeat="size in order_invoice.book_list">
@@ -369,27 +472,95 @@
                                         <i-control ng-change="calcSize(size)" ng-model="size.count" type="number">
                                         </i-control>
                                     </td>
-                                    <td class="center blue"><br> {{size.price}}</td>
-                                    <td class="center">
-                                        <i-control type="number" ng-change="calcSize(size)"
-                                            ng-model="size.discount.value">
-                                        </i-control>
-                                        <b class="red" ng-show="size.discount.type =='number'">$</b>
-                                        <b class="red" ng-show="size.discount.type =='percent'">%</b>
-                                    </td>
-                                    <td class="center green"><br> {{size.total}}</td>
-                                    <td class="center">
-                                        <i-control ng-model="size.notes"></i-control>
+                                    <td class="center blue">
+                                        <br ng-hide="size.discount.value > 0">
+                                        <p class="center">{{size.price}}</p>
+
+                                        <del class="red px14"
+                                            ng-show="size.discount.type =='number' && size.discount.value > 0">{{size.discount.value}}
+                                            $</del>
+                                        <del class="red px14"
+                                            ng-show="size.discount.type =='percent' && size.discount.value > 0">{{size.discount.value}}
+                                            %</del>
                                     </td>
 
-                                    <td ng-hide="'##user.type##' == 'table'" class="center not-print">
-                                        <i-button type="delete default" label="##word.delete##"
+                                    <td class="center green"><br> {{size.total}}</td>
+
+                                    <!-- ng-hide="'##user.type##' == 'table'" -->
+                                    <td class="center not-print">
+                                        <i-button type="edit default" ng-click="showEditItem(size)"></i-button>
+
+                                        <i-button type="delete default"
                                             x-permissions="order_invoice_delete_items || order_invoice_manage"
-                                            ng-click="deleteItemsList(size) ; calcSize(size)"></i-button>
+                                            ng-click="deleteItemsList(size) ; calcSize(size)">
+                                        </i-button>
+
                                     </td>
                                 </tr>
 
                             </table>
+                        </div>
+
+                        <div id="editItemModal" class="modal small">
+
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <span class="close">&times;</span>
+                                </div>
+
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col2"></div>
+                                        <div class="col8">
+
+                                            <div class="row">
+
+                                                <i-list ng-model="size_edit.unit" class="col6" label="##word.unit##"
+                                                    ng-change="ChangeUnitPatch(size_edit);"
+                                                    ng-search="_search.$category_item.$unit_search" space=" - "
+                                                    display2="barcode" items="size_edit.size_units_list">
+                                                </i-list>
+
+                                                <div class="col4">
+
+                                                    <i-control type="number" label="##word.discount##"
+                                                        ng-change="calcSize(size_edit)"
+                                                        ng-model="size_edit.discount.value">
+                                                    </i-control>
+
+                                                    <div class="row center">
+                                                        <i-radio ng-model="size_edit.discount.type"
+                                                            ng-click="calcSize(size_edit)"
+                                                            label="##word.discount_types_number##" ng-value="number"
+                                                            group="type" type="radio"></i-radio>
+                                                        <i-radio ng-model="size_edit.discount.type"
+                                                            ng-click="calcSize(size_edit)"
+                                                            label="##word.discount_types_percent##" ng-value="percent"
+                                                            group="type" type="radio"></i-radio>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+                                            <div class="row">
+                                                <i-textarea label="##word.notes##" class="col10"
+                                                    ng-model="size_edit.notes">
+                                                </i-textarea>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="modal-footer center">
+                                    <i-button type="close" label="##word.close##"
+                                        onclick="site.hideModal('#editItemModal')"> </i-button>
+                                </div>
+                            </div>
+
                         </div>
 
                         <div class="row">
@@ -421,23 +592,25 @@
                                                 <div class="row">
                                                     <i-control class="col4" ng-model="discount.value" type="number"
                                                         label="##word.stores_out_discount_value##"></i-control>
-                                                    <div class="col5 padding">
+                                                    <div class="col4">
+                                                        <i-radio ng-model="discount.type" ng-value="number" group="type"
+                                                            label="##word.discount_types_number##">
+                                                        </i-radio>
+
+                                                        <i-radio ng-model="discount.type" group="type"
+                                                            ng-value="percent" label="##word.discount_types_percent##">
+                                                        </i-radio>
+                                                    </div>
+                                                    <div class="col4" class="padding">
                                                         <br>
                                                         <i-button ng-click="addDiscount() ;calc(order_invoice)"
                                                             label="##word.stores_out_add_discount##" type="add default">
                                                         </i-button>
                                                     </div>
+
                                                 </div>
 
-                                                <div class="row">
-                                                    <i-radio class="col5" ng-model="discount.type" ng-value="number"
-                                                        group="type" label="##word.discount_types_number##">
-                                                    </i-radio>
 
-                                                    <i-radio class="col5" ng-model="discount.type" group="type"
-                                                        ng-value="percent" label="##word.discount_types_percent##">
-                                                    </i-radio>
-                                                </div>
                                             </form>
                                         </td>
                                     </tr>
@@ -501,45 +674,49 @@
                                 </table>
                             </div>
                         </div>
-
                         <div class="row">
-                            <i-control class="col3" ng-model="order_invoice.total_discount"
-                                label="##word.stores_out_total_discount##" type="number" disabled></i-control>
-                            <i-control class="col3" ng-model="order_invoice.total_tax"
-                                label="##word.stores_out_total_tax##" type="number" disabled></i-control>
-                            <i-control class="col3" ng-model="order_invoice.total_value" label="##word.total_value##"
-                                type="number" disabled></i-control>
-                        </div>
+                            <div class="col8">
 
-                        <div class="row">
+                                <div class="row">
+                                    <i-control class="col4" ng-model="order_invoice.total_discount"
+                                        label="##word.stores_out_total_discount##" type="number" disabled></i-control>
+                                    <i-control class="col4" ng-model="order_invoice.total_tax"
+                                        label="##word.stores_out_total_tax##" type="number" disabled></i-control>
+                                    <i-control class="col4" ng-model="order_invoice.total_value"
+                                        label="##word.total_value##" type="number" disabled></i-control>
+                                </div>
 
-                            <i-control class="col6" ng-model="order_invoice.net_value" label="##word.net_value##"
-                                type="number" disabled></i-control>
+                                <div class="row">
 
-                            <div class="col6 center" ng-hide="order_invoice.status.id == 2">
+                                    <i-control class="col6" ng-model="order_invoice.net_value"
+                                        label="##word.net_value##" type="number" disabled></i-control>
+
+                                </div>
+
+                                <i-button
+                                    ng-show="defaultSettings.accounting.create_invoice_auto && order_invoice.status.id == 2 && !order_invoice.invoice"
+                                    type="save" label="##word.create_an_invoice##"
+                                    ng-click="displayAccountInvoice(order_invoice)">
+                                </i-button>
+
+                                <i-button ng-hide="'##user.type##' == 'table'" class="not-print"
+                                    label="##word.print_invoice##" type="print "
+                                    ng-click="printAccountInvoive(order_invoice)">
+                                </i-button>
+                            </div>
+
+                            <div class="col4" ng-hide="order_invoice.status.id == 2">
                                 <i-button label="##word.add_to_orders##" type="fa fa-cart-plus saving"
                                     ng-click="addOrderInvoice()">
                                 </i-button>
-                                <br>
-                                <br>
                                 <br>
                                 <i-button type="closing"
                                     ng-hide="order_invoice.active == false || '##user.type##' == 'table'"
                                     label="##word.close_order##" ng-click="closeOrder()">
                                 </i-button>
                             </div>
+
                         </div>
-
-                        <i-button
-                            ng-show="defaultSettings.accounting.create_invoice_auto && order_invoice.status.id == 2 && !order_invoice.invoice"
-                            type="save" label="##word.create_an_invoice##"
-                            ng-click="displayAccountInvoice(order_invoice)">
-                        </i-button>
-
-                        <i-button ng-hide="'##user.type##' == 'table'" class="not-print" label="##word.print_invoice##"
-                            type="print " ng-click="printAccountInvoive(order_invoice)">
-                        </i-button>
-
                     </div>
 
                 </div>

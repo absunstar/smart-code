@@ -262,6 +262,7 @@ app.controller("attend_students", function ($scope, $http, $timeout, $interval) 
           search: $scope.search_customer,
           where: {
             school_grade: $scope.attend_students.school_grade,
+            students_year: $scope.attend_students.students_year,
             hall: $scope.attend_students.hall,
             active: true
           },
@@ -386,23 +387,49 @@ app.controller("attend_students", function ($scope, $http, $timeout, $interval) 
     $scope.attend_students.customer = {};
   };
 
-  $scope.getSchoolGradeList = function (where) {
-    $scope.busy = true;
+  $scope.getSchoolGradesList = function () {
     $http({
       method: "POST",
-      url: "/api/school_grade/all",
+      url: "/api/school_grades/all",
       data: {
-        where: where
+        select: {
+          id: 1,
+          name: 1,
+          code: 1
+        }
       }
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.schoolGradeList = response.data.list;
-        }
+        $scope.schoolGradesList = response.data.list;
       },
       function (err) {
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.getStudentsYearsList = function (school_grade) {
+    $http({
+      method: "POST",
+      url: "/api/students_years/all",
+      data: {
+        select: {
+          id: 1,
+          name: 1,
+          code: 1
+        },
+        where: {
+          active: true,
+          'school_grade.id': school_grade.id
+        }
+      }
+    }).then(
+      function (response) {
         $scope.busy = false;
+        $scope.studentsYearsList = response.data.list;
+      },
+      function (err) {
         $scope.error = err;
       }
     )
@@ -469,7 +496,7 @@ app.controller("attend_students", function ($scope, $http, $timeout, $interval) 
 
   $scope.getAttendStudentsList();
   $scope.getHalls();
-  $scope.getSchoolGradeList();
+  $scope.getSchoolGradesList();
   $scope.getDefaultSettings();
   $scope.loadSchoolYears();
   $scope.getNumberingAuto();

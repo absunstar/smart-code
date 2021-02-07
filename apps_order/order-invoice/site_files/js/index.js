@@ -1047,7 +1047,11 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
           id: 1,
           name: 1,
           image_url: 1,
+          color: 1,
           code: 1
+        },
+        where: {
+          is_pos: true
         }
       }
     }).then(
@@ -1764,7 +1768,14 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
   };
 
 
-  $scope.loadItems = function (group) {
+  $scope.loadItems = function (group, e) {
+
+    document.querySelectorAll('p').forEach(a => {
+      a.classList.remove('my-hover');
+    });
+    e.target.classList.add('my-hover');
+
+
     if (!$scope.openShift) {
 
       $scope.busy = true;
@@ -1785,7 +1796,6 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
           if (response.data.done) {
             $scope.itemsList = response.data.list;
             $scope.current_items = [];
-            site.showModal('#itemsListModal');
           }
         },
         function (err) {
@@ -1835,11 +1845,12 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
           } else {
             if ($scope.defaultSettings.general_Settings.kitchen)
               kitchenBranch = $scope.kitchensList.find(_kitchen => { return _kitchen.id === $scope.defaultSettings.general_Settings.kitchen.id });
-
           }
 
           _branch.stores_list.forEach(_store => {
             if (_store.store && _store.store.id == $scope.order_invoice.store.id) {
+              item.store_count = _store.current_count;
+              item.store_units_list = _store.size_units_list;
               if (_store.hold) foundHold = true;
             }
           });
@@ -1873,6 +1884,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
           size: item.size,
           size_en: item.size_en,
           item_group: item.item_group,
+          size_units_list: item.size_units_list,
           unit: item.unit,
           total: (item.price - item.discount.value),
           vendor: item.vendor,
@@ -1884,6 +1896,74 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
       }
     };
     $scope.calc($scope.order_invoice);
+  };
+
+  $scope.ChangeUnitPatch = function (itm) {
+    $scope.error = '';
+    itm.price = itm.unit.price;
+    itm.average_cost = itm.unit.average_cost;
+
+    $scope.getOfferActive(itm.barcode, offer_active => {
+      if (offer_active) {
+
+        offer_active.size_units_list.forEach(_offerUnit => {
+          if (_offerUnit.id === itm.unit.id) {
+            itm.discount = _offerUnit.discount;
+          }
+        });
+
+      } else itm.discount = itm.unit.discount;
+    });
+
+
+    if (itm.store_units_list && itm.store_units_list.length > 0) {
+      itm.store_units_list.forEach(_store_unit => {
+        if (_store_unit.id == itm.unit.id) {
+
+          if (_store_unit.patch_list && _store_unit.patch_list.length > 0)
+            _store_unit.patch_list.forEach(_p => {
+              _p.current_count = _p.count;
+              _p.count = 0;
+            });
+
+          itm.patch_list = _store_unit.patch_list;
+        }
+      });
+    }
+
+    $scope.calcSize(itm);
+  };
+
+  $scope.getOfferActive = function (barcode, callback) {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/stores_offer/offer_active",
+      data: {
+        where: { date: new Date($scope.order_invoice.date), barcode: barcode },
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.doc) {
+          callback(response.data.doc);
+        } else {
+          callback(null);
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+        callback(null);
+      }
+    )
+  };
+
+  $scope.showEditItem = function (item) {
+    $scope.error = '';
+    $scope.size_edit = item;
+    site.showModal('#editItemModal');
   };
 
   $scope.deleteItemsList = function (item) {
@@ -1953,15 +2033,16 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
   $scope.calcSize = function (size) {
     $scope.error = '';
     $timeout(() => {
+      if (!size.count) size.count = 0;
+      if (!size.price) size.price = 0;
       let discount = 0;
-      if (size.price && size.count) {
-        if (size.discount.type == 'number')
-          discount = size.discount.value * size.count;
-        else if (size.discount.type == 'percent')
-          discount = size.discount.value * (size.price * size.count) / 100;
+      if (size.discount.type == 'number')
+        discount = size.discount.value * size.count;
+      else if (size.discount.type == 'percent')
+        discount = size.discount.value * (size.price * size.count) / 100;
 
-        size.total = (site.toNumber(size.price) * site.toNumber(size.count)) - discount;
-      }
+      size.total = (site.toNumber(size.price) * site.toNumber(size.count)) - discount;
+
       $scope.calc($scope.order_invoice);
     }, 100);
   };
@@ -2193,6 +2274,16 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
       }
     )
   };
+
+  /*  let header = document.getElementById("myDIV");
+   let btns = header.getElementsByClassName("item");
+   for (let i = 0; i < btns.length; i++) {
+     btns[i].addEventListener("click", function () {
+       let current = document.getElementsByClassName("active");
+       current[0].className = current[0].className.replace(" active", "");
+       this.className += " active";
+     });
+   } */
 
   $scope.getNumberingAutoCustomer = function () {
     $scope.error = '';
