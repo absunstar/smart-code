@@ -1,4 +1,4 @@
-<div id="ticketsSelectDoctor" class="modal fade">
+<div id="doctorsVisitsSelectDoctor" class="modal fade">
     <div class="modal-content full">
         <div class="modal-header">
             <span class="close">&times;</span>
@@ -15,10 +15,10 @@
                     <tr>
                         <th>##word.doctor_name##</th>
                         <th>##word.shift_name##</th>
-                        <th>##word.tickets_select##</th>
+                        <th>##word.doctors_visits_select##</th>
 
                     </tr>
-                    <tr ng-repeat="d in ticket.selected_clinic.doctor_list">
+                    <tr ng-repeat="d in doctors_visits.selected_clinic.doctor_list">
                         <td>
                             <i-control disabled ng-model="d.doctor.name"></i-control>
                         </td>
@@ -41,7 +41,7 @@
         <div class="modal-footer center">
             <h2 class="error"> {{error}} </h2>
 
-            <i-button type="close" label="##word.close##" onclick="site.hideModal( '#ticketsSelectTime')"></i-button>
+            <i-button type="close" label="##word.close##" onclick="site.hideModal( '#doctorsVisitsSelectTime')"></i-button>
         </div>
     </div>
 </div>

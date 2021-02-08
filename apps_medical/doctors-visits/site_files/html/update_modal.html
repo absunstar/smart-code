@@ -1,0 +1,23 @@
+<div id="doctorsVisitsUpdateModal" class="modal" fixed>
+            <div class="modal-content ">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.doctors_visits_edit##
+                <i class="fa fa-pencil"></i>
+            </h2>
+        </div>
+
+        <div class="modal-body">
+
+            <div x-import="doctors-visits/content_update.html"></div>
+            <div x-import="doctors-visits/action_info.html"></div>
+        </div>
+
+        <div class="modal-footer center">
+            <h2 class="error"> {{error}} </h2>
+            <i-button type="edit" label="##word.Save_edit##" ng-click="updateDoctorsVisits(doctors_visits)"></i-button>
+            <i-button type="close" label="##word.close##" onclick="site.hideModal( '#doctorsVisitsUpdateModal')"></i-button>
+        </div>
+    </div>
+    </div>

@@ -32,13 +32,13 @@
     {
         "name": "scan_centers_name",
         "en": "Scan Lab Name",
-        "ar": "اسم المعمل اشعة "
+        "ar": "إسم المعمل اشعة "
     }
     ,
     {
         "name": "scan_names",
         "en": "Scan Names",
-        "ar": "اسماء الاشعات"
+        "ar": "إسماء الاشعات"
     }
 
     

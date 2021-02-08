@@ -3,7 +3,7 @@
 
     {"name" : "lawsuit_status" , "en" : "Lawsuit Status" , "ar" : "حالات الدعاوي"},
     {"name" : "lawsuit_status_code" , "en" : "Lawsuit Status Code" , "ar" : "كود حالة "},
-    {"name" : "lawsuit_status_name" , "en" : "Lawsuit Status Name" , "ar" : "اسم الحالة"},
+    {"name" : "lawsuit_status_name" , "en" : "Lawsuit Status Name" , "ar" : "إسم الحالة"},
 
     {"name" : "lawsuit_status_new" , "en" : "New Lawsuit Status" , "ar" : "حالة دعوى جديدة"},
     {"name" : "lawsuit_status_details" , "en" : "Lawsuit Status Details" , "ar" : "تفاصيل حالة دعوى"},

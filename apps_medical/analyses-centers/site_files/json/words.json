@@ -32,13 +32,13 @@
     {
         "name": "analyses_centers_name",
         "en": "analyses Lab Name",
-        "ar": "اسم المعمل تحاليل "
+        "ar": "إسم المعمل تحاليل "
     }
     ,
     {
         "name": "analyses_names",
         "en": "analyses Names",
-        "ar": "اسماء التحاليل"
+        "ar": "إسماء التحاليل"
     }
 
     

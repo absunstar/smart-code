@@ -16,7 +16,7 @@
     { "name": "limit","en": "Limited Show Data", "ar": "الحد الاقصى لعرض البيانات"},
     
     
-    { "name": "amounts_in_vendor_name","en": "vendor Name", "ar": "اسم الشركة "},
+    { "name": "amounts_in_vendor_name","en": "vendor Name", "ar": "إسم الشركة "},
     
     { "name": "amounts_in_empty_search","en": "Empty Fields", "ar": "تفريغ الحقول "},
 
@@ -28,10 +28,10 @@
 
     { "name": "amounts_in_date_to","en": "Date To ", "ar": "الى تاريخ"},
 
-    { "name": "amounts_in_employees","en": "From Employee", "ar": " اسم الموظف "},
+    { "name": "amounts_in_employees","en": "From Employee", "ar": " إسم الموظف "},
   
     { "name": "amounts_in_img","en": "Image", "ar": "الشعار"},
 
-    { "name": "amounts_in_customers","en": "Customer Name", "ar": "اسم العميل"}
+    { "name": "amounts_in_customers","en": "Customer Name", "ar": "إسم العميل"}
    
 ]

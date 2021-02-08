@@ -2,6 +2,6 @@
     "module_name" : "public" ,
     "name": "doctors_admin",
     "en": "Doctors Admin",
-    "ar": "ادارة الأطباء",
+    "ar": "إدارة الأطباء",
     "permissions": ["doctors_manage"]
 }]

@@ -13,29 +13,29 @@
     },
 
     {
-        "id" : "vendors_name_ar" ,"en":"Write Vendor Name In Arabic ", "ar" : "يكتب هنا اسم المورد بالعربية" 
+        "id" : "vendors_name_ar" ,"en":"Write Vendor Name In Arabic ", "ar" : "يكتب هنا إسم المورد بالعربية" 
     },
     {
         "id" : "vendors_name_ar" ,"en":"Couldn't be leave blank ", "ar" : "لايمكن ان يترك فارغا" 
     },
     {
-        "id" : "vendors_name_ar" ,"en":"Name must be in arabic only ", "ar" : "يكتب اسم المورد بالعربية فقط" 
+        "id" : "vendors_name_ar" ,"en":"Name must be in arabic only ", "ar" : "يكتب إسم المورد بالعربية فقط" 
     },
     {
-        "id" : "vendors_name_ar" ,"en":"Max length is 60 digit ", "ar" : "الحد الأقصي لطول الاسم 60 حرف" 
+        "id" : "vendors_name_ar" ,"en":"Max length is 60 digit ", "ar" : "الحد الأقصي لطول الإسم 60 حرف" 
     },
 
     {
-        "id" : "vendors_name_en" ,"en":"Write Vendor Name In English ", "ar" : "يكتب هنا اسم المورد بالإنجليزية" 
+        "id" : "vendors_name_en" ,"en":"Write Vendor Name In English ", "ar" : "يكتب هنا إسم المورد بالإنجليزية" 
     },
     {
         "id" : "vendors_name_en" ,"en":"Could be leave blank ", "ar" : "يمكن ان يترك فارغا" 
     },
     {
-        "id" : "vendors_name_en" ,"en":"Name must be in English only ", "ar" : "يكتب اسم المورد بالإنجليزية فقط" 
+        "id" : "vendors_name_en" ,"en":"Name must be in English only ", "ar" : "يكتب إسم المورد بالإنجليزية فقط" 
     },
     {
-        "id" : "vendors_name_en" ,"en":"Max length is 60 digit ", "ar" : "الحد الأقصي لطول الاسم 60 حرف" 
+        "id" : "vendors_name_en" ,"en":"Max length is 60 digit ", "ar" : "الحد الأقصي لطول الإسم 60 حرف" 
     },
 
 

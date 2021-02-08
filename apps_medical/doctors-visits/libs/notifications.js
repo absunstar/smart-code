@@ -1,23 +1,26 @@
 module.exports = function init(site) {
 
-  let collection_name = 'tickets'
+  let collection_name = 'doctors_visits'
 
   let source = {
-    name: 'Tickets System',
-    ar: 'نظام التذاكر'
+    name: 'Doctors Visits System',
+    ar: 'نظام زيارات الأطباء'
   }
-  let image_url = '/images/ticket.png'
+
+  let image_url = '/images/doctors_visits.png'
   let add_message = {
-    name: 'New Tickets Added',
-    ar: 'تم أضافة تذكرة جديدة'
+    name: 'New Doctors Visits Added',
+    ar: 'تم إضافة زيارة طبيب جديدة'
   }
+
   let update_message = {
-    name: ' Tickets Updated',
-    ar: 'تم تعديل تذكرة'
+    name: ' Doctors Visits Updated',
+    ar: 'تم تعديل زيارة طبيب'
   }
+
   let delete_message = {
-    name: ' Tickets Deleted',
-    ar: 'تم حذف تذكرة '
+    name: ' Doctors Visits Deleted',
+    ar: 'تم حذف زيارة طبيب '
   }
 
   site.on('mongodb after insert', function (result) {

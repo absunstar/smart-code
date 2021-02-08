@@ -1,0 +1,7 @@
+[{
+    "module_name" : "public" ,
+    "name": "doctors_visits_admin",
+    "en": "Doctors Visits Admin",
+    "ar": "إدارة زيارات الأطباء",
+    "permissions": ["doctors_visits_manage"]
+}]

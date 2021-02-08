@@ -3,7 +3,7 @@
         "id" : "packages_company" ,"en":"Please Select Company", "ar" : "يرجي اختيار الشركة" 
     },
     {
-        "id" : "packages_name" ,"en":"Please Enter Package Name", "ar" : "يرجي كتابة اسم الباقة" 
+        "id" : "packages_name" ,"en":"Please Enter Package Name", "ar" : "يرجي كتابة إسم الباقة" 
     },
     {
         "id" : "packages_status" ,"en":"Package State", "ar" : "يرجي تحديد حالة الباقة" 

@@ -5,7 +5,7 @@
     {"name" : "seating_n" , "en" : "Seating Number" , "ar" : "رقم الجلوس"},
     {"name" : "seating_numbers_menus" , "en" : "Distribution Seating Number Menu" , "ar" : "قائمة توزيع أرقام الجلوس"},
     {"name" : "seating_numbers_code" , "en" : "Distribution Seating Number Code" , "ar" : "كود توزيع أرقام الجلوس"},
-    {"name" : "seating_numbers_name" , "en" : "Distribution Seating Number Name" , "ar" : "اسم توزيع أرقام الجلوس"},
+    {"name" : "seating_numbers_name" , "en" : "Distribution Seating Number Name" , "ar" : "إسم توزيع أرقام الجلوس"},
     {"name" : "seating_numbers_new" , "en" : "New Distribution Seating Number" , "ar" : " توزيع أرقام جلوس جديدة"},
     {"name" : "seating_numbers_details" , "en" : "Distribution Seating Number Details" , "ar" : "تفاصيل توزيع أرقام الجلوس"},
     {"name" : "seating_numbers_update" , "en" : "Edit Distribution Seating Number" , "ar" : "تعديل توزيع أرقام الجلوس"},

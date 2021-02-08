@@ -715,7 +715,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
       }, {
         type: 'invoice-item-title',
         count: 'العدد',
-        name: 'الاسم',
+        name: 'الإسم',
         price: 'السعر'
       }, {
         type: 'invoice-item-title',

@@ -5,7 +5,7 @@
     {"name" : "rogatory_start_date" , "en" : "Rogatory Start Date" , "ar" : "تاريخ إضافة التوكيل"},
     {"name" : "rogatory_add_menus" , "en" : "Rogatory Add Menu" , "ar" : "قائمة إضافة التوكيل"},
     {"name" : "rogatory_add_code" , "en" : "Rogatory Add Code" , "ar" : "كود إضافة توكيل"},
-    {"name" : "rogatory_add_name" , "en" : "Rogatory Add Name" , "ar" : "اسم توكيل"},
+    {"name" : "rogatory_add_name" , "en" : "Rogatory Add Name" , "ar" : "إسم توكيل"},
     {"name" : "rogatory_number" , "en" : "Rogatory Number" , "ar" : "رقم توكيل"},
     {"name" : "rogatory_year" , "en" : "For A Year" , "ar" : "لسنة"},
     {"name" : "rogatory_character" , "en" : "Rogatory Character" , "ar" : "حرف التوكيل"},

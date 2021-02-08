@@ -1,0 +1,45 @@
+<div id="dynamicDoctorsVisitsModal" class="modal">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.doctors_visits_book##
+                <i class="fa fa-file"></i>
+            </h2>
+        </div>
+
+        <div class="modal-body">
+            <div class="form">
+                <div class="row">
+
+                 
+                    <i-list help-id="" v="r" class="col3" label="##word.clinic##" ng-model="dynamic_doctors_visits.clinic"
+                        display="name" items="dynamic_doctors_visits.$clinic_list" ng-search="_search.$clinic_doctors_visits"
+                        ng-change="getClincDoctorList(dynamic_doctors_visits.clinic)"></i-list>
+
+                    <i-list help-id="" v="r" class="col3" label="##word.doctor##" ng-model="dynamic_doctors_visits.doctor"
+                        display="name" items="dynamic_doctors_visits.$doctor_list" ng-search="_search.$doctor_doctors_visits"></i-list>
+
+                    <i-list help-id="" v="r" class="col3" label="##word.shift##" ng-model="dynamic_doctors_visits.shift"
+                        display="name" items="dynamic_doctors_visits.doctor.$shift_list" ng-search="_search.$doctor_doctors_visits">
+                    </i-list>
+
+                    <i-control help-id="" v="r" class="col2" type="number" label="##word.period##"
+                        ng-model="dynamic_doctors_visits.period_doctors_visits"></i-control>
+                    <label> يوم </label>
+                </div>
+
+            </div>
+        </div>
+
+        <h2 class="error"> {{error}} </h2>
+
+        <div class="modal-footer center">
+            <i-button type="add" label="##word.add##" ng-click="GenerateDoctorsVisits()"></i-button>
+            <i-button type="print" label="##word.print##" onclick="site.print('#v1')"></i-button>
+            <i-button type="close" label="##word.close##" onclick="site.hideModal('#dynamicDoctorsVisitsModal')"></i-button>
+        </div>
+    </div>
+
+</div>

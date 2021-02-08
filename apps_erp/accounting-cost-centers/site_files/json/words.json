@@ -27,6 +27,6 @@
     {"name" : "accounting_cost_centers_code" , "en" : "Centers Code" , "ar" : "كود المركز"},
 
     {"name" : "accounting_cost_centers_code" , "en" : "Category Code" , "ar" : "كود التصنيف"},
-    {"name" : "accounting_cost_centers_name_ar" , "en" : "Category Name Arabic" , "ar" : "اسم مركز التكلفة عربي"}, 
-    {"name" : "accounting_cost_centers_name_en" , "en" : "Category Name English" , "ar" : "اسم مركز التكلفة إنجليزي"}   
+    {"name" : "accounting_cost_centers_name_ar" , "en" : "Category Name Arabic" , "ar" : "إسم مركز التكلفة عربي"}, 
+    {"name" : "accounting_cost_centers_name_en" , "en" : "Category Name English" , "ar" : "إسم مركز التكلفة إنجليزي"}   
 ]

@@ -276,7 +276,7 @@
     {"name" : "customers_groups_name" , "en" : "Clients Groups" , "ar" : "مجموعات الموكلين"},
     {"name" : "customers_group_menus" , "en" : "Clients Group Menu" , "ar" : "قائمة مجموعة الموكلين"},
     {"name" : "customers_group_code" , "en" : "Clients Group Code" , "ar" : "كود مجموعة الموكلين"},
-    {"name" : "customers_group_name" , "en" : "Clients Group Name" , "ar" : "اسم مجموعة الموكلين"},
+    {"name" : "customers_group_name" , "en" : "Clients Group Name" , "ar" : "إسم مجموعة الموكلين"},
 
     {"name" : "customers_group_new" , "en" : "New Clients Group" , "ar" : "مجموعة موكلين جديدة"},
     {"name" : "customers_group_details" , "en" : "Clients Group Details" , "ar" : "تفاصيل مجموعة موكلين"},

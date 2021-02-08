@@ -4,7 +4,7 @@
     {"name" : "journal_entry" , "en" : "Journal Entries" , "ar" : "قيد اليومية"},
     {"name" : "journal_entries" , "en" : "Journal Entries" , "ar" : "قيود اليومية"},
     {"name" : "journal_entries_code" , "en" : "Journal Entry Code" , "ar" : "كود نوع "},
-    {"name" : "journal_entries_name" , "en" : "Journal Entry Name" , "ar" : "اسم النوع"},
+    {"name" : "journal_entries_name" , "en" : "Journal Entry Name" , "ar" : "إسم النوع"},
     {"name" : "journal_entries_new" , "en" : "New Journal Entry" , "ar" : "قيد يومية جديد"},
     {"name" : "journal_entries_details" , "en" : "Journal Entry Details" , "ar" : "تفاصيل قيد يومية"},
     {"name" : "journal_entries_update" , "en" : "Edit Journal Entry" , "ar" : "تعديل قيد يومية"},

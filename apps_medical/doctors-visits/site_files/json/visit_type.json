@@ -15,5 +15,17 @@
         "name": "consultation",
         "name_en": "Consultation",
         "ar": "إستشارة"
+    },
+    {
+        "id": 4,
+        "name": "session",
+        "name_en": "Session",
+        "ar": "جلسة"
+    },
+    {
+        "id": 5,
+        "name": "external_visit",
+        "name_en": "External Visit",
+        "ar": "زيارة خارجية"
     }
 ]

@@ -1,5 +1,5 @@
-<div id="ticketsSelectTimes" class="modal fade">
-    <div class="modal-content full">
+<div id="doctorsVisitsSelectTimes" class="modal fade">
+    <div class="modal-content small">
         <div class="modal-header">
             <span class="close">&times;</span>
             <h2>
@@ -19,7 +19,7 @@
                         <th>##word.work_to##</th>
                     </tr>
 
-                    <tr ng-repeat="t in ticket.selected_shift.times_list">
+                    <tr ng-repeat="t in doctors_visits.selected_shift.times_list">
                         <td>
                             <br>
                             <p class="blue">{{t.day.ar}}</p>
@@ -49,7 +49,7 @@
         <div class="modal-footer center">
             <h2 class="error"> {{error}} </h2>
 
-            <i-button type="close" label="##word.close##" onclick="site.hideModal('#ticketsSelectTimes')"></i-button>
+            <i-button type="close" label="##word.close##" onclick="site.hideModal('#doctorsVisitsSelectTimes')"></i-button>
         </div>
     </div>
 </div>

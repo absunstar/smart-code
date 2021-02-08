@@ -7,7 +7,7 @@
     {"name" : "session_start_date" , "en" : "Session Date" , "ar" : "تاريخ الجلسة"},
     {"name" : "session_add_menus" , "en" : "Session Add Menu" , "ar" : "قائمة إضافة الجلسة"},
     {"name" : "session_add_code" , "en" : "Session Add Code" , "ar" : "كود إضافة جلسة"},
-    {"name" : "session_add_name" , "en" : "Session Add Name" , "ar" : "اسم جلسة"},
+    {"name" : "session_add_name" , "en" : "Session Add Name" , "ar" : "إسم جلسة"},
     {"name" : "session_number" , "en" : "Session Number" , "ar" : "رقم جلسة"},
     {"name" : "session_year" , "en" : "For A Year" , "ar" : "لسنة"},
     {"name" : "session_character" , "en" : "Session Character" , "ar" : "حرف الجلسة"},

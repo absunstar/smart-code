@@ -52,6 +52,17 @@
                                     items="specialList" ng-search="_search.$specialty_name">
                                 </i-list>
 
+                                <i-control type="number" class="col2" label="##word.detection_Duration##"
+                                    ng-model="clinic.detection_Duration"></i-control>
+                                <div class="col1">
+                                    <br>
+                                    <br>
+                                    <p class="bold black">##word.minute##</p>
+                                </div>
+
+                            </div>
+
+                            <div class="row">
                                 <i-control type="number" class="col2" label="##word.detection_price##"
                                     ng-model="clinic.detection_price.detection"></i-control>
 
@@ -61,13 +72,11 @@
                                 <i-control type="number" class="col2" label="##word.consultation##"
                                     ng-model="clinic.detection_price.consultation"></i-control>
 
-                                <i-control type="number" class="col2" label="##word.detection_Duration##"
-                                    ng-model="clinic.detection_Duration"></i-control>
-                                <div class="col1">
-                                    <br>
-                                    <br>
-                                    <p class="bold black">##word.minute##</p>
-                                </div>
+                                <i-control type="number" class="col2" label="##word.session##"
+                                    ng-model="clinic.detection_price.session"></i-control>
+
+                                <i-control type="number" class="col2" label="##word.external_visit##"
+                                    ng-model="clinic.detection_price.external_visit"></i-control>
 
                             </div>
 
@@ -165,7 +174,7 @@
                                     items="doctorList" ng-selected="item.specialty.id === clinic.specialty.id"
                                     display="name" ng-search="_search.$branch_doctors"></i-list>
 
-                                <i-list help-id="" primary="name" class="col2" label="##word.shift_name##"
+                                <i-list help-id="" primary="name" class="col3" label="##word.shift_name##"
                                     ng-model="doctor.shift" items="clinic.shift_list" display="name"
                                     ng-search="_search.$branch_shift">
                                 </i-list>
@@ -194,10 +203,16 @@
 
                                 <i-control type="number" class="col2" label="##word.consultation##"
                                     ng-model="doctor.detection_price.consultation"></i-control>
+
+                                <i-control type="number" class="col2" label="##word.session##"
+                                    ng-model="doctor.detection_price.session"></i-control>
+
+                                <i-control type="number" class="col2" label="##word.external_visit##"
+                                    ng-model="doctor.detection_price.external_visit"></i-control>
                             </div>
                             <br>
                             <br>
-                            <hr style="height:5px;color:grey;background-color:blue">
+                            <hr style="height:5px;color:grey;background-color:rgb(0, 0, 199)">
                         </div>
                     </div>
                 </fieldset>
@@ -216,7 +231,7 @@
                                 items="nurseList" ng-selected="item.specialty.id == clinic.specialty.id" display="name"
                                 ng-search="_search.$branch_nurse"></i-list>
 
-                            <i-list help-id="" primary="name" class="col2" label="##word.shift_name##"
+                            <i-list help-id="" primary="name" class="col3" label="##word.shift_name##"
                                 ng-model="nurse.shift" items="clinic.shift_list" display="name"
                                 ng-search="_search.$branch_shift"></i-list>
                             <i-button type="delete default" class="col1"
@@ -240,8 +255,8 @@
                     <div class="row">
                         <div class="row" ng-repeat="vacation in clinic.vacation_list">
 
-                            <i-control help-id="" class="col3" label="##word.vacation_name##"
-                                ng-model="vacation.name"></i-control>
+                            <i-control help-id="" class="col3" label="##word.vacation_name##" ng-model="vacation.name">
+                            </i-control>
 
                             <i-date2 class="col4" ng-model="vacation.date" label="##word.date##"></i-date2>
                             <div class="col1"></div>

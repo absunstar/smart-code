@@ -55,6 +55,26 @@
                                 <td class="center green">{{clinic.detection_price}}</td>
                             </tr>
 
+                            <tr>
+                                <td class="title">##word.re_detection##</td>
+                                <td class="center green">{{clinic.re_detection}}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="title">##word.consultation##</td>
+                                <td class="center green">{{clinic.consultation}}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="title">##word.session##</td>
+                                <td class="center green">{{clinic.session}}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="title">##word.external_visit##</td>
+                                <td class="center green">{{clinic.external_visit}}</td>
+                            </tr>
+
                             <tr ng-show="clinic.detection_Duration">
                                 <td class="title">##word.detection_Duration##</td>
                                 <td class="center">{{clinic.detection_Duration}} ##word.minute##</td>
@@ -112,12 +132,18 @@
                             <th>##word.doctors_name##</th>
                             <th>##word.shift_name##</th>
                             <th>##word.detection_price##</th>
+                            <th>##word.re_detection##</th>
+                            <th>##word.consultation##</th>
+                            <th>##word.session##</th>
                             <th>##word.detection_Duration##</th>
                         </tr>
                         <tr ng-repeat="doctor in clinic.doctor_list">
                             <td class="center">{{doctor.doctor.name}}</td>
                             <td class="center blue">{{doctor.shift.name}}</td>
                             <td class="center green">{{doctor.detection_price}}</td>
+                            <td class="center green">{{doctor.re_detection}}</td>
+                            <td class="center green">{{doctor.consultation}}</td>
+                            <td class="center green">{{doctor.session}}</td>
                             <td class="center">{{doctor.detection_Duration}} <b
                                     ng-show="doctor.detection_Duration">##word.minute##</b></td>
 

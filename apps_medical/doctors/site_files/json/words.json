@@ -1,18 +1,17 @@
 [{
         "name": "doctors",
         "en": "Doctors",
-        "ar": "الاطباء"
+        "ar": "الأطباء"
     },
     {
         "name": "doctors_new",
         "en": "New Doctor",
         "ar": "طبيب  جديد"
     },
-
     {
         "name": "doctors_add",
         "en": "Add Doctor",
-        "ar": "اضافة طبيب "
+        "ar": "إضافة طبيب "
     },
     {
         "name": "doctors_edit",
@@ -32,7 +31,7 @@
     {
         "name": "doctors_name",
         "en": "Doctor Name",
-        "ar": "اسم الطبيب "
+        "ar": "إسم الطبيب "
     }
 
 

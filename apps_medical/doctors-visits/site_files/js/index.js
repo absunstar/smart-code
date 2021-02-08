@@ -1,11 +1,11 @@
-app.controller("tickets", function ($scope, $http, $timeout) {
+app.controller("doctors_visits", function ($scope, $http, $timeout) {
   $scope._search = {};
 
-  $scope.ticket = {};
+  $scope.doctors_visits = {};
 
-  $scope.displayAddTicket = function () {
+  $scope.displayAddDoctorsVisits = function () {
     $scope.error = '';
-    $scope.ticket = {};
+    $scope.doctors_visits = {};
     $scope.patient_search = '';
     $scope.doctor_search = '';
     $scope.clinic_search = {};
@@ -13,8 +13,8 @@ app.controller("tickets", function ($scope, $http, $timeout) {
     $scope.spicialty = false;
     $scope.doctor = false;
 
-    $scope.ticket = {
-      image_url: '/images/ticket.png',
+    $scope.doctors_visits = {
+      image_url: '/images/doctors_visits.png',
       active: true,
       date: new Date(),
       status: $scope.statusList[0],
@@ -36,31 +36,31 @@ app.controller("tickets", function ($scope, $http, $timeout) {
 
     if ($scope.defaultSettings.general_Settings) {
       if ($scope.defaultSettings.general_Settings.specialty) {
-        $scope.ticket.specialty = $scope.specialtyList.find(_specialty => { return _specialty.id === $scope.defaultSettings.general_Settings.specialty.id });
+        $scope.doctors_visits.specialty = $scope.specialtyList.find(_specialty => { return _specialty.id === $scope.defaultSettings.general_Settings.specialty.id });
       }
 
       if ($scope.defaultSettings.general_Settings.clinic)
-        $scope.ticket.clinic = $scope.clinicList.find(_clinic => { return _clinic.id === $scope.defaultSettings.general_Settings.clinic.id });
+        $scope.doctors_visits.clinic = $scope.clinicList.find(_clinic => { return _clinic.id === $scope.defaultSettings.general_Settings.clinic.id });
 
-      if ($scope.defaultSettings.general_Settings.ticket_type)
-        $scope.ticket.ticket_type = $scope.defaultSettings.general_Settings.ticket_type;
+      if ($scope.defaultSettings.general_Settings.visit_type)
+        $scope.doctors_visits.visit_type = $scope.defaultSettings.general_Settings.visit_type;
 
     };
-    site.showModal('#ticketAddModal');
+    site.showModal('#doctorsVisitsAddModal');
 
   };
 
-  $scope.addTicket = function () {
+  $scope.addDoctorsVisits = function () {
     $scope.error = '';
-    const v = site.validated('#ticketAddModal');
+    const v = site.validated('#doctorsVisitsAddModal');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
     }
     $scope.clinic.vacation_list = $scope.clinic.vacation_list || [];
-    let found_vacation = $scope.clinic.vacation_list.some(_vacation => new Date($scope.ticket.date) == new Date(_vacation.date));
-  
-    if(found_vacation){
+    let found_vacation = $scope.clinic.vacation_list.some(_vacation => new Date($scope.doctors_visits.date) == new Date(_vacation.date));
+
+    if (found_vacation) {
       $scope.error = '##word.cannot_booked_holiday_clinic##';
       return;
 
@@ -69,14 +69,14 @@ app.controller("tickets", function ($scope, $http, $timeout) {
     $scope.busy = true;
     $http({
       method: "POST",
-      url: "/api/tickets/add",
-      data: $scope.ticket
+      url: "/api/doctors_visits/add",
+      data: $scope.doctors_visits
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#ticketAddModal');
-          $scope.getTicketList();
+          site.hideModal('#doctorsVisitsAddModal');
+          $scope.getDoctorsVisitsList();
         } else {
           $scope.error = 'Please Login First';
           if (response.data.error.like('*Must Enter Code*')) {
@@ -90,9 +90,9 @@ app.controller("tickets", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.displayDynamicTicket = function () {
+  $scope.displayDynamicDoctorsVisits = function () {
     $scope.error = '';
-    $scope.ticket = {};
+    $scope.doctors_visits = {};
     $scope.patient_search = '';
     $scope.doctor_search = '';
     $scope.clinic_search = {};
@@ -100,8 +100,8 @@ app.controller("tickets", function ($scope, $http, $timeout) {
     $scope.spicialty = false;
     $scope.doctor = false;
 
-    $scope.dynamic_ticket = {
-      image_url: '/images/ticket.png',
+    $scope.dynamic_doctors_visits = {
+      image_url: '/images/doctors_visits.png',
       active: true,
       status: $scope.statusList[4],
       medicines_list: [{
@@ -118,13 +118,13 @@ app.controller("tickets", function ($scope, $http, $timeout) {
       }],
 
     };
-    site.showModal('#dynamicTicketModal');
+    site.showModal('#dynamicDoctorsVisitsModal');
 
   };
 
-  $scope.GenerateTickets = function () {
+  $scope.GenerateDoctorsVisits = function () {
     $scope.error = '';
-    const v = site.validated('#dynamicTicketModal');
+    const v = site.validated('#dynamicDoctorsVisitsModal');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
@@ -133,28 +133,28 @@ app.controller("tickets", function ($scope, $http, $timeout) {
 
     $http({
       method: "POST",
-      url: "/api/tickets/generate_tickets",
+      url: "/api/doctors_visits/generate_doctors_visits",
       data: {
 
         clinic: {
-          id: $scope.dynamic_ticket.clinic.id,
-          name: $scope.dynamic_ticket.clinic.name
+          id: $scope.dynamic_doctors_visits.clinic.id,
+          name: $scope.dynamic_doctors_visits.clinic.name
         },
         doctor: {
-          detection_Duration: $scope.dynamic_ticket.doctor.detection_Duration,
-          id: $scope.dynamic_ticket.doctor.id,
-          name: $scope.dynamic_ticket.doctor.name,
-          specialty: $scope.dynamic_ticket.doctor.specialty
+          detection_Duration: $scope.dynamic_doctors_visits.doctor.detection_Duration,
+          id: $scope.dynamic_doctors_visits.doctor.id,
+          name: $scope.dynamic_doctors_visits.doctor.name,
+          specialty: $scope.dynamic_doctors_visits.doctor.specialty
         },
-        shift: $scope.dynamic_ticket.shift,
-        period_ticket: $scope.dynamic_ticket.period_ticket
+        shift: $scope.dynamic_doctors_visits.shift,
+        period_doctors_visits: $scope.dynamic_doctors_visits.period_doctors_visits
       }
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#dynamicTicketModal');
-          $scope.getTicketList();
+          site.hideModal('#dynamicDoctorsVisitsModal');
+          $scope.getDoctorsVisitsList();
         } else {
           $scope.error = 'Please Login First';
         }
@@ -165,40 +165,40 @@ app.controller("tickets", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.displayUpdateTicket = function (ticket) {
+  $scope.displayUpdateDoctorsVisits = function (doctors_visits) {
     $scope.error = '';
-    $scope.detailsTicket(ticket);
-    /*   $scope.ticket = {
+    $scope.detailsDoctorsVisits(doctors_visits);
+    /*   $scope.doctors_visits = {
         status: $scope.statusList[0],
   
       }; */
-    site.showModal('#ticketUpdateModal');
-    document.querySelector('#ticketUpdateModal .tab-link').click();
+    site.showModal('#doctorsVisitsUpdateModal');
+    document.querySelector('#doctorsVisitsUpdateModal .tab-link').click();
   };
 
-  $scope.updateTicket = function () {
+  $scope.updateDoctorsVisits = function () {
     $scope.error = '';
-    const v = site.validated('#ticketUpdateModal');
+    const v = site.validated('#doctorsVisitsUpdateModal');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
     }
-    if ($scope.ticket.status.id === 5) {
+    if ($scope.doctors_visits.status.id === 5) {
 
-      $scope.ticket.status = $scope.statusList[0];
+      $scope.doctors_visits.status = $scope.statusList[0];
     }
     $scope.busy = true;
     $http({
       method: "POST",
-      url: "/api/tickets/update",
-      data: $scope.ticket
+      url: "/api/doctors_visits/update",
+      data: $scope.doctors_visits
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#ticketUpdateModal');
-          site.hideModal('#ticketViewModal');
-          $scope.getTicketList();
+          site.hideModal('#doctorsVisitsUpdateModal');
+          site.hideModal('#doctorsVisitsViewModal');
+          $scope.getDoctorsVisitsList();
         } else {
           $scope.error = 'Please Login First';
         }
@@ -215,15 +215,15 @@ app.controller("tickets", function ($scope, $http, $timeout) {
     $scope.busy = true;
     $http({
       method: "POST",
-      url: "/api/tickets/update",
-      data: $scope.ticket
+      url: "/api/doctors_visits/update",
+      data: $scope.doctors_visits
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#ticketViewModal');
-          site.hideModal('#ticketNotes');
-          $scope.getTicketList();
+          site.hideModal('#doctorsVisitsViewModal');
+          site.hideModal('#doctorsVisitsNotes');
+          $scope.getDoctorsVisitsList();
         } else {
           $scope.error = 'Please Login First';
         }
@@ -240,8 +240,8 @@ app.controller("tickets", function ($scope, $http, $timeout) {
     $scope.busy = true;
     $http({
       method: "POST",
-      url: "/api/tickets/update",
-      data: $scope.ticket
+      url: "/api/doctors_visits/update",
+      data: $scope.doctors_visits
     }).then(
       function (response) {
         $scope.busy = false;
@@ -255,30 +255,30 @@ app.controller("tickets", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.displayDetailsTicket = function (ticket) {
+  $scope.displayDetailsDoctorsVisits = function (doctors_visits) {
     $scope.error = '';
-    $scope.detailsTicket(ticket);
-    $scope.ticket = {};
-    site.showModal('#ticketViewModal');
-    document.querySelector('#ticketViewModal .tab-link').click();
+    $scope.detailsDoctorsVisits(doctors_visits);
+    $scope.doctors_visits = {};
+    site.showModal('#doctorsVisitsViewModal');
+    document.querySelector('#doctorsVisitsViewModal .tab-link').click();
 
   };
 
-  $scope.detailsTicket = function (ticket) {
+  $scope.detailsDoctorsVisits = function (doctors_visits) {
     $scope.busy = true;
     $scope.error = '';
     $http({
       method: "POST",
-      url: "/api/tickets/view",
+      url: "/api/doctors_visits/view",
       data: {
-        id: ticket.id
+        id: doctors_visits.id
       }
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          $scope.ticket = response.data.doc;
-          $scope.clinicList = [$scope.ticket.selected_clinic];
+          $scope.doctors_visits = response.data.doc;
+          $scope.clinicList = [$scope.doctors_visits.selected_clinic];
 
         } else {
           $scope.error = response.data.error;
@@ -290,32 +290,32 @@ app.controller("tickets", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.displayDeleteTicket = function (ticket) {
+  $scope.displayDeleteDoctorsVisits = function (doctors_visits) {
     $scope.error = '';
-    $scope.detailsTicket(ticket);
-    $scope.ticket = {};
-    site.showModal('#ticketDeleteModal');
-    document.querySelector('#ticketDeleteModal .tab-link').click();
+    $scope.detailsDoctorsVisits(doctors_visits);
+    $scope.doctors_visits = {};
+    site.showModal('#doctorsVisitsDeleteModal');
+    document.querySelector('#doctorsVisitsDeleteModal .tab-link').click();
 
   };
 
-  $scope.deleteTicket = function () {
+  $scope.deleteDoctorsVisits = function () {
     $scope.busy = true;
     $scope.error = '';
 
     $http({
       method: "POST",
-      url: "/api/tickets/delete",
+      url: "/api/doctors_visits/delete",
       data: {
-        id: $scope.ticket.id
+        id: $scope.doctors_visits.id
       }
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#ticketDeleteModal');
-          site.hideModal('#ticketViewModal');
-          $scope.getTicketList();
+          site.hideModal('#doctorsVisitsDeleteModal');
+          site.hideModal('#doctorsVisitsViewModal');
+          $scope.getDoctorsVisitsList();
         } else {
           $scope.error = response.data.error;
         }
@@ -326,12 +326,12 @@ app.controller("tickets", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.getTicketList = function (where) {
+  $scope.getDoctorsVisitsList = function (where) {
     $scope.busy = true;
     $scope.list = [];
     $http({
       method: "POST",
-      url: "/api/tickets/all",
+      url: "/api/doctors_visits/all",
       data: {
         where: where
       }
@@ -341,7 +341,7 @@ app.controller("tickets", function ($scope, $http, $timeout) {
         if (response.data.done && response.data.list.length > 0) {
           $scope.list = response.data.list;
           $scope.count = response.data.count;
-          site.hideModal('#ticketSearchModal');
+          site.hideModal('#doctorsVisitsSearchModal');
           $scope.search = {};
 
         }
@@ -419,7 +419,7 @@ app.controller("tickets", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.getClinicBookList = function (ticket) {
+  $scope.getClinicBookList = function (doctors_visits) {
     $scope.busy = true;
 
 
@@ -428,9 +428,9 @@ app.controller("tickets", function ($scope, $http, $timeout) {
       url: "/api/clinics/all",
       data: {
         where: {
-          specialty: ticket.specialty,
-          clinic: ticket.clinic,
-          doctor: ticket.doctor,
+          specialty: doctors_visits.specialty,
+          clinic: doctors_visits.clinic,
+          doctor: doctors_visits.doctor,
           active: true
         },
         /*  select: {
@@ -794,72 +794,99 @@ app.controller("tickets", function ($scope, $http, $timeout) {
 
   }
 
-  $scope.showDoctors = function (clinic) {
-    $scope.ticket.selected_clinic = clinic;
-    site.showModal('#ticketsSelectDoctor');
-  };
+  /*   $scope.showDoctors = function (clinic) {
+      $scope.doctors_visits.selected_clinic = clinic;
+      site.showModal('#doctorsVisitsSelectDoctor');
+    };
+   */
 
-  $scope.changeTicketPrice = function () {
-    if ($scope.ticket.ticket_type && $scope.ticket.ticket_type.id) {
+  $scope.changeDoctorsVisitsPrice = function () {
+    if ($scope.doctors_visits.visit_type && $scope.doctors_visits.visit_type.id) {
 
-      if ($scope.ticket.ticket_type.id === 1) {
-        if ($scope.ticket.doctor_price && $scope.ticket.doctor_price.detection)
-          $scope.ticket.ticket_price = $scope.ticket.doctor_price.detection;
-        else if ($scope.ticket.clinic_price && $scope.ticket.clinic_price.detection)
-          $scope.ticket.ticket_price = $scope.ticket.clinic_price.detection;
+      if ($scope.doctors_visits.visit_type.id === 1) {
+        if ($scope.doctors_visits.doctor_price && $scope.doctors_visits.doctor_price.detection)
+          $scope.doctors_visits.doctors_visits_price = $scope.doctors_visits.doctor_price.detection;
+        else if ($scope.doctors_visits.clinic_price && $scope.doctors_visits.clinic_price.detection)
+          $scope.doctors_visits.doctors_visits_price = $scope.doctors_visits.clinic_price.detection;
 
-      } else if ($scope.ticket.ticket_type.id === 2) {
-        if ($scope.ticket.doctor_price && $scope.ticket.doctor_price.re_detection)
-          $scope.ticket.ticket_price = $scope.ticket.doctor_price.re_detection;
-        else if ($scope.ticket.clinic_price && $scope.ticket.clinic_price.re_detection)
-          $scope.ticket.ticket_price = $scope.ticket.clinic_price.re_detection;
+      } else if ($scope.doctors_visits.visit_type.id === 2) {
+        if ($scope.doctors_visits.doctor_price && $scope.doctors_visits.doctor_price.re_detection)
+          $scope.doctors_visits.doctors_visits_price = $scope.doctors_visits.doctor_price.re_detection;
+        else if ($scope.doctors_visits.clinic_price && $scope.doctors_visits.clinic_price.re_detection)
+          $scope.doctors_visits.doctors_visits_price = $scope.doctors_visits.clinic_price.re_detection;
 
-      } else if ($scope.ticket.ticket_type.id === 3) {
-        if ($scope.ticket.doctor_price && $scope.ticket.doctor_price.consultation)
-          $scope.ticket.ticket_price = $scope.ticket.doctor_price.consultation;
-        else if ($scope.ticket.clinic_price && $scope.ticket.clinic_price.consultation)
-          $scope.ticket.ticket_price = $scope.ticket.clinic_price.consultation;
+      } else if ($scope.doctors_visits.visit_type.id === 3) {
+        if ($scope.doctors_visits.doctor_price && $scope.doctors_visits.doctor_price.consultation)
+          $scope.doctors_visits.doctors_visits_price = $scope.doctors_visits.doctor_price.consultation;
+        else if ($scope.doctors_visits.clinic_price && $scope.doctors_visits.clinic_price.consultation)
+          $scope.doctors_visits.doctors_visits_price = $scope.doctors_visits.clinic_price.consultation;
+
+      } else if ($scope.doctors_visits.visit_type.id === 4) {
+        if ($scope.doctors_visits.doctor_price && $scope.doctors_visits.doctor_price.session)
+          $scope.doctors_visits.doctors_visits_price = $scope.doctors_visits.doctor_price.session;
+        else if ($scope.doctors_visits.clinic_price && $scope.doctors_visits.clinic_price.session)
+          $scope.doctors_visits.doctors_visits_price = $scope.doctors_visits.clinic_price.session;
+
+      } else if ($scope.doctors_visits.visit_type.id === 5) {
+        if ($scope.doctors_visits.doctor_price && $scope.doctors_visits.doctor_price.external_visit)
+          $scope.doctors_visits.doctors_visits_price = $scope.doctors_visits.doctor_price.external_visit;
+        else if ($scope.doctors_visits.clinic_price && $scope.doctors_visits.clinic_price.external_visit)
+          $scope.doctors_visits.doctors_visits_price = $scope.doctors_visits.clinic_price.external_visit;
       }
 
     }
   };
 
   $scope.showTimes = function (d, c) {
-    $scope.ticket.clinic_price = c.detection_price;
-    $scope.ticket.doctor_price = d.detection_price;
-    $scope.clinic = c;
 
-    $scope.ticket.selected_clinic = {
+    $scope.doctors_visits.clinic_price = c.detection_price;
+    $scope.doctors_visits.doctor_price = d.detection_price;
+    $scope.clinic = Object.assign({}, c);
+    $scope.doctors_visits.selected_clinic = {
       id: c.id,
       name: c.name
     };
 
-    $scope.ticket.selected_specialty = {
+    $scope.doctors_visits.selected_specialty = {
       id: c.specialty.id,
       name: c.specialty.name
     };
-    $scope.ticket.selected_doctor = d.doctor;
-    $scope.ticket.selected_shift = {};
+    $scope.doctors_visits.selected_doctor = d.doctor;
+    $scope.doctors_visits.selected_shift = {};
 
-    if ($scope.ticket.ticket_type && $scope.ticket.ticket_type.id) {
+    if ($scope.doctors_visits.visit_type && $scope.doctors_visits.visit_type.id) {
 
-      if ($scope.ticket.ticket_type.id == 1) {
-        if ($scope.ticket.doctor_price && $scope.ticket.doctor_price.detection)
-          $scope.ticket.ticket_price = $scope.ticket.doctor_price.detection;
-        else if ($scope.ticket.clinic_price && $scope.ticket.clinic_price.detection)
-          $scope.ticket.ticket_price = $scope.ticket.clinic_price.detection;
+      if ($scope.doctors_visits.visit_type.id == 1) {
+        if ($scope.doctors_visits.doctor_price && $scope.doctors_visits.doctor_price.detection)
+          $scope.doctors_visits.doctors_visits_price = $scope.doctors_visits.doctor_price.detection;
+        else if ($scope.doctors_visits.clinic_price && $scope.doctors_visits.clinic_price.detection)
+          $scope.doctors_visits.doctors_visits_price = $scope.doctors_visits.clinic_price.detection;
 
-      } else if ($scope.ticket.ticket_type.id == 2) {
-        if ($scope.ticket.doctor_price && $scope.ticket.doctor_price.re_detection)
-          $scope.ticket.ticket_price = $scope.ticket.doctor_price.re_detection;
-        else if ($scope.ticket.clinic_price && $scope.ticket.clinic_price.re_detection)
-          $scope.ticket.ticket_price = $scope.ticket.clinic_price.re_detection;
+      } else if ($scope.doctors_visits.visit_type.id == 2) {
+        if ($scope.doctors_visits.doctor_price && $scope.doctors_visits.doctor_price.re_detection)
+          $scope.doctors_visits.doctors_visits_price = $scope.doctors_visits.doctor_price.re_detection;
+        else if ($scope.doctors_visits.clinic_price && $scope.doctors_visits.clinic_price.re_detection)
+          $scope.doctors_visits.doctors_visits_price = $scope.doctors_visits.clinic_price.re_detection;
 
-      } else if ($scope.ticket.ticket_type.id == 3) {
-        if ($scope.ticket.doctor_price && $scope.ticket.doctor_price.consultation)
-          $scope.ticket.ticket_price = $scope.ticket.doctor_price.consultation;
-        else if ($scope.ticket.clinic_price && $scope.ticket.clinic_price.consultation)
-          $scope.ticket.ticket_price = $scope.ticket.clinic_price.consultation;
+      } else if ($scope.doctors_visits.visit_type.id == 3) {
+        if ($scope.doctors_visits.doctor_price && $scope.doctors_visits.doctor_price.consultation)
+          $scope.doctors_visits.doctors_visits_price = $scope.doctors_visits.doctor_price.consultation;
+        else if ($scope.doctors_visits.clinic_price && $scope.doctors_visits.clinic_price.consultation)
+          $scope.doctors_visits.doctors_visits_price = $scope.doctors_visits.clinic_price.consultation;
+      }
+
+      else if ($scope.doctors_visits.visit_type.id == 4) {
+        if ($scope.doctors_visits.doctor_price && $scope.doctors_visits.doctor_price.session)
+          $scope.doctors_visits.doctors_visits_price = $scope.doctors_visits.doctor_price.session;
+        else if ($scope.doctors_visits.clinic_price && $scope.doctors_visits.clinic_price.session)
+          $scope.doctors_visits.doctors_visits_price = $scope.doctors_visits.clinic_price.session;
+      }
+
+      else if ($scope.doctors_visits.visit_type.id == 5) {
+        if ($scope.doctors_visits.doctor_price && $scope.doctors_visits.doctor_price.external_visit)
+          $scope.doctors_visits.doctors_visits_price = $scope.doctors_visits.doctor_price.external_visit;
+        else if ($scope.doctors_visits.clinic_price && $scope.doctors_visits.clinic_price.external_visit)
+          $scope.doctors_visits.doctors_visits_price = $scope.doctors_visits.clinic_price.external_visit;
       }
 
     }
@@ -877,8 +904,8 @@ app.controller("tickets", function ($scope, $http, $timeout) {
         $scope.busy = false;
 
         if (response.data.done) {
-          $scope.ticket.selected_shift = response.data.shift;
-          site.showModal('#ticketsSelectTimes');
+          $scope.doctors_visits.selected_shift = response.data.shift;
+          site.showModal('#doctorsVisitsSelectTimes');
         }
 
       })
@@ -886,84 +913,84 @@ app.controller("tickets", function ($scope, $http, $timeout) {
   };
 
   $scope.booking = function (time) {
-    $scope.ticket.selected_time = time;
+    $scope.doctors_visits.selected_time = time;
 
-    site.hideModal('#ticketsSelectTimes');
+    site.hideModal('#doctorsVisitsSelectTimes');
 
   };
 
 
   $scope.bookingSlot = function (time_slot) {
-    $scope.ticket_add.selected_time_slot = time_slot;
+    $scope.doctors_visits_add.selected_time_slot = time_slot;
   };
 
-  $scope.attend = function (ticket) {
-    if (ticket.status && ticket.status.id && ticket.status.id == 1) {
-      ticket.status = $scope.statusList[1];
-      $scope.ticket = ticket;
+  $scope.attend = function (doctors_visits) {
+    if (doctors_visits.status && doctors_visits.status.id && doctors_visits.status.id == 1) {
+      doctors_visits.status = $scope.statusList[1];
+      $scope.doctors_visits = doctors_visits;
       $scope.updateStatus();
     }
   };
 
-  $scope.without = function (ticket) {
-    if (ticket.status && ticket.status.id && ticket.status.id != 1) {
-      ticket.status = $scope.statusList[0];
-      $scope.ticket = ticket;
+  $scope.without = function (doctors_visits) {
+    if (doctors_visits.status && doctors_visits.status.id && doctors_visits.status.id != 1) {
+      doctors_visits.status = $scope.statusList[0];
+      $scope.doctors_visits = doctors_visits;
       $scope.updateStatus();
     }
   };
 
-  $scope.enter = function (ticket) {
-    if (ticket.status.id == 2) {
-      ticket.status = $scope.statusList[2];
-      $scope.ticket = ticket;
+  $scope.enter = function (doctors_visits) {
+    if (doctors_visits.status.id == 2) {
+      doctors_visits.status = $scope.statusList[2];
+      $scope.doctors_visits = doctors_visits;
       $scope.updateStatus();
-      site.hideModal('#ticketNotes');
+      site.hideModal('#doctorsVisitsNotes');
     }
   };
 
-  $scope.sellorder = function (ticket) {
-    if (ticket.status && ticket.status.id && ticket.status.id != 2) {
-      ticket.status = $scope.statusList[1];
-      $scope.ticket = ticket;
+  $scope.sellorder = function (doctors_visits) {
+    if (doctors_visits.status && doctors_visits.status.id && doctors_visits.status.id != 2) {
+      doctors_visits.status = $scope.statusList[1];
+      $scope.doctors_visits = doctors_visits;
       $scope.updateStatus();
     }
   };
 
-  $scope.detection = function (ticket) {
-    if (ticket.status && ticket.status.id && ticket.status.id == 3) {
-      ticket.status = $scope.statusList[3];
-      $scope.ticket = ticket;
+  $scope.detection = function (doctors_visits) {
+    if (doctors_visits.status && doctors_visits.status.id && doctors_visits.status.id == 3) {
+      doctors_visits.status = $scope.statusList[3];
+      $scope.doctors_visits = doctors_visits;
       $scope.updateStatus();
-      site.showModal('#ticketViewModal');
-      document.querySelector('#ticketViewModal .tab-link').click();
+      site.showModal('#doctorsVisitsViewModal');
+      document.querySelector('#doctorsVisitsViewModal .tab-link').click();
     }
   };
 
-  $scope.atTheDoctor = function (ticket) {
-    if (ticket.status && ticket.status.id && ticket.status.id != 3) {
-      ticket.status = $scope.statusList[2];
-      $scope.ticket = ticket;
+  $scope.atTheDoctor = function (doctors_visits) {
+    if (doctors_visits.status && doctors_visits.status.id && doctors_visits.status.id != 3) {
+      doctors_visits.status = $scope.statusList[2];
+      $scope.doctors_visits = doctors_visits;
       $scope.updateStatus();
     }
   };
 
   $scope.displaySearchModal = function () {
     $scope.error = '';
-    site.showModal('#ticketSearchModal');
+    site.showModal('#doctorsVisitsSearchModal');
   };
 
   $scope.searchAll = function () {
-    $scope.getTicketList($scope.search);
-    site.hideModal('#ticketSearchModal');
+    $scope.getDoctorsVisitsList($scope.search);
+    site.hideModal('#doctorsVisitsSearchModal');
 
     $scope.search = {};
   };
 
-  $scope.getClinicTicketList = function (hospital) {
+  $scope.getClinicDoctorsVisitsList = function (hospital) {
     $scope.busy = true;
-    $scope.clinicTicketList = [];
-    $scope.dynamic_ticket = $scope.dynamic_ticket || {};
+    $scope.clinicDoctorsVisitsList = [];
+    $scope.dynamic_doctors_visits = $scope.dynamic_doctors_visits || {};
     let where = {
       active: true,
     }
@@ -979,14 +1006,14 @@ app.controller("tickets", function ($scope, $http, $timeout) {
         $scope.busy = false;
 
         if (response.data.done && response.data.list.length > 0) {
-          $scope.clinicTicketList = response.data.list;
+          $scope.clinicDoctorsVisitsList = response.data.list;
 
-          $scope.dynamic_ticket.$clinic_list = [];
-          $scope.dynamic_ticket.$doctor_list = [];
+          $scope.dynamic_doctors_visits.$clinic_list = [];
+          $scope.dynamic_doctors_visits.$doctor_list = [];
 
           response.data.list.forEach(clinc => {
 
-            $scope.dynamic_ticket.$clinic_list.push({
+            $scope.dynamic_doctors_visits.$clinic_list.push({
               id: clinc.id,
               name: clinc.name,
               $doctor_list: clinc.doctor_list
@@ -994,7 +1021,7 @@ app.controller("tickets", function ($scope, $http, $timeout) {
 
             clinc.doctor_list.forEach(d => {
 
-              $scope.dynamic_ticket.$doctor_list.push({
+              $scope.dynamic_doctors_visits.$doctor_list.push({
                 id: d.doctor.id,
                 name: d.doctor.name,
                 detection_Duration: d.detection_Duration,
@@ -1012,10 +1039,10 @@ app.controller("tickets", function ($scope, $http, $timeout) {
   };
 
   $scope.getClincDoctorList = function (clinic) {
-    $scope.dynamic_ticket.$doctor_list = [];
+    $scope.dynamic_doctors_visits.$doctor_list = [];
 
     clinic.$doctor_list.forEach(d => {
-      $scope.dynamic_ticket.$doctor_list.push({
+      $scope.dynamic_doctors_visits.$doctor_list.push({
         id: d.doctor.id,
         name: d.doctor.name,
         detection_Duration: d.detection_Duration,
@@ -1025,16 +1052,16 @@ app.controller("tickets", function ($scope, $http, $timeout) {
     });
   };
 
-  $scope.getTicketTypeList = function () {
+  $scope.getDoctorsVisitsTypeList = function () {
     $scope.busy = true;
     $http({
       method: "POST",
-      url: "/api/ticket_type/all",
+      url: "/api/visit_type/all",
       data: {}
     }).then(
       function (response) {
         $scope.busy = false;
-        $scope.ticketTypeList = response.data;
+        $scope.doctorsVisitsTypeList = response.data;
 
       },
       function (err) {
@@ -1214,7 +1241,7 @@ app.controller("tickets", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/numbering/get_automatic",
       data: {
-        screen: "tickets_book"
+        screen: "doctors_visits_book"
       }
     }).then(
       function (response) {
@@ -1230,7 +1257,7 @@ app.controller("tickets", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.getTicketList();
+  $scope.getDoctorsVisitsList();
   $scope.getSpecialtyList();
   $scope.getMedicinesList();
   $scope.getScansList();
@@ -1244,9 +1271,9 @@ app.controller("tickets", function ($scope, $http, $timeout) {
   $scope.Gender();
   $scope.getBloodType();
   $scope.getClinicList();
-  $scope.getTicketTypeList();
+  $scope.getDoctorsVisitsTypeList();
   $scope.getDiagnosisList();
-  $scope.getClinicTicketList();
+  $scope.getClinicDoctorsVisitsList();
   $scope.getDefaultSettings();
   $scope.getNumberingAuto();
 });

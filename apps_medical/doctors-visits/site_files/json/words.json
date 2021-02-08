@@ -1,18 +1,18 @@
 [
     {
-        "name": "tickets",
-        "en": "Tickets",
-        "ar": "التذاكر"
+        "name": "doctors_visits",
+        "en": "Doctors Visits",
+        "ar": "زيارات الأطباء"
     },
     {
-        "name": "tickets_new",
-        "en": "New Ticket",
-        "ar": "تذكرة جديدة"
+        "name": "doctors_visits_new",
+        "en": "New Doctors Visit",
+        "ar": "زيارة طبيب جديدة"
     },
     {
-        "name": "ticket_price",
-        "en": "Ticket Price",
-        "ar": "سعر التذكرة"
+        "name": "doctors_visits_price",
+        "en": "Visit Price",
+        "ar": "سعر الزيارة"
     },
     {
         "name": "doctor_notes",
@@ -20,14 +20,19 @@
         "ar": "ملاحظات الطبيب"
     },
     {
-        "name": "ticket_type",
-        "en": "Ticket Type",
-        "ar": "نوع التذكرة"
+        "name": "visit_type",
+        "en": "Visit Type",
+        "ar": "نوع الزيارة"
+    },
+    {
+        "name": "doctor_visit_type",
+        "en": "Doctor Visit Type",
+        "ar": "نوع زيارة الطبيب"
     },
     {
         "name": "cannot_booked_holiday_clinic",
-        "en": "Tickets cannot be booked on holiday for the clinic",
-        "ar": "لا يمكن حجز التذكرة اليوم عطلة للعيادة"
+        "en": "Doctors Visits cannot be booked on holiday for the clinic",
+        "ar": "لا يمكن حجز الزيارة اليوم عطلة للعيادة"
     },
     {
         "name": "view_appointments",
@@ -35,9 +40,9 @@
         "ar": "عرض المواعيد"
     },
     {
-        "name": "tickets_book",
-        "en": "Ticket Booking",
-        "ar": "حجز التذاكر"
+        "name": "doctors_visits_book",
+        "en": "Doctors Visit Booking",
+        "ar": "حجز زيارة طبيب"
     },
     {
         "name": "dont_book",
@@ -80,27 +85,27 @@
         "ar": "بحث العيادة"
     },
     {
-        "name": "tickets_add",
-        "en": "Add Ticket",
-        "ar": "اضافة تذكرة"
+        "name": "doctors_visits_add",
+        "en": "Add Doctor Visit",
+        "ar": "اضافة زيارة طبيب"
     },
     {
-        "name": "tickets_edit",
-        "en": "Edit Ticket",
-        "ar": "تعديل تذكرة"
+        "name": "doctors_visits_edit",
+        "en": "Edit Doctor Visit",
+        "ar": "تعديل زيارة طبيب"
     },
     {
-        "name": "tickets_details",
-        "en": "Ticket Details",
-        "ar": "تفاصيل التذكرة"
+        "name": "doctors_visits_details",
+        "en": "Visit Details",
+        "ar": "تفاصيل الزيارة"
     },
     {
-        "name": "tickets_delete",
-        "en": "Delete Ticket",
-        "ar": "حذف تذكرة"
+        "name": "doctors_visits_delete",
+        "en": "Delete Visit",
+        "ar": "حذف زيارة طبيب"
     },
     {
-        "name": "tickets_select",
+        "name": "doctors_visits_select",
         "en": "Select",
         "ar": "تحديد"
     },
@@ -115,19 +120,24 @@
         "ar": "تاريخ الحجز"
     },
     {
-        "name": "Ticket_number",
-        "en": "Ticket Number",
-        "ar": "رقم التذكرة"
+        "name": "visit_date",
+        "en": "Visti Date",
+        "ar": "تاريخ الزيارة"
     },
     {
-        "name": "Ticket_code",
-        "en": "Ticket Code",
-        "ar": "كود التذكرة"
+        "name": "visit_number",
+        "en": "Visit Number",
+        "ar": "رقم الزيارة"
+    },
+    {
+        "name": "visit_code",
+        "en": "Visit Code",
+        "ar": "كود الزيارة"
     },
     {
         "name": "shift_name",
         "en": "Shift Name",
-        "ar": "اسم الشيفت "
+        "ar": "إسم الشيفت "
     },
     {
         "name": "clinics",
@@ -170,9 +180,9 @@
         "ar": "الطبيب"
     },
     {
-        "name": "tickets_name",
-        "en": "Ticket Name",
-        "ar": "اسم التذكرة"
+        "name": "doctors_visits_name",
+        "en": "Visit Name",
+        "ar": "إسم الزيارة"
     },
     {
         "name": "diseases",
@@ -211,8 +221,8 @@
     },
     {
         "name": "confirm_delete",
-        "en": "Confirm Ticket Delete !!",
-        "ar": "تأكيد حذف التذكرة !!"
+        "en": "Confirm Doctors Visit Delete !!",
+        "ar": "تأكيد حذف الزيارة !!"
     },
     {
         "name": "without",

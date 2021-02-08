@@ -52,7 +52,7 @@
 
     {"name" : "accounting_guide_accounts_accounting_cost_centers" , "en" : "Cost Senters" , "ar" : "مراكز التكلفة"},
     {"name" : "accounting_guide_accounts_cost_center" , "en" : "Cost Senter" , "ar" : "م.التكلفة"},
-    {"name" : "accounting_guide_accounts_cost_center_name" , "en" : "Cost Senter Name" , "ar" : "اسم مركز التكلفة"},
+    {"name" : "accounting_guide_accounts_cost_center_name" , "en" : "Cost Senter Name" , "ar" : "إسم مركز التكلفة"},
     {"name" : "accounting_guide_accounts_rate" , "en" : "Cost Senter Rate %" , "ar" : "نسبة مركز التكلفة %"},
 
   
@@ -60,6 +60,6 @@
     {"name" : "accounting_guide_accounts_code" , "en" : "Account Code" , "ar" : "كود الحساب"},
 
     {"name" : "accounting_guide_accounts_code" , "en" : "Category Code" , "ar" : "كود التصنيف"},
-    {"name" : "accounting_guide_accounts_name_ar" , "en" : "ِAccount Name Arabic" , "ar" : "اسم الحساب عربي"}, 
-    {"name" : "accounting_guide_accounts_name_en" , "en" : "ِAccount Name English" , "ar" : "اسم الحساب إنجليزي"}   
+    {"name" : "accounting_guide_accounts_name_ar" , "en" : "ِAccount Name Arabic" , "ar" : "إسم الحساب عربي"}, 
+    {"name" : "accounting_guide_accounts_name_en" , "en" : "ِAccount Name English" , "ar" : "إسم الحساب إنجليزي"}   
 ]

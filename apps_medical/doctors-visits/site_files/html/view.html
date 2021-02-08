@@ -27,28 +27,28 @@
                             <div class="row">
                                 <br>
                                 <i-button type="details" label="##word.customers_details##"
-                                    ng-click="showPatient(ticket.customer.id)"></i-button>
+                                    ng-click="showPatient(doctors_visits.customer.id)"></i-button>
                                 <div class="row">
-                                    <div class="row" ng-show="ticket.customer.id">
+                                    <div class="row" ng-show="doctors_visits.customer.id">
                                         <fieldset>
 
                                             <table class="table bold center hover">
                                                 <tr>
                                                     <td class="blue"> ##word.customer_name## </td>
                                                     <td colspan="7" class="center">
-                                                        {{ticket.customer.name_##session.lang##}}
+                                                        {{doctors_visits.customer.name_##session.lang##}}
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td class="blue"> ##word.gender## </td>
                                                     <td colspan="2" class="center">
-                                                        {{ticket.customer.gender.##session.lang##}}
+                                                        {{doctors_visits.customer.gender.##session.lang##}}
                                                     </td>
                                                     <td class="blue"> ##word.child## </td>
-                                                    <td colspan="2" ng-show="ticket.customer.child == true">
+                                                    <td colspan="2" ng-show="doctors_visits.customer.child == true">
                                                         <p class="green"> ##word.yes## </p>
                                                     </td>
-                                                    <td colspan="2" ng-show="!ticket.customer.child">
+                                                    <td colspan="2" ng-show="!doctors_visits.customer.child">
                                                         <p class="red"> ##word.no## </p>
                                                     </td>
                                                     <td colspan="2"></td>
@@ -57,37 +57,37 @@
 
                                                 <tr>
                                                     <td class="blue"> ##word.weight## </td>
-                                                    <td colspan="2" class="center"> {{ticket.customer.weight}} </td>
+                                                    <td colspan="2" class="center"> {{doctors_visits.customer.weight}} </td>
                                                     <td class="blue"> ##word.tall## </td>
-                                                    <td colspan="2" class="center"> {{ticket.customer.tall}} </td>
+                                                    <td colspan="2" class="center"> {{doctors_visits.customer.tall}} </td>
                                                     <td class="blue"> ##word.blood_type## </td>
                                                     <td colspan="2" class="center red">
-                                                        {{ticket.customer.blood_type.name}}
+                                                        {{doctors_visits.customer.blood_type.name}}
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td class="blue"> ##word.medicine_notes## </td>
-                                                    <td colspan="7" class="center"> {{ticket.customer.medicine_notes}}
+                                                    <td colspan="7" class="center"> {{doctors_visits.customer.medicine_notes}}
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td class="blue"> ##word.gov## </td>
-                                                    <td colspan="2" class="center"> {{ticket.customer.gov.name}} </td>
+                                                    <td colspan="2" class="center"> {{doctors_visits.customer.gov.name}} </td>
                                                     <td class="blue"> ##word.city## </td>
-                                                    <td colspan="2" class="center"> {{ticket.customer.city.name}} </td>
+                                                    <td colspan="2" class="center"> {{doctors_visits.customer.city.name}} </td>
                                                     <td class="blue"> ##word.area## </td>
-                                                    <td colspan="2" class="center"> {{ticket.customer.area.name}} </td>
+                                                    <td colspan="2" class="center"> {{doctors_visits.customer.area.name}} </td>
                                                 </tr>
 
                                                 <tr>
                                                     <td class="blue"> ##word.address## </td>
-                                                    <td colspan="7" class="center"> {{ticket.customer.address}}</td>
+                                                    <td colspan="7" class="center"> {{doctors_visits.customer.address}}</td>
                                                 </tr>
                                                 <tr>
                                                     <td class="blue"> ##word.mobile## </td>
-                                                    <td colspan="4" class="center"> {{ticket.customer.mobile}}</td>
+                                                    <td colspan="4" class="center"> {{doctors_visits.customer.mobile}}</td>
                                                     <td class="blue"> ##word.phone## </td>
-                                                    <td colspan="3" class="center"> {{ticket.customer.phone}}</td>
+                                                    <td colspan="3" class="center"> {{doctors_visits.customer.phone}}</td>
                                                 </tr>
 
                                             </table>
@@ -100,58 +100,58 @@
 
                                 <table class="table hover bold">
                                     <tr>
-                                        <td class="title">##word.Ticket_code##</td>
-                                        <td class="blue center userPrint"> {{ticket.code}}</td>
+                                        <td class="title">##word.visit_code##</td>
+                                        <td class="blue center userPrint"> {{doctors_visits.code}}  <b class="black">({{doctors_visits.visit_number}})</b></td>
                                     </tr>
                                     <tr>
-                                        <td class="title">##word.booking_date##</td>
-                                        <td class="brown center"> {{ticket.date | date : 'dd - MM - yyyy'}}</td>
+                                        <td class="title">##word.##</td>
+                                        <td class="brown center"> {{doctors_visits.date | date : 'dd - MM - yyyy'}}</td>
                                     </tr>
 
                                     <tr>
-                                        <td class="title">##word.ticket_type##</td>
-                                        <td class="center"> {{ticket.ticket_type.##session.lang##}}</td>
+                                        <td class="title">##word.visit_type##</td>
+                                        <td class="center"> {{doctors_visits.visit_type.##session.lang##}}</td>
                                     </tr>
 
                                     <tr>
                                         <td class="title">##word.notes##</td>
-                                        <td class="center"> {{ticket.notes}}</td>
+                                        <td class="center"> {{doctors_visits.notes}}</td>
                                     </tr>
 
                                     <tr>
                                         <td class="title">##word.notes_before##</td>
-                                        <td class="center"> {{ticket.notes_before}}</td>
+                                        <td class="center"> {{doctors_visits.notes_before}}</td>
                                     </tr>
 
                                     <tr>
                                         <td class="title"> ##word.status## </td>
                                         <td class="center">
-                                            <p class="blue">{{ticket.status.ar}}</p>
+                                            <p class="blue">{{doctors_visits.status.ar}}</p>
                                             <i-button type="update" label="##word.done_attendance##"
-                                                ng-hide="ticket.status.id!=1" ng-show="ticket.status.id==1"
-                                                ng-click="attend(ticket)"></i-button>
+                                                ng-hide="doctors_visits.status.id!=1" ng-show="doctors_visits.status.id==1"
+                                                ng-click="attend(doctors_visits)"></i-button>
 
                                             <i-button type="update" label="##word.just_booking##"
-                                                ng-hide="ticket.status.id!=2" ng-show="ticket.status.id==2"
-                                                ng-click="without(ticket)"></i-button>
+                                                ng-hide="doctors_visits.status.id!=2" ng-show="doctors_visits.status.id==2"
+                                                ng-click="without(doctors_visits)"></i-button>
 
 
                                             <i-button type="update" label="##word.done_access_doctor##"
-                                                ng-show="ticket.status.id==2" ng-hide="ticket.status.id!=2"
-                                                onclick="site.showModal('#ticketNotes')"></i-button>
+                                                ng-show="doctors_visits.status.id==2" ng-hide="doctors_visits.status.id!=2"
+                                                onclick="site.showModal('#doctorsVisitsNotes')"></i-button>
 
                                             <i-button type="update" class="col6 center" label="##word.sellorder##"
-                                                ng-hide="ticket.status.id!=3" ng-show="ticket.status.id==3"
-                                                ng-click="sellorder(ticket)"></i-button>
+                                                ng-hide="doctors_visits.status.id!=3" ng-show="doctors_visits.status.id==3"
+                                                ng-click="sellorder(doctors_visits)"></i-button>
 
 
                                             <i-button type="update" label="##word.done_detected##"
-                                                ng-show="ticket.status.id==3" ng-hide="ticket.status.id!=3"
-                                                ng-click="detection(ticket)"></i-button>
+                                                ng-show="doctors_visits.status.id==3" ng-hide="doctors_visits.status.id!=3"
+                                                ng-click="detection(doctors_visits)"></i-button>
 
                                             <i-button type="update" class="col6 center" label="##word.at_the_doctor##"
-                                                ng-show="ticket.status.id==4" ng-hide="ticket.status.id!=4"
-                                                ng-click="atTheDoctor(ticket)"></i-button>
+                                                ng-show="doctors_visits.status.id==4" ng-hide="doctors_visits.status.id!=4"
+                                                ng-click="atTheDoctor(doctors_visits)"></i-button>
 
                                         </td>
                                     </tr>
@@ -167,7 +167,7 @@
                         </div>
 
                         <div class="col3">
-                            <i-image view ng-model="ticket.image_url"></i-image>
+                            <i-image view ng-model="doctors_visits.image_url"></i-image>
                         </div>
                     </div>
 
@@ -181,21 +181,21 @@
                                 <th>##word.work_day##</th>
                                 <th>##word.work_from##</th>
                                 <th>##word.work_to##</th>
-                                <th>##word.ticket_price##</th>
+                                <th>##word.doctors_visits_price##</th>
 
                             </tr>
                             <tr>
-                                <td> {{ticket.selected_clinic.name}}</td>
-                                <td> {{ticket.selected_specialty.name}}</td>
-                                <td class="title"> {{ticket.selected_doctor.name}}</td>
-                                <td> {{ticket.selected_shift.name}}</td>
-                                <td> {{ticket.selected_time.day.ar}}</td>
-                                <td class="green"> {{ticket.selected_time.from.minute}} :
-                                    {{ticket.selected_time.from.hour}}</td>
-                                <td class="red"> {{ticket.selected_time.to.minute}} :
-                                    {{ticket.selected_time.to.hour}}</td>
+                                <td> {{doctors_visits.selected_clinic.name}}</td>
+                                <td> {{doctors_visits.selected_specialty.name}}</td>
+                                <td class="title"> {{doctors_visits.selected_doctor.name}}</td>
+                                <td> {{doctors_visits.selected_shift.name}}</td>
+                                <td> {{doctors_visits.selected_time.day.ar}}</td>
+                                <td class="green"> {{doctors_visits.selected_time.from.minute}} :
+                                    {{doctors_visits.selected_time.from.hour}}</td>
+                                <td class="red"> {{doctors_visits.selected_time.to.minute}} :
+                                    {{doctors_visits.selected_time.to.hour}}</td>
                                 <td>
-                                    <p class="green">{{ticket.ticket_price}}</p>
+                                    <p class="green">{{doctors_visits.doctors_visits_price}}</p>
                                 </td>
 
                             </tr>
@@ -206,10 +206,10 @@
 
                 <div class="row">
                     <div class="col5"></div>
-                    <i-button x-permissions="tickets_update || tickets_manage" class="col1" type="edit"
-                        label="##word.edit##" ng-click="displayUpdateTicket(ticket)"></i-button>
-                    <i-button x-permissions="tickets_delete || tickets_manage" class="col1" type="delete"
-                        label="##word.delete##" ng-click="displayDeleteTicket(ticket)"></i-button>
+                    <i-button x-permissions="doctors_visits_update || doctors_visits_manage" class="col1" type="edit"
+                        label="##word.edit##" ng-click="displayUpdateDoctorsVisits(doctors_visits)"></i-button>
+                    <i-button x-permissions="doctors_visits_delete || doctors_visits_manage" class="col1" type="delete"
+                        label="##word.delete##" ng-click="displayDeleteDoctorsVisits(doctors_visits)"></i-button>
                 </div>
 
 
@@ -233,7 +233,7 @@
 
                                 </tr>
 
-                                <tr ng-repeat="info in ticket.medicines_list">
+                                <tr ng-repeat="info in doctors_visits.medicines_list">
 
                                     <td>
                                         <h3 class="black bold ">{{info.medicines.name}}</h3>
@@ -269,7 +269,7 @@
 
                                 </tr>
 
-                                <tr ng-repeat="info in ticket.scans_list">
+                                <tr ng-repeat="info in doctors_visits.scans_list">
 
                                     <td>
                                         <h3 class="black bold ">{{info.scans.name}}</h3>
@@ -304,7 +304,7 @@
 
                                 </tr>
 
-                                <tr ng-repeat="info in ticket.analyses_list">
+                                <tr ng-repeat="info in doctors_visits.analyses_list">
 
                                     <td>
                                         <h3 class="black bold ">{{info.analyses.name}}</h3>
@@ -339,7 +339,7 @@
 
                                 </tr>
 
-                                <tr ng-repeat="info in ticket.operation_list">
+                                <tr ng-repeat="info in doctors_visits.operation_list">
 
                                     <td>
                                         <h3 class="black bold ">{{info.operation.name}}</h3>
@@ -365,7 +365,7 @@
 
                     <div class="row">
                         <h3 class="col3 blue bold">##word.diagnosis## : </h3>
-                        <h3 class="col3 bold black">{{ticket.diagnosis.##session.lang##}}</h3>
+                        <h3 class="col3 bold black">{{doctors_visits.diagnosis.##session.lang##}}</h3>
                     </div>
                     <br>
                     <br>
@@ -376,7 +376,7 @@
 
                             <fieldset class="center">
                                 <br>
-                                <h3 class="center bold black">{{ticket.doctor_notes}}</h3>
+                                <h3 class="center bold black">{{doctors_visits.doctor_notes}}</h3>
                             </fieldset>
                         </div>
                     </div>
@@ -389,4 +389,4 @@
         </div>
     </div>
 </div>
-<div x-import="tickets/action_info.html"></div>
+<div x-import="doctors-visits/action_info.html"></div>

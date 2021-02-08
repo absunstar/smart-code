@@ -112,7 +112,7 @@
     {
         "name": "order_slides_name",
         "en": "Slide Name",
-        "ar": "اسم حساب الشريحة"
+        "ar": "إسم حساب الشريحة"
     },
     {
         "name": "order_slides_from",
@@ -412,7 +412,7 @@
     {
         "name": "customers_group_name",
         "en": "Students Group Name",
-        "ar": "اسم مجموعة الطلاب"
+        "ar": "إسم مجموعة الطلاب"
     },
     {
         "name": "customers_group_new",

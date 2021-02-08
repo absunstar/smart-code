@@ -19,6 +19,11 @@
         "ar": "إستشارة"
     },
     {
+        "name": "external_visit",
+        "en": "External Visit",
+        "ar": "زيارة خارجية"
+    },
+    {
         "name": "detection_price",
         "en": "Detection price",
         "ar": "سعر الكشف"
@@ -76,12 +81,12 @@
     {
         "name": "clinics_name",
         "en": "Clinic Name",
-        "ar": "اسم العيادة "
+        "ar": "إسم العيادة "
     },
     {
         "name": "shift_name",
         "en": "Shift Name",
-        "ar": "اسم الشيفت "
+        "ar": "إسم الشيفت "
     }
 
 

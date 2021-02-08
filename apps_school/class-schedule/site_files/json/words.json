@@ -6,7 +6,7 @@
     {"name" : "class_number" , "en" : "Class Number" , "ar" : "رقم الحصة"},
     {"name" : "class_schedule_menus" , "en" : "Class Schedule Menu" , "ar" : "قائمة جدول الحصص"},
     {"name" : "class_schedule_code" , "en" : "Class Schedule Code" , "ar" : "كود جدول الحصص"},
-    {"name" : "class_schedule_name" , "en" : "Class Schedule Name" , "ar" : "اسم جدول الحصص"},
+    {"name" : "class_schedule_name" , "en" : "Class Schedule Name" , "ar" : "إسم جدول الحصص"},
     {"name" : "create_schedule" , "en" : "Create Schedule" , "ar" : "إنشاء الجدول"},
     {"name" : "workdays" , "en" : "Workdays" , "ar" : "أيام العمل"},
     {"name" : "max_school_class" , "en" : "Max School Class" , "ar" : "الحد الأقصى للحصص"},

@@ -15,6 +15,11 @@
         "ar": "إج."
     },
     {
+        "name": "session",
+        "en": "Session",
+        "ar": "جلسة"
+    },
+    {
         "name": "report",
         "en": "Report",
         "ar": "تقرير"
@@ -112,7 +117,7 @@
     {
         "name": "name",
         "en": "Name",
-        "ar": "الاسم"
+        "ar": "الإسم"
     },
     {
         "name": "must_enter_code",

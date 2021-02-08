@@ -110,7 +110,7 @@
     {
         "name": "name",
         "en": "Name",
-        "ar": " الاسم"
+        "ar": " الإسم"
     },
     {
         "name": "address",
@@ -401,7 +401,7 @@
     {
         "name": "department_name",
         "en": "Department Name",
-        "ar": "اسم القسم "
+        "ar": "إسم القسم "
     },
     {
         "name": "vacation",
@@ -523,7 +523,7 @@
     {
         "name": "username",
         "en": "username",
-        "ar": "اسم المستخدم"
+        "ar": "إسم المستخدم"
     },
     {
         "name": "password",
@@ -639,13 +639,13 @@
     {
         "name": "companies_name_ar",
         "en": "Name AR",
-        "ar": "الاسم بالعربى"
+        "ar": "الإسم بالعربى"
     }
     ,
     {
         "name": "companies_name_en",
         "en": "Name EN",
-        "ar": "الاسم بالانجليزى"
+        "ar": "الإسم بالانجليزى"
     },
     {
         "name": "companies_add",
@@ -730,17 +730,17 @@
     {
         "name": "companies_branch_name",
         "en": "Branch Name",
-        "ar": "اسم الفرع"
+        "ar": "إسم الفرع"
     },
     {
         "name": "companies_branch_name_ar",
         "en": "Branch Name Arabic",
-        "ar": "اسم الفرع بالعربى"
+        "ar": "إسم الفرع بالعربى"
     },
     {
         "name": "companies_branch_name_en",
         "en": "Branch Name English",
-        "ar": "اسم الفرع بالانجليزى"
+        "ar": "إسم الفرع بالانجليزى"
     },
     {
         "name": "companies_branch_notes",
@@ -750,7 +750,7 @@
     {
         "name": "companies_charge_name",
         "en": "Charge Name",
-        "ar": "اسم المسئول"
+        "ar": "إسم المسئول"
     },
     {
         "name": "companies_charge_job",
@@ -775,7 +775,7 @@
     {
         "name": "companies_bank_name",
         "en": "Bank Name",
-        "ar": "اسم البنك"
+        "ar": "إسم البنك"
     },
     {
         "name": "companies_bank_account_number",
@@ -830,12 +830,12 @@
     {
         "name": "companies_name",
         "en": "Company Name",
-        "ar": "اسم الشركة"
+        "ar": "إسم الشركة"
     },
     {
         "name": "companies_name_en",
         "en": "Company Name English",
-        "ar": "اسم الشركة بالانجليزية"
+        "ar": "إسم الشركة بالانجليزية"
     },
     {
         "name": "companies_excahange_price",

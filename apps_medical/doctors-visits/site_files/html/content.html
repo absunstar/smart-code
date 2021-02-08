@@ -6,29 +6,29 @@
                 <div class="col9">
 
                     <div class="row">
-                        <i-control ng-hide="disabledCode" class="col2" label="##word.code##" ng-model="ticket.code">
+                        <i-control ng-hide="disabledCode" class="col2" label="##word.code##" ng-model="doctors_visits.code">
                         </i-control>
 
-                        <i-date2 class="col4" ng-model="ticket.date" label="##word.booking_date##" v="r"></i-date2>
+                        <i-date2 class="col4" ng-model="doctors_visits.date" label="##word.booking_date##" v="r"></i-date2>
 
-                        <i-list class="col3" label="##word.ticket_type##" ng-model="ticket.ticket_type"
-                       ng-change="changeTicketPrice()" items="ticketTypeList" display="##session.lang##" ng-search="_search.$ticket_type_search"></i-list>
+                        <i-list class="col3" label="##word.visit_type##" ng-model="doctors_visits.visit_type"
+                       ng-change="changeDoctorsVisitsPrice()" items="doctorsVisitsTypeList" display="##session.lang##" ng-search="_search.$doctors_visits_type_search"></i-list>
 
                         <div class="col1"></div>
                         <i-checkbox help-id="cities_active" class="col2" label="##word.active##"
-                            ng-model="ticket.active"></i-checkbox>
+                            ng-model="doctors_visits.active"></i-checkbox>
                     </div>
 
                     <div class="row">
                         <i-control class="col2" label="##word.patient_search##" ng-model="patient_search"
                             ng-keydown="getPatientList($event)"></i-control>
 
-                        <i-list class="col4" label="##word.patient##" v="r" ng-model="ticket.customer"
+                        <i-list class="col4" label="##word.patient##" v="r" ng-model="doctors_visits.customer"
                             display="name_##session.lang##" items="customersList" ng-search="_search.$patients_searching">
                         </i-list>
 
-                        <i-button class="col2" ng-show="ticket.customer.id" type="details"
-                            label="##word.customers_details##" ng-click="showPatient(ticket.customer.id)"></i-button>
+                        <i-button class="col2" ng-show="doctors_visits.customer.id" type="details"
+                            label="##word.customers_details##" ng-click="showPatient(doctors_visits.customer.id)"></i-button>
                         <div class="col1"></div>
                         <i-button type="add" label="##word.customers_new##" ng-click="displayAddCustomer()">
                         </i-button>
@@ -37,24 +37,24 @@
                     </div>
 
                     <div class="col10">
-                        <div class="row" ng-show="ticket.customer.id">
+                        <div class="row" ng-show="doctors_visits.customer.id">
                             <fieldset>
 
                                 <table class="table bold center hover">
                                     <tr>
                                         <td class="blue"> ##word.customer_name## </td>
-                                        <td colspan="7" class="center"> {{ticket.customer.name_##session.lang##}}
+                                        <td colspan="7" class="center"> {{doctors_visits.customer.name_##session.lang##}}
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="blue"> ##word.gender## </td>
-                                        <td colspan="2" class="center"> {{ticket.customer.gender.##session.lang##}}
+                                        <td colspan="2" class="center"> {{doctors_visits.customer.gender.##session.lang##}}
                                         </td>
                                         <td class="blue"> ##word.child## </td>
-                                        <td colspan="2" ng-show="ticket.customer.child == true">
+                                        <td colspan="2" ng-show="doctors_visits.customer.child == true">
                                             <p class="green"> ##word.yes## </p>
                                         </td>
-                                        <td colspan="2" ng-show="!ticket.customer.child">
+                                        <td colspan="2" ng-show="!doctors_visits.customer.child">
                                             <p class="red"> ##word.no## </p>
                                         </td>
                                         <td colspan="2"></td>
@@ -63,35 +63,35 @@
 
                                     <tr>
                                         <td class="blue"> ##word.weight## </td>
-                                        <td colspan="2" class="center"> {{ticket.customer.weight}} </td>
+                                        <td colspan="2" class="center"> {{doctors_visits.customer.weight}} </td>
                                         <td class="blue"> ##word.tall## </td>
-                                        <td colspan="2" class="center"> {{ticket.customer.tall}} </td>
+                                        <td colspan="2" class="center"> {{doctors_visits.customer.tall}} </td>
                                         <td class="blue"> ##word.blood_type## </td>
-                                        <td colspan="2" class="center red"> {{ticket.customer.blood_type.name}}
+                                        <td colspan="2" class="center red"> {{doctors_visits.customer.blood_type.name}}
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="blue"> ##word.medicine_notes## </td>
-                                        <td colspan="7" class="center"> {{ticket.customer.medicine_notes}}</td>
+                                        <td colspan="7" class="center"> {{doctors_visits.customer.medicine_notes}}</td>
                                     </tr>
                                     <tr>
                                         <td class="blue"> ##word.gov## </td>
-                                        <td colspan="2" class="center"> {{ticket.customer.gov.name}} </td>
+                                        <td colspan="2" class="center"> {{doctors_visits.customer.gov.name}} </td>
                                         <td class="blue"> ##word.city## </td>
-                                        <td colspan="2" class="center"> {{ticket.customer.city.name}} </td>
+                                        <td colspan="2" class="center"> {{doctors_visits.customer.city.name}} </td>
                                         <td class="blue"> ##word.area## </td>
-                                        <td colspan="2" class="center"> {{ticket.customer.area.name}} </td>
+                                        <td colspan="2" class="center"> {{doctors_visits.customer.area.name}} </td>
                                     </tr>
 
                                     <tr>
                                         <td class="blue"> ##word.address## </td>
-                                        <td colspan="7" class="center"> {{ticket.customer.address}}</td>
+                                        <td colspan="7" class="center"> {{doctors_visits.customer.address}}</td>
                                     </tr>
                                     <tr>
                                         <td class="blue"> ##word.mobile## </td>
-                                        <td colspan="4" class="center"> {{ticket.customer.mobile}}</td>
+                                        <td colspan="4" class="center"> {{doctors_visits.customer.mobile}}</td>
                                         <td class="blue"> ##word.phone## </td>
-                                        <td colspan="3" class="center"> {{ticket.customer.phone}}</td>
+                                        <td colspan="3" class="center"> {{doctors_visits.customer.phone}}</td>
                                     </tr>
 
                                 </table>
@@ -112,12 +112,12 @@
 
                                 <div class="row">
 
-                                    <i-list class="col4" label="##word.specialty##" ng-model="ticket.specialty"
+                                    <i-list class="col4" label="##word.specialty##" ng-model="doctors_visits.specialty"
                                         items="specialtyList" display="name" ng-search="_search.$specialty_search">
                                     </i-list>
 
 
-                                    <i-list class="col4" label="##word.clinic##" ng-model="ticket.clinic"
+                                    <i-list class="col4" label="##word.clinic##" ng-model="doctors_visits.clinic"
                                         items="clinicList" display="name" ng-search="_search.$clinic_search"></i-list>
 
                                 </div>
@@ -128,14 +128,14 @@
                                     <i-control class="col2" label="##word.doctor_search##" ng-model="doctor_search"
                                         ng-keydown="getDoctorList($event)"></i-control>
 
-                                    <i-list class="col4" label="##word.doctors##" ng-model="ticket.doctor"
+                                    <i-list class="col4" label="##word.doctors##" ng-model="doctors_visits.doctor"
                                         items="doctorList" display="name" ng-search="_search.$doctors_searching">
                                     </i-list>
 
                                     <div class="col3"></div>
 
                                     <i-button type="search" class="col2" label="##word.search##"
-                                        ng-click="getClinicBookList(ticket)">
+                                        ng-click="getClinicBookList(doctors_visits)">
                                     </i-button>
 
                                 </div>
@@ -192,7 +192,7 @@
 
                     <div class="row">
                         <div class="col11">
-                            <table class="table center hover bold" ng-show="ticket.selected_time.day">
+                            <table class="table center hover bold" ng-show="doctors_visits.selected_time.day">
 
                                 <tr>
                                     <th>##word.clinic##</th>
@@ -201,40 +201,40 @@
                                     <th>##word.work_day##</th>
                                     <th>##word.work_from##</th>
                                     <th>##word.work_to##</th>
-                                    <th>##word.ticket_price##</th>
+                                    <th>##word.doctors_visits_price##</th>
 
                                 </tr>
 
                                 <tr>
 
                                     <td>
-                                        <p class="blue">{{ticket.selected_clinic.name}}</p>
+                                        <p class="blue">{{doctors_visits.selected_clinic.name}}</p>
                                     </td>
 
                                     <td>
-                                        <p class="blue">{{ticket.selected_doctor.name}}</p>
+                                        <p class="blue">{{doctors_visits.selected_doctor.name}}</p>
                                     </td>
 
                                     <td>
-                                        <p class="blue">{{ticket.selected_specialty.name}}</p>
+                                        <p class="blue">{{doctors_visits.selected_specialty.name}}</p>
                                     </td>
 
                                     <td>
-                                        <p class="blue">{{ticket.selected_time.day.ar}}</p>
+                                        <p class="blue">{{doctors_visits.selected_time.day.ar}}</p>
                                     </td>
 
                                     <td>
-                                        <p class="green">{{ticket.selected_time.from.minute}} :
-                                            {{ticket.selected_time.from.hour}}</p>
+                                        <p class="green">{{doctors_visits.selected_time.from.minute}} :
+                                            {{doctors_visits.selected_time.from.hour}}</p>
                                     </td>
 
                                     <td>
-                                        <p class="red">{{ticket.selected_time.to.minute}} :
-                                            {{ticket.selected_time.to.hour}}</p>
+                                        <p class="red">{{doctors_visits.selected_time.to.minute}} :
+                                            {{doctors_visits.selected_time.to.hour}}</p>
                                     </td>
 
                                     <td>
-                                        <p class="green">{{ticket.ticket_price}}</p>
+                                        <p class="green">{{doctors_visits.doctors_visits_price}}</p>
                                     </td>
 
                                 </tr>
@@ -244,7 +244,7 @@
                         <div class="row">
                             <div class="col11">
 
-                                <i-textarea label="##word.notes##" ng-model="ticket.notes"></i-textarea>
+                                <i-textarea label="##word.notes##" ng-model="doctors_visits.notes"></i-textarea>
                             </div>
                         </div>
 
@@ -253,8 +253,8 @@
                 </div>
 
                 <div class="col3">
-                    <i-image help-id="cities_logo" ng-model="ticket.image_url"></i-image>
-                    <i-files label="##word.files##" categoty="pathients" ng-model="ticket.files"></i-files>
+                    <i-image help-id="cities_logo" ng-model="doctors_visits.image_url"></i-image>
+                    <i-files label="##word.files##" categoty="pathients" ng-model="doctors_visits.files"></i-files>
 
                 </div>
             </div>

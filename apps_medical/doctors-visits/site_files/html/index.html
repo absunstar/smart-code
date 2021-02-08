@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="doctors_visits_ui || doctors_visits_manage" data-ng-app="myApp">
+
+<head x-import="head.html">
+
+</head>
+
+<body class="##session.lang##">
+
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+
+    </nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+
+    </nav>
+
+    <div id="main-layout" class="container">
+        <div class="row">
+            <div class="row" ng-controller="doctors_visits">
+                <div x-permissions="doctors_visits_add || doctors_visits_manage" x-import="doctors-visits/add_modal.html"></div>
+                <div x-permissions="doctors_visits_update || doctors_visits_manage" x-import="doctors-visits/update_modal.html"></div>
+                <div x-permissions="doctors_visits_delete || doctors_visits_manage" x-import="doctors-visits/delete_modal.html"></div>
+                <div x-permissions="doctors_visits_view || doctors_visits_manage" x-import="doctors-visits/view_modal.html"></div>
+                <div x-permissions="doctors_visits_update || doctors_visits_manage" x-import="doctors-visits/notes.html"></div>
+                <!-- <div x-import="patients/view_modal.html"></div> -->
+                <div x-import="doctors-visits/dynamic_visit.html"></div>
+                <div x-import="doctors-visits/select_doctor.html"></div>
+                <div x-import="doctors-visits/select_time.html"></div>
+                <div x-permissions="doctors_visits_search || doctors_visits_manage" x-import="doctors-visits/search_all_modal.html"></div>
+                <div x-import="customers/add_modal.html"></div>
+                <div x-import="customers/view_modal.html"></div>
+
+                <div class="row">
+                    <h1 class="bold text-center">##word.doctors_visits##</h1>
+                </div>
+
+                <div class="top-actions">
+
+                    <i-button x-permissions="doctors_visits_add || doctors_visits_manage" type="add" label="##word.doctors_visits_new##"
+                        ng-click="displayAddDoctorsVisits()"></i-button>
+                    <i-button x-permissions="doctors_visits_search || doctors_visits_manage" type="search" label="##word.search_all##"
+                        ng-click="displaySearchModal()"></i-button>
+                    <i-button x-permissions="doctors_visits_search || doctors_visits_manage" type="search" label="##word.without##"
+                        ng-click="getDoctorsVisitsList({'status.id' : 1})"></i-button>
+                    <i-button x-permissions="doctors_visits_search || doctors_visits_manage" type="search" label="##word.sellorder##"
+                        ng-click="getDoctorsVisitsList({'status.id' : 2})"></i-button>
+                    <i-button x-permissions="doctors_visits_search || doctors_visits_manage" type="search"
+                        label="##word.at_the_doctor##" ng-click="getDoctorsVisitsList({'status.id' : 3})"></i-button>
+                    <i-button x-permissions="doctors_visits_search || doctors_visits_manage" type="search"
+                        label="##word.done_detected##" ng-click="getDoctorsVisitsList({'status.id' : 4})"></i-button>
+                    <i-button x-permissions="doctors_visits_search || doctors_visits_manage" type="search" label="##word.dont_book##"
+                        ng-click="getDoctorsVisitsList({'status.id' : 5})"></i-button>
+                    <!-- <i-button x-permissions="doctors_visits_add || doctors_visits_manage" class="left" type="add"
+                        label="##word.doctors_visits_book##" ng-click="displayDynamicDoctorsVisits()"></i-button> -->
+
+                    <h3 class="bold text-center"> ##word.count## : {{count}}</h3>
+                </div>
+                <a>
+                    <table x-permission="login" class="table hover center loaded" id="t1">
+
+                        <tr>
+                            <th>##word.visit_code##</th>
+                            <th>##word.visit_date##</th>
+                            <th>##word.customers##</th>
+                            <th>##word.clinics##</th>
+                            <th>##word.doctors##</th>
+                            <th>##word.status##</th>
+                        </tr>
+
+                        <tr ng-repeat="c in list" class="bold pointer">
+                            <td ng-click="displayDetailsDoctorsVisits(c)">
+                                <p class="blue center userPrint">{{c.code}}
+                                    <p class="black">({{c.visit_number}})</p>
+                                </p>
+                                <br>
+                                <h3 class="center bold green">{{c.status.ar}}</h3>
+                            </td>
+                            <td ng-click="displayDetailsDoctorsVisits(c)" class="center brown"> <br> {{c.date | date : 'dd - MM
+                                -
+                                yyyy'}}</td>
+                            <td ng-click="displayDetailsDoctorsVisits(c)" class="center"> <br>
+                                {{c.customer.name_##session.lang##}}</td>
+
+                            <td ng-click="displayDetailsDoctorsVisits(c)">
+                                <p class="center">{{c.selected_clinic.name}}</p>
+                                <br>
+                                <p class="center blue">{{c.selected_specialty.name}}</p>
+
+                            </td>
+                            <td ng-click="displayDetailsDoctorsVisits(c)">
+                                <p class="center">{{c.selected_doctor.name}}</p>
+                                <br>
+                                <p ng-show="c.selected_shift.name" class="green center"> ##word.from## /
+                                    {{c.selected_time.from.minute}} : {{c.selected_time.from.hour}}</p>
+                                <p ng-show="c.selected_shift.name" class="red center"> ##word.to## /
+                                    {{c.selected_time.to.minute}} : {{c.selected_time.to.hour}}</p>
+                            </td>
+
+                            <td class="center">
+                                <i-button x-permissions="doctors_visits_update || doctors_visits_manage" type="update"
+                                    class="col6 center" label="##word.done_attendance##" ng-hide="c.status.id!=1"
+                                    ng-show="c.status.id==1 || c.status.id==5" ng-click="attend(c)"></i-button>
+
+                                <i-button x-permissions="doctors_visits_update || doctors_visits_manage" type="update"
+                                    class="col6 center" label="##word.just_booking##" ng-hide="c.status.id!=2"
+                                    ng-show="c.status.id==2" ng-click="without(c)"></i-button>
+
+                                <i-button x-permissions="doctors_visits_update || doctors_visits_manage" type="update"
+                                    class="col6 center" label="##word.done_access_doctor##" ng-show="c.status.id==2"
+                                    ng-hide="c.status.id!=2" onclick="site.showModal('#doctorsVisitsNotes')"></i-button>
+
+                                <i-button x-permissions="doctors_visits_update || doctors_visits_manage" type="update"
+                                    class="col6 center" label="##word.sellorder##" ng-hide="c.status.id!=3"
+                                    ng-show="c.status.id==3" ng-click="sellorder(c)"></i-button>
+
+                                <i-button x-permissions="doctors_visits_update || doctors_visits_manage" type="update"
+                                    class="col6 center" label="##word.done_detected##" ng-show="c.status.id==3"
+                                    ng-hide="c.status.id!=3" ng-click="detection(c)"></i-button>
+
+                                <i-button x-permissions="doctors_visits_update || doctors_visits_manage" type="update"
+                                    class="col6 center" label="##word.at_the_doctor##" ng-show="c.status.id==4"
+                                    ng-hide="c.status.id!=4" ng-click="atTheDoctor(c)"></i-button>
+
+                                <i-button x-permissions="doctors_visits_delete || doctors_visits_manage" type="delete"
+                                    ng-show="c.status.id==1" label="##word.delete##" ng-show=""
+                                    ng-click="displayDeleteDoctorsVisits(c)"></i-button>
+
+                            </td>
+                        </tr>
+                    </table>
+                    <i-button x-permissions="doctors_visits_print || doctors_visits_manage" x-permission="print" type="print"
+                        label="##word.print##" onclick="site.print('#t1')"></i-button>
+
+                    <i-button x-permissions="doctors_visits_export || doctors_visits_manage" x-permission="export" type="export"
+                        label="##word.export_to_excel##" onclick="export_to_xlsx('t1' , 'doctors_visits.xlsx')"></i-button>
+            </div>
+        </div>
+    </div>
+
+    <div x-import="scripts.html"></div>
+    <script x-import="doctors-visits/index.js"></script>
+</body>
+
+</html>

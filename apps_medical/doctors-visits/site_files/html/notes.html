@@ -1,6 +1,6 @@
-<div id="ticketNotes" class="modal">
+<div id="doctorsVisitsNotes" class="modal ">
 
-    <div class="modal-content">
+    <div class="modal-content small">
         <div class="modal-header">
             <span class="close">&times;</span>
             <h2>
@@ -14,7 +14,7 @@
             </span>
 
             <div class="row">
-                <i-textarea label="##word.notes_before##" ng-model="ticket.notes_before"></i-textarea>
+                <i-textarea label="##word.notes_before##" ng-model="doctors_visits.notes_before"></i-textarea>
             </div>
 
         </div>
@@ -22,9 +22,9 @@
 
         <div class="modal-footer center">
 
-            <i-button type="edit" label="##word.save##" ng-click="enter(ticket)"></i-button>
+            <i-button type="edit" label="##word.save##" ng-click="enter(doctors_visits)"></i-button>
 
-            <i-button type="close" label="##word.close##" onclick="site.hideModal('#ticketNotes')"> </i-button>
+            <i-button type="close" label="##word.close##" onclick="site.hideModal('#doctorsVisitsNotes')"> </i-button>
         </div>
     </div>
 </div>
